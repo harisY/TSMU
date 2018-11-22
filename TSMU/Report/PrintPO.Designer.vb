@@ -38,14 +38,15 @@ Partial Public Class PrintPO
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeaderBand1 = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -74,7 +75,6 @@ Partial Public Class PrintPO
         Me.DetailCaptionBackground3 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.FormattingRule1 = New DevExpress.XtraReports.UI.FormattingRule()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,7 +181,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell16
         '
-        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal SJ")})
+        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal SJ", "{0:dd-MM-yyyy HH:mm}")})
         Me.XrTableCell16.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell16.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell16.Name = "XrTableCell16"
@@ -195,7 +195,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell17
         '
-        Me.XrTableCell17.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Terima")})
+        Me.XrTableCell17.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Terima", "{0:dd-MM-yyyy HH:mm}")})
         Me.XrTableCell17.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell17.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell17.Name = "XrTableCell17"
@@ -209,7 +209,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell18
         '
-        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Kirim")})
+        Me.XrTableCell18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Kirim", "{0:dd-MM-yyyy HH:mm}")})
         Me.XrTableCell18.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell18.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell18.Name = "XrTableCell18"
@@ -272,6 +272,13 @@ Partial Public Class PrintPO
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrLine1
+        '
+        Me.XrLine1.LineWidth = 2
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 116.6667!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(777.0!, 8.333336!)
+        '
         'XrLabel9
         '
         Me.XrLabel9.AutoWidth = True
@@ -330,6 +337,18 @@ Partial Public Class PrintPO
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrPageInfo2
+        '
+        Me.XrPageInfo2.Font = New System.Drawing.Font("Arial Narrow", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrPageInfo2.Format = "Page {0} of {1}"
+        Me.XrPageInfo2.LocationFloat = New DevExpress.Utils.PointFloat(489.5576!, 68.00003!)
+        Me.XrPageInfo2.Name = "XrPageInfo2"
+        Me.XrPageInfo2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrPageInfo2.SizeF = New System.Drawing.SizeF(297.4424!, 23.0!)
+        Me.XrPageInfo2.StyleName = "PageInfo"
+        Me.XrPageInfo2.StylePriority.UseFont = False
+        Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Bold)
@@ -359,18 +378,6 @@ Partial Public Class PrintPO
         Me.XrLabel10.StylePriority.UseTextAlignment = False
         Me.XrLabel10.Text = "Di Terima Oleh"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrPageInfo2
-        '
-        Me.XrPageInfo2.Font = New System.Drawing.Font("Arial Narrow", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrPageInfo2.Format = "Page {0} of {1}"
-        Me.XrPageInfo2.LocationFloat = New DevExpress.Utils.PointFloat(489.5576!, 68.00003!)
-        Me.XrPageInfo2.Name = "XrPageInfo2"
-        Me.XrPageInfo2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrPageInfo2.SizeF = New System.Drawing.SizeF(297.4424!, 23.0!)
-        Me.XrPageInfo2.StyleName = "PageInfo"
-        Me.XrPageInfo2.StylePriority.UseFont = False
-        Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'ReportHeaderBand1
         '
@@ -675,13 +682,6 @@ Partial Public Class PrintPO
         Me.ObjectDataSource1.DataMember = "PrintPO"
         Me.ObjectDataSource1.DataSource = GetType(TSMU.dsLaporan)
         Me.ObjectDataSource1.Name = "ObjectDataSource1"
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LineWidth = 2
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 116.6667!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(777.0!, 8.333336!)
         '
         'ReportFooter
         '
