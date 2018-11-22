@@ -135,6 +135,7 @@
     <Compile Include="Classes\ClsDelviTransaction.vb" />
     <Compile Include="Classes\ClsReportMatome.vb" />
     <Compile Include="Classes\clsSJ.vb" />
+    <Compile Include="Classes\ClsTesting.vb" />
     <Compile Include="Classes\clsWorkCenter.vb" />
     <Compile Include="Classes\clsSalesForecastCalculate.vb" />
     <Compile Include="Classes\clsCalcultateBoM.vb" />
