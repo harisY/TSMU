@@ -63,10 +63,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -91,6 +87,9 @@
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\PROJECT KANTOR\MMT\ExcelLibrary\ExcelLibrary\bin\Debug\ExcelLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -131,6 +130,7 @@
     <Compile Include="Classes\clsBoM_Budget_Calculated.vb" />
     <Compile Include="Classes\clsCalculateBoMdetail.vb" />
     <Compile Include="Classes\clsCalculateBoMTrans.vb" />
+    <Compile Include="Classes\ClsCutomer.vb" />
     <Compile Include="Classes\ClsDelvi.vb" />
     <Compile Include="Classes\ClsDelviTransaction.vb" />
     <Compile Include="Classes\ClsReportMatome.vb" />
@@ -192,6 +192,18 @@
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmBom_Budget_Calculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmCustomer.Designer.vb">
+      <DependentUpon>FrmCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmCustomer_detail.designer.vb">
+      <DependentUpon>frmCustomer_detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmCustomer_detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmWorkCenter_detail.Designer.vb">
@@ -638,12 +650,6 @@
     <Compile Include="Form\System\FrmSystem_Filter.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\System\FrmSystem_PrintPreview1.Designer.vb">
-      <DependentUpon>FrmSystem_PrintPreview1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\System\FrmSystem_PrintPreview1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form\System\FrmSystem_User.Designer.vb">
       <DependentUpon>FrmSystem_User.vb</DependentUpon>
     </Compile>
@@ -670,41 +676,6 @@
     </Compile>
     <Compile Include="Moduls\mdlmain.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
-    <Compile Include="Report\BoM_report.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BoM_report.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\BoM_MultiLevel.vb">
-      <DependentUpon>BoM_MultiLevel.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\BoM_MaterialUsedBy.vb">
-      <DependentUpon>BoM_MaterialUsedBy.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\BoM_Routing1.vb">
-      <DependentUpon>BoM_Routing1.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\BoM_Routing.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BoM_Routing.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
     </Compile>
@@ -734,45 +705,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Report\CrystalReport1.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Report\PrintPO.Designer.vb">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </Compile>
     <Compile Include="Report\PrintPO.vb">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Report\Sales_Budge.vb">
-      <DependentUpon>Sales_Budge.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\Sales_Forecast.vb">
-      <DependentUpon>Sales_Forecast.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\Sales_Order.vb">
-      <DependentUpon>Sales_Order.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Report\Sales_Price.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sales_Price.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
@@ -809,6 +746,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBom_Budget_Calculate.resx">
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmCustomer.resx">
+      <DependentUpon>FrmCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmCustomer_detail.resx">
+      <DependentUpon>frmCustomer_detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmWorkCenter_detail.resx">
       <DependentUpon>frmWorkCenter_detail.vb</DependentUpon>
@@ -1035,9 +978,6 @@
       <DependentUpon>FrmSystem_Filter.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\System\FrmSystem_PrintPreview1.resx">
-      <DependentUpon>FrmSystem_PrintPreview1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystem_User.resx">
       <DependentUpon>FrmSystem_User.vb</DependentUpon>
     </EmbeddedResource>
@@ -1047,31 +987,6 @@
     <EmbeddedResource Include="Form\System\FrmSystem_User_detail.resx">
       <DependentUpon>FrmSystem_User_detail.vb</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Report\BoM_report.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BoM_report.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\BoM_MultiLevel.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BoM_MultiLevel.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\BoM_MaterialUsedBy.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BoM_MaterialUsedBy.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\BoM_Routing1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BoM_Routing1.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\BoM_Routing.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BoM_Routing.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Form\System\FrmSystem_FilterData.resx">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
     </EmbeddedResource>
@@ -1087,30 +1002,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Content Include="Report\Sales_Budge.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Sales_Budge.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\Sales_Forecast.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Sales_Forecast.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\Sales_Order.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Sales_Order.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Report\Sales_Price.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Sales_Price.vb</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Report\CrystalReport1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
@@ -1161,24 +1052,6 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

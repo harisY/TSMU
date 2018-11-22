@@ -170,211 +170,44 @@
     '''' <param name="vpFilter"></param>
     '''' <returns></returns>
     '''' <remarks></remarks>
-    Public Function PrintBomRouting(ByVal strSite As String, ByVal strStatus As String, ByVal strInvtid As String, ByVal report As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
+    'Public Function PrintBomRouting(ByVal strSite As String, ByVal strStatus As String, ByVal strInvtid As String, ByVal report As String) As Object
+    '    Try
+    '        'Dim CRPrint As New CR_VIC
+    '        Dim fc_Class As New clsReport
 
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
+    '        Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+    '        'Dim dt As New DataTable
+    '        'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
 
-            Dim ds As New DataSet
-            ds = fc_Class.View_BoMRouting(strSite, strStatus, strInvtid)
-            If report = "BoM_Routing" Then
-                CRPrint.Load(Application.StartupPath & "\Report\BoM_Routing.rpt")
-            Else
-                CRPrint.Load(Application.StartupPath & "\Report\BoM_MaterialUsedBy.rpt")
-            End If
+    '        Dim ds As New DataSet
+    '        ds = fc_Class.View_BoMRouting(strSite, strStatus, strInvtid)
+    '        If report = "BoM_Routing" Then
+    '            CRPrint.Load(Application.StartupPath & "\Report\BoM_Routing.rpt")
+    '        Else
+    '            CRPrint.Load(Application.StartupPath & "\Report\BoM_MaterialUsedBy.rpt")
+    '        End If
 
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
+    '        Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
 
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
+    '        Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
+    '        crConnectionInfo.ServerName = gs_DBServer
+    '        crConnectionInfo.DatabaseName = gs_Database
+    '        crConnectionInfo.UserID = gs_DBUserName
+    '        crConnectionInfo.Password = gs_DBPassword
+    '        crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
+    '        crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
+    '        crTableLogOnInfo.ConnectionInfo = crConnectionInfo
+    '        CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
 
-            CRPrint.SetDataSource(ds)
+    '        CRPrint.SetDataSource(ds)
 
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-    Public Function MultiLevelReport(ByVal strInvtid As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
+    '        Return CRPrint
+    '    Catch ex As Exception
+    '        Throw
+    '    End Try
+    'End Function
 
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
 
-            Dim ds As New DataSet
-            ds = fc_Class.Report_MultiLevelBoM(strInvtid)
-
-            CRPrint.Load(Application.StartupPath & "\Report\BoM_MultiLevel.rpt")
-
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
-
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
-
-            CRPrint.SetDataSource(ds)
-
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function SalesBudgetReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
-
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
-
-            Dim ds As New DataSet
-            ds = fc_Class.SB_LoadReport(strSite, strYear, strInvtid, strCust)
-
-            CRPrint.Load(Application.StartupPath & "\Report\Sales_Budge.rpt")
-
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
-
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
-
-            CRPrint.SetDataSource(ds)
-
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function SalesForecastReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
-
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
-
-            Dim ds As New DataSet
-            ds = fc_Class.SF_LoadReport(strSite, strYear, strInvtid, strCust)
-
-            CRPrint.Load(Application.StartupPath & "\Report\Sales_Forecast.rpt")
-
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
-
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
-
-            CRPrint.SetDataSource(ds)
-
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function SalesOrderReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
-
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
-
-            Dim ds As New DataSet
-            ds = fc_Class.SO_LoadReport(strSite, strYear, strInvtid, strCust)
-
-            CRPrint.Load(Application.StartupPath & "\Report\Sales_Order.rpt")
-
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
-
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
-
-            CRPrint.SetDataSource(ds)
-
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function SalesPriceReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As Object
-        Try
-            'Dim CRPrint As New CR_VIC
-            Dim fc_Class As New clsReport
-
-            Dim CRPrint As New CrystalDecisions.CrystalReports.Engine.ReportDocument
-            'Dim dt As New DataTable
-            'dt = fc_Class.DataGridBoMRouting(strSite, strStatus, strInvtid)
-
-            Dim ds As New DataSet
-            ds = fc_Class.SP_LoadReport(strSite, strYear, strInvtid, strCust)
-
-            CRPrint.Load(Application.StartupPath & "\Report\Sales_Price.rpt")
-
-            Dim crTableLogOnInfo As New CrystalDecisions.Shared.TableLogOnInfo
-
-            Dim crConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo
-            crConnectionInfo.ServerName = gs_DBServer
-            crConnectionInfo.DatabaseName = gs_Database
-            crConnectionInfo.UserID = gs_DBUserName
-            crConnectionInfo.Password = gs_DBPassword
-            crConnectionInfo.IntegratedSecurity = IIf(gs_DBAuthMode = "mixed", False, True)
-            crTableLogOnInfo = CRPrint.Database.Tables(0).LogOnInfo
-            crTableLogOnInfo.ConnectionInfo = crConnectionInfo
-            CRPrint.Database.Tables(0).ApplyLogOnInfo(crTableLogOnInfo)
-
-            CRPrint.SetDataSource(ds)
-
-            Return CRPrint
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
     Public Function Report_MultiLevelBoM(ByVal strInvtID As String) As DataSet
         Try
             Dim query As String = "sp_multi_level_BoM"

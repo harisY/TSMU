@@ -47,27 +47,6 @@ Public Class frmReport_Sales_Order
 
     End Sub
 
-    Sub ViewSalesOrder()
-        Try
-            Dim ds As New DataSet
-            ds = fc_class.SO_LoadReport(cmbSite.Text.Trim, _cmbYear.Text.Trim, _txtItem.Text.Trim, _txtCustomer.Text)
-            Dim laporan As New Sales_Order
-            laporan.SetDataSource(ds.Tables("SalesOrderTable"))
-            Dim preview As New FrmSystem_PrintPreview1
-            preview.CRViewer.ReportSource = laporan
-            'preview.ViewReportC = crReport
-            'preview.CRViewer.ShowLastPage()
-            'Dim li_Total As Integer = preview.CRViewer.GetCurrentPageNumber
-            preview.CRViewer.ShowParameterPanelButton = False
-            preview.CRViewer.ShowGroupTreeButton = False
-            preview.CRViewer.ShowPrintButton = False
-            preview.WindowState = FormWindowState.Maximized
-            preview.MdiParent = MenuUtamaForm
-            preview.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Private Sub releaseObject(ByVal obj As Object)
         Try
             System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
@@ -247,35 +226,6 @@ Public Class frmReport_Sales_Order
     End Sub
 
     Public Sub PrintDokumen(Optional ByVal fb_Preview As Boolean = False)
-        Try
-            Dim crReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument 'Object
-            If Grid.Rows.Count > 0 Then
-                crReport = fc_class.SalesOrderReport(cmbSite.Text.Trim, _cmbYear.Text.Trim, _txtItem.Text.Trim, _txtCustomer.Text)
 
-                Dim preview As New FrmSystem_PrintPreview1
-                preview.ViewReportCR = crReport
-                preview.CRViewer.ShowLastPage()
-                Dim li_Total As Integer = preview.CRViewer.GetCurrentPageNumber
-                preview.CRViewer.ShowPrintButton = False
-                If fb_Preview Then
-                    preview.MdiParent = MenuUtamaForm
-                    preview.Show()
-                Else
-                    'Dim ls_PrinterName As String = gf_DefaultPrinterName()
-                    'Dim ls_PrinterSelect As String = ""
-                    'ls_Error = gf_SelectInstalledPrinters(ls_PrinterSelect)
-                    'If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
-                    'If ls_PrinterSelect.Trim = "" Then Exit Sub
-                    'ls_PrinterName = ls_PrinterSelect
-
-                    'DocRpt.PrintOptions.PrinterName = ls_PrinterName
-                    'DocRpt.PrintToPrinter(1, True, 0, 0)
-                End If
-            Else
-                Err.Raise(ErrNumber, , "Please load data to print !")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
 End Class
