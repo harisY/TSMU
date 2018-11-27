@@ -28,6 +28,8 @@ Public Class FrmSuratJalanFin
             ObjSj.NoTran = _TxtNo.Text
             dt = ObjSj.GetSJbyNoTran
             _Grid1.DataSource = dt
+
+
         Catch ex As Exception
             Throw ex
         End Try
