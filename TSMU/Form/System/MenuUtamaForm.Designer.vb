@@ -40,6 +40,9 @@ Partial Class MenuUtamaForm
         Me.tsPayment = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsTransaction = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsReport1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SJtsb = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WHJtsb = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Fintsb = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem()
@@ -51,16 +54,16 @@ Partial Class MenuUtamaForm
         Me.LblLogin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.SJtsb = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WHJtsb = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Fintsb = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstax = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstaxtransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstaxreport = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tsPayment, Me.SJtsb, Me.WindowsMenu, Me.HelpMenu})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tstax, Me.tsPayment, Me.SJtsb, Me.WindowsMenu, Me.HelpMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
@@ -120,19 +123,19 @@ Partial Class MenuUtamaForm
         'BudgetTSM
         '
         Me.BudgetTSM.Name = "BudgetTSM"
-        Me.BudgetTSM.Size = New System.Drawing.Size(121, 22)
+        Me.BudgetTSM.Size = New System.Drawing.Size(180, 22)
         Me.BudgetTSM.Text = "Budget"
         '
         'ForecastTSM
         '
         Me.ForecastTSM.Name = "ForecastTSM"
-        Me.ForecastTSM.Size = New System.Drawing.Size(121, 22)
+        Me.ForecastTSM.Size = New System.Drawing.Size(180, 22)
         Me.ForecastTSM.Text = "Forecast"
         '
         'PriceTSM
         '
         Me.PriceTSM.Name = "PriceTSM"
-        Me.PriceTSM.Size = New System.Drawing.Size(121, 22)
+        Me.PriceTSM.Size = New System.Drawing.Size(180, 22)
         Me.PriceTSM.Text = "Price"
         '
         'tsMenuSetting
@@ -159,14 +162,33 @@ Partial Class MenuUtamaForm
         'tsTransaction
         '
         Me.tsTransaction.Name = "tsTransaction"
-        Me.tsTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.tsTransaction.Size = New System.Drawing.Size(180, 22)
         Me.tsTransaction.Text = "Transaction"
         '
         'tsReport1
         '
         Me.tsReport1.Name = "tsReport1"
-        Me.tsReport1.Size = New System.Drawing.Size(135, 22)
+        Me.tsReport1.Size = New System.Drawing.Size(180, 22)
         Me.tsReport1.Text = "Report"
+        '
+        'SJtsb
+        '
+        Me.SJtsb.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WHJtsb, Me.Fintsb})
+        Me.SJtsb.Name = "SJtsb"
+        Me.SJtsb.Size = New System.Drawing.Size(75, 20)
+        Me.SJtsb.Text = "Surat Jalan"
+        '
+        'WHJtsb
+        '
+        Me.WHJtsb.Name = "WHJtsb"
+        Me.WHJtsb.Size = New System.Drawing.Size(180, 22)
+        Me.WHJtsb.Text = "WHJ"
+        '
+        'Fintsb
+        '
+        Me.Fintsb.Name = "Fintsb"
+        Me.Fintsb.Size = New System.Drawing.Size(180, 22)
+        Me.Fintsb.Text = "Finance"
         '
         'WindowsMenu
         '
@@ -193,7 +215,7 @@ Partial Class MenuUtamaForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
         Me.AboutToolStripMenuItem.Text = "&About ..."
         '
         'StatusStrip
@@ -238,24 +260,24 @@ Partial Class MenuUtamaForm
         Me.lblGroup.Size = New System.Drawing.Size(66, 17)
         Me.lblGroup.Text = "User Group"
         '
-        'SJtsb
+        'tstax
         '
-        Me.SJtsb.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WHJtsb, Me.Fintsb})
-        Me.SJtsb.Name = "SJtsb"
-        Me.SJtsb.Size = New System.Drawing.Size(75, 20)
-        Me.SJtsb.Text = "Surat Jalan"
+        Me.tstax.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tstaxtransaction, Me.tstaxreport})
+        Me.tstax.Name = "tstax"
+        Me.tstax.Size = New System.Drawing.Size(36, 20)
+        Me.tstax.Text = "Tax"
         '
-        'WHJtsb
+        'tstaxtransaction
         '
-        Me.WHJtsb.Name = "WHJtsb"
-        Me.WHJtsb.Size = New System.Drawing.Size(180, 22)
-        Me.WHJtsb.Text = "WHJ"
+        Me.tstaxtransaction.Name = "tstaxtransaction"
+        Me.tstaxtransaction.Size = New System.Drawing.Size(180, 22)
+        Me.tstaxtransaction.Text = "Transaction"
         '
-        'Fintsb
+        'tstaxreport
         '
-        Me.Fintsb.Name = "Fintsb"
-        Me.Fintsb.Size = New System.Drawing.Size(180, 22)
-        Me.Fintsb.Text = "Finance"
+        Me.tstaxreport.Name = "tstaxreport"
+        Me.tstaxreport.Size = New System.Drawing.Size(180, 22)
+        Me.tstaxreport.Text = "Report"
         '
         'MenuUtamaForm
         '
@@ -308,4 +330,7 @@ Partial Class MenuUtamaForm
     Friend WithEvents SJtsb As ToolStripMenuItem
     Friend WithEvents WHJtsb As ToolStripMenuItem
     Friend WithEvents Fintsb As ToolStripMenuItem
+    Friend WithEvents tstax As ToolStripMenuItem
+    Friend WithEvents tstaxtransaction As ToolStripMenuItem
+    Friend WithEvents tstaxreport As ToolStripMenuItem
 End Class
