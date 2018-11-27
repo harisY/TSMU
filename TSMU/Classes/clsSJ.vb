@@ -325,6 +325,19 @@ Public Class ClsSJ
             Throw ex
         End Try
     End Sub
+
+    'Public Sub UpdateTglKirim()
+    '    Try
+
+    '        Dim sql As String =
+    '        "Update [SJChecking] 
+    '            SET [TglKirim] = " & QVal(DateTime.Today) & " 
+    '        WHERE [NoTran] = " & QVal(ShipperID) & ""
+    '        MainModul.ExecQuery_Solomon(sql)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
     Public Sub UpdateToTableNew()
         Try
             Dim status As Integer
@@ -555,7 +568,7 @@ Public Class ClsSJ
                     ,sj.RecDate [Tanggal Terima]
                     ,sj.TglKirim [Tanggal Kirim]
                     ,sj.[NoRec]
-                    ,sj.CheckFin as [Check]
+                    ,convert(bit,1) as [Check]
                     ,case when sj.[TglCheckFin] is NULL then getdate()
                             else sj.[TglCheckFin] end as [Tgl Check Fin]
                     ,RTRIM(so.User4) [SR YIM]
