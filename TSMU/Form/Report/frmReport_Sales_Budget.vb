@@ -36,12 +36,7 @@ Public Class frmReport_Sales_Budget
         Call LoadTxtBox()
     End Sub
     Public Overrides Sub Proc_PrintPreview()
-        Try
-            PrintDokumen(True)
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+
     End Sub
 
     Private Sub releaseObject(ByVal obj As Object)
@@ -56,22 +51,6 @@ Public Class frmReport_Sales_Budget
         End Try
     End Sub
 
-    Private Sub Grid_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
-        Try
-            Dim rowClicked As DataGridView.HitTestInfo = Grid.HitTest(e.X, e.Y)
-
-            'Select Right Clicked Row if its not the header row
-            If e.Button = Windows.Forms.MouseButtons.Right AndAlso e.RowIndex > -1 Then
-                'Clear any currently sellected rows
-                Grid.ClearSelection()
-                Me.Grid.Rows(e.RowIndex).Selected = True
-                ContextMenuStrip1.Show(Grid, New System.Drawing.Point(e.X, e.Y))
-                'CmsRightClick.Show(DgvDelays, New System.Drawing.Point(Windows.Forms.Cursor.Position))
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
     Dim path As String
     Private Sub getPath()
         Try
@@ -86,49 +65,25 @@ Public Class frmReport_Sales_Budget
     End Sub
     Public Overrides Sub Proc_Excel()
         Try
-            If Grid.Rows.Count > 0 Then
-                getPath()
-
-                If path <> "" Then
-                    ExcelLib.ExportToExcel(path & "\", Grid, "Budget_")
-                    ShowMessage("File Stored at : " & path)
+            If GridView1.RowCount > 0 Then
+                Dim save As New SaveFileDialog
+                save.Filter = "Excel File|*.xls"
+                save.Title = "Save an Excel File"
+                If save.ShowDialog = DialogResult.OK Then
+                    Grid.ExportToXls(save.FileName)
                 End If
+                'getPath()
+                '    Dim Filename As String = path & "\Forecast_.xls"
+                '    'Dim FileName As String = "D:\Grid.xls"
+                '    Grid.ExportToXls(Filename)
+
             Else
                 Throw New Exception("Tidak ada Data yg di export")
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-    End Sub
-    Private Sub ExportToExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToExcelToolStripMenuItem.Click
-        Try
-            If Grid.Rows.Count > 0 Then
-                getPath()
-
-                If path <> "" Then
-                    ExcelLib.ExportToExcel(path & "\", Grid, "Budget_")
-                    ShowMessage("File Stored at : " & path)
-                End If
-            Else
-                Throw New Exception("Tidak ada Data yg di export")
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Shared Sub SetGridViewSortState(ByVal dgv As DataGridView, ByVal sortMode As DataGridViewColumnSortMode)
-        For Each col As DataGridViewColumn In dgv.Columns
-            col.SortMode = sortMode
-        Next
-    End Sub
-
-    Private Sub Grid_ColumnAdded(sender As Object, e As DataGridViewColumnEventArgs)
-        SetGridViewSortState(Grid, DataGridViewColumnSortMode.NotSortable)
-
     End Sub
 
     Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbSite.KeyPress, _cmbYear.KeyPress
@@ -139,7 +94,7 @@ Public Class frmReport_Sales_Budget
         End If
     End Sub
 
-    Private Sub frmReport_BoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    Private Sub frmReport_Sales_Budget_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         _cmbYear.Focus()
     End Sub
 
@@ -239,10 +194,6 @@ Public Class frmReport_Sales_Budget
         Catch ex As Exception
             Throw
         End Try
-
-    End Sub
-
-    Public Sub PrintDokumen(Optional ByVal fb_Preview As Boolean = False)
 
     End Sub
 End Class

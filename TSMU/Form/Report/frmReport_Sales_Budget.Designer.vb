@@ -36,16 +36,18 @@ Partial Class frmReport_Sales_Budget
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Grid = New System.Windows.Forms.DataGridView()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnLoad = New System.Windows.Forms.ToolStripButton()
         Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -92,7 +94,7 @@ Partial Class frmReport_Sales_Budget
         '
         Me._txtCustomer.Location = New System.Drawing.Point(80, 88)
         Me._txtCustomer.Name = "_txtCustomer"
-        Me._txtCustomer.Size = New System.Drawing.Size(306, 22)
+        Me._txtCustomer.Size = New System.Drawing.Size(306, 20)
         Me._txtCustomer.TabIndex = 4
         '
         'Label4
@@ -100,7 +102,7 @@ Partial Class frmReport_Sales_Budget
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(6, 88)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(56, 13)
+        Me.Label4.Size = New System.Drawing.Size(51, 13)
         Me.Label4.TabIndex = 18
         Me.Label4.Text = "Customer"
         '
@@ -117,7 +119,7 @@ Partial Class frmReport_Sales_Budget
         '
         Me._txtItem.Location = New System.Drawing.Point(80, 60)
         Me._txtItem.Name = "_txtItem"
-        Me._txtItem.Size = New System.Drawing.Size(306, 22)
+        Me._txtItem.Size = New System.Drawing.Size(306, 20)
         Me._txtItem.TabIndex = 3
         '
         'Label7
@@ -125,7 +127,7 @@ Partial Class frmReport_Sales_Budget
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(6, 60)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(29, 13)
+        Me.Label7.Size = New System.Drawing.Size(27, 13)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Item"
         '
@@ -143,7 +145,7 @@ Partial Class frmReport_Sales_Budget
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(6, 6)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(27, 13)
+        Me.Label2.Size = New System.Drawing.Size(29, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Year"
         '
@@ -162,7 +164,7 @@ Partial Class frmReport_Sales_Budget
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 33)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(26, 13)
+        Me.Label1.Size = New System.Drawing.Size(25, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Site"
         '
@@ -190,18 +192,6 @@ Partial Class frmReport_Sales_Budget
         Me.Panel1.Size = New System.Drawing.Size(799, 382)
         Me.Panel1.TabIndex = 2
         '
-        'Grid
-        '
-        Me.Grid.AllowUserToAddRows = False
-        Me.Grid.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Grid.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
-        Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(799, 357)
-        Me.Grid.TabIndex = 3
-        '
         'ToolStrip2
         '
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
@@ -224,6 +214,24 @@ Partial Class frmReport_Sales_Budget
         Me.ProgBar.Name = "ProgBar"
         Me.ProgBar.Size = New System.Drawing.Size(100, 22)
         '
+        'Grid
+        '
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.Size = New System.Drawing.Size(799, 357)
+        Me.Grid.TabIndex = 3
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
         'frmReport_Sales_Budget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -239,9 +247,10 @@ Partial Class frmReport_Sales_Budget
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -258,12 +267,12 @@ Partial Class frmReport_Sales_Budget
     Friend WithEvents _txtItem As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Grid As System.Windows.Forms.DataGridView
     Friend WithEvents ToolStrip2 As System.Windows.Forms.ToolStrip
     Friend WithEvents btnLoad As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnCari1 As System.Windows.Forms.Button
     Friend WithEvents _txtCustomer As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents ProgBar As System.Windows.Forms.ToolStripProgressBar
-
+    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

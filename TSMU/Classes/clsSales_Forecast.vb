@@ -1214,6 +1214,23 @@ Public Class clsSales_Forecast
             Throw
         End Try
     End Sub
+    Public Sub Delete_All()
+        Try
+            Dim query As String = "DELETE FROM Forecast"
+            Dim li_Row = MainModul.ExecQuery(query)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub DeleteByTahun()
+        Try
+            Dim query As String = "DELETE FROM Forecast " & vbCrLf &
+            "WHERE tahun = " & QVal(Me._tahun) & ""
+            Dim li_Row = MainModul.ExecQuery(query)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
     Public Function IsDataExist() As Boolean
         Dim IsExist As Boolean = False

@@ -90,25 +90,18 @@ Public Class frmSales_Budget
 
         Dim frmExcel As FrmSystemExcel
         frmExcel = New FrmSystemExcel(table, 34)
-        frmExcel.Text = "Import " & ls_Judul
+        frmExcel.Text = "Upload " & ls_Judul
         frmExcel.StartPosition = FormStartPosition.CenterScreen
         frmExcel.ShowDialog()
 
         strTtahun = frmExcel.Tahun
-        strCustomer = frmExcel.Customer
         Try
             'Cursor = Cursors.WaitCursor
             Dim dv As DataView = New DataView(table)
             Dim dtFilter As New DataTable
 
-            If strCustomer <> "" AndAlso strTtahun <> "" Then
-                dv.RowFilter = "tahun = '" & strTtahun & "' AND Customer ID = '" & strCustomer & "'"
-                dtFilter = dv.ToTable
-            ElseIf strCustomer = "" AndAlso strTtahun <> "" Then
+            If strTtahun <> "" Then
                 dv.RowFilter = "tahun = '" & strTtahun & "'"
-                dtFilter = dv.ToTable
-            ElseIf strCustomer <> "" AndAlso strTtahun = "" Then
-                dv.RowFilter = "Customer ID = '" & strCustomer & "'"
                 dtFilter = dv.ToTable
             Else
                 dtFilter = dv.ToTable
@@ -304,7 +297,7 @@ Public Class frmSales_Budget
                             '    .Revisi = dtFilter.Rows(i)("revisi")
                             'End If
 
-                            .Delete_byTahun()
+                            .DeleteByTahun()
                             .Insert()
 
                         End With

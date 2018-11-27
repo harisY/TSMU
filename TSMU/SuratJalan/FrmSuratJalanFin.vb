@@ -7,13 +7,13 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Public Class FrmSuratJalanFin
-    Dim ObjSj As clsSJ
+    Dim ObjSj As ClsSJ
     Dim Username As String
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-        ObjSj = New clsSJ
+        ObjSj = New ClsSJ
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub

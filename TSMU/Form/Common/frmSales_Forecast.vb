@@ -157,28 +157,19 @@ Public Class frmSales_Forecast
 
         Dim frmExcel As FrmSystemExcel
         frmExcel = New FrmSystemExcel(table, 69)
-        frmExcel.Text = "Import " & ls_Judul
+        frmExcel.Text = "Upload " & ls_Judul
         frmExcel.StartPosition = FormStartPosition.CenterScreen
         frmExcel.ShowDialog()
 
         strTtahun = frmExcel.Tahun
-        strCustomer = frmExcel.Customer
-        'ProgressBar1.Visible = True
-        'ProgressBar1.Style = ProgressBarStyle.Marquee
 
         Try
             'Cursor = Cursors.WaitCursor
             Dim dv As DataView = New DataView(table)
             Dim dtFilter As New DataTable
 
-            If strCustomer <> "" AndAlso strTtahun <> "" Then
-                dv.RowFilter = "tahun = '" & strTtahun & "' AND custid = '" & strCustomer & "'"
-                dtFilter = dv.ToTable
-            ElseIf strCustomer = "" AndAlso strTtahun <> "" Then
+            If strTtahun <> "" Then
                 dv.RowFilter = "tahun = '" & strTtahun & "'"
-                dtFilter = dv.ToTable
-            ElseIf strCustomer <> "" AndAlso strTtahun = "" Then
-                dv.RowFilter = "custid = '" & strCustomer & "'"
                 dtFilter = dv.ToTable
             Else
                 dtFilter = dv.ToTable
@@ -574,13 +565,14 @@ Public Class frmSales_Forecast
                                 .Des_PO02 = Int32.Parse(dtFilter.Rows(i)("Des_po02").ToString)
                             End If
 
-                            .Delete_byTahun()
+                            .DeleteByTahun()
                             .Insert()
 
                         End With
 
                     Catch ex As Exception
                         'MsgBox(ex.Message)
+                        Console.WriteLine(ex.Message)
                         WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
                         WriteSalesToErrorLog("Forecast", "Log", dtFilter, i, "invtid", gh_Common.Username)
                         Continue For

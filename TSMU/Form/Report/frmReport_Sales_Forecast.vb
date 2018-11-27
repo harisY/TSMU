@@ -108,7 +108,7 @@ Public Class frmReport_Sales_Forecast
         End If
     End Sub
 
-    Private Sub frmReport_BoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    Private Sub frmReport_Sales_Forecast_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         _cmbYear.Focus()
     End Sub
 

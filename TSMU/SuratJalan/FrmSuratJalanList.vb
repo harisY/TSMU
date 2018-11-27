@@ -10,7 +10,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 
 Public Class FrmSuratJalanList
-    Dim SuratJalan As New clsSJ
+    Dim SuratJalan As New ClsSJ
     Dim dtGrid As DataTable
     Dim No As String
     Private Sub FrmSuratJalanList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -64,9 +64,10 @@ Public Class FrmSuratJalanList
         Try
             If XtraTabControl1.SelectedTabPageIndex = 0 Then
                 If GridView1.RowCount > 0 Then
-                    Dim save As New SaveFileDialog
-                    save.Filter = "Excel File|*.xls"
-                    save.Title = "Save an Excel File"
+                    Dim save As New SaveFileDialog With {
+                        .Filter = "Excel File|*.xls",
+                        .Title = "Save an Excel File"
+                    }
                     If save.ShowDialog = DialogResult.OK Then
                         _Grid.ExportToXls(save.FileName)
                     End If
@@ -75,9 +76,10 @@ Public Class FrmSuratJalanList
                 End If
             Else
                 If GridView2.RowCount > 0 Then
-                    Dim save As New SaveFileDialog
-                    save.Filter = "Excel File|*.xls"
-                    save.Title = "Save an Excel File"
+                    Dim save As New SaveFileDialog With {
+                        .Filter = "Excel File|*.xls",
+                        .Title = "Save an Excel File"
+                    }
                     If save.ShowDialog = DialogResult.OK Then
                         _Grid1.ExportToXls(save.FileName)
                     End If
@@ -212,9 +214,10 @@ Public Class FrmSuratJalanList
             ls_Judul = "Surat Jalan"
 
             Dim lF_SearchData As FrmSystem_FilterDev
-            lF_SearchData = New FrmSystem_FilterDev(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData = New FrmSystem_FilterDev(dtSearch) With {
+                .Text = "Select Data " & ls_Judul,
+                .StartPosition = FormStartPosition.CenterScreen
+            }
             lF_SearchData.ShowDialog()
             Dim ls_Kode As String = ""
             Dim ls_Nama As String = ""
@@ -233,7 +236,6 @@ Public Class FrmSuratJalanList
             Dim dt As DataTable = New DataTable
             ds = SuratJalan.ReprintPrintPO()
             dt = ds.Tables("PrintPO")
-
             Dim Laporan As PrintPO = New PrintPO
             With Laporan
                 .param1 = No
@@ -402,9 +404,10 @@ Public Class FrmSuratJalanList
             ls_Judul = "Customer"
 
             Dim lF_SearchData As FrmSystem_Filter
-            lF_SearchData = New FrmSystem_Filter(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData = New FrmSystem_Filter(dtSearch) With {
+                .Text = "Select Data " & ls_Judul,
+                .StartPosition = FormStartPosition.CenterScreen
+            }
             lF_SearchData.ShowDialog()
             Dim ls_Kode As String = ""
             Dim ls_Nama As String = ""

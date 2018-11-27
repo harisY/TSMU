@@ -28,37 +28,43 @@ Public Class FrmSystemExcel
             Return _cmbTahun.Text.Trim
         End Get
     End Property
-    ReadOnly Property Customer As String
-        Get
-            Return _cmbCust.Text.Trim
-        End Get
-    End Property
     Private Sub FrmSystemExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboTahun()
-        FillComboCustomer()
         lblStatus.Text = ""
     End Sub
     Private Sub FillComboTahun()
         Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
-        _cmbTahun.Items.Clear()
+        _cmbTahun.Properties.Items.Clear()
         For Each var As String In tahun
-            _cmbTahun.Items.Add(var)
+            _cmbTahun.Properties.Items.Add(var)
         Next
     End Sub
 
-    Private Sub FillComboCustomer()
-        Dim dtTabel As New DataTable
-        dtTabel = fc_class.getCusstID_Solomon
-        Dim dr As DataRow = dtTabel.NewRow
-        dr("CustId") = ""
-        dtTabel.Rows.InsertAt(dr, 0)
-        _cmbCust.Items.Clear()
-        For i As Integer = 0 To dtTabel.Rows.Count - 1
-            _cmbCust.Items.Add(dtTabel.Rows(i)("CustId"))
-        Next
-    End Sub
+    'Private Sub FillComboCustomer()
+    '    Dim dtTabel As New DataTable
+    '    dtTabel = fc_class.getCusstID_Solomon
+    '    Dim dr As DataRow = dtTabel.NewRow
+    '    dr("CustId") = ""
+    '    dtTabel.Rows.InsertAt(dr, 0)
+    '    _cmbTahun.Items.Clear()
+    '    For i As Integer = 0 To dtTabel.Rows.Count - 1
+    '        _cmbTahun.Items.Add(dtTabel.Rows(i)("CustId"))
+    '    Next
+    'End Sub
     Dim path As String
-    Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+    Private Sub releaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+            MessageBox.Show("Exception Occured while releasing object " + ex.ToString())
+        Finally
+            GC.Collect()
+        End Try
+    End Sub
+
+    Private Sub _txtExcel_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles _txtExcel.ButtonClick
         Try
             OpenFileDialog1.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OpenFileDialog1.ShowDialog()
@@ -76,10 +82,18 @@ Public Class FrmSystemExcel
         End Try
     End Sub
 
-    Private Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
+    Private Sub _BtnExport1_Click(sender As Object, e As EventArgs) Handles _BtnExport1.Click
         Try
             If lblStatus.Text <> "" Then
                 Throw New Exception("Proses masih berjalan !")
+            End If
+            If _txtExcel.Text = "" Then
+                _txtExcel.Focus()
+                Throw New Exception("File Excel yang akan di upload tidak ada !")
+            End If
+            If _cmbTahun.Text = "" Then
+                _cmbTahun.Focus()
+                Throw New Exception("Pilih Tahun !")
             End If
             Dim connString As String = String.Empty
             Dim extension As String = System.IO.Path.GetExtension(path)
@@ -104,64 +118,9 @@ Public Class FrmSystemExcel
                 End Using
                 excel_con.Close()
             End Using
-
-            'Dim xlApp As Microsoft.Office.Interop.Excel.Application
-            'Dim xlWorkbook As Microsoft.Office.Interop.Excel.Workbook
-            'Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
-            'Dim xlRange As Microsoft.Office.Interop.Excel.Range
-
-            'Dim xlCol As Integer
-            'Dim xlRow As Integer
-
-            'Dim Data(0 To a) As String
-
-            'With GridData
-            '    .Clear()
-            '    If _txtExcel.Text <> "" Then
-            '        xlApp = New Microsoft.Office.Interop.Excel.Application
-            '        xlWorkbook = xlApp.Workbooks.Open(_txtExcel.Text)
-            '        xlWorkSheet = xlWorkbook.ActiveSheet()
-            '        xlRange = xlWorkSheet.UsedRange
-
-            '        If xlRange.Columns.Count > 0 Then
-            '            If xlRange.Rows.Count > 0 Then
-            '                'Cursor = Cursors.WaitCursor
-            '                lblStatus.Text = "Please wait...!"
-            '                For xlRow = 2 To xlRange.Rows.Count 'here the xlRow is start from 2 coz in exvel sheet mostly 1st row is the header row
-            '                    For xlCol = 1 To xlRange.Columns.Count
-            '                        Data(xlCol - 1) = xlRange.Cells(xlRow, xlCol).text
-            '                    Next
-            '                    .LoadDataRow(Data, True)
-            '                    Application.DoEvents()
-            '                Next
-            '                'Cursor = Cursors.Default
-            '                lblStatus.Text = ""
-            '                xlWorkbook.Close()
-            '                xlApp.Quit()
-            '                'KillExcelProcess()
-            '                releaseObject(xlWorkSheet)
-            '                releaseObject(xlWorkbook)
-            '                releaseObject(xlApp)
-            '            End If
-            '        End If
-            '    Else
-            '        MessageBox.Show("Please Select Excel File", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            '    End If
-            'End With
             Me.Close()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
-    End Sub
-    Private Sub releaseObject(ByVal obj As Object)
-        Try
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
-            obj = Nothing
-        Catch ex As Exception
-            obj = Nothing
-            MessageBox.Show("Exception Occured while releasing object " + ex.ToString())
-        Finally
-            GC.Collect()
         End Try
     End Sub
 End Class
