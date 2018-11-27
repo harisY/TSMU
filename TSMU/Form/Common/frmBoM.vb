@@ -1,6 +1,7 @@
 ﻿Imports System.Configuration
 Imports System.Data.OleDb
 Imports System.Globalization
+Imports DevExpress.XtraGrid
 Public Class frmBoM
     Dim ff_Detail As frmBoM_detail1
     Dim dtGrid As DataTable

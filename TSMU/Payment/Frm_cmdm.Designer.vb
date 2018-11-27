@@ -192,7 +192,6 @@ Partial Class Frm_cmdm
         '
         'Button4
         '
-        Me.Button4.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269007_file_edit
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.Location = New System.Drawing.Point(922, 19)

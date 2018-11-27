@@ -68,7 +68,7 @@ Partial Class Frm_Filter_payment_putik
         '
         'Button3
         '
-        Me.Button3.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.approve
+
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button3.Location = New System.Drawing.Point(1020, 43)
         Me.Button3.Name = "Button3"
@@ -79,7 +79,7 @@ Partial Class Frm_Filter_payment_putik
         '
         'Button2
         '
-        Me.Button2.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269007_file_edit1
+
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button2.Location = New System.Drawing.Point(981, 44)
         Me.Button2.Name = "Button2"
@@ -270,7 +270,7 @@ Partial Class Frm_Filter_payment_putik
         'Button7
         '
         Me.Button7.BackColor = System.Drawing.SystemColors.Control
-        Me.Button7.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
+
         Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.Location = New System.Drawing.Point(515, 23)
@@ -295,7 +295,7 @@ Partial Class Frm_Filter_payment_putik
         'Button6
         '
         Me.Button6.BackColor = System.Drawing.SystemColors.Control
-        Me.Button6.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
+
         Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.Location = New System.Drawing.Point(546, 25)

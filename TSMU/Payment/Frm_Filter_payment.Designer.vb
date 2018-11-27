@@ -69,7 +69,6 @@ Partial Class Frm_Filter_payment
         '
         'Button3
         '
-        Me.Button3.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.approve
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button3.Location = New System.Drawing.Point(948, 57)
         Me.Button3.Name = "Button3"
@@ -79,7 +78,6 @@ Partial Class Frm_Filter_payment
         '
         'Button2
         '
-        Me.Button2.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269007_file_edit1
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button2.Location = New System.Drawing.Point(872, 58)
         Me.Button2.Name = "Button2"
@@ -134,7 +132,6 @@ Partial Class Frm_Filter_payment
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.Control
-        Me.Button4.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.Location = New System.Drawing.Point(549, 25)
@@ -196,7 +193,6 @@ Partial Class Frm_Filter_payment
         'Button5
         '
         Me.Button5.BackColor = System.Drawing.SystemColors.Control
-        Me.Button5.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
         Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.Location = New System.Drawing.Point(551, 23)
@@ -279,7 +275,6 @@ Partial Class Frm_Filter_payment
         'Button7
         '
         Me.Button7.BackColor = System.Drawing.SystemColors.Control
-        Me.Button7.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
         Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button7.Location = New System.Drawing.Point(515, 23)
@@ -304,7 +299,6 @@ Partial Class Frm_Filter_payment
         'Button6
         '
         Me.Button6.BackColor = System.Drawing.SystemColors.Control
-        Me.Button6.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.magnifieddoc_300x241
         Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.Location = New System.Drawing.Point(546, 25)

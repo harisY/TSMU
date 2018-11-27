@@ -202,7 +202,7 @@ Partial Class Frm_FP
         Me._Ket_Dpp.Visible = False
         '
         '_nilai_Pph
-        '
+
         Me._nilai_Pph.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._nilai_Pph.Location = New System.Drawing.Point(431, 140)
         Me._nilai_Pph.Name = "_nilai_Pph"
@@ -212,8 +212,7 @@ Partial Class Frm_FP
         Me._nilai_Pph.Visible = False
         '
         'Button4
-        '
-        Me.Button4.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269007_file_edit
+
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.Location = New System.Drawing.Point(960, 13)
@@ -224,7 +223,7 @@ Partial Class Frm_FP
         '
         'Button1
         '
-        Me.Button1.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269220_note
+
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button1.Location = New System.Drawing.Point(536, 45)
         Me.Button1.Name = "Button1"
@@ -234,7 +233,7 @@ Partial Class Frm_FP
         '
         'Button2
         '
-        Me.Button2.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources._1488269045_file_search
+
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button2.Location = New System.Drawing.Point(356, 13)
         Me.Button2.Name = "Button2"

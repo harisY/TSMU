@@ -677,7 +677,7 @@ Public Class Cls_Payment
                 "select 'AP' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -696,7 +696,7 @@ Public Class Cls_Payment
                 "select RIGHT(@tahun,4) + '-' + @bulan "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -712,7 +712,7 @@ Public Class Cls_Payment
             query = "Select remitname,taxregnbr,user1 FROM Vendor where VendID='" & _VendID & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             VendID1 = dt.Rows(0).Item(0).ToString
             Return VendID1
 
@@ -816,7 +816,7 @@ Public Class Cls_Payment
             query = "Select VendID,taxregnbr,user1 FROM Vendor where Name='" & _Vend_Name & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             VendID2 = dt.Rows(0).Item(0).ToString
             Return VendID2
 
@@ -882,7 +882,7 @@ Public Class Cls_Payment
                 "select 'AP' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 

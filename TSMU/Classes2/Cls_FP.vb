@@ -346,7 +346,7 @@ Public Class Cls_FP
 
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -362,7 +362,7 @@ Public Class Cls_FP
             query = "select no_faktur from fp_pph_header where no_faktur='" & Fp & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             If dt.Rows.Count > 0 Then
                 ada_faktur = dt.Rows(0).Item(0).ToString
             Else
@@ -382,7 +382,7 @@ Public Class Cls_FP
             query = "select distinct no_invoice from fp_pph_detail where no_invoice='" & invcnbr & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             If dt.Rows.Count > 0 Then
                 ada_invoice = dt.Rows(0).Item(0).ToString
             Else
@@ -568,7 +568,7 @@ Public Class Cls_FP
                 "select coalesce(@seq, '0001')+'/' + @site  +'/' +@bulan +'/' +@pasal +'/' + RIGHT(@tahun,4) "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -584,7 +584,7 @@ Public Class Cls_FP
             query = "Select remitname,taxregnbr,user1 FROM Vendor where VendID='" & _VendID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             VendID1 = dt.Rows(0).Item(0).ToString
             Return VendID1
 
@@ -630,7 +630,7 @@ Public Class Cls_FP
             query = "Select VendID,taxregnbr,user1 FROM Vendor where Name='" & _Vend_Name & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             VendID2 = dt.Rows(0).Item(0).ToString
             Return VendID2
 
@@ -717,7 +717,7 @@ Public Class Cls_FP
             query = "Select BankAcct FROM cashacct where CashAcctName='" & _BankName & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             BankID2 = dt.Rows(0).Item(0).ToString
             Return BankID2
 
@@ -733,7 +733,7 @@ Public Class Cls_FP
             query = "Select CashAcctName FROM cashacct where BankAcct='" & _BankID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = mdlmain.GetDataTableByCommand(query)
             BankID1 = dt.Rows(0).Item(0).ToString
             Return BankID1
 

@@ -106,8 +106,8 @@ Public Class Cls_report
 
     Public Function tampilpaytgl() As DataSet
         Dim query As String
-        TanggalAwal = Frm_RptPayment.dt1.Text + " 00:00:00"
-        TanggalAkhir = Frm_RptPayment.dt2.Text + " 00:00:00"
+        '   TanggalAwal = Frm_RptPayment.dt1.Text + " 00:00:00"
+        '  TanggalAkhir = Frm_RptPayment.dt2.Text + " 00:00:00"
 
         query = "select " & _
                   "Payment_Header1.VendorName VendorName, " & _
@@ -131,8 +131,8 @@ Public Class Cls_report
 
     Public Function mizuhotgl() As DataSet
         Dim query As String
-        TanggalAwal1 = Frm_Report_UploadMizuho.dt1.Text + " 00:00:00"
-        TanggalAkhir1 = Frm_Report_UploadMizuho.dt2.Text + " 00:00:00"
+        '  TanggalAwal1 = Frm_Report_UploadMizuho.dt1.Text + " 00:00:00"
+        '  TanggalAkhir1 = Frm_Report_UploadMizuho.dt2.Text + " 00:00:00"
 
         query = "select " & _
                   "uploadmizuho1.ref_no_sup ref_no_sup, " & _
@@ -170,8 +170,8 @@ Public Class Cls_report
 
     Public Function tampilpaytglheader() As DataSet
         Dim query As String
-        TanggalAwal = Frm_RptPayment.dta.Text + " 00:00:00"
-        TanggalAkhir = Frm_RptPayment.dtb.Text + " 00:00:00"
+        '  TanggalAwal = Frm_RptPayment.dta.Text + " 00:00:00"
+        '  TanggalAkhir = Frm_RptPayment.dtb.Text + " 00:00:00"
 
         query = "select vrno, tgl, vendorname, tot_DPP, tot_PPN, " & _
                 "(Tot_DPP + Tot_PPN + pph) as Total, pph, ((Tot_DPP + Tot_PPN + pph) - pph)  as Grand_Total, " & _
@@ -186,9 +186,9 @@ Public Class Cls_report
 
     Public Function tampilpayheadercari() As DataSet
         Dim query As String
-        TanggalAwal = Frm_RptPayment.dtcari1.Text + " 00:00:00"
-        TanggalAkhir = Frm_RptPayment.dtcari2.Text + " 00:00:00"
-        supplier = Frm_RptPayment._Vend_Name.Text
+        'TanggalAwal = Frm_RptPayment.dtcari1.Text + " 00:00:00"
+        ' TanggalAkhir = Frm_RptPayment.dtcari2.Text + " 00:00:00"
+        ' supplier = Frm_RptPayment._Vend_Name.Text
 
         query = "select vrno, tgl, vendorname, tot_DPP, tot_PPN, " & _
                  "(Tot_DPP + Tot_PPN + pph) as Total, pph, ((Tot_DPP + Tot_PPN + pph) - pph)  as Grand_Total, " & _
@@ -277,8 +277,8 @@ Public Class Cls_report
 
     Public Function getalldatabank1() As DataSet
         ''TanggalAwal = Frm_periode.DataGridView1.SelectedRows(0).Cells(2).Value.ToString()
-        TanggalAwal = Frm_RptBank._TglPay.Text
-        BankName = Frm_RptBank._BankName.Text
+        '  TanggalAwal = Frm_RptBank._TglPay.Text
+        ' BankName = Frm_RptBank._BankName.Text
 
         Try
             '    query = "select " & _
@@ -313,8 +313,8 @@ Public Class Cls_report
 
     Public Function getalldatabankcrall() As DataSet
         ''TanggalAwal = Frm_periode.DataGridView1.SelectedRows(0).Cells(2).Value.ToString()
-        TanggalAwal = Frm_RptBank._TglPay.Text
-        BankName = Frm_RptBank._BankName.Text
+        ' TanggalAwal = Frm_RptBank._TglPay.Text
+        ' BankName = Frm_RptBank._BankName.Text
 
         Try
             query = "select " & _
@@ -379,8 +379,8 @@ Public Class Cls_report
 
     Public Function getalldatauploadbytgl() As DataSet
         Dim query As String
-        TanggalAwal = Frm_RptUpload.dt1.Text + " 00:00:00"
-        TanggalAkhir = Frm_RptUpload.dt2.Text + " 00:00:00"
+        '   TanggalAwal = Frm_RptUpload.dt1.Text + " 00:00:00"
+        '   TanggalAkhir = Frm_RptUpload.dt2.Text + " 00:00:00"
 
         query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, vrno, tgl, VendId, origdocamt, RefNbr, curydocbal FROM dataupload " & _
                 "where tgl >='" & TanggalAwal & "' AND tgl <='" & TanggalAkhir & "' and prosespay='1' and cek1='1' order by vrno,vendid"

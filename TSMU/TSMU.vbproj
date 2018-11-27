@@ -167,6 +167,26 @@
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
+    <Compile Include="dataset\bank.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bank.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\dataupload.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataupload.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\dscmdm.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dscmdm.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsLaporan.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +194,16 @@
     </Compile>
     <Compile Include="dataset\dsLaporan.vb">
       <DependentUpon>dsLaporan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\mizuho.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mizuho.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\suspend.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>suspend.xsd</DependentUpon>
     </Compile>
     <Compile Include="Delvi\frmDelvi.Designer.vb">
       <DependentUpon>frmDelvi.vb</DependentUpon>
@@ -666,12 +696,6 @@
     <Compile Include="Payment\Frm_Lap_Pajak.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_Login.Designer.vb">
-      <DependentUpon>Frm_Login.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Login.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Payment\Frm_MasterRekening.Designer.vb">
       <DependentUpon>Frm_MasterRekening.vb</DependentUpon>
     </Compile>
@@ -724,6 +748,12 @@
       <DependentUpon>Frm_ScanFP.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_ScanFP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\utama.Designer.vb">
+      <DependentUpon>utama.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\utama.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Report\PrintPO.Designer.vb">
@@ -1003,9 +1033,6 @@
     <EmbeddedResource Include="Payment\Frm_Lap_Pajak.resx">
       <DependentUpon>Frm_Lap_Pajak.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Login.resx">
-      <DependentUpon>Frm_Login.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Payment\Frm_MasterRekening.resx">
       <DependentUpon>Frm_MasterRekening.vb</DependentUpon>
     </EmbeddedResource>
@@ -1033,6 +1060,9 @@
     <EmbeddedResource Include="Payment\Frm_ScanFP.resx">
       <DependentUpon>Frm_ScanFP.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\utama.resx">
+      <DependentUpon>utama.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </EmbeddedResource>
@@ -1047,6 +1077,50 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="dataset\bank.xsc">
+      <DependentUpon>bank.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\bank.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bank.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\bank.xss">
+      <DependentUpon>bank.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dataupload.xsc">
+      <DependentUpon>dataupload.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dataupload.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataupload.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\dataupload.xss">
+      <DependentUpon>dataupload.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dscmdm.xsc">
+      <DependentUpon>dscmdm.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dscmdm.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dscmdm.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\dscmdm.xss">
+      <DependentUpon>dscmdm.xsd</DependentUpon>
+    </None>
     <None Include="dataset\dsLaporan.xsc">
       <DependentUpon>dsLaporan.xsd</DependentUpon>
     </None>
@@ -1057,6 +1131,28 @@
     </None>
     <None Include="dataset\dsLaporan.xss">
       <DependentUpon>dsLaporan.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\mizuho.xsc">
+      <DependentUpon>mizuho.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\mizuho.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mizuho.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\mizuho.xss">
+      <DependentUpon>mizuho.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\suspend.xsc">
+      <DependentUpon>suspend.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\suspend.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>suspend.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\suspend.xss">
+      <DependentUpon>suspend.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

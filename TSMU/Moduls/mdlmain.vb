@@ -15,7 +15,7 @@ Module mdlmain
         '        Else
         '' Return "Data Source=MIS09;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsmu2005"
         'Return "Data Source=10.10.1.47;Initial Catalog=kendaraan;User ID=sa;pwd=Tsmu2005"
-        Return "Data Source=10.10.1.10;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Return "Data Source=SRV08;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
         '        End If
         '    Case Else
         'Return ""
@@ -26,7 +26,7 @@ Module mdlmain
 
     Public Function GetConnString2(Optional ByVal DBMS As String = "SQLServer") As String
 
-        Return "Data Source=10.10.1.10;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Return "Data Source=SRV08;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
         ''Return "Data Source=MIS09;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsmu2005"
     End Function
     Public Function Num2Word(ByVal n As Double) As String 'max 2.147.483.647
@@ -120,47 +120,47 @@ Module mdlmain
         End Try
     End Function
 
-    'Public Function GetDataSetByCommand1(ByVal pQuery As String, dt As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 30) As DataSet1
-    '    Dim da As SqlDataAdapter = Nothing
-    '    Dim dsa As DataSet1
-    '    Try
-    '        If gh_Trans IsNot Nothing AndAlso gh_Trans.command IsNot Nothing Then
-    '            gh_Trans.command.CommandType = CommandType.Text
-    '            gh_Trans.command.CommandText = pQuery
-    '            gh_Trans.command.CommandTimeout = pTimeOut
-    '            gh_Trans.command.Parameters.Clear()
-    '            If pParam IsNot Nothing Then
-    '                For i As Integer = 0 To pParam.Length - 1
-    '                    gh_Trans.command.Parameters.Add(pParam(i))
-    '                Next
-    '            End If
-    '            da = New SqlClient.SqlDataAdapter(gh_Trans.command)
-    '            da.Fill(dsa)
-    '        Else
-    '            Using conn As New SqlClient.SqlConnection
-    '                conn.ConnectionString = GetConnString()
-    '                Dim cmd As New SqlCommand
-    '                cmd.CommandType = CommandType.Text
-    '                cmd.CommandText = pQuery
-    '                cmd.CommandTimeout = pTimeOut
-    '                cmd.Connection = conn
-    '                If pParam IsNot Nothing Then
-    '                    For i As Integer = 0 To pParam.Length - 1
-    '                        cmd.Parameters.Add(pParam(i))
-    '                    Next
-    '                End If
-    '                conn.Open()
-    '                da = New SqlDataAdapter(cmd)
+    Public Function GetDataSetByCommand1(ByVal pQuery As String, dt As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 30) As DataSet1
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New DataSet1()
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.command IsNot Nothing Then
+                gh_Trans.command.CommandType = CommandType.Text
+                gh_Trans.command.CommandText = pQuery
+                gh_Trans.command.CommandTimeout = pTimeOut
+                gh_Trans.command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
 
-    '                da.Fill(dsa, dt)
-    '            End Using
-    '        End If
-    '        da = Nothing
-    '        Return dsa
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Function
+                    da.Fill(dsa, dt)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Function GetDataTable(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 30) As DataTable
         Dim dta As New DataTable
