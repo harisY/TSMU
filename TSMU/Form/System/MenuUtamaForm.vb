@@ -404,6 +404,15 @@ Public Class MenuUtamaForm
                             ElseIf childMenu = "Finance" Then
                                 Fintsb.DropDownItems.Add(TSMenuD)
                             End If
+                        Case "Tax"
+                            If childMenu Is DBNull.Value OrElse childMenu = "" Then
+                            ElseIf childMenu = "Transaction" Then
+                                tstaxtransaction.DropDownItems.Add(TSMenuD)
+                            ElseIf childMenu = "Report" Then
+                                tstaxreport.DropDownItems.Add(TSMenuD)
+                                'ElseIf childMenu = "Price" Then
+                                '    PriceTSM.DropDownItems.Add(TSMenuD)
+                            End If
                         Case Else
 
                     End Select
@@ -472,7 +481,21 @@ Public Class MenuUtamaForm
             Else
                 tsPayment.Visible = False
             End If
-
+            If tstaxtransaction.DropDownItems.Count > 0 AndAlso tstaxreport.DropDownItems.Count > 0 Then
+                tstax.Visible = True
+                tstaxtransaction.Visible = True
+                tstaxreport.Visible = True
+            ElseIf tstaxtransaction.DropDownItems.Count > 0 AndAlso tstaxreport.DropDownItems.Count = 0 Then
+                tstax.Visible = True
+                tstaxtransaction.Visible = True
+                tstaxreport.Visible = False
+            ElseIf tstaxtransaction.DropDownItems.Count = 0 AndAlso tstaxreport.DropDownItems.Count > 0 Then
+                tstax.Visible = True
+                tstaxtransaction.Visible = False
+                tstaxreport.Visible = True
+            Else
+                tstax.Visible = False
+            End If
             If WHJtsb.DropDownItems.Count > 0 AndAlso Fintsb.DropDownItems.Count > 0 Then
                 SJtsb.Visible = True
                 WHJtsb.Visible = True
@@ -534,6 +557,14 @@ Public Class MenuUtamaForm
 
         If Me.tsReport1.DropDownItems.Count > 0 Then
             Me.tsReport1.DropDownItems.Clear()
+        End If
+
+        If Me.tstaxtransaction.DropDownItems.Count > 0 Then
+            Me.tstaxtransaction.DropDownItems.Clear()
+        End If
+
+        If Me.tstaxreport.DropDownItems.Count > 0 Then
+            Me.tstaxreport.DropDownItems.Clear()
         End If
 
         'If Me.SJtsb.DropDownItems.Count > 0 Then
