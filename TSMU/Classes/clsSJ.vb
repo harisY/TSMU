@@ -1,6 +1,6 @@
 ﻿Imports System.Globalization
 
-Public Class clsSJ
+Public Class ClsSJ
 
     Public Property ShipperID() As String
     Public Property RelDate() As DateTime
@@ -317,7 +317,9 @@ Public Class clsSJ
 
             Dim sql As String =
             "Update [SJChecking] 
-            SET [NoTran] = " & QVal(NoTran) & " WHERE [ShipperID] = " & QVal(ShipperID) & ""
+                SET [NoTran] = " & QVal(NoTran) & "
+                ,[TglKirim] = " & QVal(DateTime.Today) & " 
+            WHERE [ShipperID] = " & QVal(ShipperID) & ""
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
             Throw ex

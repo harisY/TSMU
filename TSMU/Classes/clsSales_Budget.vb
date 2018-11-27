@@ -525,54 +525,53 @@ Public Class clsSales_Budget
     Public Sub Insert()
         
         Try
-            Dim query As String = "INSERT INTO Budget " & vbCrLf & _
-            "   ( " & vbCrLf & _
-            "       [tahun],[custid],[customer],[invtid],[descr],[partno],[model],[oe_re],[in_sub],[site] " & vbCrLf & _
-            "       , [jan_qty],[feb_qty],[mar_qty],[apr_qty],[mei_qty],[jun_qty],[jul_qty],[agt_qty] " & vbCrLf & _
-            "       , [sep_qty],[okt_qty],[nov_qty] ,[des_qty],[jan_harga],[feb_harga],[mar_harga] " & vbCrLf & _
-            "       , [apr_harga],[mei_harga],[jun_harga],[jul_harga],[agt_harga],[sep_harga],[okt_harga] " & vbCrLf & _
-            "       , [nov_harga],[des_harga],[revisi], created_date, created_by " & vbCrLf & _
-            "   ) " & vbCrLf & _
-            "OUTPUT INSERTED.ID " & vbCrLf & _
-            "VALUES " & vbCrLf & _
-            "   ( " & vbCrLf & _
-            "       " & QVal(Me._tahun) & " " & vbCrLf & _
-            "       , " & QVal(Me._custid) & " " & vbCrLf & _
-            "       , " & QVal(Me._customer) & " " & vbCrLf & _
-            "       , " & QVal(Me._invtid) & " " & vbCrLf & _
-            "       , " & QVal(Me._descr) & " " & vbCrLf & _
-            "       , " & QVal(Me._partno) & " " & vbCrLf & _
-            "       , " & QVal(Me._model) & " " & vbCrLf & _
-            "       , " & QVal(Me._oe_re) & " " & vbCrLf & _
-            "       , " & QVal(Me._in_sub) & " " & vbCrLf & _
-            "       , " & QVal(Me._site) & " " & vbCrLf & _
-            "       , " & QVal(Me._jan_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._feb_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._mar_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._april_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._mei_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._jun_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._jul_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._agt_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._sep_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._okt_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._nov_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._des_qty) & " " & vbCrLf & _
-            "       , " & QVal(Me._jan_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._feb_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._mar_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._apr_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._mei_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._jun_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._jul_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._agt_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._sep_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._okt_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._nov_harga) & " " & vbCrLf & _
-            "       , " & QVal(Me._des_harga) & " " & vbCrLf & _
-            "       , 0 " & vbCrLf & _
-            "       , GETDATE() " & vbCrLf & _
-            "       , " & QVal(gh_Common.Username) & " " & vbCrLf & _
+            Dim query As String = "INSERT INTO Budget " & vbCrLf &
+            "   ( " & vbCrLf &
+            "       [tahun],[custid],[customer],[invtid],[descr],[partno],[model],[oe_re],[in_sub],[site] " & vbCrLf &
+            "       , [jan_qty],[feb_qty],[mar_qty],[apr_qty],[mei_qty],[jun_qty],[jul_qty],[agt_qty] " & vbCrLf &
+            "       , [sep_qty],[okt_qty],[nov_qty] ,[des_qty],[jan_harga],[feb_harga],[mar_harga] " & vbCrLf &
+            "       , [apr_harga],[mei_harga],[jun_harga],[jul_harga],[agt_harga],[sep_harga],[okt_harga] " & vbCrLf &
+            "       , [nov_harga],[des_harga], created_date, created_by " & vbCrLf &
+            "   ) " & vbCrLf &
+            "OUTPUT INSERTED.ID " & vbCrLf &
+            "VALUES " & vbCrLf &
+            "   ( " & vbCrLf &
+            "       " & QVal(Me._tahun) & " " & vbCrLf &
+            "       , " & QVal(Me._custid) & " " & vbCrLf &
+            "       , " & QVal(Me._customer) & " " & vbCrLf &
+            "       , " & QVal(Me._invtid) & " " & vbCrLf &
+            "       , " & QVal(Me._descr) & " " & vbCrLf &
+            "       , " & QVal(Me._partno) & " " & vbCrLf &
+            "       , " & QVal(Me._model) & " " & vbCrLf &
+            "       , " & QVal(Me._oe_re) & " " & vbCrLf &
+            "       , " & QVal(Me._in_sub) & " " & vbCrLf &
+            "       , " & QVal(Me._site) & " " & vbCrLf &
+            "       , " & QVal(Me._jan_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._feb_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._mar_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._april_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._mei_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._jun_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._jul_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._agt_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._sep_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._okt_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._nov_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._des_qty) & " " & vbCrLf &
+            "       , " & QVal(Me._jan_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._feb_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._mar_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._apr_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._mei_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._jun_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._jul_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._agt_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._sep_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._okt_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._nov_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._des_harga) & " " & vbCrLf &
+            "       , GETDATE() " & vbCrLf &
+            "       , " & QVal(gh_Common.Username) & " " & vbCrLf &
             "   )"
             'Dim li_Row = GetDataTableByCommand(query)
             Dim dtTable As New DataTable
@@ -598,45 +597,44 @@ Public Class clsSales_Budget
             End If
 
 
-            Dim query As String = "UPDATE Budget " & vbCrLf & _
-            "   SET [tahun] = " & QVal(Me._tahun) & " " & vbCrLf & _
-            "      ,[custid] = " & QVal(Me._custid) & " " & vbCrLf & _
-            "      ,[customer] = " & QVal(Me._customer) & " " & vbCrLf & _
-            "      ,[invtid] = " & QVal(Me._invtid) & " " & vbCrLf & _
-            "      ,[descr] = " & QVal(Me._descr) & " " & vbCrLf & _
-            "      ,[partno] = " & QVal(Me._partno) & " " & vbCrLf & _
-            "      ,[model] = " & QVal(Me._model) & " " & vbCrLf & _
-            "      ,[oe_re] = " & QVal(_oe_re) & " " & vbCrLf & _
-            "      ,[in_sub] = " & QVal(Me._in_sub) & " " & vbCrLf & _
-            "      ,[site] = " & QVal(Me._site) & " " & vbCrLf & _
-            "      ,[jan_qty] = " & QVal(Me._jan_qty) & " " & vbCrLf & _
-            "      ,[feb_qty] = " & QVal(Me._feb_qty) & " " & vbCrLf & _
-            "      ,[mar_qty] = " & QVal(Me._mar_qty) & " " & vbCrLf & _
-            "      ,[apr_qty] = " & QVal(Me._april_qty) & " " & vbCrLf & _
-            "      ,[mei_qty] = " & QVal(Me._mei_qty) & " " & vbCrLf & _
-            "      ,[jun_qty] = " & QVal(Me._jun_qty) & " " & vbCrLf & _
-            "      ,[jul_qty] = " & QVal(Me._jul_qty) & " " & vbCrLf & _
-            "      ,[agt_qty] = " & QVal(Me._agt_qty) & " " & vbCrLf & _
-            "      ,[sep_qty] = " & QVal(Me._sep_qty) & " " & vbCrLf & _
-            "      ,[okt_qty] = " & QVal(Me._okt_qty) & " " & vbCrLf & _
-            "      ,[nov_qty] = " & QVal(Me._nov_qty) & " " & vbCrLf & _
-            "      ,[des_qty] = " & QVal(Me._des_qty) & " " & vbCrLf & _
-            "      ,[jan_harga] = " & QVal(Me._jan_harga) & " " & vbCrLf & _
-            "      ,[feb_harga] = " & QVal(Me._feb_harga) & " " & vbCrLf & _
-            "      ,[mar_harga] = " & QVal(Me._mar_harga) & " " & vbCrLf & _
-            "      ,[apr_harga] = " & QVal(Me._apr_harga) & " " & vbCrLf & _
-            "      ,[mei_harga] = " & QVal(Me._mei_harga) & " " & vbCrLf & _
-            "      ,[jun_harga] = " & QVal(Me._jun_harga) & " " & vbCrLf & _
-            "      ,[jul_harga] = " & QVal(Me._jul_harga) & " " & vbCrLf & _
-            "      ,[agt_harga] = " & QVal(Me._agt_harga) & " " & vbCrLf & _
-            "      ,[sep_harga] = " & QVal(Me._sep_harga) & " " & vbCrLf & _
-            "      ,[okt_harga] = " & QVal(Me._okt_harga) & " " & vbCrLf & _
-            "      ,[nov_harga] = " & QVal(Me._nov_harga) & " " & vbCrLf & _
-            "      ,[des_harga] = " & QVal(Me._des_harga) & " " & vbCrLf & _
-            "      ,[revisi] = " & QVal(revisi) & " " & vbCrLf & _
-            "      ,[update_date] = GETDATE() " & vbCrLf & _
-            "      ,[updated_by] = " & QVal(gh_Common.Username) & " " & vbCrLf & _
-            "   OUTPUT INSERTED.ID " & vbCrLf & _
+            Dim query As String = "UPDATE Budget " & vbCrLf &
+            "   SET [tahun] = " & QVal(Me._tahun) & " " & vbCrLf &
+            "      ,[custid] = " & QVal(Me._custid) & " " & vbCrLf &
+            "      ,[customer] = " & QVal(Me._customer) & " " & vbCrLf &
+            "      ,[invtid] = " & QVal(Me._invtid) & " " & vbCrLf &
+            "      ,[descr] = " & QVal(Me._descr) & " " & vbCrLf &
+            "      ,[partno] = " & QVal(Me._partno) & " " & vbCrLf &
+            "      ,[model] = " & QVal(Me._model) & " " & vbCrLf &
+            "      ,[oe_re] = " & QVal(_oe_re) & " " & vbCrLf &
+            "      ,[in_sub] = " & QVal(Me._in_sub) & " " & vbCrLf &
+            "      ,[site] = " & QVal(Me._site) & " " & vbCrLf &
+            "      ,[jan_qty] = " & QVal(Me._jan_qty) & " " & vbCrLf &
+            "      ,[feb_qty] = " & QVal(Me._feb_qty) & " " & vbCrLf &
+            "      ,[mar_qty] = " & QVal(Me._mar_qty) & " " & vbCrLf &
+            "      ,[apr_qty] = " & QVal(Me._april_qty) & " " & vbCrLf &
+            "      ,[mei_qty] = " & QVal(Me._mei_qty) & " " & vbCrLf &
+            "      ,[jun_qty] = " & QVal(Me._jun_qty) & " " & vbCrLf &
+            "      ,[jul_qty] = " & QVal(Me._jul_qty) & " " & vbCrLf &
+            "      ,[agt_qty] = " & QVal(Me._agt_qty) & " " & vbCrLf &
+            "      ,[sep_qty] = " & QVal(Me._sep_qty) & " " & vbCrLf &
+            "      ,[okt_qty] = " & QVal(Me._okt_qty) & " " & vbCrLf &
+            "      ,[nov_qty] = " & QVal(Me._nov_qty) & " " & vbCrLf &
+            "      ,[des_qty] = " & QVal(Me._des_qty) & " " & vbCrLf &
+            "      ,[jan_harga] = " & QVal(Me._jan_harga) & " " & vbCrLf &
+            "      ,[feb_harga] = " & QVal(Me._feb_harga) & " " & vbCrLf &
+            "      ,[mar_harga] = " & QVal(Me._mar_harga) & " " & vbCrLf &
+            "      ,[apr_harga] = " & QVal(Me._apr_harga) & " " & vbCrLf &
+            "      ,[mei_harga] = " & QVal(Me._mei_harga) & " " & vbCrLf &
+            "      ,[jun_harga] = " & QVal(Me._jun_harga) & " " & vbCrLf &
+            "      ,[jul_harga] = " & QVal(Me._jul_harga) & " " & vbCrLf &
+            "      ,[agt_harga] = " & QVal(Me._agt_harga) & " " & vbCrLf &
+            "      ,[sep_harga] = " & QVal(Me._sep_harga) & " " & vbCrLf &
+            "      ,[okt_harga] = " & QVal(Me._okt_harga) & " " & vbCrLf &
+            "      ,[nov_harga] = " & QVal(Me._nov_harga) & " " & vbCrLf &
+            "      ,[des_harga] = " & QVal(Me._des_harga) & " " & vbCrLf &
+            "      ,[update_date] = GETDATE() " & vbCrLf &
+            "      ,[updated_by] = " & QVal(gh_Common.Username) & " " & vbCrLf &
+            "   OUTPUT INSERTED.ID " & vbCrLf &
             "   WHERE [id] = " & QVal(Me._id) & " "
             'Dim li_Row = ExecQuery(query)
             Dim dtTable As New DataTable
@@ -664,6 +662,24 @@ Public Class clsSales_Budget
         Try
             Dim query As String = "DELETE FROM Budget " & vbCrLf &
             "WHERE tahun = " & QVal(Me._tahun) & " AND partno= " & QVal(Me._partno) & " AND invtid = " & QVal(Me._invtid) & " AND custid = " & QVal(Me._custid) & ""
+            Dim li_Row = MainModul.ExecQuery(query)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub DeleteByTahun()
+        Try
+            Dim query As String = "DELETE FROM Budget " & vbCrLf &
+            "WHERE tahun = " & QVal(Me._tahun) & ""
+            Dim li_Row = MainModul.ExecQuery(query)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub Delete_All()
+        Try
+            Dim query As String = "DELETE FROM Budget"
             Dim li_Row = MainModul.ExecQuery(query)
         Catch ex As Exception
             Throw

@@ -7,7 +7,7 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Public Class FrmSuratJalan
-    Dim SuratJalan As New clsSJ
+    Dim SuratJalan As New ClsSJ
     Dim btnState As ButtonState
     Dim dtGrid As DataTable
     Dim path As String
@@ -17,7 +17,7 @@ Public Class FrmSuratJalan
     Dim Site2 As String
     Dim DtScan As DataTable
     Private Sub FrmSuratJalan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        createTable()
+        CreateTable()
         Call Proc_EnableButtons(True, True, False, True, False, False, False, False)
     End Sub
     Public Overrides Sub Proc_InputNewData()
@@ -32,7 +32,7 @@ Public Class FrmSuratJalan
             GridView2.DeleteRow(i)
         End While
     End Sub
-    Private Sub createTable()
+    Private Sub CreateTable()
         DtScan = New DataTable
         DtScan.Columns.AddRange(New DataColumn(11) {New DataColumn("No Surat Jalan", GetType(String)),
                                                             New DataColumn("PO Customer", GetType(String)),
@@ -115,7 +115,7 @@ Public Class FrmSuratJalan
             Next
             'btnFilter.Enabled = False
             MsgBox("Data Saved !", MsgBoxResult.No)
-            createTable()
+            CreateTable()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

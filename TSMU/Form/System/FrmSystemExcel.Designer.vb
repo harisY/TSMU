@@ -22,121 +22,29 @@ Partial Class FrmSystemExcel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSystemExcel))
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me._cmbCust = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me._cmbTahun = New System.Windows.Forms.ComboBox()
-        Me.btnLoad = New System.Windows.Forms.Button()
-        Me._txtExcel = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me._btnExport = New System.Windows.Forms.Button()
         Me.lblStatus = New System.Windows.Forms.Label()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me._txtExcel = New DevExpress.XtraEditors.ButtonEdit()
+        Me._cmbTahun = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me._BtnExport1 = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me._txtExcel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 13)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(412, 216)
-        Me.TabControl1.TabIndex = 0
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me._cmbCust)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me._cmbTahun)
-        Me.TabPage1.Controls.Add(Me.btnLoad)
-        Me.TabPage1.Controls.Add(Me._txtExcel)
-        Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(404, 190)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "File"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 33)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 13)
-        Me.Label2.TabIndex = 26
-        Me.Label2.Text = "Customer"
-        '
-        '_cmbCust
-        '
-        Me._cmbCust.FormattingEnabled = True
-        Me._cmbCust.Items.AddRange(New Object() {""})
-        Me._cmbCust.Location = New System.Drawing.Point(86, 33)
-        Me._cmbCust.Name = "_cmbCust"
-        Me._cmbCust.Size = New System.Drawing.Size(121, 21)
-        Me._cmbCust.TabIndex = 25
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 6)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(38, 13)
-        Me.Label7.TabIndex = 24
-        Me.Label7.Text = "Tahun"
-        '
-        '_cmbTahun
-        '
-        Me._cmbTahun.FormattingEnabled = True
-        Me._cmbTahun.Location = New System.Drawing.Point(86, 6)
-        Me._cmbTahun.Name = "_cmbTahun"
-        Me._cmbTahun.Size = New System.Drawing.Size(121, 21)
-        Me._cmbTahun.TabIndex = 23
-        '
-        'btnLoad
-        '
-        Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
-        Me.btnLoad.Location = New System.Drawing.Point(356, 60)
-        Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(25, 22)
-        Me.btnLoad.TabIndex = 22
-        Me.btnLoad.UseVisualStyleBackColor = True
-        '
-        '_txtExcel
-        '
-        Me._txtExcel.Location = New System.Drawing.Point(86, 60)
-        Me._txtExcel.Name = "_txtExcel"
-        Me._txtExcel.Size = New System.Drawing.Size(269, 22)
-        Me._txtExcel.TabIndex = 21
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 60)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 13)
-        Me.Label1.TabIndex = 20
-        Me.Label1.Text = "File Path"
         '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        '_btnExport
-        '
-        Me._btnExport.Location = New System.Drawing.Point(346, 235)
-        Me._btnExport.Name = "_btnExport"
-        Me._btnExport.Size = New System.Drawing.Size(75, 23)
-        Me._btnExport.TabIndex = 1
-        Me._btnExport.Text = "Import"
-        Me._btnExport.UseVisualStyleBackColor = True
         '
         'lblStatus
         '
@@ -146,36 +54,113 @@ Partial Class FrmSystemExcel
         Me.lblStatus.Size = New System.Drawing.Size(0, 13)
         Me.lblStatus.TabIndex = 2
         '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Controls.Add(Me._txtExcel)
+        Me.LayoutControl1.Controls.Add(Me._cmbTahun)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.Root = Me.LayoutControlGroup1
+        Me.LayoutControl1.Size = New System.Drawing.Size(437, 229)
+        Me.LayoutControl1.TabIndex = 3
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        '_txtExcel
+        '
+        Me._txtExcel.Location = New System.Drawing.Point(45, 36)
+        Me._txtExcel.Name = "_txtExcel"
+        Me._txtExcel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me._txtExcel.Size = New System.Drawing.Size(380, 20)
+        Me._txtExcel.StyleController = Me.LayoutControl1
+        Me._txtExcel.TabIndex = 5
+        '
+        '_cmbTahun
+        '
+        Me._cmbTahun.Location = New System.Drawing.Point(45, 12)
+        Me._cmbTahun.Name = "_cmbTahun"
+        Me._cmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._cmbTahun.Size = New System.Drawing.Size(380, 20)
+        Me._cmbTahun.StyleController = Me.LayoutControl1
+        Me._cmbTahun.TabIndex = 4
+        '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(437, 229)
+        Me.LayoutControlGroup1.TextVisible = False
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 48)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(417, 161)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me._cmbTahun
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(417, 24)
+        Me.LayoutControlItem1.Text = "Tahun"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(30, 13)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me._txtExcel
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(417, 24)
+        Me.LayoutControlItem2.Text = "File"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(30, 13)
+        '
+        '_BtnExport1
+        '
+        Me._BtnExport1.Location = New System.Drawing.Point(350, 235)
+        Me._BtnExport1.Name = "_BtnExport1"
+        Me._BtnExport1.Size = New System.Drawing.Size(75, 23)
+        Me._BtnExport1.TabIndex = 4
+        Me._BtnExport1.Text = "Upload"
+        '
         'FrmSystemExcel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 265)
+        Me.Controls.Add(Me._BtnExport1)
+        Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.lblStatus)
-        Me.Controls.Add(Me._btnExport)
-        Me.Controls.Add(Me.TabControl1)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "FrmSystemExcel"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._txtExcel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents btnLoad As System.Windows.Forms.Button
-    Friend WithEvents _txtExcel As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents _cmbCust As System.Windows.Forms.ComboBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents _cmbTahun As System.Windows.Forms.ComboBox
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents _btnExport As System.Windows.Forms.Button
     Friend WithEvents lblStatus As System.Windows.Forms.Label
+    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents _txtExcel As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents _cmbTahun As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _BtnExport1 As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -1,5 +1,5 @@
 ﻿Public Class PrintPO
-    Public param1, param2 As String
+    Public param1, param2, param3 As String
 
     Private Sub PrintPO_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         XrLabel6.Text = param1
