@@ -20,19 +20,21 @@ Partial Class FrmSuratJalanList
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me._TglKirimTo = New DevExpress.XtraEditors.TextEdit()
-        Me._TxtTglKirimFrom = New DevExpress.XtraEditors.TextEdit()
+        Me._TglKirimTo = New DevExpress.XtraEditors.DateEdit()
+        Me._TxtTglKirimFrom = New DevExpress.XtraEditors.DateEdit()
+        Me._TxtLokasi = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.CheckNoTran = New DevExpress.XtraEditors.CheckEdit()
         Me._TglSJTo = New DevExpress.XtraEditors.DateEdit()
         Me._TglSJFrom = New DevExpress.XtraEditors.DateEdit()
-        Me._TxtLokasi = New DevExpress.XtraEditors.TextEdit()
         Me._BtnCust = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me._Grid1 = New DevExpress.XtraGrid.GridControl()
@@ -85,21 +87,25 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemCalcEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglKirimTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtTglKirimFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtTglKirimFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckNoTran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._BtnCust.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage2.SuspendLayout()
@@ -131,74 +137,108 @@ Partial Class FrmSuratJalanList
         '
         Me.LayoutControl1.Controls.Add(Me._TglKirimTo)
         Me.LayoutControl1.Controls.Add(Me._TxtTglKirimFrom)
+        Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
+        Me.LayoutControl1.Controls.Add(Me.CheckNoTran)
         Me.LayoutControl1.Controls.Add(Me._TglSJTo)
         Me.LayoutControl1.Controls.Add(Me._TglSJFrom)
-        Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
         Me.LayoutControl1.Controls.Add(Me._BtnCust)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 72)
+        Me.LayoutControl1.Size = New System.Drawing.Size(828, 77)
         Me.LayoutControl1.TabIndex = 19
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         '_TglKirimTo
         '
-        Me._TglKirimTo.Location = New System.Drawing.Point(629, 36)
+        Me._TglKirimTo.EditValue = Nothing
+        Me._TglKirimTo.Location = New System.Drawing.Point(384, 36)
         Me._TglKirimTo.Name = "_TglKirimTo"
-        Me._TglKirimTo.Properties.Mask.EditMask = "G"
-        Me._TglKirimTo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
-        Me._TglKirimTo.Size = New System.Drawing.Size(187, 20)
+        Me._TglKirimTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TglKirimTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TglKirimTo.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me._TglKirimTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglKirimTo.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me._TglKirimTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglKirimTo.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me._TglKirimTo.Size = New System.Drawing.Size(104, 20)
         Me._TglKirimTo.StyleController = Me.LayoutControl1
-        Me._TglKirimTo.TabIndex = 9
+        Me._TglKirimTo.TabIndex = 13
         '
         '_TxtTglKirimFrom
         '
-        Me._TxtTglKirimFrom.Location = New System.Drawing.Point(450, 36)
+        Me._TxtTglKirimFrom.EditValue = Nothing
+        Me._TxtTglKirimFrom.Location = New System.Drawing.Point(273, 36)
         Me._TxtTglKirimFrom.Name = "_TxtTglKirimFrom"
-        Me._TxtTglKirimFrom.Properties.Mask.EditMask = "G"
-        Me._TxtTglKirimFrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
-        Me._TxtTglKirimFrom.Size = New System.Drawing.Size(175, 20)
+        Me._TxtTglKirimFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TxtTglKirimFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TxtTglKirimFrom.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me._TxtTglKirimFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TxtTglKirimFrom.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me._TxtTglKirimFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TxtTglKirimFrom.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me._TxtTglKirimFrom.Size = New System.Drawing.Size(107, 20)
         Me._TxtTglKirimFrom.StyleController = Me.LayoutControl1
-        Me._TxtTglKirimFrom.TabIndex = 8
+        Me._TxtTglKirimFrom.TabIndex = 12
+        '
+        '_TxtLokasi
+        '
+        Me._TxtLokasi.Location = New System.Drawing.Point(88, 36)
+        Me._TxtLokasi.Name = "_TxtLokasi"
+        Me._TxtLokasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TxtLokasi.Properties.Items.AddRange(New Object() {"ALL", "CKR A", "CKR B", "TNG", "TSC3"})
+        Me._TxtLokasi.Size = New System.Drawing.Size(105, 20)
+        Me._TxtLokasi.StyleController = Me.LayoutControl1
+        Me._TxtLokasi.TabIndex = 11
+        '
+        'CheckNoTran
+        '
+        Me.CheckNoTran.Location = New System.Drawing.Point(492, 12)
+        Me.CheckNoTran.Name = "CheckNoTran"
+        Me.CheckNoTran.Properties.Caption = "No. Tanda Terima"
+        Me.CheckNoTran.Size = New System.Drawing.Size(324, 19)
+        Me.CheckNoTran.StyleController = Me.LayoutControl1
+        Me.CheckNoTran.TabIndex = 10
         '
         '_TglSJTo
         '
         Me._TglSJTo.EditValue = Nothing
-        Me._TglSJTo.Location = New System.Drawing.Point(629, 12)
+        Me._TglSJTo.Location = New System.Drawing.Point(384, 12)
         Me._TglSJTo.Name = "_TglSJTo"
         Me._TglSJTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TglSJTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TglSJTo.Size = New System.Drawing.Size(187, 20)
+        Me._TglSJTo.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me._TglSJTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglSJTo.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me._TglSJTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglSJTo.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me._TglSJTo.Size = New System.Drawing.Size(104, 20)
         Me._TglSJTo.StyleController = Me.LayoutControl1
         Me._TglSJTo.TabIndex = 7
         '
         '_TglSJFrom
         '
         Me._TglSJFrom.EditValue = Nothing
-        Me._TglSJFrom.Location = New System.Drawing.Point(450, 12)
+        Me._TglSJFrom.Location = New System.Drawing.Point(273, 12)
         Me._TglSJFrom.Name = "_TglSJFrom"
         Me._TglSJFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TglSJFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TglSJFrom.Size = New System.Drawing.Size(175, 20)
+        Me._TglSJFrom.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me._TglSJFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglSJFrom.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me._TglSJFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TglSJFrom.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me._TglSJFrom.Size = New System.Drawing.Size(107, 20)
         Me._TglSJFrom.StyleController = Me.LayoutControl1
         Me._TglSJFrom.TabIndex = 6
-        '
-        '_TxtLokasi
-        '
-        Me._TxtLokasi.Location = New System.Drawing.Point(88, 36)
-        Me._TxtLokasi.Name = "_TxtLokasi"
-        Me._TxtLokasi.Size = New System.Drawing.Size(282, 20)
-        Me._TxtLokasi.StyleController = Me.LayoutControl1
-        Me._TxtLokasi.TabIndex = 5
         '
         '_BtnCust
         '
         Me._BtnCust.Location = New System.Drawing.Point(88, 12)
         Me._BtnCust.Name = "_BtnCust"
         Me._BtnCust.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._BtnCust.Size = New System.Drawing.Size(282, 20)
+        Me._BtnCust.Size = New System.Drawing.Size(105, 20)
         Me._BtnCust.StyleController = Me.LayoutControl1
         Me._BtnCust.TabIndex = 4
         '
@@ -206,10 +246,10 @@ Partial Class FrmSuratJalanList
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem6})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 72)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 77)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -217,64 +257,71 @@ Partial Class FrmSuratJalanList
         Me.LayoutControlItem1.Control = Me._BtnCust
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(362, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(185, 24)
         Me.LayoutControlItem1.Text = "Customer"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._TglSJFrom
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(362, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(185, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(255, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(187, 24)
         Me.LayoutControlItem3.Text = "Tanggal SJ"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(73, 13)
         '
-        'LayoutControlItem5
+        'LayoutControlItem4
         '
-        Me.LayoutControlItem5.Control = Me._TxtTglKirimFrom
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(362, 24)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(255, 28)
-        Me.LayoutControlItem5.Text = "Tanggal Terima"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(73, 13)
+        Me.LayoutControlItem4.Control = Me._TglSJTo
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(372, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(108, 24)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem4.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me._TxtLokasi
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(362, 28)
-        Me.LayoutControlItem2.Text = "Lokasi"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(185, 33)
+        Me.LayoutControlItem2.Text = "Site"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(73, 13)
         '
-        'LayoutControlItem4
+        'LayoutControlItem5
         '
-        Me.LayoutControlItem4.Control = Me._TglSJTo
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(617, 0)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(191, 24)
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
+        Me.LayoutControlItem5.Control = Me._TxtTglKirimFrom
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(185, 24)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(187, 33)
+        Me.LayoutControlItem5.Text = "Tanggal Terima"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me._TglKirimTo
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(617, 24)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(372, 24)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(191, 28)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(108, 33)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.CheckNoTran
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(480, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(328, 57)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
+        '
         'XtraTabControl1
         '
-        Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 103)
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 102)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage2
-        Me.XtraTabControl1.Size = New System.Drawing.Size(835, 483)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(828, 479)
         Me.XtraTabControl1.TabIndex = 20
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -282,7 +329,7 @@ Partial Class FrmSuratJalanList
         '
         Me.XtraTabPage2.Controls.Add(Me._Grid1)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(829, 455)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(822, 451)
         Me.XtraTabPage2.Text = "Edit Data"
         '
         '_Grid1
@@ -292,7 +339,7 @@ Partial Class FrmSuratJalanList
         Me._Grid1.MainView = Me.GridView2
         Me._Grid1.Name = "_Grid1"
         Me._Grid1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2, Me.RepositoryItemCalcEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit4, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit3})
-        Me._Grid1.Size = New System.Drawing.Size(829, 455)
+        Me._Grid1.Size = New System.Drawing.Size(822, 451)
         Me._Grid1.TabIndex = 21
         Me._Grid1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -348,10 +395,9 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn5.Caption = "Tanggal Terima"
         Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit2
-        Me.GridColumn5.DisplayFormat.FormatString = "d"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn5.FieldName = "Tanggal Terima"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 7
         Me.GridColumn5.Width = 74
@@ -361,14 +407,20 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemDateEdit2.AutoHeight = False
         Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit2.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit2.Mask.EditMask = "dd-MM-yyyy"
         Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "NoRec"
+        Me.GridColumn6.Caption = "No. Tanda Terima"
         Me.GridColumn6.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn6.FieldName = "NoRec"
+        Me.GridColumn6.FieldName = "NoTran"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
         Me.GridColumn6.Width = 63
@@ -422,8 +474,11 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn15.Caption = "Tanggal Kirim Finance"
         Me.GridColumn15.ColumnEdit = Me.RepositoryItemDateEdit4
+        Me.GridColumn15.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn15.FieldName = "Tanggal Kirim"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 8
         Me.GridColumn15.Width = 63
@@ -507,7 +562,7 @@ Partial Class FrmSuratJalanList
         '
         Me.XtraTabPage1.Controls.Add(Me._Grid)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(829, 455)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(822, 451)
         Me.XtraTabPage1.Text = "New Data"
         '
         '_Grid
@@ -517,7 +572,7 @@ Partial Class FrmSuratJalanList
         Me._Grid.MainView = Me.GridView1
         Me._Grid.Name = "_Grid"
         Me._Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemCalcEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit5, Me.RepositoryItemDateEdit3, Me.RepositoryItemTextEdit3})
-        Me._Grid.Size = New System.Drawing.Size(829, 455)
+        Me._Grid.Size = New System.Drawing.Size(822, 451)
         Me._Grid.TabIndex = 21
         Me._Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -573,8 +628,6 @@ Partial Class FrmSuratJalanList
         '
         Me.ColTglTerima.Caption = "Tanggal Terima"
         Me.ColTglTerima.ColumnEdit = Me.RepositoryItemDateEdit1
-        Me.ColTglTerima.DisplayFormat.FormatString = "d"
-        Me.ColTglTerima.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColTglTerima.FieldName = "Tanggal Terima"
         Me.ColTglTerima.Name = "ColTglTerima"
         Me.ColTglTerima.Visible = True
@@ -586,6 +639,12 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemDateEdit1.AutoHeight = False
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = ""
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.EditFormat.FormatString = ""
+        Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
         'ColNoRec
@@ -647,8 +706,11 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn9.Caption = "Tanggal Kirim Finance"
         Me.GridColumn9.ColumnEdit = Me.RepositoryItemDateEdit3
+        Me.GridColumn9.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn9.FieldName = "Tanggal Kirim"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
         Me.GridColumn9.Width = 63
@@ -658,6 +720,11 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemDateEdit3.AutoHeight = False
         Me.RepositoryItemDateEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit3.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit3.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit3.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit3.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit3.Mask.EditMask = "dd-MM-yyyy"
         Me.RepositoryItemDateEdit3.Name = "RepositoryItemDateEdit3"
         '
         'GridColumn11
@@ -715,21 +782,25 @@ Partial Class FrmSuratJalanList
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglKirimTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtTglKirimFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtTglKirimFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckNoTran.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._BtnCust.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage2.ResumeLayout(False)
@@ -761,19 +832,13 @@ Partial Class FrmSuratJalanList
     End Sub
 
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
-    Friend WithEvents _TglKirimTo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents _TxtTglKirimFrom As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _TglSJTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents _TglSJFrom As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents _TxtLokasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _BtnCust As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents _Grid1 As DevExpress.XtraGrid.GridControl
@@ -824,4 +889,12 @@ Partial Class FrmSuratJalanList
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents _TglKirimTo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents _TxtTglKirimFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents _TxtLokasi As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents CheckNoTran As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
 End Class

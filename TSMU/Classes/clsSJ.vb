@@ -4,16 +4,16 @@ Public Class ClsSJ
 
     Public Property ShipperID() As String
     Public Property RelDate() As DateTime
-    Public Property RecDate() As DateTime
-    Public Property TglKirim() As DateTime
+    Public Property RecDate() As Nullable(Of DateTime)
+    Public Property TglKirim() As Nullable(Of DateTime)
     Public Property NoRec() As String
     Public Property Checked() As Single
     Public Property CreatedBy() As String
     Public Property NoTran() As String
 
-    Public Property CheckFIn() As Integer
+    Public Property CheckFIn() As Nullable(Of Integer)
 
-    Public Property TglCheckFin() As DateTime
+    Public Property TglCheckFin() As Nullable(Of DateTime)
     Public Function GetdataGrid(cust As String, tgl1 As String, tgl2 As String, lokasi As String) As DataTable
         Try
 
@@ -25,7 +25,7 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    , CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
+                    , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
                     ,GETDATE() [Tanggal Terima]
                     ,GETDATE() [Tanggal Kirim]
                     ,'' [NoRec]
@@ -46,7 +46,7 @@ Public Class ClsSJ
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
-            'dt = MainModul.GetDataTable_Solomon(sql)
+            'dt = MainModul.GetDataTable_solomon(sql)
             'CultureInfo.CurrentCulture = New CultureInfo("id-ID")
             Return dt
         Catch ex As Exception
@@ -54,8 +54,14 @@ Public Class ClsSJ
         End Try
     End Function
 
-    Public Function GetdataGridEdit(cust As String, tgl1 As String, tgl2 As String, lokasi As String, tgl3 As String, tgl4 As String) As DataTable
+    Public Function GetdataGridEdit(cust As String, tgl1 As String, tgl2 As String, lokasi As String, tgl3 As String, tgl4 As String, NoTran As Boolean) As DataTable
         Try
+            Dim no As String = String.Empty
+            If NoTran Then
+                no = " AND (sj.NoTran IS NOT NULL OR sj.NoTran <> '')"
+            Else
+                no = " AND (sj.NoTran IS NULL OR sj.NoTran = '')"
+            End If
             Dim sql As String =
                 "
                 SELECT 
@@ -64,12 +70,12 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    , CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
+                    , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
                     ,sj.RecDate [Tanggal Terima]
                     ,sj.TglKirim [Tanggal Kirim]
-                    ,sj.[NoRec]
-                    ,sj.CheckFin [Check Fin]
-                    ,sj.TglCheckFin [Tgl Check Fin]
+                    ,sj.[NoTran]
+                    ,case when sj.CheckFin is null then convert(bit,0) else convert(bit,sj.CheckFin) end AS [Check Fin]
+                    ,CONVERT(VARCHAR(10), sj.TglCheckFin, 105) [Tgl Check Fin]
                     ,Convert(bit,so.user6) as [Check] 
                     ,RTRIM(so.User4) [SR YIM]
                     ,RTRIM(so.user1) [Batch Invoice]
@@ -80,8 +86,8 @@ Public Class ClsSJ
                     SJChecking sj on so.ShipperID= sj.ShipperID
                 where so.CustID=coalesce(nullif('" & cust & "','ALL'),so.CustID) 
                 AND so.RelDate >= '" & tgl1 & "' AND so.RelDate<='" & tgl2 & "' AND sj.RecDate >= '" & tgl3 & "' AND sj.RecDate <= '" & tgl4 & "'
-                AND SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & lokasi & "') 
-                AND so.User6=1 AND so.User3<>1 AND so.Cancelled<>1 Order By so.ShipperID
+                AND SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & lokasi & "') " & no & "
+                AND so.User6=1 AND so.User3<>1 AND so.Cancelled<>1 Order By so.ShipperID 
                 "
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -101,7 +107,7 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    , CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
+                    , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
                     ,GETDATE() [Tanggal Terima]
                     ,GETDATE() [Tanggal Kirim]
                     ,'' [NoRec]
@@ -139,7 +145,7 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    , CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
+                    , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
                     ,GETDATE() [Tanggal Terima]
                     ,GETDATE() [Tanggal Kirim]
                     ,'' [NoRec]
@@ -176,7 +182,7 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    , CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
+                    , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
                     ,GETDATE() [Tanggal Terima]
                     ,GETDATE() [Tanggal Kirim]
                     ,'' [NoRec]
@@ -272,6 +278,7 @@ Public Class ClsSJ
             ,[RecDate]
             ,[TglKirim]
             ,[NoRec]
+            ,[NoTran]
             ,[Checked]
             ,CreatedBy
             ,CreatedDate)
@@ -281,6 +288,7 @@ Public Class ClsSJ
             ," & QVal(RecDate) & "
             ," & QVal(TglKirim) & "
             ," & QVal(NoRec) & "
+            ," & QVal(NoTran) & "
             ," & QVal(chek) & "
             ," & QVal(CreatedBy) & "
             ,GETDATE())"
@@ -302,6 +310,7 @@ Public Class ClsSJ
             SET [RelDate] = " & QVal(RelDate) & "
             ,[RecDate] = " & QVal(RecDate) & "
             ,[NoRec] = " & QVal(NoRec) & "
+            ,[NoTran] = " & QVal(NoTran) & "
             ,[TglKirim] = NULL
             ,[Checked] = " & QVal(status) & "
             ,[UpdatedBy] = " & QVal(CreatedBy) & "
@@ -333,7 +342,7 @@ Public Class ClsSJ
     '        "Update [SJChecking] 
     '            SET [TglKirim] = " & QVal(DateTime.Today) & " 
     '        WHERE [NoTran] = " & QVal(ShipperID) & ""
-    '        MainModul.ExecQuery_Solomon(sql)
+    '        MainModul.ExecQuery_solomon(sql)
     '    Catch ex As Exception
     '        Throw ex
     '    End Try
@@ -351,6 +360,7 @@ Public Class ClsSJ
             SET [RelDate] = " & QVal(RelDate) & "
             ,[RecDate] = " & QVal(RecDate) & "
             ,[NoRec] = " & QVal(NoRec) & "
+            ,[NoTran] = " & QVal(NoTran) & "
             ,[TglKirim] = " & QVal(TglKirim) & "
             ,[Checked] = " & QVal(status) & "
             ,[UpdatedBy] = " & QVal(CreatedBy) & "
@@ -374,6 +384,7 @@ Public Class ClsSJ
             SET [RelDate] = " & QVal(RelDate) & "
             ,[RecDate] = " & QVal(RecDate) & "
             ,[NoRec] = " & QVal(NoRec) & "
+            ,[NoTran] = " & QVal(NoTran) & "
             ,[TglKirim] = " & QVal(TglKirim) & "
             ,[Checked] = " & QVal(status) & "
             ,[UpdatedBy] = " & QVal(CreatedBy) & "
@@ -513,7 +524,7 @@ Public Class ClsSJ
                 AND so.User6=1 AND so.User3<>1 AND so.Cancelled<>1 Order By so.ShipperID
                 "
             ds = New dsLaporan
-            ds = GetDsReport_Solomon(sql, "PrintPO")
+            ds = MainModul.GetDsReport_Solomon(sql, "PrintPO")
         Catch ex As Exception
             Throw ex
         End Try
@@ -546,17 +557,19 @@ Public Class ClsSJ
                 where sj.notran= " & QVal(NoTran) & "
                 "
             ds = New dsLaporan
-            ds = GetDsReport_Solomon(sql, "PrintPO")
+            ds = MainModul.GetDsReport_Solomon(sql, "PrintPO")
         Catch ex As Exception
             Throw ex
         End Try
         Return ds
     End Function
 
-    Public Function GetSJbyNoTran() As DataTable
+    Public Function GetSJbyNoTran(IsLoad As Boolean) As DataTable
         Dim dt As DataTable
+        Dim sql As String = String.Empty
         Try
-            Dim sql As String =
+            If IsLoad Then
+                sql =
                 "
                 SELECT 
                     ROW_NUMBER() OVER(ORDER BY so.ShipperID ASC) AS No
@@ -564,9 +577,9 @@ Public Class ClsSJ
                     ,RTRIM(so.ShipperID) [No Surat Jalan]
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
-                    ,CONVERT(VARCHAR(10), so.RelDate, 103) [Tanggal SJ]
-                    ,sj.RecDate [Tanggal Terima]
-                    ,sj.TglKirim [Tanggal Kirim]
+                    ,CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
+                    ,getdate() [Tanggal Terima]
+                    ,getdate() [Tanggal Kirim]
                     ,sj.[NoRec]
                     ,convert(bit,1) as [Check]
                     ,case when sj.[TglCheckFin] is NULL then getdate()
@@ -579,6 +592,31 @@ Public Class ClsSJ
                     SJChecking sj on so.ShipperID= sj.ShipperID
                 WHERE sj.NoTran = " & QVal(NoTran) & "
                 "
+            Else
+                sql =
+                "
+                SELECT 
+                    ROW_NUMBER() OVER(ORDER BY so.ShipperID ASC) AS No
+                    ,RTRIM(so.custid) [Customer]
+                    ,RTRIM(so.ShipperID) [No Surat Jalan]
+                    ,RTRIM(so.ORDNBR) [Sales Order]
+                    ,RTRIM(so.CUSTORDNBR) [PO Customer]
+                    ,CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
+                    ,sj.RecDate [Tanggal Terima]
+                    ,sj.TglKirim [Tanggal Kirim]
+                    ,sj.[NoRec]
+                    ,sj.CheckFin as [Check]
+                    ,sj.[TglCheckFin] as [Tgl Check Fin]
+                    ,RTRIM(so.User4) [SR YIM]
+                    ,note.sNoteText Ket
+                    ,RTRIM(so.Inbatnbr) [Batch Issue]
+                FROM soshipheader so left join
+                    snote note on so.noteid=note.nid inner join
+                    SJChecking sj on so.ShipperID= sj.ShipperID
+                WHERE sj.NoTran = " & QVal(NoTran) & "
+                "
+            End If
+
             dt = New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
         Catch ex As Exception

@@ -149,7 +149,6 @@ Public Class frmDelvi
 
             IsClosed = False
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Me.Hide()
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

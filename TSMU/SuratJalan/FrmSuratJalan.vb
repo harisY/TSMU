@@ -78,7 +78,7 @@ Public Class FrmSuratJalan
 
                 ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
                 'Dim Dt As DateTime = DateTime.ParseExact(frm_pembayaran.txtTanggal.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)
-                RelDate = DateTime.ParseExact(GridView2.GetRowCellValue(i.ToString, GridView2.Columns("Tanggal SJ")), "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                RelDate = DateTime.ParseExact(GridView2.GetRowCellValue(i.ToString, GridView2.Columns("Tanggal SJ")), "dd-MM-yyyy", CultureInfo.InvariantCulture)
                 RecDate = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima")) Is DBNull.Value, DateTime.Now, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima"))))
                 TglKirim = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim")) Is DBNull.Value, DateTime.Now, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim"))))
                 'Checked = GridView1.GetRowCellValue(i, "Check")
@@ -94,9 +94,10 @@ Public Class FrmSuratJalan
                         .UpdateUser6(ShipperID, True)
                         .ShipperID = ShipperID
                         .RelDate = RelDate
-                        .RecDate = RecDate
-                        .TglKirim = TglKirim
+                        .RecDate = Format(RecDate, gs_FormatSQLDate)
+                        .TglKirim = Format(TglKirim, gs_FormatSQLDate)
                         .NoRec = NoRec
+                        .NoTran = ""
                         .Checked = True
                         .CreatedBy = gh_Common.Username
                         IsShipperExist1 = .IsShipperIDExist

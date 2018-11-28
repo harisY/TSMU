@@ -17,15 +17,19 @@ Public Class FrmSuratJalanList
         '_TglSJFrom.Properties.MinValue = DateTime.Parse("2018/08/01")
         '_TglSJTo.Properties.MinValue = DateTime.Parse("2018/08/01")
 
-        _TxtTglKirimFrom.Text = DateTime.Now
-        _TglKirimTo.Text = DateTime.Now
+        '_TxtTglKirimFrom.EditValue = Format(DateTime.Today, "dd-MM-yyyy")
+        '_TglKirimTo.EditValue = Format(DateTime.Today, "dd-MM-yyyy")
 
-        _TglSJFrom.Text = DateTime.Today
-        _TglSJTo.Text = DateTime.Today
+        '_TglSJFrom.EditValue = Format(DateTime.Today, "dd-MM-yyyy")
+        '_TglSJTo.EditValue = Format(DateTime.Today, "dd-MM-yyyy")
         'LoadSiteByIp()
         '_cmSite.Text = Site2
         _TxtLokasi.Text = gh_Common.Site
-        _TxtLokasi.ReadOnly = True
+        If gh_Common.Site.ToLower = "all" Then
+            _TxtLokasi.ReadOnly = False
+        Else
+            _TxtLokasi.ReadOnly = True
+        End If
         XtraTabControl1.SelectedTabPageIndex = 0
         LayoutControlItem5.Enabled = False
         LayoutControlItem6.Enabled = False
@@ -34,29 +38,51 @@ Public Class FrmSuratJalanList
 
     Private Sub LoadData()
         Try
+            If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" Then
+                If _TglSJFrom.Text = "" Then
+                    _TglSJFrom.Focus()
+                ElseIf _TglSJTo.Text = "" Then
+                    _TglSJTo.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal !")
+            End If
             Cursor = Cursors.WaitCursor
             Dim dt As New DataTable
             'dt = SuratJalan.GetdataGrid(IIf(_txtCust.Text = "", "ALL", _txtCust.Text), _dtTgl1.Value.ToString("MM-dd-yyyy"), _dtTgl2.Value.ToString("MM-dd-yyyy"), Site2)
-            dt = SuratJalan.GetdataGrid(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), _TglSJFrom.Text, _TglSJTo.Text, _TxtLokasi.Text)
+            dt = SuratJalan.GetdataGrid(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
             _Grid.DataSource = dt
             Cursor = Cursors.Default
 
         Catch ex As Exception
-            Throw ex
+            MsgBox(ex.Message)
         End Try
     End Sub
     Private Sub LoadDataEdit()
         Try
+            If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" OrElse _TxtTglKirimFrom.Text = "" OrElse _TglKirimTo.Text = "" Then
+                If _TglSJFrom.Text = "" Then
+                    _TglSJFrom.Focus()
+                ElseIf _TglSJTo.Text = "" Then
+                    _TglSJTo.Focus()
+                ElseIf _TxtTglKirimFrom.Text = "" Then
+                    _TxtTglKirimFrom.Focus()
+                ElseIf _TglKirimTo.Text = "" Then
+                    _TglKirimTo.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal !")
+            End If
+
             Cursor = Cursors.WaitCursor
             Dim dt As New DataTable
             'dt = SuratJalan.GetdataGridEdit(IIf(_txtCust.Text = "", "ALL", _txtCust.Text), _dtTgl1.Value.ToString("MM-dd-yyyy"), _dtTgl2.Value.ToString("MM-dd-yyyy"), Site2)
-            dt = SuratJalan.GetdataGridEdit(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), _TglSJFrom.Text, _TglSJTo.Text, _TxtLokasi.Text, _TxtTglKirimFrom.Text, _TglKirimTo.Text)
+            dt = SuratJalan.GetdataGridEdit(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate),
+                                           _TxtLokasi.Text, Format(_TxtTglKirimFrom.EditValue, gs_FormatSQLDate), Format(_TglKirimTo.EditValue, gs_FormatSQLDate), CheckNoTran.CheckState)
             _Grid1.DataSource = dt
             'btnFilter.Enabled = True
             Cursor = Cursors.Default
             '_Grid.Columns(2).ValueType = calenderCol
         Catch ex As Exception
-            Throw ex
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -173,13 +199,13 @@ Public Class FrmSuratJalanList
                     Next
 
                 Else
-                    MsgBox("No Trans sudah ada.")
+                    MsgBox("No Trans '[" & No & "]' sudah ada atau sudah pernah di print !")
                     Exit Sub
                 End If
 
                 Dim ds As DataSet = New DataSet
                 Dim dt As DataTable = New DataTable
-                ds = SuratJalan.PrintPO(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), _TglSJFrom.Text, _TglSJTo.Text, _TxtLokasi.Text, _TxtTglKirimFrom.Text, _TglKirimTo.Text)
+                ds = SuratJalan.PrintPO(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text, Format(_TxtTglKirimFrom.EditValue, gs_FormatSQLDate), Format(_TglKirimTo.EditValue, gs_FormatSQLDate))
 
                 dt = ds.Tables("PrintPO")
 
@@ -197,7 +223,7 @@ Public Class FrmSuratJalanList
                 End Using
                 SuratJalan.UpdateNo(DateTime.Now.Year, DateTime.Now.Month, 1, _TxtLokasi.Text)
             End If
-
+            LoadDataEdit()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -266,7 +292,7 @@ Public Class FrmSuratJalanList
                     Dim RelDate, RecDate, TglKirim As DateTime
 
                     ShipperID = GridView1.GetRowCellValue(i, GridView1.Columns("No Surat Jalan"))
-                    RelDate = DateTime.ParseExact(GridView1.GetRowCellValue(i.ToString, GridView1.Columns("Tanggal SJ")), "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                    RelDate = DateTime.ParseExact(GridView1.GetRowCellValue(i.ToString, GridView1.Columns("Tanggal SJ")), "dd-MM-yyyy", CultureInfo.InvariantCulture)
                     RecDate = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Tanggal Terima")) Is DBNull.Value, DateTime.Now, (GridView1.GetRowCellValue(i, GridView1.Columns("Tanggal Terima"))))
                     TglKirim = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Tanggal Kirim")) Is DBNull.Value, DateTime.Now, (GridView1.GetRowCellValue(i, GridView1.Columns("Tanggal Kirim"))))
                     Checked = GridView1.GetRowCellValue(i, "Check")
@@ -277,9 +303,10 @@ Public Class FrmSuratJalanList
                             .UpdateUser6(ShipperID, Checked)
                             .ShipperID = ShipperID
                             .RelDate = RelDate
-                            .RecDate = RecDate
-                            .TglKirim = TglKirim
+                            .RecDate = Format(RecDate, gs_FormatSQLDate)
+                            .TglKirim = Nothing
                             .NoRec = NoRec
+                            .NoTran = ""
                             .CreatedBy = gh_Common.Username
                             .Checked = Checked
                             Try
@@ -316,25 +343,26 @@ Public Class FrmSuratJalanList
                     Dim RelDate, RecDate, TglKirim As DateTime
 
                     ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
-                    RelDate = DateTime.ParseExact(GridView2.GetRowCellValue(i.ToString, GridView2.Columns("Tanggal SJ")), "dd/MM/yyyy", CultureInfo.InvariantCulture)
-                    RecDate = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima")) Is DBNull.Value, DateTime.Now, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima"))))
-                    TglKirim = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim")) Is DBNull.Value, DateTime.Now, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim"))))
+                    RelDate = DateTime.ParseExact(GridView2.GetRowCellValue(i.ToString, GridView2.Columns("Tanggal SJ")), "dd-MM-yyyy", CultureInfo.InvariantCulture)
+                    RecDate = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima")) Is DBNull.Value, DateTime.Today, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Terima"))))
+                    TglKirim = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim")) Is DBNull.Value, DateTime.Today, (GridView2.GetRowCellValue(i, GridView2.Columns("Tanggal Kirim"))))
                     Checked = GridView2.GetRowCellValue(i, "Check")
                     CheckedFin = GridView2.GetRowCellValue(i, "Check Fin")
-                    NoRec = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("NoRec")) Is DBNull.Value, "", GridView2.GetRowCellValue(i, GridView2.Columns("NoRec")))
+                    'NoRec = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("NoRec")) Is DBNull.Value, "", GridView2.GetRowCellValue(i, GridView2.Columns("NoRec")))
                     If Not Checked Then
                         Try
                             If CheckedFin Then
-                                Throw New Exception("Shipper ID " & ShipperID & " Sudah di checklist oleh finance tidak bisa di edit.")
+                                Throw New Exception("Shipper ID '[" & ShipperID & "]' Sudah di checklist oleh finance tidak bisa di edit.")
                             End If
                             Dim IsShipperExist As Boolean
                             With SuratJalan
                                 .UpdateUser6(ShipperID, False)
                                 .ShipperID = ShipperID
                                 .RelDate = RelDate
-                                .RecDate = RecDate
-                                .TglKirim = TglKirim
-                                .NoRec = NoRec
+                                .RecDate = Nothing
+                                .TglKirim = Nothing
+                                .NoRec = ""
+                                .NoTran = ""
                                 .CreatedBy = gh_Common.Username
                                 .Checked = Checked
                                 IsShipperExist = .IsShipperIDExist
@@ -355,8 +383,6 @@ Public Class FrmSuratJalanList
                 MsgBox("Done !", MsgBoxResult.No)
                 LoadDataEdit()
             End If
-
-
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

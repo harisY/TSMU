@@ -119,6 +119,8 @@ Partial Class FrmSuratJalan
         Me.RepositoryItemDateEdit2.AutoHeight = False
         Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.Mask.EditMask = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
         '
         'colCustomerID
@@ -148,6 +150,8 @@ Partial Class FrmSuratJalan
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Tanggal SJ"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "Tanggal SJ"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
@@ -181,8 +185,11 @@ Partial Class FrmSuratJalan
         '
         Me.GridColumn10.Caption = "Tanggal Kirim Finance"
         Me.GridColumn10.ColumnEdit = Me.RepositoryItemDateEdit4
+        Me.GridColumn10.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn10.FieldName = "Tanggal Kirim"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 4
         '

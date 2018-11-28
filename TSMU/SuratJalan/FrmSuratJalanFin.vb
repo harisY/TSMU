@@ -14,24 +14,25 @@ Public Class FrmSuratJalanFin
         ' This call is required by the designer.
         InitializeComponent()
         ObjSj = New ClsSJ
+
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
     Private Sub FrmSuratJalanFin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadGrid()
+        LoadGrid(True)
         Call Proc_EnableButtons(True, True, False, True, True, False, False, False, False, False)
     End Sub
 
-    Private Sub LoadGrid()
+    Private Sub LoadGrid(IsLoad As Boolean)
         Try
             Dim dt As New DataTable
             ObjSj.NoTran = _TxtNo.Text
-            dt = ObjSj.GetSJbyNoTran
+            dt = ObjSj.GetSJbyNoTran(IsLoad)
             _Grid1.DataSource = dt
 
 
         Catch ex As Exception
-            Throw ex
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -48,29 +49,44 @@ Public Class FrmSuratJalanFin
             End If
 
             For i As Integer = 0 To GridView2.RowCount - 1
-                'Dim Checked As Boolean = False
+                Dim Checked As Boolean = False
                 Dim ShipperID As String
                 'Dim TglTerimaFin As DateTime
 
                 ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
                 'TglTerimaFin = IIf(GridView2.GetRowCellValue(i, GridView2.Columns("Tgl Check Fin")) Is DBNull.Value, DateTime.Now, (GridView2.GetRowCellValue(i, GridView2.Columns("Tgl Check Fin"))))
-                'Checked = GridView2.GetRowCellValue(i, "Check")
-                Try
-                    With ObjSj
-                        .ShipperID = ShipperID
-                        .TglCheckFin = DateTime.Today
-                        .CheckFIn = 1
-                        .CreatedBy = Username
-                        .UpdateFin()
-                    End With
-                    'End If
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                    Continue For
-                End Try
+                Checked = GridView2.GetRowCellValue(i, "Check")
+                If Checked Then
+                    Try
+                        With ObjSj
+                            .ShipperID = ShipperID
+                            .TglCheckFin = DateTime.Today
+                            .CheckFIn = Checked
+                            .CreatedBy = gh_Common.Username
+                            .UpdateFin()
+                        End With
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                        Continue For
+                    End Try
+                Else
+                    Try
+                        With ObjSj
+                            .ShipperID = ShipperID
+                            .TglCheckFin = Nothing
+                            .CheckFIn = Nothing
+                            .CreatedBy = gh_Common.Username
+                            .UpdateFin()
+                        End With
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                        Continue For
+                    End Try
+                End If
+
             Next
             'btnFilter.Enabled = False
-            LoadGrid()
+            LoadGrid(False)
             MsgBox("Data Saved !", MsgBoxResult.No)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -87,7 +103,7 @@ Public Class FrmSuratJalanFin
     Private Sub _TxtNo_KeyDown(sender As Object, e As KeyEventArgs) Handles _TxtNo.KeyDown
         Try
             If e.KeyCode = Keys.Enter Then
-                LoadGrid()
+                LoadGrid(True)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

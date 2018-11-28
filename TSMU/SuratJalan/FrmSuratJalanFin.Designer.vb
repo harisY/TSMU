@@ -178,8 +178,6 @@ Partial Class FrmSuratJalanFin
         '
         Me.GridColumn5.Caption = "Tanggal Terima"
         Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit2
-        Me.GridColumn5.DisplayFormat.FormatString = "d"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn5.FieldName = "Tanggal Terima"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
@@ -192,6 +190,12 @@ Partial Class FrmSuratJalanFin
         Me.RepositoryItemDateEdit2.AutoHeight = False
         Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.DisplayFormat.FormatString = ""
+        Me.RepositoryItemDateEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit2.EditFormat.FormatString = ""
+        Me.RepositoryItemDateEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit2.Mask.EditMask = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
         '
         'GridColumn6
@@ -238,11 +242,11 @@ Partial Class FrmSuratJalanFin
         '
         'GridColumn15
         '
-        Me.GridColumn15.Caption = "Tanggal Kirim Finance"
+        Me.GridColumn15.Caption = "Tanggal Kirim"
         Me.GridColumn15.ColumnEdit = Me.RepositoryItemDateEdit4
         Me.GridColumn15.FieldName = "Tanggal Kirim"
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowFocus = False
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 10
         Me.GridColumn15.Width = 63
@@ -252,6 +256,12 @@ Partial Class FrmSuratJalanFin
         Me.RepositoryItemDateEdit4.AutoHeight = False
         Me.RepositoryItemDateEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit4.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit4.DisplayFormat.FormatString = ""
+        Me.RepositoryItemDateEdit4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit4.EditFormat.FormatString = ""
+        Me.RepositoryItemDateEdit4.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit4.Mask.EditMask = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit4.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit4.Name = "RepositoryItemDateEdit4"
         '
         'GridColumn17
@@ -311,6 +321,12 @@ Partial Class FrmSuratJalanFin
         Me.RepositoryItemDateEdit1.AutoHeight = False
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = ""
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.EditFormat.FormatString = ""
+        Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
         'RepositoryItemCalcEdit2
