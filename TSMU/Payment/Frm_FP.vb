@@ -523,9 +523,6 @@ Public Class Frm_FP
         fp.updatedatasolomon()
     End Sub
 
-
-
-
     Private Sub _VoucNo_TextChanged(sender As Object, e As EventArgs) Handles _VoucNo.TextChanged
         fp.Fp = _VoucNo.Text
         tampildata12()
