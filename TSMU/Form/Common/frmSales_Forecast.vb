@@ -176,6 +176,7 @@ Public Class frmSales_Forecast
             End If
 
             If dtFilter.Rows.Count > 0 Then
+                fc_Class.DeleteByTahun()
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
                 For i As Integer = 0 To dtFilter.Rows.Count - 1
@@ -565,7 +566,7 @@ Public Class frmSales_Forecast
                                 .Des_PO02 = Int32.Parse(dtFilter.Rows(i)("Des_po02").ToString)
                             End If
 
-                            .DeleteByTahun()
+
                             .Insert()
 
                         End With

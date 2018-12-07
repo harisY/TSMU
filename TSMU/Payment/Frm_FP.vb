@@ -242,8 +242,8 @@ Public Class Frm_FP
 
         Try
 
-            DataGridView1.Refresh()
-            DataGridView1.Columns.Clear()
+            'DataGridView1.Refresh()
+            'DataGridView1.Columns.Clear()
             Dim chk As New DataGridViewCheckBoxColumn()
             Dim btn As New DataGridViewButtonColumn()
             Dim btn1 As New DataGridViewButtonColumn()
@@ -251,69 +251,69 @@ Public Class Frm_FP
             Dim dtgrid As DataTable = New DataTable
             dtgrid = fp.getalldataap_det3()
             DataGridView1.DataSource = dtgrid
-            Dim bSource = New BindingSource
-            bSource.DataSource = dtgrid
-            DataGridView1.DataSource = bSource
-            DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            'Dim bSource = New BindingSource
+            'bSource.DataSource = dtgrid
+            'DataGridView1.DataSource = bSource
+            'DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
 
-            If DataGridView1.Rows.Count > 0 Then
+            'If DataGridView1.Rows.Count > 0 Then
 
 
-                DataGridView1.Columns(0).HeaderText = "InvcNbr"
-                DataGridView1.Columns(0).Width = 90
+            '    DataGridView1.Columns(0).HeaderText = "InvcNbr"
+            '    DataGridView1.Columns(0).Width = 90
 
-                DataGridView1.Columns(1).HeaderText = "InvcDate"
-                DataGridView1.Columns(1).Width = 70
-                DataGridView1.Columns(1).DefaultCellStyle.Format = "dd-MM-yyyy"
+            '    DataGridView1.Columns(1).HeaderText = "InvcDate"
+            '    DataGridView1.Columns(1).Width = 70
+            '    DataGridView1.Columns(1).DefaultCellStyle.Format = "dd-MM-yyyy"
 
-                DataGridView1.Columns(2).HeaderText = "Amount"
-                DataGridView1.Columns(2).DefaultCellStyle.Format = "##,0"
-                DataGridView1.Columns(2).Width = 80
-                DataGridView1.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    DataGridView1.Columns(2).HeaderText = "Amount"
+            '    DataGridView1.Columns(2).DefaultCellStyle.Format = "##,0"
+            '    DataGridView1.Columns(2).Width = 80
+            '    DataGridView1.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-                DataGridView1.Columns(3).HeaderText = "CuryId"
-                DataGridView1.Columns(3).Width = 40
+            '    DataGridView1.Columns(3).HeaderText = "CuryId"
+            '    DataGridView1.Columns(3).Width = 40
 
-                DataGridView1.Columns(4).HeaderText = "PPN"
-                DataGridView1.Columns(4).DefaultCellStyle.Format = "##,0"
-                DataGridView1.Columns(4).Width = 80
-                DataGridView1.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    DataGridView1.Columns(4).HeaderText = "PPN"
+            '    DataGridView1.Columns(4).DefaultCellStyle.Format = "##,0"
+            '    DataGridView1.Columns(4).Width = 80
+            '    DataGridView1.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-                DataGridView1.Columns(5).HeaderText = "DPP"
-                DataGridView1.Columns(5).DefaultCellStyle.Format = "##,0"
-                DataGridView1.Columns(5).Width = 80
-                DataGridView1.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    DataGridView1.Columns(5).HeaderText = "DPP"
+            '    DataGridView1.Columns(5).DefaultCellStyle.Format = "##,0"
+            '    DataGridView1.Columns(5).Width = 80
+            '    DataGridView1.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-                DataGridView1.Columns(6).HeaderText = "PPh"
-                DataGridView1.Columns(6).DefaultCellStyle.Format = "##,0"
-                DataGridView1.Columns(6).Width = 80
-                DataGridView1.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '    DataGridView1.Columns(6).HeaderText = "PPh"
+            '    DataGridView1.Columns(6).DefaultCellStyle.Format = "##,0"
+            '    DataGridView1.Columns(6).Width = 80
+            '    DataGridView1.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-                DataGridView1.Columns(7).HeaderText = "No. FP"
-                DataGridView1.Columns(7).Width = 140
+            '    DataGridView1.Columns(7).HeaderText = "No. FP"
+            '    DataGridView1.Columns(7).Width = 140
 
-                tes = False
-                'Dim chk As New DataGridViewCheckBoxColumn()
-                DataGridView1.Columns.Add(chk)
-                chk.HeaderText = "Pilih"
-                chk.Name = "chk"
-                chk.Width = 40
-                '         DataGridView1.Rows(1).Cells(8).Value = True
-                '  Dim btn As New DataGridViewButtonColumn()
-                DataGridView1.Columns.Add(btn)
-                btn.HeaderText = "Scan Barcode"
-                btn.Text = ""
-                btn.Name = "ppn"
-                btn.UseColumnTextForButtonValue = True
+            '    tes = False
+            '    'Dim chk As New DataGridViewCheckBoxColumn()
+            '    DataGridView1.Columns.Add(chk)
+            '    chk.HeaderText = "Pilih"
+            '    chk.Name = "chk"
+            '    chk.Width = 40
+            '    '         DataGridView1.Rows(1).Cells(8).Value = True
+            '    '  Dim btn As New DataGridViewButtonColumn()
+            '    DataGridView1.Columns.Add(btn)
+            '    btn.HeaderText = "Scan Barcode"
+            '    btn.Text = ""
+            '    btn.Name = "ppn"
+            '    btn.UseColumnTextForButtonValue = True
 
-                ' Dim btn1 As New DataGridViewButtonColumn()
-                DataGridView1.Columns.Add(btn1)
-                btn1.HeaderText = "PPh"
-                btn1.Text = ""
-                btn1.Name = "PPh"
-                btn1.UseColumnTextForButtonValue = True
+            '    ' Dim btn1 As New DataGridViewButtonColumn()
+            '    DataGridView1.Columns.Add(btn1)
+            '    btn1.HeaderText = "PPh"
+            '    btn1.Text = ""
+            '    btn1.Name = "PPh"
+            '    btn1.UseColumnTextForButtonValue = True
 
-            End If
+            'End If
 
         Catch ex As Exception
             MsgBox(ex.Message)

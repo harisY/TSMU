@@ -85,7 +85,7 @@ Public Class ClsSJ
                     snote note on so.noteid=note.nid inner join
                     SJChecking sj on so.ShipperID= sj.ShipperID
                 where so.CustID=coalesce(nullif('" & cust & "','ALL'),so.CustID) 
-                AND so.RelDate >= '" & tgl1 & "' AND so.RelDate<='" & tgl2 & "' AND sj.RecDate >= '" & tgl3 & "' AND sj.RecDate <= '" & tgl4 & "'
+                AND so.RelDate >= '" & tgl1 & "' AND so.RelDate<='" & tgl2 & "' AND convert(date,sj.RecDate) >= '" & tgl3 & "' AND convert(date,sj.RecDate) <= '" & tgl4 & "'
                 AND SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & lokasi & "') " & no & "
                 AND so.User6=1 AND so.User3<>1 AND so.Cancelled<>1 Order By so.ShipperID 
                 "
@@ -416,7 +416,7 @@ Public Class ClsSJ
     Public Sub UpdateNo(tahun As String, bulan As String, no As Integer, site As String)
         Try
             Dim id As Integer
-            If site = "TNG" Then
+            If Left(site, 3) = "TNG" Then
                 id = 1
             Else
                 id = 2
@@ -434,7 +434,7 @@ Public Class ClsSJ
     Public Sub UpdateNoToZero(tahun As String, bulan As String, no As Integer, site As String)
         Try
             Dim id As Integer
-            If site = "TNG" Then
+            If Left(site, 3) = "TNG" Then
                 id = 1
             Else
                 id = 2
@@ -454,7 +454,7 @@ Public Class ClsSJ
     Public Function GetNo(site As String) As DataTable
         Dim id As Integer
         Try
-            If site = "TNG" Then
+            If Left(site, 3) = "TNG" Then
                 id = 1
             Else
                 id = 2

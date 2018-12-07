@@ -23,7 +23,7 @@ Public Class frmReport_Sales_Price
 
     Private Sub FillComboTahun()
         _cmbYear.Items.Clear()
-        Dim tahun() As String = {"ALL", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
+        Dim tahun() As String = {"ALL", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
         _cmbYear.Items.Clear()
         For Each var As String In tahun
             _cmbYear.Items.Add(var)
@@ -117,11 +117,11 @@ Public Class frmReport_Sales_Price
     'End Sub
 
     Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbSite.KeyPress, _cmbYear.KeyPress
-        Dim tmp As System.Windows.Forms.KeyPressEventArgs = e
-        If tmp.KeyChar = ChrW(Keys.Enter) Then
-        Else
-            e.Handled = True
-        End If
+        'Dim tmp As System.Windows.Forms.KeyPressEventArgs = e
+        'If tmp.KeyChar = ChrW(Keys.Enter) Then
+        'Else
+        '    e.Handled = True
+        'End If
     End Sub
 
     Private Sub frmReport_BoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown

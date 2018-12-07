@@ -1,26 +1,29 @@
 ﻿Public Class Frm_filter_fp
-    Delegate Sub SetColumnIndex(ByVal i As Integer)
     Dim fp As Cls_FP = New Cls_FP()
     Public Event EditingControlShowing As DataGridViewEditingControlShowingEventHandler
     Sub tampildata11()
 
-        _gridshipper2.AllowUserToAddRows = False
-        _gridshipper2.MultiSelect = False
+
         Try
-            Dim dtgrid As DataTable = New DataTable
-            dtgrid = fp.getalldata2()
-            _gridshipper2.DataSource = dtgrid
+            Dim dtgrid1 As DataTable = New DataTable
+            dtgrid1 = fp.getalldata2()
+            _gridshipper2.DataSource = Nothing
+            _gridshipper2.DataSource = dtgrid1
             _gridshipper2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            _gridshipper2.AllowUserToAddRows = False
+            _gridshipper2.ReadOnly = True
+            _gridshipper2.MultiSelect = False
         Catch ex As Exception
 
             MsgBox(ex.Message)
         End Try
 
     End Sub
-
     Private Sub klikgrid()
 
         Try
+
+
             If _gridshipper2.Rows.Count > 0 Then
 
                 With Frm_FP
@@ -49,21 +52,21 @@
     End Sub
 
     Private Sub Frm_filter_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        _gridshipper2.Columns.Clear()
-        _gridshipper2.Refresh()
+        '_gridshipper2.Columns.Clear()
+        '_gridshipper2.Refresh()
         tampildata11()
     End Sub
 
     Private Sub _gridshipper2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles _gridshipper2.CellClick
 
-        Try
-            klikgrid()
-            Me.Close()
+        'Try
+        '    klikgrid()
+        '    Me.Close()
 
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
 
     End Sub
 
@@ -84,6 +87,24 @@
     End Sub
 
     Private Sub _gridshipper2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles _gridshipper2.CellContentClick
+        'Try
+        '    klikgrid()
+        '    Me.Close()
 
+
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
+    End Sub
+
+    Private Sub _gridshipper2_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles _gridshipper2.CellContentDoubleClick
+        Try
+            klikgrid()
+            Me.Close()
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

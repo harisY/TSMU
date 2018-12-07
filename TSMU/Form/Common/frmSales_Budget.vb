@@ -51,7 +51,6 @@ Public Class frmSales_Budget
         Dim strTtahun As String = ""
         Dim strCustomer As String = ""
 
-
         'table.Columns.Add("tahun")
         'table.Columns.Add("custid")
         'table.Columns.Add("customer")
@@ -107,6 +106,7 @@ Public Class frmSales_Budget
                 dtFilter = dv.ToTable
             End If
             If dtFilter.Rows.Count > 0 Then
+                fc_Class.DeleteByTahun()
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
                 For i As Integer = 0 To dtFilter.Rows.Count - 1
@@ -297,7 +297,7 @@ Public Class frmSales_Budget
                             '    .Revisi = dtFilter.Rows(i)("revisi")
                             'End If
 
-                            .DeleteByTahun()
+                            '.DeleteByTahun()
                             .Insert()
 
                         End With

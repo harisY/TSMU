@@ -33,7 +33,7 @@ Public Class FrmSystemExcel
         lblStatus.Text = ""
     End Sub
     Private Sub FillComboTahun()
-        Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
+        Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         _cmbTahun.Properties.Items.Clear()
         For Each var As String In tahun
             _cmbTahun.Properties.Items.Add(var)

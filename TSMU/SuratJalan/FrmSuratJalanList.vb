@@ -121,6 +121,7 @@ Public Class FrmSuratJalanList
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
             LoadData()
         Else
+            _TglSJFrom.Focus()
             LoadDataEdit()
         End If
     End Sub
@@ -465,5 +466,9 @@ Public Class FrmSuratJalanList
             tsBtn_print.Enabled = True
             'MsgBox(XtraTabControl1.SelectedTabPageIndex.ToString)
         End If
+    End Sub
+
+    Private Sub _TglSJFrom_EditValueChanged(sender As Object, e As EventArgs) Handles _TglSJFrom.EditValueChanged
+
     End Sub
 End Class
