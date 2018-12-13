@@ -385,4 +385,13 @@
     Private Sub btnCollapse_Click(sender As Object, e As EventArgs) Handles btnCollapse.Click
         TreeLevel.CollapseAll()
     End Sub
+
+    Private Sub LoadData(bomid1 As String)
+        Dim db As BoMDataContext = New BoMDataContext
+        Dim bom As DataTable = From t In db.bomhs Join d In db.boms On t.bomid Equals d.bomid
+                               Where t.bomid = bomid1
+                               Select t.bomid,
+                                    t.invtid
+
+    End Sub
 End Class

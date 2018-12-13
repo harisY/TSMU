@@ -1,7 +1,12 @@
 ﻿Imports System.Windows.Forms
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Views.Grid
+
 Public Class baseForm
     Public ChangePerformed As Boolean = False
     Public BaseFlexGrid As DataGridView = Nothing
+    Public DevControl As GridControl = Nothing
+    Public GridDev As GridView = Nothing
     Dim InputFieldsChanged As New Dictionary(Of Control, String)
     Protected GridInputStateChanged As Boolean = False
     Protected bb_SetDisplayChangeConfirmation As Boolean = True
@@ -36,6 +41,11 @@ Public Class baseForm
         Else
             MenuUtamaForm.LblRecords.Text = "0 record(s)"
         End If
+        'If DevControl IsNot Nothing Then
+        '    MenuUtamaForm.LblRecords.Text = CStr(DevControl.g) & " record(s)"
+        'Else
+        '    MenuUtamaForm.LblRecords.Text = "0 record(s)"
+        'End If
     End Sub
 
     Private Sub baseForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load

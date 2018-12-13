@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frm_payment
+Partial Class frm_fp_new
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -73,7 +73,7 @@ Partial Class frm_payment
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
         Me.KeyPreview = True
-        Me.Name = "frm_payment"
+        Me.Name = "frm_fp_new"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.menuContext.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

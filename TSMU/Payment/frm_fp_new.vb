@@ -9,14 +9,14 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
-Public Class frm_payment
+Public Class frm_fp_new
     Dim dtGrid As DataTable
-    Dim ObPayment As New Cls_Payment
+    Dim ObjFP As New Cls_FP
     Dim table As DataTable
     Dim tableDetail As DataTable
-    Dim ff_Detail As frm_payment_details
+    Dim ff_Detail As frm_fp_details
 
-    Private Sub frm_payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frm_fp_new_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
@@ -25,7 +25,7 @@ Public Class frm_payment
     End Sub
     Private Sub LoadGrid()
         Try
-            dtGrid = ObPayment.GridGetAllData()
+            dtGrid = ObjFP.getalldata2()
             Grid.DataSource = dtGrid
             With GridView1
                 .BestFitColumns()
@@ -54,7 +54,7 @@ Public Class frm_payment
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frm_payment_details(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frm_fp_details(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -80,14 +80,14 @@ Public Class frm_payment
     End Sub
     Dim NoVoucher, bomid As String
     Private editor As BaseEdit
-    Private Sub frm_payment_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Private Sub frm_fp_new_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
                 NoVoucher = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
+                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "FPNo")
                     End If
                 Next rowHandle
 
@@ -123,7 +123,7 @@ Public Class frm_payment
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
+                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "FPNo")
                     End If
                 Next rowHandle
 

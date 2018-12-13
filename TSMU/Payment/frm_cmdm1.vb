@@ -1,37 +1,34 @@
 ﻿Imports System.Configuration
 Imports System.Data.OleDb
 Imports System.Globalization
-Imports System.Web.UI.WebControls
-Imports DevExpress.Utils
-Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Views.Base
-Imports DevExpress.XtraGrid.Views.Base.ViewInfo
-Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-
-Public Class frm_payment
+Public Class frm_cmdm1
+    Dim ff_Detail As frmBoM_detail1
     Dim dtGrid As DataTable
-    Dim ObPayment As New Cls_Payment
+    Dim ObjCMDC As New Cls_cmdm
     Dim table As DataTable
     Dim tableDetail As DataTable
-    Dim ff_Detail As frm_payment_details
 
-    Private Sub frm_payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frm_cmdm1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
         dtGrid = Grid.DataSource
+        FilterData = New FrmSystem_FilterData(dtGrid)
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
-            dtGrid = ObPayment.GridGetAllData()
+            'Grid.ReadOnly = True
+            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
+            dtGrid = ObjCMDC.getalldatacmdm()
             Grid.DataSource = dtGrid
-            With GridView1
-                .BestFitColumns()
-                .FixedLineWidth = 2
-                .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-            End With
+            'If Grid.Rows.Count > 0 Then
+            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
+            'Else
+            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
+            'End If
+            'Grid.AutoSize = True
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -54,7 +51,7 @@ Public Class frm_payment
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frm_payment_details(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frmBoM_detail1(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -78,23 +75,39 @@ Public Class frm_payment
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Dim NoVoucher, bomid As String
-    Private editor As BaseEdit
-    Private Sub frm_payment_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+
+    Private Sub Grid_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+        Try
+            Dim objGrid As DataGridView = sender
+            If objGrid.Rows.Count > 0 Then
+                Call CallFrm(objGrid.SelectedRows(0).Cells(0).Value.ToString,
+                             objGrid.SelectedRows(0).Cells(1).Value.ToString,
+                             objGrid.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Dim invtID, bomid As String
+
+    Private Sub frmBoM_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
-                NoVoucher = String.Empty
+                invtID = String.Empty
+                bomid = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
+                        invtID = GridView1.GetRowCellValue(rowHandle, "Inventory ID")
+                        bomid = GridView1.GetRowCellValue(rowHandle, "BOM ID")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(NoVoucher,
-                             NoVoucher,
+                    Call CallFrm(bomid,
+                             invtID,
                              GridView1.RowCount)
                 End If
             End If
@@ -104,40 +117,27 @@ Public Class frm_payment
         End Try
     End Sub
 
-    Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
-            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-            'Dim view As GridView = TryCast(sender, GridView)
-            Dim view As BaseView = Grid.GetViewAt(ea.Location)
-            If view Is Nothing Then
-                Return
-            End If
-            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
-            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-            If info.InRow OrElse info.InRowCell Then
-                'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
-                'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
-
-
-                NoVoucher = String.Empty
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
-                    End If
-                Next rowHandle
-
-                If GridView1.GetSelectedRows.Length > 0 Then
-                    'Dim objGrid As DataGridView = sender
-                    Call CallFrm(NoVoucher,
-                             NoVoucher,
-                             GridView1.RowCount)
+            invtID = String.Empty
+            bomid = String.Empty
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    invtID = GridView1.GetRowCellValue(rowHandle, "Inventory ID")
+                    bomid = GridView1.GetRowCellValue(rowHandle, "BOM ID")
                 End If
+            Next rowHandle
+
+            If GridView1.GetSelectedRows.Length > 0 Then
+                'Dim objGrid As DataGridView = sender
+                Call CallFrm(bomid,
+                         invtID,
+                         GridView1.RowCount)
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
 End Class

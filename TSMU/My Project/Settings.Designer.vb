@@ -63,6 +63,16 @@ Namespace My
                 Return CType(Me("TSC16ApplicationConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=MYNOTE\SQL2008R2;Initial Catalog=BoM;User ID=sa;Password=fid123!!")>  _
+        Public ReadOnly Property BoMConnectionString() As String
+            Get
+                Return CType(Me("BoMConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

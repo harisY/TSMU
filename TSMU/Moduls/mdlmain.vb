@@ -15,7 +15,7 @@ Module mdlmain
         '        Else
         '' Return "Data Source=MIS09;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsmu2005"
         'Return "Data Source=10.10.1.47;Initial Catalog=kendaraan;User ID=sa;pwd=Tsmu2005"
-        Return "Data Source=SRV08;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Return "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
         '        End If
         '    Case Else
         'Return ""
@@ -26,7 +26,7 @@ Module mdlmain
 
     Public Function GetConnString2(Optional ByVal DBMS As String = "SQLServer") As String
 
-        Return "Data Source=SRV08;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Return "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
         ''Return "Data Source=MIS09;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsmu2005"
     End Function
     Public Function Num2Word(ByVal n As Double) As String 'max 2.147.483.647

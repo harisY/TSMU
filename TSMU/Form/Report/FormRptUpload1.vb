@@ -14,7 +14,7 @@ Public Class FormRptUpload1
     Dim sTable As DataTable
     Dim z As Integer
     Dim i As Integer
-    Private strConn As String = "Data Source=10.10.1.10;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+    Private strConn As String = "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
     ' Private strConn As String = "Data Source=MIS09;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsmu2005"
     Private sqlCon As SqlConnection
 
@@ -32,7 +32,7 @@ Public Class FormRptUpload1
         Try
             DataGridView1.Refresh()
             DataGridView1.Columns.Clear()
-          
+
             Dim dtgrid As DataTable = New DataTable
             dtgrid = pay.getalldatauploadgrid()
             DataGridView1.DataSource = dtgrid
@@ -237,7 +237,7 @@ Public Class FormRptUpload1
         Dim i As Integer
         fp.voucno = DataGridView1.SelectedRows(i).Cells(0).Value.ToString
         fp.prosespay = DataGridView1.SelectedRows(i).Cells(0).Value.ToString
-   
+
         'id = selectedItem.Cells(7).Value
         'idList(i) = id
         'i += 1
@@ -252,7 +252,7 @@ Public Class FormRptUpload1
         '    fp.updatealluploadgrid()
         'End If
 
-        Dim constring As String = "Data Source=10.10.1.10;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Dim constring As String = "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
         Using con As New SqlConnection(constring)
 
             con.Open()

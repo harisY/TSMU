@@ -164,21 +164,21 @@ Public Class Frm_ScanFP
         Label36.Visible = True
         Label37.Visible = True
         Label40.Visible = True
-        If _npwpPenjual.Text = Frm_FP._npwp.Text Then
+        If _npwpPenjual.Text = "" Then 'Frm_fp._npwp.Text Then
             Label33.Text = "√"
             Label33.ForeColor = Color.Green
         Else
             Label33.Text = "X"
             Label33.ForeColor = Color.Red
         End If
-        If _namaPenjual.Text = Frm_FP._nama_vendor.Text Then
+        If _namaPenjual.Text = "" Then ' Frm_fp._nama_vendor.Text Then
             Label35.Text = "√"
             Label35.ForeColor = Color.Green
         Else
             Label35.Text = "X"
             Label35.ForeColor = Color.Red
         End If
-        If _jumlahDpp.Text = Frm_FP.DataGridView1.SelectedRows(0).Cells(5).Value() Then
+        If _jumlahDpp.Text = "" Then 'Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value() Then
             Label36.Text = "√"
             Label36.ForeColor = Color.Green
         Else
@@ -186,7 +186,7 @@ Public Class Frm_ScanFP
             Label36.ForeColor = Color.Red
         End If
 
-        If _nomorFaktur.Text = Mid(Replace(Replace(Frm_FP.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
+        If _nomorFaktur.Text = "" Then ' Mid(Replace(Replace(Frm_fp.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
             Label34.Text = "√"
             Label34.ForeColor = Color.Green
         Else
@@ -194,7 +194,7 @@ Public Class Frm_ScanFP
             Label34.ForeColor = Color.Red
         End If
 
-        If _jumlahPpn.Text = Frm_FP.DataGridView1.SelectedRows(0).Cells(4).Value() Then
+        If _jumlahPpn.Text = "" Then ' Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value() Then
             Label37.Text = "√"
             Label37.ForeColor = Color.Green
         Else
@@ -203,8 +203,8 @@ Public Class Frm_ScanFP
         End If
 
         _dpp_ppn.Text = Val(_jumlahDpp.Text) + Val(_jumlahPpn.Text)
-        Label1.Text = Val(Frm_FP.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_FP.DataGridView1.SelectedRows(0).Cells(4).Value())
-        If _dpp_ppn.Text = Val(Frm_FP.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_FP.DataGridView1.SelectedRows(0).Cells(4).Value()) Then
+        Label1.Text = "" ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value())
+        If _dpp_ppn.Text = "" Then ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value()) Then
             Label40.Text = "√"
             Label40.ForeColor = Color.Green
         Else

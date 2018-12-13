@@ -100,6 +100,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
@@ -132,12 +133,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Classes2\Cls_barcode.vb" />
-    <Compile Include="Classes2\Cls_cmdm.vb" />
-    <Compile Include="Classes2\Cls_FP.vb" />
-    <Compile Include="Classes2\cls_login.vb" />
-    <Compile Include="Classes2\Cls_Payment.vb" />
-    <Compile Include="Classes2\Cls_report.vb" />
+    <Compile Include="Classes\Payment\Cls_barcode.vb" />
+    <Compile Include="Classes\Payment\Cls_FP.vb" />
+    <Compile Include="Classes\Payment\cls_login.vb" />
+    <Compile Include="Classes\Payment\Cls_Payment.vb" />
+    <Compile Include="Classes\Payment\Cls_report.vb" />
     <Compile Include="Classes\clsBoM_Budget_Calculated.vb" />
     <Compile Include="Classes\clsCalculateBoMdetail.vb" />
     <Compile Include="Classes\clsCalculateBoMTrans.vb" />
@@ -166,6 +166,7 @@
     <Compile Include="Classes\clsBoMdetails.vb" />
     <Compile Include="Classes\clsBoMTrans.vb" />
     <Compile Include="Classes\clsReport.vb" />
+    <Compile Include="Classes\Payment\Cls_cmdm.vb" />
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
@@ -206,6 +207,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>suspend.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbml\BoM.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoM.dbml</DependentUpon>
     </Compile>
     <Compile Include="Delvi\frmDelvi.Designer.vb">
       <DependentUpon>frmDelvi.vb</DependentUpon>
@@ -541,6 +547,12 @@
     <Compile Include="Form\System\FrmSystem_ConfigInputBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmSystem_LookupGrid.designer.vb">
+      <DependentUpon>FrmSystem_LookupGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystem_LookupGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmSystem_FilterDev.designer.vb">
       <DependentUpon>FrmSystem_FilterDev.vb</DependentUpon>
     </Compile>
@@ -577,6 +589,14 @@
     <Compile Include="Form\System\FrmWait.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frm_system_config_db.Designer.vb">
+      <DependentUpon>frm_system_config_db.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frm_system_config_db.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\Fp_Details.vb" />
+    <Compile Include="Models\Fp_Header.vb" />
     <Compile Include="Moduls\mdlmain.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
@@ -608,154 +628,46 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Payment\Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
+    <Compile Include="Payment\frm_fp_details.Designer.vb">
+      <DependentUpon>frm_fp_details.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\Form2.vb">
+    <Compile Include="Payment\frm_fp_details.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\frm_bank.Designer.vb">
-      <DependentUpon>frm_bank.vb</DependentUpon>
+    <Compile Include="Payment\frm_payment.Designer.vb">
+      <DependentUpon>frm_payment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\frm_bank.vb">
+    <Compile Include="Payment\frm_payment.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_bank1.Designer.vb">
-      <DependentUpon>Frm_bank1.vb</DependentUpon>
+    <Compile Include="Payment\frm_fp_new.Designer.vb">
+      <DependentUpon>frm_fp_new.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\Frm_bank1.vb">
+    <Compile Include="Payment\frm_fp_new.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_cmdm.Designer.vb">
-      <DependentUpon>Frm_cmdm.vb</DependentUpon>
+    <Compile Include="Payment\frm_cmdm1.Designer.vb">
+      <DependentUpon>frm_cmdm1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\Frm_cmdm.vb">
+    <Compile Include="Payment\frm_cmdm1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_csv.Designer.vb">
-      <DependentUpon>Frm_csv.vb</DependentUpon>
+    <Compile Include="Payment\frm_lookup_pph.Designer.vb">
+      <DependentUpon>frm_lookup_pph.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\Frm_csv.vb">
+    <Compile Include="Payment\frm_lookup_pph.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_EditMasterRek.Designer.vb">
-      <DependentUpon>Frm_EditMasterRek.vb</DependentUpon>
+    <Compile Include="Payment\frm_payment_details.Designer.vb">
+      <DependentUpon>frm_payment_details.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\Frm_EditMasterRek.vb">
+    <Compile Include="Payment\frm_payment_details.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\Frm_filter_barcode_fp.Designer.vb">
-      <DependentUpon>Frm_filter_barcode_fp.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_filter_barcode_fp.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_filter_fp.Designer.vb">
-      <DependentUpon>Frm_filter_fp.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_filter_fp.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Filter_payment.Designer.vb">
-      <DependentUpon>Frm_Filter_payment.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Filter_payment.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_filter_payment2.Designer.vb">
-      <DependentUpon>Frm_filter_payment2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_filter_payment2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Filter_payment_putik.Designer.vb">
-      <DependentUpon>Frm_Filter_payment_putik.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Filter_payment_putik.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_FP.Designer.vb">
-      <DependentUpon>Frm_FP.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_FP.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_InputMasterRek.Designer.vb">
-      <DependentUpon>Frm_InputMasterRek.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_InputMasterRek.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_invoice.Designer.vb">
-      <DependentUpon>Frm_invoice.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_invoice.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Lap_Pajak.Designer.vb">
-      <DependentUpon>Frm_Lap_Pajak.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Lap_Pajak.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_MasterRekening.Designer.vb">
-      <DependentUpon>Frm_MasterRekening.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_MasterRekening.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_nonpo.Designer.vb">
-      <DependentUpon>Frm_nonpo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_nonpo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Payment.Designer.vb">
-      <DependentUpon>Frm_Payment.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Payment.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Payment_putik.Designer.vb">
-      <DependentUpon>Frm_Payment_putik.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Payment_putik.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_periode.Designer.vb">
-      <DependentUpon>Frm_periode.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_periode.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_PPH.Designer.vb">
-      <DependentUpon>Frm_PPH.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_PPH.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_PPN.Designer.vb">
-      <DependentUpon>Frm_PPN.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_PPN.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_Scan.Designer.vb">
-      <DependentUpon>Frm_Scan.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\Frm_Scan.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\Frm_ScanFP.Designer.vb">
+    <Compile Include="Payment\Frm_ScanFP.designer.vb">
       <DependentUpon>Frm_ScanFP.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_ScanFP.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Payment\utama.Designer.vb">
-      <DependentUpon>utama.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Payment\utama.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Report\PrintPO.Designer.vb">
@@ -790,6 +702,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="dbml\BoM.dbml.layout">
+      <DependentUpon>BoM.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Delvi\frmDelvi.resx">
       <DependentUpon>frmDelvi.vb</DependentUpon>
     </EmbeddedResource>
@@ -957,6 +872,10 @@
     <EmbeddedResource Include="Form\System\FrmSystem_ConfigInputBox.resx">
       <DependentUpon>FrmSystem_ConfigInputBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystem_LookupGrid.resx">
+      <DependentUpon>FrmSystem_LookupGrid.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystem_FilterDev.resx">
       <DependentUpon>FrmSystem_FilterDev.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -980,6 +899,9 @@
     <EmbeddedResource Include="Form\System\FrmWait.resx">
       <DependentUpon>FrmWait.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frm_system_config_db.resx">
+      <DependentUpon>frm_system_config_db.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\MenuUtamaForm.resx">
       <DependentUpon>MenuUtamaForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -990,80 +912,26 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Form2.resx">
-      <DependentUpon>Form2.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_fp_details.resx">
+      <DependentUpon>frm_fp_details.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\frm_bank.resx">
-      <DependentUpon>frm_bank.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_payment.resx">
+      <DependentUpon>frm_payment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_bank1.resx">
-      <DependentUpon>Frm_bank1.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_fp_new.resx">
+      <DependentUpon>frm_fp_new.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_cmdm.resx">
-      <DependentUpon>Frm_cmdm.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_cmdm1.resx">
+      <DependentUpon>frm_cmdm1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_csv.resx">
-      <DependentUpon>Frm_csv.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_lookup_pph.resx">
+      <DependentUpon>frm_lookup_pph.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_EditMasterRek.resx">
-      <DependentUpon>Frm_EditMasterRek.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_filter_barcode_fp.resx">
-      <DependentUpon>Frm_filter_barcode_fp.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_filter_fp.resx">
-      <DependentUpon>Frm_filter_fp.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Filter_payment.resx">
-      <DependentUpon>Frm_Filter_payment.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_filter_payment2.resx">
-      <DependentUpon>Frm_filter_payment2.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Filter_payment_putik.resx">
-      <DependentUpon>Frm_Filter_payment_putik.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_FP.resx">
-      <DependentUpon>Frm_FP.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_InputMasterRek.resx">
-      <DependentUpon>Frm_InputMasterRek.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_invoice.resx">
-      <DependentUpon>Frm_invoice.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Lap_Pajak.resx">
-      <DependentUpon>Frm_Lap_Pajak.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_MasterRekening.resx">
-      <DependentUpon>Frm_MasterRekening.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_nonpo.resx">
-      <DependentUpon>Frm_nonpo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Payment.resx">
-      <DependentUpon>Frm_Payment.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Payment_putik.resx">
-      <DependentUpon>Frm_Payment_putik.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_periode.resx">
-      <DependentUpon>Frm_periode.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_PPH.resx">
-      <DependentUpon>Frm_PPH.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_PPN.resx">
-      <DependentUpon>Frm_PPN.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_Scan.resx">
-      <DependentUpon>Frm_Scan.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_payment_details.resx">
+      <DependentUpon>frm_payment_details.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\Frm_ScanFP.resx">
       <DependentUpon>Frm_ScanFP.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\utama.resx">
-      <DependentUpon>utama.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
@@ -1156,6 +1024,11 @@
     <None Include="dataset\suspend.xss">
       <DependentUpon>suspend.xsd</DependentUpon>
     </None>
+    <None Include="dbml\BoM.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BoM.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -1173,6 +1046,7 @@
     <Folder Include="Report\Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>

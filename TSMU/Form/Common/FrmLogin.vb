@@ -96,6 +96,7 @@
 
     Private Sub FrmLogin_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
+
             If FrmSystem_ConfigDB.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 UsernameTextBox.Text = ""
                 PasswordTextBox.Text = ""
@@ -139,7 +140,8 @@
                     MenuUtamaForm.Text = fs_Product & " - " & gs_CompanyName
                 Else
                     'FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-                    MenuUtamaForm.Text = "TSMU - " & fs_Product
+                    'MenuUtamaForm.Text = "TSMU - " & fs_Product
+                    MenuUtamaForm.Text = "TSMU "
                 End If
                 'gd_SumRound = gc_Setting.JumlahRounding
                 'gb_RoundUp = gc_Setting.RoundingUp
@@ -153,7 +155,8 @@
 
                 '# Nama Form Perusahaan...            
                 'FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-                MenuUtamaForm.Text = "TSMU - " & fs_Product
+                'MenuUtamaForm.Text = "TSMU - " & fs_Product
+                MenuUtamaForm.Text = "TSMU "
                 'gd_SumRound = 1
                 'gb_RoundUp = False
             End If

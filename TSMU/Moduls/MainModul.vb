@@ -321,7 +321,7 @@ Module MainModul
     End Function
 
     Public Function GetConnString_Solomon(Optional ByVal DBMS As String = "SQLServer") As String
-        Return "Data Source=10.10.1.10;Initial Catalog=TSC16Application;User ID=sa;pwd=Tsc2011"
+        Return "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
     End Function
 
     Public Function NumValue(ByVal value As Object) As Double
