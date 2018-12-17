@@ -22,6 +22,12 @@ Partial Class frm_lookup_pph
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_lookup_pph))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me._TxtNilaiPPh = New DevExpress.XtraEditors.TextEdit()
@@ -36,9 +42,9 @@ Partial Class frm_lookup_pph
         Me._TxtVoucher = New DevExpress.XtraEditors.TextEdit()
         Me._TxtFP = New DevExpress.XtraEditors.TextEdit()
         Me._TxtKetDPP = New DevExpress.XtraEditors.MemoEdit()
-        Me._TxtPPh = New DevExpress.XtraEditors.LookUpEdit()
-        Me._TxtKetPPh = New DevExpress.XtraEditors.LookUpEdit()
         Me._TxtLokasi = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me._TxtPPh = New DevExpress.XtraEditors.ButtonEdit()
+        Me._TxtKetPPh = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -65,6 +71,7 @@ Partial Class frm_lookup_pph
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me._TsbOk = New System.Windows.Forms.ToolStripButton()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtNilaiPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,9 +86,9 @@ Partial Class frm_lookup_pph
         CType(Me._TxtVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtFP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtKetDPP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtKetPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +110,7 @@ Partial Class frm_lookup_pph
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -119,9 +127,9 @@ Partial Class frm_lookup_pph
         Me.LayoutControl1.Controls.Add(Me._TxtVoucher)
         Me.LayoutControl1.Controls.Add(Me._TxtFP)
         Me.LayoutControl1.Controls.Add(Me._TxtKetDPP)
+        Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
         Me.LayoutControl1.Controls.Add(Me._TxtPPh)
         Me.LayoutControl1.Controls.Add(Me._TxtKetPPh)
-        Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 170)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -203,6 +211,10 @@ Partial Class frm_lookup_pph
         Me._TxtTarif.Size = New System.Drawing.Size(234, 20)
         Me._TxtTarif.StyleController = Me.LayoutControl1
         Me._TxtTarif.TabIndex = 10
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Tarif tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTarif, ConditionValidationRule1)
         '
         '_TxtCekFaktur
         '
@@ -237,6 +249,10 @@ Partial Class frm_lookup_pph
         Me._TxtVoucher.Size = New System.Drawing.Size(269, 20)
         Me._TxtVoucher.StyleController = Me.LayoutControl1
         Me._TxtVoucher.TabIndex = 5
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Vouher tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtVoucher, ConditionValidationRule2)
         '
         '_TxtFP
         '
@@ -246,6 +262,10 @@ Partial Class frm_lookup_pph
         Me._TxtFP.Size = New System.Drawing.Size(234, 20)
         Me._TxtFP.StyleController = Me.LayoutControl1
         Me._TxtFP.TabIndex = 4
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "No Faktur Pajak tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtFP, ConditionValidationRule3)
         '
         '_TxtKetDPP
         '
@@ -254,26 +274,6 @@ Partial Class frm_lookup_pph
         Me._TxtKetDPP.Size = New System.Drawing.Size(507, 30)
         Me._TxtKetDPP.StyleController = Me.LayoutControl1
         Me._TxtKetDPP.TabIndex = 18
-        '
-        '_TxtPPh
-        '
-        Me._TxtPPh.Location = New System.Drawing.Point(95, 60)
-        Me._TxtPPh.Name = "_TxtPPh"
-        Me._TxtPPh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TxtPPh.Properties.NullText = ""
-        Me._TxtPPh.Size = New System.Drawing.Size(234, 20)
-        Me._TxtPPh.StyleController = Me.LayoutControl1
-        Me._TxtPPh.TabIndex = 7
-        '
-        '_TxtKetPPh
-        '
-        Me._TxtKetPPh.Location = New System.Drawing.Point(95, 84)
-        Me._TxtKetPPh.Name = "_TxtKetPPh"
-        Me._TxtKetPPh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TxtKetPPh.Properties.NullText = ""
-        Me._TxtKetPPh.Size = New System.Drawing.Size(234, 20)
-        Me._TxtKetPPh.StyleController = Me.LayoutControl1
-        Me._TxtKetPPh.TabIndex = 9
         '
         '_TxtLokasi
         '
@@ -284,6 +284,33 @@ Partial Class frm_lookup_pph
         Me._TxtLokasi.Size = New System.Drawing.Size(507, 20)
         Me._TxtLokasi.StyleController = Me.LayoutControl1
         Me._TxtLokasi.TabIndex = 15
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Pilih Lokasi"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtLokasi, ConditionValidationRule4)
+        '
+        '_TxtPPh
+        '
+        Me._TxtPPh.Location = New System.Drawing.Point(95, 60)
+        Me._TxtPPh.Name = "_TxtPPh"
+        Me._TxtPPh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me._TxtPPh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me._TxtPPh.Size = New System.Drawing.Size(234, 20)
+        Me._TxtPPh.StyleController = Me.LayoutControl1
+        Me._TxtPPh.TabIndex = 7
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "PPH tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtPPh, ConditionValidationRule5)
+        '
+        '_TxtKetPPh
+        '
+        Me._TxtKetPPh.Location = New System.Drawing.Point(95, 84)
+        Me._TxtKetPPh.Name = "_TxtKetPPh"
+        Me._TxtKetPPh.Properties.ReadOnly = True
+        Me._TxtKetPPh.Size = New System.Drawing.Size(234, 20)
+        Me._TxtKetPPh.StyleController = Me.LayoutControl1
+        Me._TxtKetPPh.TabIndex = 9
         '
         'LayoutControlGroup1
         '
@@ -548,9 +575,9 @@ Partial Class frm_lookup_pph
         CType(Me._TxtVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtFP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtKetDPP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtPPh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtKetPPh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -573,6 +600,7 @@ Partial Class frm_lookup_pph
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -611,8 +639,6 @@ Partial Class frm_lookup_pph
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents _TxtPPh As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents _TxtKetPPh As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents _TsbOk As ToolStripButton
     Friend WithEvents _TxtLokasi As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -620,4 +646,7 @@ Partial Class frm_lookup_pph
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents _TxtPPh As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents _TxtKetPPh As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
 End Class

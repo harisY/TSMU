@@ -228,7 +228,7 @@ Partial Class Frm_ScanFP
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(409, 13)
         Me.Label29.TabIndex = 141
-        Me.Label29.Text = "---------------------------------------------------------------------------------" & _
+        Me.Label29.Text = "---------------------------------------------------------------------------------" &
     "-----------------------------------------------------"
         '
         'txtfm
@@ -696,6 +696,9 @@ Partial Class Frm_ScanFP
         Me.Controls.Add(Me.txtbarcode)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Frm_ScanFP"
         Me.Text = "Frm_ScanFP"
         Me.ResumeLayout(False)

@@ -10,6 +10,10 @@ Public Class frm_lookup_pph
     Dim ObjFP As Cls_FP = New Cls_FP()
     Dim tes As Boolean = True
     Dim total_dpp As Double = 0
+    Dim IsNew As Boolean
+    Dim ObjHeader As New fp_pph_header_models
+    Dim ObjDetails As New fp_pph_detail_models
+    Dim ObjPPHTransaction As New fp_pph_transaction_models
     Public Sub New()
 
         ' This call is required by the designer.
@@ -18,7 +22,7 @@ Public Class frm_lookup_pph
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Public Sub New(FP As String, Voucher As String, invcNbr As String, DPP As String)
+    Public Sub New(FP As String, Voucher As String, invcNbr As String, DPP As String, _IsNew As Boolean)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -28,6 +32,7 @@ Public Class frm_lookup_pph
         _Voucher = Voucher
         _invcNbr = invcNbr
         _DPP = DPP
+        IsNew = _IsNew
     End Sub
     Private Sub frm_lookup_pph_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Initial()
@@ -38,6 +43,17 @@ Public Class frm_lookup_pph
 
             Dim dtgrid As DataTable = New DataTable
             dtgrid = ObjFP.getalldataap_det()
+            Grid.DataSource = dtgrid
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub loadGridEdit()
+        Try
+
+            Dim dtgrid As DataTable = New DataTable
+            dtgrid = ObjDetails.GetGridPphDetails(_Voucher.TrimEnd)
             Grid.DataSource = dtgrid
 
         Catch ex As Exception
@@ -58,81 +74,72 @@ Public Class frm_lookup_pph
 
     Private Sub Initial()
         Try
-            ObjFP.Fp = _FP
-            ObjFP.invcnbr = _invcNbr
-            _TxtFP.Text = _FP
-            _TxtVoucher.Text = _Voucher
-            _TxtInvcNbr.Text = _invcNbr
-            _TxtDPP.Text = _DPP
-            _TxtCekInv.Text = ObjFP.cekinv
-            _TxtCekFaktur.Text = ObjFP.cekfaktur
-            _TxtTahun.Text = DateTime.Now.Year.ToString
-            _TxtBulan.Text = DateTime.Now.Month.ToString
-            If _TxtInvcNbr.Text = _TxtCekInv.Text Then
-                loadGrid1()
+            If IsNew Then
+                ObjFP.Fp = _FP
+                ObjFP.invcnbr = _invcNbr
+                _TxtFP.Text = _FP
+                _TxtVoucher.Text = _Voucher
+                _TxtInvcNbr.Text = _invcNbr
+                _TxtDPP.Text = _DPP
+                _TxtCekInv.Text = ObjFP.cekinv
+                _TxtCekFaktur.Text = ObjFP.cekfaktur
+                _TxtTahun.Text = DateTime.Now.Year.ToString
+                _TxtBulan.Text = DateTime.Now.Month.ToString
+                _TxtPPh.Enabled = True
+                _TsbOk.Enabled = True
+                If _TxtInvcNbr.Text = _TxtCekInv.Text Then
+                    loadGrid1()
+                Else
+                    loadGrid()
+                End If
             Else
-                loadGrid()
+                Dim dt As New DataTable
+                dt = ObjHeader.GetFPByNo(_Voucher.TrimEnd)
+                If dt.Rows.Count > 0 Then
+                    _TxtVoucher.Text = dt.Rows(0).Item("FPNo").ToString().TrimEnd
+                    _TxtFP.Text = dt.Rows(0).Item("FPNo").ToString()
+                    _TxtNoBuktiPot.Text = dt.Rows(0).Item("No_Bukti_Potong").ToString().TrimEnd
+                    _TxtPPh.Text = dt.Rows(0).Item("Pphid")
+                    _TxtKetPPh.Text = dt.Rows(0).Item("Ket_Pph").ToString().TrimEnd
+                    _TxtTarif.Text = dt.Rows(0).Item("Tarif")
+                    _TxtDPP.Text = dt.Rows(0).Item("Tot_Dpp_Invoice")
+                    _TxtTahun.Text = dt.Rows(0).Item("Tahun").ToString().TrimEnd
+                    _TxtBulan.Text = dt.Rows(0).Item("Bulan").ToString().TrimEnd
+                    _TxtLokasi.Text = dt.Rows(0).Item("Lokasi").ToString().TrimEnd
+                    _TxtNilaiPPh.Text = dt.Rows(0).Item("Tot_Pph")
+                    _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
+                    '_TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
+
+                End If
+                'For Each ctl As Control In Me.LayoutControl1.Controls
+                '    ctl.Enabled = False
+                'Next
+                loadGridEdit()
+                _TsbOk.Enabled = False
+                '_TxtPPh.Enabled = False
             End If
-            LoadPPh()
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
 
-    Private Sub LoadPPh()
-        Try
-            Dim dtgrid As DataTable = New DataTable
-            dtgrid = ObjFP.pasal()
-            _TxtPPh.Properties.DataSource = dtgrid
-            _TxtPPh.Properties.ValueMember = "pasal"
-            _TxtPPh.Properties.DisplayMember = "pasal"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub LoadKetPPh()
-        Try
-            Dim dtgrid As DataTable = New DataTable
-            ObjFP.pph = _TxtPPh.EditValue
-            dtgrid = ObjFP.ketpasal()
-            _TxtKetPPh.Properties.DataSource = dtgrid
-            _TxtKetPPh.Properties.ValueMember = "ket_pph"
-            _TxtKetPPh.Properties.DisplayMember = "tarif"
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub _TxtPPh_Validated(sender As Object, e As EventArgs) Handles _TxtPPh.Validated
-        LoadKetPPh()
-    End Sub
-
-    Private Sub _TxtKetPPh_Validated(sender As Object, e As EventArgs) Handles _TxtKetPPh.Validated
-        _TxtTarif.Text = _TxtKetPPh.Text
-        If _TxtTarif.Text <> "" AndAlso _TxtDPP.Text <> "" Then
-            _TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
-        End If
-    End Sub
+    'Private Sub LoadKetPPh()
+    '    Try
+    '        Dim dtgrid As DataTable = New DataTable
+    '        ObjFP.pph = _TxtPPh.EditValue
+    '        dtgrid = ObjFP.ketpasal()
+    '        _TxtKetPPh.Properties.DataSource = dtgrid
+    '        _TxtKetPPh.Properties.ValueMember = "ket_pph"
+    '        _TxtKetPPh.Properties.DisplayMember = "tarif"
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
         Grid.FocusedView.PostEditor()
     End Sub
 
-    Private Sub _TxtLokasi_Validated(sender As Object, e As EventArgs) Handles _TxtLokasi.Validated
-        Try
-            With ObjFP
-                .tarif = _TxtTarif.Text
-                .lokasi = _TxtLokasi.Text
-                .voucno = _TxtVoucher.Text
-                _TxtNoBuktiPot.Text = .autonoFP
-                '_TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
-            End With
-        Catch ex As Exception
-            XtraMessageBox.Show(ex.Message)
-        End Try
-    End Sub
 
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
         Try
@@ -175,9 +182,173 @@ Public Class frm_lookup_pph
     End Property
     Private Sub _TsbOk_Click(sender As Object, e As EventArgs) Handles _TsbOk.Click
         Try
+            Dim lb_Validated As Boolean = False
+            If DxValidationProvider1.Validate Then
+                lb_Validated = True
+            Else
+                Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+            End If
+
+            If lb_Validated Then
+                With ObjPPHTransaction
+                    .Bulan = _TxtBulan.Text
+                    .CuryID = ""
+                    .FPNo = _TxtVoucher.Text
+                    .ket_dpp = _TxtKetDPP.Text
+                    .Ket_Pph = _TxtKetPPh.Text
+                    .Lokasi = _TxtLokasi.Text
+                    .No_Bukti_Potong = _TxtNoBuktiPot.Text
+                    .No_Faktur = _TxtFP.Text
+                    .Pphid = _TxtPPh.Text
+                    .Tahun = _TxtTahun.Text
+                    .Tarif = _TxtTarif.Text
+                    .Tot_Dpp_Invoice = _TxtDPP.Text
+                    .Tot_Pph = _TxtNilaiPPh.Text
+                End With
+                ObjPPHTransaction.ObjPPHDetails.Clear()
+                For i As Integer = 0 To GridView1.RowCount - 1
+                    If GridView1.GetRowCellValue(i, "cek") = True Then
+                        Dim PPHDetails As New fp_pph_detail_models
+                        With PPHDetails
+                            .cek = "1"
+                            .descr = GridView1.GetRowCellValue(i, "TranDesc").ToString().TrimEnd
+                            .dpp = _TxtDPP.Text
+                            .FPNo = _TxtVoucher.Text.TrimEnd
+                            .invtid = GridView1.GetRowCellValue(i, "InvtID").ToString().TrimEnd
+                            .No_Faktur = _TxtFP.Text.TrimEnd
+                            .No_Invoice = _TxtInvcNbr.Text.TrimEnd
+                        End With
+                        ObjPPHTransaction.ObjPPHDetails.Add(PPHDetails)
+                    End If
+
+                Next
+                ObjPPHTransaction.InsertData()
+            End If
+            XtraMessageBox.Show("Data telah di simpan")
             Me.Close()
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Private Sub _TxtPPh_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _TxtPPh.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+
+            If sender.Name = _TxtPPh.Name Then
+                ObjFP = New Cls_FP()
+                dtSearch = ObjFP.pasal
+                ls_OldKode = _TxtPPh.Text.Trim
+                ls_Judul = "PPH"
+                'ElseIf sender.Name = _TxtKetPPh.Text Then
+                '    ObjFP = New Cls_FP()
+                '    dtSearch = ObjFP.ketpasal
+                '    ls_OldKode = _TxtPPh.Text.Trim
+                '    ls_Judul = "Ket. PPH"
+            End If
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+            Dim Value3 As String = ""
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                If sender.Name = _TxtPPh.Name AndAlso Value1 <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    _TxtPPh.Text = Value1
+                    _TxtKetPPh.Text = Value3
+                    _TxtTarif.Text = Value2
+                End If
+
+                If IsNew Then
+                    If _TxtTarif.Text <> "" AndAlso _TxtDPP.Text <> "" Then
+                        _TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
+                    End If
+                End If
+
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub _TxtLokasi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _TxtLokasi.SelectedIndexChanged
+        Try
+            With ObjFP
+                .pph = _TxtPPh.Text
+                .tarif = _TxtTarif.Text
+                .lokasi = _TxtLokasi.Text
+                .voucno = _TxtVoucher.Text
+                _TxtNoBuktiPot.Text = .autonoFP
+                '_TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
+            End With
+            'If Not IsNew Then
+            '    With ObjFP
+            '        .pph = _TxtPPh.Text
+            '        .tarif = _TxtTarif.Text
+            '        .lokasi = _TxtLokasi.Text
+            '        .voucno = _TxtVoucher.Text
+            '        _TxtNoBuktiPot.Text = .autonoFP
+            '        '_TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
+            '    End With
+            'Else
+            '    Dim TNG As String = String.Empty
+            '    Dim CKR As String = String.Empty
+            '    Dim dt As New DataTable
+            '    dt = ObjDetails.GetNoBUktiPotongByNoFP(_Voucher)
+            '    If _TxtLokasi.SelectedIndex = 0 Then
+            '        For i As Integer = 0 To dt.Rows.Count - 1
+            '            If Mid(dt.Rows(i).Item(0), 6, 7) = "TSC-TNG" Then
+            '                TNG = dt.Rows(i).Item(0).ToString
+            '                _TxtNoBuktiPot.Text = TNG
+            '                Exit For
+            '            End If
+            '        Next
+            '    Else
+            '        For i As Integer = 0 To dt.Rows.Count - 1
+            '            If Mid(dt.Rows(i).Item(0), 6, 7) = "TSC-CKR" Then
+            '                CKR = dt.Rows(i).Item(0).ToString
+            '                _TxtNoBuktiPot.Text = CKR
+            '                Exit For
+            '            End If
+            '        Next
+            '    End If
+
+            'End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+        Dim ignoreCancel As Boolean = False
+        _TxtPPh.DoValidate()
+        _TxtLokasi.DoValidate()
+        _TxtTarif.DoValidate()
+        _TxtNilaiPPh.DoValidate()
+        _TxtFP.DoValidate()
+        _TxtVoucher.DoValidate()
+
+        If DxValidationProvider1.GetInvalidControls().Contains(_TxtPPh) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtLokasi) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtTarif) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtNilaiPPh) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtFP) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtVoucher) Then
+            ignoreCancel = True
+        Else
+            ignoreCancel = True
+        End If
+
+        MyBase.OnFormClosing(e)
+        e.Cancel = Not ignoreCancel
     End Sub
 End Class

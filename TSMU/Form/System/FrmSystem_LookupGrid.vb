@@ -144,16 +144,15 @@ Public Class FrmSystem_LookupGrid
         Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
         Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
         If info.InRow OrElse info.InRowCell Then
-            'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
-            'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
+                'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
+                'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
 
-
-            Call SelectValue()
+                Call SelectValue()
 
         End If
         Catch ex As Exception
-        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 End Class

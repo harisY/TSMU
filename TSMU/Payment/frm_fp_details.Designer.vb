@@ -19,13 +19,27 @@ Partial Class frm_fp_details
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_fp_details))
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Me.Check1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BtnScan1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BtnPPH1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me._TxtVendorName = New DevExpress.XtraEditors.TextEdit()
         Me._TxtPPH = New DevExpress.XtraEditors.TextEdit()
         Me._TxtTotal = New DevExpress.XtraEditors.TextEdit()
         Me._TxtPPN = New DevExpress.XtraEditors.TextEdit()
@@ -50,6 +64,25 @@ Partial Class frm_fp_details
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me._GridDetailsNew = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNBP2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Check2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnScand2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnPPH2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._GridDetails = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,16 +92,18 @@ Partial Class frm_fp_details
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me._TxtVendorName = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.ColCheck1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColScan1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPph1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNBP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        CType(Me.Check1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtPPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtPPN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,14 +129,38 @@ Partial Class frm_fp_details
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me._GridDetailsNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Check2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnScand2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnPPH2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._GridDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'Check1
+        '
+        Me.Check1.AutoHeight = False
+        Me.Check1.Name = "Check1"
+        '
+        'BtnScan1
+        '
+        Me.BtnScan1.Appearance.Image = CType(resources.GetObject("BtnScan1.Appearance.Image"), System.Drawing.Image)
+        Me.BtnScan1.Appearance.Options.UseImage = True
+        Me.BtnScan1.AutoHeight = False
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.BtnScan1.Name = "BtnScan1"
+        Me.BtnScan1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'BtnPPH1
+        '
+        Me.BtnPPH1.AutoHeight = False
+        Me.BtnPPH1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnPPH1.Name = "BtnPPH1"
         '
         'LayoutControl1
         '
@@ -124,6 +183,15 @@ Partial Class frm_fp_details
         Me.LayoutControl1.Size = New System.Drawing.Size(828, 132)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        '_TxtVendorName
+        '
+        Me._TxtVendorName.Location = New System.Drawing.Point(163, 36)
+        Me._TxtVendorName.Name = "_TxtVendorName"
+        Me._TxtVendorName.Properties.ReadOnly = True
+        Me._TxtVendorName.Size = New System.Drawing.Size(170, 20)
+        Me._TxtVendorName.StyleController = Me.LayoutControl1
+        Me._TxtVendorName.TabIndex = 11
         '
         '_TxtPPH
         '
@@ -213,6 +281,10 @@ Partial Class frm_fp_details
         Me._DeDate.Size = New System.Drawing.Size(163, 20)
         Me._DeDate.StyleController = Me.LayoutControl1
         Me._DeDate.TabIndex = 5
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Date tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._DeDate, ConditionValidationRule1)
         '
         '_TxtCurrency
         '
@@ -225,6 +297,10 @@ Partial Class frm_fp_details
         Me._TxtCurrency.Size = New System.Drawing.Size(163, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 6
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Currenctu tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule2)
         '
         '_TxtJenisJasa
         '
@@ -243,6 +319,10 @@ Partial Class frm_fp_details
         Me._TxtNoTrans.Size = New System.Drawing.Size(238, 20)
         Me._TxtNoTrans.StyleController = Me.LayoutControl1
         Me._TxtNoTrans.TabIndex = 0
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "No. Trasaksi tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtNoTrans, ConditionValidationRule3)
         '
         '_TxtNPWP
         '
@@ -262,6 +342,10 @@ Partial Class frm_fp_details
         Me._LookUpSupplier.Size = New System.Drawing.Size(64, 20)
         Me._LookUpSupplier.StyleController = Me.LayoutControl1
         Me._LookUpSupplier.TabIndex = 1
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._LookUpSupplier, ConditionValidationRule4)
         '
         'LayoutControlGroup1
         '
@@ -379,23 +463,207 @@ Partial Class frm_fp_details
         Me.LayoutControlItem12.Text = "PPH"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
         '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me._TxtVendorName
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(151, 24)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(174, 24)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me._GridDetailsNew, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me._GridDetails, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 157)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 424)
+        Me.TableLayoutPanel1.TabIndex = 2
+        '
+        '_GridDetailsNew
+        '
+        Me._GridDetailsNew.Dock = System.Windows.Forms.DockStyle.Fill
+        Me._GridDetailsNew.Location = New System.Drawing.Point(3, 215)
+        Me._GridDetailsNew.MainView = Me.GridView2
+        Me._GridDetailsNew.Name = "_GridDetailsNew"
+        Me._GridDetailsNew.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.Check2, Me.BtnScand2, Me.BtnPPH2})
+        Me._GridDetailsNew.Size = New System.Drawing.Size(822, 206)
+        Me._GridDetailsNew.TabIndex = 5
+        Me._GridDetailsNew.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.ColNBP2, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn22})
+        Me.GridView2.GridControl = Me._GridDetailsNew
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowAutoFilterRow = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Invoice No."
+        Me.GridColumn11.FieldName = "invcNbr"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 120
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Invoice Date"
+        Me.GridColumn12.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn12.FieldName = "invcDate"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Amount"
+        Me.GridColumn13.DisplayFormat.FormatString = "##,0"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "Amount"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "DPP"
+        Me.GridColumn14.DisplayFormat.FormatString = "##,0"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn14.FieldName = "DPP"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Currency"
+        Me.GridColumn15.FieldName = "CuryId"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "PPN"
+        Me.GridColumn16.DisplayFormat.FormatString = "##,0"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "Ppn"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 5
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "No. FP"
+        Me.GridColumn17.FieldName = "fp"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.Width = 150
+        '
+        'ColNBP2
+        '
+        Me.ColNBP2.Caption = "No Bukti Potong"
+        Me.ColNBP2.FieldName = "NBP"
+        Me.ColNBP2.Name = "ColNBP2"
+        Me.ColNBP2.Visible = True
+        Me.ColNBP2.VisibleIndex = 7
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Check"
+        Me.GridColumn18.ColumnEdit = Me.Check2
+        Me.GridColumn18.FieldName = "Check"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsFilter.AllowAutoFilter = False
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 8
+        '
+        'Check2
+        '
+        Me.Check2.AutoHeight = False
+        Me.Check2.Name = "Check2"
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Scan Barcode"
+        Me.GridColumn19.ColumnEdit = Me.BtnScand2
+        Me.GridColumn19.FieldName = "Scan"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsFilter.AllowAutoFilter = False
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 9
+        '
+        'BtnScand2
+        '
+        Me.BtnScand2.Appearance.Image = CType(resources.GetObject("BtnScand2.Appearance.Image"), System.Drawing.Image)
+        Me.BtnScand2.Appearance.Options.UseImage = True
+        Me.BtnScand2.AutoHeight = False
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.BtnScand2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.BtnScand2.Name = "BtnScand2"
+        Me.BtnScand2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "PPH"
+        Me.GridColumn20.ColumnEdit = Me.BtnPPH2
+        Me.GridColumn20.DisplayFormat.FormatString = "##,0"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "Pph"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsFilter.AllowAutoFilter = False
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.Width = 100
+        '
+        'BtnPPH2
+        '
+        Me.BtnPPH2.AutoHeight = False
+        Me.BtnPPH2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnPPH2.Name = "BtnPPH2"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Status"
+        Me.GridColumn22.FieldName = "Status"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
         '_GridDetails
         '
         Me._GridDetails.Dock = System.Windows.Forms.DockStyle.Fill
-        Me._GridDetails.Location = New System.Drawing.Point(0, 157)
+        Me._GridDetails.Location = New System.Drawing.Point(3, 3)
         Me._GridDetails.MainView = Me.GridView1
         Me._GridDetails.Name = "_GridDetails"
-        Me._GridDetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2})
-        Me._GridDetails.Size = New System.Drawing.Size(828, 424)
-        Me._GridDetails.TabIndex = 3
+        Me._GridDetails.Size = New System.Drawing.Size(822, 206)
+        Me._GridDetails.TabIndex = 4
         Me._GridDetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.ColCheck1, Me.ColScan1, Me.ColPph1, Me.ColStatus, Me.ColNBP})
         Me.GridView1.GridControl = Me._GridDetails
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -403,6 +671,7 @@ Partial Class frm_fp_details
         Me.GridColumn1.FieldName = "invcNbr"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 120
@@ -436,6 +705,7 @@ Partial Class frm_fp_details
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "DPP"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
         '
@@ -469,90 +739,70 @@ Partial Class frm_fp_details
         Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 150
         '
-        'GridColumn7
+        'ColCheck1
         '
-        Me.GridColumn7.Caption = "Check"
-        Me.GridColumn7.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumn7.FieldName = "Check"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsFilter.AllowAutoFilter = False
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.ColCheck1.Caption = "Check"
+        Me.ColCheck1.ColumnEdit = Me.Check1
+        Me.ColCheck1.FieldName = "Check"
+        Me.ColCheck1.Name = "ColCheck1"
+        Me.ColCheck1.OptionsFilter.AllowAutoFilter = False
+        Me.ColCheck1.Visible = True
+        Me.ColCheck1.VisibleIndex = 8
         '
-        'RepositoryItemCheckEdit1
+        'ColScan1
         '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.ColScan1.Caption = "Scan Barcode"
+        Me.ColScan1.ColumnEdit = Me.BtnScan1
+        Me.ColScan1.FieldName = "Scan"
+        Me.ColScan1.Name = "ColScan1"
+        Me.ColScan1.OptionsFilter.AllowAutoFilter = False
+        Me.ColScan1.Visible = True
+        Me.ColScan1.VisibleIndex = 9
         '
-        'GridColumn8
+        'ColPph1
         '
-        Me.GridColumn8.Caption = "Scan Barcode"
-        Me.GridColumn8.ColumnEdit = Me.RepositoryItemButtonEdit1
-        Me.GridColumn8.FieldName = "Scan"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsFilter.AllowAutoFilter = False
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.ColPph1.Caption = "PPH"
+        Me.ColPph1.ColumnEdit = Me.BtnPPH1
+        Me.ColPph1.DisplayFormat.FormatString = "##,0"
+        Me.ColPph1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColPph1.FieldName = "Pph"
+        Me.ColPph1.Name = "ColPph1"
+        Me.ColPph1.OptionsFilter.AllowAutoFilter = False
+        Me.ColPph1.Visible = True
+        Me.ColPph1.VisibleIndex = 10
+        Me.ColPph1.Width = 100
         '
-        'RepositoryItemButtonEdit1
+        'ColStatus
         '
-        Me.RepositoryItemButtonEdit1.Appearance.Image = CType(resources.GetObject("RepositoryItemButtonEdit1.Appearance.Image"), System.Drawing.Image)
-        Me.RepositoryItemButtonEdit1.Appearance.Options.UseImage = True
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
-        Me.RepositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        Me.ColStatus.Caption = "Status"
+        Me.ColStatus.FieldName = "Status"
+        Me.ColStatus.Name = "ColStatus"
         '
-        'GridColumn9
+        'ColNBP
         '
-        Me.GridColumn9.Caption = "PPH"
-        Me.GridColumn9.ColumnEdit = Me.RepositoryItemButtonEdit2
-        Me.GridColumn9.DisplayFormat.FormatString = "##,0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "Pph"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsFilter.AllowAutoFilter = False
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 100
-        '
-        'RepositoryItemButtonEdit2
-        '
-        Me.RepositoryItemButtonEdit2.AutoHeight = False
-        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
-        '
-        '_TxtVendorName
-        '
-        Me._TxtVendorName.Location = New System.Drawing.Point(163, 36)
-        Me._TxtVendorName.Name = "_TxtVendorName"
-        Me._TxtVendorName.Properties.ReadOnly = True
-        Me._TxtVendorName.Size = New System.Drawing.Size(170, 20)
-        Me._TxtVendorName.StyleController = Me.LayoutControl1
-        Me._TxtVendorName.TabIndex = 11
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me._TxtVendorName
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(151, 24)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(174, 24)
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
+        Me.ColNBP.Caption = "No Bukti Potong"
+        Me.ColNBP.FieldName = "NBP"
+        Me.ColNBP.Name = "ColNBP"
+        Me.ColNBP.OptionsColumn.AllowEdit = False
+        Me.ColNBP.Visible = True
+        Me.ColNBP.VisibleIndex = 7
         '
         'frm_fp_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
-        Me.Controls.Add(Me._GridDetails)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.KeyPreview = True
         Me.Name = "frm_fp_details"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
-        Me.Controls.SetChildIndex(Me._GridDetails, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        CType(Me.Check1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtPPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtPPN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -578,13 +828,16 @@ Partial Class frm_fp_details
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me._GridDetailsNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Check2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnScand2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnPPH2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._GridDetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -612,24 +865,45 @@ Partial Class frm_fp_details
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents _TxtJenisJasa As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents _GridDetails As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents _TxtNoTrans As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _TxtNPWP As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _LookUpSupplier As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents _TxtVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents _GridDetailsNew As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Check2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnScand2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPPH2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents _GridDetails As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColCheck1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColScan1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColPph1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Check1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnScan1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BtnPPH1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents ColStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColNBP2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColNBP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
 End Class

@@ -6,8 +6,8 @@ Public Class Cls_FP
     Dim query1 As String = String.Empty
     Dim query2 As String = String.Empty
     Dim query3 As String = String.Empty
-    Dim ObjFpHeader As New Fp_Header
-    Dim ObjFpDetails As New Fp_Details
+    Dim ObjFpHeader As New fp_header_models
+    Dim ObjFpDetails As New fp_details_models
     Private _txtcari As String
     Public Property txtcari() As String
         Get
@@ -674,7 +674,7 @@ Public Class Cls_FP
     Public Function pasal() As DataTable
 
         Try
-            query = "select distinct pasal from pph"
+            query = "select distinct pasal Pasal,tarif Tarif,ket_pph Ket from pph"
 
             Dim dt As DataTable = New DataTable
             dt = mdlmain.GetDataTableByCommand2(query)
@@ -761,11 +761,12 @@ Public Class Cls_FP
         End Try
     End Function
 
-    Public Function getalldata2() As DataTable
+    Public Function getalldata2(Dari As String, Sampai As String) As DataTable
 
         Try
             query = "Select FPNo
-                    , VendID
+                    ,Tgl_fp Tanggal
+                    ,VendID
                     ,Vend_Name VendorName
                     ,Jenis_Jasa JenisJasa
                     ,npwp NPWP
@@ -780,7 +781,38 @@ Public Class Cls_FP
                     ,Tot_Dpp_Invoice
                     ,Tot_Ppn,Tot_Voucher
                     ,Tot_Pph,Status
-                    ,nama_vendor FROM Fp_Header"
+                    ,nama_vendor FROM Fp_Header
+                    WHERE  Tgl_fp >=COALESCE(NULLIF(" & QVal(Dari) & ",''),Tgl_fp) AND Tgl_fp <= COALESCE(NULLIF(" & QVal(Sampai) & ",''),Tgl_fp) ORDER BY FPNo Desc"
+
+            Dim dt As DataTable = New DataTable
+            dt = mdlmain.GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+    Public Function GetDataGridNew() As DataTable
+
+        Try
+            query = "Select FPNo
+                    ,Tgl_fp Tanggal
+                    ,VendID
+                    ,Vend_Name VendorName
+                    ,Jenis_Jasa JenisJasa
+                    ,npwp NPWP
+                    ,No_Bukti_Potong NoBuktiPotong
+                    ,Pphid
+                    ,Ket_Pph
+                    ,Tarif
+                    ,Tahun
+                    ,Bulan
+                    ,Lokasi
+                    ,CuryID
+                    ,Tot_Dpp_Invoice
+                    ,Tot_Ppn,Tot_Voucher
+                    ,Tot_Pph,Status
+                    ,nama_vendor FROM Fp_Header ORDER BY FPNo Desc"
 
             Dim dt As DataTable = New DataTable
             dt = mdlmain.GetDataTableByCommand(query)

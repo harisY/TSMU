@@ -37,10 +37,10 @@ Partial Class FrmSystem_LookupGrid
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 42)
+        Me.Grid.Location = New System.Drawing.Point(0, 28)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(592, 262)
+        Me.Grid.Size = New System.Drawing.Size(592, 276)
         Me.Grid.TabIndex = 0
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -57,18 +57,18 @@ Partial Class FrmSystem_LookupGrid
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnOk})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(592, 39)
+        Me.ToolStrip1.Size = New System.Drawing.Size(592, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'BtnOk
         '
         Me.BtnOk.Image = CType(resources.GetObject("BtnOk.Image"), System.Drawing.Image)
-        Me.BtnOk.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BtnOk.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOk.Name = "BtnOk"
-        Me.BtnOk.Size = New System.Drawing.Size(36, 36)
-        Me.BtnOk.ToolTipText = "Ok"
+        Me.BtnOk.Size = New System.Drawing.Size(42, 22)
+        Me.BtnOk.Text = "Ok"
+        Me.BtnOk.ToolTipText = "OK"
         '
         'FrmSystem_LookupGrid
         '

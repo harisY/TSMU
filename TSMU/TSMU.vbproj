@@ -595,8 +595,13 @@
     <Compile Include="Form\System\frm_system_config_db.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Models\Fp_Details.vb" />
-    <Compile Include="Models\Fp_Header.vb" />
+    <Compile Include="Models\barcode_models.vb" />
+    <Compile Include="Models\fp_details_models.vb" />
+    <Compile Include="Models\fp_header_models.vb" />
+    <Compile Include="Models\fp_pph_detail_models.vb" />
+    <Compile Include="Models\fp_pph_header_models.vb" />
+    <Compile Include="Models\fp_pph_transaction_models.vb" />
+    <Compile Include="Models\fp_transaction_models.vb" />
     <Compile Include="Moduls\mdlmain.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
@@ -1076,6 +1081,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barcode2_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

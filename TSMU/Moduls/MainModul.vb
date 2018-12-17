@@ -383,6 +383,8 @@ Module MainModul
             Return value
         ElseIf TypeOf value Is Single Then
             Return value
+        ElseIf TypeOf value Is Double Then
+            Return value
         End If
         Return result
     End Function

@@ -6,8 +6,19 @@ Public Class Frm_ScanFP
     Dim fpb As Cls_barcode = New Cls_barcode()
     Public dt As DataTable
     Dim ling As String
+    Dim NoFaktur As String
+    Dim IsNew As Boolean
+    Dim ObjBarcode As New barcode_models
     'Private Property cmd As MySqlCommand
+    Public Sub New(ByVal _NoFaktur As String, _IsNew As Boolean)
 
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        NoFaktur = _NoFaktur
+        IsNew = _IsNew
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         Me.Close()
@@ -29,75 +40,32 @@ Public Class Frm_ScanFP
         Me.txtfm.Focus()
     End Sub
     Private Sub Frm_ScanFP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If IsNew Then
+            bersih()
+            Button2.Enabled = True
+        Else
+            Dim dt As New DataTable
+            dt = ObjBarcode.GetBarcodeByNoFaktur(NoFaktur)
+            If dt.Rows.Count > 0 Then
+                _kdJenisTransaksi.Text = Trim(dt.Rows(0).Item("kdJenisTransaksi"))
+                _fgPengganti.Text = Trim(dt.Rows(0).Item("fgPengganti"))
+                _nomorFaktur.Text = Trim(dt.Rows(0).Item("nomorFaktur"))
+                _tanggalFaktur.Text = Trim(dt.Rows(0).Item("tanggalFaktur"))
+                _npwpPenjual.Text = Trim(dt.Rows(0).Item("npwpPenjual"))
+                _namaPenjual.Text = Trim(dt.Rows(0).Item("namaPenjual"))
+                _alamatPenjual.Text = Trim(dt.Rows(0).Item("alamatPenjual"))
+                _jumlahDpp.Text = Trim(dt.Rows(0).Item("jumlahDpp"))
+                _jumlahPpn.Text = Trim(dt.Rows(0).Item("jumlahPpn"))
+                _jumlahPpnBm.Text = Trim(dt.Rows(0).Item("jumlahPpnBm"))
+                _txtbarcode.Text = Trim(dt.Rows(0).Item("ling"))
+                _masapajak.Text = Trim(dt.Rows(0).Item("masapajak"))
+                _tahunpajak.Text = Trim(dt.Rows(0).Item("tahunpajak"))
 
-        bersih()
-        'Koneksi()
-        'da = New OdbcDataAdapter("Select * from faktur", Conn)
-        'ds = New DataSet
-        'ds.Clear()
-        'da.Fill(ds, "faktur")
-        'DataGridView1.DataSource = (ds.Tables("faktur"))
+            End If
+            Button2.Enabled = False
+        End If
+
     End Sub
-
-    'Dim Conn As OdbcConnection
-    'Dim da As OdbcDataAdapter
-    'Dim ds As DataSet
-    'Dim str As String
-
-
-
-
-    'Sub tampil()
-    '    da = New MySqlDataAdapter("select * from tb_personil", koneksi)
-    '    dt = New DataTable
-    '    da.Fill(dt)
-    '    dg.DataSource = dt
-
-    '    dg.Columns(0).HeaderText = "NRP"
-    '    dg.Columns(1).HeaderText = "Nama Personil"
-    '    dg.Columns(2).HeaderText = "Pangkat"
-    '    dg.Columns(3).HeaderText = "Tempat Lahir"
-    '    dg.Columns(4).HeaderText = "Tanggal Lahir"
-    '    dg.Columns(5).HeaderText = "Pendidikan Umum"
-    '    dg.Columns(6).HeaderText = "Pendidikan Polri"
-    '    dg.Columns(7).HeaderText = "Pendidikan Kejuruan"
-
-    '    dg.AutoResizeColumns()
-    '    dg.AlternatingRowsDefaultCellStyle.BackColor = Color.Aqua
-    'End Sub
-
-
-    'Sub Koneksi()
-    '    str = "Driver={MySQL ODBC 3.51 Driver};database=efaktur;server=localhost;uid=root;pwd=takagi"
-    '    Conn = New OdbcConnection(str)
-    '    If Conn.State = ConnectionState.Closed Then
-    '        Conn.Open()
-    '    End If
-    'End Sub
-
-
-    'Sub tampilbarcode()
-    '    Try
-    '        Call koneksi()
-    '        Dim str As String
-    '        str = "select * from faktur"
-    '        cmd = New MySqlCommand(str, conn)
-    '        rd = cmd.ExecuteReader
-    '        rd.Read()
-
-    '        If rd.HasRows Then
-    '            txtNama.Text = rd.Item("nama")
-    '            txtNoTelp.Text = rd.Item("notelp")
-    '            rtbAlamat.Text = rd.Item("alamat")
-
-    '        End If
-
-    '    Catch ex As Exception
-
-
-
-    '    End Try
-    'End Sub
 
     Private Sub txtbarcode_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtbarcode.KeyPress
         'If (e.KeyChar = Chr(13)) Then
@@ -106,6 +74,10 @@ Public Class Frm_ScanFP
     End Sub
 
     Private Sub txtbarcode_LostFocus(sender As Object, e As EventArgs) Handles txtbarcode.LostFocus
+
+        If Not IsNew Then
+            Exit Sub
+        End If
         ling = txtbarcode.Text
         If ling = "" Then
         Else
