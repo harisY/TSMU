@@ -9,6 +9,7 @@ Namespace InstanceVariables
         Dim _AdminStatus As Boolean
         Dim _group As String
         Dim _Site As String
+        Dim _Level As String
         Public Property Username() As String
             Get
                 Return _Username
@@ -47,6 +48,14 @@ Namespace InstanceVariables
             End Get
             Set(ByVal value As String)
                 _Site = value
+            End Set
+        End Property
+        Public Property Level() As String
+            Get
+                Return _Level
+            End Get
+            Set(ByVal value As String)
+                _Level = value
             End Set
         End Property
     End Class

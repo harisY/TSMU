@@ -11,6 +11,7 @@ Public Class ClassSystemUser1
     Dim _AccessLevel As String
     Dim _LastLogin As DateTime
     Dim _Site As String
+    Dim _Level As String
     Dim ls_Error As String = ""
     Dim _Query As String
 
@@ -31,6 +32,7 @@ Public Class ClassSystemUser1
                     "      ,IAL.[AccessLevel] AS [Access Level] " & vbCrLf &
                     "      ,COALESCE(TU.[LastLogin],0) AS [Last Login] " & vbCrLf &
                     "      ,TU.[Site] " & vbCrLf &
+                    "      ,TU.[Level] " & vbCrLf &
                     "  FROM [S_User] TU " & vbCrLf &
                     "   Left Join I_AccessLevel IAL On TU.[UserGroupCode] = IAL.[UserGroupCode]" & vbCrLf &
                     " " & vbCrLf &
@@ -152,6 +154,14 @@ Public Class ClassSystemUser1
             Me._Site = value
         End Set
     End Property
+    Property Level() As String
+        Get
+            Return Me._Level
+        End Get
+        Set(ByVal value As String)
+            Me._Level = value
+        End Set
+    End Property
 #End Region
 
     Public Sub GetData(ByVal pKode As String, Optional ByVal pNotShownTidakKetemuMsg As Boolean = False)
@@ -175,6 +185,7 @@ Public Class ClassSystemUser1
                     Me._UserGroupName = Trim(.Item("User Group Name") & "")
                     Me._AccessLevel = Trim(.Item("Access Level") & "")
                     Me._Site = Trim(.Item("Site") & "")
+                    Me._Level = Trim(.Item("Level") & "")
                 End With
             Else
                 If pNotShownTidakKetemuMsg = False Then
@@ -420,6 +431,7 @@ Public Class ClassSystemUser1
                 "	,[FlagActive] " & vbCrLf &
                 "   ,[UserGroupCode] " & vbCrLf &
                 "   ,[Site] " & vbCrLf &
+                "   ,[Level] " & vbCrLf &
                 "	,[EntryDate] " & vbCrLf &
                 "	,[EntryUser]) " & vbCrLf &
                 "VALUES " & vbCrLf &
@@ -430,7 +442,8 @@ Public Class ClassSystemUser1
                 "	," & QVal(Me._AdminStatus) & " " & vbCrLf &
                 "	," & QVal(Me._FlagActive) & " " & vbCrLf &
                 "	," & QVal(Me._UserGroupCode) & " " & vbCrLf &
-                 "	," & QVal(Me._Site) & " " & vbCrLf &
+                "	," & QVal(Me._Site) & " " & vbCrLf &
+                "	," & QVal(Me._Level) & " " & vbCrLf &
                 "	,GETDATE() " & vbCrLf &
                 "	," & QVal(gh_Common.Username) & ") " & vbCrLf &
                 " "
@@ -450,6 +463,7 @@ Public Class ClassSystemUser1
                 "	,[FlagActive] = " & QVal(Me._FlagActive) & " " & vbCrLf &
                 "	,[UserGroupCode] = " & QVal(Me._UserGroupCode) & " " & vbCrLf &
                 "	,[Site] = " & QVal(Me.Site) & " " & vbCrLf &
+                "	,[Level] = " & QVal(Me.Level) & " " & vbCrLf &
                 "	,[UpdateDate] = GETDATE() " & vbCrLf &
                 "	,[UpdateUser] = " & QVal(gh_Common.Username) & " " & vbCrLf &
                 "WHERE [Username] = " & QVal(Me._Username) & " " & vbCrLf &

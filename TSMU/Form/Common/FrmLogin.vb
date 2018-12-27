@@ -25,6 +25,7 @@
                     gh_Common.AdminStatus = lc_User.AdminStatus
                     gh_Common.Group = lc_User.UserGroupName
                     gh_Common.Site = lc_User.Site
+                    gh_Common.Level = lc_User.Level
                     lc_User.UpdateLastLogin()
                     If ls_Error <> "" Then ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     '# Ambil data tabel setting...

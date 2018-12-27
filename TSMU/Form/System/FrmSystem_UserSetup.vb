@@ -173,6 +173,7 @@
                 ChActive.Checked = True
                 TxtRemark.Text = ""
                 _CmbSite.Text = ""
+                _TxtLevel.Text = ""
                 'LblHakAkses.Text = ""
                 cbGroupUser.SelectedIndex = cbGroupUser.Items.Count - 1
                 Call FillGridAkses("")
@@ -200,6 +201,7 @@
                     ChActive.Checked = .FlagActive
                     TxtRemark.Text = .Remark
                     _CmbSite.Text = .Site
+                    _TxtLevel.Text = .Level
                     'LblHakAkses.Text = "" & .Username
                     'cbGroupUser.SelectedValue = .UserGroupCode
                     cbGroupUser.Text = .UserGroupName
@@ -323,6 +325,7 @@
         fc_User.Remark = TxtRemark.Text.Trim
         fc_User.UserGroupCode = cbGroupUser.SelectedValue.ToString.Trim
         fc_User.Site = _CmbSite.Text
+        fc_User.Level = _TxtLevel.Text
         '##
         Return True
     End Function

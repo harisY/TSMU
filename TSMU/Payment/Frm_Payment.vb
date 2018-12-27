@@ -15,6 +15,7 @@ Public Class frm_payment
     Dim table As DataTable
     Dim tableDetail As DataTable
     Dim ff_Detail As frm_payment_details
+    Dim ObjPaymentHeader As New payment_header_models
 
     Private Sub frm_payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -25,13 +26,15 @@ Public Class frm_payment
     End Sub
     Private Sub LoadGrid()
         Try
-            dtGrid = ObPayment.GridGetAllData()
+            dtGrid = ObjPaymentHeader.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
+                .Columns(0).Visible = False
                 .BestFitColumns()
                 .FixedLineWidth = 2
-                .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             End With
+            GridCellFormat(GridView1)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -78,7 +81,7 @@ Public Class frm_payment
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Dim NoVoucher, bomid As String
+    Dim NoVoucher, id As String
     Private editor As BaseEdit
     Private Sub frm_payment_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
@@ -87,13 +90,14 @@ Public Class frm_payment
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
+                        id = GridView1.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "vrno")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(NoVoucher,
+                    Call CallFrm(id,
                              NoVoucher,
                              GridView1.RowCount)
                 End If
@@ -118,18 +122,19 @@ Public Class frm_payment
                 'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
                 'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
 
-
+                id = String.Empty
                 NoVoucher = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "NoVoucher")
+                        id = GridView1.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "vrno")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(NoVoucher,
+                    Call CallFrm(id,
                              NoVoucher,
                              GridView1.RowCount)
                 End If

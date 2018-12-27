@@ -21,6 +21,8 @@ Partial Class FrmSystem_UserSetup
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me._CmbSite = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.cbGroupUser = New System.Windows.Forms.ComboBox()
         Me.G = New System.Windows.Forms.Label()
         Me.TxtConfirmation = New System.Windows.Forms.TextBox()
@@ -58,8 +60,8 @@ Partial Class FrmSystem_UserSetup
         Me.Qty = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me._CmbSite = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me._TxtLevel = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -84,6 +86,8 @@ Partial Class FrmSystem_UserSetup
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me._TxtLevel)
+        Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me._CmbSite)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.cbGroupUser)
@@ -111,6 +115,25 @@ Partial Class FrmSystem_UserSetup
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "User Info"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        '_CmbSite
+        '
+        Me._CmbSite.FormattingEnabled = True
+        Me._CmbSite.Items.AddRange(New Object() {"", "ALL", "CKR A", "CKR B", "TNG", "TSC3"})
+        Me._CmbSite.Location = New System.Drawing.Point(650, 5)
+        Me._CmbSite.MaxLength = 15
+        Me._CmbSite.Name = "_CmbSite"
+        Me._CmbSite.Size = New System.Drawing.Size(84, 21)
+        Me._CmbSite.TabIndex = 39
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(611, 11)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(25, 13)
+        Me.Label4.TabIndex = 40
+        Me.Label4.Text = "Site"
         '
         'cbGroupUser
         '
@@ -441,24 +464,24 @@ Partial Class FrmSystem_UserSetup
         Me.ToolStripLabel1.Size = New System.Drawing.Size(101, 22)
         Me.ToolStripLabel1.Text = "User menu access"
         '
-        '_CmbSite
+        '_TxtLevel
         '
-        Me._CmbSite.FormattingEnabled = True
-        Me._CmbSite.Items.AddRange(New Object() {"", "ALL", "CKR A", "CKR B", "TNG", "TSC3"})
-        Me._CmbSite.Location = New System.Drawing.Point(642, 8)
-        Me._CmbSite.MaxLength = 15
-        Me._CmbSite.Name = "_CmbSite"
-        Me._CmbSite.Size = New System.Drawing.Size(84, 21)
-        Me._CmbSite.TabIndex = 39
+        Me._TxtLevel.FormattingEnabled = True
+        Me._TxtLevel.Items.AddRange(New Object() {"1", "2", "3", "4"})
+        Me._TxtLevel.Location = New System.Drawing.Point(650, 32)
+        Me._TxtLevel.MaxLength = 15
+        Me._TxtLevel.Name = "_TxtLevel"
+        Me._TxtLevel.Size = New System.Drawing.Size(84, 21)
+        Me._TxtLevel.TabIndex = 41
         '
-        'Label4
+        'Label9
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(611, 11)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(25, 13)
-        Me.Label4.TabIndex = 40
-        Me.Label4.Text = "Site"
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(611, 38)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(33, 13)
+        Me.Label9.TabIndex = 42
+        Me.Label9.Text = "Level"
         '
         'FrmSystem_UserSetup
         '
@@ -528,4 +551,6 @@ Partial Class FrmSystem_UserSetup
     Friend WithEvents Qty As DataGridViewCheckBoxColumn
     Friend WithEvents _CmbSite As ComboBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents _TxtLevel As ComboBox
+    Friend WithEvents Label9 As Label
 End Class

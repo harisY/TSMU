@@ -36,7 +36,9 @@ Public Class baseForm
     Protected AllowEditPrice As Boolean = False
     Protected AllowEditQty As Boolean = False
     Private Sub baseForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        If BaseFlexGrid IsNot Nothing Then
+        If DevControl IsNot Nothing AndAlso BaseFlexGrid Is Nothing Then
+            MenuUtamaForm.LblRecords.Text = CStr(DevControl.MainView.RowCount) & " record(s)"
+        ElseIf DevControl Is Nothing AndAlso BaseFlexGrid IsNot Nothing Then
             MenuUtamaForm.LblRecords.Text = CStr(BaseFlexGrid.Rows.Count) & " record(s)"
         Else
             MenuUtamaForm.LblRecords.Text = "0 record(s)"
@@ -107,8 +109,19 @@ Public Class baseForm
                 AddHandler BaseFlexGrid.GotFocus, AddressOf GridGotFocus
                 AddHandler BaseFlexGrid.RowsAdded, AddressOf GridAfterAddRow
                 AddHandler BaseFlexGrid.RowsRemoved, AddressOf GridAfterDeleteRow
+            ElseIf TypeOf (ctrl) Is GridControl Then
+                DevControl = ctrl
+                Dim dt As DataTable = DevControl.DataSource
+                Dim dv As DataView = New DataView(dt)
+                'Dim dt As DataTable = New DataTable()
+                'dt = TryCast(DevControl.DataSource, DataTable)
+                'Dim dt As DataTable = DevControl.DataSource
+                'Dim dv As DataView = New DataView(dt)
+                'AddHandler dv.ListChanged, AddressOf dataGridFormat1
+                'AddHandler DevControl.DataSourceChanged, AddressOf dataGridFormat1
             ElseIf ctrl.HasChildren Then
                 Call AdditionalHandlers(ctrl)
+
             End If
             If Not TypeOf (ctrl) Is DataGridView AndAlso Not TypeOf (ctrl) Is TabPage Then
                 AddHandler ctrl.GotFocus, AddressOf ControlFocus
@@ -226,7 +239,7 @@ Public Class baseForm
         If e.ListChangedType = System.ComponentModel.ListChangedType.Reset Then
             Dim fgrid As DataGridView = sender
             With fgrid
-                For i As Integer = 0 To .Rows.Count
+                For i As Integer = 0 To .Columns.Count
                     If .Columns(i).ValueType Is GetType(DateTime) Then
                         If .Columns(i).DefaultCellStyle.Format <> "dd MMM yyyy" AndAlso .Columns(i).DefaultCellStyle.Format <> "dd MMMM yyyy" Then .Columns(i).DefaultCellStyle.Format = "dd MMM yyyy - HH:mm:ss"
                     ElseIf .Columns(i).ValueType Is GetType(Decimal) Then
@@ -257,6 +270,45 @@ Public Class baseForm
                 Next
                 .Refresh()
                 MenuUtamaForm.LblRecords.Text = CStr(.Rows.Count) & " record(s)"
+
+            End With
+        End If
+    End Sub
+    Public Sub dataGridFormat1(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs)
+        If e.ListChangedType = System.ComponentModel.ListChangedType.Reset Then
+            Dim fgrid As GridView = sender
+            With fgrid
+                For i As Integer = 0 To .Columns.Count
+                    If .Columns(i).DisplayFormat Is GetType(DateTime) Then
+                        If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd MMM yyyy - HH:mm:ss"
+                    ElseIf .Columns(i).DisplayFormat Is GetType(Decimal) Then
+                        Dim lb_Nothing As Boolean = True
+                        .Columns(i).DisplayFormat.Format = GetType(String)
+                        If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+                            Array.Sort(bia_FormatPecahan)
+                            Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, .Columns(i).ColumnHandle)
+                            If li_Found > -1 Then
+                                .Columns(i).DisplayFormat.FormatString = gs_FormatPecahan
+                                lb_Nothing = False
+                            End If
+                        End If
+                        If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+                            Array.Sort(bia_FormatBulat)
+                            Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, .Columns(i).ColumnHandle)
+                            If li_Found > -1 Then
+                                .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                                lb_Nothing = False
+                            End If
+                        End If
+                        If lb_Nothing = True Then
+                            .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
+                        End If
+                        .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                    End If
+
+                Next
+                .RefreshData()
+                MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
 
             End With
         End If
@@ -439,6 +491,34 @@ Public Class baseForm
                     Call bf_ValidateHakAkses()
                 End If
             End If
+            If FrmParent.DevControl IsNot Nothing Then
+                If FrmParent.DevControl.FocusedView.RowCount > 0 Then
+                    Call Proc_CheckChange()
+                    If ChangePerformed Then
+                        ShowMessage("", MessageTypeEnum.NotBoxMessage)
+                        If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
+                            Exit Sub
+                        End If
+                    End If
+                    If bi_GridParentRow = -1 Then
+                        bi_GridParentRow = 2
+                    Else
+                        If bi_GridParentRow <= 2 Then
+                            bi_GridParentRow = FrmParent.DevControl.FocusedView.RowCount - 1
+                        Else
+                            bi_GridParentRow -= 1
+                        End If
+                    End If
+                    Dim gridView = TryCast(FrmParent.DevControl.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView)
+                    'fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
+                    fs_Code = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(0))
+                    If fb_2PK Then
+                        fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
+                    End If
+                    Call InitialSetForm()
+                    Call bf_ValidateHakAkses()
+                End If
+            End If
         End If
     End Sub
     Protected Sub bf_ValidateHakAkses()
@@ -485,7 +565,7 @@ Public Class baseForm
                AndAlso bs_JenisForm <> "Report" _
                AndAlso bs_JenisForm <> "" Then
                 query =
-                "SELECT HakInsert = Coalesce([Insert], '0'), HakUpdate = Coalesce([Update], '0'), HakDelete = Coalesce([Delete], '0'), Special = Coalesce([Special], '0'), Price = Coalesce([Price], '0'), Qty = Coalesce([Qty], '0') FROM S_UserPermission " & vbLf &
+                "SELECT HakAkses =Coalesce([Access], '0'), HakInsert = Coalesce([Insert], '0'), HakUpdate = Coalesce([Update], '0'), HakDelete = Coalesce([Delete], '0'), Special = Coalesce([Special], '0'), Price = Coalesce([Price], '0'), Qty = Coalesce([Qty], '0') FROM S_UserPermission " & vbLf &
                 "WHERE Username = " & QVal(gh_Common.Username) & vbLf &
                 "   AND MenuCode = " & QVal(ls_NamaForm) & vbLf &
                 ""
@@ -501,6 +581,7 @@ Public Class baseForm
                         'MenuUtamaForm.btnSave.ToolTipText = IIf(MenuUtamaForm.btnSave.Enabled, "Insert permission required!", "")
                     End If
                     tsBtn_delete.ToolTipText = IIf(tsBtn_delete.Enabled, "Delete permission required!", "")
+                    tsBtn_approve.ToolTipText = IIf(tsBtn_approve.Enabled, "Approve permission required!", "")
                     tsBtn_newData.Enabled = False
                     tsBtn_save.Enabled = False
                     AllowEditPrice = False
@@ -512,11 +593,12 @@ Public Class baseForm
                         'Dim lb_HakUpdate As Boolean = CBool(dtable.Rows(0)(1))
                         'Dim lb_HakDelete As Boolean = CBool(dtable.Rows(0)(2))
 
-                        Dim lb_HakInsert As Boolean = dtable.Rows(0)(0)
-                        Dim lb_HakUpdate As Boolean = dtable.Rows(0)(1)
-                        Dim lb_HakDelete As Boolean = dtable.Rows(0)(2)
-                        Dim EditPrice As Boolean = dtable.Rows(0)(4)
-                        Dim EditQty As Boolean = dtable.Rows(0)(5)
+                        Dim lb_HakInsert As Boolean = dtable.Rows(0)(1)
+                        Dim lb_HakUpdate As Boolean = dtable.Rows(0)(2)
+                        Dim lb_HakDelete As Boolean = dtable.Rows(0)(3)
+                        Dim lb_HakSpecial As Boolean = dtable.Rows(0)(4)
+                        Dim EditPrice As Boolean = dtable.Rows(0)(5)
+                        Dim EditQty As Boolean = dtable.Rows(0)(6)
                         'MenuUtamaForm.btnNew.ToolTipText = IIf(MenuUtamaForm.btnNew.Enabled AndAlso lb_HakInsert = False, "Insert permission required!", "")
                         tsBtn_newData.ToolTipText = IIf(tsBtn_newData.Enabled AndAlso lb_HakInsert = False, "Insert permission required!", "")
 
@@ -528,6 +610,7 @@ Public Class baseForm
                             tsBtn_save.ToolTipText = IIf(tsBtn_save.Enabled AndAlso lb_HakInsert = False, "Insert permission required!", "")
                         End If
                         tsBtn_delete.ToolTipText = IIf(tsBtn_delete.Enabled AndAlso lb_HakDelete = False, "Delete permission required!", "")
+                        tsBtn_approve.ToolTipText = IIf(tsBtn_approve.Enabled AndAlso lb_HakSpecial = False, "Approve permission required!", "")
 
                         'MenuUtamaForm.btnNew.Enabled = IIf(MenuUtamaForm.btnNew.Enabled, lb_HakInsert, MenuUtamaForm.btnNew.Enabled)
                         tsBtn_newData.Enabled = IIf(tsBtn_newData.Enabled, lb_HakInsert, tsBtn_newData.Enabled)
@@ -539,6 +622,7 @@ Public Class baseForm
                             tsBtn_save.Enabled = IIf(tsBtn_save.Enabled, lb_HakInsert, tsBtn_save.Enabled)
                         End If
                         tsBtn_delete.Enabled = IIf(tsBtn_delete.Enabled, lb_HakDelete, tsBtn_delete.Enabled)
+                        tsBtn_approve.Enabled = IIf(tsBtn_approve.Enabled, lb_HakSpecial, tsBtn_approve.Enabled)
                         AllowEditPrice = EditPrice
                         AllowEditQty = EditQty
                     Else
@@ -552,11 +636,13 @@ Public Class baseForm
                             tsBtn_save.ToolTipText = IIf(tsBtn_save.Enabled, "Insert permission required!", "")
                         End If
                         tsBtn_delete.ToolTipText = IIf(tsBtn_delete.Enabled, "Delete permission required!", "")
+                        tsBtn_approve.ToolTipText = IIf(tsBtn_approve.Enabled, "Approve permission required!", "")
                         'MenuUtamaForm.btnNew.Enabled = False
                         tsBtn_newData.Enabled = False
                         'MenuUtamaForm.btnSave.Enabled = False
                         tsBtn_save.Enabled = False
                         tsBtn_delete.Enabled = False
+                        tsBtn_approve.Enabled = False
                         AllowEditPrice = False
                         AllowEditQty = False
                     End If
@@ -589,6 +675,35 @@ Public Class baseForm
                     fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
                     If fb_2PK Then
                         fs_Code2 = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode2).Value.ToString.Trim
+                    End If
+                    Call InitialSetForm()
+                    Call bf_ValidateHakAkses()
+                End If
+            End If
+
+            If FrmParent.DevControl IsNot Nothing Then
+                If FrmParent.DevControl.FocusedView.RowCount > 0 Then
+                    Call Proc_CheckChange()
+                    If ChangePerformed Then
+                        ShowMessage("", MessageTypeEnum.NotBoxMessage)
+                        If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
+                            Exit Sub
+                        End If
+                    End If
+                    If bi_GridParentRow = -1 Then
+                        bi_GridParentRow = 0
+                    Else
+                        If bi_GridParentRow >= FrmParent.DevControl.FocusedView.RowCount - 1 Then
+                            bi_GridParentRow = 0
+                        Else
+                            bi_GridParentRow += 1
+                        End If
+                    End If
+                    Dim gridView = TryCast(FrmParent.DevControl.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView)
+                    'fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
+                    fs_Code = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(0))
+                    If fb_2PK Then
+                        fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
                     End If
                     Call InitialSetForm()
                     Call bf_ValidateHakAkses()
@@ -651,7 +766,8 @@ Public Class baseForm
         , Optional ByVal Preview As Boolean = True _
         , Optional ByVal Print As Boolean = True _
         , Optional ByVal BtnPrev As Boolean = False _
-        , Optional ByVal BtnNext As Boolean = False
+        , Optional ByVal BtnNext As Boolean = False _
+        , Optional ByVal BtnAprove As Boolean = False
     )
         'MenuUtamaForm.btnNew.Enabled = NewData
         'MenuUtamaForm.btnSave.Enabled = Save
@@ -674,6 +790,7 @@ Public Class baseForm
         tsBtn_print.Enabled = Print
         tsBtn_prev.Enabled = BtnPrev
         tsBtn_next.Enabled = BtnNext
+        tsBtn_approve.Enabled = BtnAprove
     End Sub
 
     ''' <summary>
@@ -685,6 +802,15 @@ Public Class baseForm
     Public Overridable Sub Proc_SaveData(ByRef lb_Berhasil As Boolean)
     End Sub
     Public Overridable Sub Proc_SaveData()
+    End Sub
+
+    ''' <summary>
+    ''' Prosedur untuk approve data
+    ''' </summary>
+    ''' <remarks>
+    ''' [22018.12.27] : Create by Haris
+    ''' </remarks>
+    Public Overridable Sub Proc_Approve()
     End Sub
     ''' <summary>
     ''' Prosedur untuk menghapus data
@@ -791,7 +917,7 @@ Public Class baseForm
     Private Sub tsBtn_newData_Click(sender As Object, e As EventArgs) Handles _
         tsBtn_save.Click, tsBtn_delete.Click, tsBtn_newData.Click,
         tsBtn_print.Click, tsBtn_preview.Click, tsBtn_filter.Click, tsBtn_refresh.Click,
-        tsBtn_excel.Click, tsBtn_prev.Click, tsBtn_next.Click
+        tsBtn_excel.Click, tsBtn_prev.Click, tsBtn_next.Click, tsBtn_approve.Click
 
         Application.DoEvents()
         Me.Cursor = Cursors.WaitCursor
@@ -833,6 +959,8 @@ Public Class baseForm
                 Call Proc_PrevItem()
             Case tsBtn_next.Name
                 Call Proc_NextItem()
+            Case tsBtn_approve.Name
+                Call Proc_Approve()
         End Select
         Me.Cursor = Cursors.Default
     End Sub
@@ -852,6 +980,7 @@ Public Class baseForm
                 tsBtn_preview.Enabled = False
                 tsBtn_print.Enabled = False
                 tsBtn_save.Enabled = False
+                tsBtn_approve.Enabled = False
             Else
                 '# Iterate to set inital state of input controls...
                 Call InputBeginState(Me)

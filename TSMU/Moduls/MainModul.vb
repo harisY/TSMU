@@ -1,6 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Xml
 Imports System.Collections.ObjectModel
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.Utils
+
 Module MainModul
 #Region "--Global Enumerations--"
 
@@ -1393,5 +1396,84 @@ Module MainModul
             '.Dock = DockStyle.Fill
         End With
         Grid.ClearSelection()
+    End Sub
+    Private bia_FormatPecahan() As Integer = Nothing
+    Private bia_FormatBulat() As Integer = Nothing
+    Public Sub FormatGridView(ByVal View As GridView)
+        With View
+            For i As Integer = 0 To .Columns.Count - 1
+                If .Columns(i).ColumnType Is GetType(DateTime) Then
+                    If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd-MM-yyyy"
+                ElseIf .Columns(i).ColumnType Is GetType(Int64) Then
+                    Dim lb_Nothing As Boolean = True
+                    .Columns(i).DisplayFormat.Format = GetType(String)
+                    If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+                        Array.Sort(bia_FormatPecahan)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, .Columns(i).ColumnHandle)
+                        If li_Found > -1 Then
+                            .Columns(i).DisplayFormat.FormatString = gs_FormatPecahan
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+                        Array.Sort(bia_FormatBulat)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, .Columns(i).ColumnHandle)
+                        If li_Found > -1 Then
+                            .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True Then
+                        .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
+                    End If
+                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                End If
+
+            Next
+            .RefreshData()
+            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+
+        End With
+    End Sub
+
+    Public Sub GridCellFormat(ByVal View As GridView)
+        With View
+            For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                If col.ColumnType Is GetType(DateTime) Then
+                    If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
+                        col.DisplayFormat.FormatType = FormatType.DateTime
+                        col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                    End If
+                ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
+                    Dim lb_Nothing As Boolean = True
+                    col.DisplayFormat.FormatString = gs_FormatPecahan
+                    If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+                        Array.Sort(bia_FormatPecahan)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, col.ColumnHandle)
+                        If li_Found > -1 Then
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatPecahan
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+                        Array.Sort(bia_FormatBulat)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, col.ColumnHandle)
+                        If li_Found > -1 Then
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatBulat
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True Then
+                        col.DisplayFormat.FormatType = FormatType.Numeric
+                        col.DisplayFormat.FormatString = gs_FormatDecimal
+                    End If
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                End If
+            Next
+            .RefreshData()
+            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+        End With
     End Sub
 End Module

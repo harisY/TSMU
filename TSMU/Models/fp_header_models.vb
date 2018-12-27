@@ -22,7 +22,7 @@
 
     Public Sub GetFakturPajakById()
         Try
-            Dim sql = "SELECT [FPNo]
+            Dim sql As String = "SELECT [FPNo]
                       ,[Tgl_fp]
                       ,[VendID]
                       ,[Vend_Name]

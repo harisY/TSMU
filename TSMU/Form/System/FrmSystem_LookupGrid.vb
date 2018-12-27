@@ -69,11 +69,8 @@ Public Class FrmSystem_LookupGrid
             Return SelectedRow
         End Get
     End Property
-
     Private Sub FrmSystem_LookupGrid_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-
-
             Dim query As String = ""
 
             If CustomQuery.Trim <> "" Then
@@ -133,23 +130,18 @@ Public Class FrmSystem_LookupGrid
     End Sub
 
     Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
-
         Try
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
             'Dim view As GridView = TryCast(sender, GridView)
             Dim view As BaseView = Grid.GetViewAt(ea.Location)
-        If view Is Nothing Then
-            Return
-        End If
-        Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
-        Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-        If info.InRow OrElse info.InRowCell Then
-                'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
-                'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
-
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
                 Call SelectValue()
-
-        End If
+            End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

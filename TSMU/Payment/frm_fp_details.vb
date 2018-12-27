@@ -458,10 +458,6 @@ Public Class frm_fp_details
         _GridDetailsNew.FocusedView.PostEditor()
     End Sub
 
-    Private Sub BtnPPH1_EditValueChanged(sender As Object, e As EventArgs)
-        _GridDetails.FocusedView.PostEditor()
-    End Sub
-
     Private Sub BtnPPH2_EditValueChanged(sender As Object, e As EventArgs) Handles BtnPPH2.EditValueChanged
         _GridDetailsNew.FocusedView.PostEditor()
     End Sub
@@ -680,4 +676,7 @@ Public Class frm_fp_details
         End Try
     End Sub
 
+    Private Sub BtnPPH1_EditValueChanged(sender As Object, e As EventArgs) Handles BtnPPH1.EditValueChanged
+        _GridDetails.FocusedView.PostEditor()
+    End Sub
 End Class

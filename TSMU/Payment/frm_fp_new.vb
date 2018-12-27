@@ -42,6 +42,8 @@ Public Class frm_fp_new
                         .FixedLineWidth = 2
                         .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End With
+                    GridCellFormat(GridView1)
+
                 End If
             Else
                 dtGrid = ObjFP.getalldata2(Format(TglDari, gs_FormatSQLDate), Format(TglSampai, gs_FormatSQLDate))
@@ -52,6 +54,8 @@ Public Class frm_fp_new
                         .FixedLineWidth = 2
                         .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End With
+                    GridCellFormat(GridView1)
+
                 End If
             End If
 
