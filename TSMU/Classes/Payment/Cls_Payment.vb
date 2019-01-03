@@ -533,7 +533,7 @@ Public Class Cls_Payment
         Try
             query = "Select namedetail,norek,bank,name1 from payment_norek1 where namedetail like '%" & _adetsupplier & "%' order by namedetail "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -546,7 +546,7 @@ Public Class Cls_Payment
         Try
             query = "Select norek FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -558,7 +558,7 @@ Public Class Cls_Payment
             query = "Select rtrim(VendID)VendID, rtrim(Name)Name FROM Vendor where status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -571,7 +571,7 @@ Public Class Cls_Payment
             query = "Select namedetail,norek,bank from payment_norek1 order by Namedetail"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -584,7 +584,7 @@ Public Class Cls_Payment
             query = "Select distinct namedetail from payment_norek1 order by Namedetail"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -597,7 +597,7 @@ Public Class Cls_Payment
             query = "Select name,bank,norek from payment_norek where name like '%" & _adetsupplier & "%' and curyid like '%" & _acuryid & "%' order by name order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -612,7 +612,7 @@ Public Class Cls_Payment
             query = "Select norek FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -627,7 +627,7 @@ Public Class Cls_Payment
             query = "Select name1 FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -642,7 +642,7 @@ Public Class Cls_Payment
             query = "Select bank FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -657,7 +657,7 @@ Public Class Cls_Payment
             query = "Select namedetail,bank,norek FROM payment_norek order by namedetail"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -677,7 +677,7 @@ Public Class Cls_Payment
                 "select 'AP' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -696,7 +696,7 @@ Public Class Cls_Payment
                 "select RIGHT(@tahun,4) + '-' + @bulan "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -712,7 +712,7 @@ Public Class Cls_Payment
             query = "Select remitname,taxregnbr,user1 FROM Vendor where VendID='" & _VendID & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             VendID1 = dt.Rows(0).Item(0).ToString
             Return VendID1
 
@@ -728,7 +728,7 @@ Public Class Cls_Payment
             query = "Select name,taxregnbr,user1,ltrim(rtrim(remitname)) as remitname FROM Vendor where VendID='" & _VendID & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -745,7 +745,7 @@ Public Class Cls_Payment
         Try
             query = "Select bank FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -758,7 +758,7 @@ Public Class Cls_Payment
         Try
             query = "Select norek FROM payment_norek1 where namedetail like '%" & _adetsupplier & "%'  "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -769,7 +769,7 @@ Public Class Cls_Payment
         Try
             query = "Select namedetail,norek,bank FROM payment_norek where namedetail='" & _adetsupplier & "' order by namedetail"
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -782,7 +782,7 @@ Public Class Cls_Payment
             query = "Select VendID,taxregnbr,user1,ltrim(rtrim(remitname)) as remitname FROM Vendor where Name='" & _Vend_Name & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -800,7 +800,7 @@ Public Class Cls_Payment
             query = "Select namedetail,name,nore,bank from payment_norek where name like '%" & _Vend_Name & "%' and curyid like '%" & _acuryid & "%' order by namedetail"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -816,7 +816,7 @@ Public Class Cls_Payment
             query = "Select VendID,taxregnbr,user1 FROM Vendor where Name='" & _Vend_Name & "' and status='A' order by name"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             VendID2 = dt.Rows(0).Item(0).ToString
             Return VendID2
 
@@ -832,7 +832,7 @@ Public Class Cls_Payment
             query = "select BankAcct,CashAcctName from cashacct"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -845,7 +845,7 @@ Public Class Cls_Payment
             query = "Select BankAcct,CashAcctName from cashacct where CashAcctName='" & _BankName & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -861,7 +861,7 @@ Public Class Cls_Payment
             query = "Select CashAcctName from cashacct where BankAcct='" & _BankID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -882,7 +882,7 @@ Public Class Cls_Payment
                 "select 'AP' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -899,7 +899,7 @@ Public Class Cls_Payment
                      "group by  InvcNbr,	InvcDate,	CuryId, fp   order by InvcNbr"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query2)
+            dt = MainModul.GetDataTable_Solomon(query2)
             Return dt
         Catch ex As Exception
             Throw
@@ -929,610 +929,4 @@ Public Class Cls_Payment
         End Try
     End Function
 
-    Public Sub insertdata()
-
-        Tot_Dpp_Invoice = Tot_Dpp_Invoice.Replace(",", "")
-
-        Tot_pph = Tot_pph.Replace(",", "")
-
-        Tot_ppn = Tot_ppn.Replace(",", "")
-
-        Tot_voucher = Tot_voucher.Replace(",", "")
-
-        Try
-
-            query = "delete from Payment_Header1 where vrno = '" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-            If user1 = "putik" Then
-                chek1 = "1"
-                chek2 = "0"
-                chek3 = "0"
-                chek4 = "0"
-            ElseIf user1 = "maria" Then
-                chek1 = "1"
-                chek2 = "1"
-                chek3 = "0"
-                chek4 = "0"
-            ElseIf user1 = "yamada" Then
-                chek1 = "1"
-                chek2 = "1"
-                chek3 = "1"
-                chek4 = "0"
-            Else
-                chek1 = "1"
-                chek2 = "1"
-                chek3 = "1"
-                chek4 = "1"
-            End If
-            query = "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,detsupplier,bankrek,norek,penerima) " & _
-                    "VALUES ('" & voucno & "'" & _
-                       ",'" & tgl_fp & "'" & _
-                       ",'" & BankID & "'" & _
-                       ",'" & BankName & "'" & _
-                       ",'" & VendID & "'" & _
-                       ",'" & Vend_Name & "'" & _
-                       ",'" & descr & "'" & _
-                       ",'" & CuryID & "'" & _
-                       ",'" & Tot_Dpp_Invoice & "'" & _
-                       ",'" & Tot_ppn & "'" & _
-                       ",'" & Tot_voucher & "'" & _
-                       ",'" & Tot_pph & "'" & _
-                       ",'" & Biaya_Transfer & "'" & _
-                       ",'" & cm_dm & "'" & _
-                       ",'" & chek1 & "'" & _
-                       ",'" & chek2 & "'" & _
-                       ",'" & chek3 & "'" & _
-                       ",'" & chek4 & "'" & _
-                       ",'" & adetsupplier & "'" & _
-                       ",'" & abanknorek & "'" & _
-                       ",'" & anorek & "'" & _
-                       ",'" & apenerima & "') "
-            mdlmain.ExecQueryByCommand(query)
-
-            '' query = "update apdoc set user3=1 where InvcNbr in (select no_invoice from fp_detail) "
-            ''  mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-
-    Public Sub insertdatarek()
-        Try
-            query = "INSERT INTO Payment_norek1 (vendid,name,namedetail,bank,norek,curyid) " & _
-                    "VALUES ('" & vendidrek & "'" & _
-                       ",'" & namerek & "'" & _
-                       ",'" & namedetailrek & "'" & _
-                       ",'" & bankrekening & "'" & _
-                       ",'" & norekrek & "'" & _
-                       ",'" & curyidrek & "') "
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub editdatarek()
-        Dim i As Integer
-        vendidrek = "" 'Frm_EditMasterRek._VendID.Text
-        namerek = "" ' Frm_EditMasterRek._Vend_Name.Text
-        namedetailrek = "" ' Frm_EditMasterRek._detsup.Text
-        bankrekening = "" ' Frm_EditMasterRek._bank.Text
-        norekrek = "" ' Frm_EditMasterRek._norek.Text
-        curyidrek = "" ' Frm_EditMasterRek._curyid.Text
-
-        vendidrekdt = "" 'Frm_MasterRekening.DataGridView1.SelectedRows(i).Cells(0).Value.ToString
-        namerekdt = "" ' Frm_MasterRekening.DataGridView1.SelectedRows(i).Cells(1).Value.ToString
-        namedetailrekdt = "" ' Frm_MasterRekening.DataGridView1.SelectedRows(i).Cells(2).Value.ToString
-        Try
-            query = "update Payment_norek1 set vendid='" & vendidrek & "', name='" & namerek & "' " & _
-                    ",namedetail='" & namedetailrek & "' " & _
-                       ",bank='" & bankrekening & "' " & _
-                       ",norek='" & norekrek & "' " & _
-                       ",curyid='" & curyidrek & "' where namedetail='" & namedetailrekdt & "' and vendid='" & vendidrekdt & "' and name='" & namerekdt & "' "
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-
-    Public Sub deletedatacek()
-        Try
-            query = "delete from Payment_Header1 where vrno='" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-            query = "delete from Payment_Detail1 where vrno='" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Function updatepropay() As DataTable
-        vrno = "" ' Frm_Payment._VocNo.Text
-        ''batch = Frm_Payment.DataGridView2.SelectedRows(0).Cells(2).Value.ToString
-        Try
-            'query = "select vrno,tgl,ket,curyid,batch,no_invoice,total_cmdm from payment_cmdm " & _
-            '        "where vendorname='" & vendname & "' "
-            query = "update payment_header1 set prosespay='0' where vrno='" & vrno & "' "
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function updateup() As DataTable
-        vrno = "" 'Frm_Payment._VocNo.Text
-        ''batch = Frm_Payment.DataGridView2.SelectedRows(0).Cells(2).Value.ToString
-        Try
-            'query = "select vrno,tgl,ket,curyid,batch,no_invoice,total_cmdm from payment_cmdm " & _
-            '        "where vendorname='" & vendname & "' "
-            query = "update payment_header1 set uploaded='0' where vrno='" & vrno & "' "
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Sub updatedatasolomon()
-
-        Try
-
-            query = "update apdoc set user4=1 where InvcNbr in (select no_invoice from Payment_detail1) "
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-
-    Public Sub updatedataheader()
-
-        Try
-            query = "UPDATE t1 SET t1.tot_dpp = t2.dpp,t1.tot_ppn = t2.ppn,t1.pph = t2.pph,t1.total_dpp_ppn =t2.dpp+t2.ppn-t1.pph " & _
-                    "FROM Payment_Header1 as t1 " & _
-                    "INNER JOIN (select vrno, SUM(dpp) AS dpp,SUM(ppn) AS ppn,SUM(pph) AS pph " & _
-                    "From Payment_Detail1 where cek1=1 group by vrno) as t2 on t2.vrno=t1.vrno "
-
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-
-    Public Sub updateprosespay()
-
-        Try
-            query = "UPDATE t1 SET t1.tot_dpp = t2.dpp,t1.tot_ppn = t2.ppn,t1.pph = t2.pph,t1.total_dpp_ppn =t2.dpp+t2.ppn-t1.pph " & _
-                    "FROM Payment_Header1 as t1 " & _
-                    "INNER JOIN (select vrno, SUM(dpp) AS dpp,SUM(ppn) AS ppn,SUM(pph) AS pph " & _
-                    "From Payment_Detail1 where cek1=1 group by vrno) as t2 on t2.vrno=t1.vrno "
-
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-
-    Public Sub updatedatasolomon2()
-
-        Try
-
-            query = "update apdoc set user4=0 where InvcNbr in (select no_invoice from Payment_detail1) "
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-
-    Public Function getalldata3_putik() As DataTable
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='1' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-    Public Function GridGetAllData() As DataTable
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-
-            query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 order by no_voucher, vendorname"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-    Public Function getalldata3() As DataTable
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If gh_Common.Username = "putik" Then
-                query = "Select vrno  as NoVoucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='0' and cek2='0' and cek3='0' and cek4='0' order by vendorname, NoVoucher"
-            ElseIf gh_Common.Username = "maria" Then
-                query = "Select vrno  as NoVoucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='0' and cek3='0' and cek4='0' order by vendorname, NoVoucher"
-            ElseIf gh_Common.Username = "yamada" Then
-                query = "Select vrno  as NoVoucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='0' and cek4='0' order by vendorname, NoVoucher"
-            Else
-                query = "Select vrno  as NoVoucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='0' order by vendorname, NoVoucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-
-        End Try
-    End Function
-
-    Public Function getalldatarek() As DataTable
-
-        Try
-            query = "Select vendid,name,namedetail,bank,norek,curyid from payment_norek1 order by name"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldatarekbyname() As DataTable
-        namerek = "" ' Frm_MasterRekening._Vend_Name.Text
-        Try
-            query = "Select vendid,name,namedetail,bank,norek,curyid from payment_norek1 where name='" & namerek & "' order by name"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function updatepph() As DataTable
-
-        Try
-            query = "UPDATE t1 SET t1.tot_dpp = t2.dpp,t1.tot_ppn = t2.ppn,t1.pph = t2.pph,t1.total_dpp_ppn =t2.dpp+t2.ppn+t2.pph-t2.pph " & _
-                    "FROM Payment_Header1 as t1 " & _
-                    "INNER JOIN (select vrno, SUM(dpp) AS dpp,SUM(ppn) AS ppn,SUM(pph) AS pph " & _
-                    "From Payment_Detail1 where cek1=1 group by vrno) as t2 on t2.vrno=t1.vrno "
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldata3b_putik() As DataTable
-        tglawal = "" ' Frm_Filter_payment_putik.dt1.Text + " 00:00:00"
-        tglakhir = "" ' Frm_Filter_payment_putik.dt2.Text + " 00:00:00"
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldata3b() As DataTable
-        tglawal = "" 'Frm_Filter_payment.dt1.Text + " 00:00:00"
-        tglakhir = "" 'Frm_Filter_payment.dt2.Text + " 00:00:00"
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='0' and cek2='0' and cek3='0' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='0' and cek3='0' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='0' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldatatglandsupplier_putik() As DataTable
-        tglawal = "" ' Frm_Filter_payment_putik.dt1a.Text + " 00:00:00"
-        tglakhir = "" ' Frm_Filter_payment_putik.dt2a.Text + " 00:00:00"
-        Vend_Name = "" 'Frm_Filter_payment_putik._Vend_Name1.Text
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='0' and cek3='0' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='0' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='0' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldatatglandsupplier() As DataTable
-        tglawal = "" ' Frm_Filter_payment_putik.dt1a.Text + " 00:00:00"
-        tglakhir = "" 'Frm_Filter_payment_putik.dt2a.Text + " 00:00:00"
-        Vend_Name = "" ' Frm_Filter_payment_putik._Vend_Name1.Text
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='1' and tgl >= '" & tglawal & "' AND Payment_Header1.tgl <= '" & tglakhir & "' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldatavrno() As DataTable
-
-        voucno = "" 'Frm_Filter_payment._vrno.Text
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='0' and cek2='0' and cek3='0' and cek4='0' and vrno like '" & voucno & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='0' and cek3='0' and cek4='0' and vrno like '" & voucno & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='0' and cek4='0' and vrno like '" & voucno & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='0' and vrno like '" & voucno & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldatasupplier() As DataTable
-
-        Vend_Name = "" ' Frm_Filter_payment._Vend_Name.Text
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-            If user1 = "putik" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='0' and cek2='0' and cek3='0' and cek4='0' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "maria" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='0' and cek3='0' and cek4='0' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            ElseIf user1 = "yamada" Then
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='0' and cek4='0' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            Else
-                query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh-pph-Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 where cek1='1' and cek2='1' and cek3='1' and cek4='0' and vendorname like '" & Vend_Name & "' order by vendorname, no_voucher"
-            End If
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Function getalldata3a() As DataTable
-
-        Try
-            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
-
-            query = "Select vrno  as No_Voucher,tgl,BankID,BankName,VendID,VendorName as Supplier,Descr,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,CuryID,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek1 as Check1, cek2 as Check2, cek3 as Check3, cek4 as Direktur from payment_header1 order by no_voucher, vendorname"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-    Public Function getalldataap_det2() As DataTable
-        Try
-
-            query = "Select APTran.InvtID,APTran.TranDesc,SUM(APTran.CuryTranAmt) AS Amount from APTran inner join APDoc on APDoc.BatNbr=APTran.BatNbr " & _
-        "WHERE DocType='VO' and APTran.LineType='R' AND APTran.RefNbr=APDoc.RefNbr AND  APDoc.Invcnbr='" & invcnbr & "' " & _
-        "GROUP BY APTran.InvtID,APTran.TranDesc"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-    Public Sub insertdata2()
-
-        Tot_Dpp_Invoice = Tot_Dpp_Invoice.Replace(",", "")
-
-        Tot_pph = Tot_pph.Replace(",", "")
-
-        Tot_ppn = Tot_ppn.Replace(",", "")
-
-        Tot_voucher = Tot_voucher.Replace(",", "")
-
-        Try
-
-            query = "delete from Payment_Header1 where vrno = '" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-
-            chek1 = "0"
-            chek2 = "0"
-            chek3 = "0"
-            chek4 = "0"
-
-            query = "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,detsupplier,bankrek,norek,penerima) " & _
-                    "VALUES ('" & voucno & "'" & _
-                       ",'" & tgl_fp & "'" & _
-                       ",'" & BankID & "'" & _
-                       ",'" & BankName & "'" & _
-                       ",'" & VendID & "'" & _
-                       ",'" & Vend_Name & "'" & _
-                       ",'" & descr & "'" & _
-                       ",'" & CuryID & "'" & _
-                       ",'" & Tot_Dpp_Invoice & "'" & _
-                       ",'" & Tot_ppn & "'" & _
-                       ",'" & Tot_voucher & "'" & _
-                       ",'" & Tot_pph & "'" & _
-                       ",'" & Biaya_Transfer & "'" & _
-                       ",'" & cm_dm & "'" & _
-                       ",'" & chek1 & "'" & _
-                       ",'" & chek2 & "'" & _
-                       ",'" & chek3 & "'" & _
-                       ",'" & chek4 & "'" & _
-                       ",'" & adetsupplier & "'" & _
-                       ",'" & abanknorek & "'" & _
-                       ",'" & anorek & "'" & _
-                       ",'" & apenerima & "') "
-            mdlmain.ExecQueryByCommand(query)
-
-            '' query = "update apdoc set user3=1 where InvcNbr in (select no_invoice from fp_detail) "
-            ''  mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
-    Public Function getalldataap_det3() As DataTable
-
-        Try
-
-            query = "select no_invoice as NoinvcNbr, tgl_invoice as InvcDate,Jml_invoice as Amount,CuryID,PPN,DPP,PPh,No_Faktur as 'No. Bukti Potong',cek1 as cek from payment_detail1 " & _
-                   "WHERE vrno='" & voucno & "' "
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Sub updatealluploadgrid()
-
-        Dim query As String
-
-        'Dim idList(5)
-        'For Each selectedItem As DataGridViewRow In FormRptUpload1.DataGridView1.SelectedRows
-        '    'show ids of multiple selected rows
-        '    id = selectedItem.Cells(7).Value
-
-        '    idList(i) = id
-        '    If FormRptUpload1.DataGridView1.SelectedRows(i).Cells(7).Value = True Then
-        '        FormRptUpload1.DataGridView1.SelectedRows(i).Cells(7).Value = False
-        '    Else
-        '        FormRptUpload1.DataGridView1.SelectedRows(i).Cells(7).Value = True
-        '    End If
-        'Dim TotalRecords As Integer = FormRptUpload1.DataGridView1.RowCount - 1
-        'For i As Integer = 0 To TotalRecords
-        '    If FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = False Then
-        '        FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = True
-        '    Else
-        '        FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = True
-        '    End If
-        '    prosespay = FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value
-        '    vrno = FormRptUpload1.DataGridView1.Rows(i).Cells(0).Value
-        'Next i
-
-        'For i As Integer = 0 To FormRptUpload1.DataGridView1.Rows.Count
-        '    If FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = False Then
-        '        FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = True
-        '    Else
-        '        FormRptUpload1.DataGridView1.Rows(i).Cells(7).Value = True
-        '    End If
-
-        '    i += 1
-        Dim i As Integer
-        prosespay = FormRptUpload1.DataGridView1.SelectedRows(i).Cells(7).Value.ToString
-        voucno = FormRptUpload1.DataGridView1.SelectedRows(i).Cells(0).Value.ToString
-
-        Try
-            query = "update payment_header1 set prosespay='" & prosespay & "' " & _
-                    "where vrno='" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-        End Try
-
-    End Sub
 End Class

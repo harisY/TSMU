@@ -41,6 +41,7 @@ Public Class frm_fp_new
                         .BestFitColumns()
                         .FixedLineWidth = 2
                         .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                        .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End With
                     GridCellFormat(GridView1)
 
@@ -53,6 +54,7 @@ Public Class frm_fp_new
                         .BestFitColumns()
                         .FixedLineWidth = 2
                         .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                        .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                     End With
                     GridCellFormat(GridView1)
 
@@ -249,22 +251,24 @@ Public Class frm_fp_new
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Dim FPNo, bomid As String
+    Dim FPNo, id As String
     Private editor As BaseEdit
     Private Sub frm_fp_new_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
                 FPNo = String.Empty
+                id = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
+                        id = GridView1.GetRowCellValue(rowHandle, "id")
                         FPNo = GridView1.GetRowCellValue(rowHandle, "FPNo")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(FPNo,
+                    Call CallFrm(id,
                              FPNo,
                              GridView1.RowCount)
                 End If
@@ -293,18 +297,19 @@ Public Class frm_fp_new
                 'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
                 'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
 
-
                 FPNo = String.Empty
+                id = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
+                        id = GridView1.GetRowCellValue(rowHandle, "id")
                         FPNo = GridView1.GetRowCellValue(rowHandle, "FPNo")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(FPNo,
+                    Call CallFrm(id,
                              FPNo,
                              GridView1.RowCount)
                 End If

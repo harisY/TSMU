@@ -59,12 +59,20 @@ Module MainModul
     Public MyForms As New Collection(Of Form)
 
     '# Server Instance...
-    Public gs_Database As String
-    Public gs_DBServer As String = ".\ACTDB"
+    Public gs_Database As String = ""
+    Public gs_DBServer As String = "SRV08"
     Public gs_DBAuthMode As String = "mixed"
     Public gs_DBUserName As String = "sa"
-    Public gs_DBPassword As String = "sysadm"
-    Public gs_DBPasswordDefault As String = "sysadm"
+    Public gs_DBPassword As String = "Tsc2011"
+    Public gs_DBPasswordDefault As String = "Tsc2011"
+
+    Public gs_Database1 As String = ""
+    Public gs_DBServer1 As String = "SRV08"
+    Public gs_DBAuthMode1 As String = "mixed"
+    Public gs_DBUserName1 As String = "sa"
+    Public gs_DBPassword1 As String = "Tsc2011"
+    Public gs_DBPasswordDefault1 As String = "Tsc2011"
+
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
     Public gs_AutomaticForm As String = ""
@@ -322,9 +330,17 @@ Module MainModul
                 Return ""
         End Select
     End Function
-
-    Public Function GetConnString_Solomon(Optional ByVal DBMS As String = "SQLServer") As String
-        Return "Data Source=MYNOTE\SQL2008R2;Initial Catalog=TSC16Application;User ID=sa;pwd=fid123!!"
+    Public Function GetConnStringSolomon(Optional ByVal DBMS As String = "SQLServer") As String
+        Select Case DBMS
+            Case "SQLServer"
+                If gs_DBAuthMode = "win" Then
+                    Return "Data Source=" & gs_DBServer1 & ";Initial Catalog=" & gs_Database1 & ";Integrated Security=True"
+                Else
+                    Return "Data Source=" & gs_DBServer1 & ";Initial Catalog=" & gs_Database1 & ";User ID=" & gs_DBUserName1 & ";pwd=" & gs_DBPassword1
+                End If
+            Case Else
+                Return ""
+        End Select
     End Function
 
     Public Function NumValue(ByVal value As Object) As Double
@@ -404,33 +420,6 @@ Module MainModul
         End Try
         Return ls_PrinterName
     End Function
-
-    'Public Function gf_SelectInstalledPrinters(ByRef ls_PrinterSelect As String) As String
-    '    Dim ls_Sqls As String = ""
-    '    Dim ls_Error As String = ""
-    '    Try
-    '        gf_PopulateSQLInstalledPrinters(ls_Sqls)
-    '        If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
-    '        If ls_Sqls.Trim = "" Then Err.Raise(ErrNumber, , "No Printer Installed on Computer!")
-    '        Dim dtSearch As DataTable = GetDataTable(ls_Sqls)
-    '        Dim lF_SearchData As FrmSystem_Filter
-    '        lF_SearchData = New FrmSystem_Filter(dtSearch)
-    '        lF_SearchData.Text = "Select Printer"
-    '        lF_SearchData.HiddenCols = 1
-    '        lF_SearchData.ShowDialog()
-    '        Dim ls_Kode As String = ""
-    '        Dim ls_Nama As String = ""
-    '        If lF_SearchData.Values IsNot Nothing Then
-    '            ls_Kode = lF_SearchData.Values.Item(0).ToString.Trim
-    '            ls_Nama = lF_SearchData.Values.Item(1).ToString.Trim
-    '        End If
-
-    '        ls_PrinterSelect = ls_Kode
-    '        Return ""
-    '    Catch ex As Exception
-    '        Return ex.Message
-    '    End Try
-    'End Function
 
     Public Sub gf_PopulateSQLInstalledPrinters(ByRef ls_PrinterListSQL As String)
         Try
@@ -554,20 +543,6 @@ Module MainModul
         Dim ls_Product As String = My.Application.Info.ProductName.Trim
         Dim ls_Description As String = My.Application.Info.Description.Trim
         If ls_Description = "" Then ls_Description = "Takagi"
-        'Dim regKey As Microsoft.Win32.RegistryKey
-        'Dim keyTop As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.LocalMachine
-        'regKey = keyTop.OpenSubKey("Software\Takagi\" & ls_Product & "\" & ls_Description)
-        'If regKey Is Nothing Then
-        '    regKey = keyTop.CreateSubKey("Software\Takagi\" & ls_Product & "\" & ls_Description)
-        'End If
-        'gs_DBServer = DataDecrypt(regKey.GetValue("Server", ""))
-        'If gs_Error <> "" Then Exit Sub
-        'gs_Database = DataDecrypt(regKey.GetValue("Database", ""))
-        'gs_DBUserName = DataDecrypt(regKey.GetValue("UserName", ""))
-        'gs_DBPassword = DataDecrypt(regKey.GetValue("Password", ""))
-        'gs_DBAuthMode = DataDecrypt(regKey.GetValue("AuthMode", ""))
-        'regKey.Close()
-        'keyTop.Close()
 
         Dim AppSettingFileName As String = Application.StartupPath & "\AS.XML"
 
@@ -647,31 +622,89 @@ Module MainModul
 
         If gs_DBPassword.Trim = "" Then gs_DBPassword = gs_DBPasswordDefault
 
-        'If gs_TerminalUsername <> "" AndAlso gs_TErminalPassword <> "" Then
-        '    gh_Common = New InstanceVariables.CommonHelper
-        '    'gh_Trans = New InstanceVariables.TransactionHelper
-        '    Dim ls_Error As String = ""
-        '    Dim lc_User As New ClassSystemUser
-        '    lc_User.Username = gs_TerminalUsername
-        '    lc_User.Password = gs_TerminalPassword
-        '    If lc_User.CheckLoginPasswordBinary(lc_User.Username, gs_TerminalPassword) Then
-        '        'gs_LoginUserID = lc_User.UserName
-        '        'gs_LoginNamaUser = lc_User.Nama
-        '        'gb_LoginAdminStatus = lc_User.StatusAdmin
-        '        gh_Common.Username = lc_User.Username
-        '        gh_Common.Name = lc_User.Name
-        '        gh_Common.AdminStatus = lc_User.AdminStatus
-        '        lc_User.UpdateLastLogin()
-        '        If ls_Error <> "" Then ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+    End Sub
+    Public Sub gf_GetDatabaseVariablesSolomon()
+        Dim ls_Product As String = My.Application.Info.ProductName.Trim
+        Dim ls_Description As String = My.Application.Info.Description.Trim
+        If ls_Description = "" Then ls_Description = "Takagi"
 
-        '        '# Ambil data tabel setting...
-        '        'Call InitializeApp()
-        '        'Me.Dispose()
-        '    Else
+        Dim SolomonConfig As String = Application.StartupPath & "\Solomon.XML"
 
-        '        MsgBox("Wrong Username or Password!")
-        '    End If
-        'End If
+        Dim FileInfo As New IO.FileInfo(SolomonConfig)
+
+        'check existing file
+        If FileInfo.Exists Then
+            Dim dtTableAppSetting As DataTable
+            Dim DS As New DataSet()
+
+            DS.ReadXml(SolomonConfig)
+
+            dtTableAppSetting = DS.Tables("Solomon")
+
+            If dtTableAppSetting.Rows.Count > 0 Then
+                If dtTableAppSetting.Columns.Count = 9 Then
+                    gs_DBServer1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    gs_DBAuthMode1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+                    gs_TerminalUsername = DataDecrypt(dtTableAppSetting.Rows(0).Item("TU"))
+                    gs_TerminalPassword = DataDecrypt(dtTableAppSetting.Rows(0).Item("TPW"))
+                    'gs_AutomaticForm = DataDecrypt(dtTableAppSetting.Rows(0).Item("AF"))
+                    gs_InstructionSetting = DataDecrypt(dtTableAppSetting.Rows(0).Item("IS"))
+                Else
+                    gs_DBServer1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    gs_DBAuthMode1 = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+                    gs_TerminalUsername = DataDecrypt(dtTableAppSetting.Rows(0).Item("TU"))
+                    gs_TerminalPassword = DataDecrypt(dtTableAppSetting.Rows(0).Item("TPW"))
+                    'gs_AutomaticForm = DataDecrypt(dtTableAppSetting.Rows(0).Item("AF"))
+                    gs_InstructionSetting = ""
+
+                    Kill(SolomonConfig)
+
+                    Dim settings As XmlWriterSettings = New XmlWriterSettings()
+                    settings.Indent = True
+
+                    Using writer As XmlWriter = XmlWriter.Create(SolomonConfig, settings)
+                        writer.WriteStartDocument()
+                        writer.WriteStartElement("Solomon") ' Root.
+
+                        With writer
+                            .WriteStartElement("Solomon")
+                            .WriteElementString("S", DataEncrypt(gs_DBServer1.Trim))
+                            .WriteElementString("D", DataEncrypt(gs_Database1.Trim))
+                            .WriteElementString("U", DataEncrypt(gs_DBUserName1.Trim))
+                            .WriteElementString("PW", DataEncrypt(gs_DBPassword1.Trim))
+                            .WriteElementString("AU", DataEncrypt(gs_DBAuthMode1.Trim))
+                            .WriteElementString("TU", DataEncrypt(gs_TerminalUsername.Trim))
+                            .WriteElementString("TPW", DataEncrypt(gs_TerminalPassword.Trim))
+                            .WriteElementString("AF", DataEncrypt(gs_AutomaticForm.Trim))
+                            .WriteElementString("IS", DataEncrypt(gs_InstructionSetting.Trim))
+                            .WriteEndElement()
+                        End With
+
+                        writer.WriteEndElement()
+                        writer.WriteEndDocument()
+                    End Using
+
+
+                End If
+
+            End If
+        Else
+            gs_DBServer1 = ""
+            gs_Database1 = ""
+            gs_DBUserName1 = ""
+            gs_DBPassword1 = ""
+            gs_DBAuthMode1 = ""
+            gs_AutomaticForm = ""
+            gs_InstructionSetting = ""
+        End If
+
+        If gs_DBPassword1.Trim = "" Then gs_DBPassword1 = gs_DBPasswordDefault1
 
     End Sub
 
@@ -803,7 +836,7 @@ Module MainModul
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
             Else
-                conn = New SqlConnection(GetConnString_Solomon)
+                conn = New SqlConnection(GetConnStringSolomon)
                 da = New SqlDataAdapter(pQuery, conn)
             End If
             da.Fill(dsa, dtTable)
@@ -813,29 +846,6 @@ Module MainModul
             Throw
         End Try
     End Function
-    'Public Function GetDataSet(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 30) As DataSet
-    '    Dim conn As SqlConnection = Nothing
-    '    Dim da As SqlDataAdapter = Nothing
-    '    Dim dsa As New DataSet
-    '    Try
-    '        If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
-    '            gh_Trans.Command.CommandType = CommandType.Text
-    '            gh_Trans.Command.CommandText = pQuery
-    '            gh_Trans.Command.CommandTimeout = pTimeOut
-    '            da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
-    '        Else
-    '            conn = New SqlConnection(GetConnString)
-    '            da = New SqlDataAdapter(pQuery, conn)
-    '        End If
-    '        da.Fill(dsa)
-    '        da = Nothing
-    '        Return dsa
-    '    Catch ex As Exception
-    '        Throw
-    '    Finally
-    '        If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then conn.Close()
-    '    End Try
-    'End Function
     Public Function GetDataSetByCommand_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -941,7 +951,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDataTable_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTable_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -953,7 +963,7 @@ Module MainModul
                 da.Fill(dta)
             Else
                 Using conn As New SqlClient.SqlConnection
-                    conn.ConnectionString = GetConnString_Solomon()
+                    conn.ConnectionString = GetConnStringSolomon()
                     conn.Open()
                     da = New SqlDataAdapter(pQuery, conn)
                     da.Fill(dta)
@@ -1005,7 +1015,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
 
     Public Function GetDataTableByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
         Dim dta As New DataTable
@@ -1065,7 +1074,7 @@ Module MainModul
                 da.Fill(dta)
             Else
                 Using conn As New SqlClient.SqlConnection
-                    conn.ConnectionString = GetConnString_Solomon()
+                    conn.ConnectionString = GetConnStringSolomon()
                     Dim cmd As New SqlCommand
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.CommandText = pQuery
@@ -1119,7 +1128,7 @@ Module MainModul
                 pRowAff = gh_Trans.Command.ExecuteNonQuery()
             Else
                 Using Conn1 As New SqlClient.SqlConnection
-                    Conn1.ConnectionString = GetConnString_Solomon()
+                    Conn1.ConnectionString = GetConnStringSolomon()
                     Dim cmd As New SqlClient.SqlCommand(pQuery, Conn1)
                     cmd.CommandTimeout = pTimeOut
                     Conn1.Open()
@@ -1231,7 +1240,7 @@ Module MainModul
                     If pConnStr <> "" Then
                         Conn1.ConnectionString = pConnStr
                     Else
-                        Conn1.ConnectionString = GetConnString_Solomon()
+                        Conn1.ConnectionString = GetConnStringSolomon()
                     End If
                     Dim cmd As New SqlCommand
                     cmd.CommandType = CommandType.StoredProcedure
@@ -1273,20 +1282,6 @@ Module MainModul
         Dim pRowAff As Integer = -1
 
         Try
-            'conn = New SqlConnection(GetCheckConnString)
-            'conn.Open()
-
-            'cmd.CommandText = query
-            'cmd.CommandTimeout = 3
-            'cmd.Connection = conn
-            'cmd.ExecuteNonQuery()
-            'gs_Error = ""
-
-            'If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
-            '    gh_Trans = Nothing
-            '    gh_Trans.Command = Nothing
-            'End If
-
             Using Conn1 As New SqlClient.SqlConnection
                 Conn1.ConnectionString = GetConnString()
                 Dim command As New SqlClient.SqlCommand(query, Conn1)
@@ -1298,12 +1293,8 @@ Module MainModul
         Catch ex As Exception
             gs_Error = "Error Connection"
         Finally
-            'If gs_Error <> "Error Connection" Then
-            '    ByPassConnectionAfterOffline()
-            'End If
-            'gh_Trans = Nothing
-        End Try
 
+        End Try
     End Sub
 
     Public Function ByPassConnectionAfterOffline()

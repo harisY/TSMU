@@ -61,7 +61,7 @@ Public Class frm_fp_details
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjFPHeader.FPNo = fs_Code
+                ObjFPHeader.id = fs_Code
                 ObjFPHeader.GetFakturPajakById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
@@ -152,7 +152,7 @@ Public Class frm_fp_details
         Dim IsExist As Boolean = False
         Try
             Dim dtGrid As New DataTable
-            ObjFP.Fp = fs_Code
+            ObjFP.Fp = fs_Code2
             dtGrid = ObjFPHeader.GetGridDetails
             _GridDetails.DataSource = dtGrid
             'If GridView1.RowCount > 0 Then
@@ -220,7 +220,8 @@ Public Class frm_fp_details
                 ObjFPTransaction.InsertData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-
+                ObjFPTransaction.UpdateData()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
             GridDtl.DataSource = ObjFP.GetDataGridNew()

@@ -22,7 +22,7 @@ Public Class fp_pph_transaction_models
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString_Solomon)
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper
@@ -72,7 +72,7 @@ Public Class fp_pph_transaction_models
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString_Solomon)
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper

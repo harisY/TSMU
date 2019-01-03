@@ -29,7 +29,7 @@ Public Class fp_transaction_models
     Public Property ObjFPPphDetail As New fp_pph_detail_models
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString_Solomon)
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper
@@ -77,7 +77,7 @@ Public Class fp_transaction_models
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString_Solomon)
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper
@@ -95,6 +95,55 @@ Public Class fp_transaction_models
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        With ObjFPHeader
+                            .FPNo = Me.FPNo
+                            .VendID = VendID
+                            .Vend_Name = Vend_Name
+                            .npwp = npwp
+                            .Jenis_Jasa = Jenis_Jasa
+                            .Tgl_fp = Tgl_fp
+                            .CuryID = CuryID
+                            .Tot_Ppn = Tot_Ppn
+                            .Tot_Dpp_Invoice = Tot_Dpp_Invoice
+                            .Tot_Voucher = Tot_Voucher
+                            .Tot_Pph = Tot_Pph
+                            .Status = Status
+                        End With
+                        ObjFPHeader.UpdateHeader(FPNo)
+
+                        Dim FpDetails As New fp_details_models
+                        FpDetails.DeleteDetail(FPNo)
+
+                        For i As Integer = 0 To Me.ObjFPDetails.Count - 1
+                            With Me.ObjFPDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
                     Finally
                         MainModul.gh_Trans = Nothing
                     End Try

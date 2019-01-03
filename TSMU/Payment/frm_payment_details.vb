@@ -225,6 +225,8 @@ Public Class frm_payment_details
                 ObjPaymentHeader.InsertData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
+                ObjPaymentHeader.UpdateData()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
             GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
             IsClosed = True

@@ -155,13 +155,46 @@ Public Class payment_header_models
                                     "       " & QVal(Me.penerima) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
-            Throw
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateHeader(ByVal FpNo As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "Update Payment_Header1 " & vbCrLf &
+                                    "SET    tgl = " & QVal(Me.tgl) & ", " & vbCrLf &
+                                    "       BankID = " & QVal(Me.BankID) & ", " & vbCrLf &
+                                    "       BankName = " & QVal(Me.BankName) & ", " & vbCrLf &
+                                    "       VendID = " & QVal(Me.VendID) & ", " & vbCrLf &
+                                    "       VendorName = " & QVal(Me.VendorName) & ", " & vbCrLf &
+                                    "       Descr = " & QVal(Me.Descr) & ", " & vbCrLf &
+                                    "       CuryID = " & QVal(Me.CuryID) & ", " & vbCrLf &
+                                    "       Tot_DPP = " & QVal(Me.Tot_DPP) & ", " & vbCrLf &
+                                    "       Tot_PPN = " & QVal(Me.Tot_PPN) & ", " & vbCrLf &
+                                    "       Total_DPP_PPN = " & QVal(Me.Total_DPP_PPN) & ", " & vbCrLf &
+                                    "       PPh = " & QVal(Me.PPh) & ", " & vbCrLf &
+                                    "       Biaya_Transfer = " & QVal(Me.Biaya_Transfer) & ", " & vbCrLf &
+                                    "       CM_DM = " & QVal(Me.CM_DM) & ", " & vbCrLf &
+                                    "       cek1 = " & QVal(Me.cek1) & ", " & vbCrLf &
+                                    "       cek2 = " & QVal(Me.cek2) & ", " & vbCrLf &
+                                    "       cek3 = " & QVal(Me.cek3) & ", " & vbCrLf &
+                                    "       cek4 = " & QVal(Me.cek4) & ", " & vbCrLf &
+                                    "       prosespay = " & QVal(Me.prosespay) & ", " & vbCrLf &
+                                    "       uploaded = " & QVal(Me.uploaded) & ", " & vbCrLf &
+                                    "       detsupplier = " & QVal(Me.detsupplier) & ", " & vbCrLf &
+                                    "       bankrek = " & QVal(Me.bankrek) & ", " & vbCrLf &
+                                    "       norek = " & QVal(Me.norek) & ", " & vbCrLf &
+                                    "       penerima = " & QVal(Me.penerima) & " " & vbCrLf &
+                                    "where vrno = '" & Me.vrno & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString_Solomon)
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper
@@ -193,10 +226,80 @@ Public Class payment_header_models
                 End Using
             End Using
         Catch ex As Exception
-            Throw
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        UpdateHeader(vrno)
+
+                        Dim PaymentDetails As New payment_detail_models
+                        PaymentDetails.DeleteDetail(vrno)
+
+                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                            With Me.ObjPaymentDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
+    Public Sub CancelData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        UpdateHeader(vrno)
+
+                        Dim PaymentDetails As New payment_detail_models
+                        PaymentDetails.DeleteDetail(vrno)
+
+                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                            With Me.ObjPaymentDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function VoucherNo() As String
         Try
             Dim auto As String
@@ -242,7 +345,7 @@ Public Class payment_header_models
             End If
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(sql)
+            dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw
@@ -274,7 +377,7 @@ Public Class payment_header_models
             End If
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(sql)
+            dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw
@@ -302,7 +405,7 @@ Public Class payment_header_models
             End If
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(sql)
+            dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex

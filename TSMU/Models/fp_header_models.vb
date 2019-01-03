@@ -1,4 +1,5 @@
 ﻿Public Class fp_header_models
+    Public Property id As Integer
     Public Property Bulan As String
     Public Property CuryID As String
     Public Property FPNo As String
@@ -22,7 +23,7 @@
 
     Public Sub GetFakturPajakById()
         Try
-            Dim sql As String = "SELECT [FPNo]
+            Dim sql As String = "SELECT id, [FPNo]
                       ,[Tgl_fp]
                       ,[VendID]
                       ,[Vend_Name]
@@ -42,22 +43,23 @@
                       ,[Tot_Pph]
                       ,[Status]
                       ,[nama_vendor]
-                  FROM [Fp_Header] where FPNo=" & QVal(FPNo) & ""
+                  FROM [Fp_Header] where id=" & QVal(id) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
-                FPNo = Trim(dt.Rows(0).Item("FPNo").ToString())
-                Tgl_fp = dt.Rows(0).Item("Tgl_fp")
-                VendID = Trim(dt.Rows(0).Item("VendID").ToString())
-                Vend_Name = Trim(dt.Rows(0).Item("Vend_Name").ToString())
-                Jenis_Jasa = Trim(dt.Rows(0).Item("Jenis_Jasa").ToString())
-                npwp = Trim(dt.Rows(0).Item("npwp").ToString())
-                No_Bukti_Potong = Trim(dt.Rows(0).Item("No_Bukti_Potong").ToString())
-                CuryID = dt.Rows(0).Item("CuryID")
-                Tot_Dpp_Invoice = dt.Rows(0).Item("Tot_Dpp_Invoice")
-                Tot_Ppn = dt.Rows(0).Item("Tot_Ppn")
-                Tot_Voucher = dt.Rows(0).Item("Tot_Voucher")
-                Tot_Pph = dt.Rows(0).Item("Tot_Pph")
+                Me.id = If(IsDBNull(dt.Rows(0).Item("id")), "", Trim(dt.Rows(0).Item("id").ToString()))
+                Me.FPNo = If(IsDBNull(dt.Rows(0).Item("FPNo")), "", Trim(dt.Rows(0).Item("FPNo").ToString()))
+                Me.Tgl_fp = If(IsDBNull(dt.Rows(0).Item("Tgl_fp")), DateTime.Today, Trim(dt.Rows(0).Item("Tgl_fp").ToString()))
+                Me.VendID = If(IsDBNull(dt.Rows(0).Item("VendID")), "", Trim(dt.Rows(0).Item("VendID").ToString()))
+                Me.Vend_Name = If(IsDBNull(dt.Rows(0).Item("Vend_Name")), "", Trim(dt.Rows(0).Item("Vend_Name").ToString()))
+                Me.Jenis_Jasa = If(IsDBNull(dt.Rows(0).Item("Jenis_Jasa")), "", Trim(dt.Rows(0).Item("Jenis_Jasa").ToString()))
+                Me.npwp = If(IsDBNull(dt.Rows(0).Item("npwp")), "", Trim(dt.Rows(0).Item("npwp").ToString()))
+                Me.No_Bukti_Potong = If(IsDBNull(dt.Rows(0).Item("No_Bukti_Potong")), "", Trim(dt.Rows(0).Item("No_Bukti_Potong").ToString()))
+                Me.CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Trim(dt.Rows(0).Item("CuryID").ToString()))
+                Me.Tot_Dpp_Invoice = If(IsDBNull(dt.Rows(0).Item("Tot_Dpp_Invoice")), 0, Trim(dt.Rows(0).Item("Tot_Dpp_Invoice").ToString()))
+                Me.Tot_Ppn = If(IsDBNull(dt.Rows(0).Item("Tot_Ppn")), 0, Trim(dt.Rows(0).Item("Tot_Ppn").ToString()))
+                Me.Tot_Voucher = If(IsDBNull(dt.Rows(0).Item("Tot_Voucher")), 0, Trim(dt.Rows(0).Item("Tot_Voucher").ToString()))
+                Me.Tot_Pph = If(IsDBNull(dt.Rows(0).Item("Tot_Pph")), 0, Trim(dt.Rows(0).Item("Tot_Pph").ToString()))
             End If
         Catch ex As Exception
             Throw ex
@@ -135,10 +137,31 @@
         Try
 
             Dim Query = "UPDATE ApDoc set User3=0 where rtrim(InvcNbr) in(SELECT RTRIM(No_Invoice) FROM FP_Detail where FPNo= " & QVal(FPNo) & ")"
-            mdlmain.ExecQueryByCommand(Query)
+            MainModul.ExecQuery_Solomon(Query)
         Catch ex As Exception
             Throw ex
 
+        End Try
+    End Sub
+
+    Public Sub UpdateHeader(ByVal FpNo As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "Update Fp_Header " & vbCrLf &
+                                    "SET    Tgl_fp = " & QVal(Me.Tgl_fp) & ", " & vbCrLf &
+                                    "       VendID = " & QVal(Me.VendID) & ", " & vbCrLf &
+                                    "       Vend_Name = " & QVal(Me.Vend_Name) & ", " & vbCrLf &
+                                    "       Jenis_Jasa = " & QVal(Me.Jenis_Jasa) & ", " & vbCrLf &
+                                    "       npwp = " & QVal(Me.npwp) & ", " & vbCrLf &
+                                    "       Tot_Dpp_Invoice = " & QVal(Me.Tot_Dpp_Invoice) & ", " & vbCrLf &
+                                    "       Tot_Ppn = " & QVal(Me.Tot_Ppn) & ", " & vbCrLf &
+                                    "       Tot_Voucher = " & QVal(Me.Tot_Voucher) & ", " & vbCrLf &
+                                    "       Tot_Pph = " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
+                                    "       Status = " & QVal(Me.Status) & " " & vbCrLf &
+                                    "where FPNo = '" & Me.FPNo & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
         End Try
     End Sub
 End Class

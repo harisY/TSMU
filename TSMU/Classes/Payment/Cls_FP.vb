@@ -326,7 +326,7 @@ Public Class Cls_FP
             query = "Select VendID, Name FROM Vendor"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -378,7 +378,7 @@ Public Class Cls_FP
             query = "select no_faktur from fp_pph_header where no_faktur='" & Fp & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             If dt.Rows.Count > 0 Then
                 ada_faktur = dt.Rows(0).Item(0).ToString
             Else
@@ -398,7 +398,7 @@ Public Class Cls_FP
             query = "select distinct no_invoice from fp_pph_detail where no_invoice='" & invcnbr & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             If dt.Rows.Count > 0 Then
                 ada_invoice = dt.Rows(0).Item(0).ToString
             Else
@@ -412,109 +412,6 @@ Public Class Cls_FP
 
         End Try
     End Function
-
-    Public Sub prosesdataap1()
-        Try
-            query = "SELECT DISTINCT TOP (100) PERCENT A.InvcNbr, A.InvcDate, A.VendId, C.Name AS VendName, SUM(0-A.CuryOrigDocAmt) AS CuryOrigDocAmt, A.CuryId, D.Status, D.PerPost, A.TaxId00 , SUM(0-A.CuryTaxTot00) as CuryTaxTot00, sum(0-A.CuryTxblTot00) as CuryTxblTot00, A.User1 INTO #ad " & _
-                    "FROM dbo.APDoc AS A LEFT OUTER JOIN dbo.Vendor AS C ON A.VendId = C.VendId LEFT OUTER JOIN dbo.Batch AS D ON A.BatNbr = D.BatNbr AND D.Module = 'AP' " & _
-                    "WHERE (A.CpnyID LIKE 'tsmu') AND (A.DocClass = 'N') AND (A.DocType IN ('AD')) AND (A.OpenDoc = 1) AND (A.Rlsed = 1) AND (A.Selected = 0) AND (A.InvcNbr <> '') AND (A.CuryDocBal <> 0) " & _
-                    "GROUP BY A.InvcNbr, A.InvcDate, A.VendId, C.Name , A.CuryId, D.Status, D.PerPost, A.TaxId00, A.User1 " & _
-                    "ORDER BY A.VendId,  A.InvcNbr DESC"
-
-            query1 = "SELECT DISTINCT TOP (100) PERCENT A.InvcNbr, A.InvcDate, A.VendId, C.Name AS VendName, SUM(A.CuryOrigDocAmt) AS CuryOrigDocAmt, A.CuryId, D.Status, D.PerPost, A.TaxId00 , SUM(A.CuryTaxTot00) as CuryTaxTot00, sum(A.CuryTxblTot00) as CuryTxblTot00, A.User1 INTO #vc " & _
-                    "FROM dbo.APDoc AS A LEFT OUTER JOIN dbo.Vendor AS C ON A.VendId = C.VendId LEFT OUTER JOIN dbo.Batch AS D ON A.BatNbr = D.BatNbr AND D.Module = 'AP' " & _
-                    "WHERE (A.CpnyID LIKE 'tsmu') AND (A.DocClass = 'N') AND (A.DocType IN ('VO', 'AC',  'PP')) AND (A.OpenDoc = 1) AND (A.Rlsed = 1) AND (A.Selected = 0) AND (A.InvcNbr <> '') AND (A.CuryDocBal <> 0) " & _
-                    "GROUP BY A.InvcNbr, A.InvcDate, A.VendId, C.Name , A.CuryId, D.Status, D.PerPost, A.TaxId00, A.User1 " & _
-                    "ORDER BY A.VendId,  A.InvcNbr DESC"
-
-            query2 = "Delete From FP_temp "
-
-            query3 = "INSERT INTO FP_temp (InvcNbr,	InvcDate,	VendId,	Name,	Amount,	CuryId,	Status,	PerPost,	TaxID,	Ppn,	Amount_before, fp)  " & _
-                    "SELECT InvcNbr, InvcDate,VendId, VendName, CuryOrigDocAmt,CuryId, Status, PerPost, TaxId00 ,CuryTaxTot00, CuryTxblTot00,User1 FROM #ad union SELECT InvcNbr, InvcDate,VendId, VendName, CuryOrigDocAmt,CuryId, Status, PerPost, TaxId00 ,CuryTaxTot00, CuryTxblTot00,User1 FROM #vc"
-            mdlmain.ExecQueryByCommand(query)
-            mdlmain.ExecQueryByCommand(query1)
-            mdlmain.ExecQueryByCommand(query2)
-            mdlmain.ExecQueryByCommand(query3)
-        Catch ex As Exception
-            Throw
-        End Try
-
-    End Sub
-
-
-    Public Function getalldatalikeid() As DataTable
-
-        Try
-            query = "Select * From fp_header WHERE " & cmbcari & " like '%" & txtcari & "%'"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-
-
-    Public Sub prosesdataap()
-        Try
-            query = "SELECT DISTINCT TOP (100) PERCENT A.InvcNbr, A.InvcDate, A.VendId, C.Name AS VendName, SUM(0-A.CuryOrigDocAmt) AS CuryOrigDocAmt, A.CuryId, D.Status, D.PerPost, A.TaxId00 , SUM(0-A.CuryTaxTot00) as CuryTaxTot00, sum(0-A.CuryTxblTot00) as CuryTxblTot00, A.User1 INTO #ad " & _
-                    "FROM dbo.APDoc AS A LEFT OUTER JOIN dbo.Vendor AS C ON A.VendId = C.VendId LEFT OUTER JOIN dbo.Batch AS D ON A.BatNbr = D.BatNbr AND D.Module = 'AP' " & _
-                    "WHERE (A.CpnyID LIKE 'tsmu') AND (A.DocClass = 'N') AND (A.DocType IN ('AD')) AND (A.OpenDoc = 1) AND (A.Rlsed = 1) AND (A.Selected = 0) AND (A.InvcNbr <> '') AND (A.CuryDocBal <> 0) " & _
-                    "GROUP BY A.InvcNbr, A.InvcDate, A.VendId, C.Name , A.CuryId, D.Status, D.PerPost, A.TaxId00, A.User1 " & _
-                    "ORDER BY A.VendId,  A.InvcNbr DESC"
-            mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Try
-            query1 = "SELECT DISTINCT TOP (100) PERCENT A.InvcNbr, A.InvcDate, A.VendId, C.Name AS VendName, SUM(A.CuryOrigDocAmt) AS CuryOrigDocAmt, A.CuryId, D.Status, D.PerPost, A.TaxId00 , SUM(A.CuryTaxTot00) as CuryTaxTot00, sum(A.CuryTxblTot00) as CuryTxblTot00, A.User1 INTO #vc " & _
-                    "FROM dbo.APDoc AS A LEFT OUTER JOIN dbo.Vendor AS C ON A.VendId = C.VendId LEFT OUTER JOIN dbo.Batch AS D ON A.BatNbr = D.BatNbr AND D.Module = 'AP' " & _
-                    "WHERE (A.CpnyID LIKE 'tsmu') AND (A.DocClass = 'N') AND (A.DocType IN ('VO', 'AC',  'PP')) AND (A.OpenDoc = 1) AND (A.Rlsed = 1) AND (A.Selected = 0) AND (A.InvcNbr <> '') AND (A.CuryDocBal <> 0) " & _
-                    "GROUP BY A.InvcNbr, A.InvcDate, A.VendId, C.Name , A.CuryId, D.Status, D.PerPost, A.TaxId00, A.User1 " & _
-                    "ORDER BY A.VendId,  A.InvcNbr DESC"
-            mdlmain.ExecQueryByCommand(query1)
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Try
-            query2 = "Delete From FP_temp "
-            mdlmain.ExecQueryByCommand(query2)
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Try
-            query3 = "INSERT INTO FP_temp (InvcNbr,	InvcDate,	VendId,	Name,	Amount,	CuryId,	Status,	PerPost,	TaxID,	Ppn,	Amount_before, fp)  " & _
-                    "SELECT InvcNbr, InvcDate,VendId, VendName, CuryOrigDocAmt,CuryId, Status, PerPost, TaxId00 ,CuryTaxTot00, CuryTxblTot00,User1 FROM #vc union SELECT InvcNbr, InvcDate,VendId, VendName, CuryOrigDocAmt,CuryId, Status, PerPost, TaxId00 ,CuryTaxTot00, CuryTxblTot00,User1 FROM #ad"
-            mdlmain.ExecQueryByCommand(query3)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Function getalldataap() As DataTable
-        Try
-            '           query = "SELECT InvcNbr,	InvcDate,	VendId,	Name,	sum(Amount) as Amount,	CuryId,	Status,	PerPost,	TaxID,	sum(Ppn) as Ppn,	sum(Amount_before) as Amount_before, fp FROM FP_temp where VendId='" & _VendID & "'" & _
-            '           "group by  InvcNbr,	InvcDate,	VendId,	Name,	CuryId,	Status,	PerPost,	TaxID, fp  order by InvcNbr"
-            ''          query = "SELECT InvcNbr,	InvcDate,		sum(Amount) as Amount,	CuryId,	sum(Ppn) as Ppn,	sum(Amount_before) as DPP,0 as Pph,SUBSTRING(Replace(Replace(fp,'.',''),'-',''),4,13) as fp FROM FP_temp where VendId='" & _VendID & "'" & _
-            ''                   "group by  InvcNbr,	InvcDate,	CuryId, SUBSTRING(Replace(Replace(fp,'.',''),'-',''),4,13)   order by InvcNbr"
-            query2 = "SELECT InvcNbr,	InvcDate,		sum(Amount) as Amount,	CuryId,	sum(Ppn) as Ppn,	sum(Amount_before) as DPP,0 as Pph,fp FROM FP_temp where VendId='" & _VendID & "'" & _
-           "group by  InvcNbr,	InvcDate,	CuryId, fp   order by InvcNbr"
-
-            Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query2)
-            Return dt
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
     Public Function getalldataap_det() As DataTable
         Try
 
@@ -549,7 +446,7 @@ Public Class Cls_FP
             query = "select invtid InvtID,descr TranDesc,dpp Amount,cek from Fp_pph_detail " &
        "WHERE No_Faktur='" & _Fp & "' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -564,7 +461,7 @@ Public Class Cls_FP
                    "WHERE FPNo='" & _Fp & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -586,7 +483,7 @@ Public Class Cls_FP
                 "select coalesce(@seq, '0001')+'/' + @site  +'/' +@bulan +'/' +@pasal +'/' + RIGHT(@tahun,4) "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
@@ -602,7 +499,7 @@ Public Class Cls_FP
             query = "Select remitname,taxregnbr,user1 FROM Vendor where VendID='" & _VendID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             VendID1 = dt.Rows(0).Item(0).ToString
             Return VendID1
 
@@ -618,7 +515,7 @@ Public Class Cls_FP
             query = "Select name,taxregnbr,user1,ltrim(rtrim(remitname)) as remitname FROM Vendor where VendID='" & _VendID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -633,7 +530,7 @@ Public Class Cls_FP
             query = "Select VendID,taxregnbr,user1,ltrim(rtrim(remitname)) as remitname FROM Vendor where Name='" & _Vend_Name & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
 
 
@@ -648,7 +545,7 @@ Public Class Cls_FP
             query = "Select VendID,taxregnbr,user1 FROM Vendor where Name='" & _Vend_Name & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             VendID2 = dt.Rows(0).Item(0).ToString
             Return VendID2
 
@@ -663,7 +560,7 @@ Public Class Cls_FP
             query = "select BankAcct,CashAcctName from cashacct"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -677,7 +574,7 @@ Public Class Cls_FP
             query = "select distinct pasal Pasal,tarif Tarif,ket_pph Ket from pph"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand2(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -690,7 +587,7 @@ Public Class Cls_FP
             query = "select ket_pph,tarif from pph where pasal='" & _pph & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand2(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -704,7 +601,7 @@ Public Class Cls_FP
             query = "Select ket_pph FROM pph where pasal='" & _pph & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand2(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             pasal1 = dt.Rows(0).Item(0).ToString
             Return pasal1
 
@@ -720,7 +617,7 @@ Public Class Cls_FP
             query = "Select tarif,ket_pph FROM pph where pasal='" & Trim(_pph) & "' and ket_pph='" & Trim(_ket_pph) & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTableByCommand2(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             pasal2 = dt.Rows(0).Item(0).ToString
             Return pasal2
 
@@ -735,7 +632,7 @@ Public Class Cls_FP
             query = "Select BankAcct FROM cashacct where CashAcctName='" & _BankName & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             BankID2 = dt.Rows(0).Item(0).ToString
             Return BankID2
 
@@ -751,7 +648,7 @@ Public Class Cls_FP
             query = "Select CashAcctName FROM cashacct where BankAcct='" & _BankID & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             BankID1 = dt.Rows(0).Item(0).ToString
             Return BankID1
 
@@ -764,7 +661,7 @@ Public Class Cls_FP
     Public Function getalldata2(Dari As String, Sampai As String) As DataTable
 
         Try
-            query = "Select FPNo
+            query = "Select id, FPNo
                     ,Tgl_fp Tanggal
                     ,VendID
                     ,Vend_Name VendorName
@@ -785,7 +682,7 @@ Public Class Cls_FP
                     WHERE  Tgl_fp >=COALESCE(NULLIF(" & QVal(Dari) & ",''),Tgl_fp) AND Tgl_fp <= COALESCE(NULLIF(" & QVal(Sampai) & ",''),Tgl_fp) ORDER BY FPNo Desc"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -795,7 +692,7 @@ Public Class Cls_FP
     Public Function GetDataGridNew() As DataTable
 
         Try
-            query = "Select FPNo
+            query = "Select id, FPNo
                     ,Tgl_fp Tanggal
                     ,VendID
                     ,Vend_Name VendorName
@@ -815,7 +712,7 @@ Public Class Cls_FP
                     ,nama_vendor FROM Fp_Header ORDER BY FPNo Desc"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -832,66 +729,20 @@ Public Class Cls_FP
                         ,RTRIM(npwp) NPWP
                     FROM Fp_Header ORDER BY VendorName"
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
 
         End Try
     End Function
-    Public Sub insertdata()
-
-        Tot_Dpp_Invoice = Tot_Dpp_Invoice.Replace(",", "")
-
-        Tot_pph = Tot_pph.Replace(",", "")
-
-        Tot_ppn = Tot_ppn.Replace(",", "")
-
-        Tot_voucher = Tot_voucher.Replace(",", "")
-
-        Try
-
-            query = "delete from Fp_Header where FPNo = '" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
-
-            query = "INSERT INTO Fp_Header (FPNo,Tgl_fp,VendID,Vend_Name,Jenis_Jasa,npwp,No_Bukti_Potong,Pphid,Ket_Pph,Tarif,Tahun,Bulan,Lokasi,CuryID,Tot_Dpp_Invoice,Tot_Ppn,Tot_Voucher,Tot_Pph,Status,cek1,nama_vendor) " & _
-                    "VALUES ('" & voucno & "'" & _
-                       ",'" & tgl_fp & "'" & _
-                       ",'" & VendID & "'" & _
-                       ",'" & Vend_Name & "'" & _
-                       ",'" & jenis_jasa & "'" & _
-                       ",'" & npwp & "'" & _
-                       ",'" & No_Bukti_Potong & "'" & _
-                       ",'" & pphid & "'" & _
-                       ",'" & ket_pph & "'" & _
-                       ",'" & tarif & "'" & _
-                       ",'" & tahun & "'" & _
-                       ",'" & bulan & "'" & _
-                       ",'" & lokasi & "'" & _
-                       ",'" & CuryID & "'" & _
-                       ",'" & Tot_Dpp_Invoice & "'" & _
-                       ",'" & Tot_ppn & "'" & _
-                       ",'" & Tot_voucher & "'" & _
-                       ",'" & Tot_pph & "'" & _
-                       ",'" & status & "'" & _
-                        ",'1'" & _
-                       ",'" & nama_vendor & "') "
-            mdlmain.ExecQueryByCommand(query)
-
-            '' query = "update apdoc set user3=1 where InvcNbr in (select no_invoice from fp_detail) "
-            ''  mdlmain.ExecQueryByCommand(query)
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Sub
 
     Public Sub updatedatasolomon()
 
         Try  
 
             query = "update apdoc set user3=1 where InvcNbr in (select no_invoice from fp_detail) "
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
         Catch ex As Exception
             Throw
 
@@ -919,7 +770,7 @@ Public Class Cls_FP
                        ",'" & No_Faktur & "'" & _
                         ",'" & ket_dpp & "'" & _
                        ",'" & Tot_pph & "') "
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
 
         Catch ex As Exception
             Throw
@@ -931,7 +782,7 @@ Public Class Cls_FP
         Try
             ''query = "delete from Fp_Detail where FPNo='" & voucno & "' and link_barcode='False'"
             query = "delete from Fp_Detail where FPNo='" & voucno & "'"
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
 
         Catch ex As Exception
             Throw
@@ -942,9 +793,9 @@ Public Class Cls_FP
     Public Sub deletedatapph()
         Try
             query = "delete from Fp_pph_Detail where FPNo='" & voucno & "' and No_Faktur='" & No_Faktur & "'"
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
             query = "delete from Fp_pph_header where FPNo='" & voucno & "' and No_Faktur='" & No_Faktur & "'"
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
         Catch ex As Exception
             Throw
 

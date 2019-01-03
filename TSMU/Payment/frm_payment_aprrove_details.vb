@@ -164,20 +164,20 @@ Public Class frm_payment_aprrove_details
     End Sub
 
     Public Overrides Sub Proc_SaveData()
-        Try
+        'Try
 
-            If isUpdate = False Then
-                ObjPaymentHeader.InsertData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Else
-            End If
-            GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
+        '    If isUpdate = False Then
+        '        ObjPaymentHeader.InsertData()
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    Else
+        '    End If
+        '    GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-            'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        '    'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        'End Try
     End Sub
 
     Public Overrides Sub Proc_Approve()
@@ -194,10 +194,16 @@ Public Class frm_payment_aprrove_details
             Else
                 If gh_Common.Level = 2 Then
                     ObjPaymentHeader.UpdateUnCek(2)
-                ElseIf gh_Common.Level = 3 Then
-                    ObjPaymentHeader.UpdateUnCek(3)
-                ElseIf gh_Common.Level = 4 Then
-                    ObjPaymentHeader.UpdateUnCek(4)
+                    ObjPaymentHeader.ObjPaymentDetails.Clear()
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "Check") = False Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcId()
+                            End With
+                        End If
+                    Next
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)

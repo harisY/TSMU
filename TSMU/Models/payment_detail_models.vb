@@ -156,4 +156,22 @@
             Throw ex
         End Try
     End Sub
+    Public Sub DeleteDetail(ByVal _vrno As String)
+        Try
+            Dim ls_SP As String = "DELETE FROM Payment_Detail1 WHERE rtrim(vrno)=" & QVal(_vrno.TrimEnd) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub UpdateCheckDetailByVrnoInvcId()
+        Try
+
+            Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class

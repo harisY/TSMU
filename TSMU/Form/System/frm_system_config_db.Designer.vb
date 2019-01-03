@@ -22,63 +22,70 @@ Partial Class frm_system_config_db
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_system_config_db))
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.CheckBom = New DevExpress.XtraEditors.CheckEdit()
+        Me.BoMPass = New DevExpress.XtraEditors.TextEdit()
+        Me.BoMUser = New DevExpress.XtraEditors.TextEdit()
+        Me.BoMdb = New DevExpress.XtraEditors.TextEdit()
         Me.BoMServer = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.BoMdb = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BoMUser = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BoMPass = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.CheckSolomon = New DevExpress.XtraEditors.CheckEdit()
+        Me.SolomonPass = New DevExpress.XtraEditors.TextEdit()
+        Me.SolomonUser = New DevExpress.XtraEditors.TextEdit()
+        Me.SolomonDB = New DevExpress.XtraEditors.TextEdit()
         Me.SolomonServer = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.SolomonDB = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SolomonUser = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SolomonPass = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.BtnSave = New System.Windows.Forms.ToolStripButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckBom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BoMPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BoMUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BoMdb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BoMServer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BoMdb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BoMUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BoMPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckSolomon.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SolomonPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SolomonUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SolomonDB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SolomonServer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SolomonDB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SolomonUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SolomonPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -98,15 +105,9 @@ Partial Class frm_system_config_db
         Me.XtraTabPage1.Size = New System.Drawing.Size(356, 299)
         Me.XtraTabPage1.Text = "BoM"
         '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Controls.Add(Me.LayoutControl2)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(356, 299)
-        Me.XtraTabPage2.Text = "Solomon"
-        '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.CheckBom)
         Me.LayoutControl1.Controls.Add(Me.BoMPass)
         Me.LayoutControl1.Controls.Add(Me.BoMUser)
         Me.LayoutControl1.Controls.Add(Me.BoMdb)
@@ -119,22 +120,56 @@ Partial Class frm_system_config_db
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'CheckBom
+        '
+        Me.CheckBom.Location = New System.Drawing.Point(180, 84)
+        Me.CheckBom.Name = "CheckBom"
+        Me.CheckBom.Properties.Caption = "Window Authentication"
+        Me.CheckBom.Size = New System.Drawing.Size(164, 19)
+        Me.CheckBom.StyleController = Me.LayoutControl1
+        Me.CheckBom.TabIndex = 8
+        '
+        'BoMPass
+        '
+        Me.BoMPass.Location = New System.Drawing.Point(61, 84)
+        Me.BoMPass.Name = "BoMPass"
+        Me.BoMPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
+        Me.BoMPass.Size = New System.Drawing.Size(115, 20)
+        Me.BoMPass.StyleController = Me.LayoutControl1
+        Me.BoMPass.TabIndex = 7
+        '
+        'BoMUser
+        '
+        Me.BoMUser.Location = New System.Drawing.Point(61, 60)
+        Me.BoMUser.Name = "BoMUser"
+        Me.BoMUser.Size = New System.Drawing.Size(283, 20)
+        Me.BoMUser.StyleController = Me.LayoutControl1
+        Me.BoMUser.TabIndex = 6
+        '
+        'BoMdb
+        '
+        Me.BoMdb.Location = New System.Drawing.Point(61, 36)
+        Me.BoMdb.Name = "BoMdb"
+        Me.BoMdb.Size = New System.Drawing.Size(283, 20)
+        Me.BoMdb.StyleController = Me.LayoutControl1
+        Me.BoMdb.TabIndex = 5
+        '
+        'BoMServer
+        '
+        Me.BoMServer.Location = New System.Drawing.Point(61, 12)
+        Me.BoMServer.Name = "BoMServer"
+        Me.BoMServer.Size = New System.Drawing.Size(283, 20)
+        Me.BoMServer.StyleController = Me.LayoutControl1
+        Me.BoMServer.TabIndex = 4
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem9})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(356, 299)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'BoMServer
-        '
-        Me.BoMServer.Location = New System.Drawing.Point(62, 12)
-        Me.BoMServer.Name = "BoMServer"
-        Me.BoMServer.Size = New System.Drawing.Size(282, 20)
-        Me.BoMServer.StyleController = Me.LayoutControl1
-        Me.BoMServer.TabIndex = 4
         '
         'LayoutControlItem1
         '
@@ -153,14 +188,6 @@ Partial Class frm_system_config_db
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(336, 183)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'BoMdb
-        '
-        Me.BoMdb.Location = New System.Drawing.Point(62, 36)
-        Me.BoMdb.Name = "BoMdb"
-        Me.BoMdb.Size = New System.Drawing.Size(282, 20)
-        Me.BoMdb.StyleController = Me.LayoutControl1
-        Me.BoMdb.TabIndex = 5
-        '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.BoMdb
@@ -169,14 +196,6 @@ Partial Class frm_system_config_db
         Me.LayoutControlItem2.Size = New System.Drawing.Size(336, 24)
         Me.LayoutControlItem2.Text = "Database"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(46, 13)
-        '
-        'BoMUser
-        '
-        Me.BoMUser.Location = New System.Drawing.Point(62, 60)
-        Me.BoMUser.Name = "BoMUser"
-        Me.BoMUser.Size = New System.Drawing.Size(282, 20)
-        Me.BoMUser.StyleController = Me.LayoutControl1
-        Me.BoMUser.TabIndex = 6
         '
         'LayoutControlItem3
         '
@@ -187,25 +206,34 @@ Partial Class frm_system_config_db
         Me.LayoutControlItem3.Text = "User Id"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(46, 13)
         '
-        'BoMPass
-        '
-        Me.BoMPass.Location = New System.Drawing.Point(62, 84)
-        Me.BoMPass.Name = "BoMPass"
-        Me.BoMPass.Size = New System.Drawing.Size(282, 20)
-        Me.BoMPass.StyleController = Me.LayoutControl1
-        Me.BoMPass.TabIndex = 7
-        '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.BoMPass
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(336, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(168, 24)
         Me.LayoutControlItem4.Text = "Password"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(46, 13)
         '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.CheckBom
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(168, 72)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(168, 24)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem9.TextVisible = False
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.LayoutControl2)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(356, 299)
+        Me.XtraTabPage2.Text = "Solomon"
+        '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.CheckSolomon)
         Me.LayoutControl2.Controls.Add(Me.SolomonPass)
         Me.LayoutControl2.Controls.Add(Me.SolomonUser)
         Me.LayoutControl2.Controls.Add(Me.SolomonDB)
@@ -218,22 +246,56 @@ Partial Class frm_system_config_db
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
+        'CheckSolomon
+        '
+        Me.CheckSolomon.Location = New System.Drawing.Point(180, 84)
+        Me.CheckSolomon.Name = "CheckSolomon"
+        Me.CheckSolomon.Properties.Caption = "Window Authentication"
+        Me.CheckSolomon.Size = New System.Drawing.Size(164, 19)
+        Me.CheckSolomon.StyleController = Me.LayoutControl2
+        Me.CheckSolomon.TabIndex = 8
+        '
+        'SolomonPass
+        '
+        Me.SolomonPass.Location = New System.Drawing.Point(61, 84)
+        Me.SolomonPass.Name = "SolomonPass"
+        Me.SolomonPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
+        Me.SolomonPass.Size = New System.Drawing.Size(115, 20)
+        Me.SolomonPass.StyleController = Me.LayoutControl2
+        Me.SolomonPass.TabIndex = 7
+        '
+        'SolomonUser
+        '
+        Me.SolomonUser.Location = New System.Drawing.Point(61, 60)
+        Me.SolomonUser.Name = "SolomonUser"
+        Me.SolomonUser.Size = New System.Drawing.Size(283, 20)
+        Me.SolomonUser.StyleController = Me.LayoutControl2
+        Me.SolomonUser.TabIndex = 6
+        '
+        'SolomonDB
+        '
+        Me.SolomonDB.Location = New System.Drawing.Point(61, 36)
+        Me.SolomonDB.Name = "SolomonDB"
+        Me.SolomonDB.Size = New System.Drawing.Size(283, 20)
+        Me.SolomonDB.StyleController = Me.LayoutControl2
+        Me.SolomonDB.TabIndex = 5
+        '
+        'SolomonServer
+        '
+        Me.SolomonServer.Location = New System.Drawing.Point(61, 12)
+        Me.SolomonServer.Name = "SolomonServer"
+        Me.SolomonServer.Size = New System.Drawing.Size(283, 20)
+        Me.SolomonServer.StyleController = Me.LayoutControl2
+        Me.SolomonServer.TabIndex = 4
+        '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.EmptySpaceItem2, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.EmptySpaceItem2, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem10})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(356, 299)
         Me.LayoutControlGroup2.TextVisible = False
-        '
-        'SolomonServer
-        '
-        Me.SolomonServer.Location = New System.Drawing.Point(62, 12)
-        Me.SolomonServer.Name = "SolomonServer"
-        Me.SolomonServer.Size = New System.Drawing.Size(282, 20)
-        Me.SolomonServer.StyleController = Me.LayoutControl2
-        Me.SolomonServer.TabIndex = 4
         '
         'LayoutControlItem5
         '
@@ -252,14 +314,6 @@ Partial Class frm_system_config_db
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(336, 183)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
-        'SolomonDB
-        '
-        Me.SolomonDB.Location = New System.Drawing.Point(62, 36)
-        Me.SolomonDB.Name = "SolomonDB"
-        Me.SolomonDB.Size = New System.Drawing.Size(282, 20)
-        Me.SolomonDB.StyleController = Me.LayoutControl2
-        Me.SolomonDB.TabIndex = 5
-        '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.SolomonDB
@@ -268,14 +322,6 @@ Partial Class frm_system_config_db
         Me.LayoutControlItem6.Size = New System.Drawing.Size(336, 24)
         Me.LayoutControlItem6.Text = "Database"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(46, 13)
-        '
-        'SolomonUser
-        '
-        Me.SolomonUser.Location = New System.Drawing.Point(62, 60)
-        Me.SolomonUser.Name = "SolomonUser"
-        Me.SolomonUser.Size = New System.Drawing.Size(282, 20)
-        Me.SolomonUser.StyleController = Me.LayoutControl2
-        Me.SolomonUser.TabIndex = 6
         '
         'LayoutControlItem7
         '
@@ -286,22 +332,23 @@ Partial Class frm_system_config_db
         Me.LayoutControlItem7.Text = "User Id"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(46, 13)
         '
-        'SolomonPass
-        '
-        Me.SolomonPass.Location = New System.Drawing.Point(62, 84)
-        Me.SolomonPass.Name = "SolomonPass"
-        Me.SolomonPass.Size = New System.Drawing.Size(282, 20)
-        Me.SolomonPass.StyleController = Me.LayoutControl2
-        Me.SolomonPass.TabIndex = 7
-        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.SolomonPass
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(336, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(168, 24)
         Me.LayoutControlItem8.Text = "Password"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(46, 13)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.CheckSolomon
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(168, 72)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(168, 24)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
         '
         'ToolStrip1
         '
@@ -331,35 +378,40 @@ Partial Class frm_system_config_db
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frm_system_config_db"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SETTING DATABASE"
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckBom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BoMPass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BoMUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BoMdb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BoMServer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BoMdb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BoMUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BoMPass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckSolomon.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SolomonPass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SolomonUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SolomonDB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SolomonServer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SolomonDB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SolomonUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SolomonPass.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -393,4 +445,8 @@ Partial Class frm_system_config_db
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents BtnSave As ToolStripButton
+    Friend WithEvents CheckBom As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents CheckSolomon As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
 End Class

@@ -140,7 +140,7 @@ Public Class Cls_cmdm
                            ",'" & _batch & "'" & _
                            ",'" & _noinvoice & "'" & _
                            ",'" & _totalcmdm & "'"
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQuery_Solomon(query)
 
             '' query = "update apdoc set user3=1 where InvcNbr in (select no_invoice from fp_detail) "
             ''  mdlmain.ExecQueryByCommand(query)
@@ -166,7 +166,7 @@ Public Class Cls_cmdm
                            ",'" & _totalcmdm & "'" & _
                            ",'" & pilih & "') "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -177,7 +177,7 @@ Public Class Cls_cmdm
         Try
             query = "select vrno,bankname,vendorname,tgl,ket,curyid,batch,no_invoice,total_cmdm,pilih from payment_cmdm"
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -199,7 +199,7 @@ Public Class Cls_cmdm
             query = "select vrno,bankname,vendorname,tgl,ket,curyid,batch,no_invoice,total_cmdm from payment_cmdm " & _
                     "where vrno='" & vrno & "' and bankname='" & bankname & "' and vendorname='" & vendname & "' and no_invoice='" & noinvoice & "' and batch='" & batch & "' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -214,7 +214,7 @@ Public Class Cls_cmdm
             query = "select Ardoc.docdate as tgl,Ardoc.CuryId,Ardoc.batnbr as Bacth,Ardoc.refnbr as no_invoice,Batch.CuryCrTot as total_cmdm from Ardoc inner join CashAcct  on Ardoc.BankAcct=CashAcct.BankAcct  inner join Batch on Ardoc.BatNbr=Batch.BatNbr  inner join customer  on Ardoc.custid=customer.custid inner join vendor on customer.user5=vendor.vendid where Batch.user1='' " & _
                    "and vendor.name='" & vendname & "' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -229,7 +229,7 @@ Public Class Cls_cmdm
             '        "where vendorname='" & vendname & "' "
             query = "update batch set user2='" & vrno & "' where batnbr='" & batch & "' "
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -277,7 +277,7 @@ Public Class Cls_cmdm
                     "where vendorname='" & vendname & "' and no_invoice='" & noinvoice & "' "
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw ex

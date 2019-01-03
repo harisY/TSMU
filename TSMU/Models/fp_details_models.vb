@@ -39,7 +39,7 @@
         Try
 
             Dim Query = "UPDATE ApDoc set User3=1 where rtrim(InvcNbr) =" & QVal(No_Invoice) & ""
-            mdlmain.ExecQueryByCommand(Query)
+            MainModul.ExecQuery_Solomon(Query)
         Catch ex As Exception
             Throw ex
 
@@ -54,5 +54,7 @@
             Throw
         End Try
     End Sub
+
+
 End Class
 

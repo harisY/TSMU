@@ -304,7 +304,7 @@ Public Class Cls_barcode
        ",'" & no & "'" & _
       ",'" & masapajak & "'" & _
       ",'" & tahunpajak & "') "
-            mdlmain.ExecQueryByCommand(query)
+            MainModul.ExecQueryByCommand_SP_Solomon(query)
 
         Catch ex As Exception
             Throw
@@ -319,7 +319,7 @@ Public Class Cls_barcode
             query = "select kdJenisTransaksi, fgPengganti,nomorFaktur,tanggalFaktur,npwpPenjual,namaPenjual,alamatPenjual,jumlahDpp,jumlahPpn,jumlahPpnBm,masapajak,tahunpajak from barcode_fp where tahunpajak='" & _tahunpajak & "' and masapajak='" & _masapajak & "'"
 
             Dim dt As DataTable = New DataTable
-            dt = mdlmain.GetDataTableByCommand2(query)
+            dt = MainModul.GetDataTable_Solomon(query)
             Return dt
         Catch ex As Exception
             Throw
