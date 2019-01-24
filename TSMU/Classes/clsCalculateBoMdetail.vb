@@ -11,18 +11,67 @@
     Public Property mei_qty() As Single
     Public Property jun_qty() As Single
     Public Property jul_qty() As Single
-    Public Property agust_qty() As Single
+    Public Property agt_qty() As Single
     Public Property sep_qty() As Single
     Public Property okt_qty() As Single
     Public Property nov_qty() As Single
     Public Property des_qty() As Single
 
+    Public Property Jan_po() As Single
+    Public Property feb_po() As Single
+    Public Property mar_po() As Single
+    Public Property apr_po() As Single
+    Public Property mei_po() As Single
+    Public Property jun_po() As Single
+    Public Property jul_po() As Single
+    Public Property agt_po() As Single
+    Public Property sep_po() As Single
+    Public Property okt_po() As Single
+    Public Property nov_po() As Single
+    Public Property des_po() As Single
+
 #Region "CRUD"
+    Public Sub InsertDetails(ID As Integer)
+        Try
+            Dim ls_SP As String =
+            "INSERT INTO [calculated_forecast_detail]
+                ([Id],[invtid],[descr],[unit],[Level]
+               ,[Jan_qty],[Jan_po]
+               ,[feb_qty],[feb_po]
+               ,[mar_qty],[mar_po]
+               ,[apr_qty],[apr_po]
+               ,[mei_qty],[mei_po]
+               ,[jun_qty],[jun_po]
+               ,[jul_qty],[jul_po]
+               ,[agt_qty],[agt_po]
+               ,[sep_qty],[sep_po]
+               ,[okt_qty],[okt_po]
+               ,[nov_qty],[nov_po]
+               ,[des_qty],[des_po])
+            VALUES
+                (" & QVal(ID) & "," & QVal(invtid) & "," & QVal(descr) & "," & QVal(unit) & "," & QVal(level) & "
+                ," & QVal(Jan_qty) & "," & QVal(Jan_po) & "
+                ," & QVal(feb_qty) & "," & QVal(feb_po) & "
+                ," & QVal(mar_qty) & "," & QVal(mar_po) & "
+                ," & QVal(apr_qty) & "," & QVal(apr_po) & "
+                ," & QVal(mei_qty) & "," & QVal(mei_po) & "
+                ," & QVal(jun_qty) & "," & QVal(jun_po) & "
+                ," & QVal(jul_qty) & "," & QVal(jul_po) & "
+                ," & QVal(agt_qty) & "," & QVal(agt_po) & "
+                ," & QVal(sep_qty) & "," & QVal(sep_po) & "
+                ," & QVal(okt_qty) & "," & QVal(okt_po) & "
+                ," & QVal(nov_qty) & "," & QVal(nov_po) & "
+                ," & QVal(des_qty) & "," & QVal(des_po) & ")"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String =
             "INSERT INTO [calculated_forecast_detail]
-                ([bomId]
+                (Id
                 ,[invtid]
                 ,[descr]
                 ,[unit]
@@ -40,7 +89,7 @@
                 ,[nov_qty]
                 ,[des_qty])
             VALUES
-                (" & QVal(bomId) & "
+                (" & QVal(1) & "
                 ," & QVal(invtid) & "
                 ," & QVal(descr) & "
                 ," & QVal(unit) & "
@@ -52,7 +101,7 @@
                 ," & QVal(mei_qty) & "
                 ," & QVal(jun_qty) & "
                 ," & QVal(jul_qty) & "
-                ," & QVal(agust_qty) & "
+                ," & QVal(agt_qty) & "
                 ," & QVal(sep_qty) & "
                 ," & QVal(okt_qty) & "
                 ," & QVal(nov_qty) & "

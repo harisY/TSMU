@@ -174,6 +174,17 @@
         End Try
     End Function
 
+    Public Function GetBomToCalculate() As DataTable
+        Try
+            Dim query As String = "GetBomToCalculate"
+            Dim dtTable As New DataTable
+            dtTable = GetDataTableByCommand_SP(query)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 #Region "CRUD"
     Public Sub InsertHeader()
         Try

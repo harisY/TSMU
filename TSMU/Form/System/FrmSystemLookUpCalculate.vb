@@ -225,7 +225,7 @@ Public Class FrmSystemLookUpCalculate
                     .unit = unit
 
                     .jul_qty = qty * jul
-                    .agust_qty = qty * agust
+                    .agt_qty = qty * agust
                     .sep_qty = qty * sep
                     .okt_qty = qty * okt
                     .nov_qty = qty * nov

@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.IO
-Public Class FrmSystemLookUpCalculateSales
+Public Class FrmSystemLookUpCalculateBudget
     Dim fc_class As New clsSales_Budget
     Dim GridData As DataTable = Nothing
     Dim Gridfilter As DataTable = Nothing
@@ -54,24 +54,12 @@ Public Class FrmSystemLookUpCalculateSales
     Dim mei As Single
     Dim jun As Single
     Dim jul As Single
-    Dim agt As Single
+    Dim agust As Single
     Dim sep As Single
     Dim okt As Single
     Dim nov As Single
     Dim des As Single
     Dim bomidH1 As String
-    Dim janPO As Single
-    Dim febPO As Single
-    Dim marPO As Single
-    Dim aprPO As Single
-    Dim meiPO As Single
-    Dim junPO As Single
-    Dim julPO As Single
-    Dim agtPO As Single
-    Dim sepPO As Single
-    Dim oktPO As Single
-    Dim novPO As Single
-    Dim desPO As Single
     Dim inv As String
     Private Async Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
         Try
@@ -157,12 +145,12 @@ Public Class FrmSystemLookUpCalculateSales
             Exit Sub
         End If
         For i As Integer = 0 To GridData.Rows.Count - 1
+            Id = 0
             Dim bomidH As String = ""
             Dim invtid As String = ""
             Dim descr As String = ""
             Dim unit As String = ""
             Dim qty As Single = 0
-            Dim po As Single = 0
             Dim level0 As String = ""
             Dim level1 As String = ""
             Dim level2 As String = ""
@@ -209,17 +197,11 @@ Public Class FrmSystemLookUpCalculateSales
                     Dim invtidD As String = ""
                     invtid = dt2.Rows(j).Item("invtid").ToString
                     jul = 0
-                    agt = 0
+                    agust = 0
                     sep = 0
                     okt = 0
                     nov = 0
                     des = 0
-                    julPO = 0
-                    agtPO = 0
-                    sepPO = 0
-                    oktPO = 0
-                    novPO = 0
-                    desPO = 0
                     If inv = invtid Then
 
                         If dt2.Rows(j).Item("jul_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("jul_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("jul_qty01").ToString <> "0" Then
@@ -238,43 +220,20 @@ Public Class FrmSystemLookUpCalculateSales
                             jul = 0
                         End If
 
-                        '===============PO Juli=====================
-                        If dt2.Rows(j).Item("jul_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("jul_po01").ToString <> "0" Then
-                            julPO = dt2.Rows(j).Item("jul_po02")
-                        ElseIf dt2.Rows(j).Item("jul_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("jul_po01").ToString = "0" Then
-                            julPO = dt2.Rows(j).Item("jul_po02")
-                        ElseIf dt2.Rows(j).Item("jul_po02").ToString = "0" AndAlso dt2.Rows(j).Item("jul_po01").ToString <> "0" Then
-                            julPO = dt2.Rows(j).Item("jul_po01")
-                        Else
-                            julPO = 0
-                        End If
-
-
                         If dt2.Rows(j).Item("agt_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString <> "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty03")
+                            agust = dt2.Rows(j).Item("agt_qty03")
                         ElseIf dt2.Rows(j).Item("agt_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString = "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty03")
+                            agust = dt2.Rows(j).Item("agt_qty03")
                         ElseIf dt2.Rows(j).Item("agt_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString = "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString = "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty03")
+                            agust = dt2.Rows(j).Item("agt_qty03")
                         ElseIf dt2.Rows(j).Item("agt_qty03").ToString = "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString <> "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty02")
+                            agust = dt2.Rows(j).Item("agt_qty02")
                         ElseIf dt2.Rows(j).Item("agt_qty03").ToString = "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString = "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty02")
+                            agust = dt2.Rows(j).Item("agt_qty02")
                         ElseIf dt2.Rows(j).Item("agt_qty03").ToString = "0" AndAlso dt2.Rows(j).Item("agt_qty02").ToString = "0" AndAlso dt2.Rows(j).Item("agt_qty01").ToString <> "0" Then
-                            agt = dt2.Rows(j).Item("agt_qty01")
+                            agust = dt2.Rows(j).Item("agt_qty01")
                         Else
-                            agt = 0
-                        End If
-
-                        '===============PO Agustus=====================
-                        If dt2.Rows(j).Item("agt_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_po01").ToString <> "0" Then
-                            agtPO = dt2.Rows(j).Item("agt_po02")
-                        ElseIf dt2.Rows(j).Item("agt_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("agt_po01").ToString = "0" Then
-                            agtPO = dt2.Rows(j).Item("agt_po02")
-                        ElseIf dt2.Rows(j).Item("agt_po02").ToString = "0" AndAlso dt2.Rows(j).Item("agt_po01").ToString <> "0" Then
-                            agtPO = dt2.Rows(j).Item("agt_po01")
-                        Else
-                            agtPO = 0
+                            agust = 0
                         End If
 
                         If dt2.Rows(j).Item("sep_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("sep_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("sep_qty01").ToString <> "0" Then
@@ -293,17 +252,6 @@ Public Class FrmSystemLookUpCalculateSales
                             sep = 0
                         End If
 
-                        '===============PO September=====================
-                        If dt2.Rows(j).Item("sep_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("sep_po01").ToString <> "0" Then
-                            sepPO = dt2.Rows(j).Item("sep_po02")
-                        ElseIf dt2.Rows(j).Item("sep_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("sep_po01").ToString = "0" Then
-                            sepPO = dt2.Rows(j).Item("sep_po02")
-                        ElseIf dt2.Rows(j).Item("sep_po02").ToString = "0" AndAlso dt2.Rows(j).Item("sep_po01").ToString <> "0" Then
-                            sepPO = dt2.Rows(j).Item("sep_po01")
-                        Else
-                            sepPO = 0
-                        End If
-
                         If dt2.Rows(j).Item("okt_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_qty01").ToString <> "0" Then
                             okt = dt2.Rows(j).Item("okt_qty03")
                         ElseIf dt2.Rows(j).Item("okt_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_qty01").ToString = "0" Then
@@ -318,18 +266,6 @@ Public Class FrmSystemLookUpCalculateSales
                             okt = dt2.Rows(j).Item("okt_qty01")
                         Else
                             okt = 0
-                        End If
-
-
-                        '===============PO Oktober=====================
-                        If dt2.Rows(j).Item("okt_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_po01").ToString <> "0" Then
-                            oktPO = dt2.Rows(j).Item("okt_po02")
-                        ElseIf dt2.Rows(j).Item("okt_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("okt_po01").ToString = "0" Then
-                            oktPO = dt2.Rows(j).Item("okt_po02")
-                        ElseIf dt2.Rows(j).Item("okt_po02").ToString = "0" AndAlso dt2.Rows(j).Item("okt_po01").ToString <> "0" Then
-                            oktPO = dt2.Rows(j).Item("okt_po01")
-                        Else
-                            oktPO = 0
                         End If
 
                         If dt2.Rows(j).Item("nov_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("nov_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("nov_qty01").ToString <> "0" Then
@@ -348,17 +284,6 @@ Public Class FrmSystemLookUpCalculateSales
                             nov = 0
                         End If
 
-                        '===============PO November=====================
-                        If dt2.Rows(j).Item("nov_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("nov_po01").ToString <> "0" Then
-                            novPO = dt2.Rows(j).Item("nov_po02")
-                        ElseIf dt2.Rows(j).Item("nov_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("nov_po01").ToString = "0" Then
-                            novPO = dt2.Rows(j).Item("nov_po02")
-                        ElseIf dt2.Rows(j).Item("nov_po02").ToString = "0" AndAlso dt2.Rows(j).Item("nov_po01").ToString <> "0" Then
-                            novPO = dt2.Rows(j).Item("nov_po01")
-                        Else
-                            novPO = 0
-                        End If
-
                         If dt2.Rows(j).Item("des_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("des_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("des_qty01").ToString <> "0" Then
                             des = dt2.Rows(j).Item("des_qty03")
                         ElseIf dt2.Rows(j).Item("des_qty03").ToString <> "0" AndAlso dt2.Rows(j).Item("des_qty02").ToString <> "0" AndAlso dt2.Rows(j).Item("des_qty01").ToString <> "0" Then
@@ -373,17 +298,6 @@ Public Class FrmSystemLookUpCalculateSales
                             des = dt2.Rows(j).Item("des_qty01")
                         Else
                             des = 0
-                        End If
-
-                        '===============PO Desember=====================
-                        If dt2.Rows(j).Item("des_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("des_po01").ToString <> "0" Then
-                            desPO = dt2.Rows(j).Item("des_po02")
-                        ElseIf dt2.Rows(j).Item("des_po02").ToString <> "0" AndAlso dt2.Rows(j).Item("des_po01").ToString = "0" Then
-                            desPO = dt2.Rows(j).Item("des_po02")
-                        ElseIf dt2.Rows(j).Item("des_po02").ToString = "0" AndAlso dt2.Rows(j).Item("des_po01").ToString <> "0" Then
-                            desPO = dt2.Rows(j).Item("des_po01")
-                        Else
-                            desPO = 0
                         End If
                         Exit For
                     End If
@@ -422,25 +336,12 @@ Public Class FrmSystemLookUpCalculateSales
                     .apr_qty = 0
                     .mei_qty = 0
                     .jun_qty = 0
-                    .Jan_po = 0
-                    .feb_po = 0
-                    .mar_po = 0
-                    .apr_po = 0
-                    .mei_po = 0
-                    .jun_po = 0
-
                     .jul_qty = qty * jul
-                    .agt_qty = qty * agt
+                    .agt_qty = qty * agust
                     .sep_qty = qty * sep
                     .okt_qty = qty * okt
                     .nov_qty = qty * nov
                     .des_qty = qty * des
-                    .jul_po = qty * julPO
-                    .agt_po = qty * agtPO
-                    .sep_po = qty * sepPO
-                    .okt_po = qty * oktPO
-                    .nov_po = qty * novPO
-                    .des_po = qty * desPO
                     .InsertDetails(Id)
                 End With
                 '_clsTrans.Fc_classdetail.Add(_classdetail)
@@ -459,6 +360,7 @@ Public Class FrmSystemLookUpCalculateSales
             Exit Sub
         End If
         For i As Integer = 0 To GridData.Rows.Count - 1
+            Id = 0
             Dim bomidH As String = ""
             Dim invtid As String = ""
             Dim descr As String = ""
@@ -502,7 +404,6 @@ Public Class FrmSystemLookUpCalculateSales
                     .Semester = "1"
                     .Tahun = strYear
                     .Total = 0
-                    .TotalPO = 0
                     Id = .InsertHeader()
                 End With
 
@@ -519,40 +420,16 @@ Public Class FrmSystemLookUpCalculateSales
                     If inv = invtid Then
                         If dt1.Rows(j).Item("jan_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString <> "0" Then
                             jan = dt1.Rows(j).Item("jan_qty03")
-                        ElseIf dt1.Rows(j).Item("jan_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString = "0" Then
-                            jan = dt1.Rows(j).Item("jan_qty03")
-                        ElseIf dt1.Rows(j).Item("jan_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString = "0" Then
-                            jan = dt1.Rows(j).Item("jan_qty03")
                         ElseIf dt1.Rows(j).Item("jan_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString <> "0" Then
-                            jan = dt1.Rows(j).Item("jan_qty02")
-                        ElseIf dt1.Rows(j).Item("jan_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString = "0" Then
                             jan = dt1.Rows(j).Item("jan_qty02")
                         ElseIf dt1.Rows(j).Item("jan_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jan_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jan_qty01").ToString <> "0" Then
                             jan = dt1.Rows(j).Item("jan_qty01")
                         Else
                             jan = 0
                         End If
-
-                        '===============PO Desember=====================
-                        If dt1.Rows(j).Item("jan_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_po01").ToString <> "0" Then
-                            janPO = dt1.Rows(j).Item("jan_po02")
-                        ElseIf dt1.Rows(j).Item("jan_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("jan_po01").ToString = "0" Then
-                            janPO = dt1.Rows(j).Item("jan_po02")
-                        ElseIf dt1.Rows(j).Item("jan_po02").ToString = "0" AndAlso dt1.Rows(j).Item("jan_po01").ToString <> "0" Then
-                            janPO = dt1.Rows(j).Item("jan_po01")
-                        Else
-                            janPO = 0
-                        End If
-
                         If dt1.Rows(j).Item("feb_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString <> "0" Then
                             feb = dt1.Rows(j).Item("feb_qty03")
-                        ElseIf dt1.Rows(j).Item("feb_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString = "0" Then
-                            feb = dt1.Rows(j).Item("feb_qty03")
-                        ElseIf dt1.Rows(j).Item("feb_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString = "0" Then
-                            feb = dt1.Rows(j).Item("feb_qty03")
                         ElseIf dt1.Rows(j).Item("feb_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString <> "0" Then
-                            feb = dt1.Rows(j).Item("feb_qty02")
-                        ElseIf dt1.Rows(j).Item("feb_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString = "0" Then
                             feb = dt1.Rows(j).Item("feb_qty02")
                         ElseIf dt1.Rows(j).Item("feb_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("feb_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("feb_qty01").ToString <> "0" Then
                             feb = dt1.Rows(j).Item("feb_qty01")
@@ -560,26 +437,9 @@ Public Class FrmSystemLookUpCalculateSales
                             feb = 0
                         End If
 
-                        '===============PO Februari=====================
-                        If dt1.Rows(j).Item("feb_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_po01").ToString <> "0" Then
-                            febPO = dt1.Rows(j).Item("feb_po02")
-                        ElseIf dt1.Rows(j).Item("feb_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("feb_po01").ToString = "0" Then
-                            febPO = dt1.Rows(j).Item("feb_po02")
-                        ElseIf dt1.Rows(j).Item("feb_po02").ToString = "0" AndAlso dt1.Rows(j).Item("feb_po01").ToString <> "0" Then
-                            febPO = dt1.Rows(j).Item("feb_po01")
-                        Else
-                            febPO = 0
-                        End If
-
                         If dt1.Rows(j).Item("mar_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString <> "0" Then
                             mar = dt1.Rows(j).Item("mar_qty03")
-                        ElseIf dt1.Rows(j).Item("mar_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString = "0" Then
-                            mar = dt1.Rows(j).Item("mar_qty03")
-                        ElseIf dt1.Rows(j).Item("mar_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString = "0" Then
-                            mar = dt1.Rows(j).Item("mar_qty03")
                         ElseIf dt1.Rows(j).Item("mar_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString <> "0" Then
-                            mar = dt1.Rows(j).Item("mar_qty02")
-                        ElseIf dt1.Rows(j).Item("mar_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString = "0" Then
                             mar = dt1.Rows(j).Item("mar_qty02")
                         ElseIf dt1.Rows(j).Item("mar_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mar_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("mar_qty01").ToString <> "0" Then
                             mar = dt1.Rows(j).Item("mar_qty01")
@@ -587,26 +447,9 @@ Public Class FrmSystemLookUpCalculateSales
                             mar = 0
                         End If
 
-                        '===============PO Maret=====================
-                        If dt1.Rows(j).Item("mar_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_po01").ToString <> "0" Then
-                            marPO = dt1.Rows(j).Item("mar_po02")
-                        ElseIf dt1.Rows(j).Item("mar_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("mar_po01").ToString = "0" Then
-                            marPO = dt1.Rows(j).Item("mar_po02")
-                        ElseIf dt1.Rows(j).Item("mar_po02").ToString = "0" AndAlso dt1.Rows(j).Item("mar_po01").ToString <> "0" Then
-                            marPO = dt1.Rows(j).Item("mar_po01")
-                        Else
-                            marPO = 0
-                        End If
-
                         If dt1.Rows(j).Item("apr_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString <> "0" Then
                             apr = dt1.Rows(j).Item("apr_qty03")
-                        ElseIf dt1.Rows(j).Item("apr_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString = "0" Then
-                            apr = dt1.Rows(j).Item("apr_qty03")
-                        ElseIf dt1.Rows(j).Item("apr_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString = "0" Then
-                            apr = dt1.Rows(j).Item("apr_qty03")
                         ElseIf dt1.Rows(j).Item("apr_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString <> "0" Then
-                            apr = dt1.Rows(j).Item("apr_qty02")
-                        ElseIf dt1.Rows(j).Item("apr_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString = "0" Then
                             apr = dt1.Rows(j).Item("apr_qty02")
                         ElseIf dt1.Rows(j).Item("apr_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("apr_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("apr_qty01").ToString <> "0" Then
                             apr = dt1.Rows(j).Item("apr_qty01")
@@ -614,26 +457,11 @@ Public Class FrmSystemLookUpCalculateSales
                             apr = 0
                         End If
 
-                        '===============PO April=====================
-                        If dt1.Rows(j).Item("apr_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_po01").ToString <> "0" Then
-                            aprPO = dt1.Rows(j).Item("apr_po02")
-                        ElseIf dt1.Rows(j).Item("apr_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("apr_po01").ToString = "0" Then
-                            aprPO = dt1.Rows(j).Item("apr_po02")
-                        ElseIf dt1.Rows(j).Item("apr_po02").ToString = "0" AndAlso dt1.Rows(j).Item("apr_po01").ToString <> "0" Then
-                            aprPO = dt1.Rows(j).Item("apr_po01")
-                        Else
-                            aprPO = 0
-                        End If
-
                         If dt1.Rows(j).Item("mei_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString <> "0" Then
-                            mei = dt1.Rows(j).Item("mei_qty03")
-                        ElseIf dt1.Rows(j).Item("mei_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString = "0" Then
                             mei = dt1.Rows(j).Item("mei_qty03")
                         ElseIf dt1.Rows(j).Item("mei_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString = "0" Then
                             mei = dt1.Rows(j).Item("mei_qty03")
                         ElseIf dt1.Rows(j).Item("mei_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString <> "0" Then
-                            mei = dt1.Rows(j).Item("mei_qty02")
-                        ElseIf dt1.Rows(j).Item("mei_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString = "0" Then
                             mei = dt1.Rows(j).Item("mei_qty02")
                         ElseIf dt1.Rows(j).Item("mei_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("mei_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("mei_qty01").ToString <> "0" Then
                             mei = dt1.Rows(j).Item("mei_qty01")
@@ -641,17 +469,6 @@ Public Class FrmSystemLookUpCalculateSales
                             mei = 0
                         End If
 
-                        '===============PO Mei=====================
-                        If dt1.Rows(j).Item("mei_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_po01").ToString <> "0" Then
-                            meiPO = dt1.Rows(j).Item("mei_po02")
-                        ElseIf dt1.Rows(j).Item("mei_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("mei_po01").ToString = "0" Then
-                            meiPO = dt1.Rows(j).Item("mei_po02")
-                        ElseIf dt1.Rows(j).Item("mei_po02").ToString = "0" AndAlso dt1.Rows(j).Item("mei_po01").ToString <> "0" Then
-                            meiPO = dt1.Rows(j).Item("mei_po01")
-                        Else
-                            meiPO = 0
-                        End If
-
                         If dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
                             jun = dt1.Rows(j).Item("jun_qty03")
                         ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
@@ -661,30 +478,12 @@ Public Class FrmSystemLookUpCalculateSales
                         Else
                             jun = 0
                         End If
-
-                        '===============PO Juni=====================
-                        If dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty02")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty02")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty01")
-                        Else
-                            jun = 0
-                        End If
-
                         Exit For
                     End If
                 Next
 
                 With _classdetail
-                    '.bomId = bomidH1
+                    .bomId = bomidH1
                     If level0 = "" AndAlso level1 <> "" AndAlso level2 = "" AndAlso level3 = "" AndAlso level4 = "" Then
                         .invtid = level1
                         .level = "level1"
@@ -716,32 +515,18 @@ Public Class FrmSystemLookUpCalculateSales
                     .apr_qty = qty * apr
                     .mei_qty = qty * mei
                     .jun_qty = qty * jun
-                    .Jan_po = qty * janPO
-                    .feb_po = qty * febPO
-                    .mar_po = qty * janPO
-                    .apr_po = qty * aprPO
-                    .mei_po = qty * meiPO
-                    .jun_po = qty * junPO
                     .jul_qty = 0
                     .agt_qty = 0
                     .sep_qty = 0
                     .okt_qty = 0
                     .nov_qty = 0
                     .des_qty = 0
-                    .jul_po = 0
-                    .agt_po = 0
-                    .sep_po = 0
-                    .okt_po = 0
-                    .nov_po = 0
-                    .des_po = 0
                     .InsertDetails(Id)
                 End With
                 '_clsTrans.Fc_classdetail.Add(_classdetail)
             End If
 
             '_clsTrans.InsertCalculatedBoM()
-
-
         Next
     End Sub
 End Class

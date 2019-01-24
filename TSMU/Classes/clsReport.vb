@@ -530,7 +530,26 @@
         End Try
 
     End Function
+    Public Function Sales_ForecastPrice_report_DataGrid(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As DataTable
+        Try
+            Dim query As String = "Sales_ForecastPrice_report_DataGrid"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@siteid", SqlDbType.VarChar)
+            pParam(0).Value = strSite
+            pParam(1) = New SqlClient.SqlParameter("@year", SqlDbType.VarChar)
+            pParam(1).Value = strYear
+            pParam(2) = New SqlClient.SqlParameter("@Invtid_", SqlDbType.VarChar)
+            pParam(2).Value = strInvtid
+            pParam(3) = New SqlClient.SqlParameter("@customer", SqlDbType.VarChar)
+            pParam(3).Value = strCust
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
 
+    End Function
     Public Function SF_LoadReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As DataSet
         Try
             Dim query As String = "Sales_Forecast_report_View"

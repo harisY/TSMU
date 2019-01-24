@@ -804,6 +804,53 @@ Module MainModul
             Throw
         End Try
     End Function
+
+    Public Function GetDataSet(ByVal pQuery As String, NamaDs As String, Optional ByVal pTimeOut As Integer = 3000) As DataSet
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New DataSet
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, NamaDs)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                    da.Fill(dsa, NamaDs)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataAdapater(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As SqlDataAdapter
+        Dim da As SqlDataAdapter
+        Dim dsa As New DataSet
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlDataAdapter(gh_Trans.Command)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                End Using
+            End If
+            Return da
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDsReport(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
@@ -1016,7 +1063,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function GetDataTableByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1096,7 +1143,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then

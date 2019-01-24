@@ -1,6 +1,4 @@
-﻿Imports System.Data.SqlClient
-Public Class clsSalesForecastCalculate
-    Private _Data As DataSet
+﻿Public Class clsSalesBudgetCalculate
     Public Property ID() As Integer
     Public Property bomId() As String
     Public Property invtid() As String
@@ -8,7 +6,6 @@ Public Class clsSalesForecastCalculate
     Public Property Semester() As String
     Public Property Tahun() As String
     Public Property Total() As Single
-    Public Property TotalPO() As Single
 
     Public Function level0(ByVal ls_Filter As String) As DataTable
         Try
@@ -171,7 +168,7 @@ Public Class clsSalesForecastCalculate
 
     Public Function IsForecastSemester1Exist(ByVal tahun As String, ByVal semester As String) As Boolean
         Try
-            Dim ls_SP As String = "select * from calculated_Forecast where Tahun=" & QVal(tahun) & " AND Semester = " & QVal(semester) & "" 'and invtid in('PMT-165-BES0-IACT','ADM-D01-GFPL-EAND')
+            Dim ls_SP As String = "select bomid from calculated_Forecast where Tahun=" & QVal(tahun) & " AND Semester = " & QVal(semester) & "" 'and invtid in('PMT-165-BES0-IACT','ADM-D01-GFPL-EAND')
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable.Rows.Count > 0 Then
@@ -261,16 +258,6 @@ Public Class clsSalesForecastCalculate
             Throw
         End Try
     End Function
-    Public Function GetBomToCalculate() As DataTable
-        Try
-            Dim query As String = "GetBomToCalculate"
-            Dim dtTable As New DataTable
-            dtTable = GetDataTableByCommand_SP(query)
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
 
 #Region "CRUD"
     Public Function InsertHeader() As Integer
@@ -283,17 +270,15 @@ Public Class clsSalesForecastCalculate
                 ,[Semester]
                 ,[Tahun]
                 ,[Total Qty]
-                ,[Total PO]
                 ,[created_by]
                 ,[created_date])
-            OUTPUT  Inserted.ID 
+            OUTPUT  Inserted.bomid 
             VALUES
                 (" & QVal(invtid) & "
                 ," & QVal(descr) & "
                 ," & QVal(Semester) & "
                 ," & QVal(Tahun) & "
                 ," & QVal(Total) & "
-                ," & QVal(TotalPO) & "
                 ," & QVal(gh_Common.Username) & "
                 ,GETDATE())"
             Dim dt As New DataTable
@@ -323,62 +308,6 @@ Public Class clsSalesForecastCalculate
             Throw
         End Try
     End Sub
-
-    Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
-        Try
-            Dim ls_SP As String =
-            "SELECT a.[ID]
-            ,a.[Tahun]
-            ,a.[invtid] [Inventory ID]
-            ,a.[descr] [Description]
-            ,a.[Semester]
-            ,(SELECT SUM(Jan_qty + feb_qty + mar_qty + apr_qty+mei_qty+jun_qty+jul_qty+agt_qty+sep_qty+okt_qty+nov_qty+des_qty)
-                from calculated_Forecast_detail where id = a.id) as TotalQty
-            ,(SELECT SUM(Jan_po + feb_po + mar_po + apr_po+mei_po+jun_po+jul_po+agt_po+sep_po+okt_po+nov_po+des_po)
-                from calculated_Forecast_detail where id = a.id) as TotalPO
-            FROM [calculated_Forecast] a"
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-    Public Property Data As DataSet
-        Get
-            Return _Data
-        End Get
-        Set
-            _Data = Value
-        End Set
-    End Property
-
-    Public Function getHeader() As String
-        Try
-            Return "SELECT a.[ID]
-            ,a.[Tahun]
-            ,a.[invtid] [Inventory ID]
-            ,a.[descr] [Description]
-            ,a.[Semester]
-            ,(SELECT SUM(Jan_qty + feb_qty + mar_qty + apr_qty+mei_qty+jun_qty+jul_qty+agt_qty+sep_qty+okt_qty+nov_qty+des_qty)
-                from calculated_Forecast_detail where id = a.id) as TotalQty
-            ,(SELECT SUM(Jan_po + feb_po + mar_po + apr_po+mei_po+jun_po+jul_po+agt_po+sep_po+okt_po+nov_po+des_po)
-                from calculated_Forecast_detail where id = a.id) as TotalPO
-            FROM [calculated_Forecast] a"
-
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function getDetails() As String
-        Try
-            Return "SELECT * From calculated_Forecast_detail"
-
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
 #End Region
 
 End Class
