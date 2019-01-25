@@ -136,10 +136,12 @@ Public Class frmBoM_detail1
                     _txtAllowance.Text = .Allowance.ToString
                     _txtMan.Text = .MP
                     _cmbStatus.Text = .Status
-                    If .Active = True Then
-                        _cmbAktif.Text = "Aktif"
+                    If .Active = 1 Then
+                        _cmbAktif.Text = "Inhouse"
+                    ElseIf .Active = 0 Then
+                        _cmbAktif.Text = "Subcon"
                     Else
-                        _cmbAktif.Text = "Tidak Aktif"
+                        _cmbAktif.Text = "Discontinue"
                     End If
                     _cmbStatus.Focus()
                 End With
@@ -156,7 +158,7 @@ Public Class frmBoM_detail1
                 _txtMan.Text = "0"
                 _txtAllowance.Text = "0"
                 _txtDesc.Text = ""
-                _cmbAktif.Text = "Aktif"
+                _cmbAktif.SelectedIndex = 0
                 _cmbStatus.Focus()
             End If
             If gh_Common.Group <> "NPD" AndAlso gh_Common.Group <> "COSTING" AndAlso gh_Common.Group <> "Administrator" Then
@@ -484,10 +486,12 @@ Public Class frmBoM_detail1
                     .Allowance = _txtAllowance.Text.Trim
                     .MP = _txtMan.Text
                     .Status = _cmbStatus.Text.Trim
-                    If _cmbAktif.Text = "Aktif" Then
-                        .Active = True
+                    If _cmbAktif.Text = "Inhouse" Then
+                        .Active = 1
+                    ElseIf _cmbAktif.Text = "Subcon" Then
+                        .Active = 0
                     Else
-                        .Active = False
+                        .Active = 2
                     End If
 
 

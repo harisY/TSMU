@@ -110,12 +110,12 @@ Public Class clsBoMTrans
             _status = value
         End Set
     End Property
-    Private _active As Boolean
-    Public Property Active() As Boolean
+    Private _active As Integer
+    Public Property Active() As Integer
         Get
             Return _active
         End Get
-        Set(ByVal value As Boolean)
+        Set(ByVal value As Integer)
             _active = value
         End Set
     End Property

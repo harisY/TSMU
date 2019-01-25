@@ -19,7 +19,7 @@ Public Class FrmSuratJalanFin
 
     End Sub
     Private Sub FrmSuratJalanFin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadGrid(True)
+        'LoadGrid(True)
         Call Proc_EnableButtons(True, True, False, True, True, False, False, False, False, False)
     End Sub
 
@@ -30,7 +30,13 @@ Public Class FrmSuratJalanFin
             dt = ObjSj.GetSJbyNoTran(IsLoad)
             _Grid1.DataSource = dt
 
+            'Dim unbColumn As GridColumn = GridView2.Columns.AddField("ID")
+            'unbColumn.VisibleIndex = GridView2.Columns.Count
+            'unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal
+            'unbColumn.Visible = True
 
+            '' Disable editing.
+            'unbColumn.OptionsColumn.AllowEdit = False
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -112,5 +118,106 @@ Public Class FrmSuratJalanFin
 
     Private Sub FrmSuratJalanFin_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         _TxtNo.Focus()
+    End Sub
+    Dim sj() As String
+    Dim TempSJ As New List(Of String)
+    Dim TempYIM As New List(Of String)
+    Private Sub _TxtNoSJ_KeyDown(sender As Object, e As KeyEventArgs) Handles _TxtNoSJ.KeyDown
+
+        Try
+            If e.KeyCode = Keys.Enter Then
+                Dim dt As DataTable
+                Dim Result As DataTable = New DataTable
+                dt = New DataTable
+
+                dt = _Grid1.DataSource
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    If dt.Rows(i).Item("No Surat Jalan").ToString = _TxtNoSJ.Text Then
+                        XtraMessageBox.Show("Data ketemu")
+                        GridView2.FocusedRowHandle = i
+                        TempSJ.Add(_TxtNoSJ.Text)
+                    End If
+                Next
+                'Dim dv As DataView = New DataView(dt)
+                'dv.RowFilter = "ShipperID = '" & _TxtNoSJ.Text & "'"
+                'Result = dv.ToTable
+                'If Result.Rows.Count > 0 Then
+
+                'End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GridView2_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView2.RowStyle
+        Try
+            Dim View As GridView = sender
+            If (e.RowHandle >= 0) Then
+                Dim category As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("No Surat Jalan"))
+                Dim array2() As String = TempSJ.ToArray
+                For Each sj As String In array2
+                    If category = sj Then
+                        e.Appearance.BackColor = Color.LightBlue
+                        e.Appearance.BackColor2 = Color.SeaShell
+                        e.HighPriority = True
+                    End If
+                Next
+
+                Dim YIM As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("SR YIM"))
+                Dim arrayYIM() As String = TempYIM.ToArray
+                For Each ym As String In arrayYIM
+                    If YIM = ym Then
+                        e.Appearance.BackColor = Color.LightBlue
+                        e.Appearance.BackColor2 = Color.SeaShell
+                        e.HighPriority = True
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    'Private Sub GridView2_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles GridView2.CustomUnboundColumnData
+    '    Dim View As GridView = sender
+    '    If e.Column.FieldName = "ID" Then
+    '        Dim category As String = View.GetRowCellDisplayText(e.ListSourceRowIndex, View.Columns("No Surat Jalan"))
+    '        Dim array2() As String = TempSJ.ToArray
+    '        For Each sj As String In array2
+    '            If category = sj Then
+    '                e.Value = 1
+    '            Else
+    '                e.Value = 2
+    '            End If
+    '        Next
+    '    End If
+    'End Sub
+
+    Private Sub _TxtYiM_KeyDown(sender As Object, e As KeyEventArgs) Handles _TxtYiM.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                Dim dt As DataTable
+                Dim Result As DataTable = New DataTable
+                dt = New DataTable
+
+                dt = _Grid1.DataSource
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    If dt.Rows(i).Item("SR YIM").ToString = _TxtYiM.Text Then
+                        'XtraMessageBox.Show("Data ketemu")
+                        GridView2.FocusedRowHandle = i
+                        TempYIM.Add(_TxtYiM.Text)
+                    End If
+                Next
+                'Dim dv As DataView = New DataView(dt)
+                'dv.RowFilter = "ShipperID = '" & _TxtNoSJ.Text & "'"
+                'Result = dv.ToTable
+                'If Result.Rows.Count > 0 Then
+
+                'End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
     End Sub
 End Class

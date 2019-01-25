@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\Payment\Cls_barcode.vb" />
     <Compile Include="Classes\Payment\Cls_FP.vb" />
     <Compile Include="Classes\Payment\Cls_Payment.vb" />
@@ -238,10 +239,28 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmSalesForecast_calculated.Designer.vb">
+      <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSalesForecast_calculated.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmBom_Budget_Calculate.Designer.vb">
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmBom_Budget_Calculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmSales_ForecastPrice.Designer.vb">
+      <DependentUpon>frmSales_ForecastPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSales_ForecastPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmSales_ForecastPrice_details.Designer.vb">
+      <DependentUpon>frmSales_ForecastPrice_details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSales_ForecastPrice_details.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmWorkCenter_detail.Designer.vb">
@@ -466,6 +485,12 @@
     <Compile Include="Form\Report\FrmReport_Matome.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Sales_Forecast_Price.Designer.vb">
+      <DependentUpon>frmReport_Sales_Forecast_Price.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Sales_Forecast_Price.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Sales_Forecast.Designer.vb">
       <DependentUpon>frmReport_Sales_Forecast.vb</DependentUpon>
     </Compile>
@@ -518,6 +543,12 @@
       <DependentUpon>FrmSystemLookUpCalculate.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\System\FrmSystemLookUpCalculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemLookUpCalculateBudget.Designer.vb">
+      <DependentUpon>FrmSystemLookUpCalculateBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemLookUpCalculateBudget.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\FrmSystemLookUpCalculateSales.Designer.vb">
@@ -600,12 +631,14 @@
     </Compile>
     <Compile Include="Models\barcode_models.vb" />
     <Compile Include="Models\batch.vb" />
+    <Compile Include="Models\forecast_price_models.vb" />
     <Compile Include="Models\fp_details_models.vb" />
     <Compile Include="Models\fp_header_models.vb" />
     <Compile Include="Models\fp_pph_detail_models.vb" />
     <Compile Include="Models\fp_pph_header_models.vb" />
     <Compile Include="Models\fp_pph_transaction_models.vb" />
     <Compile Include="Models\fp_transaction_models.vb" />
+    <Compile Include="Models\global_function_models.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
@@ -794,8 +827,17 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSalesForecast_calculated.resx">
+      <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBom_Budget_Calculate.resx">
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSales_ForecastPrice.resx">
+      <DependentUpon>frmSales_ForecastPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSales_ForecastPrice_details.resx">
+      <DependentUpon>frmSales_ForecastPrice_details.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmWorkCenter_detail.resx">
       <DependentUpon>frmWorkCenter_detail.vb</DependentUpon>
@@ -909,6 +951,9 @@
     <EmbeddedResource Include="Form\Report\FrmReport_Matome.resx">
       <DependentUpon>FrmReport_Matome.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Sales_Forecast_Price.resx">
+      <DependentUpon>frmReport_Sales_Forecast_Price.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Sales_Forecast.resx">
       <DependentUpon>frmReport_Sales_Forecast.vb</DependentUpon>
     </EmbeddedResource>
@@ -935,6 +980,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystemLookUpCalculate.resx">
       <DependentUpon>FrmSystemLookUpCalculate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystemLookUpCalculateBudget.resx">
+      <DependentUpon>FrmSystemLookUpCalculateBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystemLookUpCalculateSales.resx">
       <DependentUpon>FrmSystemLookUpCalculateSales.vb</DependentUpon>

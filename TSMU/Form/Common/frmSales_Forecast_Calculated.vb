@@ -1,6 +1,7 @@
 ﻿Public Class frmSales_Forecast_Calculated
     Dim dtGrid As DataTable
-    Dim _calculate As New clsSalesForecastCalculate
+    'Dim _calculate As New clsSalesForecastCalculate
+    Dim ObjBomCalculate As New clsSalesForecastCalculate
 
     Private Sub frmBoM_Calculated_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ProgressBar1.Visible = False
@@ -9,101 +10,105 @@
     End Sub
 
     Dim dataTB As DataTable
-    Private Sub FillHeader_fdtlConfig()
+    Private Sub FillHeader_fdtlConfig1()
         dataTB = New DataTable
-        dataTB.Columns.Add("Bom ID")
         dataTB.Columns.Add("Level 0")
         dataTB.Columns.Add("Level 1")
         dataTB.Columns.Add("Level 2")
         dataTB.Columns.Add("Level 3")
         dataTB.Columns.Add("Level 4")
+        dataTB.Columns.Add("Level 5")
+        dataTB.Columns.Add("Level 6")
+        dataTB.Columns.Add("Level 7")
         dataTB.Columns.Add("Description")
         dataTB.Columns.Add("Qty")
         dataTB.Columns.Add("Unit")
         dataTB.Clear()
     End Sub
 
-    Public Enum IndexCol As Byte
-        bomid = 0
-        Level0 = 1
-        Level1 = 2
-        Level2 = 3
-        Level3 = 4
-        Level4 = 5
-        desc = 6
-        qty = 7
-        unit = 8
+    Public Enum IndexCol1 As Byte
+        Level0 = 0
+        Level1 = 1
+        Level2 = 2
+        Level3 = 3
+        Level4 = 4
+        Level5 = 5
+        Level6 = 6
+        Level7 = 7
+        desc = 8
+        qty = 9
+        unit = 10
     End Enum
 
     Private Sub LoadData()
         Try
-            Dim dtHeader As DataTable = _calculate.level0("")
+            Dim dt As New DataTable
+            dt = ObjBomCalculate.GetBomToCalculate
+            FillHeader_fdtlConfig1()
 
-            If dtHeader Is Nothing Then
-                Exit Sub
-            End If
-            Call FillHeader_fdtlConfig()
-            For i As Integer = 0 To dtHeader.Rows.Count - 1
-                dataTB.Rows.Add()
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.bomid) = Trim(dtHeader.Rows(i).Item("bomid") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level0) = Trim(dtHeader.Rows(i).Item("Level0") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level1) = Trim(dtHeader.Rows(i).Item("Level1") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level2) = Trim(dtHeader.Rows(i).Item("Level2") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level3) = Trim(dtHeader.Rows(i).Item("Level3") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level4) = Trim(dtHeader.Rows(i).Item("Level4") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.desc) = Trim(dtHeader.Rows(i).Item("descr") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.qty) = Trim(dtHeader.Rows(i).Item("qty") & "")
-                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.unit) = Trim(dtHeader.Rows(i).Item("unit") & "")
-
-                'LEVEL 1
-                Dim level1 As New DataTable
-                level1 = _calculate.level1(Trim(dtHeader.Rows(i).Item(IndexCol.bomid)))
-                For j As Integer = 0 To level1.Rows.Count - 1
+            For i As Integer = 0 To dt.Rows.Count - 1
+                If dt.Rows(i)(0).ToString = "Level 0" Then
                     dataTB.Rows.Add()
-                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level1) = Trim(level1.Rows(j).Item("Level1") & "")
-                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.desc) = Trim(level1.Rows(j).Item("descr") & "")
-                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.qty) = Trim(level1.Rows(j).Item("qty") & "")
-                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.unit) = Trim(level1.Rows(j).Item("unit") & "")
-                    'LEVEL 2
-                    Dim level2 As New DataTable
-                    level2 = _calculate.level2(Trim(level1.Rows(j).Item(IndexCol.Level1)))
-                    For k As Integer = 0 To level2.Rows.Count - 1
-                        dataTB.Rows.Add()
-                        dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level2) = Trim(level2.Rows(k).Item("Level2") & "")
-                        dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.desc) = Trim(level2.Rows(k).Item("descr") & "")
-                        dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.qty) = Trim(level2.Rows(k).Item("qty") & "")
-                        dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.unit) = Trim(level2.Rows(k).Item("unit") & "")
-
-                        'LEVEL 3
-                        Dim level3 As New DataTable
-                        level3 = _calculate.level3(Trim(level2.Rows(k).Item(IndexCol.Level2)))
-                        For l As Integer = 0 To level3.Rows.Count - 1
-                            dataTB.Rows.Add()
-                            dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level3) = Trim(level3.Rows(l).Item("Level3") & "")
-                            dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.desc) = Trim(level3.Rows(l).Item("descr") & "")
-                            dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.qty) = Trim(level3.Rows(l).Item("qty") & "")
-                            dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.unit) = Trim(level3.Rows(l).Item("unit") & "")
-
-                            'LEVEL 4
-                            Dim level4 As New DataTable
-                            level4 = _calculate.level4(Trim(level3.Rows(l).Item(IndexCol.Level3)))
-                            For m As Integer = 0 To level4.Rows.Count - 1
-                                dataTB.Rows.Add()
-                                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.Level3) = Trim(level4.Rows(m).Item("Level4") & "")
-                                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.desc) = Trim(level4.Rows(m).Item("descr") & "")
-                                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.qty) = Trim(level4.Rows(m).Item("qty") & "")
-                                dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol.unit) = Trim(level4.Rows(m).Item("unit") & "")
-
-                            Next
-                        Next
-                    Next
-                Next
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level0) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 1" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level1) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 2" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level2) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 3" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level3) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 4" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level4) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 5" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level5) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 6" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level6) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
+                If dt.Rows(i)(0).ToString = "Level 7" Then
+                    dataTB.Rows.Add()
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.Level7) = Trim(dt.Rows(i).Item("invtid") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.desc) = Trim(dt.Rows(i).Item("descr") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.qty) = Trim(dt.Rows(i).Item("qty") & "")
+                    dataTB.Rows(dataTB.Rows.Count - 1).Item(IndexCol1.unit) = Trim(dt.Rows(i).Item("unit") & "")
+                End If
             Next
             setDataSource(dataTB)
-            'Grid.DataSource = dataTB
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
         End Try
     End Sub
 

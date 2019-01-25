@@ -177,7 +177,7 @@ Partial Class frmBoM_detail1
         '_cmbAktif
         '
         Me._cmbAktif.FormattingEnabled = True
-        Me._cmbAktif.Items.AddRange(New Object() {"Aktif", "Tidak Aktif"})
+        Me._cmbAktif.Items.AddRange(New Object() {"Inhouse", "Subcon", "Discontinue"})
         Me._cmbAktif.Location = New System.Drawing.Point(1060, 84)
         Me._cmbAktif.Name = "_cmbAktif"
         Me._cmbAktif.Size = New System.Drawing.Size(121, 21)
@@ -213,9 +213,9 @@ Partial Class frmBoM_detail1
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(996, 86)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(45, 13)
+        Me.Label11.Size = New System.Drawing.Size(37, 13)
         Me.Label11.TabIndex = 21
-        Me.Label11.Text = "IsActive"
+        Me.Label11.Text = "Status"
         '
         '_cmbStatus
         '
@@ -231,9 +231,9 @@ Partial Class frmBoM_detail1
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(19, 7)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(37, 13)
+        Me.Label10.Size = New System.Drawing.Size(31, 13)
         Me.Label10.TabIndex = 18
-        Me.Label10.Text = "Status"
+        Me.Label10.Text = "Jenis"
         '
         '_txtAllowance
         '

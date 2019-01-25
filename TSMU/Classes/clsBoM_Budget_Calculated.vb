@@ -123,12 +123,11 @@ Public Class clsBoM_Budget_Calculated
             Dim ls_SP As String =
             "SELECT a.[ID]
             ,a.[Tahun]
-            ,a.[bomId] [BoM ID]
             ,a.[invtid] [Inventory ID]
             ,a.[descr] [Description]
             ,a.[Semester]
             ,(SELECT SUM(Jan_qty + feb_qty + mar_qty + apr_qty+mei_qty+jun_qty+jul_qty+agust_qty+sep_qty+okt_qty+nov_qty+des_qty)
-            from calculated_bom_detail where bomId = a.bomId) as TOTAL
+            from calculated_bom_detail where id = a.id) as TOTAL
             FROM [calculated_bom] a"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)

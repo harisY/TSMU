@@ -19,6 +19,7 @@ Partial Public Class PrintPO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PrintPO))
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
@@ -68,7 +69,7 @@ Partial Public Class PrintPO
         Me.DetailData3_Odd = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaptionBackground3 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource()
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +86,7 @@ Partial Public Class PrintPO
         '
         'XrLabel4
         '
-        Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "No Surat Jalan")})
+        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumRecordNumber([No Surat Jalan])")})
         Me.XrLabel4.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrLabel4.ForeColor = System.Drawing.Color.Black
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(16.00011!, 0!)
@@ -95,7 +96,6 @@ Partial Public Class PrintPO
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseForeColor = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
-        XrSummary1.Func = DevExpress.XtraReports.UI.SummaryFunc.RecordNumber
         XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
         Me.XrLabel4.Summary = XrSummary1
         Me.XrLabel4.Text = "No"
@@ -118,7 +118,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell12
         '
-        Me.XrTableCell12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "No Surat Jalan")})
+        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[No Surat Jalan]")})
         Me.XrTableCell12.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell12.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell12.Name = "XrTableCell12"
@@ -132,7 +132,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Customer")})
+        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Customer]")})
         Me.XrTableCell13.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell13.Name = "XrTableCell13"
@@ -146,7 +146,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell15
         '
-        Me.XrTableCell15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "PO Customer")})
+        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PO Customer]")})
         Me.XrTableCell15.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell15.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell15.Name = "XrTableCell15"
@@ -160,7 +160,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell16
         '
-        Me.XrTableCell16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal SJ", "{0:dd-MM-yyyy HH:mm}")})
+        Me.XrTableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tanggal SJ]")})
         Me.XrTableCell16.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell16.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell16.Name = "XrTableCell16"
@@ -170,11 +170,12 @@ Partial Public Class PrintPO
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.Text = "XrTableCell16"
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell16.TextFormatString = "{0:dd-MM-yyyy HH:mm}"
         Me.XrTableCell16.Weight = 0.17125972536171147R
         '
         'XrTableCell17
         '
-        Me.XrTableCell17.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Terima", "{0:dd-MM-yyyy HH:mm}")})
+        Me.XrTableCell17.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tanggal Terima]")})
         Me.XrTableCell17.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell17.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell17.Name = "XrTableCell17"
@@ -184,11 +185,12 @@ Partial Public Class PrintPO
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.Text = "XrTableCell17"
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell17.TextFormatString = "{0:dd-MM-yyyy HH:mm}"
         Me.XrTableCell17.Weight = 0.15453625501477897R
         '
         'XrTableCell19
         '
-        Me.XrTableCell19.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "SR YIM")})
+        Me.XrTableCell19.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SR YIM]")})
         Me.XrTableCell19.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell19.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell19.Name = "XrTableCell19"
@@ -202,7 +204,7 @@ Partial Public Class PrintPO
         '
         'XrTableCell22
         '
-        Me.XrTableCell22.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Batch Issue")})
+        Me.XrTableCell22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Batch Issue]")})
         Me.XrTableCell22.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
         Me.XrTableCell22.ForeColor = System.Drawing.Color.Black
         Me.XrTableCell22.Name = "XrTableCell22"
@@ -289,7 +291,6 @@ Partial Public Class PrintPO
         'XrPageInfo2
         '
         Me.XrPageInfo2.Font = New System.Drawing.Font("Arial Narrow", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrPageInfo2.Format = "Page {0} of {1}"
         Me.XrPageInfo2.LocationFloat = New DevExpress.Utils.PointFloat(489.5576!, 68.00003!)
         Me.XrPageInfo2.Name = "XrPageInfo2"
         Me.XrPageInfo2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -297,6 +298,7 @@ Partial Public Class PrintPO
         Me.XrPageInfo2.StyleName = "PageInfo"
         Me.XrPageInfo2.StylePriority.UseFont = False
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrPageInfo2.TextFormatString = "Page {0} of {1}"
         '
         'XrLabel11
         '
@@ -336,7 +338,7 @@ Partial Public Class PrintPO
         '
         'XrLabel14
         '
-        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Tanggal Kirim")})
+        Me.XrLabel14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tanggal Kirim]")})
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(608.0297!, 107.2918!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -624,7 +626,7 @@ Partial Public Class PrintPO
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.ShowPrintMarginsWarning = False
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption3, Me.DetailData3, Me.DetailData3_Odd, Me.DetailCaptionBackground3, Me.PageInfo})
-        Me.Version = "17.1"
+        Me.Version = "17.2"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).EndInit()
