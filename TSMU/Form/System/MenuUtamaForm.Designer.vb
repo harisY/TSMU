@@ -37,6 +37,9 @@ Partial Class MenuUtamaForm
         Me.PriceTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuSetting = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsReport = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstax = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstaxtransaction = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tstaxreport = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsPayment = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsTransaction = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsReport1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,9 +57,6 @@ Partial Class MenuUtamaForm
         Me.LblLogin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.tstax = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tstaxtransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tstaxreport = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -123,19 +123,19 @@ Partial Class MenuUtamaForm
         'BudgetTSM
         '
         Me.BudgetTSM.Name = "BudgetTSM"
-        Me.BudgetTSM.Size = New System.Drawing.Size(180, 22)
+        Me.BudgetTSM.Size = New System.Drawing.Size(121, 22)
         Me.BudgetTSM.Text = "Budget"
         '
         'ForecastTSM
         '
         Me.ForecastTSM.Name = "ForecastTSM"
-        Me.ForecastTSM.Size = New System.Drawing.Size(180, 22)
+        Me.ForecastTSM.Size = New System.Drawing.Size(121, 22)
         Me.ForecastTSM.Text = "Forecast"
         '
         'PriceTSM
         '
         Me.PriceTSM.Name = "PriceTSM"
-        Me.PriceTSM.Size = New System.Drawing.Size(180, 22)
+        Me.PriceTSM.Size = New System.Drawing.Size(121, 22)
         Me.PriceTSM.Text = "Price"
         '
         'tsMenuSetting
@@ -152,6 +152,25 @@ Partial Class MenuUtamaForm
         Me.tsReport.Size = New System.Drawing.Size(56, 20)
         Me.tsReport.Text = "Report"
         '
+        'tstax
+        '
+        Me.tstax.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tstaxtransaction, Me.tstaxreport})
+        Me.tstax.Name = "tstax"
+        Me.tstax.Size = New System.Drawing.Size(36, 20)
+        Me.tstax.Text = "Tax"
+        '
+        'tstaxtransaction
+        '
+        Me.tstaxtransaction.Name = "tstaxtransaction"
+        Me.tstaxtransaction.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxtransaction.Text = "Transaction"
+        '
+        'tstaxreport
+        '
+        Me.tstaxreport.Name = "tstaxreport"
+        Me.tstaxreport.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxreport.Text = "Report"
+        '
         'tsPayment
         '
         Me.tsPayment.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsTransaction, Me.tsReport1})
@@ -162,13 +181,13 @@ Partial Class MenuUtamaForm
         'tsTransaction
         '
         Me.tsTransaction.Name = "tsTransaction"
-        Me.tsTransaction.Size = New System.Drawing.Size(180, 22)
+        Me.tsTransaction.Size = New System.Drawing.Size(135, 22)
         Me.tsTransaction.Text = "Transaction"
         '
         'tsReport1
         '
         Me.tsReport1.Name = "tsReport1"
-        Me.tsReport1.Size = New System.Drawing.Size(180, 22)
+        Me.tsReport1.Size = New System.Drawing.Size(135, 22)
         Me.tsReport1.Text = "Report"
         '
         'SJtsb
@@ -181,13 +200,13 @@ Partial Class MenuUtamaForm
         'WHJtsb
         '
         Me.WHJtsb.Name = "WHJtsb"
-        Me.WHJtsb.Size = New System.Drawing.Size(180, 22)
+        Me.WHJtsb.Size = New System.Drawing.Size(115, 22)
         Me.WHJtsb.Text = "WHJ"
         '
         'Fintsb
         '
         Me.Fintsb.Name = "Fintsb"
-        Me.Fintsb.Size = New System.Drawing.Size(180, 22)
+        Me.Fintsb.Size = New System.Drawing.Size(115, 22)
         Me.Fintsb.Text = "Finance"
         '
         'WindowsMenu
@@ -201,7 +220,7 @@ Partial Class MenuUtamaForm
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.CloseAllToolStripMenuItem.Text = "C&lose All"
         '
         'HelpMenu
@@ -260,29 +279,12 @@ Partial Class MenuUtamaForm
         Me.lblGroup.Size = New System.Drawing.Size(66, 17)
         Me.lblGroup.Text = "User Group"
         '
-        'tstax
-        '
-        Me.tstax.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tstaxtransaction, Me.tstaxreport})
-        Me.tstax.Name = "tstax"
-        Me.tstax.Size = New System.Drawing.Size(36, 20)
-        Me.tstax.Text = "Tax"
-        '
-        'tstaxtransaction
-        '
-        Me.tstaxtransaction.Name = "tstaxtransaction"
-        Me.tstaxtransaction.Size = New System.Drawing.Size(180, 22)
-        Me.tstaxtransaction.Text = "Transaction"
-        '
-        'tstaxreport
-        '
-        Me.tstaxreport.Name = "tstaxreport"
-        Me.tstaxreport.Size = New System.Drawing.Size(180, 22)
-        Me.tstaxreport.Text = "Report"
-        '
         'MenuUtamaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = Global.TSMU.My.Resources.Resources._85585d27229af16
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(925, 453)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)

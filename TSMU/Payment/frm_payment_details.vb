@@ -91,7 +91,7 @@ Public Class frm_payment_details
                     _TxtToBank.Text = .bankrek
                     _TxtCM.Text = .CM_DM
                     _TxtCurrency.Text = .CuryID
-                    _TxtDebit.Text = Format((.Total_DPP_PPN + .PPh) - .PPh - .Biaya_Transfer - .CM_DM, "##,0")
+                    _TxtDebit.Text = Format((.Total_DPP_PPN + .PPh) - .PPh - .Biaya_Transfer - .CM_DM - .cmdm_manual, "##,0")
                     _TxtNoRek.Text = .norek
                     _TxtDpp.Text = Format(.Tot_DPP, "##,0")
                     _TxtTgl.Text = .tgl
@@ -99,7 +99,8 @@ Public Class frm_payment_details
                     _TxtPerpost.Text = ""
                     _TxtPPH.Text = Format(.PPh, "##,0")
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
-
+                    _txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
+                    _txtKetCMDMmanual.Text = Format(.cmdm_manual_ket, "##,0")
                 End With
             Else
                 _txtVoucher.Text = ""
@@ -122,6 +123,9 @@ Public Class frm_payment_details
                 _TxtPPH.Text = "0"
                 _TxtPPN.Text = "0"
                 _TxtPerpost.Focus()
+                _txtCMDMmanual.Text = "0"
+                _txtKetCMDMmanual.Text = ""
+
             End If
         Catch ex As Exception
             Throw
@@ -191,6 +195,8 @@ Public Class frm_payment_details
                     .VendID = _TxtVendorID.Text
                     .VendorName = _TxtVendorName.Text
                     .vrno = _txtVoucher.Text
+                    .cmdm_manual = _txtCMDMmanual.Text
+                    .cmdm_manual_ket = _txtKetCMDMmanual.Text
                 End With
             End If
         Catch ex As Exception
@@ -394,7 +400,7 @@ Public Class frm_payment_details
                 _TxtPPH.Text = Format(TotPPH, gs_FormatBulat)
             End If
 
-            _TxtDebit.Text = Format(TotAmount - TotPPH - Val(_TxtCM.Text) - Val(_TxtBiaya.Text), gs_FormatBulat)
+            _TxtDebit.Text = Format(TotAmount - TotPPH - Val(_TxtCM.Text) - Val(_txtCMDMmanual.Text) - Val(_TxtBiaya.Text), gs_FormatBulat)
         Catch ex As Exception
             Throw ex
         End Try
@@ -432,5 +438,6 @@ Public Class frm_payment_details
         End Try
 
     End Sub
+
 
 End Class

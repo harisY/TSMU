@@ -670,7 +670,6 @@ Partial Class frm_fp_details
         Me.GridColumn1.Caption = "Invoice No."
         Me.GridColumn1.FieldName = "invcNbr"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0

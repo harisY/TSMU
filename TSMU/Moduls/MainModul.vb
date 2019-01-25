@@ -59,15 +59,15 @@ Module MainModul
     Public MyForms As New Collection(Of Form)
 
     '# Server Instance...
-    Public gs_Database As String = ""
-    Public gs_DBServer As String = "SRV08"
+    Public gs_Database As String = "New_BoM"
+    Public gs_DBServer As String = "10.10.1.10"
     Public gs_DBAuthMode As String = "mixed"
     Public gs_DBUserName As String = "sa"
     Public gs_DBPassword As String = "Tsc2011"
     Public gs_DBPasswordDefault As String = "Tsc2011"
 
-    Public gs_Database1 As String = ""
-    Public gs_DBServer1 As String = "SRV08"
+    Public gs_Database1 As String = "Tsc16Application"
+    Public gs_DBServer1 As String = "10.10.1.10"
     Public gs_DBAuthMode1 As String = "mixed"
     Public gs_DBUserName1 As String = "sa"
     Public gs_DBPassword1 As String = "Tsc2011"
@@ -886,6 +886,49 @@ Module MainModul
             Throw
         End Try
     End Function
+
+    Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringSolomon()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dsa, dtTable)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
     Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
@@ -922,6 +965,47 @@ Module MainModul
             End If
             da = Nothing
             Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataTableByCommand_StoreP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringSolomon()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
         Catch ex As Exception
             Throw
         End Try
@@ -994,6 +1078,48 @@ Module MainModul
             Else
                 Using conn As New SqlClient.SqlConnection
                     conn.ConnectionString = GetConnString()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+    Public Function GetDataTableByCommand_sol(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringSolomon()
                     Dim cmd As New SqlCommand
                     cmd.CommandType = CommandType.Text
                     cmd.CommandText = pQuery
@@ -1180,6 +1306,49 @@ Module MainModul
             Throw
         End Try
     End Function
+
+    Public Function ExecQueryByCommandSolomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    If pConnStr <> "" Then
+                        Conn1.ConnectionString = pConnStr
+                    Else
+                        Conn1.ConnectionString = GetConnStringSolomon()
+                    End If
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
 
     Public Function ExecQueryByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
         Dim pRowAff As Integer = -1
