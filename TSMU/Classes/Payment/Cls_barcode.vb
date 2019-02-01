@@ -304,7 +304,7 @@ Public Class Cls_barcode
        ",'" & no & "'" & _
       ",'" & masapajak & "'" & _
       ",'" & tahunpajak & "') "
-            MainModul.ExecQueryByCommand_SP_Solomon(query)
+            MainModul.ExecQuery_Solomon(query)
 
         Catch ex As Exception
             Throw

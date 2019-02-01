@@ -27,6 +27,8 @@ Public Class payment_header_models
     Public Property VendorName As String
     Public Property vrno As String
     Public Property PerPost As String
+    Public Property cmdm_manual As String
+    Public Property cmdm_manual_ket As String
     Public Property ObjPaymentDetails() As New Collection(Of payment_detail_models)
     Public Property ObjBatch() As New Collection(Of batch)
     Public Function GetDataGrid() As DataTable

@@ -20,10 +20,14 @@ Partial Class FrmSuratJalanFin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me._TxtYiM = New DevExpress.XtraEditors.TextEdit()
+        Me._TxtNoSJ = New DevExpress.XtraEditors.TextEdit()
         Me._TxtNo = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me._Grid1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,12 +52,18 @@ Partial Class FrmSuratJalanFin
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCalcEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me._TxtAdm = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._TxtYiM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtNoSJ.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._Grid1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,10 +77,15 @@ Partial Class FrmSuratJalanFin
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtAdm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me._TxtAdm)
+        Me.LayoutControl1.Controls.Add(Me._TxtYiM)
+        Me.LayoutControl1.Controls.Add(Me._TxtNoSJ)
         Me.LayoutControl1.Controls.Add(Me._TxtNo)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
@@ -80,11 +95,27 @@ Partial Class FrmSuratJalanFin
         Me.LayoutControl1.TabIndex = 8
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        '_TxtYiM
+        '
+        Me._TxtYiM.Location = New System.Drawing.Point(498, 12)
+        Me._TxtYiM.Name = "_TxtYiM"
+        Me._TxtYiM.Size = New System.Drawing.Size(108, 20)
+        Me._TxtYiM.StyleController = Me.LayoutControl1
+        Me._TxtYiM.TabIndex = 6
+        '
+        '_TxtNoSJ
+        '
+        Me._TxtNoSJ.Location = New System.Drawing.Point(298, 12)
+        Me._TxtNoSJ.Name = "_TxtNoSJ"
+        Me._TxtNoSJ.Size = New System.Drawing.Size(108, 20)
+        Me._TxtNoSJ.StyleController = Me.LayoutControl1
+        Me._TxtNoSJ.TabIndex = 5
+        '
         '_TxtNo
         '
         Me._TxtNo.Location = New System.Drawing.Point(100, 12)
         Me._TxtNo.Name = "_TxtNo"
-        Me._TxtNo.Size = New System.Drawing.Size(172, 20)
+        Me._TxtNo.Size = New System.Drawing.Size(106, 20)
         Me._TxtNo.StyleController = Me.LayoutControl1
         Me._TxtNo.TabIndex = 4
         '
@@ -92,8 +123,7 @@ Partial Class FrmSuratJalanFin
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 49)
         Me.LayoutControlGroup1.TextVisible = False
@@ -101,9 +131,9 @@ Partial Class FrmSuratJalanFin
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(264, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(798, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(544, 29)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 29)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
@@ -111,9 +141,27 @@ Partial Class FrmSuratJalanFin
         Me.LayoutControlItem1.Control = Me._TxtNo
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(264, 29)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(198, 29)
         Me.LayoutControlItem1.Text = "No. Tanda Terima"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(85, 13)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me._TxtNoSJ
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(198, 0)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(200, 29)
+        Me.LayoutControlItem2.Text = "No. Surat Jalan"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(85, 13)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me._TxtYiM
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(398, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(200, 29)
+        Me.LayoutControlItem3.Text = "RS YIM"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 13)
         '
         '_Grid1
         '
@@ -341,6 +389,23 @@ Partial Class FrmSuratJalanFin
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         Me.RepositoryItemCheckEdit2.ValueGrayed = False
         '
+        '_TxtAdm
+        '
+        Me._TxtAdm.Location = New System.Drawing.Point(698, 12)
+        Me._TxtAdm.Name = "_TxtAdm"
+        Me._TxtAdm.Size = New System.Drawing.Size(108, 20)
+        Me._TxtAdm.StyleController = Me.LayoutControl1
+        Me._TxtAdm.TabIndex = 7
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me._TxtAdm
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(598, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(200, 29)
+        Me.LayoutControlItem4.Text = "ADM"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(85, 13)
+        '
         'FrmSuratJalanFin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -348,14 +413,19 @@ Partial Class FrmSuratJalanFin
         Me.Controls.Add(Me._Grid1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "FrmSuratJalanFin"
+        Me.Text = "...."
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me._Grid1, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._TxtYiM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtNoSJ.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._Grid1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -369,6 +439,8 @@ Partial Class FrmSuratJalanFin
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCalcEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtAdm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -402,4 +474,10 @@ Partial Class FrmSuratJalanFin
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents _TxtYiM As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents _TxtNoSJ As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _TxtAdm As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
 End Class

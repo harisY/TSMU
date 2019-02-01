@@ -33,7 +33,6 @@ Public Class frm_fp_details
 
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
@@ -680,4 +679,5 @@ Public Class frm_fp_details
     Private Sub BtnPPH1_EditValueChanged(sender As Object, e As EventArgs) Handles BtnPPH1.EditValueChanged
         _GridDetails.FocusedView.PostEditor()
     End Sub
+
 End Class

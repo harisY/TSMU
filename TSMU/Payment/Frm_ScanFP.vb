@@ -75,121 +75,121 @@ Public Class Frm_ScanFP
 
     Private Sub txtbarcode_LostFocus(sender As Object, e As EventArgs) Handles txtbarcode.LostFocus
 
-        If Not IsNew Then
-            Exit Sub
-        End If
-        ling = txtbarcode.Text
-        If ling = "" Then
-        Else
-            Dim xr As XmlReader = XmlReader.Create(ling)
-            Do While xr.Read()
-                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "kdJenisTransaksi" Then
-                    _kdJenisTransaksi.Text = xr.ReadElementString
-                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "fgPengganti" Then
-                        _fgPengganti.Text = xr.ReadElementString
-                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "nomorFaktur" Then
-                            _nomorFaktur.Text = xr.ReadElementString
-                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "tanggalFaktur" Then
-                                _tanggalFaktur.Text = xr.ReadElementString
-                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpPenjual" Then
-                                    _npwpPenjual.Text = xr.ReadElementString
-                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaPenjual" Then
-                                        _namaPenjual.Text = xr.ReadElementString
-                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatPenjual" Then
-                                            _alamatPenjual.Text = xr.ReadElementString
-                                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpLawanTransaksi" Then
-                                                _jumlahDpp.Text = xr.ReadElementString
-                                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaLawanTransaksi" Then
-                                                    _jumlahDpp.Text = xr.ReadElementString
-                                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatLawanTransaksi" Then
-                                                        _jumlahDpp.Text = xr.ReadElementString
-                                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahDpp" Then
-                                                            _jumlahDpp.Text = xr.ReadElementString
-                                                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpn" Then
-                                                                _jumlahPpn.Text = xr.ReadElementString
-                                                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpnBm" Then
-                                                                    _jumlahPpnBm.Text = xr.ReadElementString
-                                                                Else
-                                                                    xr.Read()
-                                                                End If
-                                                            End If
-                                                        End If
-                                                    End If
-                                                End If
-                                            End If
-                                        End If
-                                    End If
-                                End If
-                            End If
-                        End If
-                    End If
-                End If
-            Loop
-            ''TextBox5.Text = Month(TextBox7.Text)
-            _masapajak.Text = Mid(_tanggalFaktur.Text, 4, 2)
-            _tahunpajak.Text = Mid(_tanggalFaktur.Text, 7, 4)
-        End If
-        Label33.Visible = True
-        Label32.Visible = True
-        Label34.Visible = True
-        Label35.Visible = True
-        Label36.Visible = True
-        Label37.Visible = True
-        Label40.Visible = True
-        If _npwpPenjual.Text = "" Then 'Frm_fp._npwp.Text Then
-            Label33.Text = "√"
-            Label33.ForeColor = Color.Green
-        Else
-            Label33.Text = "X"
-            Label33.ForeColor = Color.Red
-        End If
-        If _namaPenjual.Text = "" Then ' Frm_fp._nama_vendor.Text Then
-            Label35.Text = "√"
-            Label35.ForeColor = Color.Green
-        Else
-            Label35.Text = "X"
-            Label35.ForeColor = Color.Red
-        End If
-        If _jumlahDpp.Text = "" Then 'Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value() Then
-            Label36.Text = "√"
-            Label36.ForeColor = Color.Green
-        Else
-            Label36.Text = "X"
-            Label36.ForeColor = Color.Red
-        End If
+        'If Not IsNew Then
+        '    Exit Sub
+        'End If
+        'ling = txtbarcode.Text
+        'If ling = "" Then
+        'Else
+        '    Dim xr As XmlReader = XmlReader.Create(ling)
+        '    Do While xr.Read()
+        '        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "kdJenisTransaksi" Then
+        '            _kdJenisTransaksi.Text = xr.ReadElementString
+        '            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "fgPengganti" Then
+        '                _fgPengganti.Text = xr.ReadElementString
+        '                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "nomorFaktur" Then
+        '                    _nomorFaktur.Text = xr.ReadElementString
+        '                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "tanggalFaktur" Then
+        '                        _tanggalFaktur.Text = xr.ReadElementString
+        '                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpPenjual" Then
+        '                            _npwpPenjual.Text = xr.ReadElementString
+        '                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaPenjual" Then
+        '                                _namaPenjual.Text = xr.ReadElementString
+        '                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatPenjual" Then
+        '                                    _alamatPenjual.Text = xr.ReadElementString
+        '                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpLawanTransaksi" Then
+        '                                        _jumlahDpp.Text = xr.ReadElementString
+        '                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaLawanTransaksi" Then
+        '                                            _jumlahDpp.Text = xr.ReadElementString
+        '                                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatLawanTransaksi" Then
+        '                                                _jumlahDpp.Text = xr.ReadElementString
+        '                                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahDpp" Then
+        '                                                    _jumlahDpp.Text = xr.ReadElementString
+        '                                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpn" Then
+        '                                                        _jumlahPpn.Text = xr.ReadElementString
+        '                                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpnBm" Then
+        '                                                            _jumlahPpnBm.Text = xr.ReadElementString
+        '                                                        Else
+        '                                                            xr.Read()
+        '                                                        End If
+        '                                                    End If
+        '                                                End If
+        '                                            End If
+        '                                        End If
+        '                                    End If
+        '                                End If
+        '                            End If
+        '                        End If
+        '                    End If
+        '                End If
+        '            End If
+        '        End If
+        '    Loop
+        '    ''TextBox5.Text = Month(TextBox7.Text)
+        '    _masapajak.Text = Mid(_tanggalFaktur.Text, 4, 2)
+        '    _tahunpajak.Text = Mid(_tanggalFaktur.Text, 7, 4)
+        'End If
+        'Label33.Visible = True
+        'Label32.Visible = True
+        'Label34.Visible = True
+        'Label35.Visible = True
+        'Label36.Visible = True
+        'Label37.Visible = True
+        'Label40.Visible = True
+        'If _npwpPenjual.Text = "" Then 'Frm_fp._npwp.Text Then
+        '    Label33.Text = "√"
+        '    Label33.ForeColor = Color.Green
+        'Else
+        '    Label33.Text = "X"
+        '    Label33.ForeColor = Color.Red
+        'End If
+        'If _namaPenjual.Text = "" Then ' Frm_fp._nama_vendor.Text Then
+        '    Label35.Text = "√"
+        '    Label35.ForeColor = Color.Green
+        'Else
+        '    Label35.Text = "X"
+        '    Label35.ForeColor = Color.Red
+        'End If
+        'If _jumlahDpp.Text = "" Then 'Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value() Then
+        '    Label36.Text = "√"
+        '    Label36.ForeColor = Color.Green
+        'Else
+        '    Label36.Text = "X"
+        '    Label36.ForeColor = Color.Red
+        'End If
 
-        If _nomorFaktur.Text = "" Then ' Mid(Replace(Replace(Frm_fp.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
-            Label34.Text = "√"
-            Label34.ForeColor = Color.Green
-        Else
-            Label34.Text = "X"
-            Label34.ForeColor = Color.Red
-        End If
+        'If _nomorFaktur.Text = "" Then ' Mid(Replace(Replace(Frm_fp.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
+        '    Label34.Text = "√"
+        '    Label34.ForeColor = Color.Green
+        'Else
+        '    Label34.Text = "X"
+        '    Label34.ForeColor = Color.Red
+        'End If
 
-        If _jumlahPpn.Text = "" Then ' Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value() Then
-            Label37.Text = "√"
-            Label37.ForeColor = Color.Green
-        Else
-            Label37.Text = "X"
-            Label37.ForeColor = Color.Red
-        End If
+        'If _jumlahPpn.Text = "" Then ' Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value() Then
+        '    Label37.Text = "√"
+        '    Label37.ForeColor = Color.Green
+        'Else
+        '    Label37.Text = "X"
+        '    Label37.ForeColor = Color.Red
+        'End If
 
-        _dpp_ppn.Text = Val(_jumlahDpp.Text) + Val(_jumlahPpn.Text)
-        Label1.Text = "" ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value())
-        If _dpp_ppn.Text = "" Then ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value()) Then
-            Label40.Text = "√"
-            Label40.ForeColor = Color.Green
-        Else
-            Label40.Text = "X"
-            Label40.ForeColor = Color.Red
-        End If
-        If Label33.Text = "√" And Label34.Text = "√" And Label35.Text = "√" And Label36.Text = "√" And Label37.Text = "√" And Label40.Text = "√" Then
-            Label32.Text = "Valid"
-            Label32.ForeColor = Color.Green
-        Else
-            Label32.Text = "Not Valid"
-            Label32.ForeColor = Color.Red
-        End If
+        '_dpp_ppn.Text = Val(_jumlahDpp.Text) + Val(_jumlahPpn.Text)
+        'Label1.Text = "" ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value())
+        'If _dpp_ppn.Text = "" Then ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value()) Then
+        '    Label40.Text = "√"
+        '    Label40.ForeColor = Color.Green
+        'Else
+        '    Label40.Text = "X"
+        '    Label40.ForeColor = Color.Red
+        'End If
+        'If Label33.Text = "√" And Label34.Text = "√" And Label35.Text = "√" And Label36.Text = "√" And Label37.Text = "√" And Label40.Text = "√" Then
+        '    Label32.Text = "Valid"
+        '    Label32.ForeColor = Color.Green
+        'Else
+        '    Label32.Text = "Not Valid"
+        '    Label32.ForeColor = Color.Red
+        'End If
     End Sub
 
 
@@ -218,5 +218,130 @@ Public Class Frm_ScanFP
 
     Private Sub _jumlahDpp_TextChanged(sender As Object, e As EventArgs) Handles _jumlahDpp.TextChanged
 
+    End Sub
+
+    Private Sub txtbarcode_KeyDown(sender As Object, e As KeyEventArgs) Handles txtbarcode.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                If Not IsNew Then
+                    Exit Sub
+                End If
+                ling = txtbarcode.Text
+                If ling = "" Then
+                Else
+                    Dim xr As XmlReader = XmlReader.Create(ling)
+                    Do While xr.Read()
+                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "kdJenisTransaksi" Then
+                            _kdJenisTransaksi.Text = xr.ReadElementString
+                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "fgPengganti" Then
+                                _fgPengganti.Text = xr.ReadElementString
+                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "nomorFaktur" Then
+                                    _nomorFaktur.Text = xr.ReadElementString
+                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "tanggalFaktur" Then
+                                        _tanggalFaktur.Text = xr.ReadElementString
+                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpPenjual" Then
+                                            _npwpPenjual.Text = xr.ReadElementString
+                                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaPenjual" Then
+                                                _namaPenjual.Text = xr.ReadElementString
+                                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatPenjual" Then
+                                                    _alamatPenjual.Text = xr.ReadElementString
+                                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "npwpLawanTransaksi" Then
+                                                        _jumlahDpp.Text = xr.ReadElementString
+                                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "namaLawanTransaksi" Then
+                                                            _jumlahDpp.Text = xr.ReadElementString
+                                                            If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "alamatLawanTransaksi" Then
+                                                                _jumlahDpp.Text = xr.ReadElementString
+                                                                If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahDpp" Then
+                                                                    _jumlahDpp.Text = xr.ReadElementString
+                                                                    If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpn" Then
+                                                                        _jumlahPpn.Text = xr.ReadElementString
+                                                                        If xr.NodeType = XmlNodeType.Element AndAlso xr.Name = "jumlahPpnBm" Then
+                                                                            _jumlahPpnBm.Text = xr.ReadElementString
+                                                                        Else
+                                                                            xr.Read()
+                                                                        End If
+                                                                    End If
+                                                                End If
+                                                            End If
+                                                        End If
+                                                    End If
+                                                End If
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        End If
+                    Loop
+                    ''TextBox5.Text = Month(TextBox7.Text)
+                    _masapajak.Text = Mid(_tanggalFaktur.Text, 4, 2)
+                    _tahunpajak.Text = Mid(_tanggalFaktur.Text, 7, 4)
+                End If
+                Label33.Visible = True
+                Label32.Visible = True
+                Label34.Visible = True
+                Label35.Visible = True
+                Label36.Visible = True
+                Label37.Visible = True
+                Label40.Visible = True
+                If _npwpPenjual.Text = "" Then 'Frm_fp._npwp.Text Then
+                    Label33.Text = "√"
+                    Label33.ForeColor = Color.Green
+                Else
+                    Label33.Text = "X"
+                    Label33.ForeColor = Color.Red
+                End If
+                If _namaPenjual.Text = "" Then ' Frm_fp._nama_vendor.Text Then
+                    Label35.Text = "√"
+                    Label35.ForeColor = Color.Green
+                Else
+                    Label35.Text = "X"
+                    Label35.ForeColor = Color.Red
+                End If
+                If _jumlahDpp.Text = "" Then 'Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value() Then
+                    Label36.Text = "√"
+                    Label36.ForeColor = Color.Green
+                Else
+                    Label36.Text = "X"
+                    Label36.ForeColor = Color.Red
+                End If
+
+                If _nomorFaktur.Text = "" Then ' Mid(Replace(Replace(Frm_fp.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
+                    Label34.Text = "√"
+                    Label34.ForeColor = Color.Green
+                Else
+                    Label34.Text = "X"
+                    Label34.ForeColor = Color.Red
+                End If
+
+                If _jumlahPpn.Text = "" Then ' Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value() Then
+                    Label37.Text = "√"
+                    Label37.ForeColor = Color.Green
+                Else
+                    Label37.Text = "X"
+                    Label37.ForeColor = Color.Red
+                End If
+
+                _dpp_ppn.Text = Val(_jumlahDpp.Text) + Val(_jumlahPpn.Text)
+                Label1.Text = "" ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value())
+                If _dpp_ppn.Text = "" Then ' Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value()) + Val(Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value()) Then
+                    Label40.Text = "√"
+                    Label40.ForeColor = Color.Green
+                Else
+                    Label40.Text = "X"
+                    Label40.ForeColor = Color.Red
+                End If
+                If Label33.Text = "√" And Label34.Text = "√" And Label35.Text = "√" And Label36.Text = "√" And Label37.Text = "√" And Label40.Text = "√" Then
+                    Label32.Text = "Valid"
+                    Label32.ForeColor = Color.Green
+                Else
+                    Label32.Text = "Not Valid"
+                    Label32.ForeColor = Color.Red
+                End If
+                SendKeys.Send("{TAB}")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class
