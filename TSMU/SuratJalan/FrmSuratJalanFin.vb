@@ -122,6 +122,7 @@ Public Class FrmSuratJalanFin
     Dim sj() As String
     Dim TempSJ As New List(Of String)
     Dim TempYIM As New List(Of String)
+    Dim TempADM As New List(Of String)
     Private Sub _TxtNoSJ_KeyDown(sender As Object, e As KeyEventArgs) Handles _TxtNoSJ.KeyDown
 
         Try
@@ -173,6 +174,16 @@ Public Class FrmSuratJalanFin
                         e.HighPriority = True
                     End If
                 Next
+
+                Dim ADM As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("PO Customer"))
+                Dim arrayADM() As String = TempADM.ToArray
+                For Each dm As String In arrayADM
+                    If ADM = dm Then
+                        e.Appearance.BackColor = Color.LightBlue
+                        e.Appearance.BackColor2 = Color.SeaShell
+                        e.HighPriority = True
+                    End If
+                Next
             End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
@@ -207,6 +218,33 @@ Public Class FrmSuratJalanFin
                         'XtraMessageBox.Show("Data ketemu")
                         GridView2.FocusedRowHandle = i
                         TempYIM.Add(_TxtYiM.Text)
+                    End If
+                Next
+                'Dim dv As DataView = New DataView(dt)
+                'dv.RowFilter = "ShipperID = '" & _TxtNoSJ.Text & "'"
+                'Result = dv.ToTable
+                'If Result.Rows.Count > 0 Then
+                SendKeys.Send("{TAB}")
+                'End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub _TxtAdm_KeyDown(sender As Object, e As KeyEventArgs) Handles _TxtAdm.KeyDown
+        Try
+            If e.KeyCode = Keys.Enter Then
+                Dim dt As DataTable
+                Dim Result As DataTable = New DataTable
+                dt = New DataTable
+
+                dt = _Grid1.DataSource
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    If dt.Rows(i).Item("PO Customer").ToString = _TxtAdm.Text Then
+                        'XtraMessageBox.Show("Data ketemu")
+                        GridView2.FocusedRowHandle = i
+                        TempADM.Add(_TxtAdm.Text)
                     End If
                 Next
                 'Dim dv As DataView = New DataView(dt)

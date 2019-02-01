@@ -252,7 +252,7 @@ Public Class clsSalesForecastCalculate
             Dim query As String =
                 "Delete 
                 from calculated_Forecast 
-                output deleted.bomid
+                output deleted.ID
                 where tahun=" & QVal(tahun) & " AND semester = " & QVal(semester) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(query)
@@ -315,7 +315,7 @@ Public Class clsSalesForecastCalculate
                 Dim query As String =
                 "   Delete 
                     FROM calculated_forecast_detail 
-                    WHERE bomid =" & row.Item("bomid") & ""
+                    WHERE ID =" & row.Item("ID") & ""
                 MainModul.ExecQuery(query)
             Next
 

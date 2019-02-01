@@ -780,7 +780,7 @@ Module MainModul
 #End Region
 
 #Region "SQLHelper Functions"
-    Public Function GetDataSet(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As DataSet
+    Public Function GetDataSet(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
         Try
@@ -804,7 +804,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDsReport(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
+    Public Function GetDsReport(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -825,7 +825,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDsReport_Solomon(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
+    Public Function GetDsReport_Solomon(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -846,7 +846,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDataSetByCommand_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
+    Public Function GetDataSetByCommand_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
         Try
@@ -887,7 +887,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As dsLaporan
+    Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
         Try
@@ -929,7 +929,7 @@ Module MainModul
     End Function
 
 
-    Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataSet
+    Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
         Try
@@ -970,7 +970,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function GetDataTableByCommand_StoreP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand_StoreP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1011,7 +1011,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function GetDataTable(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTable(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1059,7 +1059,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDataTableByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1101,7 +1101,7 @@ Module MainModul
     End Function
 
 
-    Public Function GetDataTableByCommand_sol(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand_sol(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1142,7 +1142,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function GetDataTableByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1182,7 +1182,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function GetDataTableByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 3000) As DataTable
+    Public Function GetDataTableByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
@@ -1222,7 +1222,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
@@ -1244,7 +1244,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function ExecQuery_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQuery_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
@@ -1266,7 +1266,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function ExecQueryByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQueryByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
@@ -1307,7 +1307,7 @@ Module MainModul
         End Try
     End Function
 
-    Public Function ExecQueryByCommandSolomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQueryByCommandSolomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
@@ -1350,7 +1350,7 @@ Module MainModul
 
 
 
-    Public Function ExecQueryByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQueryByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
@@ -1390,7 +1390,7 @@ Module MainModul
             Throw
         End Try
     End Function
-    Public Function ExecQueryByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 3000) As Integer
+    Public Function ExecQueryByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
