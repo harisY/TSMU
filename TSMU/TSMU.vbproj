@@ -240,6 +240,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmCalculate.Designer.vb">
+      <DependentUpon>frmCalculate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmCalculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSalesForecast_calculated.Designer.vb">
       <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
     </Compile>
@@ -833,6 +839,9 @@
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmCalculate.resx">
+      <DependentUpon>frmCalculate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSalesForecast_calculated.resx">
       <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>

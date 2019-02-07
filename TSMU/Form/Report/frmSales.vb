@@ -11,7 +11,7 @@
                 save.Filter = "Excel File|*.xls"
                 save.Title = "Save an Excel File"
                 If save.ShowDialog = DialogResult.OK Then
-                    Grid.ExportToXls(save.FileName)
+                    Grid.ExportToXlsx(save.FileName)
                 End If
                 'getPath()
                 '    Dim Filename As String = path & "\Forecast_.xls"

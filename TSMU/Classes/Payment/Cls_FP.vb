@@ -456,8 +456,7 @@ Public Class Cls_FP
 
     Public Function getalldataap_det3() As DataTable
         Try
-
-            query = "select no_invoice as NoinvcNbr, tgl_invoice as InvcDate,Jml_invoice as Amount,CuryID,PPN,DPP,PPh,No_Faktur as 'No. FP' from Fp_detail " & _
+            query = "select no_invoice as NoinvcNbr, tgl_invoice as InvcDate,Jml_invoice as Amount,CuryID,PPN,DPP,PPh,No_Faktur as 'No. FP' from Fp_detail " &
                    "WHERE FPNo='" & _Fp & "' "
 
             Dim dt As DataTable = New DataTable
@@ -468,28 +467,41 @@ Public Class Cls_FP
 
         End Try
     End Function
-    Public Function autonoFP() As String
+    Public Function autonoFP(bulan As String) As String
         Try
+            Dim _bulan As String
+            If Len(bulan) > 1 Then
+                _bulan = bulan
+            Else
+                _bulan = "0" & bulan
+            End If
             Dim auto As String
             Dim substring As String = _pph.Substring(4, 2)
-            query = "declare  @bulan varchar(4), @site varchar(7), @tahun varchar(4),@pasal varchar(2),@seq varchar(4)  " & _
-                "set @site = '" & _lokasi & "'" & _
-                "set @pasal = '" & substring & "'" & _
-                "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2)  " & _
-                "set @tahun = datepart(year,getdate())  " & _
-                "set @seq= (select right('0000'+cast(LEFT(rtrim(max(No_Bukti_Potong)),4)+1 as varchar),4)  " & _
-                "from Fp_pph_header " & _
-                "where FPNo!='" & voucno & "' AND right(No_Bukti_Potong,4) = RIGHT(@tahun,4) AND SUBSTRING(No_Bukti_Potong,6,7)=@site AND SUBSTRING(No_Bukti_Potong,17,2)=@pasal) " & _
+            'query = "declare  @bulan varchar(4), @site varchar(7), @tahun varchar(4),@pasal varchar(2),@seq varchar(4)  " &
+            '    "set @site = '" & _lokasi & "'" &
+            '    "set @pasal = '" & substring & "'" &
+            '    "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2)  " &
+            '    "set @tahun = datepart(year,getdate())  " &
+            '    "set @seq= (select right('0000'+cast(LEFT(rtrim(max(No_Bukti_Potong)),4)+1 as varchar),4)  " &
+            '    "from Fp_pph_header " &
+            '    "where FPNo!='" & voucno & "' AND right(No_Bukti_Potong,4) = RIGHT(@tahun,4) AND SUBSTRING(No_Bukti_Potong,6,7)=@site AND SUBSTRING(No_Bukti_Potong,17,2)=@pasal) " &
+            '    "select coalesce(@seq, '0001')+'/' + @site  +'/' +@bulan +'/' +@pasal +'/' + RIGHT(@tahun,4) "
+            query = "declare  @bulan varchar(4), @site varchar(7), @tahun varchar(4),@pasal varchar(2),@seq varchar(4)  " &
+                "set @site = '" & _lokasi & "'" &
+                "set @pasal = '" & substring & "'" &
+                "set @bulan = '" & _bulan & "' " &
+                "set @tahun = datepart(year,getdate())  " &
+                "set @seq= (select right('0000'+cast(LEFT(rtrim(max(No_Bukti_Potong)),4)+1 as varchar),4)  " &
+                "from Fp_pph_header " &
+                "where FPNo!='" & voucno & "' AND right(No_Bukti_Potong,4) = RIGHT(@tahun,4) AND SUBSTRING(No_Bukti_Potong,6,7)=@site AND SUBSTRING(No_Bukti_Potong,17,2)=@pasal) " &
                 "select coalesce(@seq, '0001')+'/' + @site  +'/' +@bulan +'/' +@pasal +'/' + RIGHT(@tahun,4) "
-
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString
             Return auto
 
         Catch ex As Exception
-            Throw
-
+            Throw ex
         End Try
     End Function
 
