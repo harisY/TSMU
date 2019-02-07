@@ -149,7 +149,6 @@ Partial Class frm_lookup_pph
         Me._TxtNilaiPPh.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtNilaiPPh.Properties.EditFormat.FormatString = "##,0"
         Me._TxtNilaiPPh.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtNilaiPPh.Properties.ReadOnly = True
         Me._TxtNilaiPPh.Size = New System.Drawing.Size(507, 20)
         Me._TxtNilaiPPh.StyleController = Me.LayoutControl1
         Me._TxtNilaiPPh.TabIndex = 17
@@ -168,7 +167,6 @@ Partial Class frm_lookup_pph
         '
         Me._TxtBulan.Location = New System.Drawing.Point(416, 132)
         Me._TxtBulan.Name = "_TxtBulan"
-        Me._TxtBulan.Properties.ReadOnly = True
         Me._TxtBulan.Size = New System.Drawing.Size(186, 20)
         Me._TxtBulan.StyleController = Me.LayoutControl1
         Me._TxtBulan.TabIndex = 14
@@ -236,7 +234,6 @@ Partial Class frm_lookup_pph
         Me._TxtDPP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtDPP.Properties.EditFormat.FormatString = "#,#.##"
         Me._TxtDPP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtDPP.Properties.ReadOnly = True
         Me._TxtDPP.Size = New System.Drawing.Size(507, 20)
         Me._TxtDPP.StyleController = Me.LayoutControl1
         Me._TxtDPP.TabIndex = 6

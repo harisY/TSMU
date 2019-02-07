@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ObjectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="SqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="Mizuho1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="Mizuho2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
-  </metadata>
+  <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlZpZXdVcGxvYWRNaXp1aG8iPjxGaWVsZCBOYW1lPSJyZWZfbm9fc3VwIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRha2FnaV9hY2N0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InJla19wdCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJwYXltZW50X21ldGhvZCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJjdXJ5aWQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ic3BfYW1vdW50IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRyYW5zX2Ftb3VudCIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJ2YWx1ZV9kYXRlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImJhbmtuYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImJyYW5jaCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJhZGRyZXNzIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFkZHJlc3MyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Im5vcmVrIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InB0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InB0MiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJhZGRyZXNzX3B0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFkZHJlc3NfcHQyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InNwYWNlX2tvc29uZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJiYW5rX2NoYXJnZXMiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYXBwbGljYW50X2FjY3QiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ic3BhY2Vfa29zb25nMiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJvdGhlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJvdGhlcjEiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ib3RoZXIyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Im90aGVyMyIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
 </root>

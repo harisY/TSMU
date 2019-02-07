@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Frm_Rpt_UploadMizuho
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,9 @@ Partial Class Frm_Rpt_UploadMizuho
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_UploadMizuho))
         Me.colGrand_Total1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -63,6 +63,10 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me._btnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.tsBtn_newData = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -83,6 +87,10 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
+        Me._btnUpload = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +107,13 @@ Partial Class Frm_Rpt_UploadMizuho
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'colGrand_Total1
@@ -194,6 +208,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridView4.GridControl = Me.GridControl3
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.Editable = False
+        Me.GridView4.OptionsFilter.AllowFilterEditor = False
         Me.GridView4.OptionsView.ColumnAutoWidth = False
         Me.GridView4.OptionsView.ShowGroupPanel = False
         '
@@ -299,9 +314,9 @@ Partial Class Frm_Rpt_UploadMizuho
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule1.Name = "Format0"
-        GridFormatRule1.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.Name = "Format0"
+        GridFormatRule2.Rule = Nothing
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -424,11 +439,51 @@ Partial Class Frm_Rpt_UploadMizuho
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(6, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(804, 554)
         Me.TabControl1.TabIndex = 9
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.GridControl1)
+        Me.TabPage2.Controls.Add(Me.PanelControl1)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(796, 528)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Mizuho Template"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelControl1.Controls.Add(Me._btnUpload)
+        Me.PanelControl1.Controls.Add(Me.TextBox1)
+        Me.PanelControl1.Controls.Add(Me._btnBrowse)
+        Me.PanelControl1.Location = New System.Drawing.Point(3, 6)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(787, 36)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(24, 5)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(199, 21)
+        Me.TextBox1.TabIndex = 1
+        '
+        '_btnBrowse
+        '
+        Me._btnBrowse.Location = New System.Drawing.Point(229, 5)
+        Me._btnBrowse.Name = "_btnBrowse"
+        Me._btnBrowse.Size = New System.Drawing.Size(75, 23)
+        Me._btnBrowse.TabIndex = 0
+        Me._btnBrowse.Text = "Browse"
         '
         'ToolStrip3
         '
@@ -592,6 +647,40 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
+        '_btnUpload
+        '
+        Me._btnUpload.Location = New System.Drawing.Point(310, 5)
+        Me._btnUpload.Name = "_btnUpload"
+        Me._btnUpload.Size = New System.Drawing.Size(75, 23)
+        Me._btnUpload.TabIndex = 2
+        Me._btnUpload.Text = "Upload"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl1.DataMember = Nothing
+        Me.GridControl1.Location = New System.Drawing.Point(2, 48)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(790, 474)
+        Me.GridControl1.TabIndex = 6
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView6})
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsFilter.AllowFilterEditor = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridView6
+        '
+        Me.GridView6.GridControl = Me.GridControl1
+        Me.GridView6.Name = "GridView6"
+        '
         'Frm_Rpt_UploadMizuho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -620,8 +709,15 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -686,4 +782,13 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents tsBtn_next As ToolStripButton
     Friend WithEvents Label3 As Label
     Friend WithEvents _totalchk As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents _btnBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents _btnUpload As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

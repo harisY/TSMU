@@ -36,6 +36,9 @@ Public Class frm_lookup_pph
     End Sub
     Private Sub frm_lookup_pph_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Initial()
+        'For i As Integer = 0 To GridView1.RowCount - 1
+        '    _TxtDPP.Text = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
+        'Next
     End Sub
 
     Private Sub loadGrid()
@@ -287,7 +290,7 @@ Public Class frm_lookup_pph
                 .tarif = _TxtTarif.Text
                 .lokasi = _TxtLokasi.Text
                 .voucno = _TxtVoucher.Text
-                _TxtNoBuktiPot.Text = .autonoFP
+                _TxtNoBuktiPot.Text = .autonoFP(_TxtBulan.Text)
                 '_TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
             End With
             'If Not IsNew Then
@@ -350,5 +353,15 @@ Public Class frm_lookup_pph
 
         MyBase.OnFormClosing(e)
         e.Cancel = Not ignoreCancel
+    End Sub
+
+    Private Sub Grid_TextChanged(sender As Object, e As EventArgs) Handles Grid.TextChanged
+        For i As Integer = 0 To GridView1.RowCount - 1
+            _TxtDPP.Text = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
+        Next
+    End Sub
+
+    Private Sub _TxtLokasi_TextChanged(sender As Object, e As EventArgs) Handles _TxtLokasi.TextChanged
+
     End Sub
 End Class

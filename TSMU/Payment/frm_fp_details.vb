@@ -680,4 +680,5 @@ Public Class frm_fp_details
         _GridDetails.FocusedView.PostEditor()
     End Sub
 
+
 End Class

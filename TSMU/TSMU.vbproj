@@ -63,6 +63,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.12.1.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -103,6 +106,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -118,6 +122,9 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -181,6 +188,13 @@
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
+    <Compile Include="Compare_Invoice\clscompare.vb" />
+    <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
+      <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\frmCompare_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -240,10 +254,10 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
-    <Compile Include="Form\Common\frmCalculate.Designer.vb">
-      <DependentUpon>frmCalculate.vb</DependentUpon>
+    <Compile Include="Form\Common\frmCompare_Invoice1.Designer.vb">
+      <DependentUpon>frmCompare_Invoice1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Common\frmCalculate.vb">
+    <Compile Include="Form\Common\frmCompare_Invoice1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmSalesForecast_calculated.Designer.vb">
@@ -798,6 +812,24 @@
     <Compile Include="Payment\ReportPayment\XtraReport1.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport2.Designer.vb">
+      <DependentUpon>XtraReport2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport3.Designer.vb">
+      <DependentUpon>XtraReport3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport4.Designer.vb">
+      <DependentUpon>XtraReport4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport4.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\PrintPO.Designer.vb">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </Compile>
@@ -833,6 +865,9 @@
     <None Include="dbml\BoM.dbml.layout">
       <DependentUpon>BoM.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="Compare_Invoice\frmCompare_Invoice.resx">
+      <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Delvi\frmDelvi.resx">
       <DependentUpon>frmDelvi.vb</DependentUpon>
     </EmbeddedResource>
@@ -840,8 +875,8 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Common\frmCalculate.resx">
-      <DependentUpon>frmCalculate.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Common\frmCompare_Invoice1.resx">
+      <DependentUpon>frmCompare_Invoice1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSalesForecast_calculated.resx">
       <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
@@ -1116,6 +1151,15 @@
     <EmbeddedResource Include="Payment\ReportPayment\XtraReport1.resx">
       <DependentUpon>XtraReport1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport2.resx">
+      <DependentUpon>XtraReport2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport3.resx">
+      <DependentUpon>XtraReport3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport4.resx">
+      <DependentUpon>XtraReport4.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </EmbeddedResource>
@@ -1261,6 +1305,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\Barcode2_16x16.png" />
   </ItemGroup>
   <ItemGroup>
