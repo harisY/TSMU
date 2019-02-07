@@ -76,10 +76,11 @@ Public Class frmReport_Sales_Forecast_Price
         Try
             If GridView1.RowCount > 0 Then
                 Dim save As New SaveFileDialog
-                save.Filter = "Excel File|*.xls"
+                save.Filter = "Excel File|*.xlsx"
                 save.Title = "Save an Excel File"
                 If save.ShowDialog = DialogResult.OK Then
-                    Grid.ExportToXls(save.FileName)
+                    Grid.ExportToXlsx(save.FileName)
+                    'Process.Start(save.FileName)
                 End If
                 'getPath()
                 '    Dim Filename As String = path & "\Forecast_.xls"

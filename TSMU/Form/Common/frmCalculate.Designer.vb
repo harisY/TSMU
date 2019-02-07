@@ -23,48 +23,50 @@ Partial Class frmCalculate
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.CmbSales = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.CmbBulan2 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.CmbBulan1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.CmbTahun = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.BtnProses = New System.Windows.Forms.ToolStripButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmbSales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmbBulan2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmbBulan1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        Me.ToolStrip2.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'XtraTabControl1
         '
+        Me.XtraTabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 28)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(835, 214)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(835, 128)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -72,7 +74,7 @@ Partial Class frmCalculate
         '
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(829, 186)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(829, 100)
         Me.XtraTabPage1.Text = "Filter Data"
         '
         'LayoutControl1
@@ -85,9 +87,46 @@ Partial Class frmCalculate
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(829, 186)
+        Me.LayoutControl1.Size = New System.Drawing.Size(829, 100)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'CmbSales
+        '
+        Me.CmbSales.Location = New System.Drawing.Point(45, 12)
+        Me.CmbSales.Name = "CmbSales"
+        Me.CmbSales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CmbSales.Properties.Items.AddRange(New Object() {"Forecast", "Budget"})
+        Me.CmbSales.Size = New System.Drawing.Size(258, 20)
+        Me.CmbSales.StyleController = Me.LayoutControl1
+        Me.CmbSales.TabIndex = 4
+        '
+        'CmbBulan2
+        '
+        Me.CmbBulan2.Location = New System.Drawing.Point(187, 60)
+        Me.CmbBulan2.Name = "CmbBulan2"
+        Me.CmbBulan2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CmbBulan2.Size = New System.Drawing.Size(116, 20)
+        Me.CmbBulan2.StyleController = Me.LayoutControl1
+        Me.CmbBulan2.TabIndex = 8
+        '
+        'CmbBulan1
+        '
+        Me.CmbBulan1.Location = New System.Drawing.Point(45, 60)
+        Me.CmbBulan1.Name = "CmbBulan1"
+        Me.CmbBulan1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CmbBulan1.Size = New System.Drawing.Size(118, 20)
+        Me.CmbBulan1.StyleController = Me.LayoutControl1
+        Me.CmbBulan1.TabIndex = 6
+        '
+        'CmbTahun
+        '
+        Me.CmbTahun.Location = New System.Drawing.Point(45, 36)
+        Me.CmbTahun.Name = "CmbTahun"
+        Me.CmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CmbTahun.Size = New System.Drawing.Size(258, 20)
+        Me.CmbTahun.StyleController = Me.LayoutControl1
+        Me.CmbTahun.TabIndex = 5
         '
         'LayoutControlGroup1
         '
@@ -95,109 +134,66 @@ Partial Class frmCalculate
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(829, 186)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(829, 100)
         Me.LayoutControlGroup1.TextVisible = False
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(295, 0)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(514, 80)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.CmbSales
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(404, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(295, 24)
         Me.LayoutControlItem1.Text = "Sales"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(30, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(404, 0)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(405, 166)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.CmbTahun
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(404, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(295, 24)
         Me.LayoutControlItem2.Text = "Tahun"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(30, 13)
-        '
-        'CmbSales
-        '
-        Me.CmbSales.Location = New System.Drawing.Point(46, 12)
-        Me.CmbSales.Name = "CmbSales"
-        Me.CmbSales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbSales.Properties.Items.AddRange(New Object() {"Forecast", "Budget"})
-        Me.CmbSales.Size = New System.Drawing.Size(366, 20)
-        Me.CmbSales.StyleController = Me.LayoutControl1
-        Me.CmbSales.TabIndex = 4
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.CmbBulan1
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(239, 118)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(155, 32)
         Me.LayoutControlItem3.Text = "Bulan"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(30, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.CmbBulan2
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(239, 48)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(155, 48)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(165, 118)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(140, 32)
         Me.LayoutControlItem5.Text = "s/d"
         Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(15, 13)
         Me.LayoutControlItem5.TextToControlDistance = 5
         '
-        'CmbBulan2
-        '
-        Me.CmbBulan2.Location = New System.Drawing.Point(271, 60)
-        Me.CmbBulan2.Name = "CmbBulan2"
-        Me.CmbBulan2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbBulan2.Size = New System.Drawing.Size(141, 20)
-        Me.CmbBulan2.StyleController = Me.LayoutControl1
-        Me.CmbBulan2.TabIndex = 8
-        '
-        'CmbBulan1
-        '
-        Me.CmbBulan1.Location = New System.Drawing.Point(46, 60)
-        Me.CmbBulan1.Name = "CmbBulan1"
-        Me.CmbBulan1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbBulan1.Size = New System.Drawing.Size(201, 20)
-        Me.CmbBulan1.StyleController = Me.LayoutControl1
-        Me.CmbBulan1.TabIndex = 6
-        '
-        'CmbTahun
-        '
-        Me.CmbTahun.Location = New System.Drawing.Point(46, 36)
-        Me.CmbTahun.Name = "CmbTahun"
-        Me.CmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbTahun.Size = New System.Drawing.Size(366, 20)
-        Me.CmbTahun.StyleController = Me.LayoutControl1
-        Me.CmbTahun.TabIndex = 5
-        '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.GridControl1)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(1, 249)
+        Me.Panel1.Location = New System.Drawing.Point(1, 157)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(827, 331)
+        Me.Panel1.Size = New System.Drawing.Size(827, 423)
         Me.Panel1.TabIndex = 2
-        '
-        'ToolStrip2
-        '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1})
-        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(827, 25)
-        Me.ToolStrip2.TabIndex = 0
-        Me.ToolStrip2.Text = "ToolStrip2"
         '
         'GridControl1
         '
@@ -205,7 +201,7 @@ Partial Class frmCalculate
         Me.GridControl1.Location = New System.Drawing.Point(0, 25)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(827, 306)
+        Me.GridControl1.Size = New System.Drawing.Size(827, 398)
         Me.GridControl1.TabIndex = 3
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -213,15 +209,24 @@ Partial Class frmCalculate
         '
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'ToolStripButton1
+        'ToolStrip2
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses})
+        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.Size = New System.Drawing.Size(827, 25)
+        Me.ToolStrip2.TabIndex = 0
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'BtnProses
+        '
+        Me.BtnProses.Image = CType(resources.GetObject("BtnProses.Image"), System.Drawing.Image)
+        Me.BtnProses.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnProses.Name = "BtnProses"
+        Me.BtnProses.Size = New System.Drawing.Size(61, 22)
+        Me.BtnProses.Text = "Proses"
         '
         'frmCalculate
         '
@@ -237,22 +242,22 @@ Partial Class frmCalculate
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CmbSales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CmbBulan2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CmbBulan1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CmbTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -275,5 +280,5 @@ Partial Class frmCalculate
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ToolStrip2 As ToolStrip
-    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents BtnProses As ToolStripButton
 End Class

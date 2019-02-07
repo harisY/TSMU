@@ -1,6 +1,7 @@
 ﻿Public Class frmCalculate
     Private Sub frmCalculate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboBulan()
+        FillComboTahun()
     End Sub
 
     Private Sub FillComboBulan()
