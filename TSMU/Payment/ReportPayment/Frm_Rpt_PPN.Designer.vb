@@ -82,6 +82,8 @@ Partial Class Frm_Rpt_PPN
         Me.colbiaya_transfer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coltotal_bayar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStrip2.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -163,7 +165,7 @@ Partial Class Frm_Rpt_PPN
         '
         'ToolStrip3
         '
-        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsBtn_newData, Me.ToolStripSeparator1, Me.tsBtn_save, Me.ToolStripSeparator2, Me.tsBtn_delete, Me.ToolStripSeparator3, Me.tsBtn_refresh, Me.ToolStripSeparator4, Me.tsBtn_excel, Me.ToolStripSeparator5, Me.tsBtn_filter, Me.ToolStripSeparator6, Me.tsBtn_preview, Me.ToolStripSeparator7, Me.tsBtn_print, Me.ToolStripSeparator8, Me.tsBtn_prev, Me.ToolStripSeparator9, Me.tsBtn_next})
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsBtn_newData, Me.ToolStripSeparator1, Me.tsBtn_save, Me.ToolStripSeparator2, Me.tsBtn_delete, Me.ToolStripSeparator3, Me.tsBtn_refresh, Me.ToolStripSeparator4, Me.tsBtn_excel, Me.ToolStripSeparator5, Me.ToolStripButton1, Me.ToolStripSeparator10, Me.tsBtn_filter, Me.ToolStripSeparator6, Me.tsBtn_preview, Me.ToolStripSeparator7, Me.tsBtn_print, Me.ToolStripSeparator8, Me.tsBtn_prev, Me.ToolStripSeparator9, Me.tsBtn_next})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
         Me.ToolStrip3.Size = New System.Drawing.Size(828, 25)
@@ -241,7 +243,7 @@ Partial Class Frm_Rpt_PPN
         Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_excel.Name = "tsBtn_excel"
         Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_excel.Text = "CSV"
+        Me.tsBtn_excel.Text = "EXCEL"
         Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator5
@@ -584,6 +586,21 @@ Partial Class Frm_Rpt_PPN
         Me.miniToolStrip.Size = New System.Drawing.Size(790, 25)
         Me.miniToolStrip.TabIndex = 5
         '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "CSV"
+        Me.ToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripSeparator10
+        '
+        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(6, 25)
+        '
         'Frm_Rpt_PPN
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -677,4 +694,6 @@ Partial Class Frm_Rpt_PPN
     Friend WithEvents colbiaya_transfer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltotal_bayar As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents miniToolStrip As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ToolStripSeparator10 As ToolStripSeparator
 End Class

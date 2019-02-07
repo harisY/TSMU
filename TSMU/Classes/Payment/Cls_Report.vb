@@ -247,12 +247,12 @@ Public Class Cls_report
         Try
             Dim query As String = "ViewUploadMizuho"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.DateTime)
             pParam(0).Value = date1
-            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.DateTime)
             pParam(1).Value = date2
             ds = New dsLaporan
-            ds = MainModul.GetDataSetByCommand_StoreP(query, "mizuho")
+            ds = MainModul.GetDataSetByCommand_StoreP(query, "mizuho", pParam)
         Catch ex As Exception
             Throw ex
         End Try
