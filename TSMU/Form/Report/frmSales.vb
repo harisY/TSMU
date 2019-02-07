@@ -8,7 +8,7 @@
         Try
             If GridView1.RowCount > 0 Then
                 Dim save As New SaveFileDialog
-                save.Filter = "Excel File|*.xls"
+                save.Filter = "Excel File|*.xlsx"
                 save.Title = "Save an Excel File"
                 If save.ShowDialog = DialogResult.OK Then
                     Grid.ExportToXlsx(save.FileName)
