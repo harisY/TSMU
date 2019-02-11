@@ -296,6 +296,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmCalculate.Designer.vb">
+      <DependentUpon>frmCalculate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmCalculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmCompare_Invoice1.Designer.vb">
       <DependentUpon>frmCompare_Invoice1.vb</DependentUpon>
     </Compile>
@@ -854,6 +860,24 @@
     <Compile Include="Payment\ReportPayment\XtraReport1.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport2.Designer.vb">
+      <DependentUpon>XtraReport2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport3.Designer.vb">
+      <DependentUpon>XtraReport3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport4.Designer.vb">
+      <DependentUpon>XtraReport4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\XtraReport4.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\PrintPO.Designer.vb">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </Compile>
@@ -919,6 +943,9 @@
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmCalculate.resx">
+      <DependentUpon>frmCalculate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmCompare_Invoice1.resx">
       <DependentUpon>frmCompare_Invoice1.vb</DependentUpon>
@@ -1195,6 +1222,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\XtraReport1.resx">
       <DependentUpon>XtraReport1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport2.resx">
+      <DependentUpon>XtraReport2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport3.resx">
+      <DependentUpon>XtraReport3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\XtraReport4.resx">
+      <DependentUpon>XtraReport4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>

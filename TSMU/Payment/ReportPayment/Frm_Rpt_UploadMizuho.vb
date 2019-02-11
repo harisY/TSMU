@@ -163,6 +163,8 @@ Public Class Frm_Rpt_UploadMizuho
 
 
     Private Sub Proc_PrintPreview()
+
+
         Try
             If TabControl1.TabIndex = 1 Then
                 If GridView4.RowCount = 0 Then
@@ -197,17 +199,17 @@ Public Class Frm_Rpt_UploadMizuho
                 '' ds = pay_class.DXReportUploadToMizuho(IIf(DateEdit1.Text >='" & uploaded & "', "ALL", _BtnCust.Text))
 
 
-                For i As Integer = 0 To GridView4.RowCount - 1
-                    pay_class.DXReportUploadToMizuho()
-                Next
+                'For i As Integer = 0 To GridView4.RowCount - 1
+                '    pay_class.DXReportUploadToMizuho()
+                'Next
 
-                '' ds = pay_class.Mizuho(IIf(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate)))
+                ds = pay_class.Mizuho(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate))
                 dt = ds.Tables("mizuho")
 
-                Dim Laporan As XtraReport1 = New XtraReport1
+                Dim Laporan As XtraReport4 = New XtraReport4
                 With Laporan
-                    .param1 = date1
-                    .param2 = date2
+                    ''.param1 = date1
+                    ''.param2 = date2
                     .DataSource = dt
                 End With
 
@@ -220,7 +222,7 @@ Public Class Frm_Rpt_UploadMizuho
             LoadData()
             ''reportuploadtomizuho()
         Catch ex As Exception
-        MsgBox(ex.Message)
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -246,6 +248,70 @@ Public Class Frm_Rpt_UploadMizuho
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    'Sub GetExcelSheetNames(ByVal FileName As String)
+    '    Dim sConn As String
+    '    sConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" &
+    '            FileName & ";Extended Properties=""Excel 12.0 Xml;HDR=YES"";"
+
+    '    Dim conn As New OleDbConnection(sConn)
+
+    '    conn.Open()
+
+    '    Dim dtSheets As DataTable =
+    '    conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing)
+    '    Dim drSheet As DataRow
+
+    '    ListBox1.Items.Clear()
+    '    For Each drSheet In dtSheets.Rows
+    '        ListBox1.Items.Add(drSheet("TABLE_NAME").ToString())
+    '    Next
+
+    '    LoadExcel2Grid(FileName, ListBox1.Items(0).ToString)
+
+    '    conn.Close()
+
+    'End Sub
+
+    Private Sub _btnBrowse_Click(sender As Object, e As EventArgs) Handles _btnBrowse.Click
+        'With OpenFileDialog1
+        '    .FileName = String.Empty
+        '    .InitialDirectory = "C:\"
+        '    .Title = "Open Excel File"
+        '    .Filter = "Excel 97-2003|*.xls|Excel 2007|*.xlsx"
+        'End With
+        'Dim result As DialogResult = OpenFileDialog1.ShowDialog()
+        'If result = Windows.Forms.DialogResult.OK Then
+        '    Try
+        '        TextBox1.Text = OpenFileDialog1.FileName
+        '        GetExcelSheetNames(TextBox1.Text)
+        '    Catch ex As Exception
+        '        MsgBox("Error : " & ex.Message)
+        '    End Try
+        'End If
+
+        Using fold As New OpenFileDialog
+            fold.Filter = "document files (*.xls)|*.xlsx|richtextformat files (*.rtf)|*.rtf|All files (*.*)|*.*"
+            fold.Title = "Select file"
+            If fold.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                'fold.FilterIndex = 2
+                fold.RestoreDirectory = True
+                MessageBox.Show("You selected " & fold.FileName)
+                TextBox1.Text = fold.FileName
+            End If
+            'Dim result As DialogResult
+            'If result = Windows.Forms.DialogResult.OK Then
+            '    Try
+
+            '        ''GetExcelSheetNames(TextBox1.Text)
+            '    Catch ex As Exception
+            '        MsgBox("Error : " & ex.Message)
+            '    End Try
+            ''End If
+
+        End Using
+
     End Sub
 
 End Class

@@ -33,10 +33,10 @@ Public Class Frm_Rpt_PPN
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "CSV File|*.csv"
-        save.Title = "Save a CSV File"
+        save.Filter = "EXCEL File|*.xls"
+        save.Title = "Save a EXCEL File"
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToCsv(save.FileName)
+            _Grid.ExportToXls(save.FileName)
         End If
     End Sub
     Private Sub Proc_Excel()
@@ -54,6 +54,31 @@ Public Class Frm_Rpt_PPN
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub SaveToCSV(_Grid As GridControl)
+        Dim save As New SaveFileDialog
+        save.Filter = "CSV File|*.csv"
+        save.Title = "Save a CSV File"
+        If save.ShowDialog = DialogResult.OK Then
+            _Grid.ExportToCsv(save.FileName)
+        End If
+    End Sub
+    Private Sub Proc_CSV()
+        Try
+            If TabControl1.SelectedTab Is TabPage1 Then
+                If GridView4.RowCount > 0 Then
+                    SaveToCSV(GridControl3)
+                    MsgBox("Data Berhasil di Export!")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 
     Private Async Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Try
@@ -93,5 +118,9 @@ Public Class Frm_Rpt_PPN
         Else
             _Grid.DataSource = table
         End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Proc_CSV()
     End Sub
 End Class
