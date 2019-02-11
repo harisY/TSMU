@@ -244,6 +244,48 @@
     <Compile Include="Delvi\frmDelvi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
+      <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmPaymentDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmPettyCash.Designer.vb">
+      <DependentUpon>FrmPettyCash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmPettyCash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmPettyCash_Detail.Designer.vb">
+      <DependentUpon>FrmPettyCash_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmPettyCash_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSettlement.Designer.vb">
+      <DependentUpon>FrmSettlement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSettlement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSettlement_Detail.Designer.vb">
+      <DependentUpon>FrmSettlement_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSettlement_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSuspend.Designer.vb">
+      <DependentUpon>FrmSuspend.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspend.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
+      <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspend_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -852,6 +894,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Delvi\frmDelvi.resx">
       <DependentUpon>frmDelvi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmPaymentDirect.resx">
+      <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmPettyCash.resx">
+      <DependentUpon>FrmPettyCash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmPettyCash_Detail.resx">
+      <DependentUpon>FrmPettyCash_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSettlement.resx">
+      <DependentUpon>FrmSettlement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSettlement_Detail.resx">
+      <DependentUpon>FrmSettlement_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspend.resx">
+      <DependentUpon>FrmSuspend.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
+      <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
