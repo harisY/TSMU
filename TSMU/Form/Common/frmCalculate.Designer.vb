@@ -34,10 +34,12 @@ Partial Class frmCalculate
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.BtnProses = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -54,7 +56,7 @@ Partial Class frmCalculate
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
         Me.SuspendLayout()
@@ -96,7 +98,7 @@ Partial Class frmCalculate
         Me.CmbSales.Location = New System.Drawing.Point(45, 12)
         Me.CmbSales.Name = "CmbSales"
         Me.CmbSales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbSales.Properties.Items.AddRange(New Object() {"Forecast", "Budget"})
+        Me.CmbSales.Properties.Items.AddRange(New Object() {"Forecast VS BoM", "Budget VS BOM"})
         Me.CmbSales.Size = New System.Drawing.Size(258, 20)
         Me.CmbSales.StyleController = Me.LayoutControl1
         Me.CmbSales.TabIndex = 4
@@ -188,32 +190,33 @@ Partial Class frmCalculate
         Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.GridControl1)
+        Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
         Me.Panel1.Location = New System.Drawing.Point(1, 157)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(827, 423)
         Me.Panel1.TabIndex = 2
         '
-        'GridControl1
+        'Grid
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 25)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(827, 398)
-        Me.GridControl1.TabIndex = 3
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.Size = New System.Drawing.Size(827, 398)
+        Me.Grid.TabIndex = 3
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsCustomization.AllowSort = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'ToolStrip2
         '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses})
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses, Me.ToolStripSeparator1, Me.ToolStripButton1})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(827, 25)
@@ -225,8 +228,21 @@ Partial Class frmCalculate
         Me.BtnProses.Image = CType(resources.GetObject("BtnProses.Image"), System.Drawing.Image)
         Me.BtnProses.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnProses.Name = "BtnProses"
-        Me.BtnProses.Size = New System.Drawing.Size(61, 22)
-        Me.BtnProses.Text = "Proses"
+        Me.BtnProses.Size = New System.Drawing.Size(152, 22)
+        Me.BtnProses.Text = "Show BoM To Calculate"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(61, 22)
+        Me.ToolStripButton1.Text = "Proses"
         '
         'frmCalculate
         '
@@ -254,7 +270,7 @@ Partial Class frmCalculate
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
@@ -277,8 +293,10 @@ Partial Class frmCalculate
     Friend WithEvents CmbBulan1 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents CmbTahun As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents BtnProses As ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents ToolStripButton1 As ToolStripButton
 End Class

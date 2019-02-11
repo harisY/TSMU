@@ -57,6 +57,7 @@ Partial Class MenuUtamaForm
         Me.LblLogin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CalculateTM = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -114,7 +115,7 @@ Partial Class MenuUtamaForm
         '
         'tsbForecast
         '
-        Me.tsbForecast.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BudgetTSM, Me.ForecastTSM, Me.PriceTSM})
+        Me.tsbForecast.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BudgetTSM, Me.ForecastTSM, Me.PriceTSM, Me.CalculateTM})
         Me.tsbForecast.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsbForecast.Name = "tsbForecast"
         Me.tsbForecast.Size = New System.Drawing.Size(50, 20)
@@ -123,19 +124,19 @@ Partial Class MenuUtamaForm
         'BudgetTSM
         '
         Me.BudgetTSM.Name = "BudgetTSM"
-        Me.BudgetTSM.Size = New System.Drawing.Size(121, 22)
+        Me.BudgetTSM.Size = New System.Drawing.Size(180, 22)
         Me.BudgetTSM.Text = "Budget"
         '
         'ForecastTSM
         '
         Me.ForecastTSM.Name = "ForecastTSM"
-        Me.ForecastTSM.Size = New System.Drawing.Size(121, 22)
+        Me.ForecastTSM.Size = New System.Drawing.Size(180, 22)
         Me.ForecastTSM.Text = "Forecast"
         '
         'PriceTSM
         '
         Me.PriceTSM.Name = "PriceTSM"
-        Me.PriceTSM.Size = New System.Drawing.Size(121, 22)
+        Me.PriceTSM.Size = New System.Drawing.Size(180, 22)
         Me.PriceTSM.Text = "Price"
         '
         'tsMenuSetting
@@ -279,6 +280,12 @@ Partial Class MenuUtamaForm
         Me.lblGroup.Size = New System.Drawing.Size(66, 17)
         Me.lblGroup.Text = "User Group"
         '
+        'CalculateTM
+        '
+        Me.CalculateTM.Name = "CalculateTM"
+        Me.CalculateTM.Size = New System.Drawing.Size(180, 22)
+        Me.CalculateTM.Text = "Calculate"
+        '
         'MenuUtamaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -335,4 +342,5 @@ Partial Class MenuUtamaForm
     Friend WithEvents tstax As ToolStripMenuItem
     Friend WithEvents tstaxtransaction As ToolStripMenuItem
     Friend WithEvents tstaxreport As ToolStripMenuItem
+    Friend WithEvents CalculateTM As ToolStripMenuItem
 End Class

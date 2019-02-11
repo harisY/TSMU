@@ -102,10 +102,10 @@ Public Class FrmSystemLookUpCalculateSales
             End If
             If strSemester = 1 Then
                 Dim IsBudgetAlreadyCalculated As Boolean
-                IsBudgetAlreadyCalculated = _class.IsForecastSemester1Exist(strTahun, strSemester)
+                IsBudgetAlreadyCalculated = _class.IsForecastSemester1Exist(strTahun, strSemester, "")
                 If IsBudgetAlreadyCalculated Then
                     If MsgBox("Forecast untuk tahun " & strTahun & " semester " & strSemester & " sudah di hitung, Calculate ulang ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Konfirmasi") = MsgBoxResult.Yes Then
-                        _class.DeleteForecastByYearAndSemester(strTahun, strSemester)
+                        _class.DeleteForecastByYearAndSemester(strTahun, strSemester, "")
                         proses_semester1()
                     Else
                         ProgressBar1.Invoke(Sub() ProgressBar1.Visible = False)
@@ -117,10 +117,10 @@ Public Class FrmSystemLookUpCalculateSales
 
             ElseIf strSemester = 2 Then
                 Dim IsBudgetAlreadyCalculated As Boolean
-                IsBudgetAlreadyCalculated = _class.IsForecastSemester1Exist(strTahun, strSemester)
+                IsBudgetAlreadyCalculated = _class.IsForecastSemester1Exist(strTahun, strSemester, "")
                 If IsBudgetAlreadyCalculated Then
                     If MsgBox("Forecast untuk tahun " & strTahun & " semester " & strSemester & " sudah di hitung, Calculate ulang ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Konfirmasi") = MsgBoxResult.Yes Then
-                        _class.DeleteForecastByYearAndSemester(strTahun, strSemester)
+                        _class.DeleteForecastByYearAndSemester(strTahun, strSemester, "")
                         proses_semester2()
                     Else
                         ProgressBar1.Invoke(Sub() ProgressBar1.Visible = False)
@@ -453,7 +453,7 @@ Public Class FrmSystemLookUpCalculateSales
     Private Sub proses_semester1()
         Dim Id As Integer = 0
         Dim dt1 As New DataTable
-        dt1 = _class.GetForecastSemester1(strTahun)
+        dt1 = _class.GetForecastSemester1(strTahun, "", "")
         If dt1.Rows.Count = 0 Then
             strPesan2 = "Data to calculate is empty !"
             Exit Sub
