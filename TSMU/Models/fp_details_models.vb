@@ -11,18 +11,20 @@
     Public Property Ppn As Double
     Public Property Tgl_Invoice As DateTime
     Public Property No_Bukti_Potong As String
+    Public Property Check_PPN As String
 
     Public Sub InsertDetails()
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO FP_Detail (FPNo,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,link_barcode,No_Bukti_Potong) " & vbCrLf &
+                                    "INSERT INTO FP_Detail (FPNo,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Check_PPN,Dpp,Pph,No_Faktur,link_barcode,No_Bukti_Potong) " & vbCrLf &
                                     "Values(" & QVal(Me.FPNo) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Jml_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.CuryID) & ", " & vbCrLf &
                                     "       " & QVal(Me.Ppn) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Check_PPN) & ", " & vbCrLf &
                                     "       " & QVal(Me.Dpp) & ", " & vbCrLf &
                                     "       " & QVal(Me.Pph) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
