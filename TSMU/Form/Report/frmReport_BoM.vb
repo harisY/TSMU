@@ -92,10 +92,10 @@ Public Class frmReport_BoM
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xls"
-            save.Title = "Save an Excel File"
+        save.Filter = "Excel File|*.xlsx"
+        save.Title = "Save an Excel File"
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXls(save.FileName)
+            _Grid.ExportToXlsx(save.FileName)
         End If
     End Sub
     Public Overrides Sub Proc_Excel()

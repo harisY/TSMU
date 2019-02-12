@@ -20,7 +20,7 @@ Partial Class frmReport_Sales_Forecast_Price
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReport_Sales_Forecast))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReport_Sales_Forecast_Price))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnCari1 = New System.Windows.Forms.Button()
@@ -36,18 +36,18 @@ Partial Class frmReport_Sales_Forecast_Price
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnLoad = New System.Windows.Forms.ToolStripButton()
         Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
-        Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.ToolStrip2.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -153,7 +153,7 @@ Partial Class frmReport_Sales_Forecast_Price
         '
         Me.cmbSite.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbSite.FormattingEnabled = True
-        Me.cmbSite.Items.AddRange(New Object() {"ALL", "TSC1-U", "TSC3-U"})
+        Me.cmbSite.Items.AddRange(New Object() {"ALL", "TNG-U", "TSC3-U"})
         Me.cmbSite.Location = New System.Drawing.Point(80, 33)
         Me.cmbSite.Name = "cmbSite"
         Me.cmbSite.Size = New System.Drawing.Size(121, 21)
@@ -192,6 +192,24 @@ Partial Class frmReport_Sales_Forecast_Price
         Me.Panel1.Size = New System.Drawing.Size(799, 382)
         Me.Panel1.TabIndex = 2
         '
+        'Grid
+        '
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.Size = New System.Drawing.Size(799, 357)
+        Me.Grid.TabIndex = 2
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
         'ToolStrip2
         '
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
@@ -214,25 +232,7 @@ Partial Class frmReport_Sales_Forecast_Price
         Me.ProgBar.Name = "ProgBar"
         Me.ProgBar.Size = New System.Drawing.Size(100, 22)
         '
-        'Grid
-        '
-        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(799, 357)
-        Me.Grid.TabIndex = 2
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'frmReport_Sales_Forecast
+        'frmReport_Sales_Forecast_Price
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
@@ -247,10 +247,10 @@ Partial Class frmReport_Sales_Forecast_Price
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
