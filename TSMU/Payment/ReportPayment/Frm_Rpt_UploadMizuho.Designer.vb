@@ -22,41 +22,42 @@ Partial Class Frm_Rpt_UploadMizuho
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_UploadMizuho))
-        Me.colGrand_Total1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me._btnCompare = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me._totalchk = New DevExpress.XtraEditors.TextEdit()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colvrno1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltgl1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colvendorname1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltot_DPP = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltot_PPN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colTotal1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colpph1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colbiaya_transfer1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colTotal_Bayar1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colvrno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltgl = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colvendorname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coldpp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colppn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltotal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colpph = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colgrand_total = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colbiaya_transfer = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltotal_bayar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me._totalchk = New DevExpress.XtraEditors.TextEdit()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnLoad = New System.Windows.Forms.ToolStripButton()
         Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
@@ -64,9 +65,47 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBar3 = New System.Windows.Forms.ToolStripProgressBar()
+        Me._btnUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me._btnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ref_no_sup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.takagi_acct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rek_pt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.payment_method = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.curyid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.sp_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.trans_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.value_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.bankname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.branch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.norek_supplier = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.pt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.pt2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address_pt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address_pt2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.space_kosong = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.bank_charges = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.applicant_acct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.space_kosong2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.other = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.other1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.other2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.other3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.tsBtn_newData = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -87,44 +126,38 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
-        Me._btnUpload = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me._totalchk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._totalchk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        Me.ToolStrip3.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'colGrand_Total1
-        '
-        Me.colGrand_Total1.FieldName = "Grand_Total"
-        Me.colGrand_Total1.Name = "colGrand_Total1"
-        Me.colGrand_Total1.Visible = True
-        Me.colGrand_Total1.VisibleIndex = 7
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me._btnCompare)
         Me.TabPage1.Controls.Add(Me.DateEdit2)
         Me.TabPage1.Controls.Add(Me.DateEdit1)
         Me.TabPage1.Controls.Add(Me.Panel1)
@@ -137,6 +170,15 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Filter By Tgl"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        '_btnCompare
+        '
+        Me._btnCompare.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me._btnCompare.Location = New System.Drawing.Point(643, 7)
+        Me._btnCompare.Name = "_btnCompare"
+        Me._btnCompare.Size = New System.Drawing.Size(147, 23)
+        Me._btnCompare.TabIndex = 19
+        Me._btnCompare.Text = "Add To Compare Template"
         '
         'DateEdit2
         '
@@ -163,16 +205,242 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.Controls.Add(Me.GridControl3)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me._totalchk)
-        Me.Panel1.Controls.Add(Me.GridControl3)
-        Me.Panel1.Controls.Add(Me.GridControl2)
-        Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
         Me.Panel1.Location = New System.Drawing.Point(3, 33)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(790, 489)
         Me.Panel1.TabIndex = 16
+        '
+        'GridControl3
+        '
+        Me.GridControl3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl3.DataMember = Nothing
+        Me.GridControl3.Location = New System.Drawing.Point(0, 30)
+        Me.GridControl3.MainView = Me.GridView4
+        Me.GridControl3.Name = "GridControl3"
+        Me.GridControl3.Size = New System.Drawing.Size(790, 457)
+        Me.GridControl3.TabIndex = 23
+        Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4, Me.GridView3})
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25})
+        Me.GridView4.GridControl = Me.GridControl3
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsBehavior.Editable = False
+        Me.GridView4.OptionsFilter.AllowFilterEditor = False
+        Me.GridView4.OptionsView.ColumnAutoWidth = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ref_no_sup"
+        Me.GridColumn1.FieldName = "ref_no_sup"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "takagi_acct"
+        Me.GridColumn2.FieldName = "takagi_acct"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "rek_pt"
+        Me.GridColumn3.FieldName = "rek_pt"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "payment_method"
+        Me.GridColumn4.FieldName = "payment_method"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "curyid"
+        Me.GridColumn5.FieldName = "curyid"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "sp_amount"
+        Me.GridColumn6.FieldName = "sp_amount"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "trans_amount"
+        Me.GridColumn7.FieldName = "trans_amount"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "value_date"
+        Me.GridColumn8.FieldName = "value_date"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "bankname"
+        Me.GridColumn9.FieldName = "bankname"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 8
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "branch"
+        Me.GridColumn10.FieldName = "branch"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "address"
+        Me.GridColumn11.FieldName = "address"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 10
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "address2"
+        Me.GridColumn12.FieldName = "address2"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 11
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "norek_supplier"
+        Me.GridColumn13.FieldName = "norek_supplier"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 12
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "pt"
+        Me.GridColumn14.FieldName = "pt"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 13
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "pt2"
+        Me.GridColumn15.FieldName = "pt2"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 14
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "address_pt"
+        Me.GridColumn16.FieldName = "address_pt"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 15
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "address_pt2"
+        Me.GridColumn17.FieldName = "address_pt2"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 16
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "space_kosong"
+        Me.GridColumn18.FieldName = "space_kosong"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 17
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "bank_charges"
+        Me.GridColumn19.FieldName = "bank_charges"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 18
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "applicant_acct"
+        Me.GridColumn20.FieldName = "applicant_acct"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 19
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "space_kosong2"
+        Me.GridColumn21.FieldName = "space_kosong2"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 20
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "other"
+        Me.GridColumn22.FieldName = "other"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 21
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "other1"
+        Me.GridColumn23.FieldName = "other1"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 22
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "other2"
+        Me.GridColumn24.FieldName = "other2"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 23
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "other3"
+        Me.GridColumn25.FieldName = "other3"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 24
+        '
+        'GridView3
+        '
+        Me.GridView3.GridControl = Me.GridControl3
+        Me.GridView3.Name = "GridView3"
         '
         'Label3
         '
@@ -183,6 +451,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.Label3.Size = New System.Drawing.Size(78, 13)
         Me.Label3.TabIndex = 22
         Me.Label3.Text = "Total Supplier :"
+        Me.Label3.Visible = False
         '
         '_totalchk
         '
@@ -191,207 +460,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me._totalchk.Name = "_totalchk"
         Me._totalchk.Size = New System.Drawing.Size(100, 20)
         Me._totalchk.TabIndex = 21
-        '
-        'GridControl3
-        '
-        Me.GridControl3.DataMember = Nothing
-        Me.GridControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl3.Location = New System.Drawing.Point(0, 25)
-        Me.GridControl3.MainView = Me.GridView4
-        Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.Size = New System.Drawing.Size(790, 464)
-        Me.GridControl3.TabIndex = 5
-        Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4, Me.GridView5})
-        '
-        'GridView4
-        '
-        Me.GridView4.GridControl = Me.GridControl3
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsBehavior.Editable = False
-        Me.GridView4.OptionsFilter.AllowFilterEditor = False
-        Me.GridView4.OptionsView.ColumnAutoWidth = False
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'GridView5
-        '
-        Me.GridView5.GridControl = Me.GridControl3
-        Me.GridView5.Name = "GridView5"
-        '
-        'GridControl2
-        '
-        Me.GridControl2.DataMember = "Query"
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 25)
-        Me.GridControl2.MainView = Me.GridView3
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(790, 464)
-        Me.GridControl2.TabIndex = 4
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno1, Me.coltgl1, Me.colvendorname1, Me.coltot_DPP, Me.coltot_PPN, Me.colTotal1, Me.colpph1, Me.colGrand_Total1, Me.colbiaya_transfer1, Me.colTotal_Bayar1})
-        Me.GridView3.GridControl = Me.GridControl2
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsView.ColumnAutoWidth = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'colvrno1
-        '
-        Me.colvrno1.FieldName = "vrno"
-        Me.colvrno1.Name = "colvrno1"
-        Me.colvrno1.Visible = True
-        Me.colvrno1.VisibleIndex = 0
-        '
-        'coltgl1
-        '
-        Me.coltgl1.FieldName = "tgl"
-        Me.coltgl1.Name = "coltgl1"
-        Me.coltgl1.Visible = True
-        Me.coltgl1.VisibleIndex = 1
-        '
-        'colvendorname1
-        '
-        Me.colvendorname1.FieldName = "vendorname"
-        Me.colvendorname1.Name = "colvendorname1"
-        Me.colvendorname1.Visible = True
-        Me.colvendorname1.VisibleIndex = 2
-        '
-        'coltot_DPP
-        '
-        Me.coltot_DPP.FieldName = "tot_DPP"
-        Me.coltot_DPP.Name = "coltot_DPP"
-        Me.coltot_DPP.Visible = True
-        Me.coltot_DPP.VisibleIndex = 3
-        '
-        'coltot_PPN
-        '
-        Me.coltot_PPN.FieldName = "tot_PPN"
-        Me.coltot_PPN.Name = "coltot_PPN"
-        Me.coltot_PPN.Visible = True
-        Me.coltot_PPN.VisibleIndex = 4
-        '
-        'colTotal1
-        '
-        Me.colTotal1.FieldName = "Total"
-        Me.colTotal1.Name = "colTotal1"
-        Me.colTotal1.Visible = True
-        Me.colTotal1.VisibleIndex = 5
-        '
-        'colpph1
-        '
-        Me.colpph1.FieldName = "pph"
-        Me.colpph1.Name = "colpph1"
-        Me.colpph1.Visible = True
-        Me.colpph1.VisibleIndex = 6
-        '
-        'colbiaya_transfer1
-        '
-        Me.colbiaya_transfer1.FieldName = "biaya_transfer"
-        Me.colbiaya_transfer1.Name = "colbiaya_transfer1"
-        Me.colbiaya_transfer1.Visible = True
-        Me.colbiaya_transfer1.VisibleIndex = 8
-        '
-        'colTotal_Bayar1
-        '
-        Me.colTotal_Bayar1.FieldName = "Total_Bayar"
-        Me.colTotal_Bayar1.Name = "colTotal_Bayar1"
-        Me.colTotal_Bayar1.Visible = True
-        Me.colTotal_Bayar1.VisibleIndex = 9
-        '
-        'Grid
-        '
-        Me.Grid.DataMember = "ViewPayment"
-        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(790, 464)
-        Me.Grid.TabIndex = 3
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule2.Name = "Format0"
-        GridFormatRule2.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule2)
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'colvrno
-        '
-        Me.colvrno.FieldName = "vrno"
-        Me.colvrno.Name = "colvrno"
-        Me.colvrno.Visible = True
-        Me.colvrno.VisibleIndex = 0
-        '
-        'coltgl
-        '
-        Me.coltgl.FieldName = "tgl"
-        Me.coltgl.Name = "coltgl"
-        Me.coltgl.Visible = True
-        Me.coltgl.VisibleIndex = 1
-        '
-        'colvendorname
-        '
-        Me.colvendorname.FieldName = "vendorname"
-        Me.colvendorname.Name = "colvendorname"
-        Me.colvendorname.Visible = True
-        Me.colvendorname.VisibleIndex = 2
-        '
-        'coldpp
-        '
-        Me.coldpp.FieldName = "dpp"
-        Me.coldpp.Name = "coldpp"
-        Me.coldpp.Visible = True
-        Me.coldpp.VisibleIndex = 3
-        '
-        'colppn
-        '
-        Me.colppn.FieldName = "ppn"
-        Me.colppn.Name = "colppn"
-        Me.colppn.Visible = True
-        Me.colppn.VisibleIndex = 4
-        '
-        'coltotal
-        '
-        Me.coltotal.FieldName = "total"
-        Me.coltotal.Name = "coltotal"
-        Me.coltotal.Visible = True
-        Me.coltotal.VisibleIndex = 5
-        '
-        'colpph
-        '
-        Me.colpph.FieldName = "pph"
-        Me.colpph.Name = "colpph"
-        Me.colpph.Visible = True
-        Me.colpph.VisibleIndex = 6
-        '
-        'colgrand_total
-        '
-        Me.colgrand_total.FieldName = "grand_total"
-        Me.colgrand_total.Name = "colgrand_total"
-        Me.colgrand_total.Visible = True
-        Me.colgrand_total.VisibleIndex = 7
-        '
-        'colbiaya_transfer
-        '
-        Me.colbiaya_transfer.FieldName = "biaya_transfer"
-        Me.colbiaya_transfer.Name = "colbiaya_transfer"
-        Me.colbiaya_transfer.Visible = True
-        Me.colbiaya_transfer.VisibleIndex = 8
-        '
-        'coltotal_bayar
-        '
-        Me.coltotal_bayar.FieldName = "total_bayar"
-        Me.coltotal_bayar.Name = "coltotal_bayar"
-        Me.coltotal_bayar.Visible = True
-        Me.coltotal_bayar.VisibleIndex = 9
+        Me._totalchk.Visible = False
         '
         'ToolStrip2
         '
@@ -440,6 +509,7 @@ Partial Class Frm_Rpt_UploadMizuho
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(6, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -458,10 +528,38 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.TabPage2.Text = "Mizuho Template"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'GridControl1
+        '
+        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl1.DataMember = Nothing
+        Me.GridControl1.Location = New System.Drawing.Point(2, 48)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(790, 474)
+        Me.GridControl1.TabIndex = 6
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView6})
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsFilter.AllowFilterEditor = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridView6
+        '
+        Me.GridView6.GridControl = Me.GridControl1
+        Me.GridView6.Name = "GridView6"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelControl1.Controls.Add(Me.ToolStrip1)
         Me.PanelControl1.Controls.Add(Me._btnUpload)
         Me.PanelControl1.Controls.Add(Me.TextBox1)
         Me.PanelControl1.Controls.Add(Me._btnBrowse)
@@ -469,6 +567,38 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(787, 36)
         Me.PanelControl1.TabIndex = 0
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ProgBar3})
+        Me.ToolStrip1.Location = New System.Drawing.Point(307, 5)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(179, 25)
+        Me.ToolStrip1.TabIndex = 11
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(65, 22)
+        Me.ToolStripButton1.Text = "Upload"
+        '
+        'ProgBar3
+        '
+        Me.ProgBar3.Name = "ProgBar3"
+        Me.ProgBar3.Size = New System.Drawing.Size(100, 22)
+        '
+        '_btnUpload
+        '
+        Me._btnUpload.Location = New System.Drawing.Point(685, 5)
+        Me._btnUpload.Name = "_btnUpload"
+        Me._btnUpload.Size = New System.Drawing.Size(75, 23)
+        Me._btnUpload.TabIndex = 2
+        Me._btnUpload.Text = "Upload"
+        Me._btnUpload.Visible = False
         '
         'TextBox1
         '
@@ -484,6 +614,263 @@ Partial Class Frm_Rpt_UploadMizuho
         Me._btnBrowse.Size = New System.Drawing.Size(75, 23)
         Me._btnBrowse.TabIndex = 0
         Me._btnBrowse.Text = "Browse"
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.GridControl4)
+        Me.TabPage3.Controls.Add(Me.PanelControl2)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(796, 528)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Compare Template"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'GridControl4
+        '
+        Me.GridControl4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl4.DataMember = Nothing
+        Me.GridControl4.Location = New System.Drawing.Point(3, 64)
+        Me.GridControl4.MainView = Me.GridView7
+        Me.GridControl4.Name = "GridControl4"
+        Me.GridControl4.Size = New System.Drawing.Size(790, 456)
+        Me.GridControl4.TabIndex = 7
+        Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7, Me.GridView8})
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ref_no_sup, Me.takagi_acct, Me.rek_pt, Me.payment_method, Me.curyid, Me.sp_amount, Me.trans_amount, Me.value_date, Me.bankname, Me.branch, Me.address, Me.address2, Me.norek_supplier, Me.pt, Me.pt2, Me.address_pt, Me.address_pt2, Me.space_kosong, Me.bank_charges, Me.applicant_acct, Me.space_kosong2, Me.other, Me.other1, Me.other2, Me.other3})
+        Me.GridView7.GridControl = Me.GridControl4
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsBehavior.Editable = False
+        Me.GridView7.OptionsFilter.AllowFilterEditor = False
+        Me.GridView7.OptionsView.ColumnAutoWidth = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'ref_no_sup
+        '
+        Me.ref_no_sup.Caption = "ref_no_sup"
+        Me.ref_no_sup.FieldName = "ref_no_sup"
+        Me.ref_no_sup.Name = "ref_no_sup"
+        Me.ref_no_sup.Visible = True
+        Me.ref_no_sup.VisibleIndex = 0
+        '
+        'takagi_acct
+        '
+        Me.takagi_acct.Caption = "takagi_acct"
+        Me.takagi_acct.FieldName = "takagi_acct"
+        Me.takagi_acct.Name = "takagi_acct"
+        Me.takagi_acct.Visible = True
+        Me.takagi_acct.VisibleIndex = 1
+        '
+        'rek_pt
+        '
+        Me.rek_pt.Caption = "rek_pt"
+        Me.rek_pt.FieldName = "rek_pt"
+        Me.rek_pt.Name = "rek_pt"
+        Me.rek_pt.Visible = True
+        Me.rek_pt.VisibleIndex = 2
+        '
+        'payment_method
+        '
+        Me.payment_method.Caption = "payment_method"
+        Me.payment_method.FieldName = "payment_method"
+        Me.payment_method.Name = "payment_method"
+        Me.payment_method.Visible = True
+        Me.payment_method.VisibleIndex = 3
+        '
+        'curyid
+        '
+        Me.curyid.Caption = "curyid"
+        Me.curyid.FieldName = "curyid"
+        Me.curyid.Name = "curyid"
+        Me.curyid.Visible = True
+        Me.curyid.VisibleIndex = 4
+        '
+        'sp_amount
+        '
+        Me.sp_amount.Caption = "sp_amount"
+        Me.sp_amount.FieldName = "sp_amount"
+        Me.sp_amount.Name = "sp_amount"
+        Me.sp_amount.Visible = True
+        Me.sp_amount.VisibleIndex = 5
+        '
+        'trans_amount
+        '
+        Me.trans_amount.Caption = "trans_amount"
+        Me.trans_amount.FieldName = "trans_amount"
+        Me.trans_amount.Name = "trans_amount"
+        Me.trans_amount.Visible = True
+        Me.trans_amount.VisibleIndex = 6
+        '
+        'value_date
+        '
+        Me.value_date.Caption = "value_date"
+        Me.value_date.FieldName = "value_date"
+        Me.value_date.Name = "value_date"
+        Me.value_date.Visible = True
+        Me.value_date.VisibleIndex = 7
+        '
+        'bankname
+        '
+        Me.bankname.Caption = "bankname"
+        Me.bankname.FieldName = "bankname"
+        Me.bankname.Name = "bankname"
+        Me.bankname.Visible = True
+        Me.bankname.VisibleIndex = 8
+        '
+        'branch
+        '
+        Me.branch.Caption = "branch"
+        Me.branch.FieldName = "branch"
+        Me.branch.Name = "branch"
+        Me.branch.Visible = True
+        Me.branch.VisibleIndex = 9
+        '
+        'address
+        '
+        Me.address.Caption = "address"
+        Me.address.FieldName = "address"
+        Me.address.Name = "address"
+        Me.address.Visible = True
+        Me.address.VisibleIndex = 10
+        '
+        'address2
+        '
+        Me.address2.Caption = "address2"
+        Me.address2.FieldName = "address2"
+        Me.address2.Name = "address2"
+        Me.address2.Visible = True
+        Me.address2.VisibleIndex = 11
+        '
+        'norek_supplier
+        '
+        Me.norek_supplier.Caption = "norek_supplier"
+        Me.norek_supplier.FieldName = "norek_supplier"
+        Me.norek_supplier.Name = "norek_supplier"
+        Me.norek_supplier.Visible = True
+        Me.norek_supplier.VisibleIndex = 12
+        '
+        'pt
+        '
+        Me.pt.Caption = "pt"
+        Me.pt.FieldName = "pt"
+        Me.pt.Name = "pt"
+        Me.pt.Visible = True
+        Me.pt.VisibleIndex = 13
+        '
+        'pt2
+        '
+        Me.pt2.Caption = "pt2"
+        Me.pt2.FieldName = "pt2"
+        Me.pt2.Name = "pt2"
+        Me.pt2.Visible = True
+        Me.pt2.VisibleIndex = 14
+        '
+        'address_pt
+        '
+        Me.address_pt.Caption = "address_pt"
+        Me.address_pt.FieldName = "address_pt"
+        Me.address_pt.Name = "address_pt"
+        Me.address_pt.Visible = True
+        Me.address_pt.VisibleIndex = 15
+        '
+        'address_pt2
+        '
+        Me.address_pt2.Caption = "address_pt2"
+        Me.address_pt2.FieldName = "address_pt2"
+        Me.address_pt2.Name = "address_pt2"
+        Me.address_pt2.Visible = True
+        Me.address_pt2.VisibleIndex = 16
+        '
+        'space_kosong
+        '
+        Me.space_kosong.Caption = "space_kosong"
+        Me.space_kosong.FieldName = "space_kosong"
+        Me.space_kosong.Name = "space_kosong"
+        Me.space_kosong.Visible = True
+        Me.space_kosong.VisibleIndex = 17
+        '
+        'bank_charges
+        '
+        Me.bank_charges.Caption = "bank_charges"
+        Me.bank_charges.FieldName = "bank_charges"
+        Me.bank_charges.Name = "bank_charges"
+        Me.bank_charges.Visible = True
+        Me.bank_charges.VisibleIndex = 18
+        '
+        'applicant_acct
+        '
+        Me.applicant_acct.Caption = "applicant_acct"
+        Me.applicant_acct.FieldName = "applicant_acct"
+        Me.applicant_acct.Name = "applicant_acct"
+        Me.applicant_acct.Visible = True
+        Me.applicant_acct.VisibleIndex = 19
+        '
+        'space_kosong2
+        '
+        Me.space_kosong2.Caption = "space_kosong2"
+        Me.space_kosong2.FieldName = "space_kosong2"
+        Me.space_kosong2.Name = "space_kosong2"
+        Me.space_kosong2.Visible = True
+        Me.space_kosong2.VisibleIndex = 20
+        '
+        'other
+        '
+        Me.other.Caption = "other"
+        Me.other.FieldName = "other"
+        Me.other.Name = "other"
+        Me.other.Visible = True
+        Me.other.VisibleIndex = 21
+        '
+        'other1
+        '
+        Me.other1.Caption = "other1"
+        Me.other1.FieldName = "other1"
+        Me.other1.Name = "other1"
+        Me.other1.Visible = True
+        Me.other1.VisibleIndex = 22
+        '
+        'other2
+        '
+        Me.other2.Caption = "other2"
+        Me.other2.FieldName = "other2"
+        Me.other2.Name = "other2"
+        Me.other2.Visible = True
+        Me.other2.VisibleIndex = 23
+        '
+        'other3
+        '
+        Me.other3.Caption = "other3"
+        Me.other3.FieldName = "other3"
+        Me.other3.Name = "other3"
+        Me.other3.Visible = True
+        Me.other3.VisibleIndex = 24
+        '
+        'GridView8
+        '
+        Me.GridView8.GridControl = Me.GridControl4
+        Me.GridView8.Name = "GridView8"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Location = New System.Drawing.Point(6, 6)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(784, 52)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(21, 15)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(127, 23)
+        Me.SimpleButton1.TabIndex = 0
+        Me.SimpleButton1.Text = "Sync Template Mizuho"
         '
         'ToolStrip3
         '
@@ -647,39 +1034,13 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        '_btnUpload
+        'SimpleButton2
         '
-        Me._btnUpload.Location = New System.Drawing.Point(310, 5)
-        Me._btnUpload.Name = "_btnUpload"
-        Me._btnUpload.Size = New System.Drawing.Size(75, 23)
-        Me._btnUpload.TabIndex = 2
-        Me._btnUpload.Text = "Upload"
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.DataMember = Nothing
-        Me.GridControl1.Location = New System.Drawing.Point(2, 48)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(790, 474)
-        Me.GridControl1.TabIndex = 6
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView6})
-        '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsFilter.AllowFilterEditor = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridView6
-        '
-        Me.GridView6.GridControl = Me.GridControl1
-        Me.GridView6.Name = "GridView6"
+        Me.SimpleButton2.Location = New System.Drawing.Point(163, 15)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(203, 23)
+        Me.SimpleButton2.TabIndex = 1
+        Me.SimpleButton2.Text = "Data Upload Based on Template Mizuho"
         '
         'Frm_Rpt_UploadMizuho
         '
@@ -698,62 +1059,38 @@ Partial Class Frm_Rpt_UploadMizuho
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me._totalchk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._totalchk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        Me.ToolStrip3.ResumeLayout(False)
-        Me.ToolStrip3.PerformLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.ToolStrip3.ResumeLayout(False)
+        Me.ToolStrip3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents colGrand_Total1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents colvrno1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltgl1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colvendorname1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltot_DPP As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltot_PPN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colTotal1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colpph1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colbiaya_transfer1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colTotal_Bayar1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents colvrno As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltgl As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colvendorname As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldpp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colppn As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltotal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colpph As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colgrand_total As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colbiaya_transfer As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltotal_bayar As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents btnLoad As ToolStripButton
     Friend WithEvents ProgBar As ToolStripProgressBar
@@ -791,4 +1128,68 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ProgBar3 As ToolStripProgressBar
+    Friend WithEvents _btnCompare As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridControl4 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ref_no_sup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents takagi_acct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents rek_pt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents payment_method As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents curyid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents sp_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents trans_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents value_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents bankname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents branch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents address As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents address2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents norek_supplier As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents pt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents pt2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents address_pt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents address_pt2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents space_kosong As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents bank_charges As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents applicant_acct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents space_kosong2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents other As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents other1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents other2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents other3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
 End Class

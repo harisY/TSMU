@@ -666,6 +666,7 @@
     <Compile Include="Models\fp_pph_transaction_models.vb" />
     <Compile Include="Models\fp_transaction_models.vb" />
     <Compile Include="Models\global_function_models.vb" />
+    <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
