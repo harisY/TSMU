@@ -700,4 +700,8 @@ Public Class MenuUtamaForm
         End If
         Return False
     End Function
+
+    Private Sub CalculateTM_Click(sender As Object, e As EventArgs) Handles CalculateTM.Click
+
+    End Sub
 End Class

@@ -23,7 +23,6 @@ Partial Class MenuUtamaForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmLogin = New System.Windows.Forms.ToolStripMenuItem()
@@ -35,6 +34,7 @@ Partial Class MenuUtamaForm
         Me.BudgetTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.ForecastTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.PriceTSM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalculateTM = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuSetting = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsReport = New System.Windows.Forms.ToolStripMenuItem()
         Me.tstax = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,8 +56,7 @@ Partial Class MenuUtamaForm
         Me.LblRecords = New System.Windows.Forms.ToolStripStatusLabel()
         Me.LblLogin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CalculateTM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolTip = New System.Windows.Forms.ToolTip()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -138,6 +137,12 @@ Partial Class MenuUtamaForm
         Me.PriceTSM.Name = "PriceTSM"
         Me.PriceTSM.Size = New System.Drawing.Size(180, 22)
         Me.PriceTSM.Text = "Price"
+        '
+        'CalculateTM
+        '
+        Me.CalculateTM.Name = "CalculateTM"
+        Me.CalculateTM.Size = New System.Drawing.Size(180, 22)
+        Me.CalculateTM.Text = "Calculate"
         '
         'tsMenuSetting
         '
@@ -279,12 +284,6 @@ Partial Class MenuUtamaForm
         Me.lblGroup.Name = "lblGroup"
         Me.lblGroup.Size = New System.Drawing.Size(66, 17)
         Me.lblGroup.Text = "User Group"
-        '
-        'CalculateTM
-        '
-        Me.CalculateTM.Name = "CalculateTM"
-        Me.CalculateTM.Size = New System.Drawing.Size(180, 22)
-        Me.CalculateTM.Text = "Calculate"
         '
         'MenuUtamaForm
         '
