@@ -100,7 +100,7 @@ Public Class frm_payment_details
                     _TxtPPH.Text = Format(.PPh, "##,0")
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
                     _txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
-                    _txtKetCMDMmanual.Text = Format(.cmdm_manual_ket, "##,0")
+                    _txtKetCMDMmanual.Text = .cmdm_manual_ket
                 End With
             Else
                 _txtVoucher.Text = ""

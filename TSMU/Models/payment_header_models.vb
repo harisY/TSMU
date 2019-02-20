@@ -58,6 +58,8 @@ Public Class payment_header_models
                 ,[bankrek]
                 ,[norek]
                 ,[penerima]
+                ,[cmdm_manual]
+                ,[cmdm_manual_ket]
             FROM [Payment_Header1] Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -93,6 +95,8 @@ Public Class payment_header_models
                     ,[bankrek]
                     ,[norek]
                     ,[penerima]
+                    ,[cmdm_manual]
+                    ,[cmdm_manual_ket]
                     FROM [Payment_Header1] where id=" & QVal(id) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -130,7 +134,7 @@ Public Class payment_header_models
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima) " & vbCrLf &
+                                    "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       " & QVal(Me.BankID) & ", " & vbCrLf &
@@ -154,7 +158,9 @@ Public Class payment_header_models
                                     "       " & QVal(Me.detsupplier) & ", " & vbCrLf &
                                     "       " & QVal(Me.bankrek) & ", " & vbCrLf &
                                     "       " & QVal(Me.norek) & ", " & vbCrLf &
-                                    "       " & QVal(Me.penerima) & ")"
+                                    "       " & QVal(Me.penerima) & ", " & vbCrLf &
+                                    "       " & QVal(Me.cmdm_manual) & ", " & vbCrLf &
+                                    "       " & QVal(Me.cmdm_manual_ket) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -186,7 +192,9 @@ Public Class payment_header_models
                                     "       detsupplier = " & QVal(Me.detsupplier) & ", " & vbCrLf &
                                     "       bankrek = " & QVal(Me.bankrek) & ", " & vbCrLf &
                                     "       norek = " & QVal(Me.norek) & ", " & vbCrLf &
-                                    "       penerima = " & QVal(Me.penerima) & " " & vbCrLf &
+                                    "       penerima = " & QVal(Me.penerima) & ", " & vbCrLf &
+                                    "       cmdm_manual = " & QVal(Me.cmdm_manual) & ", " & vbCrLf &
+                                    "       cmdm_manual_ket = " & QVal(Me.cmdm_manual_ket) & " " & vbCrLf &
                                     "where vrno = '" & Me.vrno & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception

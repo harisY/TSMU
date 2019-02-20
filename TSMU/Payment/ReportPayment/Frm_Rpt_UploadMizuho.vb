@@ -224,29 +224,13 @@ Public Class Frm_Rpt_UploadMizuho
 
 
     Private Sub Proc_PrintPreview()
-
-
         Try
             If TabControl1.TabIndex = 1 Then
                 If GridView4.RowCount = 0 Then
                     Throw New Exception("Tidak ada data yang di akan print.")
                 End If
-            Else
-                'Else
-                'Dim IsNoTranEmpty As Boolean = False
-                'Dim ValidateNotran As Boolean = True
-                'For i As Integer = 0 To GridView4.RowCount - 1
-                '    IsNoTranEmpty = pay_class.CheckNoTran(GridView4.GetRowCellValue(i, GridView4.Columns("No Surat Jalan")))
-                '    If IsNoTranEmpty Then
-                '        ValidateNotran = False
-                '        Exit For
-                '    End If
-                'Next
 
-                'For i As Integer = 0 To GridView4.RowCount - 1
-                '    SuratJalan.ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
-                '    SuratJalan.UpdateNoTran()
-                'Next
+            Else
 
                 Dim ds As DataSet = New DataSet
                 Dim dt As DataTable = New DataTable
@@ -256,13 +240,6 @@ Public Class Frm_Rpt_UploadMizuho
                            date1 = DateEdit1.Text
                            date2 = DateEdit2.Text
                        End Sub)
-
-                '' ds = pay_class.DXReportUploadToMizuho(IIf(DateEdit1.Text >='" & uploaded & "', "ALL", _BtnCust.Text))
-
-
-                'For i As Integer = 0 To GridView4.RowCount - 1
-                '    pay_class.DXReportUploadToMizuho()
-                'Next
 
                 ds = pay_class.Mizuho(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate))
                 dt = ds.Tables("mizuho")
@@ -281,7 +258,6 @@ Public Class Frm_Rpt_UploadMizuho
 
             End If
             LoadData()
-            ''reportuploadtomizuho()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -295,17 +271,14 @@ Public Class Frm_Rpt_UploadMizuho
                 ElseIf DateEdit2.Text = "" Then
                     DateEdit2.Focus()
                 End If
-                Throw New Exception("Silahkan pilih tanggal !")
+                Throw New Exception("Silahkan pilih tanggal!")
             End If
 
             Cursor = Cursors.WaitCursor
             Dim dt As New DataTable
-            'dt = SuratJalan.GetdataGridEdit(IIf(_txtCust.Text = "", "ALL", _txtCust.Text), _dtTgl1.Value.ToString("MM-dd-yyyy"), _dtTgl2.Value.ToString("MM-dd-yyyy"), Site2)
-            ''dt = pay_class.DataGridViewUploadMizuho(IIf(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate)))
             GridControl3.DataSource = dt
-            'btnFilter.Enabled = True
             Cursor = Cursors.Default
-            '_Grid.Columns(2).ValueType = calenderCol
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -499,6 +472,71 @@ Public Class Frm_Rpt_UploadMizuho
             ProgBar.Visible = False
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        Proc_PrintPreview2()
+    End Sub
+
+    Private Sub Proc_PrintPreview2()
+        Try
+            If TabControl1.TabIndex = 3 Then
+                If GridView7.RowCount = 0 Then
+                    Throw New Exception("Tidak ada data yang di akan print.")
+                End If
+
+            Else
+
+                Dim ds As DataSet = New DataSet
+                Dim dt As DataTable = New DataTable
+                Dim date1 As String = ""
+                Dim date2 As String = ""
+                Invoke(Sub()
+                           date1 = DateEdit1.Text
+                           date2 = DateEdit2.Text
+                       End Sub)
+
+                ds = pay_class.Mizuho(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate))
+                dt = ds.Tables("mizuho")
+
+                Dim Laporan As XtraReport4 = New XtraReport4
+                With Laporan
+                    ''.param1 = date1
+                    ''.param2 = date2
+                    .DataSource = dt
+                End With
+
+                Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+                    PrintTool.ShowPreviewDialog()
+                    PrintTool.ShowPreview(UserLookAndFeel.Default)
+                End Using
+
+            End If
+            LoadData2()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub LoadData2()
+        Try
+            If DateEdit1.Text = "" OrElse DateEdit2.Text = "" Then
+                If DateEdit1.Text = "" Then
+                    DateEdit1.Focus()
+                ElseIf DateEdit2.Text = "" Then
+                    DateEdit2.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal!")
+            End If
+
+            Cursor = Cursors.WaitCursor
+            Dim dt As New DataTable
+            GridControl4.DataSource = dt
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
     End Sub
 
