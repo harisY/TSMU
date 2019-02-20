@@ -105,6 +105,8 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.other3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.tsBtn_newData = New System.Windows.Forms.ToolStripButton()
@@ -126,7 +128,6 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -857,12 +858,31 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton3)
         Me.PanelControl2.Controls.Add(Me.SimpleButton2)
         Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Location = New System.Drawing.Point(6, 6)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(784, 52)
         Me.PanelControl2.TabIndex = 0
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.BackgroundImage = Global.TSMU.My.Resources.Resources._433_200
+        Me.SimpleButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.SimpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.SimpleButton3.Location = New System.Drawing.Point(372, 16)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(24, 23)
+        Me.SimpleButton3.TabIndex = 2
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(163, 15)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(203, 23)
+        Me.SimpleButton2.TabIndex = 1
+        Me.SimpleButton2.Text = "Data Upload Based on Template Mizuho"
         '
         'SimpleButton1
         '
@@ -1034,14 +1054,6 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(163, 15)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(203, 23)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Data Upload Based on Template Mizuho"
-        '
         'Frm_Rpt_UploadMizuho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1192,4 +1204,5 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents other2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents other3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
 End Class
