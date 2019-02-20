@@ -23,6 +23,7 @@ Partial Class MenuUtamaForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmLogin = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,14 +57,19 @@ Partial Class MenuUtamaForm
         Me.LblRecords = New System.Windows.Forms.ToolStripStatusLabel()
         Me.LblLogin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolTip = New System.Windows.Forms.ToolTip()
+        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.tsDirect = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsDirect1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsSuspend = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsSettlement = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tstax, Me.tsPayment, Me.SJtsb, Me.WindowsMenu, Me.HelpMenu})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tstax, Me.tsPayment, Me.SJtsb, Me.tsDirect1, Me.WindowsMenu, Me.HelpMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
@@ -168,18 +174,18 @@ Partial Class MenuUtamaForm
         'tstaxtransaction
         '
         Me.tstaxtransaction.Name = "tstaxtransaction"
-        Me.tstaxtransaction.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxtransaction.Size = New System.Drawing.Size(180, 22)
         Me.tstaxtransaction.Text = "Transaction"
         '
         'tstaxreport
         '
         Me.tstaxreport.Name = "tstaxreport"
-        Me.tstaxreport.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxreport.Size = New System.Drawing.Size(180, 22)
         Me.tstaxreport.Text = "Report"
         '
         'tsPayment
         '
-        Me.tsPayment.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsTransaction, Me.tsReport1})
+        Me.tsPayment.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsTransaction, Me.tsReport1, Me.tsDirect})
         Me.tsPayment.Name = "tsPayment"
         Me.tsPayment.Size = New System.Drawing.Size(66, 20)
         Me.tsPayment.Text = "Payment"
@@ -187,13 +193,13 @@ Partial Class MenuUtamaForm
         'tsTransaction
         '
         Me.tsTransaction.Name = "tsTransaction"
-        Me.tsTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.tsTransaction.Size = New System.Drawing.Size(180, 22)
         Me.tsTransaction.Text = "Transaction"
         '
         'tsReport1
         '
         Me.tsReport1.Name = "tsReport1"
-        Me.tsReport1.Size = New System.Drawing.Size(135, 22)
+        Me.tsReport1.Size = New System.Drawing.Size(180, 22)
         Me.tsReport1.Text = "Report"
         '
         'SJtsb
@@ -206,13 +212,13 @@ Partial Class MenuUtamaForm
         'WHJtsb
         '
         Me.WHJtsb.Name = "WHJtsb"
-        Me.WHJtsb.Size = New System.Drawing.Size(115, 22)
+        Me.WHJtsb.Size = New System.Drawing.Size(180, 22)
         Me.WHJtsb.Text = "WHJ"
         '
         'Fintsb
         '
         Me.Fintsb.Name = "Fintsb"
-        Me.Fintsb.Size = New System.Drawing.Size(115, 22)
+        Me.Fintsb.Size = New System.Drawing.Size(180, 22)
         Me.Fintsb.Text = "Finance"
         '
         'WindowsMenu
@@ -226,7 +232,7 @@ Partial Class MenuUtamaForm
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CloseAllToolStripMenuItem.Text = "C&lose All"
         '
         'HelpMenu
@@ -285,6 +291,35 @@ Partial Class MenuUtamaForm
         Me.lblGroup.Size = New System.Drawing.Size(66, 17)
         Me.lblGroup.Text = "User Group"
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'tsDirect
+        '
+        Me.tsDirect.Name = "tsDirect"
+        Me.tsDirect.Size = New System.Drawing.Size(180, 22)
+        Me.tsDirect.Text = "Direct Payment"
+        '
+        'tsDirect1
+        '
+        Me.tsDirect1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsSuspend, Me.tsSettlement})
+        Me.tsDirect1.Name = "tsDirect1"
+        Me.tsDirect1.Size = New System.Drawing.Size(100, 20)
+        Me.tsDirect1.Text = "Direct Payment"
+        '
+        'tsSuspend
+        '
+        Me.tsSuspend.Name = "tsSuspend"
+        Me.tsSuspend.Size = New System.Drawing.Size(180, 22)
+        Me.tsSuspend.Text = "Suspend"
+        '
+        'tsSettlement
+        '
+        Me.tsSettlement.Name = "tsSettlement"
+        Me.tsSettlement.Size = New System.Drawing.Size(180, 22)
+        Me.tsSettlement.Text = "Settlement"
+        '
         'MenuUtamaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -342,4 +377,9 @@ Partial Class MenuUtamaForm
     Friend WithEvents tstaxtransaction As ToolStripMenuItem
     Friend WithEvents tstaxreport As ToolStripMenuItem
     Friend WithEvents CalculateTM As ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents tsDirect As ToolStripMenuItem
+    Friend WithEvents tsDirect1 As ToolStripMenuItem
+    Friend WithEvents tsSuspend As ToolStripMenuItem
+    Friend WithEvents tsSettlement As ToolStripMenuItem
 End Class

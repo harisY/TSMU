@@ -55,6 +55,7 @@ Public Class frmCompare_Invoice1
         End Try
     End Sub
     Private Sub LoadGrid3()
+        fc_Class.perpost = _cmbperpost.Text
         Try
             fc_Class.cekbalance = _cekbalance.Checked
             ' dtGrid = fc_Class.GetAllDataTable(bs_Filter)
@@ -70,7 +71,7 @@ Public Class frmCompare_Invoice1
         fc_Class.txtFileLocation = txtFileLocation.Text
 
         fc_Class.Delete()
-
+        fc_Class.perpost = _cmbperpost.Text
         Try
             For i As Integer = 0 To DataGridView1.Rows.Count - 1
                 '     Dim tglx As DateTime = Format(Date.Now(), "yyyy-MM-dd")
