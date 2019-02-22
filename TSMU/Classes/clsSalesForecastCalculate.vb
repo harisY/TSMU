@@ -197,6 +197,37 @@ Public Class clsSalesForecastCalculate
             Throw
         End Try
     End Function
+    Public Function IsForecastExist(ByVal tahun As String, ByVal InvtID As String) As Boolean
+        Try
+            Dim ls_SP As String = "select * from calculated_Forecast where Tahun=" & QVal(tahun) & " AND Invtid = " & QVal(InvtID) & ""
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable.Rows.Count > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function IsForecastDetailsExist(ID As Integer, Bulan As String, InvtId As String, tipe As String, Tahun As String) As Boolean
+        Try
+            Dim ls_SP As String =
+            "SELECT * FROM calculated_Forecast H Inner Join 
+                CalculatedForecastDetails D on H.ID= D.ID 
+            WHERE D.ID=" & QVal(ID) & " AND D.Bulan = " & QVal(Bulan) & " AND D.InvtID = " & QVal(InvtId) & " AND D.Type = " & QVal(tipe) & " AND H.Tahun = " & QVal(Tahun) & ""
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable.Rows.Count > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetForecasttSemester2(ByVal tahun As String) As DataTable
         Try
             Dim ls_SP As String =
@@ -321,6 +352,26 @@ Public Class clsSalesForecastCalculate
         End Try
     End Function
 
+    Public Function UpdateHeader(Tahun As String, InvtId As String) As Integer
+        Dim ID1 As Integer = 0
+        Try
+            Dim ls_SP As String =
+            "UPDATE [calculated_Forecast] 
+                SET updated_by = " & QVal(gh_Common.Username) & ",
+                    updated_date = GETDATE()
+                    OUTPUT  Inserted.ID 
+            WHERE Tahun=" & QVal(Tahun) & " AND Invtid = " & QVal(InvtId) & ""
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(ls_SP)
+            If dt.Rows.Count > 0 Then
+                ID1 = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return ID1
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Sub DeleteForecastByYearAndSemester(ByVal tahun As String, ByVal semester As String, Bulan2 As String)
         Try
             Dim dt As New DataTable
@@ -369,17 +420,20 @@ Public Class clsSalesForecastCalculate
 
     Public Function getHeader() As String
         Try
+            'Return "SELECT a.[ID]
+            ',a.[Tahun]
+            ',a.[invtid] [Inventory ID]
+            ',a.[descr] [Description]
+            ',a.[Semester]
+            ',(SELECT SUM(Jan_qty + feb_qty + mar_qty + apr_qty+mei_qty+jun_qty+jul_qty+agt_qty+sep_qty+okt_qty+nov_qty+des_qty)
+            '    from calculated_Forecast_detail where id = a.id) as TotalQty
+            ',(SELECT SUM(Jan_po + feb_po + mar_po + apr_po+mei_po+jun_po+jul_po+agt_po+sep_po+okt_po+nov_po+des_po)
+            '    from calculated_Forecast_detail where id = a.id) as TotalPO
+            'FROM [calculated_Forecast] a"
             Return "SELECT a.[ID]
             ,a.[Tahun]
             ,a.[invtid] [Inventory ID]
-            ,a.[descr] [Description]
-            ,a.[Semester]
-            ,(SELECT SUM(Jan_qty + feb_qty + mar_qty + apr_qty+mei_qty+jun_qty+jul_qty+agt_qty+sep_qty+okt_qty+nov_qty+des_qty)
-                from calculated_Forecast_detail where id = a.id) as TotalQty
-            ,(SELECT SUM(Jan_po + feb_po + mar_po + apr_po+mei_po+jun_po+jul_po+agt_po+sep_po+okt_po+nov_po+des_po)
-                from calculated_Forecast_detail where id = a.id) as TotalPO
-            FROM [calculated_Forecast] a"
-
+            ,a.[descr] [Description] FROM [calculated_Forecast] a"
         Catch ex As Exception
             Throw
         End Try
@@ -387,155 +441,72 @@ Public Class clsSalesForecastCalculate
 
     Public Function getDetails() As String
         Try
-            Return "SELECT * From calculated_Forecast_detail"
+            Return "SELECT * From CalculatedForecastDetails"
         Catch ex As Exception
             Throw
         End Try
     End Function
-
-    Public Function GetForecastToCalculate(Bulan1 As Integer, Bulan2 As Integer) As DataTable
+    Public Function GetForecastAll() As DataTable
         Dim dt As DataTable
-        Dim Query As String = String.Empty
         Try
-            If Bulan1 = 1 And Bulan2 = 1 Then
-                Jan = GetForecastJanuari()
-                'Feb = GetForecastFebruari()
-                'Mar = GetForecastMaret()
-                'Apr = GetForecastApril()
-                'Mei = GetForecastMei()
-                'Jun = GetForecastJuni()
-                'Jul = GetForecastJuli()
-                'Agt = GetForecastAgustus()
-                'Sep = GetForecastSeptember()
-                'Okt = GetForecastOktober()
-                'Nov = GetForecastNovember()
-                'Des = GetForecastDesember()
-                Query = GetForecast(Jan)
-                dt = New DataTable
-                dt = GetDataTable(Query)
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Function
-
-
-    Public Function GetForecast(sql As String) As String
-        Try
-            Return "SELECT [Id]
-                  ,[Tahun]
-                  ,[CustID]
-                  ,[Customer]
-                  ,[InvtID]
-                  ,[Description]
-                  ,[PartNo]
-                  ,[Model]
-                  ,[Oe/Pe]
-                  ,[IN/SUB]
-                  ,[Site] " &
-                  "," & sql & " " &
-              "FROM [tForecastPrice] "
+            Dim sql = "SELECT * FROM [tForecastPrice] "
+            dt = New DataTable
+            dt = GetDataTable(sql)
+            Return dt
         Catch ex As Exception
             Throw
         End Try
     End Function
 
-    Public Function GetForecastJanuari() As String
+    Public Sub DeleteHeader(Tahun As String, Bulan As String)
         Try
-            Return "[JanQty1], [JanQty2], [JanQty3], [Jan PO1], [Jan PO2]"
+            Dim sql As String =
+            "DELETE H 
+            FROM calculated_Forecast H Inner Join
+	            CalculatedForecastDetails D on H.ID = D.ID
+            WHERE H.Tahun = " & QVal(Tahun) & " AND D.Bulan = " & QVal(Bulan) & ""
+            ExecQuery(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Public Sub DeleteDetails(Tahun As String, Bulan As String)
+        Try
+            Dim sql As String =
+            "DELETE 
+            FROM CalculatedForecastDetails 
+            WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & ""
+            ExecQuery(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Function GetCalculatedForecastSummary(Tahun As String, Bulan As String, Invtid As String) As DataTable
+        Try
+            Dim sql As String =
+                "SELECT D.InvtID, D.Description, D.Unit, SUM(D.Qty) [Qty Forecast], SUM(D.PO) [Qty PO] 
+                FROM CalculatedForecastDetails D Inner Join calculated_Forecast H on D.ID= H.ID
+                WHERE H.Tahun = COALESCE(NULLIF(" & QVal(Tahun) & ",'ALL'),H.Tahun) AND 
+                      D.Bulan = COALESCE(NULLIF(" & QVal(Bulan) & ",'ALL'),D.Bulan) AND
+                      D.Invtid= COALESCE(NULLIF(" & QVal(Invtid) & ",'ALL'),D.Invtid)
+                GROUP BY D.InvtID,D.Description,D.Unit"
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
-    Public Function GetForecastFebruari() As String
-        Try
-            Return "[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2]"
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastMaret() As String
-        Try
-            Return "[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2]"
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastApril() As String
+    Public Function GetInventoryID() As DataTable
         Try
-            Return "[AprQty1],[AprQty2],[AprQty3],[Apr PO1] ,[Apr PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastMei() As String
-        Try
-            Return "[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastJuni() As String
-
-        Try
-            Return "[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastJuli() As String
-        Try
-            Return "[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastAgustus() As String
-        Try
-            Return "[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastSeptember() As String
-        Try
-            Return "[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastOktober() As String
-        Try
-            Return "[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastNovember() As String
-        Dim dt As New DataTable
-        Dim MainQuery As String = ""
-        Try
-            Return "[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2]"
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-    Public Function GetForecastDesember() As String
-        Dim dt As New DataTable
-        Dim MainQuery As String = ""
-        Try
-            Return "[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]"
-
+            Dim sql As String =
+            "SELECT Invtid [Inventory ID], Description FROM CalculatedForecastDetails
+            GROUP BY Invtid, Description"
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

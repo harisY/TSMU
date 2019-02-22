@@ -140,6 +140,7 @@ Module MainModul
 
     Public gs_FormatPecahan As String = "#,##0.####"
     Public gs_FormatDecimal As String = "#,##0.#0"
+    Public gs_FormatDecimal1 As String = "#,##0.#00000"
     Public gs_FormatBulat As String = "#,##0"
     Public gs_FormatSQLDate As String = "yyyy-MM-dd"
     Public gs_FormatGenNoDate As String = "yyyyMM"

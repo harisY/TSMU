@@ -308,6 +308,12 @@
     <Compile Include="Form\Common\frmCompare_Invoice1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmSalesForecastCalculatedSum.Designer.vb">
+      <DependentUpon>frmSalesForecastCalculatedSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSalesForecastCalculatedSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSalesForecast_calculated.Designer.vb">
       <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
     </Compile>
@@ -949,6 +955,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmCompare_Invoice1.resx">
       <DependentUpon>frmCompare_Invoice1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSalesForecastCalculatedSum.resx">
+      <DependentUpon>frmSalesForecastCalculatedSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSalesForecast_calculated.resx">
       <DependentUpon>frmSalesForecast_calculated.vb</DependentUpon>
