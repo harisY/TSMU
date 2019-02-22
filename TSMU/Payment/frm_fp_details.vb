@@ -205,6 +205,7 @@ Public Class frm_fp_details
                         .Jml_Invoice = GridView1.GetRowCellValue(i, "Amount")
                         .CuryID = GridView1.GetRowCellValue(i, "CuryId")
                         .Ppn = GridView1.GetRowCellValue(i, "Ppn")
+                        .Check_PPN = GridView1.GetRowCellValue(i, "Check_PPN")
                         .Dpp = GridView1.GetRowCellValue(i, "DPP")
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
                         .link_barcode = "1"

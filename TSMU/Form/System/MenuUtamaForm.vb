@@ -398,6 +398,8 @@ Public Class MenuUtamaForm
                                 tsTransaction.DropDownItems.Add(TSMenuD)
                             ElseIf childMenu = "Report" Then
                                 tsReport1.DropDownItems.Add(TSMenuD)
+                            ElseIf childMenu = "Direct Payment" Then
+                                tsDirect.DropDownItems.Add(TSMenuD)
                                 'ElseIf childMenu = "Price" Then
                                 '    PriceTSM.DropDownItems.Add(TSMenuD)
                             End If
@@ -416,6 +418,13 @@ Public Class MenuUtamaForm
                                 tstaxreport.DropDownItems.Add(TSMenuD)
                                 'ElseIf childMenu = "Price" Then
                                 '    PriceTSM.DropDownItems.Add(TSMenuD)
+                            End If
+                        Case "Direct Payment"
+                            If childMenu Is DBNull.Value OrElse childMenu = "" Then
+                            ElseIf childMenu = "Suspend" Then
+                                tsSuspend.DropDownItems.Add(TSMenuD)
+                            ElseIf childMenu = "Settlement" Then
+                                tsSettlement.DropDownItems.Add(TSMenuD)
                             End If
                         Case Else
 
@@ -498,18 +507,41 @@ Public Class MenuUtamaForm
             If tsReport.DropDownItems.Count > 0 Then tsReport.Visible = True Else tsReport.Visible = False
             If tsMenuSetting.DropDownItems.Count > 0 Then tsMenuSetting.Visible = True Else tsMenuSetting.Visible = False
             'If tsPayment.DropDownItems.Count > 0 Then tsPayment.Visible = True Else tsPayment.Visible = False
-            If tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count > 0 Then
+            If tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count > 0 AndAlso tsDirect.DropDownItems.Count > 0 Then
                 tsPayment.Visible = True
                 tsTransaction.Visible = True
                 tsReport1.Visible = True
-            ElseIf tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count = 0 Then
+                tsDirect.Visible = True
+            ElseIf tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count = 0 AndAlso tsDirect.DropDownItems.Count = 0 Then
                 tsPayment.Visible = True
                 tsTransaction.Visible = True
                 tsReport1.Visible = False
-            ElseIf tsTransaction.DropDownItems.Count = 0 AndAlso tsReport1.DropDownItems.Count > 0 Then
+                tsDirect.Visible = False
+            ElseIf tsTransaction.DropDownItems.Count = 0 AndAlso tsReport1.DropDownItems.Count > 0 AndAlso tsDirect.DropDownItems.Count = 0 Then
                 tsPayment.Visible = True
                 tsTransaction.Visible = False
                 tsReport1.Visible = True
+                tsDirect.Visible = False
+            ElseIf tsTransaction.DropDownItems.Count = 0 AndAlso tsReport1.DropDownItems.Count = 0 AndAlso tsDirect.DropDownItems.Count > 0 Then
+                tsPayment.Visible = True
+                tsTransaction.Visible = False
+                tsReport1.Visible = False
+                tsDirect.Visible = True
+            ElseIf tsTransaction.DropDownItems.Count = 0 AndAlso tsReport1.DropDownItems.Count > 0 AndAlso tsDirect.DropDownItems.Count > 0 Then
+                tsPayment.Visible = True
+                tsTransaction.Visible = False
+                tsReport1.Visible = True
+                tsDirect.Visible = True
+            ElseIf tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count = 0 AndAlso tsDirect.DropDownItems.Count > 0 Then
+                tsPayment.Visible = True
+                tsTransaction.Visible = True
+                tsReport1.Visible = False
+                tsDirect.Visible = True
+            ElseIf tsTransaction.DropDownItems.Count > 0 AndAlso tsReport1.DropDownItems.Count > 0 AndAlso tsDirect.DropDownItems.Count = 0 Then
+                tsPayment.Visible = True
+                tsTransaction.Visible = True
+                tsReport1.Visible = True
+                tsDirect.Visible = False
             Else
                 tsPayment.Visible = False
             End If
@@ -542,6 +574,21 @@ Public Class MenuUtamaForm
                 Fintsb.Visible = True
             Else
                 SJtsb.Visible = False
+            End If
+            If tsSuspend.DropDownItems.Count > 0 AndAlso tsSettlement.DropDownItems.Count > 0 Then
+                tsDirect1.Visible = True
+                tsSuspend.Visible = True
+                tsSettlement.Visible = True
+            ElseIf tsSuspend.DropDownItems.Count > 0 AndAlso tsSettlement.DropDownItems.Count = 0 Then
+                tsDirect1.Visible = True
+                tsSuspend.Visible = True
+                tsSettlement.Visible = False
+            ElseIf tsSuspend.DropDownItems.Count = 0 AndAlso tsSettlement.DropDownItems.Count > 0 Then
+                tsDirect1.Visible = True
+                tsSuspend.Visible = False
+                tsSettlement.Visible = True
+            Else
+                tsDirect1.Visible = False
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -591,6 +638,9 @@ Public Class MenuUtamaForm
             Me.tsReport1.DropDownItems.Clear()
         End If
 
+        If Me.tsDirect.DropDownItems.Count > 0 Then
+            Me.tsDirect.DropDownItems.Clear()
+        End If
         If Me.tstaxtransaction.DropDownItems.Count > 0 Then
             Me.tstaxtransaction.DropDownItems.Clear()
         End If
@@ -608,7 +658,13 @@ Public Class MenuUtamaForm
         If Me.Fintsb.DropDownItems.Count > 0 Then
             Me.Fintsb.DropDownItems.Clear()
         End If
+        If Me.tsSettlement.DropDownItems.Count > 0 Then
+            Me.tsSettlement.DropDownItems.Clear()
+        End If
 
+        If Me.tsSuspend.DropDownItems.Count > 0 Then
+            Me.tsSuspend.DropDownItems.Clear()
+        End If
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
@@ -700,4 +756,12 @@ Public Class MenuUtamaForm
         End If
         Return False
     End Function
+
+    Private Sub CalculateTM_Click(sender As Object, e As EventArgs) Handles CalculateTM.Click
+
+    End Sub
+
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+
+    End Sub
 End Class

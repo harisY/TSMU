@@ -244,6 +244,8 @@
     <Compile Include="Delvi\frmDelvi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\Class\ClsSettlement.vb" />
+    <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -720,6 +722,7 @@
     <Compile Include="Models\fp_pph_transaction_models.vb" />
     <Compile Include="Models\fp_transaction_models.vb" />
     <Compile Include="Models\global_function_models.vb" />
+    <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
@@ -1400,6 +1403,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\85585d27229af16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\433-200.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

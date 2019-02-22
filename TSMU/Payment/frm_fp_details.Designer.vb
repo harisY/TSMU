@@ -21,20 +21,20 @@ Partial Class frm_fp_details
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_fp_details))
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.Check1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BtnScan1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.BtnPPH1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -98,6 +98,8 @@ Partial Class frm_fp_details
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNBP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.Check_PPN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.Check1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +141,7 @@ Partial Class frm_fp_details
         CType(Me._GridDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Check1
@@ -151,8 +154,8 @@ Partial Class frm_fp_details
         Me.BtnScan1.Appearance.Image = CType(resources.GetObject("BtnScan1.Appearance.Image"), System.Drawing.Image)
         Me.BtnScan1.Appearance.Options.UseImage = True
         Me.BtnScan1.AutoHeight = False
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
+        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.BtnScan1.Name = "BtnScan1"
         Me.BtnScan1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -281,10 +284,10 @@ Partial Class frm_fp_details
         Me._DeDate.Size = New System.Drawing.Size(163, 20)
         Me._DeDate.StyleController = Me.LayoutControl1
         Me._DeDate.TabIndex = 5
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Date tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._DeDate, ConditionValidationRule1)
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "Date tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._DeDate, ConditionValidationRule5)
         '
         '_TxtCurrency
         '
@@ -297,10 +300,10 @@ Partial Class frm_fp_details
         Me._TxtCurrency.Size = New System.Drawing.Size(163, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 6
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Currenctu tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Currenctu tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule1)
         '
         '_TxtJenisJasa
         '
@@ -319,10 +322,10 @@ Partial Class frm_fp_details
         Me._TxtNoTrans.Size = New System.Drawing.Size(238, 20)
         Me._TxtNoTrans.StyleController = Me.LayoutControl1
         Me._TxtNoTrans.TabIndex = 0
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "No. Trasaksi tidak boleh kosong"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtNoTrans, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "No. Trasaksi tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtNoTrans, ConditionValidationRule2)
         '
         '_TxtNPWP
         '
@@ -342,10 +345,10 @@ Partial Class frm_fp_details
         Me._LookUpSupplier.Size = New System.Drawing.Size(64, 20)
         Me._LookUpSupplier.StyleController = Me.LayoutControl1
         Me._LookUpSupplier.TabIndex = 1
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Supplier tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._LookUpSupplier, ConditionValidationRule4)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._LookUpSupplier, ConditionValidationRule3)
         '
         'LayoutControlGroup1
         '
@@ -617,8 +620,8 @@ Partial Class frm_fp_details
         Me.BtnScand2.Appearance.Image = CType(resources.GetObject("BtnScand2.Appearance.Image"), System.Drawing.Image)
         Me.BtnScand2.Appearance.Options.UseImage = True
         Me.BtnScand2.AutoHeight = False
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.BtnScand2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions4.Image = CType(resources.GetObject("EditorButtonImageOptions4.Image"), System.Drawing.Image)
+        Me.BtnScand2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.BtnScand2.Name = "BtnScand2"
         Me.BtnScand2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -653,13 +656,14 @@ Partial Class frm_fp_details
         Me._GridDetails.Location = New System.Drawing.Point(3, 3)
         Me._GridDetails.MainView = Me.GridView1
         Me._GridDetails.Name = "_GridDetails"
+        Me._GridDetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me._GridDetails.Size = New System.Drawing.Size(822, 206)
         Me._GridDetails.TabIndex = 4
         Me._GridDetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.ColCheck1, Me.ColScan1, Me.ColPph1, Me.ColStatus, Me.ColNBP})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.Check_PPN, Me.GridColumn6, Me.ColCheck1, Me.ColScan1, Me.ColPph1, Me.ColStatus, Me.ColNBP})
         Me.GridView1.GridControl = Me._GridDetails
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
@@ -735,7 +739,7 @@ Partial Class frm_fp_details
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 150
         '
         'ColCheck1
@@ -746,7 +750,7 @@ Partial Class frm_fp_details
         Me.ColCheck1.Name = "ColCheck1"
         Me.ColCheck1.OptionsFilter.AllowAutoFilter = False
         Me.ColCheck1.Visible = True
-        Me.ColCheck1.VisibleIndex = 8
+        Me.ColCheck1.VisibleIndex = 9
         '
         'ColScan1
         '
@@ -756,7 +760,7 @@ Partial Class frm_fp_details
         Me.ColScan1.Name = "ColScan1"
         Me.ColScan1.OptionsFilter.AllowAutoFilter = False
         Me.ColScan1.Visible = True
-        Me.ColScan1.VisibleIndex = 9
+        Me.ColScan1.VisibleIndex = 10
         '
         'ColPph1
         '
@@ -768,7 +772,7 @@ Partial Class frm_fp_details
         Me.ColPph1.Name = "ColPph1"
         Me.ColPph1.OptionsFilter.AllowAutoFilter = False
         Me.ColPph1.Visible = True
-        Me.ColPph1.VisibleIndex = 10
+        Me.ColPph1.VisibleIndex = 11
         Me.ColPph1.Width = 100
         '
         'ColStatus
@@ -784,7 +788,21 @@ Partial Class frm_fp_details
         Me.ColNBP.Name = "ColNBP"
         Me.ColNBP.OptionsColumn.AllowEdit = False
         Me.ColNBP.Visible = True
-        Me.ColNBP.VisibleIndex = 7
+        Me.ColNBP.VisibleIndex = 8
+        '
+        'Check_PPN
+        '
+        Me.Check_PPN.Caption = "Check PPN"
+        Me.Check_PPN.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.Check_PPN.FieldName = "Check_PPN"
+        Me.Check_PPN.Name = "Check_PPN"
+        Me.Check_PPN.Visible = True
+        Me.Check_PPN.VisibleIndex = 6
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
         'frm_fp_details
         '
@@ -837,6 +855,7 @@ Partial Class frm_fp_details
         CType(Me._GridDetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -905,4 +924,6 @@ Partial Class frm_fp_details
     Friend WithEvents ColNBP2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColNBP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
+    Friend WithEvents Check_PPN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

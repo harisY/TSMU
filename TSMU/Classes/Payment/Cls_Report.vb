@@ -222,9 +222,7 @@ Public Class Cls_report
         End Try
     End Function
 
-    Friend Function DataGridViewUploadMizuho(v As Object) As DataTable
-        Throw New NotImplementedException()
-    End Function
+
 
     Public Function DataGridViewUploadMizuho(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
@@ -236,6 +234,55 @@ Public Class Cls_report
             pParam(1).Value = date2
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function DataGridSyncTemplate(ByVal date1 As String, ByVal date2 As String) As DataTable
+        Try
+            Dim query As String = "SyncBasedOnTemplate"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            pParam(0).Value = date1
+            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function DataGridSyncMizuho() As DataTable
+        Try
+            Dim query As String = "SyncMizuho"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            'pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            'pParam(0).Value = date1
+            'pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            'pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+    Public Function DataGridViewTemplateMizuho() As DataTable
+        Try
+            Dim query As String = "TemplateMizuho"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            'pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            'pParam(0).Value = date1
+            'pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            'pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query)
             Return dt
         Catch ex As Exception
             Throw

@@ -80,7 +80,7 @@ Public Class clscompare
     Public Property UnitDescr As String
     '  Public Property cmbperpost() As String
     Public Sub New()
-        Me._Query = "select * from Temp_Copas_sol"
+        Me._Query = "select * from Temp_Copas_sol "
         ' MsgBox(cekbalance)
 
     End Sub
@@ -101,9 +101,9 @@ Public Class clscompare
         Dim ls_SP As String
         Try
             If cekbalance = True Then
-                ls_SP = "select * from Temp_Copas_sol where balance=0"
+                ls_SP = "select * from Temp_Copas_sol where balance=0 "
             Else
-                ls_SP = "select * from Temp_Copas_sol where balance!=0"
+                ls_SP = "select * from Temp_Copas_sol where balance!=0 "
 
             End If
 
@@ -117,10 +117,11 @@ Public Class clscompare
     Public Function GetDataReturn() As DataTable
         ' Try
         'Dim ls_SP As String = "select * from Temp_Copas_sol where balance=0"
+        'cmbperpost = frmCompare_Invoice1._cmbperpost.Text
 
         Try
 
-            Dim ls_SP As String = "select Item_Number,Item_Name, sum(0-Receipt_Quantity_return) as Qty,Unit_Price,sum(0-Receipt_Quantity_return)*Unit_Price as Total from  YIM_Receipt where order_number=''  and item_number!='' group by Item_Number,Item_Name,Unit_Price,Amount"
+            Dim ls_SP As String = "select Item_Number,Item_Name, sum(0-Receipt_Quantity_return) as Qty,Unit_Price,sum(0-Receipt_Quantity_return)*Unit_Price as Total from  YIM_Receipt where order_number=''  and item_number!='' and perpost='" & perpost & "' group by Item_Number,Item_Name,Unit_Price,Amount"
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(ls_SP)
@@ -180,9 +181,9 @@ Public Class clscompare
     Public Sub Insert()
         Try
             '   cmbperpost = "201811"
-            cmbperpost = frmCompare_Invoice1._cmbperpost.Text
+            ' cmbperpost = frmCompare_Invoice1._cmbperpost.Text
             Dim ls_SP As String = "INSERT INTO YIM_receipt (SEQ, Issue_Date, Payment_Term_from, Payment_Term_to, Company_Code, Company_Name, Section, Person_Charge, Data_Range_ID, Data_Range, Supplier_Code, Supplier_Name, Item_Number, S_code, U_code, PF, Item_Name, S_Name, U_Name, UM, Item_Class, Receipt_Date_return, Receipt_Quantity_return, Unit_Price, Amount, Currency, Slip_Type, Slip_Number, Order_Number, Input_Date, Due_Date, Order_Quantity, Ordered_by, Volume_Number, Output_Date,Nama_File,perpost) " &
-                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g5 & "','" & g6 & "','" & g7 & "','" & g8 & "','" & g9 & "','" & g10 & "','" & g11 & "','" & g12 & "','" & g13 & "','" & g14 & "','" & g15 & "','" & g16 & "','" & g17 & "','" & g18 & "','" & g19 & "','" & g20 & "','" & g21 & "','" & g22 & "','" & g23 & "','" & g24 & "','" & g25 & "','" & g26 & "','" & g27 & "','" & g28 & "','" & g29 & "','" & g30 & "','" & g31 & "','" & g32 & "','" & g33 & "','" & g34 & "','" & txtFileLocation & "'," & QVal(cmbperpost) & ")"
+                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g5 & "','" & g6 & "','" & g7 & "','" & g8 & "','" & g9 & "','" & g10 & "','" & g11 & "','" & g12 & "','" & g13 & "','" & g14 & "','" & g15 & "','" & g16 & "','" & g17 & "','" & g18 & "','" & g19 & "','" & g20 & "','" & g21 & "','" & g22 & "','" & g23 & "','" & g24 & "','" & g25 & "','" & g26 & "','" & g27 & "','" & g28 & "','" & g29 & "','" & g30 & "','" & g31 & "','" & g32 & "','" & g33 & "','" & g34 & "','" & txtFileLocation & "'," & QVal(perpost) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

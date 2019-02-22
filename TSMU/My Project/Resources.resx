@@ -121,6 +121,9 @@
   <data name="Barcode2_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Barcode2_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="85585d27229af16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\85585d27229af16.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CheckBox_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CheckBox_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,7 +133,7 @@
   <data name="upload-icon-18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\upload-icon-18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="85585d27229af16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\85585d27229af16.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="433-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\433-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
