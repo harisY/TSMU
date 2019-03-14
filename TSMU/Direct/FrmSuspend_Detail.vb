@@ -191,26 +191,8 @@ Public Class FrmSuspend_Detail
         End Try
     End Sub
 
-    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
-        Dim ignoreCancel As Boolean = False
-        'TxtID.DoValidate()
-        'TxtDesc.DoValidate()
-
-        'If DxValidationProvider1.GetInvalidControls().Contains(TxtID) _
-        '    OrElse DxValidationProvider1.GetInvalidControls().Contains(TxtDesc) Then
-        '    ignoreCancel = True
-        'Else
-        '    ignoreCancel = True
-        'End If
-
-        MyBase.OnFormClosing(e)
-        e.Cancel = Not ignoreCancel
-    End Sub
-
     Private Sub RepositoryItemButtonEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit1.ButtonClick
         Try
-
-
             dtSearch = ObjSuspend.GetSubAccount
             'ls_OldKode =Iff(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount") Is DBNull.Value
             ls_Judul = "SubAccount"

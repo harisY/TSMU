@@ -100,7 +100,7 @@
     End Sub
     Dim ID As String
     Dim suspendid As String
-    Private Sub frmWorkCenter_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Private Sub FrmSuspend_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
@@ -147,7 +147,4 @@
         End Try
     End Sub
 
-    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
-
-    End Sub
 End Class
