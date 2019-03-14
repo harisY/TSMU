@@ -200,7 +200,7 @@ Public Class FrmSystemLookUpCalculateSales
                     .descr = descr
                     .Semester = "2"
                     .Tahun = strYear
-                    .Total = 0
+                    .QtyBoM = 0
                     Id = .InsertHeader()
                 End With
 
@@ -501,8 +501,8 @@ Public Class FrmSystemLookUpCalculateSales
                     .descr = descr
                     .Semester = "1"
                     .Tahun = strYear
-                    .Total = 0
-                    .TotalPO = 0
+                    .QtyBoM = 0
+                    .QtyPO = 0
                     Id = .InsertHeader()
                 End With
 
@@ -662,21 +662,15 @@ Public Class FrmSystemLookUpCalculateSales
                             jun = 0
                         End If
 
-                        '===============PO Juni=====================
-                        If dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty03")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty02")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString <> "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString = "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty02")
-                        ElseIf dt1.Rows(j).Item("jun_qty03").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty02").ToString = "0" AndAlso dt1.Rows(j).Item("jun_qty01").ToString <> "0" Then
-                            jun = dt1.Rows(j).Item("jun_qty01")
+                        '===============PO Jun=====================
+                        If dt1.Rows(j).Item("Jun_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("Jun_po01").ToString <> "0" Then
+                            junPO = dt1.Rows(j).Item("Jun_po02")
+                        ElseIf dt1.Rows(j).Item("Jun_po02").ToString <> "0" AndAlso dt1.Rows(j).Item("Jun_po01").ToString = "0" Then
+                            junPO = dt1.Rows(j).Item("Jun_po02")
+                        ElseIf dt1.Rows(j).Item("Jun_po02").ToString = "0" AndAlso dt1.Rows(j).Item("Jun_po01").ToString <> "0" Then
+                            junPO = dt1.Rows(j).Item("Jun_po01")
                         Else
-                            jun = 0
+                            junPO = 0
                         End If
 
                         Exit For

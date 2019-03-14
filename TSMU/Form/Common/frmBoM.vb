@@ -27,7 +27,10 @@ Public Class frmBoM
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = BomHeader.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
-            GridCellFormat(GridView1)
+            If GridView1.RowCount > 0 Then
+                GridCellFormat(GridView1)
+                GridView1.BestFitColumns()
+            End If
             'If Grid.Rows.Count > 0 Then
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'Else

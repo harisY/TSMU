@@ -135,6 +135,8 @@ Public Class clsBoM
                     ,[wc] [WC]
                     ,[allowance] [Allow]
                     ,[mp] [MP]
+                    ,[updated_by] [Updated By]
+                    ,[updated_date] [Updated Date]
                 FROM [bomh]"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)

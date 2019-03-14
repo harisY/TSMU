@@ -29,6 +29,9 @@
     Public Property okt_po() As Single
     Public Property nov_po() As Single
     Public Property des_po() As Single
+    'Public Property Qty() As Single
+    'Public Property PO() As Single
+    'Public Property Price() As Long
 
 #Region "CRUD"
     Public Sub InsertDetails(ID As Integer)
@@ -62,6 +65,67 @@
                 ," & QVal(okt_qty) & "," & QVal(okt_po) & "
                 ," & QVal(nov_qty) & "," & QVal(nov_po) & "
                 ," & QVal(des_qty) & "," & QVal(des_po) & ")"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertCalculatedForecastDetails(ID As Integer, Qty As Single, PO As Single, Bulan As String, Tahun As String)
+        Try
+            Dim ls_SP As String =
+            "INSERT INTO [CalculatedForecastDetails]
+                ([ID],[Tahun],[Bulan],[Invtid],[Description],[Unit],[Level],[Qty],[PO],[Type])
+            VALUES
+                (" & QVal(ID) & "," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(invtid) & "," & QVal(descr) & "," & QVal(unit) & "," & QVal(level) & "
+                ," & QVal(Qty) & "," & QVal(PO) & "," & QVal("F") & ")"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub UpdateCalculatedForecastDetails(ID As Integer, Qty As Single, PO As Single, Bulan As String, Tahun As String, Invtid As String)
+        Try
+            Dim ls_SP As String =
+            "UPDATE D
+            SET D.[Invtid] = " & QVal(Invtid) & "
+                ,D.[Description] = " & QVal(descr) & "
+                ,D.[Unit] = " & QVal(unit) & "
+                ,D.[Level] = " & QVal(level) & "
+                ,D.[Qty] = " & QVal(Qty) & "
+                ,D.[PO] = " & QVal(PO) & " 
+            FROM [CalculatedForecastDetails] D Inner Join calculated_Forecast H on D.ID = H.ID 
+            WHERE D.ID = " & QVal(ID) & " AND D.Bulan = " & QVal(Bulan) & " AND D.Type ='F' AND H.Tahun = " & QVal(Tahun) & " AND D.Invtid = " & QVal(Invtid) & ""
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertCalculatedBudgetDetails(ID As Integer, Price As Long, Bulan As String, Tahun As String)
+        Try
+            Dim ls_SP As String =
+            "INSERT INTO [CalculatedForecastDetails]
+                ([ID],[Tahun],[Bulan],[Invtid],[Description],[Unit],[Level],[Qty],[PO],[Price],[Type])
+            VALUES
+                (" & QVal(ID) & "," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(invtid) & "," & QVal(descr) & "," & QVal(unit) & "," & QVal(level) & "
+                ," & QVal(0) & "," & QVal(0) & "," & QVal(Price) & "," & QVal("P") & ")"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub UpdateCalculatedBudgetDetails(ID As Integer, Price As Long, Bulan As String, Tahun As String, Invtid As String)
+        Try
+            Dim ls_SP As String =
+            "UPDATE D 
+            SET D.[Invtid] = " & QVal(Invtid) & "
+                ,D.[Description] = " & QVal(descr) & "
+                ,D.[Unit] = " & QVal(unit) & "
+                ,D.[Level] = " & QVal(level) & "
+                ,D.[Price] = " & QVal(Price) & "
+            FROM [CalculatedForecastDetails] D Inner Join calculated_Forecast H on D.ID = H.ID 
+            WHERE D.ID = " & QVal(ID) & " AND D.Bulan = " & QVal(Bulan) & " AND D.Type ='P' AND H.Tahun = " & QVal(Tahun) & " AND D.Invtid = " & QVal(Invtid) & ""
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw

@@ -39,7 +39,7 @@ Partial Class frmCalculate
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.BtnProses = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.btnPrioses1 = New System.Windows.Forms.ToolStripButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -216,7 +216,7 @@ Partial Class frmCalculate
         '
         'ToolStrip2
         '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses, Me.ToolStripSeparator1, Me.ToolStripButton1})
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses, Me.ToolStripSeparator1, Me.btnPrioses1})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(827, 25)
@@ -236,13 +236,13 @@ Partial Class frmCalculate
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton1
+        'btnPrioses1
         '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(61, 22)
-        Me.ToolStripButton1.Text = "Proses"
+        Me.btnPrioses1.Image = CType(resources.GetObject("btnPrioses1.Image"), System.Drawing.Image)
+        Me.btnPrioses1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnPrioses1.Name = "btnPrioses1"
+        Me.btnPrioses1.Size = New System.Drawing.Size(61, 22)
+        Me.btnPrioses1.Text = "Proses"
         '
         'frmCalculate
         '
@@ -298,5 +298,5 @@ Partial Class frmCalculate
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents BtnProses As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents btnPrioses1 As ToolStripButton
 End Class

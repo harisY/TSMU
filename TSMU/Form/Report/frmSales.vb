@@ -26,11 +26,26 @@
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Async Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Try
-            'Dim dt As New DataTable
-            'dt = fc_class.SB_LoadDataGrid(cmbSite.Text, _cmbYear.Text, _txtItem.Text, _txtCustomer.Text)
-            'Grid.DataSource = dt
+            'Try
+            '    getPath()
+            '    If path <> "" Then
+            '        If DataGridView1.Rows.Count > 0 Then
+            '            ExcelLib.ExportToExcel(path & "\", DataGridView1, "convert_")
+            '        Else
+            '            Throw New Exception("Grid Kosong")
+            '        End If
+
+            '    End If
+            '    ShowMessage("File Stored at : " & path)
+            'Catch ex As Exception
+            '    MsgBox(ex.Message)
+            '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            'End Try
+            'Exit Sub
+
             If _txtPerpost.Text = "" Then
                 _txtPerpost.Focus()
                 Throw New Exception("Harap Isi Perpost !")
