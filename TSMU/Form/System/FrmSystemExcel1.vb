@@ -114,7 +114,7 @@ Public Class FrmSystemExcel1
             OpenFileDialog1.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OpenFileDialog1.ShowDialog()
             ' Test result.
-            If result = Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
                 path = OpenFileDialog1.FileName
                 'path = System.IO.Path.GetFileName(OpenFileDialog1.FileName)
                 'MsgBox(path)
@@ -218,7 +218,7 @@ Public Class FrmSystemExcel1
             OpenFileDialog1.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OpenFileDialog1.ShowDialog()
             ' Test result.
-            If result = Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
                 path2 = OpenFileDialog1.FileName
                 'path = System.IO.Path.GetFileName(OpenFileDialog1.FileName)
                 'MsgBox(path)

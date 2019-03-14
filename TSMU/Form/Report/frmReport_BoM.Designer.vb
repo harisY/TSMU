@@ -38,8 +38,8 @@ Partial Class frmReport_BoM
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridMultiLevel = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.tsMultiLevel = New System.Windows.Forms.ToolStrip()
         Me.tsbMultiLevel = New System.Windows.Forms.ToolStripButton()
         Me.PBMultiLevel = New System.Windows.Forms.ToolStripProgressBar()
@@ -48,13 +48,13 @@ Partial Class frmReport_BoM
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.GridMaterial = New DevExpress.XtraGrid.GridControl()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.tsMaterial = New System.Windows.Forms.ToolStrip()
         Me.tsbLoadMaterial = New System.Windows.Forms.ToolStripButton()
         Me.PBMaterial = New System.Windows.Forms.ToolStripProgressBar()
-        Me.GridMultiLevel = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridMaterial = New DevExpress.XtraGrid.GridControl()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -63,15 +63,15 @@ Partial Class frmReport_BoM
         Me.ToolStrip2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GridMultiLevel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tsMultiLevel.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        Me.tsMaterial.SuspendLayout()
-        CType(Me.GridMultiLevel, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tsMaterial.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -133,6 +133,8 @@ Partial Class frmReport_BoM
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsPrint.PrintHorzLines = False
+        Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
@@ -247,17 +249,23 @@ Partial Class frmReport_BoM
         Me.Panel2.Size = New System.Drawing.Size(783, 457)
         Me.Panel2.TabIndex = 19
         '
-        'ContextMenuStrip1
+        'GridMultiLevel
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
+        Me.GridMultiLevel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridMultiLevel.Location = New System.Drawing.Point(0, 25)
+        Me.GridMultiLevel.MainView = Me.GridView2
+        Me.GridMultiLevel.Name = "GridMultiLevel"
+        Me.GridMultiLevel.Size = New System.Drawing.Size(783, 432)
+        Me.GridMultiLevel.TabIndex = 4
+        Me.GridMultiLevel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
-        'ExportToExcelToolStripMenuItem
+        'GridView2
         '
-        Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
+        Me.GridView2.GridControl = Me.GridMultiLevel
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'tsMultiLevel
         '
@@ -329,6 +337,24 @@ Partial Class frmReport_BoM
         Me.Panel3.Size = New System.Drawing.Size(783, 505)
         Me.Panel3.TabIndex = 19
         '
+        'GridMaterial
+        '
+        Me.GridMaterial.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridMaterial.Location = New System.Drawing.Point(0, 25)
+        Me.GridMaterial.MainView = Me.GridView3
+        Me.GridMaterial.Name = "GridMaterial"
+        Me.GridMaterial.Size = New System.Drawing.Size(783, 480)
+        Me.GridMaterial.TabIndex = 4
+        Me.GridMaterial.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        '
+        'GridView3
+        '
+        Me.GridView3.GridControl = Me.GridMaterial
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsView.ColumnAutoWidth = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
         'tsMaterial
         '
         Me.tsMaterial.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbLoadMaterial, Me.PBMaterial})
@@ -351,41 +377,17 @@ Partial Class frmReport_BoM
         Me.PBMaterial.Name = "PBMaterial"
         Me.PBMaterial.Size = New System.Drawing.Size(100, 22)
         '
-        'GridMultiLevel
+        'ContextMenuStrip1
         '
-        Me.GridMultiLevel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridMultiLevel.Location = New System.Drawing.Point(0, 25)
-        Me.GridMultiLevel.MainView = Me.GridView2
-        Me.GridMultiLevel.Name = "GridMultiLevel"
-        Me.GridMultiLevel.Size = New System.Drawing.Size(783, 432)
-        Me.GridMultiLevel.TabIndex = 4
-        Me.GridMultiLevel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
         '
-        'GridView2
+        'ExportToExcelToolStripMenuItem
         '
-        Me.GridView2.GridControl = Me.GridMultiLevel
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridMaterial
-        '
-        Me.GridMaterial.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridMaterial.Location = New System.Drawing.Point(0, 25)
-        Me.GridMaterial.MainView = Me.GridView3
-        Me.GridMaterial.Name = "GridMaterial"
-        Me.GridMaterial.Size = New System.Drawing.Size(783, 480)
-        Me.GridMaterial.TabIndex = 4
-        Me.GridMaterial.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-        '
-        'GridView3
-        '
-        Me.GridView3.GridControl = Me.GridMaterial
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsView.ColumnAutoWidth = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
         '
         'frmReport_BoM
         '
@@ -407,18 +409,18 @@ Partial Class frmReport_BoM
         Me.TabPage2.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GridMultiLevel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tsMultiLevel.ResumeLayout(False)
         Me.tsMultiLevel.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        Me.tsMaterial.ResumeLayout(False)
-        Me.tsMaterial.PerformLayout()
-        CType(Me.GridMultiLevel, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridMaterial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tsMaterial.ResumeLayout(False)
+        Me.tsMaterial.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

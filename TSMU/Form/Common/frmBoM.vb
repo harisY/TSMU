@@ -27,7 +27,10 @@ Public Class frmBoM
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = BomHeader.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
-            GridCellFormat(GridView1)
+            If GridView1.RowCount > 0 Then
+                GridCellFormat(GridView1)
+                GridView1.BestFitColumns()
+            End If
             'If Grid.Rows.Count > 0 Then
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'Else
@@ -47,7 +50,7 @@ Public Class frmBoM
             OFD.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OFD.ShowDialog()
             ' Test result.
-            If result = Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
                 path = OFD.FileName
                 Dim text As String = System.IO.File.ReadAllText(path)
                 'Me.Text = text.Length.ToString

@@ -139,7 +139,7 @@ Public Class MenuUtamaForm
             DaftarMenu.Enabled = True
         Next
         tsnChangePass.Enabled = True
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
     End Sub
 
     Private Sub CloseApp()
@@ -626,9 +626,9 @@ Public Class MenuUtamaForm
         If Me.PriceTSM.DropDownItems.Count > 0 Then
             Me.PriceTSM.DropDownItems.Clear()
         End If
-        'If Me.tsPayment.DropDownItems.Count > 0 Then
-        '    Me.tsPayment.DropDownItems.Clear()
-        'End If
+        If Me.CalculateTM.DropDownItems.Count > 0 Then
+            Me.CalculateTM.DropDownItems.Clear()
+        End If
 
         If Me.tsTransaction.DropDownItems.Count > 0 Then
             Me.tsTransaction.DropDownItems.Clear()

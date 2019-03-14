@@ -202,7 +202,7 @@ Public Class frm_system_config_db
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Try
             Call ProcessSave()
-            DialogResult = Windows.Forms.DialogResult.OK
+            DialogResult = System.Windows.Forms.DialogResult.OK
             '# Closes form...
             'Me.Close()
             Me.Dispose()

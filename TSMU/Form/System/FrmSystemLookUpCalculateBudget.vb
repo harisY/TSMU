@@ -188,7 +188,7 @@ Public Class FrmSystemLookUpCalculateBudget
                     .descr = descr
                     .Semester = "2"
                     .Tahun = strYear
-                    .Total = 0
+                    .QtyBoM = 0
                     Id = .InsertHeader()
                 End With
 
@@ -403,7 +403,7 @@ Public Class FrmSystemLookUpCalculateBudget
                     .descr = descr
                     .Semester = "1"
                     .Tahun = strYear
-                    .Total = 0
+                    .QtyBoM = 0
                     Id = .InsertHeader()
                 End With
 

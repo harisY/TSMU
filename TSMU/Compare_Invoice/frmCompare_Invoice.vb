@@ -129,7 +129,7 @@ Public Class frmCompare_Invoice
         OpenFileDialog1.Filter = "CSV files(*.csv)|*.csv"
         OpenFileDialog1.FilterIndex = 2
         OpenFileDialog1.RestoreDirectory = True
-        If (OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+        If (OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
             fName = OpenFileDialog1.FileName
         End If
 

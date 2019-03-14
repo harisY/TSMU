@@ -357,8 +357,9 @@ Public Class frmCalculate
                         .descr = descr
                         .Semester = "0"
                         .Tahun = strTahun
-                        .Total = 0
-                        .TotalPO = 0
+                        .QtyBoM = 0
+                        .QtyForecast = 0
+                        .QtyPO = 0
                         Id = .InsertHeader()
                     End With
                     'End If

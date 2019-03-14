@@ -7,8 +7,9 @@ Public Class clsSalesForecastCalculate
     Public Property descr() As String
     Public Property Semester() As String
     Public Property Tahun() As String
-    Public Property Total() As Single
-    Public Property TotalPO() As Single
+    Public Property QtyBoM() As Single
+    Public Property QtyPO() As Single
+    Public Property QtyForecast() As Single
 
     Dim Jan As String
     Dim Feb As String
@@ -327,8 +328,9 @@ Public Class clsSalesForecastCalculate
                 ,[descr]
                 ,[Semester]
                 ,[Tahun]
-                ,[Total Qty]
-                ,[Total PO]
+                ,[Qty BoM]
+                ,[Qty Forecast]
+                ,[Qty PO]
                 ,[created_by]
                 ,[created_date])
             OUTPUT  Inserted.ID 
@@ -337,8 +339,9 @@ Public Class clsSalesForecastCalculate
                 ," & QVal(descr) & "
                 ," & QVal(Semester) & "
                 ," & QVal(Tahun) & "
-                ," & QVal(Total) & "
-                ," & QVal(TotalPO) & "
+                ," & QVal(QtyBoM) & "
+                ," & QVal(QtyPO) & "
+                ," & QVal(QtyForecast) & "
                 ," & QVal(gh_Common.Username) & "
                 ,GETDATE())"
             Dim dt As New DataTable
@@ -433,7 +436,8 @@ Public Class clsSalesForecastCalculate
             Return "SELECT a.[ID]
             ,a.[Tahun]
             ,a.[invtid] [Inventory ID]
-            ,a.[descr] [Description] FROM [calculated_Forecast] a"
+            ,a.[descr] [Description] FROM [calculated_Forecast] a
+            "
         Catch ex As Exception
             Throw
         End Try

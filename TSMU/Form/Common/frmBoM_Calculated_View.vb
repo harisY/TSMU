@@ -147,7 +147,7 @@
 
     Private Sub btnFunction_MouseClick(sender As Object, e As MouseEventArgs) Handles btnFunction.MouseClick
         Try
-            If e.Button = Windows.Forms.MouseButtons.Right Then
+            If e.Button = System.Windows.Forms.MouseButtons.Right Then
                 ContextFunc.Show(btnFunction, New System.Drawing.Point(e.X, e.Y))
             End If
         Catch ex As Exception

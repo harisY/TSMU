@@ -72,7 +72,7 @@
         For Each DaftarMenu In MenuUtamaForm.MenuStrip.Items
             DaftarMenu.Enabled = True
         Next
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
     End Sub
 
     Private Sub CloseApp()
@@ -99,7 +99,7 @@
     Private Sub FrmLogin_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
 
-            If frm_system_config_db.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If frm_system_config_db.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 UsernameTextBox.Text = ""
                 PasswordTextBox.Text = ""
                 UsernameTextBox.Focus()
