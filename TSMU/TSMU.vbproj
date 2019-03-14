@@ -104,7 +104,7 @@
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
+      <HintPath>D:\Master\No Lisense\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -276,16 +276,34 @@
     <Compile Include="Direct\FrmSettlement_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmEntertainment.Designer.vb">
+      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmSuspend.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmEntertainment_Detail.Designer.vb">
+      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainment_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainment_Detail2.Designer.vb">
+      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainment_Detail2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail2.Designer.vb">
@@ -956,11 +974,20 @@
     <EmbeddedResource Include="Direct\FrmSettlement_Detail.resx">
       <DependentUpon>FrmSettlement_Detail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainment.resx">
+      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainment_Detail.resx">
+      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainment_Detail2.resx">
+      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail2.resx">
       <DependentUpon>FrmSuspend_Detail2.vb</DependentUpon>
