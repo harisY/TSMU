@@ -17,6 +17,7 @@
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = fc_Class.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
+
             'Grid.Columns(0).Visible = False
             'If Grid.Rows.Count > 0 Then
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
@@ -36,35 +37,7 @@
         bs_Filter = ""
         Call LoadGrid()
     End Sub
-    Public Overrides Sub Proc_Filter()
-        FilterData.Text = "Filter Data Group"
-        FilterData.ShowDialog()
-        If Not FilterData.isCancel Then
-            bs_Filter = FilterData.strWhereClauseWithoutWhere
-            Call FilterGrid()
-        End If
-        FilterData.Hide()
-    End Sub
 
-    Private Sub FilterGrid()
-        Try
-            'Grid.all = False
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
-            Dim dv As New DataView(dtGrid)
-            dv.RowFilter = bs_Filter
-            dtGrid = dv.ToTable
-            Grid.DataSource = dtGrid
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
