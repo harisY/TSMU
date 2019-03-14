@@ -2,6 +2,7 @@
 Public Class ClsSuspend
     Dim _Query As String
     Public Property ID() As String
+    Public Property subaccount() As String
     Public Property suspendID() As String
     Public Sub New()
         Me._Query = "select suspendID,Tgl,Dept,total_suspend,remark from suspend_header order by suspendID"
@@ -28,6 +29,47 @@ Public Class ClsSuspend
             Return dtTable
         Catch ex As Exception
             Throw
+        End Try
+    End Function
+
+    Public Function GetAccount() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Acct) [Account],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.Account"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetSubAccount() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Consolsub) [SubAccount],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.SubAcct"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetSubAccountbyid() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Consolsub) [SubAccount],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.SubAcct WHERE Consolsub = " & QVal(subaccount) & ""
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
         End Try
     End Function
     Public Sub getDataByID(ByVal ID As String)

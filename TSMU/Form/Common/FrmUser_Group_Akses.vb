@@ -113,7 +113,7 @@
 
 
             'Select Right Clicked Row if its not the header row
-            If e.Button = Windows.Forms.MouseButtons.Right AndAlso e.RowIndex > -1 Then
+            If e.Button = System.Windows.Forms.MouseButtons.Right AndAlso e.RowIndex > -1 Then
                 'Clear any currently sellected rows
                 Grid.ClearSelection()
                 Me.Grid.Rows(e.RowIndex).Selected = True

@@ -328,7 +328,7 @@ Public Class Frm_Rpt_UploadMizuho
         Using fold As New OpenFileDialog
             fold.Filter = "document files (*.xls)|*.xlsx|richtextformat files (*.rtf)|*.rtf|All files (*.*)|*.*"
             fold.Title = "Select file"
-            If fold.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If fold.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 'fold.FilterIndex = 2
                 fold.RestoreDirectory = True
                 ''MessageBox.Show("You selected " & fold.FileName)

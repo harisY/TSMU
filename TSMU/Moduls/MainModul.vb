@@ -1056,7 +1056,7 @@ Module MainModul
             da = Nothing
             Return dta
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
     Public Function GetDataTableByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable

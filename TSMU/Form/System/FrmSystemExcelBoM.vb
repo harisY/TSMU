@@ -63,7 +63,7 @@ Public Class FrmSystemExcelBoM
             OpenFileDialog1.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OpenFileDialog1.ShowDialog()
             ' Test result.
-            If result = Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
                 path = OpenFileDialog1.FileName
                 'MsgBox(path.ToString)
                 Dim text As String = System.IO.File.ReadAllText(path)

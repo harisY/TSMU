@@ -439,5 +439,11 @@ Public Class frm_payment_details
 
     End Sub
 
+    Private Sub _TxtBankID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtBankID.EditValueChanged
 
+    End Sub
+
+    Private Sub _txtVoucher_EditValueChanged(sender As Object, e As EventArgs) Handles _txtVoucher.EditValueChanged
+
+    End Sub
 End Class

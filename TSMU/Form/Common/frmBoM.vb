@@ -47,7 +47,7 @@ Public Class frmBoM
             OFD.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = OFD.ShowDialog()
             ' Test result.
-            If result = Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
                 path = OFD.FileName
                 Dim text As String = System.IO.File.ReadAllText(path)
                 'Me.Text = text.Length.ToString

@@ -330,4 +330,8 @@ Public Class FrmSuratJalan
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    Private Sub GridTransaksi_Click(sender As Object, e As EventArgs) Handles GridTransaksi.Click
+
+    End Sub
 End Class

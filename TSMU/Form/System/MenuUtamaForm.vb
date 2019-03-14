@@ -139,7 +139,7 @@ Public Class MenuUtamaForm
             DaftarMenu.Enabled = True
         Next
         tsnChangePass.Enabled = True
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
     End Sub
 
     Private Sub CloseApp()
