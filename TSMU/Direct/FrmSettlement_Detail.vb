@@ -153,19 +153,19 @@ Public Class FrmSettlement_Detail
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
-        Dim ignoreCancel As Boolean = False
-        'TxtID.DoValidate()
-        'TxtDesc.DoValidate()
+    'Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+    '    Dim ignoreCancel As Boolean = False
+    '    'TxtID.DoValidate()
+    '    'TxtDesc.DoValidate()
 
-        'If DxValidationProvider1.GetInvalidControls().Contains(TxtID) _
-        '    OrElse DxValidationProvider1.GetInvalidControls().Contains(TxtDesc) Then
-        '    ignoreCancel = True
-        'Else
-        '    ignoreCancel = True
-        'End If
+    '    'If DxValidationProvider1.GetInvalidControls().Contains(TxtID) _
+    '    '    OrElse DxValidationProvider1.GetInvalidControls().Contains(TxtDesc) Then
+    '    '    ignoreCancel = True
+    '    'Else
+    '    '    ignoreCancel = True
+    '    'End If
 
-        MyBase.OnFormClosing(e)
-        e.Cancel = Not ignoreCancel
-    End Sub
+    '    MyBase.OnFormClosing(e)
+    '    e.Cancel = Not ignoreCancel
+    'End Sub
 End Class

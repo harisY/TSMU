@@ -246,6 +246,7 @@
     </Compile>
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
+    <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
