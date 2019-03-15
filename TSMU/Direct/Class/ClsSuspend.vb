@@ -5,9 +5,10 @@ Public Class ClsSuspend
     Public Property subaccount() As String
     Public Property suspendID() As String
     Public Sub New()
-        Me._Query = "select suspendID,Tgl,deptid,total_suspend,remark from suspend_header order by suspendID"
+        Me._Query = "SELECT SuspendHeaderID ID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+        FROM suspend_header"
     End Sub
-    Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
+    Public Function GetAllDataTable() As DataTable
         Try
             'Dim ls_SP As String = "select invtid as [Inventory ID], descr as suspendid,StkUnit as Unit,catalog as [Part No], packing as Packing, min_stok [Min Stok], " & _
             '                        "case kdgrup " & _
@@ -53,7 +54,7 @@ Public Class ClsSuspend
 	                                RTRIM(Descr) Descritiption
                                 FROM dbo.SubAcct"
             Dim dt As New DataTable
-            dt = MainModul.GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -96,7 +97,7 @@ Public Class ClsSuspend
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
         End If
         Try
-            Dim ls_SP As String = "SELECT TOP 1 ID,suspendID,Tgl,Dept,total_suspend,remark where [ID] = " & QVal(ID) & ""
+            Dim ls_SP As String = "SELECT TOP 1 ID,suspendID,Tgl,Dept,total_suspend,remark From suspend_header where [ID] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then

@@ -1,100 +1,162 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class SuspendHeaderModel
-    Public Property cekno As String
-    Public Property deptid As String
-    Public Property id As Integer
-    Public Property paid As String
-    Public Property pay As Double
-    Public Property prno As String
-    Public Property remark As String
-    Public Property status As String
-    Public Property suspendid As String
-    Public Property tgl As DateTime
-    Public Property tot As Double
+    Public Property Currency As String
+    Public Property DeptID As String
+    Public Property PRNo As String
+    Public Property Remark As String
+    Public Property Status As String
+    Public Property SuspendHeaderID As Integer
+    Public Property SuspendID As String
+    Public Property Tgl As DateTime
+    Public Property Tipe As String
+    Public Property Total As Double
     Public Property ObjDetails() As New Collection(Of SuspendDetailModel)
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT [id]
-                ,[suspendid]
-                ,[paid]
-                ,[deptid]
-                ,[prno]
-                ,[cekno]
-                ,[remark]
-            FROM [suspend_header] Order by suspendid Desc"
-            dt = MainModul.GetDataTable_Solomon(sql)
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+            FROM suspend_header WHERE Tipe = 'S' Order by SuspendID"
+            dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+
+    Public Function SuspendAutoNo() As String
+
+        Try
+            Dim query As String
+
+            query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+                "set @tahun = datepart(year,getdate()) " &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(SuspendID)),4)+1 as varchar),4) " &
+                "from suspend_Header " &
+                "where SUBSTRING(SuspendID,4,4) = RIGHT(@tahun,4) AND SUBSTRING(SuspendID,9,2) = RIGHT(@bulan,2)) " &
+                "select 'SP' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable_Solomon(query)
+            query = dt.Rows(0).Item(0).ToString
+            Return query
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
     Public Sub GetSuspenById()
         Try
             Dim sql As String =
-            "SELECT [id]
-                ,[suspendid]
-                ,[paid]
-                ,[deptid]
-                ,[prno]
-                ,[cekno]
-                ,[remark]
-                ,[tgl]
-                ,[status]
-                ,[tot]
-                ,[pay]
-            FROM [suspend_header] where id=" & QVal(id) & ""
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+            FROM suspend_header where SuspendHeaderID=" & QVal(SuspendHeaderID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
-                id = If(IsDBNull(dt.Rows(0).Item("id")), "", Trim(dt.Rows(0).Item("id").ToString()))
-                suspendid = If(IsDBNull(dt.Rows(0).Item("suspendid")), "", Trim(dt.Rows(0).Item("suspendid").ToString()))
-                paid = If(IsDBNull(dt.Rows(0).Item("paid")), "", Trim(dt.Rows(0).Item("paid").ToString()))
-                deptid = If(IsDBNull(dt.Rows(0).Item("deptid")), "", Trim(dt.Rows(0).Item("deptid").ToString()))
-                prno = If(IsDBNull(dt.Rows(0).Item("prno")), "", Trim(dt.Rows(0).Item("prno").ToString()))
-                cekno = If(IsDBNull(dt.Rows(0).Item("cekno")), "", Trim(dt.Rows(0).Item("cekno").ToString()))
-                remark = If(IsDBNull(dt.Rows(0).Item("remark")), "", Trim(dt.Rows(0).Item("remark").ToString()))
-                tgl = If(IsDBNull(dt.Rows(0).Item("tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("tgl")))
-                status = If(IsDBNull(dt.Rows(0).Item("status")), "", Trim(dt.Rows(0).Item("status").ToString()))
-                tot = If(IsDBNull(dt.Rows(0).Item("tot")), 0, Double.Parse(dt.Rows(0).Item("tot")))
-                pay = If(IsDBNull(dt.Rows(0).Item("pay")), 0, Double.Parse(dt.Rows(0).Item("pay")))
+                SuspendHeaderID = If(IsDBNull(dt.Rows(0).Item("SuspendHeaderID")), "", Trim(dt.Rows(0).Item("SuspendHeaderID").ToString()))
+                SuspendID = If(IsDBNull(dt.Rows(0).Item("SuspendID")), "", Trim(dt.Rows(0).Item("SuspendID").ToString()))
+                DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
+                PRNo = If(IsDBNull(dt.Rows(0).Item("PRNo")), "", Trim(dt.Rows(0).Item("PRNo").ToString()))
+                Remark = If(IsDBNull(dt.Rows(0).Item("Remark")), "", Trim(dt.Rows(0).Item("Remark").ToString()))
+                Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
+                Status = If(IsDBNull(dt.Rows(0).Item("status")), "", Trim(dt.Rows(0).Item("status").ToString()))
+                Total = If(IsDBNull(dt.Rows(0).Item("Total")), "", Convert.ToDouble(dt.Rows(0).Item("Total")))
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
+    Public Function GetDept() As DataTable
+        Try
+            Dim sql As String =
+            "SELECT [IdDept]
+                  ,[NamaDept]
+              FROM [mDept]"
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetAccount() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Acct) [Account],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.Account"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetSubAccount() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Consolsub) [SubAccount],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.SubAcct"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_header (cekno,deptid,paid,pay,prno,remark,status,suspendid,tgl,tot) " & vbCrLf &
-            "Values(" & QVal(cekno) & ", " & vbCrLf &
-            "       " & QVal(deptid) & ", " & vbCrLf &
-            "       " & QVal(deptid) & ", " & vbCrLf &
-            "       " & QVal(paid) & ", " & vbCrLf &
-            "       " & QVal(pay) & ", " & vbCrLf &
-            "       " & QVal(prno) & ", " & vbCrLf &
-            "       " & QVal(remark) & ", " & vbCrLf &
-            "       " & QVal(status) & ", " & vbCrLf &
-            "       " & QVal(suspendid) & ", " & vbCrLf &
-            "       " & QVal(tgl) & ", " & vbCrLf &
-            "       " & QVal(tot) & ")"
+            "INSERT INTO suspend_header (SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total) " & vbCrLf &
+            "Values(" & QVal(SuspendID) & ", " & vbCrLf &
+            "       " & QVal(Tipe) & ", " & vbCrLf &
+            "       " & QVal(Currency) & ", " & vbCrLf &
+            "       " & QVal(DeptID) & ", " & vbCrLf &
+            "       " & QVal(PRNo) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(Status) & ", " & vbCrLf &
+            "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
+    Public Sub UpdateHeader(ByVal FpNo As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "Update suspend_header " & vbCrLf &
+                                    "SET    Currency = " & QVal(Me.Currency) & ", " & vbCrLf &
+                                    "       DeptID = " & QVal(Me.DeptID) & ", " & vbCrLf &
+                                    "       PRNo = " & QVal(Me.PRNo) & ", " & vbCrLf &
+                                    "       Remark = " & QVal(Me.Remark) & ", " & vbCrLf &
+                                    "       Tgl = " & QVal(Me.Tgl) & ", " & vbCrLf &
+                                    "       Status = " & QVal(Me.Status) & ", " & vbCrLf &
+                                    "       Total = " & QVal(Me.Total) & ", " & vbCrLf &
+                                    "where SuspendID = '" & Me.SuspendID & "'"
+            ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
                     Try
                         InsertHeader()
@@ -110,7 +172,7 @@ Public Class SuspendHeaderModel
                         Trans1.Rollback()
                         Throw
                     Finally
-                        MainModul.gh_Trans = Nothing
+                        gh_Trans = Nothing
                     End Try
                 End Using
             End Using
@@ -118,41 +180,91 @@ Public Class SuspendHeaderModel
             Throw
         End Try
     End Sub
+
+    Public Sub UpdateData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        UpdateHeader(SuspendID)
+
+                        Dim ObjSuspendDetail As New SuspendDetailModel
+                        ObjSuspendDetail.DeleteDetail(SuspendID)
+
+                        For i As Integer = 0 To Me.ObjDetails.Count - 1
+                            With Me.ObjDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 Public Class SuspendDetailModel
-    Public Property account As String
-    Public Property acctid As String
-    Public Property alamat As String
-    Public Property descr As String
-    Public Property id As Integer
-    Public Property jenis As String
-    Public Property jml As Double
-    Public Property nama As String
-    Public Property sub_account As String
-    Public Property subacctid As String
-    Public Property suspendid As String
-    Public Property tempat As String
-    Public Property tgl As String
+    Public Property AcctID As String
+    Public Property Alamat As String
+    Public Property Amount As Double
+    Public Property DeptID As String
+    Public Property Description As String
+    Public Property Jenis As String
+    Public Property Nama As String
+    Public Property NoKwitansi As Char
+    Public Property SubAcct As String
+    Public Property SuspendDetailID As Integer
+    Public Property SuspendID As String
+    Public Property Tempat As String
+    Public Property Tgl As String
 
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_detail (account,acctid,descr,jenis,jml,nama,sub_account,subacctid,suspendid,tempat,tgl) " & vbCrLf &
-            "Values(" & QVal(account) & ", " & vbCrLf &
-            "       " & QVal(acctid) & ", " & vbCrLf &
-            "       " & QVal(descr) & ", " & vbCrLf &
-            "       " & QVal(jenis) & ", " & vbCrLf &
-            "       " & QVal(jml) & ", " & vbCrLf &
-            "       " & QVal(nama) & ", " & vbCrLf &
-            "       " & QVal(sub_account) & ", " & vbCrLf &
-            "       " & QVal(subacctid) & ", " & vbCrLf &
-            "       " & QVal(suspendid) & ", " & vbCrLf &
-            "       " & QVal(tempat) & ", " & vbCrLf &
-            "       " & QVal(tgl) & ")"
+            "INSERT INTO suspend_detail (SuspendID, Description, Amount, AcctID, SubAcct) " & vbCrLf &
+            "Values(" & QVal(SuspendID) & ", " & vbCrLf &
+            "       " & QVal(Description) & ", " & vbCrLf &
+            "       " & QVal(Amount) & ", " & vbCrLf &
+            "       " & QVal(AcctID) & ", " & vbCrLf &
+            "       " & QVal(SubAcct) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
-
+    Public Sub DeleteDetail(ByVal _vrno As String)
+        Try
+            Dim ls_SP As String = "DELETE FROM suspend_detail WHERE rtrim(SuspendID)=" & QVal(SuspendID.TrimEnd) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Function GetSubAccountbyid() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Consolsub) [SubAccount],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.SubAcct WHERE Consolsub = " & QVal(SubAcct) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

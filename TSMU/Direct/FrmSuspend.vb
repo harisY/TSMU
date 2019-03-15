@@ -1,30 +1,24 @@
 ﻿Public Class FrmSuspend
     Dim ff_Detail As FrmSuspend_Detail
     Dim dtGrid As DataTable
-    Dim fc_Class As New ClsSuspend
+    Dim ObjSuspend As SuspendHeaderModel
 
     Private Sub FrmSuspend_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
-        'FilterData = New FrmSystem_FilterData(dtGrid)
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
-            'Grid.ReadOnly = True
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
-            dtGrid = fc_Class.GetAllDataTable(bs_Filter)
+            ObjSuspend = New SuspendHeaderModel
+            dtGrid = ObjSuspend.GetDataGrid()
             Grid.DataSource = dtGrid
-
-            'Grid.Columns(0).Visible = False
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
+            With GridView1
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+            End With
+            GridCellFormat(GridView1)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

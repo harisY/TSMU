@@ -244,9 +244,9 @@ Public Class payment_header_models
             Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
                     Try
 
