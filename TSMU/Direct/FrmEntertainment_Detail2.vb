@@ -1,17 +1,45 @@
 ﻿Imports DevExpress.XtraEditors.Controls
 
-Public Class FrmPaymentDirect
-    Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _account.EditValueChanged
+Public Class FrmEntertainment_Detail2
+    Public IsClosed As Boolean = False
+    Public isCancel As Boolean = False
+    Public rs_ReturnCode As String = ""
+    Dim isUpdate As Boolean = False
+    Dim ls_Error As String = ""
+    '  Dim ObjPaymentHeader As New payment_header_models
+    'Dim ObjPaymentDetail As New payment_detail_models
+    Dim _id As String
+    Dim _nama As String
+    Dim Grid As DevExpress.XtraGrid.GridControl
+    Dim IsNew As Boolean
+    Dim DtTabale As DataTable
 
+    Dim fs_Split As String = "'"
+
+    Dim ObjSuspend As New ClsSuspend
+    Public Sub New(ByVal ID As String,
+                   ByVal Nama As String,
+                   ByVal _IsNew As Boolean,
+                   ByRef _dt As DataTable,
+                   ByRef _grid As DevExpress.XtraGrid.GridControl)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        _id = ID
+        _nama = Nama
+        IsNew = _IsNew
+        Grid = _grid
+        DtTabale = _dt
     End Sub
 
-    Private Sub TextEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _account.ButtonClick
+    Private Sub _account_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _account.ButtonClick
         Try
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            Dim ObjSuspend As New ClsSuspend
             If sender.Name = _account.Name Then
                 dtSearch = ObjSuspend.GetAccount
                 ls_OldKode = _account.Text.Trim
@@ -45,5 +73,13 @@ Public Class FrmPaymentDirect
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_SaveData()
+
+    End Sub
+
+    Private Sub _account_EditValueChanged(sender As Object, e As EventArgs) Handles _account.EditValueChanged
+
     End Sub
 End Class
