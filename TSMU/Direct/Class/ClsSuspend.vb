@@ -5,7 +5,7 @@ Public Class ClsSuspend
     Public Property subaccount() As String
     Public Property suspendID() As String
     Public Sub New()
-        Me._Query = "select suspendID,Tgl,Dept,total_suspend,remark from suspend_header order by suspendID"
+        Me._Query = "select suspendID,Tgl,deptid,total_suspend,remark from suspend_header order by suspendID"
     End Sub
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -15,7 +15,7 @@ Public Class ClsSuspend
             '                            "else 'PURCHASE' end as [Group] " & _
             '                        "from inventory_lc order by Invtid"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(Me._Query)
+            dtTable = GetDataTable_Solomon(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
