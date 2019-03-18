@@ -167,7 +167,7 @@ Partial Class FrmEntertainment_Detail2
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
-        'FrmSuspend_Detail2
+        'FrmEntertainment_Detail2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 298)

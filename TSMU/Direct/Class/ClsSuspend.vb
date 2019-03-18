@@ -3,9 +3,29 @@ Public Class ClsSuspend
     Dim _Query As String
     Public Property ID() As String
     Public Property subaccount() As String
-    Public Property suspendID() As String
+    Public Property SuspendID() As String
+    Public Property AcctID As String
+    Public Property SubAcct As String
+    Public Property Description As String
+    Public Property Nama As String
+    Public Property Tempat As String
+    Public Property Alamat As String
+    Public Property DeptID As String
+    Public Property Jenis As String
+    Public Property NoKwitansi As String
+    Public Property Amount As String
+    Public Property Posisi As String
+    Public Property Perusahaan As String
+    Public Property JenisUsaha As String
+    Public Property Remark As String
+    Public Property Tgl As String
+    Public Property Currency As String
+    Public Property PRNo As String
+    Public Property Total As String
+
+
     Public Sub New()
-        Me._Query = "select suspendID,Tgl,deptid,total_suspend,remark from suspend_header order by suspendID"
+        Me._Query = "select suspendID,Tgl,deptid,total,remark from suspend_header order by suspendID"
     End Sub
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -21,9 +41,25 @@ Public Class ClsSuspend
             Throw
         End Try
     End Function
+
+    Public Function GetAllDataTable1(ByVal ls_Filter As String) As DataTable
+        Try
+            'Dim ls_SP As String = "select invtid as [Inventory ID], descr as suspendid,StkUnit as Unit,catalog as [Part No], packing as Packing, min_stok [Min Stok], " & _
+            '                        "case kdgrup " & _
+            '                            "when 'FG' then 'Finish Good' " & _
+            '                            "else 'PURCHASE' end as [Group] " & _
+            '                        "from inventory_lc order by Invtid"
+            Dim dtTable As New DataTable
+            dtTable = GetDataTable_Solomon(Me._Query)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function GetAllData() As DataTable
         Try
-            Dim ls_SP As String = "select suspendID,Tgl,Dept,total_suspend,remark from suspend_header order by suspendID"
+            Dim ls_SP As String = "select suspendID,Tgl,Dept,total,remark from suspend_header order by suspendID"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(ls_SP)
             Return dtTable
@@ -74,7 +110,7 @@ Public Class ClsSuspend
     End Function
     Public Sub getDataByID(ByVal ID As String)
         Try
-            Dim query As String = "select id,suspendID,Tgl,Dept,total_suspend,remark from suspend_header WHERE [ID] = " & QVal(ID) & ""
+            Dim query As String = "select id,suspendID,Tgl,Dept,total,remark from suspend_header WHERE [ID] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
@@ -96,7 +132,7 @@ Public Class ClsSuspend
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
         End If
         Try
-            Dim ls_SP As String = "SELECT TOP 1 ID,suspendID,Tgl,Dept,total_suspend,remark where [ID] = " & QVal(ID) & ""
+            Dim ls_SP As String = "SELECT TOP 1 ID,suspendID,Tgl,Dept,total,remark where [ID] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
@@ -148,5 +184,109 @@ Public Class ClsSuspend
             Throw
         End Try
     End Sub
+
+    Public Sub InsertDetails()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO suspend_detail (SubAcct as SubAccount,AcctID as Account,Description,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount) " & vbCrLf &
+            "Values(" & QVal(SubAcct) & ", " & vbCrLf &
+            "       " & QVal(AcctID) & ", " & vbCrLf &
+            "       " & QVal(Description) & ", " & vbCrLf &
+            "       " & QVal(DeptID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Tempat) & ", " & vbCrLf &
+            "       " & QVal(Alamat) & ", " & vbCrLf &
+            "       " & QVal(Jenis) & ", " & vbCrLf &
+            "       " & QVal(NoKwitansi) & ", " & vbCrLf &
+            "       " & QVal(Amount) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertRelasi()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO SuspendRelasi (Nama,Posisi,Perusahaan,JenisUsaha,Remark) " & vbCrLf &
+            "Values(" & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Perusahaan) & ", " & vbCrLf &
+            "       " & QVal(JenisUsaha) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
+    Public Sub InsertData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    Try
+                        InsertDetails()
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertData2()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    Try
+                        InsertRelasi()
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertSuspendHeader()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO Suspend_Header (SuspendID,Currency,PRNo,Remark,Tgl,Total) " & vbCrLf &
+            "Values(" & QVal(SuspendID) & ", " & vbCrLf &
+            "       " & QVal(Currency) & ", " & vbCrLf &
+            "       " & QVal(PRNo) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
 #End Region
 End Class

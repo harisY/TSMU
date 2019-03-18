@@ -10,14 +10,16 @@ Public Class FrmEntertainment_Detail
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
     Dim fc_Class As New ClsSuspend
+    Dim sus_model As New SuspendHeaderModel
     Dim GridDtl As GridControl
-    Dim f As FrmSuspend_Detail2
+    Dim f As FrmEntertainment_Detail2
     Dim dt As New DataTable
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
+    Dim DtScan1 As DataTable
 
     Dim ObjSuspend As New ClsSuspend
     Dim ls_Judul As String = ""
@@ -49,13 +51,27 @@ Public Class FrmEntertainment_Detail
     End Sub
     Private Sub CreateTable()
         DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(3) {New DataColumn("SubAccount", GetType(String)),
+        DtScan.Columns.AddRange(New DataColumn(9) {New DataColumn("SubAccount", GetType(String)),
                                                             New DataColumn("Account", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("DeptID", GetType(String)),
+                                                            New DataColumn("Nama", GetType(String)),
+                                                            New DataColumn("Tempat", GetType(String)),
+                                                            New DataColumn("Alamat", GetType(String)),
+                                                            New DataColumn("Jenis", GetType(String)),
+                                                            New DataColumn("NoKwitansi", GetType(String)),
                                                             New DataColumn("Amount", GetType(Double))})
-
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
+
+        DtScan1 = New DataTable
+        DtScan1.Columns.AddRange(New DataColumn(4) {New DataColumn("Nama", GetType(String)),
+                                                           New DataColumn("Posisi", GetType(String)),
+                                                           New DataColumn("Perusahaan", GetType(String)),
+                                                           New DataColumn("JenisUsaha", GetType(String)),
+                                                           New DataColumn("Remark", GetType(String))})
+        GridControl1.DataSource = DtScan1
+        GridView2.OptionsView.ShowAutoFilterRow = False
 
     End Sub
     Private Sub FrmSuspend_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -65,6 +81,8 @@ Public Class FrmEntertainment_Detail
         Call CreateTable()
         GridView1.AddNewRow()
         GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView2.AddNewRow()
+        GridView2.OptionsNavigation.AutoFocusNewRow = True
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
@@ -137,16 +155,16 @@ Public Class FrmEntertainment_Detail
 
             If lb_Validated Then
                 With fc_Class
-                    '.ID = TxtID.Text.Trim.ToUpper
-                    '.Deskripsi = TxtDesc.Text.Trim.ToUpper
+                    ''.ID = TxtID.Text.Trim.ToUpper
+                    ''.Deskripsi = TxtDesc.Text.Trim.ToUpper
                     If isUpdate = False Then
                         .ValidateInsert()
                     Else
                         '.ValidateUpdate()
                     End If
                 End With
-
             End If
+
         Catch ex As Exception
             lb_Validated = False
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -154,9 +172,12 @@ Public Class FrmEntertainment_Detail
         End Try
         Return lb_Validated
     End Function
+
+
+
     Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
 
-        f = New FrmSuspend_Detail2(ID, Nama, IsNew, dt, Grid)
+        f = New FrmEntertainment_Detail2(ID, Nama, IsNew, dt, Grid)
         f.StartPosition = FormStartPosition.CenterScreen
         f.MaximizeBox = False
         f.ShowDialog()
@@ -169,11 +190,13 @@ Public Class FrmEntertainment_Detail
         Try
             If isUpdate = False Then
                 fc_Class.Insert()
+
             Else
                 fc_Class.Update(fs_Code)
             End If
 
             GridDtl.DataSource = fc_Class.GetAllDataTable(bs_Filter)
+
             'Dim targetString As String = _txtId.Text
             'For Each row As DataGridViewRow In Me.GridDtl.Rows
             '    If RTrim(row.Cells(0).Value.ToString) = targetString Then
@@ -191,26 +214,8 @@ Public Class FrmEntertainment_Detail
         End Try
     End Sub
 
-    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
-        Dim ignoreCancel As Boolean = False
-        'TxtID.DoValidate()
-        'TxtDesc.DoValidate()
-
-        'If DxValidationProvider1.GetInvalidControls().Contains(TxtID) _
-        '    OrElse DxValidationProvider1.GetInvalidControls().Contains(TxtDesc) Then
-        '    ignoreCancel = True
-        'Else
-        '    ignoreCancel = True
-        'End If
-
-        MyBase.OnFormClosing(e)
-        e.Cancel = Not ignoreCancel
-    End Sub
-
     Private Sub RepositoryItemButtonEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit1.ButtonClick
         Try
-
-
             dtSearch = ObjSuspend.GetSubAccount
             'ls_OldKode =Iff(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount") Is DBNull.Value
             ls_Judul = "SubAccount"
@@ -330,7 +335,100 @@ Public Class FrmEntertainment_Detail
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Public Sub insertsuspendetails()
+        Try
+
+            For i As Integer = 0 To GridView1.RowCount - 1
+                ''If GridView1.GetRowCellValue(i, "Check") = True Then
+                Dim Suspend_det As New ClsSuspend
+                With Suspend_det
+                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount").ToString().TrimEnd
+                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                    .Description = GridView1.GetRowCellValue(i, "Description").ToString().TrimEnd
+                    .DeptID = GridView1.GetRowCellValue(i, "DeptID").ToString().TrimEnd
+                    .Nama = GridView1.GetRowCellValue(i, "Nama").ToString().TrimEnd
+                    .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString().TrimEnd
+                    .Alamat = GridView1.GetRowCellValue(i, "Alamat").ToString().TrimEnd
+                    .Jenis = GridView1.GetRowCellValue(i, "Jenis").ToString().TrimEnd
+                    .NoKwitansi = GridView1.GetRowCellValue(i, "NoKwitansi").ToString().TrimEnd
+                    .Amount = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
+                    Suspend_det.InsertDetails()
+                End With
+            Next
+            ''Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            ''WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Sub insertsuspendrelasi()
+        Try
+
+            For i As Integer = 0 To GridView2.RowCount - 1
+                ''If GridView1.GetRowCellValue(i, "Check") = True Then
+                Dim Suspend_det As New ClsSuspend
+                With Suspend_det
+                    .Nama = GridView2.GetRowCellValue(i, "Nama").ToString().TrimEnd
+                    .Posisi = GridView2.GetRowCellValue(i, "Posisi").ToString().TrimEnd
+                    .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                    .JenisUsaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString().TrimEnd
+                    .Remark = GridView2.GetRowCellValue(i, "Remark").ToString().TrimEnd
+                    Suspend_det.InsertRelasi()
+                End With
+            Next
+            ''Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+
+        Catch ex As Exception
+            'MsgBox(ex.Message)
+            'WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Sub insertsuspendheader()
+        Try
 
 
+            Dim Suspend_det As New ClsSuspend
+                With Suspend_det
+                    .suspendID = _nosuspend.Text
+                    .Currency = _currency.Text
+                    .PRNo = _prno.Text
+                    .Remark = _remark.Text
+                    .Tgl = _tgl.Text
+                    .Total = _total.Text
+                Suspend_det.InsertSuspendHeader()
+            End With
+
+            ''Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Try
+            insertsuspendheader()
+            insertsuspendetails()
+            insertsuspendrelasi()
+        Catch ex As Exception
+            MsgBox("data saved")
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            insertsuspendheader()
+            insertsuspendetails()
+            insertsuspendrelasi()
+        Catch ex As Exception
+            MsgBox("data saved")
+        End Try
     End Sub
 End Class

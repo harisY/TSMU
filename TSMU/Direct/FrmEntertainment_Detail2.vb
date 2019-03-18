@@ -82,4 +82,8 @@ Public Class FrmEntertainment_Detail2
     Private Sub _account_EditValueChanged(sender As Object, e As EventArgs) Handles _account.EditValueChanged
 
     End Sub
+
+    Private Sub FrmEntertainment_Detail2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

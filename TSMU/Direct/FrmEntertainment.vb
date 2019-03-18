@@ -21,9 +21,9 @@
             'If Grid.Rows.Count > 0 Then
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
+            '    Call Proc_EnableButtons(False, False, False, Tr
+            'Grid.AutoSize = Trueue, True, True, False, False)
             'End If
-            'Grid.AutoSize = True
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
