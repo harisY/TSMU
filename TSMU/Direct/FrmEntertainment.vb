@@ -15,7 +15,7 @@
         Try
             'Grid.ReadOnly = True
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
-            dtGrid = fc_Class.GetAllDataTable(bs_Filter)
+            dtGrid = fc_Class.GetAllDataTable()
             Grid.DataSource = dtGrid
             'Grid.Columns(0).Visible = False
             'If Grid.Rows.Count > 0 Then

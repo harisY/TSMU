@@ -40,8 +40,8 @@ Public Class SuspendHeaderModel
 
             Dim dt As DataTable = New DataTable
             dt = GetDataTable_Solomon(query)
-            query = dt.Rows(0).Item(0).ToString
-            Return query
+            Return dt.Rows(0).Item(0).ToString
+
         Catch ex As Exception
             Throw
 
@@ -63,7 +63,8 @@ Public Class SuspendHeaderModel
                 Remark = If(IsDBNull(dt.Rows(0).Item("Remark")), "", Trim(dt.Rows(0).Item("Remark").ToString()))
                 Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
                 Status = If(IsDBNull(dt.Rows(0).Item("status")), "", Trim(dt.Rows(0).Item("status").ToString()))
-                Total = If(IsDBNull(dt.Rows(0).Item("Total")), "", Convert.ToDouble(dt.Rows(0).Item("Total")))
+                Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
+                Currency = If(IsDBNull(dt.Rows(0).Item("Currency")), "", Convert.ToString(dt.Rows(0).Item("Currency")))
             End If
         Catch ex As Exception
             Throw ex
@@ -115,7 +116,7 @@ Public Class SuspendHeaderModel
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_header (SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total) " & vbCrLf &
+            "INSERT INTO suspend_header (SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, CreatedBy, CreatedDate) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(Tipe) & ", " & vbCrLf &
             "       " & QVal(Currency) & ", " & vbCrLf &
@@ -124,31 +125,32 @@ Public Class SuspendHeaderModel
             "       " & QVal(Remark) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(Status) & ", " & vbCrLf &
-            "       " & QVal(Total) & ")"
+            "       " & QVal(Total) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
+            "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
-    Public Sub UpdateHeader(ByVal FpNo As String)
+    Public Sub UpdateHeader(ByVal _SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "Update suspend_header " & vbCrLf &
-                                    "SET    Currency = " & QVal(Me.Currency) & ", " & vbCrLf &
-                                    "       DeptID = " & QVal(Me.DeptID) & ", " & vbCrLf &
-                                    "       PRNo = " & QVal(Me.PRNo) & ", " & vbCrLf &
-                                    "       Remark = " & QVal(Me.Remark) & ", " & vbCrLf &
-                                    "       Tgl = " & QVal(Me.Tgl) & ", " & vbCrLf &
-                                    "       Status = " & QVal(Me.Status) & ", " & vbCrLf &
-                                    "       Total = " & QVal(Me.Total) & ", " & vbCrLf &
-                                    "where SuspendID = '" & Me.SuspendID & "'"
+                                    "UPDATE suspend_header " & vbCrLf &
+                                    "SET    Currency = " & QVal(Currency) & ", " & vbCrLf &
+                                    "       DeptID = " & QVal(DeptID) & ", " & vbCrLf &
+                                    "       PRNo = " & QVal(PRNo) & ", " & vbCrLf &
+                                    "       Remark = " & QVal(Remark) & ", " & vbCrLf &
+                                    "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
+                                    "       Status = " & QVal(Status) & ", " & vbCrLf &
+                                    "       Total = " & QVal(Total) & ", " & vbCrLf &
+                                    "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "       UpdatedDate = GETDATE() WHERE SuspendID = '" & _SuspendID & "'"
             ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
-
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -197,8 +199,8 @@ Public Class SuspendHeaderModel
                         Dim ObjSuspendDetail As New SuspendDetailModel
                         ObjSuspendDetail.DeleteDetail(SuspendID)
 
-                        For i As Integer = 0 To Me.ObjDetails.Count - 1
-                            With Me.ObjDetails(i)
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
                                 .InsertDetails()
                             End With
                         Next
@@ -246,9 +248,9 @@ Public Class SuspendDetailModel
             Throw
         End Try
     End Sub
-    Public Sub DeleteDetail(ByVal _vrno As String)
+    Public Sub DeleteDetail(_suspendID)
         Try
-            Dim ls_SP As String = "DELETE FROM suspend_detail WHERE rtrim(SuspendID)=" & QVal(SuspendID.TrimEnd) & ""
+            Dim ls_SP As String = "DELETE FROM suspend_detail WHERE rtrim(SuspendID)=" & QVal(_suspendID.TrimEnd) & ""
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -260,6 +262,22 @@ Public Class SuspendDetailModel
  	                                RTRIM(Consolsub) [SubAccount],
 	                                RTRIM(Descr) Descritiption
                                 FROM dbo.SubAcct WHERE Consolsub = " & QVal(SubAcct) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDetailByID() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    RTRIM([Amount]) Amount
+                                FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

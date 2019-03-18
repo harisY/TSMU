@@ -1,4 +1,10 @@
-﻿Public Class FrmSuspend
+﻿Imports DevExpress.Utils
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+
+Public Class FrmSuspend
     Dim ff_Detail As FrmSuspend_Detail
     Dim dtGrid As DataTable
     Dim ObjSuspend As SuspendHeaderModel
@@ -92,22 +98,35 @@
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
-            ID = String.Empty
-            suspendid = String.Empty
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                    suspendid = GridView1.GetRowCellValue(rowHandle, "suspendid")
-                End If
-            Next rowHandle
 
-            If GridView1.GetSelectedRows.Length > 0 Then
-                'Dim objGrid As DataGridView = sender
-                Call CallFrm(ID,
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                ID = String.Empty
+                suspendid = String.Empty
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                    End If
+                Next rowHandle
+
+                If GridView1.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(ID,
                          suspendid,
                          GridView1.RowCount)
+                End If
             End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
