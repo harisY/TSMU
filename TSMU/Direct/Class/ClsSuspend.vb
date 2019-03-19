@@ -27,7 +27,7 @@ Public Class ClsSuspend
     Public Sub New()
         Me._Query = "select suspendID,Tgl,deptid,total,remark from suspend_header order by suspendID"
     End Sub
-    Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
+    Public Function GetAllDataTable() As DataTable
         Try
             'Dim ls_SP As String = "select invtid as [Inventory ID], descr as suspendid,StkUnit as Unit,catalog as [Part No], packing as Packing, min_stok [Min Stok], " & _
             '                        "case kdgrup " & _
@@ -116,11 +116,11 @@ Public Class ClsSuspend
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.ID = Trim(.Item("ID") & "")
-                    Me.suspendID = Trim(.Item("suspendID") & "")
+                    Me.SuspendID = Trim(.Item("suspendID") & "")
                 End With
             Else
                 ID = ""
-                suspendID = ""
+                SuspendID = ""
             End If
         Catch ex As Exception
             Throw
@@ -128,7 +128,7 @@ Public Class ClsSuspend
     End Sub
 
     Public Sub ValidateInsert()
-        If Me.suspendID = "" OrElse Me.ID = "" Then
+        If Me.SuspendID = "" OrElse Me.ID = "" Then
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
         End If
         Try
@@ -188,7 +188,7 @@ Public Class ClsSuspend
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_detail (SubAcct as SubAccount,AcctID as Account,Description,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount) " & vbCrLf &
+            "INSERT INTO suspend_detail (SubAcct,AcctID,Description,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount) " & vbCrLf &
             "Values(" & QVal(SubAcct) & ", " & vbCrLf &
             "       " & QVal(AcctID) & ", " & vbCrLf &
             "       " & QVal(Description) & ", " & vbCrLf &

@@ -250,6 +250,7 @@
     </Compile>
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
+    <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
@@ -281,10 +282,10 @@
     <Compile Include="Direct\FrmSettlement_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment.Designer.vb">
-      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain.Designer.vb">
+      <DependentUpon>FrmEntertain.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment.vb">
+    <Compile Include="Direct\FrmEntertain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
@@ -293,10 +294,10 @@
     <Compile Include="Direct\FrmSuspend.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail.Designer.vb">
-      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain_Detail.Designer.vb">
+      <DependentUpon>FrmEntertain_Detail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail.vb">
+    <Compile Include="Direct\FrmEntertain_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -305,10 +306,10 @@
     <Compile Include="Direct\FrmSuspend_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail2.Designer.vb">
-      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain_Detail2.Designer.vb">
+      <DependentUpon>FrmEntertain_Detail2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail2.vb">
+    <Compile Include="Direct\FrmEntertain_Detail2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail2.Designer.vb">
@@ -979,20 +980,20 @@
     <EmbeddedResource Include="Direct\FrmSettlement_Detail.resx">
       <DependentUpon>FrmSettlement_Detail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment.resx">
-      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain.resx">
+      <DependentUpon>FrmEntertain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment_Detail.resx">
-      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain_Detail.resx">
+      <DependentUpon>FrmEntertain_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment_Detail2.resx">
-      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain_Detail2.resx">
+      <DependentUpon>FrmEntertain_Detail2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail2.resx">
       <DependentUpon>FrmSuspend_Detail2.vb</DependentUpon>
