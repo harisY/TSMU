@@ -246,6 +246,7 @@
     </Compile>
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
+    <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
@@ -283,6 +284,12 @@
     <Compile Include="Direct\FrmEntertainment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmApproval.Designer.vb">
+      <DependentUpon>FrmApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmApproval.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </Compile>
@@ -293,6 +300,12 @@
       <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEntertainment_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmApprovalDetail.Designer.vb">
+      <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmApprovalDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -978,11 +991,17 @@
     <EmbeddedResource Include="Direct\FrmEntertainment.resx">
       <DependentUpon>FrmEntertainment.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmApproval.resx">
+      <DependentUpon>FrmApproval.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainment_Detail.resx">
       <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmApprovalDetail.resx">
+      <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>

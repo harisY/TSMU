@@ -146,7 +146,7 @@ Public Class SuspendHeaderModel
                                     "       Total = " & QVal(Total) & ", " & vbCrLf &
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE SuspendID = '" & _SuspendID & "'"
-            ExecQuery(ls_SP)
+            ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
