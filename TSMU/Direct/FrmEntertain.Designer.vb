@@ -1,5 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmEntertainment
+Partial Class FrmEntertain
+
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -55,7 +56,7 @@ Partial Class FrmEntertainment
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmEntertainment"
+        Me.Name = "FrmSuspend"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

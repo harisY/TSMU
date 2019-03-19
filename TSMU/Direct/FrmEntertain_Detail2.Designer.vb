@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmEntertainment_Detail2
+Partial Class FrmEntertain_Detail2
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -167,12 +167,12 @@ Partial Class FrmEntertainment_Detail2
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
-        'FrmSuspend_Detail2
+        'FrmEntertain_Detail2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 298)
         Me.Controls.Add(Me.LayoutControl1)
-        Me.Name = "FrmEntertainment_Detail2"
+        Me.Name = "FrmEntertain_Detail2"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
