@@ -183,10 +183,10 @@ Public Class FrmEntertain_Detail
                     .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
-                    '.SuspendID = .SuspendAutoNo
+                    .SuspendID = .SuspendAutoNo
                     _SuspendID = .SuspendAutoNo
                     .Tgl = TxtTgl.EditValue
-                    .Tipe = "S"
+                    .Tipe = "E"
                     .Total = TxtTotal.Text
                     'If isUpdate = False Then
                     '    .ValidateInsert()
@@ -537,8 +537,8 @@ Public Class FrmEntertain_Detail
     End Sub
 
     Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
-        'GridView1.AddNewRow()
-        'GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
         'GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
 
@@ -558,4 +558,7 @@ Public Class FrmEntertain_Detail
         e.Cancel = Not ignoreCancel
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class
