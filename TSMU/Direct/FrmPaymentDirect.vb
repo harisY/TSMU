@@ -4,18 +4,18 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class FrmPaymentDirect
-    Dim suspen As ClsSuspend = New ClsSuspend()
-    ' Dim suspen As New cashbank_models
+    'Dim suspen As ClsSuspend = New ClsSuspend()
+    'Dim suspen As New cashbank_models
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
 
     Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
-        suspen.perpost = _txtperpost.Text
-        suspen.AcctID = _txtaccount.Text
-        suspen.account = _txtaccount.Text
+        ObjCashBank.Perpost = _txtperpost.Text
+        ObjCashBank.AcctID = _txtaccount.Text
+        ObjCashBank.account = _txtaccount.Text
 
-        _txtaccountname.Text = suspen.GetNamaAccountbyid()
-        _txtsaldo.Text = suspen.saldo2
+        _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
+        _txtsaldo.Text = ObjCashBank.saldo2
         _txtsaldo.Text = Format(Val(_txtsaldo.Text), "#,#.##")
 
         'Dim dtGrid As New DataTable
@@ -31,28 +31,28 @@ Public Class FrmPaymentDirect
     End Sub
     Private Sub DataSuspend()
         Dim dtGrid2 As New DataTable
-        dtGrid2 = suspen.GetGridDetailSuspendByAccountID
+        dtGrid2 = ObjCashBank.GetGridDetailSuspendByAccountID
+        GridControl2.DataSource = dtGrid2
 
         If dtGrid2.Rows.Count > 0 Then
-            GridControl2.DataSource = dtGrid2
             GridCellFormat(GridView2)
         End If
     End Sub
     Private Sub DataSettlement()
         Dim dtGrid3 As New DataTable
-        dtGrid3 = suspen.GetGridDetailSettleByAccountID
+        dtGrid3 = ObjCashBank.GetGridDetailSettleByAccountID
+        GridControl3.DataSource = dtGrid3
         If dtGrid3.Rows.Count > 0 Then
-            GridControl3.DataSource = dtGrid3
             GridCellFormat(GridView3)
         End If
     End Sub
     Private Sub DataEntertaint()
         Dim dtGrid4 As New DataTable
-        dtGrid4 = suspen.GetGridDetailEntertaintByAccountID
+        dtGrid4 = ObjCashBank.GetGridDetailEntertaintByAccountID
+        GridControl5.DataSource = dtGrid4
 
         If dtGrid4.Rows.Count > 0 Then
-            GridControl3.DataSource = dtGrid4
-            GridCellFormat(GridView3)
+            GridCellFormat(GridView5)
         End If
     End Sub
 
@@ -122,7 +122,7 @@ Public Class FrmPaymentDirect
             If TabControl1.SelectedIndex = 0 Then
                 For i As Integer = 0 To GridView2.RowCount - 1
                     If GridView2.GetRowCellValue(i, "Proses") = True Then
-                        Dim bukti As String = suspen.autononb
+                        Dim bukti As String = ObjCashBank.autononb
                         ' suspen.SuspendID = suspendID
                         Dim ObjDetails As New cashbank_models
                         With ObjDetails
@@ -149,11 +149,10 @@ Public Class FrmPaymentDirect
                 Call DataCashBank()
 
                 For b As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellDisplayText(b, "Masuk").ToString <> "0.00" Then
+                    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
                         GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
-                    End If
-                    If GridView1.GetRowCellDisplayText(b, "Keluar").ToString <> "0.00" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                    ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
                     End If
                 Next
             End If
@@ -172,7 +171,7 @@ Public Class FrmPaymentDirect
 
                 For f As Integer = 0 To GridView3.RowCount - 1
                     If GridView3.GetRowCellValue(f, "proses") = True Then
-                        Dim bukti As String = suspen.autononb
+                        Dim bukti As String = ObjCashBank.autononb
                         ' suspen.SuspendID = suspendID
                         Dim ObjDetails As New cashbank_models
                         With ObjDetails
@@ -213,11 +212,10 @@ Public Class FrmPaymentDirect
                 Call DataCashBank()
 
                 For b As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellDisplayText(b, "Masuk").ToString <> "0.00" Then
+                    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
                         GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
-                    End If
-                    If GridView1.GetRowCellDisplayText(b, "Keluar").ToString <> "0.00" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                    Else
+                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
                     End If
                 Next
             End If
@@ -233,7 +231,7 @@ Public Class FrmPaymentDirect
         Try
             For i As Integer = 0 To GridView2.RowCount - 1
                 If GridView2.GetRowCellValue(i, "Proses") = True Then
-                    Dim bukti As String = suspen.autononb
+                    Dim bukti As String = ObjCashBank.autononb
                     ' suspen.SuspendID = suspendID
                     Dim ObjDetails As New cashbank_models
                     With ObjDetails
@@ -267,7 +265,7 @@ Public Class FrmPaymentDirect
         Try
             For i As Integer = 0 To GridView3.RowCount - 1
                 If GridView3.GetRowCellValue(i, "Proses") = True Then
-                    Dim bukti As String = suspen.autononb
+                    Dim bukti As String = ObjCashBank.autononb
                     ' suspen.SuspendID = suspendID
                     Dim ObjDetails As New cashbank_models
                     With ObjDetails
@@ -309,16 +307,13 @@ Public Class FrmPaymentDirect
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-
-
-
     End Sub
     Private Sub SaveFromSettlement()
 
         Try
             For i As Integer = 0 To GridView3.RowCount - 1
                 If GridView3.GetRowCellValue(i, "Proses") = True Then
-                    Dim bukti As String = suspen.autononb
+                    Dim bukti As String = ObjCashBank.autononb
                     ' suspen.SuspendID = suspendID
                     Dim ObjDetails As New cashbank_models
                     With ObjDetails
@@ -361,8 +356,7 @@ Public Class FrmPaymentDirect
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
-    Private Sub ReposPresesSettle_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles ReposPresesSettle.EditValueChanging
+    Private Sub ReposPresesSettle_EditValueChanged(sender As Object, e As EventArgs) Handles ReposPresesSettle.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
