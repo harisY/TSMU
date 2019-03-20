@@ -312,12 +312,12 @@ Public Class EntertainDetailModel
     Public Property Description As String
     Public Property Jenis As String
     Public Property Nama As String
-    Public Property NoKwitansi As Char
+    Public Property NoKwitansi As String
     Public Property SubAcct As String
     Public Property SuspendDetailID As Integer
     Public Property SuspendID As String
     Public Property Tempat As String
-    Public Property Tgl As String
+    Public Property Tgl As Date
     Public Property Posisi As String
     Public Property Perusahaan As String
     Public Property JenisUSaha As String
@@ -389,14 +389,14 @@ Public Class EntertainDetailModel
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
-                                    RTRIM(Tgl) Tgl,
+                                    Tgl,
                                     RTRIM(DeptID) DeptID,
                                     RTRIM(Nama) Nama,
                                     RTRIM(Tempat) Tempat,
                                     RTRIM(Alamat) Alamat,
                                     RTRIM(Jenis) Jenis,
                                     RTRIM(NoKwitansi) NoKwitansi,
-                                    RTRIM([Amount]) Amount
+                                    [Amount] Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
 
             Dim dt As New DataTable

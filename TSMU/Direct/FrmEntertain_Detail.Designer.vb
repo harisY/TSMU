@@ -363,6 +363,8 @@ Partial Class FrmEntertain_Detail
         '
         Me.GridColumn12.Caption = "Date Ent."
         Me.GridColumn12.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me.GridColumn12.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn12.FieldName = "Tgl"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
@@ -373,8 +375,11 @@ Partial Class FrmEntertain_Detail
         Me.RepositoryItemDateEdit1.AutoHeight = False
         Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd-mm-yyyy"
-        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd-MM-yyyy"
         Me.RepositoryItemDateEdit1.MaxValue = New Date(9999, 12, 31, 0, 0, 0, 0)
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         '
@@ -492,7 +497,7 @@ Partial Class FrmEntertain_Detail
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Jenis Usaha"
-        Me.GridColumn4.FieldName = "Jenis Usaha"
+        Me.GridColumn4.FieldName = "JenisUsaha"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
@@ -530,6 +535,7 @@ Partial Class FrmEntertain_Detail
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.KeyPreview = True
         Me.Name = "FrmEntertain_Detail"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)
