@@ -242,10 +242,10 @@ Public Class EntertainHeaderModel
 
                     Try
 
-                        UpdateHeader(SuspendID)
+                        UpdateHeader(_SuspendID)
 
                         Dim ObjSuspendDetail As New SuspendDetailModel
-                        ObjSuspendDetail.DeleteDetail(SuspendID)
+                        ObjSuspendDetail.DeleteDetail(_SuspendID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
@@ -326,11 +326,12 @@ Public Class EntertainDetailModel
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_detail (SuspendID,SubAcct,AcctID,Description,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
+            "INSERT INTO suspend_detail (SuspendID,SubAcct,AcctID,Description,Tgl,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(SubAcct) & ", " & vbCrLf &
             "       " & QVal(AcctID) & ", " & vbCrLf &
             "       " & QVal(Description) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(DeptID) & ", " & vbCrLf &
             "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Tempat) & ", " & vbCrLf &
@@ -347,8 +348,9 @@ Public Class EntertainDetailModel
     Public Sub InsertRelasi()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO SuspendRelasi (Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-            "Values(" & QVal(Nama) & ", " & vbCrLf &
+            "INSERT INTO SuspendRelasi (SuspendDetailID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SuspendDetailID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
             "       " & QVal(Perusahaan) & ", " & vbCrLf &
             "       " & QVal(JenisUSaha) & ", " & vbCrLf &
@@ -387,8 +389,16 @@ Public Class EntertainDetailModel
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
+                                    RTRIM(Tgl) Tgl,
+                                    RTRIM(DeptID) DeptID,
+                                    RTRIM(Nama) Nama,
+                                    RTRIM(Tempat) Tempat,
+                                    RTRIM(Alamat) Alamat,
+                                    RTRIM(Jenis) Jenis,
+                                    RTRIM(NoKwitansi) NoKwitansi,
                                     RTRIM([Amount]) Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

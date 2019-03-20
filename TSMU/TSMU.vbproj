@@ -295,6 +295,18 @@
     <Compile Include="Direct\FrmApproval.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTravel_Detail.Designer.vb">
+      <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravel_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravel.Designer.vb">
+      <DependentUpon>FrmTravel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </Compile>
@@ -998,6 +1010,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmApproval.resx">
       <DependentUpon>FrmApproval.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
+      <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravel.resx">
+      <DependentUpon>FrmTravel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
