@@ -31,7 +31,7 @@ Public Class EntertainHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header WHERE Tipe = 'S' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'E' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -50,7 +50,7 @@ Public Class EntertainHeaderModel
                 "set @seq= (select right('0000'+cast(right(rtrim(max(SuspendID)),4)+1 as varchar),4) " &
                 "from suspend_Header " &
                 "where SUBSTRING(SuspendID,4,4) = RIGHT(@tahun,4) AND SUBSTRING(SuspendID,9,2) = RIGHT(@bulan,2)) " &
-                "select 'SP' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+                "select 'EN' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
             dt = GetDataTable_Solomon(query)

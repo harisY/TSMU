@@ -4,7 +4,7 @@ Public Class ClsSettlement
     Public Property ID() As String
     Public Property settleID() As String
     Public Sub New()
-        Me._Query = "select settleID,suspendid,Tgl,tot,remark from settle_header order by settleID "
+        Me._Query = "select settleID,suspendid,Tgl,total,remark from settle_header order by settleID "
     End Sub
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try

@@ -7,7 +7,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmEntertain
     Dim ff_Detail As FrmEntertain_Detail
     Dim dtGrid As DataTable
-    Dim ObjSuspend As EntertainHeaderModel
+    Dim ObjEntertain As EntertainHeaderModel
 
     Private Sub FrmEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -16,8 +16,8 @@ Public Class FrmEntertain
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjSuspend = New EntertainHeaderModel
-            dtGrid = ObjSuspend.GetDataGrid()
+            ObjEntertain = New EntertainHeaderModel
+            dtGrid = ObjEntertain.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
                 .Columns(0).Visible = False
