@@ -745,6 +745,7 @@
     </Compile>
     <Compile Include="Models\barcode_models.vb" />
     <Compile Include="Models\batch.vb" />
+    <Compile Include="Models\cashbank_models.vb" />
     <Compile Include="Models\forecast_price_models.vb" />
     <Compile Include="Models\fp_details_models.vb" />
     <Compile Include="Models\fp_header_models.vb" />
@@ -757,6 +758,7 @@
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
+    <Compile Include="Models\saldo_awal_models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
