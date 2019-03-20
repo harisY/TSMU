@@ -242,10 +242,10 @@ Public Class EntertainHeaderModel
 
                     Try
 
-                        UpdateHeader(SuspendID)
+                        UpdateHeader(_SuspendID)
 
                         Dim ObjSuspendDetail As New SuspendDetailModel
-                        ObjSuspendDetail.DeleteDetail(SuspendID)
+                        ObjSuspendDetail.DeleteDetail(_SuspendID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
@@ -312,12 +312,12 @@ Public Class EntertainDetailModel
     Public Property Description As String
     Public Property Jenis As String
     Public Property Nama As String
-    Public Property NoKwitansi As Char
+    Public Property NoKwitansi As String
     Public Property SubAcct As String
     Public Property SuspendDetailID As Integer
     Public Property SuspendID As String
     Public Property Tempat As String
-    Public Property Tgl As String
+    Public Property Tgl As Date
     Public Property Posisi As String
     Public Property Perusahaan As String
     Public Property JenisUSaha As String
@@ -326,11 +326,12 @@ Public Class EntertainDetailModel
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_detail (SuspendID,SubAcct,AcctID,Description,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
+            "INSERT INTO suspend_detail (SuspendID,SubAcct,AcctID,Description,Tgl,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(SubAcct) & ", " & vbCrLf &
             "       " & QVal(AcctID) & ", " & vbCrLf &
             "       " & QVal(Description) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(DeptID) & ", " & vbCrLf &
             "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Tempat) & ", " & vbCrLf &
@@ -347,8 +348,9 @@ Public Class EntertainDetailModel
     Public Sub InsertRelasi()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO SuspendRelasi (Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-            "Values(" & QVal(Nama) & ", " & vbCrLf &
+            "INSERT INTO SuspendRelasi (SuspendDetailID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SuspendDetailID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
             "       " & QVal(Perusahaan) & ", " & vbCrLf &
             "       " & QVal(JenisUSaha) & ", " & vbCrLf &
@@ -387,8 +389,16 @@ Public Class EntertainDetailModel
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
-                                    RTRIM([Amount]) Amount
+                                    Tgl,
+                                    RTRIM(DeptID) DeptID,
+                                    RTRIM(Nama) Nama,
+                                    RTRIM(Tempat) Tempat,
+                                    RTRIM(Alamat) Alamat,
+                                    RTRIM(Jenis) Jenis,
+                                    RTRIM(NoKwitansi) NoKwitansi,
+                                    [Amount] Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

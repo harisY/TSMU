@@ -202,17 +202,7 @@ Public Class FrmEntertain_Detail
         End Try
         Return lb_Validated
     End Function
-    Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
 
-        f = New FrmEntertain_Detail2(ID, Nama, IsNew, dt, Grid)
-        f.StartPosition = FormStartPosition.CenterScreen
-        f.MaximizeBox = False
-        f.ShowDialog()
-
-    End Sub
-    Public Overrides Sub Proc_Approve()
-        CallForm()
-    End Sub
     Public Overrides Sub Proc_SaveData()
         getdataview1()
         getdataview2()
@@ -226,6 +216,7 @@ Public Class FrmEntertain_Detail
                 If GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
                     GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
                     GridView1.GetRowCellValue(i, GridView1.Columns("Description")).ToString = "" OrElse
+                    GridView1.GetRowCellValue(i, GridView1.Columns("Tgl")).ToString = "" OrElse
                     GridView1.GetRowCellValue(i, GridView1.Columns("DeptID")).ToString = "" OrElse
                     GridView1.GetRowCellValue(i, GridView1.Columns("Nama")).ToString = "" OrElse
                     GridView1.GetRowCellValue(i, GridView1.Columns("Tempat")).ToString = "" OrElse
@@ -251,6 +242,7 @@ Public Class FrmEntertain_Detail
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                            .Tgl = GridView1.GetRowCellValue(i, "Tgl").ToString()
                             .DeptID = GridView1.GetRowCellValue(i, "DeptID").ToString()
                             .Nama = GridView1.GetRowCellValue(i, "Nama").ToString()
                             .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
@@ -274,6 +266,7 @@ Public Class FrmEntertain_Detail
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                            .Tgl = GridView1.GetRowCellValue(i, "Tgl").ToString()
                             .DeptID = GridView1.GetRowCellValue(i, "DeptID").ToString()
                             .Nama = GridView1.GetRowCellValue(i, "Nama").ToString()
                             .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
@@ -308,7 +301,7 @@ Public Class FrmEntertain_Detail
                     GridView2.GetRowCellValue(i, GridView2.Columns("JenisUsaha")).ToString = "" OrElse
                     GridView2.GetRowCellValue(i, GridView2.Columns("Remark")).ToString = "" Then
                     IsEmpty = True
-                    GridView1.DeleteRow(i)
+                    GridView2.DeleteRow(i)
                 End If
             Next
             'If IsEmpty Then
@@ -318,14 +311,15 @@ Public Class FrmEntertain_Detail
             If isUpdate = False Then
                 ObjEntertainHeader.ObjDetails.Clear()
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "Account") <> "" Then
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
+                            .SuspendDetailID = _SuspendID
                             .Nama = GridView2.GetRowCellValue(i, "Nama")
-                            .Posisi = GridView2.GetRowCellValue(i, "SubAccount")
-                            .Perusahaan = GridView2.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .JenisUsaha = GridView2.GetRowCellValue(i, "Description").ToString()
-                            .Remark = GridView2.GetRowCellValue(i, "DeptID").ToString()
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
 
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
@@ -334,16 +328,19 @@ Public Class FrmEntertain_Detail
                 ObjEntertainHeader.InsertDataRelasi()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
+
+
                 ObjEntertainHeader.ObjDetails.Clear()
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Account") <> "" Then
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
+                            .SuspendDetailID = _SuspendID
                             .Nama = GridView2.GetRowCellValue(i, "Nama")
-                            .Posisi = GridView2.GetRowCellValue(i, "SubAccount")
-                            .Perusahaan = GridView2.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .JenisUSaha = GridView2.GetRowCellValue(i, "Description").ToString()
-                            .Remark = GridView2.GetRowCellValue(i, "DeptID").ToString()
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
@@ -387,15 +384,7 @@ Public Class FrmEntertain_Detail
                         MessageBox.Show("Data Tidak ditemukan !")
                         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
                     End If
-                ElseIf GridView1.FocusedColumn.FieldName = "Amount" Then
-                    GridView1.ShowEditor()
-                    GridView1.UpdateCurrentRow()
-                    Dim _tot As Decimal = GetTot()
-                    TxtTotal.Text = Format(_tot, gs_FormatBulat)
 
-                    GridView1.AddNewRow()
-                    GridView1.OptionsNavigation.AutoFocusNewRow = True
-                    GridView1.FocusedColumn = GridView1.VisibleColumns(0)
                 End If
             End If
 
@@ -536,11 +525,6 @@ Public Class FrmEntertain_Detail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
-        GridView1.AddNewRow()
-        GridView1.OptionsNavigation.AutoFocusNewRow = True
-        'GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-    End Sub
 
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
         Dim ignoreCancel As Boolean = False
@@ -560,5 +544,24 @@ Public Class FrmEntertain_Detail
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
+    End Sub
+
+
+    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+        Dim Total As Double = 0
+        For i As Integer = 0 To GridView1.RowCount - 1
+            If Not GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value Then
+                Total = Total + GridView1.GetRowCellValue(i, "Amount")
+            End If
+        Next
+        TxtTotal.Text = Format(Total, gs_FormatBulat)
+    End Sub
+
+    Private Sub FrmEntertain_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F1 Then
+            GridView1.AddNewRow()
+            GridView1.OptionsNavigation.AutoFocusNewRow = True
+            GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+        End If
     End Sub
 End Class

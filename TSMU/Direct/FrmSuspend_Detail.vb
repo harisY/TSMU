@@ -420,7 +420,8 @@ Public Class FrmSuspend_Detail
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
-        gridView.UpdateCurrentRow()
+        GridView.UpdateCurrentRow()
+        'Grid.FocusedView.PostEditor()
     End Sub
 
     Private Sub GAccount_EditValueChanged(sender As Object, e As EventArgs) Handles GAccount.EditValueChanged
@@ -428,8 +429,8 @@ Public Class FrmSuspend_Detail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-    End Sub
 
+    End Sub
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
         Dim ignoreCancel As Boolean = False
         TxtPrNo.DoValidate()
@@ -462,5 +463,12 @@ Public Class FrmSuspend_Detail
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         End If
+    End Sub
+
+    Private Sub ReposAmount_EditValueChanged(sender As Object, e As EventArgs) Handles ReposAmount.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        'gridView.PostEditor()
+        gridView.UpdateCurrentRow()
     End Sub
 End Class
