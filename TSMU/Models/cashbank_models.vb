@@ -55,7 +55,7 @@ Public Class cashbank_models
     End Sub
     Public Sub InsertToTable2()
         Try
-            Dim chek As Integer
+
             'If Checked Then
             '    chek = 1
             'Else

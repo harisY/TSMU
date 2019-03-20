@@ -155,7 +155,14 @@ Public Class ClsSuspend
     End Function
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
-            Dim sql As String = "select  settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.Amount, settle_detail.AcctID from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            Dim sql As String = "select  settle_header.Tgl, 
+                                    settle_detail.SettleID, 
+                                    settle_header.SuspendID, 
+                                    settle_detail.Description,
+                                    suspend_header.Total, 
+                                    settle_detail.SettleAmount, 
+                                    settle_detail.AcctID,
+                                    settle_detail.proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

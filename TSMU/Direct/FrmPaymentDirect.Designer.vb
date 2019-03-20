@@ -61,7 +61,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.ReposPresesSettle = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
@@ -108,7 +108,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage2.SuspendLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposPresesSettle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
@@ -429,7 +429,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl3.Location = New System.Drawing.Point(8, 19)
         Me.GridControl3.MainView = Me.GridView3
         Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ReposPresesSettle})
         Me.GridControl3.Size = New System.Drawing.Size(782, 302)
         Me.GridControl3.TabIndex = 1
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
@@ -499,16 +499,16 @@ Partial Class FrmPaymentDirect
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Proses"
-        Me.GridColumn21.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GridColumn21.FieldName = "Proses"
+        Me.GridColumn21.ColumnEdit = Me.ReposPresesSettle
+        Me.GridColumn21.FieldName = "proses"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 7
         '
-        'RepositoryItemCheckEdit2
+        'ReposPresesSettle
         '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.ReposPresesSettle.AutoHeight = False
+        Me.ReposPresesSettle.Name = "ReposPresesSettle"
         '
         'TabPage3
         '
@@ -771,7 +771,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage2.ResumeLayout(False)
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposPresesSettle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
@@ -849,7 +849,7 @@ Partial Class FrmPaymentDirect
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents ReposPresesSettle As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents TextEdit10 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TextEdit9 As DevExpress.XtraEditors.TextEdit
