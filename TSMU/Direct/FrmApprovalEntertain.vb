@@ -1,30 +1,38 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Utils
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-Imports TSMU
+Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
-Public Class FrmApprovalDetail
+
+
+Public Class FrmApprovalEntertain
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
     Dim fc_Class As New ClsSuspend
-    Dim ObjSuspendHeader As New SuspendApprovalHeaderModel
-    Dim ObjSuspendDetail As New SuspendApprovalDetailModel
+    Dim ObjEntertainHeader As New EntertainApprovalHeaderModel
+    Dim ObjEntertainDetail As New EntertainApprovalDetailModel
     Dim GridDtl As GridControl
-    Dim f As FrmSuspend_Detail2
+    Dim f As FrmEntertain_Detail2
     Dim dt As New DataTable
+    Dim fs_Split As String = "'"
+    Dim lg_Grid As DataGridView
+    Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
+    Dim DtScan1 As DataTable
 
+    Dim ObjSuspend As New ClsSuspend
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
-
     Dim level As Integer = 0
     Public Sub New()
 
@@ -49,29 +57,18 @@ Public Class FrmApprovalDetail
         GridDtl = _Grid
         FrmParent = lf_FormParent
     End Sub
-    Private Sub CreateTable()
-        DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(3) {New DataColumn("SubAccount", GetType(String)),
-                                                            New DataColumn("Account", GetType(String)),
-                                                            New DataColumn("Description", GetType(String)),
-                                                            New DataColumn("Amount", GetType(Double))})
 
-        Grid.DataSource = DtScan
-        GridView1.OptionsView.ShowAutoFilterRow = False
-
-    End Sub
-    Private Sub FrmApprovalDetail_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmApprovalEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
-        'Call CreateTable()
         Call InitialSetForm()
 
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSuspendHeader.SuspendHeaderID = fs_Code
-                ObjSuspendHeader.GetSuspenById()
+                ObjEntertainHeader.SuspendHeaderID = fs_Code
+                ObjEntertainHeader.GetSuspenById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -80,15 +77,15 @@ Public Class FrmApprovalDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Approval " & fs_Code
+                Me.Text = "Approval Entertainment " & fs_Code
             Else
-                Me.Text = "Approval"
+                Me.Text = "Approval Entertainment"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = FrmParent.Name.ToString
+            bs_MainFormName = FrmParent.Name.ToString()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -97,9 +94,10 @@ Public Class FrmApprovalDetail
     Public Sub LoadGridDetail()
         Try
             Dim dtGrid As New DataTable
-            dtGrid = ObjSuspendDetail.GetDataDetailByID(TxtNoSuspend.Text.TrimEnd)
+            dtGrid = ObjEntertainDetail.GetDataDetailByID(TxtNoSuspend.Text)
             Grid.DataSource = dtGrid
             If dtGrid.Rows.Count > 0 Then
+                GridView1.FocusedColumn = GridView1.VisibleColumns(0)
                 GridCellFormat(GridView1)
             End If
         Catch ex As Exception
@@ -109,7 +107,7 @@ Public Class FrmApprovalDetail
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
-                With ObjSuspendHeader
+                With ObjEntertainHeader
                     TxtNoSuspend.Text = .SuspendID
                     TxtPrNo.Text = .PRNo
                     TxtCurrency.SelectedText = .Currency
@@ -117,20 +115,9 @@ Public Class FrmApprovalDetail
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
-                    TxtTotal.Text = Format(.Total, gs_FormatBulat)
+                    TxtTotal.Text = .Total
                 End With
-
-                level = ObjSuspendHeader.GetUsernameLevel
-            Else
-                TxtNoSuspend.Text = ""
-                TxtPrNo.Text = ""
-                TxtCurrency.Text = ""
-                TxtDep.Text = ""
-                TxtRemark.Text = ""
-                TxtStatus.Text = "Open"
-                TxtTgl.EditValue = DateTime.Today
-                TxtTotal.Text = "0"
-                TxtPrNo.Focus()
+                level = ObjEntertainHeader.GetUsernameLevel
             End If
         Catch ex As Exception
             Throw
@@ -146,24 +133,24 @@ Public Class FrmApprovalDetail
             Dim result As DialogResult = XtraMessageBox.Show("Approve Suspend " & "'" & TxtNoSuspend.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
             If result = System.Windows.Forms.DialogResult.Yes Then
 
-                ObjSuspendHeader.ApproveData(TxtNoSuspend.Text, level)
+                ObjEntertainHeader.ApproveData(TxtNoSuspend.Text, level)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+                GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
                 IsClosed = True
                 Me.Hide()
             ElseIf result = System.Windows.Forms.DialogResult.No Then
                 For i As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(i, "Account") <> "" Then
-                        ObjSuspendDetail = New SuspendApprovalDetailModel
-                        With ObjSuspendDetail
+                        ObjEntertainDetail = New EntertainApprovalDetailModel
+                        With ObjEntertainDetail
                             .Ket = GridView1.GetRowCellValue(i, "Ket").ToString().TrimEnd
                         End With
-                        ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
+                        ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
                 Next
-                ObjSuspendHeader.CancelApproveData(TxtNoSuspend.Text, level)
+                ObjEntertainHeader.CancelApproveData(TxtNoSuspend.Text, level)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+                GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
                 IsClosed = True
                 Me.Hide()
             End If
@@ -173,8 +160,42 @@ Public Class FrmApprovalDetail
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
+    Private ID As Integer
     Private Sub ReposKet_EditValueChanged(sender As Object, e As EventArgs) Handles ReposKet.EditValueChanged
         Grid.FocusedView.PostEditor()
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                ID = 0
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = Convert.ToUInt32(GridView1.GetRowCellValue(rowHandle, "ID"))
+                    End If
+                Next rowHandle
+
+                If GridView1.GetSelectedRows.Length > 0 Then
+                    Dim dt As New DataTable
+                    dt = ObjEntertainDetail.GetDataDetailRelasi(ID)
+                    GridControl1.DataSource = dt
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

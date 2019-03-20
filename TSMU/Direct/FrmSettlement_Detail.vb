@@ -60,7 +60,7 @@ Public Class FrmSettlement_Detail
             Call LoadTxtBox()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "frmSettlement"
+            bs_MainFormName = FrmParent.Name.ToString
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

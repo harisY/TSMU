@@ -21,8 +21,6 @@ Public Class FrmSuspend
             Grid.DataSource = dtGrid
             With GridView1
                 .Columns(0).Visible = False
-                .BestFitColumns()
-                .FixedLineWidth = 2
             End With
             GridCellFormat(GridView1)
         Catch ex As Exception
@@ -79,8 +77,8 @@ Public Class FrmSuspend
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "Decription")
+                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
                     End If
                 Next rowHandle
 

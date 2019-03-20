@@ -19,6 +19,10 @@ Public Class frm_payment_approve
     Dim ObjPaymentHeader As New payment_header_models
     Dim ObjPaymentDetail As New payment_detail_models
 
+    Dim FApproveDetail As FrmApprovalDetail
+    Dim FrmApproveEntertain As FrmApprovalEntertain
+    Dim ObjSuspend As New SuspendApprovalHeaderModel
+
     Private Sub frm_payment_approve_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid("")
@@ -27,9 +31,11 @@ Public Class frm_payment_approve
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
         If gh_Common.Level = 1 Then
             TabControl1.TabPages.Remove(TabPage2)
+            TabControl1.TabPages.Remove(TabPage3)
         Else
             TabControl1.SelectedTab = TabPage1
             LoadGridApproved()
+            LoadGridSuspend()
         End If
     End Sub
     Private Sub LoadGrid(BankID As String)
@@ -94,7 +100,21 @@ Public Class frm_payment_approve
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
+    Private Sub LoadGridSuspend()
+        Try
+            dtGrid = ObjSuspend.GetDataGrid()
+            GridSuspend.DataSource = dtGrid
+            With GridView3
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+            End With
+            GridCellFormat(GridView3)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Private Sub LoadGridApproved()
         Try
             dtGrid2 = ObjPaymentHeader.GetDataGridApproveDone(gh_Common.Level)
@@ -167,6 +187,7 @@ Public Class frm_payment_approve
         If gh_Common.Level <> 1 Then
             TabControl1.SelectedTab = TabPage1
             Call LoadGridApproved()
+            LoadGridSuspend()
         End If
         Call LoadGrid("")
 
@@ -207,8 +228,6 @@ Public Class frm_payment_approve
                 End If
 
             Next
-
-
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()
         Catch ex As Exception
@@ -229,6 +248,32 @@ Public Class frm_payment_approve
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
+    End Sub
+
+    Private Sub CallFrmApprovalSuspend(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If FApproveDetail IsNot Nothing AndAlso FApproveDetail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            FApproveDetail.Close()
+        End If
+        FApproveDetail = New FrmApprovalDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        FApproveDetail.MdiParent = MenuUtamaForm
+        FApproveDetail.StartPosition = FormStartPosition.CenterScreen
+        FApproveDetail.Show()
+    End Sub
+
+    Private Sub CallFrmApprovalEntertain(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If FrmApproveEntertain IsNot Nothing AndAlso FrmApproveEntertain.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            FrmApproveEntertain.Close()
+        End If
+        FrmApproveEntertain = New FrmApprovalEntertain(ls_Code, ls_Code2, Me, li_Row, Grid)
+        FrmApproveEntertain.MdiParent = MenuUtamaForm
+        FrmApproveEntertain.StartPosition = FormStartPosition.CenterScreen
+        FrmApproveEntertain.Show()
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
@@ -402,6 +447,51 @@ Public Class frm_payment_approve
                              GridView2.RowCount, False)
                 End If
             End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Dim suspendid As String
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                id = String.Empty
+                suspendid = String.Empty
+                Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView3.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                        suspendid = GridView3.GetRowCellValue(rowHandle, "SuspendID")
+                    End If
+                Next rowHandle
+
+                If GridView3.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    If GridView1.GetRowCellValue(GridView3.FocusedRowHandle, "Tipe") = "S" Then
+                        Call CallFrm(id,
+                         suspendid,
+                         GridView3.RowCount)
+                    Else
+                        Call CallFrmApprovalSuspend(id,
+                         suspendid,
+                         GridView3.RowCount)
+                    End If
+                End If
+
+
+            End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

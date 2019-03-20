@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 
-Public Class SuspendApprovalHeaderModel
+Public Class EntertainApprovalHeaderModel
     Public Property Currency As String
     Public Property DeptID As String
     Public Property PRNo As String
@@ -11,7 +11,7 @@ Public Class SuspendApprovalHeaderModel
     Public Property Tgl As DateTime
     Public Property Tipe As String
     Public Property Total As Double
-    Public Property ObjDetails() As New Collection(Of SuspendApprovalDetailModel)
+    Public Property ObjDetails() As New Collection(Of EntertainApprovalDetailModel)
     Public Function GetDataGrid() As DataTable
         Try
             Dim dept As String()
@@ -213,16 +213,42 @@ Public Class SuspendApprovalHeaderModel
         End Try
     End Sub
 End Class
-Public Class SuspendApprovalDetailModel
+Public Class EntertainApprovalDetailModel
     Public Property Ket() As String
     Public Function GetDataDetailByID(SuspendID As String) As DataTable
         Try
-            Dim sql As String = "SELECT 
- 	                                RTRIM([SubAcct]) SubAcct,
-                                    RTRIM([AcctID]) Account,
-	                                RTRIM(Description) Description,
-                                    [Amount], Ket
+            Dim sql As String = "SELECT SuspendDetailID ID
+                                    ,[Description]
+                                    ,[Amount]
+                                    ,[AcctID]
+                                    ,[SubAcct]
+                                    ,[Tgl]
+                                    ,[Nama]
+                                    ,[Tempat]
+                                    ,[Alamat]
+                                    ,[DeptID]
+                                    ,[Jenis]
+                                    ,[NoKwitansi]
+                                    ,[Proses]
+                                    ,[Ket]
                                 FROM suspend_detail WHERE RTRIM(SuspendID) = " & QVal(SuspendID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDetailRelasi(SuspendDetailID As String) As DataTable
+        Try
+            Dim sql As String = "SELECT 
+                                    [Nama]
+                                    ,[Posisi]
+                                    ,[Perusahaan]
+                                    ,[JenisUsaha]
+                                    ,[Remark]
+                                FROM [SuspendRelasi] WHERE RTRIM(SuspendDetailID) = " & QVal(SuspendDetailID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
