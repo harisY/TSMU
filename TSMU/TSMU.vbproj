@@ -251,8 +251,16 @@
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
+    <Compile Include="Direct\Class\EntertainApproval.vb" />
+    <Compile Include="Direct\Class\SettleModel.vb" />
     <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
+    <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
+      <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmApprovalEntertain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -295,16 +303,10 @@
     <Compile Include="Direct\FrmApproval.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmTravel_Detail.Designer.vb">
-      <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
+    <Compile Include="Direct\FrmSuspendSettle.Designer.vb">
+      <DependentUpon>FrmSuspendSettle.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmTravel_Detail.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Direct\FrmTravel.Designer.vb">
-      <DependentUpon>FrmTravel.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravel.vb">
+    <Compile Include="Direct\FrmSuspendSettle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
@@ -323,6 +325,12 @@
       <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmApprovalDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetail.Designer.vb">
+      <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -775,6 +783,7 @@
     </Compile>
     <Compile Include="Models\barcode_models.vb" />
     <Compile Include="Models\batch.vb" />
+    <Compile Include="Models\cashbank_models.vb" />
     <Compile Include="Models\forecast_price_models.vb" />
     <Compile Include="Models\fp_details_models.vb" />
     <Compile Include="Models\fp_header_models.vb" />
@@ -787,6 +796,7 @@
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
+    <Compile Include="Models\saldo_awal_models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
@@ -990,6 +1000,9 @@
     <EmbeddedResource Include="Delvi\frmDelvi.resx">
       <DependentUpon>frmDelvi.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmApprovalEntertain.resx">
+      <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmPaymentDirect.resx">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </EmbeddedResource>
@@ -1011,11 +1024,8 @@
     <EmbeddedResource Include="Direct\FrmApproval.resx">
       <DependentUpon>FrmApproval.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
-      <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravel.resx">
-      <DependentUpon>FrmTravel.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmSuspendSettle.resx">
+      <DependentUpon>FrmSuspendSettle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
@@ -1025,6 +1035,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmApprovalDetail.resx">
       <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleDetail.resx">
+      <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>

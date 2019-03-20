@@ -4,25 +4,24 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
-Public Class FrmApproval
-    Dim ff_Detail As FrmApprovalDetail
-    Dim ApprovalEntertain As FrmApprovalEntertain
+Public Class FrmSuspendSettle
+    Dim ff_Detail As FrmSuspendSettleDetail
     Dim dtGrid As DataTable
-    Dim ObjSuspend As New SuspendApprovalHeaderModel
+    Dim ObjSettle As SettleHeader
 
-    Private Sub FrmApproval_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
-            dtGrid = ObjSuspend.GetDataGrid()
+            ObjSettle = New SettleHeader
+            dtGrid = ObjSettle.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
                 .Columns(0).Visible = False
                 .BestFitColumns()
-                .FixedLineWidth = 2
             End With
             GridCellFormat(GridView1)
         Catch ex As Exception
@@ -37,18 +36,7 @@ Public Class FrmApproval
         bs_Filter = ""
         Call LoadGrid()
     End Sub
-    Private Sub CallFrmEntertain(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
-        If ApprovalEntertain IsNot Nothing AndAlso ApprovalEntertain.Visible Then
-            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
-                Exit Sub
-            End If
-            ApprovalEntertain.Close()
-        End If
-        ApprovalEntertain = New FrmApprovalEntertain(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ApprovalEntertain.MdiParent = MenuUtamaForm
-        ApprovalEntertain.StartPosition = FormStartPosition.CenterScreen
-        ApprovalEntertain.Show()
-    End Sub
+
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -56,33 +44,49 @@ Public Class FrmApproval
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmApprovalDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmSuspendSettleDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
 
+    Public Overrides Sub Proc_DeleteData()
+        Dim ID As String = String.Empty
+
+        Try
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                End If
+            Next rowHandle
+
+            ' fc_Class.Delete(ID)
+
+            tsBtn_refresh.PerformClick()
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Dim ID As String
     Dim suspendid As String
-    Private Sub FrmApproval_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Private Sub FrmSuspendSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
-                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
-                        Call CallFrm(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                    Else
-                        XtraMessageBox.Show("Grid Entertaint call")
-                    End If
+                    Call CallFrm(ID,
+                             suspendid,
+                             GridView1.RowCount)
                 End If
             End If
         Catch ex As Exception
@@ -109,25 +113,17 @@ Public Class FrmApproval
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
-                        Call CallFrm(ID,
+                    Call CallFrm(ID,
                          suspendid,
                          GridView1.RowCount)
-                    Else
-                        Call CallFrmEntertain(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                    End If
                 End If
-
-
             End If
 
         Catch ex As Exception

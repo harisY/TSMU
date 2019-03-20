@@ -16,7 +16,7 @@ Public Class SuspendHeaderModel
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+            "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total
             FROM suspend_header WHERE Tipe = 'S' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -183,7 +183,7 @@ Public Class SuspendHeaderModel
         End Try
     End Sub
 
-    Public Sub UpdateData()
+    Public Sub UpdateData(_SuspendID As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
                 Conn1.Open()
@@ -194,10 +194,10 @@ Public Class SuspendHeaderModel
 
                     Try
 
-                        UpdateHeader(SuspendID)
+                        UpdateHeader(_SuspendID)
 
                         Dim ObjSuspendDetail As New SuspendDetailModel
-                        ObjSuspendDetail.DeleteDetail(SuspendID)
+                        ObjSuspendDetail.DeleteDetail(_SuspendID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
@@ -278,6 +278,23 @@ Public Class SuspendDetailModel
 	                                RTRIM(Description) Description,
                                     RTRIM([Amount]) Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDetailByID1(_SuspendID As String) As DataTable
+        Try
+            Dim sql As String = "SELECT GETDATE() as Tgl,
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    RTRIM([Amount]) Amount,
+                                    0 ActualAmount 
+                                FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

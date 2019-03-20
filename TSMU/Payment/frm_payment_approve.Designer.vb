@@ -33,6 +33,9 @@ Partial Class frm_payment_approve
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me._txtBankId = New DevExpress.XtraEditors.ButtonEdit()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GridSuspend = New DevExpress.XtraGrid.GridControl()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.menuContext.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +47,9 @@ Partial Class frm_payment_approve
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'menuContext
@@ -89,6 +95,7 @@ Partial Class frm_payment_approve
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(0, 62)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -157,6 +164,35 @@ Partial Class frm_payment_approve
         Me._txtBankId.Size = New System.Drawing.Size(267, 20)
         Me._txtBankId.TabIndex = 5
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.GridSuspend)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(820, 493)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Suspend"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'GridSuspend
+        '
+        Me.GridSuspend.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridSuspend.Location = New System.Drawing.Point(3, 3)
+        Me.GridSuspend.MainView = Me.GridView3
+        Me.GridSuspend.Name = "GridSuspend"
+        Me.GridSuspend.Size = New System.Drawing.Size(814, 487)
+        Me.GridSuspend.TabIndex = 3
+        Me.GridSuspend.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        '
+        'GridView3
+        '
+        Me.GridView3.GridControl = Me.GridSuspend
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsView.ColumnAutoWidth = False
+        Me.GridView3.OptionsView.ShowAutoFilterRow = True
+        '
         'frm_payment_approve
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -180,6 +216,9 @@ Partial Class frm_payment_approve
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -197,4 +236,7 @@ Partial Class frm_payment_approve
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents _txtBankId As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents GridSuspend As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

@@ -27,6 +27,7 @@ Partial Class FrmApprovalDetail
         Me.TxtNoSuspend = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDep = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCurrency = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTgl = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -39,10 +40,15 @@ Partial Class FrmApprovalDetail
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.TxtTgl = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ReposKet = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +58,7 @@ Partial Class FrmApprovalDetail
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,10 +71,10 @@ Partial Class FrmApprovalDetail
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposKet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -153,6 +160,19 @@ Partial Class FrmApprovalDetail
         Me.TxtCurrency.Size = New System.Drawing.Size(178, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
+        '
+        'TxtTgl
+        '
+        Me.TxtTgl.Location = New System.Drawing.Point(304, 36)
+        Me.TxtTgl.Name = "TxtTgl"
+        Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtTgl.Properties.ReadOnly = True
+        Me.TxtTgl.Size = New System.Drawing.Size(178, 20)
+        Me.TxtTgl.StyleController = Me.LayoutControl1
+        Me.TxtTgl.TabIndex = 7
         '
         'LayoutControlGroup1
         '
@@ -251,20 +271,25 @@ Partial Class FrmApprovalDetail
         Me.Grid.Location = New System.Drawing.Point(12, 143)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposKet})
         Me.Grid.Size = New System.Drawing.Size(772, 426)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GAmount
+        '
+        Me.GAmount.AutoHeight = False
+        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.GAmount.Name = "GAmount"
         '
         'GSubAccount
         '
@@ -278,24 +303,59 @@ Partial Class FrmApprovalDetail
         Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.GAccount.Name = "GAccount"
         '
-        'GAmount
+        'GridColumn1
         '
-        Me.GAmount.AutoHeight = False
-        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.GAmount.Name = "GAmount"
+        Me.GridColumn1.Caption = "Sub Account"
+        Me.GridColumn1.FieldName = "SubAcct"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
-        'TxtTgl
+        'GridColumn2
         '
-        Me.TxtTgl.Location = New System.Drawing.Point(304, 36)
-        Me.TxtTgl.Name = "TxtTgl"
-        Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.ReadOnly = True
-        Me.TxtTgl.Size = New System.Drawing.Size(178, 20)
-        Me.TxtTgl.StyleController = Me.LayoutControl1
-        Me.TxtTgl.TabIndex = 7
+        Me.GridColumn2.Caption = "Account"
+        Me.GridColumn2.FieldName = "Account"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "Description"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Amount"
+        Me.GridColumn4.FieldName = "Amount"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Keterangan"
+        Me.GridColumn5.ColumnEdit = Me.ReposKet
+        Me.GridColumn5.FieldName = "ket"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'ReposKet
+        '
+        Me.ReposKet.AutoHeight = False
+        Me.ReposKet.Name = "ReposKet"
         '
         'FrmApprovalDetail
         '
@@ -315,6 +375,7 @@ Partial Class FrmApprovalDetail
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -327,10 +388,10 @@ Partial Class FrmApprovalDetail
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposKet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -360,4 +421,10 @@ Partial Class FrmApprovalDetail
     Friend WithEvents TxtDep As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCurrency As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtTgl As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ReposKet As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

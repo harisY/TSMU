@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmSuspend
+Partial Class FrmSuspendSettle
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -21,15 +21,15 @@ Partial Class FrmSuspend
     Private Sub InitializeComponent()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -48,7 +48,7 @@ Partial Class FrmSuspend
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn10})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -56,10 +56,14 @@ Partial Class FrmSuspend
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "SuspendHeaderID"
+        Me.GridColumn1.FieldName = "ID"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
@@ -67,18 +71,28 @@ Partial Class FrmSuspend
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Suspend ID"
-        Me.GridColumn2.FieldName = "SuspendID"
+        Me.GridColumn2.Caption = "Settle ID"
+        Me.GridColumn2.FieldName = "SettleID"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 100
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Suspend ID"
+        Me.GridColumn3.FieldName = "SuspendID"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.FixedWidth = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 100
+        '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Currency"
-        Me.GridColumn4.FieldName = "Currency"
+        Me.GridColumn4.Caption = "Department"
+        Me.GridColumn4.FieldName = "DeptID"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.FixedWidth = True
         Me.GridColumn4.Visible = True
@@ -86,63 +100,50 @@ Partial Class FrmSuspend
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Department"
-        Me.GridColumn5.FieldName = "DeptID"
+        Me.GridColumn5.Caption = "Remark"
+        Me.GridColumn5.FieldName = "Remark"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.FixedWidth = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 200
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "PR No"
-        Me.GridColumn6.FieldName = "PRNo"
+        Me.GridColumn6.Caption = "Date"
+        Me.GridColumn6.FieldName = "Tgl"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.FixedWidth = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 100
+        Me.GridColumn6.Width = 80
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Remark"
-        Me.GridColumn7.FieldName = "Remark"
+        Me.GridColumn7.Caption = "Currency"
+        Me.GridColumn7.FieldName = "CuryID"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.FixedWidth = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        Me.GridColumn7.Width = 200
+        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.Width = 50
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Date"
-        Me.GridColumn8.FieldName = "Tgl"
+        Me.GridColumn8.Caption = "Amount"
+        Me.GridColumn8.FieldName = "Total"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        Me.GridColumn8.Width = 80
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 100
         '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Amount"
-        Me.GridColumn10.FieldName = "Total"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.FixedWidth = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 7
-        Me.GridColumn10.Width = 100
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'FrmSuspend
+        'FrmSuspendSettle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmSuspend"
+        Me.Name = "FrmSuspendSettle"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -156,10 +157,10 @@ Partial Class FrmSuspend
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
