@@ -19,7 +19,6 @@ Partial Class FrmTravel_Detail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
@@ -37,29 +36,9 @@ Partial Class FrmTravel_Detail
         Me.Label2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit9 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TextEdit11 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit12 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,24 +65,25 @@ Partial Class FrmTravel_Detail
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit13 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit14 = New DevExpress.XtraEditors.TextEdit()
-        Me.ComboBoxEdit2 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TextEdit9 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit11 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit12 = New DevExpress.XtraEditors.TextEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -130,6 +110,29 @@ Partial Class FrmTravel_Detail
         Me.RepositoryItemSpinEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemButtonEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemButtonEdit10 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit13 = New DevExpress.XtraEditors.TextEdit()
+        Me.ComboBoxEdit2 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit14 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepositoryItemDateEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepositoryItemDateEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,27 +154,6 @@ Partial Class FrmTravel_Detail
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
-        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl2.SuspendLayout()
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,25 +169,26 @@ Partial Class FrmTravel_Detail
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl3.SuspendLayout()
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
+        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,6 +204,34 @@ Partial Class FrmTravel_Detail
         CType(Me.RepositoryItemSpinEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl3.SuspendLayout()
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit3.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit4.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -244,8 +255,7 @@ Partial Class FrmTravel_Detail
         '
         Me.TxtStatus.Location = New System.Drawing.Point(69, 60)
         Me.TxtStatus.Name = "TxtStatus"
-        Me.TxtStatus.Properties.ReadOnly = True
-        Me.TxtStatus.Size = New System.Drawing.Size(318, 20)
+        Me.TxtStatus.Size = New System.Drawing.Size(296, 20)
         Me.TxtStatus.StyleController = Me.LayoutControl1
         Me.TxtStatus.TabIndex = 12
         '
@@ -259,19 +269,19 @@ Partial Class FrmTravel_Detail
         '
         'TxtNama
         '
+        Me.TxtNama.EditValue = ""
         Me.TxtNama.Location = New System.Drawing.Point(69, 12)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Properties.ReadOnly = True
-        Me.TxtNama.Size = New System.Drawing.Size(297, 20)
+        Me.TxtNama.Size = New System.Drawing.Size(296, 20)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 4
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(427, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(426, 12)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(340, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(341, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
         ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -281,10 +291,9 @@ Partial Class FrmTravel_Detail
         '
         'txtPickUp
         '
-        Me.txtPickUp.Location = New System.Drawing.Point(448, 60)
+        Me.txtPickUp.Location = New System.Drawing.Point(426, 60)
         Me.txtPickUp.Name = "txtPickUp"
-        Me.txtPickUp.Properties.ReadOnly = True
-        Me.txtPickUp.Size = New System.Drawing.Size(319, 20)
+        Me.txtPickUp.Size = New System.Drawing.Size(341, 20)
         Me.txtPickUp.StyleController = Me.LayoutControl1
         Me.txtPickUp.TabIndex = 12
         '
@@ -292,20 +301,18 @@ Partial Class FrmTravel_Detail
         '
         Me.txtPurpose.Location = New System.Drawing.Point(69, 84)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Properties.ReadOnly = True
-        Me.txtPurpose.Size = New System.Drawing.Size(318, 20)
+        Me.txtPurpose.Size = New System.Drawing.Size(296, 20)
         Me.txtPurpose.StyleController = Me.LayoutControl1
         Me.txtPurpose.TabIndex = 12
         '
         'txtVisa
         '
         Me.txtVisa.EditValue = "YES"
-        Me.txtVisa.Location = New System.Drawing.Point(448, 84)
+        Me.txtVisa.Location = New System.Drawing.Point(426, 84)
         Me.txtVisa.Name = "txtVisa"
         Me.txtVisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtVisa.Properties.Items.AddRange(New Object() {"YES", "NO"})
-        Me.txtVisa.Properties.ReadOnly = True
-        Me.txtVisa.Size = New System.Drawing.Size(319, 20)
+        Me.txtVisa.Size = New System.Drawing.Size(341, 20)
         Me.txtVisa.StyleController = Me.LayoutControl1
         Me.txtVisa.TabIndex = 12
         '
@@ -323,16 +330,16 @@ Partial Class FrmTravel_Detail
         Me.LayoutControlItem1.Control = Me.TxtNama
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(358, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(357, 24)
         Me.LayoutControlItem1.Text = "Nama"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(54, 13)
         '
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(358, 0)
+        Me.Label9.Location = New System.Drawing.Point(357, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(401, 24)
+        Me.Label9.Size = New System.Drawing.Size(402, 24)
         Me.Label9.Text = "Dept"
         Me.Label9.TextSize = New System.Drawing.Size(54, 13)
         '
@@ -350,7 +357,7 @@ Partial Class FrmTravel_Detail
         Me.Label10.Control = Me.TxtStatus
         Me.Label10.Location = New System.Drawing.Point(0, 48)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(379, 24)
+        Me.Label10.Size = New System.Drawing.Size(357, 24)
         Me.Label10.Text = "Term"
         Me.Label10.TextSize = New System.Drawing.Size(54, 13)
         '
@@ -360,7 +367,7 @@ Partial Class FrmTravel_Detail
         Me.Label2.CustomizationFormText = "Status"
         Me.Label2.Location = New System.Drawing.Point(0, 72)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(379, 24)
+        Me.Label2.Size = New System.Drawing.Size(357, 24)
         Me.Label2.Text = "Purpose"
         Me.Label2.TextSize = New System.Drawing.Size(54, 13)
         '
@@ -368,9 +375,9 @@ Partial Class FrmTravel_Detail
         '
         Me.Label1.Control = Me.txtPickUp
         Me.Label1.CustomizationFormText = "Status"
-        Me.Label1.Location = New System.Drawing.Point(379, 48)
+        Me.Label1.Location = New System.Drawing.Point(357, 48)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(380, 24)
+        Me.Label1.Size = New System.Drawing.Size(402, 24)
         Me.Label1.Text = "Pick Up"
         Me.Label1.TextSize = New System.Drawing.Size(54, 13)
         '
@@ -378,9 +385,9 @@ Partial Class FrmTravel_Detail
         '
         Me.Label3.Control = Me.txtVisa
         Me.Label3.CustomizationFormText = "Status"
-        Me.Label3.Location = New System.Drawing.Point(379, 72)
+        Me.Label3.Location = New System.Drawing.Point(357, 72)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(380, 24)
+        Me.Label3.Size = New System.Drawing.Size(402, 24)
         Me.Label3.Text = "Visa"
         Me.Label3.TextSize = New System.Drawing.Size(54, 13)
         '
@@ -413,22 +420,210 @@ Partial Class FrmTravel_Detail
         Me.XtraTabPage1.Size = New System.Drawing.Size(749, 406)
         Me.XtraTabPage1.Text = "BUDGET"
         '
-        'XtraTabPage2
+        'GridControl2
         '
-        Me.XtraTabPage2.Controls.Add(Me.GridControl3)
-        Me.XtraTabPage2.Controls.Add(Me.LabelControl4)
-        Me.XtraTabPage2.Controls.Add(Me.GridControl4)
-        Me.XtraTabPage2.Controls.Add(Me.LabelControl5)
-        Me.XtraTabPage2.Controls.Add(Me.LabelControl6)
-        Me.XtraTabPage2.Controls.Add(Me.GridControl5)
-        Me.XtraTabPage2.Controls.Add(Me.LayoutControl3)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(749, 406)
-        Me.XtraTabPage2.Text = "ACTUAL"
+        Me.GridControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl2.Location = New System.Drawing.Point(10, 348)
+        Me.GridControl2.MainView = Me.GridView3
+        Me.GridControl2.Name = "GridControl2"
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemButtonEdit3, Me.RepositoryItemButtonEdit4, Me.RepositoryItemDateEdit4})
+        Me.GridControl2.Size = New System.Drawing.Size(731, 36)
+        Me.GridControl2.TabIndex = 15
+        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
-        'DxValidationProvider2
+        'GridView3
         '
-        Me.DxValidationProvider2.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.GridView3.GridControl = Me.GridControl2
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Date"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemDateEdit4
+        Me.GridColumn3.FieldName = "Date"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Accommodation"
+        Me.GridColumn4.FieldName = "Accommodation"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        '
+        'RepositoryItemSpinEdit2
+        '
+        Me.RepositoryItemSpinEdit2.AutoHeight = False
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'RepositoryItemButtonEdit3
+        '
+        Me.RepositoryItemButtonEdit3.AutoHeight = False
+        Me.RepositoryItemButtonEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit3.Name = "RepositoryItemButtonEdit3"
+        '
+        'RepositoryItemButtonEdit4
+        '
+        Me.RepositoryItemButtonEdit4.AutoHeight = False
+        Me.RepositoryItemButtonEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit4.Name = "RepositoryItemButtonEdit4"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 329)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(89, 13)
+        Me.LabelControl3.TabIndex = 14
+        Me.LabelControl3.Text = "C. SAFETY MONEY"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl1.Location = New System.Drawing.Point(9, 249)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemDateEdit3})
+        Me.GridControl1.Size = New System.Drawing.Size(731, 58)
+        Me.GridControl1.TabIndex = 13
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Date"
+        Me.GridColumn1.ColumnEdit = Me.RepositoryItemDateEdit3
+        Me.GridColumn1.FieldName = "Date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Accommodation"
+        Me.GridColumn2.FieldName = "Accommodation"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'RepositoryItemButtonEdit1
+        '
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
+        '
+        'RepositoryItemButtonEdit2
+        '
+        Me.RepositoryItemButtonEdit2.AutoHeight = False
+        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 230)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl2.TabIndex = 12
+        Me.LabelControl2.Text = "B. STAYING FEE"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(16, 131)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(127, 13)
+        Me.LabelControl1.TabIndex = 11
+        Me.LabelControl1.Text = "A. TRANSPORTATION FEE"
+        '
+        'Grid
+        '
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.Location = New System.Drawing.Point(9, 150)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
+        Me.Grid.Size = New System.Drawing.Size(731, 54)
+        Me.Grid.TabIndex = 10
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._subaccount, Me._account, Me._description, Me._subtotal})
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        '_subaccount
+        '
+        Me._subaccount.Caption = "Date"
+        Me._subaccount.ColumnEdit = Me.RepositoryItemDateEdit1
+        Me._subaccount.FieldName = "Date"
+        Me._subaccount.Name = "_subaccount"
+        Me._subaccount.Visible = True
+        Me._subaccount.VisibleIndex = 0
+        '
+        '_account
+        '
+        Me._account.Caption = "From"
+        Me._account.FieldName = "From"
+        Me._account.Name = "_account"
+        Me._account.Visible = True
+        Me._account.VisibleIndex = 1
+        '
+        '_description
+        '
+        Me._description.Caption = "To"
+        Me._description.FieldName = "To"
+        Me._description.Name = "_description"
+        Me._description.Visible = True
+        Me._description.VisibleIndex = 2
+        '
+        '_subtotal
+        '
+        Me._subtotal.Caption = "Transport"
+        Me._subtotal.FieldName = "Transport"
+        Me._subtotal.Name = "_subtotal"
+        Me._subtotal.Visible = True
+        Me._subtotal.VisibleIndex = 3
+        '
+        'GAmount
+        '
+        Me.GAmount.AutoHeight = False
+        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.GAmount.Name = "GAmount"
+        '
+        'GSubAccount
+        '
+        Me.GSubAccount.AutoHeight = False
+        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GSubAccount.Name = "GSubAccount"
+        '
+        'GAccount
+        '
+        Me.GAccount.AutoHeight = False
+        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GAccount.Name = "GAccount"
         '
         'LayoutControl2
         '
@@ -447,14 +642,23 @@ Partial Class FrmTravel_Detail
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
-        'Root
+        'TextEdit8
         '
-        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem15, Me.LayoutControlItem16})
-        Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(739, 121)
-        Me.Root.TextVisible = False
+        Me.TextEdit8.Location = New System.Drawing.Point(64, 12)
+        Me.TextEdit8.Name = "TextEdit8"
+        Me.TextEdit8.Size = New System.Drawing.Size(310, 20)
+        Me.TextEdit8.StyleController = Me.LayoutControl2
+        Me.TextEdit8.TabIndex = 4
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = "Fiscal"
+        Me.TextEdit2.Location = New System.Drawing.Point(12, 36)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(362, 20)
+        Me.TextEdit2.StyleController = Me.LayoutControl2
+        Me.TextEdit2.TabIndex = 6
         '
         'ComboBoxEdit1
         '
@@ -463,57 +667,62 @@ Partial Class FrmTravel_Detail
         Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
         Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.ComboBoxEdit1.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
-        Me.ComboBoxEdit1.Properties.ReadOnly = True
         Me.ComboBoxEdit1.Size = New System.Drawing.Size(349, 20)
         Me.ComboBoxEdit1.StyleController = Me.LayoutControl2
         Me.ComboBoxEdit1.TabIndex = 12
         '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(431, 60)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(296, 20)
-        Me.TextEdit1.StyleController = Me.LayoutControl2
-        Me.TextEdit1.TabIndex = 12
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.EditValue = "Fiscal"
-        Me.TextEdit2.Enabled = False
-        Me.TextEdit2.Location = New System.Drawing.Point(12, 36)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(362, 20)
-        Me.TextEdit2.StyleController = Me.LayoutControl2
-        Me.TextEdit2.TabIndex = 6
-        '
-        'TextEdit8
-        '
-        Me.TextEdit8.Location = New System.Drawing.Point(65, 12)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Properties.ReadOnly = True
-        Me.TextEdit8.Size = New System.Drawing.Size(309, 20)
-        Me.TextEdit8.StyleController = Me.LayoutControl2
-        Me.TextEdit8.TabIndex = 4
-        '
         'TextEdit9
         '
-        Me.TextEdit9.Location = New System.Drawing.Point(431, 36)
+        Me.TextEdit9.Location = New System.Drawing.Point(430, 36)
         Me.TextEdit9.Name = "TextEdit9"
-        Me.TextEdit9.Properties.ReadOnly = True
-        Me.TextEdit9.Size = New System.Drawing.Size(296, 20)
+        Me.TextEdit9.Size = New System.Drawing.Size(297, 20)
         Me.TextEdit9.StyleController = Me.LayoutControl2
         Me.TextEdit9.TabIndex = 12
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(430, 60)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Size = New System.Drawing.Size(297, 20)
+        Me.TextEdit1.StyleController = Me.LayoutControl2
+        Me.TextEdit1.TabIndex = 12
         '
         'TextEdit10
         '
         Me.TextEdit10.EditValue = "Airport Tax"
-        Me.TextEdit10.Enabled = False
         Me.TextEdit10.Location = New System.Drawing.Point(12, 60)
         Me.TextEdit10.Name = "TextEdit10"
+        Me.TextEdit10.Properties.ReadOnly = True
         Me.TextEdit10.Size = New System.Drawing.Size(362, 20)
         Me.TextEdit10.StyleController = Me.LayoutControl2
         Me.TextEdit10.TabIndex = 13
+        '
+        'TextEdit11
+        '
+        Me.TextEdit11.Location = New System.Drawing.Point(430, 84)
+        Me.TextEdit11.Name = "TextEdit11"
+        Me.TextEdit11.Size = New System.Drawing.Size(297, 20)
+        Me.TextEdit11.StyleController = Me.LayoutControl2
+        Me.TextEdit11.TabIndex = 12
+        '
+        'TextEdit12
+        '
+        Me.TextEdit12.EditValue = "Total Suspend"
+        Me.TextEdit12.Location = New System.Drawing.Point(12, 84)
+        Me.TextEdit12.Name = "TextEdit12"
+        Me.TextEdit12.Properties.ReadOnly = True
+        Me.TextEdit12.Size = New System.Drawing.Size(362, 20)
+        Me.TextEdit12.StyleController = Me.LayoutControl2
+        Me.TextEdit12.TabIndex = 13
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem15, Me.LayoutControlItem16})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(739, 121)
+        Me.Root.TextVisible = False
         '
         'LayoutControlItem2
         '
@@ -578,25 +787,6 @@ Partial Class FrmTravel_Detail
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
-        'TextEdit11
-        '
-        Me.TextEdit11.Location = New System.Drawing.Point(431, 84)
-        Me.TextEdit11.Name = "TextEdit11"
-        Me.TextEdit11.Properties.ReadOnly = True
-        Me.TextEdit11.Size = New System.Drawing.Size(296, 20)
-        Me.TextEdit11.StyleController = Me.LayoutControl2
-        Me.TextEdit11.TabIndex = 12
-        '
-        'TextEdit12
-        '
-        Me.TextEdit12.EditValue = "Total Suspend"
-        Me.TextEdit12.Enabled = False
-        Me.TextEdit12.Location = New System.Drawing.Point(12, 84)
-        Me.TextEdit12.Name = "TextEdit12"
-        Me.TextEdit12.Size = New System.Drawing.Size(362, 20)
-        Me.TextEdit12.StyleController = Me.LayoutControl2
-        Me.TextEdit12.TabIndex = 13
-        '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.TextEdit11
@@ -618,395 +808,18 @@ Partial Class FrmTravel_Detail
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
         '
-        'GridControl2
-        '
-        Me.GridControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl2.Location = New System.Drawing.Point(10, 348)
-        Me.GridControl2.MainView = Me.GridView3
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemButtonEdit3, Me.RepositoryItemButtonEdit4})
-        Me.GridControl2.Size = New System.Drawing.Size(731, 36)
-        Me.GridControl2.TabIndex = 15
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
-        Me.GridView3.GridControl = Me.GridControl2
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Date"
-        Me.GridColumn3.FieldName = "Date"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Accommodation"
-        Me.GridColumn4.FieldName = "Accommodation"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        '
-        'RepositoryItemSpinEdit2
-        '
-        Me.RepositoryItemSpinEdit2.AutoHeight = False
-        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
-        '
-        'RepositoryItemButtonEdit3
-        '
-        Me.RepositoryItemButtonEdit3.AutoHeight = False
-        Me.RepositoryItemButtonEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit3.Name = "RepositoryItemButtonEdit3"
-        '
-        'RepositoryItemButtonEdit4
-        '
-        Me.RepositoryItemButtonEdit4.AutoHeight = False
-        Me.RepositoryItemButtonEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit4.Name = "RepositoryItemButtonEdit4"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 329)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(89, 13)
-        Me.LabelControl3.TabIndex = 14
-        Me.LabelControl3.Text = "C. SAFETY MONEY"
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(9, 249)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(731, 58)
-        Me.GridControl1.TabIndex = 13
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Date"
-        Me.GridColumn1.FieldName = "Date"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Accommodation"
-        Me.GridColumn2.FieldName = "Accommodation"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'RepositoryItemButtonEdit1
-        '
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
-        '
-        'RepositoryItemButtonEdit2
-        '
-        Me.RepositoryItemButtonEdit2.AutoHeight = False
-        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 230)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(77, 13)
-        Me.LabelControl2.TabIndex = 12
-        Me.LabelControl2.Text = "B. STAYING FEE"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(16, 131)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(127, 13)
-        Me.LabelControl1.TabIndex = 11
-        Me.LabelControl1.Text = "A. TRANSPORTATION FEE"
-        '
-        'Grid
-        '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(9, 150)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount})
-        Me.Grid.Size = New System.Drawing.Size(731, 54)
-        Me.Grid.TabIndex = 10
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._subaccount, Me._account, Me._description, Me._subtotal})
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "Date"
-        Me._subaccount.FieldName = "Date"
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 0
-        '
-        '_account
-        '
-        Me._account.Caption = "From"
-        Me._account.FieldName = "From"
-        Me._account.Name = "_account"
-        Me._account.Visible = True
-        Me._account.VisibleIndex = 1
-        '
-        '_description
-        '
-        Me._description.Caption = "To"
-        Me._description.FieldName = "To"
-        Me._description.Name = "_description"
-        Me._description.Visible = True
-        Me._description.VisibleIndex = 2
-        '
-        '_subtotal
-        '
-        Me._subtotal.Caption = "Transport"
-        Me._subtotal.FieldName = "Transport"
-        Me._subtotal.Name = "_subtotal"
-        Me._subtotal.Visible = True
-        Me._subtotal.VisibleIndex = 3
-        '
-        'GAmount
-        '
-        Me.GAmount.AutoHeight = False
-        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.GAmount.Name = "GAmount"
-        '
-        'GSubAccount
-        '
-        Me.GSubAccount.AutoHeight = False
-        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GSubAccount.Name = "GSubAccount"
-        '
-        'GAccount
-        '
-        Me.GAccount.AutoHeight = False
-        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GAccount.Name = "GAccount"
-        '
-        'LayoutControl3
-        '
-        Me.LayoutControl3.Controls.Add(Me.TextEdit5)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit13)
-        Me.LayoutControl3.Controls.Add(Me.ComboBoxEdit2)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit6)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit14)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit7)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit4)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit3)
-        Me.LayoutControl3.Location = New System.Drawing.Point(4, 4)
-        Me.LayoutControl3.Name = "LayoutControl3"
-        Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(734, 125)
-        Me.LayoutControl3.TabIndex = 0
-        Me.LayoutControl3.Text = "LayoutControl3"
-        '
-        'LayoutControlGroup2
-        '
-        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem17, Me.LayoutControlItem18})
-        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(734, 125)
-        Me.LayoutControlGroup2.TextVisible = False
-        '
-        'TextEdit3
-        '
-        Me.TextEdit3.EditValue = "Total Suspend"
-        Me.TextEdit3.Enabled = False
-        Me.TextEdit3.Location = New System.Drawing.Point(12, 84)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(360, 20)
-        Me.TextEdit3.StyleController = Me.LayoutControl3
-        Me.TextEdit3.TabIndex = 13
-        '
-        'TextEdit4
-        '
-        Me.TextEdit4.Location = New System.Drawing.Point(429, 84)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.ReadOnly = True
-        Me.TextEdit4.Size = New System.Drawing.Size(293, 20)
-        Me.TextEdit4.StyleController = Me.LayoutControl3
-        Me.TextEdit4.TabIndex = 12
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.Location = New System.Drawing.Point(65, 12)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.ReadOnly = True
-        Me.TextEdit5.Size = New System.Drawing.Size(307, 20)
-        Me.TextEdit5.StyleController = Me.LayoutControl3
-        Me.TextEdit5.TabIndex = 4
-        '
-        'TextEdit6
-        '
-        Me.TextEdit6.Location = New System.Drawing.Point(429, 36)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Properties.ReadOnly = True
-        Me.TextEdit6.Size = New System.Drawing.Size(293, 20)
-        Me.TextEdit6.StyleController = Me.LayoutControl3
-        Me.TextEdit6.TabIndex = 12
-        '
-        'TextEdit7
-        '
-        Me.TextEdit7.EditValue = "Airport Tax"
-        Me.TextEdit7.Enabled = False
-        Me.TextEdit7.Location = New System.Drawing.Point(12, 60)
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(360, 20)
-        Me.TextEdit7.StyleController = Me.LayoutControl3
-        Me.TextEdit7.TabIndex = 13
-        '
-        'TextEdit13
-        '
-        Me.TextEdit13.EditValue = "Fiscal"
-        Me.TextEdit13.Enabled = False
-        Me.TextEdit13.Location = New System.Drawing.Point(12, 36)
-        Me.TextEdit13.Name = "TextEdit13"
-        Me.TextEdit13.Size = New System.Drawing.Size(360, 20)
-        Me.TextEdit13.StyleController = Me.LayoutControl3
-        Me.TextEdit13.TabIndex = 6
-        '
-        'TextEdit14
-        '
-        Me.TextEdit14.Location = New System.Drawing.Point(429, 60)
-        Me.TextEdit14.Name = "TextEdit14"
-        Me.TextEdit14.Properties.ReadOnly = True
-        Me.TextEdit14.Size = New System.Drawing.Size(293, 20)
-        Me.TextEdit14.StyleController = Me.LayoutControl3
-        Me.TextEdit14.TabIndex = 12
-        '
-        'ComboBoxEdit2
-        '
-        Me.ComboBoxEdit2.EditValue = "USD"
-        Me.ComboBoxEdit2.Location = New System.Drawing.Point(376, 12)
-        Me.ComboBoxEdit2.Name = "ComboBoxEdit2"
-        Me.ComboBoxEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit2.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
-        Me.ComboBoxEdit2.Properties.ReadOnly = True
-        Me.ComboBoxEdit2.Size = New System.Drawing.Size(346, 20)
-        Me.ComboBoxEdit2.StyleController = Me.LayoutControl3
-        Me.ComboBoxEdit2.TabIndex = 12
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.TextEdit5
-        Me.LayoutControlItem8.CustomizationFormText = "Nama"
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(364, 24)
-        Me.LayoutControlItem8.Text = "Ticket Fee"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(49, 13)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.TextEdit13
-        Me.LayoutControlItem10.CustomizationFormText = "Destination"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 24)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(364, 24)
-        Me.LayoutControlItem10.Text = "Fiscal"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.ComboBoxEdit2
-        Me.LayoutControlItem11.CustomizationFormText = "Status"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(364, 0)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(350, 24)
-        Me.LayoutControlItem11.Text = " "
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem11.TextVisible = False
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.TextEdit6
-        Me.LayoutControlItem12.CustomizationFormText = "Term"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(364, 24)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(350, 24)
-        Me.LayoutControlItem12.Text = "Rp."
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(49, 13)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.TextEdit14
-        Me.LayoutControlItem13.CustomizationFormText = "Status"
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(364, 48)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(350, 24)
-        Me.LayoutControlItem13.Text = "Rp."
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(49, 13)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.TextEdit7
-        Me.LayoutControlItem14.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(364, 24)
-        Me.LayoutControlItem14.Text = "LayoutControlItem4"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem14.TextVisible = False
-        '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.TextEdit4
-        Me.LayoutControlItem17.CustomizationFormText = "Status"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(364, 72)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(350, 33)
-        Me.LayoutControlItem17.Text = "Rp."
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(49, 13)
-        '
-        'LayoutControlItem18
-        '
-        Me.LayoutControlItem18.Control = Me.TextEdit3
-        Me.LayoutControlItem18.CustomizationFormText = "LayoutControlItem4"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(364, 33)
-        Me.LayoutControlItem18.Text = "LayoutControlItem4"
-        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem18.TextVisible = False
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.GridControl3)
+        Me.XtraTabPage2.Controls.Add(Me.LabelControl4)
+        Me.XtraTabPage2.Controls.Add(Me.GridControl4)
+        Me.XtraTabPage2.Controls.Add(Me.LabelControl5)
+        Me.XtraTabPage2.Controls.Add(Me.LabelControl6)
+        Me.XtraTabPage2.Controls.Add(Me.GridControl5)
+        Me.XtraTabPage2.Controls.Add(Me.LayoutControl3)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(749, 406)
+        Me.XtraTabPage2.Text = "ACTUAL"
         '
         'GridControl3
         '
@@ -1210,6 +1023,226 @@ Partial Class FrmTravel_Detail
         Me.RepositoryItemButtonEdit10.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemButtonEdit10.Name = "RepositoryItemButtonEdit10"
         '
+        'LayoutControl3
+        '
+        Me.LayoutControl3.Controls.Add(Me.TextEdit5)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit13)
+        Me.LayoutControl3.Controls.Add(Me.ComboBoxEdit2)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit6)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit14)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit7)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit4)
+        Me.LayoutControl3.Controls.Add(Me.TextEdit3)
+        Me.LayoutControl3.Location = New System.Drawing.Point(4, 4)
+        Me.LayoutControl3.Name = "LayoutControl3"
+        Me.LayoutControl3.Root = Me.LayoutControlGroup2
+        Me.LayoutControl3.Size = New System.Drawing.Size(734, 125)
+        Me.LayoutControl3.TabIndex = 0
+        Me.LayoutControl3.Text = "LayoutControl3"
+        '
+        'TextEdit5
+        '
+        Me.TextEdit5.Location = New System.Drawing.Point(64, 12)
+        Me.TextEdit5.Name = "TextEdit5"
+        Me.TextEdit5.Properties.ReadOnly = True
+        Me.TextEdit5.Size = New System.Drawing.Size(308, 20)
+        Me.TextEdit5.StyleController = Me.LayoutControl3
+        Me.TextEdit5.TabIndex = 4
+        '
+        'TextEdit13
+        '
+        Me.TextEdit13.EditValue = "Fiscal"
+        Me.TextEdit13.Enabled = False
+        Me.TextEdit13.Location = New System.Drawing.Point(12, 36)
+        Me.TextEdit13.Name = "TextEdit13"
+        Me.TextEdit13.Size = New System.Drawing.Size(360, 20)
+        Me.TextEdit13.StyleController = Me.LayoutControl3
+        Me.TextEdit13.TabIndex = 6
+        '
+        'ComboBoxEdit2
+        '
+        Me.ComboBoxEdit2.EditValue = "USD"
+        Me.ComboBoxEdit2.Location = New System.Drawing.Point(376, 12)
+        Me.ComboBoxEdit2.Name = "ComboBoxEdit2"
+        Me.ComboBoxEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ComboBoxEdit2.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
+        Me.ComboBoxEdit2.Properties.ReadOnly = True
+        Me.ComboBoxEdit2.Size = New System.Drawing.Size(346, 20)
+        Me.ComboBoxEdit2.StyleController = Me.LayoutControl3
+        Me.ComboBoxEdit2.TabIndex = 12
+        '
+        'TextEdit6
+        '
+        Me.TextEdit6.Location = New System.Drawing.Point(428, 36)
+        Me.TextEdit6.Name = "TextEdit6"
+        Me.TextEdit6.Properties.ReadOnly = True
+        Me.TextEdit6.Size = New System.Drawing.Size(294, 20)
+        Me.TextEdit6.StyleController = Me.LayoutControl3
+        Me.TextEdit6.TabIndex = 12
+        '
+        'TextEdit14
+        '
+        Me.TextEdit14.Location = New System.Drawing.Point(428, 60)
+        Me.TextEdit14.Name = "TextEdit14"
+        Me.TextEdit14.Properties.ReadOnly = True
+        Me.TextEdit14.Size = New System.Drawing.Size(294, 20)
+        Me.TextEdit14.StyleController = Me.LayoutControl3
+        Me.TextEdit14.TabIndex = 12
+        '
+        'TextEdit7
+        '
+        Me.TextEdit7.EditValue = "Airport Tax"
+        Me.TextEdit7.Enabled = False
+        Me.TextEdit7.Location = New System.Drawing.Point(12, 60)
+        Me.TextEdit7.Name = "TextEdit7"
+        Me.TextEdit7.Size = New System.Drawing.Size(360, 20)
+        Me.TextEdit7.StyleController = Me.LayoutControl3
+        Me.TextEdit7.TabIndex = 13
+        '
+        'TextEdit4
+        '
+        Me.TextEdit4.Location = New System.Drawing.Point(428, 84)
+        Me.TextEdit4.Name = "TextEdit4"
+        Me.TextEdit4.Properties.ReadOnly = True
+        Me.TextEdit4.Size = New System.Drawing.Size(294, 20)
+        Me.TextEdit4.StyleController = Me.LayoutControl3
+        Me.TextEdit4.TabIndex = 12
+        '
+        'TextEdit3
+        '
+        Me.TextEdit3.EditValue = "Total Suspend"
+        Me.TextEdit3.Enabled = False
+        Me.TextEdit3.Location = New System.Drawing.Point(12, 84)
+        Me.TextEdit3.Name = "TextEdit3"
+        Me.TextEdit3.Size = New System.Drawing.Size(360, 20)
+        Me.TextEdit3.StyleController = Me.LayoutControl3
+        Me.TextEdit3.TabIndex = 13
+        '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem17, Me.LayoutControlItem18})
+        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(734, 125)
+        Me.LayoutControlGroup2.TextVisible = False
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.TextEdit5
+        Me.LayoutControlItem8.CustomizationFormText = "Nama"
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(364, 24)
+        Me.LayoutControlItem8.Text = "Ticket Fee"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(49, 13)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.TextEdit13
+        Me.LayoutControlItem10.CustomizationFormText = "Destination"
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(364, 24)
+        Me.LayoutControlItem10.Text = "Fiscal"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.ComboBoxEdit2
+        Me.LayoutControlItem11.CustomizationFormText = "Status"
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(364, 0)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(350, 24)
+        Me.LayoutControlItem11.Text = " "
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem11.TextVisible = False
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.TextEdit6
+        Me.LayoutControlItem12.CustomizationFormText = "Term"
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(364, 24)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(350, 24)
+        Me.LayoutControlItem12.Text = "Rp."
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(49, 13)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.TextEdit14
+        Me.LayoutControlItem13.CustomizationFormText = "Status"
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(364, 48)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(350, 24)
+        Me.LayoutControlItem13.Text = "Rp."
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(49, 13)
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.TextEdit7
+        Me.LayoutControlItem14.CustomizationFormText = "LayoutControlItem4"
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(364, 24)
+        Me.LayoutControlItem14.Text = "LayoutControlItem4"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem14.TextVisible = False
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.TextEdit4
+        Me.LayoutControlItem17.CustomizationFormText = "Status"
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(364, 72)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(350, 33)
+        Me.LayoutControlItem17.Text = "Rp."
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(49, 13)
+        '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.TextEdit3
+        Me.LayoutControlItem18.CustomizationFormText = "LayoutControlItem4"
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem18.Name = "LayoutControlItem18"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(364, 33)
+        Me.LayoutControlItem18.Text = "LayoutControlItem4"
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem18.TextVisible = False
+        '
+        'DxValidationProvider2
+        '
+        Me.DxValidationProvider2.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'RepositoryItemDateEdit2
+        '
+        Me.RepositoryItemDateEdit2.AutoHeight = False
+        Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
+        '
+        'RepositoryItemDateEdit3
+        '
+        Me.RepositoryItemDateEdit3.AutoHeight = False
+        Me.RepositoryItemDateEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit3.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit3.Name = "RepositoryItemDateEdit3"
+        '
+        'RepositoryItemDateEdit4
+        '
+        Me.RepositoryItemDateEdit4.AutoHeight = False
+        Me.RepositoryItemDateEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit4.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit4.Name = "RepositoryItemDateEdit4"
+        '
         'FrmTravel_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1241,28 +1274,6 @@ Partial Class FrmTravel_Detail
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         Me.XtraTabPage1.PerformLayout()
-        Me.XtraTabPage2.ResumeLayout(False)
-        Me.XtraTabPage2.PerformLayout()
-        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1278,25 +1289,27 @@ Partial Class FrmTravel_Detail
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl3.ResumeLayout(False)
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
+        Me.XtraTabPage2.PerformLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1312,6 +1325,34 @@ Partial Class FrmTravel_Detail
         CType(Me.RepositoryItemSpinEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl3.ResumeLayout(False)
+        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit3.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit4.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1426,4 +1467,8 @@ Partial Class FrmTravel_Detail
     Friend WithEvents RepositoryItemSpinEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents RepositoryItemButtonEdit9 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemButtonEdit10 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemDateEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepositoryItemDateEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
 End Class
