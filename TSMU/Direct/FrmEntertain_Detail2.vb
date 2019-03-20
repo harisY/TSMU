@@ -1,6 +1,6 @@
 ﻿Imports DevExpress.XtraEditors.Controls
 
-Public Class FrmEntertainment_Detail2
+Public Class FrmEntertain_Detail2
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
@@ -16,7 +16,7 @@ Public Class FrmEntertainment_Detail2
 
     Dim fs_Split As String = "'"
 
-    Dim ObjSuspend As New ClsSuspend
+    Dim ObjEntertain As New EntertainHeaderModel
     Public Sub New(ByVal ID As String,
                    ByVal Nama As String,
                    ByVal _IsNew As Boolean,
@@ -41,7 +41,7 @@ Public Class FrmEntertainment_Detail2
             Dim ls_OldKode As String = ""
 
             If sender.Name = _account.Name Then
-                dtSearch = ObjSuspend.GetAccount
+                dtSearch = ObjEntertain.GetAccount
                 ls_OldKode = _account.Text.Trim
                 ls_Judul = "Account"
             End If
@@ -80,6 +80,10 @@ Public Class FrmEntertainment_Detail2
     End Sub
 
     Private Sub _account_EditValueChanged(sender As Object, e As EventArgs) Handles _account.EditValueChanged
+
+    End Sub
+
+    Private Sub FrmEntertain_Detail2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

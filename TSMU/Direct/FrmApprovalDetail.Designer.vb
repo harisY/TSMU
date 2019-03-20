@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmSuspend_Detail
+Partial Class FrmApprovalDetail
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,18 +19,14 @@ Partial Class FrmSuspend_Detail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
         Me.TxtRemark = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPrNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNoSuspend = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
-        Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TxtDep = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -43,14 +39,10 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.TxtTgl = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,8 +50,6 @@ Partial Class FrmSuspend_Detail
         CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +67,7 @@ Partial Class FrmSuspend_Detail
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -87,9 +77,9 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControl1.Controls.Add(Me.TxtRemark)
         Me.LayoutControl1.Controls.Add(Me.TxtPrNo)
         Me.LayoutControl1.Controls.Add(Me.TxtNoSuspend)
-        Me.LayoutControl1.Controls.Add(Me.TxtTgl)
         Me.LayoutControl1.Controls.Add(Me.TxtDep)
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
+        Me.LayoutControl1.Controls.Add(Me.TxtTgl)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -123,6 +113,7 @@ Partial Class FrmSuspend_Detail
         '
         Me.TxtRemark.Location = New System.Drawing.Point(550, 12)
         Me.TxtRemark.Name = "TxtRemark"
+        Me.TxtRemark.Properties.ReadOnly = True
         Me.TxtRemark.Size = New System.Drawing.Size(234, 20)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
@@ -131,13 +122,10 @@ Partial Class FrmSuspend_Detail
         '
         Me.TxtPrNo.Location = New System.Drawing.Point(76, 36)
         Me.TxtPrNo.Name = "TxtPrNo"
+        Me.TxtPrNo.Properties.ReadOnly = True
         Me.TxtPrNo.Size = New System.Drawing.Size(160, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Isi PR No"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule3)
         '
         'TxtNoSuspend
         '
@@ -148,42 +136,20 @@ Partial Class FrmSuspend_Detail
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
         '
-        'TxtTgl
-        '
-        Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(304, 36)
-        Me.TxtTgl.Name = "TxtTgl"
-        Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.Mask.EditMask = ""
-        Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(178, 20)
-        Me.TxtTgl.StyleController = Me.LayoutControl1
-        Me.TxtTgl.TabIndex = 7
-        '
         'TxtDep
         '
         Me.TxtDep.Location = New System.Drawing.Point(76, 60)
         Me.TxtDep.Name = "TxtDep"
-        Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtDep.Properties.ReadOnly = True
         Me.TxtDep.Size = New System.Drawing.Size(160, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi Departemen"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
         '
         'TxtCurrency
         '
         Me.TxtCurrency.Location = New System.Drawing.Point(304, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
-        Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD"})
+        Me.TxtCurrency.Properties.ReadOnly = True
         Me.TxtCurrency.Size = New System.Drawing.Size(178, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
@@ -292,19 +258,13 @@ Partial Class FrmSuspend_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._subaccount, Me._account, Me._description, Me._subtotal})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "SubAccount"
-        Me._subaccount.ColumnEdit = Me.GSubAccount
-        Me._subaccount.FieldName = "SubAccount"
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 0
         '
         'GSubAccount
         '
@@ -312,37 +272,11 @@ Partial Class FrmSuspend_Detail
         Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.GSubAccount.Name = "GSubAccount"
         '
-        '_account
-        '
-        Me._account.Caption = "Account"
-        Me._account.ColumnEdit = Me.GAccount
-        Me._account.FieldName = "Account"
-        Me._account.Name = "_account"
-        Me._account.Visible = True
-        Me._account.VisibleIndex = 1
-        '
         'GAccount
         '
         Me.GAccount.AutoHeight = False
         Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.GAccount.Name = "GAccount"
-        '
-        '_description
-        '
-        Me._description.Caption = "Description"
-        Me._description.FieldName = "Description"
-        Me._description.Name = "_description"
-        Me._description.Visible = True
-        Me._description.VisibleIndex = 2
-        '
-        '_subtotal
-        '
-        Me._subtotal.Caption = "Amount"
-        Me._subtotal.ColumnEdit = Me.GAmount
-        Me._subtotal.FieldName = "Amount"
-        Me._subtotal.Name = "_subtotal"
-        Me._subtotal.Visible = True
-        Me._subtotal.VisibleIndex = 3
         '
         'GAmount
         '
@@ -350,17 +284,26 @@ Partial Class FrmSuspend_Detail
         Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.GAmount.Name = "GAmount"
         '
-        'DxValidationProvider1
+        'TxtTgl
         '
-        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        Me.TxtTgl.Location = New System.Drawing.Point(304, 36)
+        Me.TxtTgl.Name = "TxtTgl"
+        Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtTgl.Properties.ReadOnly = True
+        Me.TxtTgl.Size = New System.Drawing.Size(178, 20)
+        Me.TxtTgl.StyleController = Me.LayoutControl1
+        Me.TxtTgl.TabIndex = 7
         '
-        'FrmSuspend_Detail
+        'FrmApprovalDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(796, 581)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
-        Me.Name = "FrmSuspend_Detail"
+        Me.Name = "FrmApprovalDetail"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -370,8 +313,6 @@ Partial Class FrmSuspend_Detail
         CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -389,7 +330,7 @@ Partial Class FrmSuspend_Detail
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -399,7 +340,6 @@ Partial Class FrmSuspend_Detail
     Friend WithEvents TxtTotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtRemark As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtTgl As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
@@ -409,19 +349,15 @@ Partial Class FrmSuspend_Detail
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents _subaccount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents _account As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents _description As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents _subtotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAmount As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents GSubAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents TxtNoSuspend As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Label9 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents TxtDep As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents TxtStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents TxtCurrency As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents TxtDep As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCurrency As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtTgl As DevExpress.XtraEditors.TextEdit
 End Class

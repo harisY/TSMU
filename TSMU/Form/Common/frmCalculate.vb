@@ -348,7 +348,7 @@ Public Class frmCalculate
                     'IsForecastAlreadyCalculated = ObjSales.IsForecastExist(strTahun, level0)
                     ''bomidH1 = bomidH
                     'Status = IsForecastAlreadyCalculated
-                    'inv = level0
+                    inv = level0
                     'If IsForecastAlreadyCalculated Then
                     '    Id = ObjSales.UpdateHeader(strTahun, inv)
                     'Else

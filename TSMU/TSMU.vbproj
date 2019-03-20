@@ -63,6 +63,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.1.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
@@ -112,6 +113,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -121,6 +123,8 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
@@ -246,6 +250,8 @@
     </Compile>
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
+    <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
+    <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
@@ -277,10 +283,16 @@
     <Compile Include="Direct\FrmSettlement_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment.Designer.vb">
-      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain.Designer.vb">
+      <DependentUpon>FrmEntertain.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment.vb">
+    <Compile Include="Direct\FrmEntertain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmApproval.Designer.vb">
+      <DependentUpon>FrmApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmApproval.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend.Designer.vb">
@@ -289,10 +301,16 @@
     <Compile Include="Direct\FrmSuspend.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail.Designer.vb">
-      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain_Detail.Designer.vb">
+      <DependentUpon>FrmEntertain_Detail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail.vb">
+    <Compile Include="Direct\FrmEntertain_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmApprovalDetail.Designer.vb">
+      <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmApprovalDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -301,10 +319,10 @@
     <Compile Include="Direct\FrmSuspend_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail2.Designer.vb">
-      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
+    <Compile Include="Direct\FrmEntertain_Detail2.Designer.vb">
+      <DependentUpon>FrmEntertain_Detail2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\FrmEntertainment_Detail2.vb">
+    <Compile Include="Direct\FrmEntertain_Detail2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail2.Designer.vb">
@@ -977,20 +995,26 @@
     <EmbeddedResource Include="Direct\FrmSettlement_Detail.resx">
       <DependentUpon>FrmSettlement_Detail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment.resx">
-      <DependentUpon>FrmEntertainment.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain.resx">
+      <DependentUpon>FrmEntertain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmApproval.resx">
+      <DependentUpon>FrmApproval.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend.resx">
       <DependentUpon>FrmSuspend.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment_Detail.resx">
-      <DependentUpon>FrmEntertainment_Detail.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain_Detail.resx">
+      <DependentUpon>FrmEntertain_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmApprovalDetail.resx">
+      <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail.resx">
       <DependentUpon>FrmSuspend_Detail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmEntertainment_Detail2.resx">
-      <DependentUpon>FrmEntertainment_Detail2.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\FrmEntertain_Detail2.resx">
+      <DependentUpon>FrmEntertain_Detail2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspend_Detail2.resx">
       <DependentUpon>FrmSuspend_Detail2.vb</DependentUpon>
