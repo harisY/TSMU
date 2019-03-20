@@ -276,7 +276,7 @@ Public Class SuspendDetailModel
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
-                                    RTRIM([Amount]) Amount
+                                    [Amount] Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)

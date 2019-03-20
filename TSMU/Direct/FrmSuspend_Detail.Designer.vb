@@ -19,9 +19,8 @@ Partial Class FrmSuspend_Detail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
@@ -49,9 +48,10 @@ Partial Class FrmSuspend_Detail
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ReposAmount = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,9 +77,10 @@ Partial Class FrmSuspend_Detail
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -136,10 +137,10 @@ Partial Class FrmSuspend_Detail
         Me.TxtPrNo.Size = New System.Drawing.Size(160, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Isi PR No"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Isi PR No"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule1)
         '
         'TxtNoSuspend
         '
@@ -175,10 +176,10 @@ Partial Class FrmSuspend_Detail
         Me.TxtDep.Size = New System.Drawing.Size(160, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Isi Departemen"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Isi Departemen"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
         '
         'TxtCurrency
         '
@@ -287,7 +288,7 @@ Partial Class FrmSuspend_Detail
         Me.Grid.Location = New System.Drawing.Point(12, 143)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemSpinEdit1})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemSpinEdit1, Me.ReposAmount})
         Me.Grid.Size = New System.Drawing.Size(772, 426)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -353,21 +354,30 @@ Partial Class FrmSuspend_Detail
         Me._subtotal.VisibleIndex = 3
         Me._subtotal.Width = 100
         '
+        'ReposAmount
+        '
+        Me.ReposAmount.AutoHeight = False
+        Me.ReposAmount.DisplayFormat.FormatString = "n2"
+        Me.ReposAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ReposAmount.EditFormat.FormatString = "n2"
+        Me.ReposAmount.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ReposAmount.Name = "ReposAmount"
+        '
         'GAmount
         '
         Me.GAmount.AutoHeight = False
         Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.GAmount.Name = "GAmount"
         '
-        'DxValidationProvider1
-        '
-        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
-        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
         Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
         'FrmSuspend_Detail
         '
@@ -404,9 +414,10 @@ Partial Class FrmSuspend_Detail
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -442,4 +453,5 @@ Partial Class FrmSuspend_Detail
     Friend WithEvents Label10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtCurrency As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents ReposAmount As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
