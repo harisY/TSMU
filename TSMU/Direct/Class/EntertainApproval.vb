@@ -217,7 +217,7 @@ Public Class EntertainApprovalDetailModel
     Public Property Ket() As String
     Public Function GetDataDetailByID(SuspendID As String) As DataTable
         Try
-            Dim sql As String = "SELECT SuspendDetailID ID
+            Dim sql As String = "SELECT SuspendID
                                     ,[Description]
                                     ,[Amount]
                                     ,[AcctID]
@@ -248,7 +248,7 @@ Public Class EntertainApprovalDetailModel
                                     ,[Perusahaan]
                                     ,[JenisUsaha]
                                     ,[Remark]
-                                FROM [SuspendRelasi] WHERE RTRIM(SuspendDetailID) = " & QVal(SuspendDetailID) & ""
+                                FROM [SuspendRelasi] WHERE RTRIM(SuspendID) = " & QVal(SuspendDetailID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

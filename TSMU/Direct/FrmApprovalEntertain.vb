@@ -161,6 +161,7 @@ Public Class FrmApprovalEntertain
         End Try
     End Sub
     Private ID As Integer
+    Private SuspendID As String
     Private Sub ReposKet_EditValueChanged(sender As Object, e As EventArgs) Handles ReposKet.EditValueChanged
         Grid.FocusedView.PostEditor()
     End Sub
@@ -179,16 +180,17 @@ Public Class FrmApprovalEntertain
             If info.InRow OrElse info.InRowCell Then
 
                 ID = 0
+                SuspendID = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = Convert.ToUInt32(GridView1.GetRowCellValue(rowHandle, "ID"))
+                        SuspendID = Convert.ToString(GridView1.GetRowCellValue(rowHandle, "SuspendID"))
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     Dim dt As New DataTable
-                    dt = ObjEntertainDetail.GetDataDetailRelasi(ID)
+                    dt = ObjEntertainDetail.GetDataDetailRelasi(SuspendID)
                     GridControl1.DataSource = dt
                 End If
             End If
