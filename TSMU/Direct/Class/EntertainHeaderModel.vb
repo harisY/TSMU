@@ -49,7 +49,7 @@ Public Class EntertainHeaderModel
                 "set @tahun = datepart(year,getdate()) " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(SuspendID)),4)+1 as varchar),4) " &
                 "from suspend_Header " &
-                "where SUBSTRING(SuspendID,4,4) = RIGHT(@tahun,4) AND SUBSTRING(SuspendID,9,2) = RIGHT(@bulan,2)) " &
+                "where SUBSTRING(SuspendID,1,7) = 'EN' + '-' + RIGHT(@tahun,4) AND SUBSTRING(SuspendID,9,2) = RIGHT(@bulan,2)) " &
                 "select 'EN' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable

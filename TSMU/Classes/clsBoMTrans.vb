@@ -129,12 +129,12 @@ Public Class clsBoMTrans
     End Property
     Public Sub InsertBoM()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
                     Try
                         With fc_clsHeader
@@ -178,16 +178,16 @@ Public Class clsBoMTrans
 
     Public Sub UpdateBoM(ByVal Rev As Integer)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
                     Try
                         With fc_clsHeader
-                            .BoMID = Me._bomid
+                            .BoMID = _bomid
                             .Tgl = Me._tgl
                             .InvtID = Me._invtid
                             .Desc = Me._desc

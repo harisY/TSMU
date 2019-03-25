@@ -362,8 +362,8 @@ Module MainModul
     Public Function ServerDate() As DateTime
         Dim svrdate As DateTime = Now
         Try
-            Dim dt As DataTable = GetDataTable("SELECT Saiki = GETDATE()")
-            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then svrdate = dt.Rows(0)("Saiki")
+            Dim dt As DataTable = GetDataTable("SELECT HariIni = GETDATE()")
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then svrdate = dt.Rows(0)("HariIni")
             Return svrdate
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -435,71 +435,113 @@ Public Class MenuUtamaForm
             'If TSMSC.DropDownItems.Count > 0 Then TSMSC.Visible = True Else TSMSC.Visible = False
             'If TSMPC.DropDownItems.Count > 0 Then TSMPC.Visible = True Else TSMPC.Visible = False
             'If TSMPLM.DropDownItems.Count > 0 Then TSMPLM.Visible = True Else TSMPLM.Visible = False
+
             If BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
                 AndAlso CalculateTM.DropDownItems.Count > 0 Then
                 tsbForecast.Visible = True
+                BudgetTSM.Visible = True
                 ForecastTSM.Visible = True
                 PriceTSM.Visible = True
-                BudgetTSM.Visible = True
                 CalculateTM.Visible = True
+
             ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
                 AndAlso CalculateTM.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
+                BudgetTSM.Visible = True
                 ForecastTSM.Visible = False
                 PriceTSM.Visible = False
-                BudgetTSM.Visible = True
-                ForecastTSM.Visible = True
                 CalculateTM.Visible = False
             ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
                 AndAlso CalculateTM.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
-                ForecastTSM.Visible = True
-                PriceTSM.Visible = False
                 BudgetTSM.Visible = False
                 ForecastTSM.Visible = True
+                PriceTSM.Visible = False
                 CalculateTM.Visible = False
             ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
                 AndAlso CalculateTM.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
-                ForecastTSM.Visible = False
                 BudgetTSM.Visible = False
+                ForecastTSM.Visible = False
                 PriceTSM.Visible = True
                 CalculateTM.Visible = False
             ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
-            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                AndAlso CalculateTM.DropDownItems.Count > 0 Then
                 tsbForecast.Visible = True
-                ForecastTSM.Visible = False
                 BudgetTSM.Visible = False
+                ForecastTSM.Visible = False
+                PriceTSM.Visible = False
+                CalculateTM.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+                AndAlso CalculateTM.DropDownItems.Count = 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = False
+                CalculateTM.Visible = False
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+                AndAlso CalculateTM.DropDownItems.Count = 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = False
+                PriceTSM.Visible = True
+                CalculateTM.Visible = False
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+                AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = False
                 PriceTSM.Visible = False
                 CalculateTM.Visible = True
             ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
-                AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                AndAlso CalculateTM.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
-                ForecastTSM.Visible = True
                 BudgetTSM.Visible = False
-                PriceTSM.Visible = True
-                CalculateTM.Visible = True
-            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
-                AndAlso CalculateTM.DropDownItems.Count > 0 Then
-                tsbForecast.Visible = True
-                ForecastTSM.Visible = False
-                BudgetTSM.Visible = True
-                PriceTSM.Visible = True
-                CalculateTM.Visible = True
-            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
-                AndAlso CalculateTM.DropDownItems.Count > 0 Then
-                tsbForecast.Visible = True
                 ForecastTSM.Visible = True
-                BudgetTSM.Visible = True
+                PriceTSM.Visible = True
+                CalculateTM.Visible = False
+            ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = False
+                ForecastTSM.Visible = True
                 PriceTSM.Visible = False
+                CalculateTM.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = False
+                ForecastTSM.Visible = False
+                PriceTSM.Visible = True
                 CalculateTM.Visible = True
             ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
             AndAlso CalculateTM.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
-                ForecastTSM.Visible = True
                 BudgetTSM.Visible = True
-                PriceTSM.Visible = False
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = True
                 CalculateTM.Visible = False
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = False
+                CalculateTM.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = False
+                PriceTSM.Visible = True
+                CalculateTM.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = False
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = True
+                CalculateTM.Visible = True
             Else
                 tsbForecast.Visible = False
             End If
