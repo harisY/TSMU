@@ -303,6 +303,12 @@
     <Compile Include="Direct\FrmApproval.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmEntertainSettle.Designer.vb">
+      <DependentUpon>FrmEntertainSettle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspendSettle.Designer.vb">
       <DependentUpon>FrmSuspendSettle.vb</DependentUpon>
     </Compile>
@@ -325,6 +331,12 @@
       <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmApprovalDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetail.Designer.vb">
+      <DependentUpon>FrmEntertainSettleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetail.Designer.vb">
@@ -1036,6 +1048,9 @@
     <EmbeddedResource Include="Direct\FrmApproval.resx">
       <DependentUpon>FrmApproval.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettle.resx">
+      <DependentUpon>FrmEntertainSettle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettle.resx">
       <DependentUpon>FrmSuspendSettle.vb</DependentUpon>
     </EmbeddedResource>
@@ -1047,6 +1062,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmApprovalDetail.resx">
       <DependentUpon>FrmApprovalDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleDetail.resx">
+      <DependentUpon>FrmEntertainSettleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleDetail.resx">
       <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>

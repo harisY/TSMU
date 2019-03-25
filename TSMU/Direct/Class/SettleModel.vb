@@ -27,6 +27,20 @@ Public Class SettleHeader
         End Try
     End Function
 
+    Public Function GetDataGridEnt() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
+            FROM settle_header where suspendid like '%EN%'"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Sub GetSettleById()
         Try
             Dim sql As String =
@@ -51,12 +65,51 @@ Public Class SettleHeader
             Throw ex
         End Try
     End Sub
+
+    Public Sub GetSettleByIdEnt()
+        Try
+            Dim sql As String =
+            "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend
+            FROM settle_header t Inner join suspend_header s on t.SuspendID = s.SuspendID 
+            where t.ID=" & QVal(ID) & " and suspendid like '%EN%'"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                ID = If(IsDBNull(dt.Rows(0).Item("ID")), "", Trim(dt.Rows(0).Item("ID").ToString()))
+                SettleID = If(IsDBNull(dt.Rows(0).Item("SettleID")), "", Trim(dt.Rows(0).Item("SettleID").ToString()))
+                SuspendID = If(IsDBNull(dt.Rows(0).Item("SuspendID")), "", Trim(dt.Rows(0).Item("SuspendID").ToString()))
+                DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
+                Remark = If(IsDBNull(dt.Rows(0).Item("Remark")), "", Trim(dt.Rows(0).Item("Remark").ToString()))
+                Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
+                Status = If(IsDBNull(dt.Rows(0).Item("Status")), "", Trim(dt.Rows(0).Item("Status").ToString()))
+                Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
+                TotalSuspend = If(IsDBNull(dt.Rows(0).Item("TotSuspend")), 0, Convert.ToDouble(dt.Rows(0).Item("TotSuspend")))
+                CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Convert.ToString(dt.Rows(0).Item("CuryID")))
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Function GetListSuspend() As DataTable
         Try
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
             FROM suspend_header WHERE Tipe = 'S' AND Pay=1 AND Status='Open' Order by SuspendID"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListSettleEnt() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
+            FROM suspend_header WHERE Tipe = 'E' AND Pay=1 AND Status='Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
