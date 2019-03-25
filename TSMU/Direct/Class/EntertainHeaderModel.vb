@@ -406,4 +406,70 @@ Public Class EntertainDetailModel
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataDetailByIDEnt() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    Tgl,
+                                    RTRIM(DeptID) DeptID,
+                                    RTRIM(Nama) Nama,
+                                    RTRIM(Tempat) Tempat,
+                                    RTRIM(Alamat) Alamat,
+                                    RTRIM(Jenis) Jenis,
+                                    RTRIM(NoKwitansi) NoKwitansi,
+                                    [Amount] Amount
+                                FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDetailByID1Ent(_SuspendID As String) As DataTable
+        Try
+            Dim sql As String = "SELECT GETDATE() as Tgl,
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    RTRIM([Amount]) Amount,
+                                    0 ActualAmount 
+                                FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDetailByIDtrial() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    [Amount] Amount
+                                FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
 End Class
+
+Public Class EntertainSetteleHeader
+
+End Class
+
+
+
