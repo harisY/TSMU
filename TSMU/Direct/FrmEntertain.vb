@@ -73,6 +73,8 @@ Public Class FrmEntertain
     End Sub
     Dim ID As String
     Dim suspendid As String
+    Dim ID2 As String
+
     Private Sub FrmSuspend_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
@@ -125,6 +127,9 @@ Public Class FrmEntertain
                          suspendid,
                          GridView1.RowCount)
                 End If
+
+
+
             End If
 
         Catch ex As Exception
@@ -133,7 +138,5 @@ Public Class FrmEntertain
         End Try
     End Sub
 
-    Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
 
-    End Sub
 End Class

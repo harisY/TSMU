@@ -207,7 +207,7 @@ Partial Class FrmSettlement_Detail
         Me.LayoutControlItem4.Location = New System.Drawing.Point(379, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(202, 24)
-        Me.LayoutControlItem4.Text = "No. Suspend"
+        Me.LayoutControlItem4.Text = "No. Advance"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem5

@@ -73,9 +73,9 @@ Public Class FrmSuspendSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Expense " & fs_Code
+                Me.Text = "Expenses " & fs_Code
             Else
-                Me.Text = "Expense"
+                Me.Text = "Expenses"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
@@ -400,7 +400,7 @@ Public Class FrmSuspendSettleDetail
 
             dtSearch = ObjSettle.GetListSuspend
             ls_OldKode = TxtDep.Text
-            ls_Judul = "Suspend"
+            ls_Judul = "Advance"
 
 
             Dim lF_SearchData As FrmSystem_LookupGrid

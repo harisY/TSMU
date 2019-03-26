@@ -421,7 +421,7 @@ Public Class MenuUtamaForm
                             End If
                         Case "Direct Payment"
                             If childMenu Is DBNull.Value OrElse childMenu = "" Then
-                            ElseIf childMenu = "Suspend" Then
+                            ElseIf childMenu = "Advance" Then
                                 tsSuspend.DropDownItems.Add(TSMenuD)
                             ElseIf childMenu = "Settlement" Then
                                 tsSettlement.DropDownItems.Add(TSMenuD)

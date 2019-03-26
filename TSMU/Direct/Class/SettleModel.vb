@@ -32,7 +32,7 @@ Public Class SettleHeader
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
-            FROM settle_header where suspendid like '%EN%'"
+            FROM settle_header where SuspendID like '%EN%'"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

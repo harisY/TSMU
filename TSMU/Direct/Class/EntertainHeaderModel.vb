@@ -348,8 +348,8 @@ Public Class EntertainDetailModel
     Public Sub InsertRelasi()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO SuspendRelasi (SuspendDetailID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-            "Values(" & QVal(SuspendDetailID) & ", " & vbCrLf &
+            "INSERT INTO SuspendRelasi (SuspendID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
             "       " & QVal(Perusahaan) & ", " & vbCrLf &
