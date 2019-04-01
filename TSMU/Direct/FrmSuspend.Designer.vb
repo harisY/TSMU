@@ -67,7 +67,7 @@ Partial Class FrmSuspend
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Suspend ID"
+        Me.GridColumn2.Caption = "Advance No."
         Me.GridColumn2.FieldName = "SuspendID"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
@@ -82,7 +82,7 @@ Partial Class FrmSuspend
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.FixedWidth = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn5
         '
@@ -91,7 +91,7 @@ Partial Class FrmSuspend
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.FixedWidth = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 3
         '
         'GridColumn6
         '
@@ -100,7 +100,7 @@ Partial Class FrmSuspend
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.FixedWidth = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 100
         '
         'GridColumn7

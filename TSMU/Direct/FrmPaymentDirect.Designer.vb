@@ -352,7 +352,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "No Advance"
+        Me.GridColumn9.Caption = "Advance No."
         Me.GridColumn9.FieldName = "SuspendID"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
@@ -436,7 +436,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn15
         '
-        Me.GridColumn15.Caption = "No Settle"
+        Me.GridColumn15.Caption = "Settle No."
         Me.GridColumn15.FieldName = "SettleID"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
@@ -444,7 +444,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "No Advance"
+        Me.GridColumn16.Caption = "Advance No."
         Me.GridColumn16.FieldName = "SuspendID"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
@@ -535,7 +535,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn23
         '
-        Me.GridColumn23.Caption = "No. entertaint"
+        Me.GridColumn23.Caption = "Entertain No."
         Me.GridColumn23.FieldName = "SuspendID"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
@@ -655,7 +655,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn33
         '
-        Me.GridColumn33.Caption = "No Settle"
+        Me.GridColumn33.Caption = "Settle No."
         Me.GridColumn33.FieldName = "SettleID"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
@@ -663,7 +663,7 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn34
         '
-        Me.GridColumn34.Caption = "No Entertaint"
+        Me.GridColumn34.Caption = "Entertaint No."
         Me.GridColumn34.FieldName = "SuspendID"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
