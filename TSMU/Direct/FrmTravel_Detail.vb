@@ -494,6 +494,4 @@ Public Class FrmTravel_Detail
             GridView3.FocusedColumn = GridView3.VisibleColumns(0)
         End If
     End Sub
-
-
 End Class

@@ -135,7 +135,7 @@ Public Class FrmPaymentDirect
                         With ObjDetails
                             .Tgl = DateTime.Parse(GridView2.GetRowCellValue(i, "Tgl").ToString())
                             .NoBukti = bukti
-                            .Transaksi = "Suspend"
+                            .Transaksi = "Advance"
                             .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
                             .Keluar = GridView2.GetRowCellValue(i, "Amount")
                             .Masuk = 0

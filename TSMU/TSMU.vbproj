@@ -255,10 +255,23 @@
     <Compile Include="Direct\Class\SettleModel.vb" />
     <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
+    <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmApprovalEntertain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankTransfer.Designer.vb">
+      <DependentUpon>FrmBankTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankTransfer_Detail.Designer.vb">
+      <DependentUpon>FrmBankTransfer_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankTransfer_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
@@ -1026,6 +1039,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmApprovalEntertain.resx">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankTransfer.resx">
+      <DependentUpon>FrmBankTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankTransfer_Detail.resx">
+      <DependentUpon>FrmBankTransfer_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmPaymentDirect.resx">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
