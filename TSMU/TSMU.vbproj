@@ -385,6 +385,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmBoM_detail.Designer.vb">
+      <DependentUpon>frmBoM_detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmBoM_detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmCalculate.Designer.vb">
       <DependentUpon>frmCalculate.vb</DependentUpon>
     </Compile>
@@ -413,6 +419,12 @@
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmBom_Budget_Calculate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmBarcodeGenerate.Designer.vb">
+      <DependentUpon>frmBarcodeGenerate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmBarcodeGenerate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmSales_ForecastPrice.Designer.vb">
@@ -625,12 +637,6 @@
     <Compile Include="Form\Common\frmBoM_routing.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Common\frmBoM_detail.Designer.vb">
-      <DependentUpon>frmBoM_detail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\Common\frmBoM_detail.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form\Common\frmBoM_detail_input.Designer.vb">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
     </Compile>
@@ -701,6 +707,12 @@
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\System\frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemExcelBarcode.Designer.vb">
+      <DependentUpon>FrmSystemExcelBarcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemExcelBarcode.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\FrmSystemExcel1.designer.vb">
@@ -805,6 +817,7 @@
     <Compile Include="Form\System\frm_system_config_db.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />
     <Compile Include="Models\batch.vb" />
     <Compile Include="Models\cashbank_models.vb" />
@@ -989,6 +1002,12 @@
     <Compile Include="Report\PrintPO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\Testing.Designer.vb">
+      <DependentUpon>Testing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Testing.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -1088,6 +1107,9 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmBoM_detail.resx">
+      <DependentUpon>frmBoM_detail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmCalculate.resx">
       <DependentUpon>frmCalculate.vb</DependentUpon>
     </EmbeddedResource>
@@ -1102,6 +1124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBom_Budget_Calculate.resx">
       <DependentUpon>frmBom_Budget_Calculate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmBarcodeGenerate.resx">
+      <DependentUpon>frmBarcodeGenerate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSales_ForecastPrice.resx">
       <DependentUpon>frmSales_ForecastPrice.vb</DependentUpon>
@@ -1211,10 +1236,6 @@
     <EmbeddedResource Include="Form\Common\frmBoM_routing.resx">
       <DependentUpon>frmBoM_routing.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Common\frmBoM_detail.resx">
-      <DependentUpon>frmBoM_detail.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
     </EmbeddedResource>
@@ -1247,6 +1268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystemExcelBarcode.resx">
+      <DependentUpon>FrmSystemExcelBarcode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystemExcel1.resx">
       <DependentUpon>FrmSystemExcel1.vb</DependentUpon>
@@ -1384,6 +1408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Testing.resx">
+      <DependentUpon>Testing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuratJalan\FrmSuratJalan.resx">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>

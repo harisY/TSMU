@@ -337,6 +337,26 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="QRCode" msprop:Generator_TableClassName="QRCodeDataTable" msprop:Generator_TableVarName="tableQRCode" msprop:Generator_RowChangedName="QRCodeRowChanged" msprop:Generator_TablePropName="QRCode" msprop:Generator_RowDeletingName="QRCodeRowDeleting" msprop:Generator_RowChangingName="QRCodeRowChanging" msprop:Generator_RowEvHandlerName="QRCodeRowChangeEventHandler" msprop:Generator_RowDeletedName="QRCodeRowDeleted" msprop:Generator_RowClassName="QRCodeRow" msprop:Generator_UserTableName="QRCode" msprop:Generator_RowEvArgName="QRCodeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InvtID" msprop:Generator_ColumnVarNameInTable="columnInvtID" msprop:Generator_ColumnPropNameInRow="InvtID" msprop:Generator_ColumnPropNameInTable="InvtIDColumn" msprop:Generator_UserColumnName="InvtID" type="xs:string" minOccurs="0" />
+              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" type="xs:string" minOccurs="0" />
+              <xs:element name="PartNo" msprop:Generator_ColumnVarNameInTable="columnPartNo" msprop:Generator_ColumnPropNameInRow="PartNo" msprop:Generator_ColumnPropNameInTable="PartNoColumn" msprop:Generator_UserColumnName="PartNo" type="xs:string" minOccurs="0" />
+              <xs:element name="KodePart" msprop:Generator_ColumnVarNameInTable="columnKodePart" msprop:Generator_ColumnPropNameInRow="KodePart" msprop:Generator_ColumnPropNameInTable="KodePartColumn" msprop:Generator_UserColumnName="KodePart" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNo" msprop:Generator_ColumnVarNameInTable="columnJobNo" msprop:Generator_ColumnPropNameInRow="JobNo" msprop:Generator_ColumnPropNameInTable="JobNoColumn" msprop:Generator_UserColumnName="JobNo" type="xs:string" minOccurs="0" />
+              <xs:element name="PartName" msprop:Generator_ColumnVarNameInTable="columnPartName" msprop:Generator_ColumnPropNameInRow="PartName" msprop:Generator_ColumnPropNameInTable="PartNameColumn" msprop:Generator_UserColumnName="PartName" type="xs:string" minOccurs="0" />
+              <xs:element name="Bulan" msprop:Generator_ColumnVarNameInTable="columnBulan" msprop:Generator_ColumnPropNameInRow="Bulan" msprop:Generator_ColumnPropNameInTable="BulanColumn" msprop:Generator_UserColumnName="Bulan" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:string" minOccurs="0" />
+              <xs:element name="Quality" msprop:Generator_ColumnVarNameInTable="columnQuality" msprop:Generator_ColumnPropNameInRow="Quality" msprop:Generator_ColumnPropNameInTable="QualityColumn" msprop:Generator_UserColumnName="Quality" type="xs:string" minOccurs="0" />
+              <xs:element name="Outgoing" msprop:Generator_ColumnVarNameInTable="columnOutgoing" msprop:Generator_ColumnPropNameInRow="Outgoing" msprop:Generator_ColumnPropNameInTable="OutgoingColumn" msprop:Generator_UserColumnName="Outgoing" type="xs:string" minOccurs="0" />
+              <xs:element name="DeliveryDate" msprop:Generator_ColumnVarNameInTable="columnDeliveryDate" msprop:Generator_ColumnPropNameInRow="DeliveryDate" msprop:Generator_ColumnPropNameInTable="DeliveryDateColumn" msprop:Generator_UserColumnName="DeliveryDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Color2" msprop:Generator_ColumnVarNameInTable="columnColor2" msprop:Generator_ColumnPropNameInRow="Color2" msprop:Generator_ColumnPropNameInTable="Color2Column" msprop:Generator_UserColumnName="Color2" type="xs:string" minOccurs="0" />
+              <xs:element name="QrCode" msprop:Generator_ColumnVarNameInTable="columnQrCode" msprop:Generator_ColumnPropNameInRow="QrCode" msprop:Generator_ColumnPropNameInTable="QrCodeColumn" msprop:Generator_UserColumnName="QrCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

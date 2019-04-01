@@ -385,15 +385,15 @@
         Dim sql As String = String.Empty
         Dim Harga As Double = 0
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        InsertData()
+                        'InsertData()
 
                         If Bulan.ToLower = "januari" Then
 
@@ -433,6 +433,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[JanQty1] =  " & QVal(JanQty1) & "
+                                    ,[JanQty2] =  " & QVal(JanQty2) & "
+                                    ,[JanQty3] =  " & QVal(JanQty3) & "
+                                    ,[Jan PO1] =  " & QVal(Jan_PO1) & "
+                                    ,[Jan PO2] =  " & QVal(Jan_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -478,6 +483,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[FebQty1] =  " & QVal(FebQty1) & "
+                                    ,[FebQty2] =  " & QVal(FebQty2) & "
+                                    ,[FebQty3] =  " & QVal(FebQty3) & "
+                                    ,[Feb PO1] =  " & QVal(Feb_PO1) & "
+                                    ,[Feb PO2] =  " & QVal(Feb_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -522,6 +532,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[MarQty1] =  " & QVal(MarQty1) & "
+                                    ,[MarQty2] =  " & QVal(MarQty2) & "
+                                    ,[MarQty3] =  " & QVal(MarQty3) & "
+                                    ,[Mar PO1] =  " & QVal(Mar_PO1) & "
+                                    ,[Mar PO2] =  " & QVal(Mar_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -565,6 +580,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[AprQty1] =  " & QVal(AprQty1) & "
+                                    ,[AprQty2] =  " & QVal(AprQty2) & "
+                                    ,[AprQty3] =  " & QVal(AprQty3) & "
+                                    ,[Apr PO1] =  " & QVal(Apr_PO1) & "
+                                    ,[Apr PO2] =  " & QVal(Apr_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -607,6 +627,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[MeiQty1] =  " & QVal(MeiQty1) & "
+                                    ,[MeiQty2] =  " & QVal(MeiQty2) & "
+                                    ,[MeiQty3] =  " & QVal(MeiQty3) & "
+                                    ,[Mei PO1] =  " & QVal(Mei_PO1) & "
+                                    ,[Mei PO2] =  " & QVal(Mei_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -648,6 +673,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[JunQty1] =  " & QVal(JunQty1) & "
+                                    ,[JunQty2] =  " & QVal(JunQty2) & "
+                                    ,[JunQty3] =  " & QVal(JunQty3) & "
+                                    ,[Jun PO1] =  " & QVal(Jun_PO1) & "
+                                    ,[Jun PO2] =  " & QVal(Jun_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -688,6 +718,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[JulQty1] =  " & QVal(JulQty1) & "
+                                    ,[JulQty2] =  " & QVal(JulQty2) & "
+                                    ,[JulQty3] =  " & QVal(JulQty3) & "
+                                    ,[Jul PO1] =  " & QVal(Jul_PO1) & "
+                                    ,[Jul PO2] =  " & QVal(Jul_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -727,6 +762,11 @@
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[AgtQty1] =  " & QVal(AgtQty1) & "
+                                    ,[AgtQty2] =  " & QVal(AgtQty2) & "
+                                    ,[AgtQty3] =  " & QVal(AgtQty3) & "
+                                    ,[Agt PO1] =  " & QVal(Agt_PO1) & "
+                                    ,[Agt PO2] =  " & QVal(Agt_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -765,6 +805,11 @@
                                 SET [OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[SepQty1] =  " & QVal(SepQty1) & "
+                                    ,[SepQty2] =  " & QVal(SepQty2) & "
+                                    ,[SepQty3] =  " & QVal(SepQty3) & "
+                                    ,[Sep PO1] =  " & QVal(Sep_PO1) & "
+                                    ,[Sep PO2] =  " & QVal(Sep_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -802,6 +847,11 @@
                                 "UPDATE [tForecastPrice] 
                                 SET [NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
+                                    ,[OktQty1] =  " & QVal(OktQty1) & "
+                                    ,[OktQty2] =  " & QVal(OktQty2) & "
+                                    ,[OktQty3] =  " & QVal(OktQty3) & "
+                                    ,[Okt PO1] =  " & QVal(Okt_PO1) & "
+                                    ,[Okt PO2] =  " & QVal(Okt_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -838,6 +888,11 @@
                             Query1 =
                                 "UPDATE [tForecastPrice] 
                                 SET [DesHarga1] =  " & QVal(Harga) & "
+                                    ,[NovQty1] =  " & QVal(NovQty1) & "
+                                    ,[NovQty2] =  " & QVal(NovQty2) & "
+                                    ,[NovQty3] =  " & QVal(NovQty3) & "
+                                    ,[Nov PO1] =  " & QVal(Nov_PO1) & "
+                                    ,[Nov PO2] =  " & QVal(Nov_PO2) & "
                                 WHERE 
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
@@ -861,7 +916,7 @@
 
                             sql =
                                 "SELECT
-                                    Harga_Apr =
+                                    Harga_Des =
 	                                CASE 
 	                                        WHEN DesHarga1!=0 and DesHarga2=0  and DesHarga3=0 THEN DesHarga1  
 	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
@@ -891,13 +946,27 @@
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                             ExecQuery(Query1)
+
+                            Dim Query2 As String =
+                                "UPDATE [tForecastPrice] 
+                                SET [DesQty1] =  " & QVal(DesQty1) & "
+                                    ,[DesQty2] =  " & QVal(DesQty2) & "
+                                    ,[DesQty3] =  " & QVal(DesQty3) & "
+                                    ,[Des PO1] =  " & QVal(Des_PO1) & "
+                                    ,[Des PO2] =  " & QVal(Des_PO2) & "
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(Query2)
                         End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
                         Throw
                     Finally
-                        MainModul.gh_Trans = Nothing
+                        gh_Trans = Nothing
                     End Try
                 End Using
             End Using

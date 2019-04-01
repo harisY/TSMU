@@ -119,6 +119,8 @@ Public Class clsBoMTrans
             _active = value
         End Set
     End Property
+    Public Property RefType() As String
+    Public Property RefNo() As String
     Public Property fc_classdetail() As Collection(Of clsBoMdetails)
         Get
             Return Me._fc_classdetail
@@ -201,6 +203,8 @@ Public Class clsBoMTrans
                             .MP = Me._mp
                             .Status = Me._status
                             .Active = Me._active
+                            .RefType = Me.RefType
+                            .RefNo = RefNo
                         End With
                         fc_clsHeader.UpdateHeader(Rev)
 

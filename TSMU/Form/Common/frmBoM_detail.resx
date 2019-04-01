@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnCari.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAg1JREFUOE+tkEloE2EYhgc8TRIICYK4RLGCKyii1oqCePMiCCq44UVBC9EUPFh7
-        0FR7ESqILeJS3EGhLnWpQoUqKBXExNY2SmwOqVo6NsvM5G9Ll7Sv//snFHFEe3Dggfm/73nfWbT/cs09
-        2bU9UP2pW4Ip0s1MMa5pcpC5255DtC+PyD+gQ5eZYlwVoKJlEOtv2Fh3/e/QoctMMV4o2Ns0gLJrtoJC
-        u5HHN3sczxKj2HwnN7kjdB0Fex4IrG2wcOjpAHjdjxgIN8UR/SoQT49hw1VL7QldR8HuewKlly20Jobw
-        otPA8poIVtbGUVrzFikxgmBzYU/oOgp2NQqsuWjh43eBhte96p6svpDBhx4L1S3pyRldR8FO+Z2r6k3c
-        butFT2YEG+WTeN7XmMNofgLbriTVmdB1FOy4aWPF2SzKTncgmRpCdnAcMfkjh8cm0G8PY9P5PrUndB0F
-        Wy+ZWHoqjSVhA8uOvETVrS7UP0/iQN17tH3OINEvf2RtVjl0HQVbzplYWJkqcMxAyeEY5pdHsSAUx6Ly
-        N3j3xcSZZlvt6TrfoM7E4ioZPv4HKn9g3v5XKAl2KIfurwXT5EGEHps4+DCH4COB0BOBit/gjDs6dJlh
-        VvN6vb5ZR1tPBMKxPFunhHSZYZZvoPt8Pq/H45nudrtnuFyumbquz/b7/XPkPEB4zxl3dOgyo2ma/hOA
-        8TDTxEJBogAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="ToolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>124, 17</value>
   </metadata>
+  <metadata name="ToolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnAdd.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -156,27 +144,10 @@
         QmCC
 </value>
   </data>
-  <metadata name="ToolStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="errProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>231, 17</value>
   </metadata>
-  <data name="btnExpand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE2SURBVDhPtY67L0RBGMUnJAq5Yi93RdYWchFhbSEq1iMe
-        hdeyXgmCWJ2o6HUaxTYKMYWG3HhGQ9TrHXwSCsnqlPwVx/0mE8VmSabYX3KSX843JxmRPw6DUhwHSYXd
-        mAOHkt9rWPxaBbtuDfAcmv5cBoddtwbs2TT2sYREJgl23Rqwa9PA2yz6X2fArts/kAEpdvxHWel9nkT3
-        4zhy3dTml+0Axd8X0EdT4FHP04Qatl0PofVqEJ33o+i4G0H7bRyxm2HlvNFrn61S4q92PSRUeMDDxvMY
-        qo+aVaq8JoT2Iwh7UbgnLeCNXvukSqRIWZSd8FkUodMIct3U5l82Laq8bEDFRT3YdWvAhkVOug7l6Vqw
-        69aA9WIqe6mBTS7YdWvAShHZGRccdt0aMF8oxVwBqbDnByF+AE+uqoznSFqMAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnCollapse.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACISURBVDhPYxgFgwX8TXXZ/z/L4///Ar///8tD//+vi/n/
-        vyXp//+ONAgGsUFiIDmQGqBakB6odgaGD0EG//+v6iAJg/RAtTMw3DYTgZhOAgbpgWpnYDijyLD/vDrr
-        /yv6vP9vmov+v+cg9/+Ru+r/Z77aYAxig8RAciA1ILUgPVDto2CAAQMDAKbUlOXyhgkKAAAAAElFTkSu
-        QmCC
-</value>
-  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>46</value>
+  </metadata>
 </root>

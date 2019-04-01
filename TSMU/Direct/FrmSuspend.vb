@@ -19,6 +19,8 @@ Public Class FrmSuspend
             ObjSuspend = New SuspendHeaderModel
             dtGrid = ObjSuspend.GetDataGrid()
             Grid.DataSource = dtGrid
+            GridView1.BestFitColumns()
+
             With GridView1
                 .Columns(0).Visible = False
             End With

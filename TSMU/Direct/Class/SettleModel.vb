@@ -333,7 +333,6 @@ Public Class SettleDetail
 	            SubAcct SubAccount,
 	            AcctID Account,
 	            Description,
-	            SuspendAmount Amount,
                 SettleAmount ActualAmount
             FROM settle_detail WHERE SettleID = " & QVal(_SettleID) & ""
             Dim dt As New DataTable

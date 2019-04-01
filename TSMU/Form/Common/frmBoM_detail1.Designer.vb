@@ -37,7 +37,6 @@ Partial Class frmBoM_detail1
         Me.Label10 = New System.Windows.Forms.Label()
         Me._txtAllowance = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.btnCari = New System.Windows.Forms.Button()
         Me._txtDesc = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me._txtInvID = New System.Windows.Forms.TextBox()
@@ -56,9 +55,7 @@ Partial Class frmBoM_detail1
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GridDetail = New System.Windows.Forms.DataGridView()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
-        Me.btnAdd = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.btnDelete = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -67,6 +64,9 @@ Partial Class frmBoM_detail1
         Me.Grid3 = New System.Windows.Forms.DataGridView()
         Me.Grid2 = New System.Windows.Forms.DataGridView()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.btnAdd = New System.Windows.Forms.ToolStripButton()
+        Me.btnDelete = New System.Windows.Forms.ToolStripButton()
+        Me.btnCari = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -252,15 +252,6 @@ Partial Class frmBoM_detail1
         Me.Label9.TabIndex = 16
         Me.Label9.Text = "Allowance"
         '
-        'btnCari
-        '
-        Me.btnCari.Image = CType(resources.GetObject("btnCari.Image"), System.Drawing.Image)
-        Me.btnCari.Location = New System.Drawing.Point(224, 63)
-        Me.btnCari.Name = "btnCari"
-        Me.btnCari.Size = New System.Drawing.Size(25, 21)
-        Me.btnCari.TabIndex = 4
-        Me.btnCari.UseVisualStyleBackColor = True
-        '
         '_txtDesc
         '
         Me._txtDesc.Location = New System.Drawing.Point(89, 90)
@@ -428,28 +419,10 @@ Partial Class frmBoM_detail1
         Me.ToolStrip2.TabIndex = 1
         Me.ToolStrip2.Text = "ToolStrip2"
         '
-        'btnAdd
-        '
-        Me.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnAdd.Image = CType(resources.GetObject("btnAdd.Image"), System.Drawing.Image)
-        Me.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(23, 22)
-        Me.btnAdd.Text = "Add"
-        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'btnDelete
-        '
-        Me.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnDelete.Image = CType(resources.GetObject("btnDelete.Image"), System.Drawing.Image)
-        Me.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(23, 22)
-        Me.btnDelete.Text = "Delete"
         '
         'ToolStripLabel1
         '
@@ -532,6 +505,33 @@ Partial Class frmBoM_detail1
         'errProvider
         '
         Me.errProvider.ContainerControl = Me
+        '
+        'btnAdd
+        '
+        Me.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnAdd.Image = CType(resources.GetObject("btnAdd.Image"), System.Drawing.Image)
+        Me.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(23, 22)
+        Me.btnAdd.Text = "Add"
+        '
+        'btnDelete
+        '
+        Me.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnDelete.Image = CType(resources.GetObject("btnDelete.Image"), System.Drawing.Image)
+        Me.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(23, 22)
+        Me.btnDelete.Text = "Delete"
+        '
+        'btnCari
+        '
+        Me.btnCari.Image = CType(resources.GetObject("btnCari.Image"), System.Drawing.Image)
+        Me.btnCari.Location = New System.Drawing.Point(224, 63)
+        Me.btnCari.Name = "btnCari"
+        Me.btnCari.Size = New System.Drawing.Size(25, 21)
+        Me.btnCari.TabIndex = 4
+        Me.btnCari.UseVisualStyleBackColor = True
         '
         'frmBoM_detail1
         '

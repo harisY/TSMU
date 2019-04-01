@@ -119,12 +119,15 @@ Public Class clsBoM
             _active = value
         End Set
     End Property
+    Public Property RefType() As String
+    Public Property RefNo() As String
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim ls_SP As String =
                 "SELECT [bomid] [BOM ID]
                     ,[tgl]  [TGL]
+                    ,Status Jenis
                     ,[invtid] [Inventory ID]
                     ,[descr] [Description]
                     ,[siteid] [Site]
@@ -177,6 +180,8 @@ Public Class clsBoM
                     Me._mp = Trim(.Item("mp") & "")
                     Me._status = Trim(.Item("status") & "")
                     Me._active = Trim(.Item("active") & "")
+                    Me.RefType = Trim(.Item("RefTipe") & "")
+                    Me.RefNo = Trim(.Item("RefNo") & "")
                 End With
             End If
         Catch ex As Exception
@@ -287,6 +292,49 @@ Public Class clsBoM
         End Try
     End Function
 
+    Public Function ProjectAutoNo() As String
+
+        Try
+            Dim query As String
+
+            query = "declare  @seq varchar(6)
+            set @seq= (select right('00000'+cast(right(rtrim(max(bomid)),6)+1 as varchar),6)
+            from bomh
+            where left(bomid,1) = 'P')
+            print @seq
+            select 'P' + '-' + coalesce(@seq, '000001') No"
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable(query)
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+    Public Function RegularAutoNo() As String
+
+        Try
+            Dim query As String
+
+            query = "declare  @seq varchar(7)
+            set @seq= (select right('000000'+cast(right(rtrim(max(bomid)),7)+1 as varchar),7)
+            from bomh
+            where left(bomid,1) <> 'P')
+            print @seq
+            select coalesce(@seq, '0000001') No   "
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable(query)
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
     Public Function getInvtItem() As DataTable
         Try
             Dim query As String =
@@ -366,6 +414,8 @@ Public Class clsBoM
                                     "               Inserted.allowance, " & vbCrLf &
                                     "               Inserted.mp, " & vbCrLf &
                                     "               Inserted.[status], " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
                                     "               Inserted.[active], " & vbCrLf &
                                     "               0, " & vbCrLf &
                                     "               Inserted.created_by, " & vbCrLf &
@@ -410,6 +460,8 @@ Public Class clsBoM
                                     "       allowance = " & QVal(Me._allowance) & ", " & vbCrLf &
                                     "       mp = " & QVal(Me._mp) & ", " & vbCrLf &
                                     "       [status] = " & QVal(Me._status) & ", " & vbCrLf &
+                                    "       RefTipe = " & QVal(Me.RefType) & ", " & vbCrLf &
+                                    "       RefNo = " & QVal(Me.RefNo) & ", " & vbCrLf &
                                     "       [active] = " & QVal(Me._active) & ", " & vbCrLf &
                                     "       [updated_by] = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       updated_date = getdate() " & vbCrLf &
@@ -426,6 +478,8 @@ Public Class clsBoM
                                     "               Inserted.allowance, " & vbCrLf &
                                     "               Inserted.mp, " & vbCrLf &
                                     "               Inserted.[status], " & vbCrLf &
+                                    "               Inserted.RefTipe, " & vbCrLf &
+                                    "               Inserted.RefNo, " & vbCrLf &
                                     "               Inserted.[active], " & vbCrLf &
                                     "               " & QVal(rev) & " + 1, " & vbCrLf &
                                     "               NULL, " & vbCrLf &

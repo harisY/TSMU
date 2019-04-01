@@ -201,7 +201,7 @@ Public Class FrmSuspendSettleDetail
                         With ObjSettleDetail
                             .SettleID = _SettleID
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
@@ -220,7 +220,7 @@ Public Class FrmSuspendSettleDetail
                         With ObjSettleDetail
                             .SettleID = TxtNoSettlement.Text
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")

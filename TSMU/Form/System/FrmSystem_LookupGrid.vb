@@ -80,10 +80,12 @@ Public Class FrmSystem_LookupGrid
 
             If GridData IsNot Nothing Then
                 Grid.DataSource = GridData
+                GridView1.BestFitColumns()
             Else
                 Dim dt As DataTable = MainModul.GetDataTable(query)
                 Grid.DataSource = dt
                 GridData = Grid.DataSource
+                GridView1.BestFitColumns()
             End If
 
             If _HiddenCols IsNot Nothing AndAlso _HiddenCols.Length > 0 Then

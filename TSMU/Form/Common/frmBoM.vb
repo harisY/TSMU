@@ -3,7 +3,7 @@ Imports System.Data.OleDb
 Imports System.Globalization
 Imports DevExpress.XtraGrid
 Public Class frmBoM
-    Dim ff_Detail As frmBoM_detail1
+    Dim ff_Detail As frmBoM_detail
     Dim dtGrid As DataTable
     Dim BomHeader As New clsBoM
     Dim BomDetails As New clsBoMdetails
@@ -407,7 +407,7 @@ Public Class frmBoM
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmBoM_detail1(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frmBoM_detail(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()

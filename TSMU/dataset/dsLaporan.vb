@@ -1,4 +1,8 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class QRCodeDataTable
+
+    End Class
+
     Partial Public Class PrintPODataTable
 
     End Class
@@ -21,5 +25,7 @@
     Partial Class view_bomDataTable
 
     End Class
+
+
 
 End Class
