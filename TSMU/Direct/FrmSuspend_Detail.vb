@@ -83,9 +83,9 @@ Public Class FrmSuspend_Detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Suspend " & fs_Code
+                Me.Text = "Advance " & fs_Code
             Else
-                Me.Text = "Suspend"
+                Me.Text = "Advance"
             End If
             Call LoadTxtBox()
             LoadGridDetail()

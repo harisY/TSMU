@@ -42,7 +42,8 @@ Public Class FrmEntertain_Detail
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
+                   ByRef _Grid As GridControl
+                   )
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
@@ -314,7 +315,7 @@ Public Class FrmEntertain_Detail
                     If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
-                            .SuspendDetailID = _SuspendID
+                            .SuspendID = _SuspendID
                             .Nama = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
                             .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
@@ -335,7 +336,7 @@ Public Class FrmEntertain_Detail
                     If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
-                            .SuspendDetailID = _SuspendID
+                            .SuspendID = _SuspendID
                             .Nama = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
                             .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd

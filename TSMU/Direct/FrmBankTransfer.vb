@@ -3,9 +3,8 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-
-Public Class FrmEntertain
-    Dim ff_Detail As FrmEntertain_Detail
+Public Class FrmBankTransfer
+    Dim ff_Detail As FrmBankTransfer_Detail
     Dim dtGrid As DataTable
     Dim ObjEntertain As EntertainHeaderModel
 
@@ -45,7 +44,7 @@ Public Class FrmEntertain
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmEntertain_Detail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmBankTransfer_Detail(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -137,6 +136,4 @@ Public Class FrmEntertain
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
-
 End Class

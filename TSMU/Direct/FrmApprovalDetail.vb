@@ -143,7 +143,7 @@ Public Class FrmApprovalDetail
     End Sub
     Public Overrides Sub Proc_Approve()
         Try
-            Dim result As DialogResult = XtraMessageBox.Show("Approve Suspend " & "'" & TxtNoSuspend.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            Dim result As DialogResult = XtraMessageBox.Show("Approve Advance " & "'" & TxtNoSuspend.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
             If result = System.Windows.Forms.DialogResult.Yes Then
 
                 ObjSuspendHeader.ApproveData(TxtNoSuspend.Text, level)
