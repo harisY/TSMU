@@ -20,8 +20,8 @@ Partial Class FrmSuspend_Detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TxtSirkulasi = New DevExpress.XtraEditors.TextEdit()
@@ -36,14 +36,14 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Label10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Label10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,8 +56,6 @@ Partial Class FrmSuspend_Detail
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ReposAmount = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtSirkulasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,14 +71,14 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Label10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,12 +87,10 @@ Partial Class FrmSuspend_Detail
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.Panel3)
         Me.LayoutControl1.Controls.Add(Me.Panel2)
         Me.LayoutControl1.Controls.Add(Me.TxtSirkulasi)
         Me.LayoutControl1.Controls.Add(Me.TxtStatus)
@@ -109,38 +105,38 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(796, 179)
+        Me.LayoutControl1.Size = New System.Drawing.Size(796, 123)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'Panel2
         '
-        Me.Panel2.Location = New System.Drawing.Point(440, 36)
+        Me.Panel2.Location = New System.Drawing.Point(684, 36)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(344, 20)
+        Me.Panel2.Size = New System.Drawing.Size(100, 20)
         Me.Panel2.TabIndex = 15
         '
         'TxtSirkulasi
         '
-        Me.TxtSirkulasi.Location = New System.Drawing.Point(281, 36)
+        Me.TxtSirkulasi.Location = New System.Drawing.Point(277, 36)
         Me.TxtSirkulasi.Name = "TxtSirkulasi"
-        Me.TxtSirkulasi.Size = New System.Drawing.Size(155, 20)
+        Me.TxtSirkulasi.Size = New System.Drawing.Size(154, 20)
         Me.TxtSirkulasi.StyleController = Me.LayoutControl1
         Me.TxtSirkulasi.TabIndex = 13
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(80, 84)
+        Me.TxtStatus.Location = New System.Drawing.Point(630, 36)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.ReadOnly = True
-        Me.TxtStatus.Size = New System.Drawing.Size(129, 20)
+        Me.TxtStatus.Size = New System.Drawing.Size(50, 20)
         Me.TxtStatus.StyleController = Me.LayoutControl1
         Me.TxtStatus.TabIndex = 12
         '
         'TxtTotal
         '
         Me.TxtTotal.EditValue = "0"
-        Me.TxtTotal.Location = New System.Drawing.Point(508, 12)
+        Me.TxtTotal.Location = New System.Drawing.Point(630, 12)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -151,20 +147,20 @@ Partial Class FrmSuspend_Detail
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(80, 36)
+        Me.TxtPrNo.Location = New System.Drawing.Point(81, 36)
         Me.TxtPrNo.Name = "TxtPrNo"
-        Me.TxtPrNo.Size = New System.Drawing.Size(129, 20)
+        Me.TxtPrNo.Size = New System.Drawing.Size(123, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Isi PR No"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule3)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Isi PR No"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule1)
         '
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(80, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(81, 12)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -174,47 +170,47 @@ Partial Class FrmSuspend_Detail
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(129, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(123, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(80, 60)
+        Me.TxtDep.Location = New System.Drawing.Point(504, 36)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(129, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(53, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi Departemen"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Isi Departemen"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(734, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(504, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD"})
-        Me.TxtCurrency.Size = New System.Drawing.Size(50, 20)
+        Me.TxtCurrency.Size = New System.Drawing.Size(53, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         '
         'TxtNoSuspend
         '
-        Me.TxtNoSuspend.Location = New System.Drawing.Point(281, 12)
+        Me.TxtNoSuspend.Location = New System.Drawing.Point(277, 12)
         Me.TxtNoSuspend.Name = "TxtNoSuspend"
         Me.TxtNoSuspend.Properties.ReadOnly = True
-        Me.TxtNoSuspend.Size = New System.Drawing.Size(155, 20)
+        Me.TxtNoSuspend.Size = New System.Drawing.Size(154, 20)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(80, 108)
+        Me.TxtRemark.Location = New System.Drawing.Point(81, 60)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(704, 59)
+        Me.TxtRemark.Size = New System.Drawing.Size(703, 51)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
         '
@@ -222,111 +218,111 @@ Partial Class FrmSuspend_Detail
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem5, Me.LayoutControlItem9, Me.LayoutControlItem3, Me.Label10, Me.LayoutControlItem10, Me.Label9})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.Label9, Me.Label10})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 179)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 123)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.TxtNoSuspend
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(201, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(196, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(227, 24)
-        Me.LayoutControlItem1.Text = "No. Suspend"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem1.Text = "Suspend No."
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.TxtPrNo
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(196, 24)
         Me.LayoutControlItem2.Text = "PR No"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(65, 13)
-        '
-        'Label9
-        '
-        Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(0, 48)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(201, 24)
-        Me.Label9.Text = "Dept"
-        Me.Label9.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtSirkulasi
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(201, 24)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(196, 24)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(227, 24)
-        Me.LayoutControlItem7.Text = "Sirculation No"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem7.Text = "Circulation No"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtTgl
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(196, 24)
         Me.LayoutControlItem4.Text = "Date"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtTotal
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(428, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(549, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(226, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(227, 24)
         Me.LayoutControlItem6.Text = "Total"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(654, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(423, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(122, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(126, 24)
         Me.LayoutControlItem5.Text = "Currency"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(65, 13)
-        '
-        'Label10
-        '
-        Me.Label10.Control = Me.TxtStatus
-        Me.Label10.Location = New System.Drawing.Point(0, 72)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(201, 24)
-        Me.Label10.Text = "Status"
-        Me.Label10.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(66, 13)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.Panel2
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(428, 24)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(672, 24)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(348, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(104, 24)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtRemark
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 63)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 55)
         Me.LayoutControlItem3.Text = "Remark"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(65, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(66, 13)
+        '
+        'Label10
+        '
+        Me.Label10.Control = Me.TxtStatus
+        Me.Label10.Location = New System.Drawing.Point(549, 24)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(123, 24)
+        Me.Label10.Text = "Status"
+        Me.Label10.TextSize = New System.Drawing.Size(66, 13)
+        '
+        'Label9
+        '
+        Me.Label9.Control = Me.TxtDep
+        Me.Label9.Location = New System.Drawing.Point(423, 24)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(126, 24)
+        Me.Label9.Text = "Dept"
+        Me.Label9.TextSize = New System.Drawing.Size(66, 13)
         '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 210)
+        Me.Grid.Location = New System.Drawing.Point(12, 154)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemSpinEdit1, Me.ReposAmount})
-        Me.Grid.Size = New System.Drawing.Size(772, 359)
+        Me.Grid.Size = New System.Drawing.Size(772, 415)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -416,22 +412,6 @@ Partial Class FrmSuspend_Detail
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'Panel3
-        '
-        Me.Panel3.Location = New System.Drawing.Point(213, 60)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(571, 44)
-        Me.Panel3.TabIndex = 15
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.Panel3
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(201, 48)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(575, 48)
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
-        '
         'FrmSuspend_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -457,14 +437,14 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Label10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -473,7 +453,6 @@ Partial Class FrmSuspend_Detail
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -513,6 +492,4 @@ Partial Class FrmSuspend_Detail
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Panel2 As Panel
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
 End Class
