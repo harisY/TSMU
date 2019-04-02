@@ -394,7 +394,7 @@ Public Class FrmEntertain_Detail
         End Try
     End Sub
 
-    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick
+    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Try
             ObjEntertainHeader = New EntertainHeaderModel
             Dim ls_Judul As String = ""
@@ -440,7 +440,7 @@ Public Class FrmEntertain_Detail
         End Try
     End Function
 
-    Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GSubAccount.ButtonClick
+    Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Try
             ObjEntertainHeader = New EntertainHeaderModel
             Dim ls_Judul As String = ""
@@ -505,21 +505,21 @@ Public Class FrmEntertain_Detail
         End Try
     End Sub
 
-    Private Sub GSubAccount_EditValueChanged(sender As Object, e As EventArgs) Handles GSubAccount.EditValueChanged
+    Private Sub GSubAccount_EditValueChanged(sender As Object, e As EventArgs)
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs) Handles GAmount.EditValueChanged
+    Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs)
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub GAccount_EditValueChanged(sender As Object, e As EventArgs) Handles GAccount.EditValueChanged
+    Private Sub GAccount_EditValueChanged(sender As Object, e As EventArgs)
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
