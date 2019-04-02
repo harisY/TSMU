@@ -71,7 +71,7 @@ Public Class SettleHeader
             Dim sql As String =
             "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend
             FROM settle_header t Inner join suspend_header s on t.SuspendID = s.SuspendID 
-            where t.ID=" & QVal(ID) & " and suspendid like '%EN%'"
+            where t.ID=" & QVal(ID) & " and t.suspendid like '%EN%'"
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
