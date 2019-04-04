@@ -24,6 +24,11 @@ Public Class EntertainHeaderModel
     Public Property Perusahaan As String
     Public Property JenisUsaha As String
     Public Property Remark As String
+    Public Property AmountReq As String
+    Public Property CirculationNo As String
+
+
+
 
     Public Property ObjDetails() As New Collection(Of EntertainDetailModel)
     Public Function GetDataGrid() As DataTable
@@ -130,7 +135,7 @@ Public Class EntertainHeaderModel
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_header (SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, CreatedBy, CreatedDate) " & vbCrLf &
+            "INSERT INTO suspend_header (SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, CreatedBy,AmountReq,CirculationNo, CreatedDate) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(Tipe) & ", " & vbCrLf &
             "       " & QVal(Currency) & ", " & vbCrLf &
@@ -141,6 +146,8 @@ Public Class EntertainHeaderModel
             "       " & QVal(Status) & ", " & vbCrLf &
             "       " & QVal(Total) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
+            "       " & QVal(AmountReq) & ", " & vbCrLf &
+            "       " & QVal(cir) & ", " & vbCrLf &
             "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
