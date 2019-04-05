@@ -77,6 +77,21 @@ Public Class ClsSuspend
             Throw ex
         End Try
     End Function
+
+    Public Function GetBank() As DataTable
+        Try
+
+            Dim sql As String = "Select 
+                                    RTrim(BankAcct) [Account],
+	                                RTrim(CashAcctName) Descritiption
+                                From dbo.cashacct"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function autononb() As String
         Try
             Dim auto2 As String

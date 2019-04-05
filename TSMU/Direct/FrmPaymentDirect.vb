@@ -27,10 +27,30 @@ Public Class FrmPaymentDirect
         'End If
         Call DataCashBank()
         For b As Integer = 0 To GridView1.RowCount - 1
+            'If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+            '    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+            'Else
+            '    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+            'End If
             If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
-                GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
             Else
-                GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
             End If
         Next
         '      Call DataSuspend()
@@ -82,7 +102,7 @@ Public Class FrmPaymentDirect
 
             Dim ObjSuspend As New ClsSuspend
             If sender.Name = _txtaccount.Name Then
-                dtSearch = ObjSuspend.GetAccount
+                dtSearch = ObjSuspend.GetBank
                 ls_OldKode = _txtaccount.Text.Trim
                 ls_Judul = "Account"
             End If
@@ -137,6 +157,8 @@ Public Class FrmPaymentDirect
                             .NoBukti = bukti
                             .Transaksi = "Advance"
                             .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
+                            .SuspendAmount = GridView2.GetRowCellValue(i, "Amount")
+                            .SettleAmount = 0
                             .Keluar = GridView2.GetRowCellValue(i, "Amount")
                             .Masuk = 0
                             .Saldo = 0
@@ -153,13 +175,30 @@ Public Class FrmPaymentDirect
                     End If
                 Next
                 Call DataSuspend()
+
                 Call DataCashBank()
+
 
                 For b As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        End If
+
                     ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        End If
+                    Else
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                        End If
                     End If
                 Next
             End If
@@ -186,8 +225,16 @@ Public Class FrmPaymentDirect
                             .NoBukti = bukti
                             .Transaksi = "Settle"
                             .Keterangan = GridView3.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
-                            .Keluar = 0
-                            .Masuk = GridView3.GetRowCellValue(f, "Total")
+                            .SuspendAmount = GridView3.GetRowCellValue(f, "Total")
+                            .SettleAmount = GridView3.GetRowCellValue(f, "SettleAmount")
+                            If Trim(GridView3.GetRowCellValue(f, "BankID")) = Trim(_txtaccount.Text) Then
+                                .Keluar = 0
+                                .Masuk = GridView3.GetRowCellValue(f, "Total")
+                            Else
+                                .Keluar = 0
+                                .Masuk = 0
+                            End If
+
                             .Saldo = 0
                             .Noref = GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
                             .Perpost = _txtperpost.Text
@@ -200,8 +247,17 @@ Public Class FrmPaymentDirect
                             .NoBukti = bukti
                             .Transaksi = "Voucher"
                             .Keterangan = GridView3.GetRowCellValue(f, "Description").ToString().TrimEnd
-                            .Keluar = GridView3.GetRowCellValue(f, "SettleAmount")
-                            .Masuk = 0
+                            .SuspendAmount = 0
+                            .SettleAmount = 0
+
+                            If Trim(GridView3.GetRowCellValue(f, "BankID")) = Trim(_txtaccount.Text) Then
+                                .Keluar = GridView3.GetRowCellValue(f, "SettleAmount")
+                                .Masuk = 0
+                            Else
+                                .Keluar = 0
+                                .Masuk = GridView3.GetRowCellValue(f, "Total") - GridView3.GetRowCellValue(f, "SettleAmount")
+                            End If
+
                             .Saldo = 0
                             .Noref = GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
                             .Perpost = _txtperpost.Text
@@ -220,11 +276,34 @@ Public Class FrmPaymentDirect
 
                 For b As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        End If
+
+                    ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        End If
                     Else
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                        End If
                     End If
                 Next
+
+                'For b As Integer = 0 To GridView1.RowCount - 1
+                '    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                '    Else
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                '    End If
+                'Next
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -264,11 +343,33 @@ Public Class FrmPaymentDirect
 
                 For b As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        End If
+
                     ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
-                        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        End If
+                    Else
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                        End If
                     End If
                 Next
+                'For b As Integer = 0 To GridView1.RowCount - 1
+                '    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                '    ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                '    End If
+                'Next
             End If
 
         Catch ex As Exception

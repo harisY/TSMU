@@ -9,6 +9,8 @@ Public Class cashbank_models
     Public Property Perpost As String
     Public Property Saldo As Double
     Public Property Saldo_Awal As Double
+    Public Property SuspendAmount As Double
+    Public Property SettleAmount As Double
     Public Property Tgl As DateTime
     Public Property Transaksi As String
     Public Property SuspendID As String
@@ -29,6 +31,8 @@ Public Class cashbank_models
            ,[NoBukti]
            ,[Transaksi]
            ,[Keterangan]
+           ,[SuspendAmount]
+           ,[SettleAmount]
            ,[Masuk]
            ,[Keluar]
            ,[Saldo]
@@ -41,6 +45,8 @@ Public Class cashbank_models
            ," & QVal(NoBukti) & "
            ," & QVal(Transaksi) & "
            ," & QVal(Keterangan) & "
+           ," & QVal(SuspendAmount) & "
+          ," & QVal(SettleAmount) & "
            ," & QVal(Masuk) & "
            ," & QVal(Keluar) & "
            ," & QVal(Saldo) & "
@@ -67,6 +73,8 @@ Public Class cashbank_models
            ,[NoBukti]
            ,[Transaksi]
            ,[Keterangan]
+            ,[SuspendAmount]
+           ,[SettleAmount]
            ,[Masuk]
            ,[Keluar]
            ,[Saldo]
@@ -79,6 +87,8 @@ Public Class cashbank_models
            ," & QVal(NoBukti) & "
            ," & QVal(Transaksi) & "
            ," & QVal(Keterangan) & "
+           ," & QVal(SuspendAmount) & "
+          ," & QVal(SettleAmount) & "
            ," & QVal(Masuk) & "
            ," & QVal(Keluar) & "
            ," & QVal(Saldo) & "
@@ -95,7 +105,7 @@ Public Class cashbank_models
 
         Try
 
-            Dim Query = "update suspend_header set pay=1 where suspendid=" & QVal(SuspendID) & ""
+            Dim Query = "update suspend_header set pay=1,BankID=" & QVal(AcctID) & " where suspendid=" & QVal(SuspendID) & ""
             MainModul.ExecQuery_Solomon(Query)
         Catch ex As Exception
             Throw ex
@@ -115,7 +125,7 @@ Public Class cashbank_models
     End Sub
     Public Function GetGridDetailCashBankByAccountID() As DataTable
         Try
-            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Masuk,Keluar,Saldo FROM cashbank WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -199,7 +209,7 @@ Public Class cashbank_models
 
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
-            Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,settle_detail.proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
