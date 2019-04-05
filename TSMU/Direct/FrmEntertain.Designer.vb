@@ -20,12 +20,24 @@ Partial Class FrmEntertain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
         'Grid
         '
@@ -36,27 +48,102 @@ Partial Class FrmEntertain
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.Size = New System.Drawing.Size(804, 541)
-        Me.Grid.TabIndex = 2
+        Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn10})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'OpenFileDialog1
+        'GridColumn1
         '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "SuspendHeaderID"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.FixedWidth = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
-        'FrmSuspend
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Advance No."
+        Me.GridColumn2.FieldName = "SuspendID"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.FixedWidth = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 100
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Currency"
+        Me.GridColumn4.FieldName = "Currency"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.FixedWidth = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Department"
+        Me.GridColumn5.FieldName = "DeptID"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.FixedWidth = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "PR No"
+        Me.GridColumn6.FieldName = "PRNo"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.FixedWidth = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 100
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Remark"
+        Me.GridColumn7.FieldName = "Remark"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.FixedWidth = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.Width = 200
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Date"
+        Me.GridColumn8.FieldName = "Tgl"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.FixedWidth = True
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.Width = 80
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Amount"
+        Me.GridColumn10.FieldName = "Total"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.FixedWidth = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 7
+        Me.GridColumn10.Width = 100
+        '
+        'FrmEntertain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmSuspend"
+        Me.Name = "FrmEntertain"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -64,8 +151,15 @@ Partial Class FrmEntertain
         Me.PerformLayout()
 
     End Sub
-
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

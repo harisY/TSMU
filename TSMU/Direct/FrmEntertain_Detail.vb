@@ -122,6 +122,13 @@ Public Class FrmEntertain_Detail
             If dtGrid.Rows.Count > 0 Then
                 GridCellFormat(GridView1)
             End If
+            Dim dtGrid2 As New DataTable
+            ObjEntertainDetail.SuspendID = TxtNoSuspend.Text
+            dtGrid2 = ObjEntertainDetail.GetDataDetailByID()
+            Grid.DataSource = dtGrid
+            If dtGrid.Rows.Count > 0 Then
+                GridCellFormat(GridView1)
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -138,6 +145,8 @@ Public Class FrmEntertain_Detail
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotal.Text = .Total
+                    TxtAmountReq.Text = .AmountReq
+                    TxtSirkulasi.Text = .CirculationNo
                 End With
                 GridView1.AddNewRow()
                 GridView1.OptionsNavigation.AutoFocusNewRow = True
@@ -152,6 +161,8 @@ Public Class FrmEntertain_Detail
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
                 TxtTotal.Text = "0"
+                TxtAmountReq.Text = "0"
+                TxtSirkulasi.Text = ""
                 TxtPrNo.Focus()
                 GridView1.AddNewRow()
                 GridView1.OptionsNavigation.AutoFocusNewRow = True
@@ -189,6 +200,8 @@ Public Class FrmEntertain_Detail
                     .Tgl = TxtTgl.EditValue
                     .Tipe = "E"
                     .Total = TxtTotal.Text
+                    .AmountReq = TxtAmountReq.Text
+                    .CirculationNo = TxtSirkulasi.Text
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else
@@ -564,5 +577,14 @@ Public Class FrmEntertain_Detail
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         End If
+    End Sub
+
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+        GridView2.AddNewRow()
+        GridView2.OptionsNavigation.AutoFocusNewRow = True
+        GridView2.FocusedColumn = GridView2.VisibleColumns(0)
     End Sub
 End Class
