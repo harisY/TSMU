@@ -157,6 +157,14 @@ Public Class SettleHeader
         Catch ex As Exception
             Throw
         End Try
+
+        Try
+            Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
     End Sub
     Public Sub UpdateHeader(ByVal _SettleID As String)
         Try

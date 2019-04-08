@@ -254,8 +254,13 @@ Public Class FrmPaymentDirect
                                 .Keluar = GridView3.GetRowCellValue(f, "SettleAmount")
                                 .Masuk = 0
                             Else
-                                .Keluar = 0
-                                .Masuk = GridView3.GetRowCellValue(f, "Total") - GridView3.GetRowCellValue(f, "SettleAmount")
+                                If GridView3.GetRowCellValue(f, "SettleAmount") > GridView3.GetRowCellValue(f, "Total") Then
+                                    .Keluar = GridView3.GetRowCellValue(f, "SettleAmount") - GridView3.GetRowCellValue(f, "Total")
+                                    .Masuk = 0
+                                Else
+                                    .Keluar = 0
+                                    .Masuk = GridView3.GetRowCellValue(f, "Total") - GridView3.GetRowCellValue(f, "SettleAmount")
+                                End If
                             End If
 
                             .Saldo = 0
