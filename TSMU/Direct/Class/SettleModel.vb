@@ -31,8 +31,11 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
-            FROM settle_header where SuspendID like '%EN%'"
+            "SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            where settle_header.SuspendID like '%EN%'"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

@@ -444,7 +444,7 @@ Public Class FrmEntertain_Detail
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    _total = _total + TxtAmountReq.Text + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
                 End If
             Next
             Return _total
@@ -565,7 +565,7 @@ Public Class FrmEntertain_Detail
         Dim Total As Double = 0
         For i As Integer = 0 To GridView1.RowCount - 1
             If Not GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value Then
-                Total = Total + GridView1.GetRowCellValue(i, "Amount")
+                Total = Total + TxtAmountReq.Text + GridView1.GetRowCellValue(i, "Amount")
             End If
         Next
         TxtTotal.Text = Format(Total, gs_FormatBulat)
@@ -586,5 +586,9 @@ Public Class FrmEntertain_Detail
         GridView2.AddNewRow()
         GridView2.OptionsNavigation.AutoFocusNewRow = True
         GridView2.FocusedColumn = GridView2.VisibleColumns(0)
+    End Sub
+
+    Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
+        TxtTotal.Text = TxtAmountReq.Text
     End Sub
 End Class

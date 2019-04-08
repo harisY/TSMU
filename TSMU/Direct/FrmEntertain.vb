@@ -7,11 +7,13 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmEntertain
     Dim ff_Detail As FrmEntertain_Detail
     Dim dtGrid As DataTable
+    Dim dtGrid2 As DataTable
     Dim ObjEntertain As EntertainHeaderModel
 
     Private Sub FrmEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
+        ''Call LoadGrid2()
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
@@ -30,12 +32,29 @@ Public Class FrmEntertain
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub LoadGrid2()
+        Try
+            ObjEntertain = New EntertainHeaderModel
+            dtGrid2 = ObjEntertain.GetDataGrid2()
+            Grid.DataSource = dtGrid2
+            With GridView2
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+            End With
+            GridCellFormat(GridView2)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
         Call LoadGrid()
+        Call LoadGrid2()
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
