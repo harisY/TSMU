@@ -9,7 +9,6 @@ Public Class EntertainHeaderModel
     Public Property Tgl As DateTime
     Public Property Tipe As String
     Public Property Total As Double
-
     Public Property SubAcct As Double
     Public Property AcctId As Double
     Public Property Description As String
@@ -26,10 +25,6 @@ Public Class EntertainHeaderModel
     Public Property Remark As String
     Public Property AmountReq As String
     Public Property CirculationNo As String
-
-
-
-
     Public Property ObjDetails() As New Collection(Of EntertainDetailModel)
     Public Function GetDataGrid() As DataTable
         Try
@@ -147,7 +142,7 @@ Public Class EntertainHeaderModel
             "       " & QVal(Total) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
             "       " & QVal(AmountReq) & ", " & vbCrLf &
-            "       " & QVal(cir) & ", " & vbCrLf &
+            "       " & QVal(CirculationNo) & ", " & vbCrLf &
             "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
