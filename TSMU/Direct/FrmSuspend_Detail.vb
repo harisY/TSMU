@@ -476,4 +476,19 @@ Public Class FrmSuspend_Detail
         'gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
+
+    Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
+        If TxtTotal.Text <> "0" Then
+            TxtTotal.Text = Format(TxtAmountReq.Text, gs_FormatBulat)
+        Else
+            TxtTotal.Text = Format(Val(TxtTotal.Text) + TxtAmountReq.Text, gs_FormatBulat)
+        End If
+
+    End Sub
+
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+    End Sub
 End Class
