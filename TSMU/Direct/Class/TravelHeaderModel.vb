@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class TravelHeaderModel
+    Public Property TravelHeaderID As Integer
     Public Property DeptID As String
     Public Property Destination As String
     Public Property ID As Integer
@@ -8,7 +9,9 @@ Public Class TravelHeaderModel
     Public Property PickUp As String
     Public Property Purpose As String
     Public Property Term As String
-    Public Property TotalAdvanceBudget As Double
+    Public Property TotalAdvanceYEN As Double
+    Public Property TotalAdvanceIDR As Double
+    Public Property TotalAdvanceUSD As Double
     Public Property TravelID As String
     Public Property Visa As String
     Public Property Tgl As DateTime
@@ -17,7 +20,7 @@ Public Class TravelHeaderModel
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT ID      ,TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceBudget,Tgl  FROM TravelHeader"
+            "SELECT TravelHeaderID      ,TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceIDR,TotalAdvanceYEN,TotalAdvanceUSD,Tgl  FROM TravelHeader"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -25,7 +28,7 @@ Public Class TravelHeaderModel
         End Try
     End Function
 
-    Public Function SuspendAutoNo() As String
+    Public Function TravelAutoNo() As String
 
         Try
             Dim query As String
@@ -48,21 +51,23 @@ Public Class TravelHeaderModel
         End Try
     End Function
 
-    Public Sub GetSuspenById()
+    Public Sub GetTravelById()
         Try
             Dim sql As String =
-            "SELECT ID,TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceBudget,Tgl    FROM TravelHeader where ID=" & QVal(ID) & ""
+            "SELECT TravelHeaderID,TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceIDR,TotalAdvanceYEN,TotalAdvanceUSD,Tgl    FROM TravelHeader where TravelHeaderID=" & QVal(TravelHeaderID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
-                ID = If(IsDBNull(dt.Rows(0).Item("ID")), "", Trim(dt.Rows(0).Item("ID").ToString()))
+                ID = If(IsDBNull(dt.Rows(0).Item("TravelHeaderID")), "", Trim(dt.Rows(0).Item("TravelHeaderID").ToString()))
                 TravelID = If(IsDBNull(dt.Rows(0).Item("TravelID")), "", Trim(dt.Rows(0).Item("TravelID").ToString()))
                 DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
                 Nama = If(IsDBNull(dt.Rows(0).Item("Nama")), "", Trim(dt.Rows(0).Item("Nama").ToString()))
                 Destination = If(IsDBNull(dt.Rows(0).Item("Destination")), "", Trim(dt.Rows(0).Item("Destination").ToString()))
                 Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
                 Term = If(IsDBNull(dt.Rows(0).Item("Term")), "", Trim(dt.Rows(0).Item("Term").ToString()))
-                TotalAdvanceBudget = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceBudget")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceBudget")))
+                TotalAdvanceIDR = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceIDR")))
+                TotalAdvanceUSD = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceUSD")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceUSD")))
+                TotalAdvanceYEN = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceYEN")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceYEN")))
                 Purpose = If(IsDBNull(dt.Rows(0).Item("Purpose")), "", Convert.ToString(dt.Rows(0).Item("Purpose")))
                 Visa = If(IsDBNull(dt.Rows(0).Item("Visa")), "", Trim(dt.Rows(0).Item("Visa").ToString()))
                 PickUp = If(IsDBNull(dt.Rows(0).Item("PickUp")), "", Trim(dt.Rows(0).Item("PickUp").ToString()))
@@ -118,7 +123,7 @@ Public Class TravelHeaderModel
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO TravelHeader (TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceBudget, CreatedBy, CreatedDate,Tgl) " & vbCrLf &
+            "INSERT INTO TravelHeader (TravelID      ,Nama      ,Destination      ,Term      ,Purpose      ,DeptID      ,PickUp      ,Visa      ,TotalAdvanceIDR,TotalAdvanceYEN,TotalAdvanceUSD, CreatedBy, CreatedDate,Tgl) " & vbCrLf &
             "Values(" & QVal(TravelID) & ", " & vbCrLf &
             "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Destination) & ", " & vbCrLf &
@@ -129,7 +134,9 @@ Public Class TravelHeaderModel
             "       " & QVal(PickUp) & ", " & vbCrLf &
             "       " & QVal(Visa) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
-            "       " & QVal(TotalAdvanceBudget) & ", " & vbCrLf &
+            "       " & QVal(TotalAdvanceIDR) & ", " & vbCrLf &
+            "       " & QVal(TotalAdvanceYEN) & ", " & vbCrLf &
+            "       " & QVal(TotalAdvanceUSD) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
             "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
@@ -148,7 +155,9 @@ Public Class TravelHeaderModel
                                     "      ,DeptID = " & QVal(DeptID) & ", " & vbCrLf &
                                     "      ,PickUp = " & QVal(PickUp) & ", " & vbCrLf &
                                     "      ,Visa = " & QVal(Visa) & ", " & vbCrLf &
-                                    "      ,TotalAdvanceBudget = " & QVal(TotalAdvanceBudget) & ", " & vbCrLf &
+                                    "      ,TotalAdvanceIDR = " & QVal(TotalAdvanceIDR) & ", " & vbCrLf &
+                                    "      ,TotalAdvanceYEN = " & QVal(TotalAdvanceYEN) & ", " & vbCrLf &
+                                    "      ,TotalAdvanceUSD = " & QVal(TotalAdvanceUSD) & ", " & vbCrLf &
                                     "      ,Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE TravelID = '" & TravelID & "'"
@@ -236,8 +245,8 @@ Public Class TravelHeaderModel
 
                         UpdateHeader(_TravelID)
 
-                        Dim ObjSuspendDetail As New SuspendDetailModel
-                        ObjSuspendDetail.DeleteDetail(_TravelID)
+                        Dim ObjTravelDetail As New TravelDetailModel
+                        ObjTravelDetail.DeleteDetail(_TravelID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
@@ -272,8 +281,8 @@ Public Class TravelHeaderModel
 
                         UpdateHeader(TravelID)
 
-                        Dim ObjSuspendDetail As New SuspendDetailModel
-                        ObjSuspendDetail.DeleteDetail(TravelID)
+                        Dim ObjTravelDetail As New TravelDetailModel
+                        ObjTravelDetail.DeleteDetail(TravelID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
@@ -306,7 +315,7 @@ Public Class TravelDetailModel
     Public Property Nama As String
     Public Property NoKwitansi As String
     Public Property SubAcct As String
-    Public Property SuspendDetailID As Integer
+    Public Property TravelDetailID As Integer
     Public Property TravelID As String
     Public Property Tempat As String
     Public Property Tgl As Date
@@ -378,18 +387,13 @@ Public Class TravelDetailModel
     Public Function GetDataDetailByID() As DataTable
         Try
             Dim sql As String = "SELECT 
- 	                                RTRIM([SubAcct]) SubAccount,
-                                    RTRIM([AcctID]) Account,
-	                                RTRIM(Description) Description,
-                                    Tgl,
-                                    RTRIM(DeptID) DeptID,
-                                    RTRIM(Nama) Nama,
-                                    RTRIM(Tempat) Tempat,
-                                    RTRIM(Alamat) Alamat,
-                                    RTRIM(Jenis) Jenis,
-                                    RTRIM(NoKwitansi) NoKwitansi,
-                                    [Amount] Amount
-                                FROM suspend_detail WHERE TravelID = " & QVal(TravelID) & ""
+                                  [Date]
+                                  ,[FromTF]
+                                  ,[ToTF]
+                                  ,[Description]
+                                  ,[CuryID]
+                                  ,[Amount]
+                                FROM TravelTransport WHERE TravelID = " & QVal(TravelID) & ""
 
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
@@ -398,7 +402,54 @@ Public Class TravelDetailModel
             Throw ex
         End Try
     End Function
+    Public Function GetDataDetailStayingByID() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+                                   [Date]
+                                  ,[Description]
+                                  ,[CuryID]
+                                  ,[Amount]
+                                FROM TravelStaying WHERE TravelID = " & QVal(TravelID) & ""
 
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetDataDetailSafetyByID() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+                                   [Date]
+                                  ,[Description]
+                                  ,[CuryID]
+                                  ,[Amount]
+                                FROM TravelSafetyMoney WHERE TravelID = " & QVal(TravelID) & ""
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetDataDetailPocketByID() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+                                   [Date]
+                                  ,[Description]
+                                  ,[CuryID]
+                                  ,[Amount]
+                                FROM TravelPocket WHERE TravelID = " & QVal(TravelID) & ""
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetDataDetailByIDEnt() As DataTable
         Try
             Dim sql As String = "SELECT 

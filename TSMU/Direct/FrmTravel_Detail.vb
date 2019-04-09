@@ -11,11 +11,11 @@ Public Class FrmTravel_Detail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim fc_Class As New ClsSuspend
-    Dim ObjSuspendHeader As New SuspendHeaderModel
-    Dim ObjSuspendDetail As New SuspendDetailModel
+    ''   Dim fc_Class As New ClsTravel
+    Dim ObjTravelHeader As New TravelHeaderModel
+    Dim ObjTravelDetail As New TravelDetailModel
     Dim GridDtl As GridControl
-    Dim f As FrmSuspend_Detail2
+    Dim f As FrmTravel_Detail
     Dim dt As New DataTable
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
@@ -24,14 +24,14 @@ Public Class FrmTravel_Detail
     Dim DtScan As DataTable
     Dim DtScan2 As DataTable
     Dim DtScan3 As DataTable
+    Dim DtScan4 As DataTable
 
 
-
-    Dim ObjSuspend As New ClsSuspend
+    ''   Dim ObjTravel As New ClsTravel
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
-    Dim _SuspendID As String = ""
+    Dim _TravelID As String = ""
 
     Public Sub New()
 
@@ -58,41 +58,69 @@ Public Class FrmTravel_Detail
     End Sub
     Private Sub CreateTable()
         DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(3) {New DataColumn("Date", GetType(String)),
-                                                            New DataColumn("From", GetType(String)),
-                                                            New DataColumn("To", GetType(String)),
-                                                            New DataColumn("Transport", GetType(String))})
-
+        DtScan.Columns.AddRange(New DataColumn(5) {New DataColumn("Date", GetType(String)),
+                                                            New DataColumn("FromTF", GetType(String)),
+                                                            New DataColumn("ToTF", GetType(String)),
+                                                            New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Currency", GetType(String)),
+                                                            New DataColumn("Amount", GetType(Double))})
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
 
         DtScan2 = New DataTable
-        DtScan2.Columns.AddRange(New DataColumn(1) {New DataColumn("Date", GetType(String)),
-                                                            New DataColumn("Accommodation", GetType(String))})
+        DtScan2.Columns.AddRange(New DataColumn(3) {New DataColumn("Date", GetType(String)),
+                                                    New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Currency", GetType(String)),
+                                                            New DataColumn("Amount", GetType(Double))})
 
-        Grid.DataSource = DtScan2
+
+        Grid2.DataSource = DtScan2
         GridView2.OptionsView.ShowAutoFilterRow = False
 
         DtScan3 = New DataTable
-        DtScan3.Columns.AddRange(New DataColumn(1) {New DataColumn("Date", GetType(String)),
-                                                            New DataColumn("Accommodation", GetType(String))})
-
-        Grid.DataSource = DtScan3
+        DtScan3.Columns.AddRange(New DataColumn(3) {New DataColumn("Date", GetType(String)),
+                                                            New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Currency", GetType(String)),
+                                                            New DataColumn("Amount", GetType(Double))})
+        Grid3.DataSource = DtScan3
         GridView3.OptionsView.ShowAutoFilterRow = False
+
+        DtScan4 = New DataTable
+        DtScan4.Columns.AddRange(New DataColumn(3) {New DataColumn("Date", GetType(String)),
+                                                            New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Currency", GetType(String)),
+                                                            New DataColumn("Amount", GetType(Double))})
+        Grid4.DataSource = DtScan4
+        GridView1.OptionsView.ShowAutoFilterRow = False
 
     End Sub
     Private Sub FrmTravel_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
-        Call CreateTable()
+        ''Call CreateTable()
         Call InitialSetForm()
 
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+
+        GridView2.AddNewRow()
+        GridView2.OptionsNavigation.AutoFocusNewRow = True
+        GridView2.FocusedColumn = GridView2.VisibleColumns(0)
+
+        GridView3.AddNewRow()
+        GridView3.OptionsNavigation.AutoFocusNewRow = True
+        GridView3.FocusedColumn = GridView3.VisibleColumns(0)
+
+        GridView4.AddNewRow()
+        GridView4.OptionsNavigation.AutoFocusNewRow = True
+        GridView4.FocusedColumn = GridView4.VisibleColumns(0)
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSuspendHeader.SuspendHeaderID = fs_Code
-                ObjSuspendHeader.GetSuspenById()
+                ObjTravelHeader.TravelHeaderID = fs_Code
+                ObjTravelHeader.GetTravelById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -107,6 +135,9 @@ Public Class FrmTravel_Detail
             End If
             Call LoadTxtBox()
             LoadGridDetail()
+            LoadGridDetailStaying()
+            LoadGridDetailSafety()
+            LoadGridDetailPocket()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
             bs_MainFormName = "frmTravel"
@@ -116,54 +147,113 @@ Public Class FrmTravel_Detail
         End Try
     End Sub
     Public Sub LoadGridDetail()
-        'Try
-        '    Dim dtGrid As New DataTable
-        '    ObjSuspendDetail.SuspendID = TxtNama.Text
-        '    dtGrid = ObjSuspendDetail.GetDataDetailByID()
-        '    Grid.DataSource = dtGrid
-        '    If dtGrid.Rows.Count > 0 Then
-        '        GridCellFormat(GridView1)
-        '    End If
-        'Catch ex As Exception
-        '    XtraMessageBox.Show(ex.Message)
-        'End Try
+        Try
+            Dim dtGrid As New DataTable
+            ObjTravelDetail.TravelID = TxtNoTravel.Text
+            dtGrid = ObjTravelDetail.GetDataDetailByID()
+            Grid.DataSource = dtGrid
+            If dtGrid.Rows.Count > 0 Then
+                GridCellFormat(GridView1)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Public Sub LoadGridDetailStaying()
+        Try
+            Dim dtGrid As New DataTable
+            ObjTravelDetail.TravelID = TxtNoTravel.Text
+            dtGrid = ObjTravelDetail.GetDataDetailStayingByID()
+            Grid2.DataSource = dtGrid
+            If dtGrid.Rows.Count > 0 Then
+                GridCellFormat(GridView2)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Public Sub LoadGridDetailSafety()
+        Try
+            Dim dtGrid As New DataTable
+            ObjTravelDetail.TravelID = TxtNoTravel.Text
+            dtGrid = ObjTravelDetail.GetDataDetailSafetyByID()
+            Grid3.DataSource = dtGrid
+            If dtGrid.Rows.Count > 0 Then
+                GridCellFormat(GridView3)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Public Sub LoadGridDetailPocket()
+        Try
+            Dim dtGrid As New DataTable
+            ObjTravelDetail.TravelID = TxtNoTravel.Text
+            dtGrid = ObjTravelDetail.GetDataDetailPocketByID()
+            Grid4.DataSource = dtGrid
+            If dtGrid.Rows.Count > 0 Then
+                GridCellFormat(GridView4)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
     End Sub
     Private Sub LoadTxtBox()
-        'Try
-        '    If fs_Code <> "" Then
-        '        With ObjSuspendHeader
-        '            'TxtNama.Text = .SuspendID
-        '            'TxtPrNo.Text = .PRNo
-        '            'TxtCurrency.SelectedText = .Currency
-        '            'TxtDep.Text = .DeptID
-        '            TxtDestination.Text = .Remark
-        '            'TxtStatus.Text = .Status
-        '            'TxtTgl.EditValue = .Tgl
-        '            'TxtTotal.Text = .Total
-        '        End With
-        '        GridView1.AddNewRow()
-        '        GridView1.OptionsNavigation.AutoFocusNewRow = True
-        '    Else
-        '        'TxtNama.Text = ""
-        '        'TxtPrNo.Text = ""
-        '        'TxtCurrency.SelectedIndex = 0
-        '        'TxtDep.Text = ""
-        '        TxtDestination.Text = ""
-        '        'TxtStatus.Text = "Open"
-        '        'TxtTgl.EditValue = DateTime.Today
-        '        'TxtTotal.Text = "0"
-        '        'TxtPrNo.Focus()
-        '        GridView1.AddNewRow()
-        '        GridView1.OptionsNavigation.AutoFocusNewRow = True
-        '    End If
-        'Catch ex As Exception
-        '    Throw
-        'End Try
+        Try
+            If fs_Code <> "" Then
+                With ObjTravelHeader
+                    TxtNoTravel.Text = .TravelID
+                    TxtNama.Text = .Nama
+                    'TxtCurrency.SelectedText = .Currency
+                    TxtDep.Text = .DeptID
+                    TxtDestination.Text = .Destination
+                    txtPurpose.Text = .Purpose
+                    TxtTerm.Text = .Term
+                    txtPickUp.Text = .PickUp
+                    txtVisa.Text = .Visa
+                    TxtTgl.EditValue = .Tgl
+                    TxtTotalAdvanceIDR.Text = .TotalAdvanceIDR
+                    TxtTotalAdvanceYEN.Text = .TotalAdvanceYEN
+                    TxtTotalAdvanceUSD.Text = .TotalAdvanceUSD
+                End With
+                GridView1.AddNewRow()
+                GridView1.OptionsNavigation.AutoFocusNewRow = True
+            Else
+                TxtNama.Text = ""
+                TxtNoTravel.Text = ""
+                TxtDep.Text = ""
+                TxtDestination.Text = ""
+                txtVisa.Text = "Yes"
+                txtPurpose.Text = ""
+                txtPickUp.Text = ""
+                TxtTgl.EditValue = DateTime.Today
+                TxtTotalAdvanceIDR.Text = "0"
+                TxtTotalAdvanceYEN.Text = "0"
+                TxtTotalAdvanceUSD.Text = "0"
+                'TxtPrNo.Focus()
+                GridView1.AddNewRow()
+                GridView1.OptionsNavigation.AutoFocusNewRow = True
+
+                GridView2.AddNewRow()
+                GridView2.OptionsNavigation.AutoFocusNewRow = True
+
+                GridView3.AddNewRow()
+                GridView3.OptionsNavigation.AutoFocusNewRow = True
+
+                GridView4.AddNewRow()
+                GridView4.OptionsNavigation.AutoFocusNewRow = True
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        'Call LoadTxtBox()
-        'LoadGridDetail()
+        Call LoadTxtBox()
+        LoadGridDetail()
+        LoadGridDetailStaying()
+        LoadGridDetailSafety()
+        LoadGridDetailPocket()
     End Sub
     Public Overrides Function ValidateSave() As Boolean
         'Dim lb_Validated As Boolean = False
@@ -176,14 +266,14 @@ Public Class FrmTravel_Detail
         '    End If
 
         '    If lb_Validated Then
-        '        With ObjSuspendHeader
+        '        With ObjTravelHeader
         '            ''.Currency = TxtCurrency.Text
         '            .DeptID = TxtDep.Text
         '            ''.PRNo = TxtPrNo.Text
         '            .Remark = TxtDestination.Text
         '            .Status = TxtStatus.Text
-        '            '.SuspendID = .SuspendAutoNo
-        '            _SuspendID = .SuspendAutoNo
+        '            '.TravelID = .TravelAutoNo
+        '            _TravelID = .TravelAutoNo
         '            ''.Tgl = TxtTgl.EditValue
         '            .Tipe = "T"
         '            ''.Total = TxtTotal.Text
@@ -203,7 +293,7 @@ Public Class FrmTravel_Detail
     End Function
     Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
 
-        'f = New FrmSuspend_Detail2(ID, Nama, IsNew, dt, Grid)
+        'f = New FrmTravel_Detail(ID, Nama, IsNew, dt, Grid)
         'f.StartPosition = FormStartPosition.CenterScreen
         'f.MaximizeBox = False
         'f.ShowDialog()
@@ -229,41 +319,41 @@ Public Class FrmTravel_Detail
         '    'End If
 
         '    If isUpdate = False Then
-        '        ObjSuspendHeader.ObjDetails.Clear()
+        '        ObjTravelHeader.ObjDetails.Clear()
         '        For i As Integer = 0 To GridView1.RowCount - 1
         '            If GridView1.GetRowCellValue(i, "Account") <> "" Then
-        '                ObjSuspendDetail = New SuspendDetailModel
-        '                With ObjSuspendDetail
-        '                    .SuspendID = _SuspendID
+        '                ObjTravelDetail = New TravelDetailModel
+        '                With ObjTravelDetail
+        '                    .TravelID = _TravelID
         '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
         '                    .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
         '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
         '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
         '                End With
-        '                ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
+        '                ObjTravelHeader.ObjDetails.Add(ObjTravelDetail)
         '            End If
         '        Next
-        '        ObjSuspendHeader.InsertData()
+        '        ObjTravelHeader.InsertData()
         '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
         '    Else
-        '        ObjSuspendHeader.ObjDetails.Clear()
+        '        ObjTravelHeader.ObjDetails.Clear()
         '        For i As Integer = 0 To GridView1.RowCount - 1
         '            If GridView1.GetRowCellValue(i, "Account") <> "" Then
-        '                ObjSuspendDetail = New SuspendDetailModel
-        '                With ObjSuspendDetail
-        '                    .SuspendID = TxtNama.Text
+        '                ObjTravelDetail = New TravelDetailModel
+        '                With ObjTravelDetail
+        '                    .TravelID = TxtNama.Text
         '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
         '                    .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
         '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
         '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
         '                End With
-        '                ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
+        '                ObjTravelHeader.ObjDetails.Add(ObjTravelDetail)
         '            End If
         '        Next
-        '        ''ObjSuspendHeader.UpdateData()
+        '        ''ObjTravelHeader.UpdateData()
         '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
         '    End If
-        '    GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+        '    GridDtl.DataSource = ObjTravelHeader.GetDataGrid()
         '    IsClosed = True
         '    Me.Hide()
         'Catch ex As Exception
@@ -273,166 +363,173 @@ Public Class FrmTravel_Detail
     End Sub
 
     Private Sub Grid_ProcessGridKey(sender As Object, e As KeyEventArgs)
-        'Try
-        '    Dim grid As GridControl = TryCast(sender, GridControl)
-        '    Dim view As GridView = TryCast(grid.FocusedView, GridView)
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
 
-        '    If e.KeyData = Keys.Delete Then
-        '        view.DeleteSelectedRows()
-        '        Dim _tot As Decimal = 0
-        '        _tot = GetTot()
-        '        ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
-        '        e.Handled = True
-        '    End If
-        '    If e.KeyData = Keys.Enter Then
+            If e.KeyData = Keys.Delete Then
+                view.DeleteSelectedRows()
+                Dim _tottransport As Decimal = 0
+                _tottransport = GetTotTransport()
+                ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
+                e.Handled = True
+            End If
+            If e.KeyData = Keys.Enter Then
 
-        '        ObjSuspendDetail = New SuspendDetailModel
-        '        If GridView1.FocusedColumn.FieldName = "SubAccount" Then
-        '            ObjSuspendDetail.SubAcct = GridView1.GetFocusedRowCellValue("SubAccount").ToString()
-        '            Dim dt As New DataTable
-        '            dt = ObjSuspendDetail.GetSubAccountbyid
-        '            If dt.Rows.Count > 0 Then
-        '                GridView1.FocusedColumn = GridView1.VisibleColumns(1)
-        '                GridView1.ShowEditor()
-        '                GridView1.UpdateCurrentRow()
-        '            Else
-        '                MessageBox.Show("Data Tidak ditemukan !")
-        '                GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-        '            End If
-        '        ElseIf GridView1.FocusedColumn.FieldName = "Amount" Then
-        '            GridView1.ShowEditor()
-        '            GridView1.UpdateCurrentRow()
-        '            Dim _tot As Decimal = GetTot()
-        '            ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
+                ObjTravelDetail = New TravelDetailModel
+                If GridView1.FocusedColumn.FieldName = "SubAccount" Then
+                    ObjTravelDetail.SubAcct = GridView1.GetFocusedRowCellValue("SubAccount").ToString()
+                    Dim dt As New DataTable
+                    dt = ObjTravelDetail.GetSubAccountbyid
+                    If dt.Rows.Count > 0 Then
+                        GridView1.FocusedColumn = GridView1.VisibleColumns(1)
+                        GridView1.ShowEditor()
+                        GridView1.UpdateCurrentRow()
+                    Else
+                        MessageBox.Show("Data Tidak ditemukan !")
+                        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+                    End If
+                ElseIf GridView1.FocusedColumn.FieldName = "Amount" Then
+                    GridView1.ShowEditor()
+                    GridView1.UpdateCurrentRow()
+                    Dim _tottransport As Decimal = GetTotTransport()
+                    ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
 
-        '            GridView1.AddNewRow()
-        '            GridView1.OptionsNavigation.AutoFocusNewRow = True
-        '            GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-        '        End If
-        '    End If
+                    GridView1.AddNewRow()
+                    GridView1.OptionsNavigation.AutoFocusNewRow = True
+                    GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+                End If
+            End If
 
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message)
-        'End Try
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
     End Sub
 
-    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        'Try
-        '    ObjSuspendHeader = New SuspendHeaderModel
-        '    Dim ls_Judul As String = ""
-        '    Dim dtSearch As New DataTable
-        '    Dim ls_OldKode As String = ""
 
-        '    dtSearch = ObjSuspendHeader.GetAccount
-        '    ls_OldKode = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account"))
-        '    ls_Judul = "Account"
+    Private Function GetTotStaying() As Decimal
 
-        '    Dim lF_SearchData As FrmSystem_LookupGrid
-        '    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-        '    lF_SearchData.Text = "Select Data " & ls_Judul
-        '    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-        '    lF_SearchData.ShowDialog()
-        '    Dim Value1 As String = ""
-        '    Dim Value2 As String = ""
+        Dim _totalidr2 As Decimal = 0
+        Dim _totalusd2 As Decimal = 0
+        Dim _totalyen2 As Decimal = 0
+        '-------------------------------------------------------------------
+        Try
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr2 = _totalidr2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    ElseIf GridView2.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalyen2 = _totalyen2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    Else
+                        _totalusd2 = _totalusd2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    End If
 
-        '    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-        '        Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-        '        Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-        '        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", Value1)
-        '    End If
-        '    lF_SearchData.Close()
-        'Catch ex As Exception
-        '    MsgBox(ex.Message)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-    End Sub
+                End If
+            Next
+            Return _totalidr2
+            Return _totalusd2
+            Return _totalyen2
+        Catch ex As Exception
+            Throw ex
+        End Try
 
-    Private Function GetTot() As Decimal
-        'Dim _total As Decimal = 0
-
-        'Try
-        '    For i As Integer = 0 To GridView1.RowCount - 1
-        '        If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-        '            _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
-        '        End If
-        '    Next
-        '    Return _total
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
     End Function
 
-    Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        '    Try
-        '        ObjSuspendHeader = New SuspendHeaderModel
-        '        Dim ls_Judul As String = ""
-        '        Dim dtSearch As New DataTable
-        '        Dim ls_OldKode As String = ""
+    Private Function GetTotTransport() As Decimal
+        Dim _totalidr1 As Decimal = 0
+        Dim _totalusd1 As Decimal = 0
+        Dim _totalyen1 As Decimal = 0
+
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
+                    If GridView1.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    ElseIf GridView1.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalyen1 = _totalyen1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    Else
+                        _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+            Return _totalidr1
+            Return _totalusd1
+            Return _totalyen1
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Dim _totalidr2 As Decimal = 0
+        Dim _totalusd2 As Decimal = 0
+        Dim _totalyen2 As Decimal = 0
 
 
-        '        dtSearch = ObjSuspendHeader.GetSubAccount
-        '        ls_OldKode = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount"))
-        '        ls_Judul = "Sub Account"
+    End Function
+    Private Function GetTotSafety() As Decimal
 
 
-        '        Dim lF_SearchData As FrmSystem_LookupGrid
-        '        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-        '        lF_SearchData.Text = "Select Data " & ls_Judul
-        '        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-        '        lF_SearchData.ShowDialog()
-        '        Dim Value1 As String = ""
-        '        Dim Value2 As String = ""
+        '-----------------------------------------------------------------
 
-        '        If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-        '            Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-        '            Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-        '            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", Value1)
-        '        End If
-        '        lF_SearchData.Close()
-        '    Catch ex As Exception
-        '        MsgBox(ex.Message)
-        '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        '    End Try
-        'End Sub
+        Dim _totalidr3 As Decimal = 0
+        Dim _totalusd3 As Decimal = 0
+        Dim _totalyen3 As Decimal = 0
 
-        'Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
-        '    Try
-        '        ObjSuspendHeader = New SuspendHeaderModel
-        '        Dim ls_Judul As String = ""
-        '        Dim dtSearch As New DataTable
-        '        Dim ls_OldKode As String = ""
+        Try
+            For i As Integer = 0 To GridView3.RowCount - 1
+                If Not IsDBNull(GridView3.GetRowCellValue(i, "Amount")) Then
+                    If GridView3.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr3 = _totalidr3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
+                    ElseIf GridView3.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalyen3 = _totalyen3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
+                    Else
+                        _totalusd3 = _totalusd3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
+                    End If
 
-        '        dtSearch = ObjSuspendHeader.GetDept
-        '        ls_OldKode = TxtDep.Text
-        '        ls_Judul = "Departemen"
+                End If
+            Next
+            Return _totalidr3
+            Return _totalusd3
+            Return _totalyen3
+        Catch ex As Exception
+            Throw ex
+        End Try
 
 
-        '        Dim lF_SearchData As FrmSystem_LookupGrid
-        '        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-        '        lF_SearchData.Text = "Select Data " & ls_Judul
-        '        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-        '        lF_SearchData.ShowDialog()
-        '        Dim Value1 As String = ""
-        '        Dim Value2 As String = ""
+    End Function
+    Private Function GetTotPocket() As Decimal
 
-        '        If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-        '            Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-        '            Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-        '            TxtDep.Text = Value1
-        '        End If
-        '        lF_SearchData.Close()
-        '    Catch ex As Exception
-        '        MsgBox(ex.Message)
-        '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        '    End Try
-    End Sub
+        Dim _totalidr4 As Decimal = 0
+        Dim _totalusd4 As Decimal = 0
+        Dim _totalyen4 As Decimal = 0
 
-    Private Sub GSubAccount_EditValueChanged(sender As Object, e As EventArgs)
-        'Dim baseEdit = TryCast(sender, BaseEdit)
-        'Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        'gridView.PostEditor()
-        'gridView.UpdateCurrentRow()
-    End Sub
+        Try
+            For i As Integer = 0 To GridView4.RowCount - 1
+                If Not IsDBNull(GridView4.GetRowCellValue(i, "Amount")) Then
+                    If GridView4.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr4 = _totalidr4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
+                    ElseIf GridView4.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalyen4 = _totalyen4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
+                    Else
+                        _totalusd4 = _totalusd4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+            Return _totalidr4
+            Return _totalusd4
+            Return _totalyen4
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Dim _totalidr As Decimal = 0
+        Dim _totalusd As Decimal = 0
+        Dim _totalyen As Decimal = 0
+
+
+
+    End Function
 
     Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs)
         'Dim baseEdit = TryCast(sender, BaseEdit)
@@ -492,6 +589,41 @@ Public Class FrmTravel_Detail
             GridView3.AddNewRow()
             GridView3.OptionsNavigation.AutoFocusNewRow = True
             GridView3.FocusedColumn = GridView3.VisibleColumns(0)
+            GridView4.AddNewRow()
+            GridView4.OptionsNavigation.AutoFocusNewRow = True
+            GridView4.FocusedColumn = GridView3.VisibleColumns(0)
         End If
+    End Sub
+
+    Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
+        Try
+            ObjTravelHeader = New TravelHeaderModel
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            dtSearch = ObjTravelHeader.GetDept
+            ls_OldKode = TxtDep.Text
+            ls_Judul = "Departemen"
+
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                TxtDep.Text = Value1
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

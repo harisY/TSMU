@@ -471,4 +471,8 @@ Public Class FrmSuspend_Detail
         'gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
+
+    Private Sub TxtDep_EditValueChanged(sender As Object, e As EventArgs) Handles TxtDep.EditValueChanged
+
+    End Sub
 End Class

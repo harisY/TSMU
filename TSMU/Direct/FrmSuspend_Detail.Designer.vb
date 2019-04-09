@@ -39,11 +39,11 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Label10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Label10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,11 +74,11 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Label10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -268,15 +268,6 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlItem6.Text = "Total"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(66, 13)
         '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(423, 0)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(126, 24)
-        Me.LayoutControlItem5.Text = "Currency"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(66, 13)
-        '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.Panel2
@@ -295,14 +286,14 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(66, 13)
         '
-        'Label10
+        'LayoutControlItem5
         '
-        Me.Label10.Control = Me.TxtStatus
-        Me.Label10.Location = New System.Drawing.Point(549, 24)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(123, 24)
-        Me.Label10.Text = "Status"
-        Me.Label10.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem5.Control = Me.TxtCurrency
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(423, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(126, 24)
+        Me.LayoutControlItem5.Text = "Currency"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(66, 13)
         '
         'Label9
         '
@@ -312,6 +303,15 @@ Partial Class FrmSuspend_Detail
         Me.Label9.Size = New System.Drawing.Size(126, 24)
         Me.Label9.Text = "Dept"
         Me.Label9.TextSize = New System.Drawing.Size(66, 13)
+        '
+        'Label10
+        '
+        Me.Label10.Control = Me.TxtStatus
+        Me.Label10.Location = New System.Drawing.Point(549, 24)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(123, 24)
+        Me.Label10.Text = "Status"
+        Me.Label10.TextSize = New System.Drawing.Size(66, 13)
         '
         'Grid
         '
@@ -440,11 +440,11 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Label10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
