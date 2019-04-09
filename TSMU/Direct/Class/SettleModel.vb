@@ -18,8 +18,13 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
-            FROM settle_header"
+            "SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            where settle_header.SuspendID NOT like '%EN%'"
+            '"SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
+            'FROM settle_header"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -99,7 +104,7 @@ Public Class SettleHeader
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'S' AND Pay=1 AND Status='Open' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'S' AND Pay=0 AND Status ='Approved' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

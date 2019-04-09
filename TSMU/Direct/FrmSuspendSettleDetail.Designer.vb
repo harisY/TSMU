@@ -217,7 +217,7 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(247, 24)
-        Me.LayoutControlItem1.Text = "No. Suspend"
+        Me.LayoutControlItem1.Text = "Advance No."
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 13)
         '
         'EmptySpaceItem1
@@ -270,7 +270,7 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(247, 24)
-        Me.LayoutControlItem8.Text = "No. Settlement"
+        Me.LayoutControlItem8.Text = "Settlement No."
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem6
@@ -279,7 +279,7 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControlItem6.Location = New System.Drawing.Point(247, 48)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(261, 24)
-        Me.LayoutControlItem6.Text = "Total Suspend"
+        Me.LayoutControlItem6.Text = "Total Advance"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem7
