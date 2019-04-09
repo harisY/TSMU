@@ -117,7 +117,7 @@ Public Class SettleHeader
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'E' AND Pay=1 AND Status='Open' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'E' AND Pay=0 AND Status='Approved' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

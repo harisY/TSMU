@@ -40,12 +40,12 @@ Public Class EntertainHeaderModel
     End Function
     Public Function GetDataGrid2() As DataTable
         Try
-            Dim dt As New DataTable
-            Dim sql As String =
+            Dim dt2 As New DataTable
+            Dim sql2 As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
             FROM suspend_header WHERE Tipe = 'E' and status='Approved' Order by SuspendID  "
-            dt = GetDataTable_Solomon(sql)
-            Return dt
+            dt2 = GetDataTable_Solomon(sql2)
+            Return dt2
         Catch ex As Exception
             Throw ex
         End Try
