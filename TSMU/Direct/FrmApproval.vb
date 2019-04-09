@@ -14,6 +14,7 @@ Public Class FrmApproval
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
+        XtraTabControl1.SelectedTabPage = XtraTabPage1
     End Sub
     Private Sub LoadGrid()
         Try
@@ -22,9 +23,17 @@ Public Class FrmApproval
             With GridView1
                 .Columns(0).Visible = False
                 .BestFitColumns()
-                .FixedLineWidth = 2
             End With
             GridCellFormat(GridView1)
+
+            Dim dt As New DataTable
+            dt = ObjSuspend.GetDataGrid2()
+            Grid2.DataSource = dt
+            With GridView2
+                .Columns(0).Visible = False
+                .BestFitColumns()
+            End With
+            GridCellFormat(GridView2)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

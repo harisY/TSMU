@@ -251,6 +251,11 @@ Public Class FrmSuspend_Detail
                         ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
                     End If
                 Next
+
+                Dim Result As Boolean = ObjSuspendHeader.IsSuspendOpen(fs_Code)
+                If Result Then
+                    Throw New Exception("Suspend ID '" & fs_Code2 & "' tidak bisa di edit !")
+                End If
                 ObjSuspendHeader.UpdateData(TxtNoSuspend.Text)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If

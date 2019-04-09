@@ -16,7 +16,7 @@ Public Class SuspendHeaderModel
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total
+            "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
             FROM suspend_header WHERE Tipe = 'S' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -108,6 +108,21 @@ Public Class SuspendHeaderModel
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function IsSuspendOpen(SuspendHeaderID As String) As Boolean
+        Dim Result As Boolean = False
+        Try
+            Dim sql As String = "Select Top 1 * from suspend_header where SuspendHeaderID = " & QVal(SuspendHeaderID) & " and Status <> 'Open'"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                Result = True
+            End If
+            Return Result
         Catch ex As Exception
             Throw ex
         End Try
