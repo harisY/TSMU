@@ -117,7 +117,7 @@ Public Class FrmEntertain
         End Try
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) 
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
 
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)

@@ -63,6 +63,24 @@ Public Class EntertainApprovalHeaderModel
         End Try
     End Function
 
+    Public Function IsEntertainIsApprovedStepAhead(SuspendID As String) As Boolean
+        Dim Hasil As Boolean = False
+        Try
+            Dim level As Integer = GetUsernameLevel()
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendID 
+            FROM suspend_header where SuspendID= " & QVal(SuspendID) & "  AND State = " & QVal(level) & ""
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                Hasil = True
+            End If
+            Return Hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub GetSuspenById()
         Try
             Dim sql As String =
