@@ -76,21 +76,45 @@ Public Class FrmApproval
     Private Sub FrmApproval_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
-                    End If
-                Next rowHandle
+                If XtraTabControl1.SelectedTabPage Is XtraTabPage1 Then
+                    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                    For Each rowHandle As Integer In selectedRows
+                        If rowHandle >= 0 Then
+                            ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                            suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        End If
+                    Next rowHandle
 
-                If GridView1.GetSelectedRows.Length > 0 Then
-                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
-                        Call CallFrm(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                    Else
-                        XtraMessageBox.Show("Grid Entertaint call")
+                    If GridView1.GetSelectedRows.Length > 0 Then
+                        If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
+                            Call CallFrm(ID,
+                             suspendid,
+                             GridView1.RowCount)
+                        Else
+                            Call CallFrmEntertain(ID,
+                             suspendid,
+                             GridView1.RowCount)
+                        End If
+                    End If
+                Else
+                    Dim selectedRows1() As Integer = GridView2.GetSelectedRows()
+                    For Each rowHandle As Integer In selectedRows1
+                        If rowHandle >= 0 Then
+                            ID = GridView2.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                            suspendid = GridView2.GetRowCellValue(rowHandle, "SuspendID")
+                        End If
+                    Next rowHandle
+
+                    If GridView2.GetSelectedRows.Length > 0 Then
+                        If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Tipe") = "S" Then
+                            Call CallFrm(ID,
+                             suspendid,
+                             GridView2.RowCount)
+                        Else
+                            Call CallFrmEntertain(ID,
+                                 suspendid,
+                                 GridView2.RowCount)
+                        End If
                     End If
                 End If
             End If
@@ -100,44 +124,82 @@ Public Class FrmApproval
         End Try
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick, Grid2.DoubleClick
         Try
-
-            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-            'Dim view As GridView = TryCast(sender, GridView)
-            Dim view As BaseView = Grid.GetViewAt(ea.Location)
-            If view Is Nothing Then
-                Return
-            End If
-            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
-            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-            If info.InRow OrElse info.InRowCell Then
-
-                ID = String.Empty
-                suspendid = String.Empty
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
-                    End If
-                Next rowHandle
-
-                If GridView1.GetSelectedRows.Length > 0 Then
-                    'Dim objGrid As DataGridView = sender
-                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
-                        Call CallFrm(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                    Else
-                        Call CallFrmEntertain(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                    End If
+            If XtraTabControl1.SelectedTabPage Is XtraTabPage1 Then
+                Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+                'Dim view As GridView = TryCast(sender, GridView)
+                Dim view As BaseView = Grid.GetViewAt(ea.Location)
+                If view Is Nothing Then
+                    Return
                 End If
+                Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+                Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+                If info.InRow OrElse info.InRowCell Then
+
+                    ID = String.Empty
+                    suspendid = String.Empty
+                    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                    For Each rowHandle As Integer In selectedRows
+                        If rowHandle >= 0 Then
+                            ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                            suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        End If
+                    Next rowHandle
+
+                    If GridView1.GetSelectedRows.Length > 0 Then
+                        'Dim objGrid As DataGridView = sender
+                        If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Tipe") = "S" Then
+                            Call CallFrm(ID,
+                             suspendid,
+                             GridView1.RowCount)
+                        Else
+                            Call CallFrmEntertain(ID,
+                             suspendid,
+                             GridView1.RowCount)
+                        End If
+                    End If
 
 
+                End If
+            Else
+                Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+                'Dim view As GridView = TryCast(sender, GridView)
+                Dim view As BaseView = Grid2.GetViewAt(ea.Location)
+                If view Is Nothing Then
+                    Return
+                End If
+                Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+                Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+                If info.InRow OrElse info.InRowCell Then
+
+                    ID = String.Empty
+                    suspendid = String.Empty
+                    Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+                    For Each rowHandle As Integer In selectedRows
+                        If rowHandle >= 0 Then
+                            ID = GridView2.GetRowCellValue(rowHandle, "SuspendHeaderID")
+                            suspendid = GridView2.GetRowCellValue(rowHandle, "SuspendID")
+                        End If
+                    Next rowHandle
+
+                    If GridView2.GetSelectedRows.Length > 0 Then
+                        'Dim objGrid As DataGridView = sender
+                        If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Tipe") = "S" Then
+                            Call CallFrm(ID,
+                             suspendid,
+                             GridView2.RowCount)
+                        Else
+                            Call CallFrmEntertain(ID,
+                             suspendid,
+                             GridView2.RowCount)
+                        End If
+                    End If
+
+
+                End If
             End If
+
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

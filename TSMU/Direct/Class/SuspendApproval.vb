@@ -42,7 +42,7 @@ Public Class SuspendApprovalHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & " 
+            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) & " 
             AND Status <> 'Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -50,6 +50,24 @@ Public Class SuspendApprovalHeaderModel
             Throw ex
         End Try
     End Function
+    Public Function IsSuspendIsApprovedStepAhead(SuspendID As String) As Boolean
+        Dim Hasil As Boolean = False
+        Try
+            Dim level As Integer = GetUsernameLevel()
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendID 
+            FROM suspend_header where SuspendID= " & QVal(SuspendID) & "  AND State = " & QVal(level) & ""
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                Hasil = True
+            End If
+            Return Hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetUsernameLevel() As Integer
         Dim result As Integer = 0
         Try
