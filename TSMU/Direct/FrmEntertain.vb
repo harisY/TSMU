@@ -13,7 +13,7 @@ Public Class FrmEntertain
     Private Sub FrmEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
-        ''Call LoadGrid2()
+        Call LoadGrid2()
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
@@ -36,7 +36,7 @@ Public Class FrmEntertain
         Try
             ObjEntertain = New EntertainHeaderModel
             dtGrid2 = ObjEntertain.GetDataGrid2()
-            Grid.DataSource = dtGrid2
+            GridControl1.DataSource = dtGrid2
             With GridView2
                 .Columns(0).Visible = False
                 .BestFitColumns()
