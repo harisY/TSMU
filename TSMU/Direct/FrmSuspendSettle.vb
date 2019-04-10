@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class FrmSuspendSettle
     Dim ff_Detail As FrmSuspendSettleDetail
+    Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
     Dim ObjSettle As SettleHeader
 
@@ -30,7 +31,12 @@ Public Class FrmSuspendSettle
         End Try
     End Sub
     Public Overrides Sub Proc_InputNewData()
-        CallFrm()
+        Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+        If result = System.Windows.Forms.DialogResult.Yes Then
+            CallFrmDirect()
+        ElseIf result = System.Windows.Forms.DialogResult.No Then
+            CallFrm()
+        End If
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
@@ -48,6 +54,18 @@ Public Class FrmSuspendSettle
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
+    End Sub
+    Private Sub CallFrmDirect(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If ff_Detail1 IsNot Nothing AndAlso ff_Detail1.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail1.Close()
+        End If
+        ff_Detail1 = New FrmSuspendSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail1.MdiParent = MenuUtamaForm
+        ff_Detail1.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail1.Show()
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
@@ -85,9 +103,10 @@ Public Class FrmSuspendSettle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     Call CallFrm(ID,
-                             suspendid,
-                             GridView1.RowCount)
+                         suspendid,
+                         GridView1.RowCount)
                 End If
+
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

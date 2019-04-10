@@ -251,6 +251,11 @@ Public Class FrmSuspend_Detail
                         ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
                     End If
                 Next
+
+                Dim Result As Boolean = ObjSuspendHeader.IsSuspendOpen(fs_Code)
+                If Result Then
+                    Throw New Exception("Suspend ID '" & fs_Code2 & "' tidak bisa di edit !")
+                End If
                 ObjSuspendHeader.UpdateData(TxtNoSuspend.Text)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
@@ -472,7 +477,18 @@ Public Class FrmSuspend_Detail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub TxtDep_EditValueChanged(sender As Object, e As EventArgs) Handles TxtDep.EditValueChanged
+    Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
+        If TxtTotal.Text <> "0" Then
+            TxtTotal.Text = TxtAmountReq.Text
+        Else
+            TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
+        End If
 
+    End Sub
+
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
 End Class

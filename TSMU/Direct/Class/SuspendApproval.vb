@@ -23,13 +23,53 @@ Public Class SuspendApprovalHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & " Order by SuspendID"
+            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
+            AND Status = 'Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+    Public Function GetDataGrid2() As DataTable
+        Try
+            Dim dept As String()
+            dept = GetDept.ToArray
+            Dim nilai = String.Join(",", GetDept.ToArray)
+
+            Dim level As Integer = GetUsernameLevel()
+
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) & " 
+            AND Status <> 'Open' Order by SuspendID"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function IsSuspendIsApprovedStepAhead(SuspendID As String) As Boolean
+        Dim Hasil As Boolean = False
+        Try
+            Dim level As Integer = GetUsernameLevel()
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendID 
+            FROM suspend_header where SuspendID= " & QVal(SuspendID) & "  AND State = " & QVal(level) & ""
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                Hasil = True
+            End If
+            Return Hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
     Public Function GetUsernameLevel() As Integer
         Dim result As Integer = 0
         Try
@@ -107,6 +147,17 @@ Public Class SuspendApprovalHeaderModel
             Throw ex
         End Try
     End Sub
+
+    Public Sub UpdateStatusSuspend(ByVal _SuspendID As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE suspend_header " & vbCrLf &
+                                    "SET Status = 'Approved' WHERE SuspendID = '" & _SuspendID & "'"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub DeleteApprove(ByVal _SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -160,9 +211,9 @@ Public Class SuspendApprovalHeaderModel
                     Try
 
                         UpdateHeader(_SuspendID, level)
+                        UpdateStatusSuspend(_SuspendID)
 
                         InsertHeader(_SuspendID)
-
 
                         Trans1.Commit()
                     Catch ex As Exception

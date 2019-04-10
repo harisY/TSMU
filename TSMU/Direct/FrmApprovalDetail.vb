@@ -15,6 +15,7 @@ Public Class FrmApprovalDetail
     Dim ObjSuspendHeader As New SuspendApprovalHeaderModel
     Dim ObjSuspendDetail As New SuspendApprovalDetailModel
     Dim GridDtl As GridControl
+    Dim GridDtl2 As GridControl
     Dim f As FrmSuspend_Detail2
     Dim dt As New DataTable
     Dim dtGrid As New DataTable
@@ -146,9 +147,15 @@ Public Class FrmApprovalDetail
             Dim result As DialogResult = XtraMessageBox.Show("Approve Advance " & "'" & TxtNoSuspend.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
             If result = System.Windows.Forms.DialogResult.Yes Then
 
+                Dim IsTrue As Boolean = ObjSuspendHeader.IsSuspendIsApprovedStepAhead(TxtNoSuspend.Text)
+                If IsTrue Then
+                    Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
+                End If
+
                 ObjSuspendHeader.ApproveData(TxtNoSuspend.Text, level)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+                FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
                 Me.Hide()
             ElseIf result = System.Windows.Forms.DialogResult.No Then
@@ -161,9 +168,16 @@ Public Class FrmApprovalDetail
                         ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
                     End If
                 Next
+
+                Dim IsTrue As Boolean = ObjSuspendHeader.IsSuspendIsApprovedStepAhead(TxtNoSuspend.Text)
+                If IsTrue Then
+                    Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
+                End If
                 ObjSuspendHeader.CancelApproveData(TxtNoSuspend.Text, level)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+                'GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+                'GridDtl2.DataSource = ObjSuspendHeader.GetDataGrid2()
+                FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
                 Me.Hide()
             End If

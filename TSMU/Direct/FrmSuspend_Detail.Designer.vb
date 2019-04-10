@@ -23,7 +23,7 @@ Partial Class FrmSuspend_Detail
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnAddDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtSirkulasi = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
@@ -33,17 +33,19 @@ Partial Class FrmSuspend_Detail
         Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TxtNoSuspend = New DevExpress.XtraEditors.TextEdit()
         Me.TxtRemark = New DevExpress.XtraEditors.MemoEdit()
+        Me.TxtAmountReq = New DevExpress.XtraEditors.SpinEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,17 +70,19 @@ Partial Class FrmSuspend_Detail
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAmountReq.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +95,7 @@ Partial Class FrmSuspend_Detail
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.Panel2)
+        Me.LayoutControl1.Controls.Add(Me.btnAddDetail)
         Me.LayoutControl1.Controls.Add(Me.TxtSirkulasi)
         Me.LayoutControl1.Controls.Add(Me.TxtStatus)
         Me.LayoutControl1.Controls.Add(Me.TxtTotal)
@@ -101,6 +105,7 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
         Me.LayoutControl1.Controls.Add(Me.TxtNoSuspend)
         Me.LayoutControl1.Controls.Add(Me.TxtRemark)
+        Me.LayoutControl1.Controls.Add(Me.TxtAmountReq)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -109,24 +114,26 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'Panel2
+        'btnAddDetail
         '
-        Me.Panel2.Location = New System.Drawing.Point(684, 36)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(100, 20)
-        Me.Panel2.TabIndex = 15
+        Me.btnAddDetail.Location = New System.Drawing.Point(651, 36)
+        Me.btnAddDetail.Name = "btnAddDetail"
+        Me.btnAddDetail.Size = New System.Drawing.Size(133, 22)
+        Me.btnAddDetail.StyleController = Me.LayoutControl1
+        Me.btnAddDetail.TabIndex = 15
+        Me.btnAddDetail.Text = "Add Detail (+)"
         '
         'TxtSirkulasi
         '
-        Me.TxtSirkulasi.Location = New System.Drawing.Point(277, 36)
+        Me.TxtSirkulasi.Location = New System.Drawing.Point(261, 36)
         Me.TxtSirkulasi.Name = "TxtSirkulasi"
-        Me.TxtSirkulasi.Size = New System.Drawing.Size(154, 20)
+        Me.TxtSirkulasi.Size = New System.Drawing.Size(66, 20)
         Me.TxtSirkulasi.StyleController = Me.LayoutControl1
         Me.TxtSirkulasi.TabIndex = 13
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(630, 36)
+        Me.TxtStatus.Location = New System.Drawing.Point(734, 12)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.ReadOnly = True
         Me.TxtStatus.Size = New System.Drawing.Size(50, 20)
@@ -136,20 +143,20 @@ Partial Class FrmSuspend_Detail
         'TxtTotal
         '
         Me.TxtTotal.EditValue = "0"
-        Me.TxtTotal.Location = New System.Drawing.Point(630, 12)
+        Me.TxtTotal.Location = New System.Drawing.Point(565, 12)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotal.Properties.ReadOnly = True
-        Me.TxtTotal.Size = New System.Drawing.Size(154, 20)
+        Me.TxtTotal.Size = New System.Drawing.Size(82, 20)
         Me.TxtTotal.StyleController = Me.LayoutControl1
         Me.TxtTotal.TabIndex = 9
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(81, 36)
+        Me.TxtPrNo.Location = New System.Drawing.Point(95, 36)
         Me.TxtPrNo.Name = "TxtPrNo"
-        Me.TxtPrNo.Size = New System.Drawing.Size(123, 20)
+        Me.TxtPrNo.Size = New System.Drawing.Size(79, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -160,7 +167,7 @@ Partial Class FrmSuspend_Detail
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(81, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -170,16 +177,16 @@ Partial Class FrmSuspend_Detail
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(123, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(79, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(504, 36)
+        Me.TxtDep.Location = New System.Drawing.Point(414, 36)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(53, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(64, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
         ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -189,36 +196,50 @@ Partial Class FrmSuspend_Detail
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(504, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(414, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD"})
-        Me.TxtCurrency.Size = New System.Drawing.Size(53, 20)
+        Me.TxtCurrency.Size = New System.Drawing.Size(64, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         '
         'TxtNoSuspend
         '
-        Me.TxtNoSuspend.Location = New System.Drawing.Point(277, 12)
+        Me.TxtNoSuspend.Location = New System.Drawing.Point(261, 12)
         Me.TxtNoSuspend.Name = "TxtNoSuspend"
         Me.TxtNoSuspend.Properties.ReadOnly = True
-        Me.TxtNoSuspend.Size = New System.Drawing.Size(154, 20)
+        Me.TxtNoSuspend.Size = New System.Drawing.Size(66, 20)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(81, 60)
+        Me.TxtRemark.Location = New System.Drawing.Point(95, 62)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(703, 51)
+        Me.TxtRemark.Size = New System.Drawing.Size(689, 49)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
+        '
+        'TxtAmountReq
+        '
+        Me.TxtAmountReq.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.TxtAmountReq.Location = New System.Drawing.Point(565, 36)
+        Me.TxtAmountReq.Name = "TxtAmountReq"
+        Me.TxtAmountReq.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtAmountReq.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtAmountReq.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtAmountReq.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
+        Me.TxtAmountReq.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TxtAmountReq.Size = New System.Drawing.Size(82, 20)
+        Me.TxtAmountReq.StyleController = Me.LayoutControl1
+        Me.TxtAmountReq.TabIndex = 14
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.Label9, Me.Label10})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.Label9, Me.Label10, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem9})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 123)
         Me.LayoutControlGroup1.TextVisible = False
@@ -226,92 +247,101 @@ Partial Class FrmSuspend_Detail
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.TxtNoSuspend
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(196, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(166, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(227, 24)
-        Me.LayoutControlItem1.Text = "Suspend No."
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(153, 24)
+        Me.LayoutControlItem1.Text = "Advance No."
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.TxtPrNo
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(196, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(166, 26)
         Me.LayoutControlItem2.Text = "PR No"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtSirkulasi
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(196, 24)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(166, 24)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(227, 24)
-        Me.LayoutControlItem7.Text = "Circulation No"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(153, 26)
+        Me.LayoutControlItem7.Text = "Circulation No."
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtTgl
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(196, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(166, 24)
         Me.LayoutControlItem4.Text = "Date"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(66, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.TxtTotal
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(549, 0)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(227, 24)
-        Me.LayoutControlItem6.Text = "Total"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(66, 13)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.Panel2
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(672, 24)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(104, 24)
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem9.TextVisible = False
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtRemark
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 50)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 55)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 53)
         Me.LayoutControlItem3.Text = "Remark"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(423, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(319, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(126, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(151, 24)
         Me.LayoutControlItem5.Text = "Currency"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(66, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(80, 13)
         '
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(423, 24)
+        Me.Label9.Location = New System.Drawing.Point(319, 24)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(126, 24)
+        Me.Label9.Size = New System.Drawing.Size(151, 26)
         Me.Label9.Text = "Dept"
-        Me.Label9.TextSize = New System.Drawing.Size(66, 13)
+        Me.Label9.TextSize = New System.Drawing.Size(80, 13)
         '
         'Label10
         '
         Me.Label10.Control = Me.TxtStatus
-        Me.Label10.Location = New System.Drawing.Point(549, 24)
+        Me.Label10.Location = New System.Drawing.Point(639, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(123, 24)
+        Me.Label10.Size = New System.Drawing.Size(137, 24)
         Me.Label10.Text = "Status"
-        Me.Label10.TextSize = New System.Drawing.Size(66, 13)
+        Me.Label10.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.TxtAmountReq
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(470, 24)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(169, 26)
+        Me.LayoutControlItem8.Text = "Amount Request"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.TxtTotal
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(470, 0)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(169, 24)
+        Me.LayoutControlItem6.Text = "Total"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.btnAddDetail
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(639, 24)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(137, 26)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem9.TextVisible = False
         '
         'Grid
         '
@@ -434,17 +464,19 @@ Partial Class FrmSuspend_Detail
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNoSuspend.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAmountReq.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -490,6 +522,8 @@ Partial Class FrmSuspend_Detail
     Friend WithEvents TxtRemark As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TxtSirkulasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnAddDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TxtAmountReq As DevExpress.XtraEditors.SpinEdit
 End Class

@@ -287,6 +287,7 @@ Partial Class FrmEntertain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.KeyPreview = True
         Me.Name = "FrmEntertain"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

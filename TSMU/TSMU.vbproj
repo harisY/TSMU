@@ -352,6 +352,12 @@
     <Compile Include="Direct\FrmEntertainSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirect.Designer.vb">
+      <DependentUpon>FrmSuspendSettleDetailDirect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetail.Designer.vb">
       <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>
     </Compile>
@@ -1103,6 +1109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainSettleDetail.resx">
       <DependentUpon>FrmEntertainSettleDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleDetailDirect.resx">
+      <DependentUpon>FrmSuspendSettleDetailDirect.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleDetail.resx">
       <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>

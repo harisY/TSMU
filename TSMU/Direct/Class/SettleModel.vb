@@ -18,8 +18,13 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
-            FROM settle_header"
+            "SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null"
+            '"SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
+            'FROM settle_header"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -99,7 +104,7 @@ Public Class SettleHeader
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'S' AND Pay=1 AND Status='Open' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'S' AND Pay=1 AND Status ='Approved' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -112,7 +117,7 @@ Public Class SettleHeader
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'E' AND Pay=1 AND Status='Open' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'E' AND Pay=1 AND Status='Approved' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -145,9 +150,8 @@ Public Class SettleHeader
 
     Public Sub InsertHeader()
         Try
-            Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO settle_header
-            (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            Dim ls_SP As String = String.Empty
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
@@ -161,8 +165,26 @@ Public Class SettleHeader
             Throw
         End Try
 
+        'Try
+        '    Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+        '    ExecQuery_Solomon(ls_SP)
+        'Catch ex As Exception
+        '    Throw
+        'End Try
+
+    End Sub
+
+    Public Sub InsertHeaderDirectSettle()
         Try
-            Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+            Dim ls_SP As String = String.Empty
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            "       'Close', " & vbCrLf &
+            "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -183,6 +205,37 @@ Public Class SettleHeader
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+    Public Sub InsertData1()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertHeaderDirectSettle()
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
         End Try
     End Sub
     Public Sub InsertData()

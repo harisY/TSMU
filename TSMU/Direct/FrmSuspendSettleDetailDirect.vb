@@ -6,7 +6,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
-Public Class FrmSuspendSettleDetail
+Public Class FrmSuspendSettleDetailDirect
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
@@ -55,7 +55,7 @@ Public Class FrmSuspendSettleDetail
         FrmParent = lf_FormParent
     End Sub
 
-    Private Sub FrmSuspendSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmSuspendSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
@@ -92,7 +92,7 @@ Public Class FrmSuspendSettleDetail
             If fs_Code = "" Then
                 Dim dtGrid As New DataTable
                 ObjSuspendDetail.SuspendID = ""
-                dtGrid = ObjSuspendDetail.GetDataDetailByID()
+                dtGrid = ObjSuspendDetail.GetDataDetailByID1("")
                 Grid.DataSource = dtGrid
                 'If dtGrid.Rows.Count > 0 Then
                 '    GridCellFormat(GridView1)
@@ -111,25 +111,19 @@ Public Class FrmSuspendSettleDetail
         Try
             If fs_Code <> "" Then
                 With ObjSettle
-                    TxtNoSuspend.Text = .SuspendID
                     TxtCurrency.Text = .CuryID
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
-                    TxtTotal.Text = Format(.TotalSuspend, gs_FormatBulat)
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
                 End With
             Else
-                TxtNoSuspend.Text = ""
-                TxtCurrency.Text = ""
+                TxtCurrency.Text = "IDR"
                 TxtDep.Text = ""
                 TxtRemark.Text = ""
-                TxtStatus.Text = ""
-                TxtTgl.Text = ""
-                TxtTotal.Text = "0"
-                TxtNoSuspend.Focus()
+                TxtTgl.EditValue = DateTime.Today
             End If
         Catch ex As Exception
             Throw
@@ -155,8 +149,6 @@ Public Class FrmSuspendSettleDetail
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    .Status = TxtStatus.Text
-                    .SuspendID = TxtNoSuspend.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
@@ -201,7 +193,7 @@ Public Class FrmSuspendSettleDetail
                         With ObjSettleDetail
                             .SettleID = _SettleID
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+                            .SuspendAmount = 0
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
@@ -210,7 +202,7 @@ Public Class FrmSuspendSettleDetail
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
-                ObjSettle.InsertData()
+                ObjSettle.InsertData1()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
@@ -220,7 +212,7 @@ Public Class FrmSuspendSettleDetail
                         With ObjSettleDetail
                             .SettleID = TxtNoSettlement.Text
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+                            .SuspendAmount = 0
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
@@ -250,7 +242,6 @@ Public Class FrmSuspendSettleDetail
                 view.DeleteSelectedRows()
                 Dim _tot As Decimal = 0
                 _tot = GetTot()
-                TxtTotal.Text = Format(_tot, gs_FormatBulat)
                 e.Handled = True
             End If
             If e.KeyData = Keys.Enter OrElse e.KeyData = Keys.Tab Then
@@ -381,7 +372,7 @@ Public Class FrmSuspendSettleDetail
         Dim ignoreCancel As Boolean = False
         TxtDep.DoValidate()
 
-        If DxValidationProvider1.GetInvalidControls().Contains(TxtNoSuspend) Then
+        If DxValidationProvider1.GetInvalidControls().Contains(TxtDep) Then
             ignoreCancel = True
         Else
             ignoreCancel = True
@@ -389,61 +380,6 @@ Public Class FrmSuspendSettleDetail
 
         MyBase.OnFormClosing(e)
         e.Cancel = Not ignoreCancel
-    End Sub
-
-    Private Sub TxtNoSuspend_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoSuspend.ButtonClick
-        Try
-            ObjSettle = New SettleHeader
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            dtSearch = ObjSettle.GetListSuspend
-            ls_OldKode = TxtDep.Text
-            ls_Judul = "Advance"
-
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
-            Dim Value2 As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                TxtNoSuspend.Text = Value2
-
-                Dim dt As New DataTable
-                ObjSuspendHeader = New SuspendHeaderModel
-                ObjSuspendHeader.SuspendHeaderID = Value1
-                ObjSuspendHeader.GetSuspenById()
-                With ObjSuspendHeader
-                    TxtNoSuspend.Text = .SuspendID
-                    TxtCurrency.SelectedText = .Currency
-                    TxtDep.Text = .DeptID
-                    TxtRemark.Text = .Remark
-                    TxtStatus.Text = .Status
-                    TxtTgl.EditValue = .Tgl
-                    TxtTotal.Text = Format(.Total, gs_FormatBulat)
-                End With
-
-                Dim dtGrid As New DataTable
-                dtGrid = ObjSuspendDetail.GetDataDetailByID1(Value2)
-                Grid.DataSource = dtGrid
-                If dtGrid.Rows.Count > 0 Then
-                    GridCellFormat(GridView1)
-                    GridView1.MoveFirst()
-                    GridView1.FocusedColumn = GridView1.VisibleColumns(5)
-                End If
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
     End Sub
 
     Private Sub ReposActual_EditValueChanged(sender As Object, e As EventArgs) Handles ReposActual.EditValueChanged
@@ -477,4 +413,35 @@ Public Class FrmSuspendSettleDetail
         TxtTotExpense.Text = Format(Total, gs_FormatBulat)
     End Sub
 
+    Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
+        Try
+            ObjSuspendHeader = New SuspendHeaderModel
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            dtSearch = ObjSuspendHeader.GetDept
+            ls_OldKode = TxtDep.Text
+            ls_Judul = "Departemen"
+
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                TxtDep.Text = Value1
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
 End Class
