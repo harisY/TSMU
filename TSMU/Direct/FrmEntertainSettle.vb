@@ -8,6 +8,7 @@ Public Class FrmEntertainSettle
     Dim ff_Detail As FrmEntertainSettleDetail
     Dim dtGrid As DataTable
     Dim ObjSettle As SettleHeader
+    Dim ff_Detail1 As FrmEntertainSettleDetailDirect
 
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -30,8 +31,30 @@ Public Class FrmEntertainSettle
         End Try
     End Sub
     Public Overrides Sub Proc_InputNewData()
-        CallFrm()
+        ''CallFrm()
+
+        Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+        If result = System.Windows.Forms.DialogResult.Yes Then
+            CallFrmDirect()
+        Else
+            CallFrm()
+
+        End If
     End Sub
+
+    Private Sub CallFrmDirect(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If ff_Detail1 IsNot Nothing AndAlso ff_Detail1.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail1.Close()
+        End If
+        ff_Detail1 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail1.MdiParent = MenuUtamaForm
+        ff_Detail1.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail1.Show()
+    End Sub
+
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
         Call LoadGrid()
