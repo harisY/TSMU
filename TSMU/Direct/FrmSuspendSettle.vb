@@ -34,9 +34,8 @@ Public Class FrmSuspendSettle
         Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
         If result = System.Windows.Forms.DialogResult.Yes Then
             CallFrmDirect()
-        Else
+        ElseIf result = System.Windows.Forms.DialogResult.No Then
             CallFrm()
-
         End If
     End Sub
     Public Overrides Sub Proc_Refresh()

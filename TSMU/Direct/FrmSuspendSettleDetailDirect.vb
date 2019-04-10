@@ -92,7 +92,7 @@ Public Class FrmSuspendSettleDetailDirect
             If fs_Code = "" Then
                 Dim dtGrid As New DataTable
                 ObjSuspendDetail.SuspendID = ""
-                dtGrid = ObjSuspendDetail.GetDataDetailByID()
+                dtGrid = ObjSuspendDetail.GetDataDetailByID1("")
                 Grid.DataSource = dtGrid
                 'If dtGrid.Rows.Count > 0 Then
                 '    GridCellFormat(GridView1)
@@ -149,7 +149,6 @@ Public Class FrmSuspendSettleDetailDirect
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    .Status = TxtStatus.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
@@ -194,7 +193,7 @@ Public Class FrmSuspendSettleDetailDirect
                         With ObjSettleDetail
                             .SettleID = _SettleID
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+                            .SuspendAmount = 0
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
@@ -203,7 +202,7 @@ Public Class FrmSuspendSettleDetailDirect
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
-                ObjSettle.InsertData()
+                ObjSettle.InsertData1()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
@@ -213,7 +212,7 @@ Public Class FrmSuspendSettleDetailDirect
                         With ObjSettleDetail
                             .SettleID = TxtNoSettlement.Text
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+                            .SuspendAmount = 0
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
@@ -373,7 +372,7 @@ Public Class FrmSuspendSettleDetailDirect
         Dim ignoreCancel As Boolean = False
         TxtDep.DoValidate()
 
-        If DxValidationProvider1.GetInvalidControls().Contains(TxtTgl.EditValue) Then
+        If DxValidationProvider1.GetInvalidControls().Contains(TxtDep) Then
             ignoreCancel = True
         Else
             ignoreCancel = True

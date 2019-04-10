@@ -301,6 +301,7 @@ Public Class SuspendDetailModel
         End Try
     End Function
 
+
     Public Function GetDataDetailByID1(_SuspendID As String) As DataTable
         Try
             Dim sql As String = "SELECT GETDATE() as Tgl,

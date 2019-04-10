@@ -317,7 +317,7 @@ Public Class FrmPaymentDirect
         '------------------------------------------
 
         Try
-            If TabControl1.SelectedIndex = 0 Then
+            If TabControl1.SelectedIndex = 2 Then
                 For i As Integer = 0 To GridView5.RowCount - 1
                     If GridView5.GetRowCellValue(i, "Proses") = True Then
                         Dim bukti As String = ObjCashBank.autononb
