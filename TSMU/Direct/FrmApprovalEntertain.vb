@@ -134,7 +134,7 @@ Public Class FrmApprovalEntertain
             If result = System.Windows.Forms.DialogResult.Yes Then
 
                 Dim IsTrue As Boolean = ObjEntertainHeader.IsEntertainIsApprovedStepAhead(TxtNoSuspend.Text)
-                If Not IsTrue Then
+                If IsTrue Then
                     Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
                 End If
 
@@ -153,6 +153,10 @@ Public Class FrmApprovalEntertain
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
                 Next
+                Dim IsTrue As Boolean = ObjEntertainHeader.IsEntertainIsApprovedStepAhead(TxtNoSuspend.Text)
+                If IsTrue Then
+                    Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
+                End If
                 ObjEntertainHeader.CancelApproveData(TxtNoSuspend.Text, level)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()

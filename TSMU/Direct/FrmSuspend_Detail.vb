@@ -479,9 +479,9 @@ Public Class FrmSuspend_Detail
 
     Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
         If TxtTotal.Text <> "0" Then
-            TxtTotal.Text = Format(TxtAmountReq.Text, gs_FormatBulat)
+            TxtTotal.Text = TxtAmountReq.Text
         Else
-            TxtTotal.Text = Format(Val(TxtTotal.Text) + TxtAmountReq.Text, gs_FormatBulat)
+            TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
         End If
 
     End Sub

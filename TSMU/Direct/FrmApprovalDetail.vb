@@ -148,7 +148,7 @@ Public Class FrmApprovalDetail
             If result = System.Windows.Forms.DialogResult.Yes Then
 
                 Dim IsTrue As Boolean = ObjSuspendHeader.IsSuspendIsApprovedStepAhead(TxtNoSuspend.Text)
-                If Not IsTrue Then
+                If IsTrue Then
                     Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
                 End If
 
@@ -170,7 +170,7 @@ Public Class FrmApprovalDetail
                 Next
 
                 Dim IsTrue As Boolean = ObjSuspendHeader.IsSuspendIsApprovedStepAhead(TxtNoSuspend.Text)
-                If Not IsTrue Then
+                If IsTrue Then
                     Throw New Exception("Suspend ID '" & TxtNoSuspend.Text & "' sudah di approve oleh atasan anda !, tidak bisa di update")
                 End If
                 ObjSuspendHeader.CancelApproveData(TxtNoSuspend.Text, level)

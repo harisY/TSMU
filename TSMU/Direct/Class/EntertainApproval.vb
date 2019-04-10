@@ -115,6 +115,17 @@ Public Class EntertainApprovalHeaderModel
         End Try
     End Sub
 
+    Public Sub UpdateStatusEntertain(ByVal _SuspendID As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE suspend_header " & vbCrLf &
+                                    "SET Status = 'Approved' WHERE SuspendID = '" & _SuspendID & "'"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub UpdateHeaderCancel(ByVal _SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -178,6 +189,7 @@ Public Class EntertainApprovalHeaderModel
                     Try
 
                         UpdateHeader(_SuspendID, level)
+                        UpdateStatusEntertain(_SuspendID)
 
                         InsertHeader(_SuspendID)
 
