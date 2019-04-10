@@ -362,175 +362,154 @@ Public Class FrmTravel_Detail
         'End Try
     End Sub
 
-    Private Sub Grid_ProcessGridKey(sender As Object, e As KeyEventArgs)
-        Try
-            Dim grid As GridControl = TryCast(sender, GridControl)
-            Dim view As GridView = TryCast(grid.FocusedView, GridView)
 
-            If e.KeyData = Keys.Delete Then
-                view.DeleteSelectedRows()
-                Dim _tottransport As Decimal = 0
-                _tottransport = GetTotTransport()
-                ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
-                e.Handled = True
-            End If
-            If e.KeyData = Keys.Enter Then
-
-                ObjTravelDetail = New TravelDetailModel
-                If GridView1.FocusedColumn.FieldName = "SubAccount" Then
-                    ObjTravelDetail.SubAcct = GridView1.GetFocusedRowCellValue("SubAccount").ToString()
-                    Dim dt As New DataTable
-                    dt = ObjTravelDetail.GetSubAccountbyid
-                    If dt.Rows.Count > 0 Then
-                        GridView1.FocusedColumn = GridView1.VisibleColumns(1)
-                        GridView1.ShowEditor()
-                        GridView1.UpdateCurrentRow()
-                    Else
-                        MessageBox.Show("Data Tidak ditemukan !")
-                        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-                    End If
-                ElseIf GridView1.FocusedColumn.FieldName = "Amount" Then
-                    GridView1.ShowEditor()
-                    GridView1.UpdateCurrentRow()
-                    Dim _tottransport As Decimal = GetTotTransport()
-                    ''TxtTotal.Text = Format(_tot, gs_FormatBulat)
-
-                    GridView1.AddNewRow()
-                    GridView1.OptionsNavigation.AutoFocusNewRow = True
-                    GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-                End If
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
-
-
-    Private Function GetTotStaying() As Decimal
-
-        Dim _totalidr2 As Decimal = 0
-        Dim _totalusd2 As Decimal = 0
-        Dim _totalyen2 As Decimal = 0
-        '-------------------------------------------------------------------
-        Try
-            For i As Integer = 0 To GridView2.RowCount - 1
-                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
-                    If GridView2.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        _totalidr2 = _totalidr2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
-                    ElseIf GridView2.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalyen2 = _totalyen2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
-                    Else
-                        _totalusd2 = _totalusd2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
-                    End If
-
-                End If
-            Next
-            Return _totalidr2
-            Return _totalusd2
-            Return _totalyen2
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-    End Function
-
-    Private Function GetTotTransport() As Decimal
+    Private Function GetTotIdr() As Decimal
         Dim _totalidr1 As Decimal = 0
-        Dim _totalusd1 As Decimal = 0
-        Dim _totalyen1 As Decimal = 0
-
+        Dim _totalidr2 As Decimal = 0
+        Dim _totalidr3 As Decimal = 0
+        Dim _totalidr4 As Decimal = 0
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
                     If GridView1.GetRowCellValue(i, "CuryID") = "IDR" Then
                         _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
-                    ElseIf GridView1.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalyen1 = _totalyen1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
-                    Else
+                    End If
+
+                End If
+            Next
+
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr2 = _totalidr2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            For i As Integer = 0 To GridView3.RowCount - 1
+                If Not IsDBNull(GridView3.GetRowCellValue(i, "Amount")) Then
+                    If GridView3.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr3 = _totalidr3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            For i As Integer = 0 To GridView4.RowCount - 1
+                If Not IsDBNull(GridView4.GetRowCellValue(i, "Amount")) Then
+                    If GridView4.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr4 = _totalidr4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            Return _totalidr1 + _totalidr2 + _totalidr3 + _totalidr4
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+    Private Function GetTotUSD() As Decimal
+        Dim _totalusd1 As Decimal = 0
+        Dim _totalusd2 As Decimal = 0
+        Dim _totalusd3 As Decimal = 0
+        Dim _totalusd4 As Decimal = 0
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
+                    If GridView1.GetRowCellValue(i, "CuryID") = "USD" Then
                         _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
             Next
-            Return _totalidr1
-            Return _totalusd1
-            Return _totalyen1
-        Catch ex As Exception
-            Throw ex
-        End Try
 
-        Dim _totalidr2 As Decimal = 0
-        Dim _totalusd2 As Decimal = 0
-        Dim _totalyen2 As Decimal = 0
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "USD" Then
+                        _totalusd2 = _totalusd2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    End If
 
+                End If
+            Next
 
-    End Function
-    Private Function GetTotSafety() As Decimal
-
-
-        '-----------------------------------------------------------------
-
-        Dim _totalidr3 As Decimal = 0
-        Dim _totalusd3 As Decimal = 0
-        Dim _totalyen3 As Decimal = 0
-
-        Try
             For i As Integer = 0 To GridView3.RowCount - 1
                 If Not IsDBNull(GridView3.GetRowCellValue(i, "Amount")) Then
-                    If GridView3.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        _totalidr3 = _totalidr3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
-                    ElseIf GridView3.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalyen3 = _totalyen3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
-                    Else
+                    If GridView3.GetRowCellValue(i, "CuryID") = "USD" Then
                         _totalusd3 = _totalusd3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
             Next
-            Return _totalidr3
-            Return _totalusd3
-            Return _totalyen3
-        Catch ex As Exception
-            Throw ex
-        End Try
 
-
-    End Function
-    Private Function GetTotPocket() As Decimal
-
-        Dim _totalidr4 As Decimal = 0
-        Dim _totalusd4 As Decimal = 0
-        Dim _totalyen4 As Decimal = 0
-
-        Try
             For i As Integer = 0 To GridView4.RowCount - 1
                 If Not IsDBNull(GridView4.GetRowCellValue(i, "Amount")) Then
-                    If GridView4.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        _totalidr4 = _totalidr4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
-                    ElseIf GridView4.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalyen4 = _totalyen4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
-                    Else
+                    If GridView4.GetRowCellValue(i, "CuryID") = "USD" Then
                         _totalusd4 = _totalusd4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
             Next
-            Return _totalidr4
-            Return _totalusd4
-            Return _totalyen4
+
+            Return _totalusd1 + _totalusd2 + _totalusd3 + _totalusd4
+
         Catch ex As Exception
             Throw ex
         End Try
 
-        Dim _totalidr As Decimal = 0
-        Dim _totalusd As Decimal = 0
-        Dim _totalyen As Decimal = 0
+    End Function
+    Private Function GetTotYEN() As Decimal
+        Dim _totalYEN1 As Decimal = 0
+        Dim _totalYEN2 As Decimal = 0
+        Dim _totalYEN3 As Decimal = 0
+        Dim _totalYEN4 As Decimal = 0
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
+                    If GridView1.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalYEN1 = _totalYEN1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    End If
 
+                End If
+            Next
 
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalYEN2 = _totalYEN2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            For i As Integer = 0 To GridView3.RowCount - 1
+                If Not IsDBNull(GridView3.GetRowCellValue(i, "Amount")) Then
+                    If GridView3.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalYEN3 = _totalYEN3 + Convert.ToDecimal(GridView3.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            For i As Integer = 0 To GridView4.RowCount - 1
+                If Not IsDBNull(GridView4.GetRowCellValue(i, "Amount")) Then
+                    If GridView4.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalYEN4 = _totalYEN4 + Convert.ToDecimal(GridView4.GetRowCellValue(i, "Amount"))
+                    End If
+
+                End If
+            Next
+
+            Return _totalYEN1 + _totalYEN2 + _totalYEN3 + _totalYEN4
+
+        Catch ex As Exception
+            Throw ex
+        End Try
 
     End Function
-
     Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs)
         'Dim baseEdit = TryCast(sender, BaseEdit)
         'Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -624,6 +603,200 @@ Public Class FrmTravel_Detail
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Grid_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles Grid.ProcessGridKey
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
+
+            If e.KeyData = Keys.Delete Then
+                view.DeleteSelectedRows()
+                Dim _totIDR As Decimal = 0
+                Dim _totUSD As Decimal = 0
+                Dim _totYEN As Decimal = 0
+                _totIDR = GetTotIdr()
+                _totUSD = GetTotUSD()
+                _totYEN = GetTotYEN()
+                TxtTotalAdvanceIDR.Text = Format(_totIDR, gs_FormatBulat)
+                TxtTotalAdvanceUSD.Text = Format(_totUSD, gs_FormatBulat)
+                TxtTotalAdvanceYEN.Text = Format(_totYEN, gs_FormatBulat)
+                e.Handled = True
+            End If
+            If e.KeyData = Keys.Enter Then
+
+                ObjTravelDetail = New TravelDetailModel
+                If GridView1.FocusedColumn.FieldName = "Amount" Then
+                    GridView1.ShowEditor()
+                    GridView1.UpdateCurrentRow()
+                    Dim _totidr As Decimal = GetTotIdr()
+                    Dim _totusd As Decimal = GetTotUSD()
+                Dim _totyen As Decimal = GetTotYEN()
+                TxtTotalAdvanceIDR.Text = Format(_totidr, gs_FormatBulat)
+                TxtTotalAdvanceUSD.Text = Format(_totusd, gs_FormatBulat)
+                TxtTotalAdvanceYEN.Text = Format(_totyen, gs_FormatBulat)
+
+                GridView1.AddNewRow()
+                GridView1.OptionsNavigation.AutoFocusNewRow = True
+                GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+            End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub jmltot_EditValueChanged(sender As Object, e As EventArgs) Handles jmltot.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub jmltot2_EditValueChanged(sender As Object, e As EventArgs) Handles jmltot2.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub jmltot3_EditValueChanged(sender As Object, e As EventArgs) Handles jmltot3.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub jmltot4_EditValueChanged(sender As Object, e As EventArgs) Handles jmltot4.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub Grid2_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles Grid2.ProcessGridKey
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
+
+            If e.KeyData = Keys.Delete Then
+                view.DeleteSelectedRows()
+                Dim _totIDR As Decimal = 0
+                Dim _totUSD As Decimal = 0
+                Dim _totYEN As Decimal = 0
+                _totIDR = GetTotIdr()
+                _totUSD = GetTotUSD()
+                _totYEN = GetTotYEN()
+                TxtTotalAdvanceIDR.Text = Format(_totIDR, gs_FormatBulat)
+                TxtTotalAdvanceUSD.Text = Format(_totUSD, gs_FormatBulat)
+                TxtTotalAdvanceYEN.Text = Format(_totYEN, gs_FormatBulat)
+                e.Handled = True
+            End If
+            If e.KeyData = Keys.Enter Then
+
+                ObjTravelDetail = New TravelDetailModel
+                If GridView2.FocusedColumn.FieldName = "Amount" Then
+                    GridView2.ShowEditor()
+                    GridView2.UpdateCurrentRow()
+                    Dim _totidr As Decimal = GetTotIdr()
+                    Dim _totusd As Decimal = GetTotUSD()
+                    Dim _totyen As Decimal = GetTotYEN()
+                    TxtTotalAdvanceIDR.Text = Format(_totidr, gs_FormatBulat)
+                    TxtTotalAdvanceUSD.Text = Format(_totusd, gs_FormatBulat)
+                    TxtTotalAdvanceYEN.Text = Format(_totyen, gs_FormatBulat)
+
+                    GridView2.AddNewRow()
+                    GridView2.OptionsNavigation.AutoFocusNewRow = True
+                    GridView2.FocusedColumn = GridView2.VisibleColumns(0)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub Grid3_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles Grid3.ProcessGridKey
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
+
+            If e.KeyData = Keys.Delete Then
+                view.DeleteSelectedRows()
+                Dim _totIDR As Decimal = 0
+                Dim _totUSD As Decimal = 0
+                Dim _totYEN As Decimal = 0
+                _totIDR = GetTotIdr()
+                _totUSD = GetTotUSD()
+                _totYEN = GetTotYEN()
+                TxtTotalAdvanceIDR.Text = Format(_totIDR, gs_FormatBulat)
+                TxtTotalAdvanceUSD.Text = Format(_totUSD, gs_FormatBulat)
+                TxtTotalAdvanceYEN.Text = Format(_totYEN, gs_FormatBulat)
+                e.Handled = True
+            End If
+            If e.KeyData = Keys.Enter Then
+
+                ObjTravelDetail = New TravelDetailModel
+                If GridView3.FocusedColumn.FieldName = "Amount" Then
+                    GridView3.ShowEditor()
+                    GridView3.UpdateCurrentRow()
+                    Dim _totidr As Decimal = GetTotIdr()
+                    Dim _totusd As Decimal = GetTotUSD()
+                    Dim _totyen As Decimal = GetTotYEN()
+                    TxtTotalAdvanceIDR.Text = Format(_totidr, gs_FormatBulat)
+                    TxtTotalAdvanceUSD.Text = Format(_totusd, gs_FormatBulat)
+                    TxtTotalAdvanceYEN.Text = Format(_totyen, gs_FormatBulat)
+
+                    GridView3.AddNewRow()
+                    GridView3.OptionsNavigation.AutoFocusNewRow = True
+                    GridView3.FocusedColumn = GridView3.VisibleColumns(0)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+
+    Private Sub Grid4_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles Grid4.ProcessGridKey
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
+
+            If e.KeyData = Keys.Delete Then
+                view.DeleteSelectedRows()
+                Dim _totIDR As Decimal = 0
+                Dim _totUSD As Decimal = 0
+                Dim _totYEN As Decimal = 0
+                _totIDR = GetTotIdr()
+                _totUSD = GetTotUSD()
+                _totYEN = GetTotYEN()
+                TxtTotalAdvanceIDR.Text = Format(_totIDR, gs_FormatBulat)
+                TxtTotalAdvanceUSD.Text = Format(_totUSD, gs_FormatBulat)
+                TxtTotalAdvanceYEN.Text = Format(_totYEN, gs_FormatBulat)
+                e.Handled = True
+            End If
+            If e.KeyData = Keys.Enter Then
+
+                ObjTravelDetail = New TravelDetailModel
+                If GridView4.FocusedColumn.FieldName = "Amount" Then
+                    GridView4.ShowEditor()
+                    GridView4.UpdateCurrentRow()
+                    Dim _totidr As Decimal = GetTotIdr()
+                    Dim _totusd As Decimal = GetTotUSD()
+                    Dim _totyen As Decimal = GetTotYEN()
+                    TxtTotalAdvanceIDR.Text = Format(_totidr, gs_FormatBulat)
+                    TxtTotalAdvanceUSD.Text = Format(_totusd, gs_FormatBulat)
+                    TxtTotalAdvanceYEN.Text = Format(_totyen, gs_FormatBulat)
+
+                    GridView4.AddNewRow()
+                    GridView4.OptionsNavigation.AutoFocusNewRow = True
+                    GridView4.FocusedColumn = GridView4.VisibleColumns(0)
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
         End Try
     End Sub
 End Class

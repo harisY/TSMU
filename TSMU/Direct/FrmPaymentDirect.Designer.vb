@@ -570,7 +570,8 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn24
         '
-        Me.GridColumn24.Caption = "Nama"
+        Me.GridColumn24.Caption = "Description"
+        Me.GridColumn24.FieldName = "Description"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 2
