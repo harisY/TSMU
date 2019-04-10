@@ -240,7 +240,7 @@ Partial Class FrmTravel_Detail
         '
         Me.Panel6.Location = New System.Drawing.Point(315, 60)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(198, 20)
+        Me.Panel6.Size = New System.Drawing.Size(150, 20)
         Me.Panel6.TabIndex = 14
         '
         'Panel5
@@ -278,7 +278,7 @@ Partial Class FrmTravel_Detail
         '
         Me.TxtNoTravel.Location = New System.Drawing.Point(260, 12)
         Me.TxtNoTravel.Name = "TxtNoTravel"
-        Me.TxtNoTravel.Size = New System.Drawing.Size(147, 20)
+        Me.TxtNoTravel.Size = New System.Drawing.Size(105, 20)
         Me.TxtNoTravel.StyleController = Me.LayoutControl1
         Me.TxtNoTravel.TabIndex = 0
         '
@@ -301,18 +301,18 @@ Partial Class FrmTravel_Detail
         'TxtNama
         '
         Me.TxtNama.EditValue = ""
-        Me.TxtNama.Location = New System.Drawing.Point(506, 12)
+        Me.TxtNama.Location = New System.Drawing.Point(464, 12)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(226, 20)
+        Me.TxtNama.Size = New System.Drawing.Size(297, 20)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 2
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(831, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(860, 12)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(92, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(63, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 3
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -322,9 +322,9 @@ Partial Class FrmTravel_Detail
         '
         'txtPickUp
         '
-        Me.txtPickUp.Location = New System.Drawing.Point(612, 60)
+        Me.txtPickUp.Location = New System.Drawing.Point(564, 60)
         Me.txtPickUp.Name = "txtPickUp"
-        Me.txtPickUp.Size = New System.Drawing.Size(311, 20)
+        Me.txtPickUp.Size = New System.Drawing.Size(359, 20)
         Me.txtPickUp.StyleController = Me.LayoutControl1
         Me.txtPickUp.TabIndex = 7
         '
@@ -376,18 +376,18 @@ Partial Class FrmTravel_Detail
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.TxtNama
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(399, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(357, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(325, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(396, 24)
         Me.LayoutControlItem1.Text = "Traveler Name"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(92, 13)
         '
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(724, 0)
+        Me.Label9.Location = New System.Drawing.Point(753, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(191, 24)
+        Me.Label9.Size = New System.Drawing.Size(162, 24)
         Me.Label9.Text = "Dept"
         Me.Label9.TextSize = New System.Drawing.Size(92, 13)
         '
@@ -413,9 +413,9 @@ Partial Class FrmTravel_Detail
         '
         Me.Label1.Control = Me.txtPickUp
         Me.Label1.CustomizationFormText = "Status"
-        Me.Label1.Location = New System.Drawing.Point(505, 48)
+        Me.Label1.Location = New System.Drawing.Point(457, 48)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(410, 24)
+        Me.Label1.Size = New System.Drawing.Size(458, 24)
         Me.Label1.Text = "Pick Up"
         Me.Label1.TextSize = New System.Drawing.Size(92, 13)
         '
@@ -434,7 +434,7 @@ Partial Class FrmTravel_Detail
         Me.LayoutControlItem2.Control = Me.TxtNoTravel
         Me.LayoutControlItem2.Location = New System.Drawing.Point(153, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(246, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(204, 24)
         Me.LayoutControlItem2.Text = "TravelID"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(92, 13)
         '
@@ -498,7 +498,7 @@ Partial Class FrmTravel_Detail
         Me.LayoutControlItem9.Control = Me.Panel6
         Me.LayoutControlItem9.Location = New System.Drawing.Point(303, 48)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(202, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(154, 24)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
@@ -723,7 +723,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 0
-        Me.GridColumn21.Width = 30
+        Me.GridColumn21.Width = 50
         '
         'GridColumn22
         '
@@ -732,7 +732,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 1
-        Me.GridColumn22.Width = 308
+        Me.GridColumn22.Width = 292
         '
         'GridColumn23
         '
@@ -742,7 +742,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 2
-        Me.GridColumn23.Width = 41
+        Me.GridColumn23.Width = 38
         '
         'GridColumn24
         '
@@ -752,7 +752,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 3
-        Me.GridColumn24.Width = 44
+        Me.GridColumn24.Width = 50
         '
         'jmltot2
         '
@@ -805,6 +805,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 0
+        Me.GridColumn25.Width = 40
         '
         'RepositoryItemDateEdit9
         '
@@ -820,6 +821,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 1
+        Me.GridColumn26.Width = 239
         '
         'GridColumn27
         '
@@ -829,6 +831,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 2
+        Me.GridColumn27.Width = 40
         '
         'RepositoryItemComboBox3
         '
@@ -845,6 +848,7 @@ Partial Class FrmTravel_Detail
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 3
+        Me.GridColumn28.Width = 50
         '
         'jmltot3
         '
