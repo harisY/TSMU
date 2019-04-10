@@ -133,7 +133,7 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-03")
+        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-04")
         DataSuspend()
         DataSettlement()
         DataEntertaint()
@@ -375,6 +375,28 @@ Public Class FrmPaymentDirect
                 '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
                 '    End If
                 'Next
+                For b As Integer = 0 To GridView1.RowCount - 1
+                    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                        End If
+
+                    ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                        End If
+                    Else
+                        If b = 0 Then
+                            GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                        Else
+                            GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                        End If
+                    End If
+                Next
             End If
 
         Catch ex As Exception
