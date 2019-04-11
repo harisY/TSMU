@@ -90,6 +90,7 @@ Public Class FrmSuspendSettle
     End Sub
     Dim ID As String
     Dim suspendid As String
+    Dim suspend1 As String
     Private Sub FrmSuspendSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
@@ -129,20 +130,26 @@ Public Class FrmSuspendSettle
 
                 ID = String.Empty
                 suspendid = String.Empty
+                suspend1 = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "ID")
                         suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
+                        suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
                     End If
                 Next rowHandle
 
-                If GridView1.GetSelectedRows.Length > 0 Then
+                If suspend1 = "" Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrmDirect(ID,
+                         GridView1.RowCount)
+                Else
                     'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
-                         suspendid,
-                         GridView1.RowCount)
-                End If
+                             suspendid,
+                             GridView1.RowCount)
+                    End If
             End If
 
         Catch ex As Exception
