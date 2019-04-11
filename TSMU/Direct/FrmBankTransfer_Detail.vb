@@ -85,17 +85,17 @@ Public Class FrmBankTransfer_Detail
         'Try
         '    If fs_Code <> "" Then
         '        With fc_Class
-        '            _txtAccountId.Text = .AccountID
+        '            TxtNoRekAsalId.Text = .AccountID
         '            _txtAccName.Text = .AccountName
         '            _cmbType.Text = .AccountType
-        '            _txtAccountId.ReadOnly = True
+        '            TxtNoRekAsalId.ReadOnly = True
         '            _txtAccName.Focus()
         '        End With
         '    Else
-        '        _txtAccountId.Text = ""
+        '        TxtNoRekAsalId.Text = ""
         '        _txtAccName.Text = ""
         '        _cmbType.SelectedIndex = 0
-        '        _txtAccountId.Focus()
+        '        TxtNoRekAsalId.Focus()
         '    End If
         'Catch ex As Exception
         '    Throw
@@ -107,10 +107,10 @@ Public Class FrmBankTransfer_Detail
     Public Overrides Function ValidateSave() As Boolean
         'Dim lb_Validated As Boolean = False
         'Try
-        '    If String.IsNullOrEmpty(_txtAccountId.Text) Then
-        '        errProvider.SetError(_txtAccountId, "Value cannot be empty.")
+        '    If String.IsNullOrEmpty(TxtNoRekAsalId.Text) Then
+        '        errProvider.SetError(TxtNoRekAsalId, "Value cannot be empty.")
         '    Else
-        '        errProvider.SetError(_txtAccountId, "")
+        '        errProvider.SetError(TxtNoRekAsalId, "")
         '    End If
 
         '    If String.IsNullOrEmpty(_txtAccName.Text) Then
@@ -127,7 +127,7 @@ Public Class FrmBankTransfer_Detail
 
         '    If lb_Validated Then
         '        With fc_Class
-        '            .AccountID = _txtAccountId.Text.Trim
+        '            .AccountID = TxtNoRekAsalId.Text.Trim
         '            .AccountName = _txtAccName.Text.Trim
         '            If _cmbType.SelectedIndex = 1 Then
         '                .AccountType = "A"
@@ -159,7 +159,7 @@ Public Class FrmBankTransfer_Detail
         '    End If
 
         '    GridDtl.DataSource = fc_Class.GetAllDataTable(bs_Filter)
-        '    Dim targetString As String = _txtAccountId.Text
+        '    Dim targetString As String = TxtNoRekAsalId.Text
         '    For Each row As DataGridViewRow In Me.GridDtl.Rows
         '        If RTrim(row.Cells(0).Value.ToString) = targetString Then
         '            Me.GridDtl.ClearSelection()
@@ -175,5 +175,88 @@ Public Class FrmBankTransfer_Detail
         'End Try
     End Sub
 
+    Private Sub TxtNoRekAsal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekAsal.EditValueChanged
 
+    End Sub
+
+    Private Sub TxtNoRekAsal_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekAsal.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = TxtNoRekAsal.Name Then
+                dtSearch = ObjSuspend.GetBank
+                ls_OldKode = TxtNoRekAsal.Text.Trim
+                ls_Judul = "Account"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = TxtNoRekAsal.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    TxtNoRekAsal.Text = Value1
+                    TxtNoRekAsalname.Text = Value2
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
+
+    End Sub
+
+    Private Sub TxtNoRekTujuan_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekTujuan.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = TxtNoRekTujuan.Name Then
+                dtSearch = ObjSuspend.GetBank
+                ls_OldKode = TxtNoRekTujuan.Text.Trim
+                ls_Judul = "Account"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = TxtNoRekTujuan.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    TxtNoRekTujuan.Text = Value1
+                    TxtNoRekTujuanname.Text = Value2
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
 End Class
