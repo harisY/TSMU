@@ -477,4 +477,7 @@ Public Class FrmSuspendSettleDetail
         TxtTotExpense.Text = Format(Total, gs_FormatBulat)
     End Sub
 
+    Private Sub TxtNoSuspend_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoSuspend.EditValueChanged
+
+    End Sub
 End Class

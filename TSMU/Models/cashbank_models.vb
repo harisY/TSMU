@@ -125,7 +125,7 @@ Public Class cashbank_models
     End Sub
     Public Function GetGridDetailCashBankByAccountID() As DataTable
         Try
-            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Noref,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -199,7 +199,7 @@ Public Class cashbank_models
     Public Function GetGridDetailSuspendByAccountID() As DataTable
         Try
             'Dim sql As String = "select  suspend_header.Tgl, suspend_detail.SuspendID, suspend_detail.Description, suspend_detail.Amount, suspend_detail.AcctID,suspend_detail.Proses from suspend_header inner join  suspend_detail on suspend_detail.suspendid=suspend_header.suspendid where suspend_header.pay=0 and suspend_header.tipe = 'S'"
-            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S'"
+            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S'"
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -211,7 +211,7 @@ Public Class cashbank_models
 
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
-            Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -224,7 +224,7 @@ Public Class cashbank_models
         Try
             '  Dim sql As String = "select  suspend_header.Tgl, suspend_detail.SuspendID, suspend_detail.Nama, suspend_detail.DeptID, suspend_detail.Tempat, suspend_detail.ALamat, suspend_detail.Jenis, suspend_detail.Amount, suspend_detail.AcctID, suspend_detail.Proses from suspend_header inner join  suspend_detail on suspend_detail.suspendid=suspend_header.suspendid where suspend_header.pay=0 and suspend_header.tipe = 'E'"
 
-            Dim sql As String = "select  suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark as Description, suspend_header.DeptID, '' as Tempat, '' as ALamat, '' as Jenis, total as Amount, '' as AcctID,Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'E'"
+            Dim sql As String = "select  suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark as Description, suspend_header.DeptID, '' as Tempat, '' as ALamat, '' as Jenis, total as Amount, '' as AcctID,suspend_header.Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'E'"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

@@ -25,6 +25,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -139,7 +140,7 @@ Partial Class FrmPaymentDirect
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -176,13 +177,21 @@ Partial Class FrmPaymentDirect
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Ref No"
+        Me.GridColumn43.FieldName = "Noref"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 4
+        '
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Advance Amount"
         Me.GridColumn41.FieldName = "SuspendAmount"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 4
+        Me.GridColumn41.VisibleIndex = 5
         '
         'GridColumn40
         '
@@ -190,7 +199,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn40.FieldName = "SettleAmount"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 5
+        Me.GridColumn40.VisibleIndex = 6
         '
         'GridColumn5
         '
@@ -198,7 +207,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn5.FieldName = "Masuk"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 7
         '
         'GridColumn6
         '
@@ -206,7 +215,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn6.FieldName = "Keluar"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 8
         '
         'GridColumn7
         '
@@ -214,7 +223,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn7.FieldName = "Saldo"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 9
         '
         'LayoutControl1
         '
@@ -513,7 +522,7 @@ Partial Class FrmPaymentDirect
         '
         Me.GridColumn21.Caption = "Proses"
         Me.GridColumn21.ColumnEdit = Me.ReposPresesSettle
-        Me.GridColumn21.FieldName = "proses"
+        Me.GridColumn21.FieldName = "Proses"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 8
@@ -863,4 +872,5 @@ Partial Class FrmPaymentDirect
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
