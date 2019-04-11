@@ -407,7 +407,7 @@ Public Class FrmEntertain_Detail
         End Try
     End Sub
 
-    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick
         Try
             ObjEntertainHeader = New EntertainHeaderModel
             Dim ls_Judul As String = ""
@@ -453,7 +453,7 @@ Public Class FrmEntertain_Detail
         End Try
     End Function
 
-    Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GSubAccount.ButtonClick
         Try
             ObjEntertainHeader = New EntertainHeaderModel
             Dim ls_Judul As String = ""
@@ -589,6 +589,6 @@ Public Class FrmEntertain_Detail
     End Sub
 
     Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
-        TxtTotal.Text = TxtAmountReq.Text
+        TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatBulat)
     End Sub
 End Class

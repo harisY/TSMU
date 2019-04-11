@@ -18,11 +18,31 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
-            settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
-            settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
-            FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-            where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null"
+                "SELECT settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,
+            sum(settle_detail.suspendAmount)suspendAmount
+            ,sum(settle_detail.SettleAmount)SettleAmount
+            , settle_header.pay
+FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null
+group by settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,settle_header.pay
+"
+            '"SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            'settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            'settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            'FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            'where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null"
             '"SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
             'FROM settle_header"
             dt = GetDataTable_Solomon(sql)
@@ -36,11 +56,31 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
-            settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
-            settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
-            FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-            where settle_header.SuspendID like '%EN%'"
+"SELECT settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,
+            sum(settle_detail.suspendAmount)suspendAmount
+            ,sum(settle_detail.SettleAmount)SettleAmount
+            , settle_header.pay
+FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+where settle_header.SuspendID like '%EN%' or settle_header.SuspendID is null
+group by settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,settle_header.pay
+"
+            '"SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            'settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            'settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            'FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            'where settle_header.SuspendID like '%EN%'"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -165,12 +205,12 @@ Public Class SettleHeader
             Throw
         End Try
 
-        'Try
-        '    Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
-        '    ExecQuery_Solomon(ls_SP)
-        'Catch ex As Exception
-        '    Throw
-        'End Try
+        Try
+            Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
 
     End Sub
 

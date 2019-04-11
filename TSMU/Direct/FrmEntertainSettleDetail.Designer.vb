@@ -325,7 +325,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me._subtotal, Me.GridColumn2})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._account, Me._subaccount, Me._description, Me._subtotal, Me.GridColumn2})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -361,7 +361,7 @@ Partial Class FrmEntertainSettleDetail
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.VisibleIndex = 2
         Me._subaccount.Width = 100
         '
         '_account
@@ -372,7 +372,7 @@ Partial Class FrmEntertainSettleDetail
         Me._account.Name = "_account"
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
-        Me._account.VisibleIndex = 2
+        Me._account.VisibleIndex = 1
         Me._account.Width = 100
         '
         '_description
@@ -387,7 +387,6 @@ Partial Class FrmEntertainSettleDetail
         '_subtotal
         '
         Me._subtotal.Caption = "Amount"
-        Me._subtotal.DisplayFormat.FormatString = "#,##0"
         Me._subtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._subtotal.FieldName = "Amount"
         Me._subtotal.Name = "_subtotal"
