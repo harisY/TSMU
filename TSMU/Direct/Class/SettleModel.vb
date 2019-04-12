@@ -18,6 +18,62 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String =
+            "SELECT settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,
+            sum(settle_detail.suspendAmount)suspendAmount
+            ,sum(settle_detail.SettleAmount)SettleAmount
+            , settle_header.pay
+FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+where pay=0 and settle_header.SuspendID not like '%EN%' group by settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,settle_header.pay
+"
+            '                "SELECT settle_header.ID
+            '	, settle_header.SettleID
+            '	, settle_header.SuspendID, 
+            '            settle_header.DeptID
+            '            , Remark, settle_header.Tgl
+            '            , settle_header.CuryID
+            '            , settle_header.Total,
+            '            sum(settle_detail.suspendAmount)suspendAmount
+            '            ,sum(settle_detail.SettleAmount)SettleAmount
+            '            , settle_header.pay
+            'FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            'where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null and pay=0 group by settle_header.ID
+            '	, settle_header.SettleID
+            '	, settle_header.SuspendID, 
+            '            settle_header.DeptID
+            '            , Remark, settle_header.Tgl
+            '            , settle_header.CuryID
+            '            , settle_header.Total,settle_header.pay
+            ''"
+            '"SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            'settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            'settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            'FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            'where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null"
+            '"SELECT ID, SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Total, pay
+            'FROM settle_header"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataGrid2() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
                 "SELECT settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
@@ -29,8 +85,7 @@ Public Class SettleHeader
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where settle_header.SuspendID not like '%EN%' or settle_header.SuspendID is null
-group by settle_header.ID
+where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
             settle_header.DeptID
@@ -51,6 +106,9 @@ group by settle_header.ID
             Throw ex
         End Try
     End Function
+
+
+
 
     Public Function GetDataGridEnt() As DataTable
         Try
