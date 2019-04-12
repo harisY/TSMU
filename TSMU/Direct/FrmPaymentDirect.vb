@@ -134,6 +134,7 @@ Public Class FrmPaymentDirect
                     _txtcuryid.Text = Value3
                     ObjCashBank.curyid = Value3
                     Call DataSuspend()
+                    Call DataEntertaint()
                 End If
             End If
             lF_SearchData.Close()
@@ -230,6 +231,8 @@ Public Class FrmPaymentDirect
                 For f As Integer = 0 To GridView3.RowCount - 1
                     If GridView3.GetRowCellValue(f, "Proses") = True Then
                         Dim bukti As String = ObjCashBank.autononb
+                        Dim totsuspend As Double = 0
+
                         ' suspen.SuspendID = suspendID
                         Dim ObjDetails As New cashbank_models
                         With ObjDetails
@@ -238,15 +241,22 @@ Public Class FrmPaymentDirect
                             .Transaksi = "Settle"
                             .Keterangan = GridView3.GetRowCellValue(f, "Description").ToString().TrimEnd
                             .Noref = GridView3.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
-                            .SuspendAmount = GridView3.GetRowCellValue(f, "Total")
+                            '    .SuspendAmount = GridView3.GetRowCellValue(f, "Total")
+                            totsuspend = If(GridView3.GetRowCellValue(f, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView3.GetRowCellValue(f, "Total")))
+                            ' .SuspendAmount = If(GridView3.GetRowCellValue(f, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView3.GetRowCellValue(f, "Total")))
+                            .SuspendAmount = totsuspend
                             .SettleAmount = GridView3.GetRowCellValue(f, "SettleAmount")
 
-                            If GridView3.GetRowCellValue(f, "SettleAmount") > GridView3.GetRowCellValue(f, "Total") Then
-                                .Keluar = GridView3.GetRowCellValue(f, "SettleAmount") - GridView3.GetRowCellValue(f, "Total")
+                            ''If GridView3.GetRowCellValue(f, "SettleAmount") > GridView3.GetRowCellValue(f, "Total") Then
+                            If GridView3.GetRowCellValue(f, "SettleAmount") > totsuspend Then
+                                ''.Keluar = GridView3.GetRowCellValue(f, "SettleAmount") - GridView3.GetRowCellValue(f, "Total")
+                                .Keluar = GridView3.GetRowCellValue(f, "SettleAmount") - totsuspend
                                 .Masuk = 0
-                            ElseIf GridView3.GetRowCellValue(f, "SettleAmount") < GridView3.GetRowCellValue(f, "Total") Then
+                                ''ElseIf GridView3.GetRowCellValue(f, "SettleAmount") < GridView3.GetRowCellValue(f, "Total") Then
+                            ElseIf GridView3.GetRowCellValue(f, "SettleAmount") < totsuspend Then
                                 .Keluar = 0
-                                .Masuk = GridView3.GetRowCellValue(f, "Total") - GridView3.GetRowCellValue(f, "SettleAmount")
+                                ' .Masuk = GridView3.GetRowCellValue(f, "Total") - GridView3.GetRowCellValue(f, "SettleAmount")
+                                .Masuk = totsuspend - GridView3.GetRowCellValue(f, "SettleAmount")
                             Else
                                 .Keluar = 0
                                 .Masuk = 0
@@ -513,7 +523,5 @@ Public Class FrmPaymentDirect
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub _txtaccountname_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccountname.EditValueChanged
 
-    End Sub
 End Class
