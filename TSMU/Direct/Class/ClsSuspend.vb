@@ -83,7 +83,7 @@ Public Class ClsSuspend
 
             Dim sql As String = "Select 
                                     RTrim(BankAcct) [Account],
-	                                RTrim(CashAcctName) Descritiption
+	                                RTrim(CashAcctName) Descritiption, CuryID
                                 From dbo.cashacct"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)

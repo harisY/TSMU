@@ -12,6 +12,7 @@ Public Class FrmPaymentDirect
         ObjCashBank.Perpost = _txtperpost.Text
         ObjCashBank.AcctID = _txtaccount.Text
         ObjCashBank.account = _txtaccount.Text
+        ''      ObjCashBank.curyid = Trim(_txtcuryid.Text)
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
         _txtsaldo.Text = ObjCashBank.saldo2
@@ -25,6 +26,8 @@ Public Class FrmPaymentDirect
         '    GridCellFormat(GridView1)
         'End If
         Call DataCashBank()
+
+
         For b As Integer = 0 To GridView1.RowCount - 1
             'If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
             '    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
@@ -57,10 +60,13 @@ Public Class FrmPaymentDirect
     End Sub
     Private Sub DataSuspend()
         Dim dtGrid2 As New DataTable
+
         dtGrid2 = ObjCashBank.GetGridDetailSuspendByAccountID
         GridControl2.DataSource = dtGrid2
 
         If dtGrid2.Rows.Count > 0 Then
+            GridCellFormat(GridView2)
+        Else
             GridCellFormat(GridView2)
         End If
     End Sub
@@ -91,6 +97,9 @@ Public Class FrmPaymentDirect
         If dtGrid.Rows.Count > 0 Then
             GridControl1.DataSource = dtGrid
             GridCellFormat(GridView1)
+        Else
+            GridControl1.DataSource = dtGrid
+            GridCellFormat(GridView1)
         End If
     End Sub
     Private Sub TextEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _txtaccount.ButtonClick
@@ -113,15 +122,18 @@ Public Class FrmPaymentDirect
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
             Dim Value2 As String = ""
-
+            Dim Value3 As String = ""
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
                 If sender.Name = _txtaccount.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     _txtaccount.Text = Value1
                     _txtaccountname.Text = Value2
-
+                    _txtcuryid.Text = Value3
+                    ObjCashBank.curyid = Value3
+                    Call DataSuspend()
                 End If
             End If
             lF_SearchData.Close()
@@ -133,7 +145,7 @@ Public Class FrmPaymentDirect
 
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-04")
-        DataSuspend()
+        '   DataSuspend()
         DataSettlement()
         DataEntertaint()
     End Sub
@@ -499,5 +511,9 @@ Public Class FrmPaymentDirect
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub _txtaccountname_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccountname.EditValueChanged
+
     End Sub
 End Class

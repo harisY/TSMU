@@ -86,10 +86,10 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControl1.Controls.Add(Me.TxtNoRekTujuan)
         Me.LayoutControl1.Controls.Add(Me.TxtCury)
         Me.LayoutControl1.Controls.Add(Me.TxtTgl)
-        Me.LayoutControl1.Location = New System.Drawing.Point(33, 51)
+        Me.LayoutControl1.Location = New System.Drawing.Point(40, 80)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(754, 209)
+        Me.LayoutControl1.Size = New System.Drawing.Size(754, 162)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -206,7 +206,7 @@ Partial Class FrmBankTransfer_Detail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem8})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(754, 209)
+        Me.Root.Size = New System.Drawing.Size(754, 162)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -223,7 +223,7 @@ Partial Class FrmBankTransfer_Detail
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(734, 69)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(734, 22)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem4

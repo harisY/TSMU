@@ -15,7 +15,7 @@ Public Class cashbank_models
     Public Property Transaksi As String
     Public Property SuspendID As String
     Public Property SettleID As String
-
+    Public Property curyid As String
     Public Property account() As String
     Public Sub InsertToTable()
         Try
@@ -199,7 +199,7 @@ Public Class cashbank_models
     Public Function GetGridDetailSuspendByAccountID() As DataTable
         Try
             'Dim sql As String = "select  suspend_header.Tgl, suspend_detail.SuspendID, suspend_detail.Description, suspend_detail.Amount, suspend_detail.AcctID,suspend_detail.Proses from suspend_header inner join  suspend_detail on suspend_detail.suspendid=suspend_header.suspendid where suspend_header.pay=0 and suspend_header.tipe = 'S'"
-            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S'"
+            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Currency=" & QVal(curyid) & ""
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
