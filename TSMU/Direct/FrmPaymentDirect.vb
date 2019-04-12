@@ -134,6 +134,7 @@ Public Class FrmPaymentDirect
                     _txtcuryid.Text = Value3
                     ObjCashBank.curyid = Value3
                     Call DataSuspend()
+                    Call DataEntertaint()
                 End If
             End If
             lF_SearchData.Close()
@@ -513,7 +514,5 @@ Public Class FrmPaymentDirect
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub _txtaccountname_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccountname.EditValueChanged
 
-    End Sub
 End Class
