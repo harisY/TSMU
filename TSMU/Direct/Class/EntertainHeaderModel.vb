@@ -31,7 +31,7 @@ Public Class EntertainHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header WHERE Tipe = 'E' and status='open' Order by SuspendID "
+            FROM suspend_header WHERE Tipe = 'E' and status<>'Close'  Order by SuspendID "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -340,10 +340,10 @@ Public Class EntertainDetailModel
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO suspend_detail (SuspendID,SubAcct,AcctID,Description,Tgl,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
+            "INSERT INTO suspend_detail (SuspendID,AcctID,SubAcct,Description,Tgl,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
-            "       " & QVal(SubAcct) & ", " & vbCrLf &
             "       " & QVal(AcctID) & ", " & vbCrLf &
+            "       " & QVal(SubAcct) & ", " & vbCrLf &
             "       " & QVal(Description) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(DeptID) & ", " & vbCrLf &
@@ -434,7 +434,7 @@ Public Class EntertainDetailModel
                                     RTRIM(Alamat) Alamat,
                                     RTRIM(Jenis) Jenis,
                                     RTRIM(NoKwitansi) NoKwitansi,
-                                    [Amount] Amount
+                                    Amount
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
 
             Dim dt As New DataTable
@@ -451,7 +451,7 @@ Public Class EntertainDetailModel
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
-                                    RTRIM([Amount]) Amount,
+                                    Amount,
                                     0 ActualAmount 
                                 FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
             Dim dt As New DataTable

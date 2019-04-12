@@ -154,7 +154,7 @@ Public Class FrmPaymentDirect
         GridControl2.FocusedView.PostEditor()
     End Sub
 
-    Public Overrides Sub Proc_SaveData()
+     Public Overrides Sub Proc_SaveData()
 
         Try
             If TabControl1.SelectedIndex = 0 Then

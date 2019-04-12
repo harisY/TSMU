@@ -17,7 +17,7 @@ Public Class SuspendHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
-            FROM suspend_header WHERE Tipe = 'S' Order by SuspendID"
+            FROM suspend_header WHERE Tipe = 'S' and status<>'Close' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -147,6 +147,14 @@ Public Class SuspendHeaderModel
         Catch ex As Exception
             Throw
         End Try
+
+        'Try
+        '    Dim ls_SP As String = "update suspend_header set status='Open' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+        '    ExecQuery_Solomon(ls_SP)
+        'Catch ex As Exception
+        '    Throw
+        'End Try
+
     End Sub
     Public Sub UpdateHeader(ByVal _SuspendID As String)
         Try

@@ -20,8 +20,8 @@ Partial Class FrmEntertain_Detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -196,10 +196,10 @@ Partial Class FrmEntertain_Detail
         Me.TxtPrNo.Size = New System.Drawing.Size(93, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi PR No"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule1)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Isi PR No"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule3)
         '
         'TxtNoSuspend
         '
@@ -235,10 +235,10 @@ Partial Class FrmEntertain_Detail
         Me.TxtDep.Size = New System.Drawing.Size(50, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Isi Departemen"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Isi Departemen"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
         '
         'TxtCurrency
         '
@@ -412,7 +412,7 @@ Partial Class FrmEntertain_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._subaccount, Me._account, Me._description, Me.GridColumn12, Me.GridColumn10, Me.GridColumn9, Me.GridColumn8, Me.GridColumn7, Me.GridColumn6, Me.GridColumn5, Me._subtotal})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._account, Me._subaccount, Me._description, Me.GridColumn12, Me.GridColumn10, Me.GridColumn9, Me.GridColumn8, Me.GridColumn7, Me.GridColumn6, Me.GridColumn5, Me._subtotal})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -424,7 +424,7 @@ Partial Class FrmEntertain_Detail
         Me._subaccount.FieldName = "SubAccount"
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 0
+        Me._subaccount.VisibleIndex = 1
         '
         '_account
         '
@@ -433,7 +433,7 @@ Partial Class FrmEntertain_Detail
         Me._account.FieldName = "Account"
         Me._account.Name = "_account"
         Me._account.Visible = True
-        Me._account.VisibleIndex = 1
+        Me._account.VisibleIndex = 0
         '
         '_description
         '

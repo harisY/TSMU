@@ -150,6 +150,10 @@ Public Class FrmEntertainSettleDetail
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
 
+            If TxtTotExpense.Text = "0" Then
+                MessageBox.Show("Silahkan Isi Amount !")
+            End If
+
             If lb_Validated Then
                 With ObjSettle
                     .CuryID = TxtCurrency.Text
@@ -179,62 +183,67 @@ Public Class FrmEntertainSettleDetail
     End Function
     Public Overrides Sub Proc_SaveData()
         Try
-            Dim IsEmpty As Boolean = False
-            For i As Integer = 0 To GridView1.RowCount - 1
-                GridView1.MoveFirst()
-                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" Then
-                    IsEmpty = True
-                    GridView1.DeleteRow(i)
-                End If
-            Next
-            'If IsEmpty Then
-            '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
-            'End If
-
-            If isUpdate = False Then
-                ObjSettle.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .SettleID = _SettleID
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                            .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
-                ObjSettle.InsertData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            If TxtTotExpense.Text = "0" Then
+                MessageBox.Show("Silahkan Isi Amount !")
             Else
-                ObjSettle.ObjDetails.Clear()
+
+                Dim IsEmpty As Boolean = False
                 For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .SettleID = TxtNoSettlement.Text
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                            .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                    GridView1.MoveFirst()
+                    If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+                       GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+                       GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" Then
+                        IsEmpty = True
+                        GridView1.DeleteRow(i)
                     End If
                 Next
-                ObjSettle.UpdateData(TxtNoSettlement.Text)
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                'If IsEmpty Then
+                '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
+                'End If
+
+                If isUpdate = False Then
+                    ObjSettle.ObjDetails.Clear()
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                            ObjSettleDetail = New SettleDetail
+                            With ObjSettleDetail
+                                .SettleID = _SettleID
+                                .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                                .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
+                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            End With
+                            ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                        End If
+                    Next
+                    ObjSettle.InsertData()
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Else
+                    ObjSettle.ObjDetails.Clear()
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                            ObjSettleDetail = New SettleDetail
+                            With ObjSettleDetail
+                                .SettleID = TxtNoSettlement.Text
+                                .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                                .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
+                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            End With
+                            ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                        End If
+                    Next
+                    ObjSettle.UpdateData(TxtNoSettlement.Text)
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                End If
+                GridDtl.DataSource = ObjSettle.GetDataGrid()
+                IsClosed = True
+                Me.Hide()
             End If
-            GridDtl.DataSource = ObjSettle.GetDataGrid()
-            IsClosed = True
-            Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

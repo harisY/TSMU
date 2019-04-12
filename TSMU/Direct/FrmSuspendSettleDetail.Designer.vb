@@ -324,7 +324,7 @@ Partial Class FrmSuspendSettleDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn2})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._account, Me._subaccount, Me._description, Me.GridColumn2})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -360,7 +360,7 @@ Partial Class FrmSuspendSettleDetail
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.VisibleIndex = 2
         '
         '_account
         '
@@ -370,7 +370,7 @@ Partial Class FrmSuspendSettleDetail
         Me._account.Name = "_account"
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
-        Me._account.VisibleIndex = 2
+        Me._account.VisibleIndex = 1
         '
         '_description
         '

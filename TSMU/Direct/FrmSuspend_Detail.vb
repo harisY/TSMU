@@ -478,12 +478,12 @@ Public Class FrmSuspend_Detail
     End Sub
 
     Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
-        If TxtTotal.Text <> "0" Then
-            TxtTotal.Text = TxtAmountReq.Text
-        Else
-            TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
-        End If
-
+        'If TxtTotal.Text <> "0" Then
+        '    TxtTotal.Text = TxtAmountReq.Text
+        'Else
+        '    TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
+        'End If
+        TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatBulat)
     End Sub
 
     Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
