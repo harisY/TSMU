@@ -211,7 +211,8 @@ Public Class cashbank_models
 
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
-            Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            Dim sql As String = "Select  settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark As Description,settle_header.Total, sum(settle_detail.SettleAmount) As SettleAmount , '' as AcctID,suspend_header.BankID,settle_header.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0 group by settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark,settle_header.Total,suspend_header.BankID,settle_header.Proses"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
