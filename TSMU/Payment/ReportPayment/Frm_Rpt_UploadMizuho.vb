@@ -1,4 +1,5 @@
 ﻿Imports System.Globalization
+Imports System.Text
 Imports System.Windows.Forms.ImageList
 Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
@@ -65,10 +66,10 @@ Public Class Frm_Rpt_UploadMizuho
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "CSV File|*.csv"
+        save.Filter = "CSV File|*.txt"
         save.Title = "Save a CSV File"
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToCsv(save.FileName)
+            _Grid.ExportToCsv(save.FileName, New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
         End If
     End Sub
     Private Sub Proc_Excel()
@@ -94,7 +95,7 @@ Public Class Frm_Rpt_UploadMizuho
             End If
             ProgBar.Visible = True
             ProgBar.Style = ProgressBarStyle.Marquee
-            Await Task.Run(Sub() GetDataGridReportUploadtoSolomon())
+            Await Task.Run(Sub() GetDataGridREportUploadToSolomon())
         Catch ex As Exception
             ProgBar.Visible = False
             MsgBox(ex.Message)

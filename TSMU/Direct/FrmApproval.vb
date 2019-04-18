@@ -85,9 +85,9 @@ Public Class FrmApproval
                     MainModul.ExecQueryByCommandSolomon(query)
                 Else
                     a = True
-                    'query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
-                    'query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
-                    'MainModul.ExecQueryByCommandSolomon(query)
+                    query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
+                    MainModul.ExecQueryByCommandSolomon(query)
                 End If
             Next
         Catch ex As Exception
