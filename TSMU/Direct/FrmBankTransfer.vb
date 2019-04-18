@@ -6,7 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmBankTransfer
     Dim ff_Detail As FrmBankTransfer_Detail
     Dim dtGrid As DataTable
-    Dim ObjEntertain As EntertainHeaderModel
+    Dim ObjEntertain As TransferModel
 
     Private Sub FrmEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -15,7 +15,7 @@ Public Class FrmBankTransfer
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjEntertain = New EntertainHeaderModel
+            ObjEntertain = New TransferModel
             dtGrid = ObjEntertain.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
@@ -70,9 +70,9 @@ Public Class FrmBankTransfer
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-    Dim ID As String
-    Dim suspendid As String
-    Dim ID2 As String
+    Dim NoBukti As String
+    '' Dim suspendid As String
+    '' Dim ID2 As String
 
     Private Sub FrmSuspend_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
@@ -80,14 +80,13 @@ Public Class FrmBankTransfer
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "Decription")
+                        NoBukti = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
-                    Call CallFrm(ID,
-                             suspendid,
+                    Call CallFrm(NoBukti,
                              GridView1.RowCount)
                 End If
             End If
@@ -110,20 +109,18 @@ Public Class FrmBankTransfer
             Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
             If info.InRow OrElse info.InRowCell Then
 
-                ID = String.Empty
-                suspendid = String.Empty
+
+                NoBukti = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "SuspendHeaderID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        NoBukti = GridView1.GetRowCellValue(rowHandle, "NoBukti")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(ID,
-                         suspendid,
+                    Call CallFrm(NoBukti,
                          GridView1.RowCount)
                 End If
 
@@ -135,5 +132,9 @@ Public Class FrmBankTransfer
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
     End Sub
 End Class

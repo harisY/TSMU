@@ -1,4 +1,7 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class suspendDataTable
+    End Class
+
     Partial Public Class QRCodeDataTable
 
     End Class

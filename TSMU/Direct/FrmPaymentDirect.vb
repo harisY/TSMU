@@ -3,8 +3,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
 Public Class FrmPaymentDirect
-    'Dim suspen As ClsSuspend = New ClsSuspend()
-    'Dim suspen As New cashbank_models
+
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
 
@@ -145,7 +144,7 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-04")
+        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         '   DataSuspend()
         DataSettlement()
         DataEntertaint()
