@@ -1,7 +1,9 @@
 ﻿Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class FrmApproval
@@ -68,26 +70,25 @@ Public Class FrmApproval
     Public Overrides Sub Proc_SaveData()
         Try
             Dim query As String
-            Dim checked As Boolean
+            'Dim checked As Boolean
             Dim suspendid As String
             Dim status As String
             Dim a As Boolean
             For i As Integer = 0 To GridView1.RowCount - 1
                 suspendid = GridView1.GetRowCellValue(i, "SuspendID")
-                a = GridView1.GetRowCellValue(i, "Check")
+                a = GridView1.GetRowCellValue(i, "ceklist")
                 status = GridView1.GetRowCellValue(i, "Status")
                 If a = True Then
                     a = False
-                    suspendid = GridView1.GetRowCellValue(i, "SuspendID")
-                    a = GridView1.GetRowCellValue(i, "Check")
-                    status = GridView1.GetRowCellValue(i, "Status")
-                    query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    'suspendid = GridView1.GetRowCellValue(i, "SuspendID")
+                    'status = GridView1.GetRowCellValue(i, "Status")
+                    query = "update suspend_header set ceklist='1',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
                     MainModul.ExecQueryByCommandSolomon(query)
                 Else
                     a = True
-                    query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
-                    query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
-                    MainModul.ExecQueryByCommandSolomon(query)
+                    'query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    'query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
+                    'MainModul.ExecQueryByCommandSolomon(query)
                 End If
             Next
         Catch ex As Exception
@@ -287,5 +288,12 @@ Public Class FrmApproval
         GridView1.Columns.Clear()
         GridView1.RefreshData()
         LoadGrid()
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
     End Sub
 End Class
