@@ -158,4 +158,7 @@ Public Class FrmSuspendSettle
         End Try
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class

@@ -5,16 +5,16 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
-Public Class FrmBankTransfer_Detail
+Public Class FrmBankReceipt_Detail
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim fc_Class As New TransferModel
-    Dim ObjSuspendHeader As New TransferModel
+    Dim fc_Class As New ReceiptModel
+    Dim ObjSuspendHeader As New ReceiptModel
     Dim GridDtl As GridControl
-    Dim f As FrmBankTransfer_Detail 
+    Dim f As FrmBankReceipt_Detail
     Dim dt As New DataTable
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
@@ -57,16 +57,16 @@ Public Class FrmBankTransfer_Detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Bank Transfer " & fs_Code
+                Me.Text = "Bank receipt " & fs_Code
             Else
-                Me.Text = "New Bank Transfer"
+                Me.Text = "New Bank receipt"
             End If
 
             'TabControl1.TabPages(0).BackColor = tabcolour
             Call LoadTxtBox()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmBankTransfer"
+            bs_MainFormName = "FrmBankReceipt"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -78,8 +78,6 @@ Public Class FrmBankTransfer_Detail
                     TxtTgl.EditValue = .Tgl
                     TxtNoBukti.Text = .NoBukti
                     TxtPerpost.Text = .Perpost
-                    TxtNoRekAsal.Text = .AcctID_Asal
-                    TxtNoRekAsalname.Text = .Descr_Asal
                     TxtCheckNo.Text = .CheckNo
                     TxtNoRekTujuan.Text = .AcctID_tujuan
                     TxtNoRekTujuanname.Text = .Descr_tujuan
@@ -93,10 +91,7 @@ Public Class FrmBankTransfer_Detail
                 ' TxtTgl.Text = Date()
                 TxtTgl.EditValue = DateTime.Today
                 TxtNoBukti.Text = ""
-                ''TxtPerpost.Text = ""
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
-                TxtNoRekAsal.Text = ""
-                TxtNoRekAsalname.Text = ""
                 TxtCheckNo.Text = ""
                 TxtNoRekTujuan.Text = ""
                 TxtNoRekTujuanname.Text = ""
@@ -116,11 +111,7 @@ Public Class FrmBankTransfer_Detail
         Dim lb_Validated As Boolean = False
         Dim provider As CultureInfo = CultureInfo.InvariantCulture
         Try
-            If String.IsNullOrEmpty(TxtNoRekAsal.Text) Then
-                errProvider.SetError(TxtNoRekAsal, "Value cannot be empty.")
-            Else
-                errProvider.SetError(TxtNoRekAsal, "")
-            End If
+
             If String.IsNullOrEmpty(TxtNoRekTujuan.Text) Then
                 errProvider.SetError(TxtNoRekTujuan, "Value cannot be empty.")
             Else
@@ -147,7 +138,7 @@ Public Class FrmBankTransfer_Detail
 
             Dim success As Boolean = True
 
-            If errProvider.GetError(TxtNoRekAsal).Length > 0 Then
+            If errProvider.GetError(TxtNoRekTujuan).Length > 0 Then
                 success = False
             End If
 
@@ -165,12 +156,11 @@ Public Class FrmBankTransfer_Detail
                     .Tgl = oDate
                     ' .Tgl = TxtTgl.Text
                     If isUpdate = False Then
-                        TxtNoBukti.Text = .TransferAutoNo()
+                        TxtNoBukti.Text = .receiptAutoNo()
                     End If
                     .NoBukti = TxtNoBukti.Text
                     .Perpost = TxtPerpost.Text
-                    .AcctID_Asal = TxtNoRekAsal.Text
-                    .Descr_Asal = TxtNoRekAsalname.Text
+
                     .CheckNo = TxtCheckNo.Text
                     .AcctID_tujuan = TxtNoRekTujuan.Text
                     .Descr_tujuan = TxtNoRekTujuanname.Text
@@ -194,7 +184,7 @@ Public Class FrmBankTransfer_Detail
                 fc_Class.Insert()
                 fc_Class.NoVouch = fc_Class.autononb()
                 fc_Class.InsertToTable2()
-                fc_Class.InsertToTable3()
+
             Else
                 fc_Class.Update()
             End If
@@ -216,51 +206,7 @@ Public Class FrmBankTransfer_Detail
         End Try
     End Sub
 
-    Private Sub TxtNoRekAsal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekAsal.EditValueChanged
 
-    End Sub
-
-    Private Sub TxtNoRekAsal_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekAsal.ButtonClick
-        Try
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            Dim ObjSuspend As New ClsSuspend
-            If sender.Name = TxtNoRekAsal.Name Then
-                dtSearch = ObjSuspend.GetBank
-                ls_OldKode = TxtNoRekAsal.Text.Trim
-                ls_Judul = "Account"
-            End If
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
-            Dim Value2 As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-
-                If sender.Name = TxtNoRekAsal.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                    TxtNoRekAsal.Text = Value1
-                    TxtNoRekAsalname.Text = Value2
-
-                End If
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
-
-    End Sub
 
     Private Sub TxtNoRekTujuan_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekTujuan.ButtonClick
         Try
@@ -301,7 +247,7 @@ Public Class FrmBankTransfer_Detail
 
     End Sub
 
-    Private Sub FrmBankTransfer_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmBankReceipt_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
         Call InitialSetForm()
     End Sub

@@ -3,10 +3,10 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Public Class FrmBankTransfer
-    Dim ff_Detail As FrmBankTransfer_Detail
+Public Class FrmBankReceipt
+    Dim ff_Detail As FrmBankreceipt_Detail
     Dim dtGrid As DataTable
-    Dim ObjEntertain As TransferModel
+    Dim ObjEntertain As receiptModel
 
     Private Sub FrmEntertain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -15,7 +15,7 @@ Public Class FrmBankTransfer
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjEntertain = New TransferModel
+            ObjEntertain = New receiptModel
             dtGrid = ObjEntertain.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
@@ -44,7 +44,7 @@ Public Class FrmBankTransfer
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmBankTransfer_Detail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmBankreceipt_Detail(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -134,7 +134,4 @@ Public Class FrmBankTransfer
         End Try
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
-
-    End Sub
 End Class
