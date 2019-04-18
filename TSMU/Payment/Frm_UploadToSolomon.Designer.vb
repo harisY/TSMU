@@ -253,7 +253,6 @@ Partial Class Frm_UploadToSolomon
         Me.btn_approve.ImageOptions.Image = CType(resources.GetObject("btn_approve.ImageOptions.Image"), System.Drawing.Image)
         Me.btn_approve.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter
         Me.btn_approve.Location = New System.Drawing.Point(744, 10)
-        Me.btn_approve.LookAndFeel.SkinMaskColor = System.Drawing.SystemColors.ActiveCaption
         Me.btn_approve.Name = "btn_approve"
         Me.btn_approve.Size = New System.Drawing.Size(46, 43)
         Me.btn_approve.TabIndex = 19

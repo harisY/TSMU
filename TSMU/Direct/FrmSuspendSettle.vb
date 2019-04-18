@@ -8,11 +8,13 @@ Public Class FrmSuspendSettle
     Dim ff_Detail As FrmSuspendSettleDetail
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
+    Dim dtGrid2 As DataTable
     Dim ObjSettle As SettleHeader
 
     Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
+        Call LoadGrid2()
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
@@ -30,6 +32,22 @@ Public Class FrmSuspendSettle
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub LoadGrid2()
+        Try
+            ObjSettle = New SettleHeader
+            dtGrid2 = ObjSettle.GetDataGrid2()
+            GridControl1.DataSource = dtGrid2
+            With GridView2
+                .Columns(0).Visible = False
+                .BestFitColumns()
+            End With
+            GridCellFormat(GridView2)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Public Overrides Sub Proc_InputNewData()
         Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
         If result = System.Windows.Forms.DialogResult.Yes Then

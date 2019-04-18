@@ -73,7 +73,7 @@ Public Class FrmEntertainSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Enetrtainment " & fs_Code
+                Me.Text = "Entertainment " & fs_Code
             Else
                 Me.Text = "Entertainment"
             End If

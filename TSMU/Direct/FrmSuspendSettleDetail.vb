@@ -76,9 +76,9 @@ Public Class FrmSuspendSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Expenses " & fs_Code
+                Me.Text = "Settlement " & fs_Code
             Else
-                Me.Text = "Expenses"
+                Me.Text = "Settlement"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
