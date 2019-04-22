@@ -152,5 +152,4 @@ Public Class FrmSuspend
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
 End Class

@@ -91,6 +91,7 @@ Partial Class FrmApproval
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "SuspendHeaderID"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -100,6 +101,7 @@ Partial Class FrmApproval
         Me.GridColumn2.Caption = "Suspend ID"
         Me.GridColumn2.FieldName = "SuspendID"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -109,6 +111,7 @@ Partial Class FrmApproval
         Me.GridColumn3.Caption = "Tipe"
         Me.GridColumn3.FieldName = "Tipe"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.FixedWidth = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
@@ -118,6 +121,7 @@ Partial Class FrmApproval
         Me.GridColumn4.Caption = "Currency"
         Me.GridColumn4.FieldName = "Currency"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.OptionsColumn.FixedWidth = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
@@ -127,6 +131,7 @@ Partial Class FrmApproval
         Me.GridColumn5.Caption = "DeptID"
         Me.GridColumn5.FieldName = "DeptID"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.FixedWidth = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
@@ -136,6 +141,7 @@ Partial Class FrmApproval
         Me.GridColumn6.Caption = "PR No."
         Me.GridColumn6.FieldName = "PRNo"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.FixedWidth = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
@@ -145,6 +151,7 @@ Partial Class FrmApproval
         Me.GridColumn7.Caption = "Remark"
         Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
         '
@@ -153,6 +160,7 @@ Partial Class FrmApproval
         Me.GridColumn8.Caption = "Tgl"
         Me.GridColumn8.FieldName = "Tgl"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
@@ -162,6 +170,7 @@ Partial Class FrmApproval
         Me.GridColumn9.Caption = "Status"
         Me.GridColumn9.FieldName = "Status"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.FixedWidth = True
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
@@ -171,6 +180,7 @@ Partial Class FrmApproval
         Me.GridColumn10.Caption = "Total"
         Me.GridColumn10.FieldName = "Total"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.FixedWidth = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 9

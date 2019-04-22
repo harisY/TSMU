@@ -90,6 +90,7 @@ Partial Class FrmSuspend
         Me.GridColumn2.Caption = "Advance No."
         Me.GridColumn2.FieldName = "SuspendID"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -100,6 +101,7 @@ Partial Class FrmSuspend
         Me.GridColumn4.Caption = "Currency"
         Me.GridColumn4.FieldName = "Currency"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.OptionsColumn.FixedWidth = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -109,6 +111,7 @@ Partial Class FrmSuspend
         Me.GridColumn5.Caption = "Department"
         Me.GridColumn5.FieldName = "DeptID"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.FixedWidth = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -118,6 +121,7 @@ Partial Class FrmSuspend
         Me.GridColumn6.Caption = "PR No"
         Me.GridColumn6.FieldName = "PRNo"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.FixedWidth = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -128,6 +132,7 @@ Partial Class FrmSuspend
         Me.GridColumn7.Caption = "Remark"
         Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.FixedWidth = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
@@ -138,6 +143,7 @@ Partial Class FrmSuspend
         Me.GridColumn8.Caption = "Date"
         Me.GridColumn8.FieldName = "Tgl"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
@@ -148,6 +154,7 @@ Partial Class FrmSuspend
         Me.GridColumn10.Caption = "Amount"
         Me.GridColumn10.FieldName = "Total"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.FixedWidth = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 7
@@ -307,6 +314,7 @@ Partial Class FrmSuspend
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.KeyPreview = True
         Me.Name = "FrmSuspend"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

@@ -29,11 +29,18 @@ Partial Public Class suspend1
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.pageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.pageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.table1 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.tableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -43,6 +50,7 @@ Partial Public Class suspend1
         Me.tableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table2 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.tableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -52,14 +60,6 @@ Partial Public Class suspend1
         Me.tableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,25 +132,6 @@ Partial Public Class suspend1
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.pageInfo1, Me.pageInfo2})
         Me.BottomMargin.Name = "BottomMargin"
         '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel8, Me.XrLabel2, Me.XrLabel9, Me.XrLine1, Me.XrLabel1, Me.XrLabel12})
-        Me.ReportHeader.HeightF = 206.875!
-        Me.ReportHeader.Name = "ReportHeader"
-        '
-        'GroupHeader1
-        '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table1})
-        Me.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail
-        Me.GroupHeader1.HeightF = 28.0!
-        Me.GroupHeader1.Name = "GroupHeader1"
-        '
-        'Detail
-        '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table2})
-        Me.Detail.HeightF = 25.0!
-        Me.Detail.Name = "Detail"
-        '
         'pageInfo1
         '
         Me.pageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(6.0!, 6.0!)
@@ -168,134 +149,21 @@ Partial Public Class suspend1
         Me.pageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.pageInfo2.TextFormatString = "Page {0} of {1}"
         '
-        'table1
+        'ReportHeader
         '
-        Me.table1.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 0!)
-        Me.table1.Name = "table1"
-        Me.table1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.tableRow1})
-        Me.table1.SizeF = New System.Drawing.SizeF(640.0!, 28.0!)
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrPictureBox1, Me.XrLabel8, Me.XrLabel2, Me.XrLabel9, Me.XrLine1, Me.XrLabel1, Me.XrLabel12})
+        Me.ReportHeader.HeightF = 206.875!
+        Me.ReportHeader.Name = "ReportHeader"
         '
-        'tableRow1
+        'XrLabel3
         '
-        Me.tableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell2, Me.tableCell3, Me.tableCell4, Me.tableCell5, Me.tableCell6, Me.tableCell7, Me.tableCell8})
-        Me.tableRow1.Name = "tableRow1"
-        Me.tableRow1.Weight = 1.0R
-        '
-        'tableCell2
-        '
-        Me.tableCell2.Name = "tableCell2"
-        Me.tableCell2.StyleName = "DetailCaption1"
-        Me.tableCell2.Text = "Tipe"
-        Me.tableCell2.Weight = 0.23775662020568433R
-        '
-        'tableCell3
-        '
-        Me.tableCell3.Name = "tableCell3"
-        Me.tableCell3.StyleName = "DetailCaption1"
-        Me.tableCell3.Text = "Currency"
-        Me.tableCell3.Weight = 0.14205454899714542R
-        '
-        'tableCell4
-        '
-        Me.tableCell4.Name = "tableCell4"
-        Me.tableCell4.StyleName = "DetailCaption1"
-        Me.tableCell4.Text = "Dept ID"
-        Me.tableCell4.Weight = 0.11954142643855169R
-        '
-        'tableCell5
-        '
-        Me.tableCell5.Name = "tableCell5"
-        Me.tableCell5.StyleName = "DetailCaption1"
-        Me.tableCell5.Text = "PRNo"
-        Me.tableCell5.Weight = 0.099879467303936292R
-        '
-        'tableCell6
-        '
-        Me.tableCell6.Name = "tableCell6"
-        Me.tableCell6.StyleName = "DetailCaption1"
-        Me.tableCell6.Text = "Remark"
-        Me.tableCell6.Weight = 0.123812009371244R
-        '
-        'tableCell7
-        '
-        Me.tableCell7.Name = "tableCell7"
-        Me.tableCell7.StyleName = "DetailCaption1"
-        Me.tableCell7.StylePriority.UseTextAlignment = False
-        Me.tableCell7.Text = "Total"
-        Me.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.tableCell7.Weight = 0.091449397160456733R
-        '
-        'tableCell8
-        '
-        Me.tableCell8.Name = "tableCell8"
-        Me.tableCell8.StyleName = "DetailCaption1"
-        Me.tableCell8.Text = "Description"
-        Me.tableCell8.Weight = 0.17012189424954927R
-        '
-        'table2
-        '
-        Me.table2.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 0!)
-        Me.table2.Name = "table2"
-        Me.table2.OddStyleName = "DetailData3_Odd"
-        Me.table2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.tableRow2})
-        Me.table2.SizeF = New System.Drawing.SizeF(640.0!, 25.0!)
-        '
-        'tableRow2
-        '
-        Me.tableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell10, Me.tableCell11, Me.tableCell12, Me.tableCell13, Me.tableCell14, Me.tableCell15, Me.tableCell16})
-        Me.tableRow2.Name = "tableRow2"
-        Me.tableRow2.Weight = 11.5R
-        '
-        'tableCell10
-        '
-        Me.tableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tipe]")})
-        Me.tableCell10.Name = "tableCell10"
-        Me.tableCell10.StyleName = "DetailData1"
-        Me.tableCell10.Weight = 0.29062704593757593R
-        '
-        'tableCell11
-        '
-        Me.tableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Currency]")})
-        Me.tableCell11.Name = "tableCell11"
-        Me.tableCell11.StyleName = "DetailData1"
-        Me.tableCell11.Weight = 0.17364350250800487R
-        '
-        'tableCell12
-        '
-        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
-        Me.tableCell12.Name = "tableCell12"
-        Me.tableCell12.StyleName = "DetailData1"
-        Me.tableCell12.Weight = 0.25403296402725828R
-        '
-        'tableCell13
-        '
-        Me.tableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PRNo]")})
-        Me.tableCell13.Name = "tableCell13"
-        Me.tableCell13.StyleName = "DetailData1"
-        Me.tableCell13.Weight = 0.099879467303936292R
-        '
-        'tableCell14
-        '
-        Me.tableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Remark]")})
-        Me.tableCell14.Name = "tableCell14"
-        Me.tableCell14.StyleName = "DetailData1"
-        Me.tableCell14.Weight = 0.123812009371244R
-        '
-        'tableCell15
-        '
-        Me.tableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Total]")})
-        Me.tableCell15.Name = "tableCell15"
-        Me.tableCell15.StyleName = "DetailData1"
-        Me.tableCell15.StylePriority.UseTextAlignment = False
-        Me.tableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.tableCell15.Weight = 0.091449403029221749R
-        '
-        'tableCell16
-        '
-        Me.tableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")})
-        Me.tableCell16.Name = "tableCell16"
-        Me.tableCell16.StyleName = "DetailData1"
-        Me.tableCell16.Weight = 0.17012188251201924R
+        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SuspendID]")})
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(479.9787!, 173.875!)
+        Me.XrLabel3.Multiline = True
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel3.Text = "XrLabel3"
         '
         'XrPictureBox1
         '
@@ -380,15 +248,147 @@ Partial Public Class suspend1
         Me.XrLabel12.StylePriority.UseForeColor = False
         Me.XrLabel12.Text = "Tanggal Kirim"
         '
-        'XrLabel3
+        'GroupHeader1
         '
-        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SuspendID]")})
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(479.9787!, 173.875!)
-        Me.XrLabel3.Multiline = True
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel3.Text = "XrLabel3"
+        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table1})
+        Me.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail
+        Me.GroupHeader1.HeightF = 28.0!
+        Me.GroupHeader1.Name = "GroupHeader1"
+        '
+        'table1
+        '
+        Me.table1.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 0!)
+        Me.table1.Name = "table1"
+        Me.table1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.tableRow1})
+        Me.table1.SizeF = New System.Drawing.SizeF(640.0!, 28.0!)
+        '
+        'tableRow1
+        '
+        Me.tableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell2, Me.tableCell3, Me.tableCell4, Me.tableCell5, Me.tableCell6, Me.tableCell7, Me.tableCell8})
+        Me.tableRow1.Name = "tableRow1"
+        Me.tableRow1.Weight = 1.0R
+        '
+        'tableCell2
+        '
+        Me.tableCell2.Name = "tableCell2"
+        Me.tableCell2.StyleName = "DetailCaption1"
+        Me.tableCell2.Text = "Tipe"
+        Me.tableCell2.Weight = 0.20781972180234024R
+        '
+        'tableCell3
+        '
+        Me.tableCell3.Name = "tableCell3"
+        Me.tableCell3.StyleName = "DetailCaption1"
+        Me.tableCell3.Text = "Currency"
+        Me.tableCell3.Weight = 0.17199144740048952R
+        '
+        'tableCell4
+        '
+        Me.tableCell4.Name = "tableCell4"
+        Me.tableCell4.StyleName = "DetailCaption1"
+        Me.tableCell4.Text = "Dept ID"
+        Me.tableCell4.Weight = 0.11954142643855169R
+        '
+        'tableCell5
+        '
+        Me.tableCell5.Name = "tableCell5"
+        Me.tableCell5.StyleName = "DetailCaption1"
+        Me.tableCell5.Text = "PRNo"
+        Me.tableCell5.Weight = 0.099879467303936292R
+        '
+        'tableCell6
+        '
+        Me.tableCell6.Name = "tableCell6"
+        Me.tableCell6.StyleName = "DetailCaption1"
+        Me.tableCell6.Text = "Remark"
+        Me.tableCell6.Weight = 0.123812009371244R
+        '
+        'tableCell7
+        '
+        Me.tableCell7.Name = "tableCell7"
+        Me.tableCell7.StyleName = "DetailCaption1"
+        Me.tableCell7.StylePriority.UseTextAlignment = False
+        Me.tableCell7.Text = "Total"
+        Me.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.tableCell7.Weight = 0.091449397160456733R
+        '
+        'tableCell8
+        '
+        Me.tableCell8.Name = "tableCell8"
+        Me.tableCell8.StyleName = "DetailCaption1"
+        Me.tableCell8.Text = "Description"
+        Me.tableCell8.Weight = 0.17012189424954927R
+        '
+        'Detail
+        '
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table2})
+        Me.Detail.HeightF = 25.0!
+        Me.Detail.Name = "Detail"
+        '
+        'table2
+        '
+        Me.table2.LocationFloat = New DevExpress.Utils.PointFloat(9.999992!, 0!)
+        Me.table2.Name = "table2"
+        Me.table2.OddStyleName = "DetailData3_Odd"
+        Me.table2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.tableRow2})
+        Me.table2.SizeF = New System.Drawing.SizeF(640.0!, 25.0!)
+        '
+        'tableRow2
+        '
+        Me.tableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell12, Me.tableCell10, Me.tableCell11, Me.tableCell13, Me.tableCell14, Me.tableCell15, Me.tableCell16})
+        Me.tableRow2.Name = "tableRow2"
+        Me.tableRow2.Weight = 11.5R
+        '
+        'tableCell10
+        '
+        Me.tableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tipe]")})
+        Me.tableCell10.Name = "tableCell10"
+        Me.tableCell10.StyleName = "DetailData1"
+        Me.tableCell10.Weight = 0.21023757290750428R
+        '
+        'tableCell11
+        '
+        Me.tableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Currency]")})
+        Me.tableCell11.Name = "tableCell11"
+        Me.tableCell11.StyleName = "DetailData1"
+        Me.tableCell11.Weight = 0.25403297553807652R
+        '
+        'tableCell12
+        '
+        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
+        Me.tableCell12.Name = "tableCell12"
+        Me.tableCell12.StyleName = "DetailData1"
+        Me.tableCell12.Weight = 0.25403296402725828R
+        '
+        'tableCell13
+        '
+        Me.tableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PRNo]")})
+        Me.tableCell13.Name = "tableCell13"
+        Me.tableCell13.StyleName = "DetailData1"
+        Me.tableCell13.Weight = 0.099879467303936292R
+        '
+        'tableCell14
+        '
+        Me.tableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Remark]")})
+        Me.tableCell14.Name = "tableCell14"
+        Me.tableCell14.StyleName = "DetailData1"
+        Me.tableCell14.Weight = 0.123812009371244R
+        '
+        'tableCell15
+        '
+        Me.tableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Total]")})
+        Me.tableCell15.Name = "tableCell15"
+        Me.tableCell15.StyleName = "DetailData1"
+        Me.tableCell15.StylePriority.UseTextAlignment = False
+        Me.tableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.tableCell15.Weight = 0.091449403029221749R
+        '
+        'tableCell16
+        '
+        Me.tableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")})
+        Me.tableCell16.Name = "tableCell16"
+        Me.tableCell16.StyleName = "DetailData1"
+        Me.tableCell16.Weight = 0.17012188251201924R
         '
         'suspend1
         '
