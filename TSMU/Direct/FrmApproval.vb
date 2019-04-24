@@ -80,7 +80,7 @@ Public Class FrmApproval
                 a = GridView1.GetRowCellValue(i, "ceklist")
                 status = GridView1.GetRowCellValue(i, "Status")
                 If a = True Then
-                    a = False
+                    'a = False
                     'suspendid = GridView1.GetRowCellValue(i, "SuspendID")
                     'status = GridView1.GetRowCellValue(i, "Status")
                     'query = "update suspend_header set ceklist='1',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
