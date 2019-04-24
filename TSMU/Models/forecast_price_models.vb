@@ -397,6 +397,17 @@
 
                         If Bulan.ToLower = "januari" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [JanHarga1] =  " & QVal(JanHarga1) & " 
+                                    ,[JanHarga2] =  " & QVal(JanHarga2) & " 
+                                    ,[JanHarga3] =  " & QVal(JanHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_jan =
@@ -448,6 +459,17 @@
                             '===========FEBRUARI===============
                         ElseIf Bulan.ToLower = "februari" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [FebHarga1] =  " & QVal(FebHarga1) & " 
+                                    ,[FebHarga2] =  " & QVal(FebHarga2) & " 
+                                    ,[FebHarga3] =  " & QVal(FebHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Feb =
@@ -497,6 +519,16 @@
 
                             '===========MARET===============
                         ElseIf Bulan.ToLower = "maret" Then
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [MarHarga1] =  " & QVal(MarHarga1) & " 
+                                    ,[MarHarga2] =  " & QVal(MarHarga2) & " 
+                                    ,[MarHarga3] =  " & QVal(MarHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
 
                             sql =
                                 "SELECT
@@ -547,6 +579,17 @@
                             '===========APRIL===============
                         ElseIf Bulan.ToLower = "april" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [AprHarga1] =  " & QVal(AprHarga1) & " 
+                                    ,[AprHarga2] =  " & QVal(AprHarga2) & " 
+                                    ,[AprHarga3] =  " & QVal(AprHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -595,6 +638,17 @@
                             '===========MEI===============
                         ElseIf Bulan.ToLower = "mei" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [MeiHarga1] =  " & QVal(MeiHarga1) & " 
+                                    ,[MeiHarga2] =  " & QVal(MeiHarga2) & " 
+                                    ,[MeiHarga3] =  " & QVal(MeiHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -642,6 +696,17 @@
                             '===========JUNI===============
                         ElseIf Bulan.ToLower = "juni" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [JunHarga1] =  " & QVal(JunHarga1) & " 
+                                    ,[JunHarga2] =  " & QVal(JunHarga2) & " 
+                                    ,[JunHarga3] =  " & QVal(JunHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -688,6 +753,17 @@
                             '===========JULI===============
                         ElseIf Bulan.ToLower = "juli" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [JulHarga1] =  " & QVal(JulHarga1) & " 
+                                    ,[JulHarga2] =  " & QVal(JulHarga2) & " 
+                                    ,[JulHarga3] =  " & QVal(JulHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -733,6 +809,17 @@
                             '===========AGUSTUS===============
                         ElseIf Bulan.ToLower = "agustus" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [AgtHarga1] =  " & QVal(AgtHarga1) & " 
+                                    ,[AgtHarga2] =  " & QVal(AgtHarga2) & " 
+                                    ,[AgtHarga3] =  " & QVal(AgtHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -777,6 +864,17 @@
                             '===========SEPTEMBER===============
                         ElseIf Bulan.ToLower = "september" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [SepHarga1] =  " & QVal(SepHarga1) & " 
+                                    ,[SepHarga2] =  " & QVal(SepHarga2) & " 
+                                    ,[SepHarga3] =  " & QVal(SepHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -820,6 +918,17 @@
                             '===========OKTOBER===============
                         ElseIf Bulan.ToLower = "oktober" Then
 
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [OktHarga1] =  " & QVal(OktHarga1) & " 
+                                    ,[OktHarga2] =  " & QVal(OktHarga2) & " 
+                                    ,[OktHarga3] =  " & QVal(OktHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
+
                             sql =
                                 "SELECT
                                     Harga_Apr =
@@ -861,6 +970,17 @@
 
                             '===========NOVEMBER===============
                         ElseIf Bulan.ToLower = "november" Then
+
+                            Dim query2 As String =
+                                "UPDATE [tForecastPrice] SET [NovHarga1] =  " & QVal(NovHarga1) & " 
+                                    ,[NovHarga2] =  " & QVal(NovHarga2) & " 
+                                    ,[NovHarga3] =  " & QVal(NovHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query2)
 
                             sql =
                                 "SELECT
@@ -913,6 +1033,16 @@
                             '       ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                             '       ," & QVal(DesHarga1) & "," & QVal(DesHarga2) & "," & QVal(DesHarga3) & "," & QVal(created_date) & "," & QVal(created_by) & " )"
                             'ExecQuery(Query)
+                            Dim query3 As String =
+                                "UPDATE [tForecastPrice] SET [DesHarga1] =  " & QVal(DesHarga1) & " 
+                                    ,[DesHarga2] =  " & QVal(DesHarga2) & " 
+                                    ,[DesHarga3] =  " & QVal(DesHarga3) & " 
+                                WHERE 
+                                    Tahun =  " & QVal(Tahun) & " AND
+                                    PartNo = " & QVal(PartNo) & " AND
+                                    InvtID = " & QVal(InvtID) & " AND
+                                    CustID = " & QVal(CustID) & ""
+                            ExecQuery(query3)
 
                             sql =
                                 "SELECT

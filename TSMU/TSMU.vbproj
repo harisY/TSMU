@@ -808,6 +808,12 @@
     <Compile Include="Form\System\FrmSystemExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmSystemPathConfig.Designer.vb">
+      <DependentUpon>frmSystemPathConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmSystemPathConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmSystem_ConfigDB_new.Designer.vb">
       <DependentUpon>FrmSystem_ConfigDB_new.vb</DependentUpon>
     </Compile>
@@ -1374,6 +1380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystemExcel.resx">
       <DependentUpon>FrmSystemExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmSystemPathConfig.resx">
+      <DependentUpon>frmSystemPathConfig.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystem_ConfigDB_new.resx">
       <DependentUpon>FrmSystem_ConfigDB_new.vb</DependentUpon>

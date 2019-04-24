@@ -152,7 +152,7 @@ Public Class SuspendApprovalHeaderModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE suspend_header " & vbCrLf &
-                                    "SET Status = 'Approved' WHERE SuspendID = '" & _SuspendID & "'"
+                                    "SET Status = 'Approved' and ceklist='1' WHERE SuspendID = '" & _SuspendID & "'"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
