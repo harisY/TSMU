@@ -428,6 +428,8 @@ Public Class clsBoM
                                     "               Inserted.wc, " & vbCrLf &
                                     "               Inserted.allowance, " & vbCrLf &
                                     "               Inserted.mp, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
                                     "               Inserted.[status], " & vbCrLf &
                                     "               NULL, " & vbCrLf &
                                     "               NULL, " & vbCrLf &
