@@ -87,7 +87,7 @@ Public Class FrmApproval
                     'ExecQueryByCommandSolomon(query)
                     ObjSuspend.ApproveData(suspendid, level)
                 Else
-                    a = True
+                    'a = True
                     'query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
                     'query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
                     'MainModul.ExecQueryByCommandSolomon(query)
