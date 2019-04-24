@@ -128,6 +128,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,7 +231,7 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridView4
         '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25})
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn26, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25})
         Me.GridView4.GridControl = Me.GridControl3
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.Editable = False
@@ -252,7 +253,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn2.FieldName = "takagi_acct"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 2
         '
         'GridColumn3
         '
@@ -260,7 +261,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn3.FieldName = "rek_pt"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn4
         '
@@ -268,7 +269,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn4.FieldName = "payment_method"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridColumn5
         '
@@ -276,7 +277,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn5.FieldName = "curyid"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn6
         '
@@ -284,7 +285,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn6.FieldName = "sp_amount"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         '
         'GridColumn7
         '
@@ -292,7 +293,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn7.FieldName = "trans_amount"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 7
         '
         'GridColumn8
         '
@@ -300,7 +301,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn8.FieldName = "value_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.VisibleIndex = 8
         '
         'GridColumn9
         '
@@ -308,7 +309,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn9.FieldName = "bankname"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 9
         '
         'GridColumn10
         '
@@ -316,7 +317,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn10.FieldName = "branch"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.VisibleIndex = 10
         '
         'GridColumn11
         '
@@ -324,7 +325,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn11.FieldName = "address"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
+        Me.GridColumn11.VisibleIndex = 11
         '
         'GridColumn12
         '
@@ -332,7 +333,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn12.FieldName = "address2"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
+        Me.GridColumn12.VisibleIndex = 12
         '
         'GridColumn13
         '
@@ -340,7 +341,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn13.FieldName = "norek_supplier"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 12
+        Me.GridColumn13.VisibleIndex = 13
         '
         'GridColumn14
         '
@@ -348,7 +349,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn14.FieldName = "pt"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 13
+        Me.GridColumn14.VisibleIndex = 14
         '
         'GridColumn15
         '
@@ -356,7 +357,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn15.FieldName = "pt2"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 14
+        Me.GridColumn15.VisibleIndex = 15
         '
         'GridColumn16
         '
@@ -364,7 +365,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn16.FieldName = "address_pt"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 15
+        Me.GridColumn16.VisibleIndex = 16
         '
         'GridColumn17
         '
@@ -372,7 +373,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn17.FieldName = "address_pt2"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 16
+        Me.GridColumn17.VisibleIndex = 17
         '
         'GridColumn18
         '
@@ -380,7 +381,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn18.FieldName = "space_kosong"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 17
+        Me.GridColumn18.VisibleIndex = 18
         '
         'GridColumn19
         '
@@ -388,7 +389,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn19.FieldName = "bank_charges"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 18
+        Me.GridColumn19.VisibleIndex = 19
         '
         'GridColumn20
         '
@@ -396,7 +397,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn20.FieldName = "applicant_acct"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 19
+        Me.GridColumn20.VisibleIndex = 20
         '
         'GridColumn21
         '
@@ -404,7 +405,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn21.FieldName = "space_kosong2"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 20
+        Me.GridColumn21.VisibleIndex = 21
         '
         'GridColumn22
         '
@@ -412,7 +413,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn22.FieldName = "other"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 21
+        Me.GridColumn22.VisibleIndex = 22
         '
         'GridColumn23
         '
@@ -420,7 +421,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn23.FieldName = "other1"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 22
+        Me.GridColumn23.VisibleIndex = 23
         '
         'GridColumn24
         '
@@ -428,7 +429,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn24.FieldName = "other2"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 23
+        Me.GridColumn24.VisibleIndex = 24
         '
         'GridColumn25
         '
@@ -436,7 +437,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn25.FieldName = "other3"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 24
+        Me.GridColumn25.VisibleIndex = 25
         '
         'GridView3
         '
@@ -972,7 +973,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_excel.Name = "tsBtn_excel"
         Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_excel.Text = "EXCEL"
+        Me.tsBtn_excel.Text = "TEXT"
         Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator5
@@ -1053,6 +1054,14 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Size = New System.Drawing.Size(23, 22)
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "field"
+        Me.GridColumn26.FieldName = "field"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 1
         '
         'Frm_Rpt_UploadMizuho
         '
@@ -1205,4 +1214,5 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents other3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

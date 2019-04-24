@@ -69,6 +69,11 @@ Public Class FrmSuspend_Detail
         'Call CreateTable()
         Call InitialSetForm()
 
+        'Dim dtGrid As New DataTable
+        'Grid.DataSource = dtGrid
+        'If dtGrid.Rows.Count > 0 Then
+        '    TxtAmountReq.Enabled = False
+        'End If
     End Sub
     Public Overrides Sub InitialSetForm()
         Try

@@ -25,6 +25,19 @@ Public Class SuspendHeaderModel
         End Try
     End Function
 
+    Public Function GetDataGrid2() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
+            FROM suspend_header WHERE Tipe = 'S' and status<>'Open' Order by SuspendID"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function SuspendAutoNo() As String
 
         Try

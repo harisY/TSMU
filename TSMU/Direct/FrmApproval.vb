@@ -1,7 +1,9 @@
 ﻿Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class FrmApproval
@@ -13,7 +15,7 @@ Public Class FrmApproval
     Private Sub FrmApproval_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         XtraTabControl1.SelectedTabPage = XtraTabPage1
     End Sub
     Private Sub LoadGrid()
@@ -39,6 +41,23 @@ Public Class FrmApproval
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub LoadGrid2()
+        Try
+            ''ObjSuspend = New SuspendHeaderModel
+            dtGrid = ObjSuspend.GetDataGrid()
+            Grid.DataSource = dtGrid
+            GridView1.BestFitColumns()
+
+            With GridView1
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView1)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
@@ -46,6 +65,41 @@ Public Class FrmApproval
         bs_Filter = ""
         Call LoadGrid()
     End Sub
+
+
+    Public Overrides Sub Proc_SaveData()
+        Try
+            Dim query As String
+            'Dim checked As Boolean
+            Dim suspendid As String
+            Dim status As String
+            Dim a As Boolean
+            For i As Integer = 0 To GridView1.RowCount - 1
+                suspendid = GridView1.GetRowCellValue(i, "SuspendID")
+                a = GridView1.GetRowCellValue(i, "ceklist")
+                status = GridView1.GetRowCellValue(i, "Status")
+                If a = True Then
+                    a = False
+                    'suspendid = GridView1.GetRowCellValue(i, "SuspendID")
+                    'status = GridView1.GetRowCellValue(i, "Status")
+                    query = "update suspend_header set ceklist='1',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    MainModul.ExecQueryByCommandSolomon(query)
+                Else
+                    a = True
+                    'query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    'query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
+                    'MainModul.ExecQueryByCommandSolomon(query)
+                End If
+            Next
+        Catch ex As Exception
+            Throw
+        End Try
+        MessageBox.Show("Data Updated.")
+        ''GridView1.Columns.Clear()
+        ''GridView1.RefreshData()
+        LoadGrid2()
+    End Sub
+
     Private Sub CallFrmEntertain(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ApprovalEntertain IsNot Nothing AndAlso ApprovalEntertain.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -207,4 +261,39 @@ Public Class FrmApproval
         End Try
     End Sub
 
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Try
+            Dim query As String
+            Dim checked As Boolean
+            Dim suspendid As String
+            Dim a As Boolean
+            For i As Integer = 0 To GridView1.RowCount - 1
+                suspendid = GridView1.GetRowCellValue(i, "SuspendID")
+                checked = GridView1.GetRowCellValue(i, "Check")
+                a = GridView1.GetRowCellValue(i, "Check")
+                If a = True Then
+                    a = False
+                    checked = GridView1.GetRowCellValue(i, "Check")
+                    suspendid = GridView1.GetRowCellValue(i, "SuspendID")
+                    query = "update suspend_header set ceklist='" & checked & "' where suspendid='" & suspendid & "' "
+                    MainModul.ExecQueryByCommandSolomon(query)
+                Else
+                    a = True
+                End If
+            Next
+        Catch ex As Exception
+            Throw
+        End Try
+        MessageBox.Show("Data Updated.")
+        GridView1.Columns.Clear()
+        GridView1.RefreshData()
+        LoadGrid()
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
 End Class

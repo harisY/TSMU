@@ -252,14 +252,28 @@
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
     <Compile Include="Direct\Class\EntertainApproval.vb" />
+    <Compile Include="Direct\Class\ReceiptModel.vb" />
     <Compile Include="Direct\Class\SettleModel.vb" />
     <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
+    <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmApprovalEntertain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankReceipt.Designer.vb">
+      <DependentUpon>FrmBankReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankReceipt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankReceipt_Detail.Designer.vb">
+      <DependentUpon>FrmBankReceipt_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankReceipt_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmBankTransfer.Designer.vb">
@@ -399,6 +413,18 @@
     </Compile>
     <Compile Include="Direct\FrmTravel_Detail.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\suspend1.Designer.vb">
+      <DependentUpon>suspend1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\suspend1.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\suspendreport.Designer.vb">
+      <DependentUpon>suspendreport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\suspendreport.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
@@ -1078,6 +1104,12 @@
     <EmbeddedResource Include="Direct\FrmApprovalEntertain.resx">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankReceipt.resx">
+      <DependentUpon>FrmBankReceipt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankReceipt_Detail.resx">
+      <DependentUpon>FrmBankReceipt_Detail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankTransfer.resx">
       <DependentUpon>FrmBankTransfer.vb</DependentUpon>
     </EmbeddedResource>
@@ -1146,6 +1178,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
       <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\suspend1.resx">
+      <DependentUpon>suspend1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\suspendreport.resx">
+      <DependentUpon>suspendreport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
