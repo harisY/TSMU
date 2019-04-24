@@ -431,8 +431,6 @@ Public Class clsBoM
                                     "               NULL, " & vbCrLf &
                                     "               NULL, " & vbCrLf &
                                     "               Inserted.[status], " & vbCrLf &
-                                    "               NULL, " & vbCrLf &
-                                    "               NULL, " & vbCrLf &
                                     "               Inserted.[active], " & vbCrLf &
                                     "               0, " & vbCrLf &
                                     "               Inserted.created_by, " & vbCrLf &
