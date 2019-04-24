@@ -66,8 +66,8 @@ Public Class Frm_Rpt_UploadMizuho
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "CSV File|*.txt"
-        save.Title = "Save a CSV File"
+        save.Filter = "Text File|*.txt"
+        save.Title = "Save a Text File"
         If save.ShowDialog = DialogResult.OK Then
             _Grid.ExportToCsv(save.FileName, New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
         End If

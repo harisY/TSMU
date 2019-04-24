@@ -53,9 +53,9 @@ Partial Public Class suspend1
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table2 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.tableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.tableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -273,14 +273,14 @@ Partial Public Class suspend1
         Me.tableCell2.Name = "tableCell2"
         Me.tableCell2.StyleName = "DetailCaption1"
         Me.tableCell2.Text = "Tipe"
-        Me.tableCell2.Weight = 0.20781972180234024R
+        Me.tableCell2.Weight = 0.17199146375460153R
         '
         'tableCell3
         '
         Me.tableCell3.Name = "tableCell3"
         Me.tableCell3.StyleName = "DetailCaption1"
         Me.tableCell3.Text = "Currency"
-        Me.tableCell3.Weight = 0.17199144740048952R
+        Me.tableCell3.Weight = 0.20781970544822823R
         '
         'tableCell4
         '
@@ -335,9 +335,16 @@ Partial Public Class suspend1
         '
         'tableRow2
         '
-        Me.tableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell12, Me.tableCell10, Me.tableCell11, Me.tableCell13, Me.tableCell14, Me.tableCell15, Me.tableCell16})
+        Me.tableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.tableCell10, Me.tableCell11, Me.tableCell12, Me.tableCell13, Me.tableCell14, Me.tableCell15, Me.tableCell16})
         Me.tableRow2.Name = "tableRow2"
         Me.tableRow2.Weight = 11.5R
+        '
+        'tableCell12
+        '
+        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
+        Me.tableCell12.Name = "tableCell12"
+        Me.tableCell12.StyleName = "DetailData1"
+        Me.tableCell12.Weight = 0.14612416648583756R
         '
         'tableCell10
         '
@@ -353,26 +360,19 @@ Partial Public Class suspend1
         Me.tableCell11.StyleName = "DetailData1"
         Me.tableCell11.Weight = 0.25403297553807652R
         '
-        'tableCell12
-        '
-        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
-        Me.tableCell12.Name = "tableCell12"
-        Me.tableCell12.StyleName = "DetailData1"
-        Me.tableCell12.Weight = 0.25403296402725828R
-        '
         'tableCell13
         '
         Me.tableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PRNo]")})
         Me.tableCell13.Name = "tableCell13"
         Me.tableCell13.StyleName = "DetailData1"
-        Me.tableCell13.Weight = 0.099879467303936292R
+        Me.tableCell13.Weight = 0.12208993987351599R
         '
         'tableCell14
         '
         Me.tableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Remark]")})
         Me.tableCell14.Name = "tableCell14"
         Me.tableCell14.StyleName = "DetailData1"
-        Me.tableCell14.Weight = 0.123812009371244R
+        Me.tableCell14.Weight = 0.1513442897907252R
         '
         'tableCell15
         '
@@ -381,14 +381,14 @@ Partial Public Class suspend1
         Me.tableCell15.StyleName = "DetailData1"
         Me.tableCell15.StylePriority.UseTextAlignment = False
         Me.tableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.tableCell15.Weight = 0.091449403029221749R
+        Me.tableCell15.Weight = 0.11178512843158911R
         '
         'tableCell16
         '
         Me.tableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")})
         Me.tableCell16.Name = "tableCell16"
         Me.tableCell16.StyleName = "DetailData1"
-        Me.tableCell16.Weight = 0.17012188251201924R
+        Me.tableCell16.Weight = 0.2079522016620117R
         '
         'suspend1
         '
