@@ -121,6 +121,7 @@ Public Class clsBoMTrans
     End Property
     Public Property RefType() As String
     Public Property RefNo() As String
+    Public Property Converted() As Boolean
     Public Property fc_classdetail() As Collection(Of clsBoMdetails)
         Get
             Return Me._fc_classdetail
@@ -129,7 +130,7 @@ Public Class clsBoMTrans
             Me._fc_classdetail = value
         End Set
     End Property
-    Public Sub InsertBoM()
+    Public Sub InsertBoM(status As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -154,9 +155,10 @@ Public Class clsBoMTrans
                             .Status = Me._status
                             .Active = Me._active
                             .MP = Me._mp
+                            .Converted = False
                         End With
 
-                        fc_clsHeader.InsertHeader()
+                        fc_clsHeader.InsertHeader(status)
 
                         For i As Integer = 0 To Me._fc_classdetail.Count - 1
                             With Me._fc_classdetail(i)
@@ -178,7 +180,7 @@ Public Class clsBoMTrans
         End Try
     End Sub
 
-    Public Sub UpdateBoM(ByVal Rev As Integer)
+    Public Sub UpdateBoM(ByVal Rev As Integer, IsConverted As Boolean, status As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -189,7 +191,6 @@ Public Class clsBoMTrans
 
                     Try
                         With fc_clsHeader
-                            .BoMID = _bomid
                             .Tgl = Me._tgl
                             .InvtID = Me._invtid
                             .Desc = Me._desc
@@ -201,15 +202,27 @@ Public Class clsBoMTrans
                             .WC = Me.WC
                             .Allowance = Me._allowance
                             .MP = Me._mp
-                            .Status = Me._status
+                            .Status = status
                             .Active = Me._active
                             .RefType = Me.RefType
                             .RefNo = RefNo
+                            .Converted = Converted
+                            If IsConverted Then
+                                .ValidateInsert1()
+                                .BoMID = .RegularAutoNo
+                                .InsertHeader(status)
+                            Else
+                                .BoMID = _bomid
+                                .UpdateHeader(Rev)
+                            End If
                         End With
-                        fc_clsHeader.UpdateHeader(Rev)
+
 
                         Dim fc_classdetail As New clsBoMdetails
-                        fc_classdetail.DeleteDetail(Me._bomid, Rev)
+                        If IsConverted Then
+                        Else
+                            fc_classdetail.DeleteDetail(Me._bomid, Rev)
+                        End If
 
                         For i As Integer = 0 To Me._fc_classdetail.Count - 1
                             With Me._fc_classdetail(i)

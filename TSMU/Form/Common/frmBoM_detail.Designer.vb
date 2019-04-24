@@ -37,6 +37,7 @@ Partial Class frmBoM_detail
         Me.Grid2 = New System.Windows.Forms.DataGridView()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.ChekRegular = New System.Windows.Forms.CheckBox()
         Me._TxtRefNo = New DevExpress.XtraEditors.TextEdit()
         Me._txtAllowance = New DevExpress.XtraEditors.TextEdit()
         Me._txtCycle = New DevExpress.XtraEditors.TextEdit()
@@ -71,6 +72,7 @@ Partial Class frmBoM_detail
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +120,7 @@ Partial Class frmBoM_detail
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -274,6 +277,7 @@ Partial Class frmBoM_detail
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.ChekRegular)
         Me.LayoutControl1.Controls.Add(Me._TxtRefNo)
         Me.LayoutControl1.Controls.Add(Me._txtAllowance)
         Me.LayoutControl1.Controls.Add(Me._txtCycle)
@@ -297,6 +301,16 @@ Partial Class frmBoM_detail
         Me.LayoutControl1.Size = New System.Drawing.Size(828, 179)
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'ChekRegular
+        '
+        Me.ChekRegular.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ChekRegular.Location = New System.Drawing.Point(563, 132)
+        Me.ChekRegular.Name = "ChekRegular"
+        Me.ChekRegular.Size = New System.Drawing.Size(253, 20)
+        Me.ChekRegular.TabIndex = 20
+        Me.ChekRegular.Text = "Convert To Regular"
+        Me.ChekRegular.UseVisualStyleBackColor = True
         '
         '_TxtRefNo
         '
@@ -450,7 +464,7 @@ Partial Class frmBoM_detail
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem5, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem6, Me.LayoutControlItem10, Me.LayoutControlItem4, Me.LayoutControlItem15})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem5, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem6, Me.LayoutControlItem10, Me.LayoutControlItem4, Me.LayoutControlItem15, Me.LayoutControlItem17})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(828, 179)
         Me.Root.TextVisible = False
@@ -567,7 +581,7 @@ Partial Class frmBoM_detail
         Me.LayoutControlItem16.Control = Me._cmbAktif
         Me.LayoutControlItem16.Location = New System.Drawing.Point(551, 96)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(257, 48)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem16.Text = "Status"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(62, 13)
         '
@@ -606,6 +620,15 @@ Partial Class frmBoM_detail
         Me.LayoutControlItem15.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem15.Text = "Ref. No."
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(62, 13)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.ChekRegular
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(551, 120)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
         '
         'frmBoM_detail
         '
@@ -666,6 +689,7 @@ Partial Class frmBoM_detail
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -720,4 +744,6 @@ Partial Class frmBoM_detail
     Friend WithEvents _cmbMesin As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents _CmbWC As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents _TxtRefType As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents ChekRegular As CheckBox
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
 End Class

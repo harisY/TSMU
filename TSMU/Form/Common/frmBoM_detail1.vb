@@ -530,9 +530,9 @@ Public Class frmBoM_detail1
             Next
 
             If isUpdate = False Then
-                fc_ClassBoM.InsertBoM()
+                fc_ClassBoM.InsertBoM(_cmbStatus.Text)
             Else
-                fc_ClassBoM.UpdateBoM(intRevisi)
+                fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
             End If
 
             GridDtl.DataSource = fc_Class.GetAllDataTable(bs_Filter)
