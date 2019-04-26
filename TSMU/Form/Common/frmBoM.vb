@@ -347,7 +347,7 @@ Public Class frmBoM
                             .Status = table.Rows(i)("Status")
                         End If
                         .DeleteHeader(.BoMID)
-                        .InsertHeader()
+                        .InsertHeader(.Status)
 
                     End With
 

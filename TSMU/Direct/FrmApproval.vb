@@ -66,7 +66,6 @@ Public Class FrmApproval
         Call LoadGrid()
     End Sub
 
-
     Public Overrides Sub Proc_SaveData()
         Try
             Dim query As String
@@ -74,18 +73,21 @@ Public Class FrmApproval
             Dim suspendid As String
             Dim status As String
             Dim a As Boolean
+            Dim ObjSuspend As New SuspendApprovalHeaderModel
+            Dim level As Integer = ObjSuspend.GetUsernameLevel
             For i As Integer = 0 To GridView1.RowCount - 1
                 suspendid = GridView1.GetRowCellValue(i, "SuspendID")
                 a = GridView1.GetRowCellValue(i, "ceklist")
                 status = GridView1.GetRowCellValue(i, "Status")
                 If a = True Then
-                    a = False
+                    'a = False
                     'suspendid = GridView1.GetRowCellValue(i, "SuspendID")
                     'status = GridView1.GetRowCellValue(i, "Status")
-                    query = "update suspend_header set ceklist='1',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
-                    MainModul.ExecQueryByCommandSolomon(query)
+                    'query = "update suspend_header set ceklist='1',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
+                    'ExecQueryByCommandSolomon(query)
+                    ObjSuspend.ApproveData(suspendid, level)
                 Else
-                    a = True
+                    'a = True
                     'query = "update suspend_header set ceklist='" & a & "',Status='Approved',State=1 where SuspendID='" & suspendid & "' "
                     'query = "update suspend_header set ceklist='False',Status='Open',State=0 where SuspendID='" & suspendid & "' "
                     'MainModul.ExecQueryByCommandSolomon(query)

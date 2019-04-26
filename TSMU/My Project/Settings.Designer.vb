@@ -73,6 +73,30 @@ Namespace My
                 Return CType(Me("BoMConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property Filename() As String
+            Get
+                Return CType(Me("Filename"),String)
+            End Get
+            Set
+                Me("Filename") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property FilePath() As String
+            Get
+                Return CType(Me("FilePath"),String)
+            End Get
+            Set
+                Me("FilePath") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

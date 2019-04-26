@@ -28,12 +28,11 @@ Partial Public Class suspendreport
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.pageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.pageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.label1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.table1 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.tableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -43,6 +42,7 @@ Partial Public Class suspendreport
         Me.tableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table2 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.tableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -123,25 +123,6 @@ Partial Public Class suspendreport
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.pageInfo1, Me.pageInfo2})
         Me.BottomMargin.Name = "BottomMargin"
         '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.label1})
-        Me.ReportHeader.HeightF = 60.0!
-        Me.ReportHeader.Name = "ReportHeader"
-        '
-        'GroupHeader1
-        '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table1})
-        Me.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail
-        Me.GroupHeader1.HeightF = 28.0!
-        Me.GroupHeader1.Name = "GroupHeader1"
-        '
-        'Detail
-        '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table2})
-        Me.Detail.HeightF = 25.0!
-        Me.Detail.Name = "Detail"
-        '
         'pageInfo1
         '
         Me.pageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(6.0!, 6.0!)
@@ -159,6 +140,12 @@ Partial Public Class suspendreport
         Me.pageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         Me.pageInfo2.TextFormatString = "Page {0} of {1}"
         '
+        'ReportHeader
+        '
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.label1})
+        Me.ReportHeader.HeightF = 60.0!
+        Me.ReportHeader.Name = "ReportHeader"
+        '
         'label1
         '
         Me.label1.LocationFloat = New DevExpress.Utils.PointFloat(6.0!, 6.0!)
@@ -166,6 +153,13 @@ Partial Public Class suspendreport
         Me.label1.SizeF = New System.Drawing.SizeF(615.0!, 24.19433!)
         Me.label1.StyleName = "Title"
         Me.label1.Text = "ADVANCE REPORT"
+        '
+        'GroupHeader1
+        '
+        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table1})
+        Me.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail
+        Me.GroupHeader1.HeightF = 28.0!
+        Me.GroupHeader1.Name = "GroupHeader1"
         '
         'table1
         '
@@ -233,6 +227,12 @@ Partial Public Class suspendreport
         Me.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.tableCell7.Weight = 0.16294467677006311R
         '
+        'Detail
+        '
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table2})
+        Me.Detail.HeightF = 25.0!
+        Me.Detail.Name = "Detail"
+        '
         'table2
         '
         Me.table2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
@@ -268,28 +268,28 @@ Partial Public Class suspendreport
         Me.tableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
         Me.tableCell10.Name = "tableCell10"
         Me.tableCell10.StyleName = "DetailData1"
-        Me.tableCell10.Weight = 0.16682805238046486R
+        Me.tableCell10.Weight = 0.097555448963442759R
         '
         'tableCell11
         '
         Me.tableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tgl]")})
         Me.tableCell11.Name = "tableCell11"
         Me.tableCell11.StyleName = "DetailData1"
-        Me.tableCell11.Weight = 0.16682805238046486R
+        Me.tableCell11.Weight = 0.068894332156109073R
         '
         'tableCell12
         '
         Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CirculationNo]")})
         Me.tableCell12.Name = "tableCell12"
         Me.tableCell12.StyleName = "DetailData1"
-        Me.tableCell12.Weight = 0.16682805238046486R
+        Me.tableCell12.Weight = 0.20357201998423005R
         '
         'tableCell13
         '
         Me.tableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Description]")})
         Me.tableCell13.Name = "tableCell13"
         Me.tableCell13.StyleName = "DetailData1"
-        Me.tableCell13.Weight = 0.16682805238046486R
+        Me.tableCell13.Weight = 0.29729040841807752R
         '
         'tableCell14
         '

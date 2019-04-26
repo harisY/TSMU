@@ -17,6 +17,7 @@ Public Class frmBoM_detail
     Dim dtGrid As New DataTable
     Dim dtGrid1 As New DataTable
     Dim intRevisi As Integer
+    Dim NoReg As String = String.Empty
     Public Sub New()
 
         ' This call is required by the designer.
@@ -82,10 +83,12 @@ Public Class frmBoM_detail
             Call LoadGridDetil()
             Call LoadGridDetil1()
 
-            If gh_Common.Group <> "NPD" AndAlso gh_Common.Group <> "Administrator" Then
-                FillComboProjectNotNPD()
-            Else
+            If gh_Common.Group = "NPD" Then
                 FillComboProjectNPD()
+            ElseIf gh_Common.Group = "Administrator" Then
+                FillComboAdmin()
+            Else
+                FillComboProjectNotNPD()
             End If
             Call fillComboSite()
             fillComboWC()
@@ -100,6 +103,13 @@ Public Class frmBoM_detail
         End Try
     End Sub
     Private Sub FillComboProjectNPD()
+        Dim status() As String = {"", "PROJECT"}
+        _cmbStatus.Properties.Items.Clear()
+        For Each var As String In status
+            _cmbStatus.Properties.Items.Add(var)
+        Next
+    End Sub
+    Private Sub FillComboAdmin()
         Dim status() As String = {"", "PROJECT", "REGULAR"}
         _cmbStatus.Properties.Items.Clear()
         For Each var As String In status
@@ -151,7 +161,14 @@ Public Class frmBoM_detail
                     _TxtRefNo.Text = .RefNo
                     _TxtRefType.Properties.ReadOnly = False
                     _TxtRefNo.Properties.ReadOnly = False
+
                 End With
+                If _cmbStatus.Text <> "REGULAR" Then
+                    ChekRegular.Enabled = True
+                Else
+                    ChekRegular.Enabled = False
+                End If
+
             Else
                 _TxtRefType.Properties.ReadOnly = True
                 _TxtRefNo.Properties.ReadOnly = True
@@ -174,6 +191,7 @@ Public Class frmBoM_detail
                 _txtDesc.Text = ""
                 _cmbAktif.SelectedIndex = 0
                 _cmbStatus.Focus()
+                ChekRegular.Enabled = False
             End If
             If gh_Common.Group <> "NPD" OrElse gh_Common.Group <> "COSTING" OrElse gh_Common.Group <> "Administrator" Then
                 _cmbAktif.Properties.ReadOnly = False
@@ -411,6 +429,7 @@ Public Class frmBoM_detail
                     .Status = _cmbStatus.Text
                     .RefType = _TxtRefType.EditValue
                     .RefNo = _TxtRefNo.Text
+                    .Converted = ChekRegular.CheckState
                     If _cmbAktif.EditValue = "Inhouse" Then
                         .Active = 1
                     ElseIf _cmbAktif.EditValue = "Subcon" Then
@@ -439,30 +458,52 @@ Public Class frmBoM_detail
     End Function
     Public Overrides Sub Proc_SaveData()
         Try
-            fc_ClassBoM.fc_classdetail.Clear()
-            For i As Integer = 0 To GridDetail.Rows.Count - 1
-                Dim fc_ClassBomDetails As New clsBoMdetails
-                With fc_ClassBomDetails
-                    .BoMID = _txtBoMID.Text.Trim
-                    .Parentid = _txtInvID.Text.Trim
-                    .inventId = Trim(GridDetail.Rows(i).Cells(0).Value.ToString & "")
-                    .Descr_detail = Trim(GridDetail.Rows(i).Cells(1).Value.ToString & "")
-                    .Qty = Trim(GridDetail.Rows(i).Cells(2).Value.ToString & "")
-                    .Unit = Trim(GridDetail.Rows(i).Cells(3).Value.ToString & "")
-                End With
-                fc_ClassBoM.fc_classdetail.Add(fc_ClassBomDetails)
-            Next
+            If ChekRegular.CheckState = CheckState.Checked Then
+                NoReg = fc_Class.RegularAutoNo()
+                fc_ClassBoM.fc_classdetail.Clear()
+                For i As Integer = 0 To GridDetail.Rows.Count - 1
+                    Dim fc_ClassBomDetails As New clsBoMdetails
+                    With fc_ClassBomDetails
+                        .BoMID = NoReg
+                        .Parentid = _txtInvID.Text.Trim
+                        .inventId = Trim(GridDetail.Rows(i).Cells(0).Value.ToString & "")
+                        .Descr_detail = Trim(GridDetail.Rows(i).Cells(1).Value.ToString & "")
+                        .Qty = Trim(GridDetail.Rows(i).Cells(2).Value.ToString & "")
+                        .Unit = Trim(GridDetail.Rows(i).Cells(3).Value.ToString & "")
+                    End With
+                    fc_ClassBoM.fc_classdetail.Add(fc_ClassBomDetails)
+                Next
+            Else
+                fc_ClassBoM.fc_classdetail.Clear()
+                For i As Integer = 0 To GridDetail.Rows.Count - 1
+                    Dim fc_ClassBomDetails As New clsBoMdetails
+                    With fc_ClassBomDetails
+                        .BoMID = _txtBoMID.Text.Trim
+                        .Parentid = _txtInvID.Text.Trim
+                        .inventId = Trim(GridDetail.Rows(i).Cells(0).Value.ToString & "")
+                        .Descr_detail = Trim(GridDetail.Rows(i).Cells(1).Value.ToString & "")
+                        .Qty = Trim(GridDetail.Rows(i).Cells(2).Value.ToString & "")
+                        .Unit = Trim(GridDetail.Rows(i).Cells(3).Value.ToString & "")
+                    End With
+                    fc_ClassBoM.fc_classdetail.Add(fc_ClassBomDetails)
+                Next
+            End If
 
             If isUpdate = False Then
-                fc_ClassBoM.InsertBoM()
+                fc_ClassBoM.InsertBoM(_cmbStatus.Text)
             Else
-                If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
-                    fc_ClassBoM.UpdateBoM(intRevisi)
+                If ChekRegular.CheckState = CheckState.Checked Then
+                    fc_ClassBoM.UpdateBoM(intRevisi, True, "REGULAR")
                 Else
-                    _TxtRefType.Focus()
-                    Throw New Exception("Please Fill Ref. Type and Ref No. First !")
-                End If
+                    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
+                    '    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'Else
+                    '    _TxtRefType.Focus()
+                    '    Throw New Exception("Silahkan pilih No. Referensi !")
+                    'End If
 
+                End If
             End If
 
             GridDtl.DataSource = fc_Class.GetAllDataTable(bs_Filter)
@@ -490,7 +531,7 @@ Public Class frmBoM_detail
             _cmbMesin.Properties.DataSource = Nothing
             '_cmbMesin.Properties.Items.Clear()
             _cmbMesin.Properties.DataSource = dt
-            _cmbMesin.Properties.ValueMember = "ID Mesin"
+            _cmbMesin.Properties.ValueMember = "Deskripsi"
             _cmbMesin.Properties.DisplayMember = "Deskripsi"
 
         Catch ex As Exception
@@ -649,13 +690,8 @@ Public Class frmBoM_detail
             If _cmbStatus.EditValue = "" Then
                 MsgBox("Pilih Status BoM")
                 _cmbStatus.Focus()
-            ElseIf _cmbStatus.EditValue = "REGULAR" Then
-                dtSearch = fc_Class.getInvtItem
-                ls_OldKode = _txtInvID.Text.Trim
-                ls_Judul = "Items"
-
             Else
-                dtSearch = fc_Class.getInvtItem_project
+                dtSearch = fc_Class.getInvtItem
                 ls_OldKode = _txtInvID.Text.Trim
                 ls_Judul = "Items"
 
@@ -677,6 +713,10 @@ Public Class frmBoM_detail
                 ls_Nama = lF_SearchData.Values.Item(1).ToString.Trim
                 _txtInvID.Text = ls_Kode
                 _txtDesc.Text = ls_Nama
+
+                dtGrid = fc_Class.getDetailBoMByinvtId(ls_Kode)
+                GridDetail.DataSource = dtGrid
+                LoadGridDetil1()
             End If
             _txtMan.Focus()
             lF_SearchData.Close()
@@ -696,9 +736,10 @@ Public Class frmBoM_detail
 
     Private Sub _cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _cmbStatus.SelectedIndexChanged
         If fs_Code = "" Then
-            If _cmbStatus.SelectedIndex = 2 Then
+            If _cmbStatus.Text = "REGULAR" Then
                 _txtBoMID.Text = fc_Class.RegularAutoNo()
-            Else
+
+            ElseIf _cmbStatus.Text = "PROJECT" Then
                 _txtBoMID.Text = fc_Class.ProjectAutoNo()
             End If
         End If

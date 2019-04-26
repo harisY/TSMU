@@ -66,17 +66,25 @@ Public Class Frm_Rpt_UploadMizuho
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "CSV File|*.txt"
-        save.Title = "Save a CSV File"
+        save.Filter = "Text File|*.txt"
+        save.Title = "Save a Text File"
         If save.ShowDialog = DialogResult.OK Then
             _Grid.ExportToCsv(save.FileName, New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
+        End If
+    End Sub
+    Private Sub SaveToExcel1(_Grid As GridControl)
+        If My.Settings.FilePath = "" OrElse My.Settings.Filename = "" Then
+            XtraMessageBox.Show("Setting dulu file path atau file name pada menu setting !")
+        Else
+            _Grid.ExportToCsv(My.Settings.FilePath & "\" & My.Settings.Filename & Format(DateTime.Today, "yyyyMMdd") & ".txt", New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
         End If
     End Sub
     Private Sub Proc_Excel()
         Try
             If TabControl1.SelectedTab Is TabPage1 Then
                 If GridView4.RowCount > 0 Then
-                    SaveToExcel(GridControl3)
+                    SaveToExcel1(GridControl3)
+                    'SaveToExcel(GridControl3)
                     MsgBox("Data Berhasil di Export!")
                 Else
                     MsgBox("Grid Kosong!")

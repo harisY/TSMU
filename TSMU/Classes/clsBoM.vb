@@ -121,6 +121,7 @@ Public Class clsBoM
     End Property
     Public Property RefType() As String
     Public Property RefNo() As String
+    Public Property Converted() As Boolean
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -221,6 +222,20 @@ Public Class clsBoM
         Try
             'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,CAST(bom.qty AS decimal(11,4)) as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
             Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,bom.qty as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function getDetailBoMByinvtId(ByVal invtId As String) As DataTable
+        Try
+
+
+            'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,CAST(bom.qty AS decimal(11,4)) as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
+            Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,bom.qty as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.parentid = '" & invtId & "'"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(query)
             Return dtTable
@@ -397,10 +412,10 @@ Public Class clsBoM
     End Function
 
 #Region "CRUD"
-    Public Sub InsertHeader()
+    Public Sub InsertHeader(Status As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "Insert into bomh(bomid,tgl,invtid,descr,siteid,runner,ct,mc,cavity,wc,allowance, mp, [status],active,created_by,created_date) " & vbCrLf &
+                                    "Insert into bomh(bomid,tgl,invtid,descr,siteid,runner,ct,mc,cavity,wc,allowance, mp, [status],active,converted,created_by,created_date) " & vbCrLf &
                                     "       OUTPUT  Inserted.bomid, " & vbCrLf &
                                     "               Inserted.tgl, " & vbCrLf &
                                     "               Inserted.invtid, " & vbCrLf &
@@ -413,9 +428,9 @@ Public Class clsBoM
                                     "               Inserted.wc, " & vbCrLf &
                                     "               Inserted.allowance, " & vbCrLf &
                                     "               Inserted.mp, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
                                     "               Inserted.[status], " & vbCrLf &
-                                    "               NULL, " & vbCrLf &
-                                    "               NULL, " & vbCrLf &
                                     "               Inserted.[active], " & vbCrLf &
                                     "               0, " & vbCrLf &
                                     "               Inserted.created_by, " & vbCrLf &
@@ -435,8 +450,9 @@ Public Class clsBoM
                                     "       " & QVal(Me.WC) & ", " & vbCrLf &
                                     "       " & QVal(Me._allowance) & ", " & vbCrLf &
                                     "       " & QVal(Me._mp) & ", " & vbCrLf &
-                                    "       " & QVal(Me._status) & ", " & vbCrLf &
+                                    "       " & QVal(Status) & ", " & vbCrLf &
                                     "       " & QVal(Me._active) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Converted) & ", " & vbCrLf &
                                     "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       getdate())"
             MainModul.ExecQuery(ls_SP)
@@ -534,6 +550,27 @@ Public Class clsBoM
                     SELECT bomid 
                     FROM bomh 
                     WHERE invtid = " & QVal(Me._invtid) & "
+                "
+            Dim dt As DataTable = MainModul.GetDataTable(Query)
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.DataTelahDigunakan) &
+                          "[" & Me._invtid & "] Pada BoM [" & dt.Rows(0)(0).ToString() & "]")
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub ValidateInsert1()
+        If Me._invtid = "" Then
+            Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
+        End If
+        Try
+            Dim Query As String =
+                "   
+                    SELECT bomid 
+                    FROM bomh 
+                    WHERE invtid = " & QVal(Me._invtid) & " AND Status = 'REGULAR'
                 "
             Dim dt As DataTable = MainModul.GetDataTable(Query)
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
