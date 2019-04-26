@@ -48,10 +48,10 @@ Partial Class FrmSuspend_Detail
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -85,8 +85,8 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,23 +363,6 @@ Partial Class FrmSuspend_Detail
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "SubAccount"
-        Me._subaccount.ColumnEdit = Me.GSubAccount
-        Me._subaccount.FieldName = "SubAccount"
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.OptionsColumn.FixedWidth = True
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 1
-        Me._subaccount.Width = 100
-        '
-        'GSubAccount
-        '
-        Me.GSubAccount.AutoHeight = False
-        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GSubAccount.Name = "GSubAccount"
-        '
         '_account
         '
         Me._account.Caption = "Account"
@@ -396,6 +379,23 @@ Partial Class FrmSuspend_Detail
         Me.GAccount.AutoHeight = False
         Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.GAccount.Name = "GAccount"
+        '
+        '_subaccount
+        '
+        Me._subaccount.Caption = "SubAccount"
+        Me._subaccount.ColumnEdit = Me.GSubAccount
+        Me._subaccount.FieldName = "SubAccount"
+        Me._subaccount.Name = "_subaccount"
+        Me._subaccount.OptionsColumn.FixedWidth = True
+        Me._subaccount.Visible = True
+        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.Width = 100
+        '
+        'GSubAccount
+        '
+        Me.GSubAccount.AutoHeight = False
+        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GSubAccount.Name = "GSubAccount"
         '
         '_description
         '
@@ -479,8 +479,8 @@ Partial Class FrmSuspend_Detail
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).EndInit()

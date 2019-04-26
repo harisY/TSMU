@@ -6,6 +6,8 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
 Public Class FrmSuspend_Detail
+
+
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
@@ -37,6 +39,8 @@ Public Class FrmSuspend_Detail
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
+
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -64,7 +68,7 @@ Public Class FrmSuspend_Detail
 
     End Sub
     Private Sub FrmSuspend_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         'Call CreateTable()
         Call InitialSetForm()
@@ -430,7 +434,7 @@ Public Class FrmSuspend_Detail
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
-        GridView.UpdateCurrentRow()
+        gridView.UpdateCurrentRow()
         'Grid.FocusedView.PostEditor()
     End Sub
 
@@ -495,5 +499,10 @@ Public Class FrmSuspend_Detail
         GridView1.AddNewRow()
         GridView1.OptionsNavigation.AutoFocusNewRow = True
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+    End Sub
+    Public Overrides Sub Proc_print()
+        FrmReportSuspend.StartPosition = FormStartPosition.CenterScreen
+        FrmReportSuspend.TxtNoSuspend.Text = TxtNoSuspend.Text
+        FrmReportSuspend.Show()
     End Sub
 End Class

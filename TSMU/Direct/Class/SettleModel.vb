@@ -69,7 +69,39 @@ where pay=0 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Function
+    Public Function loadreport2() As DataSet
+        Dim query As String
+        query = "SELECT settle_detail.SettleID
+                    ,settle_detail.Description
+                    ,settle_detail.Tgl
+                    ,settle_detail.SuspendAmount
+                    ,settle_detail.SettleAmount
+                    ,settle_detail.AcctID
+                    ,settle_detail.SubAcct
+                    ,settle_detail.Nama
+                    ,settle_detail.Tempat
+                    ,settle_detail.Alamat
+                    ,settle_detail.Jenis
+                    ,settle_detail.NamaRelasi
+                    ,settle_detail.Posisi
+                    ,settle_detail.Relasi
+                    ,settle_detail.JenisRelasi
+                    ,settle_detail.Nota
+                    ,settle_header.Tgl
+                    ,settle_header.DeptID
+                    ,settle_header.Remark
+                    ,settle_header.CuryID
+                    ,settle_header.Status
+                    ,settle_header.Total
+                    ,settle_header.pay
+                    ,settle_header.Proses
+                      FROM settle_header left join settle_detail on settle_detail.SettleID=settle_header.SettleID where settle_header.SettleID='" & SettleID & "'"
 
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "settle")
+        Return ds
+
+    End Function
     Public Function GetDataGrid2() As DataTable
         Try
             Dim dt As New DataTable
