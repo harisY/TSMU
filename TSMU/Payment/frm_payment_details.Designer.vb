@@ -20,11 +20,12 @@ Partial Class frm_payment_details
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule6 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me._TxtVendorID = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -138,6 +139,10 @@ Partial Class frm_payment_details
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
         '_TxtVendorID
         '
         Me._TxtVendorID.Location = New System.Drawing.Point(105, 60)
@@ -146,10 +151,10 @@ Partial Class frm_payment_details
         Me._TxtVendorID.Size = New System.Drawing.Size(76, 20)
         Me._TxtVendorID.StyleController = Me.LayoutControl1
         Me._TxtVendorID.TabIndex = 13
-        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule5.ErrorText = "Supplier tidak boleh kosong"
-        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule5)
+        ConditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule6.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule6)
         '
         'LayoutControl1
         '
@@ -201,6 +206,11 @@ Partial Class frm_payment_details
         Me._TxtTotal.Size = New System.Drawing.Size(192, 20)
         Me._TxtTotal.StyleController = Me.LayoutControl1
         Me._TxtTotal.TabIndex = 29
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.NotEquals
+        ConditionValidationRule1.ErrorText = "Total tidak boleh 0 !"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        ConditionValidationRule1.Value1 = 0
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTotal, ConditionValidationRule1)
         '
         '_TxtPPN
         '
@@ -319,10 +329,10 @@ Partial Class frm_payment_details
         Me._txtVoucher.Size = New System.Drawing.Size(141, 20)
         Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Voucher tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Voucher tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule2)
         '
         '_TxtPPH
         '
@@ -360,10 +370,10 @@ Partial Class frm_payment_details
         Me._TxtCurrency.Size = New System.Drawing.Size(192, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 17
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Currency tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule2)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Currency tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule3)
         '
         '_TxtTgl
         '
@@ -380,10 +390,10 @@ Partial Class frm_payment_details
         Me._TxtTgl.Size = New System.Drawing.Size(221, 20)
         Me._TxtTgl.StyleController = Me.LayoutControl1
         Me._TxtTgl.TabIndex = 12
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Pilih Tanggal"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule3)
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Pilih Tanggal"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule4)
         '
         '_TxtBankID
         '
@@ -393,10 +403,10 @@ Partial Class frm_payment_details
         Me._TxtBankID.Size = New System.Drawing.Size(62, 20)
         Me._TxtBankID.StyleController = Me.LayoutControl1
         Me._TxtBankID.TabIndex = 5
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Bank tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule4)
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "Bank tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule5)
         '
         '_TxtCM
         '

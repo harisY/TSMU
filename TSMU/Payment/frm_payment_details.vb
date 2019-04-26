@@ -110,7 +110,7 @@ Public Class frm_payment_details
                 _TxtAttentionTo.Text = ""
                 _TxtBankID.Text = ""
                 _TxtBankName.Text = ""
-                _TxtBiaya.EditValue = "2,500"
+                _TxtBiaya.EditValue = "2500"
                 _TxtToBank.Text = ""
                 _TxtCM.Text = "0"
                 _TxtCurrency.Text = ""
@@ -219,7 +219,7 @@ Public Class frm_payment_details
                         .Jml_Invoice = GridView1.GetRowCellValue(i, "Amount")
                         .CuryID = GridView1.GetRowCellValue(i, "CuryId")
                         .Ppn = GridView1.GetRowCellValue(i, "Ppn")
-                        .Dpp = GridView1.GetRowCellValue(i, "Dpp")
+                        .Dpp = GridView1.GetRowCellValue(i, "DPP")
                         .Pph = GridView1.GetRowCellValue(i, "PPH")
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
                         .cek1 = True
@@ -364,6 +364,7 @@ Public Class frm_payment_details
         TotAmount = 0
         TotDpp = 0
         TotPPn = 0
+        Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
@@ -446,4 +447,30 @@ Public Class frm_payment_details
     Private Sub _txtVoucher_EditValueChanged(sender As Object, e As EventArgs) Handles _txtVoucher.EditValueChanged
 
     End Sub
+    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+        Dim ignoreCancel As Boolean = False
+        _TxtBankID.DoValidate()
+        _TxtTgl.DoValidate()
+        _txtVoucher.DoValidate()
+        _TxtTotal.DoValidate()
+        _TxtCurrency.DoValidate()
+        _TxtVendorID.DoValidate()
+
+        If DxValidationProvider1.GetInvalidControls().Contains(_TxtBankID) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtTgl) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_txtVoucher) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtTotal) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtCurrency) _
+            OrElse DxValidationProvider1.GetInvalidControls().Contains(_TxtVendorID) Then
+
+
+            ignoreCancel = True
+        Else
+            ignoreCancel = True
+        End If
+
+        MyBase.OnFormClosing(e)
+        e.Cancel = Not ignoreCancel
+    End Sub
+
 End Class

@@ -53,9 +53,9 @@ Partial Public Class suspend1
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table2 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.tableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.tableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.tableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -339,13 +339,6 @@ Partial Public Class suspend1
         Me.tableRow2.Name = "tableRow2"
         Me.tableRow2.Weight = 11.5R
         '
-        'tableCell12
-        '
-        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
-        Me.tableCell12.Name = "tableCell12"
-        Me.tableCell12.StyleName = "DetailData1"
-        Me.tableCell12.Weight = 0.14612416648583756R
-        '
         'tableCell10
         '
         Me.tableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Tipe]")})
@@ -359,6 +352,13 @@ Partial Public Class suspend1
         Me.tableCell11.Name = "tableCell11"
         Me.tableCell11.StyleName = "DetailData1"
         Me.tableCell11.Weight = 0.25403297553807652R
+        '
+        'tableCell12
+        '
+        Me.tableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
+        Me.tableCell12.Name = "tableCell12"
+        Me.tableCell12.StyleName = "DetailData1"
+        Me.tableCell12.Weight = 0.14612416648583756R
         '
         'tableCell13
         '
@@ -396,6 +396,7 @@ Partial Public Class suspend1
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.ObjectDataSource1})
         Me.DataSource = Me.ObjectDataSource1
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.ForeColor = System.Drawing.Color.Empty
         Me.Margins = New System.Drawing.Printing.Margins(100, 100, 23, 100)
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption1, Me.DetailData1, Me.DetailData3_Odd, Me.PageInfo})
         Me.Version = "18.2"
