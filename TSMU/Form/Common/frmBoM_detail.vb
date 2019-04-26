@@ -495,12 +495,13 @@ Public Class frmBoM_detail
                 If ChekRegular.CheckState = CheckState.Checked Then
                     fc_ClassBoM.UpdateBoM(intRevisi, True, "REGULAR")
                 Else
-                    If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
-                        fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
-                    Else
-                        _TxtRefType.Focus()
-                        Throw New Exception("Silahkan pilih No. Referensi !")
-                    End If
+                    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
+                    '    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'Else
+                    '    _TxtRefType.Focus()
+                    '    Throw New Exception("Silahkan pilih No. Referensi !")
+                    'End If
 
                 End If
             End If
@@ -735,10 +736,10 @@ Public Class frmBoM_detail
 
     Private Sub _cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _cmbStatus.SelectedIndexChanged
         If fs_Code = "" Then
-            If _cmbStatus.SelectedIndex = 2 Then
+            If _cmbStatus.Text = "REGULAR" Then
                 _txtBoMID.Text = fc_Class.RegularAutoNo()
 
-            ElseIf _cmbStatus.SelectedIndex = 1 Then
+            ElseIf _cmbStatus.Text = "PROJECT" Then
                 _txtBoMID.Text = fc_Class.ProjectAutoNo()
             End If
         End If

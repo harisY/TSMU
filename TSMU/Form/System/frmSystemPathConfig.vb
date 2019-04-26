@@ -22,14 +22,13 @@ Public Class frmSystemPathConfig
 
     Public Overrides Sub Proc_Refresh()
         LoadSetting()
-
     End Sub
 
     Private Sub TxtFilePath_ButtonClick(sender As Object, e As Controls.ButtonPressedEventArgs) Handles TxtFilePath.ButtonClick
         Dim simpan As FolderBrowserDialog = New FolderBrowserDialog
         Dim result As DialogResult = simpan.ShowDialog()
         If result = System.Windows.Forms.DialogResult.OK Then
-            TxtFilePath.Text = System.IO.Path.GetDirectoryName(simpan.SelectedPath)
+            TxtFilePath.Text = simpan.SelectedPath
         End If
 
         'Dim OpenD As OpenFileDialog = New OpenFileDialog

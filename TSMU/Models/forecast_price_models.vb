@@ -379,7 +379,7 @@
             Throw ex
         End Try
     End Sub
-    Public Sub InsertData(Bulan As String)
+    Public Sub UpdateDataByBulan(Bulan As String)
         Dim Query As String = String.Empty
         Dim Query1 As String = String.Empty
         Dim sql As String = String.Empty
@@ -1253,6 +1253,25 @@
         Return IsExist
     End Function
 
+    Public Function IsDataExist() As Boolean
+        Dim hasil As Boolean = False
+        Try
+            Dim query As String =
+                "SELECT InvtID FROM [tForecastPrice] WHERE 
+                Tahun =  " & QVal(Tahun) & " AND 
+                PartNo = " & QVal(PartNo) & " AND 
+                InvtID = " & QVal(InvtID) & " AND 
+                CustID = " & QVal(CustID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(query)
+            If dt.Rows.Count > 0 Then
+                hasil = True
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Sub ValidateInsert()
         If Tahun = "" OrElse PartNo = "" OrElse InvtID = "" OrElse CustID = "" Then
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))

@@ -73,7 +73,11 @@ Public Class Frm_Rpt_UploadMizuho
         End If
     End Sub
     Private Sub SaveToExcel1(_Grid As GridControl)
-        _Grid.ExportToCsv(My.Settings.FilePath & "\" & My.Settings.Filename & Format(DateTime.Today, "yyyyMMdd") & ".txt", New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
+        If My.Settings.FilePath = "" OrElse My.Settings.Filename = "" Then
+            XtraMessageBox.Show("Setting dulu file path atau file name pada menu setting !")
+        Else
+            _Grid.ExportToCsv(My.Settings.FilePath & "\" & My.Settings.Filename & Format(DateTime.Today, "yyyyMMdd") & ".txt", New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
+        End If
     End Sub
     Private Sub Proc_Excel()
         Try

@@ -698,8 +698,13 @@ Public Class frmSales_ForecastPrice
 
                                 .created_date = DateTime.Today
                                 .created_by = gh_Common.Username
-                                .InsertData(Bulan)
-
+                                Dim IsExist = .IsDataExist
+                                If IsExist Then
+                                    .UpdateDataByBulan(Bulan)
+                                Else
+                                    .InsertData()
+                                    '.UpdateDataByBulan(Bulan)
+                                End If
                             End With
 
                         Catch ex As Exception
@@ -1344,7 +1349,7 @@ Public Class frmSales_ForecastPrice
                             End With
 
                         Catch ex As Exception
-                            'MsgBox(ex.Message)
+                            MsgBox(ex.Message)
                             Console.WriteLine(ex.Message)
                             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
                             WriteSalesToErrorLog("ForecastPrice", "Log", dtFilter, i, "Invt ID", gh_Common.Username)
