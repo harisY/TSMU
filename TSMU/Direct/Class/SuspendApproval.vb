@@ -24,7 +24,7 @@ Public Class SuspendApprovalHeaderModel
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
-            AND (Status = 'Open' OR Status = 'Approved') Order by SuspendID"
+            AND (Status = 'Open' or Status = 'Approved') and ceklist=0 Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -67,6 +67,8 @@ Public Class SuspendApprovalHeaderModel
             Throw ex
         End Try
     End Function
+
+
 
     Public Function GetUsernameLevel() As Integer
         Dim result As Integer = 0
@@ -150,7 +152,7 @@ Public Class SuspendApprovalHeaderModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE suspend_header " & vbCrLf &
-                                    "SET Status = 'Approved' and ceklist='1' WHERE SuspendID = '" & _SuspendID & "'"
+                                    "SET Status = 'Approved', ceklist='1' WHERE SuspendID = '" & _SuspendID & "'"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -165,31 +167,31 @@ Public Class SuspendApprovalHeaderModel
             Throw ex
         End Try
     End Sub
-    Public Sub InsertHeader(SuspendID As String, Level As String)
+    Public Sub InsertHeader(SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO [SuspendApproval]
                     ([SuspendID]
                     ,[ApprovedBy]
-                    ,[ApprovedDate],[Level]) " & vbCrLf &
+                    ,[ApprovedDate]) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
-            "       GETDATE(), " & QVal(Level) & ")"
+            "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
-    Public Sub InsertRejectedApproval(SuspendID As String, Level As String)
+    Public Sub InsertRejectedApproval(SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO [SuspendApproval]
                     ([SuspendID]
                     ,[RejectedBy]
-                    ,[RejectedDate],[Level]) " & vbCrLf &
+                    ,[RejectedDate]) " & vbCrLf &
             "Values(" & QVal(SuspendID) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
-            "       GETDATE(), " & QVal(Level) & ")"
+            "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -211,7 +213,7 @@ Public Class SuspendApprovalHeaderModel
                         UpdateHeader(_SuspendID, level)
                         UpdateStatusSuspend(_SuspendID)
 
-                        InsertHeader(_SuspendID, level)
+                        InsertHeader(_SuspendID)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -227,7 +229,7 @@ Public Class SuspendApprovalHeaderModel
         End Try
     End Sub
 
-    Public Sub CancelApproveData(ByVal _SuspendID As String, Level As String)
+    Public Sub CancelApproveData(ByVal _SuspendID As String, Ket As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
                 Conn1.Open()
@@ -240,7 +242,7 @@ Public Class SuspendApprovalHeaderModel
 
                         UpdateHeaderCancel(_SuspendID)
                         DeleteApprove(_SuspendID)
-                        InsertRejectedApproval(_SuspendID, Level)
+                        InsertRejectedApproval(_SuspendID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)

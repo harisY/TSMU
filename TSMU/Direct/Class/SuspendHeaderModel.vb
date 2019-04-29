@@ -24,7 +24,41 @@ Public Class SuspendHeaderModel
             Throw ex
         End Try
     End Function
+    Public Function loadreport2() As DataSet
+        Dim query As String
+        query = "SELECT suspend_header.SuspendHeaderID
+      ,suspend_header.SuspendID
+      ,suspend_header.Tipe
+      ,suspend_header.Currency
+      ,suspend_header.DeptID
+      ,suspend_header.PRNo
+      ,suspend_header.Remark
+      ,suspend_header.Tgl
+      ,suspend_header.Status
+      ,suspend_header.Total
+      ,suspend_header.pay
+      ,suspend_header.State
+      ,suspend_header.CirculationNo
+      ,suspend_header.AmountReq
+      ,suspend_header.BankID
+      ,suspend_header.Proses
+      ,suspend_detail.Description
+      ,suspend_detail.Amount
+      ,suspend_detail.AcctID
+      ,suspend_detail.SubAcct
+      ,suspend_detail.Nama
+      ,suspend_detail.Tempat
+      ,suspend_detail.Alamat
+      ,suspend_detail.Jenis
+      ,suspend_detail.NoKwitansi
+      ,suspend_detail.Ket
+  FROM suspend_header left join suspend_detail on suspend_detail.SuspendID=suspend_header.SuspendID where suspend_header.SuspendID='" & SuspendID & "'"
 
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "suspend")
+        Return ds
+
+    End Function
     Public Function GetDataGrid2() As DataTable
         Try
             Dim dt As New DataTable

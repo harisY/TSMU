@@ -168,4 +168,9 @@ Public Class FrmSettlement_Detail
     '    MyBase.OnFormClosing(e)
     '    e.Cancel = Not ignoreCancel
     'End Sub
+    Public Overrides Sub Proc_print()
+        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
+        FrmReportSettle.TxtNosettle.Text = TextEdit1.Text
+        FrmReportSettle.Show()
+    End Sub
 End Class
