@@ -1,9 +1,11 @@
-﻿Imports DevExpress.XtraSplashScreen
+﻿Imports System.Collections.ObjectModel
+Imports DevExpress.XtraSplashScreen
 
 Public Class frmSales_ForecastPrice
     Dim ff_Detail As frmSales_ForecastPrice_details
     Dim dtGrid As DataTable
     Dim ObjForecast As New forecast_price_models
+
     Private Sub frmSales_ForecastPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
@@ -100,8 +102,10 @@ Public Class frmSales_ForecastPrice
 
                     SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                     SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+                    'ObjForecast.ObjForecastCollection.Clear()
                     For i As Integer = 0 To dtFilter.Rows.Count - 1
                         Try
+                            'Dim ObjCollection As New forecast_price_models
                             With ObjForecast
                                 If dtFilter.Rows(i)("Tahun") Is DBNull.Value OrElse dtFilter.Rows(i)("Tahun").ToString = "" Then
                                     .Tahun = ""
@@ -706,7 +710,7 @@ Public Class frmSales_ForecastPrice
                                     '.UpdateDataByBulan(Bulan)
                                 End If
                             End With
-
+                            'ObjForecast.ObjForecastCollection.Add(ObjCollection)
                         Catch ex As Exception
                             'MsgBox(ex.Message)
                             Console.WriteLine(ex.Message)
@@ -715,6 +719,8 @@ Public Class frmSales_ForecastPrice
                             Continue For
                         End Try
                     Next
+
+
                     SplashScreenManager.CloseForm()
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     'ProgressBar1.Visible = False

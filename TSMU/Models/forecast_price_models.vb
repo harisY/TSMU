@@ -1,4 +1,6 @@
-﻿Public Class forecast_price_models
+﻿Imports System.Collections.ObjectModel
+
+Public Class forecast_price_models
     Public Property Agt_PO1 As Integer
     Public Property Agt_PO2 As Integer
     Public Property AgtHarga1 As Double
@@ -110,6 +112,8 @@
     Public Property Tahun As String
     Public Property update_date As DateTime
     Public Property updated_by As String
+
+    Public Property ObjForecastCollection() As Collection(Of forecast_price_models)
 
     Public Function GetAllDataGrid(ByVal ls_Filter As String) As DataTable
         Try

@@ -21,7 +21,16 @@ Public Class frmUploadKanbanAdm
             Grid.DataSource = dtGrid
 
             If GridView1.RowCount > 0 Then
-                GridView1.BestFitColumns()
+                With GridView1
+                    .BestFitColumns()
+                    .Columns(0).Visible = False
+                    .FixedLineWidth = 2
+                    .Columns(11).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    .Columns(12).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    .Columns(2).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+
+                End With
                 GridCellFormat(GridView1)
             End If
         Catch ex As Exception
@@ -58,6 +67,107 @@ Public Class frmUploadKanbanAdm
                 For i As Integer = 0 To dtFilter.Rows.Count - 1
                     Try
                         With Obj
+                            If dtFilter.Rows(i)("Plant Code") Is DBNull.Value OrElse dtFilter.Rows(i)("Plant Code").ToString = "" Then
+                                .PlantCode = ""
+                            Else
+                                .PlantCode = dtFilter.Rows(i)("Plant Code").ToString
+                            End If
+                            If dtFilter.Rows(i)("Shop Code") Is DBNull.Value OrElse dtFilter.Rows(i)("Shop Code").ToString = "" Then
+                                .ShopCode = ""
+                            Else
+                                .ShopCode = dtFilter.Rows(i)("Shop Code").ToString
+                            End If
+                            If dtFilter.Rows(i)("Part Category") Is DBNull.Value OrElse dtFilter.Rows(i)("Part Category").ToString = "" Then
+                                .PartCategory = ""
+                            Else
+                                .PartCategory = dtFilter.Rows(i)("Part Category").ToString
+                            End If
+                            If dtFilter.Rows(i)("Route") Is DBNull.Value OrElse dtFilter.Rows(i)("Route").ToString = "" Then
+                                .Route = ""
+                            Else
+                                .Route = dtFilter.Rows(i)("Route").ToString
+                            End If
+
+                            If dtFilter.Rows(i)("LP") Is DBNull.Value OrElse dtFilter.Rows(i)("LP").ToString = "" Then
+                                .LP = ""
+                            Else
+                                .LP = dtFilter.Rows(i)("LP").ToString
+                            End If
+                            If dtFilter.Rows(i)("Trip") Is DBNull.Value OrElse dtFilter.Rows(i)("Trip").ToString = "" Then
+                                .Lane = ""
+                            Else
+                                .Lane = dtFilter.Rows(i)("Trip").ToString
+                            End If
+                            If dtFilter.Rows(i)("Vendor Code") Is DBNull.Value OrElse dtFilter.Rows(i)("Vendor Code").ToString = "" Then
+                                .VendorCode = ""
+                            Else
+                                .VendorCode = dtFilter.Rows(i)("Vendor Code").ToString
+                            End If
+                            If dtFilter.Rows(i)("Vendor Alias") Is DBNull.Value OrElse dtFilter.Rows(i)("Vendor Alias").ToString = "" Then
+                                .VendorAlias = ""
+                            Else
+                                .VendorAlias = dtFilter.Rows(i)("Vendor Alias").ToString
+                            End If
+
+                            If dtFilter.Rows(i)("Vendor Site") Is DBNull.Value OrElse dtFilter.Rows(i)("Vendor Site").ToString = "" Then
+                                .VendorSite = ""
+                            Else
+                                .VendorSite = dtFilter.Rows(i)("Vendor Site").ToString
+                            End If
+                            If dtFilter.Rows(i)("Vendor Site Alias") Is DBNull.Value OrElse dtFilter.Rows(i)("Vendor Site Alias").ToString = "" Then
+                                .VendorSiteAlias = ""
+                            Else
+                                .VendorSiteAlias = dtFilter.Rows(i)("Vendor Site Alias").ToString
+                            End If
+                            If dtFilter.Rows(i)("Order No").ToString = "" OrElse dtFilter.Rows(i)("Order No") Is DBNull.Value Then
+                                .OrderNo = ""
+                            Else
+                                .OrderNo = dtFilter.Rows(i)("Order No").ToString
+                            End If
+
+                            If dtFilter.Rows(i)("PO Number").ToString = "" OrElse dtFilter.Rows(i)("PO Number") Is DBNull.Value Then
+                                .PONo = ""
+                            Else
+                                .PONo = dtFilter.Rows(i)("PO Number").ToString
+                            End If
+
+                            If dtFilter.Rows(i)("Calc# Date").ToString = "" OrElse dtFilter.Rows(i)("Calc# Date") Is DBNull.Value Then
+                                .CalcDate = ""
+                            Else
+                                .CalcDate = Convert.ToDateTime(dtFilter.Rows(i)("Calc# Date"))
+                            End If
+                            If dtFilter.Rows(i)("Order Date").ToString = "" OrElse dtFilter.Rows(i)("Order Date") Is DBNull.Value Then
+                                .OrderDate = ""
+                            Else
+                                .OrderDate = Convert.ToDateTime(dtFilter.Rows(i)("Order Date"))
+                            End If
+                            If dtFilter.Rows(i)("Order Time").ToString = "" OrElse dtFilter.Rows(i)("Order Time") Is DBNull.Value Then
+                                .OrderTime = ""
+                            Else
+                                .OrderTime = dtFilter.Rows(i)("Order Time")
+                            End If
+                            If dtFilter.Rows(i)("Del# Date").ToString = "" OrElse dtFilter.Rows(i)("Del# Date") Is DBNull.Value Then
+                                .DelDate = ""
+                            Else
+                                .DelDate = Convert.ToDateTime(dtFilter.Rows(i)("Del# Date"))
+                            End If
+                            If dtFilter.Rows(i)("Del# Time").ToString = "" OrElse dtFilter.Rows(i)("Del# Time") Is DBNull.Value Then
+                                .DelTime = ""
+                            Else
+                                .DelTime = dtFilter.Rows(i)("Del# Time")
+                            End If
+
+                            If dtFilter.Rows(i)("Del# Cycle").ToString = "" OrElse dtFilter.Rows(i)("Del# Cycle") Is DBNull.Value Then
+                                .DelCycle = ""
+                            Else
+                                .DelCycle = dtFilter.Rows(i)("Del# Cycle")
+                            End If
+                            If dtFilter.Rows(i)("Doc No").ToString = "" OrElse dtFilter.Rows(i)("Doc No") Is DBNull.Value Then
+                                .DocNo = ""
+                            Else
+                                .DocNo = dtFilter.Rows(i)("Doc No")
+                            End If
+                            '=======
                             If dtFilter.Rows(i)("Rec Status") Is DBNull.Value OrElse dtFilter.Rows(i)("Rec Status").ToString = "" Then
                                 .RecStatus = ""
                             Else
@@ -135,7 +245,7 @@ Public Class frmUploadKanbanAdm
                         End With
 
                     Catch ex As Exception
-                        'MsgBox(ex.Message)
+                        MsgBox(ex.Message)
                         Console.WriteLine(ex.Message)
                         WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
                         Continue For
