@@ -24,7 +24,7 @@ Public Class SuspendApprovalHeaderModel
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
-            AND Status = 'Open' Order by SuspendID"
+            AND (Status = 'Open' or Status = 'Approved') and ceklist=0 Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -152,7 +152,7 @@ Public Class SuspendApprovalHeaderModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE suspend_header " & vbCrLf &
-                                    "SET Status = 'Approved' and ceklist='1' WHERE SuspendID = '" & _SuspendID & "'"
+                                    "SET Status = 'Approved', ceklist='1' WHERE SuspendID = '" & _SuspendID & "'"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
