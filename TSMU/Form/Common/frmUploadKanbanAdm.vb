@@ -158,9 +158,9 @@ Public Class frmUploadKanbanAdm
                             End If
 
                             If dtFilter.Rows(i)("Del# Cycle").ToString = "" OrElse dtFilter.Rows(i)("Del# Cycle") Is DBNull.Value Then
-                                .DelCycle = ""
+                                .DelCycle = 0
                             Else
-                                .DelCycle = dtFilter.Rows(i)("Del# Cycle")
+                                .DelCycle = Integer.Parse(dtFilter.Rows(i)("Del# Cycle").ToString)
                             End If
                             If dtFilter.Rows(i)("Doc No").ToString = "" OrElse dtFilter.Rows(i)("Doc No") Is DBNull.Value Then
                                 .DocNo = ""
