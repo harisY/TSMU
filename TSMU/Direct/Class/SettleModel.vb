@@ -178,7 +178,6 @@ group by settle_header.ID
         End Try
     End Function
 
-
     Public Sub GetSettleById()
         Try
             Dim sql As String =
