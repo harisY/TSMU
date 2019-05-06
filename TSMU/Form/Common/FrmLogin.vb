@@ -23,6 +23,7 @@
                     gh_Common.Username = lc_User.Username
                     gh_Common.Name = lc_User.Name
                     gh_Common.AdminStatus = lc_User.AdminStatus
+                    gh_Common.GroupID = lc_User.UserGroupCode
                     gh_Common.Group = lc_User.UserGroupName
                     gh_Common.Site = lc_User.Site
                     gh_Common.Level = lc_User.Level

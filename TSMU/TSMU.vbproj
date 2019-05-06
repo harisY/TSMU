@@ -431,10 +431,10 @@
     <Compile Include="Direct\report\FrmReportSuspend.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\report\FrmRptSuspendSettle.Designer.vb">
-      <DependentUpon>FrmRptSuspendSettle.vb</DependentUpon>
+    <Compile Include="Direct\report\FrmReportSuspend2.Designer.vb">
+      <DependentUpon>FrmReportSuspend2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Direct\report\FrmRptSuspendSettle.vb">
+    <Compile Include="Direct\report\FrmReportSuspend2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\settle1.vb">
@@ -459,6 +459,12 @@
       <DependentUpon>suspendreport.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\suspendreport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\suspendreport1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>suspendreport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Common\baseForm.vb">
@@ -1226,8 +1232,8 @@
     <EmbeddedResource Include="Direct\report\FrmReportSuspend.resx">
       <DependentUpon>FrmReportSuspend.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Direct\report\FrmRptSuspendSettle.resx">
-      <DependentUpon>FrmRptSuspendSettle.vb</DependentUpon>
+    <EmbeddedResource Include="Direct\report\FrmReportSuspend2.resx">
+      <DependentUpon>FrmReportSuspend2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settle1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1242,6 +1248,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\suspendreport.resx">
       <DependentUpon>suspendreport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\suspendreport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>suspendreport1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
