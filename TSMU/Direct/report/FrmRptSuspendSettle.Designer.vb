@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmRptSuspendSettle
+Partial Class FrmSuspendSettle
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -34,37 +34,32 @@ Partial Class FrmRptSuspendSettle
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me._CmbJenis = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
         '
         Me.Grid.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(3, 3)
+        Me.Grid.Location = New System.Drawing.Point(3, 46)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(800, 506)
+        Me.Grid.Size = New System.Drawing.Size(800, 432)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -186,137 +181,86 @@ Partial Class FrmRptSuspendSettle
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
         Me.XtraTabControl1.Size = New System.Drawing.Size(816, 550)
         Me.XtraTabControl1.TabIndex = 3
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
         'XtraTabPage1
         '
+        Me.XtraTabPage1.Controls.Add(Me.SimpleButton1)
+        Me.XtraTabPage1.Controls.Add(Me._CmbJenis)
+        Me.XtraTabPage1.Controls.Add(Me.Label3)
+        Me.XtraTabPage1.Controls.Add(Me.DateEdit2)
+        Me.XtraTabPage1.Controls.Add(Me.DateEdit1)
+        Me.XtraTabPage1.Controls.Add(Me.Label2)
+        Me.XtraTabPage1.Controls.Add(Me.Label1)
         Me.XtraTabPage1.Controls.Add(Me.Grid)
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.Size = New System.Drawing.Size(810, 522)
-        Me.XtraTabPage1.Text = "Settlement"
+        Me.XtraTabPage1.Text = "Settlement Filter By Date"
         '
-        'XtraTabPage2
+        'SimpleButton1
         '
-        Me.XtraTabPage2.Controls.Add(Me.GridControl1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(810, 522)
-        Me.XtraTabPage2.Text = "Settlement Paid"
+        Me.SimpleButton1.Location = New System.Drawing.Point(600, 10)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(49, 23)
+        Me.SimpleButton1.TabIndex = 25
+        Me.SimpleButton1.Text = "Load"
         '
-        'GridControl1
+        '_CmbJenis
         '
-        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(5, 3)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(800, 511)
-        Me.GridControl1.TabIndex = 3
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me._CmbJenis.FormattingEnabled = True
+        Me._CmbJenis.Items.AddRange(New Object() {"ALL", "SP", "EN"})
+        Me._CmbJenis.Location = New System.Drawing.Point(464, 11)
+        Me._CmbJenis.Name = "_CmbJenis"
+        Me._CmbJenis.Size = New System.Drawing.Size(121, 21)
+        Me._CmbJenis.TabIndex = 24
+        Me._CmbJenis.Text = "ALL"
         '
-        'GridView2
+        'Label3
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowAutoFilterRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(420, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.TabIndex = 23
+        Me.Label3.Text = "Jenis :"
         '
-        'GridColumn11
+        'DateEdit2
         '
-        Me.GridColumn11.Caption = "ID"
-        Me.GridColumn11.FieldName = "ID"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.FixedWidth = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
+        Me.DateEdit2.EditValue = Nothing
+        Me.DateEdit2.Location = New System.Drawing.Point(257, 12)
+        Me.DateEdit2.Name = "DateEdit2"
+        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit2.TabIndex = 22
         '
-        'GridColumn12
+        'DateEdit1
         '
-        Me.GridColumn12.Caption = "Settle ID"
-        Me.GridColumn12.FieldName = "SettleID"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.FixedWidth = True
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 100
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Location = New System.Drawing.Point(54, 12)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit1.TabIndex = 21
         '
-        'GridColumn13
+        'Label2
         '
-        Me.GridColumn13.Caption = "Suspend ID"
-        Me.GridColumn13.FieldName = "SuspendID"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.FixedWidth = True
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 100
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(217, 15)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 20
+        Me.Label2.Text = "Until :"
         '
-        'GridColumn14
+        'Label1
         '
-        Me.GridColumn14.Caption = "Department"
-        Me.GridColumn14.FieldName = "DeptID"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.FixedWidth = True
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Remark"
-        Me.GridColumn15.FieldName = "Remark"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.FixedWidth = True
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
-        Me.GridColumn15.Width = 200
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Date"
-        Me.GridColumn16.FieldName = "Tgl"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.FixedWidth = True
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 5
-        Me.GridColumn16.Width = 80
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Currency"
-        Me.GridColumn17.FieldName = "CuryID"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.FixedWidth = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
-        Me.GridColumn17.Width = 50
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Amount"
-        Me.GridColumn18.FieldName = "Total"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.FixedWidth = True
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 7
-        Me.GridColumn18.Width = 100
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Suspend Amount"
-        Me.GridColumn19.FieldName = "SuspendAmount"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 8
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Settle Amount"
-        Me.GridColumn20.FieldName = "SettleAmount"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 9
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "From :"
         '
         'FrmSuspendSettle
         '
@@ -330,9 +274,11 @@ Partial Class FrmRptSuspendSettle
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage1.PerformLayout()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -353,17 +299,11 @@ Partial Class FrmRptSuspendSettle
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents _CmbJenis As ComboBox
+    Friend WithEvents Label3 As Label
 End Class

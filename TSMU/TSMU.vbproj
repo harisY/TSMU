@@ -431,6 +431,12 @@
     <Compile Include="Direct\report\FrmReportSuspend.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\report\FrmRptSuspendSettle.Designer.vb">
+      <DependentUpon>FrmRptSuspendSettle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmRptSuspendSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\settle1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1219,6 +1225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportSuspend.resx">
       <DependentUpon>FrmReportSuspend.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmRptSuspendSettle.resx">
+      <DependentUpon>FrmRptSuspendSettle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settle1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

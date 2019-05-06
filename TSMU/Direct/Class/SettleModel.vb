@@ -12,6 +12,9 @@ Public Class SettleHeader
     Public Property Tgl As DateTime
     Public Property Total As Double
     Public Property TotalSuspend As Double
+    Public Property Tgl1 As Date
+    Public Property Tgl2 As Date
+    Public Property Jenis As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
 
     Public Function GetDataGrid() As DataTable
@@ -69,6 +72,40 @@ where pay=0 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataGridRpt() As DataTable
+
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,
+            sum(settle_detail.suspendAmount)suspendAmount
+            ,sum(settle_detail.SettleAmount)SettleAmount
+            , settle_header.pay
+FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header.Tgl>='" & Tgl1 & "' and settle_header.Tgl<='" & Tgl2 & "' and  group by settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,settle_header.pay
+"
+
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Function loadreport2() As DataSet
         Dim query As String
         query = "SELECT settle_detail.SettleID
