@@ -4,14 +4,14 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
-Public Class FrmSuspendSettle
+Public Class FrmRptSuspendSettle
     Dim ff_Detail As FrmSuspendSettleDetail
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim ObjSettle As SettleHeader
 
-    Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmRptSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         '' Call LoadGrid()
         ''Call LoadGrid2()
@@ -109,7 +109,7 @@ Public Class FrmSuspendSettle
     Dim ID As String
     Dim suspendid As String
     Dim suspend1 As String
-    Private Sub FrmSuspendSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Private Sub FrmRptSuspendSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
@@ -167,7 +167,7 @@ Public Class FrmSuspendSettle
                     Call CallFrm(ID,
                              suspendid,
                              GridView1.RowCount)
-                    End If
+                End If
             End If
 
         Catch ex As Exception
