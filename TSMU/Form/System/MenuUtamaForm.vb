@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Reflection
+Imports System.Windows.Forms
 
 Public Class MenuUtamaForm
 
@@ -158,27 +159,36 @@ Public Class MenuUtamaForm
         'Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
     Private Sub ListAppForms()
+
         '# Load default forms...
         Dim frm As Form = Nothing
         Dim ObjType As Type = Nothing
-        For Each MyType As Type In MyAss.GetTypes
-            ObjType = MyType.BaseType
-            Do While ObjType IsNot Nothing AndAlso ObjType.Name <> "Form"
-                ObjType = ObjType.BaseType
-            Loop
-            If ObjType IsNot Nothing AndAlso ObjType.Name = "Form" Then
-                If MyType.BaseType.Name.ToLower.Trim = "baseform" Then
-                    Try
-                        frm = MyAss.CreateInstance(MyType.FullName)
-                    Catch ex As Exception
-                        frm = Nothing
-                    End Try
-                    If frm IsNot Nothing Then
-                        MyForms.Add(frm)
+        Try
+            For Each MyType As Type In MyAss.GetTypes
+                ObjType = MyType.BaseType
+                Do While ObjType IsNot Nothing AndAlso ObjType.Name <> "Form"
+                    ObjType = ObjType.BaseType
+                Loop
+                If ObjType IsNot Nothing AndAlso ObjType.Name = "Form" Then
+                    If MyType.BaseType.Name.ToLower.Trim = "baseform" Then
+                        Try
+                            frm = MyAss.CreateInstance(MyType.FullName)
+                        Catch ex As Exception
+                            frm = Nothing
+                        End Try
+                        If frm IsNot Nothing Then
+                            MyForms.Add(frm)
+                        End If
                     End If
                 End If
+            Next
+        Catch ex As Exception
+            If TypeOf ex Is System.Reflection.ReflectionTypeLoadException Then
+                Dim typeLoadException = TryCast(ex, ReflectionTypeLoadException)
+                Dim loaderExceptions = typeLoadException.LoaderExceptions
             End If
-        Next
+        End Try
+
         '# Additional forms...
         Try
             frm = MyAss.CreateInstance(fs_AssProduct & ".FrmTrans_Closing")
