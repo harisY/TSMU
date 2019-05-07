@@ -146,7 +146,7 @@ Public Class FrmSuspend_Detail
                 TxtNoSuspend.Text = ""
                 TxtPrNo.Text = ""
                 TxtCurrency.SelectedIndex = 0
-                TxtDep.Text = ""
+                TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
