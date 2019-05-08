@@ -2,7 +2,7 @@
     Dim laporan As New suspendreport1
     Dim report As New SuspendHeaderModel
     Private Sub FrmReportSuspend2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        txtdept.Text = gh_Common.Group
+        txtdept.Text = gh_Common.GroupID
     End Sub
     Sub loadreport()
         report.DeptID = txtdept.Text
@@ -14,11 +14,13 @@
         'ds = report.reportsj
         'laporan.PrintToPrinter(1, False, 0, 0)
 
-        laporan.DataDefinition.FormulaFields("tgld").Text = dari.Value
-        laporan.DataDefinition.FormulaFields("tgls").Text = sampai.Value
 
-        laporan.DataDefinition.FormulaFields("tglawal").Text = dari.Value
-        laporan.DataDefinition.FormulaFields("tglakhir").Text = sampai.Value
+
+
+        ''  laporan.DataDefinition.FormulaFields("tgls").Text = sampai.Value
+
+        laporan.DataDefinition.FormulaFields("tglawal").Text = "'" & dari.Value & "'"
+        laporan.DataDefinition.FormulaFields("tglakhir").Text = "'" & sampai.Value & "'"
 
         laporan.SetDataSource(ds)
         With CrystalReportViewer1
