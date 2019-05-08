@@ -495,13 +495,13 @@ Public Class frmBoM_detail
                 If ChekRegular.CheckState = CheckState.Checked Then
                     fc_ClassBoM.UpdateBoM(intRevisi, True, "REGULAR")
                 Else
-                    'fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
-                    If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
-                        fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
-                    Else
-                        _TxtRefType.Focus()
-                        Throw New Exception("Silahkan pilih No. Referensi !")
-                    End If
+                    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'If _TxtRefType.Text <> "" AndAlso _TxtRefNo.Text <> "" Then
+                    '    fc_ClassBoM.UpdateBoM(intRevisi, False, _cmbStatus.Text)
+                    'Else
+                    '    _TxtRefType.Focus()
+                    '    Throw New Exception("Silahkan pilih No. Referensi !")
+                    'End If
 
                 End If
             End If

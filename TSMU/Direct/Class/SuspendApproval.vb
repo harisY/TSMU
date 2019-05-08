@@ -24,7 +24,7 @@ Public Class SuspendApprovalHeaderModel
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
-            AND (Status = 'Open' or Status = 'Approved') and ceklist=0 Order by SuspendID"
+            AND (Status = 'Open') and ceklist=0 Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
