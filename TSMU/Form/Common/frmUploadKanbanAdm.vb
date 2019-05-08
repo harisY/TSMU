@@ -251,6 +251,12 @@ Public Class frmUploadKanbanAdm
                         Continue For
                     End Try
                 Next
+
+                Dim dtKanban As New DataTable
+                dtKanban = Obj.GetKanban
+                For i As Integer = 0 To dtKanban.Rows.Count - 1
+
+                Next
                 SplashScreenManager.CloseForm()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 LoadGrid()
@@ -260,5 +266,27 @@ Public Class frmUploadKanbanAdm
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    'Public Overrides Sub Proc_PrintPreview()
+    '    Try
 
+    '        Dim ds As DataSet = New DataSet
+    '        Dim dt As DataTable = New DataTable
+    '        ds = SuratJalan.PrintPO(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text, Format(_TxtTglKirimFrom.EditValue, gs_FormatSQLDate), Format(_TglKirimTo.EditValue, gs_FormatSQLDate))
+
+    '        dt = ds.Tables("PrintPO")
+
+    '        Dim Laporan As Testing = New Testing
+    '        With Laporan
+    '            .DataSource = dt
+    '            '.DataMember = ds.Tables("PrintPO").TableName
+    '        End With
+
+    '        Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+    '            PrintTool.ShowPreviewDialog()
+    '            PrintTool.ShowPreview(UserLookAndFeel.Default)
+    '        End Using
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
 End Class

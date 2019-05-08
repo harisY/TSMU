@@ -250,7 +250,6 @@ Public Class frm_payment_details
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-
             If sender.Name = _TxtVendorID.Name Then
                 dtSearch = ObjPaymentDetail.GetVendor
                 ls_OldKode = _TxtVendorID.Text.Trim
@@ -274,8 +273,6 @@ Public Class frm_payment_details
             Dim Value2 As String = ""
             Dim Value3 As String = ""
             Dim Value4 As String = ""
-
-
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 

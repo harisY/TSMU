@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmRptSuspendSettle
+Partial Class FrmSuspendSettle
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.

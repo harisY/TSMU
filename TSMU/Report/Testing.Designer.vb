@@ -60,6 +60,7 @@ Partial Public Class Testing
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine8 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine7 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
         Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
@@ -70,7 +71,6 @@ Partial Public Class Testing
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ExcelDataSource1 = New DevExpress.DataAccess.Excel.ExcelDataSource()
-        Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -82,7 +82,7 @@ Partial Public Class Testing
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.panel1})
-        Me.Detail.HeightF = 295.7021!
+        Me.Detail.HeightF = 288.5354!
         Me.Detail.MultiColumn.ColumnCount = 3
         Me.Detail.MultiColumn.ColumnSpacing = 9.842491!
         Me.Detail.MultiColumn.ColumnWidth = 355.1181!
@@ -99,7 +99,7 @@ Partial Public Class Testing
         Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine17, Me.XrLine16, Me.XrLine15, Me.XrLine14, Me.XrLabel7, Me.XrLine6, Me.XrLine5, Me.XrLine13, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine8, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.panel1.Name = "panel1"
-        Me.panel1.SizeF = New System.Drawing.SizeF(347.7717!, 293.2437!)
+        Me.panel1.SizeF = New System.Drawing.SizeF(347.7717!, 285.7021!)
         '
         'XrLabel23
         '
@@ -549,6 +549,21 @@ Partial Public Class Testing
         Me.XrLine7.SizeF = New System.Drawing.SizeF(3.125!, 38.54166!)
         Me.XrLine7.StylePriority.UseBorders = False
         '
+        'XrBarCode1
+        '
+        Me.XrBarCode1.AutoModule = True
+        Me.XrBarCode1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrBarCode1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InvtID]")})
+        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(24.00001!, 42.49999!)
+        Me.XrBarCode1.Name = "XrBarCode1"
+        Me.XrBarCode1.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
+        Me.XrBarCode1.ShowText = False
+        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(301.6667!, 32.29167!)
+        Me.XrBarCode1.StylePriority.UseBorders = False
+        Me.XrBarCode1.StylePriority.UseTextAlignment = False
+        Me.XrBarCode1.Symbology = Code128Generator1
+        Me.XrBarCode1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
+        '
         'XrLine4
         '
         Me.XrLine4.Borders = DevExpress.XtraPrinting.BorderSide.None
@@ -649,21 +664,6 @@ Partial Public Class Testing
         'ExcelDataSource1
         '
         Me.ExcelDataSource1.Name = "ExcelDataSource1"
-        '
-        'XrBarCode1
-        '
-        Me.XrBarCode1.AutoModule = True
-        Me.XrBarCode1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrBarCode1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InvtID]")})
-        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(24.00001!, 42.49999!)
-        Me.XrBarCode1.Name = "XrBarCode1"
-        Me.XrBarCode1.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
-        Me.XrBarCode1.ShowText = False
-        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(301.6667!, 32.29167!)
-        Me.XrBarCode1.StylePriority.UseBorders = False
-        Me.XrBarCode1.StylePriority.UseTextAlignment = False
-        Me.XrBarCode1.Symbology = Code128Generator1
-        Me.XrBarCode1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter
         '
         'Testing
         '

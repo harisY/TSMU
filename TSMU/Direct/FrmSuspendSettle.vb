@@ -4,14 +4,14 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
-Public Class FrmRptSuspendSettle
+Public Class FrmSuspendSettle
     Dim ff_Detail As FrmSuspendSettleDetail
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim ObjSettle As SettleHeader
 
-    Private Sub FrmRptSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call LoadGrid2()
