@@ -3,29 +3,12 @@
     End Class
 
     Partial Public Class QRCodeDataTable
+        Private Sub QRCodeDataTable_ColumnChanging(sender As Object, e As DataColumnChangeEventArgs) Handles Me.ColumnChanging
+            If (e.Column.ColumnName = Me.InvtIDColumn.ColumnName) Then
+                'Add user code here
+            End If
 
-    End Class
-
-    Partial Public Class PrintPODataTable
-
-    End Class
-
-    Partial Class SalesForecastTableDataTable
-
-    End Class
-
-    Partial Class SalesPriceTableDataTable
-    End Class
-
-    Partial Class DataTable1DataTable
-
-    End Class
-
-    Partial Class dt_sales_budgetDataTable
-
-    End Class
-
-    Partial Class view_bomDataTable
+        End Sub
 
     End Class
 

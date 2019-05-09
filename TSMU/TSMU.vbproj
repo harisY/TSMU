@@ -819,6 +819,12 @@
     <Compile Include="Form\System\frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmLookUpBarcode.Designer.vb">
+      <DependentUpon>FrmLookUpBarcode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmLookUpBarcode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmSystemExcelBarcode.Designer.vb">
       <DependentUpon>FrmSystemExcelBarcode.vb</DependentUpon>
     </Compile>
@@ -1440,6 +1446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmLookUpBarcode.resx">
+      <DependentUpon>FrmLookUpBarcode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystemExcelBarcode.resx">
       <DependentUpon>FrmSystemExcelBarcode.vb</DependentUpon>
