@@ -56,7 +56,7 @@ Public Class FrmEntertainSettleDetail
     End Sub
 
     Private Sub FrmEntertainSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
     End Sub
@@ -107,6 +107,13 @@ Public Class FrmEntertainSettleDetail
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    Public Overrides Sub Proc_print()
+        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
+        FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
+        FrmReportSettle.Show()
+    End Sub
+
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
@@ -485,4 +492,6 @@ Public Class FrmEntertainSettleDetail
         Next
         TxtTotExpense.Text = Format(Total, gs_FormatBulat)
     End Sub
+
+
 End Class

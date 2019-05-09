@@ -80,7 +80,7 @@ Public Class FrmEntertain_Detail
 
     End Sub
     Private Sub FrmEntertain_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call CreateTable()
         Call InitialSetForm()
@@ -591,4 +591,11 @@ Public Class FrmEntertain_Detail
     Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
         TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatBulat)
     End Sub
+
+    Public Overrides Sub Proc_print()
+        FrmReportEntertain.StartPosition = FormStartPosition.CenterScreen
+        FrmReportEntertain.TxtNoSuspend.Text = TxtNoSuspend.Text
+        FrmReportEntertain.Show()
+    End Sub
+
 End Class
