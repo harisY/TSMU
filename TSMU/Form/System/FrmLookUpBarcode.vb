@@ -48,6 +48,12 @@ Public Class FrmLookUpBarcode
 
             If TxtKodePart.Text = "" OrElse CmbBulan.Text = "" OrElse TxtFrom.Text = "" OrElse TxtTo.Text = "" Then
                 Throw New Exception("Silahkan lengkapi data")
+            ElseIf TxtFrom.Text = "0" OrElse TxtTo.Text = "0" Then
+                TxtFrom.Focus()
+                Throw New Exception("Page From/To tidak boleh '0'")
+            ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
+                TxtFrom.Focus()
+                Throw New Exception("Page From tidak boleh lebih besar dari To")
             End If
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
@@ -85,11 +91,11 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(15) = Trim(dt.Rows(0).Item("Warna") & "")
             Next
 
-            Dim Laporan As Testing = New Testing
+            Dim Laporan As New Testing
             With Laporan
                 .param1 = TxtKodePart.Text
                 .param2 = CmbBulan.Text
-                .param3 = "No.Form TSC-1/QR/INJ/01/009, Tgl Terbit. 30/11/11, Rev. 2 Tgl Revisi : 26/03/18"
+                '.param3 = "No.Form TSC-1/QR/INJ/01/009, Tgl Terbit. 30/11/11, Rev. 2 Tgl Revisi : 26/03/18"
                 .DataSource = dtTemp
                 '.DataMember = ds.Tables("PrintPO").TableName
             End With
