@@ -189,28 +189,31 @@ Public Class frmBarcodeGenerate
 
     Public Overrides Sub Proc_PrintPreview()
         Try
-            If GridView1.RowCount = 0 Then
-                Throw New Exception("Tidak ada data yang di akan print.")
-            End If
+            Dim f As New FrmLookUpBarcode
+            f.StartPosition = FormStartPosition.CenterParent
+            f.ShowDialog()
+            'If GridView1.RowCount = 0 Then
+            '    Throw New Exception("Tidak ada data yang di akan print.")
+            'End If
 
-            Dim ds As DataSet = New DataSet
-            Dim dt As DataTable = New DataTable
-            ds = Obj.PrintQRCOde()
+            'Dim ds As DataSet = New DataSet
+            'Dim dt As DataTable = New DataTable
+            'ds = Obj.PrintQRCOde()
 
-            dt = ds.Tables("QRCode")
+            'dt = ds.Tables("QRCode")
 
-            Dim Laporan As Testing = New Testing
-            With Laporan
-                '.param1 = No
-                '.param2 = No
-                .DataSource = dt
-                '.DataMember = ds.Tables("PrintPO").TableName
-            End With
+            'Dim Laporan As Testing = New Testing
+            'With Laporan
+            '    '.param1 = No
+            '    '.param2 = No
+            '    .DataSource = dt
+            '    '.DataMember = ds.Tables("PrintPO").TableName
+            'End With
 
-            Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-                PrintTool.ShowPreviewDialog()
-                PrintTool.ShowPreview(UserLookAndFeel.Default)
-            End Using
+            'Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+            '    PrintTool.ShowPreviewDialog()
+            '    PrintTool.ShowPreview(UserLookAndFeel.Default)
+            'End Using
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
