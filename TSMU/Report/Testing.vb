@@ -6,6 +6,6 @@ Public Class Testing
     Private Sub Testing_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
         LblKodePart.Text = param1
         LblBulan.Text = param2
-        LblIso.Text = param3
+        'LblIso.Text = param3
     End Sub
 End Class
