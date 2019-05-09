@@ -82,7 +82,7 @@
         End Try
     End Sub
 
-    Public Function PrintQRCOde() As DataSet
+    Public Function PrintQRCOde(KodePart As String) As DataSet
         Dim ds As dsLaporan
         Try
             Dim sql As String =
@@ -109,7 +109,9 @@
                 ,[StatusMilik]
                 ,[InventoryIdMat]
                 ,[Material]
-            FROM [BarcodeGenerate]"
+                ,0 as No
+                ,WarnaPasscard Warna
+            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
         Catch ex As Exception
