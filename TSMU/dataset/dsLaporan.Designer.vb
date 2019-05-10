@@ -6047,21 +6047,13 @@ Partial Public Class dsLaporan
         
         Private columnBulan As Global.System.Data.DataColumn
         
-        Private columnStatus As Global.System.Data.DataColumn
-        
         Private columnQty As Global.System.Data.DataColumn
-        
-        Private columnQuality As Global.System.Data.DataColumn
-        
-        Private columnOutgoing As Global.System.Data.DataColumn
-        
-        Private columnDeliveryDate As Global.System.Data.DataColumn
-        
-        Private columnColor2 As Global.System.Data.DataColumn
         
         Private columnQrCode As Global.System.Data.DataColumn
         
         Private columnWarna As Global.System.Data.DataColumn
+        
+        Private columnStatus As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -6164,49 +6156,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnStatus
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property QtyColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQty
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property QualityColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnQuality
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property OutgoingColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutgoing
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DeliveryDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDeliveryDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Color2Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnColor2
             End Get
         End Property
         
@@ -6223,6 +6175,14 @@ Partial Public Class dsLaporan
         Public ReadOnly Property WarnaColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnWarna
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStatus
             End Get
         End Property
         
@@ -6263,25 +6223,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddQRCodeRow( _
-                    ByVal No As Integer,  _
-                    ByVal InvtID As String,  _
-                    ByVal Color As String,  _
-                    ByVal PartNo As String,  _
-                    ByVal KodePart As String,  _
-                    ByVal JobNo As String,  _
-                    ByVal PartName As String,  _
-                    ByVal Bulan As String,  _
-                    ByVal Status As String,  _
-                    ByVal Qty As String,  _
-                    ByVal Quality As String,  _
-                    ByVal Outgoing As String,  _
-                    ByVal DeliveryDate As String,  _
-                    ByVal Color2 As String,  _
-                    ByVal QrCode As String,  _
-                    ByVal Warna As String) As QRCodeRow
+        Public Overloads Function AddQRCodeRow(ByVal No As Integer, ByVal InvtID As String, ByVal Color As String, ByVal PartNo As String, ByVal KodePart As String, ByVal JobNo As String, ByVal PartName As String, ByVal Bulan As String, ByVal Qty As String, ByVal QrCode As String, ByVal Warna As String, ByVal Status As String) As QRCodeRow
             Dim rowQRCodeRow As QRCodeRow = CType(Me.NewRow,QRCodeRow)
-            Dim columnValuesArray() As Object = New Object() {No, InvtID, Color, PartNo, KodePart, JobNo, PartName, Bulan, Status, Qty, Quality, Outgoing, DeliveryDate, Color2, QrCode, Warna}
+            Dim columnValuesArray() As Object = New Object() {No, InvtID, Color, PartNo, KodePart, JobNo, PartName, Bulan, Qty, QrCode, Warna, Status}
             rowQRCodeRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowQRCodeRow)
             Return rowQRCodeRow
@@ -6312,14 +6256,10 @@ Partial Public Class dsLaporan
             Me.columnJobNo = MyBase.Columns("JobNo")
             Me.columnPartName = MyBase.Columns("PartName")
             Me.columnBulan = MyBase.Columns("Bulan")
-            Me.columnStatus = MyBase.Columns("Status")
             Me.columnQty = MyBase.Columns("Qty")
-            Me.columnQuality = MyBase.Columns("Quality")
-            Me.columnOutgoing = MyBase.Columns("Outgoing")
-            Me.columnDeliveryDate = MyBase.Columns("DeliveryDate")
-            Me.columnColor2 = MyBase.Columns("Color2")
             Me.columnQrCode = MyBase.Columns("QrCode")
             Me.columnWarna = MyBase.Columns("Warna")
+            Me.columnStatus = MyBase.Columns("Status")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6341,22 +6281,14 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnPartName)
             Me.columnBulan = New Global.System.Data.DataColumn("Bulan", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBulan)
-            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStatus)
             Me.columnQty = New Global.System.Data.DataColumn("Qty", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQty)
-            Me.columnQuality = New Global.System.Data.DataColumn("Quality", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQuality)
-            Me.columnOutgoing = New Global.System.Data.DataColumn("Outgoing", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutgoing)
-            Me.columnDeliveryDate = New Global.System.Data.DataColumn("DeliveryDate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDeliveryDate)
-            Me.columnColor2 = New Global.System.Data.DataColumn("Color2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnColor2)
             Me.columnQrCode = New Global.System.Data.DataColumn("QrCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQrCode)
             Me.columnWarna = New Global.System.Data.DataColumn("Warna", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWarna)
+            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStatus)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14748,21 +14680,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Status() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQRCode.StatusColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'QRCode' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQRCode.StatusColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Qty() As String
             Get
                 Try 
@@ -14773,66 +14690,6 @@ Partial Public Class dsLaporan
             End Get
             Set
                 Me(Me.tableQRCode.QtyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Quality() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQRCode.QualityColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Quality' in table 'QRCode' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQRCode.QualityColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Outgoing() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQRCode.OutgoingColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Outgoing' in table 'QRCode' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQRCode.OutgoingColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DeliveryDate() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQRCode.DeliveryDateColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeliveryDate' in table 'QRCode' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQRCode.DeliveryDateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Color2() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQRCode.Color2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Color2' in table 'QRCode' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQRCode.Color2Column) = value
             End Set
         End Property
         
@@ -14863,6 +14720,21 @@ Partial Public Class dsLaporan
             End Get
             Set
                 Me(Me.tableQRCode.WarnaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableQRCode.StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'QRCode' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQRCode.StatusColumn) = value
             End Set
         End Property
         
@@ -14964,18 +14836,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsStatusNull() As Boolean
-            Return Me.IsNull(Me.tableQRCode.StatusColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetStatusNull()
-            Me(Me.tableQRCode.StatusColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsQtyNull() As Boolean
             Return Me.IsNull(Me.tableQRCode.QtyColumn)
         End Function
@@ -14984,54 +14844,6 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetQtyNull()
             Me(Me.tableQRCode.QtyColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsQualityNull() As Boolean
-            Return Me.IsNull(Me.tableQRCode.QualityColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetQualityNull()
-            Me(Me.tableQRCode.QualityColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsOutgoingNull() As Boolean
-            Return Me.IsNull(Me.tableQRCode.OutgoingColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetOutgoingNull()
-            Me(Me.tableQRCode.OutgoingColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDeliveryDateNull() As Boolean
-            Return Me.IsNull(Me.tableQRCode.DeliveryDateColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDeliveryDateNull()
-            Me(Me.tableQRCode.DeliveryDateColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsColor2Null() As Boolean
-            Return Me.IsNull(Me.tableQRCode.Color2Column)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetColor2Null()
-            Me(Me.tableQRCode.Color2Column) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15056,6 +14868,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetWarnaNull()
             Me(Me.tableQRCode.WarnaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsStatusNull() As Boolean
+            Return Me.IsNull(Me.tableQRCode.StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetStatusNull()
+            Me(Me.tableQRCode.StatusColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
