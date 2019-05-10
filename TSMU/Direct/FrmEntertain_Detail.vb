@@ -593,9 +593,13 @@ Public Class FrmEntertain_Detail
     End Sub
 
     Public Overrides Sub Proc_print()
-        FrmReportEntertain.StartPosition = FormStartPosition.CenterScreen
-        FrmReportEntertain.TxtNoSuspend.Text = TxtNoSuspend.Text
-        FrmReportEntertain.Show()
+        Try
+            Dim newform As New FrmReportEntertain
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.TxtNoSuspend.Text = TxtNoSuspend.Text
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
-
 End Class
