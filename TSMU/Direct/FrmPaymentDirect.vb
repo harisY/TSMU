@@ -14,9 +14,19 @@ Public Class FrmPaymentDirect
         ''      ObjCashBank.curyid = Trim(_txtcuryid.Text)
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
-        _txtsaldo.Text = ObjCashBank.saldo2
-        _txtsaldo.Text = Format(Val(_txtsaldo.Text), "#,#.##")
-
+        Dim saldo As Double
+        saldo = ObjCashBank.saldo2
+        If saldo = 0 Then
+            _txtsaldo.Text = saldo
+        Else
+            _txtsaldo.Text = Format(saldo, "#,#.##")
+        End If
+        '' _txtsaldo.Text = ObjCashBank.saldo2
+        'If _txtsaldo.Text = "0" Then
+        '    _txtsaldo.Text = "0"
+        'Else
+        ''_txtsaldo.Text = Format(Val(_txtsaldo.Text), "#,#.##")
+        'End If
         'Dim dtGrid As New DataTable
         'dtGrid = suspen.GetGridDetailSuspendPaymentByAccountID
 
