@@ -169,8 +169,13 @@ Public Class FrmSettlement_Detail
     '    e.Cancel = Not ignoreCancel
     'End Sub
     Public Overrides Sub Proc_print()
-        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
-        FrmReportSettle.TxtNosettle.Text = TextEdit1.Text
-        FrmReportSettle.Show()
+        Try
+            Dim newform As New FrmReportSettle
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.TxtNosettle.Text = TextEdit1.Text
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

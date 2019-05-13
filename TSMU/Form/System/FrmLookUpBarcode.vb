@@ -4,7 +4,6 @@ Imports DevExpress.XtraReports.UI
 
 Public Class FrmLookUpBarcode
     Dim Obj As New BarcodeGenerate
-
     Dim dtTemp As DataTable
     Private Sub TempTable()
         dtTemp = New DataTable
@@ -18,15 +17,17 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("Bulan")
         dtTemp.Columns.Add("Status")
         dtTemp.Columns.Add("Qty")
-        dtTemp.Columns.Add("Quality")
-        dtTemp.Columns.Add("Outgoing")
-        dtTemp.Columns.Add("DeliveryDate")
-        dtTemp.Columns.Add("Color2")
         dtTemp.Columns.Add("QrCode")
         dtTemp.Columns.Add("Warna")
         dtTemp.Clear()
     End Sub
-
+    Private Sub FillComboBulan()
+        Dim tahun() As String = {"", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "November", "Desember"}
+        CmbBulan.Properties.Items.Clear()
+        For Each var As String In tahun
+            CmbBulan.Properties.Items.Add(var)
+        Next
+    End Sub
     Private Sub GenerateRow()
         Try
             Dim a As Integer
@@ -57,7 +58,7 @@ Public Class FrmLookUpBarcode
             End If
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
-            ds = Obj.PrintQRCOde(TxtKodePart.Text)
+            ds = Obj.PrintQRCOde(TxtKodePart.Text, gh_Common.Site)
 
             dt = ds.Tables("QRCode")
 
@@ -83,12 +84,8 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = CmbBulan.Text
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(8) = Trim(dt.Rows(0).Item("Status") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(9) = Trim(dt.Rows(0).Item("Qty") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("Quality") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(1) = Trim(dt.Rows(0).Item("Outgoing") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("DeliveryDate") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(dt.Rows(0).Item("Color2") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(14) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & i & "-" & CmbBulan.Text
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(15) = Trim(dt.Rows(0).Item("Warna") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(dt.Rows(0).Item("Warna") & "")
             Next
 
             Dim Laporan As New Testing
@@ -113,7 +110,7 @@ Public Class FrmLookUpBarcode
 
     End Sub
 
-    Private Sub CmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CmbSite.KeyPress
+    Private Sub CmbSite_KeyPress(sender As Object, e As KeyPressEventArgs)
         e.Handled = True
     End Sub
 

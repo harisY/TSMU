@@ -443,6 +443,12 @@
     <Compile Include="Direct\report\FrmReportSuspend2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\report\relasi.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>relasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\settle1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1255,6 +1261,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportSuspend2.resx">
       <DependentUpon>FrmReportSuspend2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\relasi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>relasi.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settle1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

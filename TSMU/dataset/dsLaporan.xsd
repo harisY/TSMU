@@ -348,14 +348,10 @@
               <xs:element name="JobNo" msprop:Generator_ColumnVarNameInTable="columnJobNo" msprop:Generator_ColumnPropNameInRow="JobNo" msprop:Generator_ColumnPropNameInTable="JobNoColumn" msprop:Generator_UserColumnName="JobNo" type="xs:string" minOccurs="0" />
               <xs:element name="PartName" msprop:Generator_ColumnVarNameInTable="columnPartName" msprop:Generator_ColumnPropNameInRow="PartName" msprop:Generator_ColumnPropNameInTable="PartNameColumn" msprop:Generator_UserColumnName="PartName" type="xs:string" minOccurs="0" />
               <xs:element name="Bulan" msprop:Generator_ColumnVarNameInTable="columnBulan" msprop:Generator_ColumnPropNameInRow="Bulan" msprop:Generator_ColumnPropNameInTable="BulanColumn" msprop:Generator_UserColumnName="Bulan" type="xs:string" minOccurs="0" />
-              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:string" minOccurs="0" />
-              <xs:element name="Quality" msprop:Generator_ColumnVarNameInTable="columnQuality" msprop:Generator_ColumnPropNameInRow="Quality" msprop:Generator_ColumnPropNameInTable="QualityColumn" msprop:Generator_UserColumnName="Quality" type="xs:string" minOccurs="0" />
-              <xs:element name="Outgoing" msprop:Generator_ColumnVarNameInTable="columnOutgoing" msprop:Generator_ColumnPropNameInRow="Outgoing" msprop:Generator_ColumnPropNameInTable="OutgoingColumn" msprop:Generator_UserColumnName="Outgoing" type="xs:string" minOccurs="0" />
-              <xs:element name="DeliveryDate" msprop:Generator_ColumnVarNameInTable="columnDeliveryDate" msprop:Generator_ColumnPropNameInRow="DeliveryDate" msprop:Generator_ColumnPropNameInTable="DeliveryDateColumn" msprop:Generator_UserColumnName="DeliveryDate" type="xs:string" minOccurs="0" />
-              <xs:element name="Color2" msprop:Generator_ColumnVarNameInTable="columnColor2" msprop:Generator_ColumnPropNameInRow="Color2" msprop:Generator_ColumnPropNameInTable="Color2Column" msprop:Generator_UserColumnName="Color2" type="xs:string" minOccurs="0" />
               <xs:element name="QrCode" msprop:Generator_ColumnVarNameInTable="columnQrCode" msprop:Generator_ColumnPropNameInRow="QrCode" msprop:Generator_ColumnPropNameInTable="QrCodeColumn" msprop:Generator_UserColumnName="QrCode" type="xs:string" minOccurs="0" />
               <xs:element name="Warna" msprop:Generator_ColumnVarNameInTable="columnWarna" msprop:Generator_ColumnPropNameInRow="Warna" msprop:Generator_ColumnPropNameInTable="WarnaColumn" msprop:Generator_UserColumnName="Warna" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -421,6 +417,19 @@
               <xs:element name="pay" msprop:Generator_ColumnVarNameInTable="columnpay" msprop:Generator_ColumnPropNameInRow="pay" msprop:Generator_ColumnPropNameInTable="payColumn" msprop:Generator_UserColumnName="pay" type="xs:string" minOccurs="0" />
               <xs:element name="Proses" msprop:Generator_ColumnVarNameInTable="columnProses" msprop:Generator_ColumnPropNameInRow="Proses" msprop:Generator_ColumnPropNameInTable="ProsesColumn" msprop:Generator_UserColumnName="Proses" type="xs:string" minOccurs="0" />
               <xs:element name="Tgl2" msprop:Generator_ColumnVarNameInTable="columnTgl2" msprop:Generator_ColumnPropNameInRow="Tgl2" msprop:Generator_ColumnPropNameInTable="Tgl2Column" msprop:Generator_UserColumnName="Tgl2" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SuspendRelasi" msprop:Generator_TableClassName="SuspendRelasiDataTable" msprop:Generator_TableVarName="tableSuspendRelasi" msprop:Generator_TablePropName="SuspendRelasi" msprop:Generator_RowDeletingName="SuspendRelasiRowDeleting" msprop:Generator_RowChangingName="SuspendRelasiRowChanging" msprop:Generator_RowEvHandlerName="SuspendRelasiRowChangeEventHandler" msprop:Generator_RowDeletedName="SuspendRelasiRowDeleted" msprop:Generator_UserTableName="SuspendRelasi" msprop:Generator_RowChangedName="SuspendRelasiRowChanged" msprop:Generator_RowEvArgName="SuspendRelasiRowChangeEvent" msprop:Generator_RowClassName="SuspendRelasiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SuspendRelasiID" msprop:Generator_ColumnVarNameInTable="columnSuspendRelasiID" msprop:Generator_ColumnPropNameInRow="SuspendRelasiID" msprop:Generator_ColumnPropNameInTable="SuspendRelasiIDColumn" msprop:Generator_UserColumnName="SuspendRelasiID" type="xs:string" minOccurs="0" />
+              <xs:element name="SuspendID" msprop:Generator_ColumnVarNameInTable="columnSuspendID" msprop:Generator_ColumnPropNameInRow="SuspendID" msprop:Generator_ColumnPropNameInTable="SuspendIDColumn" msprop:Generator_UserColumnName="SuspendID" type="xs:string" minOccurs="0" />
+              <xs:element name="Nama" msprop:Generator_ColumnVarNameInTable="columnNama" msprop:Generator_ColumnPropNameInRow="Nama" msprop:Generator_ColumnPropNameInTable="NamaColumn" msprop:Generator_UserColumnName="Nama" type="xs:string" minOccurs="0" />
+              <xs:element name="Posisi" msprop:Generator_ColumnVarNameInTable="columnPosisi" msprop:Generator_ColumnPropNameInRow="Posisi" msprop:Generator_ColumnPropNameInTable="PosisiColumn" msprop:Generator_UserColumnName="Posisi" type="xs:string" minOccurs="0" />
+              <xs:element name="Perusahaan" msprop:Generator_ColumnVarNameInTable="columnPerusahaan" msprop:Generator_ColumnPropNameInRow="Perusahaan" msprop:Generator_ColumnPropNameInTable="PerusahaanColumn" msprop:Generator_UserColumnName="Perusahaan" type="xs:string" minOccurs="0" />
+              <xs:element name="JenisUsaha" msprop:Generator_ColumnVarNameInTable="columnJenisUsaha" msprop:Generator_ColumnPropNameInRow="JenisUsaha" msprop:Generator_ColumnPropNameInTable="JenisUsahaColumn" msprop:Generator_UserColumnName="JenisUsaha" type="xs:string" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

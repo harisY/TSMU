@@ -1,35 +1,13 @@
-﻿Public Class BarcodeGenerate
-    Public Property BarcodeID As Integer
-    Public Property Cav As String
-    Public Property Colour As String
-    Public Property Concatenate As String
-    Public Property CustomerID As String
-    Public Property CustomerName As String
-    Public Property Family As String
-    Public Property InventoryIdMat As String
-    Public Property InventoryID As String
-    Public Property JenisStok As String
-    Public Property JobNo As String
-    Public Property KodePart As Integer
-    Public Property LokalExport As String
-    Public Property Material As String
-    Public Property PartCode As String
-    Public Property PartName As String
-    Public Property PartNameFull As String
-    Public Property PartNo As String
-    Public Property QtyLabel As Integer
-    Public Property SFGFG As String
-    Public Property StatusMilik As String
-    Public Property Target As String
-    Public Property TglUpload As DateTime
-    Public Property UploadBy As String
-    Public Property WarnaPasscard As String
+﻿Imports System.Collections.ObjectModel
 
+Public Class BarcodeGenerate
+
+    Public Property ObjDetails() As New Collection(Of BarcodeDet)
 
     Public Function GetAllDataGrid() As DataTable
         Try
             Dim ls_SP As String =
-            "SELECT [BarcodeID]
+            "SELECT [BarcodeID] ID
                 ,[TglUpload]
                 ,[KodePart]
                 ,[CustomerID]
@@ -37,21 +15,14 @@
                 ,[InvetoryID]
                 ,[SFG/FG]
                 ,[PartName]
-                ,[PartCode]
                 ,[PartNo]
                 ,[Colour]
                 ,[JobNo]
-                ,[Target]
-                ,[Family]
-                ,[Cav]
                 ,[QtyLabel]
                 ,[WarnaPasscard]
                 ,[LokalExport]
-                ,[Concatenate]
-                ,[JenisStok]
-                ,[StatusMilik]
-                ,[InventoryIdMat]
-                ,[Material]
+                ,[Site]
+                ,UploadBy
             FROM [BarcodeGenerate]"
             Dim dtTable As New DataTable
             dtTable = GetDataTable(ls_SP)
@@ -60,58 +31,61 @@
             Throw
         End Try
     End Function
-
     Public Sub InsertData()
         Try
-            Dim Query As String = String.Empty
-            Query = "INSERT INTO [BarcodeGenerate]([TglUpload]
-               ,[KodePart],[CustomerID],[CustomerName],[InvetoryID]
-               ,[SFG/FG],[PartName],[PartNo],[Colour]
-               ,[JobNo],[Target],[Family],[Cav],[QtyLabel]
-               ,[WarnaPasscard],[LokalExport],[Concatenate]
-               ,[JenisStok],[StatusMilik],[InventoryIdMat],[Material],[UploadBy])
-            Values(" & QVal(TglUpload) & "," & QVal(KodePart) & "," & QVal(CustomerID) & "
-                    ," & QVal(CustomerName) & "," & QVal(InventoryID) & "," & QVal(SFGFG) & "," & QVal(PartName) & "
-                    ," & QVal(PartNo) & "," & QVal(Colour) & "," & QVal(JobNo) & "," & QVal(Target) & "
-                    ," & QVal(Family) & "," & QVal(Cav) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
-                    ," & QVal(LokalExport) & "," & QVal(Concatenate) & "," & QVal(JenisStok) & "
-                    ," & QVal(StatusMilik) & "," & QVal(InventoryIdMat) & "," & QVal(Material) & "," & QVal(UploadBy) & ")"
-            ExecQuery(Query)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleteData()
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertData()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub DeleteData()
+        Try
+            Dim sql As String = "Delete From [BarcodeGenerate] Where Site = " & QVal(gh_Common.Site) & " AND UploadBy = " & QVal(gh_Common.Username) & ""
+            ExecQuery(sql)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Public Function PrintQRCOde(KodePart As String) As DataSet
+    Public Function PrintQRCOde(KodePart As String, Site As String) As DataSet
         Dim ds As dsLaporan
         Try
             Dim sql As String =
-                "SELECT [BarcodeID]
-                ,[TglUpload]
-                ,[KodePart]
-                ,[CustomerID]
-                ,[CustomerName]
+            "SELECT 
+                [KodePart]
                 ,[InvetoryID] InvtID
                 ,[SFG/FG] Status
                 ,[PartName]
-                ,[PartCode]
                 ,[PartNo]
                 ,[Colour] Color
                 ,[JobNo]
-                ,[Target]
-                ,[Family]
-                ,[Cav]
                 ,[QtyLabel] Qty
-                ,[WarnaPasscard] Color2
-                ,[LokalExport]
-                ,[Concatenate]
-                ,[JenisStok]
-                ,[StatusMilik]
-                ,[InventoryIdMat]
-                ,[Material]
                 ,0 as No
                 ,WarnaPasscard Warna
-            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & ""
+            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
         Catch ex As Exception
@@ -119,4 +93,41 @@
         End Try
         Return ds
     End Function
+End Class
+
+Public Class BarcodeDet
+    Public Property Colour As String
+    Public Property CustomerID As String
+    Public Property CustomerName As String
+    Public Property InventoryID As String
+    Public Property JobNo As String
+    Public Property KodePart As String
+    Public Property LokalExport As String
+    Public Property PartCode As String
+    Public Property PartName As String
+    Public Property PartNo As String
+    Public Property QtyLabel As Integer
+    Public Property SFGFG As String
+    Public Property Target As String
+    Public Property TglUpload As DateTime
+    Public Property UploadBy As String
+    Public Property WarnaPasscard As String
+    Public Property Site As String
+    Public Sub InsertData()
+        Try
+            Dim Query As String = String.Empty
+            Query = "INSERT INTO [BarcodeGenerate]
+            ([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
+                ,[SFG/FG],[PartName],[PartNo],[Colour]
+                ,[JobNo],[QtyLabel],[WarnaPasscard]
+                ,LokalExport,[Site],[UploadBy])
+            Values(GETDATE()," & QVal(KodePart) & "," & QVal(CustomerID) & "," & QVal(CustomerName) & "," & QVal(InventoryID) & "
+                ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
+                ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
+                ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(UploadBy) & ")"
+            ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
