@@ -4,7 +4,6 @@ Imports DevExpress.XtraReports.UI
 
 Public Class FrmLookUpBarcode
     Dim Obj As New BarcodeGenerate
-
     Dim dtTemp As DataTable
     Private Sub TempTable()
         dtTemp = New DataTable

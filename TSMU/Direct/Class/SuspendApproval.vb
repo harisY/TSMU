@@ -21,11 +21,21 @@ Public Class SuspendApprovalHeaderModel
             Dim level As Integer = GetUsernameLevel()
 
             Dim dt As New DataTable
-            Dim sql As String =
-            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
+            If level = 1 Then
+                Dim sql As String =
+"SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
             AND (Status = 'Open') and ceklist=0 Order by SuspendID"
-            dt = GetDataTable_Solomon(sql)
+                dt = GetDataTable_Solomon(sql)
+            Else
+                Dim sql As String =
+"SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
+            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
+            AND (Status = 'Approved') and ceklist=1 Order by SuspendID"
+                dt = GetDataTable_Solomon(sql)
+            End If
+
+
             Return dt
         Catch ex As Exception
             Throw ex

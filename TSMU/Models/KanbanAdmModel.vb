@@ -114,8 +114,7 @@
 			                        CONVERT(varchar,[OrderDate],101) Tanggal,
 			                        [DelCycle] Cycle,
 			                        sum([OrderKbn]) Kanban
-		                        FROM New_BOM.dbo.[KanbanADM] 
-                                WHERE RecStatus = 'Open'
+		                        FROM New_BOM.dbo.[KanbanADM]
 		                        GROUP BY 
 			                        CONVERT(varchar,[OrderDate],101),
 			                        [DelCycle]
@@ -140,11 +139,22 @@
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
                                        ," & QVal(Kanban) & ")"
+            ExecQuery(sql)
         Catch ex As Exception
             Throw
         End Try
     End Sub
 
+    Public Sub UpdateKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer)
+        Try
+            Dim sql As String = "Update [KanbanSum]
+                                 Set Kanban = Kanban + " & QVal(Kanban) & "
+                                 Where Tanggal =" & QVal(Tgl) & " AND Cycle = " & QVal(Cycle) & ""
+            ExecQuery(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function IsKanbanExist(Tgl As String, Cycle As Integer) As Boolean
         Dim hasil As Boolean = False
         Try
@@ -154,6 +164,10 @@
                                     AND Cycle=" & QVal(Cycle) & ""
             Dim dt As New DataTable
             dt = GetDataTable(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = True
+            End If
+            Return hasil
         Catch ex As Exception
             Throw
         End Try

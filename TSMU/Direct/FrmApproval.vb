@@ -45,6 +45,7 @@ Public Class FrmApproval
     Private Sub LoadGrid2()
         Try
             ''ObjSuspend = New SuspendHeaderModel
+
             dtGrid = ObjSuspend.GetDataGrid()
             Grid.DataSource = dtGrid
             GridView1.BestFitColumns()

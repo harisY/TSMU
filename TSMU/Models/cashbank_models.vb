@@ -178,7 +178,7 @@ Public Class cashbank_models
         Try
             Dim saldo As Single
 
-            Dim sql As String = "Select saldo from saldo_awal where acctid=" & QVal(account) & " and perpost=" & QVal(Perpost) & ""
+            Dim sql As String = "Select isnull(saldo,0) as saldo from saldo_awal where acctid=" & QVal(account) & " and perpost=" & QVal(Perpost) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
