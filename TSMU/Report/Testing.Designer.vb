@@ -24,10 +24,12 @@ Partial Public Class Testing
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLine13 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LblIso = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine17 = New DevExpress.XtraReports.UI.XRLine()
         Me.LblBulan = New DevExpress.XtraReports.UI.XRLabel()
@@ -73,7 +75,6 @@ Partial Public Class Testing
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ExcelDataSource1 = New DevExpress.DataAccess.Excel.ExcelDataSource()
         Me.DsLaporan1 = New TSMU.dsLaporan()
-        Me.XrLine13 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsLaporan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,13 +87,22 @@ Partial Public Class Testing
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine13, Me.XrLabel26, Me.LblIso, Me.XrLabel15, Me.panel1})
-        Me.Detail.HeightF = 259.1668!
+        Me.Detail.Font = New System.Drawing.Font("Calibri", 16.0!)
+        Me.Detail.HeightF = 257.9169!
         Me.Detail.MultiColumn.ColumnCount = 3
         Me.Detail.MultiColumn.ColumnSpacing = 9.84!
         Me.Detail.MultiColumn.ColumnWidth = 355.11!
         Me.Detail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown
         Me.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount
         Me.Detail.Name = "Detail"
+        Me.Detail.StylePriority.UseFont = False
+        '
+        'XrLine13
+        '
+        Me.XrLine13.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
+        Me.XrLine13.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 252.7918!)
+        Me.XrLine13.Name = "XrLine13"
+        Me.XrLine13.SizeF = New System.Drawing.SizeF(359.6483!, 2.083328!)
         '
         'XrLabel26
         '
@@ -114,7 +124,7 @@ Partial Public Class Testing
         '
         Me.LblIso.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LblIso.Font = New System.Drawing.Font("Calibri", 5.0!)
-        Me.LblIso.LocationFloat = New DevExpress.Utils.PointFloat(92.54011!, 243.3751!)
+        Me.LblIso.LocationFloat = New DevExpress.Utils.PointFloat(92.54011!, 246.3751!)
         Me.LblIso.Multiline = True
         Me.LblIso.Name = "LblIso"
         Me.LblIso.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -148,17 +158,32 @@ Partial Public Class Testing
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.panel1.CanGrow = False
-        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine8, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrLine3, Me.XrLine2, Me.XrLine1})
+        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine8, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 7.999992!)
         Me.panel1.Name = "panel1"
-        Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 231.9584!)
+        Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 238.3751!)
         Me.panel1.StylePriority.UseBorderDashStyle = False
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel7.Font = New System.Drawing.Font("Calibri", 8.0!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 93.70833!)
+        Me.XrLabel7.Multiline = True
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(48.9583!, 12.95204!)
+        Me.XrLabel7.StylePriority.UseBorders = False
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = "Job No"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel27
         '
         Me.XrLabel27.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel27.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 156.1604!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 148.1604!)
         Me.XrLabel27.Multiline = True
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -172,20 +197,20 @@ Partial Public Class Testing
         Me.XrLine17.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine17.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine17.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine17.LocationFloat = New DevExpress.Utils.PointFloat(133.3751!, 141.6187!)
+        Me.XrLine17.LocationFloat = New DevExpress.Utils.PointFloat(133.3751!, 91.70831!)
         Me.XrLine17.Name = "XrLine17"
-        Me.XrLine17.SizeF = New System.Drawing.SizeF(3.125!, 93.75639!)
+        Me.XrLine17.SizeF = New System.Drawing.SizeF(3.125!, 143.6668!)
         Me.XrLine17.StylePriority.UseBorders = False
         '
         'LblBulan
         '
         Me.LblBulan.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LblBulan.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.LblBulan.LocationFloat = New DevExpress.Utils.PointFloat(299.8367!, 141.7854!)
+        Me.LblBulan.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 133.7854!)
         Me.LblBulan.Multiline = True
         Me.LblBulan.Name = "LblBulan"
         Me.LblBulan.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LblBulan.SizeF = New System.Drawing.SizeF(68.93839!, 13.29164!)
+        Me.LblBulan.SizeF = New System.Drawing.SizeF(78.19177!, 13.29164!)
         Me.LblBulan.StylePriority.UseBorders = False
         Me.LblBulan.StylePriority.UseFont = False
         Me.LblBulan.StylePriority.UseTextAlignment = False
@@ -196,7 +221,7 @@ Partial Public Class Testing
         '
         Me.LblKodePart.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LblKodePart.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.LblKodePart.LocationFloat = New DevExpress.Utils.PointFloat(294.5833!, 82.39375!)
+        Me.LblKodePart.LocationFloat = New DevExpress.Utils.PointFloat(294.5833!, 74.39375!)
         Me.LblKodePart.Multiline = True
         Me.LblKodePart.Name = "LblKodePart"
         Me.LblKodePart.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -212,11 +237,11 @@ Partial Public Class Testing
         Me.XrLabel23.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Qty]")})
         Me.XrLabel23.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 191.8688!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 187.8688!)
         Me.XrLabel23.Multiline = True
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel23.SizeF = New System.Drawing.SizeF(71.87507!, 37.5063!)
+        Me.XrLabel23.SizeF = New System.Drawing.SizeF(71.87507!, 44.08958!)
         Me.XrLabel23.StylePriority.UseBorders = False
         Me.XrLabel23.StylePriority.UseFont = False
         Me.XrLabel23.StylePriority.UseTextAlignment = False
@@ -228,7 +253,7 @@ Partial Public Class Testing
         Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Status]")})
         Me.XrLabel22.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(74.00011!, 156.4167!)
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(74.00011!, 148.4167!)
         Me.XrLabel22.Multiline = True
         Me.XrLabel22.Name = "XrLabel22"
         Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -243,11 +268,11 @@ Partial Public Class Testing
         '
         Me.XrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel21.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 114.7916!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 93.79161!)
         Me.XrLabel21.Multiline = True
         Me.XrLabel21.Name = "XrLabel21"
         Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel21.SizeF = New System.Drawing.SizeF(59.37506!, 15.70836!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(31.25006!, 36.18324!)
         Me.XrLabel21.StylePriority.UseBorders = False
         Me.XrLabel21.StylePriority.UseFont = False
         Me.XrLabel21.StylePriority.UseTextAlignment = False
@@ -259,11 +284,11 @@ Partial Public Class Testing
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartName]")})
         Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 102.7917!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(167.7502!, 93.79161!)
         Me.XrLabel20.Multiline = True
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(231.9399!, 38.22081!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(200.6899!, 36.18324!)
         Me.XrLabel20.StylePriority.UseBorders = False
         Me.XrLabel20.StylePriority.UseFont = False
         Me.XrLabel20.StylePriority.UseTextAlignment = False
@@ -273,13 +298,14 @@ Partial Public Class Testing
         'XrLabel19
         '
         Me.XrLabel19.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel19.CanGrow = False
         Me.XrLabel19.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[JobNo]")})
-        Me.XrLabel19.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(74.00011!, 103.7916!)
+        Me.XrLabel19.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 102.2499!)
         Me.XrLabel19.Multiline = True
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(62.5!, 37.82707!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(134.3751!, 29.45206!)
         Me.XrLabel19.StylePriority.UseBorders = False
         Me.XrLabel19.StylePriority.UseFont = False
         Me.XrLabel19.StylePriority.UseTextAlignment = False
@@ -291,7 +317,7 @@ Partial Public Class Testing
         Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel18.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartNo]")})
         Me.XrLabel18.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(74.00001!, 84.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(74.00001!, 76.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(199.5833!, 15.70835!)
@@ -304,7 +330,7 @@ Partial Public Class Testing
         Me.XrLabel17.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel17.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Color]")})
         Me.XrLabel17.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(74.00001!, 67.602!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(74.00001!, 59.602!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(199.5833!, 14.49576!)
@@ -318,7 +344,7 @@ Partial Public Class Testing
         Me.XrBarCode2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrBarCode2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[QrCode]")})
         Me.XrBarCode2.Font = New System.Drawing.Font("Calibri", 7.0!)
-        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(295.5833!, 159.4167!)
+        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(295.5833!, 152.4167!)
         Me.XrBarCode2.Name = "XrBarCode2"
         Me.XrBarCode2.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
         Me.XrBarCode2.SizeF = New System.Drawing.SizeF(72.85672!, 55.12509!)
@@ -332,7 +358,7 @@ Partial Public Class Testing
         '
         Me.XrLabel14.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel14.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(206.5833!, 173.2085!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(206.5833!, 165.2085!)
         Me.XrLabel14.Multiline = True
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -348,16 +374,16 @@ Partial Public Class Testing
         Me.XrLine18.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine18.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine18.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine18.LocationFloat = New DevExpress.Utils.PointFloat(203.4583!, 174.2084!)
+        Me.XrLine18.LocationFloat = New DevExpress.Utils.PointFloat(204.4583!, 164.1251!)
         Me.XrLine18.Name = "XrLine18"
-        Me.XrLine18.SizeF = New System.Drawing.SizeF(3.125!, 67.16669!)
+        Me.XrLine18.SizeF = New System.Drawing.SizeF(2.124985!, 77.25006!)
         Me.XrLine18.StylePriority.UseBorders = False
         '
         'XrLabel13
         '
         Me.XrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel13.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 174.2084!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(136.5001!, 166.2084!)
         Me.XrLabel13.Multiline = True
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -372,7 +398,7 @@ Partial Public Class Testing
         '
         Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel12.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(74.00004!, 174.0771!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(74.00004!, 166.0771!)
         Me.XrLabel12.Multiline = True
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -387,7 +413,7 @@ Partial Public Class Testing
         '
         Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel11.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(74.00011!, 141.7854!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(74.00011!, 132.7854!)
         Me.XrLabel11.Multiline = True
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -402,7 +428,7 @@ Partial Public Class Testing
         '
         Me.XrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel10.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 174.0771!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 166.0771!)
         Me.XrLabel10.Multiline = True
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -417,7 +443,7 @@ Partial Public Class Testing
         '
         Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel9.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 156.4167!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 148.4167!)
         Me.XrLabel9.Multiline = True
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -432,7 +458,7 @@ Partial Public Class Testing
         '
         Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel8.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 141.7854!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 132.7854!)
         Me.XrLabel8.Multiline = True
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -448,9 +474,9 @@ Partial Public Class Testing
         Me.XrLine16.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine16.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine16.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine16.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 141.7854!)
+        Me.XrLine16.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 133.7854!)
         Me.XrLine16.Name = "XrLine16"
-        Me.XrLine16.SizeF = New System.Drawing.SizeF(3.125!, 99.58974!)
+        Me.XrLine16.SizeF = New System.Drawing.SizeF(3.125!, 107.5897!)
         Me.XrLine16.StylePriority.UseBorders = False
         '
         'XrLine14
@@ -458,16 +484,16 @@ Partial Public Class Testing
         Me.XrLine14.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine14.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine14.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine14.LocationFloat = New DevExpress.Utils.PointFloat(70.87504!, 103.7916!)
+        Me.XrLine14.LocationFloat = New DevExpress.Utils.PointFloat(70.87504!, 133.7854!)
         Me.XrLine14.Name = "XrLine14"
-        Me.XrLine14.SizeF = New System.Drawing.SizeF(3.125!, 138.0002!)
+        Me.XrLine14.SizeF = New System.Drawing.SizeF(3.125!, 108.0064!)
         Me.XrLine14.StylePriority.UseBorders = False
         '
         'XrLine6
         '
         Me.XrLine6.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine6.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 101.7083!)
+        Me.XrLine6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 91.7083!)
         Me.XrLine6.Name = "XrLine6"
         Me.XrLine6.SizeF = New System.Drawing.SizeF(371.7733!, 2.083328!)
         Me.XrLine6.StylePriority.UseBorders = False
@@ -476,7 +502,7 @@ Partial Public Class Testing
         '
         Me.XrLine5.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine5.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine5.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 81.91672!)
+        Me.XrLine5.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 73.91672!)
         Me.XrLine5.Name = "XrLine5"
         Me.XrLine5.SizeF = New System.Drawing.SizeF(369.6483!, 3.083267!)
         Me.XrLine5.StylePriority.UseBorders = False
@@ -485,7 +511,7 @@ Partial Public Class Testing
         '
         Me.XrLine12.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine12.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine12.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 189.7855!)
+        Me.XrLine12.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 181.7855!)
         Me.XrLine12.Name = "XrLine12"
         Me.XrLine12.SizeF = New System.Drawing.SizeF(293.7082!, 2.083328!)
         Me.XrLine12.StylePriority.UseBorders = False
@@ -494,7 +520,7 @@ Partial Public Class Testing
         '
         Me.XrLine11.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine11.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine11.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 172.1251!)
+        Me.XrLine11.LocationFloat = New DevExpress.Utils.PointFloat(0.00006357829!, 164.1251!)
         Me.XrLine11.Name = "XrLine11"
         Me.XrLine11.SizeF = New System.Drawing.SizeF(290.5832!, 2.083328!)
         Me.XrLine11.StylePriority.UseBorders = False
@@ -503,7 +529,7 @@ Partial Public Class Testing
         '
         Me.XrLine10.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine10.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 155.0771!)
+        Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 147.0771!)
         Me.XrLine10.Name = "XrLine10"
         Me.XrLine10.SizeF = New System.Drawing.SizeF(371.7733!, 2.083328!)
         Me.XrLine10.StylePriority.UseBorders = False
@@ -512,7 +538,7 @@ Partial Public Class Testing
         '
         Me.XrLine9.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine9.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 140.702!)
+        Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 131.702!)
         Me.XrLine9.Name = "XrLine9"
         Me.XrLine9.SizeF = New System.Drawing.SizeF(371.7733!, 2.083344!)
         Me.XrLine9.StylePriority.UseBorders = False
@@ -521,7 +547,7 @@ Partial Public Class Testing
         '
         Me.XrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel6.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(294.5832!, 66.60202!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(294.5832!, 58.60202!)
         Me.XrLabel6.Multiline = True
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -536,7 +562,7 @@ Partial Public Class Testing
         '
         Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel5.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 84.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 76.0!)
         Me.XrLabel5.Multiline = True
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -551,7 +577,7 @@ Partial Public Class Testing
         '
         Me.XrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel4.Font = New System.Drawing.Font("Calibri", 8.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 66.78311!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(2.125009!, 58.78311!)
         Me.XrLabel4.Multiline = True
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -567,9 +593,9 @@ Partial Public Class Testing
         Me.XrLine8.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine8.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine8.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine8.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 65.58334!)
+        Me.XrLine8.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 58.58335!)
         Me.XrLine8.Name = "XrLine8"
-        Me.XrLine8.SizeF = New System.Drawing.SizeF(3.125!, 37.51869!)
+        Me.XrLine8.SizeF = New System.Drawing.SizeF(3.125!, 33.12496!)
         Me.XrLine8.StylePriority.UseBorders = False
         '
         'XrLine7
@@ -577,9 +603,9 @@ Partial Public Class Testing
         Me.XrLine7.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine7.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine7.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine7.LocationFloat = New DevExpress.Utils.PointFloat(70.87501!, 65.25003!)
+        Me.XrLine7.LocationFloat = New DevExpress.Utils.PointFloat(70.87501!, 57.07484!)
         Me.XrLine7.Name = "XrLine7"
-        Me.XrLine7.SizeF = New System.Drawing.SizeF(3.125099!, 37.85201!)
+        Me.XrLine7.SizeF = New System.Drawing.SizeF(3.125!, 36.02721!)
         Me.XrLine7.StylePriority.UseBorders = False
         '
         'XrBarCode1
@@ -588,10 +614,10 @@ Partial Public Class Testing
         Me.XrBarCode1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrBarCode1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InvtID]")})
         Me.XrBarCode1.Font = New System.Drawing.Font("Calibri", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 18.04163!)
+        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 18.04164!)
         Me.XrBarCode1.Name = "XrBarCode1"
         Me.XrBarCode1.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
-        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(351.7733!, 46.2084!)
+        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(351.7733!, 39.0332!)
         Me.XrBarCode1.StylePriority.UseBorders = False
         Me.XrBarCode1.StylePriority.UseFont = False
         Me.XrBarCode1.StylePriority.UseTextAlignment = False
@@ -602,20 +628,21 @@ Partial Public Class Testing
         '
         Me.XrLine4.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 65.07483!)
+        Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 57.07483!)
         Me.XrLine4.Name = "XrLine4"
         Me.XrLine4.SizeF = New System.Drawing.SizeF(371.7733!, 2.083336!)
         Me.XrLine4.StylePriority.UseBorders = False
         '
         'XrLabel3
         '
+        Me.XrLabel3.AutoWidth = True
         Me.XrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(294.5833!, 3.000022!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(287.4582!, 3.000038!)
         Me.XrLabel3.Multiline = True
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(76.18842!, 12.9583!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(79.31357!, 12.9583!)
         Me.XrLabel3.StylePriority.UseBorders = False
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
@@ -624,6 +651,7 @@ Partial Public Class Testing
         '
         'XrLabel2
         '
+        Me.XrLabel2.AutoWidth = True
         Me.XrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(102.125!, 3.000022!)
@@ -639,6 +667,7 @@ Partial Public Class Testing
         '
         'XrLabel1
         '
+        Me.XrLabel1.AutoWidth = True
         Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 3.000028!)
@@ -657,9 +686,9 @@ Partial Public Class Testing
         Me.XrLine3.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine3.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine3.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(290.5833!, 3.916664!)
+        Me.XrLine3.LocationFloat = New DevExpress.Utils.PointFloat(287.4582!, 2.000015!)
         Me.XrLine3.Name = "XrLine3"
-        Me.XrLine3.SizeF = New System.Drawing.SizeF(3.125122!, 16.12498!)
+        Me.XrLine3.SizeF = New System.Drawing.SizeF(3.125!, 17.04162!)
         Me.XrLine3.StylePriority.UseBorders = False
         '
         'XrLine2
@@ -667,9 +696,9 @@ Partial Public Class Testing
         Me.XrLine2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine2.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine2.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(71.91667!, 2.916664!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(71.91667!, 1.000023!)
         Me.XrLine2.Name = "XrLine2"
-        Me.XrLine2.SizeF = New System.Drawing.SizeF(2.083435!, 19.12495!)
+        Me.XrLine2.SizeF = New System.Drawing.SizeF(2.083336!, 14.95829!)
         Me.XrLine2.StylePriority.UseBorders = False
         '
         'XrLine1
@@ -703,13 +732,6 @@ Partial Public Class Testing
         '
         Me.DsLaporan1.DataSetName = "dsLaporan"
         Me.DsLaporan1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'XrLine13
-        '
-        Me.XrLine13.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
-        Me.XrLine13.LocationFloat = New DevExpress.Utils.PointFloat(2.125041!, 249.7085!)
-        Me.XrLine13.Name = "XrLine13"
-        Me.XrLine13.SizeF = New System.Drawing.SizeF(359.6483!, 8.458298!)
         '
         'Testing
         '
@@ -782,4 +804,5 @@ Partial Public Class Testing
     Friend WithEvents LblIso As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine13 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class
