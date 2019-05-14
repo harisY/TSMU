@@ -139,6 +139,11 @@ Public Class clsBoM
                     ,[wc] [WC]
                     ,[allowance] [Allow]
                     ,[mp] [MP]
+                    ,Case Active
+                        When 0 then 'InHouse'
+                        When 1 then 'Subcon'
+                        Else 'Discontinue'
+                    END as [Status]
                     ,[updated_by] [Updated By]
                     ,[updated_date] [Updated Date]
                 FROM [bomh]"

@@ -5,7 +5,7 @@ Imports DevExpress.XtraGrid
 Public Class frmReport_BoM
     Dim fc_class As New clsReport
     Dim fdtl_Config As DataTable = Nothing
-
+    Dim BomHeader As New clsBoM
     Private Sub frmReport_BoM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
         Init()
@@ -27,6 +27,7 @@ Public Class frmReport_BoM
         '_txtIvtId3.Text = "ALL"
         GridMaterial.DataSource = Nothing
         '_txtIvtId3.Focus()
+        LoadGridHeaderBoM()
     End Sub
     Sub LoadTxtBox()
         If TabControl1.SelectedTab Is TabPage1 Then
@@ -60,7 +61,15 @@ Public Class frmReport_BoM
                 GridMaterial.DataSource = Nothing
                 '_txtIvtId3.Focus()
             End If
-
+        Else
+            If PBMaterial.Visible = True Then
+                MsgBox("Proses Material masih berjalan !")
+                Exit Sub
+            Else
+                '_txtIvtId3.Text = "ALL"
+                GridHeaderBoM.DataSource = Nothing
+                '_txtIvtId3.Focus()
+            End If
         End If
     End Sub
     Public Overrides Sub Proc_Refresh()
@@ -113,9 +122,15 @@ Public Class frmReport_BoM
                 Else
                     MsgBox("Grid Kosong !")
                 End If
-            Else
+            ElseIf TabControl1.SelectedTab Is TabPage2 Then
                 If GridView2.RowCount > 0 Then
                     SaveToExcel(GridMultiLevel)
+                Else
+                    MsgBox("Grid Kosong !")
+                End If
+            Else
+                If GridView4.RowCount > 0 Then
+                    SaveToExcel(GridHeaderBoM)
                 Else
                     MsgBox("Grid Kosong !")
                 End If
@@ -258,6 +273,20 @@ Public Class frmReport_BoM
         Invoke(Sub()
                    PBMaterial.Visible = False
                End Sub)
+    End Sub
+
+    Private Sub LoadGridHeaderBoM()
+        Try
+            Dim dtGrid As New DataTable
+            dtGrid = BomHeader.GetAllDataTable(bs_Filter)
+            GridHeaderBoM.DataSource = dtGrid
+            If GridView4.RowCount > 0 Then
+                GridCellFormat(GridView4)
+                GridView4.BestFitColumns()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         'If ProgBar.Visible = True Then
