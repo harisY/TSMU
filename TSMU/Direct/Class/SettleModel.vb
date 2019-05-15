@@ -32,7 +32,7 @@ Public Class SettleHeader
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where pay=0 and settle_header.SuspendID not like '%EN%' group by settle_header.ID
+where settle_header.DeptID='" & gh_Common.GroupID & "' AND  pay=0 and (settle_header.SuspendID not like '%EN%'  OR settle_header.SuspendID Is Null) group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
             settle_header.DeptID
@@ -194,7 +194,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where settle_header.SuspendID like '%EN%' or settle_header.SuspendID is null
+where (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
 group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
@@ -219,7 +219,7 @@ group by settle_header.ID
         Try
             Dim sql As String =
             "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend
-            FROM settle_header t Inner join suspend_header s on t.SuspendID = s.SuspendID 
+            FROM settle_header t left join suspend_header s on t.SuspendID = s.SuspendID 
             where t.ID=" & QVal(ID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
@@ -270,7 +270,7 @@ group by settle_header.ID
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'S' AND Pay=1 AND Status ='Approved' Order by SuspendID"
+            FROM suspend_header WHERE DeptID='" & gh_Common.GroupID & "' AND Tipe = 'S' AND Pay=1 AND Status ='Approved' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

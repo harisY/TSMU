@@ -81,7 +81,7 @@ Public Class FrmEntertainSettleDetail
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = FrmParent.Name.ToString
+            bs_MainFormName = "FrmEntertainSettle" ''FrmParent.Name.ToString
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -247,7 +247,7 @@ Public Class FrmEntertainSettleDetail
                     ObjSettle.UpdateData(TxtNoSettlement.Text)
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 End If
-                GridDtl.DataSource = ObjSettle.GetDataGrid()
+                GridDtl.DataSource = ObjSettle.GetDataGridEnt()
                 IsClosed = True
                 Me.Hide()
             End If
