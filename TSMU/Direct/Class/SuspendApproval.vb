@@ -23,13 +23,13 @@ Public Class SuspendApprovalHeaderModel
             Dim dt As New DataTable
             If level = 1 Then
                 Dim sql As String =
-"SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
             AND (Status = 'Open') and ceklist=0 Order by SuspendID"
                 dt = GetDataTable_Solomon(sql)
             Else
                 Dim sql As String =
-"SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
             FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
             AND (Status = 'Approved') and ceklist=1 Order by SuspendID"
                 dt = GetDataTable_Solomon(sql)

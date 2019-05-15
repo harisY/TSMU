@@ -53,6 +53,9 @@ Partial Class frmReport_BoM
         Me.tsMaterial = New System.Windows.Forms.ToolStrip()
         Me.tsbLoadMaterial = New System.Windows.Forms.ToolStripButton()
         Me.PBMaterial = New System.Windows.Forms.ToolStripProgressBar()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GridHeaderBoM = New DevExpress.XtraGrid.GridControl()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
@@ -71,6 +74,9 @@ Partial Class frmReport_BoM
         CType(Me.GridMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tsMaterial.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        CType(Me.GridHeaderBoM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -82,6 +88,7 @@ Partial Class frmReport_BoM
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(13, 29)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -377,6 +384,37 @@ Partial Class frmReport_BoM
         Me.PBMaterial.Name = "PBMaterial"
         Me.PBMaterial.Size = New System.Drawing.Size(100, 22)
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.GridHeaderBoM)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(795, 514)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "Header BoM"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'GridHeaderBoM
+        '
+        Me.GridHeaderBoM.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridHeaderBoM.Location = New System.Drawing.Point(3, 3)
+        Me.GridHeaderBoM.MainView = Me.GridView4
+        Me.GridHeaderBoM.Name = "GridHeaderBoM"
+        Me.GridHeaderBoM.Size = New System.Drawing.Size(789, 508)
+        Me.GridHeaderBoM.TabIndex = 3
+        Me.GridHeaderBoM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
+        '
+        'GridView4
+        '
+        Me.GridView4.GridControl = Me.GridHeaderBoM
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsBehavior.Editable = False
+        Me.GridView4.OptionsPrint.PrintHorzLines = False
+        Me.GridView4.OptionsPrint.PrintVertLines = False
+        Me.GridView4.OptionsView.ShowAutoFilterRow = True
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem})
@@ -420,6 +458,9 @@ Partial Class frmReport_BoM
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tsMaterial.ResumeLayout(False)
         Me.tsMaterial.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        CType(Me.GridHeaderBoM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -459,4 +500,7 @@ Partial Class frmReport_BoM
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridMaterial As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents GridHeaderBoM As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

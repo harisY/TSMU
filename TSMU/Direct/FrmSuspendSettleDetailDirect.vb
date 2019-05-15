@@ -115,13 +115,13 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
-                    TxtStatus.Text = .Status
+                    ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
                 End With
             Else
                 TxtCurrency.Text = "IDR"
-                TxtDep.Text = ""
+                TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
             End If

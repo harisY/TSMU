@@ -505,4 +505,8 @@ Public Class FrmSuspendSettleDetail
         FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
         FrmReportSettle.Show()
     End Sub
+
+    Private Sub TxtNoSuspend_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoSuspend.EditValueChanged
+
+    End Sub
 End Class
