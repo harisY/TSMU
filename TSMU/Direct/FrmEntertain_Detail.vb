@@ -594,9 +594,8 @@ Public Class FrmEntertain_Detail
 
     Public Overrides Sub Proc_print()
         Try
-            Dim newform As New FrmReportEntertain
+            Dim newform As New FrmReportEntertain(TxtNoSuspend.Text)
             newform.StartPosition = FormStartPosition.CenterScreen
-            newform.TxtNoSuspend.Text = TxtNoSuspend.Text
             newform.Show()
         Catch ex As Exception
             MsgBox(ex.Message)

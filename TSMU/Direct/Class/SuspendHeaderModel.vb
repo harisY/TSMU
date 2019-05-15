@@ -96,6 +96,21 @@ Public Class SuspendHeaderModel
         Return ds
 
     End Function
+    Public Function SubReport() As DataSet
+        Dim query As String
+        query = "SELECT [SuspendRelasiID]
+                      ,[SuspendID]
+                      ,[Nama]
+                      ,[Posisi]
+                      ,[Perusahaan]
+                      ,[JenisUsaha]
+                      ,[Remark]
+                  FROM [SuspendRelasi] Where [SuspendID] = '" & SuspendID & "'"
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "SuspendRelasi")
+        Return ds
+
+    End Function
     Public Function GetDataGrid2() As DataTable
         Try
             Dim dt As New DataTable
