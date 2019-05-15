@@ -17,6 +17,24 @@ Public Class SettleHeader
     Public Property Jenis As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
 
+    Public Function SubReport() As DataSet
+        Dim query As String
+        query = "SELECT [SettleRelasiID]
+                      ,[SettleID]
+                      ,[Nama]
+                      ,[Posisi]
+                      ,[Perusahaan]
+                      ,[JenisUsaha]
+                      ,[Remark]
+                  FROM [SettleRelasi] Where [SettleID] = '" & SettleID & "'"
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "SettleRelasi")
+        Return ds
+
+    End Function
+
+
+
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
