@@ -114,8 +114,7 @@
 			                        CONVERT(varchar,[OrderDate],101) Tanggal,
 			                        [DelCycle] Cycle,
 			                        sum([OrderKbn]) Kanban
-		                        FROM New_BOM.dbo.[KanbanADM] 
-                                WHERE RecStatus = 'Open'
+		                        FROM New_BOM.dbo.[KanbanADM]
 		                        GROUP BY 
 			                        CONVERT(varchar,[OrderDate],101),
 			                        [DelCycle]
