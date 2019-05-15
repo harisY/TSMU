@@ -81,7 +81,7 @@ Public Class FrmEntertainSettleDetail
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = FrmParent.Name.ToString
+            bs_MainFormName = "FrmEntertainSettle" ''FrmParent.Name.ToString
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -109,9 +109,14 @@ Public Class FrmEntertainSettleDetail
     End Sub
 
     Public Overrides Sub Proc_print()
-        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
-        FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
-        FrmReportSettle.Show()
+        Try
+            Dim newform As New FrmReportSettleEntertain
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.TxtNosettle.Text = TxtNoSettlement.Text
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub LoadTxtBox()
@@ -247,7 +252,7 @@ Public Class FrmEntertainSettleDetail
                     ObjSettle.UpdateData(TxtNoSettlement.Text)
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 End If
-                GridDtl.DataSource = ObjSettle.GetDataGrid()
+                GridDtl.DataSource = ObjSettle.GetDataGridEnt()
                 IsClosed = True
                 Me.Hide()
             End If

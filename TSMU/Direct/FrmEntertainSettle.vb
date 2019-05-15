@@ -8,7 +8,7 @@ Public Class FrmEntertainSettle
     Dim ff_Detail As FrmEntertainSettleDetail
     Dim dtGrid As DataTable
     Dim ObjSettle As SettleHeader
-    Dim ff_Detail1 As FrmSuspendSettleDetailDirect
+    Dim ff_Detail1 As FrmEntertainSettleDetailDirect
 
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -49,7 +49,7 @@ Public Class FrmEntertainSettle
             End If
             ff_Detail1.Close()
         End If
-        ff_Detail1 = New FrmSuspendSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail1 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail1.MdiParent = MenuUtamaForm
         ff_Detail1.StartPosition = FormStartPosition.CenterScreen
         ff_Detail1.Show()
@@ -118,48 +118,91 @@ Public Class FrmEntertainSettle
         End Try
     End Sub
 
+    Dim suspend1 As String
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        ''Try
+
+        '    Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+        '        'Dim view As GridView = TryCast(sender, GridView)
+        '        Dim view As BaseView = Grid.GetViewAt(ea.Location)
+        '        If view Is Nothing Then
+        '            Return
+        '        End If
+        '        Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+        '    Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+
+        '    If info.InRow OrElse info.InRowCell Then
+        '        ID = String.Empty
+        '        suspendid = String.Empty
+        '        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        '        For Each rowHandle As Integer In selectedRows
+        '            If rowHandle >= 0 Then
+        '                ID = GridView1.GetRowCellValue(rowHandle, "ID")
+        '                suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+        '            End If
+        '        Next rowHandle
+
+        '        If suspendid = "" Then
+        '            ''Dim objGrid As DataGridView = sender
+        '            Call CallFrmDirect(ID,
+        '                 suspendid,
+        '             GridView1.RowCount)
+        '        Else
+        '            ''Dim objGrid As DataGridView = sender
+        '            Call CallFrm(ID,
+        '                 suspendid,
+        '             GridView1.RowCount)
+
+        '        End If
+
+        '    End If
+
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
+
         Try
 
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-                'Dim view As GridView = TryCast(sender, GridView)
-                Dim view As BaseView = Grid.GetViewAt(ea.Location)
-                If view Is Nothing Then
-                    Return
-                End If
-                Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
             Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-
             If info.InRow OrElse info.InRowCell Then
+
                 ID = String.Empty
                 suspendid = String.Empty
+                suspend1 = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
+                        suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
                     End If
                 Next rowHandle
 
-                If suspendid = "" Then
-                    ''Dim objGrid As DataGridView = sender
-                    Call CallFrmDirect(ID,
-                         suspendid,
-                     GridView1.RowCount)
+                If suspend1 = "" Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrmDirect(ID, suspendid,
+                         GridView1.RowCount)
                 Else
-                    ''Dim objGrid As DataGridView = sender
+                    'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
-                         suspendid,
-                     GridView1.RowCount)
-
+                             suspendid,
+                             GridView1.RowCount)
                 End If
-
             End If
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
     End Sub
 
 End Class

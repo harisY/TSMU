@@ -49,8 +49,8 @@ Partial Class FrmSuspendSettleDetail
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -352,16 +352,6 @@ Partial Class FrmSuspendSettleDetail
         Me.ReposDate.Mask.EditMask = "dd-MM-yyyy"
         Me.ReposDate.Name = "ReposDate"
         '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "SubAccount"
-        Me._subaccount.ColumnEdit = Me.GSubAccount
-        Me._subaccount.FieldName = "SubAccount"
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.OptionsColumn.FixedWidth = True
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 2
-        '
         '_account
         '
         Me._account.Caption = "Account"
@@ -371,6 +361,16 @@ Partial Class FrmSuspendSettleDetail
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
         Me._account.VisibleIndex = 1
+        '
+        '_subaccount
+        '
+        Me._subaccount.Caption = "SubAccount"
+        Me._subaccount.ColumnEdit = Me.GSubAccount
+        Me._subaccount.FieldName = "SubAccount"
+        Me._subaccount.Name = "_subaccount"
+        Me._subaccount.OptionsColumn.FixedWidth = True
+        Me._subaccount.Visible = True
+        Me._subaccount.VisibleIndex = 2
         '
         '_description
         '
