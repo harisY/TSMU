@@ -28,7 +28,7 @@ Public Class frm_payment_approve
         Call LoadGrid("")
         Dim dtGrid As New DataTable
         dtGrid = Grid.DataSource
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         If gh_Common.Level = 1 Then
             TabControl1.TabPages.Remove(TabPage2)
             TabControl1.TabPages.Remove(TabPage3)

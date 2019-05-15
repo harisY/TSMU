@@ -5,6 +5,7 @@ Public Class frmSales_ForecastPrice
     Dim ff_Detail As frmSales_ForecastPrice_details
     Dim dtGrid As DataTable
     Dim ObjForecast As New forecast_price_models
+    Dim ObjHeader As New forecast_price_models_header
 
     Private Sub frmSales_ForecastPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -733,7 +734,6 @@ Public Class frmSales_ForecastPrice
             End Try
         Else
             strTahun = frmExcel.Tahun1
-
             Try
                 Dim dv As DataView = New DataView(table)
                 Dim dtFilter As New DataTable
@@ -746,14 +746,17 @@ Public Class frmSales_ForecastPrice
                 End If
 
                 If dtFilter.Rows.Count > 0 Then
-                    If strTahun <> "" Then
-                        ObjForecast.DeleteByTahun(strTahun)
-                    End If
+                    'If strTahun <> "" Then
+                    '    ObjForecast.DeleteByTahun(strTahun)
+                    'End If
 
                     SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                     SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+                    ObjHeader.ObjForecastCollection.Clear()
+
                     For i As Integer = 0 To dtFilter.Rows.Count - 1
                         Try
+                            ObjForecast = New forecast_price_models
                             With ObjForecast
                                 If dtFilter.Rows(i)("Tahun") Is DBNull.Value OrElse dtFilter.Rows(i)("Tahun").ToString = "" Then
                                     .Tahun = ""
@@ -1350,10 +1353,10 @@ Public Class frmSales_ForecastPrice
 
                                 .created_date = DateTime.Today
                                 .created_by = gh_Common.Username
-                                .InsertData()
+                                '.InsertData()
 
                             End With
-
+                            ObjHeader.ObjForecastCollection.Add(ObjForecast)
                         Catch ex As Exception
                             MsgBox(ex.Message)
                             Console.WriteLine(ex.Message)
@@ -1362,6 +1365,8 @@ Public Class frmSales_ForecastPrice
                             Continue For
                         End Try
                     Next
+                    ObjHeader.Tahun = strTahun
+                    ObjHeader.InsertData()
                     SplashScreenManager.CloseForm()
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     'ProgressBar1.Visible = False
@@ -1370,6 +1375,7 @@ Public Class frmSales_ForecastPrice
                 End If
             Catch ex As Exception
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                SplashScreenManager.CloseForm()
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             End Try
         End If
