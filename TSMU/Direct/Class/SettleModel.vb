@@ -215,6 +215,43 @@ group by settle_header.ID
         End Try
     End Function
 
+    Public Function GetDataGridEntPaid() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+"SELECT settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,
+            sum(settle_detail.suspendAmount)suspendAmount
+            ,sum(settle_detail.SettleAmount)SettleAmount
+            , settle_header.pay
+FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+where (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
+group by settle_header.ID
+	, settle_header.SettleID
+	, settle_header.SuspendID, 
+            settle_header.DeptID
+            , Remark, settle_header.Tgl
+            , settle_header.CuryID
+            , settle_header.Total,settle_header.pay
+"
+            '"SELECT settle_header.ID, settle_header.SettleID, settle_header.SuspendID, 
+            'settle_header.DeptID, Remark, settle_header.Tgl, settle_header.CuryID, settle_header.Total,
+            'settle_detail.suspendAmount,settle_detail.SettleAmount, settle_header.pay
+            'FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+            'where settle_header.SuspendID like '%EN%'"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Sub GetSettleById()
         Try
             Dim sql As String =

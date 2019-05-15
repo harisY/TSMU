@@ -13,6 +13,7 @@ Public Class FrmEntertainSettle
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
+        Call LoadGrid2()
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
@@ -30,6 +31,23 @@ Public Class FrmEntertainSettle
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub LoadGrid2()
+        Try
+            ObjSettle = New SettleHeader
+            dtGrid = ObjSettle.GetDataGridEntPaid()
+            Grid.DataSource = dtGrid
+            With GridView1
+                .Columns(0).Visible = False
+                .BestFitColumns()
+            End With
+            GridCellFormat(GridView1)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Public Overrides Sub Proc_InputNewData()
         ''CallFrm()
 
