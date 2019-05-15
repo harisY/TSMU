@@ -109,9 +109,14 @@ Public Class FrmEntertainSettleDetail
     End Sub
 
     Public Overrides Sub Proc_print()
-        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
-        FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
-        FrmReportSettle.Show()
+        Try
+            Dim newform As New FrmReportSettleEntertain
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.TxtNosettle.Text = TxtNoSettlement.Text
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub LoadTxtBox()
