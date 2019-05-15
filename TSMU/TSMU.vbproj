@@ -1268,10 +1268,10 @@
     <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
       <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Direct\report\entertain1.rpt">
+    <EmbeddedResource Include="Direct\report\entertain1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>entertain1.vb</LastGenOutput>
-    </Compile>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportEntertain.resx">
       <DependentUpon>FrmReportEntertain.vb</DependentUpon>
     </EmbeddedResource>
@@ -1302,10 +1302,10 @@
     <EmbeddedResource Include="Direct\report\suspend1.resx">
       <DependentUpon>suspend1.vb</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Direct\report\entertain.rpt">
+    <EmbeddedResource Include="Direct\report\entertain.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>entertain.vb</LastGenOutput>
-    </Compile>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\suspend11.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>suspend11.vb</LastGenOutput>
