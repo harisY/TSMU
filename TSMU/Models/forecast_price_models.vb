@@ -1,5 +1,46 @@
 ﻿Imports System.Collections.ObjectModel
+Public Class forecast_price_models_header
+    Public Property Tahun As String
+    Public Property ObjForecastCollection() As New Collection(Of forecast_price_models)
+    Public Sub DeleteByTahun(Tahun As String)
+        Try
+            Dim query As String = "DELETE FROM tForecastPrice WHERE Tahun = " & QVal(Tahun) & ""
+            Dim li_Row = ExecQuery(query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub InsertData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+                        DeleteByTahun(Tahun)
+                        For i As Integer = 0 To ObjForecastCollection.Count - 1
+                            With ObjForecastCollection(i)
+                                .InsertData()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+End Class
 Public Class forecast_price_models
     Public Property Agt_PO1 As Integer
     Public Property Agt_PO2 As Integer
@@ -112,8 +153,6 @@ Public Class forecast_price_models
     Public Property Tahun As String
     Public Property update_date As DateTime
     Public Property updated_by As String
-
-    Public Property ObjForecastCollection() As Collection(Of forecast_price_models)
 
     Public Function GetAllDataGrid(ByVal ls_Filter As String) As DataTable
         Try
@@ -339,14 +378,7 @@ Public Class forecast_price_models
             Throw ex
         End Try
     End Sub
-    Public Sub DeleteByTahun(Tahun As String)
-        Try
-            Dim query As String = "DELETE FROM tForecastPrice WHERE Tahun = " & QVal(Tahun) & ""
-            Dim li_Row = ExecQuery(query)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
     Public Sub InsertData()
         Try
             Dim Query As String = String.Empty
