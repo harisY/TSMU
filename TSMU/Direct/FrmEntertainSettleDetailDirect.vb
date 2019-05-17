@@ -56,7 +56,7 @@ Public Class FrmEntertainSettleDetailDirect
     End Sub
 
     Private Sub FrmEntertainSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
     End Sub
