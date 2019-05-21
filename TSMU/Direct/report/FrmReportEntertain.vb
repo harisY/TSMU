@@ -15,7 +15,7 @@
         ' Add any initialization after the InitializeComponent() call.
         _NoSuspend = NoSuspend
     End Sub
-    Sub loadreport()
+    Sub Loadreport()
         Try
             If _NoSuspend = "" Then
                 Throw New Exception("Suspend ID tidak boleh kosong")
