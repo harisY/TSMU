@@ -434,6 +434,19 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="SettleRelasi" msprop:Generator_TableClassName="SettleRelasiDataTable" msprop:Generator_TableVarName="tableSettleRelasi" msprop:Generator_TablePropName="SettleRelasi" msprop:Generator_RowDeletingName="SettleRelasiRowDeleting" msprop:Generator_RowChangingName="SettleRelasiRowChanging" msprop:Generator_RowEvHandlerName="SettleRelasiRowChangeEventHandler" msprop:Generator_RowDeletedName="SettleRelasiRowDeleted" msprop:Generator_UserTableName="SettleRelasi" msprop:Generator_RowChangedName="SettleRelasiRowChanged" msprop:Generator_RowEvArgName="SettleRelasiRowChangeEvent" msprop:Generator_RowClassName="SettleRelasiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SettleRelasiID" msprop:Generator_ColumnVarNameInTable="columnSettleRelasiID" msprop:Generator_ColumnPropNameInRow="SettleRelasiID" msprop:Generator_ColumnPropNameInTable="SettleRelasiIDColumn" msprop:Generator_UserColumnName="SettleRelasiID" type="xs:string" minOccurs="0" />
+              <xs:element name="SettleID" msprop:Generator_ColumnVarNameInTable="columnSettleID" msprop:Generator_ColumnPropNameInRow="SettleID" msprop:Generator_ColumnPropNameInTable="SettleIDColumn" msprop:Generator_UserColumnName="SettleID" type="xs:string" minOccurs="0" />
+              <xs:element name="Nama" msprop:Generator_ColumnVarNameInTable="columnNama" msprop:Generator_ColumnPropNameInRow="Nama" msprop:Generator_ColumnPropNameInTable="NamaColumn" msprop:Generator_UserColumnName="Nama" type="xs:string" minOccurs="0" />
+              <xs:element name="Posisi" msprop:Generator_ColumnVarNameInTable="columnPosisi" msprop:Generator_ColumnPropNameInRow="Posisi" msprop:Generator_ColumnPropNameInTable="PosisiColumn" msprop:Generator_UserColumnName="Posisi" type="xs:string" minOccurs="0" />
+              <xs:element name="Perusahaan" msprop:Generator_ColumnVarNameInTable="columnPerusahaan" msprop:Generator_ColumnPropNameInRow="Perusahaan" msprop:Generator_ColumnPropNameInTable="PerusahaanColumn" msprop:Generator_UserColumnName="Perusahaan" type="xs:string" minOccurs="0" />
+              <xs:element name="JenisUsaha" msprop:Generator_ColumnVarNameInTable="columnJenisUsaha" msprop:Generator_ColumnPropNameInRow="JenisUsaha" msprop:Generator_ColumnPropNameInTable="JenisUsahaColumn" msprop:Generator_UserColumnName="JenisUsaha" type="xs:string" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

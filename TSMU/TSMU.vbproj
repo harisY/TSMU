@@ -461,6 +461,18 @@
       <DependentUpon>relasi.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\settleDetail.vb">
+      <DependentUpon>settleDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Direct\report\settleApproval.vb">
+      <DependentUpon>settleApproval.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Direct\report\SettleEntertain.vb">
       <DependentUpon>SettleEntertain.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1296,6 +1308,14 @@
     <EmbeddedResource Include="Direct\report\relasi.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>relasi.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\settleDetail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>settleDetail.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\settleApproval.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>settleApproval.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\SettleEntertain.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

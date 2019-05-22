@@ -97,7 +97,8 @@ Public Class frm_payment_aprrove_details
                     _TxtToBank.Text = .bankrek
                     _TxtCM.Text = .CM_DM
                     _TxtCurrency.Text = .CuryID
-                    _TxtDebit.Text = Format((.Total_DPP_PPN + .PPh) - .PPh - .Biaya_Transfer - .CM_DM, "##,0")
+                    Dim debit As Double = .Total_DPP_PPN - .PPh - .PPh - .Biaya_Transfer - .CM_DM
+                    _TxtDebit.Text = Format(debit, "##,0")
                     _TxtNoRek.Text = .norek
                     _TxtDpp.Text = Format(.Tot_DPP, "##,0")
                     _TxtTgl.Text = Format(.tgl, "dd-MM-yyyy")

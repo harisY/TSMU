@@ -56,7 +56,7 @@ Public Class FrmSuspendSettleDetailDirect
     End Sub
 
     Private Sub FrmSuspendSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
     End Sub
@@ -444,4 +444,11 @@ Public Class FrmSuspendSettleDetailDirect
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Public Overrides Sub Proc_print()
+        FrmReportSettle.StartPosition = FormStartPosition.CenterScreen
+        FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
+        FrmReportSettle.Show()
+    End Sub
+
 End Class
