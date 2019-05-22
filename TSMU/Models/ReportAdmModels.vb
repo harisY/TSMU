@@ -17,4 +17,16 @@
         End Try
 
     End Function
+
+    Public Function GetDataGridBarcodeGenerate() As DataTable
+        Try
+            Dim query As String = "GetReportBarcodeGenerate"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
 End Class
