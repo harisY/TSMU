@@ -369,6 +369,30 @@ group by settle_header.ID
         End Try
     End Function
 
+    Public Function SettleAutoNoEnt() As String
+
+        Try
+            Dim query As String
+
+            query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+                "set @tahun = datepart(year,getdate()) " &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(settleid)),4)+1 as varchar),4) " &
+                "from settle_Header " &
+                "where SUBSTRING(settleid,4,4) = RIGHT(@tahun,4) AND SUBSTRING(settleid,9,2) = RIGHT(@bulan,2)) " &
+                "select 'ET' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable_Solomon(query)
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
+
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
@@ -551,14 +575,23 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct) " & vbCrLf &
+            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct,Nama,Tempat,Alamat,Jenis,NamaRelasi,Posisi,Relasi,JenisRelasi,Nota) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SuspendAmount) & ", " & vbCrLf &
             "       " & QVal(SettleAmount) & ", " & vbCrLf &
             "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(SubAcct.TrimEnd) & ")"
+            "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nama.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Posisi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Relasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nota.TrimEnd) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

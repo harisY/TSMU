@@ -172,8 +172,8 @@ Public Class FrmEntertainSettleDetail
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
                     .SuspendID = TxtNoSuspend.Text
-                    .SettleID = .SettleAutoNo
-                    _SettleID = ObjSettle.SettleAutoNo
+                    .SettleID = .SettleAutoNoEnt
+                    _SettleID = ObjSettle.SettleAutoNoEnt
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text

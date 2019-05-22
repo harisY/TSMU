@@ -18,16 +18,16 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class settleDetail
+Public Class RptsettleDetail
     Inherits ReportClass
-
+    
     Public Sub New()
         MyBase.New
     End Sub
-
+    
     Public Overrides Property ResourceName() As String
         Get
-            Return "settleDetail.rpt"
+            Return "RptsettleDetail.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class settleDetail
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TSMU.settleDetail.rpt"
+            Return "TSMU.RptsettleDetail.rpt"
         End Get
         Set
             'Do nothing
@@ -94,7 +94,7 @@ Public Class settleDetail
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedsettleDetail
+Public Class CachedRptsettleDetail
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +136,7 @@ Public Class CachedsettleDetail
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As settleDetail = New settleDetail()
+        Dim rpt As RptsettleDetail = New RptsettleDetail()
         rpt.Site = Me.Site
         Return rpt
     End Function
