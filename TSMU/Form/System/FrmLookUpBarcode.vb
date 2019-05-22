@@ -19,6 +19,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("Qty")
         dtTemp.Columns.Add("QrCode")
         dtTemp.Columns.Add("Warna")
+        dtTemp.Columns.Add("LR")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -58,7 +59,7 @@ Public Class FrmLookUpBarcode
             End If
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
-            ds = Obj.PrintQRCOde(TxtKodePart.Text, gh_Common.Site)
+            ds = Obj.PrintQRCOde(TxtKodePart.Text, gh_Common.Site, gh_Common.Username)
 
             dt = ds.Tables("QRCode")
 
@@ -86,6 +87,7 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(9) = Trim(dt.Rows(0).Item("Qty") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(dt.Rows(0).Item("Warna") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
             Next
 
             Dim Laporan As New Testing

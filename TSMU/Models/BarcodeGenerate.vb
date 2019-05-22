@@ -70,7 +70,7 @@ Public Class BarcodeGenerate
         End Try
     End Sub
 
-    Public Function PrintQRCOde(KodePart As String, Site As String) As DataSet
+    Public Function PrintQRCOde(KodePart As String, Site As String, Username As String) As DataSet
         Dim ds As dsLaporan
         Try
             Dim sql As String =
@@ -85,7 +85,8 @@ Public Class BarcodeGenerate
                 ,[QtyLabel] Qty
                 ,0 as No
                 ,WarnaPasscard Warna
-            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
+                ,LokalExport as LR
+            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND UploadBy=" & QVal(Username) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
         Catch ex As Exception
