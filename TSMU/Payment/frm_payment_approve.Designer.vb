@@ -210,7 +210,7 @@ Partial Class frm_payment_approve
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Direktur"
+        Me.GridColumn8.Caption = "Director"
         Me.GridColumn8.ColumnEdit = Me.ChekDir
         Me.GridColumn8.FieldName = "Direktur"
         Me.GridColumn8.Name = "GridColumn8"
