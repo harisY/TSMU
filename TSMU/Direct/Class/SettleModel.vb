@@ -575,18 +575,14 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct,Nama,Tempat,Alamat,Jenis) " & vbCrLf &
+            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SuspendAmount) & ", " & vbCrLf &
             "       " & QVal(SettleAmount) & ", " & vbCrLf &
             "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Nama.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Jenis.TrimEnd) & ")"
+            "       " & QVal(SubAcct.TrimEnd) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
