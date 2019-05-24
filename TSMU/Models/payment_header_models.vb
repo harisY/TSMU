@@ -155,7 +155,7 @@ Public Class payment_header_models
                                     "       " & QVal(Me.cek4) & ", " & vbCrLf &
                                     "       " & QVal(Me.prosespay) & ", " & vbCrLf &
                                     "       " & QVal(Me.uploaded) & ", " & vbCrLf &
-                                    "       " & QVal(Me.detsupplier) & ", " & vbCrLf &
+                                    "       " & QVal(Me.VendorName) & ", " & vbCrLf &
                                     "       " & QVal(Me.bankrek) & ", " & vbCrLf &
                                     "       " & QVal(Me.norek) & ", " & vbCrLf &
                                     "       " & QVal(Me.penerima) & ", " & vbCrLf &

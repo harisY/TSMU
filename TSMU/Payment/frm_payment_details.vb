@@ -397,8 +397,8 @@ Public Class frm_payment_details
 
                 _TxtPPH.Text = Format(TotPPH, gs_FormatBulat)
             End If
-
-            _TxtDebit.Text = Format(TotAmount - TotPPH - Val(_TxtCM.Text) - Val(_txtCMDMmanual.Text) - Val(_TxtBiaya.Text), gs_FormatBulat)
+            Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
+            _TxtDebit.Text = Format(debit, gs_FormatBulat)
         Catch ex As Exception
             Throw ex
         End Try

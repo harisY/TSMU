@@ -150,8 +150,8 @@ Public Class FrmEntertainSettleDetailDirect
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
-                    .SettleID = .SettleAutoNo
-                    _SettleID = ObjSettle.SettleAutoNo
+                    .SettleID = .SettleAutoNoEnt
+                    _SettleID = ObjSettle.SettleAutoNoEnt
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
@@ -199,10 +199,29 @@ Public Class FrmEntertainSettleDetailDirect
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            .Nama = GridView1.GetRowCellValue(i, "Nama")
+                            .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+                            .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+                            .Jenis = GridView1.GetRowCellValue(i, "Jenis")
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
+
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                        ObjSettleDetail = New SettleDetail
+                        With ObjSettleDetail
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                            .Nota = GridView2.GetRowCellValue(i, "Nota")
+                        End With
+                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                    End If
+                Next
+
                 ObjSettle.InsertData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
@@ -218,6 +237,24 @@ Public Class FrmEntertainSettleDetailDirect
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            .Nama = GridView1.GetRowCellValue(i, "Nama")
+                            .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+                            .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+                            .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+                        End With
+                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                    End If
+                Next
+
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                        ObjSettleDetail = New SettleDetail
+                        With ObjSettleDetail
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                            .Nota = GridView2.GetRowCellValue(i, "Nota")
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
@@ -395,6 +432,9 @@ Public Class FrmEntertainSettleDetailDirect
             GridView1.AddNewRow()
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+            GridView2.AddNewRow()
+            GridView2.OptionsNavigation.AutoFocusNewRow = True
+            GridView2.FocusedColumn = GridView2.VisibleColumns(0)
         End If
     End Sub
 
