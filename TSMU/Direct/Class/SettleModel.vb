@@ -575,6 +575,28 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
+            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct,Nama,Tempat,Alamat,Jenis) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(SuspendAmount) & ", " & vbCrLf &
+            "       " & QVal(SettleAmount) & ", " & vbCrLf &
+            "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nama.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Jenis.TrimEnd) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertDetailsEnt()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO settle_detail
             (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct,Nama,Tempat,Alamat,Jenis,NamaRelasi,Posisi,Relasi,JenisRelasi,Nota) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
@@ -597,6 +619,8 @@ Public Class SettleDetail
             Throw
         End Try
     End Sub
+
+
     Public Sub DeleteDetail(_SettleID As String)
         Try
             Dim ls_SP As String = "DELETE FROM settle_detail WHERE rtrim(SettleID)=" & QVal(_SettleID.TrimEnd) & ""
