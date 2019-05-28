@@ -49,7 +49,7 @@ Public Class SettleHeader
             sum(settle_detail.suspendAmount)suspendAmount
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
-FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+FROM settle_header left join settle_detail on settle_header.settleID=settle_detail.settleID 
 where settle_header.DeptID='" & gh_Common.GroupID & "' AND  pay=0 and (settle_header.SuspendID not like '%EN%'  OR settle_header.SuspendID Is Null) group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 

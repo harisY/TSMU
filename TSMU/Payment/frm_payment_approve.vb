@@ -119,58 +119,58 @@ Public Class frm_payment_approve
         Try
             dtGrid2 = ObjPaymentHeader.GetDataGridApproveDone(gh_Common.Level)
             GridApproved.DataSource = dtGrid2
-            'If GridView2.RowCount > 0 Then
-            '    With GridView2
-            GridView2.Columns(0).Visible = False
-            GridView2.BestFitColumns()
-            'GridView2.FixedLineWidth = 1
-            'GridView2.Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-            'GridView2.OptionsView.ColumnAutoWidth = True
-            '    End With
-            GridCellFormat(GridView2)
-            '    If gh_Common.Level = 1 Then
-            GridView2.OptionsBehavior.Editable = False
-            '    ElseIf gh_Common.Level = 2 Then
-            '        GridView2.OptionsBehavior.Editable = True
-            '        For i As Integer = 0 To GridView2.Columns.Count - 1
-            '            If GridView2.Columns(i).VisibleIndex <> 16 Then
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = False
-            '            Else
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = True
-            '            End If
-            '        Next
+            If GridView2.RowCount > 0 Then
+                With GridView2
+                    GridView2.Columns(0).Visible = False
+                    GridView2.BestFitColumns()
+                    GridView2.FixedLineWidth = 1
+                    GridView2.Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    GridView2.OptionsView.ColumnAutoWidth = True
+                End With
+                GridCellFormat(GridView2)
+                If gh_Common.Level = 1 Then
+                    GridView2.OptionsBehavior.Editable = False
+                ElseIf gh_Common.Level = 2 Then
+                    GridView2.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView2.Columns.Count - 1
+                        If GridView2.Columns(i).VisibleIndex <> 16 Then
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
 
-            '        'GridView2.Columns(15).OptionsColumn.AllowEdit = False
-            '        'GridView2.Columns(16).OptionsColumn.AllowEdit = True
-            '        'GridView2.Columns(17).OptionsColumn.AllowEdit = False
-            '        'GridView2.Columns(18).OptionsColumn.AllowEdit = False
-            '    ElseIf gh_Common.Level = 3 Then
-            '        GridView2.OptionsBehavior.Editable = True
-            '        For i As Integer = 0 To GridView2.Columns.Count - 1
-            '            If GridView2.Columns(i).VisibleIndex <> 17 Then
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = False
-            '            Else
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = True
-            '            End If
-            '        Next
-            '    ElseIf gh_Common.Level = 4 Then
-            '        GridView2.OptionsBehavior.Editable = True
-            '        For i As Integer = 0 To GridView2.Columns.Count - 1
-            '            If GridView2.Columns(i).VisibleIndex <> 18 Then
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = False
-            '            Else
-            '                GridView2.Columns(i).OptionsColumn.AllowEdit = True
-            '            End If
-            '        Next
-            '        'GridView2.OptionsBehavior.Editable = True
-            '        'GridView2.Columns(15).OptionsColumn.AllowEdit = False
-            '        'GridView2.Columns(16).OptionsColumn.AllowEdit = False
-            '        'GridView2.Columns(17).OptionsColumn.AllowEdit = False
-            '        'GridView2.Columns(18).OptionsColumn.AllowEdit = True
-            '    Else
-            '        GridView2.OptionsBehavior.Editable = False
-            '    End If
-            'End If
+                    'GridView2.Columns(15).OptionsColumn.AllowEdit = False
+                    'GridView2.Columns(16).OptionsColumn.AllowEdit = True
+                    'GridView2.Columns(17).OptionsColumn.AllowEdit = False
+                    'GridView2.Columns(18).OptionsColumn.AllowEdit = False
+                ElseIf gh_Common.Level = 3 Then
+                    GridView2.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView2.Columns.Count - 1
+                        If GridView2.Columns(i).VisibleIndex <> 17 Then
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
+                ElseIf gh_Common.Level = 4 Then
+                    GridView2.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView2.Columns.Count - 1
+                        If GridView2.Columns(i).VisibleIndex <> 18 Then
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView2.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
+                    'GridView2.OptionsBehavior.Editable = True
+                    'GridView2.Columns(15).OptionsColumn.AllowEdit = False
+                    'GridView2.Columns(16).OptionsColumn.AllowEdit = False
+                    'GridView2.Columns(17).OptionsColumn.AllowEdit = False
+                    'GridView2.Columns(18).OptionsColumn.AllowEdit = True
+                Else
+                    GridView2.OptionsBehavior.Editable = False
+                End If
+            End If
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
