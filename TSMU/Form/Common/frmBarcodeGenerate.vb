@@ -52,7 +52,7 @@ Public Class frmBarcodeGenerate
             Dim dtFilter As New DataTable
 
             dtFilter = dv.ToTable
-
+            'Exit Sub
             If dtFilter.Rows.Count > 0 Then
 
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)

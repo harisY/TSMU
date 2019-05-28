@@ -103,9 +103,10 @@ Public Class frmSales_ForecastPrice
 
                     SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                     SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
-                    'ObjForecast.ObjForecastCollection.Clear()
+                    ObjHeader.ObjForecastCollection.Clear()
                     For i As Integer = 0 To dtFilter.Rows.Count - 1
                         Try
+                            ObjForecast = New forecast_price_models
                             'Dim ObjCollection As New forecast_price_models
                             With ObjForecast
                                 If dtFilter.Rows(i)("Tahun") Is DBNull.Value OrElse dtFilter.Rows(i)("Tahun").ToString = "" Then
@@ -703,15 +704,15 @@ Public Class frmSales_ForecastPrice
 
                                 .created_date = DateTime.Today
                                 .created_by = gh_Common.Username
-                                Dim IsExist = .IsDataExist
-                                If IsExist Then
-                                    .UpdateDataByBulan(Bulan)
-                                Else
-                                    .InsertData()
-                                    '.UpdateDataByBulan(Bulan)
-                                End If
+                                'Dim IsExist = .IsDataExist
+                                'If IsExist Then
+                                '    .UpdateDataByBulan(Bulan)
+                                'Else
+                                '    .InsertData()
+                                '    '.UpdateDataByBulan(Bulan)
+                                'End If
                             End With
-                            'ObjForecast.ObjForecastCollection.Add(ObjCollection)
+                            ObjHeader.ObjForecastCollection.Add(ObjForecast)
                         Catch ex As Exception
                             'MsgBox(ex.Message)
                             Console.WriteLine(ex.Message)
@@ -720,7 +721,12 @@ Public Class frmSales_ForecastPrice
                             Continue For
                         End Try
                     Next
-
+                    With ObjHeader
+                        .Tahun = strTahun
+                        .CustID = strCustomer
+                        .Bulan = Bulan
+                        .InsertData1()
+                    End With
 
                     SplashScreenManager.CloseForm()
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
