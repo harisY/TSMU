@@ -30,8 +30,8 @@ Public Class SuspendApprovalHeaderModel
             Else
                 Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
-            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) - 1 & "  
-            AND (Status = 'Approved') and ceklist=1 Order by SuspendID"
+            FROM suspend_header where State = " & QVal(level) - 1 & "  
+            AND (Status <> 'Open') and ceklist=1 Order by SuspendID"
                 dt = GetDataTable_Solomon(sql)
             End If
 
