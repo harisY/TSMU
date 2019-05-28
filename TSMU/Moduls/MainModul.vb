@@ -1637,4 +1637,44 @@ Module MainModul
             MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
         End With
     End Sub
+    Public Sub GridCellFormatDatewithTime(ByVal View As GridView)
+        With View
+            For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                If col.ColumnType Is GetType(DateTime) Then
+                    If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
+                        col.DisplayFormat.FormatType = FormatType.DateTime
+                        col.DisplayFormat.FormatString = "dd-MM-yyyy hh:mm:ss"
+                    End If
+                ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
+                    Dim lb_Nothing As Boolean = True
+                    col.DisplayFormat.FormatString = gs_FormatPecahan
+                    If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+                        Array.Sort(bia_FormatPecahan)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, col.ColumnHandle)
+                        If li_Found > -1 Then
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatPecahan
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+                        Array.Sort(bia_FormatBulat)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, col.ColumnHandle)
+                        If li_Found > -1 Then
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatBulat
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True Then
+                        col.DisplayFormat.FormatType = FormatType.Numeric
+                        col.DisplayFormat.FormatString = gs_FormatDecimal
+                    End If
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                End If
+            Next
+            .RefreshData()
+            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+        End With
+    End Sub
 End Module
