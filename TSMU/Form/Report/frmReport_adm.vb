@@ -98,7 +98,8 @@ Public Class frmReport_adm
         Else
             _Grid.DataSource = table
             If GridView1.RowCount > 0 Then
-                GridCellFormat(GridView1)
+                GridView1.BestFitColumns()
+                GridCellFormatDatewithTime(GridView1)
             End If
         End If
     End Sub

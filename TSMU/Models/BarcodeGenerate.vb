@@ -86,7 +86,96 @@ Public Class BarcodeGenerate
                 ,0 as No
                 ,WarnaPasscard Warna
                 ,LokalExport as LR
-            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND UploadBy=" & QVal(Username) & ""
+            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND LOWER(UploadBy)=" & QVal(Username) & ""
+            ds = New dsLaporan
+            ds = GetDsReport(sql, "QRCode")
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return ds
+    End Function
+
+    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer)
+        Try
+            Dim Ada As Boolean = CheckLog(Bulan, KodePart)
+            If Ada Then
+                Dim _udpate As String = "Update BarcodePrintLog Set No =" & QVal(No) & "
+                                        WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                ExecQuery(_udpate)
+            Else
+                Dim Query As String = String.Empty
+                Query = "INSERT INTO [BarcodePrintLog]
+                        ([KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        Values(" & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                            ," & QVal(gh_Common.Username) & ",GETDATE())"
+                ExecQuery(Query)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function GetNoPrint(Bulan As String, KodePart As String) As Integer
+        Dim hasil As Integer
+        Try
+            Dim sql As String = "SELECT No From BarcodePrintLog WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+            Dim dt As DataTable
+            dt = GetDataTable(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function CheckLog(Bulan As String, KodePart As String) As Boolean
+        Dim hasil As Boolean
+        Try
+            Dim sql As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = True
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckLastNo(Bulan As String, KodePart As String, No As Integer) As Boolean
+        Dim hasil As Boolean
+        Try
+            Dim sql As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " AND No Between 1 AND " & QVal(No) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = True
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function PrintQRCOdeCkr(KodePart As String, Site As String) As DataSet
+        Dim ds As dsLaporan
+        Try
+            Dim sql As String =
+            "SELECT 
+                [KodePart]
+                ,[InvetoryID] InvtID
+                ,[SFG/FG] Status
+                ,[PartName]
+                ,[PartNo]
+                ,[Colour] Color
+                ,[JobNo]
+                ,[QtyLabel] Qty
+                ,0 as No
+                ,WarnaPasscard Warna
+                ,LokalExport as LR
+            FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
         Catch ex As Exception
