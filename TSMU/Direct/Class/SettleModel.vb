@@ -15,6 +15,7 @@ Public Class SettleHeader
     Public Property Tgl1 As Date
     Public Property Tgl2 As Date
     Public Property Jenis As String
+    Public Property noPR As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
 
     Public Function SubReport() As DataSet
@@ -396,7 +397,7 @@ group by settle_header.ID
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PRNo, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
@@ -404,6 +405,7 @@ group by settle_header.ID
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       " & QVal(noPR.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

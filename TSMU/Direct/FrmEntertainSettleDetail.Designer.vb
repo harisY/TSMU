@@ -49,13 +49,15 @@ Partial Class FrmEntertainSettleDetail
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.txtNoPR = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +89,8 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNoPR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -100,6 +104,7 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
         Me.LayoutControl1.Controls.Add(Me.TxtTgl)
         Me.LayoutControl1.Controls.Add(Me.TxtNoSuspend)
+        Me.LayoutControl1.Controls.Add(Me.txtNoPR)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -113,49 +118,49 @@ Partial Class FrmEntertainSettleDetail
         Me.TxtNoSettlement.Location = New System.Drawing.Point(88, 36)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
-        Me.TxtNoSettlement.Size = New System.Drawing.Size(167, 20)
+        Me.TxtNoSettlement.Size = New System.Drawing.Size(177, 20)
         Me.TxtNoSettlement.StyleController = Me.LayoutControl1
         Me.TxtNoSettlement.TabIndex = 14
         '
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(596, 60)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(605, 60)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotExpense.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotExpense.Properties.ReadOnly = True
-        Me.TxtTotExpense.Size = New System.Drawing.Size(188, 20)
+        Me.TxtTotExpense.Size = New System.Drawing.Size(179, 20)
         Me.TxtTotExpense.StyleController = Me.LayoutControl1
         Me.TxtTotExpense.TabIndex = 13
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(596, 36)
+        Me.TxtStatus.Location = New System.Drawing.Point(605, 36)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.ReadOnly = True
-        Me.TxtStatus.Size = New System.Drawing.Size(188, 20)
+        Me.TxtStatus.Size = New System.Drawing.Size(179, 20)
         Me.TxtStatus.StyleController = Me.LayoutControl1
         Me.TxtStatus.TabIndex = 12
         '
         'TxtTotal
         '
         Me.TxtTotal.EditValue = "0"
-        Me.TxtTotal.Location = New System.Drawing.Point(335, 60)
+        Me.TxtTotal.Location = New System.Drawing.Point(345, 60)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotal.Properties.ReadOnly = True
-        Me.TxtTotal.Size = New System.Drawing.Size(181, 20)
+        Me.TxtTotal.Size = New System.Drawing.Size(180, 20)
         Me.TxtTotal.StyleController = Me.LayoutControl1
         Me.TxtTotal.TabIndex = 9
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(596, 12)
+        Me.TxtRemark.Location = New System.Drawing.Point(605, 12)
         Me.TxtRemark.Name = "TxtRemark"
         Me.TxtRemark.Properties.ReadOnly = True
-        Me.TxtRemark.Size = New System.Drawing.Size(188, 20)
+        Me.TxtRemark.Size = New System.Drawing.Size(179, 20)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
         '
@@ -164,29 +169,29 @@ Partial Class FrmEntertainSettleDetail
         Me.TxtDep.Location = New System.Drawing.Point(88, 60)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.ReadOnly = True
-        Me.TxtDep.Size = New System.Drawing.Size(167, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(177, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(335, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(345, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.ReadOnly = True
-        Me.TxtCurrency.Size = New System.Drawing.Size(181, 20)
+        Me.TxtCurrency.Size = New System.Drawing.Size(180, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         '
         'TxtTgl
         '
-        Me.TxtTgl.Location = New System.Drawing.Point(335, 36)
+        Me.TxtTgl.Location = New System.Drawing.Point(475, 36)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.ReadOnly = True
-        Me.TxtTgl.Size = New System.Drawing.Size(181, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(50, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
@@ -195,7 +200,7 @@ Partial Class FrmEntertainSettleDetail
         Me.TxtNoSuspend.Location = New System.Drawing.Point(88, 12)
         Me.TxtNoSuspend.Name = "TxtNoSuspend"
         Me.TxtNoSuspend.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtNoSuspend.Size = New System.Drawing.Size(167, 20)
+        Me.TxtNoSuspend.Size = New System.Drawing.Size(177, 20)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -207,8 +212,8 @@ Partial Class FrmEntertainSettleDetail
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.Label10, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.Label9})
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.Label10, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem4, Me.LayoutControlItem2})
+        Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 104)
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -217,7 +222,7 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlItem1.Control = Me.TxtNoSuspend
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(247, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem1.Text = "No. Advance"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(73, 13)
         '
@@ -232,36 +237,36 @@ Partial Class FrmEntertainSettleDetail
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(247, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(257, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(260, 24)
         Me.LayoutControlItem5.Text = "Currency"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtTgl
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(247, 24)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(387, 24)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem4.Text = "Date"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtRemark
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(508, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(517, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(259, 24)
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(73, 13)
         '
         'Label10
         '
         Me.Label10.Control = Me.TxtStatus
-        Me.Label10.Location = New System.Drawing.Point(508, 24)
+        Me.Label10.Location = New System.Drawing.Point(517, 24)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(268, 24)
+        Me.Label10.Size = New System.Drawing.Size(259, 24)
         Me.Label10.Text = "Status"
         Me.Label10.TextSize = New System.Drawing.Size(73, 13)
         '
@@ -270,25 +275,25 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlItem8.Control = Me.TxtNoSettlement
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(247, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem8.Text = "No. Settlement"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtTotal
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(247, 48)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(257, 48)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(260, 24)
         Me.LayoutControlItem6.Text = "Total Advance"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(73, 13)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(508, 48)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(517, 48)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(259, 24)
         Me.LayoutControlItem7.Text = "Total Expenses"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(73, 13)
         '
@@ -297,7 +302,7 @@ Partial Class FrmEntertainSettleDetail
         Me.Label9.Control = Me.TxtDep
         Me.Label9.Location = New System.Drawing.Point(0, 48)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(247, 24)
+        Me.Label9.Size = New System.Drawing.Size(257, 24)
         Me.Label9.Text = "Dept"
         Me.Label9.TextSize = New System.Drawing.Size(73, 13)
         '
@@ -353,17 +358,6 @@ Partial Class FrmEntertainSettleDetail
         Me.ReposDate.Mask.EditMask = "dd-MM-yyyy"
         Me.ReposDate.Name = "ReposDate"
         '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "SubAccount"
-        Me._subaccount.ColumnEdit = Me.GSubAccount
-        Me._subaccount.FieldName = "SubAccount"
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.OptionsColumn.FixedWidth = True
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 2
-        Me._subaccount.Width = 100
-        '
         '_account
         '
         Me._account.Caption = "Account"
@@ -374,6 +368,17 @@ Partial Class FrmEntertainSettleDetail
         Me._account.Visible = True
         Me._account.VisibleIndex = 1
         Me._account.Width = 100
+        '
+        '_subaccount
+        '
+        Me._subaccount.Caption = "SubAccount"
+        Me._subaccount.ColumnEdit = Me.GSubAccount
+        Me._subaccount.FieldName = "SubAccount"
+        Me._subaccount.Name = "_subaccount"
+        Me._subaccount.OptionsColumn.FixedWidth = True
+        Me._subaccount.Visible = True
+        Me._subaccount.VisibleIndex = 2
+        Me._subaccount.Width = 100
         '
         '_description
         '
@@ -427,6 +432,26 @@ Partial Class FrmEntertainSettleDetail
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
+        'txtNoPR
+        '
+        Me.txtNoPR.EditValue = ""
+        Me.txtNoPR.Location = New System.Drawing.Point(345, 36)
+        Me.txtNoPR.Name = "txtNoPR"
+        Me.txtNoPR.Properties.ReadOnly = True
+        Me.txtNoPR.Size = New System.Drawing.Size(50, 20)
+        Me.txtNoPR.StyleController = Me.LayoutControl1
+        Me.txtNoPR.TabIndex = 6
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.txtNoPR
+        Me.LayoutControlItem2.CustomizationFormText = "Remark"
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(257, 24)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(130, 24)
+        Me.LayoutControlItem2.Text = "No. PR"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(73, 13)
+        '
         'FrmEntertainSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -468,6 +493,8 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNoPR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -508,4 +535,6 @@ Partial Class FrmEntertainSettleDetail
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtNoSettlement As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtNoPR As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
 End Class

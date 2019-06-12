@@ -94,13 +94,23 @@ Public Class FrmEntertainSettleDetailDirect
                 ObjEntertainDetail.SuspendID = ""
                 dtGrid = ObjEntertainDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
-                'If dtGrid.Rows.Count > 0 Then
-                '    GridCellFormat(GridView1)
-                'End If
+                If dtGrid.Rows.Count > 0 Then
+                    GridCellFormat(GridView1)
+                End If
+                Dim dtGrid2 As New DataTable
+                ObjEntertainDetail.SuspendID = ""
+                dtGrid2 = ObjEntertainDetail.GetDataDetailByID()
+                GridControl1.DataSource = dtGrid2
+                If dtGrid2.Rows.Count > 0 Then
+                    GridCellFormat(GridView2)
+                End If
             Else
                 Dim dtGrid As New DataTable
                 dtGrid = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 Grid.DataSource = dtGrid
+                Dim dtGrid2 As New DataTable
+                dtGrid2 = ObjSettleDetail.GetDataDetailByID(fs_Code2)
+                GridControl1.DataSource = dtGrid2
             End If
 
         Catch ex As Exception
@@ -297,8 +307,8 @@ Public Class FrmEntertainSettleDetailDirect
                         MessageBox.Show("Data Tidak ditemukan !")
                         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
                     End If
-                ElseIf GridView1.FocusedColumn.FieldName = "ActualAmount" Then
-                    GridView1.MoveNext()
+                    ''ElseIf GridView1.FocusedColumn.FieldName = "ActualAmount" Then
+                    ''GridView1.MoveNext()
                 End If
             End If
 
@@ -421,6 +431,12 @@ Public Class FrmEntertainSettleDetailDirect
     End Sub
 
     Private Sub ReposActual_EditValueChanged(sender As Object, e As EventArgs) Handles ReposActual.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs)
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

@@ -29,6 +29,7 @@
                       ,[Ppn]
                       ,[Pph] PPH
                       ,[cek1] [Check]
+                      ,[cek4]
                   FROM [Payment_Detail1] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)

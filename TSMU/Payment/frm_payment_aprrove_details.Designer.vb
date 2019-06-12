@@ -699,6 +699,7 @@ Partial Class frm_payment_aprrove_details
         Me.GridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumn1.FieldName = "cek4"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsFilter.AllowAutoFilter = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 9
         '
