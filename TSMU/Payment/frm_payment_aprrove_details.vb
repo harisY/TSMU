@@ -218,5 +218,8 @@ Public Class frm_payment_aprrove_details
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
         GridInvoice.FocusedView.PostEditor()
     End Sub
+    Private Sub RepositoryItemCheckEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.EditValueChanged
+        GridInvoice.FocusedView.PostEditor()
+    End Sub
 
 End Class

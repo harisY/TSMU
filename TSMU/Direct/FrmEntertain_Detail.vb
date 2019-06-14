@@ -127,7 +127,7 @@ Public Class FrmEntertain_Detail
             dtGrid2 = ObjEntertainDetail.GetDataDetailByID()
             Grid.DataSource = dtGrid
             If dtGrid.Rows.Count > 0 Then
-                GridCellFormat(GridView1)
+                GridCellFormat(GridView2)
             End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
@@ -576,6 +576,9 @@ Public Class FrmEntertain_Detail
             GridView1.AddNewRow()
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+            GridView2.AddNewRow()
+            GridView2.OptionsNavigation.AutoFocusNewRow = True
+            GridView2.FocusedColumn = GridView2.VisibleColumns(0)
         End If
     End Sub
 

@@ -131,6 +131,7 @@ Public Class FrmEntertainSettleDetail
                     TxtTgl.EditValue = .Tgl
                     TxtTotal.Text = Format(.TotalSuspend, gs_FormatBulat)
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
+                    txtNoPR.Text = .noPR
                 End With
             Else
                 TxtNoSuspend.Text = ""
@@ -140,6 +141,7 @@ Public Class FrmEntertainSettleDetail
                 TxtStatus.Text = ""
                 TxtTgl.Text = ""
                 TxtTotal.Text = "0"
+                txtNoPR.Text = ""
                 TxtNoSuspend.Focus()
             End If
         Catch ex As Exception

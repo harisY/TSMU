@@ -680,7 +680,7 @@ Partial Class frm_payment_aprrove_details
         '
         'ColCheck
         '
-        Me.ColCheck.Caption = "Check Finance"
+        Me.ColCheck.Caption = "Finance"
         Me.ColCheck.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.ColCheck.FieldName = "Check"
         Me.ColCheck.Name = "ColCheck"
@@ -695,10 +695,11 @@ Partial Class frm_payment_aprrove_details
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Check Director"
+        Me.GridColumn1.Caption = "Director"
         Me.GridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumn1.FieldName = "cek4"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsFilter.AllowAutoFilter = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 9
         '
