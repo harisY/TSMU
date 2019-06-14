@@ -2,6 +2,7 @@
 Public Class frm_system_config_db
     Dim AppSettingFileName As String = Application.StartupPath & "\AS.XML"
     Dim SolomonConfig As String = Application.StartupPath & "\Solomon.XML"
+    Dim CKRConfig As String = Application.StartupPath & "\CKR.XML"
     Dim _ChangeRBInstruction As Boolean = False
     Private Sub frm_system_config_db_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -24,6 +25,12 @@ Public Class frm_system_config_db
         Dim _SolomonUser As String = ""
         Dim _SolomonPass As String = ""
         Dim _SolomonAuth As String = ""
+
+        Dim CKRServer As String = ""
+        Dim CKRDB As String = ""
+        Dim CKRUser As String = ""
+        Dim CKRPass As String = ""
+        Dim CKRAuth As String = ""
 
         Dim ls_Product As String = My.Application.Info.ProductName.Trim
         Dim ls_Description As String = My.Application.Info.Description.Trim
@@ -197,6 +204,83 @@ Public Class frm_system_config_db
         End If
         CheckSolomon.Checked = False
 
+
+        '============DB CKR====================
+        Dim FileInfoCKR As New IO.FileInfo(CKRConfig)
+
+        'check existing file
+        If FileInfo.Exists Then
+            Dim dtTableAppSetting As DataTable
+            Dim DS As New DataSet()
+
+            DS.ReadXml(CKRConfig)
+
+            dtTableAppSetting = DS.Tables("CKR")
+
+            If dtTableAppSetting.Rows.Count > 0 Then
+                If dtTableAppSetting.Columns.Count = 8 Then
+                    CKRServer = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    CKRDB = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    CKRUser = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    CKRPass = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    'CKRAuth = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+
+                    gs_DBServer2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    ' gs_DBAuthMode2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+
+                Else
+                    CKRServer = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    CKRDB = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    CKRUser = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    CKRPass = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    'CKRAuth = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+
+                    gs_DBServer2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    'gs_DBAuthMode2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("AU"))
+
+                    Kill(CKRConfig)
+
+                    Dim settings As XmlWriterSettings = New XmlWriterSettings()
+                    settings.Indent = True
+
+                    Using writer As XmlWriter = XmlWriter.Create(CKRConfig, settings)
+                        writer.WriteStartDocument()
+                        writer.WriteStartElement("CKR") ' Root.
+
+                        With writer
+                            .WriteStartElement("CKR")
+                            .WriteElementString("S", DataEncrypt(CKRServer.Trim))
+                            .WriteElementString("D", DataEncrypt(CKRDB.Trim))
+                            .WriteElementString("U", DataEncrypt(CKRUser.Trim))
+                            .WriteElementString("PW", DataEncrypt(CKRPass.Trim))
+                            .WriteEndElement()
+                        End With
+
+                        writer.WriteEndElement()
+                        writer.WriteEndDocument()
+                    End Using
+
+                End If
+            End If
+        Else
+            CKRServer = ""
+            CKRDB = ""
+            CKRUser = ""
+            CKRPass = ""
+            CKRAuth = ""
+        End If
+
+        TCKRServer.Text = CKRServer
+        TCKRDatabase.Text = CKRDB
+        TCKRUser.Text = CKRUser
+        If CKRPass.Trim = "" Then CKRPass = gs_DBPasswordDefault2
+        TCKRPassword.Text = CKRPass
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
@@ -248,6 +332,22 @@ Public Class frm_system_config_db
 
         gs_DBPassword1 = SolomonPass.Text.Trim
         Call gf_GetDatabaseVariablesSolomon()
+
+        Dim FileInfo2 As New IO.FileInfo(CKRConfig)
+
+        'check existing file
+        If FileInfo2.Exists Then
+            'delete file
+            Kill(CKRConfig)
+
+            'then create file
+            CreateAppSettingFileDbCKR()
+        Else
+            CreateAppSettingFileDbCKR()
+        End If
+
+        gs_DBPassword2 = TCKRPassword.Text.Trim
+        Call gf_GetDatabaseVariablesDbCKR()
 
     End Sub
     Private Sub CreateAppSettingFileBOM()
@@ -314,6 +414,47 @@ Public Class frm_system_config_db
                     .WriteElementString("U", DataEncrypt(SolomonUser.Text.Trim))
                     .WriteElementString("PW", DataEncrypt(SolomonPass.Text.Trim))
                     .WriteElementString("AU", DataEncrypt(IIf(CheckSolomon.Checked, "win", "mixed")))
+                    .WriteElementString("TU", DataEncrypt(TerminalUsername))
+                    .WriteElementString("TPW", DataEncrypt(TerminalPassword))
+
+                    .WriteElementString("IS", DataEncrypt(""))
+
+
+                    .WriteEndElement()
+                End With
+
+                writer.WriteEndElement()
+                writer.WriteEndDocument()
+            End Using
+
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage, Err.Description)
+        End Try
+    End Sub
+
+    Private Sub CreateAppSettingFileDbCKR()
+        Try
+            'check terminal
+            Dim TerminalUsername As String = ""
+            Dim TerminalPassword As String = ""
+            Dim SPSetting As XmlWriterSettings = New XmlWriterSettings()
+            SPSetting.Indent = True
+
+
+            Dim settings As XmlWriterSettings = New XmlWriterSettings()
+            settings.Indent = True
+
+            Using writer As XmlWriter = XmlWriter.Create(CKRConfig, settings)
+                writer.WriteStartDocument()
+                writer.WriteStartElement("CKR") ' Root.
+
+                With writer
+                    .WriteStartElement("CKR")
+                    .WriteElementString("S", DataEncrypt(TCKRServer.Text.Trim))
+                    .WriteElementString("D", DataEncrypt(TCKRDatabase.Text.Trim))
+                    .WriteElementString("U", DataEncrypt(TCKRUser.Text.Trim))
+                    .WriteElementString("PW", DataEncrypt(TCKRPassword.Text.Trim))
                     .WriteElementString("TU", DataEncrypt(TerminalUsername))
                     .WriteElementString("TPW", DataEncrypt(TerminalPassword))
 

@@ -25,7 +25,11 @@ Public Class BarcodeGenerate
                 ,UploadBy
             FROM [BarcodeGenerate]"
             Dim dtTable As New DataTable
-            dtTable = GetDataTable(ls_SP)
+            If gh_Common.Site.ToLower = "tng" Then
+                dtTable = GetDataTable(ls_SP)
+            Else
+                dtTable = GetDataTableCKR(ls_SP)
+            End If
             Return dtTable
         Catch ex As Exception
             Throw
@@ -33,30 +37,58 @@ Public Class BarcodeGenerate
     End Function
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
+            If gh_Common.Site.ToLower = "tng" Then
+                Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                    Conn1.Open()
+                    Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                        gh_Trans = New InstanceVariables.TransactionHelper
+                        gh_Trans.Command.Connection = Conn1
+                        gh_Trans.Command.Transaction = Trans1
 
-                    Try
-                        DeleteData()
-                        For i As Integer = 0 To ObjDetails.Count - 1
-                            With ObjDetails(i)
-                                .InsertData()
-                            End With
-                        Next
+                        Try
+                            DeleteData()
+                            For i As Integer = 0 To ObjDetails.Count - 1
+                                With ObjDetails(i)
+                                    .InsertData()
+                                End With
+                            Next
 
-                        Trans1.Commit()
-                    Catch ex As Exception
-                        Trans1.Rollback()
-                        Throw
-                    Finally
-                        gh_Trans = Nothing
-                    End Try
+                            Trans1.Commit()
+                        Catch ex As Exception
+                            Trans1.Rollback()
+                            Throw
+                        Finally
+                            gh_Trans = Nothing
+                        End Try
+                    End Using
                 End Using
-            End Using
+            Else
+                Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
+                    Conn1.Open()
+                    Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                        gh_Trans = New InstanceVariables.TransactionHelper
+                        gh_Trans.Command.Connection = Conn1
+                        gh_Trans.Command.Transaction = Trans1
+
+                        Try
+                            DeleteData()
+                            For i As Integer = 0 To ObjDetails.Count - 1
+                                With ObjDetails(i)
+                                    .InsertData()
+                                End With
+                            Next
+
+                            Trans1.Commit()
+                        Catch ex As Exception
+                            Trans1.Rollback()
+                            Throw
+                        Finally
+                            gh_Trans = Nothing
+                        End Try
+                    End Using
+                End Using
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -64,7 +96,12 @@ Public Class BarcodeGenerate
     Public Sub DeleteData()
         Try
             Dim sql As String = "Delete From [BarcodeGenerate] Where Site = " & QVal(gh_Common.Site) & " AND UploadBy = " & QVal(gh_Common.Username) & ""
-            ExecQuery(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                ExecQuery(sql)
+            Else
+                ExecQueryCKR(sql)
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -88,7 +125,11 @@ Public Class BarcodeGenerate
                 ,LokalExport as LR
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND LOWER(UploadBy)=" & QVal(Username) & ""
             ds = New dsLaporan
-            ds = GetDsReport(sql, "QRCode")
+            If gh_Common.Site.ToLower = "tng" Then
+                ds = GetDsReport(sql, "QRCode")
+            Else
+                ds = GetDsReportCKR(sql, "QRCode")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -101,14 +142,24 @@ Public Class BarcodeGenerate
             If Ada Then
                 Dim _udpate As String = "Update BarcodePrintLog Set No =" & QVal(No) & "
                                         WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
-                ExecQuery(_udpate)
+                If gh_Common.Site.ToLower = "tng" Then
+                    ExecQuery(_udpate)
+                Else
+                    ExecQueryCKR(_udpate)
+                End If
+
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
                         ([KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
                         Values(" & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
                             ," & QVal(gh_Common.Username) & ",GETDATE())"
-                ExecQuery(Query)
+                If gh_Common.Site.ToLower = "tng" Then
+                    ExecQuery(Query)
+                Else
+                    ExecQueryCKR(Query)
+                End If
+
             End If
         Catch ex As Exception
             Throw ex
@@ -120,7 +171,11 @@ Public Class BarcodeGenerate
         Try
             Dim sql As String = "SELECT No From BarcodePrintLog WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
             Dim dt As DataTable
-            dt = GetDataTable(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTable(sql)
+            Else
+                dt = GetDataTableCKR(sql)
+            End If
             If dt.Rows.Count > 0 Then
                 hasil = Convert.ToInt32(dt.Rows(0)(0))
             End If
@@ -134,7 +189,11 @@ Public Class BarcodeGenerate
         Try
             Dim sql As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTable(sql)
+            Else
+                dt = GetDataTableCKR(sql)
+            End If
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If
@@ -149,7 +208,11 @@ Public Class BarcodeGenerate
         Try
             Dim sql As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " AND No Between 1 AND " & QVal(No) & ""
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTable(sql)
+            Else
+                dt = GetDataTableCKR(sql)
+            End If
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If
@@ -177,7 +240,12 @@ Public Class BarcodeGenerate
                 ,LokalExport as LR
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
-            ds = GetDsReport(sql, "QRCode")
+            If gh_Common.Site.ToLower = "tng" Then
+                ds = GetDsReport(sql, "QRCode")
+            Else
+                ds = GetDsReport(sql, "QRCode")
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -215,7 +283,11 @@ Public Class BarcodeDet
                 ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
                 ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
                 ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(UploadBy) & ")"
-            ExecQuery(Query)
+            If gh_Common.Site.ToLower = "tng" Then
+                ExecQuery(Query)
+            Else
+                ExecQueryCKR(Query)
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -76,7 +76,12 @@
                 ,[UploadedDate] 
             FROM [KanbanADM]"
             Dim dtTable As New DataTable
-            dtTable = GetDataTable(ls_SP)
+            If gh_Common.Site.ToLower = "tng" Then
+                dtTable = GetDataTable(ls_SP)
+            Else
+                dtTable = GetDataTableCKR(ls_SP)
+            End If
+
             Return dtTable
         Catch ex As Exception
             Throw
@@ -102,7 +107,12 @@
                 ," & QVal(PartNo) & "," & QVal(PartName) & "," & QVal(JobNo) & "," & QVal(Lane) & "," & QVal(QtyKbn) & "," & QVal(OrderKbn) & "
                 ," & QVal(OrderPcs) & "," & QVal(QtyReceive) & "," & QVal(QtyBalance) & "
                 ," & QVal(CancelStatus) & "," & QVal(Remark) & "," & QVal(UploadedBy) & "," & QVal(UploadedDate) & ")"
-            ExecQuery(Query)
+            If gh_Common.Site.ToLower = "tng" Then
+                ExecQuery(Query)
+            Else
+                ExecQueryCKR(Query)
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -122,7 +132,12 @@
 			                        CONVERT(varchar,[OrderDate],101),
 			                        [DelCycle]"
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTable(sql)
+            Else
+                dt = GetDataTableCKR(sql)
+            End If
+
             Return dt
         Catch ex As Exception
             Throw
@@ -139,7 +154,11 @@
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
                                        ," & QVal(Kanban) & ")"
-            ExecQuery(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                ExecQuery(sql)
+            Else
+                ExecQueryCKR(sql)
+            End If
         Catch ex As Exception
             Throw
         End Try
@@ -150,7 +169,11 @@
             Dim sql As String = "Update [KanbanSum]
                                  Set Kanban = Kanban + " & QVal(Kanban) & "
                                  Where Tanggal =" & QVal(Tgl) & " AND Cycle = " & QVal(Cycle) & ""
-            ExecQuery(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                ExecQuery(sql)
+            Else
+                ExecQueryCKR(sql)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -163,7 +186,11 @@
                                 WHERE Tanggal = " & QVal(Tgl) & "
                                     AND Cycle=" & QVal(Cycle) & ""
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTable(sql)
+            Else
+                dt = GetDataTableCKR(sql)
+            End If
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If
