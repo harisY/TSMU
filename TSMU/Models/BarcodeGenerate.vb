@@ -243,7 +243,7 @@ Public Class BarcodeGenerate
             If gh_Common.Site.ToLower = "tng" Then
                 ds = GetDsReport(sql, "QRCode")
             Else
-                ds = GetDsReport(sql, "QRCode")
+                ds = GetDsReportCKR(sql, "QRCode")
             End If
 
         Catch ex As Exception

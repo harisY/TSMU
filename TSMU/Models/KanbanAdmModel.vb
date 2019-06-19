@@ -149,11 +149,12 @@
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
                                        ,[Cycle]
-                                       ,[Kanban])
+                                       ,[Kanban]
+                                        ,[Open])
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & ")"
+                                       ," & QVal(Kanban) & "," & QVal(Kanban) & ")"
             If gh_Common.Site.ToLower = "tng" Then
                 ExecQuery(sql)
             Else
