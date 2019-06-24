@@ -54,6 +54,41 @@ Public Class frm_payment_aprrove_details
         Call InitialSetForm()
     End Sub
 
+    Public Overridable Sub Proc_DeleteData()
+        Try
+            Dim result As DialogResult = XtraMessageBox.Show("Approve Voucher " & "'" & _txtVoucher.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNo)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                If gh_Common.Level = 2 Then
+                    ObjPaymentHeader.UpdateCek(2)
+                ElseIf gh_Common.Level = 3 Then
+                    ObjPaymentHeader.UpdateCek(3)
+                ElseIf gh_Common.Level = 4 Then
+                    ObjPaymentHeader.UpdateCek(4)
+                End If
+            Else
+                If gh_Common.Level = 2 Then
+                    ObjPaymentHeader.UpdateUnCek(2)
+                    ObjPaymentHeader.ObjPaymentDetails.Clear()
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "Check") = False Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcId()
+                            End With
+                        End If
+                    Next
+                End If
+            End If
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            tsBtn_next.PerformClick()
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
@@ -179,6 +214,40 @@ Public Class frm_payment_aprrove_details
         '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         '    'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         'End Try
+
+        Try
+            Dim result As DialogResult = XtraMessageBox.Show("Approve Voucher " & "'" & _txtVoucher.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNo)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                If gh_Common.Level = 2 Then
+                    ObjPaymentHeader.UpdateCek(2)
+                ElseIf gh_Common.Level = 3 Then
+                    ObjPaymentHeader.UpdateCek(3)
+                ElseIf gh_Common.Level = 4 Then
+                    ObjPaymentHeader.UpdateCek(4)
+                End If
+            Else
+                If gh_Common.Level = 2 Then
+                    ObjPaymentHeader.UpdateUnCek(2)
+                    ObjPaymentHeader.ObjPaymentDetails.Clear()
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "Check") = False Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcId()
+                            End With
+                        End If
+                    Next
+                End If
+            End If
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            tsBtn_next.PerformClick()
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
     End Sub
 
     Public Overrides Sub Proc_Approve()

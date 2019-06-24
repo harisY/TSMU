@@ -46,6 +46,7 @@
 	                                RTRIM(namedetail) Name,
 	                                RTRIM(bank) Bank,
 	                                RTRIM(norek) [No Rek.],
+                                    RTRIM(name1) [Penerima],
 	                                curyid [Currency]
                                 FROM dbo.payment_norek1"
             Dim dt As New DataTable

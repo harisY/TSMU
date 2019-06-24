@@ -232,7 +232,7 @@ Public Class FrmEntertainSettleDetailDirect
                     End If
                 Next
 
-                ObjSettle.InsertData()
+                ObjSettle.InsertDataEntSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
