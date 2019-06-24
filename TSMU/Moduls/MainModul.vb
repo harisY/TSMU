@@ -73,6 +73,13 @@ Module MainModul
     Public gs_DBPassword1 As String = "Tsc2011"
     Public gs_DBPasswordDefault1 As String = "Tsc2011"
 
+    Public gs_Database2 As String = "DbCKR"
+    Public gs_DBServer2 As String = "10.10.3.6"
+    Public gs_DBAuthMode2 As String = "mixed"
+    Public gs_DBUserName2 As String = "sa"
+    Public gs_DBPassword2 As String = "Tsc2011"
+    Public gs_DBPasswordDefault2 As String = "Tsc2011"
+
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
     Public gs_AutomaticForm As String = ""
@@ -339,6 +346,14 @@ Module MainModul
                 Else
                     Return "Data Source=" & gs_DBServer1 & ";Initial Catalog=" & gs_Database1 & ";User ID=" & gs_DBUserName1 & ";pwd=" & gs_DBPassword1
                 End If
+            Case Else
+                Return ""
+        End Select
+    End Function
+    Public Function GetConnStringDbCKR(Optional ByVal DBMS As String = "SQLServer") As String
+        Select Case DBMS
+            Case "SQLServer"
+                Return "Data Source=" & gs_DBServer2 & ";Initial Catalog=" & gs_Database2 & ";User ID=" & gs_DBUserName2 & ";pwd=" & gs_DBPassword2
             Case Else
                 Return ""
         End Select
@@ -706,6 +721,88 @@ Module MainModul
         End If
 
         If gs_DBPassword1.Trim = "" Then gs_DBPassword1 = gs_DBPasswordDefault1
+
+    End Sub
+
+    Public Sub gf_GetDatabaseVariablesDbCKR()
+        Dim ls_Product As String = My.Application.Info.ProductName.Trim
+        Dim ls_Description As String = My.Application.Info.Description.Trim
+        If ls_Description = "" Then ls_Description = "Takagi"
+
+        Dim CKRConfig As String = Application.StartupPath & "\CKR.XML"
+
+        Dim FileInfo As New IO.FileInfo(CKRConfig)
+
+        'check existing file
+        If FileInfo.Exists Then
+            Dim dtTableAppSetting As DataTable
+            Dim DS As New DataSet()
+
+            DS.ReadXml(CKRConfig)
+
+            dtTableAppSetting = DS.Tables("CKR")
+
+            If dtTableAppSetting.Rows.Count > 0 Then
+                If dtTableAppSetting.Columns.Count = 7 Then
+                    gs_DBServer2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    'gs_TerminalUsername = DataDecrypt(dtTableAppSetting.Rows(0).Item("TU"))
+                    'gs_TerminalPassword = DataDecrypt(dtTableAppSetting.Rows(0).Item("TPW"))
+                    'gs_AutomaticForm = DataDecrypt(dtTableAppSetting.Rows(0).Item("AF"))
+                    'gs_InstructionSetting = DataDecrypt(dtTableAppSetting.Rows(0).Item("IS"))
+                Else
+                    gs_DBServer2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("S"))
+                    gs_Database2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("D"))
+                    gs_DBUserName2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("U"))
+                    gs_DBPassword2 = DataDecrypt(dtTableAppSetting.Rows(0).Item("PW"))
+                    'gs_TerminalUsername = DataDecrypt(dtTableAppSetting.Rows(0).Item("TU"))
+                    'gs_TerminalPassword = DataDecrypt(dtTableAppSetting.Rows(0).Item("TPW"))
+                    'gs_AutomaticForm = DataDecrypt(dtTableAppSetting.Rows(0).Item("AF"))
+                    gs_InstructionSetting = ""
+
+                    Kill(CKRConfig)
+
+                    Dim settings As XmlWriterSettings = New XmlWriterSettings()
+                    settings.Indent = True
+
+                    Using writer As XmlWriter = XmlWriter.Create(CKRConfig, settings)
+                        writer.WriteStartDocument()
+                        writer.WriteStartElement("CKR") ' Root.
+
+                        With writer
+                            .WriteStartElement("CKR")
+                            .WriteElementString("S", DataEncrypt(gs_DBServer2.Trim))
+                            .WriteElementString("D", DataEncrypt(gs_Database2.Trim))
+                            .WriteElementString("U", DataEncrypt(gs_DBUserName2.Trim))
+                            .WriteElementString("PW", DataEncrypt(gs_DBPassword2.Trim))
+                            .WriteElementString("TU", DataEncrypt(gs_TerminalUsername.Trim))
+                            .WriteElementString("TPW", DataEncrypt(gs_TerminalPassword.Trim))
+                            .WriteElementString("AF", DataEncrypt(gs_AutomaticForm.Trim))
+                            .WriteElementString("IS", DataEncrypt(gs_InstructionSetting.Trim))
+                            .WriteEndElement()
+                        End With
+
+                        writer.WriteEndElement()
+                        writer.WriteEndDocument()
+                    End Using
+
+
+                End If
+
+            End If
+        Else
+            gs_DBServer2 = ""
+            gs_Database2 = ""
+            gs_DBUserName2 = ""
+            gs_DBPassword2 = ""
+            gs_DBAuthMode2 = ""
+            gs_AutomaticForm = ""
+            gs_InstructionSetting = ""
+        End If
+
+        If gs_DBPassword2.Trim = "" Then gs_DBPassword2 = gs_DBPasswordDefault2
 
     End Sub
 
@@ -1431,6 +1528,350 @@ Module MainModul
             Throw
         End Try
     End Function
+
+#Region "Koneksi ke DbCKR"
+    Public Function GetDataSetCKR(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataSet
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New DataSet
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                    da.Fill(dsa)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function GetDsReportCKR(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
+        Dim conn As SqlConnection = Nothing
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+            Else
+                conn = New SqlConnection(GetConnStringDbCKR)
+                da = New SqlDataAdapter(pQuery, conn)
+            End If
+            da.Fill(dsa, dtTable)
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataSetByCommand_SPCKR(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dsa, dtTable)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataSetByCommand_StorePCKR(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dsa, dtTable)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+    Public Function GetDataSetByCommandCKR(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New DataSet
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dsa)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataTableByCommand_StorePCKR(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDataTableCKR(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringDbCKR()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function ExecQueryCKR(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    Conn1.ConnectionString = GetConnStringDbCKR()
+                    Dim cmd As New SqlClient.SqlCommand(pQuery, Conn1)
+                    cmd.CommandTimeout = pTimeOut
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function ExecQueryByCommandCKR(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    If pConnStr <> "" Then
+                        Conn1.ConnectionString = pConnStr
+                    Else
+                        Conn1.ConnectionString = GetConnStringDbCKR()
+                    End If
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function ExecQueryByCommand_SPCKR(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    If pConnStr <> "" Then
+                        Conn1.ConnectionString = pConnStr
+                    Else
+                        Conn1.ConnectionString = GetConnStringDbCKR()
+                    End If
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+#End Region
     Public Function GetCheckConnString(Optional ByVal DBMS As String = "SQLServer",
                                        Optional ByVal pTimeOut As Integer = 3) As String
         Select Case DBMS

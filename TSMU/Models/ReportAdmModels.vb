@@ -10,7 +10,12 @@
             pParam(2) = New SqlClient.SqlParameter("@tgl1", SqlDbType.VarChar)
             pParam(2).Value = tgl1
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(query, pParam)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTableByCommand_SP(query, pParam)
+            Else
+                dt = GetDataTableByCommand_StorePCKR(query, pParam)
+            End If
+
             Return dt
         Catch ex As Exception
             Throw
@@ -22,7 +27,12 @@
         Try
             Dim query As String = "GetReportBarcodeGenerate"
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(query)
+            If gh_Common.Site.ToLower = "tng" Then
+                dt = GetDataTableByCommand_SP(query)
+            Else
+                dt = GetDataTableByCommand_StorePCKR(query)
+            End If
+
             Return dt
         Catch ex As Exception
             Throw

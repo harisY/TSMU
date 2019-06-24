@@ -260,9 +260,9 @@ Public Class frmUploadKanbanAdm
                         Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
                         Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
                         Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle)
-                        If IsExist Then
-                            Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
-                        Else
+                        If Not IsExist Then
+                            '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
+                            'Else
                             Obj.SaveKanbanSum(Tgl, Cycle, Kanban)
                         End If
                     Catch ex As Exception
