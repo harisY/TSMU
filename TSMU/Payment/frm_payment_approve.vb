@@ -12,6 +12,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class frm_payment_approve
     Dim dtGrid As DataTable
     Dim dtGrid2 As New DataTable
+    Dim dtGrid3 As New DataTable
     Dim ObPayment As New Cls_Payment
     Dim table As DataTable
     Dim tableDetail As DataTable
@@ -36,6 +37,7 @@ Public Class frm_payment_approve
             TabControl1.SelectedTab = TabPage1
             LoadGridApproved()
             LoadGridSuspend()
+            LoadGridApprovedReject()
         End If
     End Sub
     Private Sub LoadGrid(BankID As String)
@@ -177,6 +179,71 @@ Public Class frm_payment_approve
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub LoadGridApprovedReject()
+        Try
+            dtGrid3 = ObjPaymentHeader.GetDataGridReject(gh_Common.Level)
+            GridControl1.DataSource = dtGrid3
+            If GridView4.RowCount > 0 Then
+                With GridView4
+                    .Columns(0).Visible = False
+                    .BestFitColumns()
+                    '.FixedLineWidth = 1
+                    '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    '.OptionsView.ColumnAutoWidth = True
+                End With
+                GridCellFormat(GridView4)
+                If gh_Common.Level = 1 Then
+                    GridView4.OptionsBehavior.Editable = False
+                ElseIf gh_Common.Level = 2 Then
+                    GridView4.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView4.Columns.Count - 1
+                        If GridView4.Columns(i).VisibleIndex <> 7 Then
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
+
+                    'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+                    'GridView1.Columns(16).OptionsColumn.AllowEdit = True
+                    'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+                    'GridView1.Columns(18).OptionsColumn.AllowEdit = False
+                ElseIf gh_Common.Level = 3 Then
+                    GridView4.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView4.Columns.Count - 1
+                        If GridView4.Columns(i).VisibleIndex <> 8 Then
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
+                ElseIf gh_Common.Level = 4 Then
+                    GridView4.OptionsBehavior.Editable = True
+                    For i As Integer = 0 To GridView4.Columns.Count - 1
+                        If GridView4.Columns(i).VisibleIndex <> 9 Then
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = False
+                        Else
+                            GridView4.Columns(i).OptionsColumn.AllowEdit = True
+                        End If
+                    Next
+                    'GridView1.OptionsBehavior.Editable = True
+                    'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+                    'GridView1.Columns(16).OptionsColumn.AllowEdit = False
+                    'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+                    'GridView1.Columns(18).OptionsColumn.AllowEdit = True
+                Else
+                    GridView4.OptionsBehavior.Editable = False
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
@@ -188,6 +255,7 @@ Public Class frm_payment_approve
             TabControl1.SelectedTab = TabPage1
             Call LoadGridApproved()
             LoadGridSuspend()
+            LoadGridApprovedReject()
         End If
         Call LoadGrid("")
 
@@ -379,6 +447,45 @@ Public Class frm_payment_approve
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+
+    Private Sub GridView4_DoubleClick(sender As Object, e As EventArgs) Handles GridView4.DoubleClick
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+                'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
+                'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
+
+
+                NoVoucher = String.Empty
+                Dim selectedRows() As Integer = GridView4.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView4.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView4.GetRowCellValue(rowHandle, "vrno")
+                    End If
+                Next rowHandle
+
+                If GridView4.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(id,
+                             NoVoucher,
+                             GridView4.RowCount, True)
+                End If
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 
     Private Sub _txtBankId_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles _txtBankId.ButtonClick
         Try

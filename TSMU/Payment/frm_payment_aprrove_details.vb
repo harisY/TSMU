@@ -216,25 +216,34 @@ Public Class frm_payment_aprrove_details
         'End Try
 
         Try
-            Dim result As DialogResult = XtraMessageBox.Show("Approve Voucher " & "'" & _txtVoucher.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNo)
+            Dim result As DialogResult = XtraMessageBox.Show("Save Details Voucher " & "'" & _txtVoucher.Text & "'" & " ?", "Confirmation", MessageBoxButtons.YesNo)
             If result = System.Windows.Forms.DialogResult.Yes Then
-                If gh_Common.Level = 2 Then
-                    ObjPaymentHeader.UpdateCek(2)
-                ElseIf gh_Common.Level = 3 Then
-                    ObjPaymentHeader.UpdateCek(3)
-                ElseIf gh_Common.Level = 4 Then
-                    ObjPaymentHeader.UpdateCek(4)
-                End If
-            Else
-                If gh_Common.Level = 2 Then
+                '    If gh_Common.Level = 2 Then
+                '        ObjPaymentHeader.UpdateCek(2)
+                '    ElseIf gh_Common.Level = 3 Then
+                '        ObjPaymentHeader.UpdateCek(3)
+                '    ElseIf gh_Common.Level = 4 Then
+                '        ObjPaymentHeader.UpdateUnCek(4)
+                '    End If
+                'Else
+                If gh_Common.Level = 4 Then
+                    ObjPaymentHeader.UpdateUnCek(1)
                     ObjPaymentHeader.UpdateUnCek(2)
-                    ObjPaymentHeader.ObjPaymentDetails.Clear()
+                    ObjPaymentHeader.UpdateUnCek(3)
+                    ObjPaymentHeader.UpdateUnCek(4)
+                    ''ObjPaymentHeader.ObjPaymentDetails.Clear()
                     For i As Integer = 0 To GridView1.RowCount - 1
-                        If GridView1.GetRowCellValue(i, "Check") = False Then
+                        If GridView1.GetRowCellValue(i, "cek4") = False Then
                             With ObjPaymentDetail
                                 .vrno = _txtVoucher.Text.TrimEnd
                                 .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
-                                .UpdateCheckDetailByVrnoInvcId()
+                                .UpdateCheckDetailByVrnoInvcIdDir0()
+                            End With
+                        ElseIf GridView1.GetRowCellValue(i, "cek4") = True Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcIdDir1()
                             End With
                         End If
                     Next
@@ -247,6 +256,34 @@ Public Class frm_payment_aprrove_details
             XtraMessageBox.Show(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
+        'Try
+        '    ObjPaymentHeader.ObjPaymentDetails.Clear()
+        '    For i As Integer = 0 To GridView1.RowCount - 1
+        '        If GridView1.GetRowCellValue(i, "cek4") = True Then
+        '            Dim ObjDetails As New payment_detail_models
+        '            With ObjDetails
+        '                .cek1 = True
+        '                .cek4 = True
+        '            End With
+        '            ObjPaymentHeader.ObjPaymentDetails.Add(ObjDetails)
+        '        End If
+        '    Next
+        '    If isUpdate = True Then
+        '        ''ObjPaymentHeader.InsertDataDir()
+        '        ''Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '        ''Else
+        '        ObjPaymentHeader.UpdateData()
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    End If
+        '    ''GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
+        '    ''IsClosed = True
+        '    '' Me.Hide()
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        '    'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        'End Try
 
     End Sub
 
