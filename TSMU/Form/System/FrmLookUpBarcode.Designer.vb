@@ -24,6 +24,7 @@ Partial Class FrmLookUpBarcode
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmLookUpBarcode))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtNo = New DevExpress.XtraEditors.TextEdit()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TxtKodePart = New DevExpress.XtraEditors.TextEdit()
         Me.CmbBulan = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -38,12 +39,12 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.BtnPrint = New System.Windows.Forms.ToolStripButton()
-        Me.txtNo = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtKodePart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CmbBulan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,9 +58,8 @@ Partial Class FrmLookUpBarcode
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip1.SuspendLayout()
-        CType(Me.txtNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -79,6 +79,19 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'txtNo
+        '
+        Me.txtNo.Location = New System.Drawing.Point(12, 108)
+        Me.txtNo.Name = "txtNo"
+        Me.txtNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 60.0!, System.Drawing.FontStyle.Bold)
+        Me.txtNo.Properties.Appearance.Options.UseFont = True
+        Me.txtNo.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.txtNo.Properties.ReadOnly = True
+        Me.txtNo.Size = New System.Drawing.Size(262, 104)
+        Me.txtNo.StyleController = Me.LayoutControl1
+        Me.txtNo.TabIndex = 7
+        '
         'Panel1
         '
         Me.Panel1.Location = New System.Drawing.Point(165, 60)
@@ -88,31 +101,31 @@ Partial Class FrmLookUpBarcode
         '
         'TxtKodePart
         '
-        Me.TxtKodePart.Location = New System.Drawing.Point(66, 36)
+        Me.TxtKodePart.Location = New System.Drawing.Point(101, 36)
         Me.TxtKodePart.Name = "TxtKodePart"
-        Me.TxtKodePart.Size = New System.Drawing.Size(218, 20)
+        Me.TxtKodePart.Size = New System.Drawing.Size(183, 20)
         Me.TxtKodePart.StyleController = Me.LayoutControl1
         Me.TxtKodePart.TabIndex = 2
         '
         'CmbBulan
         '
-        Me.CmbBulan.Location = New System.Drawing.Point(66, 60)
+        Me.CmbBulan.Location = New System.Drawing.Point(101, 60)
         Me.CmbBulan.Name = "CmbBulan"
         Me.CmbBulan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CmbBulan.Properties.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
-        Me.CmbBulan.Size = New System.Drawing.Size(95, 20)
+        Me.CmbBulan.Size = New System.Drawing.Size(60, 20)
         Me.CmbBulan.StyleController = Me.LayoutControl1
         Me.CmbBulan.TabIndex = 3
         '
         'TxtFrom
         '
         Me.TxtFrom.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TxtFrom.Location = New System.Drawing.Point(66, 84)
+        Me.TxtFrom.Location = New System.Drawing.Point(101, 84)
         Me.TxtFrom.Name = "TxtFrom"
         Me.TxtFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtFrom.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
         Me.TxtFrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtFrom.Size = New System.Drawing.Size(95, 20)
+        Me.TxtFrom.Size = New System.Drawing.Size(60, 20)
         Me.TxtFrom.StyleController = Me.LayoutControl1
         Me.TxtFrom.TabIndex = 4
         '
@@ -130,11 +143,11 @@ Partial Class FrmLookUpBarcode
         '
         'TxtSite
         '
-        Me.TxtSite.Location = New System.Drawing.Point(66, 12)
+        Me.TxtSite.Location = New System.Drawing.Point(101, 12)
         Me.TxtSite.Name = "TxtSite"
         Me.TxtSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtSite.Properties.Items.AddRange(New Object() {"INJECTION", "PAINTING"})
-        Me.TxtSite.Size = New System.Drawing.Size(218, 20)
+        Me.TxtSite.Size = New System.Drawing.Size(183, 20)
         Me.TxtSite.StyleController = Me.LayoutControl1
         Me.TxtSite.TabIndex = 1
         '
@@ -162,7 +175,7 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(276, 24)
         Me.LayoutControlItem3.Text = "Kode Part"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(51, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem4
         '
@@ -170,8 +183,8 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(153, 24)
-        Me.LayoutControlItem4.Text = "Page From"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(51, 13)
+        Me.LayoutControlItem4.Text = "No Passcard From"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem5
         '
@@ -191,7 +204,7 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(276, 24)
         Me.LayoutControlItem6.Text = "Proses"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(51, 13)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem2
         '
@@ -200,7 +213,7 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(153, 24)
         Me.LayoutControlItem2.Text = "Bulan"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(51, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem1
         '
@@ -210,6 +223,15 @@ Partial Class FrmLookUpBarcode
         Me.LayoutControlItem1.Size = New System.Drawing.Size(123, 24)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.txtNo
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(266, 115)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
         '
         'ToolStrip1
         '
@@ -228,27 +250,6 @@ Partial Class FrmLookUpBarcode
         Me.BtnPrint.Size = New System.Drawing.Size(52, 22)
         Me.BtnPrint.Text = "Print"
         '
-        'txtNo
-        '
-        Me.txtNo.Location = New System.Drawing.Point(12, 108)
-        Me.txtNo.Name = "txtNo"
-        Me.txtNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 60.0!, System.Drawing.FontStyle.Bold)
-        Me.txtNo.Properties.Appearance.Options.UseFont = True
-        Me.txtNo.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.txtNo.Size = New System.Drawing.Size(262, 104)
-        Me.txtNo.StyleController = Me.LayoutControl1
-        Me.txtNo.TabIndex = 7
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.txtNo
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 96)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(266, 115)
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem7.TextVisible = False
-        '
         'FrmLookUpBarcode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -263,6 +264,7 @@ Partial Class FrmLookUpBarcode
         Me.Text = "Filter"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtKodePart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CmbBulan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -276,10 +278,9 @@ Partial Class FrmLookUpBarcode
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.txtNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

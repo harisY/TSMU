@@ -68,7 +68,8 @@ Public Class forecast_price_models_header
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 If CustID.ToLower <> "adm" Then
-                                    .InsertData()
+                                    .InsertDataTempTable()
+
                                 Else
                                     Dim IsExist = .IsDataExist
                                     If IsExist Then
@@ -437,6 +438,43 @@ Public Class forecast_price_models
         Try
             Dim Query As String = String.Empty
             Query = "INSERT INTO [tForecastPrice]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site] 
+                            ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2],[JanHarga1],[JanHarga2],[JanHarga3]
+                            ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2],[FebHarga1],[FebHarga2],[FebHarga3]
+                            ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2],[MarHarga1],[MarHarga2],[MarHarga3]
+                            ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2],[AprHarga1],[AprHarga2],[AprHarga3]
+                            ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2],[MeiHarga1],[MeiHarga2],[MeiHarga3]
+                            ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2],[JunHarga1],[JunHarga2],[JunHarga3]
+                            ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2],[JulHarga1],[JulHarga2],[JulHarga3]
+                            ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2],[AgtHarga1],[AgtHarga2],[AgtHarga3]
+                            ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2],[SepHarga1],[SepHarga2],[SepHarga3]
+                            ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2],[OktHarga1],[OktHarga2],[OktHarga3]
+                            ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2],[NovHarga1],[NovHarga2],[NovHarga3]
+                            ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2],[DesHarga1],[DesHarga2],[DesHarga3]
+                            ,[created_date],[created_by])
+                    Values(" & QVal(Tahun) & "," & QVal(CustID) & "," & QVal(Customer) & "," & QVal(InvtID) & "," & QVal(Description) & "," & QVal(PartNo) & "," & QVal(Model) & "," & QVal(OePe) & "," & QVal(INSub) & "," & QVal(Site) & "
+                           ," & QVal(JanQty1) & "," & QVal(JanQty2) & "," & QVal(JanQty3) & "," & QVal(Jan_PO1) & "," & QVal(Jan_PO2) & "," & QVal(JanHarga1) & "," & QVal(JanHarga2) & "," & QVal(JanHarga3) & "
+                           ," & QVal(FebQty1) & "," & QVal(FebQty2) & "," & QVal(FebQty3) & "," & QVal(Feb_PO1) & "," & QVal(Feb_PO2) & "," & QVal(FebHarga1) & "," & QVal(FebHarga2) & "," & QVal(FebHarga3) & "
+                           ," & QVal(MarQty1) & "," & QVal(MarQty2) & "," & QVal(MarQty3) & "," & QVal(Mar_PO1) & "," & QVal(Mar_PO2) & "," & QVal(MarHarga1) & "," & QVal(MarHarga2) & "," & QVal(MarHarga3) & "
+                           ," & QVal(AprQty1) & "," & QVal(AprQty2) & "," & QVal(AprQty3) & "," & QVal(Apr_PO1) & "," & QVal(Apr_PO2) & "," & QVal(AprHarga1) & "," & QVal(AprHarga2) & "," & QVal(AprHarga3) & "
+                           ," & QVal(MeiQty1) & "," & QVal(MeiQty2) & "," & QVal(MeiQty3) & "," & QVal(Mei_PO1) & "," & QVal(Mei_PO2) & "," & QVal(MeiHarga1) & "," & QVal(MeiHarga2) & "," & QVal(MeiHarga3) & "
+                           ," & QVal(JunQty1) & "," & QVal(JunQty2) & "," & QVal(JunQty3) & "," & QVal(Jun_PO1) & "," & QVal(Jun_PO2) & "," & QVal(JunHarga1) & "," & QVal(JunHarga2) & "," & QVal(JunHarga3) & "
+                           ," & QVal(JulQty1) & "," & QVal(JulQty2) & "," & QVal(JulQty3) & "," & QVal(Jul_PO1) & "," & QVal(Jul_PO2) & "," & QVal(JulHarga1) & "," & QVal(JulHarga2) & "," & QVal(JulHarga3) & "
+                           ," & QVal(AgtQty1) & "," & QVal(AgtQty2) & "," & QVal(AgtQty3) & "," & QVal(Agt_PO1) & "," & QVal(Agt_PO2) & "," & QVal(AgtHarga1) & "," & QVal(AgtHarga2) & "," & QVal(AgtHarga3) & "
+                           ," & QVal(SepQty1) & "," & QVal(SepQty2) & "," & QVal(SepQty3) & "," & QVal(Sep_PO1) & "," & QVal(Sep_PO2) & "," & QVal(SepHarga1) & "," & QVal(SepHarga2) & "," & QVal(SepHarga3) & "
+                           ," & QVal(OktQty1) & "," & QVal(OktQty2) & "," & QVal(OktQty3) & "," & QVal(Okt_PO1) & "," & QVal(Okt_PO2) & "," & QVal(OktHarga1) & "," & QVal(OktHarga2) & "," & QVal(OktHarga3) & "
+                           ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "," & QVal(NovHarga1) & "," & QVal(NovHarga2) & "," & QVal(NovHarga3) & "
+                           ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "," & QVal(DesHarga1) & "," & QVal(DesHarga2) & "," & QVal(DesHarga3) & "
+                           ," & QVal(created_date) & "," & QVal(created_by) & ")"
+            ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataTempTable()
+        Try
+            Dim Query As String = String.Empty
+            Query = "INSERT INTO [tForecastPrice_Temp]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site] 
                             ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2],[JanHarga1],[JanHarga2],[JanHarga3]
                             ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2],[FebHarga1],[FebHarga2],[FebHarga3]
                             ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2],[MarHarga1],[MarHarga2],[MarHarga3]

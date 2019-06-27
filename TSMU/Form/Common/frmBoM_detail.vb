@@ -83,7 +83,7 @@ Public Class frmBoM_detail
             Call LoadGridDetil()
             Call LoadGridDetil1()
 
-            If gh_Common.Group = "NPD" Then
+            If gh_Common.Group = "NPD TANGERANG" OrElse gh_Common.Group = "NPD CIKARANG" Then
                 FillComboProjectNPD()
             ElseIf gh_Common.Group = "Administrator" Then
                 FillComboAdmin()

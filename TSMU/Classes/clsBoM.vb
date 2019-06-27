@@ -140,8 +140,8 @@ Public Class clsBoM
                     ,[allowance] [Allow]
                     ,[mp] [MP]
                     ,Case Active
-                        When 0 then 'InHouse'
-                        When 1 then 'Subcon'
+                        When 0 then 'Subcon'
+                        When 1 then 'InHouse'
                         Else 'Discontinue'
                     END as [Status]
                     ,[updated_by] [Updated By]

@@ -5,7 +5,6 @@ Imports DevExpress.XtraReports.UI
 Public Class FrmLookUpBarcode
     Dim Obj As New BarcodeGenerate
     Dim dtTemp As DataTable
-
     Private Sub TempTable()
         dtTemp = New DataTable
         dtTemp.Columns.Add("No")
@@ -66,10 +65,13 @@ Public Class FrmLookUpBarcode
                 Throw New Exception("Silahkan lengkapi data")
             ElseIf TxtFrom.Text = "0" OrElse TxtTo.Text = "0" Then
                 TxtFrom.Focus()
-                Throw New Exception("Page From/To tidak boleh '0'")
+                Throw New Exception("No Passcard From/To tidak boleh '0'")
             ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
                 TxtFrom.Focus()
-                Throw New Exception("Page From tidak boleh lebih besar dari To")
+                Throw New Exception("No Passcard From tidak boleh lebih besar dari To")
+            ElseIf Val(TxtFrom.Text) < txtNo.Text Then
+                TxtFrom.Focus()
+                Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
@@ -146,15 +148,20 @@ Public Class FrmLookUpBarcode
     End Sub
 
     Private Sub CmbBulan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBulan.SelectedIndexChanged
-        If TxtKodePart.Text = "" Then
-            TxtKodePart.Focus()
-            CmbBulan.Text = ""
-            XtraMessageBox.Show("Silahkan isi kode part dulu")
-            Exit Sub
-        End If
+        Try
+            If TxtKodePart.Text = "" Then
+                TxtKodePart.Focus()
+                CmbBulan.Text = ""
+                Throw New Exception("Silahkan isi kode part dulu")
+            End If
+            txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+
 
         'TxtFrom.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
-        txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+
     End Sub
     Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
         Try
@@ -162,5 +169,9 @@ Public Class FrmLookUpBarcode
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged
+        txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
     End Sub
 End Class
