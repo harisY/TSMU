@@ -363,6 +363,8 @@ Partial Class frm_payment_details
         '
         '_TxtCurrency
         '
+        Me._TxtCurrency.EditValue = "IDR"
+        Me._TxtCurrency.Enabled = False
         Me._TxtCurrency.Location = New System.Drawing.Point(423, 36)
         Me._TxtCurrency.Name = "_TxtCurrency"
         Me._TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})

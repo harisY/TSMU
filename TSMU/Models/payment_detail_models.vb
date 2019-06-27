@@ -46,6 +46,7 @@
 	                                RTRIM(namedetail) Name,
 	                                RTRIM(bank) Bank,
 	                                RTRIM(norek) [No Rek.],
+                                    RTRIM(name1) [Penerima],
 	                                curyid [Currency]
                                 FROM dbo.payment_norek1"
             Dim dt As New DataTable
@@ -131,7 +132,7 @@
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO Payment_Detail1 (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1) " & vbCrLf &
+                                    "INSERT INTO Payment_Detail1 (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
@@ -141,12 +142,26 @@
                                     "       " & QVal(Me.Dpp) & ", " & vbCrLf &
                                     "       " & QVal(Me.Pph) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
-                                    "       " & QVal(Me.cek1) & ")"
+                                    "       " & QVal(Me.cek1) & ", " & vbCrLf &
+                                    "       " & QVal(Me.cek4) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+    Public Sub InsertDetailsDir()
+        Try
+
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "INSERT INTO Payment_Detail1 (cek4) " & vbCrLf &
+                                    "Values(" & QVal(Me.cek4) & ")"
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Public Sub UpdateApDocUser4()
         Try
@@ -169,6 +184,25 @@
         Try
 
             Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateCheckDetailByVrnoInvcIdDir1()
+        Try
+
+            Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=1,cek2=0,cek3=0,cek4=1 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateCheckDetailByVrnoInvcIdDir0()
+        Try
+
+            Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=0,cek2=0,cek3=0,cek4=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
