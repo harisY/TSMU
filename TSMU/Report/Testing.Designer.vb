@@ -761,12 +761,14 @@ Partial Public Class Testing
         '
         'LblTgl
         '
-        Me.LblTgl.Font = New System.Drawing.Font("Calibri", 8.0!)
+        Me.LblTgl.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LblTgl.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
         Me.LblTgl.LocationFloat = New DevExpress.Utils.PointFloat(206.5833!, 187.8688!)
         Me.LblTgl.Multiline = True
         Me.LblTgl.Name = "LblTgl"
         Me.LblTgl.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.LblTgl.SizeF = New System.Drawing.SizeF(83.99991!, 44.08957!)
+        Me.LblTgl.StylePriority.UseBorders = False
         Me.LblTgl.StylePriority.UseFont = False
         Me.LblTgl.StylePriority.UseTextAlignment = False
         Me.LblTgl.Text = "LblTgl"
