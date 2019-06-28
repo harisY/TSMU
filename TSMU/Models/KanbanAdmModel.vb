@@ -67,6 +67,7 @@
                 ,[Lane]
                 ,[QtyKbn]
                 ,[OrderKbn]
+                ,[Scanned]
                 ,[OrderPcs]
                 ,[QtyReceive]
                 ,[QtyBalance]
@@ -221,11 +222,26 @@
                                 WHERE Tanggal = " & QVal(Tgl) & "
                                     AND Cycle=" & QVal(Cycle) & ""
             Dim dt As New DataTable
-            If gh_Common.Site.ToLower = "tng" Then
-                dt = GetDataTable(sql)
-            Else
-                dt = GetDataTableCKR(sql)
+            dt = GetDataTable(sql)
+
+            If dt.Rows.Count > 0 Then
+                hasil = True
             End If
+            Return hasil
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String) As Boolean
+        Dim hasil As Boolean = False
+        Try
+            Dim sql As String = "SELECT * 
+                                FROM KanbanSum 
+                                WHERE Tanggal = " & QVal(Tgl) & "
+                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & ""
+            Dim dt As New DataTable
+
+            dt = GetDataTableCKR(sql)
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If

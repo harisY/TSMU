@@ -116,8 +116,10 @@ Public Class FrmLookUpBarcode
                 .param2 = CmbBulan.Text
                 If gh_Common.Site.ToLower = "tng" Then
                     .param3 = "TSC1"
+                    .param4 = TxtTgl.Text
                 Else
                     .param3 = "TSC3"
+                    .param4 = TxtTgl.Text
                 End If
                 .DataSource = dtTemp
                 AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
