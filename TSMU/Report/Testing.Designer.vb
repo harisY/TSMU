@@ -29,6 +29,7 @@ Partial Public Class Testing
         Me.LblIso = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LblTgl = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LblSite = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
@@ -76,7 +77,6 @@ Partial Public Class Testing
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ExcelDataSource1 = New DevExpress.DataAccess.Excel.ExcelDataSource()
         Me.DsLaporan1 = New TSMU.dsLaporan()
-        Me.LblTgl = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsLaporan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +165,21 @@ Partial Public Class Testing
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 238.3751!)
         Me.panel1.StylePriority.UseBorderDashStyle = False
+        '
+        'LblTgl
+        '
+        Me.LblTgl.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LblTgl.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.LblTgl.LocationFloat = New DevExpress.Utils.PointFloat(147.9585!, 133.7854!)
+        Me.LblTgl.Multiline = True
+        Me.LblTgl.Name = "LblTgl"
+        Me.LblTgl.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LblTgl.SizeF = New System.Drawing.SizeF(142.6248!, 13.29167!)
+        Me.LblTgl.StylePriority.UseBorders = False
+        Me.LblTgl.StylePriority.UseFont = False
+        Me.LblTgl.StylePriority.UseTextAlignment = False
+        Me.LblTgl.Text = "LblTgl"
+        Me.LblTgl.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel1
         '
@@ -333,7 +348,7 @@ Partial Public Class Testing
         Me.XrLabel20.BackColor = System.Drawing.Color.Transparent
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartName]")})
-        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(167.7502!, 93.79161!)
         Me.XrLabel20.Multiline = True
         Me.XrLabel20.Name = "XrLabel20"
@@ -758,21 +773,6 @@ Partial Public Class Testing
         '
         Me.DsLaporan1.DataSetName = "dsLaporan"
         Me.DsLaporan1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'LblTgl
-        '
-        Me.LblTgl.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LblTgl.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LblTgl.LocationFloat = New DevExpress.Utils.PointFloat(206.5833!, 187.8688!)
-        Me.LblTgl.Multiline = True
-        Me.LblTgl.Name = "LblTgl"
-        Me.LblTgl.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.LblTgl.SizeF = New System.Drawing.SizeF(83.99991!, 44.08957!)
-        Me.LblTgl.StylePriority.UseBorders = False
-        Me.LblTgl.StylePriority.UseFont = False
-        Me.LblTgl.StylePriority.UseTextAlignment = False
-        Me.LblTgl.Text = "LblTgl"
-        Me.LblTgl.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'Testing
         '

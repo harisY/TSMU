@@ -21,6 +21,18 @@ Public Class forecast_price_models_header
             Throw ex
         End Try
     End Sub
+
+    Public Function GetDataADM() As DataTable
+        Try
+            Dim Query As String = String.Empty
+            Query = "GetDataADM"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Query)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -62,22 +74,56 @@ Public Class forecast_price_models_header
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        If CustID.ToLower <> "adm" Then
-                            DeleleByCustomerTahun()
-                        End If
+                        'If CustID.ToLower <> "adm" Then
+                        '    DeleleByCustomerTahun()
+                        'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 If CustID.ToLower <> "adm" Then
-                                    .InsertDataTempTable()
+                                    Dim IsExist1 = .IsDataExist
+                                    If Not IsExist1 Then
+                                        .InsertData()
+                                        .UpdateDataByBulanNew(Bulan)
+                                    Else
+                                        .UpdateDataByBulanNew(Bulan)
+                                    End If
+                                    '.InsertDataTempTable()
 
                                 Else
-                                    Dim IsExist = .IsDataExist
-                                    If IsExist Then
-                                        .insertDataNew(Bulan)
-                                    Else
-                                        .InsertData()
-                                    End If
+                                    .InsertDataTempTable()
                                 End If
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataADM()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleleByCustomerTahun()
+                        For i As Integer = 0 To ObjForecastCollection.Count - 1
+                            With ObjForecastCollection(i)
+                                .InsertData()
+                                .UpdateDataByBulanNew(Bulan)
                             End With
                         Next
 
@@ -1233,7 +1279,7 @@ Public Class forecast_price_models
         End Try
     End Sub
 
-    Public Sub insertDataNew(Bulan As String)
+    Public Sub UpdateDataByBulanNew(Bulan As String)
         Dim sql As String = String.Empty
         Dim Harga As Double = 0
         Dim Query1 As String = String.Empty
@@ -1251,7 +1297,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_jan =
 	                                CASE 
@@ -1269,7 +1315,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1313,7 +1359,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Feb =
 	                                CASE 
@@ -1331,7 +1377,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1373,7 +1419,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Mar =
 	                                CASE 
@@ -1391,7 +1437,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1433,7 +1479,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1451,7 +1497,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1492,7 +1538,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1510,7 +1556,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1550,7 +1596,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1568,7 +1614,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1607,7 +1653,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1625,7 +1671,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1663,7 +1709,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1681,7 +1727,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1718,7 +1764,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1736,7 +1782,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1772,7 +1818,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1790,7 +1836,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1825,7 +1871,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query2)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Apr =
 	                                CASE 
@@ -1843,7 +1889,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If
@@ -1887,7 +1933,7 @@ Public Class forecast_price_models
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(query3)
 
-                Sql =
+                sql =
                     "SELECT
                                     Harga_Des =
 	                                CASE 
@@ -1905,7 +1951,7 @@ Public Class forecast_price_models
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
                 Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(Sql)
+                dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
                     Harga = Double.Parse(dt.Rows(0)(0).ToString())
                 End If

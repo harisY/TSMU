@@ -163,7 +163,7 @@ Public Class FrmSuratJalanList
                     End If
                     Nomor = NoTerima
                 Else
-                    SuratJalan.UpdateNoToZero(tahun, bulan, 1, _TxtLokasi.Text)
+                    SuratJalan.UpdateNoToZero(tahun, DateTime.Today.Month, 1, _TxtLokasi.Text)
                     GetAutoNo()
                 End If
             End If

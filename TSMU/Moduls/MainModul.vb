@@ -2084,7 +2084,7 @@ Module MainModul
                 If col.ColumnType Is GetType(DateTime) Then
                     If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
                         col.DisplayFormat.FormatType = FormatType.DateTime
-                        col.DisplayFormat.FormatString = "dd-MM-yyyy hh:mm:ss"
+                        col.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
                     End If
                 ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
                     Dim lb_Nothing As Boolean = True

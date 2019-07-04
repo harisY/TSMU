@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmSales_ForecastPrice
@@ -733,6 +734,147 @@ Public Class frmSales_ForecastPrice
                     'ProgressBar1.Visible = False
                     'Cursor = Cursors.Default
                     LoadGrid()
+                    If strCustomer.ToLower = "adm" Then
+                        Dim result As DialogResult = XtraMessageBox.Show("Jumlahkan Qty Forecast ADM Sunter dan Karawang ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+                        If result = System.Windows.Forms.DialogResult.Yes Then
+                            Dim dtAdm As New DataTable
+                            dtAdm = ObjHeader.GetDataADM
+                            ObjHeader.ObjForecastCollection.Clear()
+                            For Each row In dtAdm.Rows
+                                Try
+                                    ObjForecast = New forecast_price_models
+                                    With ObjForecast
+                                        .Tahun = If(row("Tahun") Is DBNull.Value, "", row("Tahun").ToString())
+                                        .CustID = If(row("CustID") Is DBNull.Value, "", row("CustID").ToString())
+                                        .Customer = If(row("Customer") Is DBNull.Value, "", row("Customer").ToString())
+                                        .InvtID = If(row("InvtID") Is DBNull.Value, "", row("InvtID").ToString())
+                                        .Description = If(row("Description") Is DBNull.Value, "", row("Description").ToString())
+                                        .PartNo = If(row("PartNo") Is DBNull.Value, "", row("PartNo").ToString())
+                                        .Model = If(row("Model") Is DBNull.Value, "", row("Model").ToString())
+                                        .OePe = If(row("Oe/Pe") Is DBNull.Value, "", row("Oe/Pe").ToString())
+                                        .INSub = If(row("IN/SUB") Is DBNull.Value, "", row("IN/SUB").ToString())
+                                        .Site = If(row("Site") Is DBNull.Value, "", row("Site").ToString())
+                                        .JanQty1 = If(row("JanQty1") Is DBNull.Value, "0", Convert.ToInt32(row("JanQty1")))
+                                        .FebQty1 = If(row("FebQty1") Is DBNull.Value, "0", Convert.ToInt32(row("FebQty1")))
+                                        .MarQty1 = If(row("MarQty1") Is DBNull.Value, "0", Convert.ToInt32(row("MarQty1")))
+                                        .AprQty1 = If(row("AprQty1") Is DBNull.Value, "0", Convert.ToInt32(row("AprQty1")))
+                                        .MeiQty1 = If(row("MeiQty1") Is DBNull.Value, "0", Convert.ToInt32(row("MeiQty1")))
+                                        .JunQty1 = If(row("JunQty1") Is DBNull.Value, "0", Convert.ToInt32(row("JunQty1")))
+                                        .JulQty1 = If(row("JulQty1") Is DBNull.Value, "0", Convert.ToInt32(row("JulQty1")))
+                                        .AgtQty1 = If(row("AgtQty1") Is DBNull.Value, "0", Convert.ToInt32(row("AgtQty1")))
+                                        .SepQty1 = If(row("SepQty1") Is DBNull.Value, "0", Convert.ToInt32(row("SepQty1")))
+                                        .OktQty1 = If(row("OktQty1") Is DBNull.Value, "0", Convert.ToInt32(row("OktQty1")))
+                                        .NovQty1 = If(row("NovQty1") Is DBNull.Value, "0", Convert.ToInt32(row("NovQty1")))
+                                        .DesQty1 = If(row("DesQty1") Is DBNull.Value, "0", Convert.ToInt32(row("DesQty1")))
+
+                                        .JanQty2 = If(row("JanQty2") Is DBNull.Value, "0", Convert.ToInt32(row("JanQty2")))
+                                        .FebQty2 = If(row("FebQty2") Is DBNull.Value, "0", Convert.ToInt32(row("FebQty2")))
+                                        .MarQty2 = If(row("MarQty2") Is DBNull.Value, "0", Convert.ToInt32(row("MarQty2")))
+                                        .AprQty2 = If(row("AprQty2") Is DBNull.Value, "0", Convert.ToInt32(row("AprQty2")))
+                                        .MeiQty2 = If(row("MeiQty2") Is DBNull.Value, "0", Convert.ToInt32(row("MeiQty2")))
+                                        .JunQty2 = If(row("JunQty2") Is DBNull.Value, "0", Convert.ToInt32(row("JunQty2")))
+                                        .JulQty2 = If(row("JulQty2") Is DBNull.Value, "0", Convert.ToInt32(row("JulQty2")))
+                                        .AgtQty2 = If(row("AgtQty2") Is DBNull.Value, "0", Convert.ToInt32(row("AgtQty2")))
+                                        .SepQty2 = If(row("SepQty2") Is DBNull.Value, "0", Convert.ToInt32(row("SepQty2")))
+                                        .OktQty2 = If(row("OktQty2") Is DBNull.Value, "0", Convert.ToInt32(row("OktQty2")))
+                                        .NovQty2 = If(row("NovQty2") Is DBNull.Value, "0", Convert.ToInt32(row("NovQty2")))
+                                        .DesQty2 = If(row("DesQty2") Is DBNull.Value, "0", Convert.ToInt32(row("DesQty2")))
+
+                                        .JanQty3 = If(row("JanQty3") Is DBNull.Value, "0", Convert.ToInt32(row("JanQty3")))
+                                        .FebQty3 = If(row("FebQty3") Is DBNull.Value, "0", Convert.ToInt32(row("FebQty3")))
+                                        .MarQty3 = If(row("MarQty3") Is DBNull.Value, "0", Convert.ToInt32(row("MarQty3")))
+                                        .AprQty3 = If(row("AprQty3") Is DBNull.Value, "0", Convert.ToInt32(row("AprQty3")))
+                                        .MeiQty3 = If(row("MeiQty3") Is DBNull.Value, "0", Convert.ToInt32(row("MeiQty3")))
+                                        .JunQty3 = If(row("JunQty3") Is DBNull.Value, "0", Convert.ToInt32(row("JunQty3")))
+                                        .JulQty3 = If(row("JulQty3") Is DBNull.Value, "0", Convert.ToInt32(row("JulQty3")))
+                                        .AgtQty3 = If(row("AgtQty3") Is DBNull.Value, "0", Convert.ToInt32(row("AgtQty3")))
+                                        .SepQty3 = If(row("SepQty3") Is DBNull.Value, "0", Convert.ToInt32(row("SepQty3")))
+                                        .OktQty3 = If(row("OktQty3") Is DBNull.Value, "0", Convert.ToInt32(row("OktQty3")))
+                                        .NovQty3 = If(row("NovQty3") Is DBNull.Value, "0", Convert.ToInt32(row("NovQty3")))
+                                        .DesQty3 = If(row("DesQty3") Is DBNull.Value, "0", Convert.ToInt32(row("DesQty3")))
+
+                                        .JanHarga1 = If(row("JanHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("JanHarga1")))
+                                        .FebHarga1 = If(row("FebHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("FebHarga1")))
+                                        .MarHarga1 = If(row("MarHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("MarHarga1")))
+                                        .AprHarga1 = If(row("AprHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("AprHarga1")))
+                                        .MeiHarga1 = If(row("MeiHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("MeiHarga1")))
+                                        .JunHarga1 = If(row("JunHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("JunHarga1")))
+                                        .JulHarga1 = If(row("JulHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("JulHarga1")))
+                                        .AgtHarga1 = If(row("AgtHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("AgtHarga1")))
+                                        .SepHarga1 = If(row("SepHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("SepHarga1")))
+                                        .OktHarga1 = If(row("OktHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("OktHarga1")))
+                                        .NovHarga1 = If(row("NovHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("NovHarga1")))
+                                        .DesHarga1 = If(row("DesHarga1") Is DBNull.Value, "0", Convert.ToDouble(row("DesHarga1")))
+
+                                        .JanHarga2 = If(row("JanHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("JanHarga2")))
+                                        .FebHarga2 = If(row("FebHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("FebHarga2")))
+                                        .MarHarga2 = If(row("MarHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("MarHarga2")))
+                                        .AprHarga2 = If(row("AprHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("AprHarga2")))
+                                        .MeiHarga2 = If(row("MeiHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("MeiHarga2")))
+                                        .JunHarga2 = If(row("JunHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("JunHarga2")))
+                                        .JulHarga2 = If(row("JulHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("JulHarga2")))
+                                        .AgtHarga2 = If(row("AgtHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("AgtHarga2")))
+                                        .SepHarga2 = If(row("SepHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("SepHarga2")))
+                                        .OktHarga2 = If(row("OktHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("OktHarga2")))
+                                        .NovHarga2 = If(row("NovHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("NovHarga2")))
+                                        .DesHarga2 = If(row("DesHarga2") Is DBNull.Value, "0", Convert.ToDouble(row("DesHarga2")))
+
+                                        .JanHarga3 = If(row("JanHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("JanHarga3")))
+                                        .FebHarga3 = If(row("FebHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("FebHarga3")))
+                                        .MarHarga3 = If(row("MarHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("MarHarga3")))
+                                        .AprHarga3 = If(row("AprHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("AprHarga3")))
+                                        .MeiHarga3 = If(row("MeiHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("MeiHarga3")))
+                                        .JunHarga3 = If(row("JunHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("JunHarga3")))
+                                        .JulHarga3 = If(row("JulHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("JulHarga3")))
+                                        .AgtHarga3 = If(row("AgtHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("AgtHarga3")))
+                                        .SepHarga3 = If(row("SepHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("SepHarga3")))
+                                        .OktHarga3 = If(row("OktHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("OktHarga3")))
+                                        .NovHarga3 = If(row("NovHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("NovHarga3")))
+                                        .DesHarga3 = If(row("DesHarga3") Is DBNull.Value, "0", Convert.ToDouble(row("DesHarga3")))
+
+                                        .Jan_PO1 = If(row("Jan PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Jan PO1")))
+                                        .Feb_PO1 = If(row("Feb PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Feb PO1")))
+                                        .Mar_PO1 = If(row("Mar PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Mar PO1")))
+                                        .Apr_PO1 = If(row("Apr PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Apr PO1")))
+                                        .Mei_PO1 = If(row("Mei PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Mei PO1")))
+                                        .Jun_PO1 = If(row("Jun PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Jun PO1")))
+                                        .Jul_PO1 = If(row("Jul PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Jul PO1")))
+                                        .Agt_PO1 = If(row("Agt PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Agt PO1")))
+                                        .Sep_PO1 = If(row("Sep PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Sep PO1")))
+                                        .Okt_PO1 = If(row("Okt PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Okt PO1")))
+                                        .Nov_PO1 = If(row("Nov PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Nov PO1")))
+                                        .Des_PO1 = If(row("Des PO1") Is DBNull.Value, "0", Convert.ToInt32(row("Des PO1")))
+
+                                        .Jan_PO2 = If(row("Jan PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Jan PO2")))
+                                        .Feb_PO2 = If(row("Feb PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Feb PO2")))
+                                        .Mar_PO2 = If(row("Mar PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Mar PO2")))
+                                        .Apr_PO2 = If(row("Apr PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Apr PO2")))
+                                        .Mei_PO2 = If(row("Mei PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Mei PO2")))
+                                        .Jun_PO2 = If(row("Jun PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Jun PO2")))
+                                        .Jul_PO2 = If(row("Jul PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Jul PO2")))
+                                        .Agt_PO2 = If(row("Agt PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Agt PO2")))
+                                        .Sep_PO2 = If(row("Sep PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Sep PO2")))
+                                        .Okt_PO2 = If(row("Okt PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Okt PO2")))
+                                        .Nov_PO2 = If(row("Nov PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Nov PO2")))
+                                        .Des_PO2 = If(row("Des PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Des PO2")))
+                                        .created_date = DateTime.Today
+                                        .created_by = gh_Common.Username
+
+                                    End With
+                                    ObjHeader.ObjForecastCollection.Add(ObjForecast)
+                                Catch ex As Exception
+                                    MsgBox(ex.Message)
+                                    Console.WriteLine(ex.Message)
+                                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                                    WriteSalesToErrorLog("ForecastPrice", "Log", dtFilter, 0, "Invt ID", gh_Common.Username)
+                                    Continue For
+                                End Try
+
+                            Next
+                            ObjHeader.InsertDataADM()
+                        End If
+                    End If
+
                 End If
             Catch ex As Exception
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
