@@ -1120,6 +1120,18 @@
     <Compile Include="Payment\Frm_UploadToSolomon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\PaymentReceived.Designer.vb">
+      <DependentUpon>PaymentReceived.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\PaymentReceived.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\PaymentReceivedDetails.Designer.vb">
+      <DependentUpon>PaymentReceivedDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\PaymentReceivedDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\DXReport_UploadToSolomon.Designer.vb">
       <DependentUpon>DXReport_UploadToSolomon.vb</DependentUpon>
     </Compile>

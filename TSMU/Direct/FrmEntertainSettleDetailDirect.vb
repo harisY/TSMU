@@ -94,13 +94,23 @@ Public Class FrmEntertainSettleDetailDirect
                 ObjEntertainDetail.SuspendID = ""
                 dtGrid = ObjEntertainDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
-                'If dtGrid.Rows.Count > 0 Then
-                '    GridCellFormat(GridView1)
-                'End If
+                If dtGrid.Rows.Count > 0 Then
+                    GridCellFormat(GridView1)
+                End If
+                Dim dtGrid2 As New DataTable
+                ObjEntertainDetail.SuspendID = ""
+                dtGrid2 = ObjEntertainDetail.GetDataDetailByID()
+                GridControl1.DataSource = dtGrid2
+                If dtGrid2.Rows.Count > 0 Then
+                    GridCellFormat(GridView2)
+                End If
             Else
                 Dim dtGrid As New DataTable
                 dtGrid = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 Grid.DataSource = dtGrid
+                Dim dtGrid2 As New DataTable
+                dtGrid2 = ObjSettleDetail.GetDataDetailByID(fs_Code2)
+                GridControl1.DataSource = dtGrid2
             End If
 
         Catch ex As Exception
@@ -177,7 +187,7 @@ Public Class FrmEntertainSettleDetailDirect
                 GridView1.MoveFirst()
                 If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
                    GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" Then
+                   GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
                     IsEmpty = True
                     GridView1.DeleteRow(i)
                 End If
@@ -189,13 +199,13 @@ Public Class FrmEntertainSettleDetailDirect
             If isUpdate = False Then
                 ObjSettle.ObjDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                    If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
                         ObjSettleDetail = New SettleDetail
                         With ObjSettleDetail
                             .SettleID = _SettleID
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                             .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
+                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
@@ -209,7 +219,7 @@ Public Class FrmEntertainSettleDetailDirect
                 Next
 
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
                         ObjSettleDetail = New SettleDetail
                         With ObjSettleDetail
                             .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
@@ -222,18 +232,18 @@ Public Class FrmEntertainSettleDetailDirect
                     End If
                 Next
 
-                ObjSettle.InsertData()
+                ObjSettle.InsertDataEntSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                    If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
                         ObjSettleDetail = New SettleDetail
                         With ObjSettleDetail
                             .SettleID = TxtNoSettlement.Text
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                             .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
+                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
@@ -247,7 +257,7 @@ Public Class FrmEntertainSettleDetailDirect
                 Next
 
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
+                    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
                         ObjSettleDetail = New SettleDetail
                         With ObjSettleDetail
                             .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
@@ -297,8 +307,8 @@ Public Class FrmEntertainSettleDetailDirect
                         MessageBox.Show("Data Tidak ditemukan !")
                         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
                     End If
-                ElseIf GridView1.FocusedColumn.FieldName = "ActualAmount" Then
-                    GridView1.MoveNext()
+                    ''ElseIf GridView1.FocusedColumn.FieldName = "ActualAmount" Then
+                    ''GridView1.MoveNext()
                 End If
             End If
 
@@ -343,8 +353,8 @@ Public Class FrmEntertainSettleDetailDirect
 
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "ActualAmount")) Then
-                    _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "ActualAmount"))
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
+                    _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
                 End If
             Next
             Return _total
@@ -426,6 +436,12 @@ Public Class FrmEntertainSettleDetailDirect
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
+    Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs)
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
 
     Private Sub FrmEntertainSettleDetailDirect_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
@@ -447,8 +463,8 @@ Public Class FrmEntertainSettleDetailDirect
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
         Dim Total As Double = 0
         For i As Integer = 0 To GridView1.RowCount - 1
-            If Not GridView1.GetRowCellValue(i, "ActualAmount") Is DBNull.Value Then
-                Total = Total + GridView1.GetRowCellValue(i, "ActualAmount")
+            If Not GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value Then
+                Total = Total + GridView1.GetRowCellValue(i, "Amount")
             End If
         Next
         TxtTotExpense.Text = Format(Total, gs_FormatBulat)

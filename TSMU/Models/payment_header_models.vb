@@ -166,6 +166,20 @@ Public Class payment_header_models
             Throw ex
         End Try
     End Sub
+
+
+    Public Sub InsertHeaderDir()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "INSERT INTO Payment_Header1 (cek4) " & vbCrLf &
+                                    "Values(" & QVal(Me.cek4) & ")"
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
     Public Sub UpdateHeader(ByVal FpNo As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -239,6 +253,45 @@ Public Class payment_header_models
             Throw ex
         End Try
     End Sub
+
+    Public Sub InsertDataDir()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
+                    MainModul.gh_Trans.Command.Connection = Conn1
+                    MainModul.gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertHeaderDir()
+
+                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                            With Me.ObjPaymentDetails(i)
+                                .InsertDetailsDir()
+                                .UpdateApDocUser4()
+                            End With
+                        Next
+
+                        For i As Integer = 0 To Me.ObjBatch.Count - 1
+                            With Me.ObjBatch(i)
+                                .UpdateBatch(Me.vrno)
+                            End With
+                        Next
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub UpdateData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
@@ -274,6 +327,43 @@ Public Class payment_header_models
             Throw ex
         End Try
     End Sub
+
+    Public Sub UpdateDataDir()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        UpdateHeader(vrno)
+
+                        Dim PaymentDetails As New payment_detail_models
+                        PaymentDetails.DeleteDetail(vrno)
+
+                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                            With Me.ObjPaymentDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Public Sub CancelData()
         Try
@@ -394,6 +484,50 @@ Public Class payment_header_models
 
         End Try
     End Function
+
+    Public Function GetDataGridReject(ByVal Level As Integer) As DataTable
+        Dim sql As String = "SELECT 
+                                id
+                                ,vrno as VoucherNo
+                                ,tgl Tanggal
+                                ,BankName
+                                ,CuryID
+                                ,VendorName
+                                ,(Total_DPP_PPN-PPh)-cm_dm-Biaya_Transfer as PaidAmount
+                                , cek1 as Level1, cek2 as Level2, cek3 as Level3, cek4 as Direktur 
+                            FROM payment_header1 "
+        Try
+            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
+            'If Level = 1 Then
+            '    sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) ORDER BY tgl, vendorname, vrno"
+            'ElseIf Level = 2 Then
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='0' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'ElseIf Level = 3 Then
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'Else
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'End If
+
+            If Level = 1 Then
+                sql = sql & " WHERE cek1='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 2 Then
+                sql = sql & " WHERE cek2='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 3 Then
+                sql = sql & " WHERE cek3='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 4 Then
+                sql = sql & " WHERE cek4='0' and cek2='0' and cek3='0' and cek1='0' ORDER BY tgl, vendorname, vrno"
+            End If
+
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
     Public Function GetDataGridApproveDone(ByVal Level As Integer) As DataTable
         Dim sql As String = "SELECT 
                                 id
@@ -421,6 +555,37 @@ Public Class payment_header_models
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataGridApproveReject(ByVal Level As Integer) As DataTable
+        Dim sql As String = "SELECT 
+                                id
+                                ,vrno as VoucherNo
+                                ,tgl Tanggal
+                                ,BankName
+                                ,CuryID
+                                ,VendorName
+                                ,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as PaidAmount
+                            FROM payment_header1 "
+        Try
+            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
+            If Level = 1 Then
+                sql = sql & " WHERE cek1='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 2 Then
+                sql = sql & " WHERE cek2='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 3 Then
+                sql = sql & " WHERE cek3='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 4 Then
+                sql = sql & " WHERE cek4='0' ORDER BY tgl, vendorname, vrno"
+            End If
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub UpdateCek(ByVal Level As Integer)
         Try
             Dim ls_SP As String = String.Empty
@@ -440,6 +605,24 @@ Public Class payment_header_models
     Public Sub UpdateUnCek(ByVal Level As Integer)
         Try
             Dim ls_SP As String = String.Empty
+            If Level = 1 Then
+                ls_SP = "UPDATE payment_header1 SET cek1= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+            ElseIf Level = 2 Then
+                ls_SP = "UPDATE payment_header1 SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+            ElseIf Level = 3 Then
+                ls_SP = "UPDATE payment_header1 SET cek3= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+            ElseIf Level = 4 Then
+                ls_SP = "UPDATE payment_header1 SET cek4= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+            End If
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateUnCekDir(ByVal Level As Integer)
+        Try
+            Dim ls_SP As String = String.Empty
             If Level = 2 Then
                 ls_SP = "UPDATE payment_header1 SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 3 Then
@@ -452,4 +635,5 @@ Public Class payment_header_models
             Throw
         End Try
     End Sub
+
 End Class

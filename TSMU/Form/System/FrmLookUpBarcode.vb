@@ -47,19 +47,39 @@ Public Class FrmLookUpBarcode
     End Sub
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Try
+            Dim Username = String.Empty
+            If gh_Common.Site.ToLower = "tng" Then
+                If TxtSite.Text = "" Then
+                    TxtSite.Focus()
+                    Throw New Exception("Silahkan lengkapi data")
+                Else
+                    If TxtSite.Text.ToLower = "painting" Then
+                        Username = "Aini"
 
+                    Else
+                        Username = "Nunik"
+                    End If
+                End If
+            End If
             If TxtKodePart.Text = "" OrElse CmbBulan.Text = "" OrElse TxtFrom.Text = "" OrElse TxtTo.Text = "" Then
                 Throw New Exception("Silahkan lengkapi data")
             ElseIf TxtFrom.Text = "0" OrElse TxtTo.Text = "0" Then
                 TxtFrom.Focus()
-                Throw New Exception("Page From/To tidak boleh '0'")
+                Throw New Exception("No Passcard From/To tidak boleh '0'")
             ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
                 TxtFrom.Focus()
-                Throw New Exception("Page From tidak boleh lebih besar dari To")
+                Throw New Exception("No Passcard From tidak boleh lebih besar dari To")
+            ElseIf Val(TxtFrom.Text) < txtNo.Text Then
+                TxtFrom.Focus()
+                Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
-            ds = Obj.PrintQRCOde(TxtKodePart.Text, gh_Common.Site, gh_Common.Username)
+            If gh_Common.Site.ToLower = "tng" Then
+                ds = Obj.PrintQRCOde(TxtKodePart.Text, gh_Common.Site, Username.ToLower)
+            Else
+                ds = Obj.PrintQRCOdeCkr(TxtKodePart.Text, gh_Common.Site)
+            End If
 
             dt = ds.Tables("QRCode")
 
@@ -90,33 +110,70 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
             Next
 
-            Dim Laporan As New Testing
+            Dim Laporan As New Testing()
             With Laporan
                 .param1 = TxtKodePart.Text
                 .param2 = CmbBulan.Text
-                '.param3 = "No.Form TSC-1/QR/INJ/01/009, Tgl Terbit. 30/11/11, Rev. 2 Tgl Revisi : 26/03/18"
+                If gh_Common.Site.ToLower = "tng" Then
+                    .param3 = "TSC1"
+                    .param4 = TxtTgl.Text
+                Else
+                    .param3 = "TSC3"
+                    .param4 = TxtTgl.Text
+                End If
                 .DataSource = dtTemp
-                '.DataMember = ds.Tables("PrintPO").TableName
+                AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
             End With
 
             Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
                 PrintTool.ShowPreviewDialog()
                 PrintTool.ShowPreview(UserLookAndFeel.Default)
             End Using
+
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
 
     Private Sub FrmLookUpBarcode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub CmbSite_KeyPress(sender As Object, e As KeyPressEventArgs)
-        e.Handled = True
+        If gh_Common.Site.ToLower <> "tng" Then
+            LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End If
     End Sub
 
     Private Sub CmbBulan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CmbBulan.KeyPress
         e.Handled = True
+    End Sub
+
+    Private Sub TxtSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtSite.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub CmbBulan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbBulan.SelectedIndexChanged
+        Try
+            If TxtKodePart.Text = "" Then
+                TxtKodePart.Focus()
+                CmbBulan.Text = ""
+                Throw New Exception("Silahkan isi kode part dulu")
+            End If
+            txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+
+
+        'TxtFrom.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+
+    End Sub
+    Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
+        Try
+            Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged
+        txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
     End Sub
 End Class

@@ -52,6 +52,7 @@
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call gf_GetDatabaseVariables()
         gf_GetDatabaseVariablesSolomon()
+        gf_GetDatabaseVariablesDbCKR()
         fs_Product = My.Application.Info.ProductName
         _txtVersion.Text = "Version " & Application.ProductVersion
     End Sub

@@ -20,8 +20,8 @@ Partial Class FrmEntertain_Detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -195,10 +195,10 @@ Partial Class FrmEntertain_Detail
         Me.TxtPrNo.Size = New System.Drawing.Size(93, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Isi PR No"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule3)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Isi PR No"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtPrNo, ConditionValidationRule1)
         '
         'TxtNoSuspend
         '
@@ -234,10 +234,10 @@ Partial Class FrmEntertain_Detail
         Me.TxtDep.Size = New System.Drawing.Size(50, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi Departemen"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Isi Departemen"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
         '
         'TxtCurrency
         '

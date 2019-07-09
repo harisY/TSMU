@@ -253,27 +253,52 @@ Public Class frmUploadKanbanAdm
                 Next
 
                 Dim dtKanban As New DataTable
-                dtKanban = Obj.GetKanban
-                For i As Integer = 0 To dtKanban.Rows.Count - 1
-                    Try
-                        Dim Tgl As String = dtKanban.Rows(i)(0).ToString
-                        Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
-                        Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
-                        Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle)
-                        If IsExist Then
-                            Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
-                        Else
-                            Obj.SaveKanbanSum(Tgl, Cycle, Kanban)
-                        End If
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                        Console.WriteLine(ex.Message)
-                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                        Continue For
-                    End Try
+                If gh_Common.Site.ToLower = "tng" Then
+                    dtKanban = Obj.GetKanban
+                    For i As Integer = 0 To dtKanban.Rows.Count - 1
+                        Try
+                            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
+                            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
+                            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
 
+                            Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle)
+                            If Not IsExist Then
+                                '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
+                                'Else
+                                Obj.SaveKanbanSum(Tgl, Cycle, Kanban)
+                            End If
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                            Console.WriteLine(ex.Message)
+                            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                            Continue For
+                        End Try
+                    Next
+                Else
+                    dtKanban = Obj.GetKanbanCKR
+                    For i As Integer = 0 To dtKanban.Rows.Count - 1
+                        Try
+                            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
+                            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
+                            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
+                            Dim Remark As String = Convert.ToString(dtKanban.Rows(i)(2))
 
-                Next
+                            Dim IsExist As Boolean = Obj.IsKanbanExistCkr(Tgl, Cycle, Remark)
+                            If Not IsExist Then
+                                '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
+                                'Else
+                                Obj.SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark)
+                            End If
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                            Console.WriteLine(ex.Message)
+                            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                            Continue For
+                        End Try
+                    Next
+                End If
+                'dtKanban = Obj.GetKanban
+
                 SplashScreenManager.CloseForm()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 LoadGrid()

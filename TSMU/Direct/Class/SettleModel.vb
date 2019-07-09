@@ -16,6 +16,7 @@ Public Class SettleHeader
     Public Property Tgl1 As Date
     Public Property Tgl2 As Date
     Public Property Jenis As String
+    Public Property noPR As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
 
     Public Function SubReport() As DataSet
@@ -50,7 +51,7 @@ Public Class SettleHeader
             sum(settle_detail.suspendAmount)suspendAmount
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
-FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
+FROM settle_header left join settle_detail on settle_header.settleID=settle_detail.settleID 
 where settle_header.DeptID='" & gh_Common.GroupID & "' AND  pay=0 and (settle_header.SuspendID not like '%EN%'  OR settle_header.SuspendID Is Null) group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
@@ -458,6 +459,33 @@ group by settle_header.ID
 
     End Sub
 
+    Public Sub InsertHeader2()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PRNo, Total) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            "       'Close', " & vbCrLf &
+            "       " & QVal(noPR.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Try
+            Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+
     Public Sub InsertHeaderDirectSettle()
         Try
             Dim ls_SP As String = String.Empty
@@ -539,6 +567,38 @@ group by settle_header.ID
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
                                 .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertDataEntSettle()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertHeader()
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetailsEntSettle()
                             End With
                         Next
 
@@ -651,6 +711,33 @@ Public Class SettleDetail
             "       " & QVal(Relasi.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(JenisRelasi.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Nota.TrimEnd) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
+    Public Sub InsertDetailsEntSettle()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO settle_detail
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,,SettleAmount,NamaRelasi,Posisi,Relasi,Nota,JenisRelasi ) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nama.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(SettleAmount) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Posisi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Relasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nota.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi.TrimEnd) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
