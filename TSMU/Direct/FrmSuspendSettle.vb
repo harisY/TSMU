@@ -160,7 +160,7 @@ Public Class FrmSuspendSettle
 
                 If suspend1 = "" Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrmDirect(ID,
+                    Call CallFrmDirect(ID, suspendid,
                          GridView1.RowCount)
                 Else
                     'Dim objGrid As DataGridView = sender

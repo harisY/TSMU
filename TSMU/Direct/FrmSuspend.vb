@@ -78,11 +78,11 @@ Public Class FrmSuspend
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                    ID = GridView1.GetRowCellValue(rowHandle, "SuspendID")
                 End If
             Next rowHandle
-
-            ' fc_Class.Delete(ID)
+            ObjSuspend.ID = ID
+            ObjSuspend.Delete()
 
             tsBtn_refresh.PerformClick()
 

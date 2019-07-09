@@ -14,6 +14,29 @@ Public Class SuspendHeaderModel
     Public Property Tipe As String
     Public Property Total As Double
     Public Property ObjDetails() As New Collection(Of SuspendDetailModel)
+    Public Property _id As String
+    Public Property ID() As String
+        Get
+            Return _id
+        End Get
+        Set(ByVal value As String)
+            _id = value
+        End Set
+    End Property
+
+    Public Sub Delete()
+        Try
+            Dim query As String = "DELETE FROM suspend_header" & vbCrLf &
+            "WHERE suspendid = " & QVal(Me._id) & " "
+            Dim li_Row = MainModul.ExecQuery_Solomon(query)
+
+            Dim query1 As String = "DELETE FROM suspend_detail " & vbCrLf &
+            "WHERE suspendid = " & QVal(Me._id) & " "
+            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
@@ -425,4 +448,7 @@ Public Class SuspendDetailModel
             Throw ex
         End Try
     End Function
+
+
+
 End Class
