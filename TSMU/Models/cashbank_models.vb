@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class cashbank_models
+
     Public Property AcctID As String
     Public Property Keluar As Double
     Public Property Keterangan As String
@@ -17,6 +18,17 @@ Public Class cashbank_models
     Public Property SettleID As String
     Public Property curyid As String
     Public Property account() As String
+    Public Property _id As String
+    Public Property ID() As String
+        Get
+            Return _id
+        End Get
+        Set(ByVal value As String)
+            _id = value
+        End Set
+    End Property
+
+
     Public Sub InsertToTable()
         Try
             Dim chek As Integer
@@ -53,6 +65,89 @@ Public Class cashbank_models
            ," & QVal(Noref) & "
            ," & QVal(Perpost) & "
            ," & QVal(AcctID) & "
+           ," & QVal(Saldo_Awal) & ")"
+            MainModul.ExecQuery_Solomon(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertToTable02()
+        Try
+            Dim chek As Integer
+            'If Checked Then
+            '    chek = 1
+            'Else
+            '    chek = 0
+            'End If
+            Dim sql As String =
+            "INSERT INTO [cashbank2]
+           ([Tgl]
+           ,[NoBukti]
+           ,[Transaksi]
+           ,[SuspendAmount]
+           ,[SettleAmount]
+           ,[Masuk]
+           ,[Keluar]
+           ,[Saldo]
+           ,[Perpost]
+           ,[AcctID]
+           ,[Saldo_Awal])
+     VALUES
+           (" & QVal(Tgl) & "
+           ," & QVal(NoBukti) & "
+           ," & QVal(Transaksi) & "
+           ," & QVal(SuspendAmount) & "
+          ," & QVal(SettleAmount) & "
+           ," & QVal(Masuk) & "
+           ," & QVal(Keluar) & "
+           ," & QVal(Saldo) & "
+           ," & QVal(Perpost) & "
+           ," & QVal(AcctID) & "
+           ," & QVal(Saldo_Awal) & ")"
+            MainModul.ExecQuery_Solomon(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub InsertToTableB()
+        Try
+            Dim chek As Integer
+            'If Checked Then
+            '    chek = 1
+            'Else
+            '    chek = 0
+            'End If
+            Dim sql As String =
+            "INSERT INTO [cashbank2]
+           ([Tgl]
+           ,[NoBukti]
+           ,[Transaksi]
+           ,[Keterangan]
+           ,[SuspendAmount]
+           ,[SettleAmount]
+           ,[Masuk]
+           ,[Keluar]
+           ,[Saldo]
+           ,[Noref]
+           ,[Perpost]
+           ,[AcctID]
+           ,[flag]
+           ,[Saldo_Awal])
+     VALUES
+           (" & QVal(Tgl) & "
+           ," & QVal(NoBukti) & "
+           ," & QVal(Transaksi) & "
+           ," & QVal(Keterangan) & "
+           ," & QVal(SuspendAmount) & "
+          ," & QVal(SettleAmount) & "
+           ," & QVal(Masuk) & "
+           ," & QVal(Keluar) & "
+           ," & QVal(Saldo) & "
+           ," & QVal(Noref) & "
+           ," & QVal(Perpost) & "
+           ," & QVal(AcctID) & "
+           ,'1'
            ," & QVal(Saldo_Awal) & ")"
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
@@ -112,11 +207,32 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Sub UpdateSuspend_hapus()
+
+        Try
+            Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
+            MainModul.ExecQuery_Solomon(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
     Public Sub UpdateSettle()
 
         Try
 
             Dim Query = "update settle_header set pay=1 where settleid=" & QVal(SettleID) & ""
+            MainModul.ExecQuery_Solomon(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+    Public Sub UpdateSettle_hapus()
+
+        Try
+
+            Dim Query = "update settle_header set pay=0 from settle_header inner join cashbank on settle_header.settleID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
             MainModul.ExecQuery_Solomon(Query)
         Catch ex As Exception
             Throw ex
@@ -134,6 +250,28 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
+    Public Function GetGridDetailCashBankByAccountID03(_NoBukti As String) As DataTable
+        Try
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Noref,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  NoBukti=" & QVal(_NoBukti) & " "
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGridDetailCashBankByAccountID02() As DataTable
+        Try
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function autononb() As String
         Try
             Dim auto2 As String
@@ -141,7 +279,7 @@ Public Class cashbank_models
                  "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
                 "set @tahun = datepart(year,getdate()) " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(nobukti)),4)+1 as varchar),4) " &
-                "from cashbank " &
+                "from cashbank2 " &
                 "where SUBSTRING(nobukti,4,4) = RIGHT(@tahun,4) AND SUBSTRING(nobukti,9,2) = RIGHT(@bulan,2)) " &
                 "select 'VC' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
@@ -233,4 +371,17 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
+    Public Sub Delete()
+        Try
+            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
+            "WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row = MainModul.ExecQuery_Solomon(query)
+
+            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
+            "WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 End Class

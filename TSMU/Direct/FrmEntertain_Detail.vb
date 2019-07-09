@@ -144,9 +144,10 @@ Public Class FrmEntertain_Detail
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
-                    TxtTotal.Text = .Total
+                    'TxtTotal.Text = .Total
                     TxtAmountReq.Text = .AmountReq
                     TxtSirkulasi.Text = .CirculationNo
+                    TxtTotal.Text = .Total
                 End With
                 GridView1.AddNewRow()
                 GridView1.OptionsNavigation.AutoFocusNewRow = True

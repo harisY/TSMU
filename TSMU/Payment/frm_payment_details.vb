@@ -470,4 +470,7 @@ Public Class frm_payment_details
         e.Cancel = Not ignoreCancel
     End Sub
 
+    Private Sub _TxtVendorID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtVendorID.EditValueChanged
+
+    End Sub
 End Class
