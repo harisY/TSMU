@@ -29,6 +29,7 @@ Partial Public Class Testing
         Me.LblIso = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.LblTgl = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LblSite = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
@@ -159,11 +160,26 @@ Partial Public Class Testing
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.panel1.CanGrow = False
-        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
+        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LblTgl, Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 7.999992!)
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 238.3751!)
         Me.panel1.StylePriority.UseBorderDashStyle = False
+        '
+        'LblTgl
+        '
+        Me.LblTgl.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LblTgl.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.LblTgl.LocationFloat = New DevExpress.Utils.PointFloat(147.9585!, 133.7854!)
+        Me.LblTgl.Multiline = True
+        Me.LblTgl.Name = "LblTgl"
+        Me.LblTgl.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LblTgl.SizeF = New System.Drawing.SizeF(142.6248!, 13.29167!)
+        Me.LblTgl.StylePriority.UseBorders = False
+        Me.LblTgl.StylePriority.UseFont = False
+        Me.LblTgl.StylePriority.UseTextAlignment = False
+        Me.LblTgl.Text = "LblTgl"
+        Me.LblTgl.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel1
         '
@@ -332,7 +348,7 @@ Partial Public Class Testing
         Me.XrLabel20.BackColor = System.Drawing.Color.Transparent
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartName]")})
-        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(167.7502!, 93.79161!)
         Me.XrLabel20.Multiline = True
         Me.XrLabel20.Name = "XrLabel20"
@@ -831,4 +847,5 @@ Partial Public Class Testing
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LblSite As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LblTgl As DevExpress.XtraReports.UI.XRLabel
 End Class

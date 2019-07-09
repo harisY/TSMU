@@ -67,6 +67,7 @@
                 ,[Lane]
                 ,[QtyKbn]
                 ,[OrderKbn]
+                ,[Scanned]
                 ,[OrderPcs]
                 ,[QtyReceive]
                 ,[QtyBalance]
@@ -143,6 +144,26 @@
             Throw
         End Try
     End Function
+    Public Function GetKanbanCKR() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+	                                CONVERT(varchar,[OrderDate],101) Tanggal,
+	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
+	                                sum([OrderKbn]) Kanban
+                                FROM [KanbanADM]
+                                GROUP BY 
+	                                CONVERT(varchar,[OrderDate],101),
+	                                [DelCycle],Remark
+                                ORDER BY 
+	                                CONVERT(varchar,[OrderDate],101),
+	                                [DelCycle]"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Sub SaveKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer)
         Try
@@ -155,11 +176,25 @@
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
                                        ," & QVal(Kanban) & "," & QVal(Kanban) & ")"
-            If gh_Common.Site.ToLower = "tng" Then
-                ExecQuery(sql)
-            Else
-                ExecQueryCKR(sql)
-            End If
+            ExecQuery(sql)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String)
+        Try
+            Dim sql As String = "INSERT INTO [KanbanSum]
+                                       ([Tanggal]
+                                       ,[Cycle]
+                                       ,[Kanban]
+                                        ,[Open], Remark)
+                                 VALUES
+                                       (" & QVal(Tgl) & "
+                                       ," & QVal(Cycle) & "
+                                       ," & QVal(Kanban) & "," & QVal(Kanban) & ", " & QVal(Remark) & ")"
+
+            ExecQueryCKR(sql)
         Catch ex As Exception
             Throw
         End Try
@@ -187,11 +222,26 @@
                                 WHERE Tanggal = " & QVal(Tgl) & "
                                     AND Cycle=" & QVal(Cycle) & ""
             Dim dt As New DataTable
-            If gh_Common.Site.ToLower = "tng" Then
-                dt = GetDataTable(sql)
-            Else
-                dt = GetDataTableCKR(sql)
+            dt = GetDataTable(sql)
+
+            If dt.Rows.Count > 0 Then
+                hasil = True
             End If
+            Return hasil
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String) As Boolean
+        Dim hasil As Boolean = False
+        Try
+            Dim sql As String = "SELECT * 
+                                FROM KanbanSum 
+                                WHERE Tanggal = " & QVal(Tgl) & "
+                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & ""
+            Dim dt As New DataTable
+
+            dt = GetDataTableCKR(sql)
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If

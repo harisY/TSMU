@@ -169,7 +169,7 @@ Public Class BarcodeGenerate
     Public Function GetNoPrint(Bulan As String, KodePart As String) As Integer
         Dim hasil As Integer
         Try
-            Dim sql As String = "SELECT No From BarcodePrintLog WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+            Dim sql As String = "SELECT ISNULL(No,0) No From BarcodePrintLog WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
             Dim dt As DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(sql)
