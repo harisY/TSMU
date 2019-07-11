@@ -250,11 +250,13 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            tsBtn_next.PerformClick()
+            Me.Close()
+            ''tsBtn_next.PerformClick()
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
         End Try
 
         'Try
@@ -329,11 +331,13 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            tsBtn_next.PerformClick()
+            Me.Close()
+            'tsBtn_next.PerformClick()
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
         End Try
     End Sub
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
