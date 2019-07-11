@@ -42,11 +42,12 @@
     Public Function GetVendor() As DataTable
         Try
             Dim sql As String = "SELECT 
- 	                                RTRIM(VendID) [Vendor ID],
-	                                RTRIM(namedetail) Name,
-	                                RTRIM(bank) Bank,
-	                                RTRIM(norek) [No Rek.],
-                                    RTRIM(name1) [Penerima],
+ 	                                VendID [Vendor ID],
+	                                namedetail Name,
+	                                bank Bank,
+	                                norek [No Rek.],
+                                    name1 [Penerima],
+                                    name,
 	                                curyid [Currency]
                                 FROM dbo.payment_norek1"
             Dim dt As New DataTable
@@ -60,7 +61,8 @@
         Try
             Dim sql As String = "SELECT 
  	                                RTRIM(BankAcct) [Bank ID],
-	                                RTRIM(CashAcctName) Name
+	                                RTRIM(CashAcctName) Name,
+                                    CuryID
                                 FROM dbo.cashacct"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
