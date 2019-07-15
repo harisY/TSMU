@@ -425,6 +425,7 @@
               <xs:element name="pay" msprop:Generator_ColumnVarNameInTable="columnpay" msprop:Generator_ColumnPropNameInRow="pay" msprop:Generator_ColumnPropNameInTable="payColumn" msprop:Generator_UserColumnName="pay" type="xs:string" minOccurs="0" />
               <xs:element name="Proses" msprop:Generator_ColumnVarNameInTable="columnProses" msprop:Generator_ColumnPropNameInRow="Proses" msprop:Generator_ColumnPropNameInTable="ProsesColumn" msprop:Generator_UserColumnName="Proses" type="xs:string" minOccurs="0" />
               <xs:element name="Tgl2" msprop:Generator_ColumnVarNameInTable="columnTgl2" msprop:Generator_ColumnPropNameInRow="Tgl2" msprop:Generator_ColumnPropNameInTable="Tgl2Column" msprop:Generator_UserColumnName="Tgl2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PRNo" msprop:Generator_ColumnVarNameInTable="columnPRNo" msprop:Generator_ColumnPropNameInRow="PRNo" msprop:Generator_ColumnPropNameInTable="PRNoColumn" msprop:Generator_UserColumnName="PRNo" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

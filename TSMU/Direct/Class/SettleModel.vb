@@ -8,6 +8,7 @@ Public Class SettleHeader
     Public Property Remark As String
     Public Property SettleID As String
     Public Property Status As String
+    Public Property PRNo As String
     Public Property SuspendID As String
     Public Property Tgl As DateTime
     Public Property Total As Double
@@ -129,8 +130,8 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
         Dim query As String
         query = "SELECT settle_detail.SettleID
                     ,settle_detail.Description
-                    ,settle_detail.Tgl
-                    ,settle_detail.SuspendAmount
+                    ,settle_detail.Tgl as Tgl2
+                    ,suspend_header.Total as SuspendAmount
                     ,settle_detail.SettleAmount
                     ,settle_detail.AcctID
                     ,settle_detail.SubAcct
@@ -151,6 +152,43 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
                     ,settle_header.Total
                     ,settle_header.pay
                     ,settle_header.Proses
+                     ,suspend_header.PRNo
+                      FROM settle_header left join settle_detail on settle_detail.SettleID=settle_header.SettleID left join suspend_header on suspend_header.SuspendID=settle_header.SuspendID where settle_header.SettleID='" & SettleID & "'"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "settle")
+        Return ds
+
+    End Function
+
+
+
+    Public Function loadreport2a() As DataSet
+        Dim query As String
+        query = "SELECT settle_detail.SettleID
+                    ,settle_detail.Description
+                    ,settle_detail.Tgl as Tgl2
+                    ,settle_detail.SettleAmount
+                    ,settle_detail.AcctID
+                    ,settle_detail.SubAcct
+                    ,settle_detail.Nama
+                    ,settle_detail.Tempat
+                    ,settle_detail.Alamat
+                    ,settle_detail.Jenis
+                    ,settle_detail.NamaRelasi
+                    ,settle_detail.Posisi
+                    ,settle_detail.Relasi
+                    ,settle_detail.JenisRelasi
+                    ,settle_detail.Nota
+                    ,settle_header.Tgl
+                    ,settle_header.DeptID
+                    ,settle_header.Remark
+                    ,settle_header.CuryID
+                    ,settle_header.Status
+                    ,settle_header.Total
+                    ,settle_header.pay
+                    ,settle_header.Proses
+                    ,settle_header.PRNo
                       FROM settle_header left join settle_detail on settle_detail.SettleID=settle_header.SettleID where settle_header.SettleID='" & SettleID & "'"
 
         Dim ds As New dsLaporan
@@ -274,7 +312,7 @@ group by settle_header.ID
     Public Sub GetSettleById()
         Try
             Dim sql As String =
-            "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend
+            "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend,t.PRNo
             FROM settle_header t left join suspend_header s on t.SuspendID = s.SuspendID 
             where t.ID=" & QVal(ID) & ""
             Dim dt As New DataTable
@@ -290,6 +328,7 @@ group by settle_header.ID
                 Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
                 TotalSuspend = If(IsDBNull(dt.Rows(0).Item("TotSuspend")), 0, Convert.ToDouble(dt.Rows(0).Item("TotSuspend")))
                 CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Convert.ToString(dt.Rows(0).Item("CuryID")))
+                PRNo = If(IsDBNull(dt.Rows(0).Item("PRNo")), "", Convert.ToString(dt.Rows(0).Item("PRNo")))
             End If
         Catch ex As Exception
             Throw ex
@@ -450,9 +489,10 @@ group by settle_header.ID
     Public Sub InsertHeaderDirectSettle()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
@@ -470,6 +510,7 @@ group by settle_header.ID
                                     "UPDATE settle_header " & vbCrLf &
                                     "SET    SuspendID = " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
                                     "       DeptID = " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+                                    "       PRNo = " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
                                     "       Remark = " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &

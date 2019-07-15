@@ -25,6 +25,7 @@ Public Class payment_header_models
     Public Property uploaded As Boolean
     Public Property VendID As String
     Public Property VendorName As String
+    Public Property VendorName2 As String
     Public Property vrno As String
     Public Property PerPost As String
     Public Property cmdm_manual As String
@@ -155,7 +156,7 @@ Public Class payment_header_models
                                     "       " & QVal(Me.cek4) & ", " & vbCrLf &
                                     "       " & QVal(Me.prosespay) & ", " & vbCrLf &
                                     "       " & QVal(Me.uploaded) & ", " & vbCrLf &
-                                    "       " & QVal(Me.VendorName) & ", " & vbCrLf &
+                                    "       " & QVal(Me.detsupplier) & ", " & vbCrLf &
                                     "       " & QVal(Me.bankrek) & ", " & vbCrLf &
                                     "       " & QVal(Me.norek) & ", " & vbCrLf &
                                     "       " & QVal(Me.penerima) & ", " & vbCrLf &

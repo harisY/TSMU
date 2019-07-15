@@ -81,7 +81,7 @@ Public Class frm_payment_details
             If fs_Code <> "" Then
                 With ObjPaymentHeader
                     _txtVoucher.Text = .vrno
-                    _TxtVendorName.Text = .VendorName
+                    _TxtVendorName.Text = .detsupplier
                     _TxtVendorID.Text = .VendID
                     _TxtTotal.Text = Format(.Tot_DPP + .Tot_PPN, "##,0")
                     _TxtAttentionTo.Text = .penerima
@@ -101,6 +101,7 @@ Public Class frm_payment_details
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
                     _txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
                     _txtKetCMDMmanual.Text = .cmdm_manual_ket
+                    _txtnamasupllier.Text = .VendorName
                 End With
             Else
                 _txtVoucher.Text = ""
@@ -125,6 +126,7 @@ Public Class frm_payment_details
                 _TxtPerpost.Focus()
                 _txtCMDMmanual.Text = "0"
                 _txtKetCMDMmanual.Text = ""
+                _txtnamasupllier.Text = ""
 
             End If
         Catch ex As Exception
@@ -182,7 +184,7 @@ Public Class frm_payment_details
                     .CM_DM = _TxtCM.Text
                     .CuryID = _TxtCurrency.Text
                     .Descr = ""
-                    .detsupplier = ""
+                    .detsupplier = _TxtVendorName.Text
                     .norek = _TxtNoRek.Text
                     .penerima = _TxtAttentionTo.Text
                     .PPh = _TxtPPH.Text
@@ -193,10 +195,11 @@ Public Class frm_payment_details
                     .Tot_PPN = _TxtPPN.Text
                     .uploaded = "0"
                     .VendID = _TxtVendorID.Text
-                    .VendorName = _TxtVendorName.Text
+                    ''.VendorName2 = _TxtVendorName.Text
                     .vrno = _txtVoucher.Text
                     .cmdm_manual = _txtCMDMmanual.Text
                     .cmdm_manual_ket = _txtKetCMDMmanual.Text
+                    .VendorName = _txtnamasupllier.Text
                 End With
             End If
         Catch ex As Exception
@@ -273,6 +276,8 @@ Public Class frm_payment_details
             Dim Value2 As String = ""
             Dim Value3 As String = ""
             Dim Value4 As String = ""
+            Dim Value5 As String = ""
+            Dim Value6 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
@@ -281,10 +286,14 @@ Public Class frm_payment_details
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
                     Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     Value4 = lF_SearchData.Values.Item(3).ToString.Trim
+                    Value5 = lF_SearchData.Values.Item(4).ToString.Trim
+                    Value6 = lF_SearchData.Values.Item(5).ToString.Trim
                     _TxtVendorID.Text = Value1
                     _TxtVendorName.Text = Value2
                     _TxtToBank.Text = Value3
                     _TxtNoRek.Text = Value4
+                    _TxtAttentionTo.Text = Value5
+                    _txtnamasupllier.Text = Value6
 
 
                     Dim dtGrid As New DataTable
@@ -297,8 +306,10 @@ Public Class frm_payment_details
                 ElseIf sender.Name = _TxtBankID.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     _TxtBankID.Text = Value1
                     _TxtBankName.Text = Value2
+                    _TxtCurrency.Text = Value3
                 End If
             End If
             lF_SearchData.Close()
@@ -470,4 +481,7 @@ Public Class frm_payment_details
         e.Cancel = Not ignoreCancel
     End Sub
 
+    Private Sub _TxtVendorID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtVendorID.EditValueChanged
+
+    End Sub
 End Class

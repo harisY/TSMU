@@ -69,7 +69,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>..\packages\CsvHelper.12.1.1\lib\net45\CsvHelper.dll</HintPath>
+      <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -108,11 +108,12 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\..\TSMU_14032019\TSMU\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -293,6 +294,12 @@
     <Compile Include="Direct\FrmBankTransfer_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmDetailPaymentDirect.Designer.vb">
+      <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -419,6 +426,12 @@
     <Compile Include="Direct\FrmTravel_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTravel_Detail2.Designer.vb">
+      <DependentUpon>FrmTravel_Detail2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravel_Detail2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\entertain1.vb">
       <DependentUpon>entertain1.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -435,6 +448,12 @@
       <DependentUpon>FrmReportSettle.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportSettle2.Designer.vb">
+      <DependentUpon>FrmReportSettle2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportSettle2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\FrmReportSettleEntertain.Designer.vb">
@@ -463,6 +482,12 @@
     </Compile>
     <Compile Include="Direct\report\RptsettleDetail.vb">
       <DependentUpon>RptsettleDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Direct\report\settle2.vb">
+      <DependentUpon>settle2.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1235,6 +1260,9 @@
     <EmbeddedResource Include="Direct\FrmBankTransfer_Detail.resx">
       <DependentUpon>FrmBankTransfer_Detail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmDetailPaymentDirect.resx">
+      <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmPaymentDirect.resx">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </EmbeddedResource>
@@ -1298,6 +1326,9 @@
     <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
       <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravel_Detail2.resx">
+      <DependentUpon>FrmTravel_Detail2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\entertain1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>entertain1.vb</LastGenOutput>
@@ -1307,6 +1338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportSettle.resx">
       <DependentUpon>FrmReportSettle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportSettle2.resx">
+      <DependentUpon>FrmReportSettle2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportSettleEntertain.resx">
       <DependentUpon>FrmReportSettleEntertain.vb</DependentUpon>
@@ -1324,6 +1358,10 @@
     <EmbeddedResource Include="Direct\report\RptsettleDetail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptsettleDetail.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\settle2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>settle2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settleApproval.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1790,17 +1828,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
@@ -1835,6 +1862,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\433-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

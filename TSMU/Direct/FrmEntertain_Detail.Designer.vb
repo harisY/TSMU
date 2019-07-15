@@ -183,7 +183,6 @@ Partial Class FrmEntertain_Detail
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TxtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtTotal.Properties.ReadOnly = True
         Me.TxtTotal.Size = New System.Drawing.Size(80, 20)
         Me.TxtTotal.StyleController = Me.LayoutControl1

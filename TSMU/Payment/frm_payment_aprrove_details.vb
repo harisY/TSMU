@@ -250,11 +250,13 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            tsBtn_next.PerformClick()
+            Me.Close()
+            ''tsBtn_next.PerformClick()
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
         End Try
 
         'Try
@@ -297,6 +299,21 @@ Public Class frm_payment_aprrove_details
                     ObjPaymentHeader.UpdateCek(3)
                 ElseIf gh_Common.Level = 4 Then
                     ObjPaymentHeader.UpdateCek(4)
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        If GridView1.GetRowCellValue(i, "cek4") = False Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcIdDir0()
+                            End With
+                        ElseIf GridView1.GetRowCellValue(i, "cek4") = True Then
+                            With ObjPaymentDetail
+                                .vrno = _txtVoucher.Text.TrimEnd
+                                .No_Invoice = GridView1.GetRowCellValue(i, "InvcNbr").ToString().TrimEnd
+                                .UpdateCheckDetailByVrnoInvcIdDir1()
+                            End With
+                        End If
+                    Next
                 End If
             Else
                 If gh_Common.Level = 2 Then
@@ -314,11 +331,13 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            tsBtn_next.PerformClick()
+            Me.Close()
+            'tsBtn_next.PerformClick()
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
         End Try
     End Sub
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged

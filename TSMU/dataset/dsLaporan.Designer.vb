@@ -7239,6 +7239,8 @@ Partial Public Class dsLaporan
         
         Private columnTgl2 As Global.System.Data.DataColumn
         
+        Private columnPRNo As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -7475,6 +7477,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PRNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPRNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -7536,9 +7546,10 @@ Partial Public Class dsLaporan
                     ByVal Total As Double,  _
                     ByVal pay As String,  _
                     ByVal Proses As String,  _
-                    ByVal Tgl2 As Date) As settleRow
+                    ByVal Tgl2 As Date,  _
+                    ByVal PRNo As String) As settleRow
             Dim rowsettleRow As settleRow = CType(Me.NewRow,settleRow)
-            Dim columnValuesArray() As Object = New Object() {SettleID, SuspendID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct, Nama, Tempat, Alamat, Jenis, NamaRelasi, Posisi, Relasi, JenisRelasi, Nota, DeptID, Remark, CuryID, Status, Total, pay, Proses, Tgl2}
+            Dim columnValuesArray() As Object = New Object() {SettleID, SuspendID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct, Nama, Tempat, Alamat, Jenis, NamaRelasi, Posisi, Relasi, JenisRelasi, Nota, DeptID, Remark, CuryID, Status, Total, pay, Proses, Tgl2, PRNo}
             rowsettleRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowsettleRow)
             Return rowsettleRow
@@ -7586,6 +7597,7 @@ Partial Public Class dsLaporan
             Me.columnpay = MyBase.Columns("pay")
             Me.columnProses = MyBase.Columns("Proses")
             Me.columnTgl2 = MyBase.Columns("Tgl2")
+            Me.columnPRNo = MyBase.Columns("PRNo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7641,6 +7653,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnProses)
             Me.columnTgl2 = New Global.System.Data.DataColumn("Tgl2", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTgl2)
+            Me.columnPRNo = New Global.System.Data.DataColumn("PRNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPRNo)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17223,6 +17237,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PRNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesettle.PRNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PRNo' in table 'settle' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesettle.PRNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsSettleIDNull() As Boolean
             Return Me.IsNull(Me.tablesettle.SettleIDColumn)
         End Function
@@ -17519,6 +17548,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetTgl2Null()
             Me(Me.tablesettle.Tgl2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPRNoNull() As Boolean
+            Return Me.IsNull(Me.tablesettle.PRNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPRNoNull()
+            Me(Me.tablesettle.PRNoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

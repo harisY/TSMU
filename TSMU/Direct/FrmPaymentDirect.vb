@@ -2,11 +2,15 @@
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.Utils
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmPaymentDirect
-
+    Dim ff_Detail As FrmDetailPaymentDirect
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
-
+    Dim NoBukti As String
     Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
         ObjCashBank.Perpost = _txtperpost.Text
         ObjCashBank.AcctID = _txtaccount.Text
@@ -56,6 +60,12 @@ Public Class FrmPaymentDirect
                 Else
                     GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
                 End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
             Else
                 If b = 0 Then
                     GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
@@ -101,7 +111,7 @@ Public Class FrmPaymentDirect
         Dim dtGrid As New DataTable
         ObjCashBank.Perpost = _txtperpost.Text
         ObjCashBank.AcctID = _txtaccount.Text
-        dtGrid = ObjCashBank.GetGridDetailCashBankByAccountID
+        dtGrid = ObjCashBank.GetGridDetailCashBankByAccountID02
 
         If dtGrid.Rows.Count > 0 Then
             GridControl1.DataSource = dtGrid
@@ -161,10 +171,360 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
-        GridControl2.FocusedView.PostEditor()
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub tabu1()
+        For i As Integer = 0 To GridView2.RowCount - 1
+            If GridView2.GetRowCellValue(i, "Proses") = True Then
+                Dim bukti As String = ObjCashBank.autononb
+                ' suspen.SuspendID = suspendID
+                Dim ObjDetails As New cashbank_models
+                With ObjDetails
+                    .Tgl = DateTime.Parse(GridView2.GetRowCellValue(i, "Tgl").ToString())
+                    .NoBukti = bukti
+                    .Transaksi = "Advance"
+                    .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
+                    .Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                    .SuspendAmount = GridView2.GetRowCellValue(i, "Amount")
+                    .SettleAmount = 0
+                    .Keluar = GridView2.GetRowCellValue(i, "Amount")
+                    .Masuk = 0
+                    .Saldo = 0
+                    '.Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                    .Perpost = _txtperpost.Text
+                    .AcctID = _txtaccount.Text
+                    .Saldo_Awal = _txtsaldo.Text
+                    .SuspendID = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                    .InsertToTable()
+                    .UpdateSuspend()
+                    '' .cek1 = True
+                End With
+
+            End If
+        Next
+
+    End Sub
+    Private Sub tabu2()
+        Dim bukti As String = ObjCashBank.autononb
+        Dim tgl As DateTime = DateTime.Now
+        Dim transaksi As String = "Advance"
+        Dim suspendamount As Double = 0
+        Dim ObjDetails As New cashbank_models
+        For i As Integer = 0 To GridView2.RowCount - 1
+            If GridView2.GetRowCellValue(i, "Proses") = True Then
+                suspendamount = suspendamount + GridView2.GetRowCellValue(i, "Amount")
+            End If
+        Next
+
+        TempTable()
+        dtTemp.Rows.Add()
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(0) = tgl
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(1) = bukti
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(2) = transaksi
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(3) = suspendamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(4) = 0
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = 0
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(6) = suspendamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = 0
+
+        ''  GridControl1.DataSource = dtTemp
+
+        ObjDetails.Tgl = tgl
+        ObjDetails.NoBukti = bukti
+        ObjDetails.Transaksi = transaksi
+        ObjDetails.SuspendAmount = suspendamount
+        ObjDetails.SettleAmount = 0
+        ObjDetails.Masuk = 0
+        ObjDetails.Keluar = suspendamount
+        ObjDetails.Saldo = 0
+        ObjDetails.Perpost = _txtperpost.Text
+        ObjDetails.AcctID = _txtaccount.Text
+        ObjDetails.InsertToTable02()
+
+        Call DataSuspend()
+
+        Call DataCashBank()
+
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
     End Sub
 
-     Public Overrides Sub Proc_SaveData()
+    Dim dtTemp As DataTable
+    Private Sub TempTable()
+        dtTemp = New DataTable
+        dtTemp.Columns.Add("Tgl")
+        dtTemp.Columns.Add("NoBukti")
+        dtTemp.Columns.Add("Transaksi")
+        dtTemp.Columns.Add("SuspendAmount")
+        dtTemp.Columns.Add("SettleAmount")
+        dtTemp.Columns.Add("Masuk")
+        dtTemp.Columns.Add("Keluar")
+        dtTemp.Columns.Add("Saldo")
+        dtTemp.Clear()
+    End Sub
+    Private Sub tab_settle()
+        For f As Integer = 0 To GridView3.RowCount - 1
+            If GridView3.GetRowCellValue(f, "Proses") = True Then
+                Dim bukti As String = ObjCashBank.autononb
+                Dim totsuspend As Double = 0
+
+                Dim ObjDetails As New cashbank_models
+                With ObjDetails
+                    .Tgl = DateTime.Parse(GridView3.GetRowCellValue(f, "Tgl").ToString())
+                    .NoBukti = bukti
+                    .Transaksi = "Settle"
+                    .Keterangan = GridView3.GetRowCellValue(f, "Description").ToString().TrimEnd
+                    .Noref = GridView3.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
+                    totsuspend = If(GridView3.GetRowCellValue(f, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView3.GetRowCellValue(f, "Total")))
+                    .SuspendAmount = totsuspend
+                    .SettleAmount = GridView3.GetRowCellValue(f, "SettleAmount")
+
+                    If GridView3.GetRowCellValue(f, "SettleAmount") > totsuspend Then
+                        .Keluar = GridView3.GetRowCellValue(f, "SettleAmount") - totsuspend
+                        .Masuk = 0
+                    ElseIf GridView3.GetRowCellValue(f, "SettleAmount") < totsuspend Then
+                        .Keluar = 0
+                        .Masuk = totsuspend - GridView3.GetRowCellValue(f, "SettleAmount")
+                    Else
+                        .Keluar = 0
+                        .Masuk = 0
+                    End If
+
+
+                    .Saldo = 0
+                    ' .Noref = GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
+                    .Perpost = _txtperpost.Text
+                    .AcctID = _txtaccount.Text
+                    .Saldo_Awal = _txtsaldo.Text
+                    .SettleID = GridView3.GetRowCellValue(f, "SettleID").ToString().TrimEnd
+                    .InsertToTable2()
+                    .UpdateSettle()
+                End With
+
+            End If
+        Next
+
+    End Sub
+    Private Sub tab_settle02()
+        Dim bukti As String = ObjCashBank.autononb
+        Dim tgl As DateTime = DateTime.Now
+        Dim transaksi As String = "Settle"
+        Dim suspendamount As Double = 0
+        Dim totsuspend As Double = 0
+        Dim settleamount As Double = 0
+        Dim Keluar As Double = 0
+        Dim Masuk As Double = 0
+        Dim TKeluar As Double = 0
+        Dim TMasuk As Double = 0
+        Dim ObjDetails As New cashbank_models
+        For i As Integer = 0 To GridView3.RowCount - 1
+            If GridView3.GetRowCellValue(i, "Proses") = True Then
+                '' suspendamount = suspendamount + GridView2.GetRowCellValue(i, "Total")
+                totsuspend = If(GridView3.GetRowCellValue(i, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView3.GetRowCellValue(i, "Total")))
+                suspendamount = suspendamount + totsuspend
+                settleamount = settleamount + GridView3.GetRowCellValue(i, "SettleAmount")
+                If GridView3.GetRowCellValue(i, "SettleAmount") > totsuspend Then
+                    Keluar = GridView3.GetRowCellValue(i, "SettleAmount") - totsuspend
+                    Masuk = 0
+                ElseIf GridView3.GetRowCellValue(i, "SettleAmount") < totsuspend Then
+                    Keluar = 0
+                    Masuk = totsuspend - GridView3.GetRowCellValue(i, "SettleAmount")
+                Else
+                    Keluar = 0
+                    Masuk = 0
+                End If
+
+                TKeluar = TKeluar + Keluar
+                TMasuk = TMasuk + Masuk
+            End If
+        Next
+
+        TempTable()
+        dtTemp.Rows.Add()
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(0) = tgl
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(1) = bukti
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(2) = transaksi
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(3) = suspendamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(4) = settleamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = TMasuk
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(6) = TKeluar
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = 0
+
+        ''  GridControl1.DataSource = dtTemp
+
+        ObjDetails.Tgl = tgl
+        ObjDetails.NoBukti = bukti
+        ObjDetails.Transaksi = transaksi
+        ObjDetails.SuspendAmount = suspendamount
+        ObjDetails.SettleAmount = settleamount
+        ObjDetails.Masuk = TMasuk
+        ObjDetails.Keluar = TKeluar
+        ObjDetails.Saldo = 0
+        ObjDetails.Perpost = _txtperpost.Text
+        ObjDetails.AcctID = _txtaccount.Text
+        ObjDetails.InsertToTable02()
+        Call DataSettlement()
+        Call DataCashBank()
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
+    End Sub
+    Private Sub tab_adv_ent()
+        For n As Integer = 0 To GridView5.RowCount - 1
+            If GridView5.GetRowCellValue(n, "Proses") = True Then
+                Dim bukti As String = ObjCashBank.autononb
+                ' suspen.SuspendID = suspendID
+                Dim ObjDetails As New cashbank_models
+                With ObjDetails
+                    .Tgl = DateTime.Parse(GridView5.GetRowCellValue(n, "Tgl").ToString())
+                    .NoBukti = bukti
+                    .Transaksi = "Entertain"
+                    .Keterangan = GridView5.GetRowCellValue(n, "Description").ToString().TrimEnd
+                    .Keluar = GridView5.GetRowCellValue(n, "Amount")
+                    .Masuk = 0
+                    .Saldo = 0
+                    .Noref = GridView5.GetRowCellValue(n, "SuspendID").ToString().TrimEnd
+                    .Perpost = _txtperpost.Text
+                    .AcctID = _txtaccount.Text
+                    .Saldo_Awal = _txtsaldo.Text
+                    .SuspendID = GridView5.GetRowCellValue(n, "SuspendID").ToString().TrimEnd
+                    .InsertToTable()
+                    .UpdateSuspend()
+                    '' .cek1 = True
+                End With
+
+            End If
+        Next
+
+    End Sub
+    Private Sub tab_adv_ent02()
+        Dim bukti As String = ObjCashBank.autononb
+        Dim tgl As DateTime = DateTime.Now
+        Dim transaksi As String = "Entertain"
+        Dim suspendamount As Double = 0
+        Dim ObjDetails As New cashbank_models
+        For i As Integer = 0 To GridView5.RowCount - 1
+            If GridView5.GetRowCellValue(i, "Proses") = True Then
+                suspendamount = suspendamount + GridView5.GetRowCellValue(i, "Amount")
+            End If
+        Next
+
+        TempTable()
+        dtTemp.Rows.Add()
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(0) = tgl
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(1) = bukti
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(2) = transaksi
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(3) = suspendamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(4) = 0
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = 0
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(6) = suspendamount
+        dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = 0
+
+        ''  GridControl1.DataSource = dtTemp
+
+        ObjDetails.Tgl = tgl
+        ObjDetails.NoBukti = bukti
+        ObjDetails.Transaksi = transaksi
+        ObjDetails.SuspendAmount = suspendamount
+        ObjDetails.SettleAmount = 0
+        ObjDetails.Masuk = 0
+        ObjDetails.Keluar = suspendamount
+        ObjDetails.Saldo = 0
+        ObjDetails.Perpost = _txtperpost.Text
+        ObjDetails.AcctID = _txtaccount.Text
+        ObjDetails.InsertToTable02()
+
+        Call DataEntertaint()
+
+        Call DataCashBank()
+
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
+    End Sub
+    Public Overrides Sub Proc_SaveData()
 
         Try
             If TabControl1.SelectedIndex = 0 Then
@@ -223,6 +583,7 @@ Public Class FrmPaymentDirect
                         End If
                     End If
                 Next
+
             End If
 
         Catch ex As Exception
@@ -537,5 +898,87 @@ Public Class FrmPaymentDirect
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
+        Try
+            tabu1()
+            tabu2()
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
+        Dim id As String = String.Empty
+        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+            End If
+        Next rowHandle
+        ff_Detail = New FrmDetailPaymentDirect(id)
+        ff_Detail.Show()
+    End Sub
+
+    Private Sub btnpaid_Click(sender As Object, e As EventArgs) Handles btnpaid.Click
+        Try
+            tab_settle()
+
+            tab_settle02()
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Overrides Sub Proc_DeleteData()
+        Dim ID As String = String.Empty
+        Dim transaksi As String = String.Empty
+        Dim ObjDetails As New cashbank_models
+        Try
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    ID = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+                    transaksi = Trim(GridView1.GetRowCellValue(rowHandle, "Transaksi"))
+                End If
+            Next rowHandle
+            ObjDetails.ID = ID
+
+            If transaksi = "Advance" Then
+                ObjDetails.UpdateSuspend_hapus()
+            ElseIf transaksi = "Settle" Then
+                ObjDetails.UpdateSettle_hapus()
+            End If
+            ObjDetails.Delete()
+            Call DataSuspend()
+            Call DataSettlement()
+            Call DataEntertaint()
+            Call DataCashBank()
+            Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            tsBtn_refresh.PerformClick()
+            'Grid.RemoveItem(Grid.Row)
+            'If Grid.Rows.Count > Grid.Rows.Fixed Then
+            '    Call Proc_EnableButtons(True, False, True, True, True, True, False, False)
+            'Else
+            '    Call Proc_EnableButtons(True, False, False, True, True, True, False, False)
+            'End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub btnadd_e_Click(sender As Object, e As EventArgs) Handles btnadd_e.Click
+        Try
+            tab_adv_ent()
+
+            tab_adv_ent02()
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

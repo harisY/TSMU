@@ -52,12 +52,12 @@ Partial Class frm_payment_approve
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GridSuspend = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me._txtBankId = New DevExpress.XtraEditors.ButtonEdit()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me._txtBankId = New DevExpress.XtraEditors.ButtonEdit()
         Me.menuContext.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,11 +78,11 @@ Partial Class frm_payment_approve
         Me.TabPage3.SuspendLayout()
         CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'menuContext
@@ -343,22 +343,6 @@ Partial Class frm_payment_approve
         Me.GridView3.OptionsView.ShowAutoFilterRow = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 39)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "Bank"
-        '
-        '_txtBankId
-        '
-        Me._txtBankId.Location = New System.Drawing.Point(52, 36)
-        Me._txtBankId.Name = "_txtBankId"
-        Me._txtBankId.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtBankId.Size = New System.Drawing.Size(267, 20)
-        Me._txtBankId.TabIndex = 5
-        '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.GridControl1)
@@ -367,7 +351,7 @@ Partial Class frm_payment_approve
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage4.Size = New System.Drawing.Size(820, 493)
         Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Reject Payment Approval"
+        Me.TabPage4.Text = "Payment Approval (Partial)"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'GridControl1
@@ -394,6 +378,22 @@ Partial Class frm_payment_approve
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
         Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 39)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 4
+        Me.LabelControl1.Text = "Bank"
+        '
+        '_txtBankId
+        '
+        Me._txtBankId.Location = New System.Drawing.Point(52, 36)
+        Me._txtBankId.Name = "_txtBankId"
+        Me._txtBankId.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me._txtBankId.Size = New System.Drawing.Size(267, 20)
+        Me._txtBankId.TabIndex = 5
         '
         'frm_payment_approve
         '
@@ -427,11 +427,11 @@ Partial Class frm_payment_approve
         Me.TabPage3.ResumeLayout(False)
         CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

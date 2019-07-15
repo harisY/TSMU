@@ -115,6 +115,7 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
+                    .PRNo = TxtPrNo.Text
                     ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
@@ -148,6 +149,7 @@ Public Class FrmSuspendSettleDetailDirect
                 With ObjSettle
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
+                    .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
