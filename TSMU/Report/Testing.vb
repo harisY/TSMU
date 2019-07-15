@@ -16,17 +16,30 @@ Public Class Testing
     End Sub
 
     Private Sub XrLabel20_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrLabel20.BeforePrint
-        'If param3 = "TSC3" Then
-        '    Dim label As XRLabel = TryCast(sender, XRLabel)
-        '    Dim Warna As String = GetCurrentColumnValue(Of String)("Color")
-        '    If Warna = "Black" Then
-        '        label.ForeColor = Color.White
-        '        label.BackColor = Color.Black
-        '    Else
-        '        label.ForeColor = Color.Black
-        '        label.BackColor = Color.DarkGray
-        '    End If
-        'End If
+        If param3 = "TSC3" Then
+            Dim label As XRLabel = TryCast(sender, XRLabel)
+            Dim Warna As String = GetCurrentColumnValue(Of String)("KodeWarna")
+            If Warna = "" Then
+                Exit Sub
+            ElseIf Warna = "FFFFFF" Then
+                label.ForeColor = Color.Black
+                label.BackColor = ColorTranslator.FromHtml("#" & Warna)
+            ElseIf Warna = "000000" Then
+                label.ForeColor = Color.White 'Color.FromName("#FFFFFF")
+                label.BackColor = ColorTranslator.FromHtml("#" & Warna) 'Color.FromName("#FFFFFF")
+            Else
+                label.ForeColor = Color.Black
+                label.BackColor = ColorTranslator.FromHtml("#" & Warna) 'Color.FromName("#FFFFFF")
+            End If
+
+            'If Warna = "Black" Then
+            '    label.ForeColor = Color.White
+            '    label.BackColor = Color.Black
+            'Else
+            '    label.ForeColor = Color.Black
+            '    label.BackColor = Color.DarkGray
+            'End If
+        End If
 
     End Sub
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraGrid
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraSplashScreen
 
@@ -308,6 +309,12 @@ Public Class frmUploadKanbanAdm
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            ContextMenuStrip1.Show(e.Location)
+        End If
+    End Sub
     'Public Overrides Sub Proc_PrintPreview()
     '    Try
 
@@ -331,4 +338,20 @@ Public Class frmUploadKanbanAdm
     '        MsgBox(ex.Message)
     '    End Try
     'End Sub
+    Private Sub SaveToExcel(_Grid As GridControl)
+        Dim save As New SaveFileDialog
+        save.Filter = "Excel File|*.xlsx"
+        save.Title = "Save an Excel File"
+        If save.ShowDialog = DialogResult.OK Then
+            _Grid.ExportToXlsx(save.FileName)
+        End If
+    End Sub
+
+    Private Sub CMSExport_Click(sender As Object, e As EventArgs) Handles CMSExport.Click
+        If GridView1.RowCount > 0 Then
+            SaveToExcel(Grid)
+        Else
+            MsgBox("Grid Kosong !")
+        End If
+    End Sub
 End Class

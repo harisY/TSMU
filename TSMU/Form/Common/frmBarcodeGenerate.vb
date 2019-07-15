@@ -18,7 +18,12 @@ Public Class frmBarcodeGenerate
         Try
             'Grid.ReadOnly = True
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
-            dtGrid = Obj.GetAllDataGrid()
+            If gh_Common.Site.ToLower = "tng" Then
+                dtGrid = Obj.GetAllDataGrid()
+            Else
+                dtGrid = Obj.GetAllDataGridCKR()
+            End If
+
             Grid.DataSource = dtGrid
             With GridView1
                 .BestFitColumns()
@@ -59,72 +64,22 @@ Public Class frmBarcodeGenerate
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
                 Obj.ObjDetails.Clear()
-                For i As Integer = 0 To dtFilter.Rows.Count - 1
+                For Each row As DataRow In dtFilter.Rows
                     ObjDet = New BarcodeDet
                     With ObjDet
-                        If dtFilter.Rows(i)("KODE PART") Is DBNull.Value OrElse dtFilter.Rows(i)("KODE PART").ToString = "" Then
-                            .KodePart = ""
-                        Else
-                            .KodePart = dtFilter.Rows(i)("KODE PART").ToString
-                        End If
-                        If dtFilter.Rows(i)("CUST") Is DBNull.Value OrElse dtFilter.Rows(i)("CUST").ToString = "" Then
-                            .CustomerID = ""
-                        Else
-                            .CustomerID = dtFilter.Rows(i)("CUST").ToString
-                        End If
-                        If dtFilter.Rows(i)("CUST LENGKAP") Is DBNull.Value OrElse dtFilter.Rows(i)("CUST LENGKAP").ToString = "" Then
-                            .CustomerName = ""
-                        Else
-                            .CustomerName = dtFilter.Rows(i)("CUST LENGKAP").ToString
-                        End If
-                        If dtFilter.Rows(i)("INVENTORY ID") Is DBNull.Value OrElse dtFilter.Rows(i)("INVENTORY ID").ToString = "" Then
-                            .InventoryID = ""
-                        Else
-                            .InventoryID = dtFilter.Rows(i)("INVENTORY ID").ToString
-                        End If
-
-                        If dtFilter.Rows(i)("SFG/FG") Is DBNull.Value OrElse dtFilter.Rows(i)("SFG/FG").ToString = "" Then
-                            .SFGFG = ""
-                        Else
-                            .SFGFG = dtFilter.Rows(i)("SFG/FG").ToString
-                        End If
-                        If dtFilter.Rows(i)("PART NAME") Is DBNull.Value OrElse dtFilter.Rows(i)("PART NAME").ToString = "" Then
-                            .PartName = ""
-                        Else
-                            .PartName = dtFilter.Rows(i)("PART NAME").ToString
-                        End If
-                        If dtFilter.Rows(i)("NO PART") Is DBNull.Value OrElse dtFilter.Rows(i)("NO PART").ToString = "" Then
-                            .PartNo = ""
-                        Else
-                            .PartNo = dtFilter.Rows(i)("NO PART").ToString
-                        End If
-
-                        If dtFilter.Rows(i)("COLOUR") Is DBNull.Value OrElse dtFilter.Rows(i)("COLOUR").ToString = "" Then
-                            .Colour = ""
-                        Else
-                            .Colour = dtFilter.Rows(i)("COLOUR").ToString
-                        End If
-                        If dtFilter.Rows(i)("JOB NO") Is DBNull.Value OrElse dtFilter.Rows(i)("JOB NO").ToString = "" Then
-                            .JobNo = ""
-                        Else
-                            .JobNo = dtFilter.Rows(i)("JOB NO").ToString
-                        End If
-                        If dtFilter.Rows(i)("QTY LABEL").ToString = "" OrElse dtFilter.Rows(i)("QTY LABEL") Is DBNull.Value Then
-                            .QtyLabel = 0
-                        Else
-                            .QtyLabel = Integer.Parse(dtFilter.Rows(i)("QTY LABEL").ToString)
-                        End If
-                        If dtFilter.Rows(i)("WARNA PASCARD").ToString = "" OrElse dtFilter.Rows(i)("WARNA PASCARD") Is DBNull.Value Then
-                            .WarnaPasscard = ""
-                        Else
-                            .WarnaPasscard = dtFilter.Rows(i)("WARNA PASCARD").ToString
-                        End If
-
-                        If dtFilter.Rows(i)("LOKAL / EXPORT").ToString = "" OrElse dtFilter.Rows(i)("LOKAL / EXPORT") Is DBNull.Value Then
-                            .LokalExport = ""
-                        Else
-                            .LokalExport = dtFilter.Rows(i)("LOKAL / EXPORT").ToString
-                        End If
+                        .KodePart = If(row("KODE PART") Is DBNull.Value, "", row("KODE PART").ToString())
+                        .CustomerID = If(row("CUST") Is DBNull.Value, "", row("CUST").ToString())
+                        .CustomerName = If(row("CUST LENGKAP") Is DBNull.Value, "", row("CUST LENGKAP").ToString())
+                        .InventoryID = If(row("INVENTORY ID") Is DBNull.Value, "", row("INVENTORY ID").ToString())
+                        .SFGFG = If(row("SFG/FG") Is DBNull.Value, "", row("SFG/FG").ToString())
+                        .PartName = If(row("PART NAME") Is DBNull.Value, "", row("PART NAME").ToString())
+                        .PartNo = If(row("NO PART") Is DBNull.Value, "", row("NO PART").ToString())
+                        .Colour = If(row("COLOUR") Is DBNull.Value, "", row("COLOUR").ToString())
+                        .JobNo = If(row("JOB NO") Is DBNull.Value, "", row("JOB NO").ToString())
+                        .QtyLabel = If(row("QTY LABEL") Is DBNull.Value, 0, Convert.ToInt32(row("QTY LABEL")))
+                        .WarnaPasscard = If(row("WARNA PASCARD") Is DBNull.Value, "", row("WARNA PASCARD").ToString())
+                        .LokalExport = If(row("LOKAL / EXPORT") Is DBNull.Value, "", row("LOKAL / EXPORT").ToString())
+                        .KodeWarna = If(row("KODE WARNA") Is DBNull.Value, "", row("KODE WARNA").ToString())
                         .TglUpload = DateTime.Now
                         .UploadBy = gh_Common.Username
                         .Site = gh_Common.Site
