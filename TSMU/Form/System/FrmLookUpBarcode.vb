@@ -20,6 +20,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("QrCode")
         dtTemp.Columns.Add("Warna")
         dtTemp.Columns.Add("LR")
+        dtTemp.Columns.Add("KodeWarna")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -108,6 +109,7 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(dt.Rows(0).Item("Warna") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(dt.Rows(0).Item("KodeWarna") & "")
             Next
 
             Dim Laporan As New Testing()

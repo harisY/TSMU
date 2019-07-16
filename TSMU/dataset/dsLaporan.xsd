@@ -353,6 +353,13 @@
               <xs:element name="Warna" msprop:Generator_ColumnVarNameInTable="columnWarna" msprop:Generator_ColumnPropNameInRow="Warna" msprop:Generator_ColumnPropNameInTable="WarnaColumn" msprop:Generator_UserColumnName="Warna" type="xs:string" minOccurs="0" />
               <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
               <xs:element name="LR" msprop:Generator_ColumnVarNameInTable="columnLR" msprop:Generator_ColumnPropNameInRow="LR" msprop:Generator_ColumnPropNameInTable="LRColumn" msprop:Generator_UserColumnName="LR" type="xs:string" minOccurs="0" />
+              <xs:element name="KodeWarna" msprop:Generator_ColumnVarNameInTable="columnKodeWarna" msprop:Generator_ColumnPropNameInRow="KodeWarna" msprop:Generator_ColumnPropNameInTable="KodeWarnaColumn" msprop:Generator_UserColumnName="KodeWarna" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

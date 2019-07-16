@@ -85,6 +85,7 @@ Partial Class frm_payment_details
         Me.ColCheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me._txtnamasupllier = New System.Windows.Forms.TextBox()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -798,15 +799,25 @@ Partial Class frm_payment_details
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 382)
         Me.TableLayoutPanel1.TabIndex = 2
         '
+        '_txtnamasupllier
+        '
+        Me._txtnamasupllier.Location = New System.Drawing.Point(548, 5)
+        Me._txtnamasupllier.Name = "_txtnamasupllier"
+        Me._txtnamasupllier.Size = New System.Drawing.Size(247, 20)
+        Me._txtnamasupllier.TabIndex = 3
+        Me._txtnamasupllier.Visible = False
+        '
         'frm_payment_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.Controls.Add(Me._txtnamasupllier)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frm_payment_details"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        Me.Controls.SetChildIndex(Me._txtnamasupllier, 0)
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -922,4 +933,5 @@ Partial Class frm_payment_details
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents _txtKetCMDMmanual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _txtnamasupllier As TextBox
 End Class

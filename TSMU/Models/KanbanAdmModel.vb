@@ -68,6 +68,7 @@
                 ,[QtyKbn]
                 ,[OrderKbn]
                 ,[Scanned]
+                ,isnull([OrderKbn],0)-isnull([Scanned],0) as OutStanding
                 ,[OrderPcs]
                 ,[QtyReceive]
                 ,[QtyBalance]
@@ -133,11 +134,7 @@
 			                        CONVERT(varchar,[OrderDate],101),
 			                        [DelCycle]"
             Dim dt As New DataTable
-            If gh_Common.Site.ToLower = "tng" Then
-                dt = GetDataTable(sql)
-            Else
-                dt = GetDataTableCKR(sql)
-            End If
+            dt = GetDataTable(sql)
 
             Return dt
         Catch ex As Exception

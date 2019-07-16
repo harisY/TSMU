@@ -25,11 +25,37 @@ Public Class BarcodeGenerate
                 ,UploadBy
             FROM [BarcodeGenerate]"
             Dim dtTable As New DataTable
-            If gh_Common.Site.ToLower = "tng" Then
-                dtTable = GetDataTable(ls_SP)
-            Else
-                dtTable = GetDataTableCKR(ls_SP)
-            End If
+            dtTable = GetDataTable(ls_SP)
+
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function GetAllDataGridCKR() As DataTable
+        Try
+            Dim ls_SP As String =
+            "SELECT [BarcodeID] ID
+                ,[TglUpload]
+                ,[KodePart]
+                ,[CustomerID]
+                ,[CustomerName]
+                ,[InvetoryID]
+                ,[SFG/FG]
+                ,[PartName]
+                ,[PartNo]
+                ,[Colour]
+                ,[JobNo]
+                ,[QtyLabel]
+                ,[WarnaPasscard]
+                ,[LokalExport]
+                ,[Site]
+                ,[KodeWarna]
+                ,UploadBy
+            FROM [BarcodeGenerate]"
+            Dim dtTable As New DataTable
+
+            dtTable = GetDataTableCKR(ls_SP)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -125,11 +151,8 @@ Public Class BarcodeGenerate
                 ,LokalExport as LR
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND LOWER(UploadBy)=" & QVal(Username) & ""
             ds = New dsLaporan
-            If gh_Common.Site.ToLower = "tng" Then
-                ds = GetDsReport(sql, "QRCode")
-            Else
-                ds = GetDsReportCKR(sql, "QRCode")
-            End If
+            ds = GetDsReport(sql, "QRCode")
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -238,13 +261,10 @@ Public Class BarcodeGenerate
                 ,0 as No
                 ,WarnaPasscard Warna
                 ,LokalExport as LR
+                ,KodeWarna
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
-            If gh_Common.Site.ToLower = "tng" Then
-                ds = GetDsReport(sql, "QRCode")
-            Else
-                ds = GetDsReportCKR(sql, "QRCode")
-            End If
+            ds = GetDsReportCKR(sql, "QRCode")
 
         Catch ex As Exception
             Throw ex
@@ -271,10 +291,22 @@ Public Class BarcodeDet
     Public Property UploadBy As String
     Public Property WarnaPasscard As String
     Public Property Site As String
+    Public Property KodeWarna As String
     Public Sub InsertData()
         Try
             Dim Query As String = String.Empty
             Query = "INSERT INTO [BarcodeGenerate]
+            ([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
+                ,[SFG/FG],[PartName],[PartNo],[Colour]
+                ,[JobNo],[QtyLabel],[WarnaPasscard]
+                ,LokalExport,[Site],[KodeWarna],[UploadBy])
+            Values(GETDATE()," & QVal(KodePart) & "," & QVal(CustomerID) & "," & QVal(CustomerName) & "," & QVal(InventoryID) & "
+                ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
+                ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
+                ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(KodeWarna) & "," & QVal(UploadBy) & ")"
+
+            Dim Query1 As String = String.Empty
+            Query1 = "INSERT INTO [BarcodeGenerate]
             ([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
                 ,[SFG/FG],[PartName],[PartNo],[Colour]
                 ,[JobNo],[QtyLabel],[WarnaPasscard]
@@ -284,7 +316,7 @@ Public Class BarcodeDet
                 ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
                 ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(UploadBy) & ")"
             If gh_Common.Site.ToLower = "tng" Then
-                ExecQuery(Query)
+                ExecQuery(Query1)
             Else
                 ExecQueryCKR(Query)
             End If
