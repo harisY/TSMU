@@ -134,12 +134,34 @@ Public Class SuspendHeaderModel
         Return ds
 
     End Function
+    Public Function GetDept2() As List(Of String)
+        Try
+            Dim result As New List(Of String)
+
+            Dim dt As New DataTable
+            Dim sql As String =
+            "select '''' + RTRIM(a.DeptID) + '''' DeptID from S_User u inner join
+	            akses_approval a on u.Username = a.Username
+            WHERE a.Username = " & QVal(gh_Common.Username) & ""
+            dt = GetDataTable(sql)
+            For Each row As DataRow In dt.Rows
+                result.Add(row("DeptID"))
+            Next
+            Return result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetDataGrid2() As DataTable
         Try
+            Dim dept As String()
+            dept = GetDept2.ToArray
+            Dim nilai = String.Join(",", GetDept2.ToArray)
+
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
-            FROM suspend_header WHERE Tipe = 'S' and status<>'Open' Order by SuspendID"
+            FROM suspend_header WHERE deptid in(" & nilai & ")  AND Tipe = 'S' and status<>'Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

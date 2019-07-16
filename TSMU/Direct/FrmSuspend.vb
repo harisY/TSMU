@@ -37,7 +37,9 @@ Public Class FrmSuspend
         Try
             ObjSuspend = New SuspendHeaderModel
             dtGrid2 = ObjSuspend.GetDataGrid2()
+
             GridControl1.DataSource = dtGrid2
+
             GridView2.BestFitColumns()
 
             With GridView2
