@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmSales_ForecastPrice
@@ -20,7 +21,14 @@ Public Class frmSales_ForecastPrice
         'CenterControl()
         'ProgressBar1.Visible = False
     End Sub
-
+    Private Sub SaveToExcel(_Grid As GridControl)
+        Dim save As New SaveFileDialog
+        save.Filter = "Excel File|*.xlsx"
+        save.Title = "Save an Excel File"
+        If save.ShowDialog = DialogResult.OK Then
+            _Grid.ExportToXlsx(save.FileName)
+        End If
+    End Sub
     Private Sub LoadGrid()
         Try
             'Grid.ReadOnly = True
@@ -35,7 +43,7 @@ Public Class frmSales_ForecastPrice
                 .Columns(2).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(3).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(4).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-
+                .OptionsView.ShowFooter = True
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -686,5 +694,19 @@ Public Class frmSales_ForecastPrice
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub ExportToExcelTSM_Click(sender As Object, e As EventArgs) Handles ExportToExcelTSM.Click
+        If GridView1.RowCount > 0 Then
+            SaveToExcel(Grid)
+        Else
+            MsgBox("Grid Kosong !")
+        End If
+    End Sub
+
+    Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            ContextMenuStrip1.Show(e.Location)
+        End If
     End Sub
 End Class

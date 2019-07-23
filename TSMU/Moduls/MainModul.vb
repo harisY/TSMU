@@ -2072,6 +2072,7 @@ Module MainModul
                         col.DisplayFormat.FormatString = gs_FormatDecimal
                     End If
                     col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
                 End If
             Next
             .RefreshData()
