@@ -642,7 +642,7 @@ Public Class frmSales_ForecastPrice_details
     End Sub
 
     Private Sub TxtQty1_EditValueChanged(sender As Object, e As EventArgs) Handles TxtQty1.EditValueChanged, TxtQty2.EditValueChanged,
-            TxtQty3.EditValueChanged, TxtHarga1.EditValueChanged, TxtHarga2.EditValueChanged, TxtHarga3.EditValueChanged
+        TxtQty3.EditValueChanged, TxtHarga1.EditValueChanged, TxtHarga2.EditValueChanged, TxtHarga3.EditValueChanged
         Try
             Grid.FocusedView.PostEditor()
         Catch ex As Exception
