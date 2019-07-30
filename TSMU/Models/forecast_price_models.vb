@@ -83,9 +83,9 @@ Public Class forecast_price_models_header
                                     Dim IsExist1 = .IsDataExist
                                     If Not IsExist1 Then
                                         .InsertData()
-                                        '.UpdateDataByBulanNew(Bulan)
+                                        .UpdateDataByBulanNew(Bulan)
                                     Else
-                                        .UpdateDataByBulanADM(Bulan)
+                                        .UpdateDataByBulanNew(Bulan)
                                     End If
                                     '.InsertDataTempTable()
 
@@ -93,7 +93,7 @@ Public Class forecast_price_models_header
                                     Dim IsExist = .IsDataADMExist
                                     If Not IsExist Then
                                         .InsertData()
-                                        '.UpdateDataByBulanNew(Bulan)
+                                        .UpdateDataByBulanADM(Bulan)
                                     Else
                                         .UpdateDataByBulanADM(Bulan)
                                     End If
