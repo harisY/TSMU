@@ -123,7 +123,7 @@ Public Class payment_header_models
                 Me.Total_DPP_PPN = If(IsDBNull(dt.Rows(0).Item("Total_DPP_PPN")), 0, Convert.ToDouble(Trim(dt.Rows(0).Item("Total_DPP_PPN"))))
                 Me.Tot_DPP = If(IsDBNull(dt.Rows(0).Item("Tot_DPP")), 0, Convert.ToDouble(Trim(dt.Rows(0).Item("Tot_DPP"))))
                 Me.Tot_PPN = If(IsDBNull(dt.Rows(0).Item("Tot_PPN")), 0, Convert.ToDouble(Trim(dt.Rows(0).Item("Tot_PPN"))))
-                Me.uploaded = If(IsDBNull(dt.Rows(0).Item("uploaded")), False, Convert.ToBoolean(Trim(dt.Rows(0).Item("uploaded "))))
+                Me.uploaded = If(IsDBNull(dt.Rows(0).Item("uploaded")), False, Convert.ToBoolean(Trim(dt.Rows(0).Item("uploaded"))))
                 Me.VendID = If(IsDBNull(dt.Rows(0).Item("VendID")), "", Trim(dt.Rows(0).Item("VendID").ToString()))
                 Me.VendorName = If(IsDBNull(dt.Rows(0).Item("VendorName")), "", Trim(dt.Rows(0).Item("VendorName").ToString()))
                 Me.vrno = If(IsDBNull(dt.Rows(0).Item("vrno")), "", Trim(dt.Rows(0).Item("vrno").ToString()))
