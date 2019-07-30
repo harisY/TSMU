@@ -129,6 +129,7 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
     Public Function loadreport2() As DataSet
         Dim query As String
         query = "SELECT settle_detail.SettleID
+                    ,settle_header.suspendid
                     ,settle_detail.Description
                     ,settle_detail.Tgl as Tgl2
                     ,suspend_header.Total as SuspendAmount
