@@ -105,28 +105,6 @@ Partial Class FrmPaymentDirect
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtNoRekTujuanname = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtRemark = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtCheckNo = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtAmount = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtPerpost = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNoBukti = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNoRekTujuan = New DevExpress.XtraEditors.ButtonEdit()
-        Me.TxtCuryID = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._txtcuryid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,30 +145,6 @@ Partial Class FrmPaymentDirect
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl2.SuspendLayout()
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoRekTujuanname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCheckNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoRekTujuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCuryID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -325,7 +279,6 @@ Partial Class FrmPaymentDirect
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(9, 383)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -930,223 +883,6 @@ Partial Class FrmPaymentDirect
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.LayoutControl2)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(855, 304)
-        Me.TabPage3.TabIndex = 5
-        Me.TabPage3.Text = "BankTransfer"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'LayoutControl2
-        '
-        Me.LayoutControl2.Controls.Add(Me.TxtTgl)
-        Me.LayoutControl2.Controls.Add(Me.TxtNoRekTujuanname)
-        Me.LayoutControl2.Controls.Add(Me.TxtRemark)
-        Me.LayoutControl2.Controls.Add(Me.TxtCheckNo)
-        Me.LayoutControl2.Controls.Add(Me.TxtAmount)
-        Me.LayoutControl2.Controls.Add(Me.TxtPerpost)
-        Me.LayoutControl2.Controls.Add(Me.TxtNoBukti)
-        Me.LayoutControl2.Controls.Add(Me.TxtNoRekTujuan)
-        Me.LayoutControl2.Controls.Add(Me.TxtCuryID)
-        Me.LayoutControl2.Location = New System.Drawing.Point(50, 71)
-        Me.LayoutControl2.Name = "LayoutControl2"
-        Me.LayoutControl2.Root = Me.Root
-        Me.LayoutControl2.Size = New System.Drawing.Size(754, 162)
-        Me.LayoutControl2.TabIndex = 3
-        Me.LayoutControl2.Text = "LayoutControl2"
-        '
-        'TxtTgl
-        '
-        Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
-        Me.TxtTgl.Name = "TxtTgl"
-        Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtTgl.Properties.Mask.EditMask = ""
-        Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(106, 20)
-        Me.TxtTgl.StyleController = Me.LayoutControl2
-        Me.TxtTgl.TabIndex = 0
-        '
-        'TxtNoRekTujuanname
-        '
-        Me.TxtNoRekTujuanname.Enabled = False
-        Me.TxtNoRekTujuanname.Location = New System.Drawing.Point(205, 36)
-        Me.TxtNoRekTujuanname.Name = "TxtNoRekTujuanname"
-        Me.TxtNoRekTujuanname.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtNoRekTujuanname.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtNoRekTujuanname.Size = New System.Drawing.Size(537, 20)
-        Me.TxtNoRekTujuanname.StyleController = Me.LayoutControl2
-        Me.TxtNoRekTujuanname.TabIndex = 5
-        '
-        'TxtRemark
-        '
-        Me.TxtRemark.Location = New System.Drawing.Point(95, 84)
-        Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(647, 20)
-        Me.TxtRemark.StyleController = Me.LayoutControl2
-        Me.TxtRemark.TabIndex = 9
-        '
-        'TxtCheckNo
-        '
-        Me.TxtCheckNo.Location = New System.Drawing.Point(95, 60)
-        Me.TxtCheckNo.Name = "TxtCheckNo"
-        Me.TxtCheckNo.Size = New System.Drawing.Size(273, 20)
-        Me.TxtCheckNo.StyleController = Me.LayoutControl2
-        Me.TxtCheckNo.TabIndex = 6
-        '
-        'TxtAmount
-        '
-        Me.TxtAmount.Location = New System.Drawing.Point(618, 60)
-        Me.TxtAmount.Name = "TxtAmount"
-        Me.TxtAmount.Size = New System.Drawing.Size(124, 20)
-        Me.TxtAmount.StyleController = Me.LayoutControl2
-        Me.TxtAmount.TabIndex = 8
-        '
-        'TxtPerpost
-        '
-        Me.TxtPerpost.Location = New System.Drawing.Point(615, 12)
-        Me.TxtPerpost.Name = "TxtPerpost"
-        Me.TxtPerpost.Size = New System.Drawing.Size(127, 20)
-        Me.TxtPerpost.StyleController = Me.LayoutControl2
-        Me.TxtPerpost.TabIndex = 3
-        '
-        'TxtNoBukti
-        '
-        Me.TxtNoBukti.Enabled = False
-        Me.TxtNoBukti.Location = New System.Drawing.Point(288, 12)
-        Me.TxtNoBukti.Name = "TxtNoBukti"
-        Me.TxtNoBukti.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtNoBukti.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtNoBukti.Size = New System.Drawing.Size(240, 20)
-        Me.TxtNoBukti.StyleController = Me.LayoutControl2
-        Me.TxtNoBukti.TabIndex = 2
-        '
-        'TxtNoRekTujuan
-        '
-        Me.TxtNoRekTujuan.Location = New System.Drawing.Point(95, 36)
-        Me.TxtNoRekTujuan.Name = "TxtNoRekTujuan"
-        Me.TxtNoRekTujuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtNoRekTujuan.Size = New System.Drawing.Size(106, 20)
-        Me.TxtNoRekTujuan.StyleController = Me.LayoutControl2
-        Me.TxtNoRekTujuan.TabIndex = 4
-        '
-        'TxtCuryID
-        '
-        Me.TxtCuryID.Location = New System.Drawing.Point(455, 60)
-        Me.TxtCuryID.Name = "TxtCuryID"
-        Me.TxtCuryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtCuryID.Properties.Items.AddRange(New Object() {"CHF ", "EUR ", "HKD ", "IDR ", "JPY ", "MXM ", "RM  ", "SGD ", "USD "})
-        Me.TxtCuryID.Size = New System.Drawing.Size(76, 20)
-        Me.TxtCuryID.StyleController = Me.LayoutControl2
-        Me.TxtCuryID.TabIndex = 7
-        '
-        'Root
-        '
-        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.EmptySpaceItem2, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14})
-        Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(754, 162)
-        Me.Root.TextVisible = False
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.TxtNoBukti
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(193, 0)
-        Me.LayoutControlItem5.Name = "LayoutControlItem1"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(327, 24)
-        Me.LayoutControlItem5.Text = "No Bukti"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 96)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(734, 46)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.TxtNoRekTujuan
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 24)
-        Me.LayoutControlItem6.Name = "LayoutControlItem5"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(193, 24)
-        Me.LayoutControlItem6.Text = "Rekening Tujuan"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.TxtCuryID
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(360, 48)
-        Me.LayoutControlItem7.Name = "LayoutControlItem6"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(163, 24)
-        Me.LayoutControlItem7.Text = "Currency"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.TxtRemark
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(734, 24)
-        Me.LayoutControlItem9.Text = "Remark"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.TxtPerpost
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(520, 0)
-        Me.LayoutControlItem8.Name = "LayoutControlItem2"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(214, 24)
-        Me.LayoutControlItem8.Text = "Perpost"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.TxtNoRekTujuanname
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(193, 24)
-        Me.LayoutControlItem10.Name = "LayoutControlItem11"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(541, 24)
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.TxtAmount
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(523, 48)
-        Me.LayoutControlItem12.Name = "LayoutControlItem7"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(211, 24)
-        Me.LayoutControlItem12.Text = "Amount"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.TxtCheckNo
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem13.Name = "LayoutControlItem8"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(360, 24)
-        Me.LayoutControlItem13.Text = "Check No/Giro"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.TxtTgl
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem14.Name = "LayoutControlItem3"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(193, 24)
-        Me.LayoutControlItem14.Text = "Tanggal"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(80, 13)
-        '
         'FrmPaymentDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1204,30 +940,6 @@ Partial Class FrmPaymentDirect
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage3.ResumeLayout(False)
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoRekTujuanname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCheckNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoRekTujuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCuryID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1317,26 +1029,4 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents ToolStrip4 As ToolStrip
     Friend WithEvents btnadd_e As ToolStripButton
-    Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
-    Friend WithEvents TxtTgl As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TxtNoRekTujuanname As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtRemark As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtCheckNo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtAmount As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtPerpost As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtNoBukti As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtNoRekTujuan As DevExpress.XtraEditors.ButtonEdit
-    Friend WithEvents TxtCuryID As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
 End Class

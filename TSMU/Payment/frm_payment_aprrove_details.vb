@@ -130,7 +130,7 @@ Public Class frm_payment_aprrove_details
                     _TxtBankName.Text = .BankName
                     _TxtBiaya.EditValue = Format(.Biaya_Transfer, "##,0")
                     _TxtToBank.Text = .bankrek
-                    _TxtCM.Text = Format(.CM_DM, "##,0")
+                    _TxtCM.Text = .CM_DM
                     _TxtCurrency.Text = .CuryID
                     Dim debit As Double = .Total_DPP_PPN - .PPh - .PPh - .Biaya_Transfer - .CM_DM
                     _TxtDebit.Text = Format(debit, "##,0")
