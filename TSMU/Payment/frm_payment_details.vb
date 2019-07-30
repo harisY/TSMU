@@ -238,8 +238,40 @@ Public Class frm_payment_details
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
             GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
-            IsClosed = True
-            Me.Hide()
+            ''IsClosed = True
+            ''Me.Hide()
+
+            LoadGridDetail()
+            ''_txtVoucher.Text = ""
+            _TxtVendorName.Text = ""
+            _TxtVendorID.Text = ""
+            _TxtTotal.Text = "0"
+            _TxtAttentionTo.Text = ""
+            _TxtBankID.Text = "11240"
+            _TxtBankName.Text = "MIZUHO IDR"
+            _TxtBiaya.EditValue = "2500"
+            _TxtToBank.Text = ""
+            _TxtCM.Text = "0"
+            _TxtCurrency.Text = "IDR"
+            _TxtDebit.Text = "0"
+            _TxtNoRek.Text = ""
+            _TxtDpp.Text = "0"
+            ''_TxtTgl.EditValue = DateTime.Today
+            _TxtTMV.Text = "0"
+            ''_TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-12")
+            _TxtPPH.Text = "0"
+            _TxtPPN.Text = "0"
+            _TxtPerpost.Focus()
+            _txtCMDMmanual.Text = "0"
+            _txtKetCMDMmanual.Text = ""
+            _txtnamasupllier.Text = ""
+
+
+
+            ''GridView1.ClearDocument()
+            ''GridView1.DataSource.nothing()
+            ''GridView1.RefreshData()
+
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -483,5 +515,17 @@ Public Class frm_payment_details
 
     Private Sub _TxtVendorID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtVendorID.EditValueChanged
 
+    End Sub
+
+    Private Sub _TxtPerpost_LostFocus(sender As Object, e As EventArgs) Handles _TxtPerpost.LostFocus
+        Try
+            If fs_Code <> "" Then
+            Else
+                ObjPaymentHeader.PerPost = _TxtPerpost.Text
+                _txtVoucher.Text = ObjPaymentHeader.VoucherNo
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
     End Sub
 End Class
