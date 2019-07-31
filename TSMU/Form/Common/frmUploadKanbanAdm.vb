@@ -261,9 +261,9 @@ Public Class frmUploadKanbanAdm
                             Dim Tgl As String = dtKanban.Rows(i)(0).ToString
                             Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
                             Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
-                            Dim shopCode As Integer = Convert.ToString(dtKanban.Rows(i)(3))
+                            Dim shopCode As String = Convert.ToString(dtKanban.Rows(i)(3))
 
-                            Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle)
+                            Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle, shopCode)
                             If Not IsExist Then
                                 '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
                                 'Else
