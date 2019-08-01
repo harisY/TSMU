@@ -820,6 +820,12 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.Designer.vb">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_BarcodeGenerator.Designer.vb">
       <DependentUpon>frmReport_BarcodeGenerator.vb</DependentUpon>
     </Compile>
@@ -1531,6 +1537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_BarcodePrintLog.resx">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_BarcodeGenerator.resx">
       <DependentUpon>frmReport_BarcodeGenerator.vb</DependentUpon>
