@@ -550,6 +550,18 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmListAdmHargaDetails.Designer.vb">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListAdmHargaDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.Designer.vb">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmUploadKanbanAdm.Designer.vb">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </Compile>
@@ -1402,6 +1414,12 @@
     <EmbeddedResource Include="Form\Common\baseForm.resx">
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListAdmHargaDetails.resx">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListHargaADM.resx">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmUploadKanbanAdm.resx">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>

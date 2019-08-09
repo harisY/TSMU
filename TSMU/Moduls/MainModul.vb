@@ -3,6 +3,7 @@ Imports System.Xml
 Imports System.Collections.ObjectModel
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils
+Imports DevExpress.XtraGrid
 
 Module MainModul
 #Region "--Global Enumerations--"
@@ -2118,5 +2119,33 @@ Module MainModul
             .RefreshData()
             MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
         End With
+    End Sub
+
+    Public Function isOpen(ByVal name As String) As Boolean
+        isOpen = False
+
+        For Each f As Form In Application.OpenForms
+
+            If f.Name = name Then
+                isOpen = True
+                f.Focus()
+                Exit For
+            End If
+        Next
+
+        If isOpen = False Then
+            Return isOpen
+        End If
+
+        Return isOpen
+    End Function
+
+    Public Sub SaveToExcel(_Grid As GridControl)
+        Dim save As New SaveFileDialog
+        save.Filter = "Excel File|*.xlsx"
+        save.Title = "Save an Excel File"
+        If save.ShowDialog = DialogResult.OK Then
+            _Grid.ExportToXlsx(save.FileName)
+        End If
     End Sub
 End Module

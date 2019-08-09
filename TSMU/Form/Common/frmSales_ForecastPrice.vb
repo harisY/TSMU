@@ -555,4 +555,25 @@ Public Class frmSales_ForecastPrice
             ContextMenuStrip1.Show(e.Location)
         End If
     End Sub
+
+    Private Sub CekHargaADMTSM_Click(sender As Object, e As EventArgs) Handles CekHargaADMTSM.Click
+        Try
+            ObjForecast = New forecast_price_models
+            Dim dt As New DataTable
+            dt = ObjForecast.GetHargaSAPKAP_ADM
+
+            If Not isOpen("frmListHargaADM") Then
+                Dim f = frmListHargaADM
+                f = New frmListHargaADM(dt)
+                f.WindowState = FormWindowState.Normal
+                f.StartPosition = FormStartPosition.CenterScreen
+                f.Show()
+            Else
+                XtraMessageBox.Show("Form sudah terbuka !")
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
 End Class

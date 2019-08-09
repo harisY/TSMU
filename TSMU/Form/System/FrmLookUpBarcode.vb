@@ -21,6 +21,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("Warna")
         dtTemp.Columns.Add("LR")
         dtTemp.Columns.Add("KodeWarna")
+        dtTemp.Columns.Add("CustomerID")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -70,7 +71,7 @@ Public Class FrmLookUpBarcode
             ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
                 TxtFrom.Focus()
                 Throw New Exception("No Passcard From tidak boleh lebih besar dari To")
-            ElseIf Val(TxtFrom.Text) < txtNo.Text Then
+            ElseIf Val(TxtFrom.Text) <= txtNo.Text Then
                 TxtFrom.Focus()
                 Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
@@ -110,6 +111,7 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(dt.Rows(0).Item("Warna") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(dt.Rows(0).Item("KodeWarna") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(14) = Trim(dt.Rows(0).Item("CustomerID") & "")
             Next
 
             Dim Laporan As New Testing()
