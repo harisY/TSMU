@@ -5,6 +5,8 @@ Imports DevExpress.XtraReports.UI
 Public Class FrmLookUpBarcode
     Dim Obj As New BarcodeGenerate
     Dim dtTemp As DataTable
+
+    Dim PrintTool As ReportPrintTool
     Private Sub TempTable()
         dtTemp = New DataTable
         dtTemp.Columns.Add("No")
@@ -129,11 +131,10 @@ Public Class FrmLookUpBarcode
                 AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
             End With
 
-            Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-                PrintTool.ShowPreviewDialog()
-                PrintTool.ShowPreview(UserLookAndFeel.Default)
-            End Using
-
+            PrintTool = New ReportPrintTool(Laporan)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            'PrintTool.ShowPreviewDialog()
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -164,14 +165,14 @@ Public Class FrmLookUpBarcode
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
-
-
         'TxtFrom.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
 
     End Sub
     Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
         Try
             Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text)
+            PrintTool.ClosePreview()
+            CmbBulan_SelectedIndexChanged(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

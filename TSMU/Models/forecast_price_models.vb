@@ -80,7 +80,7 @@ Public Class forecast_price_models_header
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 If CustID.ToLower <> "adm" Then
-                                    Dim IsExist1 = .IsDataExist
+                                    Dim IsExist1 As Boolean = .IsDataExist
                                     If Not IsExist1 Then
                                         .InsertData()
                                         .UpdateDataByBulanNew(Bulan)
@@ -90,13 +90,25 @@ Public Class forecast_price_models_header
                                     '.InsertDataTempTable()
 
                                 Else
-                                    Dim IsExist = .IsDataADMExist
-                                    If Not IsExist Then
-                                        .InsertData()
-                                        .UpdateDataByBulanADM(Bulan)
+                                    If .Flag = "N/A" Then
+                                        Dim IsExist2 As Boolean = .IsDataExist
+                                        If Not IsExist2 Then
+                                            .InsertData()
+                                            .UpdateDataByBulanNew(Bulan)
+                                        Else
+                                            .UpdateDataByBulanNew(Bulan)
+                                        End If
                                     Else
-                                        .UpdateDataByBulanADM(Bulan)
+                                        Dim IsExist As Boolean = .IsDataADMExist
+                                        If Not IsExist Then
+                                            .InsertData()
+                                            .UpdateDataByBulanADM(Bulan)
+                                        Else
+                                            .UpdateDataByBulanADM(Bulan)
+                                        End If
                                     End If
+
+
                                     '.InsertDataTempTable()
                                 End If
                             End With
