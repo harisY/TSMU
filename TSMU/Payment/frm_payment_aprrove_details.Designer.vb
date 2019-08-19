@@ -78,6 +78,8 @@ Partial Class frm_payment_aprrove_details
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.BtnPPH1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BtnScan1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +128,8 @@ Partial Class frm_payment_aprrove_details
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -583,7 +587,7 @@ Partial Class frm_payment_aprrove_details
         Me.GridInvoice.Location = New System.Drawing.Point(3, 3)
         Me.GridInvoice.MainView = Me.GridView1
         Me.GridInvoice.Name = "GridInvoice"
-        Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2})
+        Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2, Me.BtnPPH1, Me.BtnScan1})
         Me.GridInvoice.Size = New System.Drawing.Size(822, 376)
         Me.GridInvoice.TabIndex = 0
         Me.GridInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -648,6 +652,7 @@ Partial Class frm_payment_aprrove_details
         'ColPpn
         '
         Me.ColPpn.Caption = "PPN"
+        Me.ColPpn.ColumnEdit = Me.BtnScan1
         Me.ColPpn.DisplayFormat.FormatString = "##,0"
         Me.ColPpn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPpn.FieldName = "Ppn"
@@ -670,6 +675,7 @@ Partial Class frm_payment_aprrove_details
         'ColPPH
         '
         Me.ColPPH.Caption = "PPH"
+        Me.ColPPH.ColumnEdit = Me.BtnPPH1
         Me.ColPPH.DisplayFormat.FormatString = "##,0"
         Me.ColPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPPH.FieldName = "PPH"
@@ -707,6 +713,18 @@ Partial Class frm_payment_aprrove_details
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        '
+        'BtnPPH1
+        '
+        Me.BtnPPH1.AutoHeight = False
+        Me.BtnPPH1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnPPH1.Name = "BtnPPH1"
+        '
+        'BtnScan1
+        '
+        Me.BtnScan1.AutoHeight = False
+        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnScan1.Name = "BtnScan1"
         '
         'frm_payment_aprrove_details
         '
@@ -765,6 +783,8 @@ Partial Class frm_payment_aprrove_details
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -827,4 +847,6 @@ Partial Class frm_payment_aprrove_details
     Friend WithEvents _TxtCurrency As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BtnPPH1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents BtnScan1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

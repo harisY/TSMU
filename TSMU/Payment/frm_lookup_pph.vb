@@ -14,7 +14,7 @@ Public Class frm_lookup_pph
     Dim ObjHeader As New fp_pph_header_models
     Dim ObjDetails As New fp_pph_detail_models
     Dim ObjPPHTransaction As New fp_pph_transaction_models
-    Public Sub New()
+    Public Sub New(invcNbr As String)
 
         ' This call is required by the designer.
         InitializeComponent()

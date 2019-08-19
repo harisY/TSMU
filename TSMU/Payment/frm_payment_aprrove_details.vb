@@ -132,7 +132,7 @@ Public Class frm_payment_aprrove_details
                     _TxtToBank.Text = .bankrek
                     _TxtCM.Text = .CM_DM
                     _TxtCurrency.Text = .CuryID
-                    Dim debit As Double = .Total_DPP_PPN - .PPh - .PPh - .Biaya_Transfer - .CM_DM
+                    Dim debit As Double = .Tot_DPP + .Tot_PPN - .PPh - .Biaya_Transfer - .CM_DM
                     _TxtDebit.Text = Format(debit, "##,0")
                     _TxtNoRek.Text = .norek
                     _TxtDpp.Text = Format(.Tot_DPP, "##,0")
@@ -345,6 +345,78 @@ Public Class frm_payment_aprrove_details
     End Sub
     Private Sub RepositoryItemCheckEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.EditValueChanged
         GridInvoice.FocusedView.PostEditor()
+    End Sub
+
+
+    Private Sub BtnScan1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BtnScan1.ButtonClick
+        Try
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True Then
+                Dim NoFaktur As String = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "fp")
+                Dim NoFakturNew As String = Microsoft.VisualBasic.Mid(Replace(Replace(NoFaktur.TrimEnd, ".", ""), "-", ""), 4, 14)
+                If fs_Code <> "" Then
+                    Dim f As Frm_ScanFP = New Frm_ScanFP(NoFakturNew.TrimEnd, False)
+                    With f
+                        .StartPosition = FormStartPosition.CenterScreen
+                        .ShowDialog()
+                    End With
+                Else
+                    Dim f As Frm_ScanFP = New Frm_ScanFP("", True)
+                    With f
+                        .StartPosition = FormStartPosition.CenterScreen
+                        .ShowDialog()
+                    End With
+                End If
+
+            Else
+                XtraMessageBox.Show("Data belum di checklist !")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub BtnPPH1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BtnPPH1.ButtonClick
+        Dim FP As String = String.Empty
+        Dim InvcNbr As String = String.Empty
+        Dim DPP As String = String.Empty
+        Try
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True Then
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ''FP = GridView1.GetRowCellValue(rowHandle, "fp")
+                        InvcNbr = GridView1.GetRowCellValue(rowHandle, "invcNbr")
+                        DPP = GridView1.GetRowCellValue(rowHandle, "DPP")
+                    End If
+                Next rowHandle
+
+                If fs_Code <> "" Then
+                    '' Dim f As frm_lookup_pph = New frm_lookup_pph(FP, _TxtNoTrans.Text, InvcNbr, DPP, False)
+                    ''With f
+                    ''.StartPosition = FormStartPosition.CenterScreen
+                    ''.ShowDialog()
+                    'End With
+                Else
+                    ''Dim f As frm_lookup_pph = New frm_lookup_pph(FP, _TxtNoTrans.Text, InvcNbr, DPP, True)
+                    'With f
+                    '.StartPosition = FormStartPosition.CenterScreen
+                    '.ShowDialog()
+                    'End With
+
+                    ''GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Pph", f.PPHDetails)
+                    ''GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "NBP", f.NoBuktiPotong)
+                    ' _TxtNoBuktiPot.Text = f.NoBuktiPotong
+
+                    'GetTot()
+
+                End If
+
+            Else
+                XtraMessageBox.Show("Data belum di checklist !")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
     End Sub
 
 End Class
