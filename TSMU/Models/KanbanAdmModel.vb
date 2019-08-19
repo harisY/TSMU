@@ -174,7 +174,9 @@
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & "," & QVal(ShopCode) & ")"
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(ShopCode) & ")"
             ExecQuery(sql)
 
         Catch ex As Exception
@@ -213,13 +215,12 @@
             Throw ex
         End Try
     End Sub
-    Public Function IsKanbanExist(Tgl As String, Cycle As Integer) As Boolean
+    Public Function IsKanbanExist(Tgl As String, Cycle As Integer, ShopCode As String) As Boolean
         Dim hasil As Boolean = False
         Try
             Dim sql As String = "SELECT * 
                                 FROM KanbanSum 
-                                WHERE Tanggal = " & QVal(Tgl) & "
-                                    AND Cycle=" & QVal(Cycle) & ""
+                                WHERE Tanggal = " & QVal(Tgl) & " AND Cycle=" & QVal(Cycle) & " AND ShopCode = " & QVal(ShopCode) & ""
             Dim dt As New DataTable
             dt = GetDataTable(sql)
 

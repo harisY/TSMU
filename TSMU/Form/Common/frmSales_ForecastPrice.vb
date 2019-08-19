@@ -128,7 +128,7 @@ Public Class frmSales_ForecastPrice
                                 .OePe = If(row("Oe/Pe") Is DBNull.Value, "", row("Oe/Pe").ToString())
                                 .INSub = If(row("IN/SUB") Is DBNull.Value, "", row("IN/SUB").ToString())
                                 .Site = If(row("Site") Is DBNull.Value, "", row("Site").ToString())
-                                .Flag = If(row("Flag") Is DBNull.Value, "", row("Flag").ToString())
+                                .Flag = If(row("Flag") Is DBNull.Value, "N/A", row("Flag").ToString())
                                 .JanQty1 = If(row("Jan Qty1") Is DBNull.Value, "0", Convert.ToInt32(row("Jan Qty1")))
                                 .FebQty1 = If(row("Feb Qty1") Is DBNull.Value, "0", Convert.ToInt32(row("Feb Qty1")))
                                 .MarQty1 = If(row("Mar Qty1") Is DBNull.Value, "0", Convert.ToInt32(row("Mar Qty1")))
@@ -554,5 +554,26 @@ Public Class frmSales_ForecastPrice
         If e.Button = System.Windows.Forms.MouseButtons.Right Then
             ContextMenuStrip1.Show(e.Location)
         End If
+    End Sub
+
+    Private Sub CekHargaADMTSM_Click(sender As Object, e As EventArgs) Handles CekHargaADMTSM.Click
+        Try
+            ObjForecast = New forecast_price_models
+            Dim dt As New DataTable
+            dt = ObjForecast.GetHargaSAPKAP_ADM
+
+            If Not isOpen("frmListHargaADM") Then
+                Dim f = frmListHargaADM
+                f = New frmListHargaADM(dt)
+                f.WindowState = FormWindowState.Normal
+                f.StartPosition = FormStartPosition.CenterScreen
+                f.Show()
+            Else
+                XtraMessageBox.Show("Form sudah terbuka !")
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 End Class

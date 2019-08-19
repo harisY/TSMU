@@ -23,6 +23,7 @@ Partial Class frmSales_ForecastPrice
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -45,15 +46,21 @@ Partial Class frmSales_ForecastPrice
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(180, 28)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 52)
         '
         'ExportToExcelTSM
         '
         Me.ExportToExcelTSM.Name = "ExportToExcelTSM"
-        Me.ExportToExcelTSM.Size = New System.Drawing.Size(179, 24)
+        Me.ExportToExcelTSM.Size = New System.Drawing.Size(248, 24)
         Me.ExportToExcelTSM.Text = "Export To Excel"
+        '
+        'CekHargaADMTSM
+        '
+        Me.CekHargaADMTSM.Name = "CekHargaADMTSM"
+        Me.CekHargaADMTSM.Size = New System.Drawing.Size(248, 24)
+        Me.CekHargaADMTSM.Text = "Cek Harga SAP-KAP ADM"
         '
         'GridView1
         '
@@ -88,4 +95,5 @@ Partial Class frmSales_ForecastPrice
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ExportToExcelTSM As ToolStripMenuItem
+    Friend WithEvents CekHargaADMTSM As ToolStripMenuItem
 End Class

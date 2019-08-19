@@ -80,7 +80,7 @@ Public Class forecast_price_models_header
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 If CustID.ToLower <> "adm" Then
-                                    Dim IsExist1 = .IsDataExist
+                                    Dim IsExist1 As Boolean = .IsDataExist
                                     If Not IsExist1 Then
                                         .InsertData()
                                         .UpdateDataByBulanNew(Bulan)
@@ -90,13 +90,25 @@ Public Class forecast_price_models_header
                                     '.InsertDataTempTable()
 
                                 Else
-                                    Dim IsExist = .IsDataADMExist
-                                    If Not IsExist Then
-                                        .InsertData()
-                                        .UpdateDataByBulanADM(Bulan)
+                                    If .Flag = "N/A" Then
+                                        Dim IsExist2 As Boolean = .IsDataExist
+                                        If Not IsExist2 Then
+                                            .InsertData()
+                                            .UpdateDataByBulanNew(Bulan)
+                                        Else
+                                            .UpdateDataByBulanNew(Bulan)
+                                        End If
                                     Else
-                                        .UpdateDataByBulanADM(Bulan)
+                                        Dim IsExist As Boolean = .IsDataADMExist
+                                        If Not IsExist Then
+                                            .InsertData()
+                                            .UpdateDataByBulanADM(Bulan)
+                                        Else
+                                            .UpdateDataByBulanADM(Bulan)
+                                        End If
                                     End If
+
+
                                     '.InsertDataTempTable()
                                 End If
                             End With
@@ -2132,6 +2144,55 @@ Public Class forecast_price_models
         End Try
     End Sub
 
+    Public Sub UpdateHarga()
+        Try
+            Dim Query As String = String.Empty
+            Query = "UPDATE [tForecastPrice]
+                    SET 
+                        [JanHarga1] = " & QVal(JanHarga1) & "
+                        ,[JanHarga2] = " & QVal(JanHarga2) & "
+                        ,[JanHarga3] = " & QVal(JanHarga3) & "
+                        ,[FebHarga1] = " & QVal(FebHarga1) & "
+                        ,[FebHarga2] = " & QVal(FebHarga2) & "
+                        ,[FebHarga3] = " & QVal(FebHarga3) & "
+                        ,[MarHarga1] = " & QVal(MarHarga1) & "
+                        ,[MarHarga2] = " & QVal(MarHarga2) & "
+                        ,[MarHarga3] = " & QVal(MarHarga3) & "
+                        ,[AprHarga1] = " & QVal(AprHarga1) & "
+                        ,[AprHarga2] = " & QVal(AprHarga2) & "
+                        ,[AprHarga3] = " & QVal(AprHarga3) & "
+                        ,[MeiHarga1] = " & QVal(MeiHarga1) & "
+                        ,[MeiHarga2] = " & QVal(MeiHarga2) & "
+                        ,[MeiHarga3] = " & QVal(MeiHarga3) & "
+                        ,[JunHarga1] = " & QVal(JunHarga1) & "
+                        ,[JunHarga2] = " & QVal(JunHarga2) & "
+                        ,[JunHarga3] = " & QVal(JunHarga3) & "
+                        ,[JulHarga1] = " & QVal(JulHarga1) & "
+                        ,[JulHarga2] = " & QVal(JulHarga2) & "
+                        ,[JulHarga3] = " & QVal(JulHarga3) & "
+                        ,[AgtHarga1] = " & QVal(AgtHarga1) & "
+                        ,[AgtHarga2] = " & QVal(AgtHarga2) & "
+                        ,[AgtHarga3] = " & QVal(AgtHarga3) & "
+                        ,[SepHarga1] = " & QVal(SepHarga1) & "
+                        ,[SepHarga2] = " & QVal(SepHarga2) & "
+                        ,[SepHarga3] = " & QVal(SepHarga3) & "
+                        ,[OktHarga1] = " & QVal(OktHarga1) & "
+                        ,[OktHarga2] = " & QVal(OktHarga2) & "
+                        ,[OktHarga3] = " & QVal(OktHarga3) & "
+                        ,[NovHarga1] = " & QVal(NovHarga1) & "
+                        ,[NovHarga2] = " & QVal(NovHarga2) & "
+                        ,[NovHarga3] = " & QVal(NovHarga3) & "
+                        ,[DesHarga1] = " & QVal(DesHarga1) & "
+                        ,[DesHarga2] = " & QVal(DesHarga2) & "
+                        ,[DesHarga3] = " & QVal(DesHarga3) & "
+                        ,[update_date] = GETDATE()
+                        ,[updated_by] = " & QVal(gh_Common.Username) & " 
+                    WHERE Id = " & QVal(Id) & ""
+            ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub Delete()
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE id = " & QVal(Id) & " "
@@ -2234,4 +2295,31 @@ Public Class forecast_price_models
             Throw
         End Try
     End Sub
+
+    Public Function GetHargaSAPKAP_ADM() As DataTable
+        Try
+            Dim sql As String = "tForecastPrice_get_adm_doubledata"
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP(sql)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListInveortoryDetails(InvtID As String) As DataTable
+        Try
+            Dim sql As String = "tForecast_GetListInveortoryDetails"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(0).Value = InvtID
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

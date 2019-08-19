@@ -149,6 +149,7 @@ Public Class BarcodeGenerate
                 ,0 as No
                 ,WarnaPasscard Warna
                 ,LokalExport as LR
+                ,CustomerID
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND LOWER(UploadBy)=" & QVal(Username) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
@@ -262,6 +263,7 @@ Public Class BarcodeGenerate
                 ,WarnaPasscard Warna
                 ,LokalExport as LR
                 ,KodeWarna
+                ,CustomerID
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
             ds = GetDsReportCKR(sql, "QRCode")

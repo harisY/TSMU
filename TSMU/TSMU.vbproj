@@ -550,6 +550,18 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmListAdmHargaDetails.Designer.vb">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListAdmHargaDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.Designer.vb">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmUploadKanbanAdm.Designer.vb">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </Compile>
@@ -818,6 +830,12 @@
       <DependentUpon>Frmtest.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\Frmtest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.Designer.vb">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_BarcodeGenerator.Designer.vb">
@@ -1397,6 +1415,12 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListAdmHargaDetails.resx">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListHargaADM.resx">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmUploadKanbanAdm.resx">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1531,6 +1555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_BarcodePrintLog.resx">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_BarcodeGenerator.resx">
       <DependentUpon>frmReport_BarcodeGenerator.vb</DependentUpon>

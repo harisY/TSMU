@@ -68,7 +68,6 @@ Partial Public Class Testing
         Me.XrLine7 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
         Me.XrLine4 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine3 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
@@ -77,6 +76,7 @@ Partial Public Class Testing
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ExcelDataSource1 = New DevExpress.DataAccess.Excel.ExcelDataSource()
         Me.DsLaporan1 = New TSMU.dsLaporan()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsLaporan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,7 +160,7 @@ Partial Public Class Testing
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.panel1.CanGrow = False
-        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LblTgl, Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel3, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
+        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.LblTgl, Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 7.999992!)
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 238.3751!)
@@ -690,22 +690,6 @@ Partial Public Class Testing
         Me.XrLine4.SizeF = New System.Drawing.SizeF(371.7733!, 2.083336!)
         Me.XrLine4.StylePriority.UseBorders = False
         '
-        'XrLabel3
-        '
-        Me.XrLabel3.AutoWidth = True
-        Me.XrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(294.5833!, 3.000038!)
-        Me.XrLabel3.Multiline = True
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(72.18845!, 12.9583!)
-        Me.XrLabel3.StylePriority.UseBorders = False
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "ADM"
-        Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
         'XrLabel2
         '
         Me.XrLabel2.AutoWidth = True
@@ -774,6 +758,22 @@ Partial Public Class Testing
         Me.DsLaporan1.DataSetName = "dsLaporan"
         Me.DsLaporan1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'XrLabel3
+        '
+        Me.XrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CustomerID]")})
+        Me.XrLabel3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(295.8332!, 2.000008!)
+        Me.XrLabel3.Multiline = True
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(70.93857!, 13.95831!)
+        Me.XrLabel3.StylePriority.UseBorders = False
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.StylePriority.UseTextAlignment = False
+        Me.XrLabel3.Text = "XrLabel3"
+        Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
         'Testing
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
@@ -797,7 +797,6 @@ Partial Public Class Testing
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents panel1 As DevExpress.XtraReports.UI.XRPanel
     Friend WithEvents XrLine4 As DevExpress.XtraReports.UI.XRLine
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine3 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
@@ -848,4 +847,5 @@ Partial Public Class Testing
     Friend WithEvents LblSite As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LblTgl As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
 End Class
