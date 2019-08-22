@@ -408,7 +408,7 @@ Public Class frm_payment_details
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
-                    TotPPH = TotPPH + CDbl(GridView1.GetRowCellValue(i, "Pph"))
+                    TotPPH = TotPPH + CDbl(GridView1.GetRowCellValue(i, "PPH"))
                     TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
                     TotDpp = TotDpp + CDbl(GridView1.GetRowCellValue(i, "DPP"))
                     TotPPn = TotPPn + CDbl(GridView1.GetRowCellValue(i, "Ppn"))

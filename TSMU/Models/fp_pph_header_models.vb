@@ -39,6 +39,34 @@
             Throw ex
         End Try
     End Function
+
+    Public Function GetFPByNoApprove(ByVal NoFaktur As String) As DataTable
+        Try
+            Dim sql As String = "SELECT [id]
+                    ,[FPNo]
+                    ,[No_Bukti_Potong]
+                    ,[Pphid]
+                    ,[Ket_Pph]
+                    ,[Tarif]
+                    ,[Tahun]
+                    ,[Bulan]
+                    ,[Lokasi]
+                    ,[CuryID]
+                    ,[Tot_Dpp_Invoice]
+                    ,[No_Faktur]
+                    ,[Tot_Pph]
+                    ,[ket_dpp]
+                FROM [Fp_pph_header] WHERE RTRIM(No_Faktur) = " & QVal(NoFaktur) & ""
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &

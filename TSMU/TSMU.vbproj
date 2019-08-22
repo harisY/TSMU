@@ -1084,6 +1084,12 @@
     <Compile Include="Payment\frm_fp_details.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\frm_lookup_pph_approve.Designer.vb">
+      <DependentUpon>frm_lookup_pph_approve.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_lookup_pph_approve.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\frm_payment.Designer.vb">
       <DependentUpon>frm_payment.vb</DependentUpon>
     </Compile>
@@ -1674,6 +1680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_fp_details.resx">
       <DependentUpon>frm_fp_details.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_lookup_pph_approve.resx">
+      <DependentUpon>frm_lookup_pph_approve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_payment.resx">
       <DependentUpon>frm_payment.vb</DependentUpon>
