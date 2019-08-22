@@ -10,7 +10,8 @@ Public Class frm_lookup_pph_approve
     Dim _NoFaktur As String
     Dim ObjFP As Cls_FP = New Cls_FP()
     Dim tes As Boolean = True
-    Dim total_dpp As Double = 0
+    Dim total_dpp As Double
+    Dim total_pph As Double
     Dim IsNew As Boolean
     Dim ObjHeader As New fp_pph_header_models
     Dim ObjDetails As New fp_pph_detail_models
@@ -42,8 +43,6 @@ Public Class frm_lookup_pph_approve
         '    _TxtDPP.Text = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
         'Next
 
-        ''_TxtDPP.Text = Format("##,0")
-        ''_TxtNilaiPPh.Text = Format("##,0")
 
     End Sub
 
@@ -151,6 +150,9 @@ Public Class frm_lookup_pph_approve
 
 
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+
+        ''_TxtDPP.Text = Format(total_dpp, "##,0")
+        ''_TxtNilaiPPh.Text = Format(total_pph, "##,0")
         Try
             If e.Column.FieldName = "cek" Then
                 If GridView1.GetRowCellValue(e.RowHandle, "cek") = True Then
