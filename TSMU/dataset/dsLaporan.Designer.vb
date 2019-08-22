@@ -6164,6 +6164,8 @@ Partial Public Class dsLaporan
         
         Private columnKodeWarna As Global.System.Data.DataColumn
         
+        Private columnCustomerID As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6312,6 +6314,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CustomerIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCustomerID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6348,9 +6358,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddQRCodeRow(ByVal No As Integer, ByVal InvtID As String, ByVal Color As String, ByVal PartNo As String, ByVal KodePart As String, ByVal JobNo As String, ByVal PartName As String, ByVal Bulan As String, ByVal Qty As String, ByVal QrCode As String, ByVal Warna As String, ByVal Status As String, ByVal LR As String, ByVal KodeWarna As String) As QRCodeRow
+        Public Overloads Function AddQRCodeRow(ByVal No As Integer, ByVal InvtID As String, ByVal Color As String, ByVal PartNo As String, ByVal KodePart As String, ByVal JobNo As String, ByVal PartName As String, ByVal Bulan As String, ByVal Qty As String, ByVal QrCode As String, ByVal Warna As String, ByVal Status As String, ByVal LR As String, ByVal KodeWarna As String, ByVal CustomerID As String) As QRCodeRow
             Dim rowQRCodeRow As QRCodeRow = CType(Me.NewRow,QRCodeRow)
-            Dim columnValuesArray() As Object = New Object() {No, InvtID, Color, PartNo, KodePart, JobNo, PartName, Bulan, Qty, QrCode, Warna, Status, LR, KodeWarna}
+            Dim columnValuesArray() As Object = New Object() {No, InvtID, Color, PartNo, KodePart, JobNo, PartName, Bulan, Qty, QrCode, Warna, Status, LR, KodeWarna, CustomerID}
             rowQRCodeRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowQRCodeRow)
             Return rowQRCodeRow
@@ -6387,6 +6397,7 @@ Partial Public Class dsLaporan
             Me.columnStatus = MyBase.Columns("Status")
             Me.columnLR = MyBase.Columns("LR")
             Me.columnKodeWarna = MyBase.Columns("KodeWarna")
+            Me.columnCustomerID = MyBase.Columns("CustomerID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6420,6 +6431,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnLR)
             Me.columnKodeWarna = New Global.System.Data.DataColumn("KodeWarna", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnKodeWarna)
+            Me.columnCustomerID = New Global.System.Data.DataColumn("CustomerID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCustomerID)
             Me.columnKodeWarna.MaxLength = 50
         End Sub
         
@@ -15906,6 +15919,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CustomerID() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableQRCode.CustomerIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CustomerID' in table 'QRCode' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQRCode.CustomerIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNoNull() As Boolean
             Return Me.IsNull(Me.tableQRCode.NoColumn)
         End Function
@@ -16070,6 +16098,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetKodeWarnaNull()
             Me(Me.tableQRCode.KodeWarnaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCustomerIDNull() As Boolean
+            Return Me.IsNull(Me.tableQRCode.CustomerIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCustomerIDNull()
+            Me(Me.tableQRCode.CustomerIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

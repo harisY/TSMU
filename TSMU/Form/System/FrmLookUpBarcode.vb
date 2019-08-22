@@ -5,6 +5,8 @@ Imports DevExpress.XtraReports.UI
 Public Class FrmLookUpBarcode
     Dim Obj As New BarcodeGenerate
     Dim dtTemp As DataTable
+
+    Dim PrintTool As ReportPrintTool
     Private Sub TempTable()
         dtTemp = New DataTable
         dtTemp.Columns.Add("No")
@@ -21,6 +23,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("Warna")
         dtTemp.Columns.Add("LR")
         dtTemp.Columns.Add("KodeWarna")
+        dtTemp.Columns.Add("CustomerID")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -70,7 +73,7 @@ Public Class FrmLookUpBarcode
             ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
                 TxtFrom.Focus()
                 Throw New Exception("No Passcard From tidak boleh lebih besar dari To")
-            ElseIf Val(TxtFrom.Text) < txtNo.Text Then
+            ElseIf Val(TxtFrom.Text) <= txtNo.Text Then
                 TxtFrom.Focus()
                 Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
@@ -110,6 +113,7 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(dt.Rows(0).Item("Warna") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(dt.Rows(0).Item("KodeWarna") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(14) = Trim(dt.Rows(0).Item("CustomerID") & "")
             Next
 
             Dim Laporan As New Testing()
@@ -127,11 +131,10 @@ Public Class FrmLookUpBarcode
                 AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
             End With
 
-            Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-                PrintTool.ShowPreviewDialog()
-                PrintTool.ShowPreview(UserLookAndFeel.Default)
-            End Using
-
+            PrintTool = New ReportPrintTool(Laporan)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            'PrintTool.ShowPreviewDialog()
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -162,14 +165,14 @@ Public Class FrmLookUpBarcode
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
-
-
         'TxtFrom.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
 
     End Sub
     Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
         Try
             Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text)
+            PrintTool.ClosePreview()
+            CmbBulan_SelectedIndexChanged(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

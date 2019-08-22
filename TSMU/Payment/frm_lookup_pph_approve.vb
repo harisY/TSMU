@@ -2,14 +2,16 @@
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 
-Public Class frm_lookup_pph
+Public Class frm_lookup_pph_approve
     Dim _FP As String
     Dim _Voucher As String
     Dim _invcNbr As String
     Dim _DPP As String
+    Dim _NoFaktur As String
     Dim ObjFP As Cls_FP = New Cls_FP()
     Dim tes As Boolean = True
-    Dim total_dpp As Double = 0
+    Dim total_dpp As Double
+    Dim total_pph As Double
     Dim IsNew As Boolean
     Dim ObjHeader As New fp_pph_header_models
     Dim ObjDetails As New fp_pph_detail_models
@@ -22,7 +24,7 @@ Public Class frm_lookup_pph
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Public Sub New(FP As String, Voucher As String, invcNbr As String, DPP As String, _IsNew As Boolean)
+    Public Sub New(FP As String, Voucher As String, invcNbr As String, DPP As String, NoFaktur As String, _IsNew As Boolean)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -32,6 +34,7 @@ Public Class frm_lookup_pph
         _Voucher = Voucher
         _invcNbr = invcNbr
         _DPP = DPP
+        _NoFaktur = NoFaktur
         IsNew = _IsNew
     End Sub
     Private Sub frm_lookup_pph_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -39,6 +42,8 @@ Public Class frm_lookup_pph
         'For i As Integer = 0 To GridView1.RowCount - 1
         '    _TxtDPP.Text = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
         'Next
+
+
     End Sub
 
     Private Sub loadGrid()
@@ -56,7 +61,7 @@ Public Class frm_lookup_pph
         Try
 
             Dim dtgrid As DataTable = New DataTable
-            dtgrid = ObjDetails.GetGridPphDetails(_Voucher.TrimEnd)
+            dtgrid = ObjDetails.GetGridPphDetailsApprove(_NoFaktur.TrimEnd)
             Grid.DataSource = dtgrid
 
         Catch ex As Exception
@@ -97,7 +102,7 @@ Public Class frm_lookup_pph
                 End If
             Else
                 Dim dt As New DataTable
-                dt = ObjHeader.GetFPByNo(_Voucher.TrimEnd)
+                dt = ObjHeader.GetFPByNoApprove(_NoFaktur.TrimEnd)
                 If dt.Rows.Count > 0 Then
                     _TxtVoucher.Text = dt.Rows(0).Item("FPNo").ToString().TrimEnd
                     _TxtFP.Text = dt.Rows(0).Item("FPNo").ToString()
@@ -145,6 +150,9 @@ Public Class frm_lookup_pph
 
 
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+
+        ''_TxtDPP.Text = Format(total_dpp, "##,0")
+        ''_TxtNilaiPPh.Text = Format(total_pph, "##,0")
         Try
             If e.Column.FieldName = "cek" Then
                 If GridView1.GetRowCellValue(e.RowHandle, "cek") = True Then
@@ -261,7 +269,7 @@ Public Class frm_lookup_pph
             Dim Value2 As String = ""
             Dim Value3 As String = ""
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
                 Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                 If sender.Name = _TxtPPh.Name AndAlso Value1 <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then

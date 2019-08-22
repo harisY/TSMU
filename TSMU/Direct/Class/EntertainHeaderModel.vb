@@ -245,6 +245,40 @@ Public Class EntertainHeaderModel
 
 
 
+    Public Sub InsertDataRelasiSettle()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        ''InsertHeader()
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertRelasiSettle()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
+
     Public Sub UpdateData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -336,6 +370,11 @@ Public Class EntertainDetailModel
     Public Property Perusahaan As String
     Public Property JenisUSaha As String
     Public Property Remark As String
+    Public Property SettleID As String
+    Public Property Relasi As String
+    Public Property JenisRelasi As String
+    Public Property Nota As String
+    Public Property NamaRelasi As String
 
     Public Sub InsertDetails()
         Try
@@ -374,6 +413,23 @@ Public Class EntertainDetailModel
             Throw
         End Try
     End Sub
+
+    Public Sub InsertRelasiSettle()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO settle_detail (SettleID,NamaRelasi,Posisi,Relasi,JenisRelasi,Nota ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Relasi) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi) & ", " & vbCrLf &
+            "       " & QVal(Nota) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 
     Public Sub DeleteDetail(_suspendID)
         Try
@@ -420,6 +476,31 @@ Public Class EntertainDetailModel
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataDetailByIDSettleENt() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    Tgl,
+                                    RTRIM(DeptID) DeptID,
+                                    RTRIM(Nama) Nama,
+                                    RTRIM(Tempat) Tempat,
+                                    RTRIM(Alamat) Alamat,
+                                    RTRIM(Jenis) Jenis,
+                                    RTRIM(NoKwitansi) NoKwitansi,
+                                    [Amount] Amount
+                                FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 
     Public Function GetDataDetailByIDEnt() As DataTable
         Try

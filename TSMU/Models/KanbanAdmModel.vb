@@ -125,11 +125,12 @@
             Dim sql As String = "SELECT 
 			                        CONVERT(varchar,[OrderDate],101) Tanggal,
 			                        [DelCycle] Cycle,
-			                        sum([OrderKbn]) Kanban
+			                        sum([OrderKbn]) Kanban,
+                                    Shopcode
 		                        FROM [KanbanADM]
 		                        GROUP BY 
 			                        CONVERT(varchar,[OrderDate],101),
-			                        [DelCycle]
+			                        [DelCycle], Shopcode
 		                        ORDER BY 
 			                        CONVERT(varchar,[OrderDate],101),
 			                        [DelCycle]"
@@ -162,17 +163,20 @@
         End Try
     End Function
 
-    Public Sub SaveKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer)
+    Public Sub SaveKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer, ShopCode As String)
         Try
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
                                        ,[Cycle]
                                        ,[Kanban]
-                                        ,[Open])
+                                        ,[Open]
+                                        ,ShopCode)
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & "," & QVal(Kanban) & ")"
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(ShopCode) & ")"
             ExecQuery(sql)
 
         Catch ex As Exception
@@ -211,13 +215,12 @@
             Throw ex
         End Try
     End Sub
-    Public Function IsKanbanExist(Tgl As String, Cycle As Integer) As Boolean
+    Public Function IsKanbanExist(Tgl As String, Cycle As Integer, ShopCode As String) As Boolean
         Dim hasil As Boolean = False
         Try
             Dim sql As String = "SELECT * 
                                 FROM KanbanSum 
-                                WHERE Tanggal = " & QVal(Tgl) & "
-                                    AND Cycle=" & QVal(Cycle) & ""
+                                WHERE Tanggal = " & QVal(Tgl) & " AND Cycle=" & QVal(Cycle) & " AND ShopCode = " & QVal(ShopCode) & ""
             Dim dt As New DataTable
             dt = GetDataTable(sql)
 

@@ -129,6 +129,7 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
     Public Function loadreport2() As DataSet
         Dim query As String
         query = "SELECT settle_detail.SettleID
+                    ,settle_header.suspendid
                     ,settle_detail.Description
                     ,settle_detail.Tgl as Tgl2
                     ,suspend_header.Total as SuspendAmount
@@ -722,7 +723,7 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,,SettleAmount,NamaRelasi,Posisi,Relasi,Nota,JenisRelasi ) " & vbCrLf &
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount,NamaRelasi,Posisi,Relasi,JenisRelasi,Nota ) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
@@ -736,8 +737,8 @@ Public Class SettleDetail
             "       " & QVal(NamaRelasi.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Posisi.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Relasi.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Nota.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(JenisRelasi.TrimEnd) & ")"
+            "       " & QVal(JenisRelasi.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nota.TrimEnd) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

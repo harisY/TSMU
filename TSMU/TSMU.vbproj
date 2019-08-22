@@ -108,7 +108,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelLibrary">
-      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\..\BackUp\16072019\TSMU\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.CSharp" />
@@ -599,6 +599,18 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmListAdmHargaDetails.Designer.vb">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListAdmHargaDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.Designer.vb">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmListHargaADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmUploadKanbanAdm.Designer.vb">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </Compile>
@@ -869,6 +881,12 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.Designer.vb">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_BarcodePrintLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_BarcodeGenerator.Designer.vb">
       <DependentUpon>frmReport_BarcodeGenerator.vb</DependentUpon>
     </Compile>
@@ -1115,10 +1133,10 @@
     <Compile Include="Payment\frm_fp_details.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Payment\frm_payment_approve.Designer.vb">
-      <DependentUpon>frm_payment_approve.vb</DependentUpon>
+    <Compile Include="Payment\frm_lookup_pph_approve.Designer.vb">
+      <DependentUpon>frm_lookup_pph_approve.vb</DependentUpon>
     </Compile>
-    <Compile Include="Payment\frm_payment_approve.vb">
+    <Compile Include="Payment\frm_lookup_pph_approve.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_payment.Designer.vb">
@@ -1143,6 +1161,12 @@
       <DependentUpon>frm_lookup_pph.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\frm_lookup_pph.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_payment_approve.Designer.vb">
+      <DependentUpon>frm_payment_approve.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_payment_approve.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_payment_aprrove_details.Designer.vb">
@@ -1470,6 +1494,12 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListAdmHargaDetails.resx">
+      <DependentUpon>frmListAdmHargaDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmListHargaADM.resx">
+      <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmUploadKanbanAdm.resx">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1605,6 +1635,9 @@
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_BarcodePrintLog.resx">
+      <DependentUpon>frmReport_BarcodePrintLog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_BarcodeGenerator.resx">
       <DependentUpon>frmReport_BarcodeGenerator.vb</DependentUpon>
     </EmbeddedResource>
@@ -1721,8 +1754,8 @@
     <EmbeddedResource Include="Payment\frm_fp_details.resx">
       <DependentUpon>frm_fp_details.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Payment\frm_payment_approve.resx">
-      <DependentUpon>frm_payment_approve.vb</DependentUpon>
+    <EmbeddedResource Include="Payment\frm_lookup_pph_approve.resx">
+      <DependentUpon>frm_lookup_pph_approve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_payment.resx">
       <DependentUpon>frm_payment.vb</DependentUpon>
@@ -1735,6 +1768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_lookup_pph.resx">
       <DependentUpon>frm_lookup_pph.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_payment_approve.resx">
+      <DependentUpon>frm_payment_approve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_payment_aprrove_details.resx">
       <DependentUpon>frm_payment_aprrove_details.vb</DependentUpon>
