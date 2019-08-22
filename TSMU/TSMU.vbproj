@@ -256,6 +256,7 @@
     </Compile>
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
+    <Compile Include="Direct\Class\ClsTraveller.vb" />
     <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
     <Compile Include="Direct\Class\EntertainApproval.vb" />
     <Compile Include="Direct\Class\ReceiptModel.vb" />
@@ -268,6 +269,12 @@
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmApprovalEntertain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankPaid.Designer.vb">
+      <DependentUpon>FrmBankPaid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankPaid.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmBankReceipt.Designer.vb">
@@ -298,6 +305,24 @@
       <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmDetailPaymentDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentSettle.Designer.vb">
+      <DependentUpon>FrmDetailPaymentSettle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentSuspend.Designer.vb">
+      <DependentUpon>FrmDetailPaymentSuspend.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentSuspend.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEditDirectPayment.Designer.vb">
+      <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEditDirectPayment.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
@@ -420,6 +445,24 @@
     <Compile Include="Direct\FrmTravel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTraveler.Designer.vb">
+      <DependentUpon>FrmTraveler.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTraveler.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelerDetail.Designer.vb">
+      <DependentUpon>FrmTravelerDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelerDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelSettle.Designer.vb">
+      <DependentUpon>FrmTravelSettle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmTravel_Detail.Designer.vb">
       <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
     </Compile>
@@ -430,6 +473,12 @@
       <DependentUpon>FrmTravel_Detail2.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravel_Detail2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelSettleDetail.Designer.vb">
+      <DependentUpon>FrmTravelSettleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\entertain1.vb">
@@ -1248,6 +1297,9 @@
     <EmbeddedResource Include="Direct\FrmApprovalEntertain.resx">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankPaid.resx">
+      <DependentUpon>FrmBankPaid.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReceipt.resx">
       <DependentUpon>FrmBankReceipt.vb</DependentUpon>
     </EmbeddedResource>
@@ -1262,6 +1314,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect.resx">
       <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmDetailPaymentSettle.resx">
+      <DependentUpon>FrmDetailPaymentSettle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmDetailPaymentSuspend.resx">
+      <DependentUpon>FrmDetailPaymentSuspend.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEditDirectPayment.resx">
+      <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmPaymentDirect.resx">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
@@ -1323,11 +1384,23 @@
     <EmbeddedResource Include="Direct\FrmTravel.resx">
       <DependentUpon>FrmTravel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTraveler.resx">
+      <DependentUpon>FrmTraveler.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelerDetail.resx">
+      <DependentUpon>FrmTravelerDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelSettle.resx">
+      <DependentUpon>FrmTravelSettle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravel_Detail.resx">
       <DependentUpon>FrmTravel_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravel_Detail2.resx">
       <DependentUpon>FrmTravel_Detail2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelSettleDetail.resx">
+      <DependentUpon>FrmTravelSettleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\entertain1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
