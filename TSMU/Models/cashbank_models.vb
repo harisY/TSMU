@@ -28,7 +28,28 @@ Public Class cashbank_models
         End Set
     End Property
 
-
+    Public Sub GetDirekPaymentById(_NoBukti As String)
+        Try
+            Dim sql As String =
+            "Select Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,Perpost,Account.curyid,AcctID FROM cashbank2  inner join  Account on Account.Acct=cashbank2.AcctID WHERE  NoBukti=" & QVal(_NoBukti) & " "
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                NoBukti = If(IsDBNull(dt.Rows(0).Item("NoBukti")), "", Trim(dt.Rows(0).Item("NoBukti").ToString()))
+                Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
+                Transaksi = If(IsDBNull(dt.Rows(0).Item("Transaksi")), "", Trim(dt.Rows(0).Item("Transaksi").ToString()))
+                SettleAmount = If(IsDBNull(dt.Rows(0).Item("SettleAmount")), 0, Convert.ToDouble(dt.Rows(0).Item("SettleAmount")))
+                SuspendAmount = If(IsDBNull(dt.Rows(0).Item("SuspendAmount")), 0, Convert.ToDouble(dt.Rows(0).Item("SuspendAmount")))
+                Masuk = If(IsDBNull(dt.Rows(0).Item("Masuk")), 0, Convert.ToDouble(dt.Rows(0).Item("Masuk")))
+                Keluar = If(IsDBNull(dt.Rows(0).Item("Keluar")), 0, Convert.ToDouble(dt.Rows(0).Item("Keluar")))
+                Perpost = If(IsDBNull(dt.Rows(0).Item("Perpost")), "", Trim(dt.Rows(0).Item("Perpost").ToString()))
+                AcctID = If(IsDBNull(dt.Rows(0).Item("AcctID")), "", Convert.ToString(dt.Rows(0).Item("AcctID")))
+                curyid = If(IsDBNull(dt.Rows(0).Item("curyid")), "", Convert.ToString(dt.Rows(0).Item("curyid")))
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub InsertToTable()
         Try
             Dim chek As Integer
@@ -228,6 +249,17 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Function GetGridDetailSettleByAccountID03(_NoBukti As String) As DataTable
+        Try
+            Dim sql As String = "SELECT Tgl,RTRIM([SubAcct]) SubAccount, RTRIM([AcctID]) Account,RTRIM(Description) Description,[SuspendAmount] SuspendAmount, [SettleAmount] SettleAmount FROM settle_detail WHERE SettleID=" & QVal(_NoBukti) & " "
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub UpdateSettle_hapus()
 
         Try
@@ -245,6 +277,18 @@ Public Class cashbank_models
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetGridDetailSuspendByAccountID03(_NoBukti As String) As DataTable
+        Try
+            Dim sql As String = "SELECT RTRIM([SubAcct]) SubAccount, RTRIM([AcctID]) Account,RTRIM(Description) Description,[Amount] Amount FROM suspend_detail WHERE SuspendID=" & QVal(_NoBukti) & " "
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex

@@ -8,6 +8,11 @@ Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmPaymentDirect
     Dim ff_Detail As FrmDetailPaymentDirect
+    Dim ff_Detail2 As FrmDetailPaymentSuspend
+    Dim ff_Detail3 As FrmDetailPaymentSettle
+    Dim ff_Detail4 As FrmDetailPaymentSuspend
+    Dim ff_Detail5 As FrmEditDirectPayment
+    Dim ff_Detail6 As FrmBankPaid
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim NoBukti As String
@@ -752,7 +757,7 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
     Public Overrides Sub Proc_Refresh()
-        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-04")
+        _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         DataSuspend()
         DataSettlement()
         DataEntertaint()
@@ -901,13 +906,22 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
-        Try
-            tabu1()
-            tabu2()
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+        'Try
+        '    tabu1()
+        '    tabu2()
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
+        Dim id6 As String = String.Empty
+        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id6 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+            End If
+        Next rowHandle
+        ff_Detail6 = New FrmBankPaid(id6)
+        ff_Detail6.Show()
     End Sub
 
     Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
@@ -921,7 +935,50 @@ Public Class FrmPaymentDirect
         ff_Detail = New FrmDetailPaymentDirect(id)
         ff_Detail.Show()
     End Sub
-
+    Private Sub EditRek_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles EditRek.ButtonClick
+        Dim id5 As String = String.Empty
+        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id5 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+            End If
+        Next rowHandle
+        ff_Detail5 = New FrmEditDirectPayment(id5)
+        ff_Detail5.Show()
+    End Sub
+    Private Sub RepositoryItemButtonEdit4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit4.ButtonClick
+        Dim id As String = String.Empty
+        Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id = GridView2.GetRowCellValue(rowHandle, "SuspendID")
+            End If
+        Next rowHandle
+        ff_Detail2 = New FrmDetailPaymentSuspend(id)
+        ff_Detail2.Show()
+    End Sub
+    Private Sub RepositoryItemButtonEdit5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit5.ButtonClick
+        Dim id As String = String.Empty
+        Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id = GridView3.GetRowCellValue(rowHandle, "SettleID")
+            End If
+        Next rowHandle
+        ff_Detail3 = New FrmDetailPaymentSettle(id)
+        ff_Detail3.Show()
+    End Sub
+    Private Sub RepositoryItemButtonEdit6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit6.ButtonClick
+        Dim id2 As String = String.Empty
+        Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id2 = GridView3.GetRowCellValue(rowHandle, "SuspendID")
+            End If
+        Next rowHandle
+        ff_Detail4 = New FrmDetailPaymentSuspend(id2)
+        ff_Detail4.Show()
+    End Sub
     Private Sub btnpaid_Click(sender As Object, e As EventArgs) Handles btnpaid.Click
         Try
             tab_settle()
@@ -980,5 +1037,9 @@ Public Class FrmPaymentDirect
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
     End Sub
 End Class

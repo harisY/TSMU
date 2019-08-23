@@ -3,8 +3,8 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-
-Public Class FrmTravel_Detail2
+Imports TSMU
+Public Class FrmTravelSettleDetail
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
@@ -65,7 +65,7 @@ Public Class FrmTravel_Detail2
                                                             New DataColumn("TSC Rare", GetType(String)),
                                                             New DataColumn("IDR Amount", GetType(Double))})
         Grid.DataSource = DtScan
-        GridView1.OptionsView.ShowAutoFilterRow = False
+        GridView2.OptionsView.ShowAutoFilterRow = False
 
     End Sub
     Private Sub FrmTravel_Detail2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -74,9 +74,9 @@ Public Class FrmTravel_Detail2
         ''Call CreateTable()
         Call InitialSetForm()
 
-        GridView1.AddNewRow()
-        GridView1.OptionsNavigation.AutoFocusNewRow = True
-        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+        GridView2.AddNewRow()
+        GridView2.OptionsNavigation.AutoFocusNewRow = True
+        GridView2.FocusedColumn = GridView2.VisibleColumns(0)
 
 
     End Sub
@@ -109,20 +109,43 @@ Public Class FrmTravel_Detail2
     End Sub
     Public Sub LoadGridDetail()
         Try
-
             If fs_Code <> "" Then
                 Dim dtGrid As New DataTable
                 ObjTravelDetail.TravelID = TxtNoTravel.Text
                 dtGrid = ObjTravelDetail.GetDataDetailByID2()
                 Grid.DataSource = dtGrid
                 If dtGrid.Rows.Count > 0 Then
-                    GridCellFormat(GridView1)
+                    GridCellFormat(GridView2)
                 End If
             Else
                 Dim dtGrid As New DataTable
+                Dim dtGrid2 As New DataTable
+                Dim dtGrid3 As New DataTable
+                Dim dtGrid4 As New DataTable
+                Dim dtGrid5 As New DataTable
+                Dim dtGrid6 As New DataTable
+                Dim dtGrid7 As New DataTable
                 ObjTravelDetail.TravelID = ""
-                dtGrid = ObjTravelDetail.GetDataDetailByID()
+                dtGrid = ObjTravelDetail.GetDataDetailByIDTICKET()
                 Grid.DataSource = dtGrid
+
+                dtGrid2 = ObjTravelDetail.GetDataDetailByIDTRANSPORTATION()
+                Grid2.DataSource = dtGrid2
+
+                dtGrid3 = ObjTravelDetail.GetDataDetailByIDHOTEL()
+                Grid3.DataSource = dtGrid3
+
+                dtGrid4 = ObjTravelDetail.GetDataDetailByIDENTERTAINMENT()
+                Grid4.DataSource = dtGrid4
+
+                dtGrid5 = ObjTravelDetail.GetDataDetailByIDPOCKET()
+                Grid5.DataSource = dtGrid5
+
+                dtGrid6 = ObjTravelDetail.GetDataDetailByIDBTRIP()
+                Grid6.DataSource = dtGrid6
+
+                dtGrid7 = ObjTravelDetail.GetDataDetailByIDOTHERS()
+                Grid7.DataSource = dtGrid7
             End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
@@ -150,8 +173,8 @@ Public Class FrmTravel_Detail2
                     TxtArrDate.EditValue = .Arrdate
                     TxtDepDate.EditValue = .Depdate
                 End With
-                GridView1.AddNewRow()
-                GridView1.OptionsNavigation.AutoFocusNewRow = True
+                GridView2.AddNewRow()
+                GridView2.OptionsNavigation.AutoFocusNewRow = True
             Else
                 TxtNama.Text = ""
                 TxtNoTravel.Text = ""
@@ -160,7 +183,6 @@ Public Class FrmTravel_Detail2
                 txtVisa.Text = "Yes"
                 txtPurpose.Text = ""
                 txtPickUp.Text = ""
-                TxtTerm.Text = ""
                 TxtTgl.EditValue = DateTime.Today
                 TxtTotalAdvanceIDR.Text = "0"
                 TxtTotalAdvanceYEN.Text = "0"
@@ -169,8 +191,8 @@ Public Class FrmTravel_Detail2
                 TxtArrDate.EditValue = DateTime.Today
                 TxtDepDate.EditValue = DateTime.Today
                 'TxtPrNo.Focus()
-                GridView1.AddNewRow()
-                GridView1.OptionsNavigation.AutoFocusNewRow = True
+                GridView2.AddNewRow()
+                GridView2.OptionsNavigation.AutoFocusNewRow = True
 
             End If
         Catch ex As Exception
@@ -200,14 +222,14 @@ Public Class FrmTravel_Detail2
                     .DeptID = TxtDep.Text
                     .Destination = TxtDestination.Text
                     .Purpose = txtPurpose.Text
-                    .Term = TxtTerm.Text
+                    TxtTerm.Text = .Term
                     .PickUp = txtPickUp.Text
                     .Visa = txtVisa.Text
                     .Tgl = TxtTgl.EditValue
                     .TotalAdvanceIDR = TxtTotalAdvanceIDR.Text
                     .TotalAdvanceYEN = TxtTotalAdvanceYEN.Text
                     .TotalAdvanceUSD = TxtTotalAdvanceUSD.Text
-                    .TotalAdvIDR = TxtTotIDR.Text
+                    TxtTotIDR.Text = .TotalAdvIDR
                     .Arrdate = TxtArrDate.EditValue
                     .Depdate = TxtDepDate.EditValue
 
@@ -226,16 +248,24 @@ Public Class FrmTravel_Detail2
         End Try
         Return lb_Validated
     End Function
-    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick
+    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick, GAccountTran.ButtonClick
         Try
             ObjTravelHeader = New TravelHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjTravelHeader.GetAccount
-            ls_OldKode = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account"))
-            ls_Judul = "Account"
+            Dim editor As ButtonEdit = CType(sender, ButtonEdit)
+
+            If editor.AccessibleName = GAccount.Name Then
+                dtSearch = ObjTravelHeader.GetAccount
+                ls_OldKode = IIf(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Account") Is DBNull.Value, "", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Account"))
+                ls_Judul = "Account"
+            ElseIf editor.AccessibleName = GAccountTran.Name Then
+                dtSearch = ObjTravelHeader.GetAccount
+                ls_OldKode = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Account") Is DBNull.Value, "", GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Account"))
+                ls_Judul = "Account Tran"
+            End If
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -248,9 +278,14 @@ Public Class FrmTravel_Detail2
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", Value1)
+                If editor.AccessibleName = GAccount.Name Then
+                    GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "Account", Value1)
+                ElseIf editor.AccessibleName = GAccountTran.Name Then
+                    GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Account", Value1)
+                End If
+
             End If
-            lF_SearchData.Close()
+                lF_SearchData.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -277,13 +312,13 @@ Public Class FrmTravel_Detail2
     Public Overrides Sub Proc_SaveData()
         Try
             Dim IsEmpty As Boolean = False
-            For i As Integer = 0 To GridView1.RowCount - 1
-                GridView1.MoveFirst()
-                '     GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
-                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
-                    GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
+            For i As Integer = 0 To GridView2.RowCount - 1
+                GridView2.MoveFirst()
+                If GridView2.GetRowCellValue(i, GridView2.Columns("Account")).ToString = "" OrElse
+                   GridView2.GetRowCellValue(i, GridView2.Columns("SubAccount")).ToString = "" OrElse
+                   GridView2.GetRowCellValue(i, GridView2.Columns("Amount")).ToString = "" Then
                     IsEmpty = True
-                    GridView1.DeleteRow(i)
+                    GridView2.DeleteRow(i)
                 End If
             Next
             'If IsEmpty Then
@@ -292,18 +327,18 @@ Public Class FrmTravel_Detail2
 
             If isUpdate = False Then
                 ObjTravelHeader.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Account") <> "" Then
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "Account") <> "" Then
                         ObjTravelDetail = New TravelDetailModel
                         With ObjTravelDetail
                             .TravelID = _TravelID
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                            .CuryID = GridView1.GetRowCellValue(i, "CuryID")
-                            .Rate = GridView1.GetRowCellValue(i, "Rate")
-                            .AmountIDR = Convert.ToDouble(GridView1.GetRowCellValue(i, "AmountIDR"))
+                            .AcctID = GridView2.GetRowCellValue(i, "Account").ToString().TrimEnd
+                            .Amount = Convert.ToDouble(GridView2.GetRowCellValue(i, "Amount"))
+                            .Description = GridView2.GetRowCellValue(i, "Description").ToString()
+                            .SubAcct = GridView2.GetRowCellValue(i, "SubAccount")
+                            .CuryID = GridView2.GetRowCellValue(i, "CuryID")
+                            .Rate = GridView2.GetRowCellValue(i, "Rate")
+                            .AmountIDR = Convert.ToDouble(GridView2.GetRowCellValue(i, "AmountIDR"))
                         End With
                         ObjTravelHeader.ObjDetails.Add(ObjTravelDetail)
                     End If
@@ -312,15 +347,15 @@ Public Class FrmTravel_Detail2
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjTravelHeader.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Account") <> "" Then
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "Account") <> "" Then
                         ObjTravelDetail = New TravelDetailModel
                         With ObjTravelDetail
                             .TravelID = TxtNama.Text
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+                            .AcctID = GridView2.GetRowCellValue(i, "Account").ToString().TrimEnd
+                            .Amount = Convert.ToDouble(GridView2.GetRowCellValue(i, "Amount"))
+                            .Description = GridView2.GetRowCellValue(i, "Description").ToString()
+                            .SubAcct = GridView2.GetRowCellValue(i, "SubAccount")
                         End With
                         ObjTravelHeader.ObjDetails.Add(ObjTravelDetail)
                     End If
@@ -340,10 +375,10 @@ Public Class FrmTravel_Detail2
         Dim _totalidr1 As Decimal = 0
 
         Try
-            For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    If GridView1.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
@@ -361,10 +396,10 @@ Public Class FrmTravel_Detail2
         Dim _totalusd3 As Decimal = 0
         Dim _totalusd4 As Decimal = 0
         Try
-            For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    If GridView1.GetRowCellValue(i, "CuryID") = "USD" Then
-                        _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "USD" Then
+                        _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
@@ -384,10 +419,10 @@ Public Class FrmTravel_Detail2
         Dim _totalYEN3 As Decimal = 0
         Dim _totalYEN4 As Decimal = 0
         Try
-            For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    If GridView1.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalYEN1 = _totalYEN1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalYEN1 = _totalYEN1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
                     End If
 
                 End If
@@ -410,12 +445,6 @@ Public Class FrmTravel_Detail2
 
 
 
-    Private Sub GridView1_Click(sender As Object, e As EventArgs)
-        'GridView1.AddNewRow()
-        'GridView1.OptionsNavigation.AutoFocusNewRow = True
-        'GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-    End Sub
-
 
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
         'Dim ignoreCancel As Boolean = False
@@ -433,11 +462,11 @@ Public Class FrmTravel_Detail2
         'e.Cancel = Not ignoreCancel
         ''Me.Close()
     End Sub
-    'Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+    'Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
     '    Dim Total As Double = 0
-    '    For i As Integer = 0 To GridView1.RowCount - 1
-    '        If Not GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value Then
-    '            Total = Total + GridView1.GetRowCellValue(i, "Amount")
+    '    For i As Integer = 0 To GridView2.RowCount - 1
+    '        If Not GridView2.GetRowCellValue(i, "Amount") Is DBNull.Value Then
+    '            Total = Total + GridView2.GetRowCellValue(i, "Amount")
     '        End If
     '    Next
     '    ''TxtTotal.Text = Format(Total, gs_FormatBulat)
@@ -445,9 +474,9 @@ Public Class FrmTravel_Detail2
 
     Private Sub FrmTravel_Detail2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
-            GridView1.AddNewRow()
-            GridView1.OptionsNavigation.AutoFocusNewRow = True
-            GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+            GridView2.AddNewRow()
+            GridView2.OptionsNavigation.AutoFocusNewRow = True
+            GridView2.FocusedColumn = GridView2.VisibleColumns(0)
 
         End If
     End Sub
@@ -483,26 +512,26 @@ Public Class FrmTravel_Detail2
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-        Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+    Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
         Dim _totalidr1 As Decimal = 0
         Dim _totalusd1 As Decimal = 0
         Dim _totalyen1 As Decimal = 0
         Dim _totalidr2 As Decimal = 0
         Try
-            For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    If GridView1.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
-                        ' _totalidr2 = _totalidr2 + (Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount")) * Convert.ToDecimal(GridView1.GetRowCellValue(i, "Rate")))
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If Not IsDBNull(GridView2.GetRowCellValue(i, "Amount")) Then
+                    If GridView2.GetRowCellValue(i, "CuryID") = "IDR" Then
+                        _totalidr1 = _totalidr1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
+                        ' _totalidr2 = _totalidr2 + (Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount")) * Convert.ToDecimal(GridView2.GetRowCellValue(i, "Rate")))
 
                     End If
-                    If GridView1.GetRowCellValue(i, "CuryID") = "USD" Then
-                        _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    If GridView2.GetRowCellValue(i, "CuryID") = "USD" Then
+                        _totalusd1 = _totalusd1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
                     End If
-                    If GridView1.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        _totalYEN1 = _totalYEN1 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                    If GridView2.GetRowCellValue(i, "CuryID") = "YEN" Then
+                        _totalyen1 = _totalyen1 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "Amount"))
                     End If
-                    _totalidr2 = _totalidr2 + Convert.ToDecimal(GridView1.GetRowCellValue(i, "AmountIDR"))
+                    _totalidr2 = _totalidr2 + Convert.ToDecimal(GridView2.GetRowCellValue(i, "AmountIDR"))
                 End If
             Next
             ''Return _totalidr1
@@ -522,18 +551,24 @@ Public Class FrmTravel_Detail2
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
 
-        Dim jumlah As Double = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount")
-        Dim vrate As Single = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate")
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "AmountIDR", jumlah * vrate)
+        Dim jumlah As Double = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Amount")
+        Dim vrate As Single = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Rate")
+        GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "AmountIDR", jumlah * vrate)
     End Sub
     Private Sub Grate_EditValueChanged(sender As Object, e As EventArgs) Handles Grate.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        Dim jumlah As Double = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount")
-        Dim vrate As Single = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate")
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "AmountIDR", jumlah * vrate)
+
+        Dim jumlah As Double = 0
+
+        ''Dim jumlah As Double = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Amount")
+
+        jumlah = IIf(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Amount") Is DBNull.Value, "0", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Amount"))
+
+        Dim vrate As Single = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Rate")
+        GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "AmountIDR", jumlah * vrate)
     End Sub
     Private Sub IDRAmt_EditValueChanged(sender As Object, e As EventArgs) Handles IDRAmt.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
@@ -542,7 +577,10 @@ Public Class FrmTravel_Detail2
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub TxtDep_EditValueChanged(sender As Object, e As EventArgs) Handles TxtDep.EditValueChanged
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        GridView2.AddNewRow()
+        GridView2.OptionsNavigation.AutoFocusNewRow = True
+        GridView2.FocusedColumn = GridView2.VisibleColumns(0)
 
     End Sub
 End Class

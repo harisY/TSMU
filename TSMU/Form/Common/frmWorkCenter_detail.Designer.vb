@@ -26,18 +26,18 @@ Partial Class frmWorkCenter_detail
         Me.TxtDesc = New DevExpress.XtraEditors.TextEdit()
         Me.TxtID = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -58,7 +58,6 @@ Partial Class frmWorkCenter_detail
         Me.TxtDesc.Location = New System.Drawing.Point(68, 36)
         Me.TxtDesc.Name = "TxtDesc"
         Me.TxtDesc.Size = New System.Drawing.Size(147, 20)
-        Me.TxtDesc.StyleController = Me.LayoutControl1
         Me.TxtDesc.TabIndex = 5
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
         ConditionValidationRule1.ErrorText = "Description tidak boleh kosong"
@@ -70,7 +69,6 @@ Partial Class frmWorkCenter_detail
         Me.TxtID.Location = New System.Drawing.Point(68, 12)
         Me.TxtID.Name = "TxtID"
         Me.TxtID.Size = New System.Drawing.Size(147, 20)
-        Me.TxtID.StyleController = Me.LayoutControl1
         Me.TxtID.TabIndex = 4
         ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
         ConditionValidationRule2.ErrorText = "ID tidak boleh kosong"
@@ -82,19 +80,9 @@ Partial Class frmWorkCenter_detail
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(450, 394)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.TxtID
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(207, 24)
-        Me.LayoutControlItem1.Text = "ID"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(53, 13)
         '
         'EmptySpaceItem1
         '
@@ -113,6 +101,15 @@ Partial Class frmWorkCenter_detail
         Me.LayoutControlItem2.Text = "Description"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(53, 13)
         '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.TxtID
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(207, 24)
+        Me.LayoutControlItem1.Text = "ID"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(53, 13)
+        '
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
@@ -129,9 +126,9 @@ Partial Class frmWorkCenter_detail
         CType(Me.TxtDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
