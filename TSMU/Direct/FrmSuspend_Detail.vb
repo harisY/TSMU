@@ -79,6 +79,7 @@ Public Class FrmSuspend_Detail
         '    TxtAmountReq.Enabled = False
         'End If
     End Sub
+
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then

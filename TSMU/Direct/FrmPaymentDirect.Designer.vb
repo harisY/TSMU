@@ -40,9 +40,11 @@ Partial Class FrmPaymentDirect
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
@@ -53,7 +55,9 @@ Partial Class FrmPaymentDirect
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,6 +108,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.EditRek = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -124,12 +130,16 @@ Partial Class FrmPaymentDirect
         Me.Panel1.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposPresesSettle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -144,6 +154,7 @@ Partial Class FrmPaymentDirect
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EditRek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -312,7 +323,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl2.Location = New System.Drawing.Point(0, 25)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemButtonEdit3, Me.RepositoryItemButtonEdit4})
         Me.GridControl2.Size = New System.Drawing.Size(849, 273)
         Me.GridControl2.TabIndex = 1
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
@@ -337,10 +348,17 @@ Partial Class FrmPaymentDirect
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Advance No."
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemButtonEdit4
         Me.GridColumn9.FieldName = "SuspendID"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
+        '
+        'RepositoryItemButtonEdit4
+        '
+        Me.RepositoryItemButtonEdit4.AutoHeight = False
+        Me.RepositoryItemButtonEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit4.Name = "RepositoryItemButtonEdit4"
         '
         'GridColumn10
         '
@@ -361,10 +379,17 @@ Partial Class FrmPaymentDirect
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Rekening"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemButtonEdit3
         Me.GridColumn12.FieldName = "AcctID"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 4
+        '
+        'RepositoryItemButtonEdit3
+        '
+        Me.RepositoryItemButtonEdit3.AutoHeight = False
+        Me.RepositoryItemButtonEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit3.Name = "RepositoryItemButtonEdit3"
         '
         'GridColumn13
         '
@@ -429,7 +454,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl3.Location = New System.Drawing.Point(0, 25)
         Me.GridControl3.MainView = Me.GridView3
         Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ReposPresesSettle})
+        Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ReposPresesSettle, Me.RepositoryItemButtonEdit5, Me.RepositoryItemButtonEdit6})
         Me.GridControl3.Size = New System.Drawing.Size(849, 273)
         Me.GridControl3.TabIndex = 2
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
@@ -452,18 +477,32 @@ Partial Class FrmPaymentDirect
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Settle No."
+        Me.GridColumn15.ColumnEdit = Me.RepositoryItemButtonEdit5
         Me.GridColumn15.FieldName = "SettleID"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 1
         '
+        'RepositoryItemButtonEdit5
+        '
+        Me.RepositoryItemButtonEdit5.AutoHeight = False
+        Me.RepositoryItemButtonEdit5.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit5.Name = "RepositoryItemButtonEdit5"
+        '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Advance No."
+        Me.GridColumn16.ColumnEdit = Me.RepositoryItemButtonEdit6
         Me.GridColumn16.FieldName = "SuspendID"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 2
+        '
+        'RepositoryItemButtonEdit6
+        '
+        Me.RepositoryItemButtonEdit6.AutoHeight = False
+        Me.RepositoryItemButtonEdit6.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit6.Name = "RepositoryItemButtonEdit6"
         '
         'GridColumn17
         '
@@ -783,7 +822,7 @@ Partial Class FrmPaymentDirect
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn44})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -871,6 +910,20 @@ Partial Class FrmPaymentDirect
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
         '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Edit"
+        Me.GridColumn44.ColumnEdit = Me.EditRek
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 8
+        '
+        'EditRek
+        '
+        Me.EditRek.AutoHeight = False
+        Me.EditRek.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.EditRek.Name = "EditRek"
+        '
         'GridControl1
         '
         Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -878,7 +931,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl1.Location = New System.Drawing.Point(9, 96)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek})
         Me.GridControl1.Size = New System.Drawing.Size(860, 281)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -914,6 +967,8 @@ Partial Class FrmPaymentDirect
         Me.Panel1.PerformLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
@@ -922,6 +977,8 @@ Partial Class FrmPaymentDirect
         Me.Panel2.PerformLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposPresesSettle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
@@ -939,6 +996,7 @@ Partial Class FrmPaymentDirect
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EditRek, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1029,4 +1087,10 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents ToolStrip4 As ToolStrip
     Friend WithEvents btnadd_e As ToolStripButton
+    Friend WithEvents RepositoryItemButtonEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemButtonEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemButtonEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemButtonEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents EditRek As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

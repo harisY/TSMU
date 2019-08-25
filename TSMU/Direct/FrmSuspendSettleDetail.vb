@@ -37,7 +37,6 @@ Public Class FrmSuspendSettleDetail
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,

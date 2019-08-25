@@ -462,9 +462,9 @@ Public Class payment_header_models
                                 ,BankName
                                 ,CuryID
                                 ,VendorName
-                                ,(Total_DPP_PPN-PPh)-cm_dm-Biaya_Transfer as PaidAmount
+                                ,(Total_DPP_PPN-PPh)+pph+pph-cm_dm-Biaya_Transfer as PaidAmount
                                 , cek1 as Level1, cek2 as Level2, cek3 as Level3, cek4 as Direktur 
-                            FROM payment_header1 "
+                            FROM payment_header1"
         Try
             '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
             If Level = 1 Then

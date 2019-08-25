@@ -194,7 +194,75 @@ Public Class FrmEntertainSettleDetail
         End Try
         Return lb_Validated
     End Function
-    Public Overrides Sub Proc_SaveData()
+
+    Private Sub getdataview2()
+        Try
+            Dim IsEmpty As Boolean = False
+            For i As Integer = 0 To GridView2.RowCount - 1
+                GridView2.MoveFirst()
+                If GridView2.GetRowCellValue(i, GridView2.Columns("Nama")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("Posisi")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("Perusahaan")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("JenisUsaha")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("Remark")).ToString = "" Then
+                    IsEmpty = True
+                    GridView2.DeleteRow(i)
+                End If
+            Next
+            'If IsEmpty Then
+            '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
+            'End If
+
+            If isUpdate = False Then
+                ObjEntertainHeader.ObjDetails.Clear()
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
+                        ObjEntertainDetail = New EntertainDetailModel
+                        With ObjEntertainDetail
+                            .SettleID = _SettleID
+                            .Nama = GridView2.GetRowCellValue(i, "Nama")
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
+
+                        End With
+                        ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
+                    End If
+                Next
+                ObjEntertainHeader.InsertDataRelasi()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+
+
+                ObjEntertainHeader.ObjDetails.Clear()
+                For i As Integer = 0 To GridView2.RowCount - 1
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
+                        ObjEntertainDetail = New EntertainDetailModel
+                        With ObjEntertainDetail
+                            .SettleID = _SettleID
+                            .Nama = GridView2.GetRowCellValue(i, "Nama")
+                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                            .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
+                        End With
+                        ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
+                    End If
+                Next
+                ObjEntertainHeader.UpdateDataRelasi()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            End If
+            GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
+            IsClosed = True
+            Me.Hide()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub getdataview1()
         Try
             If TxtTotExpense.Text = "0" Then
                 MessageBox.Show("Silahkan Isi Amount !")
@@ -261,6 +329,12 @@ Public Class FrmEntertainSettleDetail
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
+    End Sub
+
+    Public Overrides Sub Proc_SaveData()
+        getdataview1()
+        getdataview2()
     End Sub
 
     Private Sub Grid_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles Grid.ProcessGridKey

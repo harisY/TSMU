@@ -39,6 +39,29 @@
         End Try
     End Function
 
+    Public Function GetPaymentByVoucherNoApprove() As DataTable
+        Try
+            Dim sql As String = "SELECT RTRIM([No_Invoice]) InvcNbr
+                      ,[Tgl_Invoice] InvcDate
+                      ,RTRIM([No_Faktur]) fp
+                      ,[CuryID] CuryId
+                      ,[Dpp] DPP
+                      ,[Ppn]
+                      ,Dpp+Ppn as Total
+                      ,[Pph] PPH
+                      ,(Dpp+Ppn)-Pph as Paid
+                      ,[cek1] [Check]
+                      ,[cek4]
+                  FROM [Payment_Detail1] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Function GetVendor() As DataTable
         Try
             Dim sql As String = "SELECT 
