@@ -64,19 +64,33 @@ Public Class FrmLookUpBarcode
                         Username = "Nunik"
                     End If
                 End If
+
             End If
             If TxtKodePart.Text = "" OrElse CmbBulan.Text = "" OrElse TxtFrom.Text = "" OrElse TxtTo.Text = "" Then
                 Throw New Exception("Silahkan lengkapi data")
             ElseIf TxtFrom.Text = "0" OrElse TxtTo.Text = "0" Then
                 TxtFrom.Focus()
+                TxtFrom.SelectAll()
                 Throw New Exception("No Passcard From/To tidak boleh '0'")
             ElseIf Val(TxtFrom.Text) > Val(TxtTo.Text) Then
                 TxtFrom.Focus()
+                TxtFrom.SelectAll()
                 Throw New Exception("No Passcard From tidak boleh lebih besar dari To")
             ElseIf Val(TxtFrom.Text) <= txtNo.Text Then
                 TxtFrom.Focus()
+                TxtFrom.SelectAll()
                 Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
+
+            If gh_Common.Site.ToLower = "tng" Then
+
+                If TxtFrom.Text < "7" Then
+                    TxtFrom.Focus()
+                    TxtFrom.SelectAll()
+                    Throw New Exception("No Passcard From harus di mulai dari angka '7'")
+                End If
+            End If
+
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
             If gh_Common.Site.ToLower = "tng" Then
@@ -181,4 +195,5 @@ Public Class FrmLookUpBarcode
     Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged
         txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
     End Sub
+
 End Class
