@@ -455,26 +455,74 @@ Public Class payment_header_models
     End Function
 
     Public Function GetDataGridApproveByBank(ByVal Level As Integer, BankID As String) As DataTable
-        Dim sql As String = "SELECT 
-                                id
-                                ,vrno as VoucherNo
-                                ,tgl Tanggal
-                                ,BankName
-                                ,CuryID
-                                ,VendorName
-                                ,(Total_DPP_PPN-PPh)+pph-pph-cm_dm-Biaya_Transfer as PaidAmount
-                                , cek1 as Level1, cek2 as Level2, cek3 as Level3, cek4 as Direktur 
-                            FROM payment_header1"
+        Dim sql As String = "	
+	SELECT 
+                                payment_header1.id
+                                ,payment_header1.vrno as VoucherNo
+                                ,payment_header1.tgl Tanggal
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-payment_header1.cm_dm-payment_header1.Biaya_Transfer as PaidAmount
+                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_header1.cek3 as Level3, payment_header1.cek4 as Direktur 
+                            FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno 
+							 
+							 					
+"
         Try
             '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
             If Level = 1 Then
-                sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 2 Then
-                sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND cek1 ='1' AND cek2='0' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='0' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 3 Then
-                sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND cek1 ='1' AND cek2='1' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             Else
-                sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND cek1 ='1' AND cek2='1' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek4='0' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             End If
 
             Dim dt As DataTable = New DataTable
