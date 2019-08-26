@@ -210,107 +210,107 @@ Public Class FrmEntertainSettleDetailDirect
         Return lb_Validated
     End Function
     Public Overrides Sub Proc_SaveData()
-        ''getdataview1()
-        ''getdataview2()
+        getdataview1()
+        getdataview2()
 
-        Try
-            Dim IsEmpty As Boolean = False
-            For i As Integer = 0 To GridView1.RowCount - 1
-                GridView1.MoveFirst()
-                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
-                    IsEmpty = True
-                    GridView1.DeleteRow(i)
-                End If
-            Next
-            'If IsEmpty Then
-            '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
-            'End If
+        'Try
+        '    Dim IsEmpty As Boolean = False
+        '    For i As Integer = 0 To GridView1.RowCount - 1
+        '        GridView1.MoveFirst()
+        '        If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+        '           GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+        '           GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
+        '            IsEmpty = True
+        '            GridView1.DeleteRow(i)
+        '        End If
+        '    Next
+        '    'If IsEmpty Then
+        '    '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
+        '    'End If
 
-            If isUpdate = False Then
-                ObjSettle.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .SettleID = _SettleID
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                            .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
-                            .Nama = GridView1.GetRowCellValue(i, "Nama")
-                            .Tempat = GridView1.GetRowCellValue(i, "Tempat")
-                            .Alamat = GridView1.GetRowCellValue(i, "Alamat")
-                            .Jenis = GridView1.GetRowCellValue(i, "Jenis")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
+        '    If isUpdate = False Then
+        '        ObjSettle.ObjDetails.Clear()
+        '        For i As Integer = 0 To GridView1.RowCount - 1
+        '            If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .SettleID = _SettleID
+        '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+        '                    .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+        '                    .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+        '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+        '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+        '                    .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+        '                    .Nama = GridView1.GetRowCellValue(i, "Nama")
+        '                    .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+        '                    .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+        '                    .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
 
-                For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "NamaRelasi").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
-                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
-                            .Nota = GridView2.GetRowCellValue(i, "Nota")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
+        '        For i As Integer = 0 To GridView2.RowCount - 1
+        '            If GridView2.GetRowCellValue(i, "NamaRelasi").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+        '                    .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+        '                    .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+        '                    .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+        '                    .Nota = GridView2.GetRowCellValue(i, "Nota")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
 
-                ObjSettle.InsertDataEntSettle()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Else
-                ObjSettle.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .SettleID = TxtNoSettlement.Text
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                            .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
-                            .Nama = GridView1.GetRowCellValue(i, "Nama")
-                            .Tempat = GridView1.GetRowCellValue(i, "Tempat")
-                            .Alamat = GridView1.GetRowCellValue(i, "Alamat")
-                            .Jenis = GridView1.GetRowCellValue(i, "Jenis")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
+        '        ObjSettle.InsertDataEntSettle()
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    Else
+        '        ObjSettle.ObjDetails.Clear()
+        '        For i As Integer = 0 To GridView1.RowCount - 1
+        '            If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .SettleID = TxtNoSettlement.Text
+        '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+        '                    .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+        '                    .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+        '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+        '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+        '                    .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+        '                    .Nama = GridView1.GetRowCellValue(i, "Nama")
+        '                    .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+        '                    .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+        '                    .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
 
-                For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "NameRelasi").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
-                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
-                            .Nota = GridView2.GetRowCellValue(i, "Nota")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
-                ObjSettle.UpdateData(TxtNoSettlement.Text)
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            End If
-            GridDtl.DataSource = ObjSettle.GetDataGrid()
-            IsClosed = True
-            Me.Hide()
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+        '        For i As Integer = 0 To GridView2.RowCount - 1
+        '            If GridView2.GetRowCellValue(i, "NameRelasi").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+        '                    .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+        '                    .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+        '                    .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+        '                    .Nota = GridView2.GetRowCellValue(i, "Nota")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
+        '        ObjSettle.UpdateData(TxtNoSettlement.Text)
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    End If
+        '    GridDtl.DataSource = ObjSettle.GetDataGrid()
+        '    IsClosed = True
+        '    Me.Hide()
+        'Catch ex As Exception
+        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
 
     End Sub
 
@@ -352,19 +352,19 @@ Public Class FrmEntertainSettleDetailDirect
                     End If
                 Next
 
-                For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
-                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
-                            .Nota = GridView2.GetRowCellValue(i, "Nota")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
+                'For i As Integer = 0 To GridView2.RowCount - 1
+                '    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
+                '        ObjSettleDetail = New SettleDetail
+                '        With ObjSettleDetail
+                '            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                '            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                '            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                '            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                '            .Nota = GridView2.GetRowCellValue(i, "Nota")
+                '        End With
+                '        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                '    End If
+                'Next
 
                 ObjSettle.InsertDataEntSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -390,19 +390,19 @@ Public Class FrmEntertainSettleDetailDirect
                     End If
                 Next
 
-                For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
-                        ObjSettleDetail = New SettleDetail
-                        With ObjSettleDetail
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
-                            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
-                            .Nota = GridView2.GetRowCellValue(i, "Nota")
-                        End With
-                        ObjSettle.ObjDetails.Add(ObjSettleDetail)
-                    End If
-                Next
+                'For i As Integer = 0 To GridView2.RowCount - 1
+                '    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
+                '        ObjSettleDetail = New SettleDetail
+                '        With ObjSettleDetail
+                '            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                '            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                '            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                '            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                '            .Nota = GridView2.GetRowCellValue(i, "Nota")
+                '        End With
+                '        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                '    End If
+                'Next
                 ObjSettle.UpdateData(TxtNoSettlement.Text)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
@@ -421,11 +421,11 @@ Public Class FrmEntertainSettleDetailDirect
             Dim IsEmpty As Boolean = False
             For i As Integer = 0 To GridView2.RowCount - 1
                 GridView2.MoveFirst()
-                If GridView2.GetRowCellValue(i, GridView2.Columns("NamaRelasi")).ToString = "" OrElse
+                If GridView2.GetRowCellValue(i, GridView2.Columns("Nama")).ToString = "" OrElse
                     GridView2.GetRowCellValue(i, GridView2.Columns("Posisi")).ToString = "" OrElse
-                    GridView2.GetRowCellValue(i, GridView2.Columns("Relasi")).ToString = "" OrElse
-                    GridView2.GetRowCellValue(i, GridView2.Columns("JenisRelasi")).ToString = "" OrElse
-                    GridView2.GetRowCellValue(i, GridView2.Columns("Nota")).ToString = "" Then
+                    GridView2.GetRowCellValue(i, GridView2.Columns("Perusahaan")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("JenisUsaha")).ToString = "" OrElse
+                    GridView2.GetRowCellValue(i, GridView2.Columns("Remark")).ToString = "" Then
                     IsEmpty = True
                     GridView2.DeleteRow(i)
                 End If
@@ -437,15 +437,15 @@ Public Class FrmEntertainSettleDetailDirect
             If isUpdate = False Then
                 ObjEntertainHeader.ObjDetails.Clear()
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "NamaRelasi") <> "" Then
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
                             .SettleID = _SettleID
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi").ToString().TrimEnd
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi").ToString()
-                            .Nota = GridView2.GetRowCellValue(i, "Nota").ToString()
+                            .Relasi = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Nota = GridView2.GetRowCellValue(i, "Remark").ToString()
 
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
@@ -458,15 +458,15 @@ Public Class FrmEntertainSettleDetailDirect
 
                 ObjEntertainHeader.ObjDetails.Clear()
                 For i As Integer = 0 To GridView2.RowCount - 1
-                    If GridView2.GetRowCellValue(i, "NamaRelasi") <> "" Then
+                    If GridView2.GetRowCellValue(i, "Nama") <> "" Then
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
                             .SettleID = _SettleID
-                            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
-                            .Relasi = GridView2.GetRowCellValue(i, "Relasi").ToString().TrimEnd
-                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi").ToString()
-                            .Nota = GridView2.GetRowCellValue(i, "Nota").ToString()
+                            .Relasi = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
+                            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
+                            .Nota = GridView2.GetRowCellValue(i, "Remark").ToString()
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If

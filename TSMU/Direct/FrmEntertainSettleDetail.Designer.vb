@@ -495,7 +495,7 @@ Partial Class FrmEntertainSettleDetail
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Nama Relasi"
-        Me.GridColumn11.FieldName = "NamaRelasi"
+        Me.GridColumn11.FieldName = "Nama"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
@@ -510,27 +510,27 @@ Partial Class FrmEntertainSettleDetail
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Relasi"
-        Me.GridColumn13.FieldName = "Relasi"
+        Me.GridColumn13.Caption = "Perusahaan"
+        Me.GridColumn13.FieldName = "Perusahaan"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "Jenis Relasi"
-        Me.GridColumn14.FieldName = "JenisRelasi"
+        Me.GridColumn14.Caption = "Jenis Usaha"
+        Me.GridColumn14.FieldName = "JenisUsaha"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.VisibleIndex = 3
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Nota"
-        Me.GridColumn7.FieldName = "Nota"
+        Me.GridColumn7.Caption = "Remark"
+        Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.VisibleIndex = 4
         '
         'RepositoryItemSpinEdit2
         '
