@@ -91,6 +91,8 @@ Public Class FrmLookUpBarcode
                 End If
             End If
 
+
+
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
             If gh_Common.Site.ToLower = "tng" Then
