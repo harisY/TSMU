@@ -84,6 +84,7 @@ Public Class FrmEntertain_Detail
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call CreateTable()
         Call InitialSetForm()
+        'remark
 
     End Sub
     Public Overrides Sub InitialSetForm()
