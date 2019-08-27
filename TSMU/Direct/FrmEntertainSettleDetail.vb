@@ -25,6 +25,7 @@ Public Class FrmEntertainSettleDetail
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
+    Dim DtScan1 As DataTable
 
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
@@ -53,6 +54,28 @@ Public Class FrmEntertainSettleDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+    End Sub
+
+    Private Sub CreateTable()
+        DtScan = New DataTable
+        DtScan.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(String)),
+                                                            New DataColumn("SubAccount", GetType(String)),
+                                                            New DataColumn("Account", GetType(String)),
+                                                            New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Amount", GetType(String)),
+                                                            New DataColumn("ActualAmount", GetType(Double))})
+        Grid.DataSource = DtScan
+        GridView1.OptionsView.ShowAutoFilterRow = False
+
+        DtScan1 = New DataTable
+        DtScan1.Columns.AddRange(New DataColumn(4) {New DataColumn("Nama", GetType(String)),
+                                                           New DataColumn("Posisi", GetType(String)),
+                                                           New DataColumn("Perusahaan", GetType(String)),
+                                                           New DataColumn("JenisUsaha", GetType(String)),
+                                                           New DataColumn("Remark", GetType(String))})
+        GridControl1.DataSource = DtScan1
+        GridView2.OptionsView.ShowAutoFilterRow = False
+
     End Sub
 
     Private Sub FrmEntertainSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -230,7 +253,7 @@ Public Class FrmEntertainSettleDetail
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
                 Next
-                ObjEntertainHeader.InsertDataRelasi()
+                ObjEntertainHeader.InsertRelasiSettleEnt()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
 
@@ -554,6 +577,9 @@ Public Class FrmEntertainSettleDetail
             GridView1.AddNewRow()
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+            GridView2.AddNewRow()
+            GridView2.OptionsNavigation.AutoFocusNewRow = True
+            GridView2.FocusedColumn = GridView2.VisibleColumns(0)
         End If
     End Sub
 

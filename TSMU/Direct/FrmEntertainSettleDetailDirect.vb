@@ -79,11 +79,11 @@ Public Class FrmEntertainSettleDetailDirect
         GridView1.OptionsView.ShowAutoFilterRow = False
 
         DtScan1 = New DataTable
-        DtScan1.Columns.AddRange(New DataColumn(4) {New DataColumn("NamaRelasi", GetType(String)),
+        DtScan1.Columns.AddRange(New DataColumn(4) {New DataColumn("Nama", GetType(String)),
                                                            New DataColumn("Posisi", GetType(String)),
-                                                           New DataColumn("Relasi", GetType(String)),
-                                                           New DataColumn("JenisRelasi", GetType(String)),
-                                                           New DataColumn("Nota", GetType(String))})
+                                                           New DataColumn("Perusahaan", GetType(String)),
+                                                           New DataColumn("JenisUsaha", GetType(String)),
+                                                           New DataColumn("Remark", GetType(String))})
         GridControl1.DataSource = DtScan1
         GridView2.OptionsView.ShowAutoFilterRow = False
 
@@ -152,11 +152,12 @@ Public Class FrmEntertainSettleDetailDirect
                 With ObjSettle
                     TxtCurrency.Text = .CuryID
                     TxtNoSettlement.Text = .SettleID
-                    TxtDep.Text = .DeptID
+                    TxtDep.Text = gh_Common.GroupID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
+                    TxtPrNo.Text = .PRNo
                 End With
             Else
                 TxtCurrency.Text = "IDR"
@@ -188,12 +189,13 @@ Public Class FrmEntertainSettleDetailDirect
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    '.Status = TxtStatus.Text
+                    .Status = TxtStatus.Text
                     .SettleID = .SettleAutoNoEnt
                     _SettleID = ObjSettle.SettleAutoNoEnt
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
+                    .PRNo = TxtPrNo.Text
 
                     'If isUpdate = False Then
                     '    .ValidateInsert()
@@ -366,7 +368,7 @@ Public Class FrmEntertainSettleDetailDirect
                 '    End If
                 'Next
 
-                ObjSettle.InsertDataEntSettle()
+                ObjSettle.InsertHeaderEntDirectSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()

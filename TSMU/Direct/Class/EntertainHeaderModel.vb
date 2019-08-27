@@ -25,7 +25,25 @@ Public Class EntertainHeaderModel
     Public Property Remark As String
     Public Property AmountReq As String
     Public Property CirculationNo As String
+    Public Property SettleID As String
     Public Property ObjDetails() As New Collection(Of EntertainDetailModel)
+
+    Public Sub InsertRelasiSettleEnt()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO Settle_Relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Perusahaan) & ", " & vbCrLf &
+            "       " & QVal(JenisUsaha) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
@@ -412,6 +430,23 @@ Public Class EntertainDetailModel
     Public Property Nota As String
     Public Property NamaRelasi As String
 
+
+    Public Sub InsertRelasiSettleEnt()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO Settle_Relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Perusahaan) & ", " & vbCrLf &
+            "       " & QVal(JenisUSaha) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -449,6 +484,9 @@ Public Class EntertainDetailModel
             Throw
         End Try
     End Sub
+
+
+
 
     Public Sub InsertRelasiSettle()
         Try

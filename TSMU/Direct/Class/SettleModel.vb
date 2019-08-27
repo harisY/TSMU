@@ -505,6 +505,27 @@ group by settle_header.ID
         End Try
 
     End Sub
+
+
+    Public Sub InsertHeaderEntDirectSettle()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            "       'Close', " & vbCrLf &
+            "       " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+
     Public Sub UpdateHeader(ByVal _SettleID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &

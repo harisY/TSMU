@@ -57,7 +57,6 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepostNR = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,6 +66,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RepostNR = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -97,13 +97,13 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -307,6 +307,8 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         Me.GridColumn1.Caption = "Date"
         Me.GridColumn1.ColumnEdit = Me.ReposDate
+        Me.GridColumn1.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.GridColumn1.FieldName = "Tgl"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
@@ -440,15 +442,10 @@ Partial Class FrmEntertainSettleDetailDirect
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Nama Relasi"
-        Me.GridColumn11.FieldName = "NamaRelasi"
+        Me.GridColumn11.FieldName = "Nama"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
-        '
-        'RepostNR
-        '
-        Me.RepostNR.AutoHeight = False
-        Me.RepostNR.Name = "RepostNR"
         '
         'GridColumn12
         '
@@ -460,24 +457,24 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Relasi"
-        Me.GridColumn13.FieldName = "Relasi"
+        Me.GridColumn13.Caption = "Perusahaan"
+        Me.GridColumn13.FieldName = "Perusahaan"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "Jenis Relasi"
-        Me.GridColumn14.FieldName = "JenisRelasi"
+        Me.GridColumn14.Caption = "Jenis Usaha"
+        Me.GridColumn14.FieldName = "JenisUsaha"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 3
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Nota"
-        Me.GridColumn7.FieldName = "Nota"
+        Me.GridColumn7.Caption = "Remark"
+        Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
@@ -517,6 +514,11 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.RepositoryItemSpinEdit1.AutoHeight = False
         Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'RepostNR
+        '
+        Me.RepostNR.AutoHeight = False
+        Me.RepostNR.Name = "RepostNR"
         '
         'DxValidationProvider2
         '
@@ -563,13 +565,13 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
