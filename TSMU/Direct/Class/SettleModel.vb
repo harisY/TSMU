@@ -252,7 +252,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
+where DeptID='" & gh_Common.GroupID & "' and settle_header.settleid like '%ET%' and settle_header.SuspendID is null
 group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
@@ -288,7 +288,7 @@ group by settle_header.ID
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
+where DeptID='" & gh_Common.GroupID & "' and (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
 group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
