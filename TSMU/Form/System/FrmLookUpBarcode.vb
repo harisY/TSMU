@@ -84,7 +84,7 @@ Public Class FrmLookUpBarcode
 
             If gh_Common.Site.ToLower = "tng" Then
 
-                If TxtFrom.Text < "7" Then
+                If TxtFrom.EditValue < "7" Then
                     TxtFrom.Focus()
                     TxtFrom.SelectAll()
                     Throw New Exception("No Passcard From harus di mulai dari angka '7'")
