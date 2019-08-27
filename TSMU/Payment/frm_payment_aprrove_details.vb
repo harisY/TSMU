@@ -409,9 +409,7 @@ Public Class frm_payment_aprrove_details
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Pph", f.PPHDetails)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "NBP", f.NoBuktiPotong)
                 ''_TxtNoBuktiPot.Text = f.NoBuktiPotong
-
                 'GetTot()
-
             End If
 
             ''Else

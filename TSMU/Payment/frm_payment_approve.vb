@@ -182,7 +182,7 @@ Public Class frm_payment_approve
 
     Private Sub LoadGridApprovedReject()
         Try
-            dtGrid3 = ObjPaymentHeader.GetDataGridReject(gh_Common.Level)
+            dtGrid3 = ObjPaymentHeader.GetDataGridReject1(gh_Common.Level)
             GridControl1.DataSource = dtGrid3
             If GridView4.RowCount > 0 Then
                 With GridView4
