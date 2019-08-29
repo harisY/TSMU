@@ -298,7 +298,7 @@ Public Class frm_payment_aprrove_details
                 ElseIf gh_Common.Level = 3 Then
                     ObjPaymentHeader.UpdateCek(3)
                 ElseIf gh_Common.Level = 4 Then
-                    ObjPaymentHeader.UpdateCek(4)
+                    ''ObjPaymentHeader.UpdateCek(4)
                     For i As Integer = 0 To GridView1.RowCount - 1
                         If GridView1.GetRowCellValue(i, "cek4") = False Then
                             With ObjPaymentDetail
@@ -409,9 +409,7 @@ Public Class frm_payment_aprrove_details
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Pph", f.PPHDetails)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "NBP", f.NoBuktiPotong)
                 ''_TxtNoBuktiPot.Text = f.NoBuktiPotong
-
                 'GetTot()
-
             End If
 
             ''Else

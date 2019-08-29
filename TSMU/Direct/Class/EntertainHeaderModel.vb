@@ -14,6 +14,9 @@ Public Class EntertainHeaderModel
     Public Property Description As String
     Public Property DeptID As String
     Public Property Nama As String
+    Public Property NamaRelasi As String
+    Public Property perusahaanrelasi As String
+
     Public Property Tempat As String
     Public Property Alamat As String
     Public Property Jenis As String
@@ -25,13 +28,31 @@ Public Class EntertainHeaderModel
     Public Property Remark As String
     Public Property AmountReq As String
     Public Property CirculationNo As String
+    Public Property SettleID As String
     Public Property ObjDetails() As New Collection(Of EntertainDetailModel)
+
+    Public Sub InsertRelasiSettleEnt()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO SettleRelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Perusahaan) & ", " & vbCrLf &
+            "       " & QVal(JenisUsaha) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header WHERE Tipe = 'E' and status<>'Close'  Order by SuspendID "
+            FROM suspend_header WHERE DeptID='" & gh_Common.GroupID & "' and Tipe = 'E' and status<>'Close'  Order by SuspendID "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -43,7 +64,7 @@ Public Class EntertainHeaderModel
             Dim dt2 As New DataTable
             Dim sql2 As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
-            FROM suspend_header WHERE Tipe = 'E' and status='Approved' Order by SuspendID  "
+            FROM suspend_header WHERE DeptID='" & gh_Common.GroupID & "' and Tipe = 'E' and status='Approved' Order by SuspendID  "
             dt2 = GetDataTable_Solomon(sql2)
             Return dt2
         Catch ex As Exception
@@ -351,6 +372,42 @@ Public Class EntertainHeaderModel
         End Try
     End Sub
 
+    'Public Sub UpdateDataRelasiSettle()
+    '    Try
+    '        Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+    '            Conn1.Open()
+    '            Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+    '                gh_Trans = New InstanceVariables.TransactionHelper
+    '                gh_Trans.Command.Connection = Conn1
+    '                gh_Trans.Command.Transaction = Trans1
+
+    '                Try
+
+    '                    UpdateHeader(SettleID)
+
+    '                    Dim ObjSuspendDetail As New SuspendDetailModel
+    '                    ObjSuspendDetail.DeleteDetail(SuspendID)
+
+    '                    For i As Integer = 0 To ObjDetails.Count - 1
+    '                        With ObjDetails(i)
+    '                            .InsertRelasi()
+    '                        End With
+    '                    Next
+
+    '                    Trans1.Commit()
+    '                Catch ex As Exception
+    '                    Trans1.Rollback()
+    '                    Throw
+    '                Finally
+    '                    MainModul.gh_Trans = Nothing
+    '                End Try
+    '            End Using
+    '        End Using
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+
 End Class
 Public Class EntertainDetailModel
     Public Property AcctID As String
@@ -375,6 +432,23 @@ Public Class EntertainDetailModel
     Public Property JenisRelasi As String
     Public Property Nota As String
     Public Property NamaRelasi As String
+
+
+    Public Sub InsertRelasiSettleEnt()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO Settle_Relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Perusahaan) & ", " & vbCrLf &
+            "       " & QVal(JenisUSaha) & ", " & vbCrLf &
+            "       " & QVal(Remark) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
     Public Sub InsertDetails()
         Try
@@ -414,10 +488,13 @@ Public Class EntertainDetailModel
         End Try
     End Sub
 
+
+
+
     Public Sub InsertRelasiSettle()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO settle_detail (SettleID,NamaRelasi,Posisi,Relasi,JenisRelasi,Nota ) " & vbCrLf &
+            "INSERT INTO settlerelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
             "Values(" & QVal(SettleID) & ", " & vbCrLf &
             "       " & QVal(NamaRelasi) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
