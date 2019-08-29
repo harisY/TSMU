@@ -11,7 +11,7 @@ Public Class FrmEntertainSettle
     Dim ff_Detail1 As FrmEntertainSettleDetailDirect
 
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        bb_SetDisplayChangeConfirmation = False
+        ''bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call LoadGrid2()
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
@@ -112,7 +112,7 @@ Public Class FrmEntertainSettle
         End Try
     End Sub
     Dim ID As String
-    Dim suspendid As String
+    ''Dim suspendid As String
     Private Sub FrmEntertainSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
@@ -136,7 +136,8 @@ Public Class FrmEntertainSettle
         End Try
     End Sub
 
-    Dim suspend1 As String
+    Dim SuspendID As String
+    Dim SettleID As String
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         ''Try
 
@@ -193,25 +194,26 @@ Public Class FrmEntertainSettle
             If info.InRow OrElse info.InRowCell Then
 
                 ID = String.Empty
-                suspendid = String.Empty
-                suspend1 = String.Empty
+                SettleID = String.Empty
+                SuspendID = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
-                        suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
+                        SettleID = GridView1.GetRowCellValue(rowHandle, "SettleID")
+                        ''SuspendID = GridView1.GetRowCellValue(rowHandle, "SuspendID")
+                        SuspendID = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
                     End If
                 Next rowHandle
 
-                If suspend1 = "" Then
+                If SuspendID = "" Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrmDirect(ID, suspendid,
+                    Call CallFrmDirect(ID, SettleID,
                          GridView1.RowCount)
                 Else
                     'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
-                             suspendid,
+                              SuspendID,
                              GridView1.RowCount)
                 End If
             End If

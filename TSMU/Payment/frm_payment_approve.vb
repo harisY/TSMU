@@ -626,6 +626,10 @@ Public Class frm_payment_approve
         gridView.UpdateCurrentRow()
     End Sub
 
+    Private Sub btnLoad_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))

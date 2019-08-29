@@ -58,10 +58,14 @@ Public Class FrmEntertainSettleDetail
 
     Private Sub CreateTable()
         DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(String)),
-                                                            New DataColumn("SubAccount", GetType(String)),
+        DtScan.Columns.AddRange(New DataColumn(9) {New DataColumn("Tgl", GetType(String)),
                                                             New DataColumn("Account", GetType(String)),
+                                                            New DataColumn("SubAccount", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("Nama", GetType(String)),
+                                                            New DataColumn("Tempat", GetType(String)),
+                                                            New DataColumn("Alamat", GetType(String)),
+                                                            New DataColumn("Jenis", GetType(String)),
                                                             New DataColumn("Amount", GetType(String)),
                                                             New DataColumn("ActualAmount", GetType(Double))})
         Grid.DataSource = DtScan
@@ -248,7 +252,6 @@ Public Class FrmEntertainSettleDetail
                             .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
                             .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
                             .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
-
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
@@ -312,17 +315,21 @@ Public Class FrmEntertainSettleDetail
                             ObjSettleDetail = New SettleDetail
                             With ObjSettleDetail
                                 .SettleID = _SettleID
+                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                                 .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                                .Nama = GridView1.GetRowCellValue(i, "Name").ToString()
+                                .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
+                                .Alamat = GridView1.GetRowCellValue(i, "Alamat").ToString()
+                                .Jenis = GridView1.GetRowCellValue(i, "Jenis").ToString()
                                 .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
                                 .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
-                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
                             End With
                             ObjSettle.ObjDetails.Add(ObjSettleDetail)
                         End If
                     Next
-                    ObjSettle.InsertData()
+                    ObjSettle.InsertDataEntSettle()
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 Else
                     ObjSettle.ObjDetails.Clear()
@@ -330,13 +337,17 @@ Public Class FrmEntertainSettleDetail
                         If GridView1.GetRowCellValue(i, "ActualAmount").ToString <> "" Then
                             ObjSettleDetail = New SettleDetail
                             With ObjSettleDetail
-                                .SettleID = TxtNoSettlement.Text
+                                .SettleID = _SettleID
+                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                                 .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                                .Nama = GridView1.GetRowCellValue(i, "Name").ToString()
+                                .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
+                                .Alamat = GridView1.GetRowCellValue(i, "Alamat").ToString()
+                                .Jenis = GridView1.GetRowCellValue(i, "Jenis").ToString()
                                 .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
                                 .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
-                                .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                                .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                                .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
                             End With
                             ObjSettle.ObjDetails.Add(ObjSettleDetail)
                         End If

@@ -20,7 +20,7 @@ Partial Class FrmEntertainSettleDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtNoSettlement = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotExpense = New DevExpress.XtraEditors.TextEdit()
@@ -70,6 +70,10 @@ Partial Class FrmEntertainSettleDetail
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,10 +227,10 @@ Partial Class FrmEntertainSettleDetail
         Me.TxtNoSuspend.Size = New System.Drawing.Size(177, 20)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Suspend cannot be empty !"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoSuspend, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Suspend cannot be empty !"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoSuspend, ConditionValidationRule1)
         '
         'txtNoPR
         '
@@ -370,7 +374,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._account, Me._subaccount, Me._description, Me._subtotal, Me.GridColumn2})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me._subtotal, Me.GridColumn2})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -384,7 +388,7 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 150
+        Me.GridColumn1.Width = 47
         '
         'ReposDate
         '
@@ -406,8 +410,8 @@ Partial Class FrmEntertainSettleDetail
         Me._account.Name = "_account"
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
-        Me._account.VisibleIndex = 1
-        Me._account.Width = 100
+        Me._account.VisibleIndex = 2
+        Me._account.Width = 57
         '
         '_subaccount
         '
@@ -417,8 +421,8 @@ Partial Class FrmEntertainSettleDetail
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 2
-        Me._subaccount.Width = 100
+        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.Width = 69
         '
         '_description
         '
@@ -427,20 +431,20 @@ Partial Class FrmEntertainSettleDetail
         Me._description.Name = "_description"
         Me._description.Visible = True
         Me._description.VisibleIndex = 3
-        Me._description.Width = 250
+        Me._description.Width = 69
         '
         '_subtotal
         '
         Me._subtotal.Caption = "Amount"
         Me._subtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._subtotal.FieldName = "Amount"
+        Me._subtotal.FieldName = "SuspendAmount"
         Me._subtotal.Name = "_subtotal"
         Me._subtotal.OptionsColumn.AllowEdit = False
         Me._subtotal.OptionsColumn.FixedWidth = True
         Me._subtotal.OptionsColumn.ReadOnly = True
         Me._subtotal.Visible = True
-        Me._subtotal.VisibleIndex = 4
-        Me._subtotal.Width = 100
+        Me._subtotal.VisibleIndex = 8
+        Me._subtotal.Width = 65
         '
         'GridColumn2
         '
@@ -450,7 +454,7 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.VisibleIndex = 9
         Me.GridColumn2.Width = 100
         '
         'ReposActual
@@ -570,6 +574,42 @@ Partial Class FrmEntertainSettleDetail
         Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Nama"
+        Me.GridColumn3.FieldName = "Nama"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 66
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Tempat"
+        Me.GridColumn4.FieldName = "Tempat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.Width = 66
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Alamat"
+        Me.GridColumn5.FieldName = "Alamat"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.Width = 66
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Jenis"
+        Me.GridColumn6.FieldName = "Jenis"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 87
+        '
         'FrmEntertainSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -677,4 +717,8 @@ Partial Class FrmEntertainSettleDetail
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -14,6 +14,9 @@ Public Class EntertainHeaderModel
     Public Property Description As String
     Public Property DeptID As String
     Public Property Nama As String
+    Public Property NamaRelasi As String
+    Public Property perusahaanrelasi As String
+
     Public Property Tempat As String
     Public Property Alamat As String
     Public Property Jenis As String
@@ -31,7 +34,7 @@ Public Class EntertainHeaderModel
     Public Sub InsertRelasiSettleEnt()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO Settle_Relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "INSERT INTO SettleRelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
             "Values(" & QVal(SettleID) & ", " & vbCrLf &
             "       " & QVal(Nama) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
@@ -491,13 +494,13 @@ Public Class EntertainDetailModel
     Public Sub InsertRelasiSettle()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO settle_relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "INSERT INTO settlerelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
             "Values(" & QVal(SettleID) & ", " & vbCrLf &
-            "       " & QVal(Nama) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
-            "       " & QVal(Perusahaan) & ", " & vbCrLf &
-            "       " & QVal(JenisUSaha) & ", " & vbCrLf &
-            "       " & QVal(Remark) & ")"
+            "       " & QVal(Relasi) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi) & ", " & vbCrLf &
+            "       " & QVal(Nota) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
