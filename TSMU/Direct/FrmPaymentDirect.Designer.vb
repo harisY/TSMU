@@ -42,6 +42,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -175,29 +176,29 @@ Partial Class FrmPaymentDirect
         '
         '_txtcuryid
         '
-        Me._txtcuryid.Location = New System.Drawing.Point(623, 12)
+        Me._txtcuryid.Location = New System.Drawing.Point(644, 12)
         Me._txtcuryid.Name = "_txtcuryid"
         Me._txtcuryid.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtcuryid.Properties.Appearance.Options.UseBackColor = True
-        Me._txtcuryid.Size = New System.Drawing.Size(75, 20)
+        Me._txtcuryid.Size = New System.Drawing.Size(62, 20)
         Me._txtcuryid.StyleController = Me.LayoutControl1
         Me._txtcuryid.TabIndex = 4
         '
         '_txtaccountname
         '
-        Me._txtaccountname.Location = New System.Drawing.Point(272, 12)
+        Me._txtaccountname.Location = New System.Drawing.Point(392, 12)
         Me._txtaccountname.Name = "_txtaccountname"
         Me._txtaccountname.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtaccountname.Properties.Appearance.Options.UseBackColor = True
-        Me._txtaccountname.Size = New System.Drawing.Size(347, 20)
+        Me._txtaccountname.Size = New System.Drawing.Size(248, 20)
         Me._txtaccountname.StyleController = Me.LayoutControl1
         Me._txtaccountname.TabIndex = 3
         '
         '_txtsaldo
         '
-        Me._txtsaldo.Location = New System.Drawing.Point(757, 12)
+        Me._txtsaldo.Location = New System.Drawing.Point(765, 12)
         Me._txtsaldo.Name = "_txtsaldo"
-        Me._txtsaldo.Size = New System.Drawing.Size(106, 20)
+        Me._txtsaldo.Size = New System.Drawing.Size(98, 20)
         Me._txtsaldo.StyleController = Me.LayoutControl1
         Me._txtsaldo.TabIndex = 5
         '
@@ -205,16 +206,16 @@ Partial Class FrmPaymentDirect
         '
         Me._txtperpost.Location = New System.Drawing.Point(67, 12)
         Me._txtperpost.Name = "_txtperpost"
-        Me._txtperpost.Size = New System.Drawing.Size(60, 20)
+        Me._txtperpost.Size = New System.Drawing.Size(97, 20)
         Me._txtperpost.StyleController = Me.LayoutControl1
         Me._txtperpost.TabIndex = 0
         '
         '_txtaccount
         '
-        Me._txtaccount.Location = New System.Drawing.Point(186, 12)
+        Me._txtaccount.Location = New System.Drawing.Point(223, 12)
         Me._txtaccount.Name = "_txtaccount"
         Me._txtaccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtaccount.Size = New System.Drawing.Size(82, 20)
+        Me._txtaccount.Size = New System.Drawing.Size(165, 20)
         Me._txtaccount.StyleController = Me.LayoutControl1
         Me._txtaccount.TabIndex = 2
         '
@@ -232,7 +233,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem1.Control = Me._txtperpost
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(119, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(156, 24)
         Me.LayoutControlItem1.Text = "PerPost"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(52, 13)
         '
@@ -247,18 +248,18 @@ Partial Class FrmPaymentDirect
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me._txtaccount
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(119, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(156, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(141, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(224, 24)
         Me.LayoutControlItem2.Text = "Rekening"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(52, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._txtsaldo
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(690, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(698, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(165, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(157, 24)
         Me.LayoutControlItem3.Text = "Saldo Awal"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(52, 13)
         '
@@ -266,9 +267,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlItem11.Control = Me._txtaccountname
         Me.LayoutControlItem11.Enabled = False
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(260, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(380, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(351, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(252, 24)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -276,9 +277,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlItem4.Control = Me._txtcuryid
         Me.LayoutControlItem4.Enabled = False
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(611, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(632, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(79, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(66, 24)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
@@ -290,7 +291,7 @@ Partial Class FrmPaymentDirect
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Location = New System.Drawing.Point(9, 383)
+        Me.TabControl1.Location = New System.Drawing.Point(9, 378)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(863, 330)
@@ -330,7 +331,7 @@ Partial Class FrmPaymentDirect
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn45, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsView.ShowGroupPanel = False
@@ -368,13 +369,21 @@ Partial Class FrmPaymentDirect
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
         '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "CuryID"
+        Me.GridColumn45.FieldName = "Currency"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 3
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Amount"
         Me.GridColumn11.FieldName = "Amount"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
+        Me.GridColumn11.VisibleIndex = 4
         '
         'GridColumn12
         '
@@ -383,7 +392,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn12.FieldName = "AcctID"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 5
         '
         'RepositoryItemButtonEdit3
         '
@@ -399,7 +408,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsFilter.AllowAutoFilter = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 5
+        Me.GridColumn13.VisibleIndex = 6
         '
         'RepositoryItemCheckEdit1
         '
@@ -928,7 +937,7 @@ Partial Class FrmPaymentDirect
         '
         Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(9, 96)
+        Me.GridControl1.Location = New System.Drawing.Point(9, 91)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek})
@@ -1093,4 +1102,5 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemButtonEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EditRek As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

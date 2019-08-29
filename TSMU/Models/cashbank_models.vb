@@ -380,9 +380,9 @@ Public Class cashbank_models
 
     Public Function GetGridDetailSuspendByAccountID() As DataTable
         Try
-            'Dim sql As String = "select  suspend_header.Tgl, suspend_detail.SuspendID, suspend_detail.Description, suspend_detail.Amount, suspend_detail.AcctID,suspend_detail.Proses from suspend_header inner join  suspend_detail on suspend_detail.suspendid=suspend_header.suspendid where suspend_header.pay=0 and suspend_header.tipe = 'S'"
-            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' AND suspend_header.Currency=" & QVal(curyid) & ""
 
+            ''            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses,suspend_header.Currency from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' AND suspend_header.Currency=" & QVal(curyid) & ""
+            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses,suspend_header.Currency from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' "
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

@@ -8,6 +8,7 @@ Imports TSMU
 Public Class FrmEditDirectPayment
     Dim ObjCashBank As New cashbank_models
     Dim _NoBukti As String
+    Dim ff_Detail As FrmPaymentDirect
 
     Sub New(NoBukti As String)
 
@@ -80,6 +81,24 @@ Public Class FrmEditDirectPayment
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
 
+    End Sub
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "")
+        If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail.Close()
+        End If
+        '  FrmPaymentDirect.Close()
+        ff_Detail = New FrmPaymentDirect(ls_Code, ls_Code2, Me)
+        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail.Show()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Call CallFrm(_txtperpost.Text, _txtaccount.Text)
     End Sub
 End Class

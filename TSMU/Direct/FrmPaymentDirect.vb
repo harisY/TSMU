@@ -7,6 +7,11 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmPaymentDirect
+    Public IsClosed As Boolean = False
+    Public isCancel As Boolean = False
+    Public rs_ReturnCode As String = ""
+    Dim isUpdate As Boolean = False
+    Dim ls_Error As String = ""
     Dim ff_Detail As FrmDetailPaymentDirect
     Dim ff_Detail2 As FrmDetailPaymentSuspend
     Dim ff_Detail3 As FrmDetailPaymentSettle
@@ -15,11 +20,138 @@ Public Class FrmPaymentDirect
     Dim ff_Detail6 As FrmBankPaid
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
+    Dim GridDtl As GridControl
     Dim NoBukti As String
+    Dim ObjPayment As New cashbank_models
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+    Public Sub New(ByVal strCode As String,
+                   ByVal strCode2 As String,
+                   ByRef lf_FormParent As Form)
+        ' this call is required by the windows form designer
+        Me.New()
+        If strCode <> "" Then
+            fs_Code = strCode
+            fs_Code2 = strCode2
+        End If
+        InitialSetForm()
+        '   FrmParent = lf_FormParent
+    End Sub
+    Public Overrides Sub InitialSetForm()
+        Try
+            If fs_Code <> "" Then
+                ''ObjPayment.ID = fs_Code
+                ' ObjPayment.GetSettleById()
+                ObjPayment.Perpost = fs_Code
+                ObjPayment.AcctID = fs_Code2
+                _txtperpost.Text = fs_Code
+                _txtaccount.Text = fs_Code2
+                ObjPayment.GetGridDetailCashBankByAccountID02()
+
+                If ls_Error <> "" Then
+                    Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+                    isCancel = True
+                    Me.Hide()
+                    Exit Sub
+                Else
+                    isUpdate = True
+                End If
+                Me.Text = "Cash Bank " & fs_Code
+            Else
+                Me.Text = "Cash Bank"
+            End If
+            Call LoadTxtBox()
+            '' LoadGridDetail()
+            DataCashBank()
+            Call InputBeginState(Me)
+            bb_IsUpdate = isUpdate
+            bs_MainFormName = FrmParent.Name.ToString
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub LoadTxtBox()
+        Try
+            If fs_Code <> "" Then
+                With ObjPayment
+                    _txtperpost.Text = .Perpost
+                    _txtaccount.Text = .AcctID
+                End With
+            Else
+                _txtperpost.Text = ""
+                _txtaccount.Text = ""
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Private Sub coba()
+        If _txtaccount.Text = "" Then
+        Else
+            ObjCashBank.Perpost = _txtperpost.Text
+            ObjCashBank.AcctID = _txtaccount.Text
+            ObjCashBank.account = _txtaccount.Text
+        End If
+
+        _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
+        Dim saldo As Double
+        saldo = ObjCashBank.saldo2
+        If saldo = 0 Then
+            _txtsaldo.Text = saldo
+        Else
+            _txtsaldo.Text = Format(saldo, "#,#.##")
+        End If
+        Call DataCashBank()
+
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
+        Call DataSuspend()
+    End Sub
     Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
-        ObjCashBank.Perpost = _txtperpost.Text
-        ObjCashBank.AcctID = _txtaccount.Text
-        ObjCashBank.account = _txtaccount.Text
+        If _txtaccount.Text = "" Then
+        Else
+            ObjCashBank.Perpost = _txtperpost.Text
+            ObjCashBank.AcctID = _txtaccount.Text
+            ObjCashBank.account = _txtaccount.Text
+        End If
+
+
         ''      ObjCashBank.curyid = Trim(_txtcuryid.Text)
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
@@ -79,8 +211,7 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        '      Call DataSuspend()
-
+        Call DataSuspend()
     End Sub
     Private Sub DataSuspend()
         Dim dtGrid2 As New DataTable
@@ -170,7 +301,9 @@ Public Class FrmPaymentDirect
 
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
-        '   DataSuspend()
+
+        ' DataCashBank()
+        DataSuspend()
         DataSettlement()
         DataEntertaint()
     End Sub
@@ -906,22 +1039,41 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
+
+        TempTable1()
+        For i As Integer = 0 To GridView2.RowCount - 1
+            If GridView2.GetRowCellValue(i, "Proses") = True Then
+                dtTemp1.Rows.Add()
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(0) = GridView2.GetRowCellValue(i, "Tgl")
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(1) = GridView2.GetRowCellValue(i, "SuspendID")
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(2) = GridView2.GetRowCellValue(i, "Description")
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(3) = GridView2.GetRowCellValue(i, "Currency")
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(4) = GridView2.GetRowCellValue(i, "Amount")
+                dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(5) = GridView2.GetRowCellValue(i, "AcctID")
+            End If
+        Next
+
+
         'Try
-        '    tabu1()
+        'tabu1()
         '    tabu2()
         'Catch ex As Exception
         '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         'End Try
-        Dim id6 As String = String.Empty
-        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-        For Each rowHandle As Integer In selectedRows
-            If rowHandle >= 0 Then
-                id6 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
-            End If
-        Next rowHandle
-        ff_Detail6 = New FrmBankPaid(id6)
-        ff_Detail6.Show()
+        '' Me.Close()
+        'Dim id6 As String = String.Empty
+        'Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        'For Each rowHandle As Integer In selectedRows
+        '    If rowHandle >= 0 Then
+        '        id6 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+        '    End If
+        'Next rowHandle
+        ff_Detail6 = New FrmBankPaid(dtTemp1)
+        ff_Detail6.ShowDialog()
+        _txtperpost.Text = ff_Detail6.Perpost
+        _txtaccount.Text = ff_Detail6.Rekening
+        ' ff_Detail6.ShowDialog()
     End Sub
 
     Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
@@ -1039,7 +1191,24 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+    Dim dtTemp1 As DataTable
+    Private Sub TempTable1()
+        dtTemp1 = New DataTable
+        'dtTemp1.Columns.Add("Tgl")
+        'dtTemp1.Columns.Add("AdvanceNo")
+        'dtTemp1.Columns.Add("Description")
+        'dtTemp1.Columns.Add("CuryID")
+        'dtTemp1.Columns.Add("Amount")
+        'dtTemp1.Columns.Add("Rek")
+        'dtTemp1.Clear()
 
+        dtTemp1.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("SuspendID", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp1.Clear()
     End Sub
+
 End Class
