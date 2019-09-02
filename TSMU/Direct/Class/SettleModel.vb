@@ -153,7 +153,7 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
                     ,settle_header.Total
                     ,settle_header.pay
                     ,settle_header.Proses
-                     ,suspend_header.PRNo
+                     ,settle_header.PRNo
                       FROM settle_header left join settle_detail on settle_detail.SettleID=settle_header.SettleID left join suspend_header on suspend_header.SuspendID=settle_header.SuspendID where settle_header.SettleID='" & SettleID & "'"
 
         Dim ds As New dsLaporan
