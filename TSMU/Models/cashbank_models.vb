@@ -228,6 +228,22 @@ Public Class cashbank_models
 
         End Try
     End Sub
+
+    Public Sub UpdateVoucher()
+
+        Try
+
+            Dim Query = "update cashbank set AcctID=" & QVal(AcctID) & " where NoBukti=" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(Query)
+
+
+            Dim Query2 = "update cashbank2 set AcctID=" & QVal(AcctID) & " where NoBukti=" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(Query2)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
     Public Sub UpdateSuspend_hapus()
 
         Try
@@ -307,7 +323,7 @@ Public Class cashbank_models
     End Function
     Public Function GetGridDetailCashBankByAccountID02() As DataTable
         Try
-            Dim sql As String = "Select Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)

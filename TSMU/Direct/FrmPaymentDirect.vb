@@ -23,6 +23,8 @@ Public Class FrmPaymentDirect
     Dim GridDtl As GridControl
     Dim NoBukti As String
     Dim ObjPayment As New cashbank_models
+    Dim tempacct As String
+    Dim tempperpost As String
     Public Sub New()
 
         ' This call is required by the designer.
@@ -225,6 +227,50 @@ Public Class FrmPaymentDirect
             GridCellFormat(GridView2)
         End If
     End Sub
+    Private Sub refresbank()
+
+        _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
+        Dim saldo As Double
+        saldo = ObjCashBank.saldo2
+        If saldo = 0 Then
+            _txtsaldo.Text = saldo
+        Else
+            _txtsaldo.Text = Format(saldo, "#,#.##")
+        End If
+
+        Call DataCashBank()
+
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
+    End Sub
     Private Sub DataSettlement()
         Dim dtGrid3 As New DataTable
         dtGrid3 = ObjCashBank.GetGridDetailSettleByAccountID
@@ -301,8 +347,9 @@ Public Class FrmPaymentDirect
 
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
-
-        ' DataCashBank()
+        _txtperpost.Text = tempperpost
+        _txtaccount.Text = tempacct
+        DataCashBank()
         DataSuspend()
         DataSettlement()
         DataEntertaint()
@@ -891,6 +938,9 @@ Public Class FrmPaymentDirect
     End Sub
     Public Overrides Sub Proc_Refresh()
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
+
+        refresbank()
+
         DataSuspend()
         DataSettlement()
         DataEntertaint()
@@ -1069,10 +1119,16 @@ Public Class FrmPaymentDirect
         '        id6 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
         '    End If
         'Next rowHandle
+
+
         ff_Detail6 = New FrmBankPaid(dtTemp1)
         ff_Detail6.ShowDialog()
+        ''     _txtaccount.Text = ""
         _txtperpost.Text = ff_Detail6.Perpost
         _txtaccount.Text = ff_Detail6.Rekening
+        tempperpost = ff_Detail6.Perpost
+        tempacct = ff_Detail6.Rekening
+        tsBtn_refresh.PerformClick()
         ' ff_Detail6.ShowDialog()
     End Sub
 
@@ -1096,7 +1152,13 @@ Public Class FrmPaymentDirect
             End If
         Next rowHandle
         ff_Detail5 = New FrmEditDirectPayment(id5)
-        ff_Detail5.Show()
+        ff_Detail5.ShowDialog()
+
+        _txtperpost.Text = ff_Detail5.Perpost
+        _txtaccount.Text = ff_Detail5.Rekening
+        tempperpost = ff_Detail5.Perpost
+        tempacct = ff_Detail5.Rekening
+        tsBtn_refresh.PerformClick()
     End Sub
     Private Sub RepositoryItemButtonEdit4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit4.ButtonClick
         Dim id As String = String.Empty

@@ -923,6 +923,7 @@ Partial Class FrmPaymentDirect
         '
         Me.GridColumn44.Caption = "Edit"
         Me.GridColumn44.ColumnEdit = Me.EditRek
+        Me.GridColumn44.FieldName = "AcctID"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 8

@@ -9,7 +9,18 @@ Public Class FrmEditDirectPayment
     Dim ObjCashBank As New cashbank_models
     Dim _NoBukti As String
     Dim ff_Detail As FrmPaymentDirect
+    Public ReadOnly Property Perpost() As String
+        Get
+            Return _txtperpost.Text
+        End Get
 
+    End Property
+
+    Public ReadOnly Property Rekening() As String
+        Get
+            Return _txtaccount.Text
+        End Get
+    End Property
     Sub New(NoBukti As String)
 
         ' This call is required by the designer.
@@ -99,6 +110,20 @@ Public Class FrmEditDirectPayment
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Call CallFrm(_txtperpost.Text, _txtaccount.Text)
+        'Call CallFrm(_txtperpost.Text, _txtaccount.Text)
+        tabu1()
+        Me.Close()
     End Sub
+    Private Sub tabu1()
+
+        Dim ObjDetails As New cashbank_models
+        With ObjDetails
+            .NoBukti = _TxtNoBukti.Text
+            .Perpost = _txtperpost.Text
+            .AcctID = _txtaccount.Text
+            .UpdateVoucher()
+        End With
+
+    End Sub
+
 End Class
