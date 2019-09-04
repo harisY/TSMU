@@ -7,6 +7,14 @@ Public Class FrmLookUpBarcode
     Dim dtTemp As DataTable
 
     Dim PrintTool As ReportPrintTool
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
     Private Sub TempTable()
         dtTemp = New DataTable
         dtTemp.Columns.Add("No")

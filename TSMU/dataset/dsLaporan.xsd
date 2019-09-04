@@ -489,6 +489,7 @@
               <xs:element name="RackPart" msprop:Generator_ColumnVarNameInTable="columnRackPart" msprop:Generator_ColumnPropNameInRow="RackPart" msprop:Generator_ColumnPropNameInTable="RackPartColumn" msprop:Generator_UserColumnName="RackPart" type="xs:string" minOccurs="0" />
               <xs:element name="ItemNo" msprop:Generator_ColumnVarNameInTable="columnItemNo" msprop:Generator_ColumnPropNameInRow="ItemNo" msprop:Generator_ColumnPropNameInTable="ItemNoColumn" msprop:Generator_UserColumnName="ItemNo" type="xs:string" minOccurs="0" />
               <xs:element name="PartNo" msprop:Generator_ColumnVarNameInTable="columnPartNo" msprop:Generator_ColumnPropNameInRow="PartNo" msprop:Generator_ColumnPropNameInTable="PartNoColumn" msprop:Generator_UserColumnName="PartNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Warna" msprop:Generator_ColumnVarNameInTable="columnWarna" msprop:Generator_ColumnPropNameInRow="Warna" msprop:Generator_ColumnPropNameInTable="WarnaColumn" msprop:Generator_UserColumnName="Warna" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
