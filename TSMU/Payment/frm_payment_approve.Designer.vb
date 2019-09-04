@@ -20,6 +20,7 @@ Partial Class frm_payment_approve
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_payment_approve))
         Me.menuContext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewRoutingBoMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
@@ -48,7 +49,6 @@ Partial Class frm_payment_approve
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GridApproved = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GridSuspend = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -58,6 +58,14 @@ Partial Class frm_payment_approve
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me._txtBankId = New DevExpress.XtraEditors.ButtonEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.btnLoad = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.menuContext.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +82,6 @@ Partial Class frm_payment_approve
         Me.TabPage2.SuspendLayout()
         CType(Me.GridApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +90,13 @@ Partial Class frm_payment_approve
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'menuContext
@@ -279,6 +293,7 @@ Partial Class frm_payment_approve
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.PanelControl1)
         Me.TabPage2.Controls.Add(Me.GridApproved)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
@@ -290,12 +305,12 @@ Partial Class frm_payment_approve
         '
         'GridApproved
         '
-        Me.GridApproved.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridApproved.Location = New System.Drawing.Point(3, 3)
+        Me.GridApproved.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridApproved.Location = New System.Drawing.Point(3, 65)
         Me.GridApproved.MainView = Me.GridView2
         Me.GridApproved.Name = "GridApproved"
-        Me.GridApproved.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GridApproved.Size = New System.Drawing.Size(814, 487)
+        Me.GridApproved.Size = New System.Drawing.Size(814, 425)
         Me.GridApproved.TabIndex = 3
         Me.GridApproved.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -307,11 +322,6 @@ Partial Class frm_payment_approve
         Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
         'TabPage3
         '
@@ -351,7 +361,7 @@ Partial Class frm_payment_approve
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage4.Size = New System.Drawing.Size(820, 493)
         Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Payment Approval (Partial)"
+        Me.TabPage4.Text = "Approval (Bank)"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'GridControl1
@@ -395,6 +405,81 @@ Partial Class frm_payment_approve
         Me._txtBankId.Size = New System.Drawing.Size(267, 20)
         Me._txtBankId.TabIndex = 5
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PanelControl1.Appearance.Options.UseBackColor = True
+        Me.PanelControl1.Controls.Add(Me.DateEdit2)
+        Me.PanelControl1.Controls.Add(Me.DateEdit1)
+        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.ToolStrip2)
+        Me.PanelControl1.Location = New System.Drawing.Point(3, 6)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(814, 58)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'DateEdit2
+        '
+        Me.DateEdit2.EditValue = Nothing
+        Me.DateEdit2.Location = New System.Drawing.Point(248, 5)
+        Me.DateEdit2.Name = "DateEdit2"
+        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit2.TabIndex = 23
+        '
+        'DateEdit1
+        '
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Location = New System.Drawing.Point(45, 5)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Size = New System.Drawing.Size(146, 20)
+        Me.DateEdit1.TabIndex = 22
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(208, 8)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "Until :"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "From :"
+        '
+        'ToolStrip2
+        '
+        Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
+        Me.ToolStrip2.Location = New System.Drawing.Point(2, 31)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.Size = New System.Drawing.Size(810, 25)
+        Me.ToolStrip2.TabIndex = 20
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'btnLoad
+        '
+        Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
+        Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnLoad.Name = "btnLoad"
+        Me.btnLoad.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad.Text = "Load Data"
+        '
+        'ProgBar
+        '
+        Me.ProgBar.Name = "ProgBar"
+        Me.ProgBar.Size = New System.Drawing.Size(100, 22)
+        '
         'frm_payment_approve
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -423,7 +508,6 @@ Partial Class frm_payment_approve
         Me.TabPage2.ResumeLayout(False)
         CType(Me.GridApproved, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.GridSuspend, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -432,6 +516,15 @@ Partial Class frm_payment_approve
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txtBankId.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -446,7 +539,6 @@ Partial Class frm_payment_approve
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents GridApproved As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents _txtBankId As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents TabPage3 As TabPage
@@ -474,4 +566,12 @@ Partial Class frm_payment_approve
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ToolStrip2 As ToolStrip
+    Friend WithEvents btnLoad As ToolStripButton
+    Friend WithEvents ProgBar As ToolStripProgressBar
 End Class

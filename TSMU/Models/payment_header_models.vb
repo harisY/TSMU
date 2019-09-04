@@ -577,6 +577,62 @@ Public Class payment_header_models
         End Try
     End Function
 
+    Public Function GetDataGridReject1(ByVal Level As Integer) As DataTable
+        Dim sql As String = "select payment_header1.id
+                                ,payment_header1.vrno as VoucherNo
+                                ,payment_header1.tgl Tanggal
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-payment_header1.cm_dm-payment_header1.Biaya_Transfer as PaidAmount
+                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_header1.cek3 as Level3, payment_header1.cek4 as Direktur 
+                            FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno "
+        Try
+            '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
+            'If Level = 1 Then
+            '    sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) ORDER BY tgl, vendorname, vrno"
+            'ElseIf Level = 2 Then
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='0' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'ElseIf Level = 3 Then
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek3='0' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'Else
+            '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek4='0' ORDER BY tgl, vendorname, vrno"
+            'End If
+
+            If Level = 1 Then
+                sql = sql & " WHERE cek1='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 2 Then
+                sql = sql & " WHERE cek2='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 3 Then
+                sql = sql & " WHERE cek3='0' ORDER BY tgl, vendorname, vrno"
+            ElseIf Level = 4 Then
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek4='0' and Payment_Header1.cek4=0
+							 group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno "
+            End If
+
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
+
+
     Public Function GetDataGridApproveDone(ByVal Level As Integer) As DataTable
         Dim sql As String = "SELECT 
                                 id

@@ -64,6 +64,16 @@ Public Class FrmEntertainSettleDetailDirect
         Call CreateTable()
     End Sub
 
+    Public Overrides Sub Proc_print()
+        Try
+            Dim newform As New FrmReportSettleEntertain(TxtNoSettlement.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
     Private Sub CreateTable()
         DtScan = New DataTable
         DtScan.Columns.AddRange(New DataColumn(8) {New DataColumn("Tgl", GetType(String)),
@@ -154,7 +164,7 @@ Public Class FrmEntertainSettleDetailDirect
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = gh_Common.GroupID
                     TxtRemark.Text = .Remark
-                    TxtStatus.Text = .Status
+                    ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
                     TxtPrNo.Text = .PRNo
@@ -189,7 +199,7 @@ Public Class FrmEntertainSettleDetailDirect
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    .Status = TxtStatus.Text
+                    ''.Status = TxtStatus.Text
                     .SettleID = .SettleAutoNoEnt
                     _SettleID = ObjSettle.SettleAutoNoEnt
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
@@ -339,16 +349,16 @@ Public Class FrmEntertainSettleDetailDirect
                         ObjSettleDetail = New SettleDetail
                         With ObjSettleDetail
                             .SettleID = _SettleID
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
-                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .Nama = GridView1.GetRowCellValue(i, "Nama")
                             .Tempat = GridView1.GetRowCellValue(i, "Tempat")
                             .Alamat = GridView1.GetRowCellValue(i, "Alamat")
                             .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+                            ''.SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+                            .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
@@ -368,7 +378,7 @@ Public Class FrmEntertainSettleDetailDirect
                 '    End If
                 'Next
 
-                ObjSettle.InsertHeaderEntDirectSettle()
+                ObjSettle.InsertDataEntSettleDirect()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()

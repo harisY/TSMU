@@ -182,7 +182,7 @@ Public Class frm_payment_approve
 
     Private Sub LoadGridApprovedReject()
         Try
-            dtGrid3 = ObjPaymentHeader.GetDataGridReject(gh_Common.Level)
+            dtGrid3 = ObjPaymentHeader.GetDataGridReject1(gh_Common.Level)
             GridControl1.DataSource = dtGrid3
             If GridView4.RowCount > 0 Then
                 With GridView4
@@ -624,6 +624,10 @@ Public Class frm_payment_approve
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub btnLoad_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged

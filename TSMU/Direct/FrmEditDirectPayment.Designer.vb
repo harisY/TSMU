@@ -23,6 +23,8 @@ Partial Class FrmEditDirectPayment
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me._txtcuryid = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me._txtaccountname = New System.Windows.Forms.TextBox()
@@ -40,8 +42,6 @@ Partial Class FrmEditDirectPayment
         Me._TxtTgl = New System.Windows.Forms.DateTimePicker()
         Me._TxtNoBukti = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me._txtcuryid = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me._txtaccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -74,6 +74,23 @@ Partial Class FrmEditDirectPayment
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit Rekening"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(28, 226)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(36, 13)
+        Me.Label8.TabIndex = 23
+        Me.Label8.Text = "CuyID"
+        '
+        '_txtcuryid
+        '
+        Me._txtcuryid.Enabled = False
+        Me._txtcuryid.Location = New System.Drawing.Point(160, 220)
+        Me._txtcuryid.Name = "_txtcuryid"
+        Me._txtcuryid.Size = New System.Drawing.Size(78, 20)
+        Me._txtcuryid.TabIndex = 22
         '
         'Button2
         '
@@ -220,23 +237,6 @@ Partial Class FrmEditDirectPayment
         Me.Label1.Size = New System.Drawing.Size(51, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "No. Bukti"
-        '
-        '_txtcuryid
-        '
-        Me._txtcuryid.Enabled = False
-        Me._txtcuryid.Location = New System.Drawing.Point(160, 220)
-        Me._txtcuryid.Name = "_txtcuryid"
-        Me._txtcuryid.Size = New System.Drawing.Size(78, 20)
-        Me._txtcuryid.TabIndex = 22
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(28, 226)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(36, 13)
-        Me.Label8.TabIndex = 23
-        Me.Label8.Text = "CuyID"
         '
         'FrmEditDirectPayment
         '
