@@ -633,9 +633,9 @@ Public Class FrmEntertainSettleDetailDirect
 
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
         Dim ignoreCancel As Boolean = False
-        TxtDep.DoValidate()
+        TxtCurrency.DoValidate()
 
-        If DxValidationProvider1.GetInvalidControls().Contains(TxtTgl.EditValue) Then
+        If DxValidationProvider1.GetInvalidControls().Contains(TxtCurrency) Then
             ignoreCancel = True
         Else
             ignoreCancel = True
