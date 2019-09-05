@@ -20,12 +20,13 @@ Partial Public Class PrintKanbanInternal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim EaN13Generator1 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Dim Code128Generator2 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
-        Dim Code39ExtendedGenerator1 As DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrBarCode2 = New DevExpress.XtraReports.UI.XRBarCode()
         Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
@@ -85,7 +86,6 @@ Partial Public Class PrintKanbanInternal
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.XrBarCode2 = New DevExpress.XtraReports.UI.XRBarCode()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -117,6 +117,18 @@ Partial Public Class PrintKanbanInternal
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(938.0001!, 647.4794!)
+        '
+        'XrBarCode2
+        '
+        Me.XrBarCode2.AutoModule = True
+        Me.XrBarCode2.Dpi = 254.0!
+        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(137.5834!, 522.9216!)
+        Me.XrBarCode2.Module = 5.08!
+        Me.XrBarCode2.Name = "XrBarCode2"
+        Me.XrBarCode2.Padding = New DevExpress.XtraPrinting.PaddingInfo(26, 26, 0, 0, 254.0!)
+        Me.XrBarCode2.SizeF = New System.Drawing.SizeF(387.35!, 99.55774!)
+        Me.XrBarCode2.Symbology = EaN13Generator1
+        Me.XrBarCode2.Text = "76912910kd  f"
         '
         'XrLabel29
         '
@@ -214,13 +226,14 @@ Partial Public Class PrintKanbanInternal
         Me.XrBarCode3.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrBarCode3.Dpi = 254.0!
         Me.XrBarCode3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InventoryID]")})
-        Me.XrBarCode3.LocationFloat = New DevExpress.Utils.PointFloat(646.8588!, 136.1641!)
+        Me.XrBarCode3.LocationFloat = New DevExpress.Utils.PointFloat(646.8589!, 100.1808!)
         Me.XrBarCode3.Module = 5.08!
         Me.XrBarCode3.Name = "XrBarCode3"
         Me.XrBarCode3.Padding = New DevExpress.XtraPrinting.PaddingInfo(26, 26, 0, 0, 254.0!)
-        Me.XrBarCode3.SizeF = New System.Drawing.SizeF(91.29974!, 410.3368!)
+        Me.XrBarCode3.SizeF = New System.Drawing.SizeF(180.1998!, 446.3201!)
         Me.XrBarCode3.StylePriority.UseBorders = False
         Me.XrBarCode3.Symbology = Code128Generator1
+        Me.XrBarCode3.Text = "ADM-D58-MRU0-ATSL"
         '
         'XrLabel23
         '
@@ -872,19 +885,6 @@ Partial Public Class PrintKanbanInternal
         Me.BottomMargin.Dpi = 254.0!
         Me.BottomMargin.HeightF = 56.0!
         Me.BottomMargin.Name = "BottomMargin"
-        '
-        'XrBarCode2
-        '
-        Me.XrBarCode2.AutoModule = True
-        Me.XrBarCode2.Dpi = 254.0!
-        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(137.5834!, 522.9216!)
-        Me.XrBarCode2.Module = 5.08!
-        Me.XrBarCode2.Name = "XrBarCode2"
-        Me.XrBarCode2.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 96.0!)
-        Me.XrBarCode2.SizeF = New System.Drawing.SizeF(387.35!, 99.55774!)
-        Code39ExtendedGenerator1.WideNarrowRatio = 3.0!
-        Me.XrBarCode2.Symbology = Code39ExtendedGenerator1
-        Me.XrBarCode2.Text = "76912910kd  f"
         '
         'PrintKanbanInternal
         '
