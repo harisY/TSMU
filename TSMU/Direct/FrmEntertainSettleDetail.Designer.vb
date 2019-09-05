@@ -51,9 +51,13 @@ Partial Class FrmEntertainSettleDetail
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -70,10 +74,6 @@ Partial Class FrmEntertainSettleDetail
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -402,17 +402,6 @@ Partial Class FrmEntertainSettleDetail
         Me.ReposDate.Mask.EditMask = "dd-MM-yyyy"
         Me.ReposDate.Name = "ReposDate"
         '
-        '_account
-        '
-        Me._account.Caption = "Account"
-        Me._account.ColumnEdit = Me.GAccount
-        Me._account.FieldName = "Account"
-        Me._account.Name = "_account"
-        Me._account.OptionsColumn.FixedWidth = True
-        Me._account.Visible = True
-        Me._account.VisibleIndex = 2
-        Me._account.Width = 57
-        '
         '_subaccount
         '
         Me._subaccount.Caption = "SubAccount"
@@ -424,6 +413,17 @@ Partial Class FrmEntertainSettleDetail
         Me._subaccount.VisibleIndex = 1
         Me._subaccount.Width = 69
         '
+        '_account
+        '
+        Me._account.Caption = "Account"
+        Me._account.ColumnEdit = Me.GAccount
+        Me._account.FieldName = "Account"
+        Me._account.Name = "_account"
+        Me._account.OptionsColumn.FixedWidth = True
+        Me._account.Visible = True
+        Me._account.VisibleIndex = 2
+        Me._account.Width = 57
+        '
         '_description
         '
         Me._description.Caption = "Description"
@@ -432,6 +432,42 @@ Partial Class FrmEntertainSettleDetail
         Me._description.Visible = True
         Me._description.VisibleIndex = 3
         Me._description.Width = 69
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Nama"
+        Me.GridColumn3.FieldName = "Nama"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 66
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Tempat"
+        Me.GridColumn4.FieldName = "Tempat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.Width = 66
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Alamat"
+        Me.GridColumn5.FieldName = "Alamat"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.Width = 66
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Jenis"
+        Me.GridColumn6.FieldName = "Jenis"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 87
         '
         '_subtotal
         '
@@ -573,42 +609,6 @@ Partial Class FrmEntertainSettleDetail
         Me.RepositoryItemSpinEdit1.AutoHeight = False
         Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Nama"
-        Me.GridColumn3.FieldName = "Nama"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 66
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Tempat"
-        Me.GridColumn4.FieldName = "Tempat"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 66
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Alamat"
-        Me.GridColumn5.FieldName = "Alamat"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
-        Me.GridColumn5.Width = 66
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Jenis"
-        Me.GridColumn6.FieldName = "Jenis"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 87
         '
         'FrmEntertainSettleDetail
         '
