@@ -89,7 +89,7 @@ Public Class frm_payment_details
                     _TxtBankName.Text = .BankName
                     _TxtBiaya.EditValue = Format(.Biaya_Transfer, "##,0")
                     _TxtToBank.Text = .bankrek
-                    _TxtCM.Text = .CM_DM
+                    _TxtCM.Text = Format(.CM_DM, "##,0")
                     _TxtCurrency.Text = .CuryID
                     _TxtDebit.Text = Format((.Total_DPP_PPN + .PPh) - .PPh - .Biaya_Transfer - .CM_DM - .cmdm_manual, "##,0")
                     _TxtNoRek.Text = .norek
