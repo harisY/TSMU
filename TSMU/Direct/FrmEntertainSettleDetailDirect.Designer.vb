@@ -67,7 +67,6 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepostNR = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +103,6 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -188,6 +186,10 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.TxtCurrency.Size = New System.Drawing.Size(50, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "This value is not valid"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtCurrency, ConditionValidationRule1)
         '
         'TxtPrNo
         '
@@ -196,10 +198,6 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.TxtPrNo.Size = New System.Drawing.Size(50, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi PR No"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider2.SetValidationRule(Me.TxtPrNo, ConditionValidationRule1)
         '
         'LayoutControlGroup1
         '
@@ -520,10 +518,6 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.RepostNR.AutoHeight = False
         Me.RepostNR.Name = "RepostNR"
         '
-        'DxValidationProvider2
-        '
-        Me.DxValidationProvider2.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
-        '
         'FrmEntertainSettleDetailDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -572,7 +566,6 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepostNR, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -625,7 +618,6 @@ Partial Class FrmEntertainSettleDetailDirect
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DxValidationProvider2 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents RepostNR As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
