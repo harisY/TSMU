@@ -404,14 +404,17 @@ Public Class frm_payment_details
         TotAmount = 0
         TotDpp = 0
         TotPPn = 0
+        ''GrandTotal = 0
         Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
                     TotPPH = TotPPH + CDbl(GridView1.GetRowCellValue(i, "PPH"))
-                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    'TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    'CDbl(GridView1.GetRowCellValue(i, "DPP")) + CDbl(GridView1.GetRowCellValue(i, "Ppn"))
                     TotDpp = TotDpp + CDbl(GridView1.GetRowCellValue(i, "DPP"))
                     TotPPn = TotPPn + CDbl(GridView1.GetRowCellValue(i, "Ppn"))
+                    TotAmount = TotDpp + TotPPn
                 End If
 
             Next
