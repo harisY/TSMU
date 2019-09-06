@@ -161,7 +161,7 @@ Public Class SuspendHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
-            FROM suspend_header WHERE deptid in(" & nilai & ")  AND Tipe = 'S' and status<>'Open' Order by SuspendID"
+            FROM suspend_header WHERE DeptID='" & gh_Common.GroupID & "' AND Tipe = 'S' and status<>'Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

@@ -599,6 +599,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmKanbanInternal.Designer.vb">
+      <DependentUpon>frmKanbanInternal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmKanbanInternal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmHarigami.Designer.vb">
       <DependentUpon>frmHarigami.vb</DependentUpon>
     </Compile>
@@ -965,6 +971,12 @@
     <Compile Include="Form\System\frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmLookUpBarcodeInternal.Designer.vb">
+      <DependentUpon>FrmLookUpBarcodeInternal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmLookUpBarcodeInternal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmLookUpBarcode.Designer.vb">
       <DependentUpon>FrmLookUpBarcode.vb</DependentUpon>
     </Compile>
@@ -1085,6 +1097,7 @@
     <Compile Include="Form\System\frm_system_config_db.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />
     <Compile Include="Models\batch.vb" />
@@ -1282,6 +1295,12 @@
       <DependentUpon>XtraReport4.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\ReportPayment\XtraReport4.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\PrintKanbanInternalTes.Designer.vb">
+      <DependentUpon>PrintKanbanInternalTes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PrintKanbanInternalTes.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\PrintKanbanInternal.Designer.vb">
@@ -1513,6 +1532,9 @@
       <DependentUpon>baseForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmKanbanInternal.resx">
+      <DependentUpon>frmKanbanInternal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmHarigami.resx">
       <DependentUpon>frmHarigami.vb</DependentUpon>
     </EmbeddedResource>
@@ -1696,6 +1718,9 @@
     <EmbeddedResource Include="Form\System\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmLookUpBarcodeInternal.resx">
+      <DependentUpon>FrmLookUpBarcodeInternal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmLookUpBarcode.resx">
       <DependentUpon>FrmLookUpBarcode.vb</DependentUpon>
     </EmbeddedResource>
@@ -1841,6 +1866,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\XtraReport4.resx">
       <DependentUpon>XtraReport4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\PrintKanbanInternalTes.resx">
+      <DependentUpon>PrintKanbanInternalTes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintKanbanInternal.resx">
       <DependentUpon>PrintKanbanInternal.vb</DependentUpon>

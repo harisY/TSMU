@@ -8864,6 +8864,8 @@ Partial Public Class dsLaporan
         
         Private columnPartNo As Global.System.Data.DataColumn
         
+        Private columnWarna As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -9036,6 +9038,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property WarnaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWarna
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -9089,9 +9099,10 @@ Partial Public Class dsLaporan
                     ByVal RackLabel As String,  _
                     ByVal RackPart As String,  _
                     ByVal ItemNo As String,  _
-                    ByVal PartNo As String) As KanbanInternalRow
+                    ByVal PartNo As String,  _
+                    ByVal Warna As String) As KanbanInternalRow
             Dim rowKanbanInternalRow As KanbanInternalRow = CType(Me.NewRow,KanbanInternalRow)
-            Dim columnValuesArray() As Object = New Object() {NoUrut, Cust, PONumber, InventoryID, PartName, Type, NoPO, OrderDate, DelDate, QtyOrder, RH_LH, PalletizeMark, PartNoLabel, RackLabel, RackPart, ItemNo, PartNo}
+            Dim columnValuesArray() As Object = New Object() {NoUrut, Cust, PONumber, InventoryID, PartName, Type, NoPO, OrderDate, DelDate, QtyOrder, RH_LH, PalletizeMark, PartNoLabel, RackLabel, RackPart, ItemNo, PartNo, Warna}
             rowKanbanInternalRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowKanbanInternalRow)
             Return rowKanbanInternalRow
@@ -9131,6 +9142,7 @@ Partial Public Class dsLaporan
             Me.columnRackPart = MyBase.Columns("RackPart")
             Me.columnItemNo = MyBase.Columns("ItemNo")
             Me.columnPartNo = MyBase.Columns("PartNo")
+            Me.columnWarna = MyBase.Columns("Warna")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9170,6 +9182,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnItemNo)
             Me.columnPartNo = New Global.System.Data.DataColumn("PartNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPartNo)
+            Me.columnWarna = New Global.System.Data.DataColumn("Warna", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWarna)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19002,6 +19016,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Warna() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableKanbanInternal.WarnaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Warna' in table 'KanbanInternal' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableKanbanInternal.WarnaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNoUrutNull() As Boolean
             Return Me.IsNull(Me.tableKanbanInternal.NoUrutColumn)
         End Function
@@ -19202,6 +19231,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPartNoNull()
             Me(Me.tableKanbanInternal.PartNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsWarnaNull() As Boolean
+            Return Me.IsNull(Me.tableKanbanInternal.WarnaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetWarnaNull()
+            Me(Me.tableKanbanInternal.WarnaColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
