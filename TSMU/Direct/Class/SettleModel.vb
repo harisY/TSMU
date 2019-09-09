@@ -398,7 +398,7 @@ group by settle_header.ID
                 "set @tahun = datepart(year,getdate()) " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(settleid)),4)+1 as varchar),4) " &
                 "from settle_Header " &
-                "where SUBSTRING(settleid,4,4) = RIGHT(@tahun,4) AND SUBSTRING(settleid,9,2) = RIGHT(@bulan,2)) " &
+                "where SUBSTRING(settleid,1,2) = 'ET' and SUBSTRING(settleid,4,4) = RIGHT(@tahun,4) AND SUBSTRING(settleid,9,2) = RIGHT(@bulan,2)) " &
                 "select 'ST' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
