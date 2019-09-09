@@ -18,6 +18,7 @@ Public Class FrmPaymentDirect
     Dim ff_Detail4 As FrmDetailPaymentSuspend
     Dim ff_Detail5 As FrmEditDirectPayment
     Dim ff_Detail6 As FrmBankPaid
+    Dim ff_Detail7 As frm_payment_aprrove_details
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim GridDtl As GridControl
@@ -25,6 +26,9 @@ Public Class FrmPaymentDirect
     Dim ObjPayment As New cashbank_models
     Dim tempacct As String
     Dim tempperpost As String
+    'Dim ID As String
+    'Dim suspendid As String
+    'Dim suspend1 As String
     Public Sub New()
 
         ' This call is required by the designer.
@@ -288,7 +292,18 @@ Public Class FrmPaymentDirect
             GridCellFormat(GridView5)
         End If
     End Sub
-
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
+        If ff_Detail7 IsNot Nothing AndAlso ff_Detail7.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail7.Close()
+        End If
+        ff_Detail7 = New frm_payment_aprrove_details(ls_Code, ls_Code2, Me, li_Row, GridControl1, IsNew)
+        ff_Detail7.MdiParent = MenuUtamaForm
+        ff_Detail7.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail7.Show()
+    End Sub
     Private Sub DataCashBank()
         Dim dtGrid As New DataTable
         ObjCashBank.Perpost = _txtperpost.Text
@@ -1134,14 +1149,25 @@ Public Class FrmPaymentDirect
 
     Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
         Dim id As String = String.Empty
+        Dim id2 As String = String.Empty
+        Dim ket As String = String.Empty
         Dim selectedRows() As Integer = GridView1.GetSelectedRows()
         For Each rowHandle As Integer In selectedRows
             If rowHandle >= 0 Then
                 id = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+                ket = Mid(GridView1.GetRowCellValue(rowHandle, "NoBukti"), 1, 2)
+                id2 = GridView1.GetRowCellValue(rowHandle, "ID")
             End If
         Next rowHandle
-        ff_Detail = New FrmDetailPaymentDirect(id)
-        ff_Detail.Show()
+
+        If ket = "AP" Then
+            Call CallFrm(id2, id,
+                         GridView1.RowCount)
+        Else
+            ff_Detail = New FrmDetailPaymentDirect(id)
+            ff_Detail.Show()
+        End If
+
     End Sub
     Private Sub EditRek_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles EditRek.ButtonClick
         Dim id5 As String = String.Empty
