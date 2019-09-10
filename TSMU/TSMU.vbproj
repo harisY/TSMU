@@ -623,6 +623,12 @@
     <Compile Include="Form\Common\frmListHargaADM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmUploadKanbanYIM.Designer.vb">
+      <DependentUpon>frmUploadKanbanYIM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmUploadKanbanYIM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmUploadKanbanAdm.Designer.vb">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>
     </Compile>
@@ -1112,6 +1118,7 @@
     <Compile Include="Models\global_function_models.vb" />
     <Compile Include="Models\Harigami\HarigamiModels.vb" />
     <Compile Include="Models\KanbanAdmModel.vb" />
+    <Compile Include="Models\KanbanYIMModel.vb" />
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
@@ -1543,6 +1550,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmListHargaADM.resx">
       <DependentUpon>frmListHargaADM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmUploadKanbanYIM.resx">
+      <DependentUpon>frmUploadKanbanYIM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmUploadKanbanAdm.resx">
       <DependentUpon>frmUploadKanbanAdm.vb</DependentUpon>

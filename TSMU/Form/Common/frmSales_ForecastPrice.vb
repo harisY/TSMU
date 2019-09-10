@@ -1,6 +1,9 @@
 ﻿Imports System.Collections.ObjectModel
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmSales_ForecastPrice
@@ -9,11 +12,21 @@ Public Class frmSales_ForecastPrice
     Dim ObjForecast As New forecast_price_models
     Dim ObjHeader As New forecast_price_models_header
 
+    Dim temp As RepositoryItemCheckedComboBoxEdit = Nothing
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        LoadGrid()
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
     Private Sub frmSales_ForecastPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
+        'Call LoadGrid()
+        'Dim dtGrid As New DataTable
+        'dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
         'AturGrid(Grid, Me)
@@ -55,13 +68,61 @@ Public Class frmSales_ForecastPrice
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'End If
             'Grid.AutoSize = True
+            SetEditColumnGrid()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub SetEditColumnGrid()
+        Try
+            Dim cmbOE As RepositoryItemComboBox = New RepositoryItemComboBox()
+            AddHandler cmbOE.EditValueChanged, AddressOf ComboBox_EditValueChanged
+            AddHandler GridView1.ValidateRow, AddressOf gridView1_ValidateRow
+
+            cmbOE.Items.AddRange(New String() {"OE", "PE"})
+            GridView1.Columns("Oe/Pe").ColumnEdit = cmbOE
+            Grid.RepositoryItems.Add(cmbOE)
+            'AddHandler GridView1.CustomColumnDisplayText, AddressOf GridView1_CustomColumnDisplayText
+            'AddHandler GridView1.ShowingEditor, AddressOf GridView1_ShowingEditor
+            'AddHandler GridView1.RowCellStyle, AddressOf GridView1_RowCellStyle
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub ComboBox_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
+        'Dim rowHandle As Integer = GridView1.GetRowHandle(GridView1.DataRowCount)
+
+        'If GridView1.IsNewItemRow(rowHandle) Then
+        '    GridView1.SetRowCellValue(rowHandle, GridView1.Columns("OE/PE"), val1)
+        'End If
+        GridView1.PostEditor()
+    End Sub
+
+    'Private Sub GridView1_CustomColumnDisplayText(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+    '    If ShouldCustomize((TryCast(sender, GridView)).GetRowHandle(e.ListSourceRowIndex), e.Column.FieldName) Then e.DisplayText = String.Empty
+    'End Sub
+
+    'Private Sub GridView1_RowCellStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs)
+    '    If ShouldCustomize(e.RowHandle, e.Column.FieldName) Then e.Appearance.BackColor = System.Drawing.Color.LightGray
+    'End Sub
+
+    'Private Sub GridView1_ShowingEditor(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
+    '    Dim view As GridView = TryCast(sender, GridView)
+    '    If ShouldCustomize(view.FocusedRowHandle, view.FocusedColumn.FieldName) Then e.Cancel = True
+    'End Sub
+
+    'Private Function ShouldCustomize(ByVal rowHandle As Integer, ByVal fieldName As String) As Boolean
+    '    Dim value As String = GridView1.GetRowCellValue(rowHandle, "Oe/Pe").ToString()
+    '    Return value = "ReadOnly" AndAlso fieldName = "Age"
+    'End Function
+
     Public Overrides Sub Proc_InputNewData()
-        CallFrm()
+        GridView1.AddNewRow()
+
+        'CallFrm()
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
@@ -575,5 +636,17 @@ Public Class frmSales_ForecastPrice
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Private Sub gridView1_ValidateRow(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs)
+        Dim view As GridView = TryCast(sender, GridView)
+        If view.IsNewItemRow(e.RowHandle) Then
+            Dim column As GridColumn = view.Columns("OE/PE")
+            Dim val As Object = view.GetRowCellValue(e.RowHandle, column)
+            If val Is Nothing OrElse val.ToString() = String.Empty Then
+                e.Valid = False
+                view.SetColumnError(column, "Value cannot be empty")
+            End If
+        End If
     End Sub
 End Class
