@@ -11,9 +11,10 @@ Public Class FrmEntertainSettle
     Dim ff_Detail1 As FrmEntertainSettleDetailDirect
 
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ''bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call LoadGrid2()
+        bb_SetDisplayChangeConfirmation = False
+        bs_Filter = ""
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
     End Sub
     Private Sub LoadGrid()

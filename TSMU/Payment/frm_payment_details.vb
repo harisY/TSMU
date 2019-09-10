@@ -89,7 +89,7 @@ Public Class frm_payment_details
                     _TxtBankName.Text = .BankName
                     _TxtBiaya.EditValue = Format(.Biaya_Transfer, "##,0")
                     _TxtToBank.Text = .bankrek
-                    _TxtCM.Text = .CM_DM
+                    _TxtCM.Text = Format(.CM_DM, "##,0")
                     _TxtCurrency.Text = .CuryID
                     _TxtDebit.Text = Format((.Total_DPP_PPN + .PPh) - .PPh - .Biaya_Transfer - .CM_DM - .cmdm_manual, "##,0")
                     _TxtNoRek.Text = .norek
@@ -404,14 +404,17 @@ Public Class frm_payment_details
         TotAmount = 0
         TotDpp = 0
         TotPPn = 0
+        ''GrandTotal = 0
         Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
                     TotPPH = TotPPH + CDbl(GridView1.GetRowCellValue(i, "PPH"))
-                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    'TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    'CDbl(GridView1.GetRowCellValue(i, "DPP")) + CDbl(GridView1.GetRowCellValue(i, "Ppn"))
                     TotDpp = TotDpp + CDbl(GridView1.GetRowCellValue(i, "DPP"))
                     TotPPn = TotPPn + CDbl(GridView1.GetRowCellValue(i, "Ppn"))
+                    TotAmount = TotDpp + TotPPn
                 End If
 
             Next

@@ -52,7 +52,7 @@ Public Class SuspendApprovalHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist 
-            FROM suspend_header where deptid in(" & nilai & ") and State = " & QVal(level) & " 
+            FROM suspend_header where DeptID='" & gh_Common.GroupID & "' and State = " & QVal(level) & " 
             AND Status <> 'Open' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
