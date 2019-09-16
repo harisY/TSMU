@@ -60,6 +60,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -97,6 +98,22 @@ Partial Class FrmPaymentDirect
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GridControl6 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemButtonEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -109,10 +126,10 @@ Partial Class FrmPaymentDirect
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EditRek = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.ID = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._txtcuryid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +171,11 @@ Partial Class FrmPaymentDirect
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.GridControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,6 +314,7 @@ Partial Class FrmPaymentDirect
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(9, 378)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -335,6 +358,7 @@ Partial Class FrmPaymentDirect
         Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn45, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -471,9 +495,10 @@ Partial Class FrmPaymentDirect
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn42, Me.GridColumn21})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn56, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn42, Me.GridColumn21})
         Me.GridView3.GridControl = Me.GridControl3
         Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsView.ShowAutoFilterRow = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'GridColumn14
@@ -522,13 +547,21 @@ Partial Class FrmPaymentDirect
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 3
         '
+        'GridColumn56
+        '
+        Me.GridColumn56.Caption = "CuryID"
+        Me.GridColumn56.FieldName = "CuryID"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 4
+        '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Amount Advance"
         Me.GridColumn18.FieldName = "Total"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 4
+        Me.GridColumn18.VisibleIndex = 5
         '
         'GridColumn19
         '
@@ -536,7 +569,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn19.FieldName = "SettleAmount"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 5
+        Me.GridColumn19.VisibleIndex = 6
         '
         'GridColumn20
         '
@@ -544,7 +577,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn20.FieldName = "AcctID"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 6
+        Me.GridColumn20.VisibleIndex = 7
         '
         'GridColumn42
         '
@@ -552,7 +585,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn42.FieldName = "BankID"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 7
+        Me.GridColumn42.VisibleIndex = 8
         '
         'GridColumn21
         '
@@ -561,7 +594,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn21.FieldName = "Proses"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 8
+        Me.GridColumn21.VisibleIndex = 9
         '
         'ReposPresesSettle
         '
@@ -830,6 +863,135 @@ Partial Class FrmPaymentDirect
         Me.RepositoryItemCheckEdit3.AutoHeight = False
         Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.GridControl6)
+        Me.TabPage3.Controls.Add(Me.ToolStrip5)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(855, 304)
+        Me.TabPage3.TabIndex = 5
+        Me.TabPage3.Text = "AP"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'GridControl6
+        '
+        Me.GridControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl6.Location = New System.Drawing.Point(3, 28)
+        Me.GridControl6.MainView = Me.GridView6
+        Me.GridControl6.Name = "GridControl6"
+        Me.GridControl6.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit7, Me.RepositoryItemCheckEdit4})
+        Me.GridControl6.Size = New System.Drawing.Size(849, 273)
+        Me.GridControl6.TabIndex = 3
+        Me.GridControl6.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView6})
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55})
+        Me.GridView6.GridControl = Me.GridControl6
+        Me.GridView6.Name = "GridView6"
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Tgl"
+        Me.GridColumn46.FieldName = "Tgl"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 0
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Entertain No."
+        Me.GridColumn47.FieldName = "SuspendID"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 1
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Description"
+        Me.GridColumn48.FieldName = "Description"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 2
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Deparment"
+        Me.GridColumn49.FieldName = "DeptID"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 3
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Tempat"
+        Me.GridColumn50.FieldName = "Tempat"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 4
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "Alamat"
+        Me.GridColumn51.FieldName = "Alamat"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 5
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Jenis"
+        Me.GridColumn52.FieldName = "Jenis"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 6
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "Amount"
+        Me.GridColumn53.FieldName = "Amount"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 7
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.Caption = "Rekening"
+        Me.GridColumn54.FieldName = "AcctID"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 8
+        '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "Proses"
+        Me.GridColumn55.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GridColumn55.FieldName = "Proses"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 9
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        '
+        'RepositoryItemButtonEdit7
+        '
+        Me.RepositoryItemButtonEdit7.AutoHeight = False
+        Me.RepositoryItemButtonEdit7.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit7.Name = "RepositoryItemButtonEdit7"
+        '
+        'ToolStrip5
+        '
+        Me.ToolStrip5.Location = New System.Drawing.Point(3, 3)
+        Me.ToolStrip5.Name = "ToolStrip5"
+        Me.ToolStrip5.Size = New System.Drawing.Size(849, 25)
+        Me.ToolStrip5.TabIndex = 0
+        Me.ToolStrip5.Text = "ToolStrip5"
+        '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.ID, Me.GridColumn44})
@@ -920,6 +1082,12 @@ Partial Class FrmPaymentDirect
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
         '
+        'ID
+        '
+        Me.ID.Caption = "GridColumn46"
+        Me.ID.FieldName = "ID"
+        Me.ID.Name = "ID"
+        '
         'GridColumn44
         '
         Me.GridColumn44.Caption = "Edit"
@@ -946,12 +1114,6 @@ Partial Class FrmPaymentDirect
         Me.GridControl1.Size = New System.Drawing.Size(860, 281)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'ID
-        '
-        Me.ID.Caption = "GridColumn46"
-        Me.ID.FieldName = "ID"
-        Me.ID.Name = "ID"
         '
         'FrmPaymentDirect
         '
@@ -1011,6 +1173,12 @@ Partial Class FrmPaymentDirect
         CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
+        CType(Me.GridControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1112,4 +1280,21 @@ Partial Class FrmPaymentDirect
     Friend WithEvents EditRek As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents GridControl6 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemButtonEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents ToolStrip5 As ToolStrip
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
