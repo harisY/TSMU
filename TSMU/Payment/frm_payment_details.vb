@@ -81,7 +81,7 @@ Public Class frm_payment_details
             If fs_Code <> "" Then
                 With ObjPaymentHeader
                     _txtVoucher.Text = .vrno
-                    _TxtVendorName.Text = .detsupplier
+                    _TxtVendorName.Text = .VendorName
                     _TxtVendorID.Text = .VendID
                     _TxtTotal.Text = Format(.Tot_DPP + .Tot_PPN, "##,0")
                     _TxtAttentionTo.Text = .penerima
@@ -101,7 +101,7 @@ Public Class frm_payment_details
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
                     _txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
                     _txtKetCMDMmanual.Text = .cmdm_manual_ket
-                    _txtnamasupllier.Text = .VendorName
+                    _txtnamasupllier.Text = .detsupplier
                 End With
             Else
                 _txtVoucher.Text = ""
@@ -184,7 +184,7 @@ Public Class frm_payment_details
                     .CM_DM = _TxtCM.Text
                     .CuryID = _TxtCurrency.Text
                     .Descr = ""
-                    .detsupplier = _TxtVendorName.Text
+                    .detsupplier = _txtnamasupllier.Text
                     .norek = _TxtNoRek.Text
                     .penerima = _TxtAttentionTo.Text
                     .PPh = _TxtPPH.Text
@@ -199,7 +199,7 @@ Public Class frm_payment_details
                     .vrno = _txtVoucher.Text
                     .cmdm_manual = _txtCMDMmanual.Text
                     .cmdm_manual_ket = _txtKetCMDMmanual.Text
-                    .VendorName = _txtnamasupllier.Text
+                    .VendorName = _TxtVendorName.Text
                 End With
             End If
         Catch ex As Exception
@@ -310,6 +310,7 @@ Public Class frm_payment_details
             Dim Value4 As String = ""
             Dim Value5 As String = ""
             Dim Value6 As String = ""
+            ''Dim value7 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
@@ -320,6 +321,7 @@ Public Class frm_payment_details
                     Value4 = lF_SearchData.Values.Item(3).ToString.Trim
                     Value5 = lF_SearchData.Values.Item(4).ToString.Trim
                     Value6 = lF_SearchData.Values.Item(5).ToString.Trim
+                    ''alue6 = lF_SearchData.Values.Item(6).ToString.Trim
                     _TxtVendorID.Text = Value1
                     _TxtVendorName.Text = Value2
                     _TxtToBank.Text = Value3

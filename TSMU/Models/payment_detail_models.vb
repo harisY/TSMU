@@ -66,12 +66,12 @@
         Try
             Dim sql As String = "SELECT 
  	                                VendID [Vendor ID],
-	                                namedetail Name,
+                                    name [Suppllier Name],
 	                                bank Bank,
 	                                norek [No Rek.],
                                     name1 [Penerima],
-                                    name,
-	                                curyid [Currency]
+                                    namedetail [Template Name],
+                                    curyid [Currency]
                                 FROM dbo.payment_norek1"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
