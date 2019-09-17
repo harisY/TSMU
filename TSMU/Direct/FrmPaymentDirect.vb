@@ -1137,6 +1137,7 @@ Public Class FrmPaymentDirect
 
 
         ff_Detail6 = New FrmBankPaid(dtTemp1)
+        ff_Detail6._transaksi.Text = "Suspend"
         ff_Detail6.ShowDialog()
         ''     _txtaccount.Text = ""
         _txtperpost.Text = ff_Detail6.Perpost
@@ -1220,14 +1221,41 @@ Public Class FrmPaymentDirect
         ff_Detail4.Show()
     End Sub
     Private Sub btnpaid_Click(sender As Object, e As EventArgs) Handles btnpaid.Click
-        Try
-            tab_settle()
+        'Try
+        ' tab_settle()
+        ' tab_settle02()
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
 
-            tab_settle02()
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+
+        TempTable2()
+
+        For i As Integer = 0 To GridView3.RowCount - 1
+            If GridView3.GetRowCellValue(i, "Proses") = True Then
+                dtTemp2.Rows.Add()
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(0) = GridView3.GetRowCellValue(i, "Tgl")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(1) = GridView3.GetRowCellValue(i, "SettleID")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(2) = GridView3.GetRowCellValue(i, "SuspendID")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(3) = GridView3.GetRowCellValue(i, "Description")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(4) = GridView3.GetRowCellValue(i, "CuryID")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(5) = GridView3.GetRowCellValue(i, "Total")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(6) = GridView3.GetRowCellValue(i, "SettleAmount")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(7) = GridView3.GetRowCellValue(i, "AcctID")
+                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(8) = GridView3.GetRowCellValue(i, "BankID")
+            End If
+        Next
+
+        ff_Detail6 = New FrmBankPaid(dtTemp2)
+        ff_Detail6._transaksi.Text = "Settle"
+        ff_Detail6.ShowDialog()
+        _txtperpost.Text = ff_Detail6.Perpost
+        _txtaccount.Text = ff_Detail6.Rekening
+        tempperpost = ff_Detail6.Perpost
+        tempacct = ff_Detail6.Rekening
+        tsBtn_refresh.PerformClick()
+
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
@@ -1297,6 +1325,22 @@ Public Class FrmPaymentDirect
                                                    New DataColumn("Amount", GetType(Decimal)),
                                                    New DataColumn("AcctID", GetType(String))})
         dtTemp1.Clear()
+    End Sub
+    Dim dtTemp2 As DataTable
+    Private Sub TempTable2()
+        dtTemp2 = New DataTable
+
+
+        dtTemp2.Columns.AddRange(New DataColumn(8) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("SettleID", GetType(String)),
+                                                   New DataColumn("SuspendID", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Total", GetType(Decimal)),
+                                                   New DataColumn("SettleAmount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String)),
+                                                   New DataColumn("BankID", GetType(String))})
+        dtTemp2.Clear()
     End Sub
 
 End Class
