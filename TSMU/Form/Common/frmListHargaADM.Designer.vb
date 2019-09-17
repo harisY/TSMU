@@ -44,7 +44,6 @@ Partial Class frmListHargaADM
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(783, 430)
         Me.GroupControl1.TabIndex = 1
-        Me.GroupControl1.Text = "LIST HARGA INVENTORY SAMA TAPI HARGA BEDA "
         '
         'Grid
         '
@@ -70,12 +69,12 @@ Partial Class frmListHargaADM
         '
         Me.GridColumn1.Caption = "Inventory ID"
         Me.GridColumn1.ColumnEdit = Me.BtnLookUpInvtID
-        Me.GridColumn1.FieldName = "invtid"
+        Me.GridColumn1.FieldName = "InvtID"
         Me.GridColumn1.MinWidth = 25
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 94
         '
         'BtnLookUpInvtID
@@ -86,18 +85,18 @@ Partial Class frmListHargaADM
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Part No"
-        Me.GridColumn2.FieldName = "PartNo"
+        Me.GridColumn2.Caption = "Cust ID"
+        Me.GridColumn2.FieldName = "CustID"
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 94
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Jumlah"
-        Me.GridColumn3.FieldName = "jml"
+        Me.GridColumn3.FieldName = "Jumlah"
         Me.GridColumn3.MinWidth = 25
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True

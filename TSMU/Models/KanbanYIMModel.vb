@@ -96,86 +96,46 @@
 
     Public Function GetKanban() As DataTable
         Try
-            Dim sql As String = "SELECT 
-			                        CONVERT(varchar,[OrderDate],101) Tanggal,
-			                        [DelCycle] Cycle,
-			                        sum([OrderKbn]) Kanban,
-                                    Shopcode
-		                        FROM [KanbanADM]
-		                        GROUP BY 
-			                        CONVERT(varchar,[OrderDate],101),
-			                        [DelCycle], Shopcode
-		                        ORDER BY 
-			                        CONVERT(varchar,[OrderDate],101),
-			                        [DelCycle]"
+            Dim sql As String = "KanbanYIM_GetSummaryOrderQty"
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            dt = GetDataTableByCommand_SP(sql)
             Return dt
         Catch ex As Exception
             Throw
         End Try
     End Function
-    Public Sub SaveKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer, ShopCode As String)
+    Public Sub SaveKanbanSum(tgl As Date, plant As String, user As String, qty As Integer)
         Try
-            Dim sql As String = "INSERT INTO [KanbanSum]
-                                       ([Tanggal]
-                                       ,[Cycle]
-                                       ,[Kanban]
-                                        ,[Open]
-                                        ,ShopCode)
-                                 VALUES
-                                       (" & QVal(Tgl) & "
-                                       ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & "
-                                       ," & QVal(Kanban) & "
-                                       ," & QVal(ShopCode) & ")"
-            ExecQuery(sql)
-
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String)
-        Try
-            Dim sql As String = "INSERT INTO [KanbanSum]
-                                       ([Tanggal]
-                                       ,[Cycle]
-                                       ,[Kanban]
-                                        ,[Open], Remark)
-                                 VALUES
-                                       (" & QVal(Tgl) & "
-                                       ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & "," & QVal(Kanban) & ", " & QVal(Remark) & ")"
-
-            ExecQueryCKR(sql)
+            Dim sql As String = "KanbanYIMSum_Insert"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@tgl", SqlDbType.Date)
+            pParam(0).Value = tgl
+            pParam(1) = New SqlClient.SqlParameter("@plant", SqlDbType.VarChar)
+            pParam(1).Value = plant
+            pParam(2) = New SqlClient.SqlParameter("@user", SqlDbType.VarChar)
+            pParam(2).Value = user
+            pParam(3) = New SqlClient.SqlParameter("@qty", SqlDbType.Int)
+            pParam(3).Value = qty
+            ExecQueryByCommand_SP(sql, pParam)
         Catch ex As Exception
             Throw
         End Try
     End Sub
 
-    Public Sub UpdateKanbanSum(Tgl As String, Cycle As Integer, Kanban As Integer)
-        Try
-            Dim sql As String = "Update [KanbanSum]
-                                 Set Kanban = Kanban + " & QVal(Kanban) & "
-                                 Where Tanggal =" & QVal(Tgl) & " AND Cycle = " & QVal(Cycle) & ""
-            If gh_Common.Site.ToLower = "tng" Then
-                ExecQuery(sql)
-            Else
-                ExecQueryCKR(sql)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Public Function IsKanbanExist(Tgl As String, Cycle As Integer, ShopCode As String) As Boolean
+    Public Function IsKanbanExist(tgl As Date, plant As String, user As String) As Boolean
         Dim hasil As Boolean = False
         Try
-            Dim sql As String = "SELECT * 
-                                FROM KanbanSum 
-                                WHERE Tanggal = " & QVal(Tgl) & " AND Cycle=" & QVal(Cycle) & " AND ShopCode = " & QVal(ShopCode) & ""
-            Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            Dim sql As String = "KanbanYIMSum_CekKanban"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@tgl", SqlDbType.Date)
+            pParam(0).Value = tgl
+            pParam(1) = New SqlClient.SqlParameter("@plant", SqlDbType.VarChar)
+            pParam(1).Value = plant
+            pParam(2) = New SqlClient.SqlParameter("@user", SqlDbType.VarChar)
+            pParam(2).Value = user
 
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(sql, pParam)
             If dt.Rows.Count > 0 Then
                 hasil = True
             End If
@@ -184,22 +144,5 @@
             Throw
         End Try
     End Function
-    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String) As Boolean
-        Dim hasil As Boolean = False
-        Try
-            Dim sql As String = "SELECT * 
-                                FROM KanbanSum 
-                                WHERE Tanggal = " & QVal(Tgl) & "
-                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & ""
-            Dim dt As New DataTable
 
-            dt = GetDataTableCKR(sql)
-            If dt.Rows.Count > 0 Then
-                hasil = True
-            End If
-            Return hasil
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
 End Class
