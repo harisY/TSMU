@@ -407,18 +407,20 @@ Public Class frmSales_ForecastPrice_details
         Try
             If isUpdate = False Then
                 ObjForecastPrice.InsertData()
+                GridDtl.DataSource = ObjForecastPrice.GetAllDataGrid(bs_Filter)
+                frmSales_ForecastPrice.GridView1.UpdateCurrentRow()
+                frmSales_ForecastPrice.GridView1.OptionsNavigation.AutoFocusNewRow = True
+                IsClosed = True
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Me.Hide()
             Else
                 ObjForecastPrice.Id = TxtId.Text
                 ObjForecastPrice.UpdateData()
+
+                tsBtn_next.PerformClick()
+
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-
-            GridDtl.DataSource = ObjForecastPrice.GetAllDataGrid(bs_Filter)
-            frmSales_ForecastPrice.GridView1.UpdateCurrentRow()
-            frmSales_ForecastPrice.GridView1.OptionsNavigation.AutoFocusNewRow = True
-
-            IsClosed = True
-            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -448,6 +450,7 @@ Public Class frmSales_ForecastPrice_details
 
         MyBase.OnFormClosing(e)
         e.Cancel = Not ignoreCancel
+        GridDtl.DataSource = ObjForecastPrice.GetAllDataGrid(bs_Filter)
     End Sub
 
     Private Sub TxtCustID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtCustID.ButtonClick, TxtInvtID.ButtonClick
@@ -480,7 +483,7 @@ Public Class frmSales_ForecastPrice_details
             Dim Data3 As String = ""
             Dim Data4 As String = ""
 
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+            If lF_SearchData.Values IsNot Nothing Then
                 If sender.Name = TxtCustID.Name Then
                     Data1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Data2 = lF_SearchData.Values.Item(1).ToString.Trim

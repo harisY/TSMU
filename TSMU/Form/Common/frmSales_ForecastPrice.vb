@@ -59,6 +59,7 @@ Public Class frmSales_ForecastPrice
                 .Columns(3).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(4).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .OptionsView.ShowFooter = True
+                .OptionsBehavior.Editable = False
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -70,7 +71,7 @@ Public Class frmSales_ForecastPrice
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'End If
             'Grid.AutoSize = True
-            SetEditColumnGrid()
+            'SetEditColumnGrid()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -122,9 +123,9 @@ Public Class frmSales_ForecastPrice
     'End Function
 
     Public Overrides Sub Proc_InputNewData()
-        GridView1.AddNewRow()
+        'GridView1.AddNewRow()
 
-        'CallFrm()
+        CallFrm()
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
@@ -567,12 +568,13 @@ Public Class frmSales_ForecastPrice
                         ID = GridView1.GetRowCellValue(rowHandle, "Id")
                     End If
                 Next rowHandle
-
+                Dim n As Integer = 0
                 If GridView1.GetSelectedRows.Length > 0 Then
+                    For i As Integer = 0 To GridView1.FocusedRowHandle - 1
+                        n += 1
+                    Next
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(ID,
-                             InvtID,
-                             GridView1.RowCount)
+                    Call CallFrm(ID, InvtID, n)
                 End If
             End If
         Catch ex As Exception
@@ -592,12 +594,13 @@ Public Class frmSales_ForecastPrice
                     ID = GridView1.GetRowCellValue(rowHandle, "Id")
                 End If
             Next rowHandle
-
+            Dim n As Integer = 0
             If GridView1.GetSelectedRows.Length > 0 Then
+                For i As Integer = 0 To GridView1.FocusedRowHandle - 1
+                    n += 1
+                Next
                 'Dim objGrid As DataGridView = sender
-                Call CallFrm(ID,
-                         InvtID,
-                         GridView1.RowCount)
+                Call CallFrm(ID, InvtID, n)
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -26,6 +26,7 @@ Public Class KanbanInternal
                 ,[RackLabel]
                 ,[RackPart]
                 ,[ItemNo]
+                ,[VendorCode/KanbanID]
                 ,IsPrint
                 ,Case Customer
                     when 'ADM' then '#00FFFF'
@@ -140,6 +141,7 @@ Public Class KanbanInternalDetails
     Public Property Id As Integer
     Public Property InventoryId As String
     Public Property ItemNo As String
+    Public Property KanbanID As String
     Public Property NoPO As String
     Public Property NoUrut As Integer
     Public Property OrderDate As DateTime
@@ -162,11 +164,11 @@ Public Class KanbanInternalDetails
                 ([NoUrut],[Customer],[PONumber],[InventoryId],[PartName],[PartNo]
                ,[Type],[NoPO],[OrderDate],[DeliveryDate],[QtyOrder]
                ,[RH_LH],[PalletizeMark],[PartNoLabel],[RackLabel],[RackPart]
-               ,[ItemNo],[UploadedBy],[UploadedDate])
+               ,[ItemNo],[VendorCode/KanbanID],[UploadedBy],[UploadedDate])
             Values(" & QVal(NoUrut) & "," & QVal(Customer) & "," & QVal(PONumber) & "," & QVal(InventoryId) & "," & QVal(PartName) & "," & QVal(PartNo.ToUpper) & "
                 ," & QVal(Type) & "," & QVal(NoPO) & "," & QVal(OrderDate) & "," & QVal(DeliveryDate) & "," & QVal(QtyOrder) & "
                 ," & QVal(RH_LH) & "," & QVal(PalletizeMark) & "," & QVal(PartNoLabel) & "," & QVal(RackLabel) & "," & QVal(RackPart) & "
-                ," & QVal(ItemNo) & "," & QVal(UploadedBy) & ",GETDATE())"
+                ," & QVal(ItemNo) & "," & QVal(KanbanID) & "," & QVal(UploadedBy) & ",GETDATE())"
             ExecQueryCKR(Query)
         Catch ex As Exception
             Throw ex

@@ -914,8 +914,12 @@ Module MainModul
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
             Else
-                conn = New SqlConnection(GetConnString)
-                da = New SqlDataAdapter(pQuery, conn)
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnString()
+                    da = New SqlDataAdapter(pQuery, kon)
+                End Using
+                'conn = New SqlConnection(GetConnString)
+                'da = New SqlDataAdapter(pQuery, conn)
             End If
             da.Fill(dsa, dtTable)
             da = Nothing
@@ -935,8 +939,12 @@ Module MainModul
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
             Else
-                conn = New SqlConnection(GetConnStringSolomon)
-                da = New SqlDataAdapter(pQuery, conn)
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnStringSolomon()
+                    da = New SqlDataAdapter(pQuery, kon)
+                End Using
+                'conn = New SqlConnection(GetConnStringSolomon)
+                'da = New SqlDataAdapter(pQuery, conn)
             End If
             da.Fill(dsa, dtTable)
             da = Nothing
@@ -1026,8 +1034,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
-
     Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
