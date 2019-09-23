@@ -13,6 +13,7 @@
     Public Property Tarif As Double
     Public Property Tot_Dpp_Invoice As Double
     Public Property Tot_Pph As Double
+    Public Property No_Invoice As String
 
     Public Function GetFPByNo(ByVal NoFP As String) As DataTable
         Try
@@ -42,21 +43,22 @@
 
     Public Function GetFPByNoApprove(ByVal NoFaktur As String) As DataTable
         Try
-            Dim sql As String = "SELECT [id]
-                    ,[FPNo]
-                    ,[No_Bukti_Potong]
+            Dim sql As String = "SELECT [Fp_pph_header].[id]
+                    ,[Fp_pph_header].[FPNo]
+                    ,[Fp_pph_header].[No_Bukti_Potong]
                     ,[Pphid]
                     ,[Ket_Pph]
+					,[Fp_detail].[No_Invoice]
                     ,[Tarif]
                     ,[Tahun]
                     ,[Bulan]
                     ,[Lokasi]
-                    ,[CuryID]
+                    ,[Fp_pph_header].[CuryID]
                     ,[Tot_Dpp_Invoice]
-                    ,[No_Faktur]
+                    ,[Fp_pph_header].[No_Faktur]
                     ,[Tot_Pph]
                     ,[ket_dpp]
-                FROM [Fp_pph_header] WHERE RTRIM(No_Faktur) = " & QVal(NoFaktur) & ""
+                FROM [Fp_pph_header]  inner join fp_detail on fp_pph_header.FPNo = fp_detail.FPNo  WHERE RTRIM(No_Invoice) = " & QVal(No_Invoice) & ""
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
