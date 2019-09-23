@@ -25,6 +25,7 @@ Partial Class frmSales_ForecastPrice
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,9 +47,9 @@ Partial Class frmSales_ForecastPrice
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 52)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 104)
         '
         'ExportToExcelTSM
         '
@@ -73,6 +74,12 @@ Partial Class frmSales_ForecastPrice
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         '
+        'CekInventory1ToolStripMenuItem
+        '
+        Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
+        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(248, 24)
+        Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
+        '
         'frmSales_ForecastPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -95,4 +102,5 @@ Partial Class frmSales_ForecastPrice
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ExportToExcelTSM As ToolStripMenuItem
     Friend WithEvents CekHargaADMTSM As ToolStripMenuItem
+    Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
 End Class
