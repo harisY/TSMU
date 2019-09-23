@@ -913,15 +913,18 @@ Module MainModul
                 gh_Trans.Command.CommandText = pQuery
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
             Else
                 Using kon As New SqlConnection
                     kon.ConnectionString = GetConnString()
+                    kon.Open()
                     da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
                 End Using
                 'conn = New SqlConnection(GetConnString)
                 'da = New SqlDataAdapter(pQuery, conn)
             End If
-            da.Fill(dsa, dtTable)
+
             da = Nothing
             Return dsa
         Catch ex As Exception
@@ -938,15 +941,18 @@ Module MainModul
                 gh_Trans.Command.CommandText = pQuery
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
             Else
                 Using kon As New SqlConnection
                     kon.ConnectionString = GetConnStringSolomon()
+                    kon.Open()
                     da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
                 End Using
                 'conn = New SqlConnection(GetConnStringSolomon)
                 'da = New SqlDataAdapter(pQuery, conn)
             End If
-            da.Fill(dsa, dtTable)
+
             da = Nothing
             Return dsa
         Catch ex As Exception
