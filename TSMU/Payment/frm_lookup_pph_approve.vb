@@ -61,7 +61,7 @@ Public Class frm_lookup_pph_approve
         Try
 
             Dim dtgrid As DataTable = New DataTable
-            dtgrid = ObjDetails.GetGridPphDetailsApprove(_NoFaktur.TrimEnd)
+            dtgrid = ObjDetails.GetGridPphDetailsApprove(_invcNbr.TrimEnd)
             Grid.DataSource = dtgrid
 
         Catch ex As Exception
@@ -102,7 +102,7 @@ Public Class frm_lookup_pph_approve
                 End If
             Else
                 Dim dt As New DataTable
-                dt = ObjHeader.GetFPByNoApprove(_NoFaktur.TrimEnd)
+                dt = ObjHeader.GetFPByNoApprove(_invcNbr.TrimEnd)
                 If dt.Rows.Count > 0 Then
                     _TxtVoucher.Text = dt.Rows(0).Item("FPNo").ToString().TrimEnd
                     _TxtFP.Text = dt.Rows(0).Item("FPNo").ToString()
@@ -116,7 +116,7 @@ Public Class frm_lookup_pph_approve
                     _TxtLokasi.Text = dt.Rows(0).Item("Lokasi").ToString().TrimEnd
                     _TxtNilaiPPh.Text = dt.Rows(0).Item("Tot_Pph")
                     _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
-                    '_TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
+                    _TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
 
                 End If
                 'For Each ctl As Control In Me.LayoutControl1.Controls

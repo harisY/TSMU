@@ -116,7 +116,6 @@ Public Class frm_lookup_cmdm
             _Total = 0
             'ObjPaymentHeader1.ObjBatch.Clear()
             For i As Integer = 0 To GridView1.RowCount - 1
-
                 If GridView1.GetRowCellValue(i, "Check") = True Then
                     _Total = _Total + CDbl(GridView1.GetRowCellValue(i, "TotalCMDM"))
                     'Dim ObjBatch As New batch

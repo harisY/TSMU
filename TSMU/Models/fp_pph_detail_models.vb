@@ -25,15 +25,17 @@
         End Try
     End Function
 
-    Public Function GetGridPphDetailsApprove(ByVal No_Faktur As String) As DataTable
+    Public Function GetGridPphDetailsApprove(ByVal No_Invoice As String) As DataTable
         Try
             Dim sql As String =
-            "SELECT [invtid] InvtID
-                ,[FpNo] FpNo
-                ,[descr] TranDesc
-                ,[dpp] Amount
-                ,convert(bit,[cek]) cek
-            FROM [Fp_pph_detail] WHERE RTRIM(No_Faktur) = " & QVal(No_Faktur) & ""
+            "SELECT [Fp_pph_detail].[invtid] InvtID
+                ,[Fp_pph_detail].[FpNo] FpNo
+                ,[Fp_pph_detail].[descr] TranDesc
+				,[Fp_detail].[no_invoice] NoInvoice
+                ,[Fp_pph_detail].[dpp] Amount
+                ,convert(bit,[Fp_pph_detail].[cek]) cek
+            FROM [Fp_pph_detail] inner join fp_detail on fp_pph_detail.FPNo = fp_detail.FPNo
+            WHERE RTRIM(Fp_detail.no_invoice) = " & QVal(No_Invoice) & ""
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)

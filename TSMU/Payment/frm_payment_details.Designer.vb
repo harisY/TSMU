@@ -20,12 +20,12 @@ Partial Class frm_payment_details
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule7 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule6 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me._TxtVendorID = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -152,10 +152,10 @@ Partial Class frm_payment_details
         Me._TxtVendorID.Size = New System.Drawing.Size(76, 20)
         Me._TxtVendorID.StyleController = Me.LayoutControl1
         Me._TxtVendorID.TabIndex = 13
-        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule5.ErrorText = "Supplier tidak boleh kosong"
-        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule5)
+        ConditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule6.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule6)
         '
         'LayoutControl1
         '
@@ -207,11 +207,11 @@ Partial Class frm_payment_details
         Me._TxtTotal.Size = New System.Drawing.Size(192, 20)
         Me._TxtTotal.StyleController = Me.LayoutControl1
         Me._TxtTotal.TabIndex = 29
-        ConditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.NotEquals
-        ConditionValidationRule7.ErrorText = "Total tidak boleh 0 !"
-        ConditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        ConditionValidationRule7.Value1 = 0
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtTotal, ConditionValidationRule7)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.NotEquals
+        ConditionValidationRule1.ErrorText = "Total tidak boleh 0 !"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        ConditionValidationRule1.Value1 = 0
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTotal, ConditionValidationRule1)
         '
         '_TxtPPN
         '
@@ -330,10 +330,10 @@ Partial Class frm_payment_details
         Me._txtVoucher.Size = New System.Drawing.Size(141, 20)
         Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Voucher tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Voucher tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule2)
         '
         '_TxtPPH
         '
@@ -373,10 +373,10 @@ Partial Class frm_payment_details
         Me._TxtCurrency.Size = New System.Drawing.Size(192, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 17
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Currency tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule2)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Currency tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule3)
         '
         '_TxtTgl
         '
@@ -393,10 +393,10 @@ Partial Class frm_payment_details
         Me._TxtTgl.Size = New System.Drawing.Size(221, 20)
         Me._TxtTgl.StyleController = Me.LayoutControl1
         Me._TxtTgl.TabIndex = 12
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Pilih Tanggal"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule3)
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Pilih Tanggal"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule4)
         '
         '_TxtBankID
         '
@@ -406,10 +406,10 @@ Partial Class frm_payment_details
         Me._TxtBankID.Size = New System.Drawing.Size(62, 20)
         Me._TxtBankID.StyleController = Me.LayoutControl1
         Me._TxtBankID.TabIndex = 5
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Bank tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule4)
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "Bank tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule5)
         '
         '_TxtCM
         '
@@ -419,13 +419,13 @@ Partial Class frm_payment_details
         Me._TxtCM.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtCM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtCM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._TxtCM.Properties.ReadOnly = True
         Me._TxtCM.Size = New System.Drawing.Size(104, 20)
         Me._TxtCM.StyleController = Me.LayoutControl1
         Me._TxtCM.TabIndex = 23
         '
         '_txtCMDMmanual
         '
+        Me._txtCMDMmanual.EditValue = "0"
         Me._txtCMDMmanual.Location = New System.Drawing.Point(712, 108)
         Me._txtCMDMmanual.Name = "_txtCMDMmanual"
         Me._txtCMDMmanual.Properties.Appearance.Options.UseTextOptions = True

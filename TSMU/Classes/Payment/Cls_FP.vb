@@ -444,7 +444,7 @@ Public Class Cls_FP
             ''           query = "select invtid,descr,dpp,cek from Fp_pph_detail " & _
             ''                "WHERE No_Faktur='" & _Fp & "' " 
             query = "select invtid InvtID,descr TranDesc,dpp Amount,cek from Fp_pph_detail " &
-       "WHERE No_Faktur='" & _Fp & "' "
+       "WHERE No_Invoice='" & invcnbr & "' "
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
             Return dt
