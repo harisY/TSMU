@@ -210,10 +210,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bank.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dataset\DataSet1.Designer.vb">
+    <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <DependentUpon>dsCrud.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\dataupload.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -899,6 +899,12 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\CustomForm\frmForecastPrice_.Designer.vb">
+      <DependentUpon>frmForecastPrice_.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmForecastPrice_.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Harigami.Designer.vb">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>
     </Compile>
@@ -1103,6 +1109,7 @@
     <Compile Include="Form\System\frm_system_config_db.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />
@@ -1689,6 +1696,9 @@
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\CustomForm\frmForecastPrice_.resx">
+      <DependentUpon>frmForecastPrice_.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami.resx">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>
     </EmbeddedResource>
@@ -1911,16 +1921,16 @@
     <None Include="dataset\bank.xss">
       <DependentUpon>bank.xsd</DependentUpon>
     </None>
-    <None Include="dataset\DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <None Include="dataset\dsCrud.xsc">
+      <DependentUpon>dsCrud.xsd</DependentUpon>
     </None>
-    <None Include="dataset\DataSet1.xsd">
+    <None Include="dataset\dsCrud.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+      <LastGenOutput>dsCrud.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="dataset\DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <None Include="dataset\dsCrud.xss">
+      <DependentUpon>dsCrud.xsd</DependentUpon>
     </None>
     <None Include="dataset\dataupload.xsc">
       <DependentUpon>dataupload.xsd</DependentUpon>
