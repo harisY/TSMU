@@ -72,7 +72,7 @@
                                     name1 [Penerima],
                                     namedetail [Template Name],
                                     curyid [Currency]
-                                FROM dbo.payment_norek1"
+                                FROM dbo.payment_norek1 where curyid=" & QVal(CuryID.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
