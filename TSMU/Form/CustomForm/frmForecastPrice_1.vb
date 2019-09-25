@@ -6,7 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraSplashScreen
 
-Public Class frmForecastPrice_
+Public Class frmForecastPrice_1
     Dim ObjCommon As CommonModel
 
     Dim ObjForecast As New forecast_price_models
@@ -19,7 +19,7 @@ Public Class frmForecastPrice_
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Private Sub frmForecastPrice__Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmForecastPrice_1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MdiParent = MenuUtamaForm
         WindowState = FormWindowState.Maximized
         'TODO: This line of code loads data into the 'DataSet1.tForecastPrice' table. You can move, or remove it, as needed.
@@ -42,6 +42,7 @@ Public Class frmForecastPrice_
     Private Sub TampilGrid()
         TForecastPriceTableAdapter.Connection.ConnectionString = GetConnString()
         Me.TForecastPriceTableAdapter.Fill(Me.DataSet1.tForecastPrice)
+        'Grid.DataSource = TForecastPriceTableAdapter
     End Sub
     Private Sub TForecastPriceBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles TForecastPriceBindingNavigatorSaveItem.Click
         Try
@@ -77,7 +78,7 @@ Public Class frmForecastPrice_
                 cmbCustID.Items.Add(dt.Rows(i).Item("CustId").ToString())
             Next
             GridView1.Columns("CustID").ColumnEdit = cmbCustID
-            TForecastPriceGridControl.RepositoryItems.Add(cmbCustID)
+            Grid.RepositoryItems.Add(cmbCustID)
 
             dt = New DataTable
             dt = ObjCommon.GetInvtID
@@ -98,7 +99,7 @@ Public Class frmForecastPrice_
                 .Columns("Site").ColumnEdit = cmbSite
                 .Columns("Flag").ColumnEdit = cmbFlag
             End With
-            With TForecastPriceGridControl.RepositoryItems
+            With Grid.RepositoryItems
                 .Add(cmbCustID)
                 .Add(cmbInvtID)
                 .Add(cmbOE)
@@ -498,13 +499,13 @@ Public Class frmForecastPrice_
 
     Private Sub ExportToExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToExcelToolStripMenuItem.Click
         If GridView1.RowCount > 0 Then
-            SaveToExcel(TForecastPriceGridControl)
+            SaveToExcel(Grid)
         Else
             MsgBox("Grid Kosong !")
         End If
     End Sub
 
-    Private Sub TForecastPriceGridControl_MouseDown(sender As Object, e As MouseEventArgs) Handles TForecastPriceGridControl.MouseDown
+    Private Sub Grid_MouseDown(sender As Object, e As MouseEventArgs)
         If e.Button = System.Windows.Forms.MouseButtons.Right Then
             ContextMenuStrip1.Show(e.Location)
         End If
@@ -604,19 +605,6 @@ Public Class frmForecastPrice_
         End Try
     End Sub
 
-    'Private Sub gridView1_ShownEditor(ByVal sender As Object, ByVal e As EventArgs)
-    '    Dim view As GridView = TryCast(sender, GridView)
-    '    Dim te As TextEdit = TryCast(view.ActiveEditor, TextEdit)
-    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
-    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
-    'End Sub
-
-    'Private selectedText As String
-
-    'Private Sub te_VisibleChanged(ByVal sender As Object, ByVal e As EventArgs)
-    '    Dim te As TextEdit = TryCast(sender, TextEdit)
-    '    selectedText = te.MaskBox.MaskBoxSelectedText
-    'End Sub
     Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
         Try
             Dim gridView As GridView = TryCast(sender, GridView)
@@ -638,5 +626,20 @@ Public Class frmForecastPrice_
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    'Private Sub gridView1_ShownEditor(ByVal sender As Object, ByVal e As EventArgs)
+    '    Dim view As GridView = TryCast(sender, GridView)
+    '    Dim te As TextEdit = TryCast(view.ActiveEditor, TextEdit)
+    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
+    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
+    'End Sub
+
+    'Private selectedText As String
+
+    'Private Sub te_VisibleChanged(ByVal sender As Object, ByVal e As EventArgs)
+    '    Dim te As TextEdit = TryCast(sender, TextEdit)
+    '    selectedText = te.MaskBox.MaskBoxSelectedText
+    'End Sub
+
 
 End Class

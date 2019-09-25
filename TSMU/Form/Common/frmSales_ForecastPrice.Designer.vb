@@ -24,8 +24,8 @@ Partial Class frmSales_ForecastPrice
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +63,12 @@ Partial Class frmSales_ForecastPrice
         Me.CekHargaADMTSM.Size = New System.Drawing.Size(248, 24)
         Me.CekHargaADMTSM.Text = "Cek Harga SAP-KAP ADM"
         '
+        'CekInventory1ToolStripMenuItem
+        '
+        Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
+        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(248, 24)
+        Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
+        '
         'GridView1
         '
         Me.GridView1.DetailHeight = 458
@@ -73,12 +79,6 @@ Partial Class frmSales_ForecastPrice
         Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        '
-        'CekInventory1ToolStripMenuItem
-        '
-        Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
-        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(248, 24)
-        Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
         '
         'frmSales_ForecastPrice
         '

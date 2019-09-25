@@ -141,7 +141,6 @@ Public Class FrmSuratJalan
                     Dim dt As New DataTable
                     dt = SuratJalan.GetSJ(GridView2.GetFocusedRowCellValue("No Surat Jalan").ToString(), gh_Common.Site)
                     If dt.Rows.Count > 0 Then
-
                         GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "Customer", dt.Rows(0)(0))
                         GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "No Surat Jalan", dt.Rows(0)(1))
                         GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "PO Customer", dt.Rows(0)(3))

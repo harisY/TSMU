@@ -899,10 +899,22 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\CustomForm\frmForecastPrice_1.Designer.vb">
+      <DependentUpon>frmForecastPrice_1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmForecastPrice_1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\CustomForm\frmForecastPrice_.Designer.vb">
       <DependentUpon>frmForecastPrice_.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\CustomForm\frmForecastPrice_.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmFPrice.Designer.vb">
+      <DependentUpon>frmFPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmFPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_Harigami.Designer.vb">
@@ -1696,8 +1708,14 @@
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\CustomForm\frmForecastPrice_1.resx">
+      <DependentUpon>frmForecastPrice_1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\CustomForm\frmForecastPrice_.resx">
       <DependentUpon>frmForecastPrice_.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\CustomForm\frmFPrice.resx">
+      <DependentUpon>frmFPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami.resx">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>

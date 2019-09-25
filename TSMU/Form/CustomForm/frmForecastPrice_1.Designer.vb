@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmForecastPrice_
+Partial Class frmForecastPrice_1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,11 @@ Partial Class frmForecastPrice_
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmForecastPrice_))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmForecastPrice_1))
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CekHargaBedaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataSet1 = New TSMU.DataSet1()
         Me.TForecastPriceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TForecastPriceTableAdapter = New TSMU.DataSet1TableAdapters.tForecastPriceTableAdapter()
@@ -41,17 +45,12 @@ Partial Class frmForecastPrice_
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TForecastPriceBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsbImport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbImport = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
-        Me.TForecastPriceGridControl = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ExportToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CekHargaBedaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.cmbCustID = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.colTahun = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCustID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -159,15 +158,39 @@ Partial Class frmForecastPrice_
         Me.colDesHarga1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDesHarga2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDesHarga3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TForecastPriceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TForecastPriceBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TForecastPriceBindingNavigator.SuspendLayout()
-        CType(Me.TForecastPriceGridControl, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmbCustID, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem, Me.CekHargaBedaToolStripMenuItem, Me.CekInventory1ToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 76)
+        '
+        'ExportToExcelToolStripMenuItem
+        '
+        Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
+        Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
+        '
+        'CekHargaBedaToolStripMenuItem
+        '
+        Me.CekHargaBedaToolStripMenuItem.Name = "CekHargaBedaToolStripMenuItem"
+        Me.CekHargaBedaToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
+        Me.CekHargaBedaToolStripMenuItem.Text = "Cek Harga Beda"
+        '
+        'CekInventory1ToolStripMenuItem
+        '
+        Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
+        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
+        Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
         '
         'DataSet1
         '
@@ -196,7 +219,7 @@ Partial Class frmForecastPrice_
         Me.TForecastPriceBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.TForecastPriceBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
         Me.TForecastPriceBindingNavigator.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.TForecastPriceBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.TForecastPriceBindingNavigatorSaveItem, Me.ToolStripSeparator2, Me.tsbImport, Me.ToolStripSeparator1, Me.tsbRefresh})
+        Me.TForecastPriceBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.TForecastPriceBindingNavigatorSaveItem, Me.ToolStripSeparator1, Me.tsbImport, Me.ToolStripSeparator2, Me.tsbRefresh})
         Me.TForecastPriceBindingNavigator.Location = New System.Drawing.Point(0, 0)
         Me.TForecastPriceBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.TForecastPriceBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -205,7 +228,7 @@ Partial Class frmForecastPrice_
         Me.TForecastPriceBindingNavigator.Name = "TForecastPriceBindingNavigator"
         Me.TForecastPriceBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
         Me.TForecastPriceBindingNavigator.Size = New System.Drawing.Size(1030, 27)
-        Me.TForecastPriceBindingNavigator.TabIndex = 0
+        Me.TForecastPriceBindingNavigator.TabIndex = 1
         Me.TForecastPriceBindingNavigator.Text = "BindingNavigator1"
         '
         'BindingNavigatorAddNewItem
@@ -301,10 +324,10 @@ Partial Class frmForecastPrice_
         Me.TForecastPriceBindingNavigatorSaveItem.Size = New System.Drawing.Size(24, 24)
         Me.TForecastPriceBindingNavigatorSaveItem.Text = "Save Data"
         '
-        'ToolStripSeparator2
+        'ToolStripSeparator1
         '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'tsbImport
         '
@@ -313,12 +336,12 @@ Partial Class frmForecastPrice_
         Me.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbImport.Name = "tsbImport"
         Me.tsbImport.Size = New System.Drawing.Size(24, 24)
-        Me.tsbImport.Text = "Import Data"
+        Me.tsbImport.Text = "ToolStripButton1"
         '
-        'ToolStripSeparator1
+        'ToolStripSeparator2
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 27)
         '
         'tsbRefresh
         '
@@ -327,60 +350,27 @@ Partial Class frmForecastPrice_
         Me.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbRefresh.Name = "tsbRefresh"
         Me.tsbRefresh.Size = New System.Drawing.Size(24, 24)
-        Me.tsbRefresh.Text = "Refresh"
+        Me.tsbRefresh.Text = "ToolStripButton2"
         '
-        'TForecastPriceGridControl
+        'Grid
         '
-        Me.TForecastPriceGridControl.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.TForecastPriceGridControl.DataSource = Me.TForecastPriceBindingSource
-        Me.TForecastPriceGridControl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TForecastPriceGridControl.Location = New System.Drawing.Point(0, 27)
-        Me.TForecastPriceGridControl.MainView = Me.GridView1
-        Me.TForecastPriceGridControl.Name = "TForecastPriceGridControl"
-        Me.TForecastPriceGridControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cmbCustID})
-        Me.TForecastPriceGridControl.Size = New System.Drawing.Size(1030, 494)
-        Me.TForecastPriceGridControl.TabIndex = 1
-        Me.TForecastPriceGridControl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem, Me.CekHargaBedaToolStripMenuItem, Me.CekInventory1ToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 76)
-        '
-        'ExportToExcelToolStripMenuItem
-        '
-        Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
-        Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
-        '
-        'CekHargaBedaToolStripMenuItem
-        '
-        Me.CekHargaBedaToolStripMenuItem.Name = "CekHargaBedaToolStripMenuItem"
-        Me.CekHargaBedaToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
-        Me.CekHargaBedaToolStripMenuItem.Text = "Cek Harga Beda"
-        '
-        'CekInventory1ToolStripMenuItem
-        '
-        Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
-        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(193, 24)
-        Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
+        Me.Grid.DataSource = Me.TForecastPriceBindingSource
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Grid.Location = New System.Drawing.Point(0, 27)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.Size = New System.Drawing.Size(1030, 494)
+        Me.Grid.TabIndex = 2
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colTahun, Me.colCustID, Me.colCustomer, Me.colInvtID, Me.colDescription, Me.colPartNo, Me.colModel, Me.GridColumn1, Me.GridColumn2, Me.colSite, Me.colFlag, Me.colJanQty1, Me.colJanQty2, Me.colJanQty3, Me.colJanPO1, Me.colJanPO2, Me.colFebQty1, Me.colFebQty2, Me.colFebQty3, Me.colFebPO1, Me.colFebPO2, Me.colMarQty1, Me.colMarQty2, Me.colMarQty3, Me.colMarPO1, Me.colMarPO2, Me.colAprQty1, Me.colAprQty2, Me.colAprQty3, Me.colAprPO1, Me.colAprPO2, Me.colMeiQty1, Me.colMeiQty2, Me.colMeiQty3, Me.colMeiPO1, Me.colMeiPO2, Me.colJunQty1, Me.colJunQty2, Me.colJunQty3, Me.colJunPO1, Me.colJunPO2, Me.colJulQty1, Me.colJulQty2, Me.colJulQty3, Me.colJulPO1, Me.colJulPO2, Me.colAgtQty1, Me.colAgtQty2, Me.colAgtQty3, Me.colAgtPO1, Me.colAgtPO2, Me.colSepQty1, Me.colSepQty2, Me.colSepQty3, Me.colSepPO1, Me.colSepPO2, Me.colOktQty1, Me.colOktQty2, Me.colOktQty3, Me.colOktPO1, Me.colOktPO2, Me.colNovQty1, Me.colNovQty2, Me.colNovQty3, Me.colNovPO1, Me.colNovPO2, Me.colDesQty1, Me.colDesQty2, Me.colDesQty3, Me.colDesPO1, Me.colDesPO2, Me.colJanHarga1, Me.colJanHarga2, Me.colJanHarga3, Me.colFebHarga1, Me.colFebHarga2, Me.colFebHarga3, Me.colMarHarga1, Me.colMarHarga2, Me.colMarHarga3, Me.colAprHarga1, Me.colAprHarga2, Me.colAprHarga3, Me.colMeiHarga1, Me.colMeiHarga2, Me.colMeiHarga3, Me.colJunHarga1, Me.colJunHarga2, Me.colJunHarga3, Me.colJulHarga1, Me.colJulHarga2, Me.colJulHarga3, Me.colAgtHarga1, Me.colAgtHarga2, Me.colAgtHarga3, Me.colSepHarga1, Me.colSepHarga2, Me.colSepHarga3, Me.colOktHarga1, Me.colOktHarga2, Me.colOktHarga3, Me.colNovHarga1, Me.colNovHarga2, Me.colNovHarga3, Me.colDesHarga1, Me.colDesHarga2, Me.colDesHarga3})
-        Me.GridView1.GridControl = Me.TForecastPriceGridControl
+        Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'cmbCustID
-        '
-        Me.cmbCustID.AutoHeight = False
-        Me.cmbCustID.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmbCustID.Name = "cmbCustID"
         '
         'colTahun
         '
@@ -405,6 +395,7 @@ Partial Class frmForecastPrice_
         Me.colCustomer.FieldName = "Customer"
         Me.colCustomer.MinWidth = 25
         Me.colCustomer.Name = "colCustomer"
+        Me.colCustomer.OptionsColumn.AllowEdit = False
         Me.colCustomer.Visible = True
         Me.colCustomer.VisibleIndex = 2
         Me.colCustomer.Width = 94
@@ -423,6 +414,7 @@ Partial Class frmForecastPrice_
         Me.colDescription.FieldName = "Description"
         Me.colDescription.MinWidth = 25
         Me.colDescription.Name = "colDescription"
+        Me.colDescription.OptionsColumn.AllowEdit = False
         Me.colDescription.Visible = True
         Me.colDescription.VisibleIndex = 4
         Me.colDescription.Width = 94
@@ -432,6 +424,7 @@ Partial Class frmForecastPrice_
         Me.colPartNo.FieldName = "PartNo"
         Me.colPartNo.MinWidth = 25
         Me.colPartNo.Name = "colPartNo"
+        Me.colPartNo.OptionsColumn.AllowEdit = False
         Me.colPartNo.Visible = True
         Me.colPartNo.VisibleIndex = 5
         Me.colPartNo.Width = 94
@@ -1345,29 +1338,31 @@ Partial Class frmForecastPrice_
         Me.colDesHarga3.VisibleIndex = 106
         Me.colDesHarga3.Width = 94
         '
-        'frmForecastPrice_
+        'frmForecastPrice_1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1030, 521)
-        Me.Controls.Add(Me.TForecastPriceGridControl)
+        Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.TForecastPriceBindingNavigator)
-        Me.Name = "frmForecastPrice_"
-        Me.Text = "frmForecastPrice_"
+        Me.Name = "frmForecastPrice_1"
+        Me.Text = "Forecast Price"
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TForecastPriceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TForecastPriceBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TForecastPriceBindingNavigator.ResumeLayout(False)
         Me.TForecastPriceBindingNavigator.PerformLayout()
-        CType(Me.TForecastPriceGridControl, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbCustID, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ExportToExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CekHargaBedaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DataSet1 As DataSet1
     Friend WithEvents TForecastPriceBindingSource As BindingSource
     Friend WithEvents TForecastPriceTableAdapter As DataSet1TableAdapters.tForecastPriceTableAdapter
@@ -1385,17 +1380,8 @@ Partial Class frmForecastPrice_
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
     Friend WithEvents TForecastPriceBindingNavigatorSaveItem As ToolStripButton
-    Friend WithEvents TForecastPriceGridControl As DevExpress.XtraGrid.GridControl
+    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents cmbCustID As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
-    Friend WithEvents tsbImport As ToolStripButton
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ExportToExcelToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents tsbRefresh As ToolStripButton
-    Friend WithEvents CekHargaBedaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents colTahun As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colCustID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colCustomer As DevExpress.XtraGrid.Columns.GridColumn
@@ -1503,4 +1489,8 @@ Partial Class frmForecastPrice_
     Friend WithEvents colDesHarga1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colDesHarga2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colDesHarga3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents tsbImport As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents tsbRefresh As ToolStripButton
 End Class

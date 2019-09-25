@@ -120,17 +120,17 @@
   <metadata name="DataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="TForecastPriceBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="TForecastPrice1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>135, 17</value>
   </metadata>
-  <metadata name="TForecastPriceTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>388, 17</value>
+  <metadata name="TForecastPrice1TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>396, 17</value>
   </metadata>
   <metadata name="TableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>634, 17</value>
+    <value>650, 17</value>
   </metadata>
-  <metadata name="TForecastPriceBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>843, 17</value>
+  <metadata name="TForecastPrice1BindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>859, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BindingNavigatorAddNewItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -197,7 +197,7 @@
         8l/FYwIYQ4UGBWBgAAC+0b+zuQxOnAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="TForecastPriceBindingNavigatorSaveItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="TForecastPrice1BindingNavigatorSaveItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
         dAAAEnQB3mYfeAAAAExJREFUOE9joAr49u3bf1IxVCsEgAWC58Dxh/cf4RhZDETHTNiHaQgpBoAwzBCo
@@ -207,12 +207,12 @@
   <data name="tsbImport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEzSURBVDhPY+Aosf5PCQYbwFZieYK9xKqDNGx9Cm4ASICB
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAE0SURBVDhPY+Aosf5PCQYbwFZieYK9xKqDNGx9Cm4ASICB
         RADU04NpQD0DE0epjT17sbUDa4mNHlgMCDiLLU1BYhylVrZALiNIDLsBQABig8Q4Ssx+sBXZqIEMhPDB
         uAKqDLcBDGnGrKAwAYkD6cMcJRZ3oZo3glwIVYXHACBgL7ZVBIp/hGoEYou7/Pn2AlBpMMBrAAhwlFhO
-        hhnAXmyTBhWGA7wGcBRb2gHD4A/MANYS65echRbSUGkwwGkAZ5mZDEgDWHOx1Qy2IutjIDYoPEDhA1WG
-        w4BcD3ZYALIXWZ9nqLfnYC+wUQK65jNYrNiqG6wOCLAawFliHQiM7zUgDIpCsEogAKaDELB4ifVq9nJz
-        BZAYdheQAFANKLZewV5i40Iatl4NN4ASDHQKNtOJxTYuAKVmAJGSMFL3AAAAAElFTkSuQmCC
+        hhnAXmyTBhWGA7wGcBRb2nGUmP6BGcBaYv2Ss9BCGioNBjgN4CwzkwFpAGsutprBVmR9DMQGhQcofKDK
+        cBiQ68EOC0D2IuvzDPX2HOwFNkpA13wGixVbdYPVAQFWAzhLrAOB8b0GhEFRCFYJBMB0EAIWL7FezV5u
+        rgASw+4CEgCqAcXWK9hLbFxIw9ar4QZQgoFOwWY6sdjGBQCiGgCPHukyegAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="tsbRefresh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -246,6 +246,6 @@
 </value>
   </data>
   <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 60</value>
+    <value>206, 60</value>
   </metadata>
 </root>

@@ -13,7 +13,7 @@
 
     Public Function getPartNo_Solomon(ByVal cust As String) As DataTable
         Try
-            Dim query As String = "select RTRIM(InvtID) InvtID, RTRIM(AlternateID) PartNo, RTRIM(Descr) Descr from itemxref where altIDType='C' and EntityID= " & QVal(cust) & " order by EntityID,AlternateID"
+            Dim query As String = "select RTRIM(InvtID) InvtID, RTRIM(AlternateID) PartNo, RTRIM(Descr) Descr from itemxref where altIDType='C' and InvtID= " & QVal(cust) & " order by EntityID,AlternateID"
             Dim dtTable As New DataTable
             dtTable = GetDataTable_Solomon(query)
             Return dtTable

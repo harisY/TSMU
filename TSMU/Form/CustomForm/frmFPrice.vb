@@ -5,8 +5,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraSplashScreen
-
-Public Class frmForecastPrice_
+Public Class frmFPrice
     Dim ObjCommon As CommonModel
 
     Dim ObjForecast As New forecast_price_models
@@ -15,43 +14,43 @@ Public Class frmForecastPrice_
 
         ' This call is required by the designer.
         InitializeComponent()
+        TForecastPrice1TableAdapter.Connection.ConnectionString = GetConnString()
 
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Private Sub frmForecastPrice__Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MdiParent = MenuUtamaForm
-        WindowState = FormWindowState.Maximized
-        'TODO: This line of code loads data into the 'DataSet1.tForecastPrice' table. You can move, or remove it, as needed.
-        TampilGrid()
+    Private Sub TForecastPrice1BindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles TForecastPrice1BindingNavigatorSaveItem.Click
 
-        With GridView1
-            .BestFitColumns()
-            .FixedLineWidth = 2
-            .Columns(0).Fixed = Columns.FixedStyle.Left
-            .Columns(1).Fixed = Columns.FixedStyle.Left
-            .Columns(2).Fixed = Columns.FixedStyle.Left
-            .Columns(3).Fixed = Columns.FixedStyle.Left
-            .Columns(10).Fixed = Columns.FixedStyle.Left
-            '.OptionsView.ShowFooter = True
-            '.OptionsBehavior.Editable = False
-        End With
-        SetEditColumnGrid()
-    End Sub
-
-    Private Sub TampilGrid()
-        TForecastPriceTableAdapter.Connection.ConnectionString = GetConnString()
-        Me.TForecastPriceTableAdapter.Fill(Me.DataSet1.tForecastPrice)
-    End Sub
-    Private Sub TForecastPriceBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles TForecastPriceBindingNavigatorSaveItem.Click
         Try
-            Validate()
-            TForecastPriceBindingSource.EndEdit()
-            TableAdapterManager.UpdateAll(Me.DataSet1)
+            Me.Validate()
+            Me.TForecastPrice1BindingSource.EndEdit()
+            Me.TableAdapterManager.UpdateAll(Me.DataSet1)
             MsgBox("Data Saved")
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+
+    End Sub
+
+    Private Sub frmFPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DataSet1.tForecastPrice1' table. You can move, or remove it, as needed.
+        Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
+        With GridView1
+            .BestFitColumns()
+
+            .Columns(0).Visible = False
+
+            .FixedLineWidth = 2
+            .Columns(1).Fixed = Columns.FixedStyle.Left
+            .Columns(2).Fixed = Columns.FixedStyle.Left
+            .Columns(3).Fixed = Columns.FixedStyle.Left
+            .Columns(4).Fixed = Columns.FixedStyle.Left
+            .Columns(11).Fixed = Columns.FixedStyle.Left
+            '.OptionsView.ShowFooter = True
+            '.OptionsBehavior.Editable = False
+        End With
+        SetEditColumnGrid()
     End Sub
     Private Sub SetEditColumnGrid()
         Try
@@ -77,7 +76,7 @@ Public Class frmForecastPrice_
                 cmbCustID.Items.Add(dt.Rows(i).Item("CustId").ToString())
             Next
             GridView1.Columns("CustID").ColumnEdit = cmbCustID
-            TForecastPriceGridControl.RepositoryItems.Add(cmbCustID)
+            TForecastPrice1GridControl.RepositoryItems.Add(cmbCustID)
 
             dt = New DataTable
             dt = ObjCommon.GetInvtID
@@ -87,7 +86,7 @@ Public Class frmForecastPrice_
             Next
             cmbOE.Items.AddRange(New String() {"OE", "PE"})
             cmbSite.Items.AddRange(New String() {"TNG-U", "TSC3-U"})
-            cmbFlag.Items.AddRange(New String() {"KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"})
+            cmbFlag.Items.AddRange(New String() {"N/A", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"})
             cmbInhouse.Items.AddRange(New String() {"Inhouse", "Subcon"})
 
             With GridView1
@@ -98,7 +97,7 @@ Public Class frmForecastPrice_
                 .Columns("Site").ColumnEdit = cmbSite
                 .Columns("Flag").ColumnEdit = cmbFlag
             End With
-            With TForecastPriceGridControl.RepositoryItems
+            With TForecastPrice1GridControl.RepositoryItems
                 .Add(cmbCustID)
                 .Add(cmbInvtID)
                 .Add(cmbOE)
@@ -127,7 +126,6 @@ Public Class frmForecastPrice_
         End Try
 
     End Sub
-
     Private Sub tsbImport_Click(sender As Object, e As EventArgs) Handles tsbImport.Click
         Try
             Dim table As New DataTable
@@ -313,7 +311,7 @@ Public Class frmForecastPrice_
                             .InsertData1()
                             SplashScreenManager.CloseForm()
                             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                            Me.TForecastPriceTableAdapter.Fill(Me.DataSet1.tForecastPrice)
+                            Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
                         End With
 
                     End If
@@ -481,7 +479,7 @@ Public Class frmForecastPrice_
                         ObjHeader.InsertData()
                         SplashScreenManager.CloseForm()
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                        Me.TForecastPriceTableAdapter.Fill(Me.DataSet1.tForecastPrice)
+                        Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
                     End If
                 Catch ex As Exception
                     Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -498,20 +496,10 @@ Public Class frmForecastPrice_
 
     Private Sub ExportToExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToExcelToolStripMenuItem.Click
         If GridView1.RowCount > 0 Then
-            SaveToExcel(TForecastPriceGridControl)
+            SaveToExcel(TForecastPrice1GridControl)
         Else
             MsgBox("Grid Kosong !")
         End If
-    End Sub
-
-    Private Sub TForecastPriceGridControl_MouseDown(sender As Object, e As MouseEventArgs) Handles TForecastPriceGridControl.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Right Then
-            ContextMenuStrip1.Show(e.Location)
-        End If
-    End Sub
-
-    Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
-        Me.TForecastPriceTableAdapter.Fill(Me.DataSet1.tForecastPrice)
     End Sub
 
     Private Sub CekHargaBedaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CekHargaBedaToolStripMenuItem.Click
@@ -553,6 +541,28 @@ Public Class frmForecastPrice_
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
+        Try
+            Dim gridView As GridView = TryCast(sender, GridView)
+            Dim hitInfo As GridHitInfo = gridView.CalcHitInfo(e.Location)
+            If hitInfo.Column Is Nothing OrElse hitInfo.Column.FieldName = "Tahun" _
+                OrElse hitInfo.Column.FieldName = "CustID" _
+                OrElse hitInfo.Column.FieldName = "InvtID" _
+                OrElse hitInfo.Column.FieldName = "Model" Then
+                Return
+            End If
+
+            Me.BeginInvoke(Sub()
+                               gridView.ShowEditorByMouse()
+                           End Sub)
+            'Me.BeginInvoke(New MethodInvoker(Function()
+            '                                     gridView.ShowEditorByMouse()
+            '                                 End Function))
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -604,39 +614,10 @@ Public Class frmForecastPrice_
         End Try
     End Sub
 
-    'Private Sub gridView1_ShownEditor(ByVal sender As Object, ByVal e As EventArgs)
-    '    Dim view As GridView = TryCast(sender, GridView)
-    '    Dim te As TextEdit = TryCast(view.ActiveEditor, TextEdit)
-    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
-    '    AddHandler te.VisibleChanged, AddressOf te_VisibleChanged
-    'End Sub
-
-    'Private selectedText As String
-
-    'Private Sub te_VisibleChanged(ByVal sender As Object, ByVal e As EventArgs)
-    '    Dim te As TextEdit = TryCast(sender, TextEdit)
-    '    selectedText = te.MaskBox.MaskBoxSelectedText
-    'End Sub
-    Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
-        Try
-            Dim gridView As GridView = TryCast(sender, GridView)
-            Dim hitInfo As GridHitInfo = gridView.CalcHitInfo(e.Location)
-            If hitInfo.Column Is Nothing OrElse hitInfo.Column.FieldName = "Tahun" _
-                OrElse hitInfo.Column.FieldName = "CustID" _
-                OrElse hitInfo.Column.FieldName = "InvtID" _
-                OrElse hitInfo.Column.FieldName = "Model" Then
-                Return
-            End If
-
-            Me.BeginInvoke(Sub()
-                               gridView.ShowEditorByMouse()
-                           End Sub)
-            'Me.BeginInvoke(New MethodInvoker(Function()
-            '                                     gridView.ShowEditorByMouse()
-            '                                 End Function))
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
+        TampilGrid()
     End Sub
-
+    Private Sub TampilGrid()
+        Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
+    End Sub
 End Class
