@@ -1330,7 +1330,7 @@ Partial Class frmFPrice
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem, Me.CekHargaBedaToolStripMenuItem, Me.CekInventory1ToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(194, 76)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 104)
         '
         'ExportToExcelToolStripMenuItem
         '
