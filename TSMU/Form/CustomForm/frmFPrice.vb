@@ -620,4 +620,10 @@ Public Class frmFPrice
     Private Sub TampilGrid()
         Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
     End Sub
+
+    Private Sub TForecastPrice1GridControl_MouseDown(sender As Object, e As MouseEventArgs) Handles TForecastPrice1GridControl.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            ContextMenuStrip1.Show(e.Location)
+        End If
+    End Sub
 End Class

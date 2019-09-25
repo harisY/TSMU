@@ -331,6 +331,7 @@ Partial Class frmFPrice
         '
         'TForecastPrice1GridControl
         '
+        Me.TForecastPrice1GridControl.ContextMenuStrip = Me.ContextMenuStrip1
         Me.TForecastPrice1GridControl.DataSource = Me.TForecastPrice1BindingSource
         Me.TForecastPrice1GridControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TForecastPrice1GridControl.Location = New System.Drawing.Point(0, 27)
