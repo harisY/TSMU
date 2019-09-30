@@ -152,7 +152,23 @@ Public Class TravelHeaderModel
             Throw ex
         End Try
     End Function
-
+    Public Function GetTraveller() As DataTable
+        Try
+            Dim sql As String =
+            "SELECT  [Nama]
+      ,[DeptID]
+      ,[VisaNo]
+      ,[VisaExpDate]
+      ,[PassNo]
+      ,[PassExpDate]
+  FROM [Traveller]"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetAccount() As DataTable
         Try
             Dim sql As String = "SELECT 

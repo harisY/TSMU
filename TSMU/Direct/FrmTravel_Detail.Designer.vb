@@ -20,7 +20,7 @@ Partial Class FrmTravel_Detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.RepositoryItemDateEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemComboBox5 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -32,7 +32,6 @@ Partial Class FrmTravel_Detail
         Me.TxtNoTravel = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTerm = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDestination = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
         Me.txtPickUp = New DevExpress.XtraEditors.TextEdit()
         Me.txtPurpose = New DevExpress.XtraEditors.TextEdit()
@@ -113,6 +112,7 @@ Partial Class FrmTravel_Detail
         Me.RepositoryItemButtonEdit14 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.TxtNama = New DevExpress.XtraEditors.ButtonEdit()
         CType(Me.RepositoryItemDateEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit8.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +124,6 @@ Partial Class FrmTravel_Detail
         CType(Me.TxtNoTravel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDestination.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPickUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,6 +193,7 @@ Partial Class FrmTravel_Detail
         CType(Me.RepositoryItemDateEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit6.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemDateEdit8
@@ -222,12 +222,12 @@ Partial Class FrmTravel_Detail
         Me.LayoutControl1.Controls.Add(Me.TxtNoTravel)
         Me.LayoutControl1.Controls.Add(Me.TxtTerm)
         Me.LayoutControl1.Controls.Add(Me.TxtDestination)
-        Me.LayoutControl1.Controls.Add(Me.TxtNama)
         Me.LayoutControl1.Controls.Add(Me.TxtDep)
         Me.LayoutControl1.Controls.Add(Me.txtPickUp)
         Me.LayoutControl1.Controls.Add(Me.txtPurpose)
         Me.LayoutControl1.Controls.Add(Me.txtVisa)
         Me.LayoutControl1.Controls.Add(Me.TxtTgl)
+        Me.LayoutControl1.Controls.Add(Me.TxtNama)
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(716, 1, 650, 400)
@@ -298,15 +298,6 @@ Partial Class FrmTravel_Detail
         Me.TxtDestination.StyleController = Me.LayoutControl1
         Me.TxtDestination.TabIndex = 4
         '
-        'TxtNama
-        '
-        Me.TxtNama.EditValue = ""
-        Me.TxtNama.Location = New System.Drawing.Point(464, 12)
-        Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(297, 20)
-        Me.TxtNama.StyleController = Me.LayoutControl1
-        Me.TxtNama.TabIndex = 2
-        '
         'TxtDep
         '
         Me.TxtDep.Location = New System.Drawing.Point(860, 12)
@@ -315,10 +306,10 @@ Partial Class FrmTravel_Detail
         Me.TxtDep.Size = New System.Drawing.Size(63, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 3
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Isi Departemen"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Isi Departemen"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
         '
         'txtPickUp
         '
@@ -994,6 +985,16 @@ Partial Class FrmTravel_Detail
         '
         Me.DxValidationProvider2.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
+        'TxtNama
+        '
+        Me.TxtNama.EditValue = ""
+        Me.TxtNama.Location = New System.Drawing.Point(464, 12)
+        Me.TxtNama.Name = "TxtNama"
+        Me.TxtNama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNama.Size = New System.Drawing.Size(297, 20)
+        Me.TxtNama.StyleController = Me.LayoutControl1
+        Me.TxtNama.TabIndex = 2
+        '
         'FrmTravel_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1014,7 +1015,6 @@ Partial Class FrmTravel_Detail
         CType(Me.TxtNoTravel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDestination.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPickUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1084,6 +1084,7 @@ Partial Class FrmTravel_Detail
         CType(Me.RepositoryItemDateEdit6.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1094,7 +1095,6 @@ Partial Class FrmTravel_Detail
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
-    Friend WithEvents TxtNama As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Label9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtDep As DevExpress.XtraEditors.ButtonEdit
@@ -1181,4 +1181,5 @@ Partial Class FrmTravel_Detail
     Friend WithEvents jmltot2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents jmltot3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents jmltot4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TxtNama As DevExpress.XtraEditors.ButtonEdit
 End Class

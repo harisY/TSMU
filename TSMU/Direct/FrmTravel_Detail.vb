@@ -585,7 +585,6 @@ Public Class FrmTravel_Detail
             ls_OldKode = TxtDep.Text
             ls_Judul = "Departemen"
 
-
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
             lF_SearchData.Text = "Select Data " & ls_Judul
@@ -797,6 +796,45 @@ Public Class FrmTravel_Detail
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub TxtDep_EditValueChanged(sender As Object, e As EventArgs) Handles TxtDep.EditValueChanged
+
+    End Sub
+
+    Private Sub TxtNama_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNama.EditValueChanged
+
+    End Sub
+
+    Private Sub TxtNama_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNama.ButtonClick
+        Try
+            ObjTravelHeader = New TravelHeaderModel
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            dtSearch = ObjTravelHeader.GetTraveller
+            ls_OldKode = TxtNama.Text
+            ls_Judul = "Traveller"
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                TxtNama.Text = Value1
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 End Class
