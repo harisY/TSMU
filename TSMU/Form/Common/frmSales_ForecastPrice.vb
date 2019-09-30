@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
@@ -46,6 +47,7 @@ Public Class frmSales_ForecastPrice
         Try
             'Grid.ReadOnly = True
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
+            dtGrid = New DataTable
             dtGrid = ObjForecast.GetAllDataGrid(bs_Filter)
             Grid.DataSource = dtGrid
             With GridView1
@@ -57,6 +59,7 @@ Public Class frmSales_ForecastPrice
                 .Columns(3).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(4).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .OptionsView.ShowFooter = True
+                .OptionsBehavior.Editable = False
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -68,7 +71,7 @@ Public Class frmSales_ForecastPrice
             '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
             'End If
             'Grid.AutoSize = True
-            SetEditColumnGrid()
+            'SetEditColumnGrid()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -120,9 +123,9 @@ Public Class frmSales_ForecastPrice
     'End Function
 
     Public Overrides Sub Proc_InputNewData()
-        GridView1.AddNewRow()
+        'GridView1.AddNewRow()
 
-        'CallFrm()
+        CallFrm()
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
@@ -565,12 +568,13 @@ Public Class frmSales_ForecastPrice
                         ID = GridView1.GetRowCellValue(rowHandle, "Id")
                     End If
                 Next rowHandle
-
+                Dim n As Integer = 0
                 If GridView1.GetSelectedRows.Length > 0 Then
+                    For i As Integer = 0 To GridView1.FocusedRowHandle - 1
+                        n += 1
+                    Next
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(ID,
-                             InvtID,
-                             GridView1.RowCount)
+                    Call CallFrm(ID, InvtID, n)
                 End If
             End If
         Catch ex As Exception
@@ -590,12 +594,13 @@ Public Class frmSales_ForecastPrice
                     ID = GridView1.GetRowCellValue(rowHandle, "Id")
                 End If
             Next rowHandle
-
+            Dim n As Integer = 0
             If GridView1.GetSelectedRows.Length > 0 Then
+                For i As Integer = 0 To GridView1.FocusedRowHandle - 1
+                    n += 1
+                Next
                 'Dim objGrid As DataGridView = sender
-                Call CallFrm(ID,
-                         InvtID,
-                         GridView1.RowCount)
+                Call CallFrm(ID, InvtID, n)
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -625,7 +630,7 @@ Public Class frmSales_ForecastPrice
 
             If Not isOpen("frmListHargaADM") Then
                 Dim f = frmListHargaADM
-                f = New frmListHargaADM(dt)
+                f = New frmListHargaADM(dt, "LIST HARGA INVENTORY SAMA TAPI HARGA BEDA", 0)
                 f.WindowState = FormWindowState.Normal
                 f.StartPosition = FormStartPosition.CenterScreen
                 f.Show()
@@ -649,4 +654,70 @@ Public Class frmSales_ForecastPrice
             End If
         End If
     End Sub
+
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+
+        'Dim id As Object = GridView1.GetRowCellValue(e.RowHandle, "ID")
+        'Dim rHandle As Integer = GridView1.LocateByValue("ID", id, Nothing)
+        'If rHandle < 0 Then e.Appearance.BackColor = Color.Orange
+        Dim view As GridView = TryCast(sender, GridView)
+        If view.FocusedRowHandle >= 0 Then
+            Dim _tahun As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Tahun")
+            Dim _custId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "CustID")
+            Dim _invtId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "InvtID")
+            Dim _partNo As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "PartNo")
+            Dim _flag As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Flag")
+
+            Dim _tahun1 As String = view.GetRowCellDisplayText(e.RowHandle, "Tahun")
+            Dim _custId1 As String = view.GetRowCellDisplayText(e.RowHandle, "CustID")
+            Dim _invtId1 As String = view.GetRowCellDisplayText(e.RowHandle, "InvtID")
+            Dim _partNo1 As String = view.GetRowCellDisplayText(e.RowHandle, "PartNo")
+            Dim _flag1 As String = view.GetRowCellDisplayText(e.RowHandle, "Flag")
+
+            If _tahun = _tahun1 AndAlso _custId = _custId1 AndAlso _invtId = _invtId1 Then
+                'If _flag = "SAP TSC1" Then
+                '    e.Appearance.BackColor = Color.Salmon
+                '    e.HighPriority = True
+                'Else
+                e.Appearance.BackColor = Color.Salmon
+                e.HighPriority = True
+                'End If
+            End If
+        End If
+    End Sub
+
+    Private Sub GridView1_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridView1.FocusedRowChanged
+        Dim view As GridView = TryCast(sender, GridView)
+        view.LayoutChanged()
+    End Sub
+
+    Private Sub CekInventory1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CekInventory1ToolStripMenuItem.Click
+        Try
+            ObjForecast = New forecast_price_models
+            Dim dt As New DataTable
+            dt = ObjForecast.GetDoubleInvtID
+
+            If Not isOpen("frmListHargaADM") Then
+                Dim f = frmListHargaADM
+                f = New frmListHargaADM(dt, "LIST INVENTORY ID YANG LEBIH DARI 1", 1)
+                f.WindowState = FormWindowState.Normal
+                f.StartPosition = FormStartPosition.CenterScreen
+                f.Show()
+            Else
+                XtraMessageBox.Show("Form sudah terbuka !")
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    'Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle
+    '    Dim view As GridView = TryCast(sender, GridView)
+    '    If e.Column = view.Columns("YourFieldName") AndAlso e.RowHandle > 0 AndAlso e.RowHandle < view.RowCount Then
+    '        If CInt(Math.Truncate(e.CellValue)) > CInt(Math.Truncate(view.GetRowCellValue(e.RowHandle - 1, e.Column))) Then
+    '            e.Appearance.BackColor = Color.Red
+    '        End If
+    '    End If
+    'End Sub
 End Class

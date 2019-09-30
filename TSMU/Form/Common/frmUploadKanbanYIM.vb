@@ -104,52 +104,29 @@ Public Class frmUploadKanbanYIM
                     End Try
                 Next
 
-                'Dim dtKanban As New DataTable
-                'If gh_Common.Site.ToLower = "tng" Then
-                '    dtKanban = Obj.GetKanban
-                '    For i As Integer = 0 To dtKanban.Rows.Count - 1
-                '        Try
-                '            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
-                '            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
-                '            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
-                '            Dim shopCode As String = Convert.ToString(dtKanban.Rows(i)(3))
+                Dim dtKanban As New DataTable
+                dtKanban = Obj.GetKanban
+                For i As Integer = 0 To dtKanban.Rows.Count - 1
+                    Try
+                        Dim _tgl As DateTime = Convert.ToDateTime(dtKanban.Rows(i)(0))
+                        Dim _plant As String = Convert.ToString(dtKanban.Rows(i)(1))
+                        Dim _user As String = Convert.ToString(dtKanban.Rows(i)(2))
+                        Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
 
-                '            Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle, shopCode)
-                '            If Not IsExist Then
-                '                '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
-                '                'Else
-                '                Obj.SaveKanbanSum(Tgl, Cycle, Kanban, shopCode)
-                '            End If
-                '        Catch ex As Exception
-                '            MsgBox(ex.Message)
-                '            Console.WriteLine(ex.Message)
-                '            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                '            Continue For
-                '        End Try
-                '    Next
-                'Else
-                '    dtKanban = Obj.GetKanbanCKR
-                '    For i As Integer = 0 To dtKanban.Rows.Count - 1
-                '        Try
-                '            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
-                '            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
-                '            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
-                '            Dim Remark As String = Convert.ToString(dtKanban.Rows(i)(2))
+                        Dim IsExist As Boolean = Obj.IsKanbanExist(_tgl, _plant, _user)
+                        If Not IsExist Then
+                            '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
+                            'Else
+                            Obj.SaveKanbanSum(_tgl, _plant, _user, _qty)
+                        End If
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                        Console.WriteLine(ex.Message)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                        Continue For
+                    End Try
+                Next
 
-                '            Dim IsExist As Boolean = Obj.IsKanbanExistCkr(Tgl, Cycle, Remark)
-                '            If Not IsExist Then
-                '                '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
-                '                'Else
-                '                Obj.SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark)
-                '            End If
-                '        Catch ex As Exception
-                '            MsgBox(ex.Message)
-                '            Console.WriteLine(ex.Message)
-                '            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                '            Continue For
-                '        End Try
-                '    Next
-                'End If
                 'dtKanban = Obj.GetKanban
 
                 SplashScreenManager.CloseForm()

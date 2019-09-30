@@ -493,13 +493,13 @@ Public Class baseForm
             End If
             If FrmParent.DevControl IsNot Nothing Then
                 If FrmParent.DevControl.FocusedView.RowCount > 0 Then
-                    Call Proc_CheckChange()
-                    If ChangePerformed Then
-                        ShowMessage("", MessageTypeEnum.NotBoxMessage)
-                        If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
-                            Exit Sub
-                        End If
-                    End If
+                    'Call Proc_CheckChange()
+                    'If ChangePerformed Then
+                    '    ShowMessage("", MessageTypeEnum.NotBoxMessage)
+                    '    If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
+                    '        Exit Sub
+                    '    End If
+                    'End If
                     If bi_GridParentRow = -1 Then
                         bi_GridParentRow = 2
                     Else
@@ -683,13 +683,13 @@ Public Class baseForm
 
             If FrmParent.DevControl IsNot Nothing Then
                 If FrmParent.DevControl.FocusedView.RowCount > 0 Then
-                    Call Proc_CheckChange()
-                    If ChangePerformed Then
-                        ShowMessage("", MessageTypeEnum.NotBoxMessage)
-                        If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
-                            Exit Sub
-                        End If
-                    End If
+                    'Call Proc_CheckChange()
+                    'If ChangePerformed Then
+                    '    ShowMessage("", MessageTypeEnum.NotBoxMessage)
+                    '    If MsgBox("The data you changed has not been saved. Do you want to move to next data ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then
+                    '        Exit Sub
+                    '    End If
+                    'End If
                     If bi_GridParentRow = -1 Then
                         bi_GridParentRow = 0
                     Else

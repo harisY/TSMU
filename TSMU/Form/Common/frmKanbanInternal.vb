@@ -79,12 +79,13 @@ Public Class frmKanbanInternal
                         .PartName = If(row("Part Name") Is DBNull.Value, "", Convert.ToString(row("Part Name")))
                         .PartNo = If(row("Part No") Is DBNull.Value, "", Convert.ToString(row("Part No")))
                         .PartNoLabel = If(row("Part No Label") Is DBNull.Value, "", row("Part No Label").ToString())
-                        .PONumber = If(row("Part No") Is DBNull.Value, "", row("Part No").ToString())
+                        .PONumber = If(row("No PO") Is DBNull.Value, "", row("No PO").ToString())
                         .QtyOrder = If(row("Qty Order") Is DBNull.Value, 0, Convert.ToInt32(row("Qty Order")))
                         .RackLabel = If(row("Rack Label") Is DBNull.Value, "", row("Rack Label").ToString())
                         .RackPart = If(row("Rack Part") Is DBNull.Value, "", row("Rack Part").ToString())
                         .RH_LH = If(row("RH/LH") Is DBNull.Value, "", row("RH/LH").ToString())
                         .Type = If(row("Type") Is DBNull.Value, "", row("Type").ToString())
+                        .KanbanID = If(row("VENDOR CODE/KBN ID") Is DBNull.Value, "", row("VENDOR CODE/KBN ID").ToString())
                         .UploadedBy = gh_Common.Username
                     End With
                     Obj.ObjDetails.Add(ObjDet)

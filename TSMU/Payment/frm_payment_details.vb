@@ -284,7 +284,7 @@ Public Class frm_payment_details
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
-
+            ObjPaymentDetail.CuryID = _TxtCurrency.Text
             If sender.Name = _TxtVendorID.Name Then
                 dtSearch = ObjPaymentDetail.GetVendor
                 ls_OldKode = _TxtVendorID.Text.Trim

@@ -33,6 +33,19 @@ Public Class forecast_price_models_header
             Throw ex
         End Try
     End Function
+
+    Public Function GetInventoryName(CustID As String) As DataTable
+        Try
+            Dim Query As String = String.Empty
+            Query = "Select RTRIM(Name) Name from Customer where CustID = '" + CustID + "'"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(Query)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -2301,14 +2314,25 @@ Public Class forecast_price_models
             Dim sql As String = "tForecastPrice_get_adm_doubledata"
 
             Dim dt As New DataTable
-            dt = MainModul.GetDataTableByCommand_SP(sql)
+            dt = GetDataTableByCommand_SP(sql)
 
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+    Public Function GetDoubleInvtID() As DataTable
+        Try
+            Dim sql As String = "Bom_GetDoubleInvtID"
 
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(sql)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetListInveortoryDetails(InvtID As String) As DataTable
         Try
             Dim sql As String = "tForecast_GetListInveortoryDetails"

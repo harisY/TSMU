@@ -59,9 +59,9 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +72,8 @@ Partial Class frm_lookup_pph_approve
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me._TsbOk = New System.Windows.Forms.ToolStripButton()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtNilaiPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,14 +105,16 @@ Partial Class frm_lookup_pph_approve
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -130,8 +134,9 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
         Me.LayoutControl1.Controls.Add(Me._TxtPPh)
         Me.LayoutControl1.Controls.Add(Me._TxtKetPPh)
+        Me.LayoutControl1.Controls.Add(Me.TextEdit1)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 170)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 200)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(614, 280)
@@ -141,7 +146,7 @@ Partial Class frm_lookup_pph_approve
         '_TxtNilaiPPh
         '
         Me._TxtNilaiPPh.EditValue = "0"
-        Me._TxtNilaiPPh.Location = New System.Drawing.Point(416, 60)
+        Me._TxtNilaiPPh.Location = New System.Drawing.Point(438, 60)
         Me._TxtNilaiPPh.Name = "_TxtNilaiPPh"
         Me._TxtNilaiPPh.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtNilaiPPh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -149,34 +154,34 @@ Partial Class frm_lookup_pph_approve
         Me._TxtNilaiPPh.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtNilaiPPh.Properties.EditFormat.FormatString = "##,0"
         Me._TxtNilaiPPh.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtNilaiPPh.Size = New System.Drawing.Size(186, 20)
+        Me._TxtNilaiPPh.Size = New System.Drawing.Size(164, 20)
         Me._TxtNilaiPPh.StyleController = Me.LayoutControl1
         Me._TxtNilaiPPh.TabIndex = 17
         '
         '_TxtNoBuktiPot
         '
         Me._TxtNoBuktiPot.EditValue = ""
-        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 12)
+        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(117, 12)
         Me._TxtNoBuktiPot.Name = "_TxtNoBuktiPot"
         Me._TxtNoBuktiPot.Properties.ReadOnly = True
-        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(507, 20)
+        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(485, 20)
         Me._TxtNoBuktiPot.StyleController = Me.LayoutControl1
         Me._TxtNoBuktiPot.TabIndex = 16
         '
         '_TxtBulan
         '
-        Me._TxtBulan.Location = New System.Drawing.Point(416, 156)
+        Me._TxtBulan.Location = New System.Drawing.Point(438, 156)
         Me._TxtBulan.Name = "_TxtBulan"
-        Me._TxtBulan.Size = New System.Drawing.Size(186, 20)
+        Me._TxtBulan.Size = New System.Drawing.Size(164, 20)
         Me._TxtBulan.StyleController = Me.LayoutControl1
         Me._TxtBulan.TabIndex = 14
         '
         '_TxtTahun
         '
-        Me._TxtTahun.Location = New System.Drawing.Point(95, 156)
+        Me._TxtTahun.Location = New System.Drawing.Point(117, 156)
         Me._TxtTahun.Name = "_TxtTahun"
         Me._TxtTahun.Properties.ReadOnly = True
-        Me._TxtTahun.Size = New System.Drawing.Size(234, 20)
+        Me._TxtTahun.Size = New System.Drawing.Size(212, 20)
         Me._TxtTahun.StyleController = Me.LayoutControl1
         Me._TxtTahun.TabIndex = 13
         '
@@ -201,12 +206,12 @@ Partial Class frm_lookup_pph_approve
         '_TxtTarif
         '
         Me._TxtTarif.EditValue = "0"
-        Me._TxtTarif.Location = New System.Drawing.Point(95, 132)
+        Me._TxtTarif.Location = New System.Drawing.Point(117, 132)
         Me._TxtTarif.Name = "_TxtTarif"
         Me._TxtTarif.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtTarif.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtTarif.Properties.ReadOnly = True
-        Me._TxtTarif.Size = New System.Drawing.Size(234, 20)
+        Me._TxtTarif.Size = New System.Drawing.Size(212, 20)
         Me._TxtTarif.StyleController = Me.LayoutControl1
         Me._TxtTarif.TabIndex = 10
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -226,7 +231,7 @@ Partial Class frm_lookup_pph_approve
         '_TxtDPP
         '
         Me._TxtDPP.EditValue = "0"
-        Me._TxtDPP.Location = New System.Drawing.Point(95, 60)
+        Me._TxtDPP.Location = New System.Drawing.Point(117, 60)
         Me._TxtDPP.Name = "_TxtDPP"
         Me._TxtDPP.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtDPP.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -234,7 +239,7 @@ Partial Class frm_lookup_pph_approve
         Me._TxtDPP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtDPP.Properties.EditFormat.FormatString = "#,#.##"
         Me._TxtDPP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtDPP.Size = New System.Drawing.Size(234, 20)
+        Me._TxtDPP.Size = New System.Drawing.Size(212, 20)
         Me._TxtDPP.StyleController = Me.LayoutControl1
         Me._TxtDPP.TabIndex = 6
         '
@@ -253,10 +258,10 @@ Partial Class frm_lookup_pph_approve
         '
         '_TxtFP
         '
-        Me._TxtFP.Location = New System.Drawing.Point(95, 36)
+        Me._TxtFP.Location = New System.Drawing.Point(117, 36)
         Me._TxtFP.Name = "_TxtFP"
         Me._TxtFP.Properties.ReadOnly = True
-        Me._TxtFP.Size = New System.Drawing.Size(234, 20)
+        Me._TxtFP.Size = New System.Drawing.Size(212, 20)
         Me._TxtFP.StyleController = Me.LayoutControl1
         Me._TxtFP.TabIndex = 4
         ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -266,19 +271,19 @@ Partial Class frm_lookup_pph_approve
         '
         '_TxtKetDPP
         '
-        Me._TxtKetDPP.Location = New System.Drawing.Point(95, 204)
+        Me._TxtKetDPP.Location = New System.Drawing.Point(117, 204)
         Me._TxtKetDPP.Name = "_TxtKetDPP"
-        Me._TxtKetDPP.Size = New System.Drawing.Size(507, 54)
+        Me._TxtKetDPP.Size = New System.Drawing.Size(485, 30)
         Me._TxtKetDPP.StyleController = Me.LayoutControl1
         Me._TxtKetDPP.TabIndex = 18
         '
         '_TxtLokasi
         '
-        Me._TxtLokasi.Location = New System.Drawing.Point(95, 180)
+        Me._TxtLokasi.Location = New System.Drawing.Point(117, 180)
         Me._TxtLokasi.Name = "_TxtLokasi"
         Me._TxtLokasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtLokasi.Properties.Items.AddRange(New Object() {"TSC-TNG", "TSC-CKR"})
-        Me._TxtLokasi.Size = New System.Drawing.Size(507, 20)
+        Me._TxtLokasi.Size = New System.Drawing.Size(485, 20)
         Me._TxtLokasi.StyleController = Me.LayoutControl1
         Me._TxtLokasi.TabIndex = 15
         ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -288,11 +293,11 @@ Partial Class frm_lookup_pph_approve
         '
         '_TxtPPh
         '
-        Me._TxtPPh.Location = New System.Drawing.Point(95, 84)
+        Me._TxtPPh.Location = New System.Drawing.Point(117, 84)
         Me._TxtPPh.Name = "_TxtPPh"
         Me._TxtPPh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me._TxtPPh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me._TxtPPh.Size = New System.Drawing.Size(234, 20)
+        Me._TxtPPh.Size = New System.Drawing.Size(212, 20)
         Me._TxtPPh.StyleController = Me.LayoutControl1
         Me._TxtPPh.TabIndex = 7
         ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -302,10 +307,10 @@ Partial Class frm_lookup_pph_approve
         '
         '_TxtKetPPh
         '
-        Me._TxtKetPPh.Location = New System.Drawing.Point(95, 108)
+        Me._TxtKetPPh.Location = New System.Drawing.Point(117, 108)
         Me._TxtKetPPh.Name = "_TxtKetPPh"
         Me._TxtKetPPh.Properties.ReadOnly = True
-        Me._TxtKetPPh.Size = New System.Drawing.Size(234, 20)
+        Me._TxtKetPPh.Size = New System.Drawing.Size(212, 20)
         Me._TxtKetPPh.StyleController = Me.LayoutControl1
         Me._TxtKetPPh.TabIndex = 9
         '
@@ -313,8 +318,8 @@ Partial Class frm_lookup_pph_approve
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem14})
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem16})
+        Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(614, 280)
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -325,7 +330,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem1.Text = "No. Transaksi"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(102, 13)
         '
         'EmptySpaceItem1
         '
@@ -351,7 +356,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem3.Text = "Nilai DPP"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem4
         '
@@ -360,7 +365,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem4.Text = "PPh"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem5
         '
@@ -378,7 +383,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem6.Text = "Ket. PPh"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem7
         '
@@ -387,7 +392,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem7.Text = "Tarif (%)"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem8
         '
@@ -414,7 +419,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem10.Text = "Tahun"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem11
         '
@@ -423,7 +428,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(273, 24)
         Me.LayoutControlItem11.Text = "Bulan"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem12
         '
@@ -432,7 +437,16 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(594, 24)
         Me.LayoutControlItem12.Text = "Cabang/Lokasi"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(102, 13)
+        '
+        'LayoutControlItem15
+        '
+        Me.LayoutControlItem15.Control = Me._TxtKetDPP
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 192)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(594, 34)
+        Me.LayoutControlItem15.Text = "Keterangan"
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem13
         '
@@ -441,7 +455,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(594, 24)
         Me.LayoutControlItem13.Text = "No. Bukti Potong"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(102, 13)
         '
         'LayoutControlItem14
         '
@@ -450,16 +464,7 @@ Partial Class frm_lookup_pph_approve
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(273, 24)
         Me.LayoutControlItem14.Text = "Nilai PPh"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'LayoutControlItem15
-        '
-        Me.LayoutControlItem15.Control = Me._TxtKetDPP
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 192)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(594, 58)
-        Me.LayoutControlItem15.Text = "Keterangan"
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(102, 13)
         '
         'Grid
         '
@@ -468,7 +473,7 @@ Partial Class frm_lookup_pph_approve
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.Grid.Size = New System.Drawing.Size(614, 145)
+        Me.Grid.Size = New System.Drawing.Size(614, 175)
         Me.Grid.TabIndex = 1
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -545,11 +550,27 @@ Partial Class frm_lookup_pph_approve
         Me._TsbOk.Size = New System.Drawing.Size(42, 22)
         Me._TsbOk.Text = "Ok"
         '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(117, 238)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Size = New System.Drawing.Size(485, 20)
+        Me.TextEdit1.StyleController = Me.LayoutControl1
+        Me.TextEdit1.TabIndex = 19
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.TextEdit1
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 226)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(594, 24)
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(102, 13)
+        '
         'frm_lookup_pph_approve
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(614, 450)
+        Me.ClientSize = New System.Drawing.Size(614, 480)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -589,15 +610,17 @@ Partial Class frm_lookup_pph_approve
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -646,4 +669,6 @@ Partial Class frm_lookup_pph_approve
     Friend WithEvents _TxtPPh As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents _TxtKetPPh As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
 End Class

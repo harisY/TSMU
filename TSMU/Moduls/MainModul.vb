@@ -913,11 +913,18 @@ Module MainModul
                 gh_Trans.Command.CommandText = pQuery
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
             Else
-                conn = New SqlConnection(GetConnString)
-                da = New SqlDataAdapter(pQuery, conn)
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnString()
+                    kon.Open()
+                    da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
+                End Using
+                'conn = New SqlConnection(GetConnString)
+                'da = New SqlDataAdapter(pQuery, conn)
             End If
-            da.Fill(dsa, dtTable)
+
             da = Nothing
             Return dsa
         Catch ex As Exception
@@ -934,11 +941,18 @@ Module MainModul
                 gh_Trans.Command.CommandText = pQuery
                 gh_Trans.Command.CommandTimeout = pTimeOut
                 da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
             Else
-                conn = New SqlConnection(GetConnStringSolomon)
-                da = New SqlDataAdapter(pQuery, conn)
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnStringSolomon()
+                    kon.Open()
+                    da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
+                End Using
+                'conn = New SqlConnection(GetConnStringSolomon)
+                'da = New SqlDataAdapter(pQuery, conn)
             End If
-            da.Fill(dsa, dtTable)
+
             da = Nothing
             Return dsa
         Catch ex As Exception
@@ -1026,8 +1040,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
-
     Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
