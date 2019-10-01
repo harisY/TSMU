@@ -635,22 +635,55 @@ Public Class payment_header_models
 
     Public Function GetDataGridApproveDone(ByVal Level As Integer) As DataTable
         Dim sql As String = "SELECT 
-                                id
-                                ,vrno as VoucherNo
-                                ,tgl Tanggal
-                                ,BankName
-                                ,CuryID
-                                ,VendorName
-                                ,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as PaidAmount
-                            FROM payment_header1 "
+                                payment_header1.id
+                                ,payment_header1.vrno as VoucherNo
+                                ,payment_header1.tgl Tanggal
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-payment_header1.cm_dm-payment_header1.Biaya_Transfer as PaidAmount
+                            FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno  "
         Try
             '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
             If Level = 2 Then
-                sql = sql & " WHERE cek2='1' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.cek2='1' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+							ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 3 Then
-                sql = sql & " WHERE cek3='1' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.cek3='1' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+							ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 4 Then
-                sql = sql & " WHERE cek4='1' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " WHERE payment_header1.cek4='1' group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+							ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             End If
 
             Dim dt As DataTable = New DataTable

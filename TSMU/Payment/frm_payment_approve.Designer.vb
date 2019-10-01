@@ -318,6 +318,7 @@ Partial Class frm_payment_approve
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(814, 58)
         Me.PanelControl1.TabIndex = 4
+        Me.PanelControl1.Visible = False
         '
         'DateEdit2
         '
@@ -385,10 +386,10 @@ Partial Class frm_payment_approve
         Me.GridApproved.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridApproved.Location = New System.Drawing.Point(3, 65)
+        Me.GridApproved.Location = New System.Drawing.Point(3, 6)
         Me.GridApproved.MainView = Me.GridView2
         Me.GridApproved.Name = "GridApproved"
-        Me.GridApproved.Size = New System.Drawing.Size(814, 425)
+        Me.GridApproved.Size = New System.Drawing.Size(814, 484)
         Me.GridApproved.TabIndex = 3
         Me.GridApproved.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
