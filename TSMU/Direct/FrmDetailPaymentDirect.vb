@@ -31,4 +31,27 @@ Public Class FrmDetailPaymentDirect
         DataCashBank()
 
     End Sub
+
+    Private Sub StatusStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles StatusStrip1.ItemClicked
+
+    End Sub
+
+    Private Sub BtnRefNo_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BtnRefNo.ButtonClick
+
+        Try
+            Dim newform As New FrmReportSettle
+            Dim stext As String
+            newform.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Replace(stext, " / ", "")
+                newform.TxtNosettle.Text = stext
+            Next
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
 End Class

@@ -33,8 +33,11 @@ Partial Class FrmDetailPaymentDirect
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnRefNo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnRefNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl1
@@ -44,6 +47,7 @@ Partial Class FrmDetailPaymentDirect
         Me.GridControl1.Location = New System.Drawing.Point(12, 12)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.BtnRefNo})
         Me.GridControl1.Size = New System.Drawing.Size(860, 281)
         Me.GridControl1.TabIndex = 8
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -90,6 +94,7 @@ Partial Class FrmDetailPaymentDirect
         'GridColumn43
         '
         Me.GridColumn43.Caption = "Ref No"
+        Me.GridColumn43.ColumnEdit = Me.BtnRefNo
         Me.GridColumn43.FieldName = "Noref"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
@@ -127,18 +132,35 @@ Partial Class FrmDetailPaymentDirect
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         '
+        'BtnRefNo
+        '
+        Me.BtnRefNo.AutoHeight = False
+        Me.BtnRefNo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnRefNo.Name = "BtnRefNo"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 298)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(884, 22)
+        Me.StatusStrip1.TabIndex = 9
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
         'FrmDetailPaymentDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 320)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GridControl1)
         Me.Name = "FrmDetailPaymentDirect"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FrmDetailPaymentDirect"
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnRefNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -153,4 +175,6 @@ Partial Class FrmDetailPaymentDirect
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnRefNo As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents StatusStrip1 As StatusStrip
 End Class
