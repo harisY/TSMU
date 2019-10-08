@@ -62,7 +62,36 @@
             'End If
             Dim ket As String = "Transfer"
             Dim sql As String =
-            "INSERT INTO [cashbank]
+            "INSERT INTO [cashbank2]
+           ([Tgl]
+           ,[NoBukti]
+           ,[Transaksi]
+            ,[SuspendAmount]
+           ,[SettleAmount]
+           ,[Masuk]
+           ,[Keluar]
+           ,[Saldo]
+           ,[Perpost]
+           ,[AcctID]
+           ,[Saldo_Awal])
+     VALUES
+           (" & QVal(Tgl) & "
+           ," & QVal(NoVouch) & "
+           ," & QVal(ket) & "
+           ," & 0 & "
+          ," & 0 & "
+           ," & QVal(Jumlah) & "
+           ," & 0 & "
+           ," & 0 & "
+           ," & QVal(Perpost) & "
+           ," & QVal(AcctID_tujuan) & "
+           ," & 0 & ")"
+            MainModul.ExecQuery_Solomon(sql)
+
+
+
+            Dim sql2 As String =
+ "INSERT INTO [cashbank]
            ([Tgl]
            ,[NoBukti]
            ,[Transaksi]
@@ -90,7 +119,7 @@
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_tujuan) & "
            ," & 0 & ")"
-            MainModul.ExecQuery_Solomon(sql)
+            MainModul.ExecQuery_Solomon(sql2)
         Catch ex As Exception
             Throw ex
         End Try
@@ -105,7 +134,36 @@
             'End If
             Dim ket As String = "Transfer"
             Dim sql As String =
-            "INSERT INTO [cashbank]
+            "INSERT INTO [cashbank2]
+           ([Tgl]
+           ,[NoBukti]
+           ,[Transaksi]
+            ,[SuspendAmount]
+           ,[SettleAmount]
+           ,[Masuk]
+           ,[Keluar]
+           ,[Saldo]
+           ,[Perpost]
+           ,[AcctID]
+           ,[Saldo_Awal])
+     VALUES
+           (" & QVal(Tgl) & "
+           ," & QVal(NoVouch) & "
+           ," & QVal(ket) & "
+           ," & 0 & "
+          ," & 0 & "
+           ," & 0 & "
+           ," & QVal(Jumlah) & "
+           ," & 0 & "
+           ," & QVal(Perpost) & "
+           ," & QVal(AcctID_Asal) & "
+           ," & 0 & ")"
+            MainModul.ExecQuery_Solomon(sql)
+
+
+
+            Dim sql2 As String =
+ "INSERT INTO [cashbank]
            ([Tgl]
            ,[NoBukti]
            ,[Transaksi]
@@ -133,7 +191,7 @@
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_Asal) & "
            ," & 0 & ")"
-            MainModul.ExecQuery_Solomon(sql)
+            MainModul.ExecQuery_Solomon(sql2)
         Catch ex As Exception
             Throw ex
         End Try

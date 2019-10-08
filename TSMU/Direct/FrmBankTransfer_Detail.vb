@@ -194,6 +194,7 @@ Public Class FrmBankTransfer_Detail
                 fc_Class.Insert()
                 fc_Class.NoVouch = fc_Class.autononb()
                 fc_Class.InsertToTable2()
+                fc_Class.NoVouch = fc_Class.autononb()
                 fc_Class.InsertToTable3()
             Else
                 fc_Class.Update()
