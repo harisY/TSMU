@@ -1173,6 +1173,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Payment\Frm_AR.Designer.vb">
+      <DependentUpon>Frm_AR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_AR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\frm_lookup_cmdm.designer.vb">
       <DependentUpon>frm_lookup_cmdm.vb</DependentUpon>
     </Compile>
@@ -1225,6 +1231,12 @@
       <DependentUpon>frm_payment_aprrove_details.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\frm_payment_aprrove_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_AR_details.Designer.vb">
+      <DependentUpon>frm_AR_details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_AR_details.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_payment_details.Designer.vb">
@@ -1835,6 +1847,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_AR.resx">
+      <DependentUpon>Frm_AR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_lookup_cmdm.resx">
       <DependentUpon>frm_lookup_cmdm.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -1862,6 +1877,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_payment_aprrove_details.resx">
       <DependentUpon>frm_payment_aprrove_details.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_AR_details.resx">
+      <DependentUpon>frm_AR_details.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_payment_details.resx">
       <DependentUpon>frm_payment_details.vb</DependentUpon>
