@@ -68,13 +68,24 @@ Public Class FrmBankPaid
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         DataCashBank()
         'Call CreateTable()
+
         Dim totalamt As Double
-        GridControl2.DataSource = _dt
-        For i As Integer = 0 To GridView2.RowCount - 1
-            totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
-        Next
-        _txttot.Text = Format(totalamt, "#,#.##")
-        GridCellFormat(GridView2)
+        If _transaksi.Text = "Suspend" Then
+            GridControl2.DataSource = _dt
+            For i As Integer = 0 To GridView2.RowCount - 1
+                totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
+            Next
+            _txttot.Text = Format(totalamt, "#,#.##")
+            GridCellFormat(GridView2)
+        Else
+            GridControl2.DataSource = _dt
+            For i As Integer = 0 To GridView2.RowCount - 1
+                totalamt = totalamt + GridView2.GetRowCellValue(i, "SettleAmount")
+            Next
+            _txttot.Text = Format(totalamt, "#,#.##")
+            GridCellFormat(GridView2)
+        End If
+
     End Sub
     Private Sub tabu1()
         For i As Integer = 0 To GridView2.RowCount - 1

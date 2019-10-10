@@ -26,6 +26,7 @@ Partial Class FrmBankPaid
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me._transaksi = New DevExpress.XtraEditors.TextEdit()
         Me._txttot = New DevExpress.XtraEditors.TextEdit()
         Me._txtcuryid = New DevExpress.XtraEditors.TextEdit()
         Me._txtaccountname = New DevExpress.XtraEditors.TextEdit()
@@ -40,6 +41,7 @@ Partial Class FrmBankPaid
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -47,12 +49,11 @@ Partial Class FrmBankPaid
         Me.RepositoryItemButtonEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me._TsbOk = New System.Windows.Forms.ToolStripButton()
-        Me._transaksi = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._transaksi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txttot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txtcuryid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txtaccountname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,14 +68,13 @@ Partial Class FrmBankPaid
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        CType(Me._transaksi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControlGroup1
@@ -111,20 +111,28 @@ Partial Class FrmBankPaid
         Me.LayoutControl1.TabIndex = 9
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        '_transaksi
+        '
+        Me._transaksi.Location = New System.Drawing.Point(635, 12)
+        Me._transaksi.Name = "_transaksi"
+        Me._transaksi.Size = New System.Drawing.Size(52, 20)
+        Me._transaksi.StyleController = Me.LayoutControl1
+        Me._transaksi.TabIndex = 6
+        '
         '_txttot
         '
         Me._txttot.Enabled = False
-        Me._txttot.Location = New System.Drawing.Point(880, 12)
+        Me._txttot.Location = New System.Drawing.Point(780, 12)
         Me._txttot.Name = "_txttot"
         Me._txttot.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txttot.Properties.Appearance.Options.UseBackColor = True
-        Me._txttot.Size = New System.Drawing.Size(50, 20)
+        Me._txttot.Size = New System.Drawing.Size(150, 20)
         Me._txttot.StyleController = Me.LayoutControl1
         Me._txttot.TabIndex = 5
         '
         '_txtcuryid
         '
-        Me._txtcuryid.Location = New System.Drawing.Point(689, 12)
+        Me._txtcuryid.Location = New System.Drawing.Point(581, 12)
         Me._txtcuryid.Name = "_txtcuryid"
         Me._txtcuryid.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtcuryid.Properties.Appearance.Options.UseBackColor = True
@@ -138,7 +146,7 @@ Partial Class FrmBankPaid
         Me._txtaccountname.Name = "_txtaccountname"
         Me._txtaccountname.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtaccountname.Properties.Appearance.Options.UseBackColor = True
-        Me._txtaccountname.Size = New System.Drawing.Size(365, 20)
+        Me._txtaccountname.Size = New System.Drawing.Size(257, 20)
         Me._txtaccountname.StyleController = Me.LayoutControl1
         Me._txtaccountname.TabIndex = 3
         '
@@ -181,9 +189,9 @@ Partial Class FrmBankPaid
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
         Me.EmptySpaceItem3.CustomizationFormText = "EmptySpaceItem1"
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(785, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(679, 0)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 24)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(16, 24)
         Me.EmptySpaceItem3.Text = "EmptySpaceItem1"
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -212,7 +220,7 @@ Partial Class FrmBankPaid
         Me.LayoutControlItem11.Enabled = False
         Me.LayoutControlItem11.Location = New System.Drawing.Point(308, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(369, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(261, 24)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -220,7 +228,7 @@ Partial Class FrmBankPaid
         '
         Me.LayoutControlItem4.Control = Me._txtcuryid
         Me.LayoutControlItem4.Enabled = False
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(677, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(569, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(54, 24)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
@@ -237,11 +245,20 @@ Partial Class FrmBankPaid
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._txttot
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(795, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(695, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(127, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(227, 24)
         Me.LayoutControlItem3.Text = "Total Amount"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(70, 13)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me._transaksi
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(623, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(56, 24)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
         '
         'GridControl2
         '
@@ -294,23 +311,6 @@ Partial Class FrmBankPaid
         Me._TsbOk.Size = New System.Drawing.Size(42, 22)
         Me._TsbOk.Text = "Ok"
         '
-        '_transaksi
-        '
-        Me._transaksi.Location = New System.Drawing.Point(743, 12)
-        Me._transaksi.Name = "_transaksi"
-        Me._transaksi.Size = New System.Drawing.Size(50, 20)
-        Me._transaksi.StyleController = Me.LayoutControl1
-        Me._transaksi.TabIndex = 6
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me._transaksi
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(731, 0)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(54, 24)
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem5.TextVisible = False
-        '
         'FrmBankPaid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,6 +326,7 @@ Partial Class FrmBankPaid
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._transaksi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txttot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txtcuryid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txtaccountname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -340,6 +341,7 @@ Partial Class FrmBankPaid
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -347,8 +349,6 @@ Partial Class FrmBankPaid
         CType(Me.RepositoryItemButtonEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me._transaksi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
