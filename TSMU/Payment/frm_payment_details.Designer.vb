@@ -20,12 +20,12 @@ Partial Class frm_payment_details
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule6 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule6 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me._TxtVendorID = New DevExpress.XtraEditors.ButtonEdit()
         Me._TxtTotal = New DevExpress.XtraEditors.TextEdit()
@@ -86,6 +86,7 @@ Partial Class frm_payment_details
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me._txtnamasupllier = New System.Windows.Forms.TextBox()
+        Me.btnBatchNo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +139,7 @@ Partial Class frm_payment_details
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.btnBatchNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DxValidationProvider1
@@ -150,11 +152,12 @@ Partial Class frm_payment_details
         Me._TxtVendorID.Name = "_TxtVendorID"
         Me._TxtVendorID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me._TxtVendorID.Size = New System.Drawing.Size(76, 20)
+        Me._TxtVendorID.StyleController = Me.LayoutControl1
         Me._TxtVendorID.TabIndex = 13
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Supplier tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule1)
+        ConditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule6.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule6)
         '
         '_TxtTotal
         '
@@ -165,12 +168,13 @@ Partial Class frm_payment_details
         Me._TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtTotal.Properties.ReadOnly = True
         Me._TxtTotal.Size = New System.Drawing.Size(192, 20)
+        Me._TxtTotal.StyleController = Me.LayoutControl1
         Me._TxtTotal.TabIndex = 29
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.NotEquals
-        ConditionValidationRule2.ErrorText = "Total tidak boleh 0 !"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        ConditionValidationRule2.Value1 = 0
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtTotal, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.NotEquals
+        ConditionValidationRule1.ErrorText = "Total tidak boleh 0 !"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        ConditionValidationRule1.Value1 = 0
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTotal, ConditionValidationRule1)
         '
         '_txtVoucher
         '
@@ -178,11 +182,12 @@ Partial Class frm_payment_details
         Me._txtVoucher.Name = "_txtVoucher"
         Me._txtVoucher.Properties.ReadOnly = True
         Me._txtVoucher.Size = New System.Drawing.Size(141, 20)
+        Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Voucher tidak boleh kosong"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Voucher tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule2)
         '
         '_TxtCurrency
         '
@@ -193,11 +198,12 @@ Partial Class frm_payment_details
         Me._TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
         Me._TxtCurrency.Size = New System.Drawing.Size(192, 20)
+        Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 17
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Currency tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule4)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Currency tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule3)
         '
         '_TxtTgl
         '
@@ -212,11 +218,12 @@ Partial Class frm_payment_details
         Me._TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TxtTgl.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me._TxtTgl.Size = New System.Drawing.Size(221, 20)
+        Me._TxtTgl.StyleController = Me.LayoutControl1
         Me._TxtTgl.TabIndex = 12
-        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule5.ErrorText = "Pilih Tanggal"
-        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule5)
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Pilih Tanggal"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtTgl, ConditionValidationRule4)
         '
         '_TxtBankID
         '
@@ -224,11 +231,12 @@ Partial Class frm_payment_details
         Me._TxtBankID.Name = "_TxtBankID"
         Me._TxtBankID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me._TxtBankID.Size = New System.Drawing.Size(62, 20)
+        Me._TxtBankID.StyleController = Me.LayoutControl1
         Me._TxtBankID.TabIndex = 5
-        ConditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule6.ErrorText = "Bank tidak boleh kosong"
-        ConditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule6)
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "Bank tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule5)
         '
         'LayoutControl1
         '
@@ -266,6 +274,7 @@ Partial Class frm_payment_details
         Me._txtKetCMDMmanual.Location = New System.Drawing.Point(712, 132)
         Me._txtKetCMDMmanual.Name = "_txtKetCMDMmanual"
         Me._txtKetCMDMmanual.Size = New System.Drawing.Size(104, 20)
+        Me._txtKetCMDMmanual.StyleController = Me.LayoutControl1
         Me._txtKetCMDMmanual.TabIndex = 31
         '
         '_TxtPPN
@@ -277,6 +286,7 @@ Partial Class frm_payment_details
         Me._TxtPPN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtPPN.Properties.ReadOnly = True
         Me._TxtPPN.Size = New System.Drawing.Size(192, 20)
+        Me._TxtPPN.StyleController = Me.LayoutControl1
         Me._TxtPPN.TabIndex = 28
         '
         '_TxtBankName
@@ -285,6 +295,7 @@ Partial Class frm_payment_details
         Me._TxtBankName.Name = "_TxtBankName"
         Me._TxtBankName.Properties.ReadOnly = True
         Me._TxtBankName.Size = New System.Drawing.Size(126, 20)
+        Me._TxtBankName.StyleController = Me.LayoutControl1
         Me._TxtBankName.TabIndex = 27
         '
         '_TxtNoRek
@@ -293,6 +304,7 @@ Partial Class frm_payment_details
         Me._TxtNoRek.Name = "_TxtNoRek"
         Me._TxtNoRek.Properties.ReadOnly = True
         Me._TxtNoRek.Size = New System.Drawing.Size(221, 20)
+        Me._TxtNoRek.StyleController = Me.LayoutControl1
         Me._TxtNoRek.TabIndex = 26
         '
         '_TxtDebit
@@ -304,6 +316,7 @@ Partial Class frm_payment_details
         Me._TxtDebit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtDebit.Properties.ReadOnly = True
         Me._TxtDebit.Size = New System.Drawing.Size(104, 20)
+        Me._TxtDebit.StyleController = Me.LayoutControl1
         Me._TxtDebit.TabIndex = 25
         '
         '_TxtBiaya
@@ -320,6 +333,7 @@ Partial Class frm_payment_details
         Me._TxtBiaya.Properties.Mask.EditMask = "n"
         Me._TxtBiaya.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me._TxtBiaya.Size = New System.Drawing.Size(104, 20)
+        Me._TxtBiaya.StyleController = Me.LayoutControl1
         Me._TxtBiaya.TabIndex = 24
         '
         '_TxtDpp
@@ -331,6 +345,7 @@ Partial Class frm_payment_details
         Me._TxtDpp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtDpp.Properties.ReadOnly = True
         Me._TxtDpp.Size = New System.Drawing.Size(192, 20)
+        Me._TxtDpp.StyleController = Me.LayoutControl1
         Me._TxtDpp.TabIndex = 19
         '
         '_TxtTMV
@@ -341,6 +356,7 @@ Partial Class frm_payment_details
         Me._TxtTMV.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtTMV.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtTMV.Size = New System.Drawing.Size(192, 20)
+        Me._TxtTMV.StyleController = Me.LayoutControl1
         Me._TxtTMV.TabIndex = 18
         '
         '_TxtAttentionTo
@@ -349,6 +365,7 @@ Partial Class frm_payment_details
         Me._TxtAttentionTo.Name = "_TxtAttentionTo"
         Me._TxtAttentionTo.Properties.ReadOnly = True
         Me._TxtAttentionTo.Size = New System.Drawing.Size(221, 20)
+        Me._TxtAttentionTo.StyleController = Me.LayoutControl1
         Me._TxtAttentionTo.TabIndex = 16
         '
         '_TxtToBank
@@ -357,6 +374,7 @@ Partial Class frm_payment_details
         Me._TxtToBank.Name = "_TxtToBank"
         Me._TxtToBank.Properties.ReadOnly = True
         Me._TxtToBank.Size = New System.Drawing.Size(221, 20)
+        Me._TxtToBank.StyleController = Me.LayoutControl1
         Me._TxtToBank.TabIndex = 15
         '
         '_TxtVendorName
@@ -365,6 +383,7 @@ Partial Class frm_payment_details
         Me._TxtVendorName.Name = "_TxtVendorName"
         Me._TxtVendorName.Properties.ReadOnly = True
         Me._TxtVendorName.Size = New System.Drawing.Size(141, 20)
+        Me._TxtVendorName.StyleController = Me.LayoutControl1
         Me._TxtVendorName.TabIndex = 14
         '
         '_TxtPPH
@@ -376,6 +395,7 @@ Partial Class frm_payment_details
         Me._TxtPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtPPH.Properties.ReadOnly = True
         Me._TxtPPH.Size = New System.Drawing.Size(104, 20)
+        Me._TxtPPH.StyleController = Me.LayoutControl1
         Me._TxtPPH.TabIndex = 8
         '
         '_TxtPerpost
@@ -390,6 +410,7 @@ Partial Class frm_payment_details
         Me._TxtPerpost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
         Me._TxtPerpost.Properties.Mask.SaveLiteral = False
         Me._TxtPerpost.Size = New System.Drawing.Size(76, 20)
+        Me._TxtPerpost.StyleController = Me.LayoutControl1
         Me._TxtPerpost.TabIndex = 7
         '
         '_TxtCM
@@ -401,6 +422,7 @@ Partial Class frm_payment_details
         Me._TxtCM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtCM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me._TxtCM.Size = New System.Drawing.Size(104, 20)
+        Me._TxtCM.StyleController = Me.LayoutControl1
         Me._TxtCM.TabIndex = 23
         '
         '_txtCMDMmanual
@@ -412,6 +434,7 @@ Partial Class frm_payment_details
         Me._txtCMDMmanual.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._txtCMDMmanual.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me._txtCMDMmanual.Size = New System.Drawing.Size(104, 20)
+        Me._txtCMDMmanual.StyleController = Me.LayoutControl1
         Me._txtCMDMmanual.TabIndex = 30
         '
         'LayoutControlGroup1
@@ -654,7 +677,7 @@ Partial Class frm_payment_details
         Me.GridInvoice.Location = New System.Drawing.Point(3, 3)
         Me.GridInvoice.MainView = Me.GridView1
         Me.GridInvoice.Name = "GridInvoice"
-        Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.btnBatchNo})
         Me.GridInvoice.Size = New System.Drawing.Size(822, 376)
         Me.GridInvoice.TabIndex = 0
         Me.GridInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -670,6 +693,7 @@ Partial Class frm_payment_details
         'ColInvcNbr
         '
         Me.ColInvcNbr.Caption = "Invoice No."
+        Me.ColInvcNbr.ColumnEdit = Me.btnBatchNo
         Me.ColInvcNbr.FieldName = "InvcNbr"
         Me.ColInvcNbr.Name = "ColInvcNbr"
         Me.ColInvcNbr.OptionsColumn.AllowEdit = False
@@ -786,6 +810,12 @@ Partial Class frm_payment_details
         Me._txtnamasupllier.TabIndex = 3
         Me._txtnamasupllier.Visible = False
         '
+        'btnBatchNo
+        '
+        Me.btnBatchNo.AutoHeight = False
+        Me.btnBatchNo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.SpinUp)})
+        Me.btnBatchNo.Name = "btnBatchNo"
+        '
         'frm_payment_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -849,6 +879,7 @@ Partial Class frm_payment_details
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.btnBatchNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -913,4 +944,5 @@ Partial Class frm_payment_details
     Friend WithEvents _txtKetCMDMmanual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents _txtnamasupllier As TextBox
+    Friend WithEvents btnBatchNo As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

@@ -6,6 +6,7 @@ Public Class frm_lookup_pph_approve
     Dim _FP As String
     Dim _Voucher As String
     Dim _invcNbr As String
+    Dim No_Invoice As String
     Dim _DPP As String
     Dim _NoFaktur As String
     Dim ObjFP As Cls_FP = New Cls_FP()
@@ -98,7 +99,7 @@ Public Class frm_lookup_pph_approve
                 If _TxtInvcNbr.Text = _TxtCekInv.Text Then
                     loadGrid1()
                 Else
-                    loadGrid()
+                    loadGridEdit()
                 End If
             Else
                 Dim dt As New DataTable
@@ -116,7 +117,7 @@ Public Class frm_lookup_pph_approve
                     _TxtLokasi.Text = dt.Rows(0).Item("Lokasi").ToString().TrimEnd
                     _TxtNilaiPPh.Text = dt.Rows(0).Item("Tot_Pph")
                     _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
-                    _TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
+                    _TxtInvcNbr.Text = Trim(dt.Rows(0).Item("No_invoice"))
 
                 End If
                 'For Each ctl As Control In Me.LayoutControl1.Controls
