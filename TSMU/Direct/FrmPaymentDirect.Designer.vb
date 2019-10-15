@@ -50,6 +50,8 @@ Partial Class FrmPaymentDirect
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
         Me.btnadd = New System.Windows.Forms.ToolStripButton()
+        Me.LblTotAmount = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
@@ -69,6 +71,8 @@ Partial Class FrmPaymentDirect
         Me.ReposPresesSettle = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.btnpaid = New System.Windows.Forms.ToolStripButton()
+        Me.LblTotAmount2 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GridControl5 = New DevExpress.XtraGrid.GridControl()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -124,7 +128,9 @@ Partial Class FrmPaymentDirect
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.vtxtmasuk = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.vtxtkeluar = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -178,6 +184,8 @@ Partial Class FrmPaymentDirect
         CType(Me.RepositoryItemButtonEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.vtxtmasuk, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.vtxtkeluar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -442,7 +450,7 @@ Partial Class FrmPaymentDirect
         '
         'ToolStrip2
         '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnadd})
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnadd, Me.LblTotAmount, Me.ToolStripLabel2})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
         Me.ToolStrip2.Size = New System.Drawing.Size(849, 25)
@@ -460,6 +468,25 @@ Partial Class FrmPaymentDirect
         Me.btnadd.Name = "btnadd"
         Me.btnadd.Size = New System.Drawing.Size(60, 22)
         Me.btnadd.Text = ">>PAID"
+        '
+        'LblTotAmount
+        '
+        Me.LblTotAmount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.LblTotAmount.BackColor = System.Drawing.Color.Transparent
+        Me.LblTotAmount.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotAmount.ForeColor = System.Drawing.Color.Red
+        Me.LblTotAmount.Name = "LblTotAmount"
+        Me.LblTotAmount.Size = New System.Drawing.Size(15, 22)
+        Me.LblTotAmount.Text = "0"
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(101, 22)
+        Me.ToolStripLabel2.Text = "Total Amount :"
         '
         'TabPage2
         '
@@ -603,7 +630,7 @@ Partial Class FrmPaymentDirect
         '
         'ToolStrip3
         '
-        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnpaid})
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnpaid, Me.LblTotAmount2, Me.ToolStripLabel3})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
         Me.ToolStrip3.Size = New System.Drawing.Size(849, 25)
@@ -621,6 +648,23 @@ Partial Class FrmPaymentDirect
         Me.btnpaid.Name = "btnpaid"
         Me.btnpaid.Size = New System.Drawing.Size(60, 22)
         Me.btnpaid.Text = ">>PAID"
+        '
+        'LblTotAmount2
+        '
+        Me.LblTotAmount2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.LblTotAmount2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotAmount2.ForeColor = System.Drawing.Color.Red
+        Me.LblTotAmount2.Name = "LblTotAmount2"
+        Me.LblTotAmount2.Size = New System.Drawing.Size(15, 22)
+        Me.LblTotAmount2.Text = "0"
+        '
+        'ToolStripLabel3
+        '
+        Me.ToolStripLabel3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripLabel3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel3.Name = "ToolStripLabel3"
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(101, 22)
+        Me.ToolStripLabel3.Text = "Total Amount :"
         '
         'TabPage4
         '
@@ -1047,6 +1091,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn41.Caption = "Advance Amount"
         Me.GridColumn41.FieldName = "SuspendAmount"
         Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 3
         '
@@ -1055,24 +1100,39 @@ Partial Class FrmPaymentDirect
         Me.GridColumn40.Caption = "Settle Amount"
         Me.GridColumn40.FieldName = "SettleAmount"
         Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 4
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Masuk"
+        Me.GridColumn5.ColumnEdit = Me.vtxtmasuk
         Me.GridColumn5.FieldName = "Masuk"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
+        '
+        'vtxtmasuk
+        '
+        Me.vtxtmasuk.AutoHeight = False
+        Me.vtxtmasuk.Name = "vtxtmasuk"
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "keluar"
+        Me.GridColumn6.ColumnEdit = Me.vtxtkeluar
         Me.GridColumn6.FieldName = "Keluar"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
+        '
+        'vtxtkeluar
+        '
+        Me.vtxtkeluar.AutoHeight = False
+        Me.vtxtkeluar.Name = "vtxtkeluar"
         '
         'GridColumn7
         '
@@ -1110,7 +1170,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl1.Location = New System.Drawing.Point(9, 91)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek, Me.vtxtmasuk, Me.vtxtkeluar})
         Me.GridControl1.Size = New System.Drawing.Size(860, 281)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -1181,6 +1241,8 @@ Partial Class FrmPaymentDirect
         CType(Me.RepositoryItemButtonEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.vtxtmasuk, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.vtxtkeluar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1297,4 +1359,10 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemButtonEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents ToolStrip5 As ToolStrip
     Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents vtxtmasuk As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents vtxtkeluar As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LblTotAmount As ToolStripLabel
+    Friend WithEvents ToolStripLabel2 As ToolStripLabel
+    Friend WithEvents LblTotAmount2 As ToolStripLabel
+    Friend WithEvents ToolStripLabel3 As ToolStripLabel
 End Class

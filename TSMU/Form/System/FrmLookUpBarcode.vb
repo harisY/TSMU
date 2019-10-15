@@ -128,7 +128,12 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(2) = Trim(dt.Rows(0).Item("Color") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(3) = Trim(dt.Rows(0).Item("PartNo") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(4) = Trim(dt.Rows(0).Item("KodePart") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = Trim(dt.Rows(0).Item("JobNo") & "")
+                If Trim(dt.Rows(0).Item("CustomerID") & "").ToLower = "yim" Then
+                    dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = Microsoft.VisualBasic.Left(Trim(dt.Rows(0).Item("JobNo") & ""), 3)
+                Else
+                    dtTemp.Rows(dtTemp.Rows.Count - 1).Item(5) = Trim(dt.Rows(0).Item("JobNo") & "")
+                End If
+
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(6) = Trim(dt.Rows(0).Item("PartName") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = CmbBulan.Text
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(8) = Trim(dt.Rows(0).Item("Status") & "")
