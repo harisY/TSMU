@@ -917,6 +917,12 @@
     <Compile Include="Form\CustomForm\frmFPrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\CustomForm\frmScanDN.Designer.vb">
+      <DependentUpon>frmScanDN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmScanDN.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Harigami.Designer.vb">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>
     </Compile>
@@ -1728,6 +1734,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\CustomForm\frmFPrice.resx">
       <DependentUpon>frmFPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\CustomForm\frmScanDN.resx">
+      <DependentUpon>frmScanDN.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami.resx">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>
