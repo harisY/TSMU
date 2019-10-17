@@ -29,11 +29,7 @@ Public Class FrmDetailPaymentDirect
 
     Private Sub FrmDetailPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DataCashBank()
-
-    End Sub
-
-    Private Sub StatusStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles StatusStrip1.ItemClicked
-
+        GetTot2()
     End Sub
 
     Private Sub BtnRefNo_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BtnRefNo.ButtonClick
@@ -53,5 +49,26 @@ Public Class FrmDetailPaymentDirect
         End Try
 
     End Sub
+    Private Sub GetTot2()
+        Dim TotAmount As Double = 0
+
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "SettleAmount"))
+            Next
+
+            If TotAmount = 0 Then
+                LblTotAmount2.Text = "0"
+            Else
+                LblTotAmount2.Text = Format(TotAmount, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
 
 End Class

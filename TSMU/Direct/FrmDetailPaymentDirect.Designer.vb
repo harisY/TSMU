@@ -29,12 +29,14 @@ Partial Class FrmDetailPaymentDirect
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnRefNo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnRefNo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblTotAmount2 = New System.Windows.Forms.Label()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnRefNo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,7 +50,7 @@ Partial Class FrmDetailPaymentDirect
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.BtnRefNo})
-        Me.GridControl1.Size = New System.Drawing.Size(860, 281)
+        Me.GridControl1.Size = New System.Drawing.Size(860, 255)
         Me.GridControl1.TabIndex = 8
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -100,6 +102,12 @@ Partial Class FrmDetailPaymentDirect
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 4
         '
+        'BtnRefNo
+        '
+        Me.BtnRefNo.AutoHeight = False
+        Me.BtnRefNo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnRefNo.Name = "BtnRefNo"
+        '
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Advance Amount"
@@ -132,12 +140,6 @@ Partial Class FrmDetailPaymentDirect
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         '
-        'BtnRefNo
-        '
-        Me.BtnRefNo.AutoHeight = False
-        Me.BtnRefNo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.BtnRefNo.Name = "BtnRefNo"
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 298)
@@ -146,11 +148,35 @@ Partial Class FrmDetailPaymentDirect
         Me.StatusStrip1.TabIndex = 9
         Me.StatusStrip1.Text = "StatusStrip1"
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(443, 282)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(129, 16)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "Total Settlement :"
+        '
+        'LblTotAmount2
+        '
+        Me.LblTotAmount2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LblTotAmount2.AutoSize = True
+        Me.LblTotAmount2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotAmount2.Location = New System.Drawing.Point(578, 282)
+        Me.LblTotAmount2.Name = "LblTotAmount2"
+        Me.LblTotAmount2.Size = New System.Drawing.Size(16, 16)
+        Me.LblTotAmount2.TabIndex = 11
+        Me.LblTotAmount2.Text = "0"
+        '
         'FrmDetailPaymentDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 320)
+        Me.Controls.Add(Me.LblTotAmount2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GridControl1)
         Me.Name = "FrmDetailPaymentDirect"
@@ -177,4 +203,6 @@ Partial Class FrmDetailPaymentDirect
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnRefNo As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents Label1 As Label
+    Friend WithEvents LblTotAmount2 As Label
 End Class

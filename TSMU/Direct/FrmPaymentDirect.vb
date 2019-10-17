@@ -1343,7 +1343,128 @@ Public Class FrmPaymentDirect
         dtTemp2.Clear()
     End Sub
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+    Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
+        Try
+            If e.Column.FieldName = "Proses" Then
+                If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "Proses") = True Then
+                    GetTot()
+                Else
+                    GetTot()
 
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+
+
+    Private Sub GetTot()
+        Dim TotAmount As Double = 0
+
+        Dim cek As Boolean
+        Try
+            For i As Integer = 0 To GridView2.RowCount - 1
+                If GridView2.GetRowCellValue(i, "Proses") = True Then
+                    TotAmount = TotAmount + CDbl(GridView2.GetRowCellValue(i, "Amount"))
+                End If
+            Next
+
+            If TotAmount = 0 Then
+                LblTotAmount.Text = "0"
+            Else
+                LblTotAmount.Text = Format(TotAmount, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+
+    Private Sub GridView3_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView3.CellValueChanged
+        Try
+            If e.Column.FieldName = "Proses" Then
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Proses") = True Then
+                    GetTot2()
+                Else
+                    GetTot2()
+
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+
+
+    Private Sub GetTot2()
+        Dim TotAmount As Double = 0
+
+        Dim cek As Boolean
+        Try
+            For i As Integer = 0 To GridView3.RowCount - 1
+                If GridView3.GetRowCellValue(i, "Proses") = True Then
+                    TotAmount = TotAmount + CDbl(GridView3.GetRowCellValue(i, "SettleAmount"))
+                End If
+            Next
+
+            If TotAmount = 0 Then
+                LblTotAmount2.Text = "0"
+            Else
+                LblTotAmount2.Text = Format(TotAmount, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
+
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                Dim id As String = String.Empty
+                Dim id2 As String = String.Empty
+                Dim ket As String = String.Empty
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+                        ket = Mid(GridView1.GetRowCellValue(rowHandle, "NoBukti"), 1, 2)
+                        id2 = GridView1.GetRowCellValue(rowHandle, "ID")
+                    End If
+                Next rowHandle
+
+                If ket = "AP" Then
+                    Call CallFrm(id2, id,
+                         GridView1.RowCount)
+                Else
+                    ff_Detail = New FrmDetailPaymentDirect(id)
+                    ff_Detail.Show()
+                End If
+
+
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

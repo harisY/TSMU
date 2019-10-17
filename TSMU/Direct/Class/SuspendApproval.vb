@@ -27,6 +27,14 @@ Public Class SuspendApprovalHeaderModel
             FROM suspend_header where DeptID='" & gh_Common.GroupID & "' and State = " & QVal(level) - 1 & "  
             AND (Status = 'Open') and ceklist=0 Order by SuspendID"
                 dt = GetDataTable_Solomon(sql)
+
+            ElseIf level = 4 Then
+                Dim sql As String =
+            "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist
+            FROM suspend_header where State = " & QVal(level) - 1 & "   and DeptID='" & gh_Common.GroupID & "'
+            AND (Status <> 'Open') and ceklist=1 Order by SuspendID"
+                dt = GetDataTable_Solomon(sql)
+
             Else
                 Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total, ceklist

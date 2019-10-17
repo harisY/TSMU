@@ -41,7 +41,7 @@
         End Try
     End Function
 
-    Public Function GetFPByNoApprove(ByVal NoFaktur As String) As DataTable
+    Public Function GetFPByNoApprove(ByVal No_Invoice As String) As DataTable
         Try
             Dim sql As String = "SELECT [Fp_pph_header].[id]
                     ,[Fp_pph_header].[FPNo]
@@ -54,11 +54,17 @@
                     ,[Bulan]
                     ,[Lokasi]
                     ,[Fp_pph_header].[CuryID]
-                    ,[Tot_Dpp_Invoice]
+                    ,replace(convert(varchar,cast((sum([Tot_Dpp_Invoice])) as money), 1), '.00', '') as 'Tot_Dpp_Invoice'
                     ,[Fp_pph_header].[No_Faktur]
-                    ,[Tot_Pph]
+                    ,replace(convert(varchar,cast((sum([Tot_Pph])) as money), 1), '.00', '') as 'Tot_Pph'
                     ,[ket_dpp]
-                FROM [Fp_pph_header]  inner join fp_detail on fp_pph_header.FPNo = fp_detail.FPNo  WHERE RTRIM(No_Invoice) = " & QVal(No_Invoice) & ""
+                FROM [Fp_pph_header]  inner join fp_detail on fp_pph_header.FPNo = fp_detail.FPNo  WHERE RTRIM(No_Invoice) =" & QVal(No_Invoice) & "
+				group by Fp_pph_header.id,Fp_pph_header.FPNo,Fp_pph_header.No_Bukti_Potong
+                    ,Fp_pph_header.Pphid ,Fp_pph_header.Ket_Pph,Fp_detail.No_Invoice,Fp_pph_header.Tarif,Fp_pph_header.Tahun
+                    ,Fp_pph_header.Bulan,Fp_pph_header.Lokasi,Fp_pph_header.CuryID,fp_pph_header.Tot_Dpp_Invoice
+					,Fp_pph_header.No_Faktur
+                    ,Fp_pph_header.Tot_Pph
+                    ,Fp_pph_header.ket_dpp"
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)

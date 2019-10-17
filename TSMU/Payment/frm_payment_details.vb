@@ -96,7 +96,7 @@ Public Class frm_payment_details
                     _TxtDpp.Text = Format(.Tot_DPP, "##,0")
                     _TxtTgl.Text = .tgl
                     _TxtTMV.Text = ""
-                    _TxtPerpost.Text = ""
+                    _TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                     _TxtPPH.Text = Format(.PPh, "##,0")
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
                     _txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
@@ -120,7 +120,7 @@ Public Class frm_payment_details
                 _TxtDpp.Text = "0"
                 _TxtTgl.EditValue = DateTime.Today
                 _TxtTMV.Text = "0"
-                _TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-12")
+                _TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                 _TxtPPH.Text = "0"
                 _TxtPPN.Text = "0"
                 _TxtPerpost.Focus()
