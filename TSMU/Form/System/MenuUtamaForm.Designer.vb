@@ -174,13 +174,13 @@ Partial Class MenuUtamaForm
         'tstaxtransaction
         '
         Me.tstaxtransaction.Name = "tstaxtransaction"
-        Me.tstaxtransaction.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxtransaction.Size = New System.Drawing.Size(134, 22)
         Me.tstaxtransaction.Text = "Transaction"
         '
         'tstaxreport
         '
         Me.tstaxreport.Name = "tstaxreport"
-        Me.tstaxreport.Size = New System.Drawing.Size(135, 22)
+        Me.tstaxreport.Size = New System.Drawing.Size(134, 22)
         Me.tstaxreport.Text = "Report"
         '
         'tsPayment
@@ -237,13 +237,13 @@ Partial Class MenuUtamaForm
         'tsSuspend
         '
         Me.tsSuspend.Name = "tsSuspend"
-        Me.tsSuspend.Size = New System.Drawing.Size(180, 22)
+        Me.tsSuspend.Size = New System.Drawing.Size(187, 22)
         Me.tsSuspend.Text = "Advance"
         '
         'tsSettlement
         '
         Me.tsSettlement.Name = "tsSettlement"
-        Me.tsSettlement.Size = New System.Drawing.Size(180, 22)
+        Me.tsSettlement.Size = New System.Drawing.Size(187, 22)
         Me.tsSettlement.Text = "Settlement"
         '
         'WindowsMenu

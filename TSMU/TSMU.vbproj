@@ -493,6 +493,12 @@
     <Compile Include="Direct\report\FrmReportEntertain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\report\FrmReportEntertainmentTax.Designer.vb">
+      <DependentUpon>FrmReportEntertainmentTax.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportEntertainmentTax.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\FrmReportSettle.Designer.vb">
       <DependentUpon>FrmReportSettle.vb</DependentUpon>
     </Compile>
@@ -1508,6 +1514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportEntertain.resx">
       <DependentUpon>FrmReportEntertain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportEntertainmentTax.resx">
+      <DependentUpon>FrmReportEntertainmentTax.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportSettle.resx">
       <DependentUpon>FrmReportSettle.vb</DependentUpon>

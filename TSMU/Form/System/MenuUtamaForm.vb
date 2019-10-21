@@ -431,10 +431,13 @@ Public Class MenuUtamaForm
                             End If
                         Case "Direct Payment"
                             If childMenu Is DBNull.Value OrElse childMenu = "" Then
+                                tsDirect1.DropDownItems.Add(TSMenuD)
                             ElseIf childMenu = "Advance" Then
                                 tsSuspend.DropDownItems.Add(TSMenuD)
                             ElseIf childMenu = "Settlement" Then
                                 tsSettlement.DropDownItems.Add(TSMenuD)
+                                'ElseIf childMenu = "Report Entertainment" Then
+                                '    tsReportEntertainment.DropDownItems.Add(TSMenuD)
                             End If
                         Case Else
 
@@ -717,6 +720,9 @@ Public Class MenuUtamaForm
         If Me.tsSuspend.DropDownItems.Count > 0 Then
             Me.tsSuspend.DropDownItems.Clear()
         End If
+        'If Me.tsReportEntertainment.DropDownItems.Count > 0 Then
+        '    Me.tsReportEntertainment.DropDownItems.Clear()
+        'End If
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
@@ -814,6 +820,10 @@ Public Class MenuUtamaForm
     End Sub
 
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
+
+    End Sub
+
+    Private Sub tsReportEntertainment_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class
