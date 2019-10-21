@@ -288,9 +288,6 @@
             Throw
         End Try
     End Function
-
-
-
     Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String)
         Dim tgl As String = String.Empty
         Dim tgl1 As String = String.Empty
@@ -333,12 +330,21 @@
 
 
                         Dim udpateOpenDN As String = "Update KanbanSum 
-                                        set OpenDN = ISNULL(OpenDN,0) - 1, ClosedDN = ISNULL(ClosedDN,0) + 1 WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                                        SET OpenDN = ISNULL(OpenDN,0) - 1, ClosedDN = ISNULL(ClosedDN,0) + 1 
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
                         ExecQueryCKR(udpateOpenDN)
 
                         Dim udpateFlagDN As String = "Update KanbanADM 
-                                        set ScannedDN = 1 WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
+                                        SET ScannedDN = 1 
+                                        WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
                         ExecQueryCKR(udpateFlagDN)
+
+                        Dim udpateStatus As String = "Update KanbanADM 
+                                        SET StatusDN = 
+                                                CASE 
+                                                    When TotDN = ClosedDN Then 'CLosed' Else 'Open' End 
+                                        WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
+                        ExecQueryCKR(udpateStatus)
 
                         Trans1.Commit()
                     Catch ex As Exception

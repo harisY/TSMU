@@ -76,7 +76,7 @@ Public Class FrmSystemExcel1
     End Sub
 
     Private Sub FillComboBulan()
-        Dim tahun() As String = {"", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "November", "Desember"}
+        Dim tahun() As String = {"", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"}
         _cmbBulan.Properties.Items.Clear()
         For Each var As String In tahun
             _cmbBulan.Properties.Items.Add(var)
