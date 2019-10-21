@@ -248,6 +248,7 @@ Public Class MenuUtamaForm
                     Dim query As String = "SELECT COALESCE(FlagFullScreen,0) AS [FlagFullScreen] FROM S_UserMenu WHERE MenuCode = '" & openForm.Name & "'"
                     Dim dtTable As DataTable = MainModul.GetDataTable(query)
                     If dtTable.Rows(0).Item("FlagFullScreen") = "1" Then
+                        openForm.StartPosition = FormStartPosition.CenterScreen
                         openForm.ShowDialog()
                     Else
                         openForm.MdiParent = Me

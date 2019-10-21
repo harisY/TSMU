@@ -147,7 +147,7 @@
             Dim sql As String = "SELECT 
 	                                CONVERT(varchar,[OrderDate],101) Tanggal,
 	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
-	                                sum([OrderKbn]) Kanban
+	                                sum([OrderKbn]) Kanban,  COUNT(OrderNo)TotDN
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
@@ -183,21 +183,41 @@
             Throw
         End Try
     End Sub
-    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String)
+    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer)
         Try
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
-                                       ,[Cycle]
-                                       ,[Kanban]
-                                        ,[Open], Remark)
+                                        ,[Cycle]
+                                        ,[Kanban]
+                                        ,[Open]
+                                        ,Remark
+                                        ,TotDN
+                                        ,OpenDN)
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
-                                       ," & QVal(Kanban) & "," & QVal(Kanban) & ", " & QVal(Remark) & ")"
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(Kanban) & "
+                                       ," & QVal(Remark) & "
+                                       ," & QVal(totDN) & "
+                                       , " & QVal(totDN) & ")"
 
             ExecQueryCKR(sql)
+
+            'Dim updateData As String = "UPDATE K
+            '                SET K.NoDN = L.OrderNo, K.OpenDN=L.OpenDN 
+            '                FROM kanbansum K
+            '                INNER JOIN
+            '                   (
+            '                    SELECT 
+            '                     orderDate, DelCycle, COUNT(OrderNo) OpenDN FROM KanbanADM 
+            '                                    WHERE CONVERT(varchar,L.[OrderDate],101) = " & QVal(Tgl) & " AND DelCycle = " & QVal(Cycle) & " " &
+            '                                "GROUP BY orderDate, DelCycle 
+            '                   ) L ON K.Tanggal =  CONVERT(varchar,L.[OrderDate],101) AND K.Cycle = L.DelCycle"
+            'ExecQueryCKR(updateData)
+
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
 
@@ -248,6 +268,144 @@
             Return hasil
         Catch ex As Exception
             Throw
+        End Try
+    End Function
+
+    Public Function IsDnNoExistCkr(orderNo As String) As Boolean
+        Dim hasil As Boolean = False
+        Try
+
+            Dim sql As String = "SELECT * 
+                                FROM KanbanAdmScanDN WHERE OrderNo = " & QVal(orderNo) & ""
+            Dim dt As New DataTable
+
+            dt = GetDataTableCKR(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = True
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String)
+        Dim tgl As String = String.Empty
+        Dim tgl1 As String = String.Empty
+        Dim cycle As Integer = 0
+
+        Try
+
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        tgl = GetTglByOrderNo(orderNo)
+                        'tgl1 = GetTglByOrderNo1(orderNo)
+                        cycle = GetCycleByOrderNo(orderNo)
+
+                        If tgl = "" OrElse cycle = 0 Then
+                            Throw New Exception("Tgl atau Cycle tidak di temukan untuk DN '[" & orderNo & "]' !")
+                        End If
+
+                        Dim sql As String = "INSERT INTO [KanbanAdmScanDN]
+                                       ([NoPolisi]
+                                        ,[Sopir]
+                                        ,[OrderNo]
+                                        ,[CreatedBy]
+                                        ,[CreatedDate])
+                                 VALUES
+                                       (" & QVal(noPolisi.ToUpper) & "
+                                        ," & QVal(sopir.ToUpper) & "
+                                        ," & QVal(orderNo) & "
+                                        ," & QVal(gh_Common.Username) & "
+                                        ,GETDATE())"
+
+                        ExecQueryCKR(sql)
+
+
+
+                        Dim udpateOpenDN As String = "Update KanbanSum 
+                                        SET OpenDN = ISNULL(OpenDN,0) - 1, ClosedDN = ISNULL(ClosedDN,0) + 1 
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                        ExecQueryCKR(udpateOpenDN)
+
+                        Dim udpateFlagDN As String = "Update KanbanADM 
+                                        SET ScannedDN = 1 
+                                        WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
+                        ExecQueryCKR(udpateFlagDN)
+
+                        Dim udpateStatus As String = "Update KanbanADM 
+                                        SET StatusDN = 
+                                                CASE 
+                                                    When TotDN = ClosedDN Then 'CLosed' Else 'Open' End 
+                                        WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
+                        ExecQueryCKR(udpateStatus)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Private Function GetTglByOrderNo(orderNo) As String
+        Dim hasil As String = String.Empty
+        Try
+            Dim sql1 As String = "SELECT TOP 1 CONVERT(varchar,[OrderDate],101) Tanggal FROM [KanbanADM]
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql1)
+            If dt.Rows.Count > 0 Then
+                hasil = dt.Rows(0)(0).ToString()
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Function GetTglByOrderNo1(orderNo) As String
+        Dim hasil As String = String.Empty
+        Try
+            Dim sql1 As String = "SELECT TOP OrderDate FROM [KanbanADM]
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql1)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToString(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Function GetCycleByOrderNo(orderNo) As String
+        Dim hasil As String = 0
+        Try
+            Dim sql1 As String = "SELECT TOP 1 DelCycle Cycle FROM [KanbanADM] 
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql1)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
         End Try
     End Function
 End Class

@@ -781,7 +781,7 @@ Partial Public Class Testing
         Me.DataSource = Me.ObjectDataSource1
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(18, 26, 15, 15)
+        Me.Margins = New System.Drawing.Printing.Margins(26, 18, 15, 15)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

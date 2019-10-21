@@ -284,12 +284,13 @@ Public Class frmUploadKanbanAdm
                             Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
                             Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
                             Dim Remark As String = Convert.ToString(dtKanban.Rows(i)(2))
+                            Dim TotDN As Integer = Convert.ToInt32(dtKanban.Rows(i)(4))
 
                             Dim IsExist As Boolean = Obj.IsKanbanExistCkr(Tgl, Cycle, Remark)
                             If Not IsExist Then
                                 '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
                                 'Else
-                                Obj.SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark)
+                                Obj.SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark, TotDN)
                             End If
                         Catch ex As Exception
                             MsgBox(ex.Message)
