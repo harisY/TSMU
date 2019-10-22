@@ -52,10 +52,11 @@ Partial Class frmReport_adm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 29)
+        Me.TabControl1.Location = New System.Drawing.Point(17, 38)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(803, 540)
+        Me.TabControl1.Size = New System.Drawing.Size(1071, 706)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -67,10 +68,11 @@ Partial Class frmReport_adm
         Me.TabPage1.Controls.Add(Me.Panel1)
         Me.TabPage1.Controls.Add(Me.cmbStatus)
         Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 26)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(795, 514)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Size = New System.Drawing.Size(1063, 676)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Barcode ADM vs TSC"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -78,9 +80,10 @@ Partial Class frmReport_adm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(228, 40)
+        Me.Label3.Location = New System.Drawing.Point(304, 52)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(23, 13)
+        Me.Label3.Size = New System.Drawing.Size(27, 17)
         Me.Label3.TabIndex = 20
         Me.Label3.Text = "s/d"
         '
@@ -88,17 +91,19 @@ Partial Class frmReport_adm
         '
         Me.TxtTgl1.CustomFormat = "dd-MM-yyyy"
         Me.TxtTgl1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.TxtTgl1.Location = New System.Drawing.Point(257, 34)
+        Me.TxtTgl1.Location = New System.Drawing.Point(343, 44)
+        Me.TxtTgl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTgl1.Name = "TxtTgl1"
-        Me.TxtTgl1.Size = New System.Drawing.Size(121, 20)
+        Me.TxtTgl1.Size = New System.Drawing.Size(160, 23)
         Me.TxtTgl1.TabIndex = 19
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 34)
+        Me.Label1.Location = New System.Drawing.Point(11, 44)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(74, 13)
+        Me.Label1.Size = New System.Drawing.Size(96, 17)
         Me.Label1.TabIndex = 18
         Me.Label1.Text = "Tanggal Scan"
         '
@@ -106,9 +111,10 @@ Partial Class frmReport_adm
         '
         Me.TxtTglScan.CustomFormat = "dd-MM-yyyy"
         Me.TxtTglScan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.TxtTglScan.Location = New System.Drawing.Point(101, 34)
+        Me.TxtTglScan.Location = New System.Drawing.Point(135, 44)
+        Me.TxtTglScan.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTglScan.Name = "TxtTglScan"
-        Me.TxtTglScan.Size = New System.Drawing.Size(121, 20)
+        Me.TxtTglScan.Size = New System.Drawing.Size(160, 23)
         Me.TxtTglScan.TabIndex = 17
         '
         'Panel1
@@ -118,23 +124,28 @@ Partial Class frmReport_adm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(6, 82)
+        Me.Panel1.Location = New System.Drawing.Point(8, 107)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(783, 426)
+        Me.Panel1.Size = New System.Drawing.Size(1044, 557)
         Me.Panel1.TabIndex = 16
         '
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(0, 34)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(783, 401)
+        Me.Grid.Size = New System.Drawing.Size(1044, 523)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -145,10 +156,11 @@ Partial Class frmReport_adm
         '
         'ToolStrip2
         '
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(783, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1044, 34)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -157,50 +169,54 @@ Partial Class frmReport_adm
         Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
         Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad.Size = New System.Drawing.Size(102, 31)
         Me.btnLoad.Text = "Load Data"
         '
         'ProgBar
         '
         Me.ProgBar.Name = "ProgBar"
-        Me.ProgBar.Size = New System.Drawing.Size(100, 22)
+        Me.ProgBar.Size = New System.Drawing.Size(133, 31)
         '
         'cmbStatus
         '
         Me.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Items.AddRange(New Object() {"ALL", "OK", "Failed"})
-        Me.cmbStatus.Location = New System.Drawing.Point(101, 6)
+        Me.cmbStatus.Location = New System.Drawing.Point(135, 8)
+        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbStatus.Name = "cmbStatus"
-        Me.cmbStatus.Size = New System.Drawing.Size(121, 21)
+        Me.cmbStatus.Size = New System.Drawing.Size(160, 25)
         Me.cmbStatus.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 6)
+        Me.Label2.Location = New System.Drawing.Point(11, 8)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(37, 13)
+        Me.Label2.Size = New System.Drawing.Size(48, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Status"
         '
         'ContextMenuStrip1
         '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(180, 28)
         '
         'ExportToExcelToolStripMenuItem
         '
         Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(179, 24)
         Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
         '
         'frmReport_adm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.TabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmReport_adm"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)

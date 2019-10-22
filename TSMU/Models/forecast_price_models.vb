@@ -1254,6 +1254,8 @@ Public Class forecast_price_models
 
                 '===========DESEMBER===============
             ElseIf Bulan.ToLower = "desember" Then
+
+                Dim t As Integer = Convert.ToInt32(Tahun) + 1
                 'Query = Sql1 & "   ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
                 '       ,[DesHarga1],[DesHarga2],[DesHarga3]
                 '       ,[created_date]
@@ -1304,7 +1306,7 @@ Public Class forecast_price_models
                     "UPDATE [tForecastPrice] 
                                 SET [JanHarga1] =  " & QVal(Harga) & "
                                 WHERE 
-                                    Tahun =  " & QVal(Tahun) + 1 & " AND
+                                    Tahun =  " & QVal(t.ToString()) + 1 & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
                                     Flag = " & QVal(Flag) & " AND
@@ -1964,6 +1966,8 @@ Public Class forecast_price_models
 
                 '===========DESEMBER===============
             ElseIf Bulan.ToLower = "desember" Then
+
+                Dim t As Integer = Convert.ToInt32(Tahun) + 1
                 'Query = Sql1 & "   ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
                 '       ,[DesHarga1],[DesHarga2],[DesHarga3]
                 '       ,[created_date]
@@ -2012,7 +2016,7 @@ Public Class forecast_price_models
                     "UPDATE [tForecastPrice] 
                                 SET [JanHarga1] =  " & QVal(Harga) & "
                                 WHERE 
-                                    Tahun =  " & QVal(Tahun) + 1 & " AND
+                                    Tahun =  " & QVal(t.ToString()) & "  AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
                                     CustID = " & QVal(CustID) & ""
