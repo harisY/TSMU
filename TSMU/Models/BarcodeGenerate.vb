@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
 
 Public Class BarcodeGenerate
 
@@ -307,20 +308,46 @@ Public Class BarcodeDet
                 ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
                 ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(KodeWarna) & "," & QVal(UploadBy) & ")"
 
-            Dim Query1 As String = String.Empty
-            Query1 = "INSERT INTO [BarcodeGenerate]
-            ([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
-                ,[SFG/FG],[PartName],[PartNo],[Colour]
-                ,[JobNo],[QtyLabel],[WarnaPasscard]
-                ,LokalExport,[Site],[UploadBy])
-            Values(GETDATE()," & QVal(KodePart) & "," & QVal(CustomerID) & "," & QVal(CustomerName) & "," & QVal(InventoryID) & "
-                ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
-                ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
-                ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(UploadBy) & ")"
+            'Dim Query1 As String = "Barcode_Generate_InserData"
+
+            'Query1 = "INSERT INTO [BarcodeGenerate]
+            '([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
+            '    ,[SFG/FG],[PartName],[PartNo],[Colour]
+            '    ,[JobNo],[QtyLabel],[WarnaPasscard]
+            '    ,LokalExport,[Site],[UploadBy])
+            'Values(GETDATE()," & QVal(KodePart) & "," & QVal(CustomerID) & "," & QVal(CustomerName) & "," & QVal(InventoryID) & "
+            '    ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
+            '    ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
+            '    ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(UploadBy) & ")"
             If gh_Common.Site.ToLower = "tng" Then
-                ExecQuery(Query1)
+                'ExecQuery(Query1)
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnString()
+                    kon.Open()
+
+                    Using com As New SqlCommand("Barcode_Generate_InserData")
+                        com.CommandType = CommandType.StoredProcedure
+                        com.Connection = kon
+                        com.Parameters.AddWithValue("@KodePart", KodePart)
+                        com.Parameters.AddWithValue("@CustomerID", CustomerID)
+                        com.Parameters.AddWithValue("@CustomerName", CustomerName)
+                        com.Parameters.AddWithValue("@InvetoryID", InventoryID)
+                        com.Parameters.AddWithValue("@SFG", SFGFG)
+                        com.Parameters.AddWithValue("@PartName", PartName)
+                        com.Parameters.AddWithValue("@PartNo", PartNo)
+                        com.Parameters.AddWithValue("@Colour", Colour)
+                        com.Parameters.AddWithValue("@JobNo", JobNo)
+                        com.Parameters.AddWithValue("@QtyLabel", QtyLabel)
+                        com.Parameters.AddWithValue("@WarnaPasscard", WarnaPasscard)
+                        com.Parameters.AddWithValue("@LokalExport", LokalExport)
+                        com.Parameters.AddWithValue("@Site", Site)
+                        com.Parameters.AddWithValue("@UploadBy", UploadBy)
+                        com.ExecuteNonQuery()
+                    End Using
+                End Using
+
             Else
-                ExecQueryCKR(Query)
+                ExecQuery(Query)
             End If
         Catch ex As Exception
             Throw ex

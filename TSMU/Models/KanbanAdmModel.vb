@@ -72,6 +72,7 @@
                 ,[OrderPcs]
                 ,[QtyReceive]
                 ,[QtyBalance]
+                ,[ScannedDN]
                 ,[CancelStatus]
                 ,[Remark]
                 ,[UploadedBy]

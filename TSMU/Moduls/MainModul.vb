@@ -1417,6 +1417,46 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Function ExecQueryByAddWithValue(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    If pConnStr <> "" Then
+                        Conn1.ConnectionString = pConnStr
+                    Else
+                        Conn1.ConnectionString = GetConnString()
+                    End If
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Function ExecQueryByCommandSolomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1

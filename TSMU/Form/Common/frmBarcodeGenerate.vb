@@ -67,7 +67,7 @@ Public Class frmBarcodeGenerate
                 For Each row As DataRow In dtFilter.Rows
                     ObjDet = New BarcodeDet
                     With ObjDet
-                        .KodePart = If(row("KODE PART") Is DBNull.Value, "", row("KODE PART").ToString())
+                        .KodePart = If(row("KODE PART") Is DBNull.Value, "", row("KODE PART").ToString)
                         .CustomerID = If(row("CUST") Is DBNull.Value, "", row("CUST").ToString())
                         .CustomerName = If(row("CUST LENGKAP") Is DBNull.Value, "", row("CUST LENGKAP").ToString())
                         .InventoryID = If(row("INVENTORY ID") Is DBNull.Value, "", row("INVENTORY ID").ToString())
