@@ -40,7 +40,6 @@ Partial Class frmScanDN
         Me.colPolisi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colSopir = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +57,6 @@ Partial Class frmScanDN
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.ComboBox1)
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.txtSopir)
         Me.TabPage1.Controls.Add(Me.Label6)
@@ -251,16 +249,6 @@ Partial Class frmScanDN
         Me.colDn.VisibleIndex = 3
         Me.colDn.Width = 410
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"CKR A", "CKR B"})
-        Me.ComboBox1.Location = New System.Drawing.Point(599, 15)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(150, 46)
-        Me.ComboBox1.TabIndex = 20
-        '
         'frmScanDN
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -301,5 +289,4 @@ Partial Class frmScanDN
     Friend WithEvents colSopir As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colDn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colNo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ComboBox1 As ComboBox
 End Class

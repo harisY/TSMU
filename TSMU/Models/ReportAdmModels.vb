@@ -1,44 +1,37 @@
 ﻿Public Class ReportAdmModels
-    Public Function GetDataGrid(ByVal strStatus As String, tgl As String, tgl1 As String) As DataTable
+    Public Function GetDataGrid(ByVal strStatus As String, tgl As String, tgl1 As String, site As String) As DataTable
         Try
             Dim query As String = String.Empty
+            Dim dt As New DataTable
+
             If gh_Common.Site.ToLower = "tng" Then
                 query = "GetDataBarcode"
-                'ElseIf gh_Common.Site = "all" Then
-                '    query = "GetDataBarcode"
+
+                Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+                pParam(0) = New SqlClient.SqlParameter("@status", SqlDbType.Date)
+                pParam(0).Value = strStatus
+                pParam(1) = New SqlClient.SqlParameter("@tgl", SqlDbType.Date)
+                pParam(1).Value = tgl
+                pParam(2) = New SqlClient.SqlParameter("@tgl1", SqlDbType.VarChar)
+                pParam(2).Value = tgl1
+
+                dt = GetDataTableByCommand_SP(query, pParam)
+
             Else
                 query = "getBarcodeTSC_ADM"
+                Dim pParam1() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+                pParam1(0) = New SqlClient.SqlParameter("@status", SqlDbType.VarChar)
+                pParam1(0).Value = strStatus
+                pParam1(1) = New SqlClient.SqlParameter("@tgl", SqlDbType.Date)
+                pParam1(1).Value = tgl
+                pParam1(2) = New SqlClient.SqlParameter("@tgl1", SqlDbType.Date)
+                pParam1(2).Value = tgl1
+                pParam1(3) = New SqlClient.SqlParameter("@site", SqlDbType.VarChar)
+                pParam1(3).Value = site
+
+                dt = GetDataTableByCommand_StorePCKR(query, pParam1)
+
             End If
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
-            pParam(0) = New SqlClient.SqlParameter("@status", SqlDbType.VarChar)
-            pParam(0).Value = strStatus
-            pParam(1) = New SqlClient.SqlParameter("@tgl", SqlDbType.VarChar)
-            pParam(1).Value = tgl
-            pParam(2) = New SqlClient.SqlParameter("@tgl1", SqlDbType.VarChar)
-            pParam(2).Value = tgl1
-
-            'Dim pParam1() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
-            'pParam1(0) = New SqlClient.SqlParameter("@status", SqlDbType.VarChar)
-            'pParam1(0).Value = strStatus
-            'pParam1(1) = New SqlClient.SqlParameter("@tgl", SqlDbType.VarChar)
-            'pParam1(1).Value = tgl
-            'pParam1(2) = New SqlClient.SqlParameter("@tgl1", SqlDbType.VarChar)
-            'pParam1(2).Value = tgl1
-            Dim dt As New DataTable
-            If gh_Common.Site.ToLower = "tng" Then
-                dt = GetDataTableByCommand_SP(query, pParam)
-                'ElseIf gh_Common.Site.ToLower = "all" Then
-                '    Dim dt1 As New DataTable
-
-                '    dt = GetDataTableByCommand_SP(query, pParam)
-                '    dt1 = GetDataTableByCommand_StorePCKR(query, pParam1)
-
-                '    dt.Merge(dt1, False)
-            Else
-                dt = GetDataTableByCommand_StorePCKR(query, pParam)
-            End If
-
             Return dt
         Catch ex As Exception
             Throw
@@ -95,7 +88,7 @@ Public Class ReportBarcodePrintLog
 End Class
 
 Public Class ReportScanDN
-    Public Function GetDataGrid(tgl As String, tgl1 As String, site As String) As DataTable
+    Public Function GetDataGrid(tgl As String, tgl1 As String, site As String, status As String) As DataTable
         Try
             Dim query As String = "SELECT 
 	                                c.BarcodeADM, 
@@ -125,7 +118,9 @@ Public Class ReportScanDN
 	                                ON a.OrderNo = b.OrderNo 
                                 WHERE convert(date,a.CreatedDate) >= " & QVal(tgl) & " AND convert(date,a.CreatedDate) <= " & QVal(tgl1) & " 
                                 AND a.OrderNo = COALESCE(NULLIF(" & QVal(site) & ",'ALL'),a.OrderNo))d
-                                ON LEFT(c.barcodeadm,16) = d.DNNbr"
+                                ON LEFT(c.barcodeadm,16) = d.DNNbr 
+                                WHERE convert(date,c.CreatedDate) >= " & QVal(tgl) & " AND convert(date,c.CreatedDate) <= " & QVal(tgl) & " 
+                                AND c.[status] = COALESCE(NULLIF(" & QVal(status) & ",'ALL'),c.[status])"
             Dim dt As New DataTable
 
             dt = GetDataTableCKR(query)

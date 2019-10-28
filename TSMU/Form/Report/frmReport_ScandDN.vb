@@ -77,7 +77,7 @@ Public Class frmReport_ScandDN
                End Sub)
         Dim dt As New DataTable
         Dim Objadm = New ReportScanDN
-        dt = Objadm.GetDataGrid(tgl, tgl1, site)
+        dt = Objadm.GetDataGrid(tgl, tgl1, site, "")
         setDataSource(dt, Grid)
         Invoke(Sub()
                    ProgBar.Visible = False
