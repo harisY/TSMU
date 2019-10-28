@@ -62,14 +62,16 @@ Public Class ReportBarcodePrintLog
 
     Public Function GetDataGrid(tgl As String, tgl1 As String) As DataTable
         Try
-            Dim query As String = "SELECT
-                [KodePart]
-                ,[Bulan]
-                ,[Site]
-                ,[No]
-                ,[PrintedBy]
-                ,[PrintedDate]
-            FROM [BarcodePrintLog] where convert(date,PrintedDate) >= " & QVal(tgl) & " AND convert(date,PrintedDate) <= " & QVal(tgl1) & ""
+            Dim query As String = "Select  
+	            CustID, 
+	            KodePart,
+	            Bulan,
+	            [Site],
+	            [No] LastNo,
+	            PrintedBy,
+	            PrintedDate
+            from BarcodePrintLog
+            where convert(date,PrintedDate) >= " & QVal(tgl) & " AND convert(date,PrintedDate) <= " & QVal(tgl1) & ""
             Dim dt As New DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(query)

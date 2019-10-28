@@ -161,7 +161,7 @@ Public Class BarcodeGenerate
         Return ds
     End Function
 
-    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer)
+    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer, custId As String)
         Try
             Dim Ada As Boolean = CheckLog(Bulan, KodePart)
             If Ada Then
@@ -176,8 +176,8 @@ Public Class BarcodeGenerate
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
-                        ([KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
-                        Values(" & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                        (CustID,[KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        Values(" & QVal(custId) & "," & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
                             ," & QVal(gh_Common.Username) & ",GETDATE())"
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(Query)
