@@ -148,7 +148,7 @@
             Dim sql As String = "SELECT 
 	                                CONVERT(varchar,[OrderDate],101) Tanggal,
 	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
-	                                sum([OrderKbn]) Kanban,  COUNT(OrderNo)TotDN
+	                                sum([OrderKbn]) Kanban,  COUNT(distinct OrderNo)TotDN
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
@@ -289,7 +289,7 @@
             Throw
         End Try
     End Function
-    Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String)
+    Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String, site As String)
         Dim tgl As String = String.Empty
         Dim tgl1 As String = String.Empty
         Dim cycle As Integer = 0
@@ -317,12 +317,14 @@
                                        ([NoPolisi]
                                         ,[Sopir]
                                         ,[OrderNo]
+                                        ,[Site]
                                         ,[CreatedBy]
                                         ,[CreatedDate])
                                  VALUES
                                        (" & QVal(noPolisi.ToUpper) & "
                                         ," & QVal(sopir.ToUpper) & "
                                         ," & QVal(orderNo) & "
+                                         ," & QVal(site) & "
                                         ," & QVal(gh_Common.Username) & "
                                         ,GETDATE())"
 
@@ -340,11 +342,11 @@
                                         WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
                         ExecQueryCKR(udpateFlagDN)
 
-                        Dim udpateStatus As String = "Update KanbanADM 
+                        Dim udpateStatus As String = "Update KanbanSum 
                                         SET StatusDN = 
                                                 CASE 
                                                     When TotDN = ClosedDN Then 'CLosed' Else 'Open' End 
-                                        WHERE (Remark = '3B' OR Remark IS NULL) AND CONVERT(varchar,[OrderDate],101) = " & QVal(tgl) & " AND DelCycle= " & QVal(cycle) & " AND OrderNo=" & QVal(orderNo) & ""
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
                         ExecQueryCKR(udpateStatus)
 
                         Trans1.Commit()

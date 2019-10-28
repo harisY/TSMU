@@ -14,6 +14,7 @@ Public Class frmKanbanInternal
     Dim ds As DataSet
     Dim dt As DataTable
     Dim dtTemp As DataTable
+    Dim dtTemp1 As DataTable
     Private Sub frmKanbanInternal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
@@ -146,11 +147,73 @@ Public Class frmKanbanInternal
                 '        _param.Add(dt.Rows(i)("Cust").ToString())
                 '    Next
             End If
+            Dim groups = From j In dtTemp
+                         Group By x = New With {
+                                Key .NoUrut = j.Field(Of Integer)("NoUrut"),
+                                Key .Cust = j.Field(Of String)("Cust"),
+                                Key .PONumber = j.Field(Of String)("PONumber"),
+                                Key .InventoryId = j.Field(Of String)("InventoryId"),
+                                Key .PartName = j.Field(Of String)("PartName"),
+                                Key .PartNo = j.Field(Of String)("PartNo"),
+                                Key .Type = j.Field(Of String)("Type"),
+                                Key .NoPO = j.Field(Of String)("NoPO"),
+                                Key .OrderDate = j.Field(Of String)("OrderDate"),
+                                Key .DelDate = j.Field(Of String)("DelDate"),
+                                Key .RH_LH = j.Field(Of String)("RH_LH"),
+                                Key .PalletizeMark = j.Field(Of String)("PalletizeMark"),
+                                Key .PartNoLabel = j.Field(Of String)("PartNoLabel"),
+                                Key .RackLabel = j.Field(Of String)("RackLabel"),
+                                Key .RackPart = j.Field(Of String)("RackPart"),
+                                Key .ItemNo = j.Field(Of String)("ItemNo"),
+                                Key .Warna = j.Field(Of String)("Warna")} Into g = Group
+                         Select New With {
+                            x.NoUrut,
+                            x.Cust,
+                            x.PONumber,
+                            x.InventoryId,
+                            x.PartName,
+                             x.PartNo,
+                             x.Type,
+                             x.NoPO,
+                             x.OrderDate,
+                             x.DelDate,
+                             .QtyOrder = g.Sum(Function(dr) dr.Field(Of Integer)("QtyOrder")),
+                             x.RH_LH,
+                             x.PalletizeMark,
+                             x.PartNoLabel,
+                             x.RackLabel,
+                             x.RackPart,
+                             x.ItemNo,
+                             x.Warna
+                        }
+            TempTable1()
+            For Each item In groups
+                Dim dr As DataRow = dtTemp1.NewRow()
+                dr("NoUrut") = item.NoUrut
+                dr("Cust") = item.Cust
+                dr("PONumber") = item.PONumber
+                dr("InventoryId") = item.InventoryId
+                dr("PartName") = item.PartName
+                dr("PartNo") = item.PartNo
+                dr("Type") = item.Type
+                dr("NoPO") = item.NoPO
+                dr("DelDate") = item.DelDate
+                dr("QtyOrder") = item.QtyOrder
+                dr("RH_LH") = item.RH_LH
+                dr("PalletizeMark") = item.PalletizeMark
+                dr("PartNoLabel") = item.PartNoLabel
+                dr("RackLabel") = item.RackLabel
+                dr("RackPart") = item.RackPart
+                dr("ItemNo") = item.ItemNo
+                dr("Warna") = item.Warna
+                dtTemp1.Rows.Add(dr)
+            Next
+
 
             Dim Laporan As New PrintKanbanInternalTes()
             With Laporan
                 '.param1 = _param
-                .DataSource = dtTemp
+                .DataSource = dtTemp1
                 AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
             End With
 
@@ -180,25 +243,49 @@ Public Class frmKanbanInternal
 
     Private Sub TempTable()
         dtTemp = New DataTable
-        dtTemp.Columns.Add("Id")
-        dtTemp.Columns.Add("NoUrut")
-        dtTemp.Columns.Add("Cust")
-        dtTemp.Columns.Add("PONumber")
-        dtTemp.Columns.Add("InventoryId")
-        dtTemp.Columns.Add("PartName")
-        dtTemp.Columns.Add("PartNo")
-        dtTemp.Columns.Add("Type")
-        dtTemp.Columns.Add("NoPO")
-        dtTemp.Columns.Add("OrderDate")
-        dtTemp.Columns.Add("DelDate")
-        dtTemp.Columns.Add("QtyOrder")
-        dtTemp.Columns.Add("RH_LH")
-        dtTemp.Columns.Add("PalletizeMark")
-        dtTemp.Columns.Add("PartNoLabel")
-        dtTemp.Columns.Add("RackLabel")
-        dtTemp.Columns.Add("RackPart")
-        dtTemp.Columns.Add("ItemNo")
-        dtTemp.Columns.Add("Warna")
+        dtTemp.Columns.Add("Id", GetType(Integer))
+        dtTemp.Columns.Add("NoUrut", GetType(Integer))
+        dtTemp.Columns.Add("Cust", GetType(String))
+        dtTemp.Columns.Add("PONumber", GetType(String))
+        dtTemp.Columns.Add("InventoryId", GetType(String))
+        dtTemp.Columns.Add("PartName", GetType(String))
+        dtTemp.Columns.Add("PartNo", GetType(String))
+        dtTemp.Columns.Add("Type", GetType(String))
+        dtTemp.Columns.Add("NoPO", GetType(String))
+        dtTemp.Columns.Add("OrderDate", GetType(String))
+        dtTemp.Columns.Add("DelDate", GetType(String))
+        dtTemp.Columns.Add("QtyOrder", GetType(Integer))
+        dtTemp.Columns.Add("RH_LH", GetType(String))
+        dtTemp.Columns.Add("PalletizeMark", GetType(String))
+        dtTemp.Columns.Add("PartNoLabel", GetType(String))
+        dtTemp.Columns.Add("RackLabel", GetType(String))
+        dtTemp.Columns.Add("RackPart", GetType(String))
+        dtTemp.Columns.Add("ItemNo", GetType(String))
+        dtTemp.Columns.Add("Warna", GetType(String))
         dtTemp.Clear()
+    End Sub
+
+    Private Sub TempTable1()
+        dtTemp1 = New DataTable
+        dtTemp1.Columns.Add("Id", GetType(Integer))
+        dtTemp1.Columns.Add("NoUrut", GetType(Integer))
+        dtTemp1.Columns.Add("Cust", GetType(String))
+        dtTemp1.Columns.Add("PONumber", GetType(String))
+        dtTemp1.Columns.Add("InventoryId", GetType(String))
+        dtTemp1.Columns.Add("PartName", GetType(String))
+        dtTemp1.Columns.Add("PartNo", GetType(String))
+        dtTemp1.Columns.Add("Type", GetType(String))
+        dtTemp1.Columns.Add("NoPO", GetType(String))
+        dtTemp1.Columns.Add("OrderDate", GetType(String))
+        dtTemp1.Columns.Add("DelDate", GetType(String))
+        dtTemp1.Columns.Add("QtyOrder", GetType(Integer))
+        dtTemp1.Columns.Add("RH_LH", GetType(String))
+        dtTemp1.Columns.Add("PalletizeMark", GetType(String))
+        dtTemp1.Columns.Add("PartNoLabel", GetType(String))
+        dtTemp1.Columns.Add("RackLabel", GetType(String))
+        dtTemp1.Columns.Add("RackPart", GetType(String))
+        dtTemp1.Columns.Add("ItemNo", GetType(String))
+        dtTemp1.Columns.Add("Warna", GetType(String))
+        dtTemp1.Clear()
     End Sub
 End Class

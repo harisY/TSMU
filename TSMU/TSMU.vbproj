@@ -929,6 +929,12 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_ScandDN.Designer.vb">
+      <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_ScandDN.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Harigami.Designer.vb">
       <DependentUpon>frmReport_Harigami.vb</DependentUpon>
     </Compile>
@@ -1389,6 +1395,12 @@
     <Compile Include="SuratJalan\FrmSuratJalanList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserControl\CustomMsgBox.Designer.vb">
+      <DependentUpon>CustomMsgBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\CustomMsgBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserControl\customTextbox.Designer.vb">
       <DependentUpon>customTextbox.vb</DependentUpon>
     </Compile>
@@ -1397,6 +1409,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
+      <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
+      <DependentUpon>CustomMsgBox.vb</DependentUpon>
+    </EmbeddedResource>
     <None Include="dbml\BoM.dbml.layout">
       <DependentUpon>BoM.dbml</DependentUpon>
     </None>

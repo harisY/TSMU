@@ -90,4 +90,49 @@ Public Class ReportBarcodePrintLog
         End Try
 
     End Function
+
+
+End Class
+
+Public Class ReportScanDN
+    Public Function GetDataGrid(tgl As String, tgl1 As String, site As String) As DataTable
+        Try
+            Dim query As String = "SELECT 
+	                                c.BarcodeADM, 
+	                                c.BarcodeTSC, 
+	                                c.BarcodeTSCOrg, 
+	                                c.Status, 
+	                                CONVERT(varchar,c.CreatedDate,105) CreatedDate, 
+	                                d.DNNbr, 
+	                                CONVERT(varchar,d.CreatedDate,105) as CreatedDateDN, 
+                                    d.NoPolisi, 
+	                                d.Sopir, 
+	                                CONVERT(varchar,d.DelDate,105) DelDate, 
+	                                CONVERT(VARCHAR(8),(CONVERT(TIME(0), d.DelTime,0))) AS DelTime 
+                                FROM BarcodeCompareTable c left outer join 
+	                                (SELECT 
+		                                a.OrderNo AS DNNbr, 
+		                                a.CreatedDate, 
+		                                a.NoPolisi, 
+		                                a.Sopir, 
+		                                b.DelDate, 
+		                                b.deltime 
+	                                FROM KanbanAdmScanDN a join 
+		                                (SELECT DISTINCT orderno, 
+			                                Deldate, 
+			                                deltime 
+		                                FROM KanbanADM)b 
+	                                ON a.OrderNo = b.OrderNo 
+                                WHERE convert(date,a.CreatedDate) >= " & QVal(tgl) & " AND convert(date,a.CreatedDate) <= " & QVal(tgl1) & " 
+                                AND a.OrderNo = COALESCE(NULLIF(" & QVal(site) & ",'ALL'),a.OrderNo))d
+                                ON LEFT(c.barcodeadm,16) = d.DNNbr"
+            Dim dt As New DataTable
+
+            dt = GetDataTableCKR(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
 End Class

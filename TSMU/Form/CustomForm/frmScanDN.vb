@@ -1,4 +1,6 @@
-﻿Public Class frmScanDN
+﻿Imports DevExpress.XtraEditors
+
+Public Class frmScanDN
     Dim dtTemp As DataTable = Nothing
     Private Sub frmScanDN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Normal
@@ -19,16 +21,19 @@
         txtPolisi.Text = ""
         txtSopir.Text = ""
         txtNoDn.Text = ""
+        ComboBox1.SelectedIndex = 1
         txtPolisi.Focus()
         TempTable()
         GridControl1.DataSource = dtTemp
     End Sub
 
     Private Sub txtNoDn_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNoDn.KeyDown
+        Dim pesan As New CustomMsgBox
         Try
             If e.KeyCode = Keys.Enter Then
                 If txtPolisi.Text = "" Then
                     MsgBox("HARAP ISI NO POLISI SEBELUM SCAN NO DN !")
+                    'SendKeys.Send("{ENTER}")
                     txtPolisi.SelectAll()
                     txtPolisi.Focus()
                 ElseIf txtSopir.Text = "" Then
@@ -46,8 +51,13 @@
                     If IsExist Then
                         MsgBox("DATA SUDAH PERNAH DI SCAN !")
                     Else
-                        ObjKanban.SaveDN(txtPolisi.Text.TrimEnd, txtNoDn.Text.TrimEnd, txtSopir.Text.TrimEnd)
-                        MsgBox("DATA SUDAH DISIMPAN !")
+                        ObjKanban.SaveDN(txtPolisi.Text.TrimEnd, txtNoDn.Text.TrimEnd, txtSopir.Text.TrimEnd, ComboBox1.Text)
+                        'XtraMessageBox.Show("")
+
+                        'MsgBox("DATA SUDAH DISIMPAN !")
+                        pesan.LabelPesan = "DATA SUDAH DISIMPAN !"
+                        pesan.StartPosition = FormStartPosition.CenterScreen
+                        pesan.ShowDialog()
 
                         Dim R As DataRow = dtTemp.NewRow
                         R(1) = txtPolisi.Text
@@ -75,5 +85,9 @@
         If e.KeyCode = Keys.Enter Then
             SendKeys.Send("{TAB}")
         End If
+    End Sub
+
+    Private Sub ComboBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBox1.KeyPress
+        e.Handled = True
     End Sub
 End Class
