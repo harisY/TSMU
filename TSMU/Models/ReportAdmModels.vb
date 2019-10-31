@@ -72,11 +72,21 @@ Public Class ReportBarcodePrintLog
 	            PrintedDate
             from BarcodePrintLog
             where convert(date,PrintedDate) >= " & QVal(tgl) & " AND convert(date,PrintedDate) <= " & QVal(tgl1) & ""
+
+            Dim query1 As String = "Select  
+	            KodePart,
+	            Bulan,
+	            [Site],
+	            [No] LastNo,
+	            PrintedBy,
+	            PrintedDate
+            from BarcodePrintLog
+            where convert(date,PrintedDate) >= " & QVal(tgl) & " AND convert(date,PrintedDate) <= " & QVal(tgl1) & ""
             Dim dt As New DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(query)
             Else
-                dt = GetDataTableCKR(query)
+                dt = GetDataTableCKR(query1)
             End If
 
             Return dt

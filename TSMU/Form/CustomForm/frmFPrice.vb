@@ -46,7 +46,8 @@ Public Class frmFPrice
             .Columns(2).Fixed = Columns.FixedStyle.Left
             .Columns(3).Fixed = Columns.FixedStyle.Left
             .Columns(4).Fixed = Columns.FixedStyle.Left
-            .Columns(11).Fixed = Columns.FixedStyle.Left
+            .Columns(5).Fixed = Columns.FixedStyle.Left
+            .Columns(6).Fixed = Columns.FixedStyle.Left
             '.OptionsView.ShowFooter = True
             '.OptionsBehavior.Editable = False
         End With
