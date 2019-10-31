@@ -51,10 +51,10 @@ Public Class Frm_Rpt_UploadToSolomon
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "EXCEL File|*.xls"
-        save.Title = "Save a EXCEL File"
+        save.Filter = "CSV File|*.csv"
+        save.Title = "Save a CSV File"
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXls(save.FileName)
+            _Grid.ExportToCsv(save.FileName)
         End If
     End Sub
     Private Sub Proc_Excel()

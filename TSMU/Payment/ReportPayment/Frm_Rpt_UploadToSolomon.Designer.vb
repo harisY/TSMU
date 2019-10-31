@@ -245,7 +245,7 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_excel.Name = "tsBtn_excel"
         Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_excel.Text = "EXCEL"
+        Me.tsBtn_excel.Text = "CSV"
         Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator5
