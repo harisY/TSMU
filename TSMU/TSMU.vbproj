@@ -265,6 +265,7 @@
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
+    <Compile Include="Direct\Class\TravelSettleHeader.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
@@ -1412,6 +1413,9 @@
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_AR.resx">
+      <DependentUpon>Frm_AR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
@@ -1882,9 +1886,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Payment\Frm_AR.resx">
-      <DependentUpon>Frm_AR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_lookup_cmdm.resx">
       <DependentUpon>frm_lookup_cmdm.vb</DependentUpon>

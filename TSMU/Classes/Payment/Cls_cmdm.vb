@@ -183,8 +183,6 @@ Public Class Cls_cmdm
             Throw ex
         End Try
     End Function
-
-
     Public Function getalldatacmdm1() As DataTable
         vrno = "" 'Frm_cmdm._vrno.Text
         bankname = "" ' Frm_cmdm._BankName.Text
@@ -196,7 +194,7 @@ Public Class Cls_cmdm
         noinvoice = "" ' Frm_cmdm._no_invoice.Text
         totalcmdm = "" ' Frm_cmdm._total_cmdm.Text
         Try
-            query = "select vrno,bankname,vendorname,tgl,ket,curyid,batch,no_invoice,total_cmdm from payment_cmdm " & _
+            query = "select vrno,bankname,vendorname,tgl,ket,curyid,batch,no_invoice,total_cmdm from payment_cmdm " &
                     "where vrno='" & vrno & "' and bankname='" & bankname & "' and vendorname='" & vendname & "' and no_invoice='" & noinvoice & "' and batch='" & batch & "' "
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
