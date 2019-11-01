@@ -288,7 +288,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         'tsBtn_print
         '
         Me.tsBtn_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_print.Enabled = False
         Me.tsBtn_print.Image = CType(resources.GetObject("tsBtn_print.Image"), System.Drawing.Image)
         Me.tsBtn_print.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_print.Name = "tsBtn_print"
