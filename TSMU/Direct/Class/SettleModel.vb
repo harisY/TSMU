@@ -171,8 +171,8 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
 
         query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, vrno, tgl,
 VendId, origdocamt, RefNbr, curydocbal FROM dataupload
-where tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' and  cek1=1 and prosespay=1 and uploaded=0 or 
-uploaded Is null order by vrno,vendid"
+where cek1=1 and prosespay=1 and uploaded=0 or 
+uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vrno"
 
         Dim ds As New dsLaporan
         ds = GetDsReport_Solomon(query, "dataupload")
