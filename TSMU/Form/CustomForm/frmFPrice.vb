@@ -642,20 +642,35 @@ Public Class frmFPrice
     End Sub
 
 
-    Private Sub ShowGridColumByMonth(bln As String)
+    Private Sub ShowGridColumByMonth(po As String, n1 As String, n2 As String, n3 As String,
+                                     Optional h1 As String = "", Optional h2 As String = "", Optional h3 As String = "")
         Try
             For i As Integer = 12 To GridView1.Columns.Count - 1
                 With GridView1
-                    Dim _bln As String = String.Empty
-                    _bln = Microsoft.VisualBasic.Left(.Columns(i).FieldName, 3)
-                    If bln = "" Then
-                        .Columns(i).Visible = True
-                    ElseIf bln = _bln Then
+                    Dim _po As String = String.Empty
+                    Dim _n1 As String = String.Empty
+                    Dim _n2 As String = String.Empty
+                    Dim _n3 As String = String.Empty
+                    Dim _h1 As String = String.Empty
+                    Dim _h2 As String = String.Empty
+                    Dim _h3 As String = String.Empty
+                    _po = .Columns(i).FieldName
+                    _n1 = .Columns(i).FieldName
+                    _n2 = .Columns(i).FieldName
+                    _n3 = .Columns(i).FieldName
+                    _h1 = .Columns(i).FieldName
+                    _h2 = .Columns(i).FieldName
+                    _h3 = .Columns(i).FieldName
+                    If po = "" Then
                         .Columns(i).Visible = True
                     Else
-                        .Columns(i).Visible = False
+                        If _po = po OrElse _n1 = n1 OrElse _n2 = n2 OrElse _n3 = n3 _
+                            OrElse _h1 = h1 OrElse _h2 = h2 OrElse _h3 = h3 Then
+                            .Columns(i).Visible = True
+                        Else
+                            .Columns(i).Visible = False
+                        End If
                     End If
-
                 End With
             Next
             If cmbBulan.SelectedIndex = 0 Then
@@ -713,8 +728,8 @@ Public Class frmFPrice
                     .Columns("Jul PO2").VisibleIndex = 60
                     .Columns("Agt PO1").VisibleIndex = 61
                     .Columns("Agt PO2").VisibleIndex = 62
-                    .Columns("Agt PO1").VisibleIndex = 63
-                    .Columns("Agt PO2").VisibleIndex = 64
+                    .Columns("Sep PO1").VisibleIndex = 63
+                    .Columns("Sep PO2").VisibleIndex = 64
                     .Columns("Okt PO1").VisibleIndex = 65
                     .Columns("Okt PO2").VisibleIndex = 66
                     .Columns("Nov PO1").VisibleIndex = 67
@@ -773,31 +788,31 @@ Public Class frmFPrice
 
         Select Case cmbBulan.SelectedIndex
             Case 1
-                ShowGridColumByMonth("Jan")
+                ShowGridColumByMonth("Jan PO1", "FebQty3", "MarQty2", "AprQty1", "JanHarga1", "JanHarga2", "JanHarga3")
             Case 2
-                ShowGridColumByMonth("Feb")
+                ShowGridColumByMonth("Feb PO1", "MarQty3", "AprQty2", "MeiQty1", "FebHarga1", "FebHarga2", "FebHarga3")
             Case 3
-                ShowGridColumByMonth("Mar")
+                ShowGridColumByMonth("Mar PO1", "AprQty3", "MeiQty2", "JunQty1", "MarHarga1", "MarHarga2", "MarHarga3")
             Case 4
-                ShowGridColumByMonth("Apr")
+                ShowGridColumByMonth("Apr PO1", "MeiQty3", "JunQty2", "JulQty1", "AprHarga1", "AprHarga2", "AprHarga3")
             Case 5
-                ShowGridColumByMonth("Mei")
+                ShowGridColumByMonth("Mei PO1", "JunQty3", "JulQty2", "AgtQty1", "MeiHarga1", "MeiHarga2", "MeiHarga3")
             Case 6
-                ShowGridColumByMonth("Jun")
+                ShowGridColumByMonth("Jun PO1", "JulQty3", "AgtQty2", "SepQty1", "JunHarga1", "JunHarga2", "JunHarga3")
             Case 7
-                ShowGridColumByMonth("Jul")
+                ShowGridColumByMonth("Jul PO1", "AgtQty3", "SepQty2", "OktQty1", "JulHarga1", "JulHarga2", "JulHarga3")
             Case 8
-                ShowGridColumByMonth("Agt")
+                ShowGridColumByMonth("Agt PO1", "SepQty3", "OktQty2", "NovQty1", "AgtHarga1", "AgtHarga2", "AgtHarga3")
             Case 9
-                ShowGridColumByMonth("Sep")
+                ShowGridColumByMonth("Sep PO1", "OktQty3", "NovQty2", "DesQty1", "SepHarga1", "SepHarga2", "SepHarga3")
             Case 10
-                ShowGridColumByMonth("Okt")
+                ShowGridColumByMonth("Okt PO1", "NovQty3", "DesQty2", "JanQty1", "OktHarga1", "OktHarga2", "OktHarga3")
             Case 11
-                ShowGridColumByMonth("Nov")
+                ShowGridColumByMonth("Nov PO1", "DesQty3", "JanQty2", "FebQty1", "NovHarga1", "NovHarga2", "NovHarga3")
             Case 12
-                ShowGridColumByMonth("Des")
+                ShowGridColumByMonth("Des PO1", "JanQty3", "FebQty2", "MarQty1", "DesHarga1", "DesHarga2", "DesHarga3")
             Case Else
-                ShowGridColumByMonth("")
+                ShowGridColumByMonth("", "", "", "")
                 'TampilGrid()
         End Select
     End Sub
