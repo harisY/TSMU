@@ -39,10 +39,10 @@ Public Class frmFPrice
         With GridView1
             .BestFitColumns()
 
-            .Columns(0).Visible = False
+            .Columns("Id").Visible = False
 
             .FixedLineWidth = 2
-            .Columns(1).Fixed = Columns.FixedStyle.Left
+            .Columns("Tahun").Fixed = Columns.FixedStyle.Left
             .Columns(2).Fixed = Columns.FixedStyle.Left
             .Columns(3).Fixed = Columns.FixedStyle.Left
             .Columns(4).Fixed = Columns.FixedStyle.Left
@@ -52,6 +52,14 @@ Public Class frmFPrice
             '.OptionsBehavior.Editable = False
         End With
         SetEditColumnGrid()
+        FillComboBulan()
+    End Sub
+    Private Sub FillComboBulan()
+        Dim Bulan() As String = {"", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"}
+        cmbBulan.Items.Clear()
+        For Each var As String In Bulan
+            cmbBulan.Items.Add(var)
+        Next
     End Sub
     Private Sub SetEditColumnGrid()
         Try
@@ -619,12 +627,178 @@ Public Class frmFPrice
         TampilGrid()
     End Sub
     Private Sub TampilGrid()
+        'Me.DataSet1.tForecastPrice1.Clear()
         Me.TForecastPrice1TableAdapter.Fill(Me.DataSet1.tForecastPrice1)
+        'TForecastPrice1BindingSource.RaiseListChangedEvents = True
+        'TForecastPrice1BindingSource.ResetBindings(False)
+        'TForecastPrice1GridControl.DataSource = Nothing
+        'TForecastPrice1GridControl.DataSource = TForecastPrice1BindingSource
     End Sub
 
     Private Sub TForecastPrice1GridControl_MouseDown(sender As Object, e As MouseEventArgs) Handles TForecastPrice1GridControl.MouseDown
         If e.Button = System.Windows.Forms.MouseButtons.Right Then
             ContextMenuStrip1.Show(e.Location)
         End If
+    End Sub
+
+
+    Private Sub ShowGridColumByMonth(bln As String)
+        Try
+            For i As Integer = 12 To GridView1.Columns.Count - 1
+                With GridView1
+                    Dim _bln As String = String.Empty
+                    _bln = Microsoft.VisualBasic.Left(.Columns(i).FieldName, 3)
+                    If bln = "" Then
+                        .Columns(i).Visible = True
+                    ElseIf bln = _bln Then
+                        .Columns(i).Visible = True
+                    Else
+                        .Columns(i).Visible = False
+                    End If
+
+                End With
+            Next
+            If cmbBulan.SelectedIndex = 0 Then
+                With GridView1
+                    .Columns("JanQty1").VisibleIndex = 11
+                    .Columns("JanQty2").VisibleIndex = 12
+                    .Columns("JanQty3").VisibleIndex = 13
+                    .Columns("FebQty1").VisibleIndex = 14
+                    .Columns("FebQty2").VisibleIndex = 15
+                    .Columns("FebQty3").VisibleIndex = 16
+                    .Columns("MarQty1").VisibleIndex = 17
+                    .Columns("MarQty2").VisibleIndex = 18
+                    .Columns("MarQty3").VisibleIndex = 19
+                    .Columns("AprQty1").VisibleIndex = 20
+                    .Columns("AprQty2").VisibleIndex = 21
+                    .Columns("AprQty3").VisibleIndex = 22
+                    .Columns("MeiQty1").VisibleIndex = 23
+                    .Columns("MeiQty2").VisibleIndex = 24
+                    .Columns("MeiQty3").VisibleIndex = 25
+                    .Columns("JunQty1").VisibleIndex = 26
+                    .Columns("JunQty2").VisibleIndex = 27
+                    .Columns("JunQty3").VisibleIndex = 28
+                    .Columns("JulQty1").VisibleIndex = 29
+                    .Columns("JulQty2").VisibleIndex = 30
+                    .Columns("JulQty3").VisibleIndex = 31
+                    .Columns("AgtQty1").VisibleIndex = 32
+                    .Columns("AgtQty2").VisibleIndex = 33
+                    .Columns("AgtQty3").VisibleIndex = 34
+                    .Columns("SepQty1").VisibleIndex = 35
+                    .Columns("SepQty2").VisibleIndex = 36
+                    .Columns("SepQty3").VisibleIndex = 37
+                    .Columns("OktQty1").VisibleIndex = 38
+                    .Columns("OktQty2").VisibleIndex = 39
+                    .Columns("OktQty3").VisibleIndex = 40
+                    .Columns("NovQty1").VisibleIndex = 41
+                    .Columns("NovQty2").VisibleIndex = 42
+                    .Columns("NovQty3").VisibleIndex = 43
+                    .Columns("DesQty1").VisibleIndex = 44
+                    .Columns("DesQty2").VisibleIndex = 45
+                    .Columns("DesQty3").VisibleIndex = 46
+
+                    .Columns("Jan PO1").VisibleIndex = 47
+                    .Columns("Jan PO2").VisibleIndex = 48
+                    .Columns("Feb PO1").VisibleIndex = 49
+                    .Columns("Feb PO2").VisibleIndex = 50
+                    .Columns("Mar PO1").VisibleIndex = 51
+                    .Columns("Mar PO2").VisibleIndex = 52
+                    .Columns("Apr PO1").VisibleIndex = 53
+                    .Columns("Apr PO2").VisibleIndex = 54
+                    .Columns("Mei PO1").VisibleIndex = 55
+                    .Columns("Mei PO2").VisibleIndex = 56
+                    .Columns("Jun PO1").VisibleIndex = 57
+                    .Columns("Jun PO2").VisibleIndex = 58
+                    .Columns("Jul PO1").VisibleIndex = 59
+                    .Columns("Jul PO2").VisibleIndex = 60
+                    .Columns("Agt PO1").VisibleIndex = 61
+                    .Columns("Agt PO2").VisibleIndex = 62
+                    .Columns("Agt PO1").VisibleIndex = 63
+                    .Columns("Agt PO2").VisibleIndex = 64
+                    .Columns("Okt PO1").VisibleIndex = 65
+                    .Columns("Okt PO2").VisibleIndex = 66
+                    .Columns("Nov PO1").VisibleIndex = 67
+                    .Columns("Nov PO2").VisibleIndex = 68
+                    .Columns("Des PO1").VisibleIndex = 69
+                    .Columns("Des PO2").VisibleIndex = 70
+
+                    .Columns("JanHarga1").VisibleIndex = 71
+                    .Columns("JanHarga2").VisibleIndex = 72
+                    .Columns("JanHarga3").VisibleIndex = 73
+                    .Columns("FebHarga1").VisibleIndex = 74
+                    .Columns("FebHarga2").VisibleIndex = 75
+                    .Columns("FebHarga3").VisibleIndex = 76
+                    .Columns("MarHarga1").VisibleIndex = 77
+                    .Columns("MarHarga2").VisibleIndex = 78
+                    .Columns("MarHarga3").VisibleIndex = 79
+                    .Columns("AprHarga1").VisibleIndex = 80
+                    .Columns("AprHarga2").VisibleIndex = 81
+                    .Columns("AprHarga3").VisibleIndex = 82
+                    .Columns("MeiHarga1").VisibleIndex = 83
+                    .Columns("MeiHarga2").VisibleIndex = 84
+                    .Columns("MeiHarga3").VisibleIndex = 85
+                    .Columns("JunHarga1").VisibleIndex = 86
+                    .Columns("JunHarga2").VisibleIndex = 87
+                    .Columns("JunHarga3").VisibleIndex = 88
+                    .Columns("JulHarga1").VisibleIndex = 89
+                    .Columns("JulHarga2").VisibleIndex = 90
+                    .Columns("JulHarga3").VisibleIndex = 91
+                    .Columns("AgtHarga1").VisibleIndex = 92
+                    .Columns("AgtHarga2").VisibleIndex = 93
+                    .Columns("AgtHarga3").VisibleIndex = 94
+                    .Columns("SepHarga1").VisibleIndex = 95
+                    .Columns("SepHarga2").VisibleIndex = 96
+                    .Columns("SepHarga3").VisibleIndex = 97
+                    .Columns("OktHarga1").VisibleIndex = 98
+                    .Columns("OktHarga2").VisibleIndex = 100
+                    .Columns("OktHarga3").VisibleIndex = 101
+                    .Columns("NovHarga1").VisibleIndex = 102
+                    .Columns("NovHarga2").VisibleIndex = 103
+                    .Columns("NovHarga3").VisibleIndex = 104
+                    .Columns("DesHarga1").VisibleIndex = 105
+                    .Columns("DesHarga2").VisibleIndex = 106
+                    .Columns("DesHarga3").VisibleIndex = 107
+                End With
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub cmbBulan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBulan.SelectedIndexChanged
+        'If cmbBulan.SelectedIndex = 1 Then
+        '    ShowGridColumByMonth("Jan")
+
+        'End If
+
+        Select Case cmbBulan.SelectedIndex
+            Case 1
+                ShowGridColumByMonth("Jan")
+            Case 2
+                ShowGridColumByMonth("Feb")
+            Case 3
+                ShowGridColumByMonth("Mar")
+            Case 4
+                ShowGridColumByMonth("Apr")
+            Case 5
+                ShowGridColumByMonth("Mei")
+            Case 6
+                ShowGridColumByMonth("Jun")
+            Case 7
+                ShowGridColumByMonth("Jul")
+            Case 8
+                ShowGridColumByMonth("Agt")
+            Case 9
+                ShowGridColumByMonth("Sep")
+            Case 10
+                ShowGridColumByMonth("Okt")
+            Case 11
+                ShowGridColumByMonth("Nov")
+            Case 12
+                ShowGridColumByMonth("Des")
+            Case Else
+                ShowGridColumByMonth("")
+                'TampilGrid()
+        End Select
     End Sub
 End Class
