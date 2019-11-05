@@ -245,7 +245,7 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_excel.Name = "tsBtn_excel"
         Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_excel.Text = "EXCEL"
+        Me.tsBtn_excel.Text = "CSV"
         Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator5
@@ -288,7 +288,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         'tsBtn_print
         '
         Me.tsBtn_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_print.Enabled = False
         Me.tsBtn_print.Image = CType(resources.GetObject("tsBtn_print.Image"), System.Drawing.Image)
         Me.tsBtn_print.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_print.Name = "tsBtn_print"

@@ -70,7 +70,6 @@ Partial Class Frm_UploadToSolomon
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
         Me.DateEdit4 = New DevExpress.XtraEditors.DateEdit()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -108,6 +107,7 @@ Partial Class Frm_UploadToSolomon
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit5 = New DevExpress.XtraEditors.DateEdit()
         Me.DateEdit6 = New DevExpress.XtraEditors.DateEdit()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -144,6 +144,18 @@ Partial Class Frm_UploadToSolomon
         Me.ProgBar3 = New System.Windows.Forms.ToolStripProgressBar()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GridControl9 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView13 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBar4 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.DateEdit7 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit8 = New DevExpress.XtraEditors.DateEdit()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.tsBtn_newData = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -210,6 +222,16 @@ Partial Class Frm_UploadToSolomon
         CType(Me.GridControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip4.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        CType(Me.GridControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip5.SuspendLayout()
+        CType(Me.DateEdit7.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit8.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -233,7 +255,7 @@ Partial Class Frm_UploadToSolomon
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(796, 528)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Pilih Data Upload"
+        Me.TabPage1.Text = "Pilih Payment Upload"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'btn_approve
@@ -329,6 +351,7 @@ Partial Class Frm_UploadToSolomon
         '
         Me.GridView4.GridControl = Me.GridControl3
         Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridView4.OptionsView.ShowGroupPanel = False
         '
         'Pilih
@@ -589,6 +612,7 @@ Partial Class Frm_UploadToSolomon
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(7, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -597,7 +621,6 @@ Partial Class Frm_UploadToSolomon
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.SimpleButton1)
         Me.TabPage2.Controls.Add(Me.DateEdit3)
         Me.TabPage2.Controls.Add(Me.DateEdit4)
         Me.TabPage2.Controls.Add(Me.Panel2)
@@ -608,17 +631,8 @@ Partial Class Frm_UploadToSolomon
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(796, 528)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Data Sudah Dipilih"
+        Me.TabPage2.Text = "Payment Sudah Dipilih"
         Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SimpleButton1.ImageOptions.Image = CType(resources.GetObject("SimpleButton1.ImageOptions.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(748, 9)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(42, 42)
-        Me.SimpleButton1.TabIndex = 25
         '
         'DateEdit3
         '
@@ -670,6 +684,7 @@ Partial Class Frm_UploadToSolomon
         '
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'RepositoryItemCheckEdit1
@@ -907,6 +922,7 @@ Partial Class Frm_UploadToSolomon
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.SimpleButton1)
         Me.TabPage3.Controls.Add(Me.DateEdit5)
         Me.TabPage3.Controls.Add(Me.DateEdit6)
         Me.TabPage3.Controls.Add(Me.Panel3)
@@ -917,8 +933,17 @@ Partial Class Frm_UploadToSolomon
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(796, 528)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Data Sudah Upload"
+        Me.TabPage3.Text = "Payment Sudah Dipilih Tapi Belum Upload"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.ImageOptions.Image = CType(resources.GetObject("SimpleButton1.ImageOptions.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(748, 10)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(42, 42)
+        Me.SimpleButton1.TabIndex = 25
         '
         'DateEdit5
         '
@@ -970,7 +995,7 @@ Partial Class Frm_UploadToSolomon
         '
         Me.GridView9.GridControl = Me.GridControl6
         Me.GridView9.Name = "GridView9"
-        Me.GridView9.OptionsBehavior.Editable = False
+        Me.GridView9.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridView9.OptionsView.ShowGroupPanel = False
         '
         'RepositoryItemCheckEdit2
@@ -1206,6 +1231,115 @@ Partial Class Frm_UploadToSolomon
         Me.Label7.TabIndex = 25
         Me.Label7.Text = "From :"
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.GridControl9)
+        Me.TabPage4.Controls.Add(Me.ToolStrip5)
+        Me.TabPage4.Controls.Add(Me.DateEdit7)
+        Me.TabPage4.Controls.Add(Me.DateEdit8)
+        Me.TabPage4.Controls.Add(Me.Label8)
+        Me.TabPage4.Controls.Add(Me.Label9)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(796, 528)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "Payment Sudah Upload "
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'GridControl9
+        '
+        Me.GridControl9.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl9.DataMember = Nothing
+        Me.GridControl9.Location = New System.Drawing.Point(3, 57)
+        Me.GridControl9.MainView = Me.GridView13
+        Me.GridControl9.Name = "GridControl9"
+        Me.GridControl9.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
+        Me.GridControl9.Size = New System.Drawing.Size(790, 468)
+        Me.GridControl9.TabIndex = 35
+        Me.GridControl9.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView13, Me.GridView14})
+        '
+        'GridView13
+        '
+        Me.GridView13.GridControl = Me.GridControl9
+        Me.GridView13.Name = "GridView13"
+        Me.GridView13.OptionsBehavior.Editable = False
+        Me.GridView13.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridView13.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        '
+        'GridView14
+        '
+        Me.GridView14.GridControl = Me.GridControl9
+        Me.GridView14.Name = "GridView14"
+        '
+        'ToolStrip5
+        '
+        Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ProgBar4})
+        Me.ToolStrip5.Location = New System.Drawing.Point(7, 29)
+        Me.ToolStrip5.Name = "ToolStrip5"
+        Me.ToolStrip5.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStrip5.TabIndex = 34
+        Me.ToolStrip5.Text = "ToolStrip5"
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(80, 22)
+        Me.ToolStripButton3.Text = "Load Data"
+        '
+        'ProgBar4
+        '
+        Me.ProgBar4.Name = "ProgBar4"
+        Me.ProgBar4.Size = New System.Drawing.Size(100, 22)
+        '
+        'DateEdit7
+        '
+        Me.DateEdit7.EditValue = Nothing
+        Me.DateEdit7.Location = New System.Drawing.Point(249, 6)
+        Me.DateEdit7.Name = "DateEdit7"
+        Me.DateEdit7.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit7.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit7.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit7.TabIndex = 33
+        '
+        'DateEdit8
+        '
+        Me.DateEdit8.EditValue = Nothing
+        Me.DateEdit8.Location = New System.Drawing.Point(46, 6)
+        Me.DateEdit8.Name = "DateEdit8"
+        Me.DateEdit8.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit8.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit8.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit8.TabIndex = 32
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(209, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(34, 13)
+        Me.Label8.TabIndex = 31
+        Me.Label8.Text = "Until :"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(4, 9)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(36, 13)
+        Me.Label9.TabIndex = 30
+        Me.Label9.Text = "From :"
+        '
         'ToolStrip3
         '
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsBtn_newData, Me.ToolStripSeparator1, Me.tsBtn_save, Me.ToolStripSeparator2, Me.tsBtn_delete, Me.ToolStripSeparator3, Me.tsBtn_refresh, Me.ToolStripSeparator4, Me.tsBtn_excel, Me.ToolStripSeparator5, Me.tsBtn_filter, Me.ToolStripSeparator6, Me.tsBtn_preview, Me.ToolStripSeparator7, Me.tsBtn_print, Me.ToolStripSeparator8, Me.tsBtn_prev, Me.ToolStripSeparator9, Me.tsBtn_next})
@@ -1424,6 +1558,18 @@ Partial Class Frm_UploadToSolomon
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip4.ResumeLayout(False)
         Me.ToolStrip4.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
+        CType(Me.GridControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip5.ResumeLayout(False)
+        Me.ToolStrip5.PerformLayout()
+        CType(Me.DateEdit7.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit8.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
         Me.ResumeLayout(False)
@@ -1568,4 +1714,16 @@ Partial Class Frm_UploadToSolomon
     Friend WithEvents ProgBar3 As ToolStripProgressBar
     Friend WithEvents Label4 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents GridControl9 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView13 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ToolStrip5 As ToolStrip
+    Friend WithEvents ToolStripButton3 As ToolStripButton
+    Friend WithEvents ProgBar4 As ToolStripProgressBar
+    Friend WithEvents DateEdit7 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEdit8 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
 End Class

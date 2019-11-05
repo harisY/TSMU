@@ -14,6 +14,9 @@ Public Class Frm_Rpt_UploadToSolomon
         ''_totalchk.Text = totalsupllier()
     End Sub
 
+
+
+
     Private Sub totalsupllier()
         Try
             Dim tgl1 As String
@@ -52,7 +55,7 @@ Public Class Frm_Rpt_UploadToSolomon
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
         save.Filter = "EXCEL File|*.xls"
-        save.Title = "Save a EXCEL File"
+        save.Title = "Save an EXCEL File"
         If save.ShowDialog = DialogResult.OK Then
             _Grid.ExportToXls(save.FileName)
         End If
@@ -172,6 +175,26 @@ Public Class Frm_Rpt_UploadToSolomon
     ''End Sub
 
     Private Sub tsBtn_preview_Click(sender As Object, e As EventArgs) Handles tsBtn_preview.Click
+
+    End Sub
+
+    Private Sub tsBtn_print_Click(sender As Object, e As EventArgs) Handles tsBtn_print.Click
+        Try
+            Dim newform As New Frm_Rpt_APSolomon(DateEdit1.Text, DateEdit2.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        'Dim ds As New DataSet
+        'ds = Report.getalldatauploadbytgl
+        'laporan.SetDataSource(ds)
+
+        'With CrystalReportViewer1
+        '    .ReportSource = laporan
+        '    .Refresh()
+        'End With
 
     End Sub
 End Class

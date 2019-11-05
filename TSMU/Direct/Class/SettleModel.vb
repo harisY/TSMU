@@ -17,6 +17,8 @@ Public Class SettleHeader
     Public Property Tgl2 As Date
     Public Property Jenis As String
     Public Property noPR As String
+    Public Property Date1 As Date
+    Public Property Date2 As Date
     Public Property ObjDetails() As New Collection(Of SettleDetail)
 
     Public Function SubReport() As DataSet
@@ -161,6 +163,25 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
         Return ds
 
     End Function
+
+
+
+    Public Function loadreportAPSolomon() As DataSet
+        Dim query As String
+
+        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, vrno, tgl,
+VendId, origdocamt, RefNbr, curydocbal FROM dataupload
+where cek1=1 and prosespay=1 and uploaded=0 or 
+uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vrno"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "dataupload")
+        Return ds
+
+    End Function
+
+
+
 
 
 

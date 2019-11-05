@@ -110,7 +110,7 @@ Public Class Frm_UploadToSolomon
             'End If
             'ProgBar2.Visible = True
             'ProgBar2.Style = ProgressBarStyle.Marquee
-            Await Task.Run(Sub() GetDataGridUploadToSolomonUploaded())
+            Await Task.Run(Sub() GetDataGridUploadToSolomonOk())
         Catch ex As Exception
             'ProgBar2.Visible = False
             MsgBox(ex.Message)
@@ -148,9 +148,28 @@ Public Class Frm_UploadToSolomon
         dt = pay_class.DataGridUploadToSolomonOk(date1, date2)
         setDataSource(dt, GridControl6)
         Invoke(Sub()
-                   ProgBar.Visible = False
+                   ProgBar3.Visible = False
                End Sub)
     End Sub
+
+    Private Sub AR_UploadToSolomon()
+        Dim date1 As String = ""
+        Dim date2 As String = ""
+        'Dim date1 As DateTime
+        'Dim date2 As DateTime
+        Invoke(Sub()
+                   date1 = DateEdit8.Text
+                   date2 = DateEdit7.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.AR_UploadToSolomon(date1, date2)
+        setDataSource(dt, GridControl6)
+        Invoke(Sub()
+                   ProgBar4.Visible = False
+               End Sub)
+    End Sub
+
+
 
     Private Sub GetDataGridUploadToSolomonUploaded()
         Dim date1 As String = ""
@@ -158,14 +177,14 @@ Public Class Frm_UploadToSolomon
         'Dim date1 As DateTime
         'Dim date2 As DateTime
         Invoke(Sub()
-                   date1 = DateEdit4.Text
-                   date2 = DateEdit3.Text
+                   date1 = DateEdit8.Text
+                   date2 = DateEdit7.Text
                End Sub)
         Dim dt As New DataTable
         dt = pay_class.DataGridUploadToSolomonUploaded(date1, date2)
-        setDataSource(dt, GridControl1)
+        setDataSource(dt, GridControl9)
         Invoke(Sub()
-                   ProgBar.Visible = False
+                   ProgBar4.Visible = False
                End Sub)
     End Sub
 
@@ -352,14 +371,14 @@ Public Class Frm_UploadToSolomon
             Dim uploaded As Boolean
             Dim vrno As String
             Dim a As Boolean
-            For i As Integer = 0 To GridView2.RowCount - 1
-                vrno = GridView2.GetRowCellValue(i, "vrno")
-                uploaded = GridView2.GetRowCellValue(i, "Check If Uploaded")
-                a = GridView2.GetRowCellValue(i, "Check If Uploaded")
+            For i As Integer = 0 To GridView9.RowCount - 1
+                vrno = GridView9.GetRowCellValue(i, "vrno")
+                uploaded = GridView9.GetRowCellValue(i, "Check If Uploaded")
+                a = GridView9.GetRowCellValue(i, "Check If Uploaded")
                 If a = True Then
                     a = False
-                    uploaded = GridView2.GetRowCellValue(i, "Check If Uploaded")
-                    vrno = GridView2.GetRowCellValue(i, "Vrno")
+                    uploaded = GridView9.GetRowCellValue(i, "Check If Uploaded")
+                    vrno = GridView9.GetRowCellValue(i, "Vrno")
                     query = "update payment_header1 set uploaded='" & uploaded & "' where vrno='" & vrno & "' "
                     MainModul.ExecQueryByCommandSolomon(query)
                 Else
@@ -370,8 +389,8 @@ Public Class Frm_UploadToSolomon
             Throw
         End Try
         MessageBox.Show("Data Updated.")
-        GridView4.Columns.Clear()
-        GridView4.RefreshData()
+        GridView9.Columns.Clear()
+        GridView9.RefreshData()
         tampilallupload()
     End Sub
 
@@ -380,11 +399,26 @@ Public Class Frm_UploadToSolomon
             If ProgBar3.Visible = True Then
                 ''Throw New Exception("Process already running, Please wait!")
             End If
-            'ProgBar3.Visible = True
-            'ProgBar3.Style = ProgressBarStyle.Marquee
+            ProgBar3.Visible = True
+            ProgBar3.Style = ProgressBarStyle.Marquee
             Await Task.Run(Sub() GetDataGridUploadToSolomonOk())
         Catch ex As Exception
             ''ProgBar3.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Async Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Try
+            If ProgBar4.Visible = True Then
+                ''Throw New Exception("Process already running, Please wait!")
+            End If
+            ProgBar4.Visible = True
+            ProgBar4.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridUploadToSolomonUploaded())
+        Catch ex As Exception
+            ProgBar4.Visible = False
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
