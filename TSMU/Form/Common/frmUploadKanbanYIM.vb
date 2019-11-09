@@ -108,7 +108,7 @@ Public Class frmUploadKanbanYIM
                 dtKanban = Obj.GetKanban
                 For i As Integer = 0 To dtKanban.Rows.Count - 1
                     Try
-                        Dim _tgl As DateTime = Convert.ToDateTime(dtKanban.Rows(i)(0))
+                        Dim _tgl As String = Convert.ToString(dtKanban.Rows(i)(0))
                         Dim _plant As String = Convert.ToString(dtKanban.Rows(i)(1))
                         Dim _user As String = Convert.ToString(dtKanban.Rows(i)(2))
                         Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
