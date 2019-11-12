@@ -21,7 +21,6 @@ Public Class frmScanDN
         txtPolisi.Text = ""
         txtSopir.Text = ""
         txtNoDn.Text = ""
-        ComboBox1.SelectedIndex = 1
         txtPolisi.Focus()
         TempTable()
         GridControl1.DataSource = dtTemp
@@ -51,7 +50,7 @@ Public Class frmScanDN
                     If IsExist Then
                         MsgBox("DATA SUDAH PERNAH DI SCAN !")
                     Else
-                        ObjKanban.SaveDN(txtPolisi.Text.TrimEnd, txtNoDn.Text.TrimEnd, txtSopir.Text.TrimEnd, ComboBox1.Text)
+                        ObjKanban.SaveDN(txtPolisi.Text.TrimEnd, txtNoDn.Text.TrimEnd, txtSopir.Text.TrimEnd)
                         'XtraMessageBox.Show("")
 
                         'MsgBox("DATA SUDAH DISIMPAN !")
@@ -87,7 +86,7 @@ Public Class frmScanDN
         End If
     End Sub
 
-    Private Sub ComboBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBox1.KeyPress
+    Private Sub ComboBox1_KeyPress(sender As Object, e As KeyPressEventArgs)
         e.Handled = True
     End Sub
 End Class

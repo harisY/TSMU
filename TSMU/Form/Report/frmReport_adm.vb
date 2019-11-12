@@ -15,6 +15,7 @@ Public Class frmReport_adm
         cmbStatus.SelectedIndex = 0
         Grid.DataSource = Nothing
         TxtTglScan.Value = DateTime.Today
+        cmbSite.SelectedIndex = 0
     End Sub
     Sub LoadTxtBox()
         If ProgBar.Visible = True Then
@@ -75,14 +76,16 @@ Public Class frmReport_adm
         Dim strStatus As String = ""
         Dim tgl As String = ""
         Dim tgl1 As String = ""
+        Dim site As String = ""
         Invoke(Sub()
                    strStatus = cmbStatus.Text
                    tgl = Format(TxtTglScan.Value, gs_FormatSQLDate)
                    tgl1 = Format(TxtTgl1.Value, gs_FormatSQLDate)
+                   site = cmbSite.Text
                End Sub)
         Dim dt As New DataTable
         Dim Objadm = New ReportAdmModels
-        dt = Objadm.GetDataGrid(strStatus, tgl, tgl1)
+        dt = Objadm.GetDataGrid(strStatus, tgl, tgl1, site)
         setDataSource(dt, Grid)
         Invoke(Sub()
                    ProgBar.Visible = False
@@ -117,4 +120,11 @@ Public Class frmReport_adm
         End Try
     End Sub
 
+    Private Sub cmbStatus_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbStatus.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbSite.KeyPress
+        e.Handled = True
+    End Sub
 End Class

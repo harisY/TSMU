@@ -612,11 +612,47 @@ Public Class payment_header_models
             'End If
 
             If Level = 1 Then
-                sql = sql & " WHERE cek1='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " where payment_detail1.cek1='0'
+							 group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno "
             ElseIf Level = 2 Then
-                sql = sql & " WHERE cek2='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek2='0' and Payment_Header1.cek4=0
+							 group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno "
             ElseIf Level = 3 Then
-                sql = sql & " WHERE cek3='0' ORDER BY tgl, vendorname, vrno"
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek3='0' and Payment_Header1.cek4=0
+							 group by payment_header1.id
+                                ,payment_header1.vrno 
+                                ,payment_header1.tgl
+                                ,payment_header1.BankName
+                                ,payment_header1.CuryID
+                                ,payment_header1.VendorName
+								,payment_header1.cek1, 
+								payment_header1.cek2, 
+								payment_header1.cek3, payment_header1.cek4 
+								,payment_header1.cm_dm
+								,payment_header1.Biaya_Transfer
+								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno "
             ElseIf Level = 4 Then
                 sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek4='0' and Payment_Header1.cek4=0
 							 group by payment_header1.id

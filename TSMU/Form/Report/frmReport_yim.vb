@@ -2,24 +2,26 @@
 Imports ExcelLibrary
 Imports DevExpress.XtraGrid
 
-Public Class frmReport_ScandDN
+Public Class frmReport_yim
+    Dim fc_class As New clsReport
     Dim fdtl_Config As DataTable = Nothing
 
-    Private Sub frmReport_ScandDN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmReport_yim_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False)
         Init()
         ProgBar.Visible = False
     End Sub
     Private Sub Init()
+        cmbStatus.SelectedIndex = 0
         Grid.DataSource = Nothing
         TxtTglScan.Value = DateTime.Today
-        cmbSite.SelectedIndex = 0
     End Sub
     Sub LoadTxtBox()
         If ProgBar.Visible = True Then
             MsgBox("Proses masih berjalan !")
             Exit Sub
         Else
+            cmbStatus.SelectedIndex = 0
             Grid.DataSource = Nothing
         End If
     End Sub
@@ -50,6 +52,10 @@ Public Class frmReport_ScandDN
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub frmReport_adm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        cmbStatus.Focus()
+    End Sub
+
     Private Async Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Try
 
@@ -71,13 +77,13 @@ Public Class frmReport_ScandDN
         Dim tgl1 As String = ""
         Dim site As String = ""
         Invoke(Sub()
+                   strStatus = cmbStatus.Text
                    tgl = Format(TxtTglScan.Value, gs_FormatSQLDate)
                    tgl1 = Format(TxtTgl1.Value, gs_FormatSQLDate)
-                   site = cmbSite.Text
                End Sub)
         Dim dt As New DataTable
-        Dim Objadm = New ReportScanDN
-        dt = Objadm.GetDataGrid(tgl, tgl1, site, "")
+        Dim Objadm = New ReportYIM
+        dt = Objadm.GetDataGrid(strStatus, tgl, tgl1)
         setDataSource(dt, Grid)
         Invoke(Sub()
                    ProgBar.Visible = False
@@ -112,4 +118,11 @@ Public Class frmReport_ScandDN
         End Try
     End Sub
 
+    Private Sub cmbStatus_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbStatus.KeyPress
+        e.Handled = True
+    End Sub
+
+    Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs)
+        e.Handled = True
+    End Sub
 End Class

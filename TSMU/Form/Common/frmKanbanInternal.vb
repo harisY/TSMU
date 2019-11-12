@@ -197,6 +197,7 @@ Public Class frmKanbanInternal
                 dr("PartNo") = item.PartNo
                 dr("Type") = item.Type
                 dr("NoPO") = item.NoPO
+                dr("OrderDate") = item.OrderDate
                 dr("DelDate") = item.DelDate
                 dr("QtyOrder") = item.QtyOrder
                 dr("RH_LH") = item.RH_LH

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmReport_adm
+Partial Class frmReport_yim
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -20,11 +20,9 @@ Partial Class frmReport_adm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReport_adm))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReport_yim))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.cmbSite = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TxtTgl1 = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -63,8 +61,6 @@ Partial Class frmReport_adm
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.cmbSite)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.TxtTgl1)
         Me.TabPage1.Controls.Add(Me.Label1)
@@ -78,32 +74,13 @@ Partial Class frmReport_adm
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Size = New System.Drawing.Size(1063, 676)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Barcode ADM vs TSC"
+        Me.TabPage1.Text = "Barcode YIM vs TSC"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(11, 71)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(32, 17)
-        Me.Label4.TabIndex = 24
-        Me.Label4.Text = "Site"
-        '
-        'cmbSite
-        '
-        Me.cmbSite.FormattingEnabled = True
-        Me.cmbSite.Items.AddRange(New Object() {"ALL", "3A", "3B"})
-        Me.cmbSite.Location = New System.Drawing.Point(135, 71)
-        Me.cmbSite.Name = "cmbSite"
-        Me.cmbSite.Size = New System.Drawing.Size(160, 25)
-        Me.cmbSite.TabIndex = 23
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(304, 43)
+        Me.Label3.Location = New System.Drawing.Point(297, 43)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(27, 17)
@@ -114,7 +91,7 @@ Partial Class frmReport_adm
         '
         Me.TxtTgl1.CustomFormat = "dd-MM-yyyy"
         Me.TxtTgl1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.TxtTgl1.Location = New System.Drawing.Point(343, 41)
+        Me.TxtTgl1.Location = New System.Drawing.Point(330, 41)
         Me.TxtTgl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl1.Name = "TxtTgl1"
         Me.TxtTgl1.Size = New System.Drawing.Size(160, 23)
@@ -147,10 +124,10 @@ Partial Class frmReport_adm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(8, 107)
+        Me.Panel1.Location = New System.Drawing.Point(8, 72)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1044, 557)
+        Me.Panel1.Size = New System.Drawing.Size(1044, 592)
         Me.Panel1.TabIndex = 16
         '
         'Grid
@@ -161,7 +138,7 @@ Partial Class frmReport_adm
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(1044, 523)
+        Me.Grid.Size = New System.Drawing.Size(1044, 558)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -175,6 +152,7 @@ Partial Class frmReport_adm
         Me.GridView1.OptionsPrint.PrintHorzLines = False
         Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'ToolStrip2
@@ -234,13 +212,13 @@ Partial Class frmReport_adm
         Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(179, 24)
         Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
         '
-        'frmReport_adm
+        'frmReport_yim
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.TabControl1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmReport_adm"
+        Me.Name = "frmReport_yim"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -272,6 +250,4 @@ Partial Class frmReport_adm
     Friend WithEvents TxtTglScan As DateTimePicker
     Friend WithEvents Label3 As Label
     Friend WithEvents TxtTgl1 As DateTimePicker
-    Friend WithEvents Label4 As Label
-    Friend WithEvents cmbSite As ComboBox
 End Class
