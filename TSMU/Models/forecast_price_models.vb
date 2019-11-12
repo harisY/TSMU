@@ -1306,7 +1306,7 @@ Public Class forecast_price_models
                     "UPDATE [tForecastPrice] 
                                 SET [JanHarga1] =  " & QVal(Harga) & "
                                 WHERE 
-                                    Tahun =  " & QVal(t.ToString()) + 1 & " AND
+                                    Tahun =  " & QVal(t.ToString()) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
                                     Flag = " & QVal(Flag) & " AND
