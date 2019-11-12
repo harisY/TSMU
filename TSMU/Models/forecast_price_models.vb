@@ -92,7 +92,7 @@ Public Class forecast_price_models_header
                         'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
-                                If CustID.ToLower.TrimEnd <> "adm" OrElse CustID.ToLower.TrimEnd <> "yim" Then
+                                If CustID.ToLower.TrimEnd <> "adm" Then
                                     Dim IsExist1 As Boolean = .IsDataExist
                                     If Not IsExist1 Then
                                         .InsertData()

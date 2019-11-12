@@ -932,6 +932,12 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_yim.Designer.vb">
+      <DependentUpon>frmReport_yim.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_yim.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_ScandDN.Designer.vb">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
     </Compile>
@@ -1430,6 +1436,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\Report\frmReport_yim.resx">
+      <DependentUpon>frmReport_yim.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
     </EmbeddedResource>
