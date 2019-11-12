@@ -19,13 +19,14 @@ Public Class FrmPaymentDirect
     Dim ff_Detail5 As FrmEditDirectPayment
     Dim ff_Detail6 As FrmBankPaid
     Dim ff_Detail7 As frm_payment_aprrove_details
+
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim GridDtl As GridControl
     Dim NoBukti As String
     Dim ObjPayment As New cashbank_models
     Dim tempacct As String
-    Dim tempperpost As String
+    Dim tempperpost As String = Format(DateTime.Today, "yyyy-MM")
     'Dim ID As String
     'Dim suspendid As String
     'Dim suspend1 As String
@@ -725,6 +726,25 @@ Public Class FrmPaymentDirect
         Next
     End Sub
     Public Overrides Sub Proc_SaveData()
+        Try
+
+            For i As Integer = 0 To GridView1.RowCount - 1
+                '      If GridView1.GetRowCellValue(i, "cek") = True Then
+                With ObjCashBank
+                        .cek = CBool(GridView1.GetRowCellValue(i, "cek"))
+                        .NoBukti = CStr(GridView1.GetRowCellValue(i, "NoBukti"))
+                        .UpdateCek()
+                    End With
+                ''       End If
+            Next
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub simpan()
 
         Try
             If TabControl1.SelectedIndex = 0 Then
@@ -1147,7 +1167,12 @@ Public Class FrmPaymentDirect
         tsBtn_refresh.PerformClick()
         ' ff_Detail6.ShowDialog()
     End Sub
-
+    Private Sub RepositoryItemCheckEdit5_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit5.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
     Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
         Dim id As String = String.Empty
         Dim id2 As String = String.Empty
@@ -1466,5 +1491,13 @@ Public Class FrmPaymentDirect
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FrmBankReceipt_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
+        FrmBankReceipt_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
+        FrmBankReceipt_Detail.Show()
+
     End Sub
 End Class

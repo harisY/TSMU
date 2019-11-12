@@ -28,7 +28,6 @@ Public Class FrmBankReceipt_Detail
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
 
-
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -82,6 +81,8 @@ Public Class FrmBankReceipt_Detail
                     TxtNoRekTujuan.Text = .AcctID_tujuan
                     TxtNoRekTujuanname.Text = .Descr_tujuan
                     TxtCuryID.Text = .CurryID
+                    TxtCustID.Text = .CustID
+                    TxtCustomer.Text = .Customer
                     TxtAmount.Text = .Jumlah
                     TxtRemark.Text = .Remark
                     TxtNoBukti.ReadOnly = True
@@ -134,8 +135,6 @@ Public Class FrmBankReceipt_Detail
                 errProvider.SetError(TxtAmount, "")
             End If
 
-
-
             Dim success As Boolean = True
 
             If errProvider.GetError(TxtNoRekTujuan).Length > 0 Then
@@ -160,11 +159,14 @@ Public Class FrmBankReceipt_Detail
                     End If
                     .NoBukti = TxtNoBukti.Text
                     .Perpost = TxtPerpost.Text
-
+                    .CustID = TxtCustID.Text
+                    .Customer = TxtCustomer.Text
                     .CheckNo = TxtCheckNo.Text
                     .AcctID_tujuan = TxtNoRekTujuan.Text
                     .Descr_tujuan = TxtNoRekTujuanname.Text
                     .CurryID = TxtCuryID.Text
+                    .CustID = TxtCustID.Text
+                    .Customer = TxtCustomer.Text
                     .Jumlah = TxtAmount.Text
                     .Remark = TxtRemark.Text
                 End With
@@ -184,7 +186,7 @@ Public Class FrmBankReceipt_Detail
                 fc_Class.Insert()
                 fc_Class.NoVouch = fc_Class.autononb()
                 fc_Class.InsertToTable2()
-
+                fc_Class.InsertToTable3()
             Else
                 fc_Class.Update()
             End If
@@ -228,15 +230,17 @@ Public Class FrmBankReceipt_Detail
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
             Dim Value2 As String = ""
+            Dim Value3 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
                 If sender.Name = TxtNoRekTujuan.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     TxtNoRekTujuan.Text = Value1
                     TxtNoRekTujuanname.Text = Value2
-
+                    TxtCuryID.Text = Value3
                 End If
             End If
             lF_SearchData.Close()
@@ -258,6 +262,53 @@ Public Class FrmBankReceipt_Detail
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+
+    Private Sub TxtCustID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtCustID.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = TxtCustID.Name Then
+                dtSearch = ObjSuspend.GetCustomer
+                ls_OldKode = TxtCustID.Text.Trim
+                ls_Judul = "Account"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = TxtCustID.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    TxtCustID.Text = Value1
+                    TxtCustomer.Text = Value2
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
+
+    End Sub
+
+    Private Sub TxtNoRekTujuan_DragOver(sender As Object, e As DragEventArgs) Handles TxtNoRekTujuan.DragOver
 
     End Sub
 End Class

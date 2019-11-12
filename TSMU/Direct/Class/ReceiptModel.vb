@@ -9,7 +9,8 @@
     Public Property Remark As String
     Public Property Tgl As DateTime
     Public Property NoVouch As String
-
+    Public Property CustID As String
+    Public Property Customer As String
 
     Public Sub Insert()
         Try
@@ -29,6 +30,8 @@
            ,[Descr_tujuan]
            ,[CurryID]
            ,[Jumlah]
+            ,[CustID]
+            ,[Customer]
            ,[Remark])
      VALUES
            (" & QVal(Tgl) & "
@@ -39,6 +42,8 @@
            ," & QVal(Descr_tujuan) & "
            ," & QVal(CurryID) & "
            ," & QVal(Jumlah) & "
+           ," & QVal(CustID) & "
+           ," & QVal(Customer) & "
            ," & QVal(Remark) & ")"
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
@@ -54,7 +59,16 @@
             'Else
             '    chek = 0
             'End If
+
+
             Dim ket As String = "Receipt"
+            Dim Customer2 As String = ""
+            If String.IsNullOrEmpty(Customer) Then
+                Customer2 = ""
+            Else
+                Customer2 = Customer
+            End If
+            Remark = Remark + Customer2
             Dim sql As String =
             "INSERT INTO [cashbank]
            ([Tgl]
@@ -89,7 +103,45 @@
             Throw ex
         End Try
     End Sub
+    Public Sub InsertToTable3()
+        Try
 
+            'If Checked Then
+            '    chek = 1
+            'Else
+            '    chek = 0
+            'End If
+            Dim ket As String = "Receipt"
+            Dim sql As String =
+            "INSERT INTO [cashbank2]
+           ([Tgl]
+           ,[NoBukti]
+           ,[Transaksi]
+            ,[SuspendAmount]
+           ,[SettleAmount]
+           ,[Masuk]
+           ,[Keluar]
+           ,[Saldo]
+           ,[Perpost]
+           ,[AcctID]
+           ,[Saldo_Awal])
+     VALUES
+           (" & QVal(Tgl) & "
+           ," & QVal(NoVouch) & "
+           ," & QVal(ket) & "
+           ," & 0 & "
+          ," & 0 & "
+           ," & QVal(Jumlah) & "
+           ," & 0 & "
+           ," & 0 & "
+           ," & QVal(Perpost) & "
+           ," & QVal(AcctID_tujuan) & "
+           ," & 0 & ")"
+            MainModul.ExecQuery_Solomon(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function autononb() As String
         Try
             Dim auto2 As String
@@ -124,6 +176,8 @@
       ,[CurryID]
       ,[Jumlah]
       ,[Remark]
+      ,[CustID]
+      ,[Customer]
   FROM [bankreceipt] "
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -142,7 +196,7 @@
                 "set @seq= (select right('0000'+cast(right(rtrim(max(NoBukti)),4)+1 as varchar),4) " &
                 "from bankreceipt " &
                 "where SUBSTRING(NoBukti,1,7) = 'RV' + '-' + RIGHT(@tahun,4) AND SUBSTRING(NoBukti,9,2) = RIGHT(@bulan,2)) " &
-                "select 'TR' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+                "select 'RV' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
             dt = GetDataTable_Solomon(query)
@@ -163,6 +217,8 @@
                                           " Descr_tujuan= " & QVal(Descr_tujuan) & ", " &
                                           " CurryID= " & QVal(CurryID) & ", " &
                                           " Jumlah= " & QVal(Jumlah) & ", " &
+                                          " CustID= " & QVal(CustID) & ", " &
+                                          " Customer= " & QVal(Customer) & ", " &
                                           " Remark= " & QVal(Remark) & " WHERE NoBukti = " & QVal(NoBukti) & ""
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -183,6 +239,8 @@
                     AcctID_tujuan = Trim(.Item("AcctID_tujuan") & "")
                     Descr_tujuan = Trim(.Item("Descr_tujuan") & "")
                     CurryID = Trim(.Item("CurryID") & "")
+                    CustID = Trim(.Item("CustID") & "")
+                    Customer = Trim(.Item("Customer") & "")
                     Jumlah = Trim(.Item("Jumlah") & "")
                     Remark = Trim(.Item("Remark") & "")
                 End With

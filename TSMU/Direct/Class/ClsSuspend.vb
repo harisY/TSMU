@@ -92,6 +92,21 @@ Public Class ClsSuspend
             Throw ex
         End Try
     End Function
+
+    Public Function GetCustomer() As DataTable
+        Try
+
+            Dim sql As String = "Select 
+                                    RTrim(custid) [CustID],
+	                                RTrim(Name) Name
+                                From dbo.Customer where status='A'"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function autononb() As String
         Try
             Dim auto2 As String
