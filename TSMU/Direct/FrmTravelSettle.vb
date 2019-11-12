@@ -8,7 +8,7 @@ Public Class FrmTravelSettle
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
-    Dim ObjSettle As TravelSettleHeader
+    Dim ObjSettle As TravelHeaderModel
 
     Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -18,7 +18,7 @@ Public Class FrmTravelSettle
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjSettle = New TravelSettleHeader
+            ObjSettle = New TravelHeaderModel
             dtGrid = ObjSettle.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
@@ -34,7 +34,7 @@ Public Class FrmTravelSettle
 
     Private Sub LoadGrid2()
         Try
-            ObjSettle = New TravelSettleHeader
+            ObjSettle = New TravelHeaderModel
             dtGrid2 = ObjSettle.GetDataGrid2()
             GridControl1.DataSource = dtGrid2
             With GridView2
