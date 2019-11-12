@@ -1493,5 +1493,11 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FrmBankReceipt_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
+        FrmBankReceipt_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
+        FrmBankReceipt_Detail.Show()
 
+    End Sub
 End Class
