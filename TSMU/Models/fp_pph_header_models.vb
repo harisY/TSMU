@@ -54,9 +54,9 @@
                     ,[Bulan]
                     ,[Lokasi]
                     ,[Fp_pph_header].[CuryID]
-                    ,replace(convert(varchar,cast((sum([Tot_Dpp_Invoice])) as money), 1), '.00', '') as 'Tot_Dpp_Invoice'
+                    ,replace(convert(varchar,cast((([Tot_Dpp_Invoice])) as money), 1), '.00', '') as 'Tot_Dpp_Invoice'
                     ,[Fp_pph_header].[No_Faktur]
-                    ,replace(convert(varchar,cast((sum([Tot_Pph])) as money), 1), '.00', '') as 'Tot_Pph'
+                    ,replace(convert(varchar,cast((([Tot_Pph])) as money), 1), '.00', '') as 'Tot_Pph'
                     ,[ket_dpp]
                 FROM [Fp_pph_header]  inner join fp_detail on fp_pph_header.FPNo = fp_detail.FPNo  WHERE RTRIM(No_Invoice) =" & QVal(No_Invoice) & "
 				group by Fp_pph_header.id,Fp_pph_header.FPNo,Fp_pph_header.No_Bukti_Potong

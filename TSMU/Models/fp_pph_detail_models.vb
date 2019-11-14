@@ -28,7 +28,7 @@
     Public Function GetGridPphDetailsApprove(ByVal No_Invoice As String) As DataTable
         Try
             Dim sql As String =
-            "SELECT [Fp_pph_detail].[FpNo] FpNo
+            "SELECT distinct [Fp_pph_detail].[FpNo] FpNo
                     ,[Fp_pph_detail].[invtid] InvtID
                     ,[Fp_pph_detail].[descr] TranDesc
                     ,[Fp_pph_detail].[dpp] Amount
