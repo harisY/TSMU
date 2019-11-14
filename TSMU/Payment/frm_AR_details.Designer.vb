@@ -28,17 +28,17 @@ Partial Class frm_AR_details
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me._TxtVendorID = New DevExpress.XtraEditors.ButtonEdit()
-        Me._txtVoucher = New DevExpress.XtraEditors.TextEdit()
-        Me._TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me._TxtTgl = New DevExpress.XtraEditors.DateEdit()
-        Me._TxtBankID = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me._TxtBankName = New DevExpress.XtraEditors.TextEdit()
         Me._TxtDebit = New DevExpress.XtraEditors.TextEdit()
         Me._TxtBiaya = New DevExpress.XtraEditors.TextEdit()
         Me._TxtVendorName = New DevExpress.XtraEditors.TextEdit()
+        Me._txtVoucher = New DevExpress.XtraEditors.TextEdit()
         Me._TxtPPH = New DevExpress.XtraEditors.TextEdit()
         Me._TxtPerpost = New DevExpress.XtraEditors.TextEdit()
+        Me._TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me._TxtTgl = New DevExpress.XtraEditors.DateEdit()
+        Me._TxtBankID = New DevExpress.XtraEditors.ButtonEdit()
         Me._TxtCM = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -69,19 +69,19 @@ Partial Class frm_AR_details
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._txtVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtBankID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtBankName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtDebit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtBiaya.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._txtVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtPPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtBankID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtCM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +124,77 @@ Partial Class frm_AR_details
         ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
         Me.DxValidationProvider1.SetValidationRule(Me._TxtVendorID, ConditionValidationRule5)
         '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Controls.Add(Me._TxtBankName)
+        Me.LayoutControl1.Controls.Add(Me._TxtDebit)
+        Me.LayoutControl1.Controls.Add(Me._TxtBiaya)
+        Me.LayoutControl1.Controls.Add(Me._TxtVendorName)
+        Me.LayoutControl1.Controls.Add(Me._txtVoucher)
+        Me.LayoutControl1.Controls.Add(Me._TxtPPH)
+        Me.LayoutControl1.Controls.Add(Me._TxtPerpost)
+        Me.LayoutControl1.Controls.Add(Me._TxtCurrency)
+        Me.LayoutControl1.Controls.Add(Me._TxtTgl)
+        Me.LayoutControl1.Controls.Add(Me._TxtBankID)
+        Me.LayoutControl1.Controls.Add(Me._TxtVendorID)
+        Me.LayoutControl1.Controls.Add(Me._TxtCM)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(716, 0, 650, 400)
+        Me.LayoutControl1.Root = Me.LayoutControlGroup1
+        Me.LayoutControl1.Size = New System.Drawing.Size(828, 128)
+        Me.LayoutControl1.TabIndex = 1
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        '_TxtBankName
+        '
+        Me._TxtBankName.Location = New System.Drawing.Point(316, 84)
+        Me._TxtBankName.Name = "_TxtBankName"
+        Me._TxtBankName.Properties.ReadOnly = True
+        Me._TxtBankName.Size = New System.Drawing.Size(87, 20)
+        Me._TxtBankName.StyleController = Me.LayoutControl1
+        Me._TxtBankName.TabIndex = 27
+        '
+        '_TxtDebit
+        '
+        Me._TxtDebit.EditValue = "0"
+        Me._TxtDebit.Location = New System.Drawing.Point(610, 84)
+        Me._TxtDebit.Name = "_TxtDebit"
+        Me._TxtDebit.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me._TxtDebit.Properties.Appearance.Options.UseBackColor = True
+        Me._TxtDebit.Properties.Appearance.Options.UseTextOptions = True
+        Me._TxtDebit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me._TxtDebit.Size = New System.Drawing.Size(206, 20)
+        Me._TxtDebit.StyleController = Me.LayoutControl1
+        Me._TxtDebit.TabIndex = 25
+        '
+        '_TxtBiaya
+        '
+        Me._TxtBiaya.EditValue = "0"
+        Me._TxtBiaya.Location = New System.Drawing.Point(610, 60)
+        Me._TxtBiaya.Name = "_TxtBiaya"
+        Me._TxtBiaya.Properties.Appearance.Options.UseTextOptions = True
+        Me._TxtBiaya.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me._TxtBiaya.Properties.DisplayFormat.FormatString = "n"
+        Me._TxtBiaya.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me._TxtBiaya.Properties.EditFormat.FormatString = "n"
+        Me._TxtBiaya.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me._TxtBiaya.Properties.Mask.EditMask = "n"
+        Me._TxtBiaya.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me._TxtBiaya.Size = New System.Drawing.Size(206, 20)
+        Me._TxtBiaya.StyleController = Me.LayoutControl1
+        Me._TxtBiaya.TabIndex = 24
+        '
+        '_TxtVendorName
+        '
+        Me._TxtVendorName.Location = New System.Drawing.Point(316, 60)
+        Me._TxtVendorName.Name = "_TxtVendorName"
+        Me._TxtVendorName.Properties.ReadOnly = True
+        Me._TxtVendorName.Size = New System.Drawing.Size(221, 20)
+        Me._TxtVendorName.StyleController = Me.LayoutControl1
+        Me._TxtVendorName.TabIndex = 14
+        '
         '_txtVoucher
         '
         Me._txtVoucher.EditValue = ""
@@ -138,10 +209,36 @@ Partial Class frm_AR_details
         ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
         Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule1)
         '
+        '_TxtPPH
+        '
+        Me._TxtPPH.EditValue = "0"
+        Me._TxtPPH.Location = New System.Drawing.Point(610, 12)
+        Me._TxtPPH.Name = "_TxtPPH"
+        Me._TxtPPH.Properties.Appearance.Options.UseTextOptions = True
+        Me._TxtPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me._TxtPPH.Properties.ReadOnly = True
+        Me._TxtPPH.Size = New System.Drawing.Size(206, 20)
+        Me._TxtPPH.StyleController = Me.LayoutControl1
+        Me._TxtPPH.TabIndex = 8
+        '
+        '_TxtPerpost
+        '
+        Me._TxtPerpost.Location = New System.Drawing.Point(81, 12)
+        Me._TxtPerpost.Name = "_TxtPerpost"
+        Me._TxtPerpost.Properties.DisplayFormat.FormatString = "yyyy-MM"
+        Me._TxtPerpost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TxtPerpost.Properties.EditFormat.FormatString = "yyyy-MM"
+        Me._TxtPerpost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me._TxtPerpost.Properties.Mask.EditMask = "yyyy-MM"
+        Me._TxtPerpost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
+        Me._TxtPerpost.Properties.Mask.SaveLiteral = False
+        Me._TxtPerpost.Size = New System.Drawing.Size(231, 20)
+        Me._TxtPerpost.StyleController = Me.LayoutControl1
+        Me._TxtPerpost.TabIndex = 7
+        '
         '_TxtCurrency
         '
         Me._TxtCurrency.EditValue = "IDR"
-        Me._TxtCurrency.Enabled = False
         Me._TxtCurrency.Location = New System.Drawing.Point(476, 84)
         Me._TxtCurrency.Name = "_TxtCurrency"
         Me._TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -186,102 +283,6 @@ Partial Class frm_AR_details
         ConditionValidationRule4.ErrorText = "Bank tidak boleh kosong"
         ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
         Me.DxValidationProvider1.SetValidationRule(Me._TxtBankID, ConditionValidationRule4)
-        '
-        'LayoutControl1
-        '
-        Me.LayoutControl1.Controls.Add(Me._TxtBankName)
-        Me.LayoutControl1.Controls.Add(Me._TxtDebit)
-        Me.LayoutControl1.Controls.Add(Me._TxtBiaya)
-        Me.LayoutControl1.Controls.Add(Me._TxtVendorName)
-        Me.LayoutControl1.Controls.Add(Me._txtVoucher)
-        Me.LayoutControl1.Controls.Add(Me._TxtPPH)
-        Me.LayoutControl1.Controls.Add(Me._TxtPerpost)
-        Me.LayoutControl1.Controls.Add(Me._TxtCurrency)
-        Me.LayoutControl1.Controls.Add(Me._TxtTgl)
-        Me.LayoutControl1.Controls.Add(Me._TxtBankID)
-        Me.LayoutControl1.Controls.Add(Me._TxtVendorID)
-        Me.LayoutControl1.Controls.Add(Me._TxtCM)
-        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
-        Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 128)
-        Me.LayoutControl1.TabIndex = 1
-        Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        '_TxtBankName
-        '
-        Me._TxtBankName.Location = New System.Drawing.Point(316, 84)
-        Me._TxtBankName.Name = "_TxtBankName"
-        Me._TxtBankName.Properties.ReadOnly = True
-        Me._TxtBankName.Size = New System.Drawing.Size(87, 20)
-        Me._TxtBankName.StyleController = Me.LayoutControl1
-        Me._TxtBankName.TabIndex = 27
-        '
-        '_TxtDebit
-        '
-        Me._TxtDebit.EditValue = "0"
-        Me._TxtDebit.Location = New System.Drawing.Point(610, 84)
-        Me._TxtDebit.Name = "_TxtDebit"
-        Me._TxtDebit.Properties.Appearance.Options.UseTextOptions = True
-        Me._TxtDebit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me._TxtDebit.Properties.ReadOnly = True
-        Me._TxtDebit.Size = New System.Drawing.Size(206, 20)
-        Me._TxtDebit.StyleController = Me.LayoutControl1
-        Me._TxtDebit.TabIndex = 25
-        '
-        '_TxtBiaya
-        '
-        Me._TxtBiaya.EditValue = "0"
-        Me._TxtBiaya.Location = New System.Drawing.Point(610, 60)
-        Me._TxtBiaya.Name = "_TxtBiaya"
-        Me._TxtBiaya.Properties.Appearance.Options.UseTextOptions = True
-        Me._TxtBiaya.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me._TxtBiaya.Properties.DisplayFormat.FormatString = "n"
-        Me._TxtBiaya.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtBiaya.Properties.EditFormat.FormatString = "n"
-        Me._TxtBiaya.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtBiaya.Properties.Mask.EditMask = "n"
-        Me._TxtBiaya.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me._TxtBiaya.Size = New System.Drawing.Size(206, 20)
-        Me._TxtBiaya.StyleController = Me.LayoutControl1
-        Me._TxtBiaya.TabIndex = 24
-        '
-        '_TxtVendorName
-        '
-        Me._TxtVendorName.Location = New System.Drawing.Point(316, 60)
-        Me._TxtVendorName.Name = "_TxtVendorName"
-        Me._TxtVendorName.Properties.ReadOnly = True
-        Me._TxtVendorName.Size = New System.Drawing.Size(221, 20)
-        Me._TxtVendorName.StyleController = Me.LayoutControl1
-        Me._TxtVendorName.TabIndex = 14
-        '
-        '_TxtPPH
-        '
-        Me._TxtPPH.EditValue = "0"
-        Me._TxtPPH.Location = New System.Drawing.Point(610, 12)
-        Me._TxtPPH.Name = "_TxtPPH"
-        Me._TxtPPH.Properties.Appearance.Options.UseTextOptions = True
-        Me._TxtPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me._TxtPPH.Properties.ReadOnly = True
-        Me._TxtPPH.Size = New System.Drawing.Size(206, 20)
-        Me._TxtPPH.StyleController = Me.LayoutControl1
-        Me._TxtPPH.TabIndex = 8
-        '
-        '_TxtPerpost
-        '
-        Me._TxtPerpost.Location = New System.Drawing.Point(81, 12)
-        Me._TxtPerpost.Name = "_TxtPerpost"
-        Me._TxtPerpost.Properties.DisplayFormat.FormatString = "yyyy-MM"
-        Me._TxtPerpost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me._TxtPerpost.Properties.EditFormat.FormatString = "yyyy-MM"
-        Me._TxtPerpost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me._TxtPerpost.Properties.Mask.EditMask = "yyyy-MM"
-        Me._TxtPerpost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime
-        Me._TxtPerpost.Properties.Mask.SaveLiteral = False
-        Me._TxtPerpost.Size = New System.Drawing.Size(231, 20)
-        Me._TxtPerpost.StyleController = Me.LayoutControl1
-        Me._TxtPerpost.TabIndex = 7
         '
         '_TxtCM
         '
@@ -569,25 +570,25 @@ Partial Class frm_AR_details
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frm_AR_details"
-        Me.Text = "RECEIVED VOUCHER"
+        Me.Text = "ACCOUNT RECEIVABLE VOUCHER"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._txtVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtBankID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me._TxtBankName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtDebit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtBiaya.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._txtVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtPPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtBankID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtCM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()

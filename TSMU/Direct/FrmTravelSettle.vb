@@ -8,7 +8,7 @@ Public Class FrmTravelSettle
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
-    Dim ObjSettle As SettleHeader
+    Dim ObjSettle As TravelHeaderModel
 
     Private Sub FrmSuspendSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -18,7 +18,7 @@ Public Class FrmTravelSettle
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjSettle = New SettleHeader
+            ObjSettle = New TravelHeaderModel
             dtGrid = ObjSettle.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
@@ -31,9 +31,10 @@ Public Class FrmTravelSettle
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub LoadGrid2()
         Try
-            ObjSettle = New SettleHeader
+            ObjSettle = New TravelHeaderModel
             dtGrid2 = ObjSettle.GetDataGrid2()
             GridControl1.DataSource = dtGrid2
             With GridView2
@@ -132,7 +133,7 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs)
         Try
 
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)

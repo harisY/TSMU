@@ -92,7 +92,7 @@ Public Class forecast_price_models_header
                         'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
-                                If CustID.ToLower.TrimEnd <> "adm" OrElse CustID.ToLower.TrimEnd <> "yim" Then
+                                If CustID.ToLower.TrimEnd <> "adm" Then
                                     Dim IsExist1 As Boolean = .IsDataExist
                                     If Not IsExist1 Then
                                         .InsertData()
@@ -1306,7 +1306,7 @@ Public Class forecast_price_models
                     "UPDATE [tForecastPrice] 
                                 SET [JanHarga1] =  " & QVal(Harga) & "
                                 WHERE 
-                                    Tahun =  " & QVal(t.ToString()) + 1 & " AND
+                                    Tahun =  " & QVal(t.ToString()) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
                                     Flag = " & QVal(Flag) & " AND
