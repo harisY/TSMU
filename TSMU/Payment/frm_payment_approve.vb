@@ -93,7 +93,7 @@ Public Class frm_payment_approve
                         'End If
 
 
-                        If GridView1.Columns(i).VisibleIndex <> 11 Then
+                        If GridView1.Columns(i).VisibleIndex <> 9 Then
                             GridView1.Columns(i).OptionsColumn.AllowEdit = False
                             ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
                             ''GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
