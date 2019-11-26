@@ -33,6 +33,9 @@ Public Class frmListHargaADM
     Private Sub GetDataGrid()
         Grid.DataSource = _dt
         If GridView1.RowCount > 0 Then
+            If _tipe = 0 Then
+                GridView1.Columns(0).Visible = False
+            End If
             GridView1.BestFitColumns()
             FormatGridView(GridView1)
         End If

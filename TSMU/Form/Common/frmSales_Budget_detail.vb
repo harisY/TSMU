@@ -129,7 +129,7 @@ Public Class frmSales_Budget_detail
                     Grid.Rows(0).Cells("colQty").Value = .Jan_Qty.ToString("n", id)
                     Grid.Rows(1).Cells("colQty").Value = .Feb_Qty.ToString("n", id)
                     Grid.Rows(2).Cells("colQty").Value = .Mar_Qty.ToString("n", id)
-                    Grid.Rows(3).Cells("colQty").Value = .April_Qty.ToString("n", id)
+                    Grid.Rows(3).Cells("colQty").Value = .Apr_Qty.ToString("n", id)
 
                     Grid.Rows(4).Cells("colQty").Value = .Mei_Qty.ToString("n", id)
                     Grid.Rows(5).Cells("colQty").Value = .Jun_Qty.ToString("n", id)
@@ -141,33 +141,33 @@ Public Class frmSales_Budget_detail
                     Grid.Rows(10).Cells("colQty").Value = .Nov_Qty.ToString("n", id)
                     Grid.Rows(11).Cells("colQty").Value = .Des_Qty.ToString("n", id)
 
-                    Grid.Rows(0).Cells("colHarga").Value = .Jan_Harga.ToString("n", id)
-                    Grid.Rows(1).Cells("colHarga").Value = .Feb_Harga.ToString("n", id)
-                    Grid.Rows(2).Cells("colHarga").Value = .Mar_Harga.ToString("n", id)
-                    Grid.Rows(3).Cells("colHarga").Value = .Apr_Harga.ToString("n", id)
+                    Grid.Rows(0).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(1).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(2).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(3).Cells("colHarga").Value = .Price.ToString("n", id)
 
-                    Grid.Rows(4).Cells("colHarga").Value = .Mei_Harga.ToString("n", id)
-                    Grid.Rows(5).Cells("colHarga").Value = .Jun_Harga.ToString("n", id)
-                    Grid.Rows(6).Cells("colHarga").Value = .Jul_Harga.ToString("n", id)
-                    Grid.Rows(7).Cells("colHarga").Value = .Agt_Harga.ToString("n", id)
+                    Grid.Rows(4).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(5).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(6).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(7).Cells("colHarga").Value = .Price.ToString("n", id)
 
-                    Grid.Rows(8).Cells("colHarga").Value = .Sep_Harga.ToString("n", id)
-                    Grid.Rows(9).Cells("colHarga").Value = .Okt_Harga.ToString("n", id)
-                    Grid.Rows(10).Cells("colHarga").Value = .Nov_Harga.ToString("n", id)
-                    Grid.Rows(11).Cells("colHarga").Value = .Des_Harga.ToString("n", id)
+                    Grid.Rows(8).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(9).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(10).Cells("colHarga").Value = .Price.ToString("n", id)
+                    Grid.Rows(11).Cells("colHarga").Value = .Price.ToString("n", id)
 
-                    Grid.Rows(0).Cells("colSubTotal").Value = CDbl(.Jan_Qty * .Jan_Harga).ToString("n", id)
-                    Grid.Rows(1).Cells("colSubTotal").Value = CDbl(.Feb_Qty * .Feb_Harga).ToString("n", id)
-                    Grid.Rows(2).Cells("colSubTotal").Value = CDbl(.Mar_Qty * .Mar_Harga).ToString("n", id)
-                    Grid.Rows(3).Cells("colSubTotal").Value = CDbl(.April_Qty * .Apr_Harga).ToString("n", id)
-                    Grid.Rows(4).Cells("colSubTotal").Value = CDbl(.Mei_Qty * .Mei_Harga).ToString("n", id)
-                    Grid.Rows(5).Cells("colSubTotal").Value = CDbl(.Jun_Qty * .Jun_Harga).ToString("n", id)
-                    Grid.Rows(6).Cells("colSubTotal").Value = CDbl(.Jul_Qty * .Jul_Harga).ToString("n", id)
-                    Grid.Rows(7).Cells("colSubTotal").Value = CDbl(.Agt_Qty * .Agt_Harga).ToString("n", id)
-                    Grid.Rows(8).Cells("colSubTotal").Value = CDbl(.Sep_Qty * .Sep_Harga).ToString("n", id)
-                    Grid.Rows(9).Cells("colSubTotal").Value = CDbl(.Okt_Qty * .Okt_Harga).ToString("n", id)
-                    Grid.Rows(10).Cells("colSubTotal").Value = CDbl(.Nov_Qty * .Nov_Harga).ToString("n", id)
-                    Grid.Rows(11).Cells("colSubTotal").Value = CDbl(.Des_Qty * .Des_Harga).ToString("n", id)
+                    Grid.Rows(0).Cells("colSubTotal").Value = CDbl(.Jan_Qty * .Price).ToString("n", id)
+                    Grid.Rows(1).Cells("colSubTotal").Value = CDbl(.Feb_Qty * .Price).ToString("n", id)
+                    Grid.Rows(2).Cells("colSubTotal").Value = CDbl(.Mar_Qty * .Price).ToString("n", id)
+                    Grid.Rows(3).Cells("colSubTotal").Value = CDbl(.Apr_Qty * .Price).ToString("n", id)
+                    Grid.Rows(4).Cells("colSubTotal").Value = CDbl(.Mei_Qty * .Price).ToString("n", id)
+                    Grid.Rows(5).Cells("colSubTotal").Value = CDbl(.Jun_Qty * .Price).ToString("n", id)
+                    Grid.Rows(6).Cells("colSubTotal").Value = CDbl(.Jul_Qty * .Price).ToString("n", id)
+                    Grid.Rows(7).Cells("colSubTotal").Value = CDbl(.Agt_Qty * .Price).ToString("n", id)
+                    Grid.Rows(8).Cells("colSubTotal").Value = CDbl(.Sep_Qty * .Price).ToString("n", id)
+                    Grid.Rows(9).Cells("colSubTotal").Value = CDbl(.Okt_Qty * .Price).ToString("n", id)
+                    Grid.Rows(10).Cells("colSubTotal").Value = CDbl(.Nov_Qty * .Price).ToString("n", id)
+                    Grid.Rows(11).Cells("colSubTotal").Value = CDbl(.Des_Qty * .Price).ToString("n", id)
                     Dim TotQty As Integer = 0
                     Dim TotHarga As Double = 0
                     Dim GrandTot As Double = 0
@@ -305,7 +305,7 @@ Public Class frmSales_Budget_detail
                         .Jan_Qty = Grid.Rows(0).Cells("colQty").Value
                         .Feb_Qty = Grid.Rows(1).Cells("colQty").Value
                         .Mar_Qty = Grid.Rows(2).Cells("colQty").Value
-                        .April_Qty = Grid.Rows(3).Cells("colQty").Value
+                        .Apr_Qty = Grid.Rows(3).Cells("colQty").Value
                         .Mei_Qty = Grid.Rows(4).Cells("colQty").Value
                         .Jun_Qty = Grid.Rows(5).Cells("colQty").Value
                         .Jul_Qty = Grid.Rows(6).Cells("colQty").Value
@@ -458,28 +458,6 @@ Public Class frmSales_Budget_detail
         End Try
     End Sub
 
-    Private Sub Grid_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs)
-        Try
-            id = New System.Globalization.CultureInfo("id-ID")
-            If e.ColumnIndex = 1 OrElse e.ColumnIndex = 2 Then
-                'MsgBox("HI")
-                Dim hasil As Integer
-                hasil = Convert.ToInt32(Val(Grid.Rows(e.RowIndex).Cells("colQty").Value) * Val(Grid.Rows(e.RowIndex).Cells("colHarga").Value))
-                Dim strHasil As String = hasil.ToString("n", id)
-                Grid.Rows(e.RowIndex).Cells("colSubTotal").Value = strHasil
-            End If
-            Dim Total As Integer = CountTotal_qty()
-            Dim strTotal As String = Total.ToString("n", id)
-            Grid.Rows(12).Cells("colQty").Value = strTotal
-
-            'Dim Total1 As Decimal = CountTotal_Sub()
-            'Dim strTotal1 As String = Total1.ToString("n", id)
-            'Grid.Rows(12).Cells("colSubTotal").Value = strTotal1
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
     Dim Total As Integer
     Private Function CountTotal_qty() As Integer
         Try
@@ -508,6 +486,37 @@ Public Class frmSales_Budget_detail
         End Try
         Return Total1
     End Function
+
+    Private Sub Grid_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Grid.CellEndEdit
+        Try
+            id = New System.Globalization.CultureInfo("id-ID")
+            If e.ColumnIndex = 1 OrElse e.ColumnIndex = 2 Then
+                'MsgBox("HI")
+                Dim hasil As Integer
+                hasil = Convert.ToInt32(Val(Grid.Rows(e.RowIndex).Cells("colQty").Value) * Val(Grid.Rows(e.RowIndex).Cells("colHarga").Value))
+                Dim strHasil As String = hasil.ToString("n", id)
+                Grid.Rows(e.RowIndex).Cells("colSubTotal").Value = strHasil
+            End If
+            Dim Total As Integer = CountTotal_qty()
+            Dim strTotal As String = Total.ToString("n", id)
+            Grid.Rows(12).Cells("colQty").Value = strTotal
+
+            'Dim Total1 As Decimal = CountTotal_Sub()
+            'Dim strTotal1 As String = Total1.ToString("n", id)
+            'Grid.Rows(12).Cells("colSubTotal").Value = strTotal1
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    'Private Sub Grid_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles Grid.CellValueChanged
+    '    Try
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
 
     'Private Sub IsControlEmpty(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles _txtCustId.Validating, _
     '    _txtPartNo.Validating, _txtModel.Validating, _cmbInHouse.Validating, _cmbOeRe.Validating, _cmbSite.Validating, _cmbTahun.Validating

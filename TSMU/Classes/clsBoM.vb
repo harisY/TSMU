@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
 Imports System.Globalization
 Public Class clsBoM
 
@@ -156,7 +157,7 @@ Public Class clsBoM
     End Function
     Public Function GetAllData() As DataTable
         Try
-            Dim ls_SP As String = "select bomid as [BoM ID],invtid as [Inventory ID], descr as Description, siteid as Site " & _
+            Dim ls_SP As String = "select bomid as [BoM ID],invtid as [Inventory ID], descr as Description, siteid as Site " &
                 "from bomh order by bomid"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
@@ -197,8 +198,8 @@ Public Class clsBoM
     Dim _rev As Integer = 0
     Public Function getRevisi(ByVal bomid As String) As Integer
         Try
-            Dim query As String = "" & vbCrLf & _
-                                  "SELECT ISNULL(revisi,0) revisi " & vbCrLf & _
+            Dim query As String = "" & vbCrLf &
+                                  "SELECT ISNULL(revisi,0) revisi " & vbCrLf &
                                   "FROM bom_header_history where bomid=" & QVal(bomid) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(query)
@@ -212,8 +213,8 @@ Public Class clsBoM
     End Function
     Public Function getRoutingBoM(ByVal invtId As String)
         Try
-            Dim query As String = "select * from fn_GetMultiLevelBOM('" & invtId & "') " & _
-                "union " & _
+            Dim query As String = "select * from fn_GetMultiLevelBOM('" & invtId & "') " &
+                "union " &
                 "select '' as FinishedGood,'' as parentid,b.invtid,'1' as qty, '0' as Extendedqty, b.descr, b.stkunit, a.bomid from bomh a inner join Inventory b on a.invtid=b.InvtID where b.invtid = '" & invtId & "'"
 
             Dim dtTable As New DataTable
@@ -517,7 +518,18 @@ Public Class clsBoM
     Public Sub DeleteHeader(ByVal bomid As String)
         Try
             Dim ls_SP As String = "Delete from bomh where bomid =" & QVal(bomid) & ""
-            MainModul.ExecQuery(ls_SP)
+            ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub DeleteHeaderByInvtID(ByVal bomid As String)
+        Try
+            Dim ls_SP As String = "BoMDeleteByInvtId_SiteID"
+            Dim param() As SqlParameter = New SqlParameter(0) {}
+            param(0) = New SqlParameter("@invtid", SqlDbType.VarChar)
+            param(0).Value = bomid
+            ExecQueryByCommand_SP(ls_SP, param)
         Catch ex As Exception
             Throw
         End Try
