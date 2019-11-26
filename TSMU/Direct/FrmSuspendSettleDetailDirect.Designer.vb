@@ -365,6 +365,8 @@ Partial Class FrmSuspendSettleDetailDirect
         '
         Me.ReposActual.AutoHeight = False
         Me.ReposActual.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ReposActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ReposActual.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ReposActual.Name = "ReposActual"
         '
         'Grid

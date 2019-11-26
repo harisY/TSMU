@@ -44,15 +44,16 @@ Public Class frm_payment_approve
         Try
             dtGrid = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
             Grid.DataSource = dtGrid
+
             If GridView1.RowCount > 0 Then
-                With GridView1
-                    .Columns(0).Visible = False
-                    .BestFitColumns()
-                    '.FixedLineWidth = 1
-                    '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                    '.OptionsView.ColumnAutoWidth = True
-                End With
-                GridCellFormat(GridView1)
+                    With GridView1
+                        .Columns(0).Visible = False
+                        .BestFitColumns()
+                        '.FixedLineWidth = 1
+                        '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                        '.OptionsView.ColumnAutoWidth = True
+                    End With
+                    GridCellFormat(GridView1)
                 If gh_Common.Level = 1 Then
                     GridView1.OptionsBehavior.Editable = False
                 ElseIf gh_Common.Level = 2 Then
@@ -79,14 +80,34 @@ Public Class frm_payment_approve
                         End If
                     Next
                 ElseIf gh_Common.Level = 4 Then
+
                     GridView1.OptionsBehavior.Editable = True
-                    For i As Integer = 0 To GridView1.Columns.Count - 1
+                        For i As Integer = 0 To GridView1.Columns.Count - 1
+
+                        'If GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = False Then
+                        '    GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+                        '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+                        '    'ElseIf GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = True Then
+                        '    '    GridView1.Columns(i).AppearanceCell.BackColor = Color.White
+                        '    '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+                        'End If
+
+
                         If GridView1.Columns(i).VisibleIndex <> 9 Then
                             GridView1.Columns(i).OptionsColumn.AllowEdit = False
+                            ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+                            ''GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
                         Else
                             GridView1.Columns(i).OptionsColumn.AllowEdit = True
                         End If
+
                     Next
+
+
+
+
+
+
                     'GridView1.OptionsBehavior.Editable = True
                     'GridView1.Columns(15).OptionsColumn.AllowEdit = False
                     'GridView1.Columns(16).OptionsColumn.AllowEdit = False
@@ -94,8 +115,9 @@ Public Class frm_payment_approve
                     'GridView1.Columns(18).OptionsColumn.AllowEdit = True
                 Else
                     GridView1.OptionsBehavior.Editable = False
+                    End If
+
                 End If
-            End If
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

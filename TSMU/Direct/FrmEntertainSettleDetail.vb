@@ -59,14 +59,14 @@ Public Class FrmEntertainSettleDetail
     Private Sub CreateTable()
         DtScan = New DataTable
         DtScan.Columns.AddRange(New DataColumn(9) {New DataColumn("Tgl", GetType(String)),
-                                                            New DataColumn("Account", GetType(String)),
                                                             New DataColumn("SubAccount", GetType(String)),
+                                                            New DataColumn("Account", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
                                                             New DataColumn("Nama", GetType(String)),
                                                             New DataColumn("Tempat", GetType(String)),
                                                             New DataColumn("Alamat", GetType(String)),
                                                             New DataColumn("Jenis", GetType(String)),
-                                                            New DataColumn("Amount", GetType(String)),
+                                                            New DataColumn("SuspendAmount", GetType(String)),
                                                             New DataColumn("ActualAmount", GetType(Double))})
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -247,11 +247,11 @@ Public Class FrmEntertainSettleDetail
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
                             .SettleID = _SettleID
-                            .Nama = GridView2.GetRowCellValue(i, "Nama")
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
                             .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
                             .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
-                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
+                            .Nota = GridView2.GetRowCellValue(i, "Remark").ToString()
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
@@ -267,11 +267,11 @@ Public Class FrmEntertainSettleDetail
                         ObjEntertainDetail = New EntertainDetailModel
                         With ObjEntertainDetail
                             .SettleID = _SettleID
-                            .Nama = GridView2.GetRowCellValue(i, "Nama")
+                            .NamaRelasi = GridView2.GetRowCellValue(i, "Nama")
                             .Posisi = GridView2.GetRowCellValue(i, "Posisi")
                             .Perusahaan = GridView2.GetRowCellValue(i, "Perusahaan").ToString().TrimEnd
                             .JenisUSaha = GridView2.GetRowCellValue(i, "JenisUsaha").ToString()
-                            .Remark = GridView2.GetRowCellValue(i, "Remark").ToString()
+                            .Nota = GridView2.GetRowCellValue(i, "Remark").ToString()
                         End With
                         ObjEntertainHeader.ObjDetails.Add(ObjEntertainDetail)
                     End If
@@ -319,11 +319,11 @@ Public Class FrmEntertainSettleDetail
                                 .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                                 .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                                 .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                                .Nama = GridView1.GetRowCellValue(i, "Name").ToString()
+                                .Nama = GridView1.GetRowCellValue(i, "Nama").ToString()
                                 .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
                                 .Alamat = GridView1.GetRowCellValue(i, "Alamat").ToString()
                                 .Jenis = GridView1.GetRowCellValue(i, "Jenis").ToString()
-                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "SuspendAmount"))
                                 .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             End With
                             ObjSettle.ObjDetails.Add(ObjSettleDetail)
@@ -342,11 +342,11 @@ Public Class FrmEntertainSettleDetail
                                 .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                                 .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
                                 .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                                .Nama = GridView1.GetRowCellValue(i, "Name").ToString()
+                                .Nama = GridView1.GetRowCellValue(i, "Nama").ToString()
                                 .Tempat = GridView1.GetRowCellValue(i, "Tempat").ToString()
                                 .Alamat = GridView1.GetRowCellValue(i, "Alamat").ToString()
                                 .Jenis = GridView1.GetRowCellValue(i, "Jenis").ToString()
-                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+                                .SuspendAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "SuspendAmount"))
                                 .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "ActualAmount"))
                             End With
                             ObjSettle.ObjDetails.Add(ObjSettleDetail)

@@ -456,7 +456,7 @@ Public Class payment_header_models
 
     Public Function GetDataGridApproveByBank(ByVal Level As Integer, BankID As String) As DataTable
         Dim sql As String = "	
-	SELECT 
+			SELECT 
                                 payment_header1.id
                                 ,payment_header1.vrno as VoucherNo
                                 ,payment_header1.tgl Tanggal
@@ -464,8 +464,8 @@ Public Class payment_header_models
                                 ,payment_header1.CuryID
                                 ,payment_header1.VendorName
                                 ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-payment_header1.cm_dm-payment_header1.Biaya_Transfer as PaidAmount
-                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_header1.cek3 as Level3, payment_header1.cek4 as Direktur 
-                            FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno 
+                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_header1.cek3 as Level3, payment_header1.cek4 as Direktur , payment_detail1.cek4 as CheckDetail
+                            FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno  
 							 
 							 					
 "
@@ -483,6 +483,7 @@ Public Class payment_header_models
 								payment_header1.cek3, payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
+                                ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 2 Then
                 sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='0' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
@@ -496,6 +497,7 @@ Public Class payment_header_models
 								payment_header1.cek3, payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
+                                ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 3 Then
                 sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
@@ -509,6 +511,7 @@ Public Class payment_header_models
 								payment_header1.cek3, payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
+                                ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             Else
                 sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek4='0' group by payment_header1.id
@@ -522,6 +525,7 @@ Public Class payment_header_models
 								payment_header1.cek3, payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
+                                ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             End If
 
