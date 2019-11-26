@@ -25,6 +25,8 @@
     Public Property other1 As String
     Public Property other2 As String
     Public Property other3 As String
+    Public Property field As String
+
 
     '' Public Property ObjMizuhoDetails() As New Collection(Of MizuhoModels)
 
@@ -59,8 +61,9 @@
 
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO uploadmizuho2 (ref_no_sup,takagi_acct,rek_pt,payment_method,curyid,sp_amount,trans_amount,value_date,bankname,branch,address,address2,norek_supplier,pt,pt2,address_pt,address_pt2,space_kosong,bank_charges,applicant_acct,space_kosong2,other,other1,other2,other3) " & vbCrLf &
+                                    "INSERT INTO uploadmizuho2 (ref_no_sup,field,takagi_acct,rek_pt,payment_method,curyid,sp_amount,trans_amount,value_date,bankname,branch,address,address2,norek_supplier,pt,pt2,address_pt,address_pt2,space_kosong,bank_charges,applicant_acct,space_kosong2,other,other1,other2,other3) " & vbCrLf &
                                     "Values(" & QVal(Me.ref_no_sup) & ", " & vbCrLf &
+                                    "       " & QVal(Me.field) & ", " & vbCrLf &
                                     "       " & QVal(Me.takagi_acct) & ", " & vbCrLf &
                                     "       " & QVal(Me.rek_pt) & ", " & vbCrLf &
                                     "       " & QVal(Me.payment_method) & ", " & vbCrLf &

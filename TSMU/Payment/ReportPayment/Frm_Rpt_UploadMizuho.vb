@@ -406,6 +406,7 @@ Public Class Frm_Rpt_UploadMizuho
                 Dim Objmizuho As New MizuhoModels
                 With Objmizuho
                     .ref_no_sup = GridView4.GetRowCellValue(i, "ref_no_sup").ToString().TrimEnd
+                    .field = GridView4.GetRowCellValue(i, "field").ToString().TrimEnd
                     .takagi_acct = GridView4.GetRowCellValue(i, "takagi_acct").ToString().TrimEnd
                     .rek_pt = GridView4.GetRowCellValue(i, "rek_pt").ToString().TrimEnd
                     .payment_method = GridView4.GetRowCellValue(i, "payment_method").ToString().TrimEnd
