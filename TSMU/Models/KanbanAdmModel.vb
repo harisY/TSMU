@@ -148,11 +148,11 @@
             Dim sql As String = "SELECT 
 	                                CONVERT(varchar,[OrderDate],101) Tanggal,
 	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
-	                                sum([OrderKbn]) Kanban,  COUNT(distinct OrderNo)TotDN
+	                                sum([OrderKbn]) Kanban,  COUNT(distinct OrderNo)TotDN, ShopCode
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
-	                                [DelCycle],Remark
+	                                [DelCycle],Remark, Shopcode
                                 ORDER BY 
 	                                CONVERT(varchar,[OrderDate],101),
 	                                [DelCycle]"
@@ -184,7 +184,7 @@
             Throw
         End Try
     End Sub
-    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer)
+    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer, shopcode As String)
         Try
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
@@ -193,7 +193,7 @@
                                         ,[Open]
                                         ,Remark
                                         ,TotDN
-                                        ,OpenDN)
+                                        ,OpenDN,ShopCode)
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
@@ -201,7 +201,7 @@
                                        ," & QVal(Kanban) & "
                                        ," & QVal(Remark) & "
                                        ," & QVal(totDN) & "
-                                       , " & QVal(totDN) & ")"
+                                       , " & QVal(totDN) & ", " & QVal(shopcode) & ")"
 
             ExecQueryCKR(sql)
 
@@ -253,13 +253,13 @@
             Throw
         End Try
     End Function
-    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String) As Boolean
+    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String, shopcode As String) As Boolean
         Dim hasil As Boolean = False
         Try
             Dim sql As String = "SELECT * 
                                 FROM KanbanSum 
                                 WHERE Tanggal = " & QVal(Tgl) & "
-                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & ""
+                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & " AND Shopcode = " & QVal(shopcode) & ""
             Dim dt As New DataTable
 
             dt = GetDataTableCKR(sql)

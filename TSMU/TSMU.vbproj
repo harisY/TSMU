@@ -1124,6 +1124,12 @@
     <Compile Include="Form\System\FrmSystem_User.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmSystem_UserSetupNew.Designer.vb">
+      <DependentUpon>FrmSystem_UserSetupNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystem_UserSetupNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmSystem_UserSetup.Designer.vb">
       <DependentUpon>FrmSystem_UserSetup.vb</DependentUpon>
     </Compile>
@@ -1441,6 +1447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystem_UserSetupNew.resx">
+      <DependentUpon>FrmSystem_UserSetupNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
