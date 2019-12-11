@@ -199,7 +199,9 @@ Public Class FrmLookUpBarcode
     End Sub
     Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
         Try
-            Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text, dtTemp.Rows(0)("CustomerID").ToString())
+            Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text, dtTemp.Rows(0)("CustomerID").ToString(),
+                            dtTemp.Rows(0)("InvtID").ToString(), dtTemp.Rows(0)("PartName").ToString(),
+                            dtTemp.Rows(0)("PartNo").ToString())
             PrintTool.ClosePreview()
             CmbBulan_SelectedIndexChanged(sender, e)
         Catch ex As Exception

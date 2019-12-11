@@ -94,6 +94,7 @@ Public Class frmBarcodeGenerate
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            SplashScreenManager.CloseForm()
         End Try
     End Sub
 

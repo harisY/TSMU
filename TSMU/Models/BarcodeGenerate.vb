@@ -161,7 +161,8 @@ Public Class BarcodeGenerate
         Return ds
     End Function
 
-    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer, custId As String)
+    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer, custId As String,
+                         InvtId As String, PartName As String, PartNo As String)
         Try
             Dim Ada As Boolean = CheckLog(Bulan, KodePart)
             If Ada Then
@@ -176,13 +177,23 @@ Public Class BarcodeGenerate
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
+                        (CustID,[KodePart],[InvetoryID],[PartName],[PartNo],[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        Values(" & QVal(custId) & "," & QVal(KodePart) & "
+                            ," & QVal(InvtId) & "," & QVal(PartName) & "," & QVal(PartNo) & "
+                            ," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                            ," & QVal(gh_Common.Username) & ",GETDATE())"
+
+
+                Dim Query1 As String = String.Empty
+                Query1 = "INSERT INTO [BarcodePrintLog]
                         (CustID,[KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
-                        Values(" & QVal(custId) & "," & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                        Values(" & QVal(custId) & "," & QVal(KodePart) & "
+                            ," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
                             ," & QVal(gh_Common.Username) & ",GETDATE())"
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(Query)
                 Else
-                    ExecQueryCKR(Query)
+                    ExecQueryCKR(Query1)
                 End If
 
             End If

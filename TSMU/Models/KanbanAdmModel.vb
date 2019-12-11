@@ -292,6 +292,7 @@
     Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String)
         Dim tgl As String = String.Empty
         Dim tgl1 As String = String.Empty
+        Dim shopCode As String = String.Empty
         Dim cycle As Integer = 0
 
         Try
@@ -308,6 +309,7 @@
                         tgl = GetTglByOrderNo(orderNo)
                         'tgl1 = GetTglByOrderNo1(orderNo)
                         cycle = GetCycleByOrderNo(orderNo)
+                        shopCode = GetShopCode(orderNo)
 
                         If tgl = "" OrElse cycle = 0 Then
                             Throw New Exception("Tgl atau Cycle tidak di temukan untuk DN '[" & orderNo & "]' !")
@@ -332,7 +334,7 @@
 
                         Dim udpateOpenDN As String = "Update KanbanSum 
                                         SET OpenDN = ISNULL(OpenDN,0) - 1, ClosedDN = ISNULL(ClosedDN,0) + 1 
-                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & " AND Shopcode = " & QVal(shopCode) & ""
                         ExecQueryCKR(udpateOpenDN)
 
                         Dim udpateFlagDN As String = "Update KanbanADM 
@@ -344,7 +346,7 @@
                                         SET StatusDN = 
                                                 CASE 
                                                     When TotDN = ClosedDN Then 'CLosed' Else 'Open' End 
-                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & " AND Shopcode = " & QVal(shopCode) & ""
                         ExecQueryCKR(udpateStatus)
 
                         Trans1.Commit()
@@ -403,6 +405,21 @@
             dt = GetDataTableCKR(sql1)
             If dt.Rows.Count > 0 Then
                 hasil = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Function GetShopCode(orderNo) As String
+        Dim hasil As String = 0
+        Try
+            Dim sql1 As String = "SELECT TOP 1 ShopCode FROM [KanbanADM] 
+                               WHERE OrderNo = '" & orderNo & "'"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql1)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToString(dt.Rows(0)(0))
             End If
             Return hasil
         Catch ex As Exception
