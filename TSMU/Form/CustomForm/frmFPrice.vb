@@ -25,6 +25,7 @@ Public Class frmFPrice
             Me.Validate()
             Me.TForecastPrice1BindingSource.EndEdit()
             Me.TableAdapterManager.UpdateAll(Me.DataSet1)
+            Me.TForecastPrice1TableAdapter.Fill(DataSet1.tForecastPrice1)
             MsgBox("Data Saved")
         Catch ex As Exception
             MsgBox(ex.Message)

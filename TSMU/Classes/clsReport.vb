@@ -468,7 +468,7 @@
 
     Public Function SP_LoadDataGrid(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As DataTable
         Try
-            Dim query As String = "Sales_Price_report_DataGrid"
+            Dim query As String = "Sales_ForecastPrice_Report_DataGrid"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@siteid", SqlDbType.VarChar)
             pParam(0).Value = strSite
