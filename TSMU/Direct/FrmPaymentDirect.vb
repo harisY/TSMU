@@ -27,6 +27,7 @@ Public Class FrmPaymentDirect
     Dim ObjPayment As New cashbank_models
     Dim tempacct As String
     Dim tempperpost As String = Format(DateTime.Today, "yyyy-MM")
+    Dim level As Integer = 0
     'Dim ID As String
     'Dim suspendid As String
     'Dim suspend1 As String
@@ -369,6 +370,12 @@ Public Class FrmPaymentDirect
         DataSuspend()
         DataSettlement()
         DataEntertaint()
+        level = ObjCashBank.GetUsernameLevel
+        If level = 3 Then
+            TabControl1.Visible = False
+        Else
+            TabControl1.Visible = True
+        End If
     End Sub
 
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
@@ -1498,6 +1505,14 @@ Public Class FrmPaymentDirect
         FrmBankReceipt_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
         FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
         FrmBankReceipt_Detail.Show()
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        FrmBankTransfer_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
+        FrmBankTransfer_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        FrmBankTransfer_Detail.TxtCuryID.Text = _txtcuryid.Text
+        FrmBankTransfer_Detail.Show()
 
     End Sub
 End Class

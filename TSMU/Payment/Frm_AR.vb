@@ -15,7 +15,7 @@ Public Class frm_AR
     Dim table As DataTable
     Dim tableDetail As DataTable
     Dim ff_Detail As frm_AR_details
-    Dim ObjPaymentHeader As New payment_header_models
+    Dim ObjPaymentHeader As New AR_Header_Models
 
     Private Sub frm_AR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -24,6 +24,7 @@ Public Class frm_AR
         dtGrid = Grid.DataSource
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
     End Sub
+
     Private Sub LoadGrid()
         Try
             dtGrid = ObjPaymentHeader.GetDataGrid()
@@ -43,21 +44,20 @@ Public Class frm_AR
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
-
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
 
         Call LoadGrid()
     End Sub
 
-    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal ls_Code3 As String = "", Optional ByVal ls_Code4 As String = "", Optional ByVal ls_Code5 As String = "", Optional ByVal ls_Code6 As Double = 0, Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frm_AR_details(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frm_AR_details(ls_Code, ls_Code2, ls_Code3, ls_Code4, ls_Code5, ls_Code6, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -81,7 +81,15 @@ Public Class frm_AR
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Dim NoVoucher, id As String
+    Dim NoVoucher, id, NoBukti As String
+    Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
+
+    Dim Jumlah As Double
+
     Private editor As BaseEdit
     Private Sub frm_AR_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
@@ -122,21 +130,29 @@ Public Class frm_AR
                 'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
                 'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
 
-                id = String.Empty
-                NoVoucher = String.Empty
+                NoBukti = String.Empty
+                CustID = String.Empty
+                Customer = String.Empty
+                AcctID_tujuan = String.Empty
+                Descr_tujuan = String.Empty
+                CurryID = String.Empty
+                Jumlah = 0
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        id = GridView1.GetRowCellValue(rowHandle, "id")
-                        NoVoucher = GridView1.GetRowCellValue(rowHandle, "vrno")
+                        NoBukti = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+                        CustID = GridView1.GetRowCellValue(rowHandle, "CustID")
+                        Customer = GridView1.GetRowCellValue(rowHandle, "Customer")
+                        AcctID_tujuan = GridView1.GetRowCellValue(rowHandle, "AcctID_tujuan")
+                        Descr_tujuan = GridView1.GetRowCellValue(rowHandle, "Descr_tujuan")
+                        CurryID = GridView1.GetRowCellValue(rowHandle, "CurryID")
+                        Jumlah = GridView1.GetRowCellValue(rowHandle, "Jumlah")
                     End If
                 Next rowHandle
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(id,
-                             NoVoucher,
-                             GridView1.RowCount)
+                    Call CallFrm(NoBukti, Customer, AcctID_tujuan, Descr_tujuan, CurryID, Jumlah, GridView1.RowCount)
                 End If
             End If
         Catch ex As Exception

@@ -1148,6 +1148,8 @@
     <Compile Include="Form\System\frm_system_config_db.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ar_detail_models.vb" />
+    <Compile Include="Models\AR_Header_Models.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
