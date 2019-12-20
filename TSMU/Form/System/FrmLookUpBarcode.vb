@@ -90,16 +90,14 @@ Public Class FrmLookUpBarcode
                 Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
 
-            If gh_Common.Site.ToLower = "tng" Then
+            'If gh_Common.Site.ToLower = "tng" Then
 
-                If TxtFrom.EditValue < "7" Then
-                    TxtFrom.Focus()
-                    TxtFrom.SelectAll()
-                    Throw New Exception("No Passcard From harus di mulai dari angka '7'")
-                End If
-            End If
-
-
+            '    If TxtFrom.EditValue < "7" Then
+            '        TxtFrom.Focus()
+            '        TxtFrom.SelectAll()
+            '        Throw New Exception("No Passcard From harus di mulai dari angka '7'")
+            '    End If
+            'End If
 
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable

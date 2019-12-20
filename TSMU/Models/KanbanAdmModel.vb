@@ -147,12 +147,16 @@
         Try
             Dim sql As String = "SELECT 
 	                                CONVERT(varchar,[OrderDate],101) Tanggal,
-	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
-	                                sum([OrderKbn]) Kanban,  COUNT(distinct OrderNo)TotDN, ShopCode
+	                                [DelCycle] Cycle, 
+                                    case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
+	                                sum([OrderKbn]) Kanban,  
+                                    COUNT(distinct OrderNo)TotDN, 
+                                    ShopCode, 
+                                    PlantCode
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
-	                                [DelCycle],Remark, Shopcode
+	                                [DelCycle],Remark, Shopcode, PlantCode
                                 ORDER BY 
 	                                CONVERT(varchar,[OrderDate],101),
 	                                [DelCycle]"
@@ -184,7 +188,7 @@
             Throw
         End Try
     End Sub
-    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer, shopcode As String)
+    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer, shopcode As String, plantCode As String)
         Try
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
@@ -193,7 +197,7 @@
                                         ,[Open]
                                         ,Remark
                                         ,TotDN
-                                        ,OpenDN,ShopCode)
+                                        ,OpenDN,ShopCode,PlantCode)
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
@@ -201,7 +205,7 @@
                                        ," & QVal(Kanban) & "
                                        ," & QVal(Remark) & "
                                        ," & QVal(totDN) & "
-                                       , " & QVal(totDN) & ", " & QVal(shopcode) & ")"
+                                       , " & QVal(totDN) & ", " & QVal(shopcode) & "," & QVal(plantCode) & ")"
 
             ExecQueryCKR(sql)
 
