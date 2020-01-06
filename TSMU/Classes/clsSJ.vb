@@ -26,9 +26,8 @@ Public Class ClsSJ
                     ,RTRIM(so.ORDNBR) [Sales Order]
                     ,RTRIM(so.CUSTORDNBR) [PO Customer]
                     , CONVERT(VARCHAR(10), so.RelDate, 105) [Tanggal SJ]
-                    ,GETDATE() [Tanggal Terima]
-                    ,GETDATE() [Tanggal Kirim]
                     ,'' [NoRec]
+                    ,so.User7 NoMobil
                     ,Convert(bit,so.user6) as [Check] 
                     ,RTRIM(so.User4) [SR YIM]
                     ,RTRIM(so.user1) [Batch Invoice]
@@ -43,6 +42,8 @@ Public Class ClsSJ
                 AND so.User6=0 AND so.User3<>1 AND so.Cancelled<>1 Order By so.ShipperID
                 "
 
+            ',GETDATE() [Tanggal Terima]
+            ',GETDATE() [Tanggal Kirim]
 
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -74,6 +75,7 @@ Public Class ClsSJ
                     ,sj.RecDate [Tanggal Terima]
                     ,sj.TglKirim [Tanggal Kirim]
                     ,sj.[NoTran]
+                    ,so.User7 NoMobil
                     ,case when sj.CheckFin is null then convert(bit,0) else convert(bit,sj.CheckFin) end AS [Check Fin]
                     ,CONVERT(VARCHAR(10), sj.TglCheckFin, 105) [Tgl Check Fin]
                     ,Convert(bit,so.user6) as [Check] 

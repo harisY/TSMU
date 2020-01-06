@@ -161,12 +161,13 @@ Public Class BarcodeGenerate
         Return ds
     End Function
 
-    Public Sub InsertLog(Bulan As String, KodePart As String, No As Integer, custId As String)
+    Public Sub InsertLog(Tahun As String, Bulan As String, KodePart As String, No As Integer, custId As String,
+                         InvtId As String, PartName As String, PartNo As String)
         Try
             Dim Ada As Boolean = CheckLog(Bulan, KodePart)
             If Ada Then
                 Dim _udpate As String = "Update BarcodePrintLog Set No =" & QVal(No) & "
-                                        WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                                        WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(_udpate)
                 Else
@@ -176,13 +177,23 @@ Public Class BarcodeGenerate
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
-                        (CustID,[KodePart],[Bulan],[Site],[No],[Printedby],[PrintedDate])
-                        Values(" & QVal(custId) & "," & QVal(KodePart) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                        (CustID,[KodePart],[InvetoryID],[PartName],[PartNo],Tahun,[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        Values(" & QVal(custId) & "," & QVal(KodePart) & "
+                            ," & QVal(InvtId) & "," & QVal(PartName) & "," & QVal(PartNo) & "
+                            ," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
+                            ," & QVal(gh_Common.Username) & ",GETDATE())"
+
+
+                Dim Query1 As String = String.Empty
+                Query1 = "INSERT INTO [BarcodePrintLog]
+                        (CustID,[KodePart],Tahun,[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        Values(" & QVal(custId) & "," & QVal(KodePart) & "
+                            ," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
                             ," & QVal(gh_Common.Username) & ",GETDATE())"
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(Query)
                 Else
-                    ExecQueryCKR(Query)
+                    ExecQueryCKR(Query1)
                 End If
 
             End If
@@ -191,10 +202,12 @@ Public Class BarcodeGenerate
         End Try
     End Sub
 
-    Public Function GetNoPrint(Bulan As String, KodePart As String) As Integer
+    Public Function GetNoPrint(Tahun As String, Bulan As String, KodePart As String) As Integer
         Dim hasil As Integer
         Try
-            Dim sql As String = "SELECT ISNULL(No,0) No From BarcodePrintLog WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+            Dim sql As String = "SELECT ISNULL(No,0) No From BarcodePrintLog 
+                                WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " 
+                                AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
             Dim dt As DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(sql)

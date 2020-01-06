@@ -65,6 +65,9 @@ Public Class ReportBarcodePrintLog
             Dim query As String = "Select  
 	            CustID, 
 	            KodePart,
+                InventoryID,
+                PartName,
+                PartNo,
 	            Bulan,
 	            [Site],
 	            [No] LastNo,
