@@ -761,10 +761,10 @@ Public Class Cls_FP
         Try
             query = "SELECT DISTINCT 
                         RTRIM(VendID) VendID
-                        ,RTRIM(Vend_Name) VendorName
-                        ,RTRIM(Jenis_Jasa) JenisJasa
-                        ,RTRIM(npwp) NPWP
-                    FROM Fp_Header ORDER BY VendorName"
+                        ,RTRIM(Name) Name
+                        ,RTRIM(User1) JenisJasa
+                        ,RTRIM(TaxRegNbr) NPWP
+                    FROM Vendor ORDER BY Name"
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
             Return dt

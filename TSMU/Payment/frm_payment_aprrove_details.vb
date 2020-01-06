@@ -47,7 +47,7 @@ Public Class frm_payment_aprrove_details
     End Sub
     Private Sub frm_payment_aprrove_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IsNew Then
-            Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True, True)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, True, True, True)
         Else
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False, True, True, False)
         End If
@@ -331,7 +331,11 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            ''RefreshDataApproval()
             Me.Close()
+
+            ''LoadGridRefresh()
+            ''frm_payment_approve.Proc_Refresh()
             'tsBtn_next.PerformClick()
 
         Catch ex As Exception
@@ -340,6 +344,188 @@ Public Class frm_payment_aprrove_details
 
         End Try
     End Sub
+
+    Private Sub RefreshDataApproval(BankID As String)
+        '' Call RefreshDetailApproval("")
+        ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
+    End Sub
+
+    'Private Sub RefreshDataApproval1()
+    '    Call RefreshDataApproval(bankid)
+    'End Sub
+
+
+    Private Sub RefreshDetailApproval(BankID As String)
+        Dim dtGrid As New DataTable
+        Try
+            dtGrid = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
+            frm_payment_approve.Grid.DataSource = dtGrid
+
+            'If frm_payment_approve.GridView1.RowCount > 0 Then
+            '    With frm_payment_approve.GridView1
+            '        .Columns(0).Visible = False
+            '        .BestFitColumns()
+            '        '.FixedLineWidth = 1
+            '        '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            '        '.OptionsView.ColumnAutoWidth = True
+            '    End With
+            '    GridCellFormat(frm_payment_approve.GridView1)
+            '    If gh_Common.Level = 1 Then
+            '        frm_payment_approve.GridView1.OptionsBehavior.Editable = False
+            '    ElseIf gh_Common.Level = 2 Then
+            '        frm_payment_approve.GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To frm_payment_approve.GridView1.Columns.Count - 1
+            '            If frm_payment_approve.GridView1.Columns(i).VisibleIndex <> 7 Then
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '            Else
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+            '        Next
+
+            '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(16).OptionsColumn.AllowEdit = True
+            '        'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(18).OptionsColumn.AllowEdit = False
+            '    ElseIf gh_Common.Level = 3 Then
+            '        frm_payment_approve.GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To GridView1.Columns.Count - 1
+            '            If frm_payment_approve.GridView1.Columns(i).VisibleIndex <> 8 Then
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '            Else
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+            '        Next
+            '    ElseIf gh_Common.Level = 4 Then
+
+            '        frm_payment_approve.GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To frm_payment_approve.GridView1.Columns.Count - 1
+
+            '            'If GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = False Then
+            '            '    GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+            '            '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            '    'ElseIf GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = True Then
+            '            '    '    GridView1.Columns(i).AppearanceCell.BackColor = Color.White
+            '            '    '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            'End If
+
+
+            '            If frm_payment_approve.GridView1.Columns(i).VisibleIndex <> 10 Then
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '                ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+            '                ''GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            Else
+            '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+
+            '        Next
+
+            '        'GridView1.OptionsBehavior.Editable = True
+            '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(16).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(18).OptionsColumn.AllowEdit = True
+            '    Else
+            '        frm_payment_approve.GridView1.OptionsBehavior.Editable = False
+            '    End If
+
+            'End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+
+
+    Private Sub LoadGridRefresh(BankID As String)
+        Dim dtGrid As DataTable
+
+        Try
+            dtGrid = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
+            ''frm_payment_approve.Grid.DataSource = dtGrid
+
+            'If GridView1.RowCount > 0 Then
+            '    With GridView1
+            '        .Columns(0).Visible = False
+            '        .BestFitColumns()
+            '        '.FixedLineWidth = 1
+            '        '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            '        '.OptionsView.ColumnAutoWidth = True
+            '    End With
+            '    GridCellFormat(GridView1)
+            '    If gh_Common.Level = 1 Then
+            '        GridView1.OptionsBehavior.Editable = False
+            '    ElseIf gh_Common.Level = 2 Then
+            '        GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To GridView1.Columns.Count - 1
+            '            If GridView1.Columns(i).VisibleIndex <> 7 Then
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '            Else
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+            '        Next
+
+            '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(16).OptionsColumn.AllowEdit = True
+            '        'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(18).OptionsColumn.AllowEdit = False
+            '    ElseIf gh_Common.Level = 3 Then
+            '        GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To GridView1.Columns.Count - 1
+            '            If GridView1.Columns(i).VisibleIndex <> 8 Then
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '            Else
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+            '        Next
+            '    ElseIf gh_Common.Level = 4 Then
+
+            '        GridView1.OptionsBehavior.Editable = True
+            '        For i As Integer = 0 To GridView1.Columns.Count - 1
+
+            '            'If GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = False Then
+            '            '    GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+            '            '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            '    'ElseIf GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = True Then
+            '            '    '    GridView1.Columns(i).AppearanceCell.BackColor = Color.White
+            '            '    '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            'End If
+
+
+            '            If GridView1.Columns(i).VisibleIndex <> 10 Then
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = False
+            '                ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
+            '                ''GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
+            '            Else
+            '                GridView1.Columns(i).OptionsColumn.AllowEdit = True
+            '            End If
+
+            '        Next
+
+
+
+
+
+
+            '        'GridView1.OptionsBehavior.Editable = True
+            '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(16).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(17).OptionsColumn.AllowEdit = False
+            '        'GridView1.Columns(18).OptionsColumn.AllowEdit = True
+            '    Else
+            '        GridView1.OptionsBehavior.Editable = False
+            '    End If
+
+            'End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
         GridInvoice.FocusedView.PostEditor()
     End Sub
