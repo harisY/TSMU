@@ -377,6 +377,8 @@ Public Class MenuUtamaForm
                             '    TSMPC.DropDownItems.Add(TSMenuD)
                             'Case "PLM"
                             '    TSMPLM.DropDownItems.Add(TSMenuD)
+                        Case "Asakai"
+                            tsMenuAsakai.DropDownItems.Add(TSMenuD)
                         Case "Sales"
                             If childMenu Is DBNull.Value OrElse childMenu = "" Then
                             ElseIf childMenu = "Budget" Then
