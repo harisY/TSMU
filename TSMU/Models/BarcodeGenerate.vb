@@ -177,7 +177,7 @@ Public Class BarcodeGenerate
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
-                        (CustID,[KodePart],[InvetoryID],[PartName],[PartNo],Tahun,[Bulan],[Site],[No],[Printedby],[PrintedDate])
+                        (CustID,[KodePart],[InventoryID],[PartName],[PartNo],Tahun,[Bulan],[Site],[No],[Printedby],[PrintedDate])
                         Values(" & QVal(custId) & "," & QVal(KodePart) & "
                             ," & QVal(InvtId) & "," & QVal(PartName) & "," & QVal(PartNo) & "
                             ," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "

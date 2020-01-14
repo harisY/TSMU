@@ -222,4 +222,16 @@ Public Class FrmLookUpBarcode
         txtNo.Text = Obj.GetNoPrint(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text)
     End Sub
 
+    Private Sub cmbTahun_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTahun.SelectedIndexChanged
+        Try
+            If TxtKodePart.Text = "" Then
+                TxtKodePart.Focus()
+                cmbTahun.Text = ""
+                Throw New Exception("Silahkan isi kode part dulu")
+            End If
+            txtNo.Text = Obj.GetNoPrint(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text)
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
 End Class
