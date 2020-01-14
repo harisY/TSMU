@@ -397,8 +397,6 @@ Public Class Frm_Rpt_UploadMizuho
 
     Private Sub _btnCompare_Click(sender As Object, e As EventArgs) Handles _btnCompare.Click
 
-
-
         Try
             ObjMizuho.DeleteMizuho()
             For i As Integer = 0 To GridView4.RowCount - 1
@@ -419,8 +417,8 @@ Public Class Frm_Rpt_UploadMizuho
                     .address = GridView4.GetRowCellValue(i, "address").ToString().TrimEnd
                     .address2 = GridView4.GetRowCellValue(i, "address2").ToString().TrimEnd
                     .norek_supplier = GridView4.GetRowCellValue(i, "norek_supplier")
-                    .pt = GridView4.GetRowCellValue(i, "pt")
-                    .pt2 = GridView4.GetRowCellValue(i, "pt2")
+                    .pt = GridView4.GetRowCellValue(i, "pt").ToString().TrimEnd
+                    .pt2 = GridView4.GetRowCellValue(i, "pt2").ToString().TrimEnd
                     .address_pt = GridView4.GetRowCellValue(i, "address_pt").ToString().TrimEnd
                     .address_pt2 = GridView4.GetRowCellValue(i, "address_pt2").ToString().TrimEnd
                     .space_kosong = GridView4.GetRowCellValue(i, "space_kosong").ToString().TrimEnd

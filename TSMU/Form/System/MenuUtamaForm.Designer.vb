@@ -63,13 +63,14 @@ Partial Class MenuUtamaForm
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.tsMenuAsakai = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tstax, Me.tsPayment, Me.SJtsb, Me.tsDirect1, Me.WindowsMenu, Me.HelpMenu})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.tsMenuMaster, Me.tsbForecast, Me.tsMenuSetting, Me.tsReport, Me.tstax, Me.tsPayment, Me.SJtsb, Me.tsDirect1, Me.tsMenuAsakai, Me.WindowsMenu, Me.HelpMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
@@ -237,13 +238,13 @@ Partial Class MenuUtamaForm
         'tsSuspend
         '
         Me.tsSuspend.Name = "tsSuspend"
-        Me.tsSuspend.Size = New System.Drawing.Size(187, 22)
+        Me.tsSuspend.Size = New System.Drawing.Size(131, 22)
         Me.tsSuspend.Text = "Advance"
         '
         'tsSettlement
         '
         Me.tsSettlement.Name = "tsSettlement"
-        Me.tsSettlement.Size = New System.Drawing.Size(187, 22)
+        Me.tsSettlement.Size = New System.Drawing.Size(131, 22)
         Me.tsSettlement.Text = "Settlement"
         '
         'WindowsMenu
@@ -320,6 +321,12 @@ Partial Class MenuUtamaForm
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'tsMenuAsakai
+        '
+        Me.tsMenuAsakai.Name = "tsMenuAsakai"
+        Me.tsMenuAsakai.Size = New System.Drawing.Size(53, 20)
+        Me.tsMenuAsakai.Text = "Asakai"
+        '
         'MenuUtamaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -382,4 +389,5 @@ Partial Class MenuUtamaForm
     Friend WithEvents tsDirect1 As ToolStripMenuItem
     Friend WithEvents tsSuspend As ToolStripMenuItem
     Friend WithEvents tsSettlement As ToolStripMenuItem
+    Friend WithEvents tsMenuAsakai As ToolStripMenuItem
 End Class
