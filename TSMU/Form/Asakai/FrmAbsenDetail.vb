@@ -153,8 +153,6 @@ Public Class FrmAbsenDetail
                     TxtTanggalAbsen.Text = Format(.TanggalAbsen, gs_FormatSQLDateIn)
                     TxtPersen.Text = .Percentage.ToString
                     TxtJumlahKaryawan.Text = .Jumlah.ToString
-
-
                 End With
             Else
                 TxtPersen.Text = "100"
@@ -207,6 +205,7 @@ Public Class FrmAbsenDetail
                 With ObjAbsen
                     .DeptID = TxtDepartemen.Text
                     .Percentage = TxtPersen.Text
+                    .JumlahKaryawan = TxtJumlahKaryawan.Text
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTanggalAbsen.Text, "dd-MM-yyyy", provider)
                     .TanggalAbsen = oDate
 
@@ -246,24 +245,32 @@ Public Class FrmAbsenDetail
             Dim IsEmpty As Boolean = False
                 For i As Integer = 0 To GridView1.RowCount - 1
                     GridView1.MoveFirst()
-                    If GridView1.GetRowCellValue(i, GridView1.Columns("ID")).ToString = "" OrElse
+                If GridView1.GetRowCellValue(i, GridView1.Columns("No")).ToString = "" OrElse
                        GridView1.GetRowCellValue(i, GridView1.Columns("Description")).ToString = "" OrElse
                        GridView1.GetRowCellValue(i, GridView1.Columns("Jumlah")).ToString = "" Then
-                        IsEmpty = True
-                        GridView1.DeleteRow(i)
-                    End If
-                Next
+                    IsEmpty = True
+                    GridView1.DeleteRow(i)
+                End If
+            Next
 
 
             If isUpdate = False Then
+                With ObjAbsen
+                    '.DeptID = TxtDepartemen.Text
+                    '.Percentage = TxtPersen.Text
+                    '.JumlahKaryawan = TxtJumlahKaryawan.Text
+                    ''Dim oDate As DateTime = DateTime.ParseExact(TxtTanggalAbsen.Text, "dd-MM-yyyy", provider)
+                    '.TanggalAbsen = oDate
+                End With
+
                 ObjAbsen.ObjDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(i, "Jumlah").ToString <> "" Then
                         ObjAbsenDetail = New AbsenModelDetail
                         With ObjAbsenDetail
-                            .TanggalAbsen = CDate(TxtTanggalAbsen.EditValue)
+                            '.TanggalAbsen = CDate(TxtTanggalAbsen.EditValue)
                             .DeptID = TxtDepartemen.Text
-                            .ID = Convert.ToInt32(GridView1.GetRowCellValue(i, "ID"))
+                            .ID = Convert.ToInt32(GridView1.GetRowCellValue(i, "No"))
                             .Jumlah = Convert.ToInt32(GridView1.GetRowCellValue(i, "Jumlah"))
                         End With
                         ObjAbsen.ObjDetails.Add(ObjAbsenDetail)
@@ -280,10 +287,10 @@ Public Class FrmAbsenDetail
                         If GridView1.GetRowCellValue(i, "Jumlah").ToString <> "" Then
                             ObjAbsenDetail = New AbsenModelDetail
                         With ObjAbsenDetail
-                            .TanggalAbsen = CDate(TxtTanggalAbsen.EditValue)
+                            '.TanggalAbsen = CDate(TxtTanggalAbsen.EditValue)
                             .DeptID = TxtDepartemen.Text
                             .Percentage = TxtPersen.Text
-                            .ID = Convert.ToInt32(GridView1.GetRowCellValue(i, "ID"))
+                            .ID = Convert.ToInt32(GridView1.GetRowCellValue(i, "No"))
                             .Jumlah = Convert.ToInt32(GridView1.GetRowCellValue(i, "Jumlah"))
 
                         End With

@@ -91,7 +91,6 @@ Partial Class FrmAbsenDetail
         '
         'TxtJumlahKaryawan
         '
-        Me.TxtJumlahKaryawan.Enabled = False
         Me.TxtJumlahKaryawan.Location = New System.Drawing.Point(99, 60)
         Me.TxtJumlahKaryawan.Name = "TxtJumlahKaryawan"
         Me.TxtJumlahKaryawan.Size = New System.Drawing.Size(120, 20)
@@ -209,7 +208,7 @@ Partial Class FrmAbsenDetail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.jmlabsen})
-        Me.Grid.Size = New System.Drawing.Size(691, 175)
+        Me.Grid.Size = New System.Drawing.Size(691, 123)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -223,13 +222,17 @@ Partial Class FrmAbsenDetail
         '
         'GridColumn1
         '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.Caption = "No"
-        Me.GridColumn1.FieldName = "ID"
+        Me.GridColumn1.FieldName = "No"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 32
+        Me.GridColumn1.Width = 45
         '
         'GridColumn2
         '
@@ -243,6 +246,10 @@ Partial Class FrmAbsenDetail
         '
         'GridColumn3
         '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn3.Caption = "Jumlah"
         Me.GridColumn3.ColumnEdit = Me.jmlabsen
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -265,7 +272,7 @@ Partial Class FrmAbsenDetail
         'FrmAbsenDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(715, 344)
+        Me.ClientSize = New System.Drawing.Size(715, 295)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmAbsenDetail"

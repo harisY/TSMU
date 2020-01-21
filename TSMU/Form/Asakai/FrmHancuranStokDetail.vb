@@ -356,4 +356,394 @@ Public Class FrmHancuranStokDetail
             e.Handled = True
         End If
     End Sub
+
+
+
+    Private Sub TxtStokPallet_Leave(sender As Object, e As EventArgs) Handles TxtStokPallet.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub TxtStokMix_Leave(sender As Object, e As EventArgs) Handles TxtStokMix.Leave
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TxtStokNG_Leave(sender As Object, e As EventArgs) Handles TxtStokNG.Leave
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub TxtTarget_Leave(sender As Object, e As EventArgs) Handles TxtTarget.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub TxtTotalOK_Leave(sender As Object, e As EventArgs) Handles TxtTotalOK.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub TxtTotalPagi_Leave(sender As Object, e As EventArgs) Handles TxtTotalPagi.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub TxtIN_Leave(sender As Object, e As EventArgs) Handles TxtIN.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub TxtOut_Leave(sender As Object, e As EventArgs) Handles TxtOut.Leave
+
+        Try
+            Dim pallet, mix, ng, target, ok, pagi, masuk, keluar, ahir As Integer
+
+            If TxtStokPallet.Text = "" Then
+                TxtStokPallet.Text = "0"
+            ElseIf TxtStokMix.Text = "" Then
+                TxtStokMix.Text = "0"
+            ElseIf TxtStokNG.Text = "" Then
+                TxtStokNG.Text = "0"
+            ElseIf TxtTarget.Text = "" Then
+                TxtTarget.Text = "0"
+            ElseIf TxtTotalOK.Text = "" Then
+                TxtTotalOK.Text = "0"
+            ElseIf TxtTotalPagi.Text = "" Then
+                TxtTotalPagi.Text = "0"
+            ElseIf TxtIN.Text = "" Then
+                TxtIN.Text = "0"
+            ElseIf TxtOut.Text = "" Then
+                TxtOut.Text = "0"
+            ElseIf TxtStokAkhir.Text = "" Then
+                TxtStokAkhir.Text = "0"
+            End If
+
+            pallet = TxtStokPallet.Text
+            mix = TxtStokMix.Text
+            ng = TxtStokNG.Text
+            target = TxtTarget.Text
+
+            ok = pallet + mix
+            TxtTotalOK.Text = ok.ToString
+
+            pagi = ok + ng
+            TxtTotalPagi.Text = pagi.ToString
+
+            masuk = TxtIN.Text
+            keluar = TxtOut.Text
+
+            ahir = pagi + masuk - keluar
+
+            TxtStokAkhir.Text = ahir.ToString
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 End Class

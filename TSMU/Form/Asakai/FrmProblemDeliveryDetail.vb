@@ -35,7 +35,9 @@ Public Class FrmProblemDeliveryDetail
     Dim NamaFile As String = ""
 
     'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
-    Dim SimpanFoto As String = "\\srv12\E$\Aplikasi IIS\Asakai\Foto\"
+    'Dim SimpanFoto As String = "\\srv12\E$\Aplikasi IIS\Asakai\Foto\"
+    'Dim SimpanFoto As String = "\\srv12\E\Aplikasi IIS\Asakai\Foto\"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim DirectoryFoto As String = ""
     Dim extension As String = ""
     Dim fileSavePath As String = ""

@@ -35,8 +35,10 @@ Public Class FrmIPMIDetail
 
     'Server
     'Dim CekDirectorFoto As String = "D:\@KERJA\Project\Foto"
-    Dim SimpanFoto As String = "\\srv12\E$\Aplikasi IIS\Asakai\Foto\" 'E:\Aplikasi IIS\Asakai\Foto
+    'Dim SimpanFoto As String = "\\srv12\E$\Aplikasi IIS\Asakai\Foto\" 'E:\Aplikasi IIS\Asakai\Foto
     'Dim SimpanFoto As String = Directory.GetCurrentDirectory & "\srv12\Asakai\Foto\"
+    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
@@ -48,15 +50,32 @@ Public Class FrmIPMIDetail
 
     Private Sub FrmIPMIDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+
+
         dt = New DataTable
-        dt.Columns.Add("Rencana Perbaikan") '1
-        dt.Columns.Add("Target") '2
-        dt.Columns.Add("PIC") '3
+        dt.Columns.Add("4M") '1
+        dt.Columns.Add("Perbaikan") '2
+        dt.Columns.Add("Target") '3
+        dt.Columns.Add("Pic") '3
         Grid.DataSource = dt
 
         dt1 = New DataTable
-        dt1.Columns.Add("Penyebab 4M Analisa") '0
+        dt1.Columns.Add("4M") '0
+        dt1.Columns.Add("Problem") '0
         GridPenyebab.DataSource = dt1
+
+        Dim M As String() = {"Man", "Method", "Machine", "Material"}
+
+        For Each N As String In M
+
+            If True Then
+                CmbRep4MAnalisa.Items.Add(N)
+                CmbRepPerbaikan.Items.Add(N)
+            End If
+
+        Next
+
+
 
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
@@ -87,7 +106,7 @@ Public Class FrmIPMIDetail
     End Sub
 
     Private Sub Tambah_Click(sender As Object, e As EventArgs) Handles Tambah.Click
-        If TxtPerbaikan.Text = "" Or TxtPIC.Text = "" Then
+        If TxtPerbaikan.Text = "" Or TxtPIC.Text = "" Or Cmb4MPerbaikan.Text = "" Then
             MessageBox.Show("Lengkapi Data Rencana Perbaikan",
                                 "Warning",
                                 MessageBoxButtons.OK,
@@ -96,10 +115,10 @@ Public Class FrmIPMIDetail
         Else
             GridView1.AddNewRow()
             'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Analisa, TxtAnalisa.Text)
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Perbaikan, TxtPerbaikan.Text)
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Target, Format(DtTarget.Value, "dd-MM-yyyy"))
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PIC, TxtPIC.Text)
-
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GridColumn3, Cmb4MPerbaikan.Text)
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GridColumn4, TxtPerbaikan.Text)
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GridColumn5, Format(DtTarget.Value, "dd-MM-yyyy"))
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GridColumn6, TxtPIC.Text)
             GridView1.UpdateCurrentRow()
             TxtPerbaikan.Text = ""
             TxtPIC.Text = ""
@@ -230,9 +249,10 @@ Public Class FrmIPMIDetail
                 For j As Integer = 0 To GridView1.RowCount - 1
                     ObjIPMIDetailModel = New IPMIDetailModel
                     With ObjIPMIDetailModel
-                        .Rencana_Perbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "Rencana Perbaikan"))
+                        .Rencana_Perbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "Perbaikan"))
                         .Target = Convert.ToString(GridView1.GetRowCellValue(j, "Target"))
-                        .PIC = Convert.ToString(GridView1.GetRowCellValue(j, "PIC"))
+                        .EmpatMPerbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "4M"))
+                        .PIC = Convert.ToString(GridView1.GetRowCellValue(j, "Pic"))
                     End With
                     fc_Class.ObjDetailIPMIPerbaikanColection.Add(ObjIPMIDetailModel)
 
@@ -243,7 +263,8 @@ Public Class FrmIPMIDetail
 
                     ObjIPMIDetailModel = New IPMIDetailModel
                     With ObjIPMIDetailModel
-                        .Penyebab = Convert.ToString(GridView2.GetRowCellValue(i, "Penyebab 4M Analisa"))
+                        .Penyebab = Convert.ToString(GridView2.GetRowCellValue(i, "Problem"))
+                        .EmpatMPenyebab = Convert.ToString(GridView2.GetRowCellValue(i, "4M"))
                     End With
                     fc_Class.ObjDetailIPMIPenyebabColection.Add(ObjIPMIDetailModel)
 
@@ -275,9 +296,10 @@ Public Class FrmIPMIDetail
                 For j As Integer = 0 To GridView1.RowCount - 1
                     ObjIPMIDetailModel = New IPMIDetailModel
                     With ObjIPMIDetailModel
-                        .Rencana_Perbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "Rencana Perbaikan"))
+                        .Rencana_Perbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "Perbaikan"))
                         .Target = Convert.ToString(GridView1.GetRowCellValue(j, "Target"))
-                        .PIC = Convert.ToString(GridView1.GetRowCellValue(j, "PIC"))
+                        .EmpatMPerbaikan = Convert.ToString(GridView1.GetRowCellValue(j, "4M"))
+                        .PIC = Convert.ToString(GridView1.GetRowCellValue(j, "Pic"))
                     End With
                     fc_Class.ObjDetailIPMIPerbaikanColection.Add(ObjIPMIDetailModel)
 
@@ -288,21 +310,23 @@ Public Class FrmIPMIDetail
 
                     ObjIPMIDetailModel = New IPMIDetailModel
                     With ObjIPMIDetailModel
-                        .Penyebab = Convert.ToString(GridView2.GetRowCellValue(i, "Penyebab 4M Analisa"))
+                        .Penyebab = Convert.ToString(GridView2.GetRowCellValue(i, "Problem"))
+                        .EmpatMPenyebab = Convert.ToString(GridView2.GetRowCellValue(i, "4M"))
                     End With
                     fc_Class.ObjDetailIPMIPenyebabColection.Add(ObjIPMIDetailModel)
 
                 Next
 
                 fc_Class.UpdateData(fs_Code)
-
-                File.Copy(opfImage.FileName, fileSavePath, True)
+                If fileSavePath <> "" Then
+                    File.Copy(opfImage.FileName, fileSavePath, True)
+                End If
                 GridDtl.DataSource = fc_Class.GetAllDataTable(bs_Filter)
-                IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            End If
+                    IsClosed = True
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                End If
 
-            IsClosed = True
+                IsClosed = True
             Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -383,7 +407,7 @@ Public Class FrmIPMIDetail
             If lb_Validated Then
                 With fc_Class
 
-
+                    .H_NOIPMI = TxtNoIpmi.Text
                     .H_Tanggal = Format(CDate(Format(DtTanggalLaporan.Value, "yyyy-MM-dd")))
 
                     If isUpdate = False Then
@@ -404,7 +428,7 @@ Public Class FrmIPMIDetail
 
     Private Sub AddPenyebab_Click(sender As Object, e As EventArgs) Handles AddPenyebab.Click
 
-        If TxtAnalisa.Text = "" Then
+        If TxtAnalisa.Text = "" Or Cmb4MAnalisa.Text = "" Then
             MessageBox.Show("Mohon diisi Analisa 4M",
                                 "Warning",
                                 MessageBoxButtons.OK,
@@ -412,8 +436,8 @@ Public Class FrmIPMIDetail
                                 MessageBoxDefaultButton.Button1)
         Else
             GridView2.AddNewRow()
-            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, Penyebab, TxtAnalisa.Text)
-
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, GridColumn1, Cmb4MAnalisa.Text)
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, GridColumn2, TxtAnalisa.Text)
             GridView2.UpdateCurrentRow()
             TxtAnalisa.Text = ""
 
@@ -468,7 +492,7 @@ Public Class FrmIPMIDetail
             PathFoto = opfImage.FileName
             'NamaFile = Path.GetFileName(PathFoto)
             Dim extension As String = Path.GetExtension(PathFoto)
-            NamaFile = "IPMI" + Path.GetRandomFileName() + extension
+            NamaFile = "IPMI_" + Path.GetRandomFileName() + extension
             fileSavePath = Path.Combine(SimpanFoto, NamaFile)
 
         End If

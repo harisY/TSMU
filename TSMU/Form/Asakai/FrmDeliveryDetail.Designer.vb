@@ -75,6 +75,7 @@ Partial Class FrmDeliveryDetail
         '
         Me.Customer.FieldName = "Customer"
         Me.Customer.Name = "Customer"
+        Me.Customer.OptionsColumn.AllowEdit = False
         Me.Customer.OptionsColumn.FixedWidth = True
         Me.Customer.Visible = True
         Me.Customer.VisibleIndex = 0
@@ -84,129 +85,154 @@ Partial Class FrmDeliveryDetail
         '
         Me.InvtId.FieldName = "InvtId"
         Me.InvtId.Name = "InvtId"
+        Me.InvtId.OptionsColumn.AllowEdit = False
         Me.InvtId.Visible = True
         Me.InvtId.VisibleIndex = 1
-        Me.InvtId.Width = 100
+        Me.InvtId.Width = 125
         '
         'DeliveryDueDate
         '
         Me.DeliveryDueDate.FieldName = "Delivery Due Date"
         Me.DeliveryDueDate.Name = "DeliveryDueDate"
+        Me.DeliveryDueDate.OptionsColumn.AllowEdit = False
         Me.DeliveryDueDate.Visible = True
         Me.DeliveryDueDate.VisibleIndex = 3
-        Me.DeliveryDueDate.Width = 140
+        Me.DeliveryDueDate.Width = 118
         '
         'QtyOrder
         '
+        Me.QtyOrder.AppearanceCell.Options.UseTextOptions = True
+        Me.QtyOrder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.QtyOrder.FieldName = "Qty Order"
         Me.QtyOrder.Name = "QtyOrder"
+        Me.QtyOrder.OptionsColumn.AllowEdit = False
         Me.QtyOrder.Visible = True
         Me.QtyOrder.VisibleIndex = 4
-        Me.QtyOrder.Width = 110
+        Me.QtyOrder.Width = 72
         '
         'Delivery
         '
+        Me.Delivery.AppearanceCell.Options.UseTextOptions = True
+        Me.Delivery.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Delivery.FieldName = "Delivery"
         Me.Delivery.Name = "Delivery"
+        Me.Delivery.OptionsColumn.AllowEdit = False
         Me.Delivery.Visible = True
         Me.Delivery.VisibleIndex = 5
-        Me.Delivery.Width = 110
+        Me.Delivery.Width = 54
         '
         'Jumlah
         '
+        Me.Jumlah.AppearanceCell.Options.UseTextOptions = True
+        Me.Jumlah.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Jumlah.FieldName = "Jumlah"
         Me.Jumlah.Name = "Jumlah"
+        Me.Jumlah.OptionsColumn.AllowEdit = False
         Me.Jumlah.Visible = True
         Me.Jumlah.VisibleIndex = 6
-        Me.Jumlah.Width = 110
+        Me.Jumlah.Width = 48
         '
         'StockTNG08DEL
         '
+        Me.StockTNG08DEL.AppearanceCell.Options.UseTextOptions = True
+        Me.StockTNG08DEL.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.StockTNG08DEL.FieldName = "Stock TNG 08 DEL"
         Me.StockTNG08DEL.Name = "StockTNG08DEL"
+        Me.StockTNG08DEL.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.StockTNG08DEL.Visible = True
         Me.StockTNG08DEL.VisibleIndex = 7
-        Me.StockTNG08DEL.Width = 110
+        Me.StockTNG08DEL.Width = 96
         '
         'StockTNG05WHJ
         '
+        Me.StockTNG05WHJ.AppearanceCell.Options.UseTextOptions = True
+        Me.StockTNG05WHJ.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.StockTNG05WHJ.FieldName = "Stock TNG 05 WHJ"
         Me.StockTNG05WHJ.Name = "StockTNG05WHJ"
+        Me.StockTNG05WHJ.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.StockTNG05WHJ.Visible = True
         Me.StockTNG05WHJ.VisibleIndex = 8
-        Me.StockTNG05WHJ.Width = 110
+        Me.StockTNG05WHJ.Width = 101
         '
         'StockTNG06SFG
         '
+        Me.StockTNG06SFG.AppearanceCell.Options.UseTextOptions = True
+        Me.StockTNG06SFG.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.StockTNG06SFG.FieldName = "StockTNG06SFG"
         Me.StockTNG06SFG.Name = "StockTNG06SFG"
+        Me.StockTNG06SFG.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.StockTNG06SFG.Visible = True
         Me.StockTNG06SFG.VisibleIndex = 9
-        Me.StockTNG06SFG.Width = 110
+        Me.StockTNG06SFG.Width = 93
         '
         'Stock2nd
         '
         Me.Stock2nd.FieldName = "Stock 2nd"
         Me.Stock2nd.Name = "Stock2nd"
-        Me.Stock2nd.Visible = True
-        Me.Stock2nd.VisibleIndex = 10
         Me.Stock2nd.Width = 110
         '
         'StockPaint
         '
         Me.StockPaint.FieldName = "Stock Paint"
         Me.StockPaint.Name = "StockPaint"
-        Me.StockPaint.Visible = True
-        Me.StockPaint.VisibleIndex = 11
         Me.StockPaint.Width = 110
         '
         'StockInjectPresisi
         '
         Me.StockInjectPresisi.FieldName = "Stock Inject Presisi"
         Me.StockInjectPresisi.Name = "StockInjectPresisi"
-        Me.StockInjectPresisi.Visible = True
-        Me.StockInjectPresisi.VisibleIndex = 12
         Me.StockInjectPresisi.Width = 110
         '
         'WHP
         '
+        Me.WHP.AppearanceCell.Options.UseTextOptions = True
+        Me.WHP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.WHP.FieldName = "WHP"
         Me.WHP.Name = "WHP"
+        Me.WHP.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.WHP.Visible = True
-        Me.WHP.VisibleIndex = 13
-        Me.WHP.Width = 110
+        Me.WHP.VisibleIndex = 10
+        Me.WHP.Width = 48
         '
         'StockTNG04_02PNT
         '
         Me.StockTNG04_02PNT.FieldName = "Stock TNG 04-02 PNT"
         Me.StockTNG04_02PNT.Name = "StockTNG04_02PNT"
-        Me.StockTNG04_02PNT.Visible = True
-        Me.StockTNG04_02PNT.VisibleIndex = 14
         Me.StockTNG04_02PNT.Width = 112
         '
         'TotalStock
         '
+        Me.TotalStock.AppearanceCell.Options.UseTextOptions = True
+        Me.TotalStock.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TotalStock.FieldName = "Total Stock"
         Me.TotalStock.Name = "TotalStock"
+        Me.TotalStock.OptionsColumn.AllowEdit = False
+        Me.TotalStock.UnboundExpression = "[Stock TNG 05 WHJ] + [StockTNG06SFG] + [Stock TNG 08 DEL] + [WHP]"
+        Me.TotalStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.TotalStock.Visible = True
-        Me.TotalStock.VisibleIndex = 15
-        Me.TotalStock.Width = 110
+        Me.TotalStock.VisibleIndex = 11
+        Me.TotalStock.Width = 74
         '
         'Balance
         '
+        Me.Balance.AppearanceCell.Options.UseTextOptions = True
+        Me.Balance.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Balance.FieldName = "Balance"
         Me.Balance.Name = "Balance"
+        Me.Balance.OptionsColumn.AllowEdit = False
+        Me.Balance.UnboundExpression = "[Total Stock] - [Jumlah]"
+        Me.Balance.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.Balance.Visible = True
-        Me.Balance.VisibleIndex = 16
-        Me.Balance.Width = 110
+        Me.Balance.VisibleIndex = 12
+        Me.Balance.Width = 61
         '
         'Ket
         '
         Me.Ket.FieldName = "Keterangan"
         Me.Ket.Name = "Ket"
         Me.Ket.Visible = True
-        Me.Ket.VisibleIndex = 17
-        Me.Ket.Width = 200
+        Me.Ket.VisibleIndex = 13
+        Me.Ket.Width = 158
         '
         'ItemNumber
         '
@@ -214,6 +240,7 @@ Partial Class FrmDeliveryDetail
         Me.ItemNumber.Name = "ItemNumber"
         Me.ItemNumber.Visible = True
         Me.ItemNumber.VisibleIndex = 2
+        Me.ItemNumber.Width = 148
         '
         'Panel1
         '

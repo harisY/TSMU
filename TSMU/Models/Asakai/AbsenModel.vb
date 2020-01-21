@@ -7,6 +7,7 @@ Public Class AbsenModel
     Public Property DeptID() As String
     Public Property IDAbsen() As String
     Public Property Jumlah() As Integer
+    Public Property JumlahKaryawan() As Integer
     Public Property Percentage() As Double
 
     Public Property NoIncrement As Integer
@@ -16,7 +17,7 @@ Public Class AbsenModel
 
     Public Sub New()
         Me._Query = "SELECT NoAbsen,TanggalAbsen FROM Absen"
-        Me._QueryKategoriAbsen = "select ID,[Description],convert(int,'0') as Jumlah from KategoriAbsen"
+        Me._QueryKategoriAbsen = "select IDAbsen as No,[Description],convert(int,'0') as Jumlah from KategoriAbsen"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -27,8 +28,8 @@ Public Class AbsenModel
             '                            "else 'PURCHASE' end as [Group] " & _
             '                        "from inventory_lc order by Invtid"
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             'dtTable = MainModul.GetDataTableByCommand(Me._Query)
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -37,8 +38,8 @@ Public Class AbsenModel
     Public Function GetAllDataTableKategoriAbsen() As DataTable
         Try
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(Me._QueryKategoriAbsen)
             'dtTable = MainModul.GetDataTableByCommand(Me._QueryKategoriAbsen)
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._QueryKategoriAbsen)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -61,8 +62,8 @@ Public Class AbsenModel
                                     ,[Percentage]
                                     FROM [Absen]"
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -73,9 +74,15 @@ Public Class AbsenModel
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT ID,TanggalAbsen,DeptID,Percentage,CreatedBy,CreatedDate from absen"
+                "SELECT Absen.[ID]
+                         ,Absen.[TanggalAbsen]
+                         ,Absen.[DeptID]
+                         ,Absen.[Percentage]
+                         ,Absen.[JumlahKaryawan] as Jumlah
+                         FROM [Absen] inner join [departemen] on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(gh_Common.GroupID) & ""
+            '"SELECT ID,TanggalAbsen,DeptID,Percentage,CreatedBy,CreatedDate from absen"
+            dt = GetDataTableByCommand(sql)
             'dt = GetDataTableByCommand(sql)
-            dt = GetDataTableByCommand_sol(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -93,7 +100,7 @@ Public Class AbsenModel
     '                                FROM [Absen] WHERE [DeptID] = " & QVal(DeptID) & ""
     '        Dim dtTable As New DataTable
     '        'dtTable = MainModul.GetDataTableByCommand(query)
-    '        dtTable = MainModul.GetDataTableByCommand_sol(query)
+    '        dtTable = MainModul.GetDataTableByCommand(query)
     '        If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
     '            With dtTable.Rows(0)
     '                Me.ID = Trim(.Item("ID") & "")
@@ -122,18 +129,18 @@ Public Class AbsenModel
                                    ,Absen.[TanggalAbsen]
                                    ,Absen.[DeptID]
                                    ,Absen.[Percentage]
-                                   ,Departemen.[Jumlah]
+                                   ,Absen.[JumlahKaryawan]
                                     FROM [Absen] inner join [departemen] on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.ID = Trim(.Item("ID") & "")
                     Me.TanggalAbsen = Trim(.Item("TanggalAbsen") & "")
                     Me.DeptID = Trim(.Item("DeptID") & "")
                     'Me.IDAbsen = Trim(.Item("IDAbsen") & "")
-                    Me.Jumlah = Trim(.Item("Jumlah") & "")
+                    Me.Jumlah = Trim(.Item("JumlahKaryawan") & "")
                     'Me.NoAbsen = Trim(.Item("NoAbsen") & "")
                     Me.Percentage = Trim(.Item("Percentage") & "")
                 End With
@@ -154,8 +161,8 @@ Public Class AbsenModel
             Dim query As String = "SELECT ID,Kebijakan
                                     FROM AsakaiKebijakan where ID ='" & ID & "'"
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.ID = Trim(.Item("ID") & "")
@@ -182,13 +189,13 @@ Public Class AbsenModel
     Public Function GetDataDetailByDate(tgl As String) As DataTable
         Try
             Dim query As String = "SELECT 
-                                    KategoriAbsen.[ID]
+                                    KategoriAbsen.[IDAbsen] as No
                                    ,KategoriAbsen.[Description]
                                    ,AbsenDetail.[Jumlah]
-                                    FROM [Absen] inner join [AbsenDetail] on Absen.ID = AbsenDetail.ID inner join KategoriAbsen on KategoriAbsen.ID = AbsenDetail.IDAbsen WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
+                                    FROM [Absen] inner join [AbsenDetail] on Absen.ID = AbsenDetail.ID inner join KategoriAbsen on KategoriAbsen.IDAbsen = AbsenDetail.IDAbsen WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
 
             Return dtTable
         Catch ex As Exception
@@ -209,7 +216,7 @@ Public Class AbsenModel
                                     FROM [Absen] where [TanggalAbsen] = " & QVal(TanggalAbsen) & " and DeptID = " & QVal(DeptID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.IDAbsen & "]")
@@ -239,7 +246,7 @@ Public Class AbsenModel
 
     Public Sub InsertDataAbsen()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -280,12 +287,14 @@ Public Class AbsenModel
             Dim ls_SP As String = "INSERT INTO [Absen]
                                            ([TanggalAbsen]                     
                                            ,[DeptID]                     
+                                           ,[JumlahKaryawan]                     
                                            ,[Percentage]                     
                                            ,[CreatedBy]                     
                                            ,[CreatedDate])
                                      VALUES
                                            (" & QVal(TanggalAbsen) & " 
                                             ," & QVal(DeptID) & "
+                                            ," & QVal(JumlahKaryawan) & "
                                             ," & QVal(Percentage) & "
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE()) Select @@IDENTITY as identityvalue"
@@ -293,7 +302,7 @@ Public Class AbsenModel
 
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             result = dtTable.Rows(0).Item("identityvalue")
             Return result
 
@@ -305,7 +314,7 @@ Public Class AbsenModel
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -346,10 +355,11 @@ Public Class AbsenModel
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE Absen" & vbCrLf &
                                     "SET    Percentage = " & QVal(Percentage) & ", " & vbCrLf &
+                                    "       JumlahKaryawan = " & QVal(JumlahKaryawan) & ", " & vbCrLf &
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE ID = '" & _NoIncrement & "'"
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -359,11 +369,11 @@ Public Class AbsenModel
         Try
             Dim ls_SP As String = "DELETE FROM Absen WHERE rtrim(ID)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
             Dim ls_SPD As String = "DELETE FROM AbsenDetail WHERE rtrim(ID)=" & QVal(ID) & ""
             'ExecQuery(ls_SPD)
-            ExecQuery_Solomon(ls_SPD)
+            ExecQuery(ls_SPD)
 
         Catch ex As Exception
             Throw
@@ -374,7 +384,7 @@ Public Class AbsenModel
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -434,7 +444,7 @@ Public Class AbsenModelDetail
             "       " & QVal(ID) & ", " & vbCrLf &
             "       " & QVal(Jumlah) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -446,7 +456,7 @@ Public Class AbsenModelDetail
         Try
             Dim ls_SP As String = "DELETE FROM AbsenDetail WHERE rtrim(ID)=" & QVal(_NoIncremen) & ""
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

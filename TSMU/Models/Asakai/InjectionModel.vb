@@ -60,7 +60,7 @@ Public Class InjectionModel
                                     FROM [AsakaiInjectionHeader] where Tanggal = '" & H_date & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.H_date & " ")
@@ -80,7 +80,7 @@ Public Class InjectionModel
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -96,7 +96,7 @@ Public Class InjectionModel
             Dim ls_SP As String = "SELECT [IdTransaksi]                   
                                     FROM [AsakaiInjectionHeader] order by IdTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "INJ" & Tahun & "0001"
@@ -131,7 +131,7 @@ Public Class InjectionModel
 
     Public Sub InsertInjection()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -215,7 +215,7 @@ Public Class InjectionModel
             "       " & QVal(PA_PRODUCTIVITY) & ", " & vbCrLf &
             "       " & QVal(PA_STRAIGHT_PASS) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -260,7 +260,7 @@ Public Class InjectionModel
             "       " & QVal(RR_TARGET_SETTING) & ", " & vbCrLf &
             "       " & QVal(RR_Target_Persen_NG) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -285,7 +285,7 @@ Public Class InjectionModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -296,24 +296,24 @@ Public Class InjectionModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiInjectionHeader WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeletePA As String = "DELETE FROM AsakaiInjectionPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePA)
+            MainModul.ExecQuery(ls_DeletePA)
 
             Dim ls_DeleteRecovery As String = "DELETE FROM AsakaiInjectionRecovery WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteRecovery)
+            MainModul.ExecQuery(ls_DeleteRecovery)
 
             Dim ls_DeleteRejectRate As String = "DELETE FROM AsakaiInjectionRejectRate WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteRejectRate)
+            MainModul.ExecQuery(ls_DeleteRejectRate)
 
             Dim ls_DeletePPA As String = "DELETE FROM AsakaiInjectioPPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePPA)
+            MainModul.ExecQuery(ls_DeletePPA)
 
             Dim ls_DeleteLima As String = "DELETE FROM AsakaiJnjectionLimaBesar WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteLima)
+            MainModul.ExecQuery(ls_DeleteLima)
 
         Catch ex As Exception
             Throw
@@ -473,7 +473,7 @@ Public Class InjectionDetailModel
             "       " & QVal(LB_Target) & ", " & vbCrLf &
             "       " & QVal(LB_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -524,7 +524,7 @@ Public Class InjectionDetailModel
             "       " & QVal(PPA_Target) & ", " & vbCrLf &
             "       " & QVal(PPA_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -569,7 +569,7 @@ Public Class InjectionDetailModel
             "       " & QVal(R_Balance_OP) & ", " & vbCrLf &
             "       " & QVal(R_Keterangan) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

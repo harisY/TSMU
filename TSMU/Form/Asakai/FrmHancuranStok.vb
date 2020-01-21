@@ -79,7 +79,7 @@
             fc_Class = New HancuranModel
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
+                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
                 End If
             Next rowHandle
 

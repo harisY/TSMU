@@ -1422,6 +1422,7 @@
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
+    <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />

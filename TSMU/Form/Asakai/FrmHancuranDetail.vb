@@ -226,13 +226,31 @@ Public Class FrmHancuranDetail
         Else
 
             GridView1.AddNewRow()
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, IdSupplier, CmbSuplier.Text)
+            'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, IdSupplier, CmbSuplier.Text)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, SUPPLIER, CmbSuplier.Text)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, STOKAWAL, txtStokAwal.Text)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, KIRIM, txtKirim.Text)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, KEMBALI, txtKembali.Text)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, BALANCE, txtBalnce.Text)
             GridView1.UpdateCurrentRow()
+
+
+            Dim _Internal, _Total, _Balance As Integer
+
+            _Internal = txtHancuranInternal.Text
+
+            If Convert.ToString(GridView1.Columns("BALANCE").SummaryItem.SummaryValue) = "" Then
+                _Balance = 0
+            Else
+                _Balance = Convert.ToInt32(GridView1.Columns("BALANCE").SummaryItem.SummaryValue)
+
+            End If
+            '_Balance = Convert.ToInt32(GridView1.Columns("BALANCE").SummaryItem.SummaryValue)
+            _Total = _Balance + _Internal
+            txtTotal.Text = _Total.ToString
+
+
+            'Convert.ToDouble(GridView1.Columns("Pemakaian").SummaryItem.SummaryValue)
             Call BersihText()
         End If
 
@@ -259,6 +277,9 @@ Public Class FrmHancuranDetail
         txtStokAwal.Text = "0"
         txtBalnce.Text = "0"
         txtKembali.Text = "0"
+        'txtHancuranInternal.Text = "0"
+        'txtTotal.Text = "0"
+        'txtTarget.Text = "0"
     End Sub
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
@@ -318,7 +339,7 @@ Public Class FrmHancuranDetail
                     With ObjHancuranDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Tanggal = Format(DtTanggal.Value, "yyyy-MM-dd")
-                        .D_IDSupplier = Convert.ToString(GridView1.GetRowCellValue(i, "ID SUPPLIER"))
+                        .D_IDSupplier = Convert.ToString(GridView1.GetRowCellValue(i, "SUPPLIER"))
                         .D_StokAwal = Convert.ToInt32(GridView1.GetRowCellValue(i, "STOK AWAL"))
                         .D_Kirim = Convert.ToInt32(GridView1.GetRowCellValue(i, "KIRIM"))
                         .D_Kembali = Convert.ToInt32(GridView1.GetRowCellValue(i, "KEMBALI"))
@@ -354,7 +375,7 @@ Public Class FrmHancuranDetail
                     With ObjHancuranDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Tanggal = Format(DtTanggal.Value, "yyyy-MM-dd")
-                        .D_IDSupplier = Convert.ToString(GridView1.GetRowCellValue(i, "ID SUPPLIER"))
+                        .D_IDSupplier = Convert.ToString(GridView1.GetRowCellValue(i, "SUPPLIER"))
                         .D_StokAwal = Convert.ToInt32(GridView1.GetRowCellValue(i, "STOK AWAL"))
                         .D_Kirim = Convert.ToInt32(GridView1.GetRowCellValue(i, "KIRIM"))
                         .D_Kembali = Convert.ToInt32(GridView1.GetRowCellValue(i, "KEMBALI"))
@@ -403,7 +424,7 @@ Public Class FrmHancuranDetail
                     .H_Tanggal = Format(CDate(Format(DtTanggal.Value, "yyyy-MM-dd")))
 
                     If isUpdate = False Then
-                        .ValidateInsert()
+                        .ValidateInsertHancuran()
                     End If
 
                 End With
@@ -420,15 +441,34 @@ Public Class FrmHancuranDetail
 
     Private Sub txtKembali_Leave(sender As Object, e As EventArgs) Handles txtKembali.Leave
         Try
-            If txtStokAwal.Text <> "" Or txtKirim.Text <> "" Or txtKembali.Text <> "" Then
-                Dim Stok, Kirim, Kembali, Balance As Integer
-                Stok = Convert.ToInt32(txtStokAwal.Text)
-                Kirim = Convert.ToInt32(txtKirim.Text)
-                Kembali = Convert.ToInt32(txtKembali.Text)
+            If txtStokAwal.Text = "" Then
+                txtStokAwal.Text = "0"
+            ElseIf txtKirim.Text = "" Then
+                txtKirim.Text = "0"
+            ElseIf txtKembali.Text = "" Then
+                txtKembali.Text = "0"
+            ElseIf txtBalnce.Text = "" Then
+                txtBalnce.Text = "0"
+            ElseIf txtHancuranInternal.Text = "" Then
+                txtHancuranInternal.Text = "0"
+            ElseIf txtTotal.Text = "" Then
+                txtTotal.Text = "0"
+            ElseIf txtTarget.Text = "" Then
+                txtTarget.Text = "0"
 
-                Balance = (Stok + Kirim) - Kembali
-                txtBalnce.Text = Balance.ToString
             End If
+
+            Dim Stok, Kirim, Kembali, Balance As Integer
+
+
+            Stok = txtStokAwal.Text
+            Kirim = txtKirim.Text
+            Kembali = txtKembali.Text
+
+
+            Balance = Stok + Kirim - Kembali
+            txtBalnce.Text = Balance.ToString
+
         Catch ex As Exception
 
         End Try
@@ -436,15 +476,34 @@ Public Class FrmHancuranDetail
 
     Private Sub txtKirim_Leave(sender As Object, e As EventArgs) Handles txtKirim.Leave
         Try
-            If txtStokAwal.Text <> "" Or txtKirim.Text <> "" Or txtKembali.Text <> "" Then
-                Dim Stok, Kirim, Kembali, Balance As Integer
-                Stok = Convert.ToInt32(txtStokAwal.Text)
-                Kirim = Convert.ToInt32(txtKirim.Text)
-                Kembali = Convert.ToInt32(txtKembali.Text)
-
-                Balance = (Stok + Kirim) - Kembali
-                txtBalnce.Text = Balance.ToString
+            If txtStokAwal.Text = "" Then
+                txtStokAwal.Text = "0"
+            ElseIf txtKirim.Text = "" Then
+                txtKirim.Text = "0"
+            ElseIf txtKembali.Text = "" Then
+                txtKembali.Text = "0"
+            ElseIf txtBalnce.Text = "" Then
+                txtBalnce.Text = "0"
+            ElseIf txtHancuranInternal.Text = "" Then
+                txtHancuranInternal.Text = "0"
+            ElseIf txtTotal.Text = "" Then
+                txtTotal.Text = "0"
+            ElseIf txtTarget.Text = "" Then
+                txtTarget.Text = "0"
             End If
+
+            Dim Stok, Kirim, Kembali, Balance As Integer
+
+
+            Stok = txtStokAwal.Text
+            Kirim = txtKirim.Text
+            Kembali = txtKembali.Text
+
+            Balance = Stok + Kirim - Kembali
+            txtBalnce.Text = Balance.ToString
+
+
+
         Catch ex As Exception
 
         End Try
@@ -452,15 +511,34 @@ Public Class FrmHancuranDetail
 
     Private Sub txtStokAwal_Leave(sender As Object, e As EventArgs) Handles txtStokAwal.Leave
         Try
-            If txtStokAwal.Text <> "" Or txtKirim.Text <> "" Or txtKembali.Text <> "" Then
-                Dim Stok, Kirim, Kembali, Balance As Integer
-                Stok = Convert.ToInt32(txtStokAwal.Text)
-                Kirim = Convert.ToInt32(txtKirim.Text)
-                Kembali = Convert.ToInt32(txtKembali.Text)
-
-                Balance = (Stok + Kirim) - Kembali
-                txtBalnce.Text = Balance.ToString
+            If txtStokAwal.Text = "" Then
+                txtStokAwal.Text = "0"
+            ElseIf txtKirim.Text = "" Then
+                txtKirim.Text = "0"
+            ElseIf txtKembali.Text = "" Then
+                txtKembali.Text = "0"
+            ElseIf txtBalnce.Text = "" Then
+                txtBalnce.Text = "0"
+            ElseIf txtHancuranInternal.Text = "" Then
+                txtHancuranInternal.Text = "0"
+            ElseIf txtTotal.Text = "" Then
+                txtTotal.Text = "0"
+            ElseIf txtTarget.Text = "" Then
+                txtTarget.Text = "0"
             End If
+
+            Dim Stok, Kirim, Kembali, Balance As Integer
+
+
+            Stok = txtStokAwal.Text
+            Kirim = txtKirim.Text
+            Kembali = txtKembali.Text
+
+            Balance = Stok + Kirim - Kembali
+            txtBalnce.Text = Balance.ToString
+
+
+
         Catch ex As Exception
 
         End Try
@@ -468,14 +546,22 @@ Public Class FrmHancuranDetail
 
     Private Sub txtHancuranInternal_Leave(sender As Object, e As EventArgs) Handles txtHancuranInternal.Leave
         Try
-            If txtHancuranInternal.Text <> "" Then
-                Dim internal, TotalSupplier, total As Integer
-                internal = Convert.ToInt32(txtHancuranInternal.Text)
-                TotalSupplier = Convert.ToInt32(GridView1.Columns("BALANCE").SummaryItem.SummaryValue)
 
-                total = internal + TotalSupplier
-                txtTotal.Text = total.ToString
+            Dim _Internal, _Total, _Balance As Integer
+
+            _Internal = txtHancuranInternal.Text
+
+            If Convert.ToString(GridView1.Columns("BALANCE").SummaryItem.SummaryValue) = "" Then
+                _Balance = 0
+            Else
+                _Balance = Convert.ToInt32(GridView1.Columns("BALANCE").SummaryItem.SummaryValue)
+
             End If
+            '_Balance = Convert.ToInt32(GridView1.Columns("BALANCE").SummaryItem.SummaryValue)
+            _Total = _Balance + _Internal
+            txtTotal.Text = _Total.ToString
+
+
         Catch ex As Exception
 
         End Try

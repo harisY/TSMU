@@ -21,13 +21,13 @@ Public Class ClaimCustomerModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -38,12 +38,12 @@ Public Class ClaimCustomerModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiQCClaim WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiQcClaimDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -61,7 +61,7 @@ Public Class ClaimCustomerModel
                               FROM [AsakaiQCClaim] where IDTransaksi = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_IDTransaksi = Trim(.Item(0) & "")
@@ -92,7 +92,7 @@ Public Class ClaimCustomerModel
                               From [AsakaiQcClaimDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -107,7 +107,7 @@ Public Class ClaimCustomerModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiQCClaim] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "QC" & Tahun & "0001"
@@ -140,7 +140,7 @@ Public Class ClaimCustomerModel
 
     Public Sub InsertClaimCustomer(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -176,7 +176,7 @@ Public Class ClaimCustomerModel
                                     FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
@@ -207,7 +207,7 @@ Public Class ClaimCustomerModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -216,7 +216,7 @@ Public Class ClaimCustomerModel
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -256,7 +256,7 @@ Public Class ClaimCustomerModel
                                     "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -266,7 +266,7 @@ Public Class ClaimCustomerModel
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiQcClaimDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -299,7 +299,7 @@ Public Class ClaimCustomerDetailModel
                        ([IDTransaksi]
                        ,[Customer]
                        ,[TanggalClaim]
-                       ,[TanggalClose]
+                       ,[TargetClose]
                        ,[InvtID]
                        ,[InvtName]
                        ,[Problem]
@@ -319,7 +319,7 @@ Public Class ClaimCustomerDetailModel
             "       " & QVal(D_Dokumen) & ", " & vbCrLf &
             "       " & QVal(D_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

@@ -69,6 +69,9 @@ Partial Class FrmQualityProblemDetail
         Me.TxtCorrection = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BGambar = New System.Windows.Forms.Button()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.TxtLotNo = New System.Windows.Forms.TextBox()
+        Me.LotNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,10 +97,9 @@ Partial Class FrmQualityProblemDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Shift, Me.Status, Me.Customer, Me.InvtId, Me.InvtName, Me.Type, Me.Qty, Me.Problem, Me.Analisis, Me.CorrectionAction, Me.PreventiveAction, Me.Pic, Me.Target, Me.Gambar})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Shift, Me.Status, Me.Customer, Me.InvtId, Me.InvtName, Me.Type, Me.Qty, Me.Problem, Me.Analisis, Me.CorrectionAction, Me.PreventiveAction, Me.Pic, Me.Target, Me.Gambar, Me.LotNo})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
         '
         'Shift
         '
@@ -153,49 +155,49 @@ Partial Class FrmQualityProblemDetail
         Me.Problem.FieldName = "Problem"
         Me.Problem.Name = "Problem"
         Me.Problem.Visible = True
-        Me.Problem.VisibleIndex = 7
+        Me.Problem.VisibleIndex = 8
         '
         'Analisis
         '
         Me.Analisis.FieldName = "Analisis"
         Me.Analisis.Name = "Analisis"
         Me.Analisis.Visible = True
-        Me.Analisis.VisibleIndex = 8
+        Me.Analisis.VisibleIndex = 9
         '
         'CorrectionAction
         '
         Me.CorrectionAction.FieldName = "Correction Action"
         Me.CorrectionAction.Name = "CorrectionAction"
         Me.CorrectionAction.Visible = True
-        Me.CorrectionAction.VisibleIndex = 9
+        Me.CorrectionAction.VisibleIndex = 10
         '
         'PreventiveAction
         '
         Me.PreventiveAction.FieldName = "Preventive Action"
         Me.PreventiveAction.Name = "PreventiveAction"
         Me.PreventiveAction.Visible = True
-        Me.PreventiveAction.VisibleIndex = 10
+        Me.PreventiveAction.VisibleIndex = 11
         '
         'Pic
         '
         Me.Pic.FieldName = "Pic"
         Me.Pic.Name = "Pic"
         Me.Pic.Visible = True
-        Me.Pic.VisibleIndex = 11
+        Me.Pic.VisibleIndex = 12
         '
         'Target
         '
         Me.Target.FieldName = "Target"
         Me.Target.Name = "Target"
         Me.Target.Visible = True
-        Me.Target.VisibleIndex = 12
+        Me.Target.VisibleIndex = 13
         '
         'Gambar
         '
         Me.Gambar.FieldName = "Gambar"
         Me.Gambar.Name = "Gambar"
         Me.Gambar.Visible = True
-        Me.Gambar.VisibleIndex = 13
+        Me.Gambar.VisibleIndex = 14
         '
         'RepositoryItemTextEdit1
         '
@@ -218,7 +220,7 @@ Partial Class FrmQualityProblemDetail
         '
         'BAdd
         '
-        Me.BAdd.Location = New System.Drawing.Point(12, 179)
+        Me.BAdd.Location = New System.Drawing.Point(12, 178)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(84, 23)
         Me.BAdd.TabIndex = 87
@@ -228,7 +230,7 @@ Partial Class FrmQualityProblemDetail
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(257, 143)
+        Me.Label11.Location = New System.Drawing.Point(505, 129)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(38, 13)
         Me.Label11.TabIndex = 84
@@ -237,7 +239,7 @@ Partial Class FrmQualityProblemDetail
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(257, 117)
+        Me.Label12.Location = New System.Drawing.Point(257, 108)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(24, 13)
         Me.Label12.TabIndex = 82
@@ -245,7 +247,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtPic
         '
-        Me.TxtPic.Location = New System.Drawing.Point(316, 117)
+        Me.TxtPic.Location = New System.Drawing.Point(316, 108)
         Me.TxtPic.Name = "TxtPic"
         Me.TxtPic.Size = New System.Drawing.Size(154, 20)
         Me.TxtPic.TabIndex = 81
@@ -261,7 +263,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(76, 64)
+        Me.TxtStatus.Location = New System.Drawing.Point(76, 61)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Size = New System.Drawing.Size(154, 20)
         Me.TxtStatus.TabIndex = 77
@@ -269,7 +271,7 @@ Partial Class FrmQualityProblemDetail
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(257, 90)
+        Me.Label6.Location = New System.Drawing.Point(257, 84)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(23, 13)
         Me.Label6.TabIndex = 76
@@ -277,7 +279,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(316, 90)
+        Me.TxtQty.Location = New System.Drawing.Point(316, 84)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Size = New System.Drawing.Size(154, 20)
         Me.TxtQty.TabIndex = 75
@@ -286,7 +288,7 @@ Partial Class FrmQualityProblemDetail
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(257, 64)
+        Me.Label5.Location = New System.Drawing.Point(257, 61)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(31, 13)
         Me.Label5.TabIndex = 74
@@ -294,7 +296,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtType
         '
-        Me.TxtType.Location = New System.Drawing.Point(316, 64)
+        Me.TxtType.Location = New System.Drawing.Point(316, 61)
         Me.TxtType.Name = "TxtType"
         Me.TxtType.Size = New System.Drawing.Size(154, 20)
         Me.TxtType.TabIndex = 73
@@ -302,7 +304,7 @@ Partial Class FrmQualityProblemDetail
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 143)
+        Me.Label4.Location = New System.Drawing.Point(9, 137)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 13)
         Me.Label4.TabIndex = 72
@@ -310,7 +312,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtInvtName
         '
-        Me.TxtInvtName.Location = New System.Drawing.Point(76, 143)
+        Me.TxtInvtName.Location = New System.Drawing.Point(76, 132)
         Me.TxtInvtName.Name = "TxtInvtName"
         Me.TxtInvtName.Size = New System.Drawing.Size(154, 20)
         Me.TxtInvtName.TabIndex = 71
@@ -318,7 +320,7 @@ Partial Class FrmQualityProblemDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 117)
+        Me.Label3.Location = New System.Drawing.Point(9, 113)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(37, 13)
         Me.Label3.TabIndex = 70
@@ -326,7 +328,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtInvtID
         '
-        Me.TxtInvtID.Location = New System.Drawing.Point(76, 117)
+        Me.TxtInvtID.Location = New System.Drawing.Point(76, 108)
         Me.TxtInvtID.Name = "TxtInvtID"
         Me.TxtInvtID.Size = New System.Drawing.Size(154, 20)
         Me.TxtInvtID.TabIndex = 69
@@ -334,7 +336,7 @@ Partial Class FrmQualityProblemDetail
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 90)
+        Me.Label2.Location = New System.Drawing.Point(9, 88)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(51, 13)
         Me.Label2.TabIndex = 68
@@ -360,7 +362,7 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtCustomer
         '
-        Me.TxtCustomer.Location = New System.Drawing.Point(76, 90)
+        Me.TxtCustomer.Location = New System.Drawing.Point(76, 84)
         Me.TxtCustomer.Name = "TxtCustomer"
         Me.TxtCustomer.Size = New System.Drawing.Size(154, 20)
         Me.TxtCustomer.TabIndex = 65
@@ -385,16 +387,16 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtProblem
         '
-        Me.TxtProblem.Location = New System.Drawing.Point(549, 36)
+        Me.TxtProblem.Location = New System.Drawing.Point(569, 37)
         Me.TxtProblem.Multiline = True
         Me.TxtProblem.Name = "TxtProblem"
-        Me.TxtProblem.Size = New System.Drawing.Size(192, 60)
+        Me.TxtProblem.Size = New System.Drawing.Size(192, 40)
         Me.TxtProblem.TabIndex = 90
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(489, 54)
+        Me.Label7.Location = New System.Drawing.Point(505, 40)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(45, 13)
         Me.Label7.TabIndex = 94
@@ -402,25 +404,25 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtAnalisis
         '
-        Me.TxtAnalisis.Location = New System.Drawing.Point(549, 106)
+        Me.TxtAnalisis.Location = New System.Drawing.Point(569, 82)
         Me.TxtAnalisis.Multiline = True
         Me.TxtAnalisis.Name = "TxtAnalisis"
-        Me.TxtAnalisis.Size = New System.Drawing.Size(192, 60)
+        Me.TxtAnalisis.Size = New System.Drawing.Size(192, 40)
         Me.TxtAnalisis.TabIndex = 93
         '
         'DtTarget
         '
         Me.DtTarget.CustomFormat = "dd-MM-yyyy"
         Me.DtTarget.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTarget.Location = New System.Drawing.Point(316, 143)
+        Me.DtTarget.Location = New System.Drawing.Point(569, 132)
         Me.DtTarget.Name = "DtTarget"
-        Me.DtTarget.Size = New System.Drawing.Size(154, 20)
+        Me.DtTarget.Size = New System.Drawing.Size(192, 20)
         Me.DtTarget.TabIndex = 95
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(492, 127)
+        Me.Label10.Location = New System.Drawing.Point(505, 88)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(42, 13)
         Me.Label10.TabIndex = 96
@@ -429,7 +431,7 @@ Partial Class FrmQualityProblemDetail
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(773, 127)
+        Me.Label9.Location = New System.Drawing.Point(789, 91)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(91, 13)
         Me.Label9.TabIndex = 100
@@ -438,26 +440,26 @@ Partial Class FrmQualityProblemDetail
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(771, 54)
+        Me.Label14.Location = New System.Drawing.Point(792, 46)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(88, 13)
         Me.Label14.TabIndex = 99
-        Me.Label14.Text = "Correction Action"
+        Me.Label14.Text = "Corrective Action"
         '
         'TxtPreventive
         '
-        Me.TxtPreventive.Location = New System.Drawing.Point(886, 106)
+        Me.TxtPreventive.Location = New System.Drawing.Point(886, 82)
         Me.TxtPreventive.Multiline = True
         Me.TxtPreventive.Name = "TxtPreventive"
-        Me.TxtPreventive.Size = New System.Drawing.Size(192, 60)
+        Me.TxtPreventive.Size = New System.Drawing.Size(192, 40)
         Me.TxtPreventive.TabIndex = 98
         '
         'TxtCorrection
         '
-        Me.TxtCorrection.Location = New System.Drawing.Point(886, 36)
+        Me.TxtCorrection.Location = New System.Drawing.Point(886, 37)
         Me.TxtCorrection.Multiline = True
         Me.TxtCorrection.Name = "TxtCorrection"
-        Me.TxtCorrection.Size = New System.Drawing.Size(192, 60)
+        Me.TxtCorrection.Size = New System.Drawing.Size(192, 40)
         Me.TxtCorrection.TabIndex = 97
         '
         'PictureBox1
@@ -472,17 +474,42 @@ Partial Class FrmQualityProblemDetail
         '
         'BGambar
         '
-        Me.BGambar.Location = New System.Drawing.Point(1149, 140)
+        Me.BGambar.Location = New System.Drawing.Point(1160, 137)
         Me.BGambar.Name = "BGambar"
         Me.BGambar.Size = New System.Drawing.Size(75, 23)
         Me.BGambar.TabIndex = 102
         Me.BGambar.Text = "Cari Gambar"
         Me.BGambar.UseVisualStyleBackColor = True
         '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(257, 129)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(22, 13)
+        Me.Label15.TabIndex = 104
+        Me.Label15.Text = "Lot"
+        '
+        'TxtLotNo
+        '
+        Me.TxtLotNo.Location = New System.Drawing.Point(316, 132)
+        Me.TxtLotNo.Name = "TxtLotNo"
+        Me.TxtLotNo.Size = New System.Drawing.Size(154, 20)
+        Me.TxtLotNo.TabIndex = 103
+        '
+        'LotNo
+        '
+        Me.LotNo.FieldName = "Lot No"
+        Me.LotNo.Name = "LotNo"
+        Me.LotNo.Visible = True
+        Me.LotNo.VisibleIndex = 7
+        '
         'FrmQualityProblemDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1330, 581)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.TxtLotNo)
         Me.Controls.Add(Me.BGambar)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label9)
@@ -548,6 +575,8 @@ Partial Class FrmQualityProblemDetail
         Me.Controls.SetChildIndex(Me.Label9, 0)
         Me.Controls.SetChildIndex(Me.PictureBox1, 0)
         Me.Controls.SetChildIndex(Me.BGambar, 0)
+        Me.Controls.SetChildIndex(Me.TxtLotNo, 0)
+        Me.Controls.SetChildIndex(Me.Label15, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -611,4 +640,7 @@ Partial Class FrmQualityProblemDetail
     Friend WithEvents Target As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Gambar As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGambar As Button
+    Friend WithEvents Label15 As Label
+    Friend WithEvents TxtLotNo As TextBox
+    Friend WithEvents LotNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

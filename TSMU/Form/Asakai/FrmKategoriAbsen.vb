@@ -157,13 +157,5 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Call CallFrm(IDAbsen,
-                     Description,
-                     GridView1.RowCount)
-
-        'Laporan = New Report_Form
-        'Laporan.Show()
-    End Sub
 End Class

@@ -30,6 +30,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Dokumen = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TargetClose = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -56,7 +57,6 @@ Partial Class FrmClaimCustomerDetail
         Me.DtTargetClose = New System.Windows.Forms.DateTimePicker()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.CmbStatus = New System.Windows.Forms.ComboBox()
-        Me.TargetClose = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +84,6 @@ Partial Class FrmClaimCustomerDetail
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalClaim, Me.InvtID, Me.InvtName, Me.Problem, Me.Qty, Me.Pic, Me.Status, Me.Dokumen, Me.TargetClose})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
         '
         'Customer
         '
@@ -148,6 +147,13 @@ Partial Class FrmClaimCustomerDetail
         Me.Dokumen.Name = "Dokumen"
         Me.Dokumen.Visible = True
         Me.Dokumen.VisibleIndex = 7
+        '
+        'TargetClose
+        '
+        Me.TargetClose.FieldName = "TargetClose"
+        Me.TargetClose.Name = "TargetClose"
+        Me.TargetClose.Visible = True
+        Me.TargetClose.VisibleIndex = 9
         '
         'RepositoryItemTextEdit1
         '
@@ -362,13 +368,6 @@ Partial Class FrmClaimCustomerDetail
         Me.CmbStatus.Name = "CmbStatus"
         Me.CmbStatus.Size = New System.Drawing.Size(154, 21)
         Me.CmbStatus.TabIndex = 65
-        '
-        'TargetClose
-        '
-        Me.TargetClose.FieldName = "TargetClose"
-        Me.TargetClose.Name = "TargetClose"
-        Me.TargetClose.Visible = True
-        Me.TargetClose.VisibleIndex = 9
         '
         'FrmClaimCustomerDetail
         '

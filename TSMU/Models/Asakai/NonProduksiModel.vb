@@ -18,13 +18,13 @@ Public Class NonProduksiModel
         Me._Query = "SELECT [IDTransaksi] as IDTransaksi
                    ,[Tanggal] as Tanggal
                    ,[Dept] as Dept
-              FROM AsakaiOtherDept"
+              FROM AsakaiOtherDept "
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -36,11 +36,11 @@ Public Class NonProduksiModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT [IDTransaksi] as IDTransaksi
-                   ,[Tanggal] as Tanggal
+                   ,Convert (Varchar,Tanggal,105) as Tanggal
                    ,[Dept] as Dept
-              FROM AsakaiOtherDept"
+              FROM AsakaiOtherDept Where Dept = '" & gh_Common.GroupID & "'"
             'dt = GetDataTableByCommand(sql)
-            dt = GetDataTableByCommand_sol(sql)
+            dt = GetDataTableByCommand(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -52,11 +52,11 @@ Public Class NonProduksiModel
 
             Dim ls_SP As String = "DELETE FROM AsakaiOtherDept WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
             Dim ls_SPD As String = "DELETE FROM AsakaiOtherDeptDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SPD)
+            MainModul.ExecQuery(ls_SPD)
 
         Catch ex As Exception
             Throw
@@ -77,7 +77,7 @@ Public Class NonProduksiModel
                                     WHERE AsakaiOtherDeptDetail.[IDTransaksi] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_Tanggal = Trim(.Item("Tanggal") & "")
@@ -100,7 +100,7 @@ Public Class NonProduksiModel
                                     WHERE AsakaiOtherDeptDetail.[IDTransaksi] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -115,7 +115,7 @@ Public Class NonProduksiModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiOtherDept] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "NP" & Tahun & "0001"
@@ -148,7 +148,7 @@ Public Class NonProduksiModel
 
     Public Sub InsertData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -197,7 +197,7 @@ Public Class NonProduksiModel
                                              ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -210,7 +210,7 @@ Public Class NonProduksiModel
                                     FROM [AsakaiOtherDept] where IDTransaksi = '" & H_IDTransaksi & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & (Me.H_IDTransaksi) & "]")
@@ -225,7 +225,7 @@ Public Class NonProduksiModel
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -265,7 +265,7 @@ Public Class NonProduksiModel
                                     "Dept = " & QVal(gh_Common.GroupID) & ", " & vbCrLf &
                                     "UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -275,7 +275,7 @@ Public Class NonProduksiModel
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiOtherDeptDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -305,7 +305,7 @@ Public Class NonProduksiDetailModel
             "       " & QVal(D_Duedate) & ", " & vbCrLf &
             "       " & QVal(D_PIC) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

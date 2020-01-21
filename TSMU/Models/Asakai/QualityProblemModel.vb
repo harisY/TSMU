@@ -13,13 +13,13 @@ Public Class QualityProblemModel
 
     Public Property ObjDetailQualityProblem() As New Collection(Of QualityProblemDetailModel)
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Tanggal from AsakaiQualityProblem  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiQualityProblem  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -30,12 +30,12 @@ Public Class QualityProblemModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiQualityProblem WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiQualityProblemDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -53,7 +53,7 @@ Public Class QualityProblemModel
                               FROM [AsakaiQualityProblem] where IDTransaksi = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_IDTransaksi = Trim(.Item(0) & "")
@@ -82,6 +82,7 @@ Public Class QualityProblemModel
                                   ,[Foto] as Gambar
                                   ,[Problem]
                                   ,[Analisis]
+                                  ,[Lot Produksi] as [Lot No]
                                   ,[CORRECTIVE ACTION] as [Correction Action]
                                   ,[PREVENTIVE ACTION] as [Preventive Action]
                                   ,[Pic]
@@ -89,7 +90,7 @@ Public Class QualityProblemModel
                               From [AsakaiQualityProblemDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -104,7 +105,7 @@ Public Class QualityProblemModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiQualityProblem] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "QP" & Tahun & "0001"
@@ -137,7 +138,7 @@ Public Class QualityProblemModel
 
     Public Sub InsertQualityProblem(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -184,7 +185,7 @@ Public Class QualityProblemModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -196,7 +197,7 @@ Public Class QualityProblemModel
                                     FROM [AsakaiQualityProblem] where Tanggal = '" & H_Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
@@ -211,7 +212,7 @@ Public Class QualityProblemModel
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -251,7 +252,7 @@ Public Class QualityProblemModel
                                     "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -261,7 +262,7 @@ Public Class QualityProblemModel
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiQualityProblemDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -288,6 +289,7 @@ Public Class QualityProblemDetailModel
     Public Property D_Tanggal As DateTime
     Public Property D_Target As DateTime
     Public Property D_Type As String
+    Public Property D_Lot As String
     Public Property D_Gambar As String
 
 
@@ -307,6 +309,7 @@ Public Class QualityProblemDetailModel
                    ,[QTY]
                    ,[Foto]
                    ,[Problem]
+                   ,[Lot Produksi]
                    ,[Analisis]
                    ,[CORRECTIVE ACTION]
                    ,[PREVENTIVE ACTION]
@@ -323,13 +326,14 @@ Public Class QualityProblemDetailModel
             "       " & QVal(D_Qty) & ", " & vbCrLf &
             "       " & QVal(D_Gambar) & ", " & vbCrLf &
             "       " & QVal(D_Problem) & ", " & vbCrLf &
+            "       " & QVal(D_Lot) & ", " & vbCrLf &
             "       " & QVal(D_Analisis) & ", " & vbCrLf &
             "       " & QVal(D_CORRECTIVE_ACTION) & ", " & vbCrLf &
             "       " & QVal(D_PREVENTIVE_ACTION) & ", " & vbCrLf &
             "       " & QVal(D_Pic) & ", " & vbCrLf &
             "       " & QVal(D_Target) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

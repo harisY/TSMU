@@ -89,6 +89,7 @@ Public Class FrmNonProduksiDetail
                 With Fc_Class
 
                     DtTanggal.Value = Fc_Class.H_Tanggal
+                    DtTanggal.Enabled = False
                     DtDuedate.Value = Fc_Class.D_Duedate
 
                 End With
@@ -188,7 +189,7 @@ Public Class FrmNonProduksiDetail
                 Next
 
                 Fc_Class.InsertData(KodeTrans)
-                GridDtl.DataSource = Fc_Class.GetAllDataTable(bs_Filter)
+                GridDtl.DataSource = Fc_Class.GetDataLoad()
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
@@ -211,7 +212,7 @@ Public Class FrmNonProduksiDetail
                 Next
 
                 Fc_Class.UpdateData(fs_Code)
-                GridDtl.DataSource = Fc_Class.GetAllDataTable(bs_Filter)
+                GridDtl.DataSource = Fc_Class.GetDataLoad()
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If

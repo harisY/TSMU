@@ -134,8 +134,10 @@ Partial Class FrmHancuranStokDetail
         '
         'TxtStokAkhir
         '
+        Me.TxtStokAkhir.BackColor = System.Drawing.SystemColors.Window
         Me.TxtStokAkhir.Location = New System.Drawing.Point(559, 155)
         Me.TxtStokAkhir.Name = "TxtStokAkhir"
+        Me.TxtStokAkhir.ReadOnly = True
         Me.TxtStokAkhir.Size = New System.Drawing.Size(171, 20)
         Me.TxtStokAkhir.TabIndex = 47
         '
@@ -164,8 +166,10 @@ Partial Class FrmHancuranStokDetail
         '
         'TxtTotalPagi
         '
+        Me.TxtTotalPagi.BackColor = System.Drawing.SystemColors.Window
         Me.TxtTotalPagi.Location = New System.Drawing.Point(559, 68)
         Me.TxtTotalPagi.Name = "TxtTotalPagi"
+        Me.TxtTotalPagi.ReadOnly = True
         Me.TxtTotalPagi.Size = New System.Drawing.Size(171, 20)
         Me.TxtTotalPagi.TabIndex = 43
         '
@@ -198,8 +202,10 @@ Partial Class FrmHancuranStokDetail
         '
         'TxtTotalOK
         '
+        Me.TxtTotalOK.BackColor = System.Drawing.SystemColors.Window
         Me.TxtTotalOK.Location = New System.Drawing.Point(559, 40)
         Me.TxtTotalOK.Name = "TxtTotalOK"
+        Me.TxtTotalOK.ReadOnly = True
         Me.TxtTotalOK.Size = New System.Drawing.Size(171, 20)
         Me.TxtTotalOK.TabIndex = 49
         '

@@ -14,7 +14,7 @@ Public Class KebijakanModel
             Dim sql As String =
             "SELECT ID,Kebijakan from AsakaiKebijakan order by ID"
             'dt = GetDataTableByCommand(sql)
-            dt = GetDataTableByCommand_sol(sql)
+            dt = GetDataTableByCommand(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -25,7 +25,7 @@ Public Class KebijakanModel
 
             Dim ls_SP As String = "DELETE FROM AsakaiKebijakan WHERE rtrim(ID)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -40,7 +40,7 @@ Public Class KebijakanModel
                                     FROM AsakaiKebijakan WHERE ID = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.ID = Trim(.Item("ID") & "")
@@ -75,7 +75,7 @@ Public Class KebijakanModel
                                     FROM AsakaiKebijakan where ID = " & ID & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.ID & "]")
@@ -89,7 +89,7 @@ Public Class KebijakanModel
 
     Public Sub InsertDataKebijakan()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -133,7 +133,7 @@ Public Class KebijakanModel
 
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -141,7 +141,7 @@ Public Class KebijakanModel
     End Sub
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -175,7 +175,7 @@ Public Class KebijakanModel
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE ID = '" & _ID & "'"
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try

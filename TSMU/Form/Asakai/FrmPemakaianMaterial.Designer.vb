@@ -99,7 +99,7 @@ Partial Class FrmPemakaianMaterial
         '
         'TxtKolomHarga
         '
-        Me.TxtKolomHarga.Location = New System.Drawing.Point(420, 69)
+        Me.TxtKolomHarga.Location = New System.Drawing.Point(420, 55)
         Me.TxtKolomHarga.Name = "TxtKolomHarga"
         Me.TxtKolomHarga.Size = New System.Drawing.Size(69, 20)
         Me.TxtKolomHarga.TabIndex = 7
@@ -133,7 +133,7 @@ Partial Class FrmPemakaianMaterial
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(325, 69)
+        Me.Label3.Location = New System.Drawing.Point(325, 55)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(68, 13)
         Me.Label3.TabIndex = 11
@@ -160,7 +160,7 @@ Partial Class FrmPemakaianMaterial
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(10, 72)
+        Me.Label6.Location = New System.Drawing.Point(10, 58)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(84, 13)
         Me.Label6.TabIndex = 14
@@ -168,7 +168,7 @@ Partial Class FrmPemakaianMaterial
         '
         'TxtBarisKomponen2
         '
-        Me.TxtBarisKomponen2.Location = New System.Drawing.Point(224, 72)
+        Me.TxtBarisKomponen2.Location = New System.Drawing.Point(224, 58)
         Me.TxtBarisKomponen2.Name = "TxtBarisKomponen2"
         Me.TxtBarisKomponen2.Size = New System.Drawing.Size(69, 20)
         Me.TxtBarisKomponen2.TabIndex = 16
@@ -176,7 +176,7 @@ Partial Class FrmPemakaianMaterial
         '
         'TxtBarisKomponen1
         '
-        Me.TxtBarisKomponen1.Location = New System.Drawing.Point(105, 72)
+        Me.TxtBarisKomponen1.Location = New System.Drawing.Point(105, 58)
         Me.TxtBarisKomponen1.Name = "TxtBarisKomponen1"
         Me.TxtBarisKomponen1.Size = New System.Drawing.Size(78, 20)
         Me.TxtBarisKomponen1.TabIndex = 15
@@ -185,7 +185,7 @@ Partial Class FrmPemakaianMaterial
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(195, 72)
+        Me.Label7.Location = New System.Drawing.Point(195, 58)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(23, 13)
         Me.Label7.TabIndex = 17
@@ -208,9 +208,9 @@ Partial Class FrmPemakaianMaterial
         Me.GroupBox1.Controls.Add(Me.TxtSalesMaterial)
         Me.GroupBox1.Controls.Add(Me.TxtAktualRpMaterial)
         Me.GroupBox1.Controls.Add(Me.GridMaterial)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 191)
+        Me.GroupBox1.Location = New System.Drawing.Point(13, 132)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(666, 258)
+        Me.GroupBox1.Size = New System.Drawing.Size(666, 317)
         Me.GroupBox1.TabIndex = 19
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Material"
@@ -352,7 +352,7 @@ Partial Class FrmPemakaianMaterial
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GridMaterial.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.GridMaterial.Size = New System.Drawing.Size(651, 124)
+        Me.GridMaterial.Size = New System.Drawing.Size(651, 183)
         Me.GridMaterial.TabIndex = 15
         '
         'GroupBox2
@@ -373,9 +373,9 @@ Partial Class FrmPemakaianMaterial
         Me.GroupBox2.Controls.Add(Me.TxtPercentKomponen)
         Me.GroupBox2.Controls.Add(Me.TxtSalesKomponen)
         Me.GroupBox2.Controls.Add(Me.TxtAktualRpKomponen)
-        Me.GroupBox2.Location = New System.Drawing.Point(704, 188)
+        Me.GroupBox2.Location = New System.Drawing.Point(704, 132)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(489, 261)
+        Me.GroupBox2.Size = New System.Drawing.Size(489, 317)
         Me.GroupBox2.TabIndex = 38
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Komponen"
@@ -422,7 +422,7 @@ Partial Class FrmPemakaianMaterial
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GridKomponen.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
-        Me.GridKomponen.Size = New System.Drawing.Size(474, 127)
+        Me.GridKomponen.Size = New System.Drawing.Size(474, 183)
         Me.GridKomponen.TabIndex = 50
         '
         'Label14
@@ -522,7 +522,7 @@ Partial Class FrmPemakaianMaterial
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 108)
+        Me.Label1.Location = New System.Drawing.Point(9, 81)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(74, 13)
         Me.Label1.TabIndex = 39
@@ -531,7 +531,7 @@ Partial Class FrmPemakaianMaterial
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(12, 139)
+        Me.Label20.Location = New System.Drawing.Point(12, 104)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(84, 13)
         Me.Label20.TabIndex = 40
@@ -541,7 +541,7 @@ Partial Class FrmPemakaianMaterial
         '
         Me.TanggalMulai.CustomFormat = "dd-MMMM-yyyy"
         Me.TanggalMulai.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.TanggalMulai.Location = New System.Drawing.Point(105, 108)
+        Me.TanggalMulai.Location = New System.Drawing.Point(105, 81)
         Me.TanggalMulai.Name = "TanggalMulai"
         Me.TanggalMulai.Size = New System.Drawing.Size(188, 20)
         Me.TanggalMulai.TabIndex = 41
@@ -551,7 +551,7 @@ Partial Class FrmPemakaianMaterial
         '
         Me.TanggalSampai.CustomFormat = "dd-MMMM-yyyy"
         Me.TanggalSampai.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.TanggalSampai.Location = New System.Drawing.Point(105, 139)
+        Me.TanggalSampai.Location = New System.Drawing.Point(105, 104)
         Me.TanggalSampai.Name = "TanggalSampai"
         Me.TanggalSampai.Size = New System.Drawing.Size(188, 20)
         Me.TanggalSampai.TabIndex = 42
@@ -560,7 +560,7 @@ Partial Class FrmPemakaianMaterial
         'TxtKeterangan
         '
         Me.TxtKeterangan.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtKeterangan.Location = New System.Drawing.Point(328, 108)
+        Me.TxtKeterangan.Location = New System.Drawing.Point(328, 81)
         Me.TxtKeterangan.Name = "TxtKeterangan"
         Me.TxtKeterangan.ReadOnly = True
         Me.TxtKeterangan.Size = New System.Drawing.Size(327, 45)

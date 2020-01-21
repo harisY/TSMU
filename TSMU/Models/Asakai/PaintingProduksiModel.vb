@@ -67,7 +67,7 @@ Public Class PaintingProduksiModel
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -83,7 +83,7 @@ Public Class PaintingProduksiModel
             Dim ls_SP As String = "SELECT [IdTransaksi]                   
                                     FROM [AsakaiPaintingStraightPass] order by IdTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "STR" & Tahun & "0001"
@@ -118,7 +118,7 @@ Public Class PaintingProduksiModel
 
     Public Sub InsertInjection()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -249,7 +249,7 @@ Public Class PaintingProduksiModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -279,7 +279,7 @@ Public Class PaintingProduksiModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -289,19 +289,19 @@ Public Class PaintingProduksiModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiPaintingStraightPass WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
             Dim ls_DeleteScrap As String = "DELETE FROM AsakaiPaintingScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteScrap)
+            MainModul.ExecQuery(ls_DeleteScrap)
 
             Dim ls_DeleteScrapDetail As String = "DELETE FROM AsakaiPaintingDetailPartScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteScrapDetail)
+            MainModul.ExecQuery(ls_DeleteScrapDetail)
 
             Dim ls_DeleteProblemQty As String = "DELETE FROM AsakaiPaintingProblemQty WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteProblemQty)
+            MainModul.ExecQuery(ls_DeleteProblemQty)
 
             Dim ls_DeleteProblemAnalisa As String = "DELETE FROM AsakaiPaintingProblemAnalisa WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteProblemAnalisa)
+            MainModul.ExecQuery(ls_DeleteProblemAnalisa)
 
 
             'DeleteDetail
@@ -316,7 +316,7 @@ Public Class PaintingProduksiModel
                                     FROM [AsakaiPaintingStraightPass] where Tanggal = '" & Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.Tanggal & " ")
@@ -400,7 +400,7 @@ Public Class PaintingProduksiDetailScrapModel
             "       " & QVal(InvtName) & ", " & vbCrLf &
             "       " & QVal(Qty) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -453,7 +453,7 @@ Public Class PaintingProduksiDetailScrapModel
             "       " & QVal(PQ_OP_KASAR_BELANG) & ", " & vbCrLf &
             "       " & QVal(PQ_LAIN2) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -486,7 +486,7 @@ Public Class PaintingProduksiDetailScrapModel
             "       " & QVal(PA_Target) & ", " & vbCrLf &
             "       " & QVal(PA_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

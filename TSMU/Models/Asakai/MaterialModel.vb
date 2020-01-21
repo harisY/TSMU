@@ -15,7 +15,7 @@ Public Class MaterialModel
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw

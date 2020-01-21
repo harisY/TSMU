@@ -138,6 +138,26 @@ Public Class FrmDeliveryDetail
                         cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
                         Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
                         cn.Open()
+                        'Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
+                        '                                                 ,F3 as [Item Number]
+                        '                                               ,F1 as Customer
+                        '                                                ,F4 as [Delivery Due Date]
+                        '                                                ,F5 as [Qty Order]
+                        '                                                ,F6 as Delivery
+                        '                                                ,F7 as Jumlah
+                        '                                                ,F8 as [Stock TNG 08 DEL]
+                        '                                                ,F9 as [Stock TNG 05 WHJ]
+                        '                                                ,F10 as [StockTNG06SFG]
+                        '                                                ,F11 as [Stock 2nd]
+                        '                                                ,F12 as [Stock Paint]
+                        '                                                ,F13 as [Stock Inject Presisi]
+                        '                                                ,F14 as WHP
+                        '                                                ,F15 as [Stock TNG 04-02 PNT]
+                        '                                                ,F16 as [Total Stock]
+                        '                                                ,F17 as Balance
+                        '                                                ,F18 as Keterangan
+                        '                                                 FROM [ASAKAI$A4:R200] where F2 <>''", cn)
+
                         Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
                                                                          ,F3 as [Item Number]
                                                                        ,F1 as Customer
@@ -153,10 +173,9 @@ Public Class FrmDeliveryDetail
                                                                         ,F13 as [Stock Inject Presisi]
                                                                         ,F14 as WHP
                                                                         ,F15 as [Stock TNG 04-02 PNT]
-                                                                        ,F16 as [Total Stock]
-                                                                        ,F17 as Balance
                                                                         ,F18 as Keterangan
                                                                          FROM [ASAKAI$A4:R200] where F2 <>''", cn)
+
                         Dim dt As New DataTable
                         dt.Load(cmd.ExecuteReader)
 
@@ -284,6 +303,7 @@ Public Class FrmDeliveryDetail
                     With ObjDeliveryDetail
                         .IDTrans = IdTransaksi
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtId"))
+                        .invtName = Convert.ToString(GridView1.GetRowCellValue(i, "Item Number"))
                         .Customer = GridView1.GetRowCellValue(i, "Customer")
                         .Delivery_Due_Date = GridView1.GetRowCellValue(i, "Delivery Due Date")
                         .Qty_Order = GridView1.GetRowCellValue(i, "Qty Order")
@@ -364,6 +384,7 @@ Public Class FrmDeliveryDetail
 
     End Function
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
-
+    End Sub
 End Class

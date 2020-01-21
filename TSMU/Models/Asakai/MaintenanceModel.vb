@@ -26,13 +26,13 @@ Public Class MaintenanceModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Tanggal from AsakaiMaintenance  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenance  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -43,15 +43,15 @@ Public Class MaintenanceModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiMaintenance WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeleteDetailMesin As String = "DELETE FROM AsakaiMaintenanceMesin WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetailMesin)
+            MainModul.ExecQuery(ls_DeleteDetailMesin)
 
             Dim ls_DeleteDetailMold As String = "DELETE FROM AsakaiMaintenanceMold WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetailMold)
+            MainModul.ExecQuery(ls_DeleteDetailMold)
 
 
         Catch ex As Exception
@@ -75,7 +75,7 @@ Public Class MaintenanceModel
                               inner Join AsakaiMaintenanceMold on AsakaiMaintenance.IDTransaksi = AsakaiMaintenanceMold.IDTransaksi  where AsakaiMaintenance.IDTransaksi = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_IDTransaksi = Trim(.Item(0) & "")
@@ -105,7 +105,7 @@ Public Class MaintenanceModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiMaintenance] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "MT" & Tahun & "0001"
@@ -138,7 +138,7 @@ Public Class MaintenanceModel
 
     Public Sub InsertMain(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -180,7 +180,7 @@ Public Class MaintenanceModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -207,7 +207,7 @@ Public Class MaintenanceModel
                                             ," & QVal(KeteranganMesin) & ")"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -234,7 +234,7 @@ Public Class MaintenanceModel
                                             ," & QVal(Keterangan_Mold) & ")"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -243,7 +243,7 @@ Public Class MaintenanceModel
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -276,7 +276,7 @@ Public Class MaintenanceModel
                                     "UPDATE AsakaiMaintenance" & vbCrLf &
                                     "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -290,7 +290,7 @@ Public Class MaintenanceModel
                                      "    [2. Actual]  = " & QVal(Mesin_Actual) & ", " & vbCrLf &
                                    "    [3. Balance]  = " & QVal(Mesin_Balance) & ", " & vbCrLf &
                                     "    [4. Keterangan]= " & QVal(KeteranganMesin) & " WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -304,7 +304,7 @@ Public Class MaintenanceModel
                                     "    [2. Actual]  = " & QVal(Mold_Actual) & ", " & vbCrLf &
                                     "    [3. Balance]  = " & QVal(Mold_Balance) & ", " & vbCrLf &
                                     "    [4. Keterangan]= " & QVal(Keterangan_Mold) & " WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -316,7 +316,7 @@ Public Class MaintenanceModel
                                     FROM [AsakaiMaintenance] where Tanggal = '" & H_Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")

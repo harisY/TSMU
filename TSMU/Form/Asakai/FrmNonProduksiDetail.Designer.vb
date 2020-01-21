@@ -42,10 +42,10 @@ Partial Class FrmNonProduksiDetail
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 164)
+        Me.Grid.Location = New System.Drawing.Point(12, 155)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(785, 195)
+        Me.Grid.Size = New System.Drawing.Size(785, 206)
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -82,7 +82,7 @@ Partial Class FrmNonProduksiDetail
         '
         'TxtInformasi
         '
-        Me.TxtInformasi.Location = New System.Drawing.Point(95, 101)
+        Me.TxtInformasi.Location = New System.Drawing.Point(95, 93)
         Me.TxtInformasi.Multiline = True
         Me.TxtInformasi.Name = "TxtInformasi"
         Me.TxtInformasi.Size = New System.Drawing.Size(239, 58)
@@ -90,7 +90,7 @@ Partial Class FrmNonProduksiDetail
         '
         'TxtPIC
         '
-        Me.TxtPIC.Location = New System.Drawing.Point(95, 55)
+        Me.TxtPIC.Location = New System.Drawing.Point(95, 51)
         Me.TxtPIC.Name = "TxtPIC"
         Me.TxtPIC.Size = New System.Drawing.Size(239, 20)
         Me.TxtPIC.TabIndex = 7
@@ -98,7 +98,7 @@ Partial Class FrmNonProduksiDetail
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 34)
+        Me.Label1.Location = New System.Drawing.Point(12, 31)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(58, 13)
         Me.Label1.TabIndex = 8
@@ -107,7 +107,7 @@ Partial Class FrmNonProduksiDetail
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 104)
+        Me.Label2.Location = New System.Drawing.Point(12, 94)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(66, 13)
         Me.Label2.TabIndex = 9
@@ -117,7 +117,7 @@ Partial Class FrmNonProduksiDetail
         '
         Me.DtTanggal.CustomFormat = "dd-MM-yyyy"
         Me.DtTanggal.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTanggal.Location = New System.Drawing.Point(95, 32)
+        Me.DtTanggal.Location = New System.Drawing.Point(95, 30)
         Me.DtTanggal.Name = "DtTanggal"
         Me.DtTanggal.Size = New System.Drawing.Size(239, 20)
         Me.DtTanggal.TabIndex = 10
@@ -126,7 +126,7 @@ Partial Class FrmNonProduksiDetail
         '
         Me.DtDuedate.CustomFormat = "dd-MM-yyyy"
         Me.DtDuedate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtDuedate.Location = New System.Drawing.Point(95, 78)
+        Me.DtDuedate.Location = New System.Drawing.Point(95, 72)
         Me.DtDuedate.Name = "DtDuedate"
         Me.DtDuedate.Size = New System.Drawing.Size(239, 20)
         Me.DtDuedate.TabIndex = 11
@@ -134,7 +134,7 @@ Partial Class FrmNonProduksiDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 56)
+        Me.Label3.Location = New System.Drawing.Point(12, 52)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(24, 13)
         Me.Label3.TabIndex = 12
@@ -143,7 +143,7 @@ Partial Class FrmNonProduksiDetail
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 79)
+        Me.Label4.Location = New System.Drawing.Point(12, 73)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(59, 13)
         Me.Label4.TabIndex = 13
@@ -151,7 +151,7 @@ Partial Class FrmNonProduksiDetail
         '
         'BTambah
         '
-        Me.BTambah.Location = New System.Drawing.Point(340, 29)
+        Me.BTambah.Location = New System.Drawing.Point(340, 30)
         Me.BTambah.Name = "BTambah"
         Me.BTambah.Size = New System.Drawing.Size(75, 23)
         Me.BTambah.TabIndex = 14

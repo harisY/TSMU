@@ -19,9 +19,9 @@ Partial Class FrmHancuranDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.IdSupplier = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SUPPLIER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.STOKAWAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.KIRIM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,8 +46,10 @@ Partial Class FrmHancuranDetail
         Me.txtBalnce = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.BAdd = New System.Windows.Forms.Button()
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -64,62 +66,62 @@ Partial Class FrmHancuranDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IdSupplier, Me.SUPPLIER, Me.STOKAWAL, Me.KIRIM, Me.KEMBALI, Me.BALANCE})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SUPPLIER, Me.STOKAWAL, Me.KIRIM, Me.KEMBALI, Me.BALANCE})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowFooter = True
         '
-        'IdSupplier
-        '
-        Me.IdSupplier.FieldName = "ID SUPPLIER"
-        Me.IdSupplier.Name = "IdSupplier"
-        Me.IdSupplier.Visible = True
-        Me.IdSupplier.VisibleIndex = 0
-        Me.IdSupplier.Width = 98
-        '
         'SUPPLIER
         '
         Me.SUPPLIER.FieldName = "SUPPLIER"
         Me.SUPPLIER.Name = "SUPPLIER"
+        Me.SUPPLIER.OptionsColumn.AllowEdit = False
         Me.SUPPLIER.Visible = True
-        Me.SUPPLIER.VisibleIndex = 1
+        Me.SUPPLIER.VisibleIndex = 0
         Me.SUPPLIER.Width = 196
         '
         'STOKAWAL
         '
         Me.STOKAWAL.FieldName = "STOK AWAL"
         Me.STOKAWAL.Name = "STOKAWAL"
+        Me.STOKAWAL.OptionsColumn.AllowEdit = False
         Me.STOKAWAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "STOK AWAL", "SUM={0:0.##}")})
         Me.STOKAWAL.Visible = True
-        Me.STOKAWAL.VisibleIndex = 2
+        Me.STOKAWAL.VisibleIndex = 1
         Me.STOKAWAL.Width = 127
         '
         'KIRIM
         '
         Me.KIRIM.FieldName = "KIRIM"
         Me.KIRIM.Name = "KIRIM"
+        Me.KIRIM.OptionsColumn.AllowEdit = False
         Me.KIRIM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "KIRIM", "SUM={0:0.##}")})
         Me.KIRIM.Visible = True
-        Me.KIRIM.VisibleIndex = 3
+        Me.KIRIM.VisibleIndex = 2
         Me.KIRIM.Width = 140
         '
         'KEMBALI
         '
         Me.KEMBALI.FieldName = "KEMBALI"
         Me.KEMBALI.Name = "KEMBALI"
+        Me.KEMBALI.OptionsColumn.AllowEdit = False
         Me.KEMBALI.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "KEMBALI", "SUM={0:0.##}")})
         Me.KEMBALI.Visible = True
-        Me.KEMBALI.VisibleIndex = 4
+        Me.KEMBALI.VisibleIndex = 3
         Me.KEMBALI.Width = 132
         '
         'BALANCE
         '
+        Me.BALANCE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BALANCE.FieldName = "BALANCE"
         Me.BALANCE.Name = "BALANCE"
+        Me.BALANCE.OptionsColumn.AllowEdit = False
         Me.BALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BALANCE", "SUM={0:0.##}")})
+        Me.BALANCE.UnboundExpression = "[STOK AWAL] + [KIRIM] - [KEMBALI]"
+        Me.BALANCE.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BALANCE.Visible = True
-        Me.BALANCE.VisibleIndex = 5
+        Me.BALANCE.VisibleIndex = 4
         Me.BALANCE.Width = 149
         '
         'Label1
@@ -152,6 +154,7 @@ Partial Class FrmHancuranDetail
         'CmbSuplier
         '
         Me.CmbSuplier.FormattingEnabled = True
+        Me.CmbSuplier.Items.AddRange(New Object() {"TRALON", "PCT"})
         Me.CmbSuplier.Location = New System.Drawing.Point(99, 63)
         Me.CmbSuplier.Name = "CmbSuplier"
         Me.CmbSuplier.Size = New System.Drawing.Size(171, 21)
@@ -325,6 +328,7 @@ Partial Class FrmHancuranDetail
         Me.Controls.SetChildIndex(Me.BAdd, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -332,7 +336,6 @@ Partial Class FrmHancuranDetail
 
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents IdSupplier As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SUPPLIER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents STOKAWAL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label1 As Label
@@ -357,4 +360,5 @@ Partial Class FrmHancuranDetail
     Friend WithEvents KEMBALI As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BALANCE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BAdd As Button
+    Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
 End Class

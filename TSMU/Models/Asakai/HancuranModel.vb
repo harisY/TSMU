@@ -40,13 +40,13 @@ Public Class HancuranModel
                   ,[5. Hancuran Internal] As [Hancuran Internal]
                   ,[6. Total] as Total
                   ,[7. Target] as Target
-          FROM [AsakaiHancuranHeader]"
+          FROM [AsakaiHancuranHeader] order by tanggal desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -59,7 +59,7 @@ Public Class HancuranModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT [IDTransaksi]
-                  ,[Tanggal]
+                  ,convert(varchar,Tanggal,105) as Tanggal
                   ,[1. StokAwal] as [Stok Awal]
                   ,[2. Kirim] as Kirim
                   ,[3. Kembali] as Kembali
@@ -67,9 +67,9 @@ Public Class HancuranModel
                   ,[5. Hancuran Internal] As [Hancuran Internal]
                   ,[6. Total] as Total
                   ,[7. Target] as Target
-          FROM [AsakaiHancuranHeader]"
+          FROM [AsakaiHancuranHeader] order By tanggal Desc"
             'dt = GetDataTableByCommand(sql)
-            dt = GetDataTableByCommand_sol(sql)
+            dt = GetDataTableByCommand(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -81,7 +81,7 @@ Public Class HancuranModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT [IDTransaksi] as ID
-              ,[Tanggal] AS TANGGAL
+              ,convert (varchar,Tanggal,105) AS TANGGAL
               ,[1. STOK GRI PROSES PALLET KG] AS [STOK PALLET]
               ,[2. STOK GRI PROSES MIX KG] AS [STOK MIX]
               ,[3. STOK GRI NG KG] AS [STOK NG]
@@ -91,9 +91,9 @@ Public Class HancuranModel
               ,[7. IN HANCURAN] AS MASUK
               ,[8. OUT HANCURAN] AS KELUAR
               ,[9. STOK AHIR] AS [STOK AHIR]
-          FROM [AsakaiHancuranStok]"
+          FROM [AsakaiHancuranStok] order By Tanggal Desc"
             'dt = GetDataTableByCommand(sql)
-            dt = GetDataTableByCommand_sol(sql)
+            dt = GetDataTableByCommand(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -106,7 +106,7 @@ Public Class HancuranModel
             Dim dtTable As New DataTable
             Dim sql As String =
             "SELECT [IDTransaksi] as ID
-              ,[Tanggal] AS TANGGAL
+              , convert (varchar,Tanggal,105) AS TANGGAL
               ,[1. STOK GRI PROSES PALLET KG] AS [STOK PALLET]
               ,[2. STOK GRI PROSES MIX KG] AS [STOK MIX]
               ,[3. STOK GRI NG KG] AS [STOK NG]
@@ -116,9 +116,9 @@ Public Class HancuranModel
               ,[7. IN HANCURAN] AS MASUK
               ,[8. OUT HANCURAN] AS KELUAR
               ,[9. STOK AHIR] AS [STOK AHIR]
-          FROM [AsakaiHancuranStok]"
+          FROM [AsakaiHancuranStok] order by Tanggal desc"
 
-            dtTable = MainModul.GetDataTableByCommand_sol(sql)
+            dtTable = MainModul.GetDataTableByCommand(sql)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -131,7 +131,7 @@ Public Class HancuranModel
 
             Dim ls_SP As String = "DELETE FROM AsakaiHancuranStok WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -143,11 +143,11 @@ Public Class HancuranModel
 
             Dim ls_SP As String = "DELETE FROM AsakaiHancuranDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
             Dim ls_SPD As String = "DELETE FROM AsakaiHancuranHeader WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SPD)
+            MainModul.ExecQuery(ls_SPD)
 
         Catch ex As Exception
             Throw
@@ -168,7 +168,7 @@ Public Class HancuranModel
                                   FROM AsakaiHancuranHeader  
                                     WHERE IDTransaksi = " & QVal(ID) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     H_Tanggal = Trim(.Item("Tanggal") & "")
@@ -203,7 +203,7 @@ Public Class HancuranModel
                                   FROM [AsakaiHancuranStok] 
                                     WHERE IDTransaksi = " & QVal(ID) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     HS_IDTransaksi = Trim(.Item("IDTransaksi") & "")
@@ -229,7 +229,7 @@ Public Class HancuranModel
         Try
             Dim query As String = "SELECT [IDTransaksi]
                                   ,[Tanggal]
-                                  ,[IDSupplier] AS [ID SUPPLIER]
+                                  ,[IDSupplier] AS [SUPPLIER]
                                   ,[StokAwal] AS [STOK AWAL]
                                   ,[Kirim] AS [KIRIM]
                                   ,[Kembali] AS [KEMBALI]
@@ -238,7 +238,7 @@ Public Class HancuranModel
                                     WHERE [IDTransaksi] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -253,7 +253,7 @@ Public Class HancuranModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiHancuranHeader] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "HC" & Tahun & "0001"
@@ -291,7 +291,7 @@ Public Class HancuranModel
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiHancuranStok] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "HS" & Tahun & "0001"
@@ -325,7 +325,7 @@ Public Class HancuranModel
 
     Public Sub InsertData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -386,7 +386,7 @@ Public Class HancuranModel
                                              ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -399,7 +399,25 @@ Public Class HancuranModel
                                     FROM [AsakaiHancuranStok] where Tanggal = '" & H_Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+                "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
+            Else
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub ValidateInsertHancuran()
+        Try
+            Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
+                                    FROM [AsakaiHancuranHeader] where Tanggal = '" & H_Tanggal & "' "
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
@@ -415,7 +433,7 @@ Public Class HancuranModel
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -462,7 +480,7 @@ Public Class HancuranModel
                                     "    [7. Target] = " & QVal(H_Target) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -472,7 +490,7 @@ Public Class HancuranModel
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiHancuranDetail WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -484,7 +502,7 @@ Public Class HancuranModel
 
     Public Sub InsertData_HS(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -544,7 +562,7 @@ Public Class HancuranModel
                                              ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -553,7 +571,7 @@ Public Class HancuranModel
 
     Public Sub UpdateData_HS(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -594,7 +612,7 @@ Public Class HancuranModel
                                     "    [9. STOK AHIR] = " & QVal(HS_StokAhir) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -633,7 +651,7 @@ Public Class HancuranDetailModel
             "       " & QVal(D_Kembali) & ", " & vbCrLf &
             "       " & QVal(D_Balance) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

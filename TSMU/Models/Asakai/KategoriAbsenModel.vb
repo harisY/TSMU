@@ -20,7 +20,7 @@ Public Class KategoriAbsenModel
             '                        "from inventory_lc order by Invtid"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(Me._Query)
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -40,7 +40,7 @@ Public Class KategoriAbsenModel
                                     FROM [KategoriAbsen]"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -56,7 +56,7 @@ Public Class KategoriAbsenModel
                                     FROM [KategoriAbsen] WHERE [IDAbsen] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.IDAbsen = Trim(.Item("IDAbsen") & "")
@@ -81,7 +81,7 @@ Public Class KategoriAbsenModel
                                     FROM [KategoriAbsen] where [IDAbsen] = " & QVal(IDAbsen) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.IDAbsen & "]")
@@ -120,7 +120,7 @@ Public Class KategoriAbsenModel
                                            ,GETDATE())"
 
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -142,7 +142,7 @@ Public Class KategoriAbsenModel
         Try
             Dim ls_SP As String = "DELETE FROM [KategoriAbsen] WHERE IDAbsen =" & QVal(id) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

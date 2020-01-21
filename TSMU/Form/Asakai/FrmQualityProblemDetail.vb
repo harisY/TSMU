@@ -24,10 +24,16 @@ Public Class FrmQualityProblemDetail
     Dim fc_Class As New QualityProblemModel
     Dim GridDtl As GridControl
 
+    'Dim CekDirectoryFoto = "D:\@KERJA\Project\Foto"
+
+
+    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
-    Dim DirectoryFoto = ""
-    Dim CekDirectoryFoto = "D:\@KERJA\Project\Foto"
+    Dim DirectoryFoto As String = ""
+    Dim extension As String = ""
+    Dim fileSavePath As String = ""
+    Dim opfImage As New OpenFileDialog
 
     Private Sub FrmQualityProblemDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -46,6 +52,7 @@ Public Class FrmQualityProblemDetail
         dt.Columns.Add("Pic")
         dt.Columns.Add("Target")
         dt.Columns.Add("Gambar")
+        dt.Columns.Add("Lot No")
         Grid.DataSource = dt
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
@@ -241,6 +248,7 @@ Public Class FrmQualityProblemDetail
                         .D_Analisis = Convert.ToString(GridView1.GetRowCellValue(i, "Analisis"))
                         .D_CORRECTIVE_ACTION = Convert.ToString(GridView1.GetRowCellValue(i, "Correction Action"))
                         .D_PREVENTIVE_ACTION = Convert.ToString(GridView1.GetRowCellValue(i, "Preventive Action"))
+                        .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot No"))
                         .D_Pic = Convert.ToString(GridView1.GetRowCellValue(i, "Pic"))
                         .D_Target = Convert.ToString(GridView1.GetRowCellValue(i, "Target"))
                         .D_Tanggal = Format(DtTanggalLaporan.Value, "yyyy-MM-dd")
@@ -412,11 +420,13 @@ Public Class FrmQualityProblemDetail
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, CorrectionAction, TxtCorrection.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PreventiveAction, TxtPreventive.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Pic, TxtPic.Text)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, LotNo, TxtLotNo.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Target, DtTarget.Value)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
                 GridView1.UpdateCurrentRow()
-
+                File.Copy(opfImage.FileName, fileSavePath, True)
                 Call TextBoxLoad()
+                PictureBox1.Image = Nothing
 
             End If
 
@@ -438,13 +448,14 @@ Public Class FrmQualityProblemDetail
         TxtCorrection.Text = ""
         TxtPreventive.Text = ""
         TxtPic.Text = ""
+        TxtLotNo.Text = ""
 
     End Sub
 
 
 
     Private Sub BGambar_Click(sender As Object, e As EventArgs) Handles BGambar.Click
-        Dim opfImage As New OpenFileDialog
+        'Dim opfImage As New OpenFileDialog
         ' Dim fileName = Path.GetFileName(File.FileName); //only filename
 
         opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
@@ -452,28 +463,44 @@ Public Class FrmQualityProblemDetail
         If opfImage.ShowDialog = DialogResult.OK Then
 
 
-            DirectoryFoto = Path.GetDirectoryName(opfImage.FileName)
-            If DirectoryFoto = CekDirectoryFoto Then
+            'PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            'PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
 
-                PictureBox1.Image = Image.FromFile(opfImage.FileName)
-                PathFoto = opfImage.FileName
-                NamaFile = Path.GetFileName(PathFoto)
 
-            Else
-                PictureBox1.Image = Nothing
-                PathFoto = ""
-                NamaFile = ""
-                MessageBox.Show("Pastikan Mengambil Gambar dari folder yang Telah di Tentukan",
-                               "Warning",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Exclamation,
-                               MessageBoxDefaultButton.Button1)
+            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+            Dim extension As String = Path.GetExtension(PathFoto)
+            NamaFile = "QCPROBLEM_" + Path.GetRandomFileName() + extension
+            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+            File.Copy(opfImage.FileName, fileSavePath, True)
 
-            End If
+            'DirectoryFoto = Path.GetDirectoryName(opfImage.FileName)
+            'If DirectoryFoto = CekDirectoryFoto Then
+
+            '    PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            '    PathFoto = opfImage.FileName
+            '    NamaFile = Path.GetFileName(PathFoto)
+
+            'Else
+            '    PictureBox1.Image = Nothing
+            '    PathFoto = ""
+            '    NamaFile = ""
+            '    MessageBox.Show("Pastikan Mengambil Gambar dari folder yang Telah di Tentukan",
+            '                   "Warning",
+            '                   MessageBoxButtons.OK,
+            '                   MessageBoxIcon.Exclamation,
+            '                   MessageBoxDefaultButton.Button1)
+
+            'End If
 
 
 
         End If
     End Sub
 
+    Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+
+    End Sub
 End Class

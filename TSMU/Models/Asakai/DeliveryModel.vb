@@ -40,13 +40,13 @@ Public Class DeliveryModel
 
 
     Public Sub New()
-        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -60,12 +60,12 @@ Public Class DeliveryModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiDeliveryHeader WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiDeliveryDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -83,7 +83,7 @@ Public Class DeliveryModel
                               FROM AsakaiDeliveryHeader where IDTrans = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.IDTrans = Trim(.Item("IDTrans") & "")
@@ -100,29 +100,47 @@ Public Class DeliveryModel
 
     Public Function GetDataDetailDelivery(ID As String) As DataTable
         Try
+            '          Dim query As String = "SELECT [IDTrans]
+            '    ,[Customer]
+            '    ,AsakaiDeliveryDetail.[invtId] as InvtId
+            '    ,Inventory.Descr as ItemNumber
+            '    ,[Delivery Due Date]
+            '    ,[Qty Order]
+            '    ,[Delivery]
+            '    ,[Jumlah]
+            '    ,[Stock TNG 08 DEL]
+            '    ,[Stock TNG 05 WHJ]
+            '    ,[Stock TNG 06 SFG] as [StockTNG06SFG]
+            '    ,[Stock 2nd]
+            '    ,[Stock Paint]
+            '    ,[Stock Inject Presisi]
+            '    ,[WHP]
+            '    ,[Stock TNG 04-02 PNT]
+            '    ,[Total Stock]
+            '    ,[Balance]
+            '    ,[Keterangan]
+            'FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
             Dim query As String = "SELECT [IDTrans]
-      ,[Customer]
-      ,AsakaiDeliveryDetail.[invtId] as InvtId
-      ,Inventory.Descr as ItemNumber
-      ,[Delivery Due Date]
-      ,[Qty Order]
-      ,[Delivery]
-      ,[Jumlah]
-      ,[Stock TNG 08 DEL]
-      ,[Stock TNG 05 WHJ]
-      ,[Stock TNG 06 SFG]
-      ,[Stock 2nd]
-      ,[Stock Paint]
-      ,[Stock Inject Presisi]
-      ,[WHP]
-      ,[Stock TNG 04-02 PNT]
-      ,[Total Stock]
-      ,[Balance]
-      ,[Keterangan]
-  FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+              ,[Customer]
+              ,AsakaiDeliveryDetail.[invtId] as InvtId
+              ,AsakaiDeliveryDetail.[invtId] as [Item Number]
+              ,[Delivery Due Date]
+              ,[Qty Order]
+              ,[Delivery]
+              ,[Jumlah]
+              ,[Stock TNG 08 DEL]
+              ,[Stock TNG 05 WHJ]
+              ,[Stock TNG 06 SFG] as [StockTNG06SFG]
+              ,[Stock 2nd]
+              ,[Stock Paint]
+              ,[Stock Inject Presisi]
+              ,[WHP]
+              ,[Stock TNG 04-02 PNT]
+              ,[Keterangan]
+          FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -139,7 +157,7 @@ Public Class DeliveryModel
             Dim ls_SP As String = "SELECT [IDTrans]                   
                                     FROM [AsakaiDeliveryHeader] order by IDTrans desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "D" & Tahun & "0001"
@@ -174,7 +192,7 @@ Public Class DeliveryModel
 
     Public Sub InsertDelivery()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -210,7 +228,7 @@ Public Class DeliveryModel
                                     FROM [AsakaiDeliveryHeader] where IDTrans = '" & IDTrans & "' or Tanggal = '" & Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.Tanggal & "]")
@@ -239,7 +257,7 @@ Public Class DeliveryModel
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
 
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -249,7 +267,7 @@ Public Class DeliveryModel
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -289,7 +307,7 @@ Public Class DeliveryModel
                                     "UPDATE AsakaiDeliveryHeader" & vbCrLf &
                                     "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTrans = '" & _IDTrans & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -299,7 +317,7 @@ Public Class DeliveryModel
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiDeliveryDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteDetail)
+            MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
             Throw
@@ -382,7 +400,7 @@ Public Class DeliveryDetailModel
             "       " & QVal(Balance) & ", " & vbCrLf &
             "       " & QVal(Keterangan) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw

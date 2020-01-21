@@ -87,6 +87,7 @@ Public Class FrmMaintenanceDetail
                 With fc_Class
 
                     DtTanggalLaporan.Value = fc_Class.H_Tanggal
+                    DtTanggalLaporan.Enabled = False
                     Plan_Mesin.Text = fc_Class.Mesin_Plan
                     Act_Mesin.Text = fc_Class.Mesin_Actual
                     Balance_Mesin.Text = fc_Class.Mesin_Balance

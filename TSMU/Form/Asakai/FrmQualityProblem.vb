@@ -1,4 +1,6 @@
-﻿Public Class FrmQualityProblem
+﻿Imports System.Globalization
+
+Public Class FrmQualityProblem
     Dim ff_Detail As FrmQualityProblemDetail
     Dim dtGrid As DataTable
     Dim fc_Class As New QualityProblemModel
@@ -101,6 +103,7 @@
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
             IdTrans = String.Empty
 
             fc_Class = New QualityProblemModel
@@ -108,7 +111,10 @@
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
-                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
+                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
+                    Dim oDate As DateTime = DateTime.ParseExact(GridView1.GetRowCellValue(rowHandle, "Tanggal"), "dd-MM-yyyy", provider)
+                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
+                    Tanggal = oDate
                 End If
             Next rowHandle
 

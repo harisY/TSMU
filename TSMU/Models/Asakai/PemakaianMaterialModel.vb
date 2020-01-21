@@ -46,7 +46,7 @@ Public Class PemakaianMaterialModel
     Public Property ObjDetailsKomponen() As New Collection(Of PemakaianKomponenlDetail)
 
     Public Sub New()
-        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai,Keterangan from AsakaiPemakaianMaterialKomponen"
+        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai,Keterangan from AsakaiPemakaianMaterialKomponen order by TanggalDari Desc "
         'Me._Query = "SELECT IDMaterialUsage[,Tanggal,TotalMaterial,Sales,Percent1[% Material],TotakAktualProduksi,Persent2[% Injection],Target[% Target] from AsakaiMaterialUsageHeader"
     End Sub
 
@@ -54,7 +54,7 @@ Public Class PemakaianMaterialModel
         Try
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(Me._Query)
-            dtTable = MainModul.GetDataTable_Solomon(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -85,7 +85,7 @@ Public Class PemakaianMaterialModel
                                     inner join AsakaiPemakaianKomponen on AsakaiPemakaianMaterialKomponen.IDTrans = AsakaiPemakaianKomponen.IDTrans WHERE AsakaiPemakaianMaterialKomponen.IDTrans = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.IDTrans = Trim(.Item(0) & "")
@@ -120,7 +120,7 @@ Public Class PemakaianMaterialModel
                                     FROM [AsakaiPemakaianMaterialKomponen] where TanggalSampai >= '" & TanggalDari & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.TanggalDari & "]")
@@ -128,7 +128,7 @@ Public Class PemakaianMaterialModel
                 ' Dim ls_SP1 As String = "SELECT TOP 1 [IDTrans],KolomHarga                   
                 '                      FROM [AsakaiPemakaianMaterialKomponen] where KolomHarga = '" & KolomHarga & "' "
                 ' Dim dtTable1 As New DataTable
-                ' dtTable1 = MainModul.GetDataTableByCommand_sol(ls_SP1)
+                ' dtTable1 = MainModul.GetDataTableByCommand(ls_SP1)
                 ' If dtTable1 IsNot Nothing AndAlso dtTable1.Rows.Count > 0 Then
                 '     Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 '"[" & Me.KolomHarga & "]")
@@ -149,7 +149,7 @@ Public Class PemakaianMaterialModel
             Dim ls_SP As String = "SELECT [IDTrans]                   
                                     FROM [AsakaiPemakaianMaterialKomponen] order by IDTrans desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "M" & Tahun & "0001"
@@ -190,7 +190,7 @@ Public Class PemakaianMaterialModel
                                     FROM AsakaiPemakaianMaterialDetail Left join Inventory on AsakaiPemakaianMaterialDetail.IDMaterial =Inventory.InvtID where AsakaiPemakaianMaterialDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -207,7 +207,7 @@ Public Class PemakaianMaterialModel
                                     FROM AsakaiPemakaianKomponenDetail Left join Inventory on AsakaiPemakaianKomponenDetail.IDMaterial =Inventory.InvtID where AsakaiPemakaianKomponenDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -218,7 +218,7 @@ Public Class PemakaianMaterialModel
 #Region "CRUD"
     Public Sub InsertMaterialUsage()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -261,7 +261,7 @@ Public Class PemakaianMaterialModel
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -296,9 +296,9 @@ Public Class PemakaianMaterialModel
                         Throw
                     Finally
                         MainModul.gh_Trans = Nothing
-        End Try
-        End Using
-        End Using
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw ex
         End Try
@@ -308,7 +308,7 @@ Public Class PemakaianMaterialModel
         Try
             Dim ls_PMK As String = "DELETE FROM AsakaiPemakaianMaterialKomponen WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_PMK)
+            MainModul.ExecQuery(ls_PMK)
 
         Catch ex As Exception
             Throw
@@ -318,19 +318,19 @@ Public Class PemakaianMaterialModel
         Try
             Dim ls_PM As String = "DELETE FROM AsakaiPemakaianMaterial WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             'ExecQuery(ls_SPD)
-            ExecQuery_Solomon(ls_PM)
+            ExecQuery(ls_PM)
 
             Dim ls_PMD As String = "DELETE FROM AsakaiPemakaianMaterialDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery_Solomon(ls_PMD)
+            MainModul.ExecQuery(ls_PMD)
 
             Dim ls_PK As String = "DELETE FROM AsakaiPemakaianKomponen WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             'ExecQuery(ls_SPD)
-            ExecQuery_Solomon(ls_PK)
+            ExecQuery(ls_PK)
 
             Dim ls_PKD As String = "DELETE FROM AsakaiPemakaianKomponenDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             'ExecQuery(ls_SPD)
-            ExecQuery_Solomon(ls_PKD)
+            ExecQuery(ls_PKD)
 
         Catch ex As Exception
             Throw
@@ -363,7 +363,7 @@ Public Class PemakaianMaterialModel
 
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
 
 
         Catch ex As Exception
@@ -401,7 +401,7 @@ Public Class PemakaianMaterialModel
 
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
 
 
         Catch ex As Exception
@@ -438,7 +438,7 @@ Public Class PemakaianMaterialModel
 
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -456,7 +456,7 @@ Public Class PemakaianMaterialModel
                                     "    KolomHarga = " & QVal(KolomHarga) & ", " & vbCrLf &
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE IDTrans = '" & _IDMaterialUsage & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -495,7 +495,7 @@ Public Class PemakaianMaterialDetail
             "       " & QVal(MaterialJumlah) & ", " & vbCrLf &
             "       " & QVal(MaterialHarga) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -504,7 +504,7 @@ Public Class PemakaianMaterialDetail
     Public Sub DeleteDetail(ByVal _IDMaterialUsage As String)
         Try
             Dim ls_SP As String = "DELETE FROM AsakaiMaterialUsageDetail WHERE rtrim(IDMaterialUsage)=" & QVal(_IDMaterialUsage) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -535,7 +535,7 @@ Public Class PemakaianKomponenlDetail
             "       " & QVal(KomponenJumlah) & ", " & vbCrLf &
             "       " & QVal(KomponenHarga) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -544,7 +544,7 @@ Public Class PemakaianKomponenlDetail
     Public Sub DeleteDetail(ByVal _IDMaterialUsage As String)
         Try
             Dim ls_SP As String = "DELETE FROM AsakaiMaterialUsageDetail WHERE rtrim(IDMaterialUsage)=" & QVal(_IDMaterialUsage) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

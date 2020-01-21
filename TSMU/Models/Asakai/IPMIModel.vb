@@ -24,13 +24,13 @@ Public Class IPMIModel
 
 
     Public Sub New()
-        Me._Query = "SELECT NOIPMI,CONVERT(varchar,Tanggal,105) as Tanggal from AsakaiIpmi  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT NOIPMI,CONVERT(varchar,Tanggal,105) as Tanggal from AsakaiIpmi  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by tanggal desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -41,15 +41,15 @@ Public Class IPMIModel
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiIpmi WHERE rtrim(NOIPMI)=" & QVal(IPMI) & ""
-            MainModul.ExecQuery_Solomon(ls_DeleteHeader)
+            MainModul.ExecQuery(ls_DeleteHeader)
 
 
             'DeleteDetail
             Dim ls_DeletePenyebab As String = "DELETE FROM AsakaiIpmiPenyebab WHERE rtrim(NOIPMI)=" & QVal(IPMI) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePenyebab)
+            MainModul.ExecQuery(ls_DeletePenyebab)
 
             Dim ls_DeletePerbaikan As String = "DELETE FROM AsakaiIpmiPerbaikan WHERE rtrim(NOIPMI)=" & QVal(IPMI) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePerbaikan)
+            MainModul.ExecQuery(ls_DeletePerbaikan)
 
         Catch ex As Exception
             Throw
@@ -74,7 +74,7 @@ Public Class IPMIModel
                               FROM [AsakaiIpmi] where NOIPMI = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_NOIPMI = Trim(.Item(0) & "")
@@ -97,13 +97,14 @@ Public Class IPMIModel
 
     Public Function GetDataDetailPerbaikan(IPMI As String) As DataTable
         Try
-            Dim query As String = "SELECT [Rencana Perbaikan]
+            Dim query As String = "SELECT [Rencana Perbaikan] AS Perbaikan
                                       ,[Target]
-                                      ,[PIC]
+                                      ,[PIC] as Pic
+                                      ,[4M]
                                   FROM [AsakaiIpmiPerbaikan] where NOIPMI  = '" & IPMI & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -113,11 +114,11 @@ Public Class IPMIModel
 
     Public Function GetDataDetailPenyebab(IPMI As String) As DataTable
         Try
-            Dim query As String = "SELECT [Penyebab] as [Penyebab 4M Analisa]
+            Dim query As String = "SELECT [Penyebab] as Problem, [4M]
                                   FROM [AsakaiIpmiPenyebab] where NOIPMI  = '" & IPMI & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand_sol(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
         Catch ex As Exception
@@ -127,7 +128,7 @@ Public Class IPMIModel
 
     Public Sub InsertIPMI(NoIPMI As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -196,7 +197,7 @@ Public Class IPMIModel
                                             ,GETDATE())"
 
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -208,7 +209,7 @@ Public Class IPMIModel
                                     FROM [AsakaiIpmi] where NOIPMI = '" & H_NOIPMI & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand_sol(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_NOIPMI) & "]")
@@ -224,7 +225,7 @@ Public Class IPMIModel
 
     Public Sub UpdateData(NoIpmi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -277,7 +278,7 @@ Public Class IPMIModel
                                     " [Foto] = " & QVal(H_Foto) & ", " & vbCrLf &
                                     " UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     " UpdatedDate = GETDATE() WHERE [NOIPMI] = '" & IPMI & "'"
-            MainModul.ExecQuery_Solomon(ls_SP)
+            MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
@@ -287,10 +288,10 @@ Public Class IPMIModel
         Try
             'DeleteDetail
             Dim ls_DeletePenyebab As String = "DELETE FROM AsakaiIpmiPenyebab WHERE rtrim(NOIPMI)=" & QVal(IPMI) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePenyebab)
+            MainModul.ExecQuery(ls_DeletePenyebab)
 
             Dim ls_DeletePerbaikan As String = "DELETE FROM AsakaiIpmiPerbaikan WHERE rtrim(NOIPMI)=" & QVal(IPMI) & ""
-            MainModul.ExecQuery_Solomon(ls_DeletePerbaikan)
+            MainModul.ExecQuery(ls_DeletePerbaikan)
 
         Catch ex As Exception
             Throw
@@ -303,6 +304,9 @@ Public Class IPMIDetailModel
 
     Public Property D_NOIPMI As String
     Public Property Penyebab As String
+    Public Property EmpatMPenyebab As String
+    Public Property EmpatMPerbaikan As String
+
     Public Property PIC As String
     Public Property Rencana_Perbaikan As String
     Public Property Target As String
@@ -313,11 +317,13 @@ Public Class IPMIDetailModel
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO [AsakaiIpmiPenyebab]
                        ([NOIPMI]
-                       ,[Penyebab]) " & vbCrLf &
+                       ,[Penyebab]
+                       ,[4M]) " & vbCrLf &
             "Values(" & QVal(NoIPMI) & ", " & vbCrLf &
-            "       " & QVal(Penyebab) & ")"
+            "       " & QVal(Penyebab) & ", " & vbCrLf &
+            "       " & QVal(EmpatMPenyebab) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
@@ -328,17 +334,19 @@ Public Class IPMIDetailModel
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO [TSC16Application].[dbo].[AsakaiIpmiPerbaikan]
+            "INSERT INTO [AsakaiIpmiPerbaikan]
                        ([NOIPMI]
                        ,[Rencana Perbaikan]
                        ,[Target]
-                       ,[PIC]) " & vbCrLf &
+                       ,[PIC]
+                       ,[4M]) " & vbCrLf &
             "Values(" & QVal(NOIPMI) & ", " & vbCrLf &
             "       " & QVal(Rencana_Perbaikan) & ", " & vbCrLf &
             "       " & QVal(Target) & ", " & vbCrLf &
-            "       " & QVal(PIC) & ")"
+            "       " & QVal(PIC) & ", " & vbCrLf &
+            "       " & QVal(EmpatMPerbaikan) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
 
         Catch ex As Exception
             Throw
