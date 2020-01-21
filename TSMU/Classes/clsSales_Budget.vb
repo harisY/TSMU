@@ -149,7 +149,7 @@ Public Class clsSales_Budget
     End Property
 
     Private _april_qty As Single
-    Public Property April_Qty() As Single
+    Public Property Apr_Qty() As Single
         Get
             Return _april_qty
         End Get
@@ -366,8 +366,25 @@ Public Class clsSales_Budget
             _revisi = value
         End Set
     End Property
+    Private _price As Integer
+    Public Property Price() As Integer
+        Get
+            Return _price
+        End Get
+        Set(ByVal value As Integer)
+            _price = value
+        End Set
+    End Property
 
-
+    Private _priceRevisi As Integer
+    Public Property PriceRevisi() As Integer
+        Get
+            Return _priceRevisi
+        End Get
+        Set(ByVal value As Integer)
+            _priceRevisi = value
+        End Set
+    End Property
     Public Sub New()
         Me._Query = "select acctid as [Account ID], acctname [Account Name], tipe [Type] from tipeacct order by AcctID"
     End Sub
@@ -465,18 +482,7 @@ Public Class clsSales_Budget
                     Me._okt_qty = Trim(.Item("okt_qty") & "")
                     Me._nov_qty = Trim(.Item("nov_qty") & "")
                     Me._des_qty = Trim(.Item("des_qty") & "")
-                    Me._jan_harga = Trim(.Item("jan_harga") & "")
-                    Me._feb_harga = Trim(.Item("feb_harga") & "")
-                    Me._mar_harga = Trim(.Item("mar_harga") & "")
-                    Me._apr_harga = Trim(.Item("apr_harga") & "")
-                    Me._mei_harga = Trim(.Item("mei_harga") & "")
-                    Me._jun_harga = Trim(.Item("jun_harga") & "")
-                    Me._jul_harga = Trim(.Item("jul_harga") & "")
-                    Me._agt_harga = Trim(.Item("agt_harga") & "")
-                    Me._sep_harga = Trim(.Item("sep_harga") & "")
-                    Me._okt_harga = Trim(.Item("okt_harga") & "")
-                    Me._nov_harga = Trim(.Item("nov_harga") & "")
-                    Me._des_harga = Trim(.Item("des_harga") & "")
+                    Me._price = Trim(.Item("Price") & "")
                 End With
             End If
         Catch ex As Exception
@@ -514,7 +520,7 @@ Public Class clsSales_Budget
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) & _
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me._partno & "]")
             End If
         Catch ex As Exception
@@ -523,15 +529,13 @@ Public Class clsSales_Budget
     End Sub
 #Region "CRUD"
     Public Sub Insert()
-        
+
         Try
             Dim query As String = "INSERT INTO Budget " & vbCrLf &
             "   ( " & vbCrLf &
             "       [tahun],[custid],[customer],[invtid],[descr],[partno],[model],[oe_re],[in_sub],[site] " & vbCrLf &
             "       , [jan_qty],[feb_qty],[mar_qty],[apr_qty],[mei_qty],[jun_qty],[jul_qty],[agt_qty] " & vbCrLf &
-            "       , [sep_qty],[okt_qty],[nov_qty] ,[des_qty],[jan_harga],[feb_harga],[mar_harga] " & vbCrLf &
-            "       , [apr_harga],[mei_harga],[jun_harga],[jul_harga],[agt_harga],[sep_harga],[okt_harga] " & vbCrLf &
-            "       , [nov_harga],[des_harga], created_date, created_by " & vbCrLf &
+            "       , [sep_qty],[okt_qty],[nov_qty] ,[des_qty],[Price],[PriceRev], created_date, created_by " & vbCrLf &
             "   ) " & vbCrLf &
             "OUTPUT INSERTED.ID " & vbCrLf &
             "VALUES " & vbCrLf &
@@ -558,18 +562,8 @@ Public Class clsSales_Budget
             "       , " & QVal(Me._okt_qty) & " " & vbCrLf &
             "       , " & QVal(Me._nov_qty) & " " & vbCrLf &
             "       , " & QVal(Me._des_qty) & " " & vbCrLf &
-            "       , " & QVal(Me._jan_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._feb_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._mar_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._apr_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._mei_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._jun_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._jul_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._agt_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._sep_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._okt_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._nov_harga) & " " & vbCrLf &
-            "       , " & QVal(Me._des_harga) & " " & vbCrLf &
+            "       , " & QVal(Me._price) & " " & vbCrLf &
+            "       , " & QVal(Me._priceRevisi) & " " & vbCrLf &
             "       , GETDATE() " & vbCrLf &
             "       , " & QVal(gh_Common.Username) & " " & vbCrLf &
             "   )"
@@ -596,7 +590,6 @@ Public Class clsSales_Budget
                 revisi = 2
             End If
 
-
             Dim query As String = "UPDATE Budget " & vbCrLf &
             "   SET [tahun] = " & QVal(Me._tahun) & " " & vbCrLf &
             "      ,[custid] = " & QVal(Me._custid) & " " & vbCrLf &
@@ -620,18 +613,8 @@ Public Class clsSales_Budget
             "      ,[okt_qty] = " & QVal(Me._okt_qty) & " " & vbCrLf &
             "      ,[nov_qty] = " & QVal(Me._nov_qty) & " " & vbCrLf &
             "      ,[des_qty] = " & QVal(Me._des_qty) & " " & vbCrLf &
-            "      ,[jan_harga] = " & QVal(Me._jan_harga) & " " & vbCrLf &
-            "      ,[feb_harga] = " & QVal(Me._feb_harga) & " " & vbCrLf &
-            "      ,[mar_harga] = " & QVal(Me._mar_harga) & " " & vbCrLf &
-            "      ,[apr_harga] = " & QVal(Me._apr_harga) & " " & vbCrLf &
-            "      ,[mei_harga] = " & QVal(Me._mei_harga) & " " & vbCrLf &
-            "      ,[jun_harga] = " & QVal(Me._jun_harga) & " " & vbCrLf &
-            "      ,[jul_harga] = " & QVal(Me._jul_harga) & " " & vbCrLf &
-            "      ,[agt_harga] = " & QVal(Me._agt_harga) & " " & vbCrLf &
-            "      ,[sep_harga] = " & QVal(Me._sep_harga) & " " & vbCrLf &
-            "      ,[okt_harga] = " & QVal(Me._okt_harga) & " " & vbCrLf &
-            "      ,[nov_harga] = " & QVal(Me._nov_harga) & " " & vbCrLf &
-            "      ,[des_harga] = " & QVal(Me._des_harga) & " " & vbCrLf &
+            "      ,[Price] = " & QVal(Me._price) & " " & vbCrLf &
+            "      ,[PriceRev] = " & QVal(Me._priceRevisi) & " " & vbCrLf &
             "      ,[update_date] = GETDATE() " & vbCrLf &
             "      ,[updated_by] = " & QVal(gh_Common.Username) & " " & vbCrLf &
             "   OUTPUT INSERTED.ID " & vbCrLf &

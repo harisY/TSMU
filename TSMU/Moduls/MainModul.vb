@@ -150,6 +150,7 @@ Module MainModul
     Public gs_FormatDecimal As String = "#,##0.#0"
     Public gs_FormatDecimal1 As String = "#,##0.#00000"
     Public gs_FormatBulat As String = "#,##0"
+    Public gs_FormatSQLDateIn As String = "dd-MM-yyyy"
     Public gs_FormatSQLDate As String = "yyyy-MM-dd"
     Public gs_FormatGenNoDate As String = "yyyyMM"
     Public gs_FormatReportDate As String = "dd MMMM yyyy"
@@ -1498,8 +1499,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
-
 
     Public Function ExecQueryByCommand_SP(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1

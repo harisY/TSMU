@@ -40,6 +40,8 @@ Partial Class frm_payment_approve
         Me.ChekLevel3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ChekDir = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CheckDetail = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TxtDirektur = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
@@ -73,6 +75,7 @@ Partial Class frm_payment_approve
         CType(Me.ChekLevel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekDir, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDirektur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,14 +120,14 @@ Partial Class frm_payment_approve
         Me.Grid.Location = New System.Drawing.Point(3, 3)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.TxtDirektur, Me.RepositoryItemCheckedComboBoxEdit1, Me.ChekLevel1, Me.ChekLevel2, Me.ChekLevel3, Me.ChekLevel4, Me.ChekDir})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.TxtDirektur, Me.RepositoryItemCheckedComboBoxEdit1, Me.ChekLevel1, Me.ChekLevel2, Me.ChekLevel3, Me.ChekLevel4, Me.ChekDir, Me.CheckDetail})
         Me.Grid.Size = New System.Drawing.Size(814, 487)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn8})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn8})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -237,12 +240,26 @@ Partial Class frm_payment_approve
         Me.GridColumn8.FieldName = "Direktur"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 10
+        Me.GridColumn8.VisibleIndex = 11
         '
         'ChekDir
         '
         Me.ChekDir.AutoHeight = False
         Me.ChekDir.Name = "ChekDir"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Check Detail"
+        Me.GridColumn12.ColumnEdit = Me.CheckDetail
+        Me.GridColumn12.FieldName = "CheckDetail"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 10
+        '
+        'CheckDetail
+        '
+        Me.CheckDetail.AutoHeight = False
+        Me.CheckDetail.Name = "CheckDetail"
         '
         'RepositoryItemCheckEdit1
         '
@@ -503,6 +520,7 @@ Partial Class frm_payment_approve
         CType(Me.ChekLevel2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekDir, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDirektur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -578,4 +596,6 @@ Partial Class frm_payment_approve
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents btnLoad As ToolStripButton
     Friend WithEvents ProgBar As ToolStripProgressBar
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckDetail As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

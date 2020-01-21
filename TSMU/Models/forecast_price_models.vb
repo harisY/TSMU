@@ -92,38 +92,45 @@ Public Class forecast_price_models_header
                         'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
-                                If CustID.ToLower.TrimEnd <> "adm" Then
-                                    Dim IsExist1 As Boolean = .IsDataExist
-                                    If Not IsExist1 Then
-                                        .InsertData()
-                                        .UpdateDataByBulanNew(Bulan)
-                                    Else
-                                        .UpdateDataByBulanNew(Bulan)
-                                    End If
-                                    '.InsertDataTempTable()
-
+                                Dim IsExist As Boolean = .IsDataADMExist
+                                If Not IsExist Then
+                                    .InsertData()
+                                    .UpdateDataByBulanADM(Bulan)
                                 Else
-                                    If .Flag = "N/A" Then
-                                        Dim IsExist2 As Boolean = .IsDataExist
-                                        If Not IsExist2 Then
-                                            .InsertData()
-                                            .UpdateDataByBulanNew(Bulan)
-                                        Else
-                                            .UpdateDataByBulanNew(Bulan)
-                                        End If
-                                    Else
-                                        Dim IsExist As Boolean = .IsDataADMExist
-                                        If Not IsExist Then
-                                            .InsertData()
-                                            .UpdateDataByBulanADM(Bulan)
-                                        Else
-                                            .UpdateDataByBulanADM(Bulan)
-                                        End If
-                                    End If
-
-
-                                    '.InsertDataTempTable()
+                                    .UpdateDataByBulanADM(Bulan)
                                 End If
+                                'If CustID.ToLower.TrimEnd <> "adm" Then
+                                '    Dim IsExist1 As Boolean = .IsDataADMExist
+                                '    If Not IsExist1 Then
+                                '        .InsertData()
+                                '        .UpdateDataByBulanADM(Bulan)
+                                '    Else
+                                '        .UpdateDataByBulanADM(Bulan)
+                                '    End If
+                                '    '.InsertDataTempTable()
+
+                                'Else
+                                '    'If .Flag = "N/A" Then
+                                '    '    Dim IsExist2 As Boolean = .IsDataADMExist
+                                '    '    If Not IsExist2 Then
+                                '    '        .InsertData()
+                                '    '        .UpdateDataByBulanADM(Bulan)
+                                '    '    Else
+                                '    '        .UpdateDataByBulanADM(Bulan)
+                                '    '    End If
+                                '    'Else
+                                '    Dim IsExist As Boolean = .IsDataADMExist
+                                '    If Not IsExist Then
+                                '        .InsertData()
+                                '        .UpdateDataByBulanADM(Bulan)
+                                '    Else
+                                '        .UpdateDataByBulanADM(Bulan)
+                                '    End If
+                                '    'End If
+
+
+                                '    '.InsertDataTempTable()
+                                'End If
                             End With
                         Next
 
@@ -1760,7 +1767,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(query2)
 
                 sql =
@@ -1779,7 +1786,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 Dim dt As DataTable = New DataTable
                 dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
@@ -1801,7 +1808,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query1)
 
                 '===========SEPTEMBER===============
@@ -1815,7 +1822,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(query2)
 
                 sql =
@@ -1834,7 +1841,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
                 Dim dt As DataTable = New DataTable
                 dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
@@ -1855,7 +1862,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query1)
 
                 '===========OKTOBER===============
@@ -1869,7 +1876,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
                 ExecQuery(query2)
 
                 sql =
@@ -1888,7 +1895,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 Dim dt As DataTable = New DataTable
                 dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
@@ -1908,7 +1915,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query1)
 
                 '===========NOVEMBER===============
@@ -1922,12 +1929,12 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
                 ExecQuery(query2)
 
                 sql =
                     "SELECT
-                                    Harga_Apr =
+                                    Harga_Nov =
 	                                CASE 
 	                                        WHEN NovHarga1!=0 and NovHarga2=0  and NovHarga3=0 THEN NovHarga1  
 	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2  
@@ -1941,7 +1948,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 Dim dt As DataTable = New DataTable
                 dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
@@ -1960,7 +1967,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query1)
 
 
@@ -1986,7 +1993,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(query3)
 
                 sql =
@@ -1997,6 +2004,7 @@ Public Class forecast_price_models
 	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
 	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3!=0 THEN DesHarga3  
 	                                        WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
+                                            WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3!0 THEN DesHarga3
 	                                        WHEN DesHarga1=0 and DesHarga2=0  and DesHarga3!=0 THEN DesHarga3 
                                             ELSE 0 
 	                                END
@@ -2005,7 +2013,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 Dim dt As DataTable = New DataTable
                 dt = MainModul.GetDataTable(sql)
                 If dt.Rows.Count > 0 Then
@@ -2019,7 +2027,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(t.ToString()) & "  AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query1)
 
                 Dim Query2 As String =
@@ -2033,7 +2041,7 @@ Public Class forecast_price_models
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
+                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
                 ExecQuery(Query2)
             End If
         Catch ex As Exception

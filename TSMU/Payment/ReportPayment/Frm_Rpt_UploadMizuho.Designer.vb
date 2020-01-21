@@ -31,6 +31,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,31 +79,6 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ref_no_sup = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.takagi_acct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.rek_pt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.payment_method = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.curyid = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.sp_amount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.trans_amount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.value_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.bankname = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.branch = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.address = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.address2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.norek_supplier = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.pt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.pt2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.address_pt = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.address_pt2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.space_kosong = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.bank_charges = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.applicant_acct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.space_kosong2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.other = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.other1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.other2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.other3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -128,7 +104,6 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -246,6 +221,14 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "field"
+        Me.GridColumn26.FieldName = "field"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 1
         '
         'GridColumn2
         '
@@ -576,7 +559,7 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ProgBar3})
         Me.ToolStrip1.Location = New System.Drawing.Point(307, 5)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(179, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(210, 25)
         Me.ToolStrip1.TabIndex = 11
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -644,213 +627,12 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridView7
         '
-        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ref_no_sup, Me.takagi_acct, Me.rek_pt, Me.payment_method, Me.curyid, Me.sp_amount, Me.trans_amount, Me.value_date, Me.bankname, Me.branch, Me.address, Me.address2, Me.norek_supplier, Me.pt, Me.pt2, Me.address_pt, Me.address_pt2, Me.space_kosong, Me.bank_charges, Me.applicant_acct, Me.space_kosong2, Me.other, Me.other1, Me.other2, Me.other3})
         Me.GridView7.GridControl = Me.GridControl4
         Me.GridView7.Name = "GridView7"
         Me.GridView7.OptionsBehavior.Editable = False
         Me.GridView7.OptionsFilter.AllowFilterEditor = False
         Me.GridView7.OptionsView.ColumnAutoWidth = False
         Me.GridView7.OptionsView.ShowGroupPanel = False
-        '
-        'ref_no_sup
-        '
-        Me.ref_no_sup.Caption = "ref_no_sup"
-        Me.ref_no_sup.FieldName = "ref_no_sup"
-        Me.ref_no_sup.Name = "ref_no_sup"
-        Me.ref_no_sup.Visible = True
-        Me.ref_no_sup.VisibleIndex = 0
-        '
-        'takagi_acct
-        '
-        Me.takagi_acct.Caption = "takagi_acct"
-        Me.takagi_acct.FieldName = "takagi_acct"
-        Me.takagi_acct.Name = "takagi_acct"
-        Me.takagi_acct.Visible = True
-        Me.takagi_acct.VisibleIndex = 1
-        '
-        'rek_pt
-        '
-        Me.rek_pt.Caption = "rek_pt"
-        Me.rek_pt.FieldName = "rek_pt"
-        Me.rek_pt.Name = "rek_pt"
-        Me.rek_pt.Visible = True
-        Me.rek_pt.VisibleIndex = 2
-        '
-        'payment_method
-        '
-        Me.payment_method.Caption = "payment_method"
-        Me.payment_method.FieldName = "payment_method"
-        Me.payment_method.Name = "payment_method"
-        Me.payment_method.Visible = True
-        Me.payment_method.VisibleIndex = 3
-        '
-        'curyid
-        '
-        Me.curyid.Caption = "curyid"
-        Me.curyid.FieldName = "curyid"
-        Me.curyid.Name = "curyid"
-        Me.curyid.Visible = True
-        Me.curyid.VisibleIndex = 4
-        '
-        'sp_amount
-        '
-        Me.sp_amount.Caption = "sp_amount"
-        Me.sp_amount.FieldName = "sp_amount"
-        Me.sp_amount.Name = "sp_amount"
-        Me.sp_amount.Visible = True
-        Me.sp_amount.VisibleIndex = 5
-        '
-        'trans_amount
-        '
-        Me.trans_amount.Caption = "trans_amount"
-        Me.trans_amount.FieldName = "trans_amount"
-        Me.trans_amount.Name = "trans_amount"
-        Me.trans_amount.Visible = True
-        Me.trans_amount.VisibleIndex = 6
-        '
-        'value_date
-        '
-        Me.value_date.Caption = "value_date"
-        Me.value_date.FieldName = "value_date"
-        Me.value_date.Name = "value_date"
-        Me.value_date.Visible = True
-        Me.value_date.VisibleIndex = 7
-        '
-        'bankname
-        '
-        Me.bankname.Caption = "bankname"
-        Me.bankname.FieldName = "bankname"
-        Me.bankname.Name = "bankname"
-        Me.bankname.Visible = True
-        Me.bankname.VisibleIndex = 8
-        '
-        'branch
-        '
-        Me.branch.Caption = "branch"
-        Me.branch.FieldName = "branch"
-        Me.branch.Name = "branch"
-        Me.branch.Visible = True
-        Me.branch.VisibleIndex = 9
-        '
-        'address
-        '
-        Me.address.Caption = "address"
-        Me.address.FieldName = "address"
-        Me.address.Name = "address"
-        Me.address.Visible = True
-        Me.address.VisibleIndex = 10
-        '
-        'address2
-        '
-        Me.address2.Caption = "address2"
-        Me.address2.FieldName = "address2"
-        Me.address2.Name = "address2"
-        Me.address2.Visible = True
-        Me.address2.VisibleIndex = 11
-        '
-        'norek_supplier
-        '
-        Me.norek_supplier.Caption = "norek_supplier"
-        Me.norek_supplier.FieldName = "norek_supplier"
-        Me.norek_supplier.Name = "norek_supplier"
-        Me.norek_supplier.Visible = True
-        Me.norek_supplier.VisibleIndex = 12
-        '
-        'pt
-        '
-        Me.pt.Caption = "pt"
-        Me.pt.FieldName = "pt"
-        Me.pt.Name = "pt"
-        Me.pt.Visible = True
-        Me.pt.VisibleIndex = 13
-        '
-        'pt2
-        '
-        Me.pt2.Caption = "pt2"
-        Me.pt2.FieldName = "pt2"
-        Me.pt2.Name = "pt2"
-        Me.pt2.Visible = True
-        Me.pt2.VisibleIndex = 14
-        '
-        'address_pt
-        '
-        Me.address_pt.Caption = "address_pt"
-        Me.address_pt.FieldName = "address_pt"
-        Me.address_pt.Name = "address_pt"
-        Me.address_pt.Visible = True
-        Me.address_pt.VisibleIndex = 15
-        '
-        'address_pt2
-        '
-        Me.address_pt2.Caption = "address_pt2"
-        Me.address_pt2.FieldName = "address_pt2"
-        Me.address_pt2.Name = "address_pt2"
-        Me.address_pt2.Visible = True
-        Me.address_pt2.VisibleIndex = 16
-        '
-        'space_kosong
-        '
-        Me.space_kosong.Caption = "space_kosong"
-        Me.space_kosong.FieldName = "space_kosong"
-        Me.space_kosong.Name = "space_kosong"
-        Me.space_kosong.Visible = True
-        Me.space_kosong.VisibleIndex = 17
-        '
-        'bank_charges
-        '
-        Me.bank_charges.Caption = "bank_charges"
-        Me.bank_charges.FieldName = "bank_charges"
-        Me.bank_charges.Name = "bank_charges"
-        Me.bank_charges.Visible = True
-        Me.bank_charges.VisibleIndex = 18
-        '
-        'applicant_acct
-        '
-        Me.applicant_acct.Caption = "applicant_acct"
-        Me.applicant_acct.FieldName = "applicant_acct"
-        Me.applicant_acct.Name = "applicant_acct"
-        Me.applicant_acct.Visible = True
-        Me.applicant_acct.VisibleIndex = 19
-        '
-        'space_kosong2
-        '
-        Me.space_kosong2.Caption = "space_kosong2"
-        Me.space_kosong2.FieldName = "space_kosong2"
-        Me.space_kosong2.Name = "space_kosong2"
-        Me.space_kosong2.Visible = True
-        Me.space_kosong2.VisibleIndex = 20
-        '
-        'other
-        '
-        Me.other.Caption = "other"
-        Me.other.FieldName = "other"
-        Me.other.Name = "other"
-        Me.other.Visible = True
-        Me.other.VisibleIndex = 21
-        '
-        'other1
-        '
-        Me.other1.Caption = "other1"
-        Me.other1.FieldName = "other1"
-        Me.other1.Name = "other1"
-        Me.other1.Visible = True
-        Me.other1.VisibleIndex = 22
-        '
-        'other2
-        '
-        Me.other2.Caption = "other2"
-        Me.other2.FieldName = "other2"
-        Me.other2.Name = "other2"
-        Me.other2.Visible = True
-        Me.other2.VisibleIndex = 23
-        '
-        'other3
-        '
-        Me.other3.Caption = "other3"
-        Me.other3.FieldName = "other3"
-        Me.other3.Name = "other3"
-        Me.other3.Visible = True
-        Me.other3.VisibleIndex = 24
         '
         'GridView8
         '
@@ -872,18 +654,20 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.SimpleButton3.BackgroundImage = Global.TSMU.My.Resources.Resources._433_200
         Me.SimpleButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.SimpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.SimpleButton3.Location = New System.Drawing.Point(372, 16)
+        Me.SimpleButton3.Location = New System.Drawing.Point(755, 5)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(24, 23)
         Me.SimpleButton3.TabIndex = 2
+        Me.SimpleButton3.Visible = False
         '
         'SimpleButton2
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(163, 15)
+        Me.SimpleButton2.Location = New System.Drawing.Point(546, 0)
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(203, 23)
         Me.SimpleButton2.TabIndex = 1
         Me.SimpleButton2.Text = "Data Upload Based on Template Mizuho"
+        Me.SimpleButton2.Visible = False
         '
         'SimpleButton1
         '
@@ -1055,14 +839,6 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "field"
-        Me.GridColumn26.FieldName = "field"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 1
-        '
         'Frm_Rpt_UploadMizuho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1187,31 +963,6 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents ref_no_sup As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents takagi_acct As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents rek_pt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents payment_method As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents curyid As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents sp_amount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents trans_amount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents value_date As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents bankname As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents branch As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents address As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents address2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents norek_supplier As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents pt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents pt2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents address_pt As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents address_pt2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents space_kosong As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents bank_charges As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents applicant_acct As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents space_kosong2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents other As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents other1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents other2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents other3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn

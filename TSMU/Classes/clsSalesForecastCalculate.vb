@@ -172,7 +172,7 @@ Public Class clsSalesForecastCalculate
                 ,[jun_qty03]
                 ,[jun_po01]
                 ,[jun_po02]
-            FROM [forecast] 
+            FROM [tForecastPrice] 
             WHERE tahun=" & QVal(tahun) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(sql)
@@ -273,7 +273,7 @@ Public Class clsSalesForecastCalculate
                 ,[des_qty03]
                 ,[des_po01]
                 ,[des_po02]
-            FROM [forecast] WHERE tahun=" & QVal(tahun) & ""
+            FROM [tForecastPrice] WHERE tahun=" & QVal(tahun) & ""
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Return dtTable

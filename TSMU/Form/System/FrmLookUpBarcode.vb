@@ -41,6 +41,14 @@ Public Class FrmLookUpBarcode
             CmbBulan.Properties.Items.Add(var)
         Next
     End Sub
+
+    Private Sub FillComboTahun()
+        Dim tahun() As String = {DateTime.Now.Year - 1, DateTime.Now.Year, DateTime.Now.Year + 1}
+        cmbTahun.Properties.Items.Clear()
+        For Each var As String In tahun
+            cmbTahun.Properties.Items.Add(var)
+        Next
+    End Sub
     Private Sub GenerateRow()
         Try
             Dim a As Integer
@@ -90,16 +98,14 @@ Public Class FrmLookUpBarcode
                 Throw New Exception("No Passcard From harus lebih besar dari '[" & txtNo.Text & "]'")
             End If
 
-            If gh_Common.Site.ToLower = "tng" Then
+            'If gh_Common.Site.ToLower = "tng" Then
 
-                If TxtFrom.EditValue < "7" Then
-                    TxtFrom.Focus()
-                    TxtFrom.SelectAll()
-                    Throw New Exception("No Passcard From harus di mulai dari angka '7'")
-                End If
-            End If
-
-
+            '    If TxtFrom.EditValue < "7" Then
+            '        TxtFrom.Focus()
+            '        TxtFrom.SelectAll()
+            '        Throw New Exception("No Passcard From harus di mulai dari angka '7'")
+            '    End If
+            'End If
 
             Dim ds As DataSet = New DataSet
             Dim dt As DataTable = New DataTable
@@ -173,6 +179,9 @@ Public Class FrmLookUpBarcode
         If gh_Common.Site.ToLower <> "tng" Then
             LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         End If
+        FillComboTahun()
+        cmbTahun.EditValue = DateTime.Now.Year
+        CmbBulan.EditValue = DateTime.Now.Month
     End Sub
 
     Private Sub CmbBulan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CmbBulan.KeyPress
@@ -190,7 +199,7 @@ Public Class FrmLookUpBarcode
                 CmbBulan.Text = ""
                 Throw New Exception("Silahkan isi kode part dulu")
             End If
-            txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+            txtNo.Text = Obj.GetNoPrint(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text)
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -199,7 +208,9 @@ Public Class FrmLookUpBarcode
     End Sub
     Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
         Try
-            Obj.InsertLog(CmbBulan.Text, TxtKodePart.Text, TxtTo.Text, dtTemp.Rows(0)("CustomerID").ToString())
+            Obj.InsertLog(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text, TxtTo.Text, dtTemp.Rows(0)("CustomerID").ToString(),
+                            dtTemp.Rows(0)("InvtID").ToString(), dtTemp.Rows(0)("PartName").ToString(),
+                            dtTemp.Rows(0)("PartNo").ToString())
             PrintTool.ClosePreview()
             CmbBulan_SelectedIndexChanged(sender, e)
         Catch ex As Exception
@@ -208,7 +219,19 @@ Public Class FrmLookUpBarcode
     End Sub
 
     Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged
-        txtNo.Text = Obj.GetNoPrint(CmbBulan.Text, TxtKodePart.Text)
+        txtNo.Text = Obj.GetNoPrint(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text)
     End Sub
 
+    Private Sub cmbTahun_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTahun.SelectedIndexChanged
+        Try
+            If TxtKodePart.Text = "" Then
+                TxtKodePart.Focus()
+                cmbTahun.Text = ""
+                Throw New Exception("Silahkan isi kode part dulu")
+            End If
+            txtNo.Text = Obj.GetNoPrint(cmbTahun.Text, CmbBulan.Text, TxtKodePart.Text)
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
 End Class

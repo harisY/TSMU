@@ -102,6 +102,7 @@ Public Class frmBoM
             'ImportBoMUpdateTon()
             'ImportBoMUpdateCT()
             'ImportBoMUpdateQtyDetails()
+            'ImportBoMHeader()
             'Exit Sub
             If table.Rows.Count > 0 Then
                 If table.Columns.Count > 10 Then
@@ -222,10 +223,10 @@ Public Class frmBoM
                         Else
                             .Parentid = table.Rows(i)("Parent ID").ToString
                         End If
-                        If table.Rows(i)("Invt ID Material") Is DBNull.Value OrElse table.Rows(i)("Invt ID Material").ToString = "" Then
+                        If table.Rows(i)("Inventory ID") Is DBNull.Value OrElse table.Rows(i)("Inventory ID").ToString = "" Then
                             .inventId = ""
                         Else
-                            .inventId = table.Rows(i)("Invt ID Material").ToString
+                            .inventId = table.Rows(i)("Inventory ID").ToString
                         End If
                         If table.Rows(i)("Description") Is DBNull.Value OrElse table.Rows(i)("Description").ToString = "" Then
                             .Descr_detail = ""
@@ -243,8 +244,7 @@ Public Class frmBoM
                             .Unit = table.Rows(i)("Unit").ToString
                         End If
 
-
-                        .DeleteDetailByParentAndInvt(.Parentid, .inventId)
+                        '.DeleteDetailByParentAndInvt(.Parentid, .inventId)
                         .InsertDetail()
 
                     End With
@@ -300,25 +300,25 @@ Public Class frmBoM
                         Else
                             .Desc = table.Rows(i)("Description").ToString
                         End If
-                        If table.Rows(i)("Site ID") Is DBNull.Value OrElse table.Rows(i)("Site ID").ToString = "" Then
+                        If table.Rows(i)("Site") Is DBNull.Value OrElse table.Rows(i)("Site").ToString = "" Then
                             .SiteID = ""
                         Else
-                            .SiteID = table.Rows(i)("Site ID").ToString
+                            .SiteID = table.Rows(i)("Site").ToString
                         End If
                         If table.Rows(i)("Runner") Is DBNull.Value OrElse table.Rows(i)("Runner").ToString = "" Then
                             .Runner = ""
                         Else
                             .Runner = table.Rows(i)("Runner").ToString
                         End If
-                        If table.Rows(i)("Cycle Time") Is DBNull.Value OrElse table.Rows(i)("Cycle Time").ToString = "" Then
+                        If table.Rows(i)("CT") Is DBNull.Value OrElse table.Rows(i)("CT").ToString = "" Then
                             .CycleTime = "0"
                         Else
-                            .CycleTime = table.Rows(i)("Cycle Time")
+                            .CycleTime = table.Rows(i)("CT")
                         End If
-                        If table.Rows(i)("M/C Ton") Is DBNull.Value OrElse table.Rows(i)("M/C Ton").ToString = "" Then
+                        If table.Rows(i)("MC") Is DBNull.Value OrElse table.Rows(i)("MC").ToString = "" Then
                             .MC = ""
                         Else
-                            .MC = table.Rows(i)("M/C Ton").ToString
+                            .MC = table.Rows(i)("MC").ToString
                         End If
 
                         If table.Rows(i)("Cavity") Is DBNull.Value OrElse table.Rows(i)("Cavity").ToString = "" Then
@@ -326,27 +326,33 @@ Public Class frmBoM
                         Else
                             .cavity = table.Rows(i)("Cavity").ToString
                         End If
-                        If table.Rows(i)("Work Center") Is DBNull.Value OrElse table.Rows(i)("Work Center").ToString = "" Then
+                        If table.Rows(i)("WC") Is DBNull.Value OrElse table.Rows(i)("WC").ToString = "" Then
                             .WC = ""
                         Else
-                            .WC = table.Rows(i)("Work Center").ToString
+                            .WC = table.Rows(i)("WC").ToString
                         End If
-                        If table.Rows(i)("allowance") Is DBNull.Value OrElse table.Rows(i)("allowance").ToString = "" Then
+                        If table.Rows(i)("Allow") Is DBNull.Value OrElse table.Rows(i)("Allow").ToString = "" Then
                             .Allowance = 0
                         Else
-                            .Allowance = table.Rows(i)("allowance")
+                            .Allowance = table.Rows(i)("Allow")
                         End If
-                        If table.Rows(i)("mp") Is DBNull.Value OrElse table.Rows(i)("mp").ToString = "" Then
+                        If table.Rows(i)("MP") Is DBNull.Value OrElse table.Rows(i)("MP").ToString = "" Then
                             .MP = "0"
                         Else
-                            .MP = table.Rows(i)("mp")
+                            .MP = table.Rows(i)("MP")
                         End If
                         If table.Rows(i)("Status") Is DBNull.Value OrElse table.Rows(i)("Status") = "" Then
                             .Status = ""
                         Else
                             .Status = table.Rows(i)("Status")
                         End If
-                        .DeleteHeader(.BoMID)
+                        If table.Rows(i)("Active") Is DBNull.Value OrElse table.Rows(i)("Active").ToString = "" Then
+                            .Active = 1
+                        Else
+                            .Status = table.Rows(i)("Active")
+                        End If
+                        '.DeleteHeaderByInvtID(.InvtID)
+                        '.DeleteHeader(.BoMID)
                         .InsertHeader(.Status)
 
                     End With

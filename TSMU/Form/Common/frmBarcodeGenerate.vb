@@ -1,4 +1,6 @@
 ﻿Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraSplashScreen
 
@@ -94,6 +96,7 @@ Public Class frmBarcodeGenerate
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            SplashScreenManager.CloseForm()
         End Try
     End Sub
 
@@ -128,5 +131,19 @@ Public Class frmBarcodeGenerate
             Console.WriteLine(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        If GridView1.RowCount > 0 Then
+            SaveToExcel(Grid)
+        Else
+            MsgBox("Data Kosong !")
+        End If
+    End Sub
+
+    Private Sub Grid_MouseDown(sender As Object, e As MouseEventArgs) Handles Grid.MouseDown
+        If e.Button = System.Windows.Forms.MouseButtons.Right Then
+            ContextMenuStrip1.Show(e.Location)
+        End If
     End Sub
 End Class

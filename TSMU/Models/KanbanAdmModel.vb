@@ -147,12 +147,16 @@
         Try
             Dim sql As String = "SELECT 
 	                                CONVERT(varchar,[OrderDate],101) Tanggal,
-	                                [DelCycle] Cycle, case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
-	                                sum([OrderKbn]) Kanban,  COUNT(distinct OrderNo)TotDN
+	                                [DelCycle] Cycle, 
+                                    case when (Remark is null OR Remark<>'3A') then '3B' else '3A' END Remark,
+	                                sum([OrderKbn]) Kanban,  
+                                    COUNT(distinct OrderNo)TotDN, 
+                                    ShopCode, 
+                                    PlantCode
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
-	                                [DelCycle],Remark
+	                                [DelCycle],Remark, Shopcode, PlantCode
                                 ORDER BY 
 	                                CONVERT(varchar,[OrderDate],101),
 	                                [DelCycle]"
@@ -184,7 +188,7 @@
             Throw
         End Try
     End Sub
-    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer)
+    Public Sub SaveKanbanSumCKR(Tgl As String, Cycle As Integer, Kanban As Integer, Remark As String, totDN As Integer, shopcode As String, plantCode As String)
         Try
             Dim sql As String = "INSERT INTO [KanbanSum]
                                        ([Tanggal]
@@ -193,7 +197,7 @@
                                         ,[Open]
                                         ,Remark
                                         ,TotDN
-                                        ,OpenDN)
+                                        ,OpenDN,ShopCode,PlantCode)
                                  VALUES
                                        (" & QVal(Tgl) & "
                                        ," & QVal(Cycle) & "
@@ -201,7 +205,7 @@
                                        ," & QVal(Kanban) & "
                                        ," & QVal(Remark) & "
                                        ," & QVal(totDN) & "
-                                       , " & QVal(totDN) & ")"
+                                       , " & QVal(totDN) & ", " & QVal(shopcode) & "," & QVal(plantCode) & ")"
 
             ExecQueryCKR(sql)
 
@@ -253,13 +257,13 @@
             Throw
         End Try
     End Function
-    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String) As Boolean
+    Public Function IsKanbanExistCkr(Tgl As String, Cycle As Integer, Remark As String, shopcode As String) As Boolean
         Dim hasil As Boolean = False
         Try
             Dim sql As String = "SELECT * 
                                 FROM KanbanSum 
                                 WHERE Tanggal = " & QVal(Tgl) & "
-                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & ""
+                                    AND Cycle=" & QVal(Cycle) & " AND Remark=" & QVal(Remark) & " AND Shopcode = " & QVal(shopcode) & ""
             Dim dt As New DataTable
 
             dt = GetDataTableCKR(sql)
@@ -292,6 +296,7 @@
     Public Sub SaveDN(noPolisi As String, orderNo As String, sopir As String)
         Dim tgl As String = String.Empty
         Dim tgl1 As String = String.Empty
+        Dim shopCode As String = String.Empty
         Dim cycle As Integer = 0
 
         Try
@@ -308,6 +313,7 @@
                         tgl = GetTglByOrderNo(orderNo)
                         'tgl1 = GetTglByOrderNo1(orderNo)
                         cycle = GetCycleByOrderNo(orderNo)
+                        shopCode = GetShopCode(orderNo)
 
                         If tgl = "" OrElse cycle = 0 Then
                             Throw New Exception("Tgl atau Cycle tidak di temukan untuk DN '[" & orderNo & "]' !")
@@ -332,7 +338,7 @@
 
                         Dim udpateOpenDN As String = "Update KanbanSum 
                                         SET OpenDN = ISNULL(OpenDN,0) - 1, ClosedDN = ISNULL(ClosedDN,0) + 1 
-                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & " AND Shopcode = " & QVal(shopCode) & ""
                         ExecQueryCKR(udpateOpenDN)
 
                         Dim udpateFlagDN As String = "Update KanbanADM 
@@ -344,7 +350,7 @@
                                         SET StatusDN = 
                                                 CASE 
                                                     When TotDN = ClosedDN Then 'CLosed' Else 'Open' End 
-                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & ""
+                                        WHERE Remark = '3B' AND Tanggal = " & QVal(tgl) & " AND Cycle= " & QVal(cycle) & " AND Shopcode = " & QVal(shopCode) & ""
                         ExecQueryCKR(udpateStatus)
 
                         Trans1.Commit()
@@ -403,6 +409,21 @@
             dt = GetDataTableCKR(sql1)
             If dt.Rows.Count > 0 Then
                 hasil = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Function GetShopCode(orderNo) As String
+        Dim hasil As String = 0
+        Try
+            Dim sql1 As String = "SELECT TOP 1 ShopCode FROM [KanbanADM] 
+                               WHERE OrderNo = '" & orderNo & "'"
+            Dim dt As New DataTable
+            dt = GetDataTableCKR(sql1)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToString(dt.Rows(0)(0))
             End If
             Return hasil
         Catch ex As Exception

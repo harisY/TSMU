@@ -29,6 +29,7 @@ Partial Class frmListHargaADM
         Me.BtnLookUpInvtID = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +59,7 @@ Partial Class frmListHargaADM
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -74,7 +75,7 @@ Partial Class frmListHargaADM
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 94
         '
         'BtnLookUpInvtID
@@ -90,7 +91,7 @@ Partial Class frmListHargaADM
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 94
         '
         'GridColumn3
@@ -100,8 +101,18 @@ Partial Class frmListHargaADM
         Me.GridColumn3.MinWidth = 25
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 94
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Tahun"
+        Me.GridColumn4.FieldName = "Tahun"
+        Me.GridColumn4.MinWidth = 25
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 94
         '
         'frmListHargaADM
         '
@@ -128,4 +139,5 @@ Partial Class frmListHargaADM
     Friend WithEvents BtnLookUpInvtID As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

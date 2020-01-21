@@ -85,6 +85,8 @@ Partial Class FrmSuratJalanList
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCalcEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,17 +145,19 @@ Partial Class FrmSuratJalanList
         Me.LayoutControl1.Controls.Add(Me._TglSJFrom)
         Me.LayoutControl1.Controls.Add(Me._BtnCust)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 77)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1104, 101)
         Me.LayoutControl1.TabIndex = 19
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         '_TglKirimTo
         '
         Me._TglKirimTo.EditValue = Nothing
-        Me._TglKirimTo.Location = New System.Drawing.Point(384, 36)
+        Me._TglKirimTo.Location = New System.Drawing.Point(511, 38)
+        Me._TglKirimTo.Margin = New System.Windows.Forms.Padding(4)
         Me._TglKirimTo.Name = "_TglKirimTo"
         Me._TglKirimTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TglKirimTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -162,14 +166,15 @@ Partial Class FrmSuratJalanList
         Me._TglKirimTo.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._TglKirimTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TglKirimTo.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._TglKirimTo.Size = New System.Drawing.Size(104, 20)
+        Me._TglKirimTo.Size = New System.Drawing.Size(141, 22)
         Me._TglKirimTo.StyleController = Me.LayoutControl1
         Me._TglKirimTo.TabIndex = 13
         '
         '_TxtTglKirimFrom
         '
         Me._TxtTglKirimFrom.EditValue = Nothing
-        Me._TxtTglKirimFrom.Location = New System.Drawing.Point(273, 36)
+        Me._TxtTglKirimFrom.Location = New System.Drawing.Point(355, 38)
+        Me._TxtTglKirimFrom.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtTglKirimFrom.Name = "_TxtTglKirimFrom"
         Me._TxtTglKirimFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtTglKirimFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -178,33 +183,36 @@ Partial Class FrmSuratJalanList
         Me._TxtTglKirimFrom.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._TxtTglKirimFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TxtTglKirimFrom.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._TxtTglKirimFrom.Size = New System.Drawing.Size(107, 20)
+        Me._TxtTglKirimFrom.Size = New System.Drawing.Size(152, 22)
         Me._TxtTglKirimFrom.StyleController = Me.LayoutControl1
         Me._TxtTglKirimFrom.TabIndex = 12
         '
         '_TxtLokasi
         '
-        Me._TxtLokasi.Location = New System.Drawing.Point(88, 36)
+        Me._TxtLokasi.Location = New System.Drawing.Point(106, 38)
+        Me._TxtLokasi.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtLokasi.Name = "_TxtLokasi"
         Me._TxtLokasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtLokasi.Properties.Items.AddRange(New Object() {"ALL", "CKR A", "CKR B", "TNG", "TSC3"})
-        Me._TxtLokasi.Size = New System.Drawing.Size(105, 20)
+        Me._TxtLokasi.Size = New System.Drawing.Size(151, 22)
         Me._TxtLokasi.StyleController = Me.LayoutControl1
         Me._TxtLokasi.TabIndex = 11
         '
         'CheckNoTran
         '
-        Me.CheckNoTran.Location = New System.Drawing.Point(492, 12)
+        Me.CheckNoTran.Location = New System.Drawing.Point(656, 12)
+        Me.CheckNoTran.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckNoTran.Name = "CheckNoTran"
         Me.CheckNoTran.Properties.Caption = "No. Tanda Terima"
-        Me.CheckNoTran.Size = New System.Drawing.Size(324, 19)
+        Me.CheckNoTran.Size = New System.Drawing.Size(436, 20)
         Me.CheckNoTran.StyleController = Me.LayoutControl1
         Me.CheckNoTran.TabIndex = 10
         '
         '_TglSJTo
         '
         Me._TglSJTo.EditValue = Nothing
-        Me._TglSJTo.Location = New System.Drawing.Point(384, 12)
+        Me._TglSJTo.Location = New System.Drawing.Point(511, 12)
+        Me._TglSJTo.Margin = New System.Windows.Forms.Padding(4)
         Me._TglSJTo.Name = "_TglSJTo"
         Me._TglSJTo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TglSJTo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -213,14 +221,15 @@ Partial Class FrmSuratJalanList
         Me._TglSJTo.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._TglSJTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TglSJTo.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._TglSJTo.Size = New System.Drawing.Size(104, 20)
+        Me._TglSJTo.Size = New System.Drawing.Size(141, 22)
         Me._TglSJTo.StyleController = Me.LayoutControl1
         Me._TglSJTo.TabIndex = 7
         '
         '_TglSJFrom
         '
         Me._TglSJFrom.EditValue = Nothing
-        Me._TglSJFrom.Location = New System.Drawing.Point(273, 12)
+        Me._TglSJFrom.Location = New System.Drawing.Point(355, 12)
+        Me._TglSJFrom.Margin = New System.Windows.Forms.Padding(4)
         Me._TglSJFrom.Name = "_TglSJFrom"
         Me._TglSJFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TglSJFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -229,16 +238,17 @@ Partial Class FrmSuratJalanList
         Me._TglSJFrom.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._TglSJFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TglSJFrom.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._TglSJFrom.Size = New System.Drawing.Size(107, 20)
+        Me._TglSJFrom.Size = New System.Drawing.Size(152, 22)
         Me._TglSJFrom.StyleController = Me.LayoutControl1
         Me._TglSJFrom.TabIndex = 6
         '
         '_BtnCust
         '
-        Me._BtnCust.Location = New System.Drawing.Point(88, 12)
+        Me._BtnCust.Location = New System.Drawing.Point(106, 12)
+        Me._BtnCust.Margin = New System.Windows.Forms.Padding(4)
         Me._BtnCust.Name = "_BtnCust"
         Me._BtnCust.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._BtnCust.Size = New System.Drawing.Size(105, 20)
+        Me._BtnCust.Size = New System.Drawing.Size(151, 22)
         Me._BtnCust.StyleController = Me.LayoutControl1
         Me._BtnCust.TabIndex = 4
         '
@@ -248,7 +258,7 @@ Partial Class FrmSuratJalanList
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 77)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1104, 101)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -256,95 +266,101 @@ Partial Class FrmSuratJalanList
         Me.LayoutControlItem1.Control = Me._BtnCust
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(185, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(249, 26)
         Me.LayoutControlItem1.Text = "Customer"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(73, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(91, 16)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._TglSJFrom
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(185, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(249, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(187, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(250, 26)
         Me.LayoutControlItem3.Text = "Tanggal SJ"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(73, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(91, 16)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me._TglSJTo
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(372, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(499, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(108, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(145, 26)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me._TxtLokasi
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(185, 33)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(249, 55)
         Me.LayoutControlItem2.Text = "Site"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(73, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(91, 16)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me._TxtTglKirimFrom
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(185, 24)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(249, 26)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(187, 33)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(250, 55)
         Me.LayoutControlItem5.Text = "Tanggal Terima"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(73, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(91, 16)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me._TglKirimTo
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(372, 24)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(499, 26)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(108, 33)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(145, 55)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.CheckNoTran
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(480, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(644, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(328, 57)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(440, 81)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 102)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 128)
+        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage2
-        Me.XtraTabControl1.Size = New System.Drawing.Size(828, 479)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1104, 632)
         Me.XtraTabControl1.TabIndex = 20
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
         'XtraTabPage2
         '
         Me.XtraTabPage2.Controls.Add(Me._Grid1)
+        Me.XtraTabPage2.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(822, 451)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1097, 598)
         Me.XtraTabPage2.Text = "Edit Data"
         '
         '_Grid1
         '
         Me._Grid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me._Grid1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
         Me._Grid1.Location = New System.Drawing.Point(0, 0)
         Me._Grid1.MainView = Me.GridView2
+        Me._Grid1.Margin = New System.Windows.Forms.Padding(4)
         Me._Grid1.Name = "_Grid1"
         Me._Grid1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2, Me.RepositoryItemCalcEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit4, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit3})
-        Me._Grid1.Size = New System.Drawing.Size(822, 451)
+        Me._Grid1.Size = New System.Drawing.Size(1097, 598)
         Me._Grid1.TabIndex = 21
         Me._Grid1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn14, Me.GridColumn15, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn24, Me.GridColumn7, Me.GridColumn10, Me.GridColumn14, Me.GridColumn15, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GridView2.DetailHeight = 458
+        Me.GridView2.FixedLineWidth = 3
         Me.GridView2.GridControl = Me._Grid1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
@@ -354,52 +370,57 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn1.Caption = "No Surat Jalan"
         Me.GridColumn1.FieldName = "No Surat Jalan"
+        Me.GridColumn1.MinWidth = 27
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 63
+        Me.GridColumn1.Width = 84
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Sales Order"
         Me.GridColumn2.FieldName = "Sales Order"
+        Me.GridColumn2.MinWidth = 27
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 63
+        Me.GridColumn2.Width = 84
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "PO Customer"
         Me.GridColumn3.FieldName = "PO Customer"
+        Me.GridColumn3.MinWidth = 27
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 63
+        Me.GridColumn3.Width = 84
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Tanggal SJ"
         Me.GridColumn4.FieldName = "Tanggal SJ"
+        Me.GridColumn4.MinWidth = 27
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 6
-        Me.GridColumn4.Width = 63
+        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 84
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Tanggal Terima"
         Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit2
         Me.GridColumn5.FieldName = "Tanggal Terima"
+        Me.GridColumn5.MinWidth = 27
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 7
-        Me.GridColumn5.Width = 74
+        Me.GridColumn5.Width = 99
         '
         'RepositoryItemDateEdit2
         '
@@ -418,11 +439,12 @@ Partial Class FrmSuratJalanList
         Me.GridColumn6.Caption = "No. Tanda Terima"
         Me.GridColumn6.ColumnEdit = Me.RepositoryItemTextEdit2
         Me.GridColumn6.FieldName = "NoTran"
+        Me.GridColumn6.MinWidth = 27
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
-        Me.GridColumn6.Width = 63
+        Me.GridColumn6.Width = 84
         '
         'RepositoryItemTextEdit2
         '
@@ -434,10 +456,11 @@ Partial Class FrmSuratJalanList
         Me.GridColumn7.Caption = "Check"
         Me.GridColumn7.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumn7.FieldName = "Check"
+        Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
-        Me.GridColumn7.Width = 93
+        Me.GridColumn7.VisibleIndex = 11
+        Me.GridColumn7.Width = 124
         '
         'RepositoryItemCheckEdit2
         '
@@ -449,20 +472,22 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn10.Caption = "Customer"
         Me.GridColumn10.FieldName = "Customer"
+        Me.GridColumn10.MinWidth = 27
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 63
+        Me.GridColumn10.Width = 84
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "RS YIM"
         Me.GridColumn14.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn14.FieldName = "SR YIM"
+        Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 5
-        Me.GridColumn14.Width = 63
+        Me.GridColumn14.Width = 84
         '
         'RepositoryItemTextEdit1
         '
@@ -476,11 +501,12 @@ Partial Class FrmSuratJalanList
         Me.GridColumn15.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn15.FieldName = "Tanggal Kirim"
+        Me.GridColumn15.MinWidth = 27
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 8
-        Me.GridColumn15.Width = 63
+        Me.GridColumn15.Width = 84
         '
         'RepositoryItemDateEdit4
         '
@@ -493,49 +519,58 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn17.Caption = "No"
         Me.GridColumn17.FieldName = "No"
+        Me.GridColumn17.MinWidth = 27
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.FixedWidth = True
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 0
-        Me.GridColumn17.Width = 50
+        Me.GridColumn17.Width = 67
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Batch Invoice"
         Me.GridColumn18.FieldName = "Batch Invoice"
+        Me.GridColumn18.MinWidth = 27
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 11
+        Me.GridColumn18.VisibleIndex = 12
+        Me.GridColumn18.Width = 100
         '
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Ket"
         Me.GridColumn19.FieldName = "Ket"
+        Me.GridColumn19.MinWidth = 27
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 12
+        Me.GridColumn19.VisibleIndex = 13
+        Me.GridColumn19.Width = 100
         '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Batch Issue"
         Me.GridColumn20.FieldName = "Batch Issue"
+        Me.GridColumn20.MinWidth = 27
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 13
+        Me.GridColumn20.VisibleIndex = 14
+        Me.GridColumn20.Width = 100
         '
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Check Fin"
         Me.GridColumn21.ColumnEdit = Me.RepositoryItemCheckEdit3
         Me.GridColumn21.FieldName = "Check Fin"
+        Me.GridColumn21.MinWidth = 27
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 14
+        Me.GridColumn21.VisibleIndex = 15
+        Me.GridColumn21.Width = 100
         '
         'RepositoryItemCheckEdit3
         '
@@ -546,10 +581,12 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn22.Caption = "Tgl Check Fin"
         Me.GridColumn22.FieldName = "Tgl Check Fin"
+        Me.GridColumn22.MinWidth = 27
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 15
+        Me.GridColumn22.VisibleIndex = 16
+        Me.GridColumn22.Width = 100
         '
         'RepositoryItemCalcEdit2
         '
@@ -560,24 +597,29 @@ Partial Class FrmSuratJalanList
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me._Grid)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(822, 451)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1097, 598)
         Me.XtraTabPage1.Text = "New Data"
         '
         '_Grid
         '
         Me._Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me._Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
         Me._Grid.Location = New System.Drawing.Point(0, 0)
         Me._Grid.MainView = Me.GridView1
+        Me._Grid.Margin = New System.Windows.Forms.Padding(4)
         Me._Grid.Name = "_Grid"
         Me._Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemCalcEdit1, Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit5, Me.RepositoryItemDateEdit3, Me.RepositoryItemTextEdit3})
-        Me._Grid.Size = New System.Drawing.Size(822, 451)
+        Me._Grid.Size = New System.Drawing.Size(1097, 598)
         Me._Grid.TabIndex = 21
         Me._Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNoSJ, Me.ColSO, Me.ColPOCust, Me.ColTglSJ, Me.ColTglTerima, Me.ColNoRec, Me.ColCheck, Me.colCust, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn16})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNoSJ, Me.ColSO, Me.ColPOCust, Me.ColTglSJ, Me.ColTglTerima, Me.ColNoRec, Me.GridColumn23, Me.ColCheck, Me.colCust, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn16})
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me._Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
@@ -587,51 +629,54 @@ Partial Class FrmSuratJalanList
         '
         Me.ColNoSJ.Caption = "No Surat Jalan"
         Me.ColNoSJ.FieldName = "No Surat Jalan"
+        Me.ColNoSJ.MinWidth = 27
         Me.ColNoSJ.Name = "ColNoSJ"
         Me.ColNoSJ.OptionsColumn.AllowEdit = False
         Me.ColNoSJ.Visible = True
         Me.ColNoSJ.VisibleIndex = 2
-        Me.ColNoSJ.Width = 63
+        Me.ColNoSJ.Width = 84
         '
         'ColSO
         '
         Me.ColSO.Caption = "Sales Order"
         Me.ColSO.FieldName = "Sales Order"
+        Me.ColSO.MinWidth = 27
         Me.ColSO.Name = "ColSO"
         Me.ColSO.OptionsColumn.AllowEdit = False
         Me.ColSO.Visible = True
         Me.ColSO.VisibleIndex = 3
-        Me.ColSO.Width = 63
+        Me.ColSO.Width = 84
         '
         'ColPOCust
         '
         Me.ColPOCust.Caption = "PO Customer"
         Me.ColPOCust.FieldName = "PO Customer"
+        Me.ColPOCust.MinWidth = 27
         Me.ColPOCust.Name = "ColPOCust"
         Me.ColPOCust.OptionsColumn.AllowEdit = False
         Me.ColPOCust.Visible = True
         Me.ColPOCust.VisibleIndex = 4
-        Me.ColPOCust.Width = 63
+        Me.ColPOCust.Width = 84
         '
         'ColTglSJ
         '
         Me.ColTglSJ.Caption = "Tanggal SJ"
         Me.ColTglSJ.FieldName = "Tanggal SJ"
+        Me.ColTglSJ.MinWidth = 27
         Me.ColTglSJ.Name = "ColTglSJ"
         Me.ColTglSJ.OptionsColumn.AllowEdit = False
         Me.ColTglSJ.Visible = True
-        Me.ColTglSJ.VisibleIndex = 6
-        Me.ColTglSJ.Width = 63
+        Me.ColTglSJ.VisibleIndex = 7
+        Me.ColTglSJ.Width = 84
         '
         'ColTglTerima
         '
         Me.ColTglTerima.Caption = "Tanggal Terima"
         Me.ColTglTerima.ColumnEdit = Me.RepositoryItemDateEdit1
         Me.ColTglTerima.FieldName = "Tanggal Terima"
+        Me.ColTglTerima.MinWidth = 27
         Me.ColTglTerima.Name = "ColTglTerima"
-        Me.ColTglTerima.Visible = True
-        Me.ColTglTerima.VisibleIndex = 7
-        Me.ColTglTerima.Width = 74
+        Me.ColTglTerima.Width = 99
         '
         'RepositoryItemDateEdit1
         '
@@ -651,10 +696,11 @@ Partial Class FrmSuratJalanList
         Me.ColNoRec.Caption = "NoRec"
         Me.ColNoRec.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.ColNoRec.FieldName = "NoRec"
+        Me.ColNoRec.MinWidth = 27
         Me.ColNoRec.Name = "ColNoRec"
         Me.ColNoRec.Visible = True
-        Me.ColNoRec.VisibleIndex = 9
-        Me.ColNoRec.Width = 63
+        Me.ColNoRec.VisibleIndex = 7
+        Me.ColNoRec.Width = 84
         '
         'RepositoryItemTextEdit3
         '
@@ -666,10 +712,11 @@ Partial Class FrmSuratJalanList
         Me.ColCheck.Caption = "Check"
         Me.ColCheck.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.ColCheck.FieldName = "Check"
+        Me.ColCheck.MinWidth = 27
         Me.ColCheck.Name = "ColCheck"
         Me.ColCheck.Visible = True
-        Me.ColCheck.VisibleIndex = 10
-        Me.ColCheck.Width = 93
+        Me.ColCheck.VisibleIndex = 9
+        Me.ColCheck.Width = 124
         '
         'RepositoryItemCheckEdit1
         '
@@ -681,20 +728,22 @@ Partial Class FrmSuratJalanList
         '
         Me.colCust.Caption = "Customer"
         Me.colCust.FieldName = "Customer"
+        Me.colCust.MinWidth = 27
         Me.colCust.Name = "colCust"
         Me.colCust.Visible = True
         Me.colCust.VisibleIndex = 1
-        Me.colCust.Width = 63
+        Me.colCust.Width = 84
         '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "RS YIM"
         Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit5
         Me.GridColumn8.FieldName = "SR YIM"
+        Me.GridColumn8.MinWidth = 27
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 63
+        Me.GridColumn8.Width = 84
         '
         'RepositoryItemTextEdit5
         '
@@ -708,11 +757,10 @@ Partial Class FrmSuratJalanList
         Me.GridColumn9.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn9.FieldName = "Tanggal Kirim"
+        Me.GridColumn9.MinWidth = 27
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 63
+        Me.GridColumn9.Width = 84
         '
         'RepositoryItemDateEdit3
         '
@@ -730,39 +778,46 @@ Partial Class FrmSuratJalanList
         '
         Me.GridColumn11.Caption = "No"
         Me.GridColumn11.FieldName = "No"
+        Me.GridColumn11.MinWidth = 27
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.FixedWidth = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 50
+        Me.GridColumn11.Width = 67
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Batch Invoice"
         Me.GridColumn12.FieldName = "Batch Invoice"
+        Me.GridColumn12.MinWidth = 27
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
+        Me.GridColumn12.VisibleIndex = 10
+        Me.GridColumn12.Width = 100
         '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "Ket"
         Me.GridColumn13.FieldName = "Ket"
+        Me.GridColumn13.MinWidth = 27
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 12
+        Me.GridColumn13.VisibleIndex = 11
+        Me.GridColumn13.Width = 100
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Batch Issue"
         Me.GridColumn16.FieldName = "Batch Issue"
+        Me.GridColumn16.MinWidth = 27
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 13
+        Me.GridColumn16.VisibleIndex = 12
+        Me.GridColumn16.Width = 100
         '
         'RepositoryItemCalcEdit1
         '
@@ -770,12 +825,33 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemCalcEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemCalcEdit1.Name = "RepositoryItemCalcEdit1"
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "No Mobil"
+        Me.GridColumn23.FieldName = "NoMobil"
+        Me.GridColumn23.MinWidth = 25
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.Width = 94
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "No Mobil"
+        Me.GridColumn24.FieldName = "NoMobil"
+        Me.GridColumn24.MinWidth = 25
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 10
+        Me.GridColumn24.Width = 94
+        '
         'FrmSuratJalanList
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmSuratJalanList"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
@@ -896,4 +972,6 @@ Partial Class FrmSuratJalanList
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
