@@ -29,7 +29,7 @@
                       ,[Ppn]
                       ,[Pph] PPH
                       ,[cek1] [Check]
-                      ,[cek4]
+                      ,[cek4] [CheckPPH]
                   FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -51,7 +51,7 @@
                       ,[Pph] PPH
                       ,(Dpp+Ppn)-Pph as Paid
                       ,[cek1] [Check]
-                      ,[cek4]
+                      ,[cek4] [CheckPPH]
                   FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -92,19 +92,20 @@
 
     Public Function GetDataGridCM_New(VendorID As String) As DataTable
         Try
-            Dim sql As String = "SELECT Ardoc.docdate as tgl
+            Dim sql As String = "SELECT Ardoc.docdate 
                                     ,Ardoc.CuryId
-                                    ,Ardoc.batnbr as Bacth
-                                    ,Ardoc.refnbr as no_invoice
-                                    ,Batch.CuryCrTot as TotalCMDM 
+                                    ,Ardoc.batnbr 
+                                    ,Ardoc.refnbr 
+                                    ,Batch.CuryCrTot 
                                     , convert(bit,0) as [Check]
+                                    , convert(bit,0) as [CheckPPH]
                                 FROM Ardoc inner join 
                                     CashAcct  on Ardoc.BankAcct=CashAcct.BankAcct  inner join 
                                     Batch on Ardoc.BatNbr=Batch.BatNbr  inner join 
                                     customer  on Ardoc.custid=customer.custid inner join 
                                     vendor on customer.user5=vendor.vendid 
                                 where Batch.user1='' 
-                                    AND RTRIM(vendor.VendId)=" & QVal(VendorID.TrimEnd) & ""
+                                    AND RTRIM(customer.custid)=" & QVal(VendorID.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

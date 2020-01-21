@@ -199,8 +199,32 @@ Public Class AR_Header_Models
             Throw ex
         End Try
     End Sub
+    Public Function GetDataDetailByID() As DataTable
+        Try
+            Dim sql As String = "SELECT EntryId,
+ 	                                RTRIM([SubAcct]) SubAccount,
+                                    RTRIM([AcctID]) Account,
+	                                RTRIM(Description) Description,
+                                    [Amount] Amount,RcptDisbFlg 
+                                FROM OffsetAR WHERE vrno = " & QVal(vrno) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
-
+    Public Function GetEntry() As DataTable
+        Try
+            Dim sql As String = "select RTRIM(entryid) [EntryID],RTRIM(DfltAcct) [Account],RTRIM(DfltSub) [Sub],RTRIM(Descr) Descritiption,RcptDisbFlg from entrytyp where active=1"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub InsertHeaderDir()
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -442,7 +466,7 @@ Public Class AR_Header_Models
                 "set @seq= (select right('0000'+cast(right(rtrim(max(vrno)),4)+1 as varchar),4) " &
                 "from AR_Header " &
                 "where SUBSTRING(vrno,4,4) = @tahun AND SUBSTRING(vrno,9,2) = @bulan) " &
-                "select 'AP' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+                "select 'AR' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)

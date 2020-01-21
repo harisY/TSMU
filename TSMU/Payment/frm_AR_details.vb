@@ -17,9 +17,11 @@ Public Class frm_AR_details
 
     Dim fs_Split As String = "'"
     Dim TotAmount As Double
+    Dim TotAmountpph As Double
     Dim ObjFP As New Cls_FP
     Dim ObjPayment As New Cls_Payment
     Dim ObjCM As New Cls_cmdm
+    Dim vbalance As Double = 0
     Public Sub New()
 
         ' This call is required by the designer.
@@ -66,11 +68,22 @@ Public Class frm_AR_details
                 End If
             End If
 
+            If e.Column.FieldName = "CheckPPH" Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
+                    GetPPH()
+                Else
+                    GetPPH()
+
+                End If
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
+        GridInvoice.FocusedView.PostEditor()
+    End Sub
+    Private Sub RepositoryItemCheckEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit2.EditValueChanged
         GridInvoice.FocusedView.PostEditor()
     End Sub
     Private Sub _TxtPerpost_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtPerpost.EditValueChanged
@@ -228,9 +241,41 @@ Public Class frm_AR_details
             Else
                 _TxtTotalAmount.Text = Format(TotAmount - _TxtBiaya.Text, gs_FormatBulat)
             End If
-
+            Dim vbalance As Double = _TxtTotalAmount.Text - _TxtDebit.Text
+            _txtbalance.Text = vbalance
             '       Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
             '       _TxtDebit.Text = Format(debit, gs_FormatBulat)
+            '  _txtbalance.Text = Format(vbalance, gs_FormatBulat)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GetPPH()
+
+        TotAmountPPH = 0
+
+        ''GrandTotal = 0
+        Dim cek2 As Boolean
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If GridView1.GetRowCellValue(i, "CheckPPH") = True And GridView1.GetRowCellValue(i, "Check") = True Then
+                    TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Amount")) * 0.02)
+                End If
+
+            Next
+
+
+            If TotAmountPPH = 0 Then
+                _TxtPPH.Text = "0"
+            Else
+                _TxtPPH.Text = Format(TotAmountPPH, gs_FormatBulat)
+            End If
+
+            Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
+            _txtbalance.Text = vbalance
+            '       Dim debit As Double = TotAmountPPH - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
+            _txtbalance.Text = Format(vbalance, gs_FormatBulat)
         Catch ex As Exception
             Throw ex
         End Try
@@ -379,5 +424,115 @@ Public Class frm_AR_details
         Else
             _TxtTotalAmount.Text = Format(TotAmount + _TxtBiaya.Text, gs_FormatBulat)
         End If
+    End Sub
+
+    Private Sub _TxtCM_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtCM.EditValueChanged
+
+    End Sub
+
+    Private Sub _TxtCM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _TxtCM.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+            Dim ls_Voucher As String = ""
+
+
+
+
+            dtSearch = ObjPaymentDetail.GetDataGridCM_New(_TxtVendorID.Text)
+            ls_OldKode = _TxtCM.Text.Trim
+            ls_Judul = "CM/DM"
+            ls_Voucher = _txtVoucher.Text
+
+
+            Dim f As frm_lookup_cmdm_ar
+            f = New frm_lookup_cmdm_ar(dtSearch, ls_Voucher)
+            f.Text = "Select Data " & ls_Judul
+            f.StartPosition = FormStartPosition.CenterScreen
+            f.ShowDialog()
+            If f.Total > 0 Then
+                _TxtCM.Text = Format(f.Total, gs_FormatBulat)
+                _txtbalance.Text = Format(_txtbalance.Text - _TxtCM.Text, gs_FormatBulat)
+            End If
+
+
+            'ObjPaymentHeader.ObjBatch.Clear()
+            'For i As Integer = 0 To f.ListNoInvoice.Count - 1
+            '    Dim Batch As New batch
+            '    With Batch
+            '        .InvNO = f.ListNoInvoice.Item(i).ToString()
+            '    End With
+            '    ObjPaymentHeader.ObjBatch.Add(Batch)
+            'Next
+
+            ObjPaymentHeader.ObjBatch.Clear()
+            For Each item In f.ListNoInvoice
+                Dim Batch As New batch
+                With Batch
+                    .BatchNO = item.BatchNO.ToString()
+                End With
+                ObjPaymentHeader.ObjBatch.Add(Batch)
+            Next
+            f.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub GridInvoice_Click(sender As Object, e As EventArgs) Handles GridInvoice.Click
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+            Dim ls_Voucher As String = ""
+
+
+
+
+            dtSearch = ObjPaymentDetail.GetDataGridCM_New(_TxtVendorID.Text)
+            ls_OldKode = _TxtCM.Text.Trim
+            ls_Judul = "CM/DM"
+            ls_Voucher = _txtVoucher.Text
+
+
+            Dim f As frm_lookup_cmdm_ar
+            f = New frm_lookup_cmdm_ar(dtSearch, ls_Voucher)
+            f.Text = "Select Data " & ls_Judul
+            f.StartPosition = FormStartPosition.CenterScreen
+            f.ShowDialog()
+            If f.Total > 0 Then
+                _TxtCM.Text = Format(f.Total, gs_FormatBulat)
+                _txtbalance.Text = Format(_txtbalance.Text - _TxtCM.Text, gs_FormatBulat)
+            End If
+
+
+            'ObjPaymentHeader.ObjBatch.Clear()
+            'For i As Integer = 0 To f.ListNoInvoice.Count - 1
+            '    Dim Batch As New batch
+            '    With Batch
+            '        .InvNO = f.ListNoInvoice.Item(i).ToString()
+            '    End With
+            '    ObjPaymentHeader.ObjBatch.Add(Batch)
+            'Next
+
+            ObjPaymentHeader.ObjBatch.Clear()
+            For Each item In f.ListNoInvoice
+                Dim Batch As New batch
+                With Batch
+                    .BatchNO = item.BatchNO.ToString()
+                End With
+                ObjPaymentHeader.ObjBatch.Add(Batch)
+            Next
+            f.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

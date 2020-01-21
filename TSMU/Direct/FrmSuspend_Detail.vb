@@ -6,8 +6,6 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
 Public Class FrmSuspend_Detail
-
-
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""

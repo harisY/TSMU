@@ -29,6 +29,8 @@ Partial Class frm_AR_details
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me._TxtVendorID = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me._txtbalance = New DevExpress.XtraEditors.TextEdit()
         Me._TxtBankName = New DevExpress.XtraEditors.TextEdit()
         Me._TxtDebit = New DevExpress.XtraEditors.TextEdit()
         Me._TxtBiaya = New DevExpress.XtraEditors.TextEdit()
@@ -56,6 +58,8 @@ Partial Class frm_AR_details
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GridInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColInvcDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,12 +71,15 @@ Partial Class frm_AR_details
         Me.ColPPH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCheck = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._txtbalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtBankName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtDebit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtBiaya.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,8 +108,11 @@ Partial Class frm_AR_details
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -130,6 +140,8 @@ Partial Class frm_AR_details
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.Button1)
+        Me.LayoutControl1.Controls.Add(Me._txtbalance)
         Me.LayoutControl1.Controls.Add(Me._TxtBankName)
         Me.LayoutControl1.Controls.Add(Me._TxtDebit)
         Me.LayoutControl1.Controls.Add(Me._TxtBiaya)
@@ -151,6 +163,29 @@ Partial Class frm_AR_details
         Me.LayoutControl1.Size = New System.Drawing.Size(828, 144)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(12, 108)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(180, 24)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "CM/DM"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        '_txtbalance
+        '
+        Me._txtbalance.Location = New System.Drawing.Point(328, 108)
+        Me._txtbalance.Name = "_txtbalance"
+        Me._txtbalance.Properties.DisplayFormat.FormatString = "n"
+        Me._txtbalance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me._txtbalance.Properties.EditFormat.FormatString = "n"
+        Me._txtbalance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me._txtbalance.Properties.Mask.EditMask = "n"
+        Me._txtbalance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me._txtbalance.Size = New System.Drawing.Size(50, 20)
+        Me._txtbalance.StyleController = Me.LayoutControl1
+        Me._txtbalance.TabIndex = 28
         '
         '_TxtBankName
         '
@@ -321,7 +356,7 @@ Partial Class frm_AR_details
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem17, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem9})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem17, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem13})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 144)
         Me.LayoutControlGroup1.TextVisible = False
@@ -406,7 +441,7 @@ Partial Class frm_AR_details
         Me.LayoutControlItem2.Control = Me._TxtBankID
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(184, 52)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(184, 24)
         Me.LayoutControlItem2.Text = "Bank"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(75, 13)
         '
@@ -446,7 +481,7 @@ Partial Class frm_AR_details
         Me.LayoutControlItem11.Location = New System.Drawing.Point(238, 72)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.OptionsTableLayoutItem.RowIndex = 4
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(132, 52)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(132, 24)
         Me.LayoutControlItem11.Text = "Currency"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(75, 13)
         '
@@ -471,19 +506,38 @@ Partial Class frm_AR_details
         Me.LayoutControlItem9.Text = "Invoice Amount"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(75, 13)
         '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me._txtbalance
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(238, 96)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(132, 28)
+        Me.LayoutControlItem10.Text = "Balance"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(75, 13)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.Button1
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(184, 28)
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem13.TextVisible = False
+        '
         'GridInvoice
         '
         Me.GridInvoice.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GridInvoice.Location = New System.Drawing.Point(3, 3)
         Me.GridInvoice.MainView = Me.GridView1
         Me.GridInvoice.Name = "GridInvoice"
+        Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
         Me.GridInvoice.Size = New System.Drawing.Size(822, 476)
         Me.GridInvoice.TabIndex = 0
         Me.GridInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.ColCheck})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.ColCheck, Me.GridColumn1})
         Me.GridView1.GridControl = Me.GridInvoice
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
@@ -551,7 +605,7 @@ Partial Class frm_AR_details
         '
         'ColPPH
         '
-        Me.ColPPH.Caption = "PPH"
+        Me.ColPPH.Caption = "PPH Amount"
         Me.ColPPH.DisplayFormat.FormatString = "##,0"
         Me.ColPPH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPPH.FieldName = "PPH"
@@ -580,6 +634,21 @@ Partial Class frm_AR_details
         Me.ColCheck.OptionsFilter.AllowAutoFilter = False
         Me.ColCheck.Visible = True
         Me.ColCheck.VisibleIndex = 8
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "PPH"
+        Me.GridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumn1.FieldName = "CheckPPH"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsFilter.AllowAutoFilter = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 9
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
         'TableLayoutPanel1
         '
@@ -610,6 +679,7 @@ Partial Class frm_AR_details
         CType(Me._TxtVendorID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._txtbalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtBankName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtDebit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtBiaya.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -638,8 +708,11 @@ Partial Class frm_AR_details
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -688,4 +761,10 @@ Partial Class frm_AR_details
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents _TxtTotalAmount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _txtbalance As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Button1 As Button
+    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
