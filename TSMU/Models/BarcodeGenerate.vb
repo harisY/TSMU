@@ -166,7 +166,7 @@ Public Class BarcodeGenerate
         Try
             Dim Ada As Boolean = CheckLog(Bulan, KodePart)
             If Ada Then
-                Dim _udpate As String = "Update BarcodePrintLog Set No =" & QVal(No) & "
+                Dim _udpate As String = "Update BarcodePrintLog Set No =" & QVal(No) & ", PrintedDate = GETDATE()  
                                         WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(_udpate)
