@@ -6,6 +6,16 @@ Imports DevExpress.XtraSplashScreen
 Public Class frmUploadKanbanYIM
     Dim dtGrid As DataTable
     Dim Obj As KanbanYIMModel
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
     Private Sub frmUploadKanbanYIM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()

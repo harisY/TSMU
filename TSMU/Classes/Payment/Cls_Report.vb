@@ -288,14 +288,14 @@ Public Class Cls_report
         End Try
     End Function
 
-    Public Function DataGridSyncMizuho() As DataTable
+    Public Function DataGridSyncMizuho(ByVal Date3 As String, ByVal Date4 As String) As DataTable
         Try
             Dim query As String = "SyncMizuho"
-            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            'pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
-            'pParam(0).Value = date1
-            'pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
-            'pParam(1).Value = date2
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date3", SqlDbType.VarChar)
+            pParam(0).Value = Date3
+            pParam(1) = New SqlClient.SqlParameter("@Date4", SqlDbType.VarChar)
+            pParam(1).Value = Date4
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_StoreP(query)
             Return dt
