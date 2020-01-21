@@ -71,9 +71,11 @@ Public Class frm_AR_details
             If e.Column.FieldName = "CheckPPH" Then
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
                     GetPPH()
+                    Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+                    Dim _pphAmount As Double = _pph * 0.02
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "PPH", _pphAmount)
                 Else
                     GetPPH()
-
                 End If
             End If
         Catch ex As Exception
@@ -504,6 +506,7 @@ Public Class frm_AR_details
             Dim f As frm_lookup_cmdm_ar
             f = New frm_lookup_cmdm_ar(dtSearch, ls_Voucher)
             f.Text = "Select Data " & ls_Judul
+            f.pph = _TxtPPH.Text
             f.StartPosition = FormStartPosition.CenterScreen
             f.ShowDialog()
             If f.Total > 0 Then
