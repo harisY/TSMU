@@ -50,6 +50,27 @@ Public Class frm_lookup_cmdm_ar
                 Dim dtGrid As New DataTable
                 ObjPaymentHeader1.vrno = Label3.Text
                 dtGrid = ObjPaymentHeader1.GetDataDetailByID()
+
+                Dim dt As New DataTable
+
+                dt.Columns.Add("EntryId")
+                dt.Columns.Add("SubAccount")
+                dt.Columns.Add("Account")
+                dt.Columns.Add("Description")
+                dt.Columns.Add("Amount", GetType(Single))
+                dt.Columns.Add("RcptDisbFlg")
+
+                Dim R As DataRow = dt.NewRow
+                R("EntryId") = "01"
+                R("SubAccount") = "1"
+                R("Account") = "1244"
+                R("Description") = "Testing"
+                R("Amount") = Convert.ToSingle(pph)
+                R("RcptDisbFlg") = ""
+                dt.Rows.Add(R)
+
+                dtGrid.Merge(dt, True, MissingSchemaAction.Ignore)
+
                 GridControl1.DataSource = dtGrid
                 If dtGrid.Rows.Count > 0 Then
                     GridCellFormat(GridView2)
@@ -86,6 +107,7 @@ Public Class frm_lookup_cmdm_ar
             Return InvoiceNo
         End Get
     End Property
+    Public Property pph() As String
     Private Sub frm_lookup_cmdm_ar_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             LoadGridDetail()
