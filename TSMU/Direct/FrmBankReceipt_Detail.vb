@@ -94,9 +94,9 @@ Public Class FrmBankReceipt_Detail
                 TxtNoBukti.Text = ""
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                 TxtCheckNo.Text = ""
-                TxtNoRekTujuan.Text = ""
-                TxtNoRekTujuanname.Text = ""
-                TxtCuryID.SelectedIndex = 0
+                '            TxtNoRekTujuan.Text = ""
+                '           TxtNoRekTujuanname.Text = ""
+                ' TxtCuryID.SelectedIndex = 0
                 TxtAmount.Text = 0
                 TxtRemark.Text = ""
                 TxtNoBukti.Focus()
@@ -304,11 +304,4 @@ Public Class FrmBankReceipt_Detail
         End Try
     End Sub
 
-    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
-
-    End Sub
-
-    Private Sub TxtNoRekTujuan_DragOver(sender As Object, e As DragEventArgs) Handles TxtNoRekTujuan.DragOver
-
-    End Sub
 End Class

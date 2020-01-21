@@ -67,12 +67,12 @@ Partial Class frm_AR
         Me.RepositoryItemCheckEdit1.AutoHeight = False
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
-        'Frm_AR
+        'frm_AR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "Frm_AR"
+        Me.Name = "frm_AR"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.menuContext.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

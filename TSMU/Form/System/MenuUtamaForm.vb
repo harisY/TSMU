@@ -349,13 +349,13 @@ Public Class MenuUtamaForm
                 "WHERE " & vbCrLf &
                 "	( " & vbCrLf &
                 "		(sup.UserName = " & QVal(gh_Common.Username) & " AND COALESCE(sup.Access, '0') = '1') " & vbCrLf &
-                "		OR (su.ParentMenu = 'Setting' AND 1 = " & IIf(gh_Common.AdminStatus, "1", "0") & " ) " & vbCrLf &
                 "	) " & vbCrLf &
                 "	AND COALESCE(su.ParentMenu, '') <> '' " & vbCrLf &
                 "	AND su.FlagActive = '1' " & vbCrLf &
                 "ORDER BY " & vbCrLf &
                 "	COALESCE(su.seqParentMenu, '') " & vbCrLf &
                 "	, su.SeqMenu ASC "
+            '   "	OR (su.ParentMenu = 'Setting' AND 1 = " & IIf(gh_Common.AdminStatus, "1", "0") & " ) " & vbCrLf &
 
             Dim dt_Menu As DataTable = MainModul.GetDataTable(ls_Sqls)
             If dt_Menu.Rows.Count > 0 Then
@@ -377,6 +377,8 @@ Public Class MenuUtamaForm
                             '    TSMPC.DropDownItems.Add(TSMenuD)
                             'Case "PLM"
                             '    TSMPLM.DropDownItems.Add(TSMenuD)
+                        Case "Asakai"
+                            tsMenuAsakai.DropDownItems.Add(TSMenuD)
                         Case "Sales"
                             If childMenu Is DBNull.Value OrElse childMenu = "" Then
                             ElseIf childMenu = "Budget" Then
@@ -670,9 +672,6 @@ Public Class MenuUtamaForm
         If Me.tsReport.DropDownItems.Count > 0 Then
             Me.tsReport.DropDownItems.Clear()
         End If
-        If Me.tsMenuSetting.DropDownItems.Count > 0 Then
-            Me.tsMenuSetting.DropDownItems.Clear()
-        End If
         If Me.BudgetTSM.DropDownItems.Count > 0 Then
             Me.BudgetTSM.DropDownItems.Clear()
         End If
@@ -705,9 +704,9 @@ Public Class MenuUtamaForm
             Me.tstaxreport.DropDownItems.Clear()
         End If
 
-        'If Me.SJtsb.DropDownItems.Count > 0 Then
-        '    Me.SJtsb.DropDownItems.Clear()
-        'End If
+        If Me.tsMenuSetting.DropDownItems.Count > 0 Then
+            Me.tsMenuSetting.DropDownItems.Clear()
+        End If
         If Me.WHJtsb.DropDownItems.Count > 0 Then
             Me.WHJtsb.DropDownItems.Clear()
         End If
@@ -721,9 +720,9 @@ Public Class MenuUtamaForm
         If Me.tsSuspend.DropDownItems.Count > 0 Then
             Me.tsSuspend.DropDownItems.Clear()
         End If
-        'If Me.tsReportEntertainment.DropDownItems.Count > 0 Then
-        '    Me.tsReportEntertainment.DropDownItems.Clear()
-        'End If
+        If Me.tsMenuAsakai.DropDownItems.Count > 0 Then
+            Me.tsMenuAsakai.DropDownItems.Clear()
+        End If
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
