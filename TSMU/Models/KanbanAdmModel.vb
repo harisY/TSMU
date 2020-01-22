@@ -152,7 +152,10 @@
 	                                sum([OrderKbn]) Kanban,  
                                     COUNT(distinct OrderNo)TotDN, 
                                     ShopCode, 
-                                    PlantCode
+                                    case PlantCode
+		                                when 'D104' then 'SAP'
+		                                when 'D105' then 'KAP'
+	                                END as PlantCode
                                 FROM [KanbanADM]
                                 GROUP BY 
 	                                CONVERT(varchar,[OrderDate],101),
