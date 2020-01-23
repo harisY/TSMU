@@ -29,6 +29,20 @@ Public Class cashbank_models
             _id = value
         End Set
     End Property
+    Public Function GetUsernameLevel() As Integer
+        Dim result As Integer = 0
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT top 1 Kol
+            FROM akses_approval where Username = " & QVal(gh_Common.Username) & ""
+            dt = GetDataTable(sql)
+            result = Convert.ToInt32(dt.Rows(0)(0))
+            Return result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Sub GetDirekPaymentById(_NoBukti As String)
         Try

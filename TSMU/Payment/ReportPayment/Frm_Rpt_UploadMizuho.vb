@@ -26,6 +26,7 @@ Public Class Frm_Rpt_UploadMizuho
         Call baseForm.Proc_EnableButtons(False, False, False, True, True, False, False, False)
         Init()
         ProgBar.Visible = False
+        loadgrid()
         ''_totalchk.Text = totalsupllier()
     End Sub
 
@@ -111,6 +112,8 @@ Public Class Frm_Rpt_UploadMizuho
         End Try
     End Sub
 
+
+
     'Private Async Sub reportuploadtomizuho()
     '    Try
     '        If ProgBar.Visible = True Then
@@ -161,21 +164,21 @@ Public Class Frm_Rpt_UploadMizuho
     End Sub
 
     Private Sub GetDataSyncMizuho()
-        'Dim date1 As String = ""
-        'Dim date2 As String = ""
-        'Dim date1 As DateTime
-        'Dim date2 As DateTime
-        'Invoke(Sub()
-        '           date1 = DateEdit1.Text
-        '           date2 = DateEdit2.Text
-        '       End Sub)
-        Dim dt As New DataTable
-        dt = pay_class.DataGridSyncMizuho()
+        Dim Date3 As String = ""
+        Dim Date4 As String = ""
+        ''Dim date1 As DateTime
+        ''Dim date2 As DateTime
+        Invoke(Sub()
+                   Date3 = DateEdit3.Text
+                   Date4 = DateEdit4.Text
+               End Sub)
+                   Dim dt As New DataTable
+        dt = pay_class.DataGridSyncMizuho(Date3, Date4)
         setDataSource(dt, GridControl4)
-        'Invoke(Sub()
-        '           ProgBar.Visible = False
-        '       End Sub)
-    End Sub
+        Invoke(Sub()
+                   ProgBar5.Visible = False
+               End Sub)
+               End Sub
 
     Private Sub GetDataGridTemplateMizuho()
         'Dim date1 As String = ""
@@ -335,7 +338,7 @@ Public Class Frm_Rpt_UploadMizuho
         'End If
 
         Using fold As New OpenFileDialog
-            fold.Filter = "document files (*.xls)|*.xlsx|richtextformat files (*.rtf)|*.rtf|All files (*.*)|*.*"
+            fold.Filter = "document files (*.csv)|*.csv|richtextformat files (*.rtf)|*.rtf|All files (*.*)|*.*"
             fold.Title = "Select file"
             If fold.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 'fold.FilterIndex = 2
@@ -354,46 +357,160 @@ Public Class Frm_Rpt_UploadMizuho
             ''End If
 
         End Using
-
     End Sub
 
-    Private Async Sub _btnUpload_Click(sender As Object, e As EventArgs) Handles _btnUpload.Click
+    Private Sub _btnUpload_Click(sender As Object, e As EventArgs) Handles _btnUpload.Click
         If TextBox1.Text = "" Then
             MsgBox("Data Upload Belum Dipilih! Silahkan Pilih Dahulu.")
         Else
+            Dim table As New DataTable
+            Dim ls_Judul As String = "UPLOAD MIZUHO"
+            ''Dim Bulan As String = ""
+            ''Dim strTahun As String = ""
+            ''Dim strSupplier As String = ""
+
+            'Dim frmExcel As FrmSystemExcelBarcode
+            'frmExcel = New FrmSystemExcelBarcode(table, 69)
+            'frmExcel.Text = "IMPORT " & ls_Judul
+            'frmExcel.StartPosition = FormStartPosition.CenterScreen
+            'frmExcel.ShowDialog()
+
             Try
-                If ProgBar.Visible = True Then
-                    Throw New Exception("Process already running, Please wait!")
+                ObjMizuho.DeleteMizuhoTemplate()
+                Dim dv As DataView = New DataView(table)
+                Dim dtFilter As New DataTable
+
+                dtFilter = dv.ToTable
+
+                If dtFilter.Rows.Count >= 0 Then
+
+                    '' SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
+                    '' SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+                    For Each row As DataRow In dtFilter.Rows
+                        Try
+                            ObjMizuho = New MizuhoModels
+                            With ObjMizuho
+                                .ref_no_sup = If(row("ref_no_sup") Is DBNull.Value, "", row("ref_no_sup").ToString())
+                                .field = If(row("field") Is DBNull.Value, "", row("field").ToString())
+                                .takagi_acct = If(row("takagi_acct") Is DBNull.Value, "", row("takagi_acct").ToString())
+                                .rek_pt = If(row("rek_pt") Is DBNull.Value, "", row("rek_pt").ToString())
+                                .payment_method = If(row("payment_method") Is DBNull.Value, "", row("payment_method").ToString())
+                                .curyid = If(row("curyid") Is DBNull.Value, "", row("curyid").ToString())
+                                .sp_amount = If(row("sp_amount") Is DBNull.Value, "", row("sp_amount").ToString())
+                                .trans_amount = If(row("trans_amount") Is DBNull.Value, "", row("trans_amount").ToString())
+                                .value_date = If(row("value_date") Is DBNull.Value, "", row("value_date").ToString())
+                                .bankname = If(row("bankname") Is DBNull.Value, 0, Convert.ToString(row("bankname")))
+                                .branch = If(row("branch") Is DBNull.Value, 0, Convert.ToInt32(row("branch")))
+                                .address = If(row("address") Is DBNull.Value, "", row("address").ToString())
+                                .address2 = If(row("address2") Is DBNull.Value, "", row("address2").ToString())
+                                .norek_supplier = If(row("norek_supplier") Is DBNull.Value, "", row("norek_supplier").ToString())
+                                .pt = If(row("pt") Is DBNull.Value, "", row("pt").ToString())
+                                .pt2 = If(row("pt2") Is DBNull.Value, 0, Convert.ToInt32(row("pt2")))
+                                .address_pt = If(row("address_pt") Is DBNull.Value, 0, Convert.ToInt32(row("address_pt")))
+                                .address_pt2 = If(row("address_pt2") Is DBNull.Value, "", row("address_pt").ToString())
+                                .space_kosong = If(row("space_kosong") Is DBNull.Value, "", row("space_kosong").ToString())
+                                .bank_charges = If(row("bank_charges") Is DBNull.Value, "", row("bank_charges").ToString())
+                                .applicant_acct = If(row("applicant_acct") Is DBNull.Value, "", row("applicant_acct").ToString())
+                                .space_kosong2 = If(row("space_kosong2") Is DBNull.Value, "", row("space_kosong2").ToString())
+                                .other = If(row("other") Is DBNull.Value, "", row("other").ToString())
+                                .other1 = If(row("other1") Is DBNull.Value, "", row("other1").ToString())
+                                .other2 = If(row("other2") Is DBNull.Value, "", row("other2").ToString())
+                                .other3 = If(row("other3") Is DBNull.Value, "", row("other3").ToString())
+                                .InsertDataTemplateMizuho()
+                            End With
+
+                        Catch ex As Exception
+                            MsgBox(ex.Message)
+                            Console.WriteLine(ex.Message)
+                            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                            Continue For
+                        End Try
+                    Next
+
+
+                    'Dim dtUploadMizuho As New DataTable
+                    'dtUploadMizuho = ObjMizuho.GetMizuhoUpload
+                    'For i As Integer = 0 To dtUploadMizuho.Rows.Count - 1
+                    '    Try
+                    '        ''Dim _tgl As String = Convert.ToString(dtUploadMizuho.Rows(i)(0))
+                    '        ''Dim _plant As String = Convert.ToString(dtUploadMizuho.Rows(i)(1))
+                    '        ''Dim _user As String = Convert.ToString(dtUploadMizuho.Rows(i)(2))
+                    '        '' Dim _qty As Integer = Convert.ToInt32(dtUploadMizuho.Rows(i)(3))
+
+                    '        'Dim IsExist As Boolean = ObjMizuho.IsMizuhoUploadExist()
+                    '        'If Not IsExist Then
+                    '        '    '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
+                    '        '    'Else
+                    '        '    ObjMizuho.SaveMizuhoUpload()
+                    '        'End If
+                    '    Catch ex As Exception
+                    '        MsgBox(ex.Message)
+                    '        Console.WriteLine(ex.Message)
+                    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    '        Continue For
+                    ''End Try
+                    ''Next
+
+                    'dtKanban = Obj.GetKanban
+
+                    ''SplashScreenManager.CloseForm()
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    loadgrid()
                 End If
-                ProgBar.Visible = True
-                ProgBar.Style = ProgressBarStyle.Marquee
-                Await Task.Run(Sub() GetDataGridTemplateMizuho())
             Catch ex As Exception
-                ProgBar.Visible = False
-                MsgBox(ex.Message)
+                Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             End Try
         End If
     End Sub
 
-    Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        If TextBox1.Text = "" Then
-            MsgBox("Data Upload Belum Dipilih! Silahkan Pilih Dahulu.")
-        Else
-            Try
-                If ProgBar3.Visible = True Then
-                    Throw New Exception("Process already running, Please wait!")
-                End If
-                ProgBar3.Visible = True
-                ProgBar3.Style = ProgressBarStyle.Marquee
-                Await Task.Run(Sub() GetDataGridTemplateMizuho())
-            Catch ex As Exception
-                ProgBar3.Visible = False
-                MsgBox(ex.Message)
-                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-            End Try
-        End If
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        'If TextBox1.Text = "" Then
+        '    MsgBox("Data Upload Belum Dipilih! Silahkan Pilih Dahulu.")
+        'Else
+        '    Try
+        '        If ProgBar3.Visible = True Then
+        '            Throw New Exception("Process already running, Please wait!")
+        '        End If
+        '        ProgBar3.Visible = True
+        '        ProgBar3.Style = ProgressBarStyle.Marquee
+        '        Await Task.Run(Sub() GetDataGridTemplateMizuho())
+        '    Catch ex As Exception
+        '        ProgBar3.Visible = False
+        '        MsgBox(ex.Message)
+        '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        '    End Try
+        'End If
     End Sub
+
+
+
+    Private Sub loadgrid()
+        Try
+            ObjMizuho = New MizuhoModels
+            Dim dtUploadMizuho As New DataTable
+            dtUploadMizuho = ObjMizuho.GetAllDataMizuhoTEmplate()
+            GridControl1.DataSource = dtUploadMizuho
+
+            'If GridView2.RowCount > 0 Then
+            '    With GridView2
+            '        .BestFitColumns()
+            '        .Columns(0).Visible = False
+            '        .FixedLineWidth = 2
+            '        .Columns(16).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            '        .Columns(17).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            '        .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            '        .Columns(2).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+
+            '    End With
+            '    GridCellFormat(GridView2)
+            'End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 
     Private Sub _btnCompare_Click(sender As Object, e As EventArgs) Handles _btnCompare.Click
 
@@ -545,6 +662,25 @@ Public Class Frm_Rpt_UploadMizuho
 
         Catch ex As Exception
             MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+    End Sub
+
+    Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            If ProgBar5.Visible = True Then
+                Throw New Exception("Process already running, Please wait!")
+            End If
+            ProgBar5.Visible = True
+            ProgBar5.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataSyncMizuho())
+        Catch ex As Exception
+            ProgBar5.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 

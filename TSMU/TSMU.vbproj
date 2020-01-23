@@ -109,18 +109,18 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\..\File\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\..\..\down\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\..\File\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\..\..\down\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\..\2019\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="LibDataAccess">
-      <HintPath>..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
+      <HintPath>..\..\..\TSMU-master\TSMU\LibDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -1402,6 +1402,8 @@
     <Compile Include="Form\System\MainForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ar_detail_models.vb" />
+    <Compile Include="Models\AR_Header_Models.vb" />
     <Compile Include="Models\Asakai\AbsenModel.vb" />
     <Compile Include="Models\Asakai\ClaimCustomerModel.vb" />
     <Compile Include="Models\Asakai\DeliveryModel.vb" />
@@ -1494,6 +1496,12 @@
       <DependentUpon>frm_fp_details.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\frm_fp_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_lookup_cmdm_ar.Designer.vb">
+      <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_lookup_cmdm_ar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_lookup_pph_approve.Designer.vb">
@@ -2058,6 +2066,9 @@
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport2.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport3.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
+    <EmbeddedResource Include="Payment\frm_lookup_cmdm_ar.resx">
+      <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </EmbeddedResource>

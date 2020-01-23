@@ -98,9 +98,9 @@ Public Class FrmBankTransfer_Detail
                 TxtNoRekAsal.Text = ""
                 TxtNoRekAsalname.Text = ""
                 TxtCheckNo.Text = ""
-                TxtNoRekTujuan.Text = ""
-                TxtNoRekTujuanname.Text = ""
-                TxtCuryID.SelectedIndex = 0
+                '        TxtNoRekTujuan.Text = ""
+                '       TxtNoRekTujuanname.Text = ""
+                '      TxtCuryID.SelectedIndex = 0
                 TxtAmount.Text = 0
                 TxtRemark.Text = ""
                 TxtNoBukti.Focus()

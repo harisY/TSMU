@@ -81,6 +81,13 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBar5 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.DateEdit4 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -129,6 +136,11 @@ Partial Class Frm_Rpt_UploadMizuho
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.ToolStrip4.SuspendLayout()
+        CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -559,9 +571,10 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ProgBar3})
         Me.ToolStrip1.Location = New System.Drawing.Point(307, 5)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(210, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(179, 25)
         Me.ToolStrip1.TabIndex = 11
         Me.ToolStrip1.Text = "ToolStrip1"
+        Me.ToolStrip1.Visible = False
         '
         'ToolStripButton1
         '
@@ -578,12 +591,11 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         '_btnUpload
         '
-        Me._btnUpload.Location = New System.Drawing.Point(685, 5)
+        Me._btnUpload.Location = New System.Drawing.Point(310, 5)
         Me._btnUpload.Name = "_btnUpload"
         Me._btnUpload.Size = New System.Drawing.Size(75, 23)
         Me._btnUpload.TabIndex = 2
         Me._btnUpload.Text = "Upload"
-        Me._btnUpload.Visible = False
         '
         'TextBox1
         '
@@ -641,6 +653,11 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.ToolStrip4)
+        Me.PanelControl2.Controls.Add(Me.DateEdit4)
+        Me.PanelControl2.Controls.Add(Me.DateEdit3)
+        Me.PanelControl2.Controls.Add(Me.Label4)
+        Me.PanelControl2.Controls.Add(Me.Label5)
         Me.PanelControl2.Controls.Add(Me.SimpleButton3)
         Me.PanelControl2.Controls.Add(Me.SimpleButton2)
         Me.PanelControl2.Controls.Add(Me.SimpleButton1)
@@ -648,6 +665,67 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(784, 52)
         Me.PanelControl2.TabIndex = 0
+        '
+        'ToolStrip4
+        '
+        Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ProgBar5})
+        Me.ToolStrip4.Location = New System.Drawing.Point(398, 14)
+        Me.ToolStrip4.Name = "ToolStrip4"
+        Me.ToolStrip4.Size = New System.Drawing.Size(166, 25)
+        Me.ToolStrip4.TabIndex = 23
+        Me.ToolStrip4.Text = "ToolStrip4"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(52, 22)
+        Me.ToolStripButton2.Text = "Sync"
+        '
+        'ProgBar5
+        '
+        Me.ProgBar5.Name = "ProgBar5"
+        Me.ProgBar5.Size = New System.Drawing.Size(100, 22)
+        '
+        'DateEdit4
+        '
+        Me.DateEdit4.EditValue = Nothing
+        Me.DateEdit4.Location = New System.Drawing.Point(238, 17)
+        Me.DateEdit4.Name = "DateEdit4"
+        Me.DateEdit4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit4.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit4.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit4.TabIndex = 22
+        '
+        'DateEdit3
+        '
+        Me.DateEdit3.EditValue = Nothing
+        Me.DateEdit3.Location = New System.Drawing.Point(50, 17)
+        Me.DateEdit3.Name = "DateEdit3"
+        Me.DateEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit3.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit3.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit3.TabIndex = 21
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(198, 20)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(35, 13)
+        Me.Label4.TabIndex = 20
+        Me.Label4.Text = "Until :"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(8, 20)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(38, 13)
+        Me.Label5.TabIndex = 19
+        Me.Label5.Text = "From :"
         '
         'SimpleButton3
         '
@@ -662,20 +740,21 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'SimpleButton2
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(546, 0)
+        Me.SimpleButton2.Location = New System.Drawing.Point(691, 0)
         Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(203, 23)
+        Me.SimpleButton2.Size = New System.Drawing.Size(58, 23)
         Me.SimpleButton2.TabIndex = 1
         Me.SimpleButton2.Text = "Data Upload Based on Template Mizuho"
         Me.SimpleButton2.Visible = False
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(21, 15)
+        Me.SimpleButton1.Location = New System.Drawing.Point(691, 24)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(127, 23)
+        Me.SimpleButton1.Size = New System.Drawing.Size(58, 23)
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Sync Template Mizuho"
+        Me.SimpleButton1.Visible = False
         '
         'ToolStrip3
         '
@@ -878,6 +957,13 @@ Partial Class Frm_Rpt_UploadMizuho
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        Me.ToolStrip4.ResumeLayout(False)
+        Me.ToolStrip4.PerformLayout()
+        CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
         Me.ResumeLayout(False)
@@ -966,4 +1052,11 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DateEdit4 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEdit3 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents ToolStrip4 As ToolStrip
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents ProgBar5 As ToolStripProgressBar
 End Class

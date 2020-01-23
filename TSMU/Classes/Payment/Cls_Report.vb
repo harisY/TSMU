@@ -85,9 +85,55 @@ Public Class Cls_report
         End Try
     End Function
 
+    Private _customer As String
+    Public Property customer() As String
+        Get
+            Return _customer
+        End Get
+        Set(ByVal value As String)
+            _customer = value
+        End Set
+    End Property
+
+    Public Function cmbcustomer() As DataTable
+        Try
+            query = "Select CustID, Name FROM Customer where status='A' order by name"
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function cmbcustomerall() As DataTable
+        Try
+            query = "Select CustID, Name FROM Customer order by name"
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function DataGridViewPayment(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
             Dim query As String = "ViewPayment"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            pParam(0).Value = date1
+            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function DataGridViewAR(ByVal date1 As String, ByVal date2 As String) As DataTable
+        Try
+            Dim query As String = "ViewAR"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
             pParam(0).Value = date1
@@ -288,14 +334,14 @@ Public Class Cls_report
         End Try
     End Function
 
-    Public Function DataGridSyncMizuho() As DataTable
+    Public Function DataGridSyncMizuho(ByVal Date3 As String, ByVal Date4 As String) As DataTable
         Try
             Dim query As String = "SyncMizuho"
-            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            'pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
-            'pParam(0).Value = date1
-            'pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
-            'pParam(1).Value = date2
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date3", SqlDbType.VarChar)
+            pParam(0).Value = Date3
+            pParam(1) = New SqlClient.SqlParameter("@Date4", SqlDbType.VarChar)
+            pParam(1).Value = Date4
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_StoreP(query)
             Return dt

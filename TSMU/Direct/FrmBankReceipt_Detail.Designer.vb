@@ -110,7 +110,7 @@ Partial Class FrmBankReceipt_Detail
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(83, 12)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -120,7 +120,7 @@ Partial Class FrmBankReceipt_Detail
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(106, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(118, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 8
         '
@@ -137,73 +137,74 @@ Partial Class FrmBankReceipt_Detail
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(95, 108)
+        Me.TxtRemark.Location = New System.Drawing.Point(83, 108)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(647, 20)
+        Me.TxtRemark.Size = New System.Drawing.Size(659, 20)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 12
         '
         'TxtCheckNo
         '
-        Me.TxtCheckNo.Location = New System.Drawing.Point(95, 84)
+        Me.TxtCheckNo.Location = New System.Drawing.Point(83, 84)
         Me.TxtCheckNo.Name = "TxtCheckNo"
-        Me.TxtCheckNo.Size = New System.Drawing.Size(273, 20)
+        Me.TxtCheckNo.Size = New System.Drawing.Size(285, 20)
         Me.TxtCheckNo.StyleController = Me.LayoutControl1
         Me.TxtCheckNo.TabIndex = 11
         '
         'TxtAmount
         '
-        Me.TxtAmount.Location = New System.Drawing.Point(618, 84)
+        Me.TxtAmount.Location = New System.Drawing.Point(606, 84)
         Me.TxtAmount.Name = "TxtAmount"
-        Me.TxtAmount.Size = New System.Drawing.Size(124, 20)
+        Me.TxtAmount.Size = New System.Drawing.Size(136, 20)
         Me.TxtAmount.StyleController = Me.LayoutControl1
         Me.TxtAmount.TabIndex = 10
         '
         'TxtPerpost
         '
-        Me.TxtPerpost.Location = New System.Drawing.Point(615, 12)
+        Me.TxtPerpost.Location = New System.Drawing.Point(603, 12)
         Me.TxtPerpost.Name = "TxtPerpost"
-        Me.TxtPerpost.Size = New System.Drawing.Size(127, 20)
+        Me.TxtPerpost.Size = New System.Drawing.Size(139, 20)
         Me.TxtPerpost.StyleController = Me.LayoutControl1
         Me.TxtPerpost.TabIndex = 5
         '
         'TxtNoBukti
         '
         Me.TxtNoBukti.Enabled = False
-        Me.TxtNoBukti.Location = New System.Drawing.Point(288, 12)
+        Me.TxtNoBukti.Location = New System.Drawing.Point(276, 12)
         Me.TxtNoBukti.Name = "TxtNoBukti"
         Me.TxtNoBukti.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me.TxtNoBukti.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtNoBukti.Size = New System.Drawing.Size(240, 20)
+        Me.TxtNoBukti.Size = New System.Drawing.Size(252, 20)
         Me.TxtNoBukti.StyleController = Me.LayoutControl1
         Me.TxtNoBukti.TabIndex = 4
         '
         'TxtNoRekTujuan
         '
-        Me.TxtNoRekTujuan.Location = New System.Drawing.Point(95, 60)
+        Me.TxtNoRekTujuan.Location = New System.Drawing.Point(83, 60)
         Me.TxtNoRekTujuan.Name = "TxtNoRekTujuan"
         Me.TxtNoRekTujuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtNoRekTujuan.Size = New System.Drawing.Size(106, 20)
+        Me.TxtNoRekTujuan.Size = New System.Drawing.Size(118, 20)
         Me.TxtNoRekTujuan.StyleController = Me.LayoutControl1
         Me.TxtNoRekTujuan.TabIndex = 8
         '
         'TxtCuryID
         '
-        Me.TxtCuryID.Location = New System.Drawing.Point(455, 84)
+        Me.TxtCuryID.Enabled = False
+        Me.TxtCuryID.Location = New System.Drawing.Point(443, 84)
         Me.TxtCuryID.Name = "TxtCuryID"
         Me.TxtCuryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtCuryID.Properties.Items.AddRange(New Object() {"CHF ", "EUR ", "HKD ", "IDR ", "JPY ", "MXM ", "RM  ", "SGD ", "USD "})
-        Me.TxtCuryID.Size = New System.Drawing.Size(76, 20)
+        Me.TxtCuryID.Properties.Items.AddRange(New Object() {"IDR ", "CHF ", "EUR ", "HKD ", "JPY ", "MXM ", "RM  ", "SGD ", "USD "})
+        Me.TxtCuryID.Size = New System.Drawing.Size(88, 20)
         Me.TxtCuryID.StyleController = Me.LayoutControl1
         Me.TxtCuryID.TabIndex = 9
         '
         'TxtCustID
         '
         Me.TxtCustID.EditValue = ""
-        Me.TxtCustID.Location = New System.Drawing.Point(95, 36)
+        Me.TxtCustID.Location = New System.Drawing.Point(83, 36)
         Me.TxtCustID.Name = "TxtCustID"
         Me.TxtCustID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtCustID.Size = New System.Drawing.Size(106, 20)
+        Me.TxtCustID.Size = New System.Drawing.Size(118, 20)
         Me.TxtCustID.StyleController = Me.LayoutControl1
         Me.TxtCustID.TabIndex = 15
         '
@@ -222,8 +223,8 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem1.Location = New System.Drawing.Point(193, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(327, 24)
-        Me.LayoutControlItem1.Text = "No Bukti"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem1.Text = "Receipt No"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(68, 13)
         '
         'EmptySpaceItem1
         '
@@ -239,8 +240,8 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(193, 24)
-        Me.LayoutControlItem5.Text = "Rekening Tujuan"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem5.Text = "Bank"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem6
         '
@@ -249,7 +250,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(163, 24)
         Me.LayoutControlItem6.Text = "Currency"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem9
         '
@@ -258,7 +259,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(734, 24)
         Me.LayoutControlItem9.Text = "Remark"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem2
         '
@@ -267,7 +268,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(214, 24)
         Me.LayoutControlItem2.Text = "Perpost"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem11
         '
@@ -285,7 +286,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(211, 24)
         Me.LayoutControlItem7.Text = "Amount"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem8
         '
@@ -294,7 +295,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(360, 24)
         Me.LayoutControlItem8.Text = "Check No/Giro"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem3
         '
@@ -302,8 +303,8 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(193, 24)
-        Me.LayoutControlItem3.Text = "Tanggal"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem3.Text = "Date"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem4
         '
@@ -312,7 +313,7 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(193, 24)
         Me.LayoutControlItem4.Text = "Customer"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem10
         '

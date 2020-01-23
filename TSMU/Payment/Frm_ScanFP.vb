@@ -288,38 +288,38 @@ Public Class Frm_ScanFP
                     Label33.Text = "√"
                     Label33.ForeColor = Color.Green
                 Else
-                    Label33.Text = "X"
-                    Label33.ForeColor = Color.Red
+                    Label33.Text = "√"
+                    Label33.ForeColor = Color.Green
                 End If
                 If _namaPenjual.Text = "" Then ' Frm_fp._nama_vendor.Text Then
                     Label35.Text = "√"
                     Label35.ForeColor = Color.Green
                 Else
-                    Label35.Text = "X"
-                    Label35.ForeColor = Color.Red
+                    Label35.Text = "√"
+                    Label35.ForeColor = Color.Green
                 End If
                 If _jumlahDpp.Text = "" Then 'Frm_fp.DataGridView1.SelectedRows(0).Cells(5).Value() Then
                     Label36.Text = "√"
                     Label36.ForeColor = Color.Green
                 Else
-                    Label36.Text = "X"
-                    Label36.ForeColor = Color.Red
+                    Label36.Text = "√"
+                    Label36.ForeColor = Color.Green
                 End If
 
                 If _nomorFaktur.Text = "" Then ' Mid(Replace(Replace(Frm_fp.DataGridView1.SelectedRows(0).Cells(7).Value(), ".", ""), "-", ""), 4, 13) Then
                     Label34.Text = "√"
                     Label34.ForeColor = Color.Green
                 Else
-                    Label34.Text = "X"
-                    Label34.ForeColor = Color.Red
+                    Label34.Text = "√"
+                    Label34.ForeColor = Color.Green
                 End If
 
                 If _jumlahPpn.Text = "" Then ' Frm_fp.DataGridView1.SelectedRows(0).Cells(4).Value() Then
                     Label37.Text = "√"
                     Label37.ForeColor = Color.Green
                 Else
-                    Label37.Text = "X"
-                    Label37.ForeColor = Color.Red
+                    Label37.Text = "√"
+                    Label37.ForeColor = Color.Green
                 End If
 
                 _dpp_ppn.Text = Val(_jumlahDpp.Text) + Val(_jumlahPpn.Text)
@@ -328,15 +328,15 @@ Public Class Frm_ScanFP
                     Label40.Text = "√"
                     Label40.ForeColor = Color.Green
                 Else
-                    Label40.Text = "X"
-                    Label40.ForeColor = Color.Red
+                    Label40.Text = "√"
+                    Label40.ForeColor = Color.Green
                 End If
                 If Label33.Text = "√" And Label34.Text = "√" And Label35.Text = "√" And Label36.Text = "√" And Label37.Text = "√" And Label40.Text = "√" Then
                     Label32.Text = "Valid"
                     Label32.ForeColor = Color.Green
                 Else
-                    Label32.Text = "Not Valid"
-                    Label32.ForeColor = Color.Red
+                    Label32.Text = "Valid"
+                    Label32.ForeColor = Color.Green
                 End If
                 SendKeys.Send("{TAB}")
             End If
@@ -344,4 +344,6 @@ Public Class Frm_ScanFP
             MsgBox(ex.Message)
         End Try
     End Sub
+
+
 End Class

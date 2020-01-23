@@ -25,11 +25,11 @@ Partial Class FrmBankReceipt
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -93,6 +93,14 @@ Partial Class FrmBankReceipt
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 100
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Customer"
+        Me.GridColumn7.FieldName = "Customer"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Rekening Tujuan"
@@ -127,14 +135,6 @@ Partial Class FrmBankReceipt
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 8
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Customer"
-        Me.GridColumn7.FieldName = "Customer"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
         '
         'FrmBankReceipt
         '
