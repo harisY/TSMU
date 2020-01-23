@@ -463,9 +463,9 @@ Public Class FrmMaterialPainting
 
                         Dim tgl As Date = Format(CDate(TanggalMulai), gs_FormatSQLDate)
 
-                        fc_Class.tahun = Strings.Left(tgl, 4)
-                        fc_Class.bulan = Strings.Mid(tgl, 6, 2)
-                        fc_Class.tanggal = Strings.Right(tgl, 2)
+                        'fc_Class.tahun = Strings.Left(tgl, 4)
+                        'fc_Class.bulan = Strings.Mid(tgl, 6, 2)
+                        'fc_Class.tanggal = Strings.Right(tgl, 2)
                         fc_Class.GetSumaryPemakaian()
                         TxtAkumulasiPemakaianRp.Text = Format(Double.Parse(fc_Class.SummaryPemakaianRP), "###,###,##0.00")
                         TxtAkumulasiPemakaianLiter.Text = Format(Double.Parse(fc_Class.SummaryPemakaianLiter), "###,###,##0.00")
