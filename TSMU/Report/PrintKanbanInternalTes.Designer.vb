@@ -20,9 +20,9 @@ Partial Public Class PrintKanbanInternalTes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Dim Code93ExtendedGenerator1 As DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator()
         Dim Code93ExtendedGenerator2 As DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator()
+        Dim Code93ExtendedGenerator3 As DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code93ExtendedGenerator()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
@@ -372,7 +372,7 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode3.ShowText = False
         Me.XrBarCode3.SizeF = New System.Drawing.SizeF(129.4!, 592.4431!)
         Me.XrBarCode3.StylePriority.UseBorders = False
-        Me.XrBarCode3.Symbology = Code128Generator1
+        Me.XrBarCode3.Symbology = Code93ExtendedGenerator1
         '
         'XrBarCode2
         '
@@ -389,7 +389,7 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode2.SizeF = New System.Drawing.SizeF(529.4132!, 75.97855!)
         Me.XrBarCode2.StylePriority.UseBorders = False
         Me.XrBarCode2.StylePriority.UseFont = False
-        Me.XrBarCode2.Symbology = Code93ExtendedGenerator1
+        Me.XrBarCode2.Symbology = Code93ExtendedGenerator2
         '
         'XrLabel23
         '
@@ -456,7 +456,7 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode1.SizeF = New System.Drawing.SizeF(529.4127!, 100.5586!)
         Me.XrBarCode1.StylePriority.UseBorders = False
         Me.XrBarCode1.StylePriority.UseFont = False
-        Me.XrBarCode1.Symbology = Code93ExtendedGenerator2
+        Me.XrBarCode1.Symbology = Code93ExtendedGenerator3
         '
         'XrLabel20
         '

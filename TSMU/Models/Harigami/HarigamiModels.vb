@@ -25,7 +25,7 @@ Public Class HarigamiModels
 	            m.FilePath,
 	            h.Type,
 	            h.LastCounter,
-	            h.CreatedDate,
+	            d.CreatedDate,
 	            d.Status,
 	            d.Counter
             FROM TbHarigami h left join
