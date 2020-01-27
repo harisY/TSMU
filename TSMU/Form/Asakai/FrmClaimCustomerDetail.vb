@@ -52,6 +52,7 @@ Public Class FrmClaimCustomerDetail
         TxtPIC.Text = ""
         TxtPIC.Text = ""
         TxtDokumen.Text = ""
+        PictureBox1.Image = Nothing
     End Sub
 
     Public Sub New(ByVal strCode As String,
@@ -252,6 +253,8 @@ Public Class FrmClaimCustomerDetail
                         .D_Dokumen = Convert.ToString(GridView1.GetRowCellValue(i, "Dokumen"))
                         .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
+                        .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot"))
+                        .D_Foto = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
 
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
@@ -283,6 +286,9 @@ Public Class FrmClaimCustomerDetail
                         .D_Dokumen = Convert.ToString(GridView1.GetRowCellValue(i, "Dokumen"))
                         .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
+                        .D_Lot = Convert.ToDateTime(GridView1.GetRowCellValue(i, "Lot"))
+                        .D_Foto = Convert.ToDateTime(GridView1.GetRowCellValue(i, "Gambar"))
+
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
 

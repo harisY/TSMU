@@ -89,6 +89,8 @@ Public Class ClaimCustomerModel
                                   ,[Status]
                                   ,[Dokumen]
                                   ,TargetClose
+                                  ,Foto as Gambar
+                                  ,Lot
                               From [AsakaiQcClaimDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
@@ -290,6 +292,8 @@ Public Class ClaimCustomerDetailModel
     Public Property D_Status As String
     Public Property D_TanggalClaim As DateTime
     Public Property D_TanggalClose As DateTime
+    Public Property D_Lot As String
+    Public Property D_Foto As String
 
     Public Sub InsertClaimDetail(IDTrans)
         Try
@@ -306,6 +310,8 @@ Public Class ClaimCustomerDetailModel
                        ,[Qty]
                        ,[RESP]
                        ,[Dokumen]
+                       ,[Foto]
+                       ,[Lot]
                        ,[Status]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(D_Customer) & ", " & vbCrLf &
@@ -317,6 +323,8 @@ Public Class ClaimCustomerDetailModel
             "       " & QVal(D_Qty) & ", " & vbCrLf &
             "       " & QVal(D_RESP) & ", " & vbCrLf &
             "       " & QVal(D_Dokumen) & ", " & vbCrLf &
+            "       " & QVal(D_Foto) & ", " & vbCrLf &
+            "       " & QVal(D_Lot) & ", " & vbCrLf &
             "       " & QVal(D_Status) & ")"
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)

@@ -249,7 +249,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtInvtID
         '
-        Me.TxtInvtID.Location = New System.Drawing.Point(129, 128)
+        Me.TxtInvtID.Location = New System.Drawing.Point(129, 127)
         Me.TxtInvtID.Name = "TxtInvtID"
         Me.TxtInvtID.Size = New System.Drawing.Size(146, 20)
         Me.TxtInvtID.TabIndex = 42
@@ -257,7 +257,7 @@ Partial Class FrmClaimCustomerDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 128)
+        Me.Label3.Location = New System.Drawing.Point(12, 127)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 43
@@ -266,7 +266,7 @@ Partial Class FrmClaimCustomerDetail
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 149)
+        Me.Label4.Location = New System.Drawing.Point(12, 148)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 13)
         Me.Label4.TabIndex = 45
@@ -274,7 +274,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtInvtName
         '
-        Me.TxtInvtName.Location = New System.Drawing.Point(129, 149)
+        Me.TxtInvtName.Location = New System.Drawing.Point(129, 148)
         Me.TxtInvtName.Name = "TxtInvtName"
         Me.TxtInvtName.Size = New System.Drawing.Size(146, 20)
         Me.TxtInvtName.TabIndex = 44
@@ -282,7 +282,7 @@ Partial Class FrmClaimCustomerDetail
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 168)
+        Me.Label5.Location = New System.Drawing.Point(12, 167)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(59, 13)
         Me.Label5.TabIndex = 47
@@ -290,7 +290,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtProblem
         '
-        Me.TxtProblem.Location = New System.Drawing.Point(129, 170)
+        Me.TxtProblem.Location = New System.Drawing.Point(129, 169)
         Me.TxtProblem.Multiline = True
         Me.TxtProblem.Name = "TxtProblem"
         Me.TxtProblem.Size = New System.Drawing.Size(146, 46)
@@ -412,7 +412,7 @@ Partial Class FrmClaimCustomerDetail
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(305, 133)
+        Me.Label9.Location = New System.Drawing.Point(305, 132)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(47, 13)
         Me.Label9.TabIndex = 106
@@ -420,7 +420,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtLotNo
         '
-        Me.TxtLotNo.Location = New System.Drawing.Point(375, 128)
+        Me.TxtLotNo.Location = New System.Drawing.Point(375, 127)
         Me.TxtLotNo.Name = "TxtLotNo"
         Me.TxtLotNo.Size = New System.Drawing.Size(154, 20)
         Me.TxtLotNo.TabIndex = 105
