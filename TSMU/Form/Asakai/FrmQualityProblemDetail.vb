@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 Imports System.IO
 Imports ExcelDataReader
-Imports GemBox.Spreadsheet
+'Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
 Public Class FrmQualityProblemDetail
 
@@ -114,7 +114,7 @@ Public Class FrmQualityProblemDetail
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialUsage"
+            bs_MainFormName = "FrmQualityProblem"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

@@ -116,7 +116,7 @@ Public Class FrmProblemDeliveryDetail
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialUsage"
+            bs_MainFormName = "FrmProblemDelivery"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
