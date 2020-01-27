@@ -220,7 +220,7 @@ Public Class FrmPaintingProduksi
             If dt.Rows(8).Item(1) Is DBNull.Value Then
                 .J_OK_PART_LINE_OK_POLESH = "0"
             Else
-                .J_OK_PART_LINE_OK_POLESH = Math.Round(Val((dt.Rows(8).Item(1)) * 100), 2)
+                .J_OK_PART_LINE_OK_POLESH = Math.Round(Val((dt.Rows(8).Item(1))), 2)
             End If
 
             If dt.Rows(9).Item(1) Is DBNull.Value Then
