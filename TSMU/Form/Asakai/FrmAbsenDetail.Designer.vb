@@ -272,8 +272,6 @@ Partial Class FrmAbsenDetail
         Me.Status.FieldName = "Status"
         Me.Status.Name = "Status"
         Me.Status.OptionsColumn.AllowEdit = False
-        Me.Status.Visible = True
-        Me.Status.VisibleIndex = 3
         '
         'ErrorProvider
         '
