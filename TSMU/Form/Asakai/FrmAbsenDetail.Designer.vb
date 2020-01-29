@@ -202,13 +202,14 @@ Partial Class FrmAbsenDetail
         '
         'Grid
         '
-        Me.Grid.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid.Location = New System.Drawing.Point(12, 157)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.jmlabsen})
-        Me.Grid.Size = New System.Drawing.Size(691, 123)
+        Me.Grid.Size = New System.Drawing.Size(691, 287)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -272,7 +273,7 @@ Partial Class FrmAbsenDetail
         'FrmAbsenDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(715, 295)
+        Me.ClientSize = New System.Drawing.Size(715, 456)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmAbsenDetail"
