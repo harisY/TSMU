@@ -379,10 +379,14 @@ Public Class FrmAbsenDetail
 
         Total = 0
 
-        For i As Integer = 1 To GridView1.RowCount - 1
-            GridView1.MoveFirst()
+        For i As Integer = 0 To GridView1.RowCount - 1
 
-            Total = (Total + Val(GridView1.GetRowCellValue(i, GridView1.Columns("Jumlah"))))
+            GridView1.MoveFirst()
+            If GridView1.GetRowCellValue(i, GridView1.Columns("Status")) = "TRUE" Then
+                Total = (Total + Val(GridView1.GetRowCellValue(i, GridView1.Columns("Jumlah"))))
+            End If
+
+
         Next
         TxtPersen.Text = Math.Round(Val(((karyawan - Total) / karyawan) * 100), 2).ToString
     End Sub

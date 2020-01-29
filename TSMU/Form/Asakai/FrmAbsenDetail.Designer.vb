@@ -40,6 +40,7 @@ Partial Class FrmAbsenDetail
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.jmlabsen = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +216,7 @@ Partial Class FrmAbsenDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.Status})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -265,6 +266,14 @@ Partial Class FrmAbsenDetail
         Me.jmlabsen.AutoHeight = False
         Me.jmlabsen.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.jmlabsen.Name = "jmlabsen"
+        '
+        'Status
+        '
+        Me.Status.FieldName = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.OptionsColumn.AllowEdit = False
+        Me.Status.Visible = True
+        Me.Status.VisibleIndex = 3
         '
         'ErrorProvider
         '
@@ -325,4 +334,5 @@ Partial Class FrmAbsenDetail
     Friend WithEvents TxtPersen As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents jmlabsen As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
