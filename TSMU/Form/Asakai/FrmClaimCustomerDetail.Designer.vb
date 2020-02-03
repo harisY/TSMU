@@ -101,6 +101,8 @@ Partial Class FrmClaimCustomerDetail
         '
         'TanggalClaim
         '
+        Me.TanggalClaim.DisplayFormat.FormatString = "yyyy-MM-dd"
+        Me.TanggalClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TanggalClaim.FieldName = "TanggalClaim"
         Me.TanggalClaim.Name = "TanggalClaim"
         Me.TanggalClaim.Visible = True
@@ -157,6 +159,8 @@ Partial Class FrmClaimCustomerDetail
         '
         'TargetClose
         '
+        Me.TargetClose.DisplayFormat.FormatString = "yyyy-MM-dd"
+        Me.TargetClose.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TargetClose.FieldName = "TargetClose"
         Me.TargetClose.Name = "TargetClose"
         Me.TargetClose.Visible = True

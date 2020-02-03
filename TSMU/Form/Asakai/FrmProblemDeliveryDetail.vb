@@ -528,4 +528,35 @@ Public Class FrmProblemDeliveryDetail
         TxtStandar.Text = TxtStandar.Text.ToUpper()
         TxtStandar.SelectionStart = selStart
     End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+
+        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        If opfImage.ShowDialog = DialogResult.OK Then
+
+
+            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+            Dim extension As String = Path.GetExtension(PathFoto)
+            NamaFile = "DEL" + Path.GetRandomFileName() + extension
+            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+            File.Copy(opfImage.FileName, fileSavePath, True)
+
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, "")
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+
+        End If
+
+
+
+
+
+
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class

@@ -46,10 +46,12 @@ Partial Class FrmProblemDeliveryDetail
         Me.InvtID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.InvtName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepBtnGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.BtnGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TxtInvtName = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -67,11 +69,13 @@ Partial Class FrmProblemDeliveryDetail
         Me.Label12 = New System.Windows.Forms.Label()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -194,7 +198,7 @@ Partial Class FrmProblemDeliveryDetail
         Me.Grid.Location = New System.Drawing.Point(12, 212)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.BtnGambar, Me.RepBtnGambar})
         Me.Grid.Size = New System.Drawing.Size(1343, 323)
         Me.Grid.TabIndex = 24
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -204,7 +208,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalKejadian, Me.TanggalKiriman, Me.Standar, Me.Aktual, Me.Qty, Me.JenisProblem, Me.TargetClose, Me.Status, Me.InvtID, Me.InvtName, Me.Gambar, Me.Pic})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
         'Customer
@@ -295,10 +298,17 @@ Partial Class FrmProblemDeliveryDetail
         '
         'Gambar
         '
+        Me.Gambar.ColumnEdit = Me.RepBtnGambar
         Me.Gambar.FieldName = "Gambar"
         Me.Gambar.Name = "Gambar"
         Me.Gambar.Visible = True
         Me.Gambar.VisibleIndex = 12
+        '
+        'RepBtnGambar
+        '
+        Me.RepBtnGambar.AutoHeight = False
+        Me.RepBtnGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepBtnGambar.Name = "RepBtnGambar"
         '
         'Pic
         '
@@ -325,6 +335,12 @@ Partial Class FrmProblemDeliveryDetail
         Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
+        '
+        'BtnGambar
+        '
+        Me.BtnGambar.AutoHeight = False
+        Me.BtnGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnGambar.Name = "BtnGambar"
         '
         'Button1
         '
@@ -520,11 +536,13 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.SetChildIndex(Me.Label12, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -577,4 +595,6 @@ Partial Class FrmProblemDeliveryDetail
     Friend WithEvents TxtPIC As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Pic As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepBtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class
