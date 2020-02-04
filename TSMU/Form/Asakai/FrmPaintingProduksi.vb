@@ -142,6 +142,7 @@ Public Class FrmPaintingProduksi
                     Call SetDataStraightPass()
                     Call SetDataScrap()
                     Call SetDataScrapDetail()
+
                     Call SetDataProblemQty()
                     Call SetDataProblemAnalisa()
 
