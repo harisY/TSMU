@@ -129,14 +129,10 @@ Public Class DeliveryModel
               ,[Qty Order]
               ,[Delivery]
               ,[Jumlah]
-              ,[Stock TNG 08 DEL]
-              ,[Stock TNG 05 WHJ]
-              ,[Stock TNG 06 SFG] as [StockTNG06SFG]
-              ,[Stock 2nd]
-              ,[Stock Paint]
-              ,[Stock Inject Presisi]
-              ,[WHP]
-              ,[Stock TNG 04-02 PNT]
+              ,[Stock TNG 08 DEL] as [TNG 08]
+              ,[Stock TNG 05 WHJ] as [TNG 05 06]
+              ,[Stock Paint] as [Painting]
+              ,[WHP] as Whp
               ,[Keterangan]
           FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
