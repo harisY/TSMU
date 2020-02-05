@@ -158,6 +158,22 @@ Public Class FrmDeliveryDetail
                         '                                                ,F18 as Keterangan
                         '                                                 FROM [ASAKAI$A4:R200] where F2 <>''", cn)
 
+                        'Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
+                        '                                                 ,F3 as [Item Number]
+                        '                                               ,F1 as Customer
+                        '                                                ,F4 as [Delivery Due Date]
+                        '                                                ,F5 as [Qty Order]
+                        '                                                ,F6 as Delivery
+                        '                                                ,F7 as Jumlah
+                        '                                                ,F8 as [TNG 08]
+                        '                                                ,F9 as [TNG 05 06]
+                        '                                                ,F10 as [Painting]
+                        '                                                ,F11 as [Whp]
+                        '                                                ,F12 as [Total Stock]
+                        '                                                ,F13 as [Balance]
+                        '                                                ,F14 as Keterangan
+                        '                                                 FROM [ASAKAI$A4:R200] where F2 <>''", cn)
+
                         Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
                                                                          ,F3 as [Item Number]
                                                                        ,F1 as Customer
@@ -165,15 +181,11 @@ Public Class FrmDeliveryDetail
                                                                         ,F5 as [Qty Order]
                                                                         ,F6 as Delivery
                                                                         ,F7 as Jumlah
-                                                                        ,F8 as [Stock TNG 08 DEL]
-                                                                        ,F9 as [Stock TNG 05 WHJ]
-                                                                        ,F10 as [StockTNG06SFG]
-                                                                        ,F11 as [Stock 2nd]
-                                                                        ,F12 as [Stock Paint]
-                                                                        ,F13 as [Stock Inject Presisi]
-                                                                        ,F14 as WHP
-                                                                        ,F15 as [Stock TNG 04-02 PNT]
-                                                                        ,F18 as Keterangan
+                                                                        ,F8 as [TNG 08]
+                                                                        ,F9 as [TNG 05 06]
+                                                                        ,F10 as [Painting]
+                                                                        ,F11 as [Whp]
+                                                                        ,F14 as Keterangan
                                                                          FROM [ASAKAI$A4:R200] where F2 <>''", cn)
 
                         Dim dt As New DataTable
@@ -197,6 +209,7 @@ Public Class FrmDeliveryDetail
 
                         Tanggal = dtHeader.Rows(0).Item("A")
                         LblTanggal.Text = Format(Tanggal, "dd-MM-yyyy").ToString
+
 
 
                     End If
@@ -242,7 +255,12 @@ Public Class FrmDeliveryDetail
                   GridView1.GetRowCellValue(i, GridView1.Columns(4)).ToString = "" OrElse
                   GridView1.GetRowCellValue(i, GridView1.Columns(5)).ToString = "" OrElse
                   GridView1.GetRowCellValue(i, GridView1.Columns(6)).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns(7)).ToString = "" Then
+                  GridView1.GetRowCellValue(i, GridView1.Columns(7)).ToString = "" OrElse
+                  GridView1.GetRowCellValue(i, GridView1.Columns(8)).ToString = "" OrElse
+                  GridView1.GetRowCellValue(i, GridView1.Columns(9)).ToString = "" OrElse
+                  GridView1.GetRowCellValue(i, GridView1.Columns(10)).ToString = "" OrElse
+                  GridView1.GetRowCellValue(i, GridView1.Columns(11)).ToString = "" OrElse
+                  GridView1.GetRowCellValue(i, GridView1.Columns(12)).ToString = "" Then
                     IsEmpty = True
                     MessageBox.Show("Pastikan Data tidak ada yang kosong")
                     Exit Sub
@@ -270,14 +288,10 @@ Public Class FrmDeliveryDetail
                         .Qty_Order = GridView1.GetRowCellValue(i, "Qty Order")
                         .Delivery = GridView1.GetRowCellValue(i, "Delivery")
                         .Jumlah = GridView1.GetRowCellValue(i, "Jumlah")
-                        .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "Stock TNG 08 DEL")
-                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "Stock TNG 05 WHJ")
-                        .Stock_TNG_06_SFG = GridView1.GetRowCellValue(i, "StockTNG06SFG")
-                        .Stock_2nd = GridView1.GetRowCellValue(i, "Stock 2nd")
-                        .Stock_Paint = GridView1.GetRowCellValue(i, "Stock Paint")
-                        .Stock_Inject_Presisi = GridView1.GetRowCellValue(i, "Stock Inject Presisi")
-                        .WHP = GridView1.GetRowCellValue(i, "WHP")
-                        .Stock_TNG_04_02_PNT = GridView1.GetRowCellValue(i, "Stock TNG 04-02 PNT")
+                        .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "TNG 08")
+                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05 06")
+                        .Stock_Paint = GridView1.GetRowCellValue(i, "Painting")
+                        .WHP = GridView1.GetRowCellValue(i, "Whp")
                         .Total_Stock = GridView1.GetRowCellValue(i, "Total Stock")
                         .Balance = GridView1.GetRowCellValue(i, "Balance")
                         .Keterangan = Convert.ToString(GridView1.GetRowCellValue(i, "Keterangan"))
@@ -309,17 +323,14 @@ Public Class FrmDeliveryDetail
                         .Qty_Order = GridView1.GetRowCellValue(i, "Qty Order")
                         .Delivery = GridView1.GetRowCellValue(i, "Delivery")
                         .Jumlah = GridView1.GetRowCellValue(i, "Jumlah")
-                        .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "Stock TNG 08 DEL")
-                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "Stock TNG 05 WHJ")
-                        .Stock_TNG_06_SFG = GridView1.GetRowCellValue(i, "StockTNG06SFG")
-                        .Stock_2nd = GridView1.GetRowCellValue(i, "Stock 2nd")
-                        .Stock_Paint = GridView1.GetRowCellValue(i, "Stock Paint")
-                        .Stock_Inject_Presisi = GridView1.GetRowCellValue(i, "Stock Inject Presisi")
-                        .WHP = GridView1.GetRowCellValue(i, "WHP")
-                        .Stock_TNG_04_02_PNT = GridView1.GetRowCellValue(i, "Stock TNG 04-02 PNT")
+                        .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "TNG 08")
+                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05 06")
+                        .Stock_Paint = GridView1.GetRowCellValue(i, "Painting")
+                        .WHP = GridView1.GetRowCellValue(i, "Whp")
                         .Total_Stock = GridView1.GetRowCellValue(i, "Total Stock")
                         .Balance = GridView1.GetRowCellValue(i, "Balance")
                         .Keterangan = Convert.ToString(GridView1.GetRowCellValue(i, "Keterangan"))
+
                     End With
                     fc_Class.ObjDetailDelivery.Add(ObjDeliveryDetail)
 
@@ -355,6 +366,12 @@ Public Class FrmDeliveryDetail
                 ErrorProvider1.SetError(LblTanggal, "Value cannot be empty")
             ElseIf GridView1.RowCount = 0 Then
                 ErrorProvider1.SetError(Grid, "Please Input Data In Grid")
+            ElseIf CmbLaporan.Text = "" Or CmbLaporan.Text = "-" Then
+                MessageBox.Show("Pilih Type Laporan",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
 
             Else
 
@@ -367,6 +384,7 @@ Public Class FrmDeliveryDetail
                 With fc_Class
 
                     .Tanggal = Format(CDate(Tanggal))
+                    .Laporan = Trim(CmbLaporan.Text)
 
                     If isUpdate = False Then      'Belum Di Edit
                         .ValidateInsert()
@@ -384,5 +402,19 @@ Public Class FrmDeliveryDetail
 
     End Function
 
+    Private Sub CmbLaporan_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbLaporan.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub CmbLaporan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CmbLaporan.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (0) Then
+            e.Handled = True
+        End If
+
+
+    End Sub
 End Class

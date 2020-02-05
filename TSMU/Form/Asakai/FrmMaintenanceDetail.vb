@@ -401,4 +401,8 @@ Public Class FrmMaintenanceDetail
 
 
     End Sub
+
+    Private Sub Plan_Mesin_TextChanged(sender As Object, e As EventArgs) Handles Plan_Mesin.TextChanged
+
+    End Sub
 End Class

@@ -12,6 +12,7 @@ Public Class DeliveryModel
     Public Property CreatedDate As Date
     Public Property IDTrans As String
     Public Property Tanggal As Date
+    Public Property Laporan As String
     Public Property UpdatedBy As String
     Public Property UpdatedDate As Date
 
@@ -40,7 +41,7 @@ Public Class DeliveryModel
 
 
     Public Sub New()
-        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,Laporan,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -225,7 +226,7 @@ Public Class DeliveryModel
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IDTrans],Tanggal                  
-                                    FROM [AsakaiDeliveryHeader] where IDTrans = '" & IDTrans & "' or Tanggal = '" & Tanggal & "' "
+                                    FROM [AsakaiDeliveryHeader] where IDTrans = '" & IDTrans & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
@@ -249,11 +250,13 @@ Public Class DeliveryModel
             Dim ls_SP As String = "INSERT INTO AsakaiDeliveryHeader
                                            ([IDTrans]
                                            ,[Tanggal]
+                                           ,[Laporan]
                                            ,[CreatedBy]
                                            ,[CreatedDate])
                                      VALUES 
                                             (" & QVal(IDTrans) & " 
                                             ," & QVal(Tanggal) & "
+                                            ," & QVal(Laporan) & "
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
 
@@ -371,12 +374,8 @@ Public Class DeliveryDetailModel
                    ,[Jumlah]
                    ,[Stock TNG 08 DEL]
                    ,[Stock TNG 05 WHJ]
-                   ,[Stock TNG 06 SFG]
-                   ,[Stock 2nd]
                    ,[Stock Paint]
-                   ,[Stock Inject Presisi]
                    ,[WHP]
-                   ,[Stock TNG 04-02 PNT]
                    ,[Total Stock]
                    ,[Balance]
                    ,[Keterangan]) " & vbCrLf &
@@ -390,12 +389,8 @@ Public Class DeliveryDetailModel
             "       " & QVal(Jumlah) & ", " & vbCrLf &
             "       " & QVal(Stock_TNG_08_DEL) & ", " & vbCrLf &
             "       " & QVal(Stock_TNG_05_WHJ) & ", " & vbCrLf &
-            "       " & QVal(Stock_TNG_06_SFG) & ", " & vbCrLf &
-            "       " & QVal(Stock_2nd) & ", " & vbCrLf &
             "       " & QVal(Stock_Paint) & ", " & vbCrLf &
-            "       " & QVal(Stock_Inject_Presisi) & ", " & vbCrLf &
             "       " & QVal(WHP) & ", " & vbCrLf &
-            "       " & QVal(Stock_TNG_04_02_PNT) & ", " & vbCrLf &
             "       " & QVal(Total_Stock) & ", " & vbCrLf &
             "       " & QVal(Balance) & ", " & vbCrLf &
             "       " & QVal(Keterangan) & ")"
