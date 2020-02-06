@@ -64,6 +64,43 @@ Public Class AR_Header_Models
             Throw ex
         End Try
     End Function
+    Public Function GetDataGrid2() As DataTable
+        Try
+            Dim sql As String = "SELECT [id]
+                ,[vrno]
+                ,[tgl]
+                ,[BankID]
+                ,[BankName]
+      ,[CustID]
+      ,[CustomerName]
+                ,[Descr]
+                ,[Tot_DPP]
+                ,[Tot_PPN]
+                ,[Total_DPP_PPN]
+                ,[PPh]
+                ,[Biaya_Transfer]
+                ,[CM_DM]
+                ,[CuryID]
+                ,[cek1]
+                ,[cek2]
+                ,[cek3]
+                ,[cek4]
+                ,[prosespay]
+                ,[uploaded]
+                ,[detsupplier]
+                ,[bankrek]
+                ,[norek]
+                ,[penerima]
+                ,[cmdm_manual]
+                ,[cmdm_manual_ket]
+            FROM [AR_Header] Order By id desc"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub GetPaymentByVoucherNo()
         Try
             Dim sql As String = "SELECT [id]
@@ -205,7 +242,8 @@ Public Class AR_Header_Models
  	                                RTRIM([SubAcct]) SubAccount,
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
-                                    [Amount] Amount,RcptDisbFlg 
+                                    [Amount] Amount,RcptDisbFlg,
+                                    RTRIM(CMDMNo) CMDMNo
                                 FROM OffsetAR WHERE vrno = " & QVal(vrno) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
@@ -468,6 +506,26 @@ Public Class AR_Header_Models
                 "where SUBSTRING(vrno,4,4) = @tahun AND SUBSTRING(vrno,9,2) = @bulan) " &
                 "select 'AR' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(query)
+            auto = dt.Rows(0).Item(0).ToString
+            Return auto
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+    Public Function CMDMNo() As String
+        Try
+            Dim auto As String
+
+            Dim query As String = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+                "set @tahun = datepart(year,getdate()) " &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(cmdmno)),4)+1 as varchar),4) " &
+                "from OffsetAR " &
+                "where SUBSTRING(cmdmno,4,4) = RIGHT(@tahun,4) AND SUBSTRING(cmdmno,9,2) = RIGHT(@bulan,2)) " &
+                "select 'CD' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
             auto = dt.Rows(0).Item(0).ToString

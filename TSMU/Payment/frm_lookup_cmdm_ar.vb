@@ -10,6 +10,8 @@ Imports DevExpress.XtraEditors.Repository
 
 Imports DevExpress.XtraEditors.Controls
 
+Imports DevExpress.XtraGrid.Columns
+
 Public Class frm_lookup_cmdm_ar
     Enum ReturnType As Byte
         Kode = 0
@@ -59,15 +61,40 @@ Public Class frm_lookup_cmdm_ar
                 dt.Columns.Add("Description")
                 dt.Columns.Add("Amount", GetType(Single))
                 dt.Columns.Add("RcptDisbFlg")
+                dt.Columns.Add("CMDMNo")
 
-                Dim R As DataRow = dt.NewRow
-                R("EntryId") = "01"
-                R("SubAccount") = "1"
-                R("Account") = "1244"
-                R("Description") = "Testing"
-                R("Amount") = Convert.ToSingle(pph)
-                R("RcptDisbFlg") = ""
-                dt.Rows.Add(R)
+                'Dim R As DataRow = dt.NewRow
+                'R("EntryId") = "PH"
+                'R("SubAccount") = "10000"
+                'R("Account") = "11708"
+                'R("Description") = "Prepaid PPH 23"
+                'R("Amount") = Convert.ToSingle(pph)
+                'R("RcptDisbFlg") = ""
+                'R("CMDMNo") = ObjPaymentHeader1.CMDMNo
+                'dt.Rows.Add(R)
+
+                Dim A As DataRow = dt.NewRow
+                A("EntryId") = "BC"
+                A("SubAccount") = "10000"
+                A("Account") = "62370"
+                A("Description") = "Bank Charges"
+                A("Amount") = Convert.ToSingle(bc)
+                A("RcptDisbFlg") = ""
+                Dim konter As String
+
+                If Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) < 10 Then
+                    konter = "000" & Convert.ToString((Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) + 1))
+                ElseIf Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) < 100 Then
+                    konter = "00" & Convert.ToString((Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) + 1))
+                ElseIf Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) < 1000 Then
+                    konter = "0" & Convert.ToString((Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) + 1))
+                Else
+                    konter = Convert.ToString((Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) + 1))
+                End If
+
+                ' A("CMDMNo") = Strings.Left(ObjPaymentHeader1.CMDMNo, 11) & Convert.ToString((Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) + 1))
+                A("CMDMNo") = Strings.Left(ObjPaymentHeader1.CMDMNo, 11) & konter
+                dt.Rows.Add(A)
 
                 dtGrid.Merge(dt, True, MissingSchemaAction.Ignore)
 
@@ -108,6 +135,7 @@ Public Class frm_lookup_cmdm_ar
         End Get
     End Property
     Public Property pph() As String
+    Public Property bc() As String
     Private Sub frm_lookup_cmdm_ar_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             LoadGridDetail()
@@ -174,17 +202,38 @@ Public Class frm_lookup_cmdm_ar
             Dim Value2 As String = ""
             Dim Value3 As String = ""
             Dim Value4 As String = ""
+            Dim Value5 As String = ""
+            ''  Value5 = ObjPaymentHeader1.CMDMNo
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
                 Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                 Value4 = lF_SearchData.Values.Item(3).ToString.Trim
+                ' Value5 = ObjPaymentHeader1.CMDMNo
+
+                Dim konter2 As String
+                Dim konter3 As String
+
+                If GridView2.RowCount > 0 Then
+                    konter2 = GridView2.RowCount + (Convert.ToSingle(Strings.Right(ObjPaymentHeader1.CMDMNo, 4)) - 1)
+                End If
+
+                If konter2 < 10 Then
+                    konter3 = "000" & konter2
+                ElseIf konter2 < 100 Then
+                    konter3 = "00" & konter2
+                ElseIf konter2 < 1000 Then
+                    konter3 = "0" & konter2
+                Else
+                    konter3 = konter2
+                End If
+                Value5 = Strings.Left(ObjPaymentHeader1.CMDMNo, 11) & konter3
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "EntryId", Value1)
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "Account", Value2)
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "SubAccount", Value3)
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "Description", Value4)
-
+                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "CMDMNo", Value5)
             End If
             lF_SearchData.Close()
         Catch ex As Exception
@@ -238,6 +287,7 @@ Public Class frm_lookup_cmdm_ar
                     'ObjPaymentHeader1.ObjBatch.Add(ObjBatch)
                 End If
             Next
+            _Total = _Total - Convert.ToSingle(pph)
         Catch ex As Exception
             Throw ex
         End Try
@@ -270,7 +320,12 @@ Public Class frm_lookup_cmdm_ar
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
-
+    'Private Sub tcmdmno_EditValueChanged(sender As Object, e As EventArgs) Handles tcmdmno.EditValueChanged
+    '    Dim baseEdit = TryCast(sender, BaseEdit)
+    '    Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+    '    gridView.PostEditor()
+    '    gridView.UpdateCurrentRow()
+    'End Sub
     Private Sub GetTotalAR()
         Try
             For i As Integer = 0 To GridView2.RowCount - 1
