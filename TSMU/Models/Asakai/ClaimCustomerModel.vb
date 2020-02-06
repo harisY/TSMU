@@ -140,26 +140,6 @@ Public Class ClaimCustomerModel
         End Try
     End Sub
 
-    Public Function GetRekapClaim(TanggalAwal As Date, TanggalAhir As Date) As DataTable
-        Try
-            Dim query As String = "SELECT AsakaiQcClaimDetail.InvtID as [Part No],
-                                    AsakaiQcClaimDetail.InvtName as [Part Name],
-                                    SUM (Qty) as Qty 
-                                    FROM AsakaiQcClaimDetail 
-                                    inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi
-                                    where AsakaiQCClaim.Tanggal >= '" + (TanggalAwal) + "' and AsakaiQCClaim.Tanggal <= '" + (TanggalAhir) + "'" +
-                                    "GROUP BY AsakaiQcClaimDetail.InvtID,AsakaiQcClaimDetail.InvtName " +
-                                    "union SELECT 'TOTAL','', SUM(Qty) as Qty FROM AsakaiQcClaimDetail inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi"
-            Dim dtTable As New DataTable
-            'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
-
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
     Public Sub InsertClaimCustomer(IdTransaksi As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -294,18 +274,6 @@ Public Class ClaimCustomerModel
             Throw
         End Try
     End Sub
-
-    Public Function GetInventory() As DataTable
-        Try
-            Dim sql As String = "select itemxref.alternateid as [Part Number],itemxref.Descr as [Part Name] from Inventory inner join itemxref on itemxref.invtid=Inventory.invtid where classid='FG'"
-
-            Dim dt As New DataTable
-            dt = MainModul.GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
 
 End Class
 

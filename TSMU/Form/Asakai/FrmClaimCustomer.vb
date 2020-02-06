@@ -131,26 +131,4 @@ Public Class FrmClaimCustomer
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
-    Private Sub BtnRekap_Click(sender As Object, e As EventArgs) Handles BtnRekap.Click
-
-        Try
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-
-            dtSearch = fc_Class.GetInventory
-
-            Dim lF_SearchData As FrmRekapClaim
-            lF_SearchData = New FrmRekapClaim
-            lF_SearchData.Text = "Data Claim " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
-    End Sub
 End Class
