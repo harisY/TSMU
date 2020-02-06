@@ -1404,6 +1404,9 @@
     </Compile>
     <Compile Include="Models\ar_detail_models.vb" />
     <Compile Include="Models\AR_Header_Models.vb" />
+    <Compile Include="Models\ar_pph_detail_models.vb" />
+    <Compile Include="Models\ar_pph_header_models.vb" />
+    <Compile Include="Models\ar_pph_transaction_models.vb" />
     <Compile Include="Models\Asakai\AbsenModel.vb" />
     <Compile Include="Models\Asakai\ClaimCustomerModel.vb" />
     <Compile Include="Models\Asakai\DeliveryModel.vb" />
@@ -1556,6 +1559,18 @@
       <DependentUpon>frm_payment_details.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\frm_payment_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_pph_ar.Designer.vb">
+      <DependentUpon>frm_pph_ar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_pph_ar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_pph_ar2.Designer.vb">
+      <DependentUpon>frm_pph_ar2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_pph_ar2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\Frm_ScanFP.designer.vb">
@@ -2068,6 +2083,12 @@
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
     <EmbeddedResource Include="Payment\frm_lookup_cmdm_ar.resx">
       <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_pph_ar.resx">
+      <DependentUpon>frm_pph_ar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
+      <DependentUpon>frm_pph_ar2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
