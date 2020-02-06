@@ -834,6 +834,12 @@
     <Compile Include="Form\Asakai\FrmQualityProblemDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai\Popup\FrmRekapClaim.Designer.vb">
+      <DependentUpon>FrmRekapClaim.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Popup\FrmRekapClaim.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1835,6 +1841,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Popup\FrmRekapClaim.resx">
+      <DependentUpon>FrmRekapClaim.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>

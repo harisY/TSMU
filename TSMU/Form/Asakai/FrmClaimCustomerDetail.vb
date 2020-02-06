@@ -554,4 +554,44 @@ Public Class FrmClaimCustomerDetail
         End If
 
     End Sub
+
+    Private Sub BtnPopup_Click(sender As Object, e As EventArgs) Handles BtnPopup.Click
+
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+
+            dtSearch = fc_Class.GetInventory
+            ls_OldKode = TxtInvtID.Text.Trim
+            ls_Judul = "Inventory"
+
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                TxtInvtID.Text = Value1
+                TxtInvtName.Text = Value2
+
+                'LoadGrid(Value1)
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+
+    End Sub
 End Class
