@@ -32,6 +32,21 @@ Partial Class FrmProblemDeliveryDetail
         Me.TxtAktual = New System.Windows.Forms.TextBox()
         Me.CmbStatus = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TxtInvtName = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.DtTanggalLapoan = New System.Windows.Forms.DateTimePicker()
+        Me.TxtInvtID = New System.Windows.Forms.TextBox()
+        Me.TxtJenisProblem = New System.Windows.Forms.TextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.BtnPicture = New System.Windows.Forms.Button()
+        Me.DtTargetClose = New System.Windows.Forms.DateTimePicker()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TxtPIC = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Customer = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,21 +67,7 @@ Partial Class FrmProblemDeliveryDetail
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.BtnGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TxtInvtName = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.DtTanggalLapoan = New System.Windows.Forms.DateTimePicker()
-        Me.TxtInvtID = New System.Windows.Forms.TextBox()
-        Me.TxtJenisProblem = New System.Windows.Forms.TextBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.BtnPicture = New System.Windows.Forms.Button()
-        Me.DtTargetClose = New System.Windows.Forms.DateTimePicker()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.TxtPIC = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +77,6 @@ Partial Class FrmProblemDeliveryDetail
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -190,17 +190,146 @@ Partial Class FrmProblemDeliveryDetail
         Me.Label8.TabIndex = 23
         Me.Label8.Text = "Qty - Status"
         '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(12, 178)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(121, 27)
+        Me.Button1.TabIndex = 25
+        Me.Button1.Text = "Add Problem"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TxtInvtName
+        '
+        Me.TxtInvtName.Location = New System.Drawing.Point(459, 67)
+        Me.TxtInvtName.Name = "TxtInvtName"
+        Me.TxtInvtName.Size = New System.Drawing.Size(262, 20)
+        Me.TxtInvtName.TabIndex = 26
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(382, 43)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(39, 13)
+        Me.Label4.TabIndex = 28
+        Me.Label4.Text = "Invt ID"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(382, 88)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(72, 13)
+        Me.Label5.TabIndex = 29
+        Me.Label5.Text = "Jenis Problem"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(12, 64)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(88, 13)
+        Me.Label10.TabIndex = 34
+        Me.Label10.Text = "Tanggal Laporan"
+        '
+        'DtTanggalLapoan
+        '
+        Me.DtTanggalLapoan.CustomFormat = "dd-MM-yyyy"
+        Me.DtTanggalLapoan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DtTanggalLapoan.Location = New System.Drawing.Point(106, 64)
+        Me.DtTanggalLapoan.Name = "DtTanggalLapoan"
+        Me.DtTanggalLapoan.Size = New System.Drawing.Size(261, 20)
+        Me.DtTanggalLapoan.TabIndex = 35
+        '
+        'TxtInvtID
+        '
+        Me.TxtInvtID.Location = New System.Drawing.Point(459, 41)
+        Me.TxtInvtID.Name = "TxtInvtID"
+        Me.TxtInvtID.Size = New System.Drawing.Size(262, 20)
+        Me.TxtInvtID.TabIndex = 36
+        '
+        'TxtJenisProblem
+        '
+        Me.TxtJenisProblem.Location = New System.Drawing.Point(459, 91)
+        Me.TxtJenisProblem.Name = "TxtJenisProblem"
+        Me.TxtJenisProblem.Size = New System.Drawing.Size(262, 20)
+        Me.TxtJenisProblem.TabIndex = 37
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox1.Location = New System.Drawing.Point(1051, 38)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(169, 127)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 38
+        Me.PictureBox1.TabStop = False
+        '
+        'BtnPicture
+        '
+        Me.BtnPicture.Location = New System.Drawing.Point(1226, 38)
+        Me.BtnPicture.Name = "BtnPicture"
+        Me.BtnPicture.Size = New System.Drawing.Size(53, 127)
+        Me.BtnPicture.TabIndex = 39
+        Me.BtnPicture.Text = "Gambar"
+        Me.BtnPicture.UseVisualStyleBackColor = True
+        '
+        'DtTargetClose
+        '
+        Me.DtTargetClose.CustomFormat = "dd-MM-yyyy"
+        Me.DtTargetClose.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DtTargetClose.Location = New System.Drawing.Point(106, 142)
+        Me.DtTargetClose.Name = "DtTargetClose"
+        Me.DtTargetClose.Size = New System.Drawing.Size(261, 20)
+        Me.DtTargetClose.TabIndex = 41
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 144)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(67, 13)
+        Me.Label9.TabIndex = 40
+        Me.Label9.Text = "Target Close"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(382, 144)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(22, 13)
+        Me.Label11.TabIndex = 42
+        Me.Label11.Text = "Pic"
+        '
+        'TxtPIC
+        '
+        Me.TxtPIC.Location = New System.Drawing.Point(459, 145)
+        Me.TxtPIC.Name = "TxtPIC"
+        Me.TxtPIC.Size = New System.Drawing.Size(262, 20)
+        Me.TxtPIC.TabIndex = 43
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(382, 67)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(56, 13)
+        Me.Label12.TabIndex = 44
+        Me.Label12.Text = "Invt Name"
+        '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 212)
+        Me.Grid.Location = New System.Drawing.Point(15, 211)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.BtnGambar, Me.RepBtnGambar})
-        Me.Grid.Size = New System.Drawing.Size(1343, 323)
-        Me.Grid.TabIndex = 24
+        Me.Grid.Size = New System.Drawing.Size(1276, 284)
+        Me.Grid.TabIndex = 45
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
@@ -342,139 +471,11 @@ Partial Class FrmProblemDeliveryDetail
         Me.BtnGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.BtnGambar.Name = "BtnGambar"
         '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 178)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(121, 27)
-        Me.Button1.TabIndex = 25
-        Me.Button1.Text = "Add Problem"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'TxtInvtName
-        '
-        Me.TxtInvtName.Location = New System.Drawing.Point(459, 67)
-        Me.TxtInvtName.Name = "TxtInvtName"
-        Me.TxtInvtName.Size = New System.Drawing.Size(262, 20)
-        Me.TxtInvtName.TabIndex = 26
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(382, 43)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(39, 13)
-        Me.Label4.TabIndex = 28
-        Me.Label4.Text = "Invt ID"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(382, 88)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 13)
-        Me.Label5.TabIndex = 29
-        Me.Label5.Text = "Jenis Problem"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 64)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(88, 13)
-        Me.Label10.TabIndex = 34
-        Me.Label10.Text = "Tanggal Laporan"
-        '
-        'DtTanggalLapoan
-        '
-        Me.DtTanggalLapoan.CustomFormat = "dd-MM-yyyy"
-        Me.DtTanggalLapoan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTanggalLapoan.Location = New System.Drawing.Point(106, 64)
-        Me.DtTanggalLapoan.Name = "DtTanggalLapoan"
-        Me.DtTanggalLapoan.Size = New System.Drawing.Size(261, 20)
-        Me.DtTanggalLapoan.TabIndex = 35
-        '
-        'TxtInvtID
-        '
-        Me.TxtInvtID.Location = New System.Drawing.Point(459, 41)
-        Me.TxtInvtID.Name = "TxtInvtID"
-        Me.TxtInvtID.Size = New System.Drawing.Size(262, 20)
-        Me.TxtInvtID.TabIndex = 36
-        '
-        'TxtJenisProblem
-        '
-        Me.TxtJenisProblem.Location = New System.Drawing.Point(459, 91)
-        Me.TxtJenisProblem.Name = "TxtJenisProblem"
-        Me.TxtJenisProblem.Size = New System.Drawing.Size(262, 20)
-        Me.TxtJenisProblem.TabIndex = 37
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(1051, 38)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(169, 127)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 38
-        Me.PictureBox1.TabStop = False
-        '
-        'BtnPicture
-        '
-        Me.BtnPicture.Location = New System.Drawing.Point(1226, 38)
-        Me.BtnPicture.Name = "BtnPicture"
-        Me.BtnPicture.Size = New System.Drawing.Size(53, 127)
-        Me.BtnPicture.TabIndex = 39
-        Me.BtnPicture.Text = "Gambar"
-        Me.BtnPicture.UseVisualStyleBackColor = True
-        '
-        'DtTargetClose
-        '
-        Me.DtTargetClose.CustomFormat = "dd-MM-yyyy"
-        Me.DtTargetClose.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTargetClose.Location = New System.Drawing.Point(106, 142)
-        Me.DtTargetClose.Name = "DtTargetClose"
-        Me.DtTargetClose.Size = New System.Drawing.Size(261, 20)
-        Me.DtTargetClose.TabIndex = 41
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 144)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(67, 13)
-        Me.Label9.TabIndex = 40
-        Me.Label9.Text = "Target Close"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(382, 144)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(22, 13)
-        Me.Label11.TabIndex = 42
-        Me.Label11.Text = "Pic"
-        '
-        'TxtPIC
-        '
-        Me.TxtPIC.Location = New System.Drawing.Point(459, 145)
-        Me.TxtPIC.Name = "TxtPIC"
-        Me.TxtPIC.Size = New System.Drawing.Size(262, 20)
-        Me.TxtPIC.TabIndex = 43
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(382, 67)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(56, 13)
-        Me.Label12.TabIndex = 44
-        Me.Label12.Text = "Invt Name"
-        '
         'FrmProblemDeliveryDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1370, 547)
+        Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.TxtPIC)
         Me.Controls.Add(Me.Label11)
@@ -490,7 +491,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TxtInvtName)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.CmbStatus)
         Me.Controls.Add(Me.TxtAktual)
@@ -518,7 +518,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.SetChildIndex(Me.TxtAktual, 0)
         Me.Controls.SetChildIndex(Me.CmbStatus, 0)
         Me.Controls.SetChildIndex(Me.Label8, 0)
-        Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.Controls.SetChildIndex(Me.TxtInvtName, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
@@ -534,6 +533,8 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.TxtPIC, 0)
         Me.Controls.SetChildIndex(Me.Label12, 0)
+        Me.Controls.SetChildIndex(Me.Grid, 0)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
@@ -543,7 +544,6 @@ Partial Class FrmProblemDeliveryDetail
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -562,9 +562,23 @@ Partial Class FrmProblemDeliveryDetail
     Friend WithEvents TxtAktual As TextBox
     Friend WithEvents CmbStatus As ComboBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TxtInvtName As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents DtTanggalLapoan As DateTimePicker
+    Friend WithEvents TxtInvtID As TextBox
+    Friend WithEvents TxtJenisProblem As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents BtnPicture As Button
+    Friend WithEvents DtTargetClose As DateTimePicker
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TxtPIC As TextBox
+    Friend WithEvents Label12 As Label
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents Button1 As Button
     Friend WithEvents Customer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TanggalKejadian As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TanggalKiriman As DevExpress.XtraGrid.Columns.GridColumn
@@ -576,25 +590,11 @@ Partial Class FrmProblemDeliveryDetail
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents InvtID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents InvtName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TxtInvtName As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents DtTanggalLapoan As DateTimePicker
+    Friend WithEvents Gambar As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepBtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents Pic As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents TxtInvtID As TextBox
-    Friend WithEvents TxtJenisProblem As TextBox
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents BtnPicture As Button
-    Friend WithEvents Gambar As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DtTargetClose As DateTimePicker
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents TxtPIC As TextBox
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Pic As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents RepBtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

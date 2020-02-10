@@ -1,10 +1,15 @@
-﻿Imports DevExpress.XtraGrid
+﻿Imports Microsoft.Office.Interop
+Imports DevExpress.XtraGrid
 Imports System.Globalization
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
+Imports System.IO
+Imports ExcelDataReader
+'Imports GemBox.Spreadsheet
+Imports System.Data.OleDb
 Public Class FrmNonProduksiDetail
 
     Public IsClosed As Boolean = False
@@ -29,6 +34,17 @@ Public Class FrmNonProduksiDetail
     '---------------------------
     Dim DtScan As DataTable
     Dim Fc_Class As New NonProduksiModel
+
+    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    Dim PathFoto As String = ""
+    Dim NamaFile As String = ""
+    Dim DirectoryFoto As String = ""
+    Dim extension As String = ""
+    Dim fileSavePath As String = ""
+    Dim opfImage As New OpenFileDialog
+
+
 
 
     Public Sub New()
@@ -90,7 +106,7 @@ Public Class FrmNonProduksiDetail
 
                     DtTanggal.Value = Fc_Class.H_Tanggal
                     DtTanggal.Enabled = False
-                    DtDuedate.Value = Fc_Class.D_Duedate
+                    'DtDuedate.Value = Fc_Class.D_Duedate
 
                 End With
             Else
@@ -121,7 +137,7 @@ Public Class FrmNonProduksiDetail
         dt = New DataTable
         dt.Columns.Add("INFORMASI")
         dt.Columns.Add("PIC")
-        dt.Columns.Add("DUEDATE")
+        dt.Columns.Add("GAMBAR")
         Grid.DataSource = dt
 
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
@@ -132,8 +148,9 @@ Public Class FrmNonProduksiDetail
 
         GridView1.AddNewRow()
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, INFORMASI, TxtInformasi.Text)
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, DUEDATE, DtDuedate.Value)
+        ' GridView1.SetRowCellValue(GridView1.FocusedRowHandle, DUEDATE, DtDuedate.Value)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PIC, TxtPIC.Text)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, NamaFile)
         GridView1.UpdateCurrentRow()
         Call TextBoxLoad()
 
@@ -141,6 +158,7 @@ Public Class FrmNonProduksiDetail
     Public Sub TextBoxLoad()
         TxtInformasi.Text = ""
         TxtPIC.Text = ""
+        PictureBox1.Image = Nothing
     End Sub
 
     Public Overrides Sub Proc_SaveData()
@@ -181,7 +199,7 @@ Public Class FrmNonProduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
                         .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "PIC"))
-                        .D_Duedate = Convert.ToDateTime(GridView1.GetRowCellValue(i, "DUEDATE"))
+                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "GAMBAR"))
 
                     End With
                     Fc_Class.ObjDetailNonProduksi.Add(ObjNonproduksiDetail)
@@ -204,7 +222,7 @@ Public Class FrmNonProduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
                         .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "PIC"))
-                        .D_Duedate = Convert.ToDateTime(GridView1.GetRowCellValue(i, "DUEDATE"))
+                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "GAMBAR"))
 
                     End With
                     Fc_Class.ObjDetailNonProduksi.Add(ObjNonproduksiDetail)
@@ -269,7 +287,28 @@ Public Class FrmNonProduksiDetail
     End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        Try
 
+            opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+
+            If opfImage.ShowDialog = DialogResult.OK Then
+
+
+                PictureBox1.Image = Image.FromFile(opfImage.FileName)
+                PathFoto = opfImage.FileName
+                'NamaFile = Path.GetFileName(PathFoto)
+                Dim extension As String = Path.GetExtension(PathFoto)
+                NamaFile = "NP_" + Path.GetRandomFileName() + extension
+                fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+                File.Copy(opfImage.FileName, fileSavePath, True)
+
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, "")
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, NamaFile)
+
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
@@ -280,5 +319,33 @@ Public Class FrmNonProduksiDetail
         If e.KeyData = Keys.Insert Then
             GridView1.AddNewRow()
         End If
+    End Sub
+
+    Private Sub Label4_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BGambar_Click(sender As Object, e As EventArgs) Handles BGambar.Click
+
+        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        If opfImage.ShowDialog = DialogResult.OK Then
+
+
+            'PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            'PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+
+
+            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+            Dim extension As String = Path.GetExtension(PathFoto)
+            NamaFile = "NP_" + Path.GetRandomFileName() + extension
+            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+            File.Copy(opfImage.FileName, fileSavePath, True)
+        End If
+
+
     End Sub
 End Class

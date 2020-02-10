@@ -21,6 +21,7 @@ Public Class FrmDeliveryDetail
     Dim fc_Class As New DeliveryModel
 
     Dim GridDtl As GridControl
+    Dim dt As New DataTable
 
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
@@ -188,7 +189,7 @@ Public Class FrmDeliveryDetail
                                                                         ,F14 as Keterangan
                                                                          FROM [ASAKAI$A4:R200] where F2 <>''", cn)
 
-                        Dim dt As New DataTable
+                        'Dim dt As New DataTable
                         dt.Load(cmd.ExecuteReader)
 
 
@@ -202,8 +203,7 @@ Public Class FrmDeliveryDetail
                         dtHeader.Load(cmdHeader.ExecuteReader)
 
 
-                        cn.Close()
-                        Grid.DataSource = dt
+
 
                         cnHeader.Close()
 
@@ -420,5 +420,15 @@ Public Class FrmDeliveryDetail
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
+    End Sub
+
+    Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
+        If e.KeyData = Keys.Delete Then
+            GridView1.DeleteRow(GridView1.FocusedRowHandle)
+            GridView1.RefreshData()
+        End If
+        If e.KeyData = Keys.Insert Then
+            GridView1.AddNewRow()
+        End If
     End Sub
 End Class

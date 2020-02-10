@@ -503,4 +503,8 @@ Public Class FrmQualityProblemDetail
     Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
 
     End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class

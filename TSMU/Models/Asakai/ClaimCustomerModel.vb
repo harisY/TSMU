@@ -275,6 +275,27 @@ Public Class ClaimCustomerModel
         End Try
     End Sub
 
+    Public Function GetRekapClaim(TanggalAwal As Date, TanggalAhir As Date) As DataTable
+        Try
+            Dim query As String = "SELECT AsakaiQcClaimDetail.InvtID as [Part No],
+                                    AsakaiQcClaimDetail.InvtName as [Part Name],
+                                    SUM (Qty) as Qty 
+                                    FROM AsakaiQcClaimDetail 
+                                    inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi
+                                    where AsakaiQCClaim.Tanggal >= '" + (TanggalAwal) + "' and AsakaiQCClaim.Tanggal <= '" + (TanggalAhir) + "'" +
+                                    "GROUP BY AsakaiQcClaimDetail.InvtID,AsakaiQcClaimDetail.InvtName " +
+                                    "union SELECT 'TOTAL','', SUM(Qty) as Qty FROM AsakaiQcClaimDetail inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi
+                                    where AsakaiQCClaim.Tanggal >= '" + (TanggalAwal) + "' and AsakaiQCClaim.Tanggal <= '" + (TanggalAhir) + "'"
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
+
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 End Class
 
 Public Class ClaimCustomerDetailModel

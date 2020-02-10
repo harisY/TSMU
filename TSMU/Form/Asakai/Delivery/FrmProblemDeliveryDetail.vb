@@ -43,10 +43,6 @@ Public Class FrmProblemDeliveryDetail
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
 
-
-
-
-
     Public Sub New()
 
         ' This call is required by the designer.
@@ -237,21 +233,21 @@ Public Class FrmProblemDeliveryDetail
 
                     ObjProblemDeliveryDetail = New ProblemDeliveryDetailModel
                     With ObjProblemDeliveryDetail
-                        .D_IDTrans = KodeTrans
-                        .D_Tanggal = Format(DtTanggalLapoan.Value, "yyyy-MM-dd")
-                        .D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
-                        .D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory ID"))
-                        .D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory Name"))
-                        .D_Tanggal_Kejadian = GridView1.GetRowCellValue(i, "Tanggal Kejadian")
-                        .D_Tanggal_Kiriman = GridView1.GetRowCellValue(i, "Tanggal Kiriman")
-                        .D_Standar = Convert.ToString(GridView1.GetRowCellValue(i, "Standar"))
-                        .D_Aktual = Convert.ToString(GridView1.GetRowCellValue(i, "Aktual"))
-                        .D_Qty = Convert.ToInt32(GridView1.GetRowCellValue(i, "Qty"))
-                        .D_JenisProblem = Convert.ToString(GridView1.GetRowCellValue(i, "Jenis Problem"))
-                        .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "Pic"))
-                        .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
-                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
-                        .D_Target_Close = GridView1.GetRowCellValue(i, "Target Close")
+                        '.D_IDTrans = KodeTrans
+                        '.D_Tanggal = Format(DtTanggalLapoan.Value, "yyyy-MM-dd")
+                        '.D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
+                        '.D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory ID"))
+                        '.D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory Name"))
+                        '.D_Tanggal_Kejadian = GridView1.GetRowCellValue(i, "Tanggal Kejadian")
+                        '.D_Tanggal_Kiriman = GridView1.GetRowCellValue(i, "Tanggal Kiriman")
+                        '.D_Standar = Convert.ToString(GridView1.GetRowCellValue(i, "Standar"))
+                        '.D_Aktual = Convert.ToString(GridView1.GetRowCellValue(i, "Aktual"))
+                        '.D_Qty = Convert.ToInt32(GridView1.GetRowCellValue(i, "Qty"))
+                        '.D_JenisProblem = Convert.ToString(GridView1.GetRowCellValue(i, "Jenis Problem"))
+                        '.D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "Pic"))
+                        '.D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
+                        '.D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
+                        '.D_Target_Close = GridView1.GetRowCellValue(i, "Target Close")
 
                     End With
                     fc_Class.ObjDetailProblemDelivery.Add(ObjProblemDeliveryDetail)
@@ -272,21 +268,21 @@ Public Class FrmProblemDeliveryDetail
 
                     ObjProblemDeliveryDetail = New ProblemDeliveryDetailModel
                     With ObjProblemDeliveryDetail
-                        .D_IDTrans = KodeTrans
-                        .D_Tanggal = Format(DtTanggalLapoan.Value, "yyyy-MM-dd")
-                        .D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
-                        .D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory ID"))
-                        .D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory Name"))
-                        .D_Tanggal_Kejadian = GridView1.GetRowCellValue(i, "Tanggal Kejadian")
-                        .D_Tanggal_Kiriman = GridView1.GetRowCellValue(i, "Tanggal Kiriman")
-                        .D_Standar = Convert.ToString(GridView1.GetRowCellValue(i, "Standar"))
-                        .D_Aktual = Convert.ToString(GridView1.GetRowCellValue(i, "Aktual"))
-                        .D_Qty = Convert.ToInt32(GridView1.GetRowCellValue(i, "Qty"))
-                        .D_JenisProblem = Convert.ToString(GridView1.GetRowCellValue(i, "Jenis Problem"))
-                        .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "Pic"))
-                        .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
-                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
-                        .D_Target_Close = GridView1.GetRowCellValue(i, "Target Close")
+                        '.D_IDTrans = KodeTrans
+                        '.D_Tanggal = Format(DtTanggalLapoan.Value, "yyyy-MM-dd")
+                        '.D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
+                        '.D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory ID"))
+                        '.D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Inventory Name"))
+                        '.D_Tanggal_Kejadian = GridView1.GetRowCellValue(i, "Tanggal Kejadian")
+                        '.D_Tanggal_Kiriman = GridView1.GetRowCellValue(i, "Tanggal Kiriman")
+                        '.D_Standar = Convert.ToString(GridView1.GetRowCellValue(i, "Standar"))
+                        '.D_Aktual = Convert.ToString(GridView1.GetRowCellValue(i, "Aktual"))
+                        '.D_Qty = Convert.ToInt32(GridView1.GetRowCellValue(i, "Qty"))
+                        '.D_JenisProblem = Convert.ToString(GridView1.GetRowCellValue(i, "Jenis Problem"))
+                        '.D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "Pic"))
+                        '.D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
+                        '.D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
+                        '.D_Target_Close = GridView1.GetRowCellValue(i, "Target Close")
                     End With
                     fc_Class.ObjDetailProblemDelivery.Add(ObjProblemDeliveryDetail)
 
@@ -416,7 +412,7 @@ Public Class FrmProblemDeliveryDetail
 
 
 
-    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) 
         If e.KeyData = Keys.Delete Then
             GridView1.DeleteRow(GridView1.FocusedRowHandle)
             GridView1.RefreshData()
@@ -529,7 +525,7 @@ Public Class FrmProblemDeliveryDetail
         TxtStandar.SelectionStart = selStart
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) 
 
         opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
 
@@ -556,7 +552,7 @@ Public Class FrmProblemDeliveryDetail
 
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub Grid_Click(sender As Object, e As EventArgs) 
 
     End Sub
 End Class

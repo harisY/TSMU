@@ -6,7 +6,7 @@ Public Class NonProduksiModel
     Public Property H_Dept() As String
     Public Property D_IDTransaksi() As String
     Public Property D_Informasi() As String
-    Public Property D_Duedate() As Date
+    Public Property D_Gambar() As String
     Public Property D_PIC() As String
     Public Property IDTrans As String
     Dim _Query As String
@@ -68,7 +68,7 @@ Public Class NonProduksiModel
         Try
             Dim query As String = "SELECT AsakaiOtherDeptDetail.[IDTransaksi] as IDTransaksi
                                   ,AsakaiOtherDeptDetail.[Informasi] as Informasi
-                                  ,AsakaiOtherDeptDetail.[Duedate] as DueDate
+                                  ,AsakaiOtherDeptDetail.[Gambar] as GAMBAR
                                   ,AsakaiOtherDeptDetail.[PIC] as PIC
                                   ,AsakaiOtherDept.[Tanggal]  as Tanggal
                                   ,AsakaiOtherDept.[Dept] as Dept
@@ -81,7 +81,7 @@ Public Class NonProduksiModel
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_Tanggal = Trim(.Item("Tanggal") & "")
-                    Me.D_Duedate = Trim(.Item("DueDate") & "")
+                    Me.D_Gambar = Trim(.Item("GAMBAR") & "")
                 End With
             End If
         Catch ex As Exception
@@ -93,7 +93,7 @@ Public Class NonProduksiModel
     Public Function GetDataDetailNonProduksi(ID As String) As DataTable
         Try
             Dim query As String = "SELECT [Informasi] as INFORMASI
-                                  ,[Duedate] as DUEDATE
+                                  ,[Gambar] as GAMBAR
                                   ,[PIC] as PIC
                               FROM AsakaiOtherDeptDetail inner join AsakaiOtherDept
                                     on AsakaiOtherDeptDetail.IDTransaksi = AsakaiOtherDept.IDTransaksi 
@@ -288,7 +288,7 @@ Public Class NonProduksiDetailModel
 
     Public Property D_IDTransaksi() As String
     Public Property D_Informasi() As String
-    Public Property D_Duedate() As Date
+    Public Property D_Gambar() As String
     Public Property D_PIC() As String
 
     Public Sub InsertDetail(IDTrans)
@@ -298,11 +298,11 @@ Public Class NonProduksiDetailModel
             "INSERT INTO [AsakaiOtherDeptDetail]
                    ([IDTransaksi]
                    ,[Informasi]
-                   ,[Duedate]
+                   ,[Gambar]
                    ,[PIC]) " & vbCrLf &
             "Values(" & QVal(D_IDTransaksi) & ", " & vbCrLf &
             "       " & QVal(D_Informasi) & ", " & vbCrLf &
-            "       " & QVal(D_Duedate) & ", " & vbCrLf &
+            "       " & QVal(D_Gambar) & ", " & vbCrLf &
             "       " & QVal(D_PIC) & ")"
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)

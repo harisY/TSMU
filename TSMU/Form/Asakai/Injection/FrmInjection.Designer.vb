@@ -43,7 +43,7 @@ Partial Class FrmInjection
         Me.Grid.Location = New System.Drawing.Point(0, 160)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(770, 249)
+        Me.Grid.Size = New System.Drawing.Size(770, 211)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '

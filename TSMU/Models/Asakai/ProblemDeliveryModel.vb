@@ -36,7 +36,7 @@ Public Class ProblemDeliveryModel
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IDTrans],Tanggal                   
-                                    FROM [AsakaiProblemDeliveryHeader] where Tanggal = '" & H_Tanggal & "' "
+                                    FROM [AsakaiProblemDeliveryHeader] where IDTrans = '" & H_IDTrans & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
@@ -81,22 +81,19 @@ Public Class ProblemDeliveryModel
 
     Public Function GetDataDetailProblemDelivery(ID As String) As DataTable
         Try
-            Dim query As String = "SELECT [IDTrans]
-                                      ,[Customer]
-                                      ,[InvtID] as [Inventory ID]
-                                      ,[InvtName] as [Inventory Name]
-                                      ,[Tanggal Kejadian]
-                                      ,[Tanggal Kiriman]
-                                      ,[Target Close]
-                                      ,[Standar]
-                                      ,[Aktual]
-                                      ,[Qty]
-                                      ,[Jenis Problem]
-                                      ,[PIC] as Pic
-                                      ,[Target Close]
-                                      ,[Status]
-                                      ,[Foto] as Gambar
-                              From [AsakaiProblemDelivery] where IDTrans  = '" & ID & "'"
+            Dim query As String = "SELECT [Customer] 
+                                  ,[Standar]
+                                  ,[Aktual] 
+                                  ,[Kirim Kurang] 
+                                  ,[Campur]
+                                  ,[Kirim Lebih Isi]
+                                  ,[Salah Isi]
+                                  ,[Salah Passcard] as [Salah Passcard]
+                                  ,[Transporter]
+                                  ,[Keterangan]
+                                  ,[Lain Lain]
+                                  ,[Gambar]
+                              From [AsakaiProblemDeliveryUpload] where IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
             dtTable = MainModul.GetDataTableByCommand(query)
@@ -248,8 +245,7 @@ Public Class ProblemDeliveryModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiProblemDeliveryHeader" & vbCrLf &
-                                    "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
-                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "SET    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTrans = '" & _IDTrans & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
@@ -260,7 +256,7 @@ Public Class ProblemDeliveryModel
     Public Sub DeleteDetail(ByVal ID As String)
         Try
             'DeleteDetail
-            Dim ls_DeleteDetail As String = "DELETE FROM AsakaiProblemDelivery WHERE rtrim(IDTrans)=" & QVal(ID) & ""
+            Dim ls_DeleteDetail As String = "DELETE FROM AsakaiProblemDeliveryUpload WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
@@ -278,7 +274,7 @@ Public Class ProblemDeliveryModel
 
 
             'DeleteDetail
-            Dim ls_DeleteDetail As String = "DELETE FROM AsakaiProblemDelivery WHERE rtrim(IDTrans)=" & QVal(ID) & ""
+            Dim ls_DeleteDetail As String = "DELETE FROM AsakaiProblemDeliveryUpload WHERE rtrim(IDTrans)=" & QVal(ID) & ""
             MainModul.ExecQuery(ls_DeleteDetail)
 
         Catch ex As Exception
@@ -291,23 +287,38 @@ End Class
 
 
 Public Class ProblemDeliveryDetailModel
-    Public Property D_Aktual As String
-    Public Property D_InvtID As String
-    Public Property D_InvtName As String
-    Public Property D_Customer As String
+    'Public Property D_Aktual As String
+    'Public Property D_InvtID As String
+    'Public Property D_InvtName As String
+    'Public Property D_Customer As String
+    'Public Property D_IDTrans As String
+    'Public Property D_PIC As String
+    'Public Property D_Qty As Integer
+    'Public Property D_Standar As String
+    'Public Property D_Status As String
+    'Public Property D_Gambar As String
+    'Public Property D_Tanggal_Kejadian As Date
+    'Public Property D_Target_Close As Date
+
+    'Public Property D_Tanggal As Date
+    'Public Property D_Tanggal_Kiriman As Date
+
+    'Public Property D_JenisProblem As String
+
+
     Public Property D_IDTrans As String
-    Public Property D_PIC As String
-    Public Property D_Qty As Integer
+    Public Property D_Customer As String
     Public Property D_Standar As String
-    Public Property D_Status As String
+    Public Property D_Aktual As String
+    Public Property D_KirimKurang As Integer
+    Public Property D_Campur As Integer
+    Public Property D_KirimLebihIsi As Integer
+    Public Property D_SalahIsi As Integer
+    Public Property D_LainLain As Integer
+    Public Property D_SalahPasscard As Integer
+    Public Property D_Transporter As Integer
+    Public Property D_Keterangan As String
     Public Property D_Gambar As String
-    Public Property D_Tanggal_Kejadian As Date
-    Public Property D_Target_Close As Date
-
-    Public Property D_Tanggal As Date
-    Public Property D_Tanggal_Kiriman As Date
-
-    Public Property D_JenisProblem As String
 
 
 
@@ -317,34 +328,32 @@ Public Class ProblemDeliveryDetailModel
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO AsakaiProblemDelivery
-                           ([IDTrans]
-                           ,[Customer]
-                           ,[InvtID]
-                           ,[InvtName]
-                           ,[Tanggal Kejadian]
-                           ,[Tanggal Kiriman]
-                           ,[Target Close]
-                           ,[Standar]
-                           ,[Aktual]
-                           ,[Qty]
-                           ,[Jenis Problem]
-                           ,[Pic] 
-                           ,[Status]
-                           ,[Foto]) " & vbCrLf &
+            "INSERT INTO [AsakaiProblemDeliveryUpload]
+                   ([IDTrans]
+                   ,[Customer]
+                   ,[Standar]
+                   ,[Aktual]
+                   ,[Kirim Kurang]
+                   ,[Campur]
+                   ,[Kirim Lebih Isi]
+                   ,[Salah Isi]
+                   ,[Salah PassCard]
+                   ,[Transporter]
+                   ,[Lain Lain]
+                   ,[Keterangan]
+                   ,[Gambar]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(D_Customer) & ", " & vbCrLf &
-            "       " & QVal(D_InvtID) & ", " & vbCrLf &
-            "       " & QVal(D_InvtName) & ", " & vbCrLf &
-            "       " & QVal(D_Tanggal_Kejadian) & ", " & vbCrLf &
-            "       " & QVal(D_Tanggal_Kiriman) & ", " & vbCrLf &
-            "       " & QVal(D_Target_Close) & ", " & vbCrLf &
             "       " & QVal(D_Standar) & ", " & vbCrLf &
             "       " & QVal(D_Aktual) & ", " & vbCrLf &
-            "       " & QVal(D_Qty) & ", " & vbCrLf &
-            "       " & QVal(D_JenisProblem) & ", " & vbCrLf &
-            "       " & QVal(D_PIC) & ", " & vbCrLf &
-            "       " & QVal(D_Status) & ", " & vbCrLf &
+            "       " & QVal(D_KirimKurang) & ", " & vbCrLf &
+            "       " & QVal(D_Campur) & ", " & vbCrLf &
+            "       " & QVal(D_KirimLebihIsi) & ", " & vbCrLf &
+            "       " & QVal(D_SalahIsi) & ", " & vbCrLf &
+            "       " & QVal(D_SalahPasscard) & ", " & vbCrLf &
+            "       " & QVal(D_Transporter) & ", " & vbCrLf &
+            "       " & QVal(D_LainLain) & ", " & vbCrLf &
+            "       " & QVal(D_Keterangan) & ", " & vbCrLf &
             "       " & QVal(D_Gambar) & ")"
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)
