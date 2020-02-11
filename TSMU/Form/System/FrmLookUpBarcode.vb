@@ -178,6 +178,7 @@ Public Class FrmLookUpBarcode
     Private Sub FrmLookUpBarcode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If gh_Common.Site.ToLower <> "tng" Then
             LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LayoutControlItem1.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         End If
         FillComboTahun()
         cmbTahun.EditValue = DateTime.Now.Year

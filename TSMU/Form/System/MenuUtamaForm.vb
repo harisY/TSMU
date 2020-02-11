@@ -442,6 +442,13 @@ Public Class MenuUtamaForm
                                 'ElseIf childMenu = "Report Entertainment" Then
                                 '    tsReportEntertainment.DropDownItems.Add(TSMenuD)
                             End If
+                        Case "PO Checking"
+                            If childMenu Is DBNull.Value OrElse childMenu = "" Then
+                            ElseIf childMenu = "TMMIN" Then
+                                tsMenuTMMIN.DropDownItems.Add(TSMenuD)
+                            Else
+                                tsMenuTAM.DropDownItems.Add(TSMenuD)
+                            End If
                         Case Else
 
                     End Select
@@ -648,6 +655,24 @@ Public Class MenuUtamaForm
             Else
                 tsDirect1.Visible = False
             End If
+
+            If tsMenuTMMIN.DropDownItems.Count > 0 AndAlso tsMenuTAM.DropDownItems.Count > 0 Then
+                tsMenuPOCheck.Visible = True
+                tsMenuTAM.Visible = True
+                tsMenuTMMIN.Visible = True
+            ElseIf tsMenuTAM.DropDownItems.Count > 0 AndAlso tsMenuTAM.DropDownItems.Count = 0 Then
+                tsMenuPOCheck.Visible = True
+                tsMenuTAM.Visible = False
+                tsMenuTMMIN.Visible = True
+                tsMenuTMMIN.Visible = True
+            ElseIf tsMenuTAM.DropDownItems.Count = 0 AndAlso tsMenuTAM.DropDownItems.Count > 0 Then
+                tsMenuPOCheck.Visible = True
+                tsMenuTAM.Visible = True
+                tsMenuTMMIN.Visible = False
+            Else
+
+                tsMenuPOCheck.Visible = False
+            End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -657,9 +682,9 @@ Public Class MenuUtamaForm
         If Me.tsMenuMaster.DropDownItems.Count > 0 Then
             Me.tsMenuMaster.DropDownItems.Clear()
         End If
-        'If Me.TSMSC.DropDownItems.Count > 0 Then
-        '    Me.TSMSC.DropDownItems.Clear()
-        'End If
+        If Me.tsMenuTMMIN.DropDownItems.Count > 0 Then
+            Me.tsMenuTMMIN.DropDownItems.Clear()
+        End If
         'If Me.TSMPC.DropDownItems.Count > 0 Then
         '    Me.TSMPC.DropDownItems.Clear()
         'End If
