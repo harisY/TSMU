@@ -8,8 +8,9 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 Imports System.IO
 Imports ExcelDataReader
-Imports GemBox.Spreadsheet
+'Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
+
 Public Class FrmClaimCustomerDetail
 
     Private dt As DataTable
@@ -23,6 +24,15 @@ Public Class FrmClaimCustomerDetail
     Dim KodeTrans As String = ""
     Dim fc_Class As New ClaimCustomerModel
     Dim GridDtl As GridControl
+
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    Dim PathFoto As String = ""
+    Dim NamaFile As String = ""
+    Dim DirectoryFoto As String = ""
+    Dim extension As String = ""
+    Dim fileSavePath As String = ""
+    Dim opfImage As New OpenFileDialog
+
 
 
     Public Sub New()
@@ -42,6 +52,7 @@ Public Class FrmClaimCustomerDetail
         TxtPIC.Text = ""
         TxtPIC.Text = ""
         TxtDokumen.Text = ""
+        PictureBox1.Image = Nothing
     End Sub
 
     Public Sub New(ByVal strCode As String,
@@ -72,6 +83,8 @@ Public Class FrmClaimCustomerDetail
         dt.Columns.Add("Status")
         dt.Columns.Add("Dokumen")
         dt.Columns.Add("TargetClose")
+        dt.Columns.Add("Lot")
+        dt.Columns.Add("Gambar")
         Grid.DataSource = dt
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
@@ -90,15 +103,15 @@ Public Class FrmClaimCustomerDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Problem Delivery " & fs_Code
+                Me.Text = "Claim Customer " & fs_Code
             Else
-                Me.Text = "Problem Delivery"
+                Me.Text = "Claim Customer"
             End If
             Call LoadTxtBox()
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialUsage"
+            bs_MainFormName = "FrmClaimCustomer"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -240,6 +253,8 @@ Public Class FrmClaimCustomerDetail
                         .D_Dokumen = Convert.ToString(GridView1.GetRowCellValue(i, "Dokumen"))
                         .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
+                        .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot"))
+                        .D_Foto = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
 
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
@@ -258,6 +273,28 @@ Public Class FrmClaimCustomerDetail
                 fc_Class.ObjDetailClaimCustomer.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
 
+                    'If GridView1.GetRowCellValue(i, "Customer") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "TanggalClaim") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Customer") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "InvtId") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Invt Name") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Problem") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Pic") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Qty") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Status") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "TargetClose") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Lot") = vbNull Or
+                    '    GridView1.GetRowCellValue(i, "Gambar") = vbNull Then
+
+                    '    MessageBox.Show("Data Null", "Warning",
+                    '           MessageBoxButtons.OK,
+                    '           MessageBoxIcon.Exclamation,
+                    '           MessageBoxDefaultButton.Button1)
+                    '    Exit Sub
+
+
+                    'End If
+
                     ObjClaimCustomerDetail = New ClaimCustomerDetailModel
                     With ObjClaimCustomerDetail
                         .D_IDTransaksi = KodeTrans
@@ -271,6 +308,9 @@ Public Class FrmClaimCustomerDetail
                         .D_Dokumen = Convert.ToString(GridView1.GetRowCellValue(i, "Dokumen"))
                         .D_Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
+                        .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot"))
+                        .D_Foto = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
+
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
 
@@ -355,6 +395,9 @@ Public Class FrmClaimCustomerDetail
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Status, CmbStatus.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Dokumen, TxtDokumen.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, TargetClose, Format(DtTargetClose.Value, "yyyy-MM-dd"))
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Lot, TxtLotNo.Text)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+
                 GridView1.UpdateCurrentRow()
 
                 Call TextBoxLoad()
@@ -459,7 +502,56 @@ Public Class FrmClaimCustomerDetail
 
     End Sub
 
+    Private Sub BGambar_Click(sender As Object, e As EventArgs) Handles BGambar.Click
+
+
+        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        If opfImage.ShowDialog = DialogResult.OK Then
+
+
+            'PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            'PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+
+
+            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+            Dim extension As String = Path.GetExtension(PathFoto)
+            NamaFile = "QCPROBLEM_" + Path.GetRandomFileName() + extension
+            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+            File.Copy(opfImage.FileName, fileSavePath, True)
 
 
 
+
+        End If
+
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        If opfImage.ShowDialog = DialogResult.OK Then
+
+
+            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            PathFoto = opfImage.FileName
+            'NamaFile = Path.GetFileName(PathFoto)
+            Dim extension As String = Path.GetExtension(PathFoto)
+            NamaFile = "DEL" + Path.GetRandomFileName() + extension
+            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
+            File.Copy(opfImage.FileName, fileSavePath, True)
+
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, "")
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+
+        End If
+
+    End Sub
 End Class

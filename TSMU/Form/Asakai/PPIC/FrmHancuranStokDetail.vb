@@ -75,7 +75,7 @@ Public Class FrmHancuranStokDetail
             Call LoadTxtBox()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmAbsen"
+            bs_MainFormName = "FrmHancuranStok"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

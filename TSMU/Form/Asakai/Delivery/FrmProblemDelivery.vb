@@ -1,18 +1,17 @@
-﻿Imports System.Globalization
-
-Public Class FrmClaimCustomer
-    Dim ff_Detail As FrmClaimCustomerDetail
+﻿Public Class FrmProblemDelivery
+    Dim ff_Detail As FrmProblemDeliveryUpload
+    'Dim ff_Detail As FrmProblemDeliveryDetail
     Dim dtGrid As DataTable
-    Dim fc_Class As New ClaimCustomerModel
-    Dim IdTrans As String
-    Dim Tanggal As Date
+    Dim fc_Class As New ProblemDeliveryModel
 
 
-    Private Sub FrmClaimCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmProblemDelivery_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+
     End Sub
 
     Private Sub LoadGrid()
@@ -36,7 +35,8 @@ Public Class FrmClaimCustomer
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmClaimCustomerDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        'ff_Detail = New FrmProblemDeliveryDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmProblemDeliveryUpload(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -81,7 +81,7 @@ Public Class FrmClaimCustomer
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         'ObjMaterialUsageDetail.IDMaterialUsage = GridView1.GetRowCellValue(rowHandle, "IDMaterialUsage")
-                        IDTrans = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
+                        IDTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
                     End If
                 Next rowHandle
                 'fc_Class.ObjDetails.Add(ObjMaterialUsageDetail)
@@ -100,24 +100,21 @@ Public Class FrmClaimCustomer
         End Try
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Dim IdTrans As String
+    Dim Tanggal As Date
 
-    End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-        Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
 
+        Try
             IdTrans = String.Empty
 
-            fc_Class = New ClaimCustomerModel
+            fc_Class = New ProblemDeliveryModel
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
-                    Dim oDate As DateTime = DateTime.ParseExact(GridView1.GetRowCellValue(rowHandle, "Tanggal"), "dd-MM-yyyy", provider)
-                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
-                    Tanggal = oDate
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
+                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
                 End If
             Next rowHandle
 
@@ -130,5 +127,10 @@ Public Class FrmClaimCustomer
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
     End Sub
 End Class

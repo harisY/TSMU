@@ -32,24 +32,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.TxtAktual = New System.Windows.Forms.TextBox()
         Me.CmbStatus = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.Customer = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TanggalKejadian = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TanggalKiriman = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Standar = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Aktual = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Qty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.JenisProblem = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TargetClose = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.InvtID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.InvtName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TxtInvtName = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -65,14 +47,36 @@ Partial Class FrmProblemDeliveryDetail
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TxtPIC = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Customer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TanggalKejadian = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TanggalKiriman = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Standar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Aktual = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.JenisProblem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TargetClose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.InvtID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.InvtName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepBtnGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.BtnGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -185,146 +189,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.Label8.Size = New System.Drawing.Size(62, 13)
         Me.Label8.TabIndex = 23
         Me.Label8.Text = "Qty - Status"
-        '
-        'Grid
-        '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 212)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.Grid.Size = New System.Drawing.Size(1343, 323)
-        Me.Grid.TabIndex = 24
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalKejadian, Me.TanggalKiriman, Me.Standar, Me.Aktual, Me.Qty, Me.JenisProblem, Me.TargetClose, Me.Status, Me.InvtID, Me.InvtName, Me.Gambar, Me.Pic})
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        '
-        'Customer
-        '
-        Me.Customer.FieldName = "Customer"
-        Me.Customer.Name = "Customer"
-        Me.Customer.Visible = True
-        Me.Customer.VisibleIndex = 0
-        Me.Customer.Width = 86
-        '
-        'TanggalKejadian
-        '
-        Me.TanggalKejadian.FieldName = "Tanggal Kejadian"
-        Me.TanggalKejadian.Name = "TanggalKejadian"
-        Me.TanggalKejadian.Visible = True
-        Me.TanggalKejadian.VisibleIndex = 3
-        Me.TanggalKejadian.Width = 110
-        '
-        'TanggalKiriman
-        '
-        Me.TanggalKiriman.FieldName = "Tanggal Kiriman"
-        Me.TanggalKiriman.Name = "TanggalKiriman"
-        Me.TanggalKiriman.Visible = True
-        Me.TanggalKiriman.VisibleIndex = 4
-        Me.TanggalKiriman.Width = 110
-        '
-        'Standar
-        '
-        Me.Standar.FieldName = "Standar"
-        Me.Standar.Name = "Standar"
-        Me.Standar.Visible = True
-        Me.Standar.VisibleIndex = 6
-        Me.Standar.Width = 187
-        '
-        'Aktual
-        '
-        Me.Aktual.FieldName = "Aktual"
-        Me.Aktual.Name = "Aktual"
-        Me.Aktual.Visible = True
-        Me.Aktual.VisibleIndex = 7
-        Me.Aktual.Width = 182
-        '
-        'Qty
-        '
-        Me.Qty.FieldName = "Qty"
-        Me.Qty.Name = "Qty"
-        Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 8
-        Me.Qty.Width = 110
-        '
-        'JenisProblem
-        '
-        Me.JenisProblem.FieldName = "Jenis Problem"
-        Me.JenisProblem.Name = "JenisProblem"
-        Me.JenisProblem.Visible = True
-        Me.JenisProblem.VisibleIndex = 5
-        Me.JenisProblem.Width = 110
-        '
-        'TargetClose
-        '
-        Me.TargetClose.FieldName = "Target Close"
-        Me.TargetClose.Name = "TargetClose"
-        Me.TargetClose.Visible = True
-        Me.TargetClose.VisibleIndex = 9
-        '
-        'Status
-        '
-        Me.Status.FieldName = "Status"
-        Me.Status.Name = "Status"
-        Me.Status.Visible = True
-        Me.Status.VisibleIndex = 11
-        '
-        'InvtID
-        '
-        Me.InvtID.FieldName = "Inventory ID"
-        Me.InvtID.Name = "InvtID"
-        Me.InvtID.Visible = True
-        Me.InvtID.VisibleIndex = 1
-        Me.InvtID.Width = 131
-        '
-        'InvtName
-        '
-        Me.InvtName.FieldName = "Inventory Name"
-        Me.InvtName.Name = "InvtName"
-        Me.InvtName.Visible = True
-        Me.InvtName.VisibleIndex = 2
-        Me.InvtName.Width = 132
-        '
-        'Gambar
-        '
-        Me.Gambar.FieldName = "Gambar"
-        Me.Gambar.Name = "Gambar"
-        Me.Gambar.Visible = True
-        Me.Gambar.VisibleIndex = 12
-        '
-        'Pic
-        '
-        Me.Pic.FieldName = "Pic"
-        Me.Pic.Name = "Pic"
-        Me.Pic.Visible = True
-        Me.Pic.VisibleIndex = 10
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        '
-        'RepositoryItemDateEdit1
-        '
-        Me.RepositoryItemDateEdit1.AutoHeight = False
-        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
-        '
-        'RepositoryItemDateEdit2
-        '
-        Me.RepositoryItemDateEdit2.AutoHeight = False
-        Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
         '
         'Button1
         '
@@ -455,10 +319,163 @@ Partial Class FrmProblemDeliveryDetail
         Me.Label12.TabIndex = 44
         Me.Label12.Text = "Invt Name"
         '
+        'Grid
+        '
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.Location = New System.Drawing.Point(15, 211)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Name = "Grid"
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.BtnGambar, Me.RepBtnGambar})
+        Me.Grid.Size = New System.Drawing.Size(1276, 284)
+        Me.Grid.TabIndex = 45
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalKejadian, Me.TanggalKiriman, Me.Standar, Me.Aktual, Me.Qty, Me.JenisProblem, Me.TargetClose, Me.Status, Me.InvtID, Me.InvtName, Me.Gambar, Me.Pic})
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        '
+        'Customer
+        '
+        Me.Customer.FieldName = "Customer"
+        Me.Customer.Name = "Customer"
+        Me.Customer.Visible = True
+        Me.Customer.VisibleIndex = 0
+        Me.Customer.Width = 86
+        '
+        'TanggalKejadian
+        '
+        Me.TanggalKejadian.FieldName = "Tanggal Kejadian"
+        Me.TanggalKejadian.Name = "TanggalKejadian"
+        Me.TanggalKejadian.Visible = True
+        Me.TanggalKejadian.VisibleIndex = 3
+        Me.TanggalKejadian.Width = 110
+        '
+        'TanggalKiriman
+        '
+        Me.TanggalKiriman.FieldName = "Tanggal Kiriman"
+        Me.TanggalKiriman.Name = "TanggalKiriman"
+        Me.TanggalKiriman.Visible = True
+        Me.TanggalKiriman.VisibleIndex = 4
+        Me.TanggalKiriman.Width = 110
+        '
+        'Standar
+        '
+        Me.Standar.FieldName = "Standar"
+        Me.Standar.Name = "Standar"
+        Me.Standar.Visible = True
+        Me.Standar.VisibleIndex = 6
+        Me.Standar.Width = 187
+        '
+        'Aktual
+        '
+        Me.Aktual.FieldName = "Aktual"
+        Me.Aktual.Name = "Aktual"
+        Me.Aktual.Visible = True
+        Me.Aktual.VisibleIndex = 7
+        Me.Aktual.Width = 182
+        '
+        'Qty
+        '
+        Me.Qty.FieldName = "Qty"
+        Me.Qty.Name = "Qty"
+        Me.Qty.Visible = True
+        Me.Qty.VisibleIndex = 8
+        Me.Qty.Width = 110
+        '
+        'JenisProblem
+        '
+        Me.JenisProblem.FieldName = "Jenis Problem"
+        Me.JenisProblem.Name = "JenisProblem"
+        Me.JenisProblem.Visible = True
+        Me.JenisProblem.VisibleIndex = 5
+        Me.JenisProblem.Width = 110
+        '
+        'TargetClose
+        '
+        Me.TargetClose.FieldName = "Target Close"
+        Me.TargetClose.Name = "TargetClose"
+        Me.TargetClose.Visible = True
+        Me.TargetClose.VisibleIndex = 9
+        '
+        'Status
+        '
+        Me.Status.FieldName = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.Visible = True
+        Me.Status.VisibleIndex = 11
+        '
+        'InvtID
+        '
+        Me.InvtID.FieldName = "Inventory ID"
+        Me.InvtID.Name = "InvtID"
+        Me.InvtID.Visible = True
+        Me.InvtID.VisibleIndex = 1
+        Me.InvtID.Width = 131
+        '
+        'InvtName
+        '
+        Me.InvtName.FieldName = "Inventory Name"
+        Me.InvtName.Name = "InvtName"
+        Me.InvtName.Visible = True
+        Me.InvtName.VisibleIndex = 2
+        Me.InvtName.Width = 132
+        '
+        'Gambar
+        '
+        Me.Gambar.ColumnEdit = Me.RepBtnGambar
+        Me.Gambar.FieldName = "Gambar"
+        Me.Gambar.Name = "Gambar"
+        Me.Gambar.Visible = True
+        Me.Gambar.VisibleIndex = 12
+        '
+        'RepBtnGambar
+        '
+        Me.RepBtnGambar.AutoHeight = False
+        Me.RepBtnGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepBtnGambar.Name = "RepBtnGambar"
+        '
+        'Pic
+        '
+        Me.Pic.FieldName = "Pic"
+        Me.Pic.Name = "Pic"
+        Me.Pic.Visible = True
+        Me.Pic.VisibleIndex = 10
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        '
+        'RepositoryItemDateEdit2
+        '
+        Me.RepositoryItemDateEdit2.AutoHeight = False
+        Me.RepositoryItemDateEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit2.Name = "RepositoryItemDateEdit2"
+        '
+        'BtnGambar
+        '
+        Me.BtnGambar.AutoHeight = False
+        Me.BtnGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BtnGambar.Name = "BtnGambar"
+        '
         'FrmProblemDeliveryDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1370, 547)
+        Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.TxtPIC)
         Me.Controls.Add(Me.Label11)
@@ -474,7 +491,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TxtInvtName)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.CmbStatus)
         Me.Controls.Add(Me.TxtAktual)
@@ -502,7 +518,6 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.SetChildIndex(Me.TxtAktual, 0)
         Me.Controls.SetChildIndex(Me.CmbStatus, 0)
         Me.Controls.SetChildIndex(Me.Label8, 0)
-        Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.Controls.SetChildIndex(Me.TxtInvtName, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
@@ -518,14 +533,17 @@ Partial Class FrmProblemDeliveryDetail
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.TxtPIC, 0)
         Me.Controls.SetChildIndex(Me.Label12, 0)
+        Me.Controls.SetChildIndex(Me.Grid, 0)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepBtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnGambar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -544,9 +562,23 @@ Partial Class FrmProblemDeliveryDetail
     Friend WithEvents TxtAktual As TextBox
     Friend WithEvents CmbStatus As ComboBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TxtInvtName As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents DtTanggalLapoan As DateTimePicker
+    Friend WithEvents TxtInvtID As TextBox
+    Friend WithEvents TxtJenisProblem As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents BtnPicture As Button
+    Friend WithEvents DtTargetClose As DateTimePicker
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TxtPIC As TextBox
+    Friend WithEvents Label12 As Label
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents Button1 As Button
     Friend WithEvents Customer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TanggalKejadian As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TanggalKiriman As DevExpress.XtraGrid.Columns.GridColumn
@@ -558,23 +590,11 @@ Partial Class FrmProblemDeliveryDetail
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents InvtID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents InvtName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TxtInvtName As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents DtTanggalLapoan As DateTimePicker
+    Friend WithEvents Gambar As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepBtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents Pic As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents RepositoryItemDateEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents TxtInvtID As TextBox
-    Friend WithEvents TxtJenisProblem As TextBox
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents BtnPicture As Button
-    Friend WithEvents Gambar As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DtTargetClose As DateTimePicker
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents TxtPIC As TextBox
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Pic As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

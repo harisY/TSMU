@@ -40,6 +40,7 @@ Partial Class FrmAbsenDetail
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.jmlabsen = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,19 +203,20 @@ Partial Class FrmAbsenDetail
         '
         'Grid
         '
-        Me.Grid.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid.Location = New System.Drawing.Point(12, 157)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.jmlabsen})
-        Me.Grid.Size = New System.Drawing.Size(691, 123)
+        Me.Grid.Size = New System.Drawing.Size(691, 287)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.Status})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -265,6 +267,12 @@ Partial Class FrmAbsenDetail
         Me.jmlabsen.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.jmlabsen.Name = "jmlabsen"
         '
+        'Status
+        '
+        Me.Status.FieldName = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.OptionsColumn.AllowEdit = False
+        '
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
@@ -272,7 +280,7 @@ Partial Class FrmAbsenDetail
         'FrmAbsenDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(715, 295)
+        Me.ClientSize = New System.Drawing.Size(715, 456)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmAbsenDetail"
@@ -324,4 +332,5 @@ Partial Class FrmAbsenDetail
     Friend WithEvents TxtPersen As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents jmlabsen As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
 End Class

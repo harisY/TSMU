@@ -10,7 +10,7 @@ Public Class FrmQualityProblem
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
 
     End Sub
     Private Sub LoadGrid()

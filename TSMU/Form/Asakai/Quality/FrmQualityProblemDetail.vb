@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 Imports System.IO
 Imports ExcelDataReader
-Imports GemBox.Spreadsheet
+'Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
 Public Class FrmQualityProblemDetail
 
@@ -27,7 +27,7 @@ Public Class FrmQualityProblemDetail
     'Dim CekDirectoryFoto = "D:\@KERJA\Project\Foto"
 
 
-    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
@@ -114,7 +114,7 @@ Public Class FrmQualityProblemDetail
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialUsage"
+            bs_MainFormName = "FrmQualityProblem"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -501,6 +501,10 @@ Public Class FrmQualityProblemDetail
     End Sub
 
     Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
+
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
     End Sub
 End Class

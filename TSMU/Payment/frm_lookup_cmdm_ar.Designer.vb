@@ -47,8 +47,10 @@ Partial Class frm_lookup_cmdm_ar
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me._idcmdm = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ReposAmount = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.tcmdmno = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +65,7 @@ Partial Class frm_lookup_cmdm_ar
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tcmdmno, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -74,7 +77,7 @@ Partial Class frm_lookup_cmdm_ar
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.Grid.Size = New System.Drawing.Size(732, 253)
+        Me.Grid.Size = New System.Drawing.Size(738, 253)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -145,7 +148,7 @@ Partial Class frm_lookup_cmdm_ar
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnOk})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(732, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(738, 25)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -186,14 +189,14 @@ Partial Class frm_lookup_cmdm_ar
         Me.GridControl1.Location = New System.Drawing.Point(0, 43)
         Me.GridControl1.MainView = Me.GridView2
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemSpinEdit1, Me.ReposAmount, Me.filterentry})
-        Me.GridControl1.Size = New System.Drawing.Size(732, 173)
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.RepositoryItemSpinEdit1, Me.ReposAmount, Me.filterentry, Me.tcmdmno})
+        Me.GridControl1.Size = New System.Drawing.Size(738, 173)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._EntryID, Me._account, Me._subaccount, Me._description, Me._subtotal})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me._EntryID, Me._account, Me._subaccount, Me._description, Me._subtotal, Me._idcmdm})
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -201,7 +204,7 @@ Partial Class frm_lookup_cmdm_ar
         '
         '_EntryID
         '
-        Me._EntryID.Caption = "EntryId"
+        Me._EntryID.Caption = "CMDMNo"
         Me._EntryID.ColumnEdit = Me.filterentry
         Me._EntryID.FieldName = "EntryId"
         Me._EntryID.Name = "_EntryID"
@@ -224,7 +227,7 @@ Partial Class frm_lookup_cmdm_ar
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
         Me._account.VisibleIndex = 1
-        Me._account.Width = 100
+        Me._account.Width = 69
         '
         'GAccount
         '
@@ -241,7 +244,7 @@ Partial Class frm_lookup_cmdm_ar
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
         Me._subaccount.VisibleIndex = 2
-        Me._subaccount.Width = 100
+        Me._subaccount.Width = 71
         '
         'GSubAccount
         '
@@ -256,7 +259,7 @@ Partial Class frm_lookup_cmdm_ar
         Me._description.Name = "_description"
         Me._description.Visible = True
         Me._description.VisibleIndex = 3
-        Me._description.Width = 479
+        Me._description.Width = 228
         '
         '_subtotal
         '
@@ -267,13 +270,21 @@ Partial Class frm_lookup_cmdm_ar
         Me._subtotal.OptionsColumn.FixedWidth = True
         Me._subtotal.Visible = True
         Me._subtotal.VisibleIndex = 4
-        Me._subtotal.Width = 100
+        Me._subtotal.Width = 84
         '
         'GAmount
         '
         Me.GAmount.AutoHeight = False
         Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.GAmount.Name = "GAmount"
+        '
+        '_idcmdm
+        '
+        Me._idcmdm.Caption = "CMDMNo"
+        Me._idcmdm.FieldName = "CMDMNo"
+        Me._idcmdm.Name = "_idcmdm"
+        Me._idcmdm.Visible = True
+        Me._idcmdm.VisibleIndex = 5
         '
         'RepositoryItemSpinEdit1
         '
@@ -289,6 +300,11 @@ Partial Class frm_lookup_cmdm_ar
         Me.ReposAmount.EditFormat.FormatString = "n2"
         Me.ReposAmount.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ReposAmount.Name = "ReposAmount"
+        '
+        'tcmdmno
+        '
+        Me.tcmdmno.AutoHeight = False
+        Me.tcmdmno.Name = "tcmdmno"
         '
         'Label3
         '
@@ -312,7 +328,7 @@ Partial Class frm_lookup_cmdm_ar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(732, 502)
+        Me.ClientSize = New System.Drawing.Size(738, 502)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GridControl1)
@@ -335,6 +351,7 @@ Partial Class frm_lookup_cmdm_ar
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposAmount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tcmdmno, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -368,4 +385,6 @@ Partial Class frm_lookup_cmdm_ar
     Friend WithEvents Button1 As Button
     Friend WithEvents filterentry As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents _EntryID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents tcmdmno As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents _idcmdm As DevExpress.XtraGrid.Columns.GridColumn
 End Class

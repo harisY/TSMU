@@ -198,7 +198,7 @@ Public Class PemakaianPaintingModel
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IDTrans],TanggalSampai                   
-                                    FROM [AsakaiPemakaianPainting] where IDTrans = '" & IDTrans & "' or TanggalSampai = '" & HeadTanggalSampai & "' "
+                                    FROM [AsakaiPemakaianPainting] where IDTrans = '" & IDTrans & "' or TanggalSampai >= '" & HeadTanggalSampai & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
             dtTable = MainModul.GetDataTableByCommand(ls_SP)

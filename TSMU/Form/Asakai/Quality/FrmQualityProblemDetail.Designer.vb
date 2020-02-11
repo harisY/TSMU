@@ -35,6 +35,7 @@ Partial Class FrmQualityProblemDetail
         Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Target = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LotNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -71,7 +72,6 @@ Partial Class FrmQualityProblemDetail
         Me.BGambar = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TxtLotNo = New System.Windows.Forms.TextBox()
-        Me.LotNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,6 +199,13 @@ Partial Class FrmQualityProblemDetail
         Me.Gambar.Visible = True
         Me.Gambar.VisibleIndex = 14
         '
+        'LotNo
+        '
+        Me.LotNo.FieldName = "Lot No"
+        Me.LotNo.Name = "LotNo"
+        Me.LotNo.Visible = True
+        Me.LotNo.VisibleIndex = 7
+        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -306,9 +313,9 @@ Partial Class FrmQualityProblemDetail
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(9, 137)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(56, 13)
+        Me.Label4.Size = New System.Drawing.Size(57, 13)
         Me.Label4.TabIndex = 72
-        Me.Label4.Text = "Invt Name"
+        Me.Label4.Text = "Part Name"
         '
         'TxtInvtName
         '
@@ -322,9 +329,9 @@ Partial Class FrmQualityProblemDetail
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(9, 113)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 13)
+        Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 70
-        Me.Label3.Text = "Invt Id"
+        Me.Label3.Text = "Part No"
         '
         'TxtInvtID
         '
@@ -496,13 +503,6 @@ Partial Class FrmQualityProblemDetail
         Me.TxtLotNo.Name = "TxtLotNo"
         Me.TxtLotNo.Size = New System.Drawing.Size(154, 20)
         Me.TxtLotNo.TabIndex = 103
-        '
-        'LotNo
-        '
-        Me.LotNo.FieldName = "Lot No"
-        Me.LotNo.Name = "LotNo"
-        Me.LotNo.Visible = True
-        Me.LotNo.VisibleIndex = 7
         '
         'FrmQualityProblemDetail
         '

@@ -69,11 +69,11 @@ Public Class FrmPaintingProduksi
         TxtFileName.Text = ""
         Timer1.Stop()
         GetKolom()
-        Dim StraightPass As String = "STR_PASS$B5:AC63"
-        Dim Scrap As String = "Scrap$A4:AG7"
-        Dim ScrapDetail As String = "ScrapDetail$A8:AG1000"
-        Dim problemQty As String = "problem$A5:S1000"
-        Dim problemAnalisa As String = "problem$A5:z1000"
+        Dim StraightPass As String = "STR_PASS$B5:AZ63"
+        Dim Scrap As String = "Scrap$A4:AZ7"
+        Dim ScrapDetail As String = "ScrapDetail$A8:AZ1000"
+        Dim problemQty As String = "problem$A5:Z1000"
+        Dim problemAnalisa As String = "problem$A5:Z1000"
 
 
 
@@ -142,6 +142,7 @@ Public Class FrmPaintingProduksi
                     Call SetDataStraightPass()
                     Call SetDataScrap()
                     Call SetDataScrapDetail()
+
                     Call SetDataProblemQty()
                     Call SetDataProblemAnalisa()
 
@@ -220,7 +221,7 @@ Public Class FrmPaintingProduksi
             If dt.Rows(8).Item(1) Is DBNull.Value Then
                 .J_OK_PART_LINE_OK_POLESH = "0"
             Else
-                .J_OK_PART_LINE_OK_POLESH = Math.Round(Val((dt.Rows(8).Item(1)) * 100), 2)
+                .J_OK_PART_LINE_OK_POLESH = Math.Round(Val((dt.Rows(8).Item(1))), 2)
             End If
 
             If dt.Rows(9).Item(1) Is DBNull.Value Then
