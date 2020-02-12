@@ -1,6 +1,11 @@
 ﻿Public Class ar_pph_header_models
     Public Property Bulan As String
     Public Property CuryID As String
+    Public Property CMDMNo As String
+    Public Property Acctid As String
+    Public Property SubAcct As String
+    Public Property EntryId As String
+    Public Property RcptDisbFlg As String
     Public Property FPNo As String
     Public Property id As Integer
     Public Property ket_dpp As String
@@ -92,6 +97,28 @@
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
                                     "       " & QVal(Me.ket_dpp) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tot_Pph) & ")"
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertHeadercm()
+        Acctid = "10000"
+        SubAcct = "11708"
+        EntryId = "PH"
+        RcptDisbFlg = "D"
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "INSERT INTO OffsetAR (vrno,Description,Acctid,SubAcct,EntryId,Amount,RcptDisbFlg,CMDMNo) " & vbCrLf &
+                                    "Values(" & QVal(Me.FPNo) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Ket_Pph) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Acctid) & ", " & vbCrLf &
+                                    "       " & QVal(Me.SubAcct) & ", " & vbCrLf &
+                                    "       " & QVal(Me.EntryId) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
+                                    "       " & QVal(Me.RcptDisbFlg) & ", " & vbCrLf &
+                                    "       " & QVal(Me.CMDMNo) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

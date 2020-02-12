@@ -76,17 +76,18 @@ Public Class frm_AR
         ff_Detail.Show()
     End Sub
 
+    Dim ff_Detail2 As frm_AR_details
     Private Sub CallFrm2(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal sts_screen As Byte = 0, Optional ByVal li_Row As Integer = 0)
-        If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
+        If ff_Detail2 IsNot Nothing AndAlso ff_Detail2.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
-            ff_Detail.Close()
+            ff_Detail2.Close()
         End If
-        ff_Detail = New frm_AR_details(ls_Code, ls_Code2, sts_screen, Me, li_Row, GridControl1)
-        ff_Detail.MdiParent = MenuUtamaForm
-        ff_Detail.StartPosition = FormStartPosition.CenterScreen
-        ff_Detail.Show()
+        ff_Detail2 = New frm_AR_details(ls_Code, ls_Code2, sts_screen, Me, li_Row, GridControl1)
+        ff_Detail2.MdiParent = MenuUtamaForm
+        ff_Detail2.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail2.Show()
     End Sub
     Private Sub GridView2_DoubleClick(sender As Object, e As EventArgs) Handles GridView2.DoubleClick
         Try
@@ -142,9 +143,7 @@ Public Class frm_AR
     Dim NoVoucher, id, NoBukti As String
     Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
-    End Sub
 
     Dim Jumlah As Double
 
