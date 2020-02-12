@@ -209,7 +209,7 @@ Public Class FrmDeliveryDetail
 
                         Tanggal = dtHeader.Rows(0).Item("A")
                         LblTanggal.Text = Format(Tanggal, "dd-MM-yyyy").ToString
-
+                        Grid.DataSource = dt
 
 
                     End If

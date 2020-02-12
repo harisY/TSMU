@@ -786,10 +786,10 @@
     <Compile Include="Form\Asakai\FrmMaterialPaintingHeader.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialUsage.Designer.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.Designer.vb">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialUsage.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\FrmMaterialUsageDetail.Designer.vb">
@@ -1839,7 +1839,7 @@
     <EmbeddedResource Include="Form\Asakai\FrmMaterialPaintingHeader.resx">
       <DependentUpon>FrmMaterialPaintingHeader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterialUsage.resx">
+    <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsage.resx">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\FrmMaterialUsageDetail.resx">
