@@ -49,7 +49,7 @@ Public Class ar_pph_transaction_models
                         ObjPPHHeader.DeleteHeader(FPNo)
                         ObjPPHDetail.DeleteDetail(FPNo)
                         ObjPPHHeader.InsertHeader()
-
+                        ObjPPHHeader.InsertHeadercm()
                         For i As Integer = 0 To Me.ObjPPHDetails.Count - 1
                             With Me.ObjPPHDetails(i)
                                 .InsertDetail()

@@ -130,6 +130,7 @@ Public Class AR_Header_Models
                     ,[penerima]
                     ,[cmdm_manual]
                     ,[cmdm_manual_ket]
+                    ,[TotReceive]
                     FROM [AR_Header] where id=" & QVal(id) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -159,6 +160,8 @@ Public Class AR_Header_Models
                 Me.CustID = If(IsDBNull(dt.Rows(0).Item("CustID")), "", Trim(dt.Rows(0).Item("CustID").ToString()))
                 Me.CustomerName = If(IsDBNull(dt.Rows(0).Item("CustomerName")), "", Trim(dt.Rows(0).Item("CustomerName").ToString()))
                 Me.vrno = If(IsDBNull(dt.Rows(0).Item("vrno")), "", Trim(dt.Rows(0).Item("vrno").ToString()))
+                Me.TotReceive = If(IsDBNull(dt.Rows(0).Item("TotReceive")), 0, Convert.ToDouble(Trim(dt.Rows(0).Item("TotReceive"))))
+
             End If
         Catch ex As Exception
             Throw ex
@@ -203,7 +206,7 @@ Public Class AR_Header_Models
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,TotReceive) " & vbCrLf &
+                                    "INSERT INTO AR_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,NoBukti,TotReceive) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       " & QVal(Me.BankID) & ", " & vbCrLf &
@@ -230,6 +233,7 @@ Public Class AR_Header_Models
                                     "       " & QVal(Me.penerima) & ", " & vbCrLf &
                                     "       " & QVal(Me.cmdm_manual) & ", " & vbCrLf &
                                     "       " & QVal(Me.cmdm_manual_ket) & ", " & vbCrLf &
+                                    "       " & QVal(Me.NoBukti) & ", " & vbCrLf &
                                     "       " & QVal(Me.TotReceive) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -327,6 +331,7 @@ Public Class AR_Header_Models
                             With Me.ObjPaymentDetails(i)
                                 .InsertDetails()
                                 .UpdateApDocUser4()
+                                .Updateprosesbankreceipt()
                             End With
                         Next
 
@@ -365,6 +370,7 @@ Public Class AR_Header_Models
                             With Me.ObjPaymentDetails(i)
                                 .InsertDetailsDir()
                                 .UpdateApDocUser4()
+                                .Updateprosesbankreceipt()
                             End With
                         Next
 

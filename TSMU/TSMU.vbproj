@@ -856,6 +856,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmKaryawanQrCode.Designer.vb">
+      <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmKaryawanQrCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmKanbanInternal.Designer.vb">
       <DependentUpon>frmKanbanInternal.vb</DependentUpon>
     </Compile>
@@ -1180,6 +1186,24 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\PO Check\FrmTam_Scan.Designer.vb">
+      <DependentUpon>FrmTam_Scan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PO Check\FrmTam_Scan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PO Check\FrmTAM_GenerateExcel.Designer.vb">
+      <DependentUpon>FrmTAM_GenerateExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PO Check\FrmTAM_GenerateExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PO Check\FrmTMMIN_GenerateExcel.Designer.vb">
+      <DependentUpon>FrmTMMIN_GenerateExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PO Check\FrmTMMIN_GenerateExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.Designer.vb">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </Compile>
@@ -1460,11 +1484,14 @@
     <Compile Include="Models\Harigami\HarigamiModels.vb" />
     <Compile Include="Models\KanbanAdmModel.vb" />
     <Compile Include="Models\KanbanYIMModel.vb" />
+    <Compile Include="Models\KaryawanModel.vb" />
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
+    <Compile Include="Models\TamScan.vb" />
+    <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
@@ -1711,6 +1738,12 @@
     <Compile Include="Report\PrintPO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\QRKaryawan.Designer.vb">
+      <DependentUpon>QRKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\QRKaryawan.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\Testing.Designer.vb">
       <DependentUpon>Testing.vb</DependentUpon>
     </Compile>
@@ -1868,6 +1901,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmKaryawanQrCode.resx">
+      <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PO Check\FrmTam_Scan.resx">
+      <DependentUpon>FrmTam_Scan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PO Check\FrmTAM_GenerateExcel.resx">
+      <DependentUpon>FrmTAM_GenerateExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PO Check\FrmTMMIN_GenerateExcel.resx">
+      <DependentUpon>FrmTMMIN_GenerateExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
@@ -2118,6 +2163,9 @@
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_Upload2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\QRKaryawan.resx">
+      <DependentUpon>QRKaryawan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>

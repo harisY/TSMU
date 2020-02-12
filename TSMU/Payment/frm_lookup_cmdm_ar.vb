@@ -63,15 +63,15 @@ Public Class frm_lookup_cmdm_ar
                 dt.Columns.Add("RcptDisbFlg")
                 dt.Columns.Add("CMDMNo")
 
-                'Dim R As DataRow = dt.NewRow
-                'R("EntryId") = "PH"
-                'R("SubAccount") = "10000"
-                'R("Account") = "11708"
-                'R("Description") = "Prepaid PPH 23"
-                'R("Amount") = Convert.ToSingle(pph)
-                'R("RcptDisbFlg") = ""
-                'R("CMDMNo") = ObjPaymentHeader1.CMDMNo
-                'dt.Rows.Add(R)
+                Dim R As DataRow = dt.NewRow
+                R("EntryId") = "PH"
+                R("SubAccount") = "10000"
+                R("Account") = "11708"
+                R("Description") = "Prepaid PPH 23"
+                R("Amount") = Convert.ToSingle(pph)
+                R("RcptDisbFlg") = ""
+                R("CMDMNo") = ObjPaymentHeader1.CMDMNo
+                dt.Rows.Add(R)
 
                 Dim A As DataRow = dt.NewRow
                 A("EntryId") = "BC"
@@ -108,7 +108,7 @@ Public Class frm_lookup_cmdm_ar
                 dtGrid = ObjPaymentHeader1.GetDataDetailByID()
                 GridControl1.DataSource = dtGrid
             End If
-            GridView2.AddNewRow()
+            '   GridView2.AddNewRow()
             GridView2.OptionsNavigation.AutoFocusNewRow = True
             GridView2.FocusedColumn = GridView2.VisibleColumns(0)
         Catch ex As Exception
