@@ -255,9 +255,8 @@ Public Class ClaimCustomerModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiQCClaim" & vbCrLf &
-                                    "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
-                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
-                                    "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
+                                    "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    " UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
