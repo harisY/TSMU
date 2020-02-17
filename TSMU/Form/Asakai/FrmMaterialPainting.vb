@@ -83,7 +83,7 @@ Public Class FrmMaterialPainting
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialUsage"
+            bs_MainFormName = "FrmMaterialPaintingHeader"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -442,10 +442,10 @@ Public Class FrmMaterialPainting
 
 
 
-                        TxtProduksiOKInj.Text = Format$(((dtHeader.Rows(1).Item("D")) / 1000000), "#,###.##")
-                        TxtProduksiOKPaint.Text = Format$(((dtHeader.Rows(2).Item("D")) / 1000000), "#,###.##")
-                        TxtProduksiOKAll.Text = Format$(((dtHeader.Rows(3).Item("D")) / 1000000), "#,###.##")
-                        TxtSales.Text = Format$(((dtHeader.Rows(4).Item("B")) / 1000000), "#,###.##")
+                        TxtProduksiOKInj.Text = Format$(((dtHeader.Rows(1).Item("D")) / 1000), "#,###.##")
+                        TxtProduksiOKPaint.Text = Format$(((dtHeader.Rows(2).Item("D")) / 1000), "#,###.##")
+                        TxtProduksiOKAll.Text = Format$(((dtHeader.Rows(3).Item("D")) / 1000), "#,###.##")
+                        TxtSales.Text = Format$(((dtHeader.Rows(4).Item("B")) / 1000), "#,###.##")
 
                         Dim TotalRp As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue) / 1000000)
                         Dim TotalLiter As Double = Convert.ToDouble(GridView1.Columns("Pemakaian").SummaryItem.SummaryValue)
@@ -463,9 +463,10 @@ Public Class FrmMaterialPainting
 
                         Dim tgl As Date = Format(CDate(TanggalMulai), gs_FormatSQLDate)
 
-                        fc_Class.tahun = Strings.Left(tgl, 4)
-                        fc_Class.bulan = Strings.Mid(tgl, 6, 2)
-                        fc_Class.tanggal = Strings.Right(tgl, 2)
+                        fc_Class.tahun = Convert.ToString(tgl.Year)
+                        fc_Class.bulan = Convert.ToString(tgl.Month)
+                        fc_Class.tanggal = Convert.ToString(tgl.Day)
+
                         fc_Class.GetSumaryPemakaian()
                         TxtAkumulasiPemakaianRp.Text = Format(Double.Parse(fc_Class.SummaryPemakaianRP), "###,###,##0.00")
                         TxtAkumulasiPemakaianLiter.Text = Format(Double.Parse(fc_Class.SummaryPemakaianLiter), "###,###,##0.00")

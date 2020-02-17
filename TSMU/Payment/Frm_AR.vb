@@ -11,6 +11,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frm_AR
     Dim dtGrid As DataTable
+    Dim dtGrid2 As DataTable
     Dim ObPayment As New Cls_Payment
     Dim table As DataTable
     Dim tableDetail As DataTable
@@ -36,6 +37,18 @@ Public Class frm_AR
                 .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             End With
             GridCellFormat(GridView1)
+
+
+            dtGrid2 = ObjPaymentHeader.GetDataGrid2()
+            GridControl1.DataSource = dtGrid2
+            With GridView2
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            End With
+            GridCellFormat(GridView2)
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -50,18 +63,64 @@ Public Class frm_AR
         Call LoadGrid()
     End Sub
 
-    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal ls_Code3 As String = "", Optional ByVal ls_Code4 As String = "", Optional ByVal ls_Code5 As String = "", Optional ByVal ls_Code6 As Double = 0, Optional ByVal li_Row As Integer = 0)
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal ls_Code3 As String = "", Optional ByVal ls_Code4 As String = "", Optional ByVal ls_Code5 As String = "", Optional ByVal ls_Code6 As Double = 0, Optional ByVal sts_screen As Byte = 0, Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frm_AR_details(ls_Code, ls_Code2, ls_Code3, ls_Code4, ls_Code5, ls_Code6, Me, li_Row, Grid)
+        ff_Detail = New frm_AR_details(ls_Code, ls_Code2, ls_Code3, ls_Code4, ls_Code5, ls_Code6, sts_screen, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
+
+    Dim ff_Detail2 As frm_AR_details
+    Private Sub CallFrm2(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal sts_screen As Byte = 0, Optional ByVal li_Row As Integer = 0)
+        If ff_Detail2 IsNot Nothing AndAlso ff_Detail2.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail2.Close()
+        End If
+        ff_Detail2 = New frm_AR_details(ls_Code, ls_Code2, sts_screen, Me, li_Row, GridControl1)
+        ff_Detail2.MdiParent = MenuUtamaForm
+        ff_Detail2.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail2.Show()
+    End Sub
+    Private Sub GridView2_DoubleClick(sender As Object, e As EventArgs) Handles GridView2.DoubleClick
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+                id = String.Empty
+                NoVoucher = String.Empty
+                Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView2.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView2.GetRowCellValue(rowHandle, "vrno")
+                    End If
+                Next rowHandle
+
+                If GridView2.GetSelectedRows.Length > 0 Then
+                    Call CallFrm2(id,
+                             NoVoucher, 1,
+                             GridView2.RowCount)
+                End If
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 
     Public Overrides Sub Proc_DeleteData()
         Try
@@ -84,9 +143,7 @@ Public Class frm_AR
     Dim NoVoucher, id, NoBukti As String
     Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
-    End Sub
 
     Dim Jumlah As Double
 
@@ -137,6 +194,7 @@ Public Class frm_AR
                 Descr_tujuan = String.Empty
                 CurryID = String.Empty
                 Jumlah = 0
+
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
@@ -152,7 +210,7 @@ Public Class frm_AR
 
                 If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrm(NoBukti, Customer, AcctID_tujuan, Descr_tujuan, CurryID, Jumlah, GridView1.RowCount)
+                    Call CallFrm(NoBukti, Customer, AcctID_tujuan, Descr_tujuan, CurryID, Jumlah, 0, GridView1.RowCount)
                 End If
             End If
         Catch ex As Exception
@@ -160,5 +218,6 @@ Public Class frm_AR
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
 
 End Class

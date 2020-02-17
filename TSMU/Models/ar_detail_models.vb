@@ -10,6 +10,8 @@
     Public Property Jml_Invoice As Double
     Public Property ket As String
     Public Property No_Faktur As String
+    Public Property NoBukti As String
+
     Public Property No_Invoice As String
     Public Property Pph As Double
     Public Property Ppn As Double
@@ -187,6 +189,16 @@
         Try
 
             Dim ls_SP As String = "UPDATE ardoc SET user4=1 WHERE refnbr = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Updateprosesbankreceipt()
+        Try
+
+            Dim ls_SP As String = "UPDATE bankreceipt set proses=1 WHERE nobukti = " & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex

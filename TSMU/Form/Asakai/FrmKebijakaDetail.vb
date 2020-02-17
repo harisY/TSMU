@@ -77,7 +77,7 @@ Public Class FrmKebijakaDetail
             Call LoadTxtBox()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmAbsen"
+            bs_MainFormName = "FrmKebijakan"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

@@ -52,6 +52,8 @@ Partial Class MenuUtamaForm
         Me.tsSuspend = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsSettlement = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuAsakai = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsMenuPOCheck = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsMenuTMMIN = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,7 +66,7 @@ Partial Class MenuUtamaForm
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.tsMenuPOCheck = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsMenuTAM = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -255,6 +257,19 @@ Partial Class MenuUtamaForm
         Me.tsMenuAsakai.Size = New System.Drawing.Size(64, 24)
         Me.tsMenuAsakai.Text = "Asakai"
         '
+        'tsMenuPOCheck
+        '
+        Me.tsMenuPOCheck.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsMenuTMMIN, Me.tsMenuTAM})
+        Me.tsMenuPOCheck.Name = "tsMenuPOCheck"
+        Me.tsMenuPOCheck.Size = New System.Drawing.Size(104, 24)
+        Me.tsMenuPOCheck.Text = "PO Checking"
+        '
+        'tsMenuTMMIN
+        '
+        Me.tsMenuTMMIN.Name = "tsMenuTMMIN"
+        Me.tsMenuTMMIN.Size = New System.Drawing.Size(216, 26)
+        Me.tsMenuTMMIN.Text = "TMMIN"
+        '
         'WindowsMenu
         '
         Me.WindowsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseAllToolStripMenuItem})
@@ -266,7 +281,7 @@ Partial Class MenuUtamaForm
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(140, 26)
         Me.CloseAllToolStripMenuItem.Text = "C&lose All"
         '
         'HelpMenu
@@ -330,11 +345,11 @@ Partial Class MenuUtamaForm
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'tsMenuPOCheck
+        'tsMenuTAM
         '
-        Me.tsMenuPOCheck.Name = "tsMenuPOCheck"
-        Me.tsMenuPOCheck.Size = New System.Drawing.Size(104, 24)
-        Me.tsMenuPOCheck.Text = "PO Checking"
+        Me.tsMenuTAM.Name = "tsMenuTAM"
+        Me.tsMenuTAM.Size = New System.Drawing.Size(216, 26)
+        Me.tsMenuTAM.Text = "TAM"
         '
         'MenuUtamaForm
         '
@@ -400,4 +415,6 @@ Partial Class MenuUtamaForm
     Friend WithEvents tsSettlement As ToolStripMenuItem
     Friend WithEvents tsMenuAsakai As ToolStripMenuItem
     Friend WithEvents tsMenuPOCheck As ToolStripMenuItem
+    Friend WithEvents tsMenuTMMIN As ToolStripMenuItem
+    Friend WithEvents tsMenuTAM As ToolStripMenuItem
 End Class

@@ -17,7 +17,7 @@ Public Class AbsenModel
 
     Public Sub New()
         Me._Query = "SELECT NoAbsen,TanggalAbsen FROM Absen"
-        Me._QueryKategoriAbsen = "select IDAbsen as No,[Description],convert(int,'0') as Jumlah from KategoriAbsen"
+        Me._QueryKategoriAbsen = "select IDAbsen as No,[Description],convert(int,'0') as Jumlah, Status from KategoriAbsen"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -191,6 +191,7 @@ Public Class AbsenModel
             Dim query As String = "SELECT 
                                     KategoriAbsen.[IDAbsen] as No
                                    ,KategoriAbsen.[Description]
+                                    ,KategoriAbsen.[Status]
                                    ,AbsenDetail.[Jumlah]
                                     FROM [Absen] inner join [AbsenDetail] on Absen.ID = AbsenDetail.ID inner join KategoriAbsen on KategoriAbsen.IDAbsen = AbsenDetail.IDAbsen WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable

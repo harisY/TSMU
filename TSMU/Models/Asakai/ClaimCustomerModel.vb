@@ -89,6 +89,8 @@ Public Class ClaimCustomerModel
                                   ,[Status]
                                   ,[Dokumen]
                                   ,TargetClose
+                                  ,Foto as Gambar
+                                  ,Lot
                               From [AsakaiQcClaimDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
@@ -172,17 +174,17 @@ Public Class ClaimCustomerModel
 
     Public Sub ValidateInsert()
         Try
-            Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
-                                    FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
-            Dim dtTable As New DataTable
+            'Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
+            '                        FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
+            'Dim dtTable As New DataTable
+            ''dtTable = MainModul.GetDataTableByCommand(ls_SP)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
-                "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
-            Else
+            'If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+            '    "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
+            'Else
 
-            End If
+            'End If
 
         Catch ex As Exception
             Throw
@@ -253,9 +255,8 @@ Public Class ClaimCustomerModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiQCClaim" & vbCrLf &
-                                    "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
-                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
-                                    "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
+                                    "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    " UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -272,6 +273,27 @@ Public Class ClaimCustomerModel
             Throw
         End Try
     End Sub
+
+    Public Function GetRekapClaim(TanggalAwal As Date, TanggalAhir As Date) As DataTable
+        Try
+            Dim query As String = "SELECT AsakaiQcClaimDetail.InvtID as [Part No],
+                                    AsakaiQcClaimDetail.InvtName as [Part Name],
+                                    SUM (Qty) as Qty 
+                                    FROM AsakaiQcClaimDetail 
+                                    inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi
+                                    where AsakaiQCClaim.Tanggal >= '" + (TanggalAwal) + "' and AsakaiQCClaim.Tanggal <= '" + (TanggalAhir) + "'" +
+                                    "GROUP BY AsakaiQcClaimDetail.InvtID,AsakaiQcClaimDetail.InvtName " +
+                                    "union SELECT 'TOTAL','', SUM(Qty) as Qty FROM AsakaiQcClaimDetail inner join AsakaiQCClaim on AsakaiQcClaimDetail.IDTransaksi = AsakaiQCClaim.IDTransaksi
+                                    where AsakaiQCClaim.Tanggal >= '" + (TanggalAwal) + "' and AsakaiQCClaim.Tanggal <= '" + (TanggalAhir) + "'"
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = MainModul.GetDataTableByCommand(query)
+
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
 End Class
 
@@ -290,6 +312,8 @@ Public Class ClaimCustomerDetailModel
     Public Property D_Status As String
     Public Property D_TanggalClaim As DateTime
     Public Property D_TanggalClose As DateTime
+    Public Property D_Lot As String
+    Public Property D_Foto As String
 
     Public Sub InsertClaimDetail(IDTrans)
         Try
@@ -306,6 +330,8 @@ Public Class ClaimCustomerDetailModel
                        ,[Qty]
                        ,[RESP]
                        ,[Dokumen]
+                       ,[Foto]
+                       ,[Lot]
                        ,[Status]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(D_Customer) & ", " & vbCrLf &
@@ -317,6 +343,8 @@ Public Class ClaimCustomerDetailModel
             "       " & QVal(D_Qty) & ", " & vbCrLf &
             "       " & QVal(D_RESP) & ", " & vbCrLf &
             "       " & QVal(D_Dokumen) & ", " & vbCrLf &
+            "       " & QVal(D_Foto) & ", " & vbCrLf &
+            "       " & QVal(D_Lot) & ", " & vbCrLf &
             "       " & QVal(D_Status) & ")"
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)

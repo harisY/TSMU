@@ -18,6 +18,7 @@ Public Class baseForm
     Protected fb_2PK As Boolean = False
     Protected fs_Code2 As String = ""
     Protected fs_Code3 As String = ""
+    Protected sts_screen As Byte = 1
     Protected fbbt_ColCode2 As Byte = 1
     ''' <summary>
     ''' Untuk Format Pecahan 4 Digit Belakang Koma di FlexGrid
