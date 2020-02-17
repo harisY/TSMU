@@ -386,7 +386,6 @@ Public Class Cls_report
 
     Public Function GetdataGrid(date1 As String, date2 As String) As DataTable
         Try
-
             Dim sql As String = "ViewUploadMizuho"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
