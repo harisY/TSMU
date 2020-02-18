@@ -111,6 +111,25 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -639,6 +658,7 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridView7
         '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
         Me.GridView7.GridControl = Me.GridControl4
         Me.GridView7.Name = "GridView7"
         Me.GridView7.OptionsBehavior.Editable = False
@@ -918,6 +938,158 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "vrno"
+        Me.GridColumn27.FieldName = "vrno"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 0
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "tgl"
+        Me.GridColumn28.FieldName = "tgl"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 1
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Template_id"
+        Me.GridColumn29.FieldName = "Template_id"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 2
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "template_id"
+        Me.GridColumn30.FieldName = "template_id"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 3
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "CompareTemplate"
+        Me.GridColumn31.FieldName = "CompareTemplate"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 4
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Bankrek"
+        Me.GridColumn32.FieldName = "Bankrek"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 5
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Bank_Name"
+        Me.GridColumn33.FieldName = "Bank_Name"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 6
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "CompareBankName"
+        Me.GridColumn34.FieldName = "CompareBankName"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 7
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Norek"
+        Me.GridColumn35.FieldName = "Norek"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 8
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Norek"
+        Me.GridColumn36.FieldName = "Norek"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 9
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "CompareNoRek"
+        Me.GridColumn37.FieldName = "CompareNoRek"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 10
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "penerima"
+        Me.GridColumn38.FieldName = "penerima"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 11
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Penerima"
+        Me.GridColumn39.FieldName = "Penerima"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 12
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "CompareNoRek"
+        Me.GridColumn40.FieldName = "CompareNoRek"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 13
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Curyid"
+        Me.GridColumn41.FieldName = "Curyid"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 14
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Cury_id"
+        Me.GridColumn42.FieldName = "Cury_id"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 15
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "CompareCuryID"
+        Me.GridColumn43.FieldName = "CompareCuryID"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 16
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "paid_amount"
+        Me.GridColumn44.FieldName = "paid_amount"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 17
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Payment_mtd"
+        Me.GridColumn45.FieldName = "Payment_mtd"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 18
+        '
         'Frm_Rpt_UploadMizuho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1059,4 +1231,23 @@ Partial Class Frm_Rpt_UploadMizuho
     Friend WithEvents ToolStrip4 As ToolStrip
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ProgBar5 As ToolStripProgressBar
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

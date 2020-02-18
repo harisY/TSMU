@@ -174,17 +174,17 @@ Public Class ClaimCustomerModel
 
     Public Sub ValidateInsert()
         Try
-            Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
-                                    FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
-            Dim dtTable As New DataTable
+            'Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
+            '                        FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
+            'Dim dtTable As New DataTable
+            ''dtTable = MainModul.GetDataTableByCommand(ls_SP)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
-                "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
-            Else
+            'If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+            '    "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
+            'Else
 
-            End If
+            'End If
 
         Catch ex As Exception
             Throw
@@ -255,9 +255,8 @@ Public Class ClaimCustomerModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiQCClaim" & vbCrLf &
-                                    "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
-                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
-                                    "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
+                                    "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    " UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex

@@ -104,6 +104,7 @@ Public Class FrmClaimCustomerDetail
                     isUpdate = True
                 End If
                 Me.Text = "Claim Customer " & fs_Code
+                DtTanggalLaporan.Enabled = False
             Else
                 Me.Text = "Claim Customer"
             End If
