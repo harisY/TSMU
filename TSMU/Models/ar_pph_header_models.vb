@@ -83,7 +83,7 @@
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO ar_pph_header (FPNo,No_Bukti_Potong,Pphid,Ket_Pph,Tarif,Tahun,Bulan,Lokasi,CuryID,Tot_Dpp_Invoice,No_Faktur,ket_dpp,Tot_Pph) " & vbCrLf &
+                                    "INSERT INTO ar_pph_header (FPNo,No_Bukti_Potong,Pphid,Ket_Pph,Tarif,Tahun,Bulan,Lokasi,CuryID,Tot_Dpp_Invoice,No_Faktur,ket_dpp,Tot_Pph,CMDMNo) " & vbCrLf &
                                     "Values(" & QVal(Me.FPNo) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Bukti_Potong) & ", " & vbCrLf &
                                     "       " & QVal(Me.Pphid) & ", " & vbCrLf &
@@ -96,7 +96,8 @@
                                     "       " & QVal(Me.Tot_Dpp_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
                                     "       " & QVal(Me.ket_dpp) & ", " & vbCrLf &
-                                    "       " & QVal(Me.Tot_Pph) & ")"
+                                    "       " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
+                                    "       " & QVal(Me.CMDMNo) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

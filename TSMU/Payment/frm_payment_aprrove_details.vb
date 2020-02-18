@@ -332,8 +332,11 @@ Public Class frm_payment_aprrove_details
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             ''RefreshDataApproval()
-            Me.Close()
-
+            'Me.Close()
+            Dim BankID As String
+            GridDtl.DataSource = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
+            IsClosed = True
+            Me.Hide()
             ''LoadGridRefresh()
             ''frm_payment_approve.Proc_Refresh()
             'tsBtn_next.PerformClick()

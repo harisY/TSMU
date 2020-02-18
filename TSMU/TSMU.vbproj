@@ -1438,6 +1438,7 @@
     <Compile Include="Form\System\MainForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ARTaxHeaderModel.vb" />
     <Compile Include="Models\ar_detail_models.vb" />
     <Compile Include="Models\AR_Header_Models.vb" />
     <Compile Include="Models\ar_pph_detail_models.vb" />
@@ -1526,6 +1527,18 @@
       <DependentUpon>Frm_AR.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_AR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax.Designer.vb">
+      <DependentUpon>Frm_AR_Tax.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax_detail.Designer.vb">
+      <DependentUpon>Frm_AR_Tax_detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax_detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_lookup_cmdm.designer.vb">
@@ -2144,6 +2157,12 @@
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport2.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport3.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
+    <EmbeddedResource Include="Payment\Frm_AR_Tax.resx">
+      <DependentUpon>Frm_AR_Tax.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_AR_Tax_detail.resx">
+      <DependentUpon>Frm_AR_Tax_detail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_lookup_cmdm_ar.resx">
       <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
     </EmbeddedResource>

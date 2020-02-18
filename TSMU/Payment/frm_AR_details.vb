@@ -103,7 +103,7 @@ Public Class frm_AR_details
             If e.Column.FieldName = "CheckPPH" Then
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
                     GetPPH()
-                    Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+                    Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Paid"))
                     Dim _pphAmount As Double = _pph * 0.02
                     GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "PPH", _pphAmount)
                 Else
@@ -203,6 +203,7 @@ Public Class frm_AR_details
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
                         .cek1 = True
                         .NoBukti = TextEdit1.Text
+                        .Paid = GridView1.GetRowCellValue(i, "Paid")
                     End With
                     ObjPaymentHeader.ObjPaymentDetails.Add(ObjDetails)
                 End If
@@ -266,7 +267,7 @@ Public Class frm_AR_details
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
-                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Paid"))
                 End If
 
             Next
@@ -278,7 +279,7 @@ Public Class frm_AR_details
                 _TxtTotalAmount.Text = Format(TotAmount, gs_FormatBulat)
             End If
             ''  Dim vbalance As Double = _TxtTotalAmount.Text - _TxtDebit.Text
-            vbalance = _TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text - _TxtDebit.Text
+            vbalance = _TxtDebit.Text - _TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text
             _txtbalance.Text = vbalance
             '       Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
             '       _TxtDebit.Text = Format(debit, gs_FormatBulat)
@@ -297,7 +298,7 @@ Public Class frm_AR_details
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "CheckPPH") = True And GridView1.GetRowCellValue(i, "Check") = True Then
-                    TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Amount")) * 0.02)
+                    TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Paid")) * 0.02)
                 End If
 
             Next
@@ -399,7 +400,7 @@ Public Class frm_AR_details
                     '_txtKetCMDMmanual.Text = .cmdm_manual_ket
                     '_txtnamasupllier.Text = .detsupplier
                     TextEdit1.Text = .NoBukti
-                    _txtbalance.Text = Format(.Total_DPP_PPN - .PPh - .CM_DM - .Biaya_Transfer - .TotReceive, "##,0")
+                    _txtbalance.Text = Format(.TotReceive - .Total_DPP_PPN - .PPh - .CM_DM - .Biaya_Transfer, "##,0")
                 End With
             Else
 
@@ -491,9 +492,9 @@ Public Class frm_AR_details
         Else
 
             Dim dtGrid As New DataTable
-        ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
+            ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
 
-        dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(_TxtVendorID.Text.TrimEnd)
+            dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(_TxtVendorID.Text.TrimEnd)
             If dtGrid.Rows.Count > 0 Then
                 GridInvoice.DataSource = dtGrid
                 GridCellFormat(GridView1)
