@@ -153,8 +153,4 @@ Public Class Frm_AR_Tax
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
-
-    End Sub
 End Class
