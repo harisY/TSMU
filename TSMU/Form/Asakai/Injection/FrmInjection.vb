@@ -641,6 +641,8 @@ Public Class FrmInjection
             End If
 
 
+
+
         End With
         'fc_Class.ObjDetailInjectionPA.Add(ObjInjectionDetail)
 
@@ -747,6 +749,12 @@ Public Class FrmInjection
                 .RR_Target_Persen_NG = "0"
             Else
                 .RR_Target_Persen_NG = Math.Round(Val(dtReject.Rows(13).Item(1)), 2)
+            End If
+
+            If dtReject.Rows(14).Item(1) Is DBNull.Value Then
+                .RR_Total_Produksi = "0"
+            Else
+                .RR_Total_Produksi = Math.Round(Val(dtReject.Rows(14).Item(1)), 2)
             End If
 
 

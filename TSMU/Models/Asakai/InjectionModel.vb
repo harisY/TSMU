@@ -30,6 +30,7 @@ Public Class InjectionModel
     Public Property PA_TOTAL_NG As Integer
     Public Property PA_TOTAL_PRODUKSI As Integer
 
+
 #End Region
 
 
@@ -49,6 +50,7 @@ Public Class InjectionModel
     Public Property RR_TARGET_SCRAP As Double
     Public Property RR_TARGET_SETTING As Double
     Public Property RR_Target_Persen_NG As Double
+    Public Property RR_Total_Produksi As Double
 
 
 #End Region
@@ -242,7 +244,8 @@ Public Class InjectionModel
                        ,[K. TARGET NG]
                        ,[L. TARGET SCRAP]
                        ,[M. TARGET SETTING]
-                       ,[N. TARGET % NG]) " & vbCrLf &
+                       ,[N. TARGET % NG]
+                       ,[O.TOTAL PRODUKSI]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(H_date) & ", " & vbCrLf &
             "       " & QVal(RR_SCRAP_DANDORI) & ", " & vbCrLf &
@@ -258,7 +261,8 @@ Public Class InjectionModel
             "       " & QVal(RR_TARGETNG) & ", " & vbCrLf &
             "       " & QVal(RR_TARGET_SCRAP) & ", " & vbCrLf &
             "       " & QVal(RR_TARGET_SETTING) & ", " & vbCrLf &
-            "       " & QVal(RR_Target_Persen_NG) & ")"
+            "       " & QVal(RR_Target_Persen_NG) & ", " & vbCrLf &
+            "       " & QVal(RR_Total_Produksi) & ")"
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)
 
