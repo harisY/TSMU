@@ -1,5 +1,7 @@
 ﻿Public Class ReceiptModel
     Public Property AcctID_tujuan As String
+    Public Property AcctID As String
+    Public Property AcctID_Name As String
     Public Property CheckNo As String
     Public Property CurryID As String
     Public Property Descr_tujuan As String
@@ -32,6 +34,8 @@
            ,[Jumlah]
             ,[CustID]
             ,[Customer]
+            ,[AcctID]
+           ,[AcctID_Name]
            ,[Remark])
      VALUES
            (" & QVal(Tgl) & "
@@ -44,6 +48,8 @@
            ," & QVal(Jumlah) & "
            ," & QVal(CustID) & "
            ," & QVal(Customer) & "
+           ," & QVal(AcctID) & "
+           ," & QVal(AcctID_Name) & "
            ," & QVal(Remark) & ")"
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
@@ -219,6 +225,8 @@
                                           " Jumlah= " & QVal(Jumlah) & ", " &
                                           " CustID= " & QVal(CustID) & ", " &
                                           " Customer= " & QVal(Customer) & ", " &
+                                          " AcctID= " & QVal(AcctID) & ", " &
+                                          " AcctID_Name= " & QVal(AcctID_Name) & ", " &
                                           " Remark= " & QVal(Remark) & " WHERE NoBukti = " & QVal(NoBukti) & ""
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -242,6 +250,8 @@
                     CustID = Trim(.Item("CustID") & "")
                     Customer = Trim(.Item("Customer") & "")
                     Jumlah = Trim(.Item("Jumlah") & "")
+                    AcctID = Trim(.Item("AcctID") & "")
+                    AcctID_Name = Trim(.Item("AcctID_Name") & "")
                     Remark = Trim(.Item("Remark") & "")
                 End With
             End If

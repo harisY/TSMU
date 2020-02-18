@@ -1190,7 +1190,7 @@ Partial Class FrmPaymentDirect
         '
         Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(9, 91)
+        Me.GridControl1.Location = New System.Drawing.Point(8, 91)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek, Me.vtxtmasuk, Me.vtxtkeluar, Me.cek, Me.RepositoryItemCheckEdit5, Me.RepositoryItemTextEdit1})
@@ -1219,7 +1219,7 @@ Partial Class FrmPaymentDirect
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(880, 62)
+        Me.Button2.Location = New System.Drawing.Point(990, 39)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(104, 23)
         Me.Button2.TabIndex = 11
