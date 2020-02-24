@@ -22,6 +22,7 @@ Partial Class FrmMaintenanceDetail
         Me.DtTanggalLaporan = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Mesin_Old = New System.Windows.Forms.TextBox()
         Me.Ket_Mesin = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -31,6 +32,7 @@ Partial Class FrmMaintenanceDetail
         Me.Act_Mesin = New System.Windows.Forms.TextBox()
         Me.Plan_Mesin = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Mold_Old = New System.Windows.Forms.TextBox()
         Me.Ket_Mold = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -65,6 +67,7 @@ Partial Class FrmMaintenanceDetail
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Mesin_Old)
         Me.GroupBox1.Controls.Add(Me.Ket_Mesin)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -81,6 +84,19 @@ Partial Class FrmMaintenanceDetail
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Mesin"
         '
+        'Mesin_Old
+        '
+        Me.Mesin_Old.BackColor = System.Drawing.Color.White
+        Me.Mesin_Old.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Mesin_Old.Location = New System.Drawing.Point(293, 158)
+        Me.Mesin_Old.Name = "Mesin_Old"
+        Me.Mesin_Old.ReadOnly = True
+        Me.Mesin_Old.Size = New System.Drawing.Size(103, 26)
+        Me.Mesin_Old.TabIndex = 89
+        Me.Mesin_Old.Text = "0"
+        Me.Mesin_Old.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.Mesin_Old.Visible = False
+        '
         'Ket_Mesin
         '
         Me.Ket_Mesin.BackColor = System.Drawing.Color.White
@@ -89,7 +105,7 @@ Partial Class FrmMaintenanceDetail
         Me.Ket_Mesin.Multiline = True
         Me.Ket_Mesin.Name = "Ket_Mesin"
         Me.Ket_Mesin.Size = New System.Drawing.Size(263, 75)
-        Me.Ket_Mesin.TabIndex = 89
+        Me.Ket_Mesin.TabIndex = 4
         '
         'Label8
         '
@@ -139,8 +155,9 @@ Partial Class FrmMaintenanceDetail
         Me.Balance_Mesin.Name = "Balance_Mesin"
         Me.Balance_Mesin.ReadOnly = True
         Me.Balance_Mesin.Size = New System.Drawing.Size(154, 26)
-        Me.Balance_Mesin.TabIndex = 84
+        Me.Balance_Mesin.TabIndex = 3
         Me.Balance_Mesin.Text = "0"
+        Me.Balance_Mesin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Act_Mesin
         '
@@ -148,8 +165,9 @@ Partial Class FrmMaintenanceDetail
         Me.Act_Mesin.Location = New System.Drawing.Point(133, 102)
         Me.Act_Mesin.Name = "Act_Mesin"
         Me.Act_Mesin.Size = New System.Drawing.Size(154, 26)
-        Me.Act_Mesin.TabIndex = 83
+        Me.Act_Mesin.TabIndex = 2
         Me.Act_Mesin.Text = "0"
+        Me.Act_Mesin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Plan_Mesin
         '
@@ -157,11 +175,13 @@ Partial Class FrmMaintenanceDetail
         Me.Plan_Mesin.Location = New System.Drawing.Point(133, 44)
         Me.Plan_Mesin.Name = "Plan_Mesin"
         Me.Plan_Mesin.Size = New System.Drawing.Size(154, 26)
-        Me.Plan_Mesin.TabIndex = 82
+        Me.Plan_Mesin.TabIndex = 1
         Me.Plan_Mesin.Text = "0"
+        Me.Plan_Mesin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Mold_Old)
         Me.GroupBox2.Controls.Add(Me.Ket_Mold)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.Label5)
@@ -178,6 +198,19 @@ Partial Class FrmMaintenanceDetail
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Mold"
         '
+        'Mold_Old
+        '
+        Me.Mold_Old.BackColor = System.Drawing.Color.White
+        Me.Mold_Old.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Mold_Old.Location = New System.Drawing.Point(327, 158)
+        Me.Mold_Old.Name = "Mold_Old"
+        Me.Mold_Old.ReadOnly = True
+        Me.Mold_Old.Size = New System.Drawing.Size(97, 26)
+        Me.Mold_Old.TabIndex = 91
+        Me.Mold_Old.Text = "0"
+        Me.Mold_Old.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.Mold_Old.Visible = False
+        '
         'Ket_Mold
         '
         Me.Ket_Mold.BackColor = System.Drawing.Color.White
@@ -185,8 +218,8 @@ Partial Class FrmMaintenanceDetail
         Me.Ket_Mold.Location = New System.Drawing.Point(127, 215)
         Me.Ket_Mold.Multiline = True
         Me.Ket_Mold.Name = "Ket_Mold"
-        Me.Ket_Mold.Size = New System.Drawing.Size(263, 75)
-        Me.Ket_Mold.TabIndex = 91
+        Me.Ket_Mold.Size = New System.Drawing.Size(297, 75)
+        Me.Ket_Mold.TabIndex = 8
         '
         'Label9
         '
@@ -235,27 +268,30 @@ Partial Class FrmMaintenanceDetail
         Me.Balance_Mold.Location = New System.Drawing.Point(127, 157)
         Me.Balance_Mold.Name = "Balance_Mold"
         Me.Balance_Mold.ReadOnly = True
-        Me.Balance_Mold.Size = New System.Drawing.Size(154, 26)
-        Me.Balance_Mold.TabIndex = 84
+        Me.Balance_Mold.Size = New System.Drawing.Size(194, 26)
+        Me.Balance_Mold.TabIndex = 7
         Me.Balance_Mold.Text = "0"
+        Me.Balance_Mold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Act_Mold
         '
         Me.Act_Mold.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Act_Mold.Location = New System.Drawing.Point(127, 101)
         Me.Act_Mold.Name = "Act_Mold"
-        Me.Act_Mold.Size = New System.Drawing.Size(154, 26)
-        Me.Act_Mold.TabIndex = 83
+        Me.Act_Mold.Size = New System.Drawing.Size(194, 26)
+        Me.Act_Mold.TabIndex = 6
         Me.Act_Mold.Text = "0"
+        Me.Act_Mold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Plan_Mold
         '
         Me.Plan_Mold.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Plan_Mold.Location = New System.Drawing.Point(127, 43)
         Me.Plan_Mold.Name = "Plan_Mold"
-        Me.Plan_Mold.Size = New System.Drawing.Size(154, 26)
-        Me.Plan_Mold.TabIndex = 82
+        Me.Plan_Mold.Size = New System.Drawing.Size(194, 26)
+        Me.Plan_Mold.TabIndex = 5
         Me.Plan_Mold.Text = "0"
+        Me.Plan_Mold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'FrmMaintenanceDetail
         '
@@ -298,4 +334,6 @@ Partial Class FrmMaintenanceDetail
     Friend WithEvents Label8 As Label
     Friend WithEvents Ket_Mold As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents Mesin_Old As TextBox
+    Friend WithEvents Mold_Old As TextBox
 End Class

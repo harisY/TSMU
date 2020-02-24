@@ -210,7 +210,7 @@ Partial Class FrmPemakaianMaterial
         Me.GroupBox1.Controls.Add(Me.GridMaterial)
         Me.GroupBox1.Location = New System.Drawing.Point(13, 132)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(666, 317)
+        Me.GroupBox1.Size = New System.Drawing.Size(666, 519)
         Me.GroupBox1.TabIndex = 19
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Material"
@@ -352,7 +352,7 @@ Partial Class FrmPemakaianMaterial
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GridMaterial.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.GridMaterial.Size = New System.Drawing.Size(651, 183)
+        Me.GridMaterial.Size = New System.Drawing.Size(651, 385)
         Me.GridMaterial.TabIndex = 15
         '
         'GroupBox2
@@ -375,7 +375,7 @@ Partial Class FrmPemakaianMaterial
         Me.GroupBox2.Controls.Add(Me.TxtAktualRpKomponen)
         Me.GroupBox2.Location = New System.Drawing.Point(704, 132)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(489, 317)
+        Me.GroupBox2.Size = New System.Drawing.Size(489, 519)
         Me.GroupBox2.TabIndex = 38
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Komponen"
@@ -422,7 +422,7 @@ Partial Class FrmPemakaianMaterial
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GridKomponen.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
-        Me.GridKomponen.Size = New System.Drawing.Size(474, 183)
+        Me.GridKomponen.Size = New System.Drawing.Size(474, 385)
         Me.GridKomponen.TabIndex = 50
         '
         'Label14
@@ -573,7 +573,7 @@ Partial Class FrmPemakaianMaterial
         'FrmPemakaianMaterial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1205, 461)
+        Me.ClientSize = New System.Drawing.Size(1205, 663)
         Me.Controls.Add(Me.TxtKeterangan)
         Me.Controls.Add(Me.TanggalSampai)
         Me.Controls.Add(Me.TanggalMulai)

@@ -206,7 +206,7 @@ Public Class FrmClaimCustomerDetail
 
     End Sub
 
-    Private Sub getdataview1()
+    Private Sub Getdataview1()
         Try
             Dim IsEmpty As Boolean = False
 

@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class ClaimCustomerModel
-    Dim _Query As String
+    Dim Query As String
     Public tahun As String
     Public bulan As String
     Public tanggal As String
@@ -21,13 +21,13 @@ Public Class ClaimCustomerModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me.Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -50,7 +50,7 @@ Public Class ClaimCustomerModel
         End Try
     End Sub
 
-    Public Sub getDataByID(ByVal ID As String)
+    Public Sub GetDataByID(ByVal ID As String)
         Try
             Dim query As String = "SELECT [IDTransaksi]
                                   ,[Tanggal]

@@ -214,9 +214,9 @@ Public Class FrmHancuranDetail
         ElseIf txtStokAwal.Text = "" Or txtKirim.Text = "" Or txtKembali.Text = "" Or txtBalnce.Text = "" Then
             MessageBox.Show("Periksa Inputan Ada Yang Kosong",
                                "Warning",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Exclamation,
-                               MessageBoxDefaultButton.Button1)
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation,
+                              MessageBoxDefaultButton.Button1)
         ElseIf txtHancuranInternal.Text = "" Or txtTotal.Text = "" Or txtTarget.Text = "" Then
             MessageBox.Show("Periksa Inputan Ada Yang Kosong",
                               "Warning",
