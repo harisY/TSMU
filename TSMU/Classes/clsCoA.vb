@@ -41,6 +41,9 @@ Public Class clsCoA
             '                            "when 'FG' then 'Finish Good' " & _
             '                            "else 'PURCHASE' end as [Group] " & _
             '                        "from inventory_lc order by Invtid"
+
+
+            'Tes Git
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
