@@ -28,6 +28,7 @@ Partial Class FrmDetailPerbaikan
         Me.Dari = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Sampai = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.Keterangan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -62,9 +63,9 @@ Partial Class FrmDetailPerbaikan
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem10 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -101,7 +102,6 @@ Partial Class FrmDetailPerbaikan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -171,6 +171,12 @@ Partial Class FrmDetailPerbaikan
         Me.Status.Visible = True
         Me.Status.VisibleIndex = 6
         Me.Status.Width = 146
+        '
+        'RepositoryItemComboBox1
+        '
+        Me.RepositoryItemComboBox1.AutoHeight = False
+        Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
         '
         'Keterangan
         '
@@ -489,12 +495,6 @@ Partial Class FrmDetailPerbaikan
         Me.EmptySpaceItem10.Size = New System.Drawing.Size(716, 24)
         Me.EmptySpaceItem10.TextSize = New System.Drawing.Size(0, 0)
         '
-        'RepositoryItemComboBox1
-        '
-        Me.RepositoryItemComboBox1.AutoHeight = False
-        Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
-        '
         'FrmDetailPerbaikan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -506,6 +506,7 @@ Partial Class FrmDetailPerbaikan
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
@@ -542,7 +543,6 @@ Partial Class FrmDetailPerbaikan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

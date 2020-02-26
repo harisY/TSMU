@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmDeliveryHeader
+Partial Class FrmInjectionShot
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -30,11 +30,11 @@ Partial Class FrmDeliveryHeader
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 28)
+        Me.Grid.Location = New System.Drawing.Point(12, 28)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(828, 553)
-        Me.Grid.TabIndex = 2
+        Me.Grid.Size = New System.Drawing.Size(804, 541)
+        Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
@@ -42,13 +42,14 @@ Partial Class FrmDeliveryHeader
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'FrmDeliveryHeader
+        'FrmInjectionShot
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmDeliveryHeader"
+        Me.Name = "FrmInjectionShot"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

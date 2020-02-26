@@ -370,4 +370,8 @@ Public Class FrmDetailPerbaikan
             e.Handled = True
         End If
     End Sub
+
+    Private Sub CStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CStatus.SelectedIndexChanged
+
+    End Sub
 End Class
