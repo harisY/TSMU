@@ -283,17 +283,28 @@ Public Class FrmBankTransfer_Detail
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
             Dim Value2 As String = ""
+            Dim Value3 As String = ""
+            Dim Rate1 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
                 If sender.Name = TxtNoRekTujuan.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     TxtNoRekTujuan.Text = Value1
                     TxtNoRekTujuanname.Text = Value2
-
+                    TxtCuryTujuan.Text = Value3
                 End If
             End If
+
+
+
+            Dim Rate As String
+            Rate = ObjSuspendHeader.GetRate(Value3.TrimEnd)
+            TxtRateSolomon.Text = Rate
+
+
             lF_SearchData.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -314,5 +325,15 @@ Public Class FrmBankTransfer_Detail
 
         ' Add any initialization after the InitializeComponent() call.
 
+    End Sub
+
+    Private Sub TxtAmount_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAmount.EditValueChanged
+
+    End Sub
+
+    Private Sub TxtAmount_LostFocus(sender As Object, e As EventArgs) Handles TxtAmount.LostFocus
+        TxtAmount1.Text = TxtRateSolomon.Text * TxtAmount.Text
+        TxtAmount2.Text = TxtRate.Text * TxtAmount.Text
+        TxtSelisihRate.Text = TxtAmount1.Text - TxtAmount2.Text
     End Sub
 End Class
