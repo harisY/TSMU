@@ -41,6 +41,7 @@ Partial Class FrmMaintenanceDetail
         Me.Balance_Mold = New System.Windows.Forms.TextBox()
         Me.Act_Mold = New System.Windows.Forms.TextBox()
         Me.Plan_Mold = New System.Windows.Forms.TextBox()
+        Me.BtnBulan = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -50,7 +51,7 @@ Partial Class FrmMaintenanceDetail
         Me.DtTanggalLaporan.CustomFormat = "dd-MM-yyyy"
         Me.DtTanggalLaporan.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DtTanggalLaporan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTanggalLaporan.Location = New System.Drawing.Point(148, 57)
+        Me.DtTanggalLaporan.Location = New System.Drawing.Point(148, 91)
         Me.DtTanggalLaporan.Name = "DtTanggalLaporan"
         Me.DtTanggalLaporan.Size = New System.Drawing.Size(154, 26)
         Me.DtTanggalLaporan.TabIndex = 69
@@ -59,7 +60,7 @@ Partial Class FrmMaintenanceDetail
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 57)
+        Me.Label1.Location = New System.Drawing.Point(12, 91)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(70, 20)
         Me.Label1.TabIndex = 68
@@ -77,7 +78,7 @@ Partial Class FrmMaintenanceDetail
         Me.GroupBox1.Controls.Add(Me.Act_Mesin)
         Me.GroupBox1.Controls.Add(Me.Plan_Mesin)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(15, 110)
+        Me.GroupBox1.Location = New System.Drawing.Point(15, 123)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(447, 317)
         Me.GroupBox1.TabIndex = 82
@@ -191,7 +192,7 @@ Partial Class FrmMaintenanceDetail
         Me.GroupBox2.Controls.Add(Me.Act_Mold)
         Me.GroupBox2.Controls.Add(Me.Plan_Mold)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(516, 110)
+        Me.GroupBox2.Location = New System.Drawing.Point(516, 123)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(447, 317)
         Me.GroupBox2.TabIndex = 83
@@ -293,10 +294,22 @@ Partial Class FrmMaintenanceDetail
         Me.Plan_Mold.Text = "0"
         Me.Plan_Mold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'BtnBulan
+        '
+        Me.BtnBulan.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.BtnBulan.Location = New System.Drawing.Point(15, 42)
+        Me.BtnBulan.Name = "BtnBulan"
+        Me.BtnBulan.Size = New System.Drawing.Size(138, 23)
+        Me.BtnBulan.TabIndex = 84
+        Me.BtnBulan.Text = "Target Bulanan"
+        Me.BtnBulan.UseVisualStyleBackColor = False
+        '
         'FrmMaintenanceDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1022, 452)
+        Me.BackColor = System.Drawing.SystemColors.Window
+        Me.ClientSize = New System.Drawing.Size(990, 441)
+        Me.Controls.Add(Me.BtnBulan)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.DtTanggalLaporan)
@@ -306,6 +319,7 @@ Partial Class FrmMaintenanceDetail
         Me.Controls.SetChildIndex(Me.DtTanggalLaporan, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
+        Me.Controls.SetChildIndex(Me.BtnBulan, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -336,4 +350,5 @@ Partial Class FrmMaintenanceDetail
     Friend WithEvents Label9 As Label
     Friend WithEvents Mesin_Old As TextBox
     Friend WithEvents Mold_Old As TextBox
+    Friend WithEvents BtnBulan As Button
 End Class
