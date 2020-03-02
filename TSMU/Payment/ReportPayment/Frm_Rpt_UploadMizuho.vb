@@ -349,7 +349,6 @@ Public Class Frm_Rpt_UploadMizuho
             'Dim result As DialogResult
             'If result = Windows.Forms.DialogResult.OK Then
             '    Try
-
             '        ''GetExcelSheetNames(TextBox1.Text)
             '    Catch ex As Exception
             '        MsgBox("Error : " & ex.Message)

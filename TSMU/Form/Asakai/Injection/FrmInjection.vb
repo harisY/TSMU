@@ -34,6 +34,9 @@ Public Class FrmInjection
     Dim dtReject As DataTable
     Dim dtGrid As DataTable
 
+    Dim dtPPA_Mold As DataTable
+    Dim dtPPA_Mesin As DataTable
+
 #End Region
 
 
@@ -98,7 +101,7 @@ Public Class FrmInjection
             lb_Validated = True
             If lb_Validated Then
                 With fc_Class
-                    .H_date = Format(CDate(dtTanggal.Value))
+
 
                     If isUpdate = False Then
                         .ValidateInsert()
@@ -641,6 +644,8 @@ Public Class FrmInjection
             End If
 
 
+
+
         End With
         'fc_Class.ObjDetailInjectionPA.Add(ObjInjectionDetail)
 
@@ -749,6 +754,12 @@ Public Class FrmInjection
                 .RR_Target_Persen_NG = Math.Round(Val(dtReject.Rows(13).Item(1)), 2)
             End If
 
+            If dtReject.Rows(14).Item(1) Is DBNull.Value Then
+                .RR_Total_Produksi = "0"
+            Else
+                .RR_Total_Produksi = Math.Round(Val(dtReject.Rows(14).Item(1)), 2)
+            End If
+
 
         End With
 
@@ -758,6 +769,8 @@ Public Class FrmInjection
 
     Private Sub BtnUploadExcel_Click_1(sender As Object, e As EventArgs) Handles BtnUploadExcel.Click
 
+
+        fc_Class.H_date = Format(CDate(dtTanggal.Value))
 
         dtLimaBesar = New DataTable
         dtPPA = New DataTable
@@ -830,6 +843,41 @@ Public Class FrmInjection
                     'Dim dtReject As New DataTable
                     dtReject = New DataTable
                     dtReject.Load(cmd4.ExecuteReader)
+
+
+                    Dim cbPPA_Mold As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
+                    cbPPA_Mold.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
+                    Dim cn1_mold As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cbPPA_Mold.ConnectionString}
+                    cn1_mold.Open()
+                    Dim cmd1_Mold As OleDbCommand = New OleDbCommand("SELECT SUM (F11) as Mold FROM [" & PPA & "] where F1 = #" & tanggal & "#  and F14 = 'MOLD'", cn1_mold) '
+                    'Dim dtPPA As New DataTable
+                    dtPPA_Mold = New DataTable
+                    dtPPA_Mold.Load(cmd1_Mold.ExecuteReader)
+
+
+                    Dim cbPPA_Mesin As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
+                    cbPPA_Mesin.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
+                    Dim cn1_Mesin As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cbPPA_Mesin.ConnectionString}
+                    cn1_Mesin.Open()
+                    Dim cmd1_Mesin As OleDbCommand = New OleDbCommand("SELECT SUM (F11) as Mesin FROM [" & PPA & "] where F1 = #" & tanggal & "#  and F14 = 'MESIN'", cn1_Mesin) '
+                    'Dim dtPPA As New DataTable
+                    dtPPA_Mesin = New DataTable
+                    dtPPA_Mesin.Load(cmd1_Mesin.ExecuteReader)
+
+#Region "Maintenance"
+                    If dtPPA_Mold.Rows(0).Item(0) Is DBNull.Value Then
+                        fc_Class.Aktual_Mold = "0"
+                    Else
+                        fc_Class.Aktual_Mold = dtPPA_Mold.Rows(0).Item(0)
+                    End If
+
+
+                    If dtPPA_Mesin.Rows(0).Item(0) Is DBNull.Value Then
+                        fc_Class.Aktual_Mesin = "0"
+                    Else
+                        fc_Class.Aktual_Mesin = dtPPA_Mesin.Rows(0).Item(0)
+                    End If
+#End Region
 
 
 
@@ -946,8 +994,8 @@ Public Class FrmInjection
                     cn4.Close()
                     Timer1.Start()
 
-
-
+                    fc_Class.GetTargetMold()
+                    fc_Class.GetTargetMesin()
 
 
 

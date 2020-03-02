@@ -21,12 +21,16 @@ Public Class FrmBankReceipt_Detail
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
-
+    Dim ObjCashBank As New cashbank_models
     Dim ObjSuspend As New ClsSuspend
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
+    Dim fs_kode3 As String
+    Dim fs_kode4 As String
+    Dim sts_screen2 As Byte
+
 
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
@@ -43,10 +47,30 @@ Public Class FrmBankReceipt_Detail
         GridDtl = _Grid
         FrmParent = lf_FormParent
     End Sub
-
+    Public Sub New(ByVal strCode As String,
+                   ByVal strCode2 As String,
+                   ByVal strCode3 As String,
+                   ByVal strCode4 As String,
+                   ByVal stsscreen As String,
+                   ByRef lf_FormParent As Form,
+                   ByVal li_GridRow As Integer,
+                   ByRef _Grid As GridControl)
+        ' this call is required by the windows form designer
+        Me.New()
+        If strCode <> "" Then
+            fs_Code = strCode
+            fs_Code2 = strCode2
+            fs_kode3 = strCode3
+            fs_kode4 = strCode4
+            sts_screen2 = stsscreen
+            bi_GridParentRow = li_GridRow
+        End If
+        GridDtl = _Grid
+        FrmParent = lf_FormParent
+    End Sub
     Public Overrides Sub InitialSetForm()
         Try
-            If fs_Code <> "" Then
+            If fs_Code <> "" And sts_screen2 <> 1 Then
                 fc_Class.getDataByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
@@ -72,7 +96,7 @@ Public Class FrmBankReceipt_Detail
     End Sub
     Private Sub LoadTxtBox()
         Try
-            If fs_Code <> "" Then
+            If fs_Code <> "" And sts_screen2 <> 1 Then
                 With fc_Class
                     TxtTgl.EditValue = .Tgl
                     TxtNoBukti.Text = .NoBukti
@@ -88,6 +112,17 @@ Public Class FrmBankReceipt_Detail
                     TxtNoBukti.ReadOnly = True
                     ''_txtaccname.focus()
                 End With
+            ElseIf fs_Code <> "" And sts_screen2 = 1 Then
+                TxtTgl.EditValue = DateTime.Today
+                TxtNoBukti.Text = ""
+                TxtPerpost.EditValue = fs_kode4
+                TxtCheckNo.Text = ""
+                TxtNoRekTujuan.Text = fs_Code
+                TxtNoRekTujuanname.Text = fs_Code2
+                TxtCuryID.Text = fs_kode3
+                TxtAmount.Text = 0
+                TxtRemark.Text = ""
+                TxtNoBukti.Focus()
             Else
                 ' TxtTgl.Text = Date()
                 TxtTgl.EditValue = DateTime.Today
@@ -202,6 +237,10 @@ Public Class FrmBankReceipt_Detail
             'Next
             IsClosed = True
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            ObjCashBank.Perpost = _TxtPerpost.Text
+            ObjCashBank.AcctID = TxtNoRekTujuan.Text
+
+            GridDtl.DataSource = ObjCashBank.GetGridDetailCashBankByAccountID02()
             Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -264,8 +303,6 @@ Public Class FrmBankReceipt_Detail
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-
-
     Private Sub TxtCustID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtCustID.ButtonClick
         Try
             Dim ls_Judul As String = ""
@@ -294,6 +331,44 @@ Public Class FrmBankReceipt_Detail
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
                     TxtCustID.Text = Value1
                     TxtCustomer.Text = Value2
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub TxtNoRek_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRek.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = TxtNoRek.Name Then
+                dtSearch = ObjSuspend.GetAccount
+                ls_OldKode = TxtNoRek.Text.Trim
+                ls_Judul = "Account"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = TxtNoRek.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    TxtNoRek.Text = Value1
+                    TxtNoRekName.Text = Value2
 
                 End If
             End If

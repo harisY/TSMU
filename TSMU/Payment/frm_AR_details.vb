@@ -24,6 +24,8 @@ Public Class frm_AR_details
     Dim ObjCM As New Cls_cmdm
     Dim vbalance As Double = 0
     Dim dtTemp1 As DataTable
+    Dim sts_screen2 As Byte
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -53,6 +55,7 @@ Public Class frm_AR_details
             'fs_Code5 = strCode5
             'fs_Code6 = strCode6
             bi_GridParentRow = li_GridRow
+            sts_screen2 = stsscreen
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
@@ -69,6 +72,7 @@ Public Class frm_AR_details
             fs_Code = strCode
             fs_Code2 = strCode2
             sts_screen = stsscreen
+            sts_screen2 = stsscreen
             bi_GridParentRow = li_GridRow
         End If
         GridDtl = _Grid
@@ -99,7 +103,7 @@ Public Class frm_AR_details
             If e.Column.FieldName = "CheckPPH" Then
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
                     GetPPH()
-                    Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+                    Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Paid"))
                     Dim _pphAmount As Double = _pph * 0.02
                     GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "PPH", _pphAmount)
                 Else
@@ -171,6 +175,7 @@ Public Class frm_AR_details
             .CustomerName = _TxtVendorName.Text
             .Total_DPP_PPN = _TxtTotalAmount.Text
             .TotReceive = _TxtDebit.Text
+            .NoBukti = TextEdit1.Text
         End With
         '    End If
         'Catch ex As Exception
@@ -197,6 +202,8 @@ Public Class frm_AR_details
                         .Pph = GridView1.GetRowCellValue(i, "PPH")
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
                         .cek1 = True
+                        .NoBukti = TextEdit1.Text
+                        .Paid = GridView1.GetRowCellValue(i, "Paid")
                     End With
                     ObjPaymentHeader.ObjPaymentDetails.Add(ObjDetails)
                 End If
@@ -260,7 +267,7 @@ Public Class frm_AR_details
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "Check") = True Then
-                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+                    TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Paid"))
                 End If
 
             Next
@@ -269,10 +276,10 @@ Public Class frm_AR_details
             If TotAmount = 0 Then
                 _TxtTotalAmount.Text = "0"
             Else
-                _TxtTotalAmount.Text = Format(TotAmount - _TxtBiaya.Text, gs_FormatBulat)
+                _TxtTotalAmount.Text = Format(TotAmount, gs_FormatBulat)
             End If
             ''  Dim vbalance As Double = _TxtTotalAmount.Text - _TxtDebit.Text
-            vbalance = _TxtTotalAmount.Text - _TxtDebit.Text
+            vbalance = _TxtDebit.Text - _TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text
             _txtbalance.Text = vbalance
             '       Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
             '       _TxtDebit.Text = Format(debit, gs_FormatBulat)
@@ -284,22 +291,22 @@ Public Class frm_AR_details
 
     Private Sub GetPPH()
 
-        TotAmountPPH = 0
+        TotAmountpph = 0
 
         ''GrandTotal = 0
         Dim cek2 As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
                 If GridView1.GetRowCellValue(i, "CheckPPH") = True And GridView1.GetRowCellValue(i, "Check") = True Then
-                    TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Amount")) * 0.02)
+                    TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Paid")) * 0.02)
                 End If
 
             Next
 
-            If TotAmountPPH = 0 Then
+            If TotAmountpph = 0 Then
                 _TxtPPH.Text = "0"
             Else
-                _TxtPPH.Text = Format(TotAmountPPH, gs_FormatBulat)
+                _TxtPPH.Text = Format(TotAmountpph, gs_FormatBulat)
             End If
 
             Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
@@ -312,7 +319,7 @@ Public Class frm_AR_details
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
-            If fs_Code <> "" And sts_screen = 0 Then
+            If fs_Code <> "" And sts_screen2 = 0 Then
                 ObjPaymentHeader.NoBukti = fs_Code
                 ObjPaymentHeader.GetReceiptByVoucherNo()
                 If ls_Error <> "" Then
@@ -324,8 +331,8 @@ Public Class frm_AR_details
                     isUpdate = True
                 End If
                 Me.Text = "Payment " & fs_Code
-            ElseIf fs_Code <> "" And sts_screen = 1 Then
-                ObjPaymentHeader.NoBukti = fs_Code
+            ElseIf fs_Code <> "" And sts_screen2 = 1 Then
+                ObjPaymentHeader.id = fs_Code
                 ObjPaymentHeader.GetPaymentByVoucherNo()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
@@ -336,7 +343,7 @@ Public Class frm_AR_details
                     isUpdate = True
                 End If
                 Me.Text = "Payment " & fs_Code
-
+                LoadGridDetail()
             Else
                 Me.Text = "Payment New Data"
             End If
@@ -353,7 +360,7 @@ Public Class frm_AR_details
 
     Private Sub LoadTxtBox()
         Try
-            If fs_Code <> "" And sts_screen = 0 Then
+            If fs_Code <> "" And sts_screen2 = 0 Then
                 With ObjPaymentHeader
                     _TxtPerpost.Text = .PerPost
                     ObjPaymentHeader.PerPost = _TxtPerpost.Text
@@ -364,9 +371,9 @@ Public Class frm_AR_details
                     _TxtVendorName.Text = .Customer
                     _TxtVendorID.Text = .CustID
                     _TxtDebit.EditValue = Format(.Jumlah, "##,0")
-
+                    TextEdit1.Text = .NoBukti
                 End With
-            ElseIf fs_Code <> "" And sts_screen = 1 Then
+            ElseIf fs_Code <> "" And sts_screen2 = 1 Then
                 With ObjPaymentHeader
                     _txtVoucher.Text = .vrno
                     _TxtVendorName.Text = .CustomerName
@@ -375,21 +382,25 @@ Public Class frm_AR_details
                     '_TxtAttentionTo.Text = .penerima
                     _TxtBankID.Text = .BankID
                     _TxtBankName.Text = .BankName
-                    _TxtBiaya.EditValue = Format(.Biaya_Transfer, "##,0")
+                    _TxtBiaya.Text = Format(.Biaya_Transfer, "##,0")
                     '  _TxtToBank.Text = .bankrek
                     _TxtCM.Text = Format(.CM_DM, "##,0")
                     _TxtCurrency.Text = .CuryID
-                    _TxtDebit.Text = Format((.Total_DPP_PPN) - .PPh - .Biaya_Transfer - .CM_DM - .cmdm_manual, "##,0")
+                    ' _TxtDebit.Text = Format((.Total_DPP_PPN) - .PPh - .Biaya_Transfer - .CM_DM - .cmdm_manual, "##,0")
                     '_TxtNoRek.Text = .norek
+                    _TxtDebit.Text = Format(.TotReceive, "##,0")
                     '_TxtDpp.Text = Format(.Tot_DPP, "##,0")
                     _TxtTgl.Text = .tgl
                     ' _TxtTMV.Text = ""
                     _TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                     _TxtPPH.Text = Format(.PPh, "##,0")
+                    _TxtTotalAmount.Text = Format(.Total_DPP_PPN, "##,0")
                     '_TxtPPN.Text = Format(.Tot_PPN, "##,0")
                     '_txtCMDMmanual.Text = Format(.cmdm_manual, "##,0")
                     '_txtKetCMDMmanual.Text = .cmdm_manual_ket
                     '_txtnamasupllier.Text = .detsupplier
+                    TextEdit1.Text = .NoBukti
+                    _txtbalance.Text = Format(.TotReceive - .Total_DPP_PPN - .PPh - .CM_DM - .Biaya_Transfer, "##,0")
                 End With
             Else
 
@@ -476,37 +487,42 @@ Public Class frm_AR_details
     End Sub
 
     Private Sub _TxtVendorID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtVendorID.EditValueChanged
-        Dim dtGrid As New DataTable
-        ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
+        If fs_Code <> "" And sts_screen2 = 1 Then
+            LoadGridDetail()
+        Else
 
-        dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(_TxtVendorID.Text.TrimEnd)
-        If dtGrid.Rows.Count > 0 Then
-            GridInvoice.DataSource = dtGrid
-            GridCellFormat(GridView1)
+            Dim dtGrid As New DataTable
+            ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
+
+            dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(_TxtVendorID.Text.TrimEnd)
+            If dtGrid.Rows.Count > 0 Then
+                GridInvoice.DataSource = dtGrid
+                GridCellFormat(GridView1)
+            End If
         End If
     End Sub
 
-    Private Sub _TxtBiaya_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtBiaya.EditValueChanged
-        'If TotAmount = 0 Then
-        '    _TxtTotalAmount.Text = _TxtBiaya.Text
-        'Else
-        '    _TxtTotalAmount.Text = Format(TotAmount + _TxtBiaya.Text, gs_FormatBulat)
-        'End If
+    'Private Sub _TxtBiaya_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtBiaya.EditValueChanged
+    '    'If TotAmount = 0 Then
+    '    '    _TxtTotalAmount.Text = _TxtBiaya.Text
+    '    'Else
+    '    '    _TxtTotalAmount.Text = Format(TotAmount + _TxtBiaya.Text, gs_FormatBulat)
+    '    'End If
 
-        Try
-            Dim vbalance As Double = _txtbalance.Text - _TxtBiaya.Text
-            _txtbalance.Text = vbalance
-            _txtbalance.Text = Format(vbalance, gs_FormatBulat)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '    Try
+    '        Dim vbalance As Double = _txtbalance.Text - _TxtBiaya.Text
+    '        _txtbalance.Text = vbalance
+    '        _txtbalance.Text = Format(vbalance, gs_FormatBulat)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub _TxtCM_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtCM.EditValueChanged
 
     End Sub
 
-    Private Sub _TxtCM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _TxtCM.ButtonClick
+    Private Sub _TxtCM_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Try
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
@@ -585,8 +601,9 @@ Public Class frm_AR_details
             f.StartPosition = FormStartPosition.CenterScreen
             f.ShowDialog()
             If f.Total > 0 Then
-                _TxtCM.Text = Format(f.Total, gs_FormatBulat)
-                _txtbalance.Text = Format(_txtbalance.Text - _TxtCM.Text, gs_FormatBulat)
+                _TxtCM.Text = Format(f.Total - f.bc, gs_FormatBulat)
+                GetTot()
+                '   _txtbalance.Text = Format(_txtbalance.Text - _TxtCM.Text, gs_FormatBulat)
             End If
 
 
@@ -618,9 +635,9 @@ Public Class frm_AR_details
         Try
 
 
-            Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
-            _txtbalance.Text = vbalance
-            _txtbalance.Text = Format(vbalance, gs_FormatBulat)
+            'Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
+            '_txtbalance.Text = vbalance
+            '_txtbalance.Text = Format(vbalance, gs_FormatBulat)
         Catch ex As Exception
             Throw ex
 
@@ -643,7 +660,8 @@ Public Class frm_AR_details
             .ShowDialog()
             If f.Total > 0 Then
                 _TxtPPH.Text = Format(f.Total, gs_FormatBulat)
-                _txtbalance.Text = Format(_txtbalance.Text - _TxtPPH.Text, gs_FormatBulat)
+                GetTot()
+                '   _txtbalance.Text = Format(_txtbalance.Text - _TxtPPH.Text, gs_FormatBulat)
             End If
         End With
     End Sub

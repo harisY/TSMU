@@ -13,7 +13,11 @@ Public Class QualityProblemModel
 
     Public Property ObjDetailQualityProblem() As New Collection(Of QualityProblemDetailModel)
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiQualityProblem  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me._Query = "SELECT Distinct AsakaiQualityProblem.IDTransaksi,Convert(varchar,AsakaiQualityProblem.Tanggal,105) as Tanggal,AsakaiQualityProblemDetail.Shift 
+                    from AsakaiQualityProblem inner join AsakaiQualityProblemDetail
+                    on AsakaiQualityProblem.IDTransaksi = AsakaiQualityProblemDetail.IDTransaksi
+                    Order by  AsakaiQualityProblem.IDTransaksi Desc"
+
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -193,17 +197,17 @@ Public Class QualityProblemModel
 
     Public Sub ValidateInsert()
         Try
-            Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
-                                    FROM [AsakaiQualityProblem] where Tanggal = '" & H_Tanggal & "' "
-            Dim dtTable As New DataTable
+            'Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
+            '                        FROM [AsakaiQualityProblem] where Tanggal = '" & H_Tanggal & "' "
+            'Dim dtTable As New DataTable
+            ''dtTable = MainModul.GetDataTableByCommand(ls_SP)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
-                "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
-            Else
+            'If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+            '    "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
+            'Else
 
-            End If
+            'End If
 
         Catch ex As Exception
             Throw

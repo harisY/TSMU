@@ -16,6 +16,7 @@ Public Class ar_pph_transaction_models
     Public Property Tarif As Double
     Public Property Tot_Dpp_Invoice As Double
     Public Property Tot_Pph As Double
+    Public Property CMDMNo As String
 
     Private ObjPPHHeader As New ar_pph_header_models
     Private ObjPPHDetail As New ar_pph_detail_models
@@ -44,12 +45,13 @@ Public Class ar_pph_transaction_models
                             .No_Faktur = Me.No_Faktur
                             .ket_dpp = Me.ket_dpp
                             .Tot_Pph = Me.Tot_Pph
+                            .CMDMNo = Me.CMDMNo
                         End With
 
                         ObjPPHHeader.DeleteHeader(FPNo)
                         ObjPPHDetail.DeleteDetail(FPNo)
                         ObjPPHHeader.InsertHeader()
-
+                        ObjPPHHeader.InsertHeadercm()
                         For i As Integer = 0 To Me.ObjPPHDetails.Count - 1
                             With Me.ObjPPHDetails(i)
                                 .InsertDetail()

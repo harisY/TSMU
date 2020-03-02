@@ -10,6 +10,8 @@
     Public Property Jml_Invoice As Double
     Public Property ket As String
     Public Property No_Faktur As String
+    Public Property NoBukti As String
+
     Public Property No_Invoice As String
     Public Property Pph As Double
     Public Property Ppn As Double
@@ -17,6 +19,7 @@
     Public Property tax As String
     Public Property Tgl_Invoice As DateTime
     Public Property vrno As String
+    Public Property Paid As Double
 
     Public Function GetPaymentByVoucherNo() As DataTable
         Try
@@ -30,6 +33,7 @@
                       ,[Pph] PPH
                       ,[cek1] [Check]
                       ,[cek4] [CheckPPH]
+                      ,[Paid]
                   FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -52,6 +56,7 @@
                       ,(Dpp+Ppn)-Pph as Paid
                       ,[cek1] [Check]
                       ,[cek4] [CheckPPH]
+                      ,[Paid]
                   FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -153,7 +158,7 @@
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4) " & vbCrLf &
+                                    "INSERT INTO AR_Detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,Paid) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
@@ -164,7 +169,8 @@
                                     "       " & QVal(Me.Pph) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
                                     "       " & QVal(Me.cek1) & ", " & vbCrLf &
-                                    "       " & QVal(Me.cek4) & ")"
+                                    "       " & QVal(Me.cek4) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Paid) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -186,7 +192,22 @@
     Public Sub UpdateApDocUser4()
         Try
 
-            Dim ls_SP As String = "UPDATE ardoc SET user4=1 WHERE refnbr = " & QVal(No_Invoice) & ""
+            '          Dim ls_SP As String = "UPDATE ardoc SET  user5=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end),user5='1', user4=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end)  WHERE refnbr = " & QVal(No_Invoice) & ""
+            Dim ls_SP As String = "update ARDoc set Ardoc.user5=(case when Ardoc.User4=" & QVal(Paid) & " then '1' else '' end) ,Ardoc.user4=(case when Ardoc.user4=0  then Batch.CuryCrTot-" & QVal(Paid) & " else Ardoc.User4-" & QVal(Paid) & " end) 
+            From Ardoc  inner Join
+             Batch On Ardoc.BatNbr=Batch.BatNbr  inner Join
+             customer  On Ardoc.custid=customer.custid 
+             Where Batch.Module ='AR' and Ardoc.DocType IN ('IN', 'FI', 'DM', 'NC') and curydocbal <> 0 and Ardoc.refnbr = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Updateprosesbankreceipt()
+        Try
+
+            Dim ls_SP As String = "UPDATE bankreceipt set proses=1 WHERE nobukti = " & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex

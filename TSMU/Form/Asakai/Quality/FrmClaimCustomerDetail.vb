@@ -104,6 +104,7 @@ Public Class FrmClaimCustomerDetail
                     isUpdate = True
                 End If
                 Me.Text = "Claim Customer " & fs_Code
+                DtTanggalLaporan.Enabled = False
             Else
                 Me.Text = "Claim Customer"
             End If
@@ -205,7 +206,7 @@ Public Class FrmClaimCustomerDetail
 
     End Sub
 
-    Private Sub getdataview1()
+    Private Sub Getdataview1()
         Try
             Dim IsEmpty As Boolean = False
 

@@ -46,7 +46,7 @@ Public Class PemakaianMaterialModel
     Public Property ObjDetailsKomponen() As New Collection(Of PemakaianKomponenlDetail)
 
     Public Sub New()
-        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai,Keterangan from AsakaiPemakaianMaterialKomponen order by TanggalDari Desc "
+        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai,Keterangan from AsakaiPemakaianMaterialKomponen order by IDTrans Desc "
         'Me._Query = "SELECT IDMaterialUsage[,Tanggal,TotalMaterial,Sales,Percent1[% Material],TotakAktualProduksi,Persent2[% Injection],Target[% Target] from AsakaiMaterialUsageHeader"
     End Sub
 
@@ -116,8 +116,8 @@ Public Class PemakaianMaterialModel
 
     Public Sub ValidateInsert()
         Try
-            Dim ls_SP As String = "SELECT TOP 1 [IDTrans],TanggalSampai                   
-                                    FROM [AsakaiPemakaianMaterialKomponen] where TanggalSampai >= '" & TanggalDari & "' "
+            Dim ls_SP As String = "SELECT TOP 1 [IDTrans],TanggalSampai,TanggalDari                  
+                                    FROM [AsakaiPemakaianMaterialKomponen] where Tanggaldari = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
             dtTable = MainModul.GetDataTableByCommand(ls_SP)

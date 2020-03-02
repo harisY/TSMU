@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class ClaimCustomerModel
-    Dim _Query As String
+    Dim Query As String
     Public tahun As String
     Public bulan As String
     Public tanggal As String
@@ -21,13 +21,13 @@ Public Class ClaimCustomerModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me.Query)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -50,7 +50,7 @@ Public Class ClaimCustomerModel
         End Try
     End Sub
 
-    Public Sub getDataByID(ByVal ID As String)
+    Public Sub GetDataByID(ByVal ID As String)
         Try
             Dim query As String = "SELECT [IDTransaksi]
                                   ,[Tanggal]
@@ -174,17 +174,17 @@ Public Class ClaimCustomerModel
 
     Public Sub ValidateInsert()
         Try
-            Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
-                                    FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
-            Dim dtTable As New DataTable
+            'Dim ls_SP As String = "SELECT TOP 1 [IDTransaksi],Tanggal                   
+            '                        FROM [AsakaiQCClaim] where Tanggal = '" & H_Tanggal & "' "
+            'Dim dtTable As New DataTable
+            ''dtTable = MainModul.GetDataTableByCommand(ls_SP)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
-                "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
-            Else
+            'If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+            '    "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
+            'Else
 
-            End If
+            'End If
 
         Catch ex As Exception
             Throw
@@ -255,9 +255,8 @@ Public Class ClaimCustomerModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiQCClaim" & vbCrLf &
-                                    "SET Tanggal = " & QVal(H_Tanggal) & ", " & vbCrLf &
-                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
-                                    "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
+                                    "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    " UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex

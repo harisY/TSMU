@@ -19,7 +19,7 @@ Public Class FrmPaymentDirect
     Dim ff_Detail5 As FrmEditDirectPayment
     Dim ff_Detail6 As FrmBankPaid
     Dim ff_Detail7 As frm_payment_aprrove_details
-
+    Dim ff_Detail8 As FrmBankReceipt_Detail
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim GridDtl As GridControl
@@ -305,6 +305,19 @@ Public Class FrmPaymentDirect
         ff_Detail7.MdiParent = MenuUtamaForm
         ff_Detail7.StartPosition = FormStartPosition.CenterScreen
         ff_Detail7.Show()
+    End Sub
+
+    Private Sub CallFrm2(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal ls_Code3 As String = "", Optional ByVal ls_Code4 As String = "", Optional ByVal sts_skreen As Byte = 1, Optional ByVal li_Row As Integer = 0)
+        If ff_Detail8 IsNot Nothing AndAlso ff_Detail8.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail8.Close()
+        End If
+        ff_Detail8 = New FrmBankReceipt_Detail(ls_Code, ls_Code2, ls_Code3, ls_Code4, sts_skreen, Me, li_Row, GridControl1)
+        ff_Detail8.MdiParent = MenuUtamaForm
+        ff_Detail8.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail8.Show()
     End Sub
     Private Sub DataCashBank()
         Dim dtGrid As New DataTable
@@ -1501,11 +1514,31 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        FrmBankReceipt_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
-        FrmBankReceipt_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
-        FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
-        FrmBankReceipt_Detail.Show()
+        'FrmBankReceipt_Detail.Label1.Text = "1"
+        'FrmBankReceipt_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
+        'FrmBankReceipt_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        'FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
+        'FrmBankReceipt_Detail.Show()
+        Try
 
+            Dim account As String = String.Empty
+            Dim accountname As String = String.Empty
+            Dim curyid As String = String.Empty
+            Dim perpost As String = String.Empty
+
+            account = _txtaccount.Text
+            accountname = _txtaccountname.Text
+            curyid = _txtcuryid.Text
+            perpost = _txtperpost.Text
+
+
+            Call CallFrm2(account, accountname, curyid, perpost, 1, GridView1.RowCount)
+
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
