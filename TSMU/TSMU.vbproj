@@ -109,19 +109,15 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\..\..\down\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\..\File\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\..\..\down\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\..\File\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\2019\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
+    <Reference Include="ExcelLibrary">
+      <HintPath>..\..\..\BackUp\TSMU_02032020\TSMU\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="LibDataAccess">
-      <HintPath>..\..\..\TSMU-master\TSMU\LibDataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -1162,18 +1158,6 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\CustomForm\frmForecastPrice_1.Designer.vb">
-      <DependentUpon>frmForecastPrice_1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\CustomForm\frmForecastPrice_1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\CustomForm\frmForecastPrice_.Designer.vb">
-      <DependentUpon>frmForecastPrice_.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\CustomForm\frmForecastPrice_.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form\CustomForm\frmFPrice.Designer.vb">
       <DependentUpon>frmFPrice.vb</DependentUpon>
     </Compile>
@@ -1720,6 +1704,12 @@
       <DependentUpon>Rpt_Upload2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\PrintKanbanInternal_new.Designer.vb">
+      <DependentUpon>PrintKanbanInternal_new.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PrintKanbanInternal_new.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\PrintKanbanInternalTes.Designer.vb">
       <DependentUpon>PrintKanbanInternalTes.vb</DependentUpon>
     </Compile>
@@ -1742,6 +1732,12 @@
       <DependentUpon>QRKaryawan.vb</DependentUpon>
     </Compile>
     <Compile Include="Report\QRKaryawan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Passcard.Designer.vb">
+      <DependentUpon>Passcard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Passcard.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\Testing.Designer.vb">
@@ -2164,8 +2160,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_Upload2.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\PrintKanbanInternal_new.resx">
+      <DependentUpon>PrintKanbanInternal_new.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\QRKaryawan.resx">
       <DependentUpon>QRKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Passcard.resx">
+      <DependentUpon>Passcard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
@@ -2507,12 +2509,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmBoM_detail_input.resx">
       <DependentUpon>frmBoM_detail_input.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\CustomForm\frmForecastPrice_1.resx">
-      <DependentUpon>frmForecastPrice_1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\CustomForm\frmForecastPrice_.resx">
-      <DependentUpon>frmForecastPrice_.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\CustomForm\frmFPrice.resx">
       <DependentUpon>frmFPrice.vb</DependentUpon>

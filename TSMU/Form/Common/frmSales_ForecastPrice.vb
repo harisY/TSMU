@@ -25,7 +25,7 @@ Public Class frmSales_ForecastPrice
 
     Private Sub frmSales_ForecastPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        'Call LoadGrid()
+        Call LoadGrid()
         'Dim dtGrid As New DataTable
         'dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
