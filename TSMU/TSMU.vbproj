@@ -614,6 +614,18 @@
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai\Enginering\FormPerbaikan.Designer.vb">
+      <DependentUpon>FormPerbaikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FormPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.Designer.vb">
+      <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.Designer.vb">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </Compile>
@@ -1783,6 +1795,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Enginering\FormPerbaikan.resx">
+      <DependentUpon>FormPerbaikan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Enginering\FrmDetailPerbaikan.resx">
+      <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsage.resx">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
