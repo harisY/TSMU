@@ -16,6 +16,7 @@ Public Class frmReport_BoM
     Private Sub Init()
         cmbSite.SelectedIndex = 0
         cmbStatus.SelectedIndex = 0
+        cmbStatusM.SelectedIndex = 0
         Grid.DataSource = Nothing
         cmbSite.Focus()
         _txtInvID.Text = "ALL"
@@ -234,8 +235,12 @@ Public Class frmReport_BoM
         Dim dt As New DataTable
         dt = fc_class.DataGridBoMRouting(strSite, strStatus, strinvtID)
         setDataSource(dt, Grid)
+
         Invoke(Sub()
                    ProgBar.Visible = False
+                   If GridView1.RowCount > 0 Then
+                       GridView1.BestFitColumns()
+                   End If
                End Sub)
 
     End Sub
@@ -272,6 +277,9 @@ Public Class frmReport_BoM
         setDataSource(dt, GridMaterial)
         Invoke(Sub()
                    PBMaterial.Visible = False
+                   If GridView3.RowCount > 0 Then
+                       GridView3.BestFitColumns()
+                   End If
                End Sub)
     End Sub
 
@@ -498,7 +506,9 @@ Public Class frmReport_BoM
 
             'Await Task.Run(Sub() GetDataGridMultiLevel())
             Await Task.Run(Sub() GeneraterMultiLevel())
+
         Catch ex As Exception
+            PBMultiLevel.Visible = False
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
@@ -518,12 +528,14 @@ Public Class frmReport_BoM
     Private Sub GetMultiLevel_New()
 
         Dim strinvtID As String = ""
+        Dim strStatus As String = ""
         Invoke(Sub()
                    strinvtID = _txtInvtID2.Text
+                   strStatus = cmbStatusM.Text
                End Sub)
 
         Dim dt As New DataTable
-        dt = fc_class.MultiLevelBoM_New(strinvtID)
+        dt = fc_class.MultiLevelBoM_New(strinvtID, strStatus)
         Dim Level0 As String = ""
         Dim Level1 As String = ""
         Dim Level2 As String = ""
@@ -646,15 +658,20 @@ Public Class frmReport_BoM
 
     Private Sub GeneraterMultiLevel()
         Dim strinvtID As String = ""
+        Dim strStatus As String = ""
         Invoke(Sub()
                    strinvtID = _txtInvtID2.Text
+                   strStatus = cmbStatusM.Text
                End Sub)
 
         Dim dtMulti As New DataTable
-        dtMulti = fc_class.MultiLevelBoM_New(strinvtID)
+        dtMulti = fc_class.MultiLevelBoM_New(strinvtID, strStatus)
         setDataSource(dtMulti, GridMultiLevel)
         Invoke(Sub()
                    PBMultiLevel.Visible = False
+                   If GridView2.RowCount > 0 Then
+                       GridView2.BestFitColumns()
+                   End If
                End Sub)
     End Sub
 End Class
