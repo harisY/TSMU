@@ -118,7 +118,7 @@ Public Class InjectionModel
         End Try
     End Sub
     Public Sub New()
-        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader"
+        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader order by IdTransaksi Desc "
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -342,8 +342,8 @@ Public Class InjectionModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE AsakaiMaintenaceDTMold" & vbCrLf &
-                                    "SET [2. Aktual] = " & QVal(Aktual_Mold) & ", " & vbCrLf &
-                                    "    [3. Balance] = " & QVal(Aktual_Mold - Target_Mold) & ", " & vbCrLf &
+                                    "SET [2. Aktual] = " & Math.Round(QVal(Aktual_Mold), 2) & ", " & vbCrLf &
+                                    "    [3. Balance] = " & Math.Round(QVal(Aktual_Mold - Target_Mold), 2) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE Tanggal = '" & H_date & "'"
             MainModul.ExecQuery(ls_SP)
