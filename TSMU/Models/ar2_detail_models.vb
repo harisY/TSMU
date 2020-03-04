@@ -1,4 +1,4 @@
-﻿Public Class ar_detail_models
+﻿Public Class ar2_detail_models
     Public Property cek1 As Boolean
     Public Property cek2 As Boolean
     Public Property cek3 As Boolean
@@ -34,7 +34,7 @@
                       ,[cek1] [Check]
                       ,[cek4] [CheckPPH]
                       ,[Paid]
-                  FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
+                  FROM [ar2_detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -57,22 +57,7 @@
                       ,[cek1] [Check]
                       ,[cek4] [CheckPPH]
                       ,[Paid]
-                  FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
-            Dim dt As New DataTable
-            dt = MainModul.GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-
-    Public Function GetCustomer() As DataTable
-        Try
-            Dim sql As String = "SELECT 
- 	                                CustID [Customer ID],
-                                    name [Customer Name]
-                                FROM dbo.customer"
+                  FROM [ar2_detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -84,8 +69,22 @@
         Try
             Dim sql As String = "SELECT 
  	                                customer.CustID [Customer ID],
-                                    customer.name [Customer Name]
+                                    customer.name [Customer Name],vendor.vendid
                                 FROM customer inner join vendor on vendor.vendid=customer.user5"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetCustomer() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                CustID [Customer ID],
+                                    name [Customer Name]
+                                FROM dbo.customer"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -167,11 +166,27 @@
             Throw ex
         End Try
     End Function
+    Public Function GetDetailPaymentByVendorID2(VendorId) As Double
+        Try
+            Dim auto As Double
+            Dim dt As New DataTable
+            Dim sql As String =
+                "PROSES_VOUCHER_APNOTPAYYMENT1A_New"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@vendorID", SqlDbType.VarChar)
+            pParam(0).Value = VendorId
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            auto = dt.Rows(0).Item(0).ToString
+            Return auto
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub InsertDetails()
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,Paid) " & vbCrLf &
+                                    "INSERT INTO ar2_detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,Paid) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
@@ -194,7 +209,7 @@
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Detail (cek4) " & vbCrLf &
+                                    "INSERT INTO ar2_detail (cek4) " & vbCrLf &
                                     "Values(" & QVal(Me.cek4) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -206,7 +221,7 @@
         Try
 
             '          Dim ls_SP As String = "UPDATE ardoc SET  user5=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end),user5='1', user4=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end)  WHERE refnbr = " & QVal(No_Invoice) & ""
-            Dim ls_SP As String = "update ARDoc set Ardoc.user5=(case when Ardoc.User4=" & QVal(Paid) & " then '1' else '' end) ,Ardoc.user4=(case when Ardoc.user4=0  then Batch.CuryCrTot-" & QVal(Paid) & " else Ardoc.User4-" & QVal(Paid) & " end) 
+            Dim ls_SP As String = "update ARDoc set Ardoc.user5=(case when Ardoc.User4=" & QVal(Paid) & " then '2' else '' end) ,Ardoc.user4=(case when Ardoc.user4=0  then Batch.CuryCrTot-" & QVal(Paid) & " else Ardoc.User4-" & QVal(Paid) & " end) 
             From Ardoc  inner Join
              Batch On Ardoc.BatNbr=Batch.BatNbr  inner Join
              customer  On Ardoc.custid=customer.custid 
@@ -228,7 +243,7 @@
     End Sub
     Public Sub DeleteDetail(ByVal _vrno As String)
         Try
-            Dim ls_SP As String = "DELETE FROM AR_Detail WHERE rtrim(vrno)=" & QVal(_vrno.TrimEnd) & ""
+            Dim ls_SP As String = "DELETE FROM ar2_detail WHERE rtrim(vrno)=" & QVal(_vrno.TrimEnd) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -237,7 +252,7 @@
     Public Sub UpdateCheckDetailByVrnoInvcId()
         Try
 
-            Dim ls_SP As String = "UPDATE AR_Detail SET Cek1=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            Dim ls_SP As String = "UPDATE ar2_detail SET Cek1=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -246,7 +261,7 @@
     Public Sub UpdateCheckDetailByVrnoInvcIdDir1()
         Try
 
-            Dim ls_SP As String = "UPDATE AR_Detail SET Cek1=1,cek2=0,cek3=0,cek4=1 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            Dim ls_SP As String = "UPDATE ar2_detail SET Cek1=1,cek2=0,cek3=0,cek4=1 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -256,7 +271,7 @@
     Public Sub UpdateCheckDetailByVrnoInvcIdDir0()
         Try
 
-            Dim ls_SP As String = "UPDATE AR_Detail SET Cek1=0,cek2=0,cek3=0,cek4=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
+            Dim ls_SP As String = "UPDATE ar2_detail SET Cek1=0,cek2=0,cek3=0,cek4=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -264,3 +279,4 @@
     End Sub
 
 End Class
+

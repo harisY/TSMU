@@ -104,6 +104,8 @@ Public Class FrmBankReceipt_Detail
                     TxtCheckNo.Text = .CheckNo
                     TxtNoRekTujuan.Text = .AcctID_tujuan
                     TxtNoRekTujuanname.Text = .Descr_tujuan
+                    TxtNoRek.Text = .AcctID
+                    TxtNoRekName.Text = .AcctID_Name
                     TxtCuryID.Text = .CurryID
                     TxtCustID.Text = .CustID
                     TxtCustomer.Text = .Customer
@@ -119,6 +121,8 @@ Public Class FrmBankReceipt_Detail
                 TxtCheckNo.Text = ""
                 TxtNoRekTujuan.Text = fs_Code
                 TxtNoRekTujuanname.Text = fs_Code2
+                TxtNoRek.Text = ""
+                TxtNoRekName.Text = ""
                 TxtCuryID.Text = fs_kode3
                 TxtAmount.Text = 0
                 TxtRemark.Text = ""
@@ -204,6 +208,8 @@ Public Class FrmBankReceipt_Detail
                     .Customer = TxtCustomer.Text
                     .Jumlah = TxtAmount.Text
                     .Remark = TxtRemark.Text
+                    .AcctID = TxtNoRek.Text
+                    .AcctID_Name = TxtNoRekName.Text
                 End With
             End If
         Catch ex As Exception
@@ -237,10 +243,14 @@ Public Class FrmBankReceipt_Detail
             'Next
             IsClosed = True
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            ObjCashBank.Perpost = _TxtPerpost.Text
-            ObjCashBank.AcctID = TxtNoRekTujuan.Text
+            If sts_screen2 = 1 Then
+                ObjCashBank.Perpost = _TxtPerpost.Text
+                ObjCashBank.AcctID = TxtNoRekTujuan.Text
+                GridDtl.DataSource = ObjCashBank.GetGridDetailCashBankByAccountID02()
+            Else
+                GridDtl.DataSource = fc_Class.GetDataGrid
+            End If
 
-            GridDtl.DataSource = ObjCashBank.GetGridDetailCashBankByAccountID02()
             Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -280,6 +290,20 @@ Public Class FrmBankReceipt_Detail
                     TxtNoRekTujuan.Text = Value1
                     TxtNoRekTujuanname.Text = Value2
                     TxtCuryID.Text = Value3
+                    If Trim(TxtCuryID.Text) = "IDR" And Trim(TxtCustID.Text) <> "" Then
+                        TxtNoRek.Text = "11440"
+                        TxtNoRekName.Text = "Trade Receivable Third Party"
+
+                    ElseIf Trim(TxtCuryID.Text) = "USD" And Trim(TxtCustID.Text) <> "" Then
+                        TxtNoRek.Text = "11442"
+                        TxtNoRekName.Text = "Trade Receivable Third Party-$"
+                    ElseIf Trim(TxtCustID.Text) <> "" Then
+                        TxtNoRek.Text = "11441"
+                        TxtNoRekName.Text = "Trade Receivable Third Party-"
+                    Else
+                        TxtNoRek.Text = ""
+                        TxtNoRekName.Text = ""
+                    End If
                 End If
             End If
             lF_SearchData.Close()

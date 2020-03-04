@@ -66,7 +66,7 @@ Public Class PemakaianPaintingModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai, Keterangan from AsakaiPemakaianPainting Where datepart(year, TanggalDari) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, TanggalDari) = '" & Format((Date.Now), "MM") & "' order by TanggalDari Desc"
+        Me._Query = "SELECT IDTrans,CONVERT(varchar,tanggaldari,105) as TanggalDari,CONVERT(varchar,TanggalSampai,105) as TanggalSampai, Keterangan from AsakaiPemakaianPainting order by IDTrans Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

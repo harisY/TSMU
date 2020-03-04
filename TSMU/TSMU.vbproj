@@ -614,6 +614,30 @@
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai\Enginering\FormPerbaikan.Designer.vb">
+      <DependentUpon>FormPerbaikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FormPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.Designer.vb">
+      <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
+      <DependentUpon>FrmInjectionShot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Injection\FrmInjectionShot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Injection\FrmInjectionShotDetail.Designer.vb">
+      <DependentUpon>FrmInjectionShotDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Injection\FrmInjectionShotDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.Designer.vb">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </Compile>
@@ -1436,12 +1460,14 @@
     </Compile>
     <Compile Include="Models\Asakai\HancuranModel.vb" />
     <Compile Include="Models\Asakai\InjectionModel.vb" />
+    <Compile Include="Models\Asakai\InjectionShotModel.vb" />
     <Compile Include="Models\Asakai\IPMIModel.vb" />
     <Compile Include="Models\Asakai\JenisModel.vb" />
     <Compile Include="Models\Asakai\KategoriAbsenModel.vb" />
     <Compile Include="Models\Asakai\KebijakanDetailModel.vb" />
     <Compile Include="Models\Asakai\KebijakanModel.vb" />
     <Compile Include="Models\Asakai\MaintenanceModel.vb" />
+    <Compile Include="Models\Asakai\MaintenanPerbaikanModel.vb" />
     <Compile Include="Models\Asakai\MaterialModel.vb" />
     <Compile Include="Models\Asakai\NonProduksiModel.vb" />
     <Compile Include="Models\Asakai\PaintingProduksiModel.vb" />
@@ -1784,6 +1810,18 @@
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Enginering\FormPerbaikan.resx">
+      <DependentUpon>FormPerbaikan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Enginering\FrmDetailPerbaikan.resx">
+      <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
+      <DependentUpon>FrmInjectionShot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShotDetail.resx">
+      <DependentUpon>FrmInjectionShotDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsage.resx">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </EmbeddedResource>
@@ -1974,8 +2012,6 @@
     <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertainSettleDetailDirect.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertain_Detail.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertain_Detail2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmForecastPrice_.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmForecastPrice_1.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.frmFPrice.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.frmGroupMesin.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.frmGroupMesin_detail.resources" />

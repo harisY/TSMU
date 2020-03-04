@@ -21,6 +21,7 @@ Partial Class FrmBankReceipt_Detail
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.TxtNoRekName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNoRekTujuanname = New DevExpress.XtraEditors.TextEdit()
@@ -32,6 +33,7 @@ Partial Class FrmBankReceipt_Detail
         Me.TxtNoRekTujuan = New DevExpress.XtraEditors.ButtonEdit()
         Me.TxtCustID = New DevExpress.XtraEditors.ButtonEdit()
         Me.TxtCuryID = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNoRek = New DevExpress.XtraEditors.ButtonEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -45,14 +47,12 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtNoRekName = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtNoRek = New DevExpress.XtraEditors.ButtonEdit()
+        Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.TxtNoRekName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +65,7 @@ Partial Class FrmBankReceipt_Detail
         CType(Me.TxtNoRekTujuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCustID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCuryID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNoRek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,11 +79,9 @@ Partial Class FrmBankReceipt_Detail
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoRekName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoRek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -106,6 +105,17 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControl1.Size = New System.Drawing.Size(754, 162)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'TxtNoRekName
+        '
+        Me.TxtNoRekName.Enabled = False
+        Me.TxtNoRekName.Location = New System.Drawing.Point(201, 84)
+        Me.TxtNoRekName.Name = "TxtNoRekName"
+        Me.TxtNoRekName.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.TxtNoRekName.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtNoRekName.Size = New System.Drawing.Size(524, 20)
+        Me.TxtNoRekName.StyleController = Me.LayoutControl1
+        Me.TxtNoRekName.TabIndex = 18
         '
         'TxtCustomer
         '
@@ -212,9 +222,19 @@ Partial Class FrmBankReceipt_Detail
         '
         Me.TxtCuryID.Location = New System.Drawing.Point(435, 108)
         Me.TxtCuryID.Name = "TxtCuryID"
+        Me.TxtCuryID.Properties.ReadOnly = True
         Me.TxtCuryID.Size = New System.Drawing.Size(84, 20)
         Me.TxtCuryID.StyleController = Me.LayoutControl1
         Me.TxtCuryID.TabIndex = 9
+        '
+        'TxtNoRek
+        '
+        Me.TxtNoRek.Location = New System.Drawing.Point(83, 84)
+        Me.TxtNoRek.Name = "TxtNoRek"
+        Me.TxtNoRek.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNoRek.Size = New System.Drawing.Size(114, 20)
+        Me.TxtNoRek.StyleController = Me.LayoutControl1
+        Me.TxtNoRek.TabIndex = 17
         '
         'Root
         '
@@ -332,19 +352,6 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
-        'errProvider
-        '
-        Me.errProvider.ContainerControl = Me
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(133, 253)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Label1"
-        '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.TxtNoRek
@@ -353,17 +360,6 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem12.Size = New System.Drawing.Size(189, 24)
         Me.LayoutControlItem12.Text = "Account"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(68, 13)
-        '
-        'TxtNoRekName
-        '
-        Me.TxtNoRekName.Enabled = False
-        Me.TxtNoRekName.Location = New System.Drawing.Point(201, 84)
-        Me.TxtNoRekName.Name = "TxtNoRekName"
-        Me.TxtNoRekName.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtNoRekName.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtNoRekName.Size = New System.Drawing.Size(524, 20)
-        Me.TxtNoRekName.StyleController = Me.LayoutControl1
-        Me.TxtNoRekName.TabIndex = 18
         '
         'LayoutControlItem13
         '
@@ -374,26 +370,20 @@ Partial Class FrmBankReceipt_Detail
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
         '
-        'TxtNoRek
+        'errProvider
         '
-        Me.TxtNoRek.Location = New System.Drawing.Point(83, 84)
-        Me.TxtNoRek.Name = "TxtNoRek"
-        Me.TxtNoRek.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtNoRek.Size = New System.Drawing.Size(114, 20)
-        Me.TxtNoRek.StyleController = Me.LayoutControl1
-        Me.TxtNoRek.TabIndex = 17
+        Me.errProvider.ContainerControl = Me
         '
         'FrmBankReceipt_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "FrmBankReceipt_Detail"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
-        Me.Controls.SetChildIndex(Me.Label1, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.TxtNoRekName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -406,6 +396,7 @@ Partial Class FrmBankReceipt_Detail
         CType(Me.TxtNoRekTujuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCustID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCuryID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNoRek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -419,11 +410,9 @@ Partial Class FrmBankReceipt_Detail
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.errProvider, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoRekName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoRek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.errProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -454,7 +443,6 @@ Partial Class FrmBankReceipt_Detail
     Friend WithEvents TxtCustID As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents Label1 As Label
     Friend WithEvents TxtCuryID As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtNoRekName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtNoRek As DevExpress.XtraEditors.ButtonEdit

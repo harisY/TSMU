@@ -41,7 +41,7 @@ Public Class DeliveryModel
 
 
     Public Sub New()
-        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,Laporan,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,Laporan,IDTrans from AsakaiDeliveryHeader  order by IDTrans Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

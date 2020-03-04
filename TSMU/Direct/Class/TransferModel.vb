@@ -11,6 +11,12 @@
     Public Property Remark As String
     Public Property Tgl As DateTime
     Public Property NoVouch As String
+    Public Property CuryID_tujuan As String
+    Public Property Rate_Solomon As String
+    Public Property Rate_Transaksi As String
+    Public Property Selisih_Kursi As String
+
+
 
 
 
@@ -53,6 +59,10 @@
            ,[CurryID]
            ,[Jumlah]
            ,[Remark])
+           ,[CuryID_tujuan])
+           ,[Rate_Solomon])
+           ,[Rate_Transaksi])
+           ,[Selisih_Kursi])
      VALUES
            (" & QVal(Tgl) & "
            ," & QVal(NoBukti) & "
@@ -64,7 +74,11 @@
            ," & QVal(Descr_tujuan) & "
            ," & QVal(CurryID) & "
            ," & QVal(Jumlah) & "
-           ," & QVal(Remark) & ")"
+           ," & QVal(Remark) & "
+           ," & QVal(CuryID_tujuan) & "
+           ," & QVal(Rate_Solomon) & "
+           ," & QVal(Rate_Transaksi) & "
+           ," & QVal(Selisih_Kursi) & ")"
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
             Throw ex

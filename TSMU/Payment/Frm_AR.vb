@@ -12,6 +12,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class frm_AR
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
+    Dim dtGrid3 As DataTable
     Dim ObPayment As New Cls_Payment
     Dim table As DataTable
     Dim tableDetail As DataTable
@@ -48,6 +49,26 @@ Public Class frm_AR
                 .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             End With
             GridCellFormat(GridView2)
+
+            dtGrid2 = ObjPaymentHeader.GetDataGrid2()
+            GridControl1.DataSource = dtGrid2
+            With GridView2
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            End With
+            GridCellFormat(GridView2)
+
+            dtGrid3 = ObjPaymentHeader.GetDataGrid3()
+            GridControl2.DataSource = dtGrid3
+            With GridView3
+                .Columns(0).Visible = False
+                .BestFitColumns()
+                .FixedLineWidth = 2
+                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            End With
+            GridCellFormat(GridView3)
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -113,6 +134,37 @@ Public Class frm_AR
                     Call CallFrm2(id,
                              NoVoucher, 1,
                              GridView2.RowCount)
+                End If
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            Dim view As BaseView = GridControl2.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+                id = String.Empty
+                NoVoucher = String.Empty
+                Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView3.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView3.GetRowCellValue(rowHandle, "vrno")
+                    End If
+                Next rowHandle
+
+                If GridView3.GetSelectedRows.Length > 0 Then
+                    Call CallFrm2(id,
+                             NoVoucher, 1,
+                             GridView3.RowCount)
                 End If
             End If
         Catch ex As Exception
