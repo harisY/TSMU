@@ -169,7 +169,7 @@ Public Class FrmLookUpBarcode
                 'PrintTool.ShowPreviewDialog()
                 PrintTool.ShowPreview(UserLookAndFeel.Default)
             Else
-                Dim Laporan1 As New Passcard()
+                Dim Laporan1 As New Testing()
                 With Laporan1
                     .param1 = TxtKodePart.Text
                     .param2 = CmbBulan.Text

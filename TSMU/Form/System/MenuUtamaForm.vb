@@ -685,6 +685,9 @@ Public Class MenuUtamaForm
         If Me.tsMenuTMMIN.DropDownItems.Count > 0 Then
             Me.tsMenuTMMIN.DropDownItems.Clear()
         End If
+        If Me.tsMenuTAM.DropDownItems.Count > 0 Then
+            Me.tsMenuTAM.DropDownItems.Clear()
+        End If
         'If Me.TSMPC.DropDownItems.Count > 0 Then
         '    Me.TSMPC.DropDownItems.Clear()
         'End If
@@ -840,15 +843,4 @@ Public Class MenuUtamaForm
         Return False
     End Function
 
-    Private Sub CalculateTM_Click(sender As Object, e As EventArgs) Handles CalculateTM.Click
-
-    End Sub
-
-    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
-
-    End Sub
-
-    Private Sub tsReportEntertainment_Click(sender As Object, e As EventArgs)
-
-    End Sub
 End Class
