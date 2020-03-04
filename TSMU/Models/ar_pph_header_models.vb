@@ -36,6 +36,7 @@
                     ,[No_Faktur]
                     ,[Tot_Pph]
                     ,[ket_dpp]
+                    ,[CMDMNo]
                 FROM [ar_pph_header] WHERE RTRIM(FPNo) = " & QVal(NoFP) & ""
 
             Dim dt As New DataTable

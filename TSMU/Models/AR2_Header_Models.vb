@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 
-Public Class AR_Header_Models
+Public Class AR2_Header_Models
     Public Property BankID As String
     Public Property BankName As String
     Public Property bankrek As String
@@ -40,7 +40,7 @@ Public Class AR_Header_Models
     Public Property NoBukti As String
     Public Property Remark As String
 
-    Public Property ObjPaymentDetails() As New Collection(Of ar_detail_models)
+    Public Property ObjPaymentDetails() As New Collection(Of ar2_detail_models)
     Public Property ObjBatch() As New Collection(Of batch)
     Public Function GetDataGrid() As DataTable
         Try
@@ -93,7 +93,7 @@ Public Class AR_Header_Models
                 ,[penerima]
                 ,[cmdm_manual]
                 ,[cmdm_manual_ket]
-            FROM [AR_Header]  where [Total_DPP_PPN]-[PPh]-[Biaya_Transfer]-[CM_DM]=0  Order By id desc"
+            FROM [AR2_Header] Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -131,7 +131,7 @@ Public Class AR_Header_Models
                 ,[penerima]
                 ,[cmdm_manual]
                 ,[cmdm_manual_ket]
-            FROM [AR_Header] where [Total_DPP_PPN]-[PPh]-[Biaya_Transfer]-[CM_DM]!=0 Order By id desc"
+            FROM [AR2_Header] where [Total_DPP_PPN]-[PPh]-[Biaya_Transfer]-[CM_DM]!=0 Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -169,7 +169,7 @@ Public Class AR_Header_Models
                     ,[cmdm_manual]
                     ,[cmdm_manual_ket]
                     ,[TotReceive]
-                    FROM [AR_Header] where id=" & QVal(id) & ""
+                    FROM [AR2_Header] where id=" & QVal(id) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then
@@ -244,7 +244,7 @@ Public Class AR_Header_Models
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,NoBukti,TotReceive) " & vbCrLf &
+                                    "INSERT INTO AR2_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,NoBukti,TotReceive) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       " & QVal(Me.BankID) & ", " & vbCrLf &
@@ -308,7 +308,7 @@ Public Class AR_Header_Models
     Public Sub InsertHeaderDir()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO AR_Header (cek4) " & vbCrLf &
+                                    "INSERT INTO AR2_Header (cek4) " & vbCrLf &
                                     "Values(" & QVal(Me.cek4) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -320,7 +320,7 @@ Public Class AR_Header_Models
     Public Sub UpdateHeader(ByVal FpNo As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "Update AR_Header " & vbCrLf &
+                                    "Update AR2_Header " & vbCrLf &
                                     "SET    tgl = " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       BankID = " & QVal(Me.BankID) & ", " & vbCrLf &
                                     "       BankName = " & QVal(Me.BankName) & ", " & vbCrLf &
@@ -369,7 +369,7 @@ Public Class AR_Header_Models
                             With Me.ObjPaymentDetails(i)
                                 .InsertDetails()
                                 .UpdateApDocUser4()
-                                .Updateprosesbankreceipt()
+                                ''.Updateprosesbankreceipt()
                             End With
                         Next
 
@@ -444,7 +444,7 @@ Public Class AR_Header_Models
 
                         UpdateHeader(vrno)
 
-                        Dim PaymentDetails As New ar_detail_models
+                        Dim PaymentDetails As New ar2_detail_models
                         PaymentDetails.DeleteDetail(vrno)
 
                         For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
@@ -480,7 +480,7 @@ Public Class AR_Header_Models
 
                         UpdateHeader(vrno)
 
-                        Dim PaymentDetails As New ar_detail_models
+                        Dim PaymentDetails As New ar2_detail_models
                         PaymentDetails.DeleteDetail(vrno)
 
                         For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
@@ -517,7 +517,7 @@ Public Class AR_Header_Models
 
                         UpdateHeader(vrno)
 
-                        Dim PaymentDetails As New ar_detail_models
+                        Dim PaymentDetails As New ar2_detail_models
                         PaymentDetails.DeleteDetail(vrno)
 
                         For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
@@ -546,7 +546,7 @@ Public Class AR_Header_Models
                  "set @bulan = '" & Mid(PerPost, 6, 2) & "' " &
                 "set @tahun = '" & Mid(PerPost, 1, 4) & "' " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(vrno)),4)+1 as varchar),4) " &
-                "from AR_Header " &
+                "from AR2_Header " &
                 "where SUBSTRING(vrno,4,4) = @tahun AND SUBSTRING(vrno,9,2) = @bulan) " &
                 "select 'AR' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
@@ -590,9 +590,9 @@ Public Class AR_Header_Models
                                 ,CustomerName
                                 ,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as PaidAmount
                                 , cek1 as Level1, cek2 as Level2, cek3 as Level3, cek4 as Direktur 
-                            FROM AR_Header "
+                            FROM AR2_Header "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             If Level = 1 Then
                 sql = sql & " ORDER BY tgl, Customername, vrno"
             ElseIf Level = 2 Then
@@ -615,72 +615,72 @@ Public Class AR_Header_Models
     Public Function GetDataGridApproveByBank(ByVal Level As Integer, BankID As String) As DataTable
         Dim sql As String = "	
 	SELECT 
-                                AR_Header.id
-                                ,AR_Header.vrno as VoucherNo
-                                ,AR_Header.tgl Tanggal
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR_Header.cm_dm-AR_Header.Biaya_Transfer as PaidAmount
-                                , AR_Header.cek1 as Level1, AR_Header.cek2 as Level2, AR_Header.cek3 as Level3, AR_Header.cek4 as Direktur 
-                            FROM payment_detail1  inner join AR_Header on payment_detail1.vrno=AR_Header.vrno 
+                                AR2_Header.id
+                                ,AR2_Header.vrno as VoucherNo
+                                ,AR2_Header.tgl Tanggal
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR2_Header.cm_dm-AR2_Header.Biaya_Transfer as PaidAmount
+                                , AR2_Header.cek1 as Level1, AR2_Header.cek2 as Level2, AR2_Header.cek3 as Level3, AR2_Header.cek4 as Direktur 
+                            FROM payment_detail1  inner join AR2_Header on payment_detail1.vrno=AR2_Header.vrno 
 							 
 							 					
 "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             If Level = 1 Then
-                sql = sql & " WHERE AR_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             ElseIf Level = 2 Then
-                sql = sql & " WHERE AR_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR_Header.cek1 ='1' AND AR_Header.cek2='0' AND AR_Header.cek3='0' AND AR_Header.cek4='0' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR2_Header.cek1 ='1' AND AR2_Header.cek2='0' AND AR2_Header.cek3='0' AND AR2_Header.cek4='0' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             ElseIf Level = 3 Then
-                sql = sql & " WHERE AR_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR_Header.cek1 ='1' AND AR_Header.cek2='1' AND AR_Header.cek3='0' AND AR_Header.cek4='0' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR2_Header.cek1 ='1' AND AR2_Header.cek2='1' AND AR2_Header.cek3='0' AND AR2_Header.cek4='0' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             Else
-                sql = sql & " WHERE AR_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR_Header.cek1 ='1' AND AR_Header.cek2='1' AND AR_Header.cek4='0' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND AR2_Header.cek1 ='1' AND AR2_Header.cek2='1' AND AR2_Header.cek4='0' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             End If
 
             Dim dt As DataTable = New DataTable
@@ -702,9 +702,9 @@ Public Class AR_Header_Models
                                 ,CustomerName
                                 ,(Total_DPP_PPN-PPh)-cm_dm-Biaya_Transfer as PaidAmount
                                 , cek1 as Level1, cek2 as Level2, cek3 as Level3, cek4 as Direktur 
-                            FROM AR_Header "
+                            FROM AR2_Header "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             'If Level = 1 Then
             '    sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) ORDER BY tgl, Customername, vrno"
             'ElseIf Level = 2 Then
@@ -736,17 +736,17 @@ Public Class AR_Header_Models
     End Function
 
     Public Function GetDataGridReject1(ByVal Level As Integer) As DataTable
-        Dim sql As String = "select AR_Header.id
-                                ,AR_Header.vrno as VoucherNo
-                                ,AR_Header.tgl Tanggal
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR_Header.cm_dm-AR_Header.Biaya_Transfer as PaidAmount
-                                , AR_Header.cek1 as Level1, AR_Header.cek2 as Level2, AR_Header.cek3 as Level3, AR_Header.cek4 as Direktur 
-                            FROM payment_detail1  inner join AR_Header on payment_detail1.vrno=AR_Header.vrno "
+        Dim sql As String = "select AR2_Header.id
+                                ,AR2_Header.vrno as VoucherNo
+                                ,AR2_Header.tgl Tanggal
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR2_Header.cm_dm-AR2_Header.Biaya_Transfer as PaidAmount
+                                , AR2_Header.cek1 as Level1, AR2_Header.cek2 as Level2, AR2_Header.cek3 as Level3, AR2_Header.cek4 as Direktur 
+                            FROM payment_detail1  inner join AR2_Header on payment_detail1.vrno=AR2_Header.vrno "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             'If Level = 1 Then
             '    sql = sql & " WHERE BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) ORDER BY tgl, Customername, vrno"
             'ElseIf Level = 2 Then
@@ -759,60 +759,60 @@ Public Class AR_Header_Models
 
             If Level = 1 Then
                 sql = sql & " where payment_detail1.cek1='0'
-							 group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno "
+							 group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno "
             ElseIf Level = 2 Then
-                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek2='0' and AR_Header.cek4=0
-							 group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno "
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek2='0' and AR2_Header.cek4=0
+							 group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno "
             ElseIf Level = 3 Then
-                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek3='0' and AR_Header.cek4=0
-							 group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno "
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek3='0' and AR2_Header.cek4=0
+							 group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno "
             ElseIf Level = 4 Then
-                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek4='0' and AR_Header.cek4=0
-							 group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-								ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno "
+                sql = sql & " where payment_detail1.cek1='0' and  payment_detail1.cek4='0' and AR2_Header.cek4=0
+							 group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+								ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno "
             End If
 
 
@@ -829,55 +829,55 @@ Public Class AR_Header_Models
 
     Public Function GetDataGridApproveDone(ByVal Level As Integer) As DataTable
         Dim sql As String = "SELECT 
-                                AR_Header.id
-                                ,AR_Header.vrno as VoucherNo
-                                ,AR_Header.tgl Tanggal
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR_Header.cm_dm-AR_Header.Biaya_Transfer as PaidAmount
-                            FROM payment_detail1  inner join AR_Header on payment_detail1.vrno=AR_Header.vrno  "
+                                AR2_Header.id
+                                ,AR2_Header.vrno as VoucherNo
+                                ,AR2_Header.tgl Tanggal
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+                                ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-AR2_Header.cm_dm-AR2_Header.Biaya_Transfer as PaidAmount
+                            FROM payment_detail1  inner join AR2_Header on payment_detail1.vrno=AR2_Header.vrno  "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             If Level = 2 Then
-                sql = sql & " WHERE AR_Header.cek2='1' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-							ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.cek2='1' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+							ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             ElseIf Level = 3 Then
-                sql = sql & " WHERE AR_Header.cek3='1' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-							ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.cek3='1' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+							ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             ElseIf Level = 4 Then
-                sql = sql & " WHERE AR_Header.cek4='1' group by AR_Header.id
-                                ,AR_Header.vrno 
-                                ,AR_Header.tgl
-                                ,AR_Header.BankName
-                                ,AR_Header.CuryID
-                                ,AR_Header.CustomerName
-								,AR_Header.cek1, 
-								AR_Header.cek2, 
-								AR_Header.cek3, AR_Header.cek4 
-								,AR_Header.cm_dm
-								,AR_Header.Biaya_Transfer
-							ORDER BY AR_Header.tgl, AR_Header.Customername, AR_Header.vrno"
+                sql = sql & " WHERE AR2_Header.cek4='1' group by AR2_Header.id
+                                ,AR2_Header.vrno 
+                                ,AR2_Header.tgl
+                                ,AR2_Header.BankName
+                                ,AR2_Header.CuryID
+                                ,AR2_Header.CustomerName
+								,AR2_Header.cek1, 
+								AR2_Header.cek2, 
+								AR2_Header.cek3, AR2_Header.cek4 
+								,AR2_Header.cm_dm
+								,AR2_Header.Biaya_Transfer
+							ORDER BY AR2_Header.tgl, AR2_Header.Customername, AR2_Header.vrno"
             End If
 
             Dim dt As DataTable = New DataTable
@@ -897,9 +897,9 @@ Public Class AR_Header_Models
                                 ,CuryID
                                 ,CustomerName
                                 ,Total_DPP_PPN+PPh-pph-cm_dm-Biaya_Transfer as PaidAmount
-                            FROM AR_Header "
+                            FROM AR2_Header "
         Try
-            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR_Header"
+            '' query = "Select vrno as No_Voucher,CustomerName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from AR2_Header"
             If Level = 1 Then
                 sql = sql & " WHERE cek1='0' ORDER BY tgl, Customername, vrno"
             ElseIf Level = 2 Then
@@ -922,11 +922,11 @@ Public Class AR_Header_Models
         Try
             Dim ls_SP As String = String.Empty
             If Level = 2 Then
-                ls_SP = "UPDATE AR_Header SET cek2= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek2= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 3 Then
-                ls_SP = "UPDATE AR_Header SET cek3= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek3= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 4 Then
-                ls_SP = "UPDATE AR_Header SET cek4= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek4= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             End If
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -938,13 +938,13 @@ Public Class AR_Header_Models
         Try
             Dim ls_SP As String = String.Empty
             If Level = 1 Then
-                ls_SP = "UPDATE AR_Header SET cek1= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek1= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 2 Then
-                ls_SP = "UPDATE AR_Header SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 3 Then
-                ls_SP = "UPDATE AR_Header SET cek3= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek3= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 4 Then
-                ls_SP = "UPDATE AR_Header SET cek4= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek4= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             End If
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -956,11 +956,11 @@ Public Class AR_Header_Models
         Try
             Dim ls_SP As String = String.Empty
             If Level = 2 Then
-                ls_SP = "UPDATE AR_Header SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek2= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 3 Then
-                ls_SP = "UPDATE AR_Header SET cek3= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek3= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 4 Then
-                ls_SP = "UPDATE AR_Header SET cek4= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE AR2_Header SET cek4= " & QVal(False) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             End If
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

@@ -1414,6 +1414,8 @@
     <Compile Include="Form\System\MainForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\ar2_detail_models.vb" />
+    <Compile Include="Models\AR2_Header_Models.vb" />
     <Compile Include="Models\ARTaxHeaderModel.vb" />
     <Compile Include="Models\ar_detail_models.vb" />
     <Compile Include="Models\AR_Header_Models.vb" />
@@ -1443,6 +1445,7 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -1500,6 +1503,18 @@
       <DependentUpon>Frm_AR.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_AR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_AR2.Designer.vb">
+      <DependentUpon>frm_AR2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_AR2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_AR2_details.Designer.vb">
+      <DependentUpon>frm_AR2_details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_AR2_details.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\Frm_AR_Tax.Designer.vb">
@@ -2112,6 +2127,12 @@
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport2.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport3.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
+    <EmbeddedResource Include="Payment\frm_AR2.resx">
+      <DependentUpon>frm_AR2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_AR2_details.resx">
+      <DependentUpon>frm_AR2_details.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\Frm_AR_Tax.resx">
       <DependentUpon>Frm_AR_Tax.vb</DependentUpon>
     </EmbeddedResource>
