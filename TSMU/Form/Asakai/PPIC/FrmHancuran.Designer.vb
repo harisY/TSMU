@@ -41,6 +41,7 @@ Partial Class FrmHancuran
         '
         Me.GridView1.GridControl = Me.GridControl
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
         'FrmHancuran

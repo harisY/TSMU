@@ -111,7 +111,8 @@
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
-                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "TanggalDari"))
+                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal Dari"))
+                    'Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
                 End If
             Next rowHandle
 

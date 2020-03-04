@@ -21,7 +21,7 @@ Public Class ClaimCustomerModel
 
 
     Public Sub New()
-        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "'"
+        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal from AsakaiQCClaim  order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

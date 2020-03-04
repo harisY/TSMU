@@ -16,8 +16,8 @@ Public Class QualityProblemModel
         Me._Query = "SELECT Distinct AsakaiQualityProblem.IDTransaksi,Convert(varchar,AsakaiQualityProblem.Tanggal,105) as Tanggal,AsakaiQualityProblemDetail.Shift 
                     from AsakaiQualityProblem inner join AsakaiQualityProblemDetail
                     on AsakaiQualityProblem.IDTransaksi = AsakaiQualityProblemDetail.IDTransaksi
-                    Where datepart(year, AsakaiQualityProblem.Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, AsakaiQualityProblem.Tanggal) = '" & Format((Date.Now), "MM") & "'
                     Order by  AsakaiQualityProblem.IDTransaksi Desc"
+
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
