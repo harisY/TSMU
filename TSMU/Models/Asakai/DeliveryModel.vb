@@ -41,7 +41,7 @@ Public Class DeliveryModel
 
 
     Public Sub New()
-        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,Laporan,IDTrans from AsakaiDeliveryHeader  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me._Query = "SELECT CONVERT(varchar,Tanggal,105) As Tanggal,Laporan,IDTrans from AsakaiDeliveryHeader  order by IDTrans Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -101,26 +101,7 @@ Public Class DeliveryModel
 
     Public Function GetDataDetailDelivery(ID As String) As DataTable
         Try
-            '          Dim query As String = "SELECT [IDTrans]
-            '    ,[Customer]
-            '    ,AsakaiDeliveryDetail.[invtId] as InvtId
-            '    ,Inventory.Descr as ItemNumber
-            '    ,[Delivery Due Date]
-            '    ,[Qty Order]
-            '    ,[Delivery]
-            '    ,[Jumlah]
-            '    ,[Stock TNG 08 DEL]
-            '    ,[Stock TNG 05 WHJ]
-            '    ,[Stock TNG 06 SFG] as [StockTNG06SFG]
-            '    ,[Stock 2nd]
-            '    ,[Stock Paint]
-            '    ,[Stock Inject Presisi]
-            '    ,[WHP]
-            '    ,[Stock TNG 04-02 PNT]
-            '    ,[Total Stock]
-            '    ,[Balance]
-            '    ,[Keterangan]
-            'FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+
             Dim query As String = "SELECT [IDTrans]
               ,[Customer]
               ,AsakaiDeliveryDetail.[invtId] as InvtId
@@ -275,7 +256,7 @@ Public Class DeliveryModel
 
                     Try
 
-                        UpdateHeader(IDTrans)
+                        'UpdateHeader(IDTrans)
                         DeleteDetail(IDTrans)
 
                         For i As Integer = 0 To ObjDetailDelivery.Count - 1

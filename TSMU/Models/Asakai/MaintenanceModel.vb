@@ -1,6 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class MaintenanceModel
-    Dim _Query As String
+    Dim Query As String
     Public tahun As String
     Public bulan As String
     Public tanggal As String
@@ -20,19 +20,35 @@ Public Class MaintenanceModel
     Public Property Keterangan_Mold As String
 
 
+    Public SMesin As Double = 0
+    Public SMold As Double = 0
+
+
+
 
 
     Public Property ObjDetailMaintenance() As New Collection(Of MaintenanceDetailModel)
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenance  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me.Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenance order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = MainModul.GetDataTableByCommand(Me.Query)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetAllDataTableDownTime(ByVal ls_Filter As String) As DataTable
+        Try
+            Dim Script As String = "SELECT IDTransaksi as ID,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenanceDownTime  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(Script)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -328,6 +344,41 @@ Public Class MaintenanceModel
             Throw
         End Try
     End Sub
+
+    Public Function GetSumaryBalance() As DataTable
+        Try
+            Dim query As String = "SELECT Top 1
+                                   AsakaiMaintenance.[IDTransaksi] 
+                                  ,AsakaiMaintenance.[Tanggal] as Tanggal
+                                  ,AsakaiMaintenanceMesin.[3. Balance] as Mesin
+                                  ,AsakaiMaintenanceMold.[3. Balance] as Mold
+                                From AsakaiMaintenance
+                                    inner join AsakaiMaintenanceMesin on AsakaiMaintenance.[IDTransaksi] = AsakaiMaintenanceMesin.[IDTransaksi]
+                                    inner join AsakaiMaintenanceMold on AsakaiMaintenance.[IDTransaksi] = AsakaiMaintenanceMold.[IDTransaksi]
+                                    Where datepart(year, AsakaiMaintenance.[Tanggal]) = '" & tahun & "' AND datepart(month, AsakaiMaintenance.[Tanggal]) = '" & bulan & "' AND datepart(day, AsakaiMaintenance.[Tanggal]) < '" & tanggal & "'
+                                    order by AsakaiMaintenance.[Tanggal] Desc"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
+
+
+            Dim Mesin As Double = 0
+            Dim Mold As Double = 0
+
+            For a As Integer = 0 To dtTable.Rows.Count - 1
+                Mesin = (Mesin + dtTable.Rows(a).Item("Mesin"))
+                Mold = (Mold + dtTable.Rows(a).Item("Mold"))
+            Next
+
+            SMesin = Mesin
+            SMold = Mold
+
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
 
 
 End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmProblemDelivery
+Partial Class FormPerbaikan
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -33,8 +33,8 @@ Partial Class FrmProblemDelivery
         Me.Grid.Location = New System.Drawing.Point(12, 28)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(737, 297)
-        Me.Grid.TabIndex = 2
+        Me.Grid.Size = New System.Drawing.Size(624, 292)
+        Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
@@ -44,12 +44,12 @@ Partial Class FrmProblemDelivery
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
-        'FrmProblemDelivery
+        'FormPerbaikan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(761, 337)
+        Me.ClientSize = New System.Drawing.Size(648, 332)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmProblemDelivery"
+        Me.Name = "FormPerbaikan"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

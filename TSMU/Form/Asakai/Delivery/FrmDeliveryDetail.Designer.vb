@@ -55,7 +55,7 @@ Partial Class FrmDeliveryDetail
         Me.Grid.Location = New System.Drawing.Point(3, 84)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(920, 329)
+        Me.Grid.Size = New System.Drawing.Size(920, 431)
         Me.Grid.TabIndex = 22
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -266,7 +266,7 @@ Partial Class FrmDeliveryDetail
         'FrmDeliveryDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(935, 425)
+        Me.ClientSize = New System.Drawing.Size(935, 527)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmDeliveryDetail"

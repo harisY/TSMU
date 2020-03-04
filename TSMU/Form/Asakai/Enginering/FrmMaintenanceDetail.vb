@@ -338,14 +338,7 @@ Public Class FrmMaintenanceDetail
     Private Sub Plan_Mold_Leave(sender As Object, e As EventArgs) Handles Plan_Mold.Leave
 
         Try
-            If Plan_Mold.Text <> "" Or Act_Mold.Text <> "" Then
-                Dim Plan, Aktual, Balance As Integer
-                Plan = Convert.ToInt32(Plan_Mold.Text)
-                Aktual = Convert.ToInt32(Act_Mold.Text)
-
-                Balance = Aktual - Plan
-                Balance_Mold.Text = Balance.ToString
-            End If
+            HitungBalanceMold()
         Catch ex As Exception
 
         End Try
@@ -354,14 +347,7 @@ Public Class FrmMaintenanceDetail
 
     Private Sub Act_Mold_Leave(sender As Object, e As EventArgs) Handles Act_Mold.Leave
         Try
-            If Plan_Mold.Text <> "" Or Act_Mold.Text <> "" Then
-                Dim Plan, Aktual, Balance As Integer
-                Plan = Convert.ToInt32(Plan_Mold.Text)
-                Aktual = Convert.ToInt32(Act_Mold.Text)
-
-                Balance = Aktual - Plan
-                Balance_Mold.Text = Balance.ToString
-            End If
+            HitungBalanceMold()
         Catch ex As Exception
 
         End Try
@@ -371,14 +357,7 @@ Public Class FrmMaintenanceDetail
     Private Sub Act_Mesin_Leave(sender As Object, e As EventArgs) Handles Act_Mesin.Leave
 
         Try
-            If Plan_Mesin.Text <> "" Or Act_Mesin.Text <> "" Then
-                Dim Plan, Aktual, Balance As Integer
-                Plan = Convert.ToInt32(Plan_Mesin.Text)
-                Aktual = Convert.ToInt32(Act_Mesin.Text)
-
-                Balance = Aktual - Plan
-                Balance_Mesin.Text = Balance.ToString
-            End If
+            HitungBalanceMesin()
 
         Catch ex As Exception
 
@@ -387,14 +366,7 @@ Public Class FrmMaintenanceDetail
 
     Private Sub Plan_Mesin_Leave(sender As Object, e As EventArgs) Handles Plan_Mesin.Leave
         Try
-            If Plan_Mesin.Text <> "" Or Act_Mesin.Text <> "" Then
-                Dim Plan, Aktual, Balance As Integer
-                Plan = Convert.ToInt32(Plan_Mesin.Text)
-                Aktual = Convert.ToInt32(Act_Mesin.Text)
-
-                Balance = Aktual - Plan
-                Balance_Mesin.Text = Balance.ToString
-            End If
+            HitungBalanceMesin()
         Catch ex As Exception
 
         End Try
@@ -402,7 +374,67 @@ Public Class FrmMaintenanceDetail
 
     End Sub
 
-    Private Sub Plan_Mesin_TextChanged(sender As Object, e As EventArgs) Handles Plan_Mesin.TextChanged
+
+
+    Private Sub DtTanggalLaporan_Leave(sender As Object, e As EventArgs) Handles DtTanggalLaporan.Leave
+        Dim tgl As Date = Format(CDate(DtTanggalLaporan.Value), gs_FormatSQLDate)
+
+        fc_Class.tahun = Convert.ToString(tgl.Year)
+        fc_Class.bulan = Convert.ToString(tgl.Month)
+        fc_Class.tanggal = Convert.ToString(tgl.Day)
+        fc_Class.GetSumaryBalance()
+
+        Mesin_Old.Text = fc_Class.SMesin
+        Mold_Old.Text = fc_Class.SMold
+
+
+
+
+
+    End Sub
+
+
+
+    Private Sub HitungBalanceMesin()
+
+        Try
+            If Plan_Mesin.Text <> "" Or Act_Mesin.Text <> "" Then
+                Dim Plan, Aktual, Balance, MesinOld As Integer
+                Plan = Convert.ToInt32(Plan_Mesin.Text)
+                Aktual = Convert.ToInt32(Act_Mesin.Text)
+                MesinOld = Convert.ToInt32(Mesin_Old.Text)
+
+                Balance = (Aktual - Plan)
+                'Balance = (Aktual - Plan) + MesinOld
+                Balance_Mesin.Text = Balance.ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
+    Private Sub HitungBalanceMold()
+
+        Try
+            If Plan_Mold.Text <> "" Or Act_Mold.Text <> "" Then
+                Dim Plan, Aktual, Balance, MoldOld As Integer
+                Plan = Convert.ToInt32(Plan_Mold.Text)
+                Aktual = Convert.ToInt32(Act_Mold.Text)
+                MoldOld = Convert.ToInt32(Mold_Old.Text)
+
+                'Balance = (Aktual - Plan) + MoldOld
+                Balance = (Aktual - Plan)
+                Balance_Mold.Text = Balance.ToString
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub DtTanggalLaporan_ValueChanged(sender As Object, e As EventArgs) Handles DtTanggalLaporan.ValueChanged
 
     End Sub
 End Class

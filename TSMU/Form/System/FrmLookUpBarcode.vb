@@ -32,6 +32,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("LR")
         dtTemp.Columns.Add("KodeWarna")
         dtTemp.Columns.Add("CustomerID")
+        dtTemp.Columns.Add("QrCode1")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -149,27 +150,59 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(dt.Rows(0).Item("LR") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(dt.Rows(0).Item("KodeWarna") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(14) = Trim(dt.Rows(0).Item("CustomerID") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(15) = Trim(dt.Rows(0).Item("InvtID") & "") & "-" & Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
             Next
 
-            Dim Laporan As New Testing()
-            With Laporan
-                .param1 = TxtKodePart.Text
-                .param2 = CmbBulan.Text
-                If gh_Common.Site.ToLower = "tng" Then
+            If gh_Common.Site.ToLower = "tng" Then
+                Dim Laporan As New Testing()
+                With Laporan
+                    .param1 = TxtKodePart.Text
+                    .param2 = CmbBulan.Text
                     .param3 = "TSC1"
                     .param4 = TxtTgl.Text
-                Else
+                    .DataSource = dtTemp
+                    AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+                End With
+
+                PrintTool = New ReportPrintTool(Laporan)
+                TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                'PrintTool.ShowPreviewDialog()
+                PrintTool.ShowPreview(UserLookAndFeel.Default)
+            Else
+                Dim Laporan1 As New Passcard()
+                With Laporan1
+                    .param1 = TxtKodePart.Text
+                    .param2 = CmbBulan.Text
                     .param3 = "TSC3"
                     .param4 = TxtTgl.Text
-                End If
-                .DataSource = dtTemp
-                AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
-            End With
+                    .DataSource = dtTemp
+                    AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+                End With
 
-            PrintTool = New ReportPrintTool(Laporan)
-            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
-            'PrintTool.ShowPreviewDialog()
-            PrintTool.ShowPreview(UserLookAndFeel.Default)
+                PrintTool = New ReportPrintTool(Laporan1)
+                TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                'PrintTool.ShowPreviewDialog()
+                PrintTool.ShowPreview(UserLookAndFeel.Default)
+            End If
+
+            'Dim Laporan As New Testing()
+            'With Laporan
+            '    .param1 = TxtKodePart.Text
+            '    .param2 = CmbBulan.Text
+            '    If gh_Common.Site.ToLower = "tng" Then
+            '        .param3 = "TSC1"
+            '        .param4 = TxtTgl.Text
+            '    Else
+            '        .param3 = "TSC3"
+            '        .param4 = TxtTgl.Text
+            '    End If
+            '    .DataSource = dtTemp
+            '    AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+            'End With
+            'PrintTool = New ReportPrintTool(Laporan)
+            'TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            ''PrintTool.ShowPreviewDialog()
+            'PrintTool.ShowPreview(UserLookAndFeel.Default)
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try

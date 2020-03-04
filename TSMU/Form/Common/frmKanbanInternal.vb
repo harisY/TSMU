@@ -149,7 +149,6 @@ Public Class frmKanbanInternal
             End If
             Dim groups = From j In dtTemp
                          Group By x = New With {
-                                Key .NoUrut = j.Field(Of Integer)("NoUrut"),
                                 Key .Cust = j.Field(Of String)("Cust"),
                                 Key .PONumber = j.Field(Of String)("PONumber"),
                                 Key .InventoryId = j.Field(Of String)("InventoryId"),
@@ -164,10 +163,8 @@ Public Class frmKanbanInternal
                                 Key .PartNoLabel = j.Field(Of String)("PartNoLabel"),
                                 Key .RackLabel = j.Field(Of String)("RackLabel"),
                                 Key .RackPart = j.Field(Of String)("RackPart"),
-                                Key .ItemNo = j.Field(Of String)("ItemNo"),
                                 Key .Warna = j.Field(Of String)("Warna")} Into g = Group
                          Select New With {
-                            x.NoUrut,
                             x.Cust,
                             x.PONumber,
                             x.InventoryId,
@@ -183,13 +180,16 @@ Public Class frmKanbanInternal
                              x.PartNoLabel,
                              x.RackLabel,
                              x.RackPart,
-                             x.ItemNo,
                              x.Warna
                         }
+
+            'Dim test2 = dtTemp.AsEnumerable().GroupBy(Function(row) row.Item("PONumber")).Select(Function(group) New With {.Grp = group.Key, .Sum = group.Sum(Function(r) Double.Parse(r.Item("QtyOrder").ToString()))})
+
             TempTable1()
+            Dim urut As Integer = 1
             For Each item In groups
                 Dim dr As DataRow = dtTemp1.NewRow()
-                dr("NoUrut") = item.NoUrut
+                dr("NoUrut") = urut
                 dr("Cust") = item.Cust
                 dr("PONumber") = item.PONumber
                 dr("InventoryId") = item.InventoryId
@@ -205,13 +205,13 @@ Public Class frmKanbanInternal
                 dr("PartNoLabel") = item.PartNoLabel
                 dr("RackLabel") = item.RackLabel
                 dr("RackPart") = item.RackPart
-                dr("ItemNo") = item.ItemNo
                 dr("Warna") = item.Warna
+                dr("QRCode") = item.InventoryId & item.PartNoLabel
                 dtTemp1.Rows.Add(dr)
+                urut = urut + 1
             Next
 
-
-            Dim Laporan As New PrintKanbanInternalTes()
+            Dim Laporan As New PrintKanbanInternal_new()
             With Laporan
                 '.param1 = _param
                 .DataSource = dtTemp1
@@ -287,6 +287,7 @@ Public Class frmKanbanInternal
         dtTemp1.Columns.Add("RackPart", GetType(String))
         dtTemp1.Columns.Add("ItemNo", GetType(String))
         dtTemp1.Columns.Add("Warna", GetType(String))
+        dtTemp1.Columns.Add("QRCode", GetType(String))
         dtTemp1.Clear()
     End Sub
 End Class

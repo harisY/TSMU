@@ -11,7 +11,32 @@
     Public Property Remark As String
     Public Property Tgl As DateTime
     Public Property NoVouch As String
+    Public Property CuryID_tujuan As String
+    Public Property Rate_Solomon As String
+    Public Property Rate_Transaksi As String
+    Public Property Selisih_Kursi As String
 
+
+
+
+
+    Public Function GetRate(VendorId) As String
+        Try
+            Dim dt As New DataTable
+            Dim rate As String
+            Dim sql As String =
+                "Rate"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@CuryID", SqlDbType.VarChar)
+            pParam(0).Value = VendorId
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            rate = dt.Rows(0).Item(1).ToString
+
+            Return rate
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Sub Insert()
         Try
@@ -34,6 +59,10 @@
            ,[CurryID]
            ,[Jumlah]
            ,[Remark])
+           ,[CuryID_tujuan])
+           ,[Rate_Solomon])
+           ,[Rate_Transaksi])
+           ,[Selisih_Kursi])
      VALUES
            (" & QVal(Tgl) & "
            ," & QVal(NoBukti) & "
@@ -45,7 +74,11 @@
            ," & QVal(Descr_tujuan) & "
            ," & QVal(CurryID) & "
            ," & QVal(Jumlah) & "
-           ," & QVal(Remark) & ")"
+           ," & QVal(Remark) & "
+           ," & QVal(CuryID_tujuan) & "
+           ," & QVal(Rate_Solomon) & "
+           ," & QVal(Rate_Transaksi) & "
+           ," & QVal(Selisih_Kursi) & ")"
             MainModul.ExecQuery_Solomon(sql)
         Catch ex As Exception
             Throw ex

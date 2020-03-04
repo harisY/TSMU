@@ -1,19 +1,14 @@
-﻿Public Class FrmDeliveryHeader
-
-    Dim ff_Detail As FrmDeliveryDetail
+﻿Public Class FrmInjectionShot
+    Dim ff_Detail As FrmInjectionShotDetail
     Dim dtGrid As DataTable
-    Dim fc_Class As New DeliveryModel
+    Dim fc_Class As New InjectionShotModel
 
-
-    Private Sub FrmDeliveryHeader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Sub FrmInjectionShort_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
-
     End Sub
-
 
     Private Sub LoadGrid()
         Try
@@ -37,7 +32,7 @@
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmDeliveryDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmInjectionShotDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = MenuUtamaForm
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -79,7 +74,7 @@
             If GridView1.RowCount > 0 Then
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        IDTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
+                        IDTrans = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
                     End If
                 Next rowHandle
                 fc_Class.Delete(IDTrans)
@@ -96,17 +91,16 @@
     End Sub
 
 
-
     Dim IdTrans As String
     Dim Tanggal As Date
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
             IdTrans = String.Empty
-            fc_Class = New DeliveryModel
+            fc_Class = New InjectionShotModel
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
                     'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
                 End If
             Next rowHandle

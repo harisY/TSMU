@@ -55,6 +55,48 @@ Public Class InjectionModel
 
 #End Region
 
+#Region "Maintenance"
+    Public Property Aktual_Mold As Double
+    Public Property Aktual_Mesin As Double
+
+    Public Property Target_Mold As Double
+    Public Property Target_Mesin As Double
+
+    Public Sub GetTargetMold()
+        Try
+            Dim ls_SP As String = "SELECT TOP 1 [1. Target] as Target,Tanggal                 
+                                    FROM [AsakaiMaintenaceDTMold] where Tanggal = '" & H_date & "' "
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Target_Mold = dtTable.Rows(0).Item("Target")
+            Else
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub GetTargetMesin()
+        Try
+            Dim ls_SP As String = "SELECT TOP 1 [1. Target] as Target,Tanggal                 
+                                    FROM [AsakaiMaintenaceDTMesin] where Tanggal = '" & H_date & "' "
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Target_Mesin = dtTable.Rows(0).Item("Target")
+            Else
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+#End Region
 
     Public Sub ValidateInsert()
         Try
@@ -76,7 +118,7 @@ Public Class InjectionModel
         End Try
     End Sub
     Public Sub New()
-        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader"
+        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader order by IdTransaksi Desc "
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
@@ -167,7 +209,8 @@ Public Class InjectionModel
 
                         InsertInjectionDetailsPlanAktual()
                         InsertInjectionDetailsRejectRate()
-
+                        UpdateDTMold()
+                        UpdateDTMesin()
 
 
                         Trans1.Commit()
@@ -292,6 +335,33 @@ Public Class InjectionModel
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateDTMold()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE AsakaiMaintenaceDTMold" & vbCrLf &
+                                    "SET [2. Aktual] = " & Math.Round(QVal(Aktual_Mold), 2) & ", " & vbCrLf &
+                                    "    [3. Balance] = " & Math.Round(QVal(Aktual_Mold - Target_Mold), 2) & ", " & vbCrLf &
+                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "    UpdatedDate = GETDATE() WHERE Tanggal = '" & H_date & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateDTMesin()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE AsakaiMaintenaceDTMesin" & vbCrLf &
+                                    "SET [2. Aktual] = " & QVal(Aktual_Mesin) & ", " & vbCrLf &
+                                    "    [3. Balance] = " & QVal(Aktual_Mesin - Target_Mesin) & ", " & vbCrLf &
+                                    "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "    UpdatedDate = GETDATE() WHERE Tanggal = '" & H_date & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 

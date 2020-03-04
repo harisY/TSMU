@@ -245,12 +245,14 @@
 
     End Function
 
-    Public Function MultiLevelBoM_New(ByVal strInvtID As String) As DataTable
+    Public Function MultiLevelBoM_New(ByVal strInvtID As String, status As String) As DataTable
         Try
             Dim query As String = "GenerateMultiLevel"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@ParentId", SqlDbType.VarChar)
             pParam(0).Value = strInvtID
+            pParam(1) = New SqlClient.SqlParameter("@status", SqlDbType.VarChar)
+            pParam(1).Value = status
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
