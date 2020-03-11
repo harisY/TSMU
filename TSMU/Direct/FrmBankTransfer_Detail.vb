@@ -27,8 +27,6 @@ Public Class FrmBankTransfer_Detail
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
-
-
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -91,6 +89,9 @@ Public Class FrmBankTransfer_Detail
                     TxtRate.Text = .Rate_Transaksi
                     TxtRateSolomon.Text = .Rate_Solomon
                     TxtSelisihRate.Text = .Selisih_Kursi
+                    TxtAmount1.Text = Format(.Jumlah * .Rate_Solomon, "##,0")
+                    TxtAmount2.Text = Format(.Jumlah * .Rate_Transaksi, "##,0")
+
                     ''_txtaccname.focus()
                 End With
             Else
@@ -99,8 +100,8 @@ Public Class FrmBankTransfer_Detail
                 TxtNoBukti.Text = ""
                 ''TxtPerpost.Text = ""
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
-                TxtNoRekAsal.Text = ""
-                TxtNoRekAsalname.Text = ""
+                TxtNoRekTujuan.Text = ""
+                TxtNoRekTujuanname.Text = ""
                 TxtCheckNo.Text = ""
                 '        TxtNoRekTujuan.Text = ""
                 '       TxtNoRekTujuanname.Text = ""

@@ -58,10 +58,10 @@
            ,[Descr_tujuan]
            ,[CurryID]
            ,[Jumlah]
-           ,[Remark])
-           ,[CuryID_tujuan])
-           ,[Rate_Solomon])
-           ,[Rate_Transaksi])
+           ,[Remark]
+           ,[CuryID_tujuan]
+           ,[Rate_Solomon]
+           ,[Rate_Transaksi]
            ,[Selisih_Kursi])
      VALUES
            (" & QVal(Tgl) & "
@@ -330,6 +330,10 @@
                     CurryID = Trim(.Item("CurryID") & "")
                     Jumlah = Trim(.Item("Jumlah") & "")
                     Remark = Trim(.Item("Remark") & "")
+                    CuryID_tujuan = Trim(.Item("CuryID_tujuan") & "")
+                    Rate_Transaksi = Trim(.Item("Rate_Transaksi") & "")
+                    Rate_Solomon = Trim(.Item("Rate_Solomon") & "")
+                    Selisih_Kursi = Trim(.Item("Selisih_Kursi") & "")
                 End With
             End If
         Catch ex As Exception

@@ -1542,8 +1542,8 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        FrmBankTransfer_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
-        FrmBankTransfer_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        FrmBankTransfer_Detail.TxtNoRekAsal.Text = _txtaccount.Text
+        FrmBankTransfer_Detail.TxtNoRekAsalname.Text = _txtaccountname.Text
         FrmBankTransfer_Detail.TxtCuryID.Text = _txtcuryid.Text
         FrmBankTransfer_Detail.Show()
 

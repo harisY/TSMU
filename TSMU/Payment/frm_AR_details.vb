@@ -665,4 +665,8 @@ Public Class frm_AR_details
             End If
         End With
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+    End Sub
 End Class
