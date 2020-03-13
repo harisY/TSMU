@@ -279,7 +279,7 @@ Public Class frm_AR_details
                 _TxtTotalAmount.Text = Format(TotAmount, gs_FormatBulat)
             End If
             ''  Dim vbalance As Double = _TxtTotalAmount.Text - _TxtDebit.Text
-            vbalance = _TxtDebit.Text - _TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text
+            vbalance = _TxtDebit.Text - (_TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text)
             _txtbalance.Text = vbalance
             '       Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
             '       _TxtDebit.Text = Format(debit, gs_FormatBulat)
@@ -519,7 +519,9 @@ Public Class frm_AR_details
     'End Sub
 
     Private Sub _TxtCM_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtCM.EditValueChanged
-
+        Dim vbalance2 As Double = 0
+        vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+        _txtbalance.Text = vbalance2
     End Sub
 
     Private Sub _TxtCM_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
@@ -634,10 +636,9 @@ Public Class frm_AR_details
     Private Sub _TxtPPH_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtPPH.EditValueChanged
         Try
 
-
-            'Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
-            '_txtbalance.Text = vbalance
-            '_txtbalance.Text = Format(vbalance, gs_FormatBulat)
+            Dim vbalance2 As Double = 0
+            vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+            _txtbalance.Text = vbalance2
         Catch ex As Exception
             Throw ex
 
@@ -666,7 +667,10 @@ Public Class frm_AR_details
         End With
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
+    Private Sub _TxtBiaya_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtBiaya.EditValueChanged
+        Dim vbalance2 As Double = 0
+        vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+        _txtbalance.Text = vbalance2
     End Sub
+
 End Class
