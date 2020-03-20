@@ -89,8 +89,8 @@ Public Class frm_AR2_details
     End Sub
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
         Try
-            If e.Column.FieldName = "Check" Then
-                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True Then
+            If e.Column.FieldName = "Check1" Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check1") = True Then
                     GetTot()
                 Else
                     GetTot()
@@ -99,7 +99,7 @@ Public Class frm_AR2_details
             End If
 
             If e.Column.FieldName = "CheckPPH" Then
-                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check1") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
                     GetPPH()
                     Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Paid"))
                     Dim _pphAmount As Double = _pph * 0.02
@@ -153,7 +153,7 @@ Public Class frm_AR2_details
             .Descr = ""
 
             .prosespay = "0"
-            .tgl = _TxtTgl.Text
+            .tgl = _TxtTgl.EditValue
 
             .uploaded = "0"
             .CustID = _TxtVendorID.Text
@@ -175,7 +175,7 @@ Public Class frm_AR2_details
         Try
             ObjPaymentHeader.ObjPaymentDetails.Clear()
             For i As Integer = 0 To GridView1.RowCount - 1
-                If GridView1.GetRowCellValue(i, "Check") = True Then
+                If GridView1.GetRowCellValue(i, "Check1") = True Then
                     Dim ObjDetails As New ar2_detail_models
                     With ObjDetails
                         .vrno = _txtVoucher.Text.TrimEnd
@@ -194,7 +194,7 @@ Public Class frm_AR2_details
                     ObjPaymentHeader.ObjPaymentDetails.Add(ObjDetails)
                 End If
             Next
-            If isUpdate = True Then
+            If isUpdate = False Then
                 ObjPaymentHeader.InsertData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
@@ -235,7 +235,7 @@ Public Class frm_AR2_details
         Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
-                If GridView1.GetRowCellValue(i, "Check") = True Then
+                If GridView1.GetRowCellValue(i, "Check1") = True Then
                     TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Paid"))
                 End If
 
@@ -260,7 +260,7 @@ Public Class frm_AR2_details
         Dim cek2 As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
-                If GridView1.GetRowCellValue(i, "CheckPPH") = True And GridView1.GetRowCellValue(i, "Check") = True Then
+                If GridView1.GetRowCellValue(i, "CheckPPH") = True And GridView1.GetRowCellValue(i, "Check1") = True Then
                     TotAmountpph = TotAmountpph + (CDbl(GridView1.GetRowCellValue(i, "Paid")) * 0.02)
                 End If
 
@@ -401,7 +401,7 @@ Public Class frm_AR2_details
                     End If
                     Dim APAMOUNT As Double
                     APAMOUNT = ObjPaymentDetail.GetDetailPaymentByVendorID2(Value3.TrimEnd)
-                    _TxtTotalAmountAP.Text = Format(APAMOUNT, "##,0")
+                    _TxtTotalAmountAP.EditValue = Format(APAMOUNT, "##,0")
 
                 End If
             End If
