@@ -21,8 +21,8 @@ Partial Public Class PrintKanbanInternalTes
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
+        Dim Code128Generator2 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
         Dim Code39Generator1 As DevExpress.XtraPrinting.BarCode.Code39Generator = New DevExpress.XtraPrinting.BarCode.Code39Generator()
-        Dim Code39Generator2 As DevExpress.XtraPrinting.BarCode.Code39Generator = New DevExpress.XtraPrinting.BarCode.Code39Generator()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
@@ -377,20 +377,19 @@ Partial Public Class PrintKanbanInternalTes
         'XrBarCode2
         '
         Me.XrBarCode2.AutoModule = True
+        Me.XrBarCode2.BarCodeOrientation = DevExpress.XtraPrinting.BarCode.BarCodeOrientation.UpsideDown
         Me.XrBarCode2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrBarCode2.Dpi = 254.0!
         Me.XrBarCode2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NoPO]")})
         Me.XrBarCode2.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(198.2022!, 495.4674!)
-        Me.XrBarCode2.Module = 5.08!
         Me.XrBarCode2.Name = "XrBarCode2"
         Me.XrBarCode2.Padding = New DevExpress.XtraPrinting.PaddingInfo(26, 26, 0, 0, 254.0!)
         Me.XrBarCode2.ShowText = False
         Me.XrBarCode2.SizeF = New System.Drawing.SizeF(529.4132!, 75.97855!)
         Me.XrBarCode2.StylePriority.UseBorders = False
         Me.XrBarCode2.StylePriority.UseFont = False
-        Code39Generator1.WideNarrowRatio = 3.0!
-        Me.XrBarCode2.Symbology = Code39Generator1
+        Me.XrBarCode2.Symbology = Code128Generator2
         '
         'XrLabel23
         '
@@ -457,8 +456,8 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode1.SizeF = New System.Drawing.SizeF(529.4127!, 100.5586!)
         Me.XrBarCode1.StylePriority.UseBorders = False
         Me.XrBarCode1.StylePriority.UseFont = False
-        Code39Generator2.WideNarrowRatio = 3.0!
-        Me.XrBarCode1.Symbology = Code39Generator2
+        Code39Generator1.WideNarrowRatio = 3.0!
+        Me.XrBarCode1.Symbology = Code39Generator1
         '
         'XrLabel20
         '

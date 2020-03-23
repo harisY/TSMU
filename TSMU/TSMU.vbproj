@@ -876,6 +876,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
+      <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSoRegTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmKaryawanQrCode.Designer.vb">
       <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
     </Compile>
@@ -1218,6 +1224,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReportSo.Designer.vb">
+      <DependentUpon>frmReportSo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReportSo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_yim.Designer.vb">
       <DependentUpon>frmReport_yim.vb</DependentUpon>
     </Compile>
@@ -1300,6 +1312,12 @@
       <DependentUpon>frmSales.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\frmSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\MenuNew.Designer.vb">
+      <DependentUpon>MenuNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\MenuNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\frmAbout.Designer.vb">
@@ -1500,6 +1518,7 @@
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
+    <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
@@ -1936,6 +1955,9 @@
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
+      <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmKaryawanQrCode.resx">
       <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
     </EmbeddedResource>
@@ -1951,11 +1973,17 @@
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReportSo.resx">
+      <DependentUpon>frmReportSo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_yim.resx">
       <DependentUpon>frmReport_yim.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\MenuNew.resx">
+      <DependentUpon>MenuNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystem_UserSetupNew.resx">
       <DependentUpon>FrmSystem_UserSetupNew.vb</DependentUpon>
@@ -1963,219 +1991,6 @@
     <EmbeddedResource Include="Form\System\MainForm1.resx">
       <DependentUpon>MainForm1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\TSMU.baseForm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.coba.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.CustomMsgBox.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.DXReport_UploadToSolomon.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Form2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmAbout.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmAbsen.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmAbsenDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmApproval.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmApprovalDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmApprovalEntertain.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmBankPaid.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmBankReceipt.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmBankReceipt_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmBankTransfer.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmBankTransfer_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBarcodeGenerate.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoMLookUpLevel.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBom_Budget_Calculate.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_Budget_Calculate_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_Calculated.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_Calculated_View.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_detail1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_detail_input.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmBoM_routing.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmCalculate.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmClaimCustomer.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmClaimCustomerDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmCoA.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmCoA_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmCompare_Invoice.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmCompare_Invoice1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDeliveryDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDeliveryHeader.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmDelvi.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDepartemen.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDepartemenDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDetailPaymentDirect.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDetailPaymentSettle.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmDetailPaymentSuspend.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEditDirectPayment.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertain.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertainSettle.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertainSettleDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertainSettleDetailDirect.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertain_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmEntertain_Detail2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmFPrice.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmGroupMesin.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmGroupMesin_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmHancuran.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmHancuranDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmHancuranStok.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmHancuranStokDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmHarigami.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmInjection.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmInventory.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmInventory_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmIPMI.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmIPMIDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmJenis.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmJenisDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmKanbanInternal.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmKategoriAbsen.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmKategoriAbsenDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmKebijakaDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmKebijakan.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmListAdmHargaDetails.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmListHargaADM.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmLogin.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmLokasi.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmLokasi_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmLokasi_detail_input.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmLokasi_input.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmLookUpBarcode.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmLookUpBarcodeInternal.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaintenance.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaintenanceDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterial.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterialDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterialPainting.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterialPaintingHeader.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterialUsage.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmMaterialUsageDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmMesin.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmMesin_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmNonProduksi.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmNonProduksiDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmPaintingProduksi.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmPaymentDirect.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmPemakaianMaterial.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmPettyCash.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmPettyCash_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmProblemDelivery.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmProblemDeliveryDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmQualityProblem.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmQualityProblemDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportEntertain.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportEntertainmentTax.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportSettle.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportSettle2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportSettleEntertain.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportSuspend.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReportSuspend2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_adm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_BarcodeGenerator.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_BarcodePrintLog.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_BoM.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Harigami.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmReport_Matome.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Sales_Budget.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Sales_Forecast.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Sales_Forecast_Price.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Sales_Order.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_Sales_Price.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_ScandDN.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmReport_yim.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSalesForecastCalculatedSum.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSalesForecast_calculated.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Budget.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Budget_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Forecast.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_ForecastPrice.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_ForecastPrice_details.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Forecast_Calculated.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Forecast_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Price.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSales_Price_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmScanDN.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSettlement.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSettlement_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuratJalan.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuratJalanFin.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuratJalanList.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspend.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspendSettle.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspendSettleDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspendSettleDetailDirect.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspend_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSuspend_Detail2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemExcel.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemExcel1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemExcelBarcode.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemExcelBoM.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemLookUpCalculate.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemLookUpCalculateBudget.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystemLookUpCalculateSales.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmSystemPathConfig.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_ChangePassword.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_ConfigDB.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_ConfigInputBox.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_Filter.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_FilterData.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_FilterDev.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_LookupGrid.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_User.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_UserSetup.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_UserSetupNew.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmSystem_User_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frmtest.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravel.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTraveler.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravelerDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravelSettle.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravelSettleDetail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravel_Detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmTravel_Detail2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmUploadKanbanAdm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmUploadKanbanYIM.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmUser_Group.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmUser_Group_Akses.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmUser_Group_Akses_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmUser_Group_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.FrmWait.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmWorkCenter.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frmWorkCenter_detail.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_AR.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_AR_details.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_cmdm1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_fp_details.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_fp_new.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_lookup_cmdm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_lookup_pph.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_lookup_pph_approve.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_payment.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_payment_approve.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_payment_aprrove_details.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_payment_details.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_APSolomon.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_PPh.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_PPN.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_UploadMizuho.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_UploadToSolomon.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_Rpt_ViewPayment.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_ScanFP.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.frm_system_config_db.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Frm_UploadToSolomon.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.MainForm1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.MenuUtamaForm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.PrintKanbanInternal.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.PrintKanbanInternalTes.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.PrintPO.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Resources.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.suspend1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.suspendreport.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.Testing.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.XtraReport1.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.XtraReport2.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.XtraReport3.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
     <EmbeddedResource Include="Payment\frm_lookup_cmdm_ar.resx">
       <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
     </EmbeddedResource>
@@ -2891,14 +2706,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\TSMU.vbproj.CopyComplete" />
-    <None Include="obj\Debug\TSMU.vbproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\TSMU.vbproj.GenerateResource.cache" />
-    <None Include="obj\Debug\TSMU.vbproj.ResolveComReference.cache" />
-    <None Include="obj\Debug\TSMU.vbprojAssemblyReference.cache" />
-    <None Include="obj\Release\TSMU.vbproj.CoreCompileInputs.cache" />
-    <None Include="obj\Release\TSMU.vbproj.ResolveComReference.cache" />
     <None Include="packages.config" />
     <None Include="Resources\Barcode2_16x16.png" />
   </ItemGroup>
@@ -3009,34 +2816,6 @@
     <Content Include="Icon\takagi_ico_ih6_icon.ico" />
     <Content Include="Icon\takagi_ico_zZM_icon.ico" />
     <Content Include="Icon\tsc.png" />
-    <Content Include="obj\Debug\Interop.Microsoft.Office.Core.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.bank.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.dataupload.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.dscmdm.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.dsCrud.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.dsLaporan.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.mizuho.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dataset.suspend.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\dbml.BoM.designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.entertain.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.entertain1.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.relasi.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.RptsettleDetail.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.settle1.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.settle2.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.settleApproval.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.SettleEntertain.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.suspend11.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Direct.report.suspendreport1.vb.dll" />
-    <Content Include="obj\Debug\TempPE\My Project.Resources.Designer.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Payment.ReportPayment.Rpt_upload.vb.dll" />
-    <Content Include="obj\Debug\TempPE\Payment.Rpt_Upload2.vb.dll" />
-    <Content Include="obj\Debug\TSMU.exe" />
-    <Content Include="obj\Debug\tsmu.exe.licenses" />
-    <Content Include="obj\Debug\TSMU.pdb" />
-    <Content Include="obj\Debug\TSMU.vbproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\TSMU.xml" />
-    <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

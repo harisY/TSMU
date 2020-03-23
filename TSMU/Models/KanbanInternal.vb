@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
 
 Public Class KanbanInternal
 
@@ -16,7 +17,7 @@ Public Class KanbanInternal
                 ,[PartName]
                 ,[PartNo]
                 ,[Type]
-                ,[NoPO]
+                ,[NoPO] [Kombinasi]
                 ,convert(varchar,[OrderDate],105) OrderDate
                 ,convert(varchar,[DeliveryDate],105) DelDate
                 ,[QtyOrder]
@@ -132,6 +133,65 @@ Public Class KanbanInternal
             Throw ex
         End Try
         Return ds
+    End Function
+
+    Public Function GetNoUrut(
+                                Customer As String,
+                                PONumber As String,
+                                InventoryId As String,
+                                PartName As String,
+                                PartNo As String,
+                                Type As String,
+                                NoPO As String,
+                                OrderDate As String,
+                                DeliveryDate As String,
+                                RH_LH As String,
+                                PalletizeMark As String,
+                                PartNoLabel As String,
+                                RackLabel As String,
+                                RackPart As String
+                             ) As Integer
+        Dim hasil As Integer = 0
+        Try
+            Dim Sql As String = "KanbanInternal_getNoUrut"
+            Dim _param() As SqlParameter = New SqlParameter(13) {}
+            _param(0) = New SqlParameter("@Customer", SqlDbType.VarChar)
+            _param(0).Value = Customer
+            _param(1) = New SqlParameter("@PONumber", SqlDbType.VarChar)
+            _param(1).Value = PONumber
+            _param(2) = New SqlParameter("@InventoryId", SqlDbType.VarChar)
+            _param(2).Value = InventoryId
+            _param(3) = New SqlParameter("@PartName", SqlDbType.VarChar)
+            _param(3).Value = PartName
+            _param(4) = New SqlParameter("@PartNo", SqlDbType.VarChar)
+            _param(4).Value = PartNo
+            _param(5) = New SqlParameter("@Type", SqlDbType.VarChar)
+            _param(5).Value = Type
+            _param(6) = New SqlParameter("@NoPO", SqlDbType.VarChar)
+            _param(6).Value = NoPO
+            _param(7) = New SqlParameter("@OrderDate", SqlDbType.VarChar)
+            _param(7).Value = OrderDate
+            _param(8) = New SqlParameter("@DeliveryDate", SqlDbType.VarChar)
+            _param(8).Value = DeliveryDate
+            _param(9) = New SqlParameter("@RH_LH", SqlDbType.VarChar)
+            _param(9).Value = RH_LH
+            _param(10) = New SqlParameter("@PalletizeMark", SqlDbType.VarChar)
+            _param(10).Value = PalletizeMark
+            _param(11) = New SqlParameter("@PartNoLabel", SqlDbType.VarChar)
+            _param(11).Value = PartNoLabel
+            _param(12) = New SqlParameter("@RackLabel", SqlDbType.VarChar)
+            _param(12).Value = RackLabel
+            _param(13) = New SqlParameter("@RackPart", SqlDbType.VarChar)
+            _param(13).Value = RackPart
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_StorePCKR(Sql, _param)
+            If dt.Rows.Count > 0 Then
+                hasil = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 End Class
 

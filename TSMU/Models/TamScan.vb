@@ -136,7 +136,7 @@ Public Class Tam_Trans
             Dim param() As SqlParameter = New SqlParameter(1) {}
             param(0) = New SqlParameter("@delDate", SqlDbType.VarChar)
             param(0).Value = etd
-            param(1) = New SqlParameter("@flag", SqlDbType.Int)
+            param(1) = New SqlParameter("@flag", SqlDbType.Char)
             param(1).Value = flag
             dt = GetDataTableByCommand_StorePCKR(sql, param)
             Return dt
@@ -144,4 +144,16 @@ Public Class Tam_Trans
             Throw ex
         End Try
     End Function
+
+    Public Sub UpdateFlag(ByVal DelDate As String)
+        Try
+            Dim query As String = "TAM_update_flag"
+            Dim param() As SqlParameter = New SqlParameter(0) {}
+            param(0) = New SqlParameter("@DelDate", SqlDbType.VarChar)
+            param(0).Value = DelDate
+            ExecQueryByCommand_SPCKR(query, param)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 End Class

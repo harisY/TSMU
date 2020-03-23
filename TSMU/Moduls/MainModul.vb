@@ -4,6 +4,7 @@ Imports System.Collections.ObjectModel
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraPrinting
 
 Module MainModul
 #Region "--Global Enumerations--"
@@ -61,25 +62,25 @@ Module MainModul
 
     '# Server Instance...
     Public gs_Database As String = "New_BoM"
-    Public gs_DBServer As String = "10.10.1.10"
+    Public gs_DBServer As String = "HARIS\SQL2008R2"
     Public gs_DBAuthMode As String = "mixed"
     Public gs_DBUserName As String = "sa"
-    Public gs_DBPassword As String = "Tsc2011"
-    Public gs_DBPasswordDefault As String = "Tsc2011"
+    Public gs_DBPassword As String = "fid123!!"
+    Public gs_DBPasswordDefault As String = "fid123!!"
 
     Public gs_Database1 As String = "Tsc16Application"
-    Public gs_DBServer1 As String = "10.10.1.10"
+    Public gs_DBServer1 As String = "HARIS\SQL2008R2"
     Public gs_DBAuthMode1 As String = "mixed"
     Public gs_DBUserName1 As String = "sa"
-    Public gs_DBPassword1 As String = "Tsc2011"
-    Public gs_DBPasswordDefault1 As String = "Tsc2011"
+    Public gs_DBPassword1 As String = "fid123!!"
+    Public gs_DBPasswordDefault1 As String = "fid123!!"
 
     Public gs_Database2 As String = "DbCKR"
-    Public gs_DBServer2 As String = "10.10.3.6"
+    Public gs_DBServer2 As String = "HARIS\SQL2008R2"
     Public gs_DBAuthMode2 As String = "mixed"
     Public gs_DBUserName2 As String = "sa"
-    Public gs_DBPassword2 As String = "Tsc2011"
-    Public gs_DBPasswordDefault2 As String = "Tsc2011"
+    Public gs_DBPassword2 As String = "fid123!!"
+    Public gs_DBPasswordDefault2 As String = "fid123!!"
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -1147,6 +1148,30 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Function GetDataTableSP(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDataTable_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -2090,14 +2115,22 @@ Module MainModul
         End With
     End Sub
 
-    Public Sub GridCellFormat(ByVal View As GridView)
+    Public Sub GridCellFormat(ByVal View As GridView, Optional ByVal IsIndonesianDate As Boolean = True)
         With View
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
                 If col.ColumnType Is GetType(DateTime) Then
-                    If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
-                        col.DisplayFormat.FormatType = FormatType.DateTime
-                        col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                    If IsIndonesianDate Then
+                        If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                        End If
+                    Else
+                        If col.DisplayFormat.FormatString <> "dd/MMM/yyyy" AndAlso col.DisplayFormat.FormatString <> "dd/MMMM/yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "MM/dd/yyyy"
+                        End If
                     End If
+
                 ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
                     Dim lb_Nothing As Boolean = True
                     col.DisplayFormat.FormatString = gs_FormatPecahan
@@ -2191,12 +2224,17 @@ Module MainModul
         Return isOpen
     End Function
 
-    Public Sub SaveToExcel(_Grid As GridControl)
+    Public Sub SaveToExcel(_Grid As GridControl, Optional sheetName As String = "", Optional _name As String = "")
         Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xlsx"
+        save.Filter = "Excel File|*.xls"
         save.Title = "Save an Excel File"
+        Dim options As XlsExportOptionsEx = New XlsExportOptionsEx()
+
+        options.SheetName = sheetName
+        options.ShowGridLines = True
+        options.AllowSortingAndFiltering = DefaultBoolean.False
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXlsx(save.FileName)
+            _Grid.ExportToXls(save.FileName, options)
         End If
     End Sub
 End Module

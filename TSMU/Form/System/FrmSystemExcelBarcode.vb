@@ -2,12 +2,14 @@
 Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.IO
+
 Public Class FrmSystemExcelBarcode
     Dim fc_class As New clsSales_Budget
     Dim GridData As DataTable = Nothing
     Dim Gridfilter As DataTable = Nothing
     Dim a As Integer = 0
     Dim b As Integer = 0
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -64,7 +66,7 @@ Public Class FrmSystemExcelBarcode
                 _txtExcel.Text = path
                 'Me.Text = text.Length.ToString
             End If
-        Catch ex As Exception
+        Catch ex As Exception When Not TypeOf ex Is MissingMethodException
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
