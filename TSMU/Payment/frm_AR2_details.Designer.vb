@@ -537,7 +537,7 @@ Partial Class frm_AR2_details
         '
         Me.ColCheck.Caption = "Check"
         Me.ColCheck.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.ColCheck.FieldName = "Check"
+        Me.ColCheck.FieldName = "Check1"
         Me.ColCheck.Name = "ColCheck"
         Me.ColCheck.OptionsFilter.AllowAutoFilter = False
         Me.ColCheck.Visible = True

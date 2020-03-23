@@ -91,8 +91,8 @@ Public Class frm_AR_details
     End Sub
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
         Try
-            If e.Column.FieldName = "Check" Then
-                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True Then
+            If e.Column.FieldName = "Check1" Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check1") = True Then
                     GetTot()
                 Else
                     GetTot()
@@ -101,7 +101,7 @@ Public Class frm_AR_details
             End If
 
             If e.Column.FieldName = "CheckPPH" Then
-                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Check1") = True And GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckPPH") = True Then
                     GetPPH()
                     Dim _pph As Double = Convert.ToDouble(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Paid"))
                     Dim _pphAmount As Double = _pph * 0.02
@@ -189,7 +189,7 @@ Public Class frm_AR_details
         Try
             ObjPaymentHeader.ObjPaymentDetails.Clear()
             For i As Integer = 0 To GridView1.RowCount - 1
-                If GridView1.GetRowCellValue(i, "Check") = True Then
+                If GridView1.GetRowCellValue(i, "Check1") = True Then
                     Dim ObjDetails As New ar_detail_models
                     With ObjDetails
                         .vrno = _txtVoucher.Text.TrimEnd
@@ -266,7 +266,7 @@ Public Class frm_AR_details
         Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
-                If GridView1.GetRowCellValue(i, "Check") = True Then
+                If GridView1.GetRowCellValue(i, "Check1") = True Then
                     TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Paid"))
                 End If
 
@@ -279,7 +279,7 @@ Public Class frm_AR_details
                 _TxtTotalAmount.Text = Format(TotAmount, gs_FormatBulat)
             End If
             ''  Dim vbalance As Double = _TxtTotalAmount.Text - _TxtDebit.Text
-            vbalance = _TxtDebit.Text - _TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text
+            vbalance = _TxtDebit.Text - (_TxtTotalAmount.Text - _TxtPPH.Text - _TxtCM.Text - _TxtBiaya.Text)
             _txtbalance.Text = vbalance
             '       Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
             '       _TxtDebit.Text = Format(debit, gs_FormatBulat)
@@ -519,7 +519,9 @@ Public Class frm_AR_details
     'End Sub
 
     Private Sub _TxtCM_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtCM.EditValueChanged
-
+        Dim vbalance2 As Double = 0
+        vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+        _txtbalance.Text = vbalance2
     End Sub
 
     Private Sub _TxtCM_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
@@ -529,14 +531,10 @@ Public Class frm_AR_details
             Dim ls_OldKode As String = ""
             Dim ls_Voucher As String = ""
 
-
-
-
             dtSearch = ObjPaymentDetail.GetDataGridCM_New(_TxtVendorID.Text)
             ls_OldKode = _TxtCM.Text.Trim
             ls_Judul = "CM/DM"
             ls_Voucher = _txtVoucher.Text
-
 
             Dim f As frm_lookup_cmdm_ar
             f = New frm_lookup_cmdm_ar(dtSearch, ls_Voucher)
@@ -634,10 +632,9 @@ Public Class frm_AR_details
     Private Sub _TxtPPH_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtPPH.EditValueChanged
         Try
 
-
-            'Dim vbalance As Double = _txtbalance.Text - _TxtPPH.Text
-            '_txtbalance.Text = vbalance
-            '_txtbalance.Text = Format(vbalance, gs_FormatBulat)
+            Dim vbalance2 As Double = 0
+            vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+            _txtbalance.Text = vbalance2
         Catch ex As Exception
             Throw ex
 
@@ -648,7 +645,7 @@ Public Class frm_AR_details
         '' frm_pph_ar.Show()
         TempTable1()
         For i As Integer = 0 To GridView1.RowCount - 1
-            If GridView1.GetRowCellValue(i, "Check") = True Then
+            If GridView1.GetRowCellValue(i, "Check1") = True Then
                 dtTemp1.Rows.Add()
                 dtTemp1.Rows(dtTemp1.Rows.Count - 1).Item(0) = GridView1.GetRowCellValue(i, "InvcNbr")
             End If
@@ -665,4 +662,11 @@ Public Class frm_AR_details
             End If
         End With
     End Sub
+
+    Private Sub _TxtBiaya_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtBiaya.EditValueChanged
+        Dim vbalance2 As Double = 0
+        vbalance2 = CDbl(_TxtDebit.EditValue) - (CDbl(_TxtTotalAmount.EditValue) - CDbl(_TxtPPH.EditValue) - CDbl(_TxtCM.EditValue) - CDbl(_TxtBiaya.EditValue))
+        _txtbalance.Text = vbalance2
+    End Sub
+
 End Class

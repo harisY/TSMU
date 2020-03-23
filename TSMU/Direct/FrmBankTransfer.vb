@@ -109,7 +109,6 @@ Public Class FrmBankTransfer
             Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
             If info.InRow OrElse info.InRowCell Then
 
-
                 NoBukti = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
@@ -123,8 +122,6 @@ Public Class FrmBankTransfer
                     Call CallFrm(NoBukti,
                          GridView1.RowCount)
                 End If
-
-
 
             End If
 
