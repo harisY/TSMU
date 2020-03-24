@@ -221,12 +221,17 @@
         Try
 
             '          Dim ls_SP As String = "UPDATE ardoc SET  user5=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end),user5='1', user4=(case when user4=0 then 0 else User4-" & QVal(Paid) & " end)  WHERE refnbr = " & QVal(No_Invoice) & ""
-            Dim ls_SP As String = "update ARDoc set Ardoc.user5=(case when Ardoc.User4=" & QVal(Paid) & " then '2' else '' end) ,Ardoc.user4=(case when Ardoc.user4=0  then Batch.CuryCrTot-" & QVal(Paid) & " else Ardoc.User4-" & QVal(Paid) & " end) 
+            ''Dim ls_SP As String = "UPDATE apdoc SET user4=2 WHERE InvcNbr = " & QVal(No_Invoice) & ""
+            Dim ls_SP As String = "update ARDoc set Ardoc.user4=(case when Ardoc.user4=0  then Batch.CuryCrTot-" & QVal(Paid) & " else Ardoc.User4-" & QVal(Paid) & " end) 
             From Ardoc  inner Join
-             Batch On Ardoc.BatNbr=Batch.BatNbr  inner Join
-             customer  On Ardoc.custid=customer.custid 
-             Where Batch.Module ='AR' and Ardoc.DocType IN ('IN', 'FI', 'DM', 'NC') and curydocbal <> 0 and Ardoc.refnbr = " & QVal(No_Invoice) & ""
+            batch On Ardoc.BatNbr=Batch.BatNbr  inner Join
+            customer  On Ardoc.custid=customer.custid 
+            Where Batch.Module ='AR' and Ardoc.DocType IN ('IN', 'FI', 'DM', 'NC') and curydocbal <> 0 and Ardoc.refnbr = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
+            Dim ls_SP2 As String = "update ARDoc set Ardoc.user5=(case when Ardoc.User4=" & QVal(Paid) & " then '2' else '' end) From Ardoc  inner Join
+            batch On Ardoc.BatNbr=Batch.BatNbr  inner Join customer  On Ardoc.custid=customer.custid 
+            Where Batch.Module ='AR' and Ardoc.DocType IN ('IN', 'FI', 'DM', 'NC') and curydocbal <> 0 and Ardoc.refnbr = " & QVal(No_Invoice) & ""
+            MainModul.ExecQuery_Solomon(ls_SP2)
         Catch ex As Exception
             Throw ex
         End Try
