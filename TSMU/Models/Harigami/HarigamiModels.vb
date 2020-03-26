@@ -6,7 +6,7 @@ Public Class HarigamiModels
         Try
             Dim data As String =
             "SELECT
-                Id, FileNo, InvtId Inventory ID, FilePath, Type 
+                Id, FileNo, InvtId , FilePath, Type 
             FROM [TbHarigamiMaster]"
             Dim dtTable As New DataTable
 
@@ -22,7 +22,7 @@ Public Class HarigamiModels
             Dim data As String = "SELECT
                 h.Id,
 	            h.FileNo,
-                h.InvtId,
+                m.InvtId,
 	            m.FilePath,
 	            h.Type,
 	            h.LastCounter,

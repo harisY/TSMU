@@ -54,6 +54,7 @@ Partial Class MenuUtamaForm
         Me.tsMenuAsakai = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuPOCheck = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuTMMIN = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsMenuTAM = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem()
@@ -66,7 +67,7 @@ Partial Class MenuUtamaForm
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.tsMenuTAM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SoTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -125,7 +126,7 @@ Partial Class MenuUtamaForm
         '
         'tsbForecast
         '
-        Me.tsbForecast.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BudgetTSM, Me.ForecastTSM, Me.PriceTSM, Me.CalculateTM})
+        Me.tsbForecast.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BudgetTSM, Me.ForecastTSM, Me.PriceTSM, Me.CalculateTM, Me.SoTsm})
         Me.tsbForecast.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsbForecast.Name = "tsbForecast"
         Me.tsbForecast.Size = New System.Drawing.Size(57, 24)
@@ -134,25 +135,25 @@ Partial Class MenuUtamaForm
         'BudgetTSM
         '
         Me.BudgetTSM.Name = "BudgetTSM"
-        Me.BudgetTSM.Size = New System.Drawing.Size(143, 26)
+        Me.BudgetTSM.Size = New System.Drawing.Size(216, 26)
         Me.BudgetTSM.Text = "Budget"
         '
         'ForecastTSM
         '
         Me.ForecastTSM.Name = "ForecastTSM"
-        Me.ForecastTSM.Size = New System.Drawing.Size(143, 26)
+        Me.ForecastTSM.Size = New System.Drawing.Size(216, 26)
         Me.ForecastTSM.Text = "Forecast"
         '
         'PriceTSM
         '
         Me.PriceTSM.Name = "PriceTSM"
-        Me.PriceTSM.Size = New System.Drawing.Size(143, 26)
+        Me.PriceTSM.Size = New System.Drawing.Size(216, 26)
         Me.PriceTSM.Text = "Price"
         '
         'CalculateTM
         '
         Me.CalculateTM.Name = "CalculateTM"
-        Me.CalculateTM.Size = New System.Drawing.Size(143, 26)
+        Me.CalculateTM.Size = New System.Drawing.Size(216, 26)
         Me.CalculateTM.Text = "Calculate"
         '
         'tsMenuSetting
@@ -267,8 +268,14 @@ Partial Class MenuUtamaForm
         'tsMenuTMMIN
         '
         Me.tsMenuTMMIN.Name = "tsMenuTMMIN"
-        Me.tsMenuTMMIN.Size = New System.Drawing.Size(216, 26)
+        Me.tsMenuTMMIN.Size = New System.Drawing.Size(133, 26)
         Me.tsMenuTMMIN.Text = "TMMIN"
+        '
+        'tsMenuTAM
+        '
+        Me.tsMenuTAM.Name = "tsMenuTAM"
+        Me.tsMenuTAM.Size = New System.Drawing.Size(133, 26)
+        Me.tsMenuTAM.Text = "TAM"
         '
         'WindowsMenu
         '
@@ -345,11 +352,11 @@ Partial Class MenuUtamaForm
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'tsMenuTAM
+        'SoTsm
         '
-        Me.tsMenuTAM.Name = "tsMenuTAM"
-        Me.tsMenuTAM.Size = New System.Drawing.Size(216, 26)
-        Me.tsMenuTAM.Text = "TAM"
+        Me.SoTsm.Name = "SoTsm"
+        Me.SoTsm.Size = New System.Drawing.Size(216, 26)
+        Me.SoTsm.Text = "SO"
         '
         'MenuUtamaForm
         '
@@ -417,4 +424,5 @@ Partial Class MenuUtamaForm
     Friend WithEvents tsMenuPOCheck As ToolStripMenuItem
     Friend WithEvents tsMenuTMMIN As ToolStripMenuItem
     Friend WithEvents tsMenuTAM As ToolStripMenuItem
+    Friend WithEvents SoTsm As ToolStripMenuItem
 End Class
