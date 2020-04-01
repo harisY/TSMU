@@ -1,7 +1,6 @@
 ﻿Public Class frmReportSo
     Dim dtGrid As DataTable
-    Dim ObjSoReg As SoRegTemplateModel
-    Dim ObjSoRegColl As SORegModelColl
+    Dim service As JogressService
     Private Sub frmReportSo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         _cmbSO.SelectedIndex = 0
@@ -11,9 +10,9 @@
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjSoReg = New SoRegTemplateModel
+            service = New JogressService
             dtGrid = New DataTable
-            dtGrid = ObjSoReg.GetDataGridReport(_cmbSO.Text)
+            dtGrid = service.GetDataGridReport(_cmbSO.Text)
             Grid.DataSource = dtGrid
             With GridView1
                 .BestFitColumns()

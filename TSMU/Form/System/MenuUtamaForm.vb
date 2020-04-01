@@ -458,7 +458,7 @@ Public Class MenuUtamaForm
                 Next
             End If
             If tsMenuMaster.DropDownItems.Count > 0 Then tsMenuMaster.Visible = True Else tsMenuMaster.Visible = False
-            'If TSMSC.DropDownItems.Count > 0 Then TSMSC.Visible = True Else TSMSC.Visible = False
+            If tsMenuAsakai.DropDownItems.Count > 0 Then tsMenuAsakai.Visible = True Else tsMenuAsakai.Visible = False
             'If TSMPC.DropDownItems.Count > 0 Then TSMPC.Visible = True Else TSMPC.Visible = False
             'If TSMPLM.DropDownItems.Count > 0 Then TSMPLM.Visible = True Else TSMPLM.Visible = False
 
@@ -583,6 +583,14 @@ Public Class MenuUtamaForm
                 PriceTSM.Visible = True
                 CalculateTM.Visible = False
                 SoTsm.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count = 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 AndAlso SoTsm.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = False
+                ForecastTSM.Visible = False
+                PriceTSM.Visible = False
+                CalculateTM.Visible = True
+                SoTsm.Visible = True
             ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
             AndAlso CalculateTM.DropDownItems.Count = 0 AndAlso SoTsm.DropDownItems.Count = 0 Then
                 tsbForecast.Visible = True
@@ -600,6 +608,30 @@ Public Class MenuUtamaForm
                 CalculateTM.Visible = True
                 SoTsm.Visible = False
             ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
+            AndAlso CalculateTM.DropDownItems.Count = 0 AndAlso SoTsm.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = False
+                CalculateTM.Visible = True
+                SoTsm.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+            AndAlso CalculateTM.DropDownItems.Count > 0 AndAlso SoTsm.DropDownItems.Count = 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = True
+                CalculateTM.Visible = True
+                SoTsm.Visible = False
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
+            AndAlso CalculateTM.DropDownItems.Count = 0 AndAlso SoTsm.DropDownItems.Count > 0 Then
+                tsbForecast.Visible = True
+                BudgetTSM.Visible = True
+                ForecastTSM.Visible = True
+                PriceTSM.Visible = True
+                CalculateTM.Visible = False
+                SoTsm.Visible = True
+            ElseIf BudgetTSM.DropDownItems.Count > 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count = 0 _
             AndAlso CalculateTM.DropDownItems.Count > 0 AndAlso SoTsm.DropDownItems.Count > 0 Then
                 tsbForecast.Visible = True
                 BudgetTSM.Visible = True
@@ -612,7 +644,7 @@ Public Class MenuUtamaForm
                 tsbForecast.Visible = True
                 BudgetTSM.Visible = True
                 ForecastTSM.Visible = False
-                PriceTSM.Visible = True
+                PriceTSM.Visible = False
                 CalculateTM.Visible = True
                 SoTsm.Visible = True
             ElseIf BudgetTSM.DropDownItems.Count = 0 AndAlso ForecastTSM.DropDownItems.Count > 0 AndAlso PriceTSM.DropDownItems.Count > 0 _
@@ -746,9 +778,9 @@ Public Class MenuUtamaForm
         If Me.tsMenuTAM.DropDownItems.Count > 0 Then
             Me.tsMenuTAM.DropDownItems.Clear()
         End If
-        'If Me.TSMPC.DropDownItems.Count > 0 Then
-        '    Me.TSMPC.DropDownItems.Clear()
-        'End If
+        If Me.SoTsm.DropDownItems.Count > 0 Then
+            Me.SoTsm.DropDownItems.Clear()
+        End If
         'If Me.TSMPLM.DropDownItems.Count > 0 Then
         '    Me.TSMPLM.DropDownItems.Clear()
         'End If
