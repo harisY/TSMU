@@ -400,6 +400,7 @@ Public Class frm_AR2_details
                         GridCellFormat(GridView1)
                     End If
                     Dim APAMOUNT As Double
+                    ObjPaymentDetail.CuryID = _TxtCurrency.Text
                     APAMOUNT = ObjPaymentDetail.GetDetailPaymentByVendorID2(Value3.TrimEnd)
                     _TxtTotalAmountAP.EditValue = Format(APAMOUNT, "##,0")
 
