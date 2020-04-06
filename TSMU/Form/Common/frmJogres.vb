@@ -70,7 +70,7 @@ Public Class frmJogres
                         .PO = If(row("PO") Is DBNull.Value, "", row("PO"))
                         .Qty = If(row("Qty") Is DBNull.Value, 0, Convert.ToInt32(row("Qty")))
                         .SO = If(row("So") Is DBNull.Value, "", row("So"))
-                        .Time = If(row("Time") Is DBNull.Value, TimeSpan.Parse("00:00:00"), row("Time"))
+                        .Time = If(row("Time") Is DBNull.Value, "", row("Time"))
                         .TimeOK = If(row("TimeOK") Is DBNull.Value, "", row("TimeOK"))
                         .Tujuan = If(row("Tujuan") Is DBNull.Value, "", row("Tujuan"))
                     End With

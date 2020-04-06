@@ -18,7 +18,7 @@ Public Class frmSales_ForecastPrice
 
         ' This call is required by the designer.
         InitializeComponent()
-        LoadGrid()
+        'LoadGrid()
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
