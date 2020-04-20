@@ -228,15 +228,15 @@ Module MainModul
         If ls_StackTrace <> "" Then Call WriteToErrorLog(message, gh_Common.Username, ls_StackTrace)
         If Flag = MessageTypeEnum.NormalMessage Then
             MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Information)
-            MenuUtamaForm.StatMsg.ForeColor = Color.Black
+            'frmMain.StatMsg.ForeColor = Color.Black
         ElseIf Flag = MessageTypeEnum.ErrorMessage Then
             '# Checkbox...
             MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
-            MenuUtamaForm.StatMsg.ForeColor = Color.Red
+            'frmMain.StatMsg.ForeColor = Color.Red
         Else
-            MenuUtamaForm.StatMsg.ForeColor = Color.Black
+            'frmMain.StatMsg.ForeColor = Color.Black
         End If
-        'MenuUtamaForm.StatMsg.Text = message
+        'frmMain.StatMsg.Text = message
     End Sub
 
     Public Sub WriteToErrorLog(ByVal ls_Message As String, ByVal ls_User As String, ByVal ls_StackTrace As String)
@@ -1323,36 +1323,37 @@ Module MainModul
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
-            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
-                gh_Trans.Command.CommandType = CommandType.StoredProcedure
-                gh_Trans.Command.CommandText = pQuery
-                gh_Trans.Command.CommandTimeout = pTimeOut
-                gh_Trans.Command.Parameters.Clear()
+            Using conn As New SqlClient.SqlConnection
+                conn.ConnectionString = GetConnStringSolomon()
+                Dim cmd As New SqlCommand
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = pQuery
+                cmd.CommandTimeout = pTimeOut
+                cmd.Connection = conn
                 If pParam IsNot Nothing Then
                     For i As Integer = 0 To pParam.Length - 1
-                        gh_Trans.Command.Parameters.Add(pParam(i))
+                        cmd.Parameters.Add(pParam(i))
                     Next
                 End If
-                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                conn.Open()
+                da = New SqlDataAdapter(cmd)
                 da.Fill(dta)
-            Else
-                Using conn As New SqlClient.SqlConnection
-                    conn.ConnectionString = GetConnStringSolomon()
-                    Dim cmd As New SqlCommand
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = pQuery
-                    cmd.CommandTimeout = pTimeOut
-                    cmd.Connection = conn
-                    If pParam IsNot Nothing Then
-                        For i As Integer = 0 To pParam.Length - 1
-                            cmd.Parameters.Add(pParam(i))
-                        Next
-                    End If
-                    conn.Open()
-                    da = New SqlDataAdapter(cmd)
-                    da.Fill(dta)
-                End Using
-            End If
+            End Using
+            'If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+            '    gh_Trans.Command.CommandType = CommandType.StoredProcedure
+            '    gh_Trans.Command.CommandText = pQuery
+            '    gh_Trans.Command.CommandTimeout = pTimeOut
+            '    gh_Trans.Command.Parameters.Clear()
+            '    If pParam IsNot Nothing Then
+            '        For i As Integer = 0 To pParam.Length - 1
+            '            gh_Trans.Command.Parameters.Add(pParam(i))
+            '        Next
+            '    End If
+            '    da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+            '    da.Fill(dta)
+            'Else
+
+            'End If
             da = Nothing
             Return dta
         Catch ex As Exception
@@ -2110,7 +2111,7 @@ Module MainModul
 
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
 
         End With
     End Sub
@@ -2161,7 +2162,7 @@ Module MainModul
                 End If
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
         End With
     End Sub
     Public Sub GridCellFormatDatewithTime(ByVal View As GridView)
@@ -2201,7 +2202,7 @@ Module MainModul
                 End If
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
         End With
     End Sub
 
@@ -2224,17 +2225,33 @@ Module MainModul
         Return isOpen
     End Function
 
-    Public Sub SaveToExcel(_Grid As GridControl, Optional sheetName As String = "", Optional _name As String = "")
+    Public Sub SaveToExcel(_Grid As GridControl, Optional sheetName As String = "", Optional _name As String = "", Optional ByVal xls As Boolean = True)
         Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xls"
-        save.Title = "Save an Excel File"
-        Dim options As XlsExportOptionsEx = New XlsExportOptionsEx()
+        If xls Then
+            save.Filter = "Excel File|*.xls"
+            save.Title = "Save an Excel File"
+            save.FileName = _name
+            Dim options As XlsExportOptionsEx = New XlsExportOptionsEx()
 
-        options.SheetName = sheetName
-        options.ShowGridLines = True
-        options.AllowSortingAndFiltering = DefaultBoolean.False
-        If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXls(save.FileName, options)
+            options.SheetName = sheetName
+            options.ShowGridLines = True
+            options.AllowSortingAndFiltering = DefaultBoolean.False
+            If save.ShowDialog = DialogResult.OK Then
+                _Grid.ExportToXls(save.FileName, options)
+            End If
+        Else
+            save.Filter = "Excel File|*.xlsx"
+            save.Title = "Save an Excel File"
+            Dim options As XlsxExportOptionsEx = New XlsxExportOptionsEx()
+
+            options.SheetName = sheetName
+            options.ShowGridLines = True
+            save.FileName = _name
+            options.AllowSortingAndFiltering = DefaultBoolean.False
+            If save.ShowDialog = DialogResult.OK Then
+                _Grid.ExportToXlsx(save.FileName, options)
+            End If
         End If
+
     End Sub
 End Module

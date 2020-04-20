@@ -36,6 +36,7 @@ Partial Class MenuUtamaForm
         Me.ForecastTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.PriceTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CalculateTM = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SoTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsMenuSetting = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsReport = New System.Windows.Forms.ToolStripMenuItem()
         Me.tstax = New System.Windows.Forms.ToolStripMenuItem()
@@ -67,7 +68,6 @@ Partial Class MenuUtamaForm
         Me.lblGroup = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.SoTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -96,25 +96,25 @@ Partial Class MenuUtamaForm
         '
         Me.tsmLogin.Enabled = False
         Me.tsmLogin.Name = "tsmLogin"
-        Me.tsmLogin.Size = New System.Drawing.Size(204, 26)
+        Me.tsmLogin.Size = New System.Drawing.Size(216, 26)
         Me.tsmLogin.Text = "Log In"
         '
         'tsnChangePass
         '
         Me.tsnChangePass.Enabled = False
         Me.tsnChangePass.Name = "tsnChangePass"
-        Me.tsnChangePass.Size = New System.Drawing.Size(204, 26)
+        Me.tsnChangePass.Size = New System.Drawing.Size(216, 26)
         Me.tsnChangePass.Text = "Change Password"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(201, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(213, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(204, 26)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'tsMenuMaster
@@ -135,26 +135,32 @@ Partial Class MenuUtamaForm
         'BudgetTSM
         '
         Me.BudgetTSM.Name = "BudgetTSM"
-        Me.BudgetTSM.Size = New System.Drawing.Size(216, 26)
+        Me.BudgetTSM.Size = New System.Drawing.Size(143, 26)
         Me.BudgetTSM.Text = "Budget"
         '
         'ForecastTSM
         '
         Me.ForecastTSM.Name = "ForecastTSM"
-        Me.ForecastTSM.Size = New System.Drawing.Size(216, 26)
+        Me.ForecastTSM.Size = New System.Drawing.Size(143, 26)
         Me.ForecastTSM.Text = "Forecast"
         '
         'PriceTSM
         '
         Me.PriceTSM.Name = "PriceTSM"
-        Me.PriceTSM.Size = New System.Drawing.Size(216, 26)
+        Me.PriceTSM.Size = New System.Drawing.Size(143, 26)
         Me.PriceTSM.Text = "Price"
         '
         'CalculateTM
         '
         Me.CalculateTM.Name = "CalculateTM"
-        Me.CalculateTM.Size = New System.Drawing.Size(216, 26)
+        Me.CalculateTM.Size = New System.Drawing.Size(143, 26)
         Me.CalculateTM.Text = "Calculate"
+        '
+        'SoTsm
+        '
+        Me.SoTsm.Name = "SoTsm"
+        Me.SoTsm.Size = New System.Drawing.Size(143, 26)
+        Me.SoTsm.Text = "SO"
         '
         'tsMenuSetting
         '
@@ -352,13 +358,7 @@ Partial Class MenuUtamaForm
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'SoTsm
-        '
-        Me.SoTsm.Name = "SoTsm"
-        Me.SoTsm.Size = New System.Drawing.Size(216, 26)
-        Me.SoTsm.Text = "SO"
-        '
-        'MenuUtamaForm
+        'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font

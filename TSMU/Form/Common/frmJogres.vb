@@ -85,7 +85,6 @@ Public Class frmJogres
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             SplashScreenManager.CloseForm()
-
         End Try
 
     End Sub

@@ -74,7 +74,7 @@ Public Class frm_AR2
             ff_Detail.Close()
         End If
         ff_Detail = New frm_AR2_details(ls_Code, ls_Code2, ls_Code3, ls_Code4, ls_Code5, ls_Code6, sts_screen, Me, li_Row, GridControl1)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -88,7 +88,7 @@ Public Class frm_AR2
             ff_Detail2.Close()
         End If
         ff_Detail2 = New frm_AR2_details(ls_Code, ls_Code2, sts_screen, Me, li_Row, GridControl1)
-        ff_Detail2.MdiParent = MenuUtamaForm
+        ff_Detail2.MdiParent = FrmMain
         ff_Detail2.StartPosition = FormStartPosition.CenterScreen
         ff_Detail2.Show()
     End Sub

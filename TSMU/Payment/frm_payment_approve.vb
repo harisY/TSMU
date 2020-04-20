@@ -335,7 +335,7 @@ Public Class frm_payment_approve
             ff_Detail.Close()
         End If
         ff_Detail = New frm_payment_aprrove_details(ls_Code, ls_Code2, Me, li_Row, Grid, IsNew)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = frmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -348,7 +348,7 @@ Public Class frm_payment_approve
             FApproveDetail.Close()
         End If
         FApproveDetail = New FrmApprovalDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        FApproveDetail.MdiParent = MenuUtamaForm
+        FApproveDetail.MdiParent = frmMain
         FApproveDetail.StartPosition = FormStartPosition.CenterScreen
         FApproveDetail.Show()
     End Sub
@@ -361,7 +361,7 @@ Public Class frm_payment_approve
             FrmApproveEntertain.Close()
         End If
         FrmApproveEntertain = New FrmApprovalEntertain(ls_Code, ls_Code2, Me, li_Row, Grid)
-        FrmApproveEntertain.MdiParent = MenuUtamaForm
+        FrmApproveEntertain.MdiParent = frmMain
         FrmApproveEntertain.StartPosition = FormStartPosition.CenterScreen
         FrmApproveEntertain.Show()
     End Sub

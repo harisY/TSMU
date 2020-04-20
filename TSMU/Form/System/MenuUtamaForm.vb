@@ -18,7 +18,7 @@ Public Class MenuUtamaForm
 
     Private m_ChildFormNumber As Integer
 
-    Private Sub MenuUtamaForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If MsgBox("Exit Application ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Exit ?") = MsgBoxResult.Yes Then
             For Each ChildForm As Form In Me.MdiChildren
                 ChildForm.Close()
