@@ -64,7 +64,7 @@ Partial Class FrmTMMIN_GenerateExcel
         Me.RadioGroup1.Name = "RadioGroup1"
         Me.RadioGroup1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.[Default]
         Me.RadioGroup1.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Export Baru"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Export Ulang")})
-        Me.RadioGroup1.Size = New System.Drawing.Size(151, 26)
+        Me.RadioGroup1.Size = New System.Drawing.Size(258, 26)
         Me.RadioGroup1.StyleController = Me.LayoutControl1
         Me.RadioGroup1.TabIndex = 7
         '
@@ -82,13 +82,15 @@ Partial Class FrmTMMIN_GenerateExcel
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsPrint.PrintHorzLines = False
+        Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(216, 12)
+        Me.Panel1.Location = New System.Drawing.Point(323, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(600, 52)
+        Me.Panel1.Size = New System.Drawing.Size(493, 52)
         Me.Panel1.TabIndex = 5
         '
         'TxtEtd
@@ -104,7 +106,7 @@ Partial Class FrmTMMIN_GenerateExcel
         Me.TxtEtd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtEtd.Properties.Mask.EditMask = ""
         Me.TxtEtd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtEtd.Size = New System.Drawing.Size(151, 22)
+        Me.TxtEtd.Size = New System.Drawing.Size(258, 22)
         Me.TxtEtd.StyleController = Me.LayoutControl1
         Me.TxtEtd.TabIndex = 4
         '
@@ -122,16 +124,16 @@ Partial Class FrmTMMIN_GenerateExcel
         Me.LayoutControlItem1.Control = Me.TxtEtd
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(204, 26)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(311, 26)
         Me.LayoutControlItem1.Text = "PO Date"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(46, 16)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.Panel1
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(204, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(311, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(604, 56)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(497, 56)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -149,7 +151,7 @@ Partial Class FrmTMMIN_GenerateExcel
         Me.LayoutControlItem4.Control = Me.RadioGroup1
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(204, 30)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(311, 30)
         Me.LayoutControlItem4.Text = "Type"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(46, 16)
         '

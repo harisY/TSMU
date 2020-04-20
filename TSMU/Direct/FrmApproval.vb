@@ -111,7 +111,7 @@ Public Class FrmApproval
             ApprovalEntertain.Close()
         End If
         ApprovalEntertain = New FrmApprovalEntertain(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ApprovalEntertain.MdiParent = MenuUtamaForm
+        ApprovalEntertain.MdiParent = FrmMain
         ApprovalEntertain.StartPosition = FormStartPosition.CenterScreen
         ApprovalEntertain.Show()
     End Sub
@@ -123,7 +123,7 @@ Public Class FrmApproval
             ff_Detail.Close()
         End If
         ff_Detail = New FrmApprovalDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub

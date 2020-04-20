@@ -302,7 +302,7 @@ Public Class FrmPaymentDirect
             ff_Detail7.Close()
         End If
         ff_Detail7 = New frm_payment_aprrove_details(ls_Code, ls_Code2, Me, li_Row, GridControl1, IsNew)
-        ff_Detail7.MdiParent = MenuUtamaForm
+        ff_Detail7.MdiParent = FrmMain
         ff_Detail7.StartPosition = FormStartPosition.CenterScreen
         ff_Detail7.Show()
     End Sub
@@ -315,7 +315,7 @@ Public Class FrmPaymentDirect
             ff_Detail8.Close()
         End If
         ff_Detail8 = New FrmBankReceipt_Detail(ls_Code, ls_Code2, ls_Code3, ls_Code4, sts_skreen, Me, li_Row, GridControl1)
-        ff_Detail8.MdiParent = MenuUtamaForm
+        ff_Detail8.MdiParent = FrmMain
         ff_Detail8.StartPosition = FormStartPosition.CenterScreen
         ff_Detail8.Show()
     End Sub
@@ -1535,9 +1535,57 @@ Public Class FrmPaymentDirect
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        FrmBankTransfer_Detail.TxtNoRekTujuan.Text = _txtaccount.Text
-        FrmBankTransfer_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
+        FrmBankTransfer_Detail.TxtNoRekAsal.Text = _txtaccount.Text
+        FrmBankTransfer_Detail.TxtNoRekAsalname.Text = _txtaccountname.Text
         FrmBankTransfer_Detail.TxtCuryID.Text = _txtcuryid.Text
         FrmBankTransfer_Detail.Show()
+    End Sub
+
+    Private Sub _txtperpost_EditValueChanged(sender As Object, e As EventArgs) Handles _txtperpost.EditValueChanged
+        If _txtaccount.Text = "" Then
+        Else
+            ObjCashBank.Perpost = _txtperpost.Text
+            ObjCashBank.AcctID = _txtaccount.Text
+            ObjCashBank.account = _txtaccount.Text
+        End If
+
+        Dim saldo As Double
+        saldo = ObjCashBank.saldo2
+        If saldo = 0 Then
+            _txtsaldo.Text = saldo
+        Else
+            _txtsaldo.Text = Format(saldo, "#,#.##")
+        End If
+        Call DataCashBank()
+
+        For b As Integer = 0 To GridView1.RowCount - 1
+            If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                End If
+
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                End If
+            Else
+                If b = 0 Then
+                    GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text))
+                Else
+                    GridView1.SetRowCellValue(b, "Saldo", Convert.ToDouble(GridView1.GetRowCellValue(b - 1, "Saldo")))
+                End If
+            End If
+        Next
+        Call DataSuspend()
     End Sub
 End Class

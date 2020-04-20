@@ -41,7 +41,7 @@
             ff_Detail.Close()
         End If
         ff_Detail = New FrmKategoriAbsenDetail(ls_Code, ls_Code2, Me, li_Row, GridControl)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub

@@ -308,10 +308,12 @@ Partial Class FrmReport_Matome
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 114)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(0, 149)
         Me.Grid.MainView = Me.AdvBandedGridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(828, 467)
+        Me.Grid.Size = New System.Drawing.Size(1104, 611)
         Me.Grid.TabIndex = 1
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1})
         '
@@ -319,6 +321,8 @@ Partial Class FrmReport_Matome
         '
         Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand5, Me.gridBand4, Me.GridBand1, Me.gridBand8, Me.gridBand6, Me.gridBand14, Me.gridBand23, Me.gridBand28, Me.gridBand33, Me.gridBand38, Me.gridBand43, Me.gridBand48, Me.gridBand53, Me.gridBand58, Me.gridBand63, Me.gridBand68, Me.gridBand73})
         Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.ColGroup, Me.ColCustomer, Me.ColCustId, Me.ColBudgetAmountJan, Me.ColBudgetTNGJan, Me.ColBudgetCKRJan, Me.ColForecastAmountJan, Me.ColForecastTNGJan, Me.ColForecastCKRJan, Me.ColPOAmountJan, Me.ColPOTNGJan, Me.ColPOCKRJan, Me.ColAktualAmountJan, Me.ColAktualTNGJan, Me.ColAktualCKRJan, Me.ColBudgetAmountFeb, Me.ColBudgetTNGFeb, Me.ColBudgetCKRFeb, Me.ColForecastAmountFeb, Me.ColForecastTNGFeb, Me.ColForecastCKRFeb, Me.ColPOAmountFeb, Me.ColPOTNGFeb, Me.ColPOCKRFeb, Me.ColAktualAmountFeb, Me.ColAktualTNGFeb, Me.ColAktualCKRFeb, Me.ColBudgetAmountMar, Me.ColBudgetTNGMar, Me.ColBudgetCKRMar, Me.ColForecastAmountMar, Me.ColForecastTNGMar, Me.ColForecastCKRMar, Me.ColPOAmountMar, Me.ColPOTNGMar, Me.ColPOCKRMar, Me.ColAktualAmountMar, Me.ColAktualTNGMar, Me.ColAktualCKRMar, Me.ColBudgetAmountApr, Me.ColBudgetTNGApr, Me.ColBudgetCKRApr, Me.ColForecastAmountApr, Me.ColForecastTNGApr, Me.ColForecastCKRApr, Me.ColPOAmountApr, Me.ColPOTNGApr, Me.ColPOCKRApr, Me.ColAktualAmountApr, Me.ColAktualTNGApr, Me.ColAktualCKRApr, Me.ColBudgetAmountMei, Me.ColBudgetTNGMei, Me.ColBudgetCKRMei, Me.ColForecastAmountMei, Me.ColForecastTNGMei, Me.ColForecastCKRMei, Me.ColPOAmountMei, Me.ColPOTNGMei, Me.ColPOCKRMei, Me.ColAktualAmountMei, Me.ColAktualTNGMei, Me.ColAktualCKRMei, Me.ColBudgetAmountJun, Me.ColBudgetTNGJun, Me.ColBudgetCKRJun, Me.ColForecastAmountJun, Me.ColForecastTNGJun, Me.ColForecastCKRJun, Me.ColPOAmountJun, Me.ColPOTNGJun, Me.ColPOCKRJun, Me.ColAcktualAmountJun, Me.ColAktualTNGJun, Me.ColAktualCKRJun, Me.ColBudgetAmountJul, Me.ColBudgetTNGJul, Me.ColBudgetCKRJul, Me.ColForecastAmountJul, Me.ColForecastTNGJul, Me.ColForecastCKRJul, Me.ColPOAmountJul, Me.ColPOTNGJul, Me.ColPOCKRJul, Me.ColAktualAmountJul, Me.ColAktualTNGJul, Me.ColAktualCKRJul, Me.ColBudgetAmountAgt, Me.ColBudgetTNGAgt, Me.ColBudgetCKRAgt, Me.ColForecastAmountAgt, Me.ColForecastTNGAgt, Me.ColForecastCKRAgt, Me.ColPOAmountAgt, Me.ColPOTNGAgt, Me.ColPOCKRAgt, Me.ColAktualAmountAgt, Me.ColAktualTNGAgt, Me.ColAktualCKRAgt, Me.ColBudgetAmountSep, Me.ColBudgetTNGSep, Me.ColBudgetCKRSep, Me.ColForecastAmountSep, Me.ColForecastTNGSep, Me.ColForecastCKRSep, Me.ColPOAmountSep, Me.ColPOTNGSep, Me.ColPOCKRSep, Me.ColAktualAmountSep, Me.ColAktualTNGSep, Me.ColAktualCKRSep, Me.ColBudgetAmountOkt, Me.ColBudgetTNGOkt, Me.ColBudgetCKROkt, Me.ColForecastAmountOkt, Me.ColForecastTNGOkt, Me.ColForecastCKROkt, Me.ColPOAmountOkt, Me.ColPOTNGOkt, Me.ColPOCKROkt, Me.ColAktualAmountOkt, Me.ColAktualTNGOkt, Me.ColAktualCKROkt, Me.ColBudgetAmountNov, Me.ColBudgetTNGNov, Me.ColBudgetCKRNov, Me.ColForecastAmountNov, Me.ColForecastTNGNov, Me.ColForecastCKRNov, Me.ColPOAmountNov, Me.ColPOTNGNov, Me.ColPOCKRNov, Me.ColAktualAmountNov, Me.ColAktualTNGNov, Me.ColAktualCKRNov, Me.ColBudgetAmountDes, Me.ColBudgetTNGDes, Me.ColBudgetCKRDes, Me.ColForecastAmountDes, Me.ColForecastTNGNDes, Me.ColForecastCKRDes, Me.ColPOAmountDes, Me.ColPOTNGDes, Me.ColPOCKRDes, Me.ColAktualAmountDes, Me.ColAktualTNGDes, Me.ColAktualCKRDes, Me.ColBudgetAmount1, Me.ColBudgetTNG1, Me.ColBudgetCKR1, Me.ColForecastAmount1, Me.ColForecastTNG1, Me.ColForecastCKR1, Me.ColPOAmount1, Me.ColPOTNG1, Me.ColPOCKR1, Me.ColAktualAmount1, Me.ColAktualTNG1, Me.ColAktualCKR1, Me.ColBudgetAmount2, Me.ColBudgetTNG2, Me.ColBudgetCKR2, Me.ColForecastAmount2, Me.ColForecastTNG2, Me.ColForecastCKR2, Me.ColPOAmount2, Me.ColPOTNG2, Me.ColPOCKR2, Me.ColAktualAmount2, Me.ColAktualTNG2, Me.ColAktualCKR2, Me.ColBudgetAmountAll, Me.ColBudgetTNGAll, Me.ColBudgetCKRAll, Me.ColForecastAmountALl, Me.ColForecastTNGAll, Me.ColForecastCKRAll, Me.ColPOAmountAll, Me.ColPOTNGAll, Me.ColPOCKRAll, Me.ColAktualAmountAll, Me.ColAktualTNGAll, Me.ColAktualCKRAll})
+        Me.AdvBandedGridView1.DetailHeight = 458
+        Me.AdvBandedGridView1.FixedLineWidth = 3
         Me.AdvBandedGridView1.GridControl = Me.Grid
         Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
         Me.AdvBandedGridView1.OptionsBehavior.Editable = False
@@ -330,11 +334,12 @@ Partial Class FrmReport_Matome
         'gridBand5
         '
         Me.gridBand5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand5.MinWidth = 13
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.OptionsBand.ShowCaption = False
         Me.gridBand5.Visible = False
         Me.gridBand5.VisibleIndex = -1
-        Me.gridBand5.Width = 75
+        Me.gridBand5.Width = 100
         '
         'gridBand4
         '
@@ -342,30 +347,37 @@ Partial Class FrmReport_Matome
         Me.gridBand4.Columns.Add(Me.ColCustomer)
         Me.gridBand4.Columns.Add(Me.ColCustId)
         Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand4.MinWidth = 13
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 225
+        Me.gridBand4.Width = 300
         '
         'ColGroup
         '
         Me.ColGroup.Caption = "Group"
         Me.ColGroup.FieldName = "Kel"
+        Me.ColGroup.MinWidth = 27
         Me.ColGroup.Name = "ColGroup"
         Me.ColGroup.Visible = True
+        Me.ColGroup.Width = 100
         '
         'ColCustomer
         '
         Me.ColCustomer.Caption = "CUSTOMER"
         Me.ColCustomer.FieldName = "customer"
+        Me.ColCustomer.MinWidth = 27
         Me.ColCustomer.Name = "ColCustomer"
         Me.ColCustomer.Visible = True
+        Me.ColCustomer.Width = 100
         '
         'ColCustId
         '
         Me.ColCustId.Caption = "Customer ID"
         Me.ColCustId.FieldName = "custid"
+        Me.ColCustId.MinWidth = 27
         Me.ColCustId.Name = "ColCustId"
         Me.ColCustId.Visible = True
+        Me.ColCustId.Width = 100
         '
         'GridBand1
         '
@@ -373,9 +385,10 @@ Partial Class FrmReport_Matome
         Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridBand1.Caption = "JANUARI"
         Me.GridBand1.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand3, Me.gridBand19, Me.gridBand18})
+        Me.GridBand1.MinWidth = 13
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 900
+        Me.GridBand1.Width = 1200
         '
         'gridBand2
         '
@@ -387,7 +400,7 @@ Partial Class FrmReport_Matome
         Me.gridBand2.Columns.Add(Me.ColBudgetCKRJan)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 225
+        Me.gridBand2.Width = 300
         '
         'ColBudgetAmountJan
         '
@@ -395,9 +408,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountJan.FieldName = "BudgetAmountJan"
+        Me.ColBudgetAmountJan.MinWidth = 27
         Me.ColBudgetAmountJan.Name = "ColBudgetAmountJan"
-        Me.ColBudgetAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountJan", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountJan", "{0:#,0.00}")})
         Me.ColBudgetAmountJan.Visible = True
+        Me.ColBudgetAmountJan.Width = 100
         '
         'ColBudgetTNGJan
         '
@@ -405,9 +420,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGJan.FieldName = "BudgetjanTNG"
+        Me.ColBudgetTNGJan.MinWidth = 27
         Me.ColBudgetTNGJan.Name = "ColBudgetTNGJan"
-        Me.ColBudgetTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjanTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjanTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGJan.Visible = True
+        Me.ColBudgetTNGJan.Width = 100
         '
         'ColBudgetCKRJan
         '
@@ -415,9 +432,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRJan.FieldName = "BudgetjanCKR"
+        Me.ColBudgetCKRJan.MinWidth = 27
         Me.ColBudgetCKRJan.Name = "ColBudgetCKRJan"
-        Me.ColBudgetCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjanCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjanCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRJan.Visible = True
+        Me.ColBudgetCKRJan.Width = 100
         '
         'gridBand3
         '
@@ -429,7 +448,7 @@ Partial Class FrmReport_Matome
         Me.gridBand3.Columns.Add(Me.ColForecastCKRJan)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 225
+        Me.gridBand3.Width = 300
         '
         'ColForecastAmountJan
         '
@@ -437,9 +456,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountJan.FieldName = "ForecastAmountJan"
+        Me.ColForecastAmountJan.MinWidth = 27
         Me.ColForecastAmountJan.Name = "ColForecastAmountJan"
-        Me.ColForecastAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJan", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJan", "{0:#,0.00}")})
         Me.ColForecastAmountJan.Visible = True
+        Me.ColForecastAmountJan.Width = 100
         '
         'ColForecastTNGJan
         '
@@ -447,9 +468,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGJan.FieldName = "ForecastjanTNG"
+        Me.ColForecastTNGJan.MinWidth = 27
         Me.ColForecastTNGJan.Name = "ColForecastTNGJan"
-        Me.ColForecastTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjanTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjanTNG", "{0:#,0.00}")})
         Me.ColForecastTNGJan.Visible = True
+        Me.ColForecastTNGJan.Width = 100
         '
         'ColForecastCKRJan
         '
@@ -457,9 +480,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRJan.FieldName = "ForecastjanCKR"
+        Me.ColForecastCKRJan.MinWidth = 27
         Me.ColForecastCKRJan.Name = "ColForecastCKRJan"
-        Me.ColForecastCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjanCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjanCKR", "{0:#,0.00}")})
         Me.ColForecastCKRJan.Visible = True
+        Me.ColForecastCKRJan.Width = 100
         '
         'gridBand19
         '
@@ -471,7 +496,7 @@ Partial Class FrmReport_Matome
         Me.gridBand19.Columns.Add(Me.ColPOCKRJan)
         Me.gridBand19.Name = "gridBand19"
         Me.gridBand19.VisibleIndex = 2
-        Me.gridBand19.Width = 225
+        Me.gridBand19.Width = 300
         '
         'ColPOAmountJan
         '
@@ -479,9 +504,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountJan.FieldName = "POAmountJan"
+        Me.ColPOAmountJan.MinWidth = 27
         Me.ColPOAmountJan.Name = "ColPOAmountJan"
-        Me.ColPOAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJan", "SUM={0:#,0.00}")})
+        Me.ColPOAmountJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJan", "{0:#,0.00}")})
         Me.ColPOAmountJan.Visible = True
+        Me.ColPOAmountJan.Width = 100
         '
         'ColPOTNGJan
         '
@@ -489,9 +516,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGJan.FieldName = "POjanTNG"
+        Me.ColPOTNGJan.MinWidth = 27
         Me.ColPOTNGJan.Name = "ColPOTNGJan"
-        Me.ColPOTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjanTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjanTNG", "{0:#,0.00}")})
         Me.ColPOTNGJan.Visible = True
+        Me.ColPOTNGJan.Width = 100
         '
         'ColPOCKRJan
         '
@@ -499,9 +528,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRJan.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRJan.FieldName = "POjanCKR"
+        Me.ColPOCKRJan.MinWidth = 27
         Me.ColPOCKRJan.Name = "ColPOCKRJan"
-        Me.ColPOCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjanCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjanCKR", "{0:#,0.00}")})
         Me.ColPOCKRJan.Visible = True
+        Me.ColPOCKRJan.Width = 100
         '
         'gridBand18
         '
@@ -513,26 +544,32 @@ Partial Class FrmReport_Matome
         Me.gridBand18.Columns.Add(Me.ColAktualCKRJan)
         Me.gridBand18.Name = "gridBand18"
         Me.gridBand18.VisibleIndex = 3
-        Me.gridBand18.Width = 225
+        Me.gridBand18.Width = 300
         '
         'ColAktualAmountJan
         '
         Me.ColAktualAmountJan.Caption = "Amount"
+        Me.ColAktualAmountJan.MinWidth = 27
         Me.ColAktualAmountJan.Name = "ColAktualAmountJan"
         Me.ColAktualAmountJan.Visible = True
+        Me.ColAktualAmountJan.Width = 100
         '
         'ColAktualTNGJan
         '
         Me.ColAktualTNGJan.Caption = "TNG"
+        Me.ColAktualTNGJan.MinWidth = 27
         Me.ColAktualTNGJan.Name = "ColAktualTNGJan"
         Me.ColAktualTNGJan.Visible = True
+        Me.ColAktualTNGJan.Width = 100
         '
         'ColAktualCKRJan
         '
         Me.ColAktualCKRJan.Caption = "CKR"
         Me.ColAktualCKRJan.FieldName = "AktualCKRJan"
+        Me.ColAktualCKRJan.MinWidth = 27
         Me.ColAktualCKRJan.Name = "ColAktualCKRJan"
         Me.ColAktualCKRJan.Visible = True
+        Me.ColAktualCKRJan.Width = 100
         '
         'gridBand8
         '
@@ -540,9 +577,10 @@ Partial Class FrmReport_Matome
         Me.gridBand8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand8.Caption = "FEBRUARI"
         Me.gridBand8.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand10, Me.gridBand9, Me.gridBand7, Me.gridBand20})
+        Me.gridBand8.MinWidth = 13
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 2
-        Me.gridBand8.Width = 900
+        Me.gridBand8.Width = 1200
         '
         'gridBand10
         '
@@ -554,7 +592,7 @@ Partial Class FrmReport_Matome
         Me.gridBand10.Columns.Add(Me.ColBudgetCKRFeb)
         Me.gridBand10.Name = "gridBand10"
         Me.gridBand10.VisibleIndex = 0
-        Me.gridBand10.Width = 225
+        Me.gridBand10.Width = 300
         '
         'ColBudgetAmountFeb
         '
@@ -562,9 +600,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountFeb.FieldName = "BudgetAmountFeb"
+        Me.ColBudgetAmountFeb.MinWidth = 27
         Me.ColBudgetAmountFeb.Name = "ColBudgetAmountFeb"
-        Me.ColBudgetAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountFeb", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountFeb", "{0:#,0.00}")})
         Me.ColBudgetAmountFeb.Visible = True
+        Me.ColBudgetAmountFeb.Width = 100
         '
         'ColBudgetTNGFeb
         '
@@ -572,9 +612,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGFeb.FieldName = "BudgetfebTNG"
+        Me.ColBudgetTNGFeb.MinWidth = 27
         Me.ColBudgetTNGFeb.Name = "ColBudgetTNGFeb"
-        Me.ColBudgetTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetfebTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetfebTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGFeb.Visible = True
+        Me.ColBudgetTNGFeb.Width = 100
         '
         'ColBudgetCKRFeb
         '
@@ -582,9 +624,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRFeb.FieldName = "BudgetfebCKR"
+        Me.ColBudgetCKRFeb.MinWidth = 27
         Me.ColBudgetCKRFeb.Name = "ColBudgetCKRFeb"
-        Me.ColBudgetCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetfebCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetfebCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRFeb.Visible = True
+        Me.ColBudgetCKRFeb.Width = 100
         '
         'gridBand9
         '
@@ -596,7 +640,7 @@ Partial Class FrmReport_Matome
         Me.gridBand9.Columns.Add(Me.ColForecastCKRFeb)
         Me.gridBand9.Name = "gridBand9"
         Me.gridBand9.VisibleIndex = 1
-        Me.gridBand9.Width = 225
+        Me.gridBand9.Width = 300
         '
         'ColForecastAmountFeb
         '
@@ -604,9 +648,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountFeb.FieldName = "ForecastAmountFeb"
+        Me.ColForecastAmountFeb.MinWidth = 27
         Me.ColForecastAmountFeb.Name = "ColForecastAmountFeb"
-        Me.ColForecastAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountFeb", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountFeb", "{0:#,0.00}")})
         Me.ColForecastAmountFeb.Visible = True
+        Me.ColForecastAmountFeb.Width = 100
         '
         'ColForecastTNGFeb
         '
@@ -614,9 +660,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGFeb.FieldName = "ForecastfebTNG"
+        Me.ColForecastTNGFeb.MinWidth = 27
         Me.ColForecastTNGFeb.Name = "ColForecastTNGFeb"
-        Me.ColForecastTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastfebTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastfebTNG", "{0:#,0.00}")})
         Me.ColForecastTNGFeb.Visible = True
+        Me.ColForecastTNGFeb.Width = 100
         '
         'ColForecastCKRFeb
         '
@@ -624,9 +672,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRFeb.FieldName = "ForecastfebCKR"
+        Me.ColForecastCKRFeb.MinWidth = 27
         Me.ColForecastCKRFeb.Name = "ColForecastCKRFeb"
-        Me.ColForecastCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastfebCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastfebCKR", "{0:#,0.00}")})
         Me.ColForecastCKRFeb.Visible = True
+        Me.ColForecastCKRFeb.Width = 100
         '
         'gridBand7
         '
@@ -638,7 +688,7 @@ Partial Class FrmReport_Matome
         Me.gridBand7.Columns.Add(Me.ColPOCKRFeb)
         Me.gridBand7.Name = "gridBand7"
         Me.gridBand7.VisibleIndex = 2
-        Me.gridBand7.Width = 225
+        Me.gridBand7.Width = 300
         '
         'ColPOAmountFeb
         '
@@ -646,9 +696,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountFeb.FieldName = "POAmountFeb"
+        Me.ColPOAmountFeb.MinWidth = 27
         Me.ColPOAmountFeb.Name = "ColPOAmountFeb"
-        Me.ColPOAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountFeb", "SUM={0:#,0.00}")})
+        Me.ColPOAmountFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountFeb", "{0:#,0.00}")})
         Me.ColPOAmountFeb.Visible = True
+        Me.ColPOAmountFeb.Width = 100
         '
         'ColPOTNGFeb
         '
@@ -656,9 +708,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGFeb.FieldName = "POfebTNG"
+        Me.ColPOTNGFeb.MinWidth = 27
         Me.ColPOTNGFeb.Name = "ColPOTNGFeb"
-        Me.ColPOTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POfebTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POfebTNG", "{0:#,0.00}")})
         Me.ColPOTNGFeb.Visible = True
+        Me.ColPOTNGFeb.Width = 100
         '
         'ColPOCKRFeb
         '
@@ -666,9 +720,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRFeb.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRFeb.FieldName = "POfebCKR"
+        Me.ColPOCKRFeb.MinWidth = 27
         Me.ColPOCKRFeb.Name = "ColPOCKRFeb"
-        Me.ColPOCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POfebCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POfebCKR", "{0:#,0.00}")})
         Me.ColPOCKRFeb.Visible = True
+        Me.ColPOCKRFeb.Width = 100
         '
         'gridBand20
         '
@@ -680,25 +736,31 @@ Partial Class FrmReport_Matome
         Me.gridBand20.Columns.Add(Me.ColAktualCKRFeb)
         Me.gridBand20.Name = "gridBand20"
         Me.gridBand20.VisibleIndex = 3
-        Me.gridBand20.Width = 225
+        Me.gridBand20.Width = 300
         '
         'ColAktualAmountFeb
         '
         Me.ColAktualAmountFeb.Caption = "Amount"
+        Me.ColAktualAmountFeb.MinWidth = 27
         Me.ColAktualAmountFeb.Name = "ColAktualAmountFeb"
         Me.ColAktualAmountFeb.Visible = True
+        Me.ColAktualAmountFeb.Width = 100
         '
         'ColAktualTNGFeb
         '
         Me.ColAktualTNGFeb.Caption = "TNG"
+        Me.ColAktualTNGFeb.MinWidth = 27
         Me.ColAktualTNGFeb.Name = "ColAktualTNGFeb"
         Me.ColAktualTNGFeb.Visible = True
+        Me.ColAktualTNGFeb.Width = 100
         '
         'ColAktualCKRFeb
         '
         Me.ColAktualCKRFeb.Caption = "CKR"
+        Me.ColAktualCKRFeb.MinWidth = 27
         Me.ColAktualCKRFeb.Name = "ColAktualCKRFeb"
         Me.ColAktualCKRFeb.Visible = True
+        Me.ColAktualCKRFeb.Width = 100
         '
         'gridBand6
         '
@@ -706,9 +768,10 @@ Partial Class FrmReport_Matome
         Me.gridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand6.Caption = "MARET"
         Me.gridBand6.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand11, Me.gridBand12, Me.gridBand13, Me.gridBand21})
+        Me.gridBand6.MinWidth = 13
         Me.gridBand6.Name = "gridBand6"
         Me.gridBand6.VisibleIndex = 3
-        Me.gridBand6.Width = 900
+        Me.gridBand6.Width = 1200
         '
         'gridBand11
         '
@@ -720,7 +783,7 @@ Partial Class FrmReport_Matome
         Me.gridBand11.Columns.Add(Me.ColBudgetCKRMar)
         Me.gridBand11.Name = "gridBand11"
         Me.gridBand11.VisibleIndex = 0
-        Me.gridBand11.Width = 225
+        Me.gridBand11.Width = 300
         '
         'ColBudgetAmountMar
         '
@@ -728,9 +791,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountMar.FieldName = "BudgetAmountMar"
+        Me.ColBudgetAmountMar.MinWidth = 27
         Me.ColBudgetAmountMar.Name = "ColBudgetAmountMar"
-        Me.ColBudgetAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountMar", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountMar", "{0:#,0.00}")})
         Me.ColBudgetAmountMar.Visible = True
+        Me.ColBudgetAmountMar.Width = 100
         '
         'ColBudgetTNGMar
         '
@@ -738,9 +803,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGMar.FieldName = "BudgetmarTNG"
+        Me.ColBudgetTNGMar.MinWidth = 27
         Me.ColBudgetTNGMar.Name = "ColBudgetTNGMar"
-        Me.ColBudgetTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmarTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmarTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGMar.Visible = True
+        Me.ColBudgetTNGMar.Width = 100
         '
         'ColBudgetCKRMar
         '
@@ -748,9 +815,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRMar.FieldName = "BudgetmarCKR"
+        Me.ColBudgetCKRMar.MinWidth = 27
         Me.ColBudgetCKRMar.Name = "ColBudgetCKRMar"
-        Me.ColBudgetCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmarCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmarCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRMar.Visible = True
+        Me.ColBudgetCKRMar.Width = 100
         '
         'gridBand12
         '
@@ -762,7 +831,7 @@ Partial Class FrmReport_Matome
         Me.gridBand12.Columns.Add(Me.ColForecastCKRMar)
         Me.gridBand12.Name = "gridBand12"
         Me.gridBand12.VisibleIndex = 1
-        Me.gridBand12.Width = 225
+        Me.gridBand12.Width = 300
         '
         'ColForecastAmountMar
         '
@@ -770,9 +839,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountMar.FieldName = "ForecastAmountMar"
+        Me.ColForecastAmountMar.MinWidth = 27
         Me.ColForecastAmountMar.Name = "ColForecastAmountMar"
-        Me.ColForecastAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountMar", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountMar", "{0:#,0.00}")})
         Me.ColForecastAmountMar.Visible = True
+        Me.ColForecastAmountMar.Width = 100
         '
         'ColForecastTNGMar
         '
@@ -780,9 +851,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGMar.FieldName = "ForecastmarTNG"
+        Me.ColForecastTNGMar.MinWidth = 27
         Me.ColForecastTNGMar.Name = "ColForecastTNGMar"
-        Me.ColForecastTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmarTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmarTNG", "{0:#,0.00}")})
         Me.ColForecastTNGMar.Visible = True
+        Me.ColForecastTNGMar.Width = 100
         '
         'ColForecastCKRMar
         '
@@ -790,9 +863,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRMar.FieldName = "ForecastmarCKR"
+        Me.ColForecastCKRMar.MinWidth = 27
         Me.ColForecastCKRMar.Name = "ColForecastCKRMar"
-        Me.ColForecastCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmarCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmarCKR", "{0:#,0.00}")})
         Me.ColForecastCKRMar.Visible = True
+        Me.ColForecastCKRMar.Width = 100
         '
         'gridBand13
         '
@@ -804,7 +879,7 @@ Partial Class FrmReport_Matome
         Me.gridBand13.Columns.Add(Me.ColPOCKRMar)
         Me.gridBand13.Name = "gridBand13"
         Me.gridBand13.VisibleIndex = 2
-        Me.gridBand13.Width = 225
+        Me.gridBand13.Width = 300
         '
         'ColPOAmountMar
         '
@@ -812,9 +887,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountMar.FieldName = "POAmountMar"
+        Me.ColPOAmountMar.MinWidth = 27
         Me.ColPOAmountMar.Name = "ColPOAmountMar"
-        Me.ColPOAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountMar", "SUM={0:#,0.00}")})
+        Me.ColPOAmountMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountMar", "{0:#,0.00}")})
         Me.ColPOAmountMar.Visible = True
+        Me.ColPOAmountMar.Width = 100
         '
         'ColPOTNGMar
         '
@@ -822,9 +899,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGMar.FieldName = "POmarTNG"
+        Me.ColPOTNGMar.MinWidth = 27
         Me.ColPOTNGMar.Name = "ColPOTNGMar"
-        Me.ColPOTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmarTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmarTNG", "{0:#,0.00}")})
         Me.ColPOTNGMar.Visible = True
+        Me.ColPOTNGMar.Width = 100
         '
         'ColPOCKRMar
         '
@@ -832,9 +911,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRMar.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRMar.FieldName = "POmarCKR"
+        Me.ColPOCKRMar.MinWidth = 27
         Me.ColPOCKRMar.Name = "ColPOCKRMar"
-        Me.ColPOCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmarCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRMar.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmarCKR", "{0:#,0.00}")})
         Me.ColPOCKRMar.Visible = True
+        Me.ColPOCKRMar.Width = 100
         '
         'gridBand21
         '
@@ -846,25 +927,31 @@ Partial Class FrmReport_Matome
         Me.gridBand21.Columns.Add(Me.ColAktualCKRMar)
         Me.gridBand21.Name = "gridBand21"
         Me.gridBand21.VisibleIndex = 3
-        Me.gridBand21.Width = 225
+        Me.gridBand21.Width = 300
         '
         'ColAktualAmountMar
         '
         Me.ColAktualAmountMar.Caption = "Amount"
+        Me.ColAktualAmountMar.MinWidth = 27
         Me.ColAktualAmountMar.Name = "ColAktualAmountMar"
         Me.ColAktualAmountMar.Visible = True
+        Me.ColAktualAmountMar.Width = 100
         '
         'ColAktualTNGMar
         '
         Me.ColAktualTNGMar.Caption = "TNG"
+        Me.ColAktualTNGMar.MinWidth = 27
         Me.ColAktualTNGMar.Name = "ColAktualTNGMar"
         Me.ColAktualTNGMar.Visible = True
+        Me.ColAktualTNGMar.Width = 100
         '
         'ColAktualCKRMar
         '
         Me.ColAktualCKRMar.Caption = "CKR"
+        Me.ColAktualCKRMar.MinWidth = 27
         Me.ColAktualCKRMar.Name = "ColAktualCKRMar"
         Me.ColAktualCKRMar.Visible = True
+        Me.ColAktualCKRMar.Width = 100
         '
         'gridBand14
         '
@@ -872,9 +959,10 @@ Partial Class FrmReport_Matome
         Me.gridBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand14.Caption = "APRIL"
         Me.gridBand14.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand15, Me.gridBand16, Me.gridBand17, Me.gridBand22})
+        Me.gridBand14.MinWidth = 13
         Me.gridBand14.Name = "gridBand14"
         Me.gridBand14.VisibleIndex = 4
-        Me.gridBand14.Width = 900
+        Me.gridBand14.Width = 1200
         '
         'gridBand15
         '
@@ -886,7 +974,7 @@ Partial Class FrmReport_Matome
         Me.gridBand15.Columns.Add(Me.ColBudgetCKRApr)
         Me.gridBand15.Name = "gridBand15"
         Me.gridBand15.VisibleIndex = 0
-        Me.gridBand15.Width = 225
+        Me.gridBand15.Width = 300
         '
         'ColBudgetAmountApr
         '
@@ -894,9 +982,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountApr.FieldName = "BudgetAmountApr"
+        Me.ColBudgetAmountApr.MinWidth = 27
         Me.ColBudgetAmountApr.Name = "ColBudgetAmountApr"
-        Me.ColBudgetAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountApr", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountApr", "{0:#,0.00}")})
         Me.ColBudgetAmountApr.Visible = True
+        Me.ColBudgetAmountApr.Width = 100
         '
         'ColBudgetTNGApr
         '
@@ -904,9 +994,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGApr.FieldName = "BudgetaprTNG"
+        Me.ColBudgetTNGApr.MinWidth = 27
         Me.ColBudgetTNGApr.Name = "ColBudgetTNGApr"
-        Me.ColBudgetTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetaprTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetaprTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGApr.Visible = True
+        Me.ColBudgetTNGApr.Width = 100
         '
         'ColBudgetCKRApr
         '
@@ -914,9 +1006,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRApr.FieldName = "BudgetaprCKR"
+        Me.ColBudgetCKRApr.MinWidth = 27
         Me.ColBudgetCKRApr.Name = "ColBudgetCKRApr"
-        Me.ColBudgetCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetaprCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetaprCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRApr.Visible = True
+        Me.ColBudgetCKRApr.Width = 100
         '
         'gridBand16
         '
@@ -928,7 +1022,7 @@ Partial Class FrmReport_Matome
         Me.gridBand16.Columns.Add(Me.ColForecastCKRApr)
         Me.gridBand16.Name = "gridBand16"
         Me.gridBand16.VisibleIndex = 1
-        Me.gridBand16.Width = 225
+        Me.gridBand16.Width = 300
         '
         'ColForecastAmountApr
         '
@@ -936,9 +1030,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountApr.FieldName = "ForecastAmountApr"
+        Me.ColForecastAmountApr.MinWidth = 27
         Me.ColForecastAmountApr.Name = "ColForecastAmountApr"
-        Me.ColForecastAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountApr", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountApr", "{0:#,0.00}")})
         Me.ColForecastAmountApr.Visible = True
+        Me.ColForecastAmountApr.Width = 100
         '
         'ColForecastTNGApr
         '
@@ -946,9 +1042,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGApr.FieldName = "ForecastaprTNG"
+        Me.ColForecastTNGApr.MinWidth = 27
         Me.ColForecastTNGApr.Name = "ColForecastTNGApr"
-        Me.ColForecastTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastaprTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastaprTNG", "{0:#,0.00}")})
         Me.ColForecastTNGApr.Visible = True
+        Me.ColForecastTNGApr.Width = 100
         '
         'ColForecastCKRApr
         '
@@ -956,9 +1054,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRApr.FieldName = "ForecastaprCKR"
+        Me.ColForecastCKRApr.MinWidth = 27
         Me.ColForecastCKRApr.Name = "ColForecastCKRApr"
-        Me.ColForecastCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastaprCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastaprCKR", "{0:#,0.00}")})
         Me.ColForecastCKRApr.Visible = True
+        Me.ColForecastCKRApr.Width = 100
         '
         'gridBand17
         '
@@ -970,7 +1070,7 @@ Partial Class FrmReport_Matome
         Me.gridBand17.Columns.Add(Me.ColPOCKRApr)
         Me.gridBand17.Name = "gridBand17"
         Me.gridBand17.VisibleIndex = 2
-        Me.gridBand17.Width = 225
+        Me.gridBand17.Width = 300
         '
         'ColPOAmountApr
         '
@@ -978,9 +1078,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountApr.FieldName = "POAmountApr"
+        Me.ColPOAmountApr.MinWidth = 27
         Me.ColPOAmountApr.Name = "ColPOAmountApr"
-        Me.ColPOAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountApr", "SUM={0:#,0.00}")})
+        Me.ColPOAmountApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountApr", "{0:#,0.00}")})
         Me.ColPOAmountApr.Visible = True
+        Me.ColPOAmountApr.Width = 100
         '
         'ColPOTNGApr
         '
@@ -988,9 +1090,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGApr.FieldName = "POaprTNG"
+        Me.ColPOTNGApr.MinWidth = 27
         Me.ColPOTNGApr.Name = "ColPOTNGApr"
-        Me.ColPOTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POaprTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POaprTNG", "{0:#,0.00}")})
         Me.ColPOTNGApr.Visible = True
+        Me.ColPOTNGApr.Width = 100
         '
         'ColPOCKRApr
         '
@@ -998,9 +1102,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRApr.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRApr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRApr.FieldName = "POaprCKR"
+        Me.ColPOCKRApr.MinWidth = 27
         Me.ColPOCKRApr.Name = "ColPOCKRApr"
-        Me.ColPOCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POaprCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRApr.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POaprCKR", "{0:#,0.00}")})
         Me.ColPOCKRApr.Visible = True
+        Me.ColPOCKRApr.Width = 100
         '
         'gridBand22
         '
@@ -1012,25 +1118,31 @@ Partial Class FrmReport_Matome
         Me.gridBand22.Columns.Add(Me.ColAktualCKRApr)
         Me.gridBand22.Name = "gridBand22"
         Me.gridBand22.VisibleIndex = 3
-        Me.gridBand22.Width = 225
+        Me.gridBand22.Width = 300
         '
         'ColAktualAmountApr
         '
         Me.ColAktualAmountApr.Caption = "Amount"
+        Me.ColAktualAmountApr.MinWidth = 27
         Me.ColAktualAmountApr.Name = "ColAktualAmountApr"
         Me.ColAktualAmountApr.Visible = True
+        Me.ColAktualAmountApr.Width = 100
         '
         'ColAktualTNGApr
         '
         Me.ColAktualTNGApr.Caption = "TNG"
+        Me.ColAktualTNGApr.MinWidth = 27
         Me.ColAktualTNGApr.Name = "ColAktualTNGApr"
         Me.ColAktualTNGApr.Visible = True
+        Me.ColAktualTNGApr.Width = 100
         '
         'ColAktualCKRApr
         '
         Me.ColAktualCKRApr.Caption = "CKR"
+        Me.ColAktualCKRApr.MinWidth = 27
         Me.ColAktualCKRApr.Name = "ColAktualCKRApr"
         Me.ColAktualCKRApr.Visible = True
+        Me.ColAktualCKRApr.Width = 100
         '
         'gridBand23
         '
@@ -1038,9 +1150,10 @@ Partial Class FrmReport_Matome
         Me.gridBand23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand23.Caption = "MEI"
         Me.gridBand23.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand24, Me.gridBand25, Me.gridBand26, Me.gridBand27})
+        Me.gridBand23.MinWidth = 13
         Me.gridBand23.Name = "gridBand23"
         Me.gridBand23.VisibleIndex = 5
-        Me.gridBand23.Width = 900
+        Me.gridBand23.Width = 1200
         '
         'gridBand24
         '
@@ -1052,7 +1165,7 @@ Partial Class FrmReport_Matome
         Me.gridBand24.Columns.Add(Me.ColBudgetCKRMei)
         Me.gridBand24.Name = "gridBand24"
         Me.gridBand24.VisibleIndex = 0
-        Me.gridBand24.Width = 225
+        Me.gridBand24.Width = 300
         '
         'ColBudgetAmountMei
         '
@@ -1060,9 +1173,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountMei.FieldName = "BudgetAmountMei"
+        Me.ColBudgetAmountMei.MinWidth = 27
         Me.ColBudgetAmountMei.Name = "ColBudgetAmountMei"
-        Me.ColBudgetAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountMei", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountMei", "{0:#,0.00}")})
         Me.ColBudgetAmountMei.Visible = True
+        Me.ColBudgetAmountMei.Width = 100
         '
         'ColBudgetTNGMei
         '
@@ -1070,9 +1185,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGMei.FieldName = "BudgetmeiTNG"
+        Me.ColBudgetTNGMei.MinWidth = 27
         Me.ColBudgetTNGMei.Name = "ColBudgetTNGMei"
-        Me.ColBudgetTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmeiTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmeiTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGMei.Visible = True
+        Me.ColBudgetTNGMei.Width = 100
         '
         'ColBudgetCKRMei
         '
@@ -1080,9 +1197,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRMei.FieldName = "BudgetmeiCKR"
+        Me.ColBudgetCKRMei.MinWidth = 27
         Me.ColBudgetCKRMei.Name = "ColBudgetCKRMei"
-        Me.ColBudgetCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmeiCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetmeiCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRMei.Visible = True
+        Me.ColBudgetCKRMei.Width = 100
         '
         'gridBand25
         '
@@ -1094,7 +1213,7 @@ Partial Class FrmReport_Matome
         Me.gridBand25.Columns.Add(Me.ColForecastCKRMei)
         Me.gridBand25.Name = "gridBand25"
         Me.gridBand25.VisibleIndex = 1
-        Me.gridBand25.Width = 225
+        Me.gridBand25.Width = 300
         '
         'ColForecastAmountMei
         '
@@ -1102,9 +1221,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountMei.FieldName = "ForecastAmountMei"
+        Me.ColForecastAmountMei.MinWidth = 27
         Me.ColForecastAmountMei.Name = "ColForecastAmountMei"
-        Me.ColForecastAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountMei", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountMei", "{0:#,0.00}")})
         Me.ColForecastAmountMei.Visible = True
+        Me.ColForecastAmountMei.Width = 100
         '
         'ColForecastTNGMei
         '
@@ -1112,9 +1233,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGMei.FieldName = "ForecastmeiTNG"
+        Me.ColForecastTNGMei.MinWidth = 27
         Me.ColForecastTNGMei.Name = "ColForecastTNGMei"
-        Me.ColForecastTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmeiTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmeiTNG", "{0:#,0.00}")})
         Me.ColForecastTNGMei.Visible = True
+        Me.ColForecastTNGMei.Width = 100
         '
         'ColForecastCKRMei
         '
@@ -1122,9 +1245,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRMei.FieldName = "ForecastmeiCKR"
+        Me.ColForecastCKRMei.MinWidth = 27
         Me.ColForecastCKRMei.Name = "ColForecastCKRMei"
-        Me.ColForecastCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmeiCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastmeiCKR", "{0:#,0.00}")})
         Me.ColForecastCKRMei.Visible = True
+        Me.ColForecastCKRMei.Width = 100
         '
         'gridBand26
         '
@@ -1136,7 +1261,7 @@ Partial Class FrmReport_Matome
         Me.gridBand26.Columns.Add(Me.ColPOCKRMei)
         Me.gridBand26.Name = "gridBand26"
         Me.gridBand26.VisibleIndex = 2
-        Me.gridBand26.Width = 225
+        Me.gridBand26.Width = 300
         '
         'ColPOAmountMei
         '
@@ -1144,9 +1269,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountMei.FieldName = "POAmountMei"
+        Me.ColPOAmountMei.MinWidth = 27
         Me.ColPOAmountMei.Name = "ColPOAmountMei"
-        Me.ColPOAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountMei", "SUM={0:#,0.00}")})
+        Me.ColPOAmountMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountMei", "{0:#,0.00}")})
         Me.ColPOAmountMei.Visible = True
+        Me.ColPOAmountMei.Width = 100
         '
         'ColPOTNGMei
         '
@@ -1154,9 +1281,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGMei.FieldName = "POmeiTNG"
+        Me.ColPOTNGMei.MinWidth = 27
         Me.ColPOTNGMei.Name = "ColPOTNGMei"
-        Me.ColPOTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmeiTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmeiTNG", "{0:#,0.00}")})
         Me.ColPOTNGMei.Visible = True
+        Me.ColPOTNGMei.Width = 100
         '
         'ColPOCKRMei
         '
@@ -1164,9 +1293,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRMei.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRMei.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRMei.FieldName = "POmeiCKR"
+        Me.ColPOCKRMei.MinWidth = 27
         Me.ColPOCKRMei.Name = "ColPOCKRMei"
-        Me.ColPOCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmeiCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRMei.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POmeiCKR", "{0:#,0.00}")})
         Me.ColPOCKRMei.Visible = True
+        Me.ColPOCKRMei.Width = 100
         '
         'gridBand27
         '
@@ -1178,25 +1309,31 @@ Partial Class FrmReport_Matome
         Me.gridBand27.Columns.Add(Me.ColAktualCKRMei)
         Me.gridBand27.Name = "gridBand27"
         Me.gridBand27.VisibleIndex = 3
-        Me.gridBand27.Width = 225
+        Me.gridBand27.Width = 300
         '
         'ColAktualAmountMei
         '
         Me.ColAktualAmountMei.Caption = "Amount"
+        Me.ColAktualAmountMei.MinWidth = 27
         Me.ColAktualAmountMei.Name = "ColAktualAmountMei"
         Me.ColAktualAmountMei.Visible = True
+        Me.ColAktualAmountMei.Width = 100
         '
         'ColAktualTNGMei
         '
         Me.ColAktualTNGMei.Caption = "TNG"
+        Me.ColAktualTNGMei.MinWidth = 27
         Me.ColAktualTNGMei.Name = "ColAktualTNGMei"
         Me.ColAktualTNGMei.Visible = True
+        Me.ColAktualTNGMei.Width = 100
         '
         'ColAktualCKRMei
         '
         Me.ColAktualCKRMei.Caption = "CKR"
+        Me.ColAktualCKRMei.MinWidth = 27
         Me.ColAktualCKRMei.Name = "ColAktualCKRMei"
         Me.ColAktualCKRMei.Visible = True
+        Me.ColAktualCKRMei.Width = 100
         '
         'gridBand28
         '
@@ -1204,9 +1341,10 @@ Partial Class FrmReport_Matome
         Me.gridBand28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand28.Caption = "JUNI"
         Me.gridBand28.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand29, Me.gridBand30, Me.gridBand31, Me.gridBand32})
+        Me.gridBand28.MinWidth = 13
         Me.gridBand28.Name = "gridBand28"
         Me.gridBand28.VisibleIndex = 6
-        Me.gridBand28.Width = 900
+        Me.gridBand28.Width = 1200
         '
         'gridBand29
         '
@@ -1218,7 +1356,7 @@ Partial Class FrmReport_Matome
         Me.gridBand29.Columns.Add(Me.ColBudgetCKRJun)
         Me.gridBand29.Name = "gridBand29"
         Me.gridBand29.VisibleIndex = 0
-        Me.gridBand29.Width = 225
+        Me.gridBand29.Width = 300
         '
         'ColBudgetAmountJun
         '
@@ -1226,9 +1364,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountJun.FieldName = "BudgetAmountJun"
+        Me.ColBudgetAmountJun.MinWidth = 27
         Me.ColBudgetAmountJun.Name = "ColBudgetAmountJun"
-        Me.ColBudgetAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountJun", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountJun", "{0:#,0.00}")})
         Me.ColBudgetAmountJun.Visible = True
+        Me.ColBudgetAmountJun.Width = 100
         '
         'ColBudgetTNGJun
         '
@@ -1236,9 +1376,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGJun.FieldName = "BudgetjunTNG"
+        Me.ColBudgetTNGJun.MinWidth = 27
         Me.ColBudgetTNGJun.Name = "ColBudgetTNGJun"
-        Me.ColBudgetTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjunTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjunTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGJun.Visible = True
+        Me.ColBudgetTNGJun.Width = 100
         '
         'ColBudgetCKRJun
         '
@@ -1246,9 +1388,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRJun.FieldName = "BudgetjunCKR"
+        Me.ColBudgetCKRJun.MinWidth = 27
         Me.ColBudgetCKRJun.Name = "ColBudgetCKRJun"
-        Me.ColBudgetCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjunCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjunCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRJun.Visible = True
+        Me.ColBudgetCKRJun.Width = 100
         '
         'gridBand30
         '
@@ -1260,7 +1404,7 @@ Partial Class FrmReport_Matome
         Me.gridBand30.Columns.Add(Me.ColForecastCKRJun)
         Me.gridBand30.Name = "gridBand30"
         Me.gridBand30.VisibleIndex = 1
-        Me.gridBand30.Width = 225
+        Me.gridBand30.Width = 300
         '
         'ColForecastAmountJun
         '
@@ -1268,9 +1412,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountJun.FieldName = "ForecastAmountJun"
+        Me.ColForecastAmountJun.MinWidth = 27
         Me.ColForecastAmountJun.Name = "ColForecastAmountJun"
-        Me.ColForecastAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJun", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJun", "{0:#,0.00}")})
         Me.ColForecastAmountJun.Visible = True
+        Me.ColForecastAmountJun.Width = 100
         '
         'ColForecastTNGJun
         '
@@ -1278,9 +1424,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGJun.FieldName = "ForecastjunTNG"
+        Me.ColForecastTNGJun.MinWidth = 27
         Me.ColForecastTNGJun.Name = "ColForecastTNGJun"
-        Me.ColForecastTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjunTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjunTNG", "{0:#,0.00}")})
         Me.ColForecastTNGJun.Visible = True
+        Me.ColForecastTNGJun.Width = 100
         '
         'ColForecastCKRJun
         '
@@ -1288,9 +1436,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRJun.FieldName = "ForecastjunCKR"
+        Me.ColForecastCKRJun.MinWidth = 27
         Me.ColForecastCKRJun.Name = "ColForecastCKRJun"
-        Me.ColForecastCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjunCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjunCKR", "{0:#,0.00}")})
         Me.ColForecastCKRJun.Visible = True
+        Me.ColForecastCKRJun.Width = 100
         '
         'gridBand31
         '
@@ -1302,7 +1452,7 @@ Partial Class FrmReport_Matome
         Me.gridBand31.Columns.Add(Me.ColPOCKRJun)
         Me.gridBand31.Name = "gridBand31"
         Me.gridBand31.VisibleIndex = 2
-        Me.gridBand31.Width = 225
+        Me.gridBand31.Width = 300
         '
         'ColPOAmountJun
         '
@@ -1310,9 +1460,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountJun.FieldName = "POAmountJun"
+        Me.ColPOAmountJun.MinWidth = 27
         Me.ColPOAmountJun.Name = "ColPOAmountJun"
-        Me.ColPOAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJun", "SUM={0:#,0.00}")})
+        Me.ColPOAmountJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJun", "{0:#,0.00}")})
         Me.ColPOAmountJun.Visible = True
+        Me.ColPOAmountJun.Width = 100
         '
         'ColPOTNGJun
         '
@@ -1320,9 +1472,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGJun.FieldName = "POjunTNG"
+        Me.ColPOTNGJun.MinWidth = 27
         Me.ColPOTNGJun.Name = "ColPOTNGJun"
-        Me.ColPOTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjunTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjunTNG", "{0:#,0.00}")})
         Me.ColPOTNGJun.Visible = True
+        Me.ColPOTNGJun.Width = 100
         '
         'ColPOCKRJun
         '
@@ -1330,9 +1484,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRJun.FieldName = "POjunCKR"
+        Me.ColPOCKRJun.MinWidth = 27
         Me.ColPOCKRJun.Name = "ColPOCKRJun"
-        Me.ColPOCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjunCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRJun.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjunCKR", "{0:#,0.00}")})
         Me.ColPOCKRJun.Visible = True
+        Me.ColPOCKRJun.Width = 100
         '
         'gridBand32
         '
@@ -1344,31 +1500,37 @@ Partial Class FrmReport_Matome
         Me.gridBand32.Columns.Add(Me.ColAktualCKRJun)
         Me.gridBand32.Name = "gridBand32"
         Me.gridBand32.VisibleIndex = 3
-        Me.gridBand32.Width = 225
+        Me.gridBand32.Width = 300
         '
         'ColAcktualAmountJun
         '
         Me.ColAcktualAmountJun.Caption = "Amount"
         Me.ColAcktualAmountJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColAcktualAmountJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.ColAcktualAmountJun.MinWidth = 27
         Me.ColAcktualAmountJun.Name = "ColAcktualAmountJun"
         Me.ColAcktualAmountJun.Visible = True
+        Me.ColAcktualAmountJun.Width = 100
         '
         'ColAktualTNGJun
         '
         Me.ColAktualTNGJun.Caption = "TNG"
         Me.ColAktualTNGJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColAktualTNGJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.ColAktualTNGJun.MinWidth = 27
         Me.ColAktualTNGJun.Name = "ColAktualTNGJun"
         Me.ColAktualTNGJun.Visible = True
+        Me.ColAktualTNGJun.Width = 100
         '
         'ColAktualCKRJun
         '
         Me.ColAktualCKRJun.Caption = "CKR"
         Me.ColAktualCKRJun.DisplayFormat.FormatString = "#,0.00"
         Me.ColAktualCKRJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.ColAktualCKRJun.MinWidth = 27
         Me.ColAktualCKRJun.Name = "ColAktualCKRJun"
         Me.ColAktualCKRJun.Visible = True
+        Me.ColAktualCKRJun.Width = 100
         '
         'gridBand33
         '
@@ -1376,9 +1538,10 @@ Partial Class FrmReport_Matome
         Me.gridBand33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand33.Caption = "JULI"
         Me.gridBand33.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand34, Me.gridBand35, Me.gridBand36, Me.gridBand37})
+        Me.gridBand33.MinWidth = 13
         Me.gridBand33.Name = "gridBand33"
         Me.gridBand33.VisibleIndex = 7
-        Me.gridBand33.Width = 900
+        Me.gridBand33.Width = 1200
         '
         'gridBand34
         '
@@ -1390,7 +1553,7 @@ Partial Class FrmReport_Matome
         Me.gridBand34.Columns.Add(Me.ColBudgetCKRJul)
         Me.gridBand34.Name = "gridBand34"
         Me.gridBand34.VisibleIndex = 0
-        Me.gridBand34.Width = 225
+        Me.gridBand34.Width = 300
         '
         'ColBudgetAmountJul
         '
@@ -1398,8 +1561,10 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountJul.FieldName = "BudgetAmountJul"
+        Me.ColBudgetAmountJul.MinWidth = 27
         Me.ColBudgetAmountJul.Name = "ColBudgetAmountJul"
         Me.ColBudgetAmountJul.Visible = True
+        Me.ColBudgetAmountJul.Width = 100
         '
         'ColBudgetTNGJul
         '
@@ -1407,9 +1572,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGJul.FieldName = "BudgetjulTNG"
+        Me.ColBudgetTNGJul.MinWidth = 27
         Me.ColBudgetTNGJul.Name = "ColBudgetTNGJul"
-        Me.ColBudgetTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjulTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjulTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGJul.Visible = True
+        Me.ColBudgetTNGJul.Width = 100
         '
         'ColBudgetCKRJul
         '
@@ -1417,9 +1584,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRJul.FieldName = "BudgetjulCKR"
+        Me.ColBudgetCKRJul.MinWidth = 27
         Me.ColBudgetCKRJul.Name = "ColBudgetCKRJul"
-        Me.ColBudgetCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjulCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetjulCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRJul.Visible = True
+        Me.ColBudgetCKRJul.Width = 100
         '
         'gridBand35
         '
@@ -1431,7 +1600,7 @@ Partial Class FrmReport_Matome
         Me.gridBand35.Columns.Add(Me.ColForecastCKRJul)
         Me.gridBand35.Name = "gridBand35"
         Me.gridBand35.VisibleIndex = 1
-        Me.gridBand35.Width = 225
+        Me.gridBand35.Width = 300
         '
         'ColForecastAmountJul
         '
@@ -1439,9 +1608,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountJul.FieldName = "ForecastAmountJul"
+        Me.ColForecastAmountJul.MinWidth = 27
         Me.ColForecastAmountJul.Name = "ColForecastAmountJul"
-        Me.ColForecastAmountJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJul", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountJul", "{0:#,0.00}")})
         Me.ColForecastAmountJul.Visible = True
+        Me.ColForecastAmountJul.Width = 100
         '
         'ColForecastTNGJul
         '
@@ -1449,9 +1620,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGJul.FieldName = "ForecastjulTNG"
+        Me.ColForecastTNGJul.MinWidth = 27
         Me.ColForecastTNGJul.Name = "ColForecastTNGJul"
-        Me.ColForecastTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjulTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjulTNG", "{0:#,0.00}")})
         Me.ColForecastTNGJul.Visible = True
+        Me.ColForecastTNGJul.Width = 100
         '
         'ColForecastCKRJul
         '
@@ -1459,9 +1632,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRJul.FieldName = "ForecastjulCKR"
+        Me.ColForecastCKRJul.MinWidth = 27
         Me.ColForecastCKRJul.Name = "ColForecastCKRJul"
-        Me.ColForecastCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjulCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastjulCKR", "{0:#,0.00}")})
         Me.ColForecastCKRJul.Visible = True
+        Me.ColForecastCKRJul.Width = 100
         '
         'gridBand36
         '
@@ -1473,7 +1648,7 @@ Partial Class FrmReport_Matome
         Me.gridBand36.Columns.Add(Me.ColPOCKRJul)
         Me.gridBand36.Name = "gridBand36"
         Me.gridBand36.VisibleIndex = 2
-        Me.gridBand36.Width = 225
+        Me.gridBand36.Width = 300
         '
         'ColPOAmountJul
         '
@@ -1481,9 +1656,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountJul.FieldName = "POAmountJul"
+        Me.ColPOAmountJul.MinWidth = 27
         Me.ColPOAmountJul.Name = "ColPOAmountJul"
-        Me.ColPOAmountJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJul", "SUM={0:#,0.00}")})
+        Me.ColPOAmountJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountJul", "{0:#,0.00}")})
         Me.ColPOAmountJul.Visible = True
+        Me.ColPOAmountJul.Width = 100
         '
         'ColPOTNGJul
         '
@@ -1491,9 +1668,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGJul.FieldName = "POjulTNG"
+        Me.ColPOTNGJul.MinWidth = 27
         Me.ColPOTNGJul.Name = "ColPOTNGJul"
-        Me.ColPOTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjulTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjulTNG", "{0:#,0.00}")})
         Me.ColPOTNGJul.Visible = True
+        Me.ColPOTNGJul.Width = 100
         '
         'ColPOCKRJul
         '
@@ -1501,9 +1680,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRJul.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRJul.FieldName = "POjulCKR"
+        Me.ColPOCKRJul.MinWidth = 27
         Me.ColPOCKRJul.Name = "ColPOCKRJul"
-        Me.ColPOCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjulCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRJul.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POjulCKR", "{0:#,0.00}")})
         Me.ColPOCKRJul.Visible = True
+        Me.ColPOCKRJul.Width = 100
         '
         'gridBand37
         '
@@ -1515,25 +1696,31 @@ Partial Class FrmReport_Matome
         Me.gridBand37.Columns.Add(Me.ColAktualCKRJul)
         Me.gridBand37.Name = "gridBand37"
         Me.gridBand37.VisibleIndex = 3
-        Me.gridBand37.Width = 225
+        Me.gridBand37.Width = 300
         '
         'ColAktualAmountJul
         '
         Me.ColAktualAmountJul.Caption = "Amount"
+        Me.ColAktualAmountJul.MinWidth = 27
         Me.ColAktualAmountJul.Name = "ColAktualAmountJul"
         Me.ColAktualAmountJul.Visible = True
+        Me.ColAktualAmountJul.Width = 100
         '
         'ColAktualTNGJul
         '
         Me.ColAktualTNGJul.Caption = "TNG"
+        Me.ColAktualTNGJul.MinWidth = 27
         Me.ColAktualTNGJul.Name = "ColAktualTNGJul"
         Me.ColAktualTNGJul.Visible = True
+        Me.ColAktualTNGJul.Width = 100
         '
         'ColAktualCKRJul
         '
         Me.ColAktualCKRJul.Caption = "CKR"
+        Me.ColAktualCKRJul.MinWidth = 27
         Me.ColAktualCKRJul.Name = "ColAktualCKRJul"
         Me.ColAktualCKRJul.Visible = True
+        Me.ColAktualCKRJul.Width = 100
         '
         'gridBand38
         '
@@ -1541,9 +1728,10 @@ Partial Class FrmReport_Matome
         Me.gridBand38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand38.Caption = "AGUSTUS"
         Me.gridBand38.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand39, Me.gridBand40, Me.gridBand41, Me.gridBand42})
+        Me.gridBand38.MinWidth = 13
         Me.gridBand38.Name = "gridBand38"
         Me.gridBand38.VisibleIndex = 8
-        Me.gridBand38.Width = 900
+        Me.gridBand38.Width = 1200
         '
         'gridBand39
         '
@@ -1555,7 +1743,7 @@ Partial Class FrmReport_Matome
         Me.gridBand39.Columns.Add(Me.ColBudgetCKRAgt)
         Me.gridBand39.Name = "gridBand39"
         Me.gridBand39.VisibleIndex = 0
-        Me.gridBand39.Width = 225
+        Me.gridBand39.Width = 300
         '
         'ColBudgetAmountAgt
         '
@@ -1563,9 +1751,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountAgt.FieldName = "BudgetAmountAgt"
+        Me.ColBudgetAmountAgt.MinWidth = 27
         Me.ColBudgetAmountAgt.Name = "ColBudgetAmountAgt"
-        Me.ColBudgetAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountAgt", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountAgt", "{0:#,0.00}")})
         Me.ColBudgetAmountAgt.Visible = True
+        Me.ColBudgetAmountAgt.Width = 100
         '
         'ColBudgetTNGAgt
         '
@@ -1573,9 +1763,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGAgt.FieldName = "BudgetagtTNG"
+        Me.ColBudgetTNGAgt.MinWidth = 27
         Me.ColBudgetTNGAgt.Name = "ColBudgetTNGAgt"
-        Me.ColBudgetTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetagtTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetagtTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGAgt.Visible = True
+        Me.ColBudgetTNGAgt.Width = 100
         '
         'ColBudgetCKRAgt
         '
@@ -1583,9 +1775,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRAgt.FieldName = "BudgetagtCKR"
+        Me.ColBudgetCKRAgt.MinWidth = 27
         Me.ColBudgetCKRAgt.Name = "ColBudgetCKRAgt"
-        Me.ColBudgetCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetagtCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetagtCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRAgt.Visible = True
+        Me.ColBudgetCKRAgt.Width = 100
         '
         'gridBand40
         '
@@ -1597,7 +1791,7 @@ Partial Class FrmReport_Matome
         Me.gridBand40.Columns.Add(Me.ColForecastCKRAgt)
         Me.gridBand40.Name = "gridBand40"
         Me.gridBand40.VisibleIndex = 1
-        Me.gridBand40.Width = 225
+        Me.gridBand40.Width = 300
         '
         'ColForecastAmountAgt
         '
@@ -1605,9 +1799,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountAgt.FieldName = "ForecastAmountAgt"
+        Me.ColForecastAmountAgt.MinWidth = 27
         Me.ColForecastAmountAgt.Name = "ColForecastAmountAgt"
-        Me.ColForecastAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountAgt", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountAgt", "{0:#,0.00}")})
         Me.ColForecastAmountAgt.Visible = True
+        Me.ColForecastAmountAgt.Width = 100
         '
         'ColForecastTNGAgt
         '
@@ -1615,9 +1811,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGAgt.FieldName = "ForecastagtTNG"
+        Me.ColForecastTNGAgt.MinWidth = 27
         Me.ColForecastTNGAgt.Name = "ColForecastTNGAgt"
-        Me.ColForecastTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastagtTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastagtTNG", "{0:#,0.00}")})
         Me.ColForecastTNGAgt.Visible = True
+        Me.ColForecastTNGAgt.Width = 100
         '
         'ColForecastCKRAgt
         '
@@ -1625,9 +1823,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRAgt.FieldName = "ForecastagtCKR"
+        Me.ColForecastCKRAgt.MinWidth = 27
         Me.ColForecastCKRAgt.Name = "ColForecastCKRAgt"
-        Me.ColForecastCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastagtCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastagtCKR", "{0:#,0.00}")})
         Me.ColForecastCKRAgt.Visible = True
+        Me.ColForecastCKRAgt.Width = 100
         '
         'gridBand41
         '
@@ -1639,7 +1839,7 @@ Partial Class FrmReport_Matome
         Me.gridBand41.Columns.Add(Me.ColPOCKRAgt)
         Me.gridBand41.Name = "gridBand41"
         Me.gridBand41.VisibleIndex = 2
-        Me.gridBand41.Width = 225
+        Me.gridBand41.Width = 300
         '
         'ColPOAmountAgt
         '
@@ -1647,9 +1847,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountAgt.FieldName = "POAmountAgt"
+        Me.ColPOAmountAgt.MinWidth = 27
         Me.ColPOAmountAgt.Name = "ColPOAmountAgt"
-        Me.ColPOAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountAgt", "SUM={0:#,0.00}")})
+        Me.ColPOAmountAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountAgt", "{0:#,0.00}")})
         Me.ColPOAmountAgt.Visible = True
+        Me.ColPOAmountAgt.Width = 100
         '
         'ColPOTNGAgt
         '
@@ -1657,9 +1859,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGAgt.FieldName = "POagtTNG"
+        Me.ColPOTNGAgt.MinWidth = 27
         Me.ColPOTNGAgt.Name = "ColPOTNGAgt"
-        Me.ColPOTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POagtTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POagtTNG", "{0:#,0.00}")})
         Me.ColPOTNGAgt.Visible = True
+        Me.ColPOTNGAgt.Width = 100
         '
         'ColPOCKRAgt
         '
@@ -1667,9 +1871,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRAgt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRAgt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRAgt.FieldName = "POagtCKR"
+        Me.ColPOCKRAgt.MinWidth = 27
         Me.ColPOCKRAgt.Name = "ColPOCKRAgt"
-        Me.ColPOCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POagtCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRAgt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POagtCKR", "{0:#,0.00}")})
         Me.ColPOCKRAgt.Visible = True
+        Me.ColPOCKRAgt.Width = 100
         '
         'gridBand42
         '
@@ -1681,25 +1887,31 @@ Partial Class FrmReport_Matome
         Me.gridBand42.Columns.Add(Me.ColAktualCKRAgt)
         Me.gridBand42.Name = "gridBand42"
         Me.gridBand42.VisibleIndex = 3
-        Me.gridBand42.Width = 225
+        Me.gridBand42.Width = 300
         '
         'ColAktualAmountAgt
         '
         Me.ColAktualAmountAgt.Caption = "Amount"
+        Me.ColAktualAmountAgt.MinWidth = 27
         Me.ColAktualAmountAgt.Name = "ColAktualAmountAgt"
         Me.ColAktualAmountAgt.Visible = True
+        Me.ColAktualAmountAgt.Width = 100
         '
         'ColAktualTNGAgt
         '
         Me.ColAktualTNGAgt.Caption = "TNG"
+        Me.ColAktualTNGAgt.MinWidth = 27
         Me.ColAktualTNGAgt.Name = "ColAktualTNGAgt"
         Me.ColAktualTNGAgt.Visible = True
+        Me.ColAktualTNGAgt.Width = 100
         '
         'ColAktualCKRAgt
         '
         Me.ColAktualCKRAgt.Caption = "CKR"
+        Me.ColAktualCKRAgt.MinWidth = 27
         Me.ColAktualCKRAgt.Name = "ColAktualCKRAgt"
         Me.ColAktualCKRAgt.Visible = True
+        Me.ColAktualCKRAgt.Width = 100
         '
         'gridBand43
         '
@@ -1707,9 +1919,10 @@ Partial Class FrmReport_Matome
         Me.gridBand43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand43.Caption = "SEPTEMBER"
         Me.gridBand43.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand44, Me.gridBand45, Me.gridBand46, Me.gridBand47})
+        Me.gridBand43.MinWidth = 13
         Me.gridBand43.Name = "gridBand43"
         Me.gridBand43.VisibleIndex = 9
-        Me.gridBand43.Width = 900
+        Me.gridBand43.Width = 1200
         '
         'gridBand44
         '
@@ -1721,7 +1934,7 @@ Partial Class FrmReport_Matome
         Me.gridBand44.Columns.Add(Me.ColBudgetCKRSep)
         Me.gridBand44.Name = "gridBand44"
         Me.gridBand44.VisibleIndex = 0
-        Me.gridBand44.Width = 225
+        Me.gridBand44.Width = 300
         '
         'ColBudgetAmountSep
         '
@@ -1729,9 +1942,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountSep.FieldName = "BudgetAmountSep"
+        Me.ColBudgetAmountSep.MinWidth = 27
         Me.ColBudgetAmountSep.Name = "ColBudgetAmountSep"
-        Me.ColBudgetAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountSep", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountSep", "{0:#,0.00}")})
         Me.ColBudgetAmountSep.Visible = True
+        Me.ColBudgetAmountSep.Width = 100
         '
         'ColBudgetTNGSep
         '
@@ -1739,9 +1954,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGSep.FieldName = "BudgetsepTNG"
+        Me.ColBudgetTNGSep.MinWidth = 27
         Me.ColBudgetTNGSep.Name = "ColBudgetTNGSep"
-        Me.ColBudgetTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetsepTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetsepTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGSep.Visible = True
+        Me.ColBudgetTNGSep.Width = 100
         '
         'ColBudgetCKRSep
         '
@@ -1749,9 +1966,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRSep.FieldName = "BudgetsepCKR"
+        Me.ColBudgetCKRSep.MinWidth = 27
         Me.ColBudgetCKRSep.Name = "ColBudgetCKRSep"
-        Me.ColBudgetCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetsepCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetsepCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRSep.Visible = True
+        Me.ColBudgetCKRSep.Width = 100
         '
         'gridBand45
         '
@@ -1763,7 +1982,7 @@ Partial Class FrmReport_Matome
         Me.gridBand45.Columns.Add(Me.ColForecastCKRSep)
         Me.gridBand45.Name = "gridBand45"
         Me.gridBand45.VisibleIndex = 1
-        Me.gridBand45.Width = 225
+        Me.gridBand45.Width = 300
         '
         'ColForecastAmountSep
         '
@@ -1771,9 +1990,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountSep.FieldName = "ForecastAmountSep"
+        Me.ColForecastAmountSep.MinWidth = 27
         Me.ColForecastAmountSep.Name = "ColForecastAmountSep"
-        Me.ColForecastAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountSep", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountSep", "{0:#,0.00}")})
         Me.ColForecastAmountSep.Visible = True
+        Me.ColForecastAmountSep.Width = 100
         '
         'ColForecastTNGSep
         '
@@ -1781,9 +2002,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGSep.FieldName = "ForecastsepTNG"
+        Me.ColForecastTNGSep.MinWidth = 27
         Me.ColForecastTNGSep.Name = "ColForecastTNGSep"
-        Me.ColForecastTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastsepTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastsepTNG", "{0:#,0.00}")})
         Me.ColForecastTNGSep.Visible = True
+        Me.ColForecastTNGSep.Width = 100
         '
         'ColForecastCKRSep
         '
@@ -1791,9 +2014,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRSep.FieldName = "ForecastsepCKR"
+        Me.ColForecastCKRSep.MinWidth = 27
         Me.ColForecastCKRSep.Name = "ColForecastCKRSep"
-        Me.ColForecastCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastsepCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastsepCKR", "{0:#,0.00}")})
         Me.ColForecastCKRSep.Visible = True
+        Me.ColForecastCKRSep.Width = 100
         '
         'gridBand46
         '
@@ -1805,7 +2030,7 @@ Partial Class FrmReport_Matome
         Me.gridBand46.Columns.Add(Me.ColPOCKRSep)
         Me.gridBand46.Name = "gridBand46"
         Me.gridBand46.VisibleIndex = 2
-        Me.gridBand46.Width = 225
+        Me.gridBand46.Width = 300
         '
         'ColPOAmountSep
         '
@@ -1813,9 +2038,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountSep.FieldName = "POAmountSep"
+        Me.ColPOAmountSep.MinWidth = 27
         Me.ColPOAmountSep.Name = "ColPOAmountSep"
-        Me.ColPOAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountSep", "SUM={0:#,0.00}")})
+        Me.ColPOAmountSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountSep", "{0:#,0.00}")})
         Me.ColPOAmountSep.Visible = True
+        Me.ColPOAmountSep.Width = 100
         '
         'ColPOTNGSep
         '
@@ -1823,9 +2050,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGSep.FieldName = "POsepTNG"
+        Me.ColPOTNGSep.MinWidth = 27
         Me.ColPOTNGSep.Name = "ColPOTNGSep"
-        Me.ColPOTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POsepTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POsepTNG", "{0:#,0.00}")})
         Me.ColPOTNGSep.Visible = True
+        Me.ColPOTNGSep.Width = 100
         '
         'ColPOCKRSep
         '
@@ -1833,9 +2062,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRSep.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRSep.FieldName = "POsepCKR"
+        Me.ColPOCKRSep.MinWidth = 27
         Me.ColPOCKRSep.Name = "ColPOCKRSep"
-        Me.ColPOCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POsepCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRSep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POsepCKR", "{0:#,0.00}")})
         Me.ColPOCKRSep.Visible = True
+        Me.ColPOCKRSep.Width = 100
         '
         'gridBand47
         '
@@ -1847,25 +2078,31 @@ Partial Class FrmReport_Matome
         Me.gridBand47.Columns.Add(Me.ColAktualCKRSep)
         Me.gridBand47.Name = "gridBand47"
         Me.gridBand47.VisibleIndex = 3
-        Me.gridBand47.Width = 225
+        Me.gridBand47.Width = 300
         '
         'ColAktualAmountSep
         '
         Me.ColAktualAmountSep.Caption = "Amount"
+        Me.ColAktualAmountSep.MinWidth = 27
         Me.ColAktualAmountSep.Name = "ColAktualAmountSep"
         Me.ColAktualAmountSep.Visible = True
+        Me.ColAktualAmountSep.Width = 100
         '
         'ColAktualTNGSep
         '
         Me.ColAktualTNGSep.Caption = "TNG"
+        Me.ColAktualTNGSep.MinWidth = 27
         Me.ColAktualTNGSep.Name = "ColAktualTNGSep"
         Me.ColAktualTNGSep.Visible = True
+        Me.ColAktualTNGSep.Width = 100
         '
         'ColAktualCKRSep
         '
         Me.ColAktualCKRSep.Caption = "CKR"
+        Me.ColAktualCKRSep.MinWidth = 27
         Me.ColAktualCKRSep.Name = "ColAktualCKRSep"
         Me.ColAktualCKRSep.Visible = True
+        Me.ColAktualCKRSep.Width = 100
         '
         'gridBand48
         '
@@ -1873,9 +2110,10 @@ Partial Class FrmReport_Matome
         Me.gridBand48.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand48.Caption = "OKTOBER"
         Me.gridBand48.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand49, Me.gridBand50, Me.gridBand51, Me.gridBand52})
+        Me.gridBand48.MinWidth = 13
         Me.gridBand48.Name = "gridBand48"
         Me.gridBand48.VisibleIndex = 10
-        Me.gridBand48.Width = 900
+        Me.gridBand48.Width = 1200
         '
         'gridBand49
         '
@@ -1887,7 +2125,7 @@ Partial Class FrmReport_Matome
         Me.gridBand49.Columns.Add(Me.ColBudgetCKROkt)
         Me.gridBand49.Name = "gridBand49"
         Me.gridBand49.VisibleIndex = 0
-        Me.gridBand49.Width = 225
+        Me.gridBand49.Width = 300
         '
         'ColBudgetAmountOkt
         '
@@ -1895,9 +2133,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountOkt.FieldName = "BudgetAmountOkt"
+        Me.ColBudgetAmountOkt.MinWidth = 27
         Me.ColBudgetAmountOkt.Name = "ColBudgetAmountOkt"
-        Me.ColBudgetAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountOkt", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountOkt", "{0:#,0.00}")})
         Me.ColBudgetAmountOkt.Visible = True
+        Me.ColBudgetAmountOkt.Width = 100
         '
         'ColBudgetTNGOkt
         '
@@ -1905,9 +2145,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGOkt.FieldName = "BudgetoktTNG"
+        Me.ColBudgetTNGOkt.MinWidth = 27
         Me.ColBudgetTNGOkt.Name = "ColBudgetTNGOkt"
-        Me.ColBudgetTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetoktTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetoktTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGOkt.Visible = True
+        Me.ColBudgetTNGOkt.Width = 100
         '
         'ColBudgetCKROkt
         '
@@ -1915,9 +2157,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKROkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKROkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKROkt.FieldName = "BudgetoktCKR"
+        Me.ColBudgetCKROkt.MinWidth = 27
         Me.ColBudgetCKROkt.Name = "ColBudgetCKROkt"
-        Me.ColBudgetCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetoktCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetoktCKR", "{0:#,0.00}")})
         Me.ColBudgetCKROkt.Visible = True
+        Me.ColBudgetCKROkt.Width = 100
         '
         'gridBand50
         '
@@ -1929,7 +2173,7 @@ Partial Class FrmReport_Matome
         Me.gridBand50.Columns.Add(Me.ColForecastCKROkt)
         Me.gridBand50.Name = "gridBand50"
         Me.gridBand50.VisibleIndex = 1
-        Me.gridBand50.Width = 225
+        Me.gridBand50.Width = 300
         '
         'ColForecastAmountOkt
         '
@@ -1937,9 +2181,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountOkt.FieldName = "ForecastAmountOkt"
+        Me.ColForecastAmountOkt.MinWidth = 27
         Me.ColForecastAmountOkt.Name = "ColForecastAmountOkt"
-        Me.ColForecastAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountOkt", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountOkt", "{0:#,0.00}")})
         Me.ColForecastAmountOkt.Visible = True
+        Me.ColForecastAmountOkt.Width = 100
         '
         'ColForecastTNGOkt
         '
@@ -1947,9 +2193,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGOkt.FieldName = "ForecastoktTNG"
+        Me.ColForecastTNGOkt.MinWidth = 27
         Me.ColForecastTNGOkt.Name = "ColForecastTNGOkt"
-        Me.ColForecastTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastoktTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastoktTNG", "{0:#,0.00}")})
         Me.ColForecastTNGOkt.Visible = True
+        Me.ColForecastTNGOkt.Width = 100
         '
         'ColForecastCKROkt
         '
@@ -1957,9 +2205,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKROkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKROkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKROkt.FieldName = "ForecastoktCKR"
+        Me.ColForecastCKROkt.MinWidth = 27
         Me.ColForecastCKROkt.Name = "ColForecastCKROkt"
-        Me.ColForecastCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastoktCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastoktCKR", "{0:#,0.00}")})
         Me.ColForecastCKROkt.Visible = True
+        Me.ColForecastCKROkt.Width = 100
         '
         'gridBand51
         '
@@ -1971,7 +2221,7 @@ Partial Class FrmReport_Matome
         Me.gridBand51.Columns.Add(Me.ColPOCKROkt)
         Me.gridBand51.Name = "gridBand51"
         Me.gridBand51.VisibleIndex = 2
-        Me.gridBand51.Width = 225
+        Me.gridBand51.Width = 300
         '
         'ColPOAmountOkt
         '
@@ -1979,9 +2229,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountOkt.FieldName = "POAmountOkt"
+        Me.ColPOAmountOkt.MinWidth = 27
         Me.ColPOAmountOkt.Name = "ColPOAmountOkt"
-        Me.ColPOAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountOkt", "SUM={0:#,0.00}")})
+        Me.ColPOAmountOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountOkt", "{0:#,0.00}")})
         Me.ColPOAmountOkt.Visible = True
+        Me.ColPOAmountOkt.Width = 100
         '
         'ColPOTNGOkt
         '
@@ -1989,9 +2241,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGOkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGOkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGOkt.FieldName = "POoktTNG"
+        Me.ColPOTNGOkt.MinWidth = 27
         Me.ColPOTNGOkt.Name = "ColPOTNGOkt"
-        Me.ColPOTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POoktTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGOkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POoktTNG", "{0:#,0.00}")})
         Me.ColPOTNGOkt.Visible = True
+        Me.ColPOTNGOkt.Width = 100
         '
         'ColPOCKROkt
         '
@@ -1999,9 +2253,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKROkt.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKROkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKROkt.FieldName = "POoktCKR"
+        Me.ColPOCKROkt.MinWidth = 27
         Me.ColPOCKROkt.Name = "ColPOCKROkt"
-        Me.ColPOCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POoktCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKROkt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POoktCKR", "{0:#,0.00}")})
         Me.ColPOCKROkt.Visible = True
+        Me.ColPOCKROkt.Width = 100
         '
         'gridBand52
         '
@@ -2013,25 +2269,31 @@ Partial Class FrmReport_Matome
         Me.gridBand52.Columns.Add(Me.ColAktualCKROkt)
         Me.gridBand52.Name = "gridBand52"
         Me.gridBand52.VisibleIndex = 3
-        Me.gridBand52.Width = 225
+        Me.gridBand52.Width = 300
         '
         'ColAktualAmountOkt
         '
         Me.ColAktualAmountOkt.Caption = "Amount"
+        Me.ColAktualAmountOkt.MinWidth = 27
         Me.ColAktualAmountOkt.Name = "ColAktualAmountOkt"
         Me.ColAktualAmountOkt.Visible = True
+        Me.ColAktualAmountOkt.Width = 100
         '
         'ColAktualTNGOkt
         '
         Me.ColAktualTNGOkt.Caption = "TNG"
+        Me.ColAktualTNGOkt.MinWidth = 27
         Me.ColAktualTNGOkt.Name = "ColAktualTNGOkt"
         Me.ColAktualTNGOkt.Visible = True
+        Me.ColAktualTNGOkt.Width = 100
         '
         'ColAktualCKROkt
         '
         Me.ColAktualCKROkt.Caption = "CKR"
+        Me.ColAktualCKROkt.MinWidth = 27
         Me.ColAktualCKROkt.Name = "ColAktualCKROkt"
         Me.ColAktualCKROkt.Visible = True
+        Me.ColAktualCKROkt.Width = 100
         '
         'gridBand53
         '
@@ -2039,9 +2301,10 @@ Partial Class FrmReport_Matome
         Me.gridBand53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand53.Caption = "NOVEMBER"
         Me.gridBand53.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand54, Me.gridBand55, Me.gridBand56, Me.gridBand57})
+        Me.gridBand53.MinWidth = 13
         Me.gridBand53.Name = "gridBand53"
         Me.gridBand53.VisibleIndex = 11
-        Me.gridBand53.Width = 900
+        Me.gridBand53.Width = 1200
         '
         'gridBand54
         '
@@ -2053,7 +2316,7 @@ Partial Class FrmReport_Matome
         Me.gridBand54.Columns.Add(Me.ColBudgetCKRNov)
         Me.gridBand54.Name = "gridBand54"
         Me.gridBand54.VisibleIndex = 0
-        Me.gridBand54.Width = 225
+        Me.gridBand54.Width = 300
         '
         'ColBudgetAmountNov
         '
@@ -2061,9 +2324,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountNov.FieldName = "BudgetAmountNov"
+        Me.ColBudgetAmountNov.MinWidth = 27
         Me.ColBudgetAmountNov.Name = "ColBudgetAmountNov"
-        Me.ColBudgetAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountNov", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountNov", "{0:#,0.00}")})
         Me.ColBudgetAmountNov.Visible = True
+        Me.ColBudgetAmountNov.Width = 100
         '
         'ColBudgetTNGNov
         '
@@ -2071,9 +2336,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGNov.FieldName = "BudgetnovTNG"
+        Me.ColBudgetTNGNov.MinWidth = 27
         Me.ColBudgetTNGNov.Name = "ColBudgetTNGNov"
-        Me.ColBudgetTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetnovTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetnovTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGNov.Visible = True
+        Me.ColBudgetTNGNov.Width = 100
         '
         'ColBudgetCKRNov
         '
@@ -2081,9 +2348,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRNov.FieldName = "BudgetnovCKR"
+        Me.ColBudgetCKRNov.MinWidth = 27
         Me.ColBudgetCKRNov.Name = "ColBudgetCKRNov"
-        Me.ColBudgetCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetnovCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetnovCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRNov.Visible = True
+        Me.ColBudgetCKRNov.Width = 100
         '
         'gridBand55
         '
@@ -2095,7 +2364,7 @@ Partial Class FrmReport_Matome
         Me.gridBand55.Columns.Add(Me.ColForecastCKRNov)
         Me.gridBand55.Name = "gridBand55"
         Me.gridBand55.VisibleIndex = 1
-        Me.gridBand55.Width = 225
+        Me.gridBand55.Width = 300
         '
         'ColForecastAmountNov
         '
@@ -2103,9 +2372,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountNov.FieldName = "ForecastAmountNov"
+        Me.ColForecastAmountNov.MinWidth = 27
         Me.ColForecastAmountNov.Name = "ColForecastAmountNov"
-        Me.ColForecastAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountNov", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountNov", "{0:#,0.00}")})
         Me.ColForecastAmountNov.Visible = True
+        Me.ColForecastAmountNov.Width = 100
         '
         'ColForecastTNGNov
         '
@@ -2113,9 +2384,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGNov.FieldName = "ForecastnovTNG"
+        Me.ColForecastTNGNov.MinWidth = 27
         Me.ColForecastTNGNov.Name = "ColForecastTNGNov"
-        Me.ColForecastTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastnovTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastnovTNG", "{0:#,0.00}")})
         Me.ColForecastTNGNov.Visible = True
+        Me.ColForecastTNGNov.Width = 100
         '
         'ColForecastCKRNov
         '
@@ -2123,9 +2396,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRNov.FieldName = "ForecastnovCKR"
+        Me.ColForecastCKRNov.MinWidth = 27
         Me.ColForecastCKRNov.Name = "ColForecastCKRNov"
-        Me.ColForecastCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastnovCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastnovCKR", "{0:#,0.00}")})
         Me.ColForecastCKRNov.Visible = True
+        Me.ColForecastCKRNov.Width = 100
         '
         'gridBand56
         '
@@ -2137,7 +2412,7 @@ Partial Class FrmReport_Matome
         Me.gridBand56.Columns.Add(Me.ColPOCKRNov)
         Me.gridBand56.Name = "gridBand56"
         Me.gridBand56.VisibleIndex = 2
-        Me.gridBand56.Width = 225
+        Me.gridBand56.Width = 300
         '
         'ColPOAmountNov
         '
@@ -2145,9 +2420,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountNov.FieldName = "POAmountNov"
+        Me.ColPOAmountNov.MinWidth = 27
         Me.ColPOAmountNov.Name = "ColPOAmountNov"
-        Me.ColPOAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountNov", "SUM={0:#,0.00}")})
+        Me.ColPOAmountNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountNov", "{0:#,0.00}")})
         Me.ColPOAmountNov.Visible = True
+        Me.ColPOAmountNov.Width = 100
         '
         'ColPOTNGNov
         '
@@ -2155,9 +2432,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGNov.FieldName = "POnovTNG"
+        Me.ColPOTNGNov.MinWidth = 27
         Me.ColPOTNGNov.Name = "ColPOTNGNov"
-        Me.ColPOTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POnovTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POnovTNG", "{0:#,0.00}")})
         Me.ColPOTNGNov.Visible = True
+        Me.ColPOTNGNov.Width = 100
         '
         'ColPOCKRNov
         '
@@ -2165,9 +2444,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRNov.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRNov.FieldName = "POnovCKR"
+        Me.ColPOCKRNov.MinWidth = 27
         Me.ColPOCKRNov.Name = "ColPOCKRNov"
-        Me.ColPOCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POnovCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POnovCKR", "{0:#,0.00}")})
         Me.ColPOCKRNov.Visible = True
+        Me.ColPOCKRNov.Width = 100
         '
         'gridBand57
         '
@@ -2179,25 +2460,31 @@ Partial Class FrmReport_Matome
         Me.gridBand57.Columns.Add(Me.ColAktualCKRNov)
         Me.gridBand57.Name = "gridBand57"
         Me.gridBand57.VisibleIndex = 3
-        Me.gridBand57.Width = 225
+        Me.gridBand57.Width = 300
         '
         'ColAktualAmountNov
         '
         Me.ColAktualAmountNov.Caption = "Amount"
+        Me.ColAktualAmountNov.MinWidth = 27
         Me.ColAktualAmountNov.Name = "ColAktualAmountNov"
         Me.ColAktualAmountNov.Visible = True
+        Me.ColAktualAmountNov.Width = 100
         '
         'ColAktualTNGNov
         '
         Me.ColAktualTNGNov.Caption = "TNG"
+        Me.ColAktualTNGNov.MinWidth = 27
         Me.ColAktualTNGNov.Name = "ColAktualTNGNov"
         Me.ColAktualTNGNov.Visible = True
+        Me.ColAktualTNGNov.Width = 100
         '
         'ColAktualCKRNov
         '
         Me.ColAktualCKRNov.Caption = "CKR"
+        Me.ColAktualCKRNov.MinWidth = 27
         Me.ColAktualCKRNov.Name = "ColAktualCKRNov"
         Me.ColAktualCKRNov.Visible = True
+        Me.ColAktualCKRNov.Width = 100
         '
         'gridBand58
         '
@@ -2205,9 +2492,10 @@ Partial Class FrmReport_Matome
         Me.gridBand58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand58.Caption = "DESEMBER"
         Me.gridBand58.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand59, Me.gridBand60, Me.gridBand61, Me.gridBand62})
+        Me.gridBand58.MinWidth = 13
         Me.gridBand58.Name = "gridBand58"
         Me.gridBand58.VisibleIndex = 12
-        Me.gridBand58.Width = 900
+        Me.gridBand58.Width = 1200
         '
         'gridBand59
         '
@@ -2219,7 +2507,7 @@ Partial Class FrmReport_Matome
         Me.gridBand59.Columns.Add(Me.ColBudgetCKRDes)
         Me.gridBand59.Name = "gridBand59"
         Me.gridBand59.VisibleIndex = 0
-        Me.gridBand59.Width = 225
+        Me.gridBand59.Width = 300
         '
         'ColBudgetAmountDes
         '
@@ -2227,9 +2515,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountDes.FieldName = "BudgetAmountDes"
+        Me.ColBudgetAmountDes.MinWidth = 27
         Me.ColBudgetAmountDes.Name = "ColBudgetAmountDes"
-        Me.ColBudgetAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountDes", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountDes", "{0:#,0.00}")})
         Me.ColBudgetAmountDes.Visible = True
+        Me.ColBudgetAmountDes.Width = 100
         '
         'ColBudgetTNGDes
         '
@@ -2237,9 +2527,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGDes.FieldName = "BudgetdesTNG"
+        Me.ColBudgetTNGDes.MinWidth = 27
         Me.ColBudgetTNGDes.Name = "ColBudgetTNGDes"
-        Me.ColBudgetTNGDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetdesTNG", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetdesTNG", "{0:#,0.00}")})
         Me.ColBudgetTNGDes.Visible = True
+        Me.ColBudgetTNGDes.Width = 100
         '
         'ColBudgetCKRDes
         '
@@ -2247,9 +2539,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRDes.FieldName = "BudgetdesCKR"
+        Me.ColBudgetCKRDes.MinWidth = 27
         Me.ColBudgetCKRDes.Name = "ColBudgetCKRDes"
-        Me.ColBudgetCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetdesCKR", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetdesCKR", "{0:#,0.00}")})
         Me.ColBudgetCKRDes.Visible = True
+        Me.ColBudgetCKRDes.Width = 100
         '
         'gridBand60
         '
@@ -2261,7 +2555,7 @@ Partial Class FrmReport_Matome
         Me.gridBand60.Columns.Add(Me.ColForecastCKRDes)
         Me.gridBand60.Name = "gridBand60"
         Me.gridBand60.VisibleIndex = 1
-        Me.gridBand60.Width = 225
+        Me.gridBand60.Width = 300
         '
         'ColForecastAmountDes
         '
@@ -2269,9 +2563,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountDes.FieldName = "ForecastAmountDes"
+        Me.ColForecastAmountDes.MinWidth = 27
         Me.ColForecastAmountDes.Name = "ColForecastAmountDes"
-        Me.ColForecastAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountDes", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountDes", "{0:#,0.00}")})
         Me.ColForecastAmountDes.Visible = True
+        Me.ColForecastAmountDes.Width = 100
         '
         'ColForecastTNGNDes
         '
@@ -2279,9 +2575,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGNDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGNDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGNDes.FieldName = "ForecastdesTNG"
+        Me.ColForecastTNGNDes.MinWidth = 27
         Me.ColForecastTNGNDes.Name = "ColForecastTNGNDes"
-        Me.ColForecastTNGNDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastdesTNG", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGNDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastdesTNG", "{0:#,0.00}")})
         Me.ColForecastTNGNDes.Visible = True
+        Me.ColForecastTNGNDes.Width = 100
         '
         'ColForecastCKRDes
         '
@@ -2289,9 +2587,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRDes.FieldName = "ForecastdesCKR"
+        Me.ColForecastCKRDes.MinWidth = 27
         Me.ColForecastCKRDes.Name = "ColForecastCKRDes"
-        Me.ColForecastCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastdesCKR", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastdesCKR", "{0:#,0.00}")})
         Me.ColForecastCKRDes.Visible = True
+        Me.ColForecastCKRDes.Width = 100
         '
         'gridBand61
         '
@@ -2303,7 +2603,7 @@ Partial Class FrmReport_Matome
         Me.gridBand61.Columns.Add(Me.ColPOCKRDes)
         Me.gridBand61.Name = "gridBand61"
         Me.gridBand61.VisibleIndex = 2
-        Me.gridBand61.Width = 225
+        Me.gridBand61.Width = 300
         '
         'ColPOAmountDes
         '
@@ -2311,9 +2611,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountDes.FieldName = "POAmountDes"
+        Me.ColPOAmountDes.MinWidth = 27
         Me.ColPOAmountDes.Name = "ColPOAmountDes"
-        Me.ColPOAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountDes", "SUM={0:#,0.00}")})
+        Me.ColPOAmountDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountDes", "{0:#,0.00}")})
         Me.ColPOAmountDes.Visible = True
+        Me.ColPOAmountDes.Width = 100
         '
         'ColPOTNGDes
         '
@@ -2321,9 +2623,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGDes.FieldName = "POdesTNG"
+        Me.ColPOTNGDes.MinWidth = 27
         Me.ColPOTNGDes.Name = "ColPOTNGDes"
-        Me.ColPOTNGDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POdesTNG", "SUM={0:#,0.00}")})
+        Me.ColPOTNGDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POdesTNG", "{0:#,0.00}")})
         Me.ColPOTNGDes.Visible = True
+        Me.ColPOTNGDes.Width = 100
         '
         'ColPOCKRDes
         '
@@ -2331,9 +2635,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRDes.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRDes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRDes.FieldName = "POdesCKR"
+        Me.ColPOCKRDes.MinWidth = 27
         Me.ColPOCKRDes.Name = "ColPOCKRDes"
-        Me.ColPOCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POdesCKR", "SUM={0:#,0.00}")})
+        Me.ColPOCKRDes.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POdesCKR", "{0:#,0.00}")})
         Me.ColPOCKRDes.Visible = True
+        Me.ColPOCKRDes.Width = 100
         '
         'gridBand62
         '
@@ -2345,25 +2651,31 @@ Partial Class FrmReport_Matome
         Me.gridBand62.Columns.Add(Me.ColAktualCKRDes)
         Me.gridBand62.Name = "gridBand62"
         Me.gridBand62.VisibleIndex = 3
-        Me.gridBand62.Width = 225
+        Me.gridBand62.Width = 300
         '
         'ColAktualAmountDes
         '
         Me.ColAktualAmountDes.Caption = "Amount"
+        Me.ColAktualAmountDes.MinWidth = 27
         Me.ColAktualAmountDes.Name = "ColAktualAmountDes"
         Me.ColAktualAmountDes.Visible = True
+        Me.ColAktualAmountDes.Width = 100
         '
         'ColAktualTNGDes
         '
         Me.ColAktualTNGDes.Caption = "TNG"
+        Me.ColAktualTNGDes.MinWidth = 27
         Me.ColAktualTNGDes.Name = "ColAktualTNGDes"
         Me.ColAktualTNGDes.Visible = True
+        Me.ColAktualTNGDes.Width = 100
         '
         'ColAktualCKRDes
         '
         Me.ColAktualCKRDes.Caption = "CKR"
+        Me.ColAktualCKRDes.MinWidth = 27
         Me.ColAktualCKRDes.Name = "ColAktualCKRDes"
         Me.ColAktualCKRDes.Visible = True
+        Me.ColAktualCKRDes.Width = 100
         '
         'gridBand63
         '
@@ -2371,9 +2683,10 @@ Partial Class FrmReport_Matome
         Me.gridBand63.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand63.Caption = "JANUARI - JUNI (Semester I)"
         Me.gridBand63.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand64, Me.gridBand65, Me.gridBand66, Me.gridBand67})
+        Me.gridBand63.MinWidth = 13
         Me.gridBand63.Name = "gridBand63"
         Me.gridBand63.VisibleIndex = 13
-        Me.gridBand63.Width = 900
+        Me.gridBand63.Width = 1200
         '
         'gridBand64
         '
@@ -2385,7 +2698,7 @@ Partial Class FrmReport_Matome
         Me.gridBand64.Columns.Add(Me.ColBudgetCKR1)
         Me.gridBand64.Name = "gridBand64"
         Me.gridBand64.VisibleIndex = 0
-        Me.gridBand64.Width = 225
+        Me.gridBand64.Width = 300
         '
         'ColBudgetAmount1
         '
@@ -2393,9 +2706,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmount1.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmount1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmount1.FieldName = "BudgetAmount1"
+        Me.ColBudgetAmount1.MinWidth = 27
         Me.ColBudgetAmount1.Name = "ColBudgetAmount1"
-        Me.ColBudgetAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmount1", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmount1", "{0:#,0.00}")})
         Me.ColBudgetAmount1.Visible = True
+        Me.ColBudgetAmount1.Width = 100
         '
         'ColBudgetTNG1
         '
@@ -2403,9 +2718,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNG1.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNG1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNG1.FieldName = "BudgetTNG1"
+        Me.ColBudgetTNG1.MinWidth = 27
         Me.ColBudgetTNG1.Name = "ColBudgetTNG1"
-        Me.ColBudgetTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNG1", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNG1", "{0:#,0.00}")})
         Me.ColBudgetTNG1.Visible = True
+        Me.ColBudgetTNG1.Width = 100
         '
         'ColBudgetCKR1
         '
@@ -2413,9 +2730,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKR1.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKR1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKR1.FieldName = "BudgetCKR1"
+        Me.ColBudgetCKR1.MinWidth = 27
         Me.ColBudgetCKR1.Name = "ColBudgetCKR1"
-        Me.ColBudgetCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKR1", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKR1", "{0:#,0.00}")})
         Me.ColBudgetCKR1.Visible = True
+        Me.ColBudgetCKR1.Width = 100
         '
         'gridBand65
         '
@@ -2427,7 +2746,7 @@ Partial Class FrmReport_Matome
         Me.gridBand65.Columns.Add(Me.ColForecastCKR1)
         Me.gridBand65.Name = "gridBand65"
         Me.gridBand65.VisibleIndex = 1
-        Me.gridBand65.Width = 225
+        Me.gridBand65.Width = 300
         '
         'ColForecastAmount1
         '
@@ -2435,9 +2754,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmount1.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmount1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmount1.FieldName = "ForecastAmount1"
+        Me.ColForecastAmount1.MinWidth = 27
         Me.ColForecastAmount1.Name = "ColForecastAmount1"
-        Me.ColForecastAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmount1", "SUM={0:#,0.00}")})
+        Me.ColForecastAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmount1", "{0:#,0.00}")})
         Me.ColForecastAmount1.Visible = True
+        Me.ColForecastAmount1.Width = 100
         '
         'ColForecastTNG1
         '
@@ -2445,9 +2766,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNG1.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNG1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNG1.FieldName = "ForecastTNG1"
+        Me.ColForecastTNG1.MinWidth = 27
         Me.ColForecastTNG1.Name = "ColForecastTNG1"
-        Me.ColForecastTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNG1", "SUM={0:#,0.00}")})
+        Me.ColForecastTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNG1", "{0:#,0.00}")})
         Me.ColForecastTNG1.Visible = True
+        Me.ColForecastTNG1.Width = 100
         '
         'ColForecastCKR1
         '
@@ -2455,9 +2778,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKR1.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKR1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKR1.FieldName = "ForecastCKR1"
+        Me.ColForecastCKR1.MinWidth = 27
         Me.ColForecastCKR1.Name = "ColForecastCKR1"
-        Me.ColForecastCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKR1", "SUM={0:#,0.00}")})
+        Me.ColForecastCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKR1", "{0:#,0.00}")})
         Me.ColForecastCKR1.Visible = True
+        Me.ColForecastCKR1.Width = 100
         '
         'gridBand66
         '
@@ -2469,7 +2794,7 @@ Partial Class FrmReport_Matome
         Me.gridBand66.Columns.Add(Me.ColPOCKR1)
         Me.gridBand66.Name = "gridBand66"
         Me.gridBand66.VisibleIndex = 2
-        Me.gridBand66.Width = 225
+        Me.gridBand66.Width = 300
         '
         'ColPOAmount1
         '
@@ -2477,9 +2802,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmount1.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmount1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmount1.FieldName = "POAmount1"
+        Me.ColPOAmount1.MinWidth = 27
         Me.ColPOAmount1.Name = "ColPOAmount1"
-        Me.ColPOAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmount1", "SUM={0:#,0.00}")})
+        Me.ColPOAmount1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmount1", "{0:#,0.00}")})
         Me.ColPOAmount1.Visible = True
+        Me.ColPOAmount1.Width = 100
         '
         'ColPOTNG1
         '
@@ -2487,9 +2814,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNG1.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNG1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNG1.FieldName = "POTNG1"
+        Me.ColPOTNG1.MinWidth = 27
         Me.ColPOTNG1.Name = "ColPOTNG1"
-        Me.ColPOTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNG1", "SUM={0:#,0.00}")})
+        Me.ColPOTNG1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNG1", "{0:#,0.00}")})
         Me.ColPOTNG1.Visible = True
+        Me.ColPOTNG1.Width = 100
         '
         'ColPOCKR1
         '
@@ -2497,9 +2826,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKR1.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKR1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKR1.FieldName = "POCKR1"
+        Me.ColPOCKR1.MinWidth = 27
         Me.ColPOCKR1.Name = "ColPOCKR1"
-        Me.ColPOCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKR1", "SUM={0:#,0.00}")})
+        Me.ColPOCKR1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKR1", "{0:#,0.00}")})
         Me.ColPOCKR1.Visible = True
+        Me.ColPOCKR1.Width = 100
         '
         'gridBand67
         '
@@ -2511,25 +2842,31 @@ Partial Class FrmReport_Matome
         Me.gridBand67.Columns.Add(Me.ColAktualCKR1)
         Me.gridBand67.Name = "gridBand67"
         Me.gridBand67.VisibleIndex = 3
-        Me.gridBand67.Width = 225
+        Me.gridBand67.Width = 300
         '
         'ColAktualAmount1
         '
         Me.ColAktualAmount1.Caption = "Amount"
+        Me.ColAktualAmount1.MinWidth = 27
         Me.ColAktualAmount1.Name = "ColAktualAmount1"
         Me.ColAktualAmount1.Visible = True
+        Me.ColAktualAmount1.Width = 100
         '
         'ColAktualTNG1
         '
         Me.ColAktualTNG1.Caption = "TNG"
+        Me.ColAktualTNG1.MinWidth = 27
         Me.ColAktualTNG1.Name = "ColAktualTNG1"
         Me.ColAktualTNG1.Visible = True
+        Me.ColAktualTNG1.Width = 100
         '
         'ColAktualCKR1
         '
         Me.ColAktualCKR1.Caption = "CKR"
+        Me.ColAktualCKR1.MinWidth = 27
         Me.ColAktualCKR1.Name = "ColAktualCKR1"
         Me.ColAktualCKR1.Visible = True
+        Me.ColAktualCKR1.Width = 100
         '
         'gridBand68
         '
@@ -2537,9 +2874,10 @@ Partial Class FrmReport_Matome
         Me.gridBand68.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand68.Caption = "JULI - DESEMBER (Semester II)"
         Me.gridBand68.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand69, Me.gridBand70, Me.gridBand71, Me.gridBand72})
+        Me.gridBand68.MinWidth = 13
         Me.gridBand68.Name = "gridBand68"
         Me.gridBand68.VisibleIndex = 14
-        Me.gridBand68.Width = 900
+        Me.gridBand68.Width = 1200
         '
         'gridBand69
         '
@@ -2551,7 +2889,7 @@ Partial Class FrmReport_Matome
         Me.gridBand69.Columns.Add(Me.ColBudgetCKR2)
         Me.gridBand69.Name = "gridBand69"
         Me.gridBand69.VisibleIndex = 0
-        Me.gridBand69.Width = 225
+        Me.gridBand69.Width = 300
         '
         'ColBudgetAmount2
         '
@@ -2559,9 +2897,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmount2.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmount2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmount2.FieldName = "BudgetAmount2"
+        Me.ColBudgetAmount2.MinWidth = 27
         Me.ColBudgetAmount2.Name = "ColBudgetAmount2"
-        Me.ColBudgetAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmount2", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmount2", "{0:#,0.00}")})
         Me.ColBudgetAmount2.Visible = True
+        Me.ColBudgetAmount2.Width = 100
         '
         'ColBudgetTNG2
         '
@@ -2569,9 +2909,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNG2.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNG2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNG2.FieldName = "BudgetTNG2"
+        Me.ColBudgetTNG2.MinWidth = 27
         Me.ColBudgetTNG2.Name = "ColBudgetTNG2"
-        Me.ColBudgetTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNG2", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNG2", "{0:#,0.00}")})
         Me.ColBudgetTNG2.Visible = True
+        Me.ColBudgetTNG2.Width = 100
         '
         'ColBudgetCKR2
         '
@@ -2579,9 +2921,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKR2.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKR2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKR2.FieldName = "BudgetCKR2"
+        Me.ColBudgetCKR2.MinWidth = 27
         Me.ColBudgetCKR2.Name = "ColBudgetCKR2"
-        Me.ColBudgetCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKR2", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKR2", "{0:#,0.00}")})
         Me.ColBudgetCKR2.Visible = True
+        Me.ColBudgetCKR2.Width = 100
         '
         'gridBand70
         '
@@ -2593,7 +2937,7 @@ Partial Class FrmReport_Matome
         Me.gridBand70.Columns.Add(Me.ColForecastCKR2)
         Me.gridBand70.Name = "gridBand70"
         Me.gridBand70.VisibleIndex = 1
-        Me.gridBand70.Width = 225
+        Me.gridBand70.Width = 300
         '
         'ColForecastAmount2
         '
@@ -2601,9 +2945,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmount2.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmount2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmount2.FieldName = "ForecastAmount2"
+        Me.ColForecastAmount2.MinWidth = 27
         Me.ColForecastAmount2.Name = "ColForecastAmount2"
-        Me.ColForecastAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmount2", "SUM={0:#,0.00}")})
+        Me.ColForecastAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmount2", "{0:#,0.00}")})
         Me.ColForecastAmount2.Visible = True
+        Me.ColForecastAmount2.Width = 100
         '
         'ColForecastTNG2
         '
@@ -2611,9 +2957,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNG2.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNG2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNG2.FieldName = "ForecastTNG2"
+        Me.ColForecastTNG2.MinWidth = 27
         Me.ColForecastTNG2.Name = "ColForecastTNG2"
-        Me.ColForecastTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNG2", "SUM={0:#,0.00}")})
+        Me.ColForecastTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNG2", "{0:#,0.00}")})
         Me.ColForecastTNG2.Visible = True
+        Me.ColForecastTNG2.Width = 100
         '
         'ColForecastCKR2
         '
@@ -2621,9 +2969,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKR2.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKR2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKR2.FieldName = "ForecastCKR2"
+        Me.ColForecastCKR2.MinWidth = 27
         Me.ColForecastCKR2.Name = "ColForecastCKR2"
-        Me.ColForecastCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKR2", "SUM={0:#,0.00}")})
+        Me.ColForecastCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKR2", "{0:#,0.00}")})
         Me.ColForecastCKR2.Visible = True
+        Me.ColForecastCKR2.Width = 100
         '
         'gridBand71
         '
@@ -2635,7 +2985,7 @@ Partial Class FrmReport_Matome
         Me.gridBand71.Columns.Add(Me.ColPOCKR2)
         Me.gridBand71.Name = "gridBand71"
         Me.gridBand71.VisibleIndex = 2
-        Me.gridBand71.Width = 225
+        Me.gridBand71.Width = 300
         '
         'ColPOAmount2
         '
@@ -2643,9 +2993,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmount2.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmount2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmount2.FieldName = "POAmount2"
+        Me.ColPOAmount2.MinWidth = 27
         Me.ColPOAmount2.Name = "ColPOAmount2"
-        Me.ColPOAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmount2", "SUM={0:#,0.00}")})
+        Me.ColPOAmount2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmount2", "{0:#,0.00}")})
         Me.ColPOAmount2.Visible = True
+        Me.ColPOAmount2.Width = 100
         '
         'ColPOTNG2
         '
@@ -2653,9 +3005,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNG2.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNG2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNG2.FieldName = "POTNG2"
+        Me.ColPOTNG2.MinWidth = 27
         Me.ColPOTNG2.Name = "ColPOTNG2"
-        Me.ColPOTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNG2", "SUM={0:#,0.00}")})
+        Me.ColPOTNG2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNG2", "{0:#,0.00}")})
         Me.ColPOTNG2.Visible = True
+        Me.ColPOTNG2.Width = 100
         '
         'ColPOCKR2
         '
@@ -2663,9 +3017,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKR2.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKR2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKR2.FieldName = "POCKR2"
+        Me.ColPOCKR2.MinWidth = 27
         Me.ColPOCKR2.Name = "ColPOCKR2"
-        Me.ColPOCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKR2", "SUM={0:#,0.00}")})
+        Me.ColPOCKR2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKR2", "{0:#,0.00}")})
         Me.ColPOCKR2.Visible = True
+        Me.ColPOCKR2.Width = 100
         '
         'gridBand72
         '
@@ -2677,27 +3033,33 @@ Partial Class FrmReport_Matome
         Me.gridBand72.Columns.Add(Me.ColAktualCKR2)
         Me.gridBand72.Name = "gridBand72"
         Me.gridBand72.VisibleIndex = 3
-        Me.gridBand72.Width = 225
+        Me.gridBand72.Width = 300
         '
         'ColAktualAmount2
         '
         Me.ColAktualAmount2.Caption = "Amount"
         Me.ColAktualAmount2.DisplayFormat.FormatString = "#,0.00"
         Me.ColAktualAmount2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.ColAktualAmount2.MinWidth = 27
         Me.ColAktualAmount2.Name = "ColAktualAmount2"
         Me.ColAktualAmount2.Visible = True
+        Me.ColAktualAmount2.Width = 100
         '
         'ColAktualTNG2
         '
         Me.ColAktualTNG2.Caption = "TNG"
+        Me.ColAktualTNG2.MinWidth = 27
         Me.ColAktualTNG2.Name = "ColAktualTNG2"
         Me.ColAktualTNG2.Visible = True
+        Me.ColAktualTNG2.Width = 100
         '
         'ColAktualCKR2
         '
         Me.ColAktualCKR2.Caption = "CKR"
+        Me.ColAktualCKR2.MinWidth = 27
         Me.ColAktualCKR2.Name = "ColAktualCKR2"
         Me.ColAktualCKR2.Visible = True
+        Me.ColAktualCKR2.Width = 100
         '
         'gridBand73
         '
@@ -2705,9 +3067,10 @@ Partial Class FrmReport_Matome
         Me.gridBand73.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand73.Caption = "TOTAL JANUARI - DESEMBER"
         Me.gridBand73.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand74, Me.gridBand75, Me.gridBand76, Me.gridBand77})
+        Me.gridBand73.MinWidth = 13
         Me.gridBand73.Name = "gridBand73"
         Me.gridBand73.VisibleIndex = 15
-        Me.gridBand73.Width = 900
+        Me.gridBand73.Width = 1200
         '
         'gridBand74
         '
@@ -2719,7 +3082,7 @@ Partial Class FrmReport_Matome
         Me.gridBand74.Columns.Add(Me.ColBudgetCKRAll)
         Me.gridBand74.Name = "gridBand74"
         Me.gridBand74.VisibleIndex = 0
-        Me.gridBand74.Width = 225
+        Me.gridBand74.Width = 300
         '
         'ColBudgetAmountAll
         '
@@ -2727,9 +3090,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetAmountAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetAmountAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetAmountAll.FieldName = "BudgetAmountTot"
+        Me.ColBudgetAmountAll.MinWidth = 27
         Me.ColBudgetAmountAll.Name = "ColBudgetAmountAll"
-        Me.ColBudgetAmountAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountTot", "SUM={0:#,0.00}")})
+        Me.ColBudgetAmountAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetAmountTot", "{0:#,0.00}")})
         Me.ColBudgetAmountAll.Visible = True
+        Me.ColBudgetAmountAll.Width = 100
         '
         'ColBudgetTNGAll
         '
@@ -2737,9 +3102,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetTNGAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetTNGAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetTNGAll.FieldName = "BudgetTNGTot"
+        Me.ColBudgetTNGAll.MinWidth = 27
         Me.ColBudgetTNGAll.Name = "ColBudgetTNGAll"
-        Me.ColBudgetTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNGTot", "SUM={0:#,0.00}")})
+        Me.ColBudgetTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetTNGTot", "{0:#,0.00}")})
         Me.ColBudgetTNGAll.Visible = True
+        Me.ColBudgetTNGAll.Width = 100
         '
         'ColBudgetCKRAll
         '
@@ -2747,9 +3114,11 @@ Partial Class FrmReport_Matome
         Me.ColBudgetCKRAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColBudgetCKRAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColBudgetCKRAll.FieldName = "BudgetCKRTot"
+        Me.ColBudgetCKRAll.MinWidth = 27
         Me.ColBudgetCKRAll.Name = "ColBudgetCKRAll"
-        Me.ColBudgetCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKRTot", "SUM={0:#,0.00}")})
+        Me.ColBudgetCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BudgetCKRTot", "{0:#,0.00}")})
         Me.ColBudgetCKRAll.Visible = True
+        Me.ColBudgetCKRAll.Width = 100
         '
         'gridBand75
         '
@@ -2761,7 +3130,7 @@ Partial Class FrmReport_Matome
         Me.gridBand75.Columns.Add(Me.ColForecastCKRAll)
         Me.gridBand75.Name = "gridBand75"
         Me.gridBand75.VisibleIndex = 1
-        Me.gridBand75.Width = 225
+        Me.gridBand75.Width = 300
         '
         'ColForecastAmountALl
         '
@@ -2769,9 +3138,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastAmountALl.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastAmountALl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastAmountALl.FieldName = "ForecastAmountTot"
+        Me.ColForecastAmountALl.MinWidth = 27
         Me.ColForecastAmountALl.Name = "ColForecastAmountALl"
-        Me.ColForecastAmountALl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountTot", "SUM={0:#,0.00}")})
+        Me.ColForecastAmountALl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastAmountTot", "{0:#,0.00}")})
         Me.ColForecastAmountALl.Visible = True
+        Me.ColForecastAmountALl.Width = 100
         '
         'ColForecastTNGAll
         '
@@ -2779,9 +3150,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastTNGAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastTNGAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastTNGAll.FieldName = "ForecastTNGTot"
+        Me.ColForecastTNGAll.MinWidth = 27
         Me.ColForecastTNGAll.Name = "ColForecastTNGAll"
-        Me.ColForecastTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNGTot", "SUM={0:#,0.00}")})
+        Me.ColForecastTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastTNGTot", "{0:#,0.00}")})
         Me.ColForecastTNGAll.Visible = True
+        Me.ColForecastTNGAll.Width = 100
         '
         'ColForecastCKRAll
         '
@@ -2789,9 +3162,11 @@ Partial Class FrmReport_Matome
         Me.ColForecastCKRAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColForecastCKRAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColForecastCKRAll.FieldName = "ForecastCKRTot"
+        Me.ColForecastCKRAll.MinWidth = 27
         Me.ColForecastCKRAll.Name = "ColForecastCKRAll"
-        Me.ColForecastCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKRTot", "SUM={0:#,0.00}")})
+        Me.ColForecastCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ForecastCKRTot", "{0:#,0.00}")})
         Me.ColForecastCKRAll.Visible = True
+        Me.ColForecastCKRAll.Width = 100
         '
         'gridBand76
         '
@@ -2803,7 +3178,7 @@ Partial Class FrmReport_Matome
         Me.gridBand76.Columns.Add(Me.ColPOCKRAll)
         Me.gridBand76.Name = "gridBand76"
         Me.gridBand76.VisibleIndex = 2
-        Me.gridBand76.Width = 225
+        Me.gridBand76.Width = 300
         '
         'ColPOAmountAll
         '
@@ -2811,9 +3186,11 @@ Partial Class FrmReport_Matome
         Me.ColPOAmountAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOAmountAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOAmountAll.FieldName = "POAmountTot"
+        Me.ColPOAmountAll.MinWidth = 27
         Me.ColPOAmountAll.Name = "ColPOAmountAll"
-        Me.ColPOAmountAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountTot", "SUM={0:#,0.00}")})
+        Me.ColPOAmountAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POAmountTot", "{0:#,0.00}")})
         Me.ColPOAmountAll.Visible = True
+        Me.ColPOAmountAll.Width = 100
         '
         'ColPOTNGAll
         '
@@ -2821,9 +3198,11 @@ Partial Class FrmReport_Matome
         Me.ColPOTNGAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOTNGAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOTNGAll.FieldName = "POTNGTot"
+        Me.ColPOTNGAll.MinWidth = 27
         Me.ColPOTNGAll.Name = "ColPOTNGAll"
-        Me.ColPOTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNGTot", "SUM={0:#,0.00}")})
+        Me.ColPOTNGAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POTNGTot", "{0:#,0.00}")})
         Me.ColPOTNGAll.Visible = True
+        Me.ColPOTNGAll.Width = 100
         '
         'ColPOCKRAll
         '
@@ -2831,9 +3210,11 @@ Partial Class FrmReport_Matome
         Me.ColPOCKRAll.DisplayFormat.FormatString = "#,0.00"
         Me.ColPOCKRAll.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.ColPOCKRAll.FieldName = "POCKRTot"
+        Me.ColPOCKRAll.MinWidth = 27
         Me.ColPOCKRAll.Name = "ColPOCKRAll"
-        Me.ColPOCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKRTot", "SUM={0:#,0.00}")})
+        Me.ColPOCKRAll.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "POCKRTot", "{0:#,0.00}")})
         Me.ColPOCKRAll.Visible = True
+        Me.ColPOCKRAll.Width = 100
         '
         'gridBand77
         '
@@ -2845,42 +3226,50 @@ Partial Class FrmReport_Matome
         Me.gridBand77.Columns.Add(Me.ColAktualCKRAll)
         Me.gridBand77.Name = "gridBand77"
         Me.gridBand77.VisibleIndex = 3
-        Me.gridBand77.Width = 225
+        Me.gridBand77.Width = 300
         '
         'ColAktualAmountAll
         '
         Me.ColAktualAmountAll.Caption = "Amount"
+        Me.ColAktualAmountAll.MinWidth = 27
         Me.ColAktualAmountAll.Name = "ColAktualAmountAll"
         Me.ColAktualAmountAll.Visible = True
+        Me.ColAktualAmountAll.Width = 100
         '
         'ColAktualTNGAll
         '
         Me.ColAktualTNGAll.Caption = "TNG"
+        Me.ColAktualTNGAll.MinWidth = 27
         Me.ColAktualTNGAll.Name = "ColAktualTNGAll"
         Me.ColAktualTNGAll.Visible = True
+        Me.ColAktualTNGAll.Width = 100
         '
         'ColAktualCKRAll
         '
         Me.ColAktualCKRAll.Caption = "CKR"
+        Me.ColAktualCKRAll.MinWidth = 27
         Me.ColAktualCKRAll.Name = "ColAktualCKRAll"
         Me.ColAktualCKRAll.Visible = True
+        Me.ColAktualCKRAll.Width = 100
         '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 28)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 37)
+        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 92)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1116, 120)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl1)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(831, 64)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1109, 86)
         Me.XtraTabPage1.Text = "Filter By"
         '
         'LayoutControl1
@@ -2888,17 +3277,19 @@ Partial Class FrmReport_Matome
         Me.LayoutControl1.Controls.Add(Me._txtTahun)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(831, 64)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1109, 86)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         '_txtTahun
         '
-        Me._txtTahun.Location = New System.Drawing.Point(45, 12)
+        Me._txtTahun.Location = New System.Drawing.Point(56, 16)
+        Me._txtTahun.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._txtTahun.Name = "_txtTahun"
-        Me._txtTahun.Size = New System.Drawing.Size(135, 20)
+        Me._txtTahun.Size = New System.Drawing.Size(184, 22)
         Me._txtTahun.StyleController = Me.LayoutControl1
         Me._txtTahun.TabIndex = 4
         '
@@ -2907,17 +3298,16 @@ Partial Class FrmReport_Matome
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem2, Me.LayoutControlItem1})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(831, 64)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1109, 86)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(172, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(230, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(639, 44)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(853, 60)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
@@ -2925,9 +3315,9 @@ Partial Class FrmReport_Matome
         Me.LayoutControlItem1.Control = Me._txtTahun
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(172, 44)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(230, 60)
         Me.LayoutControlItem1.Text = "Tahun"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(30, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(36, 16)
         '
         'EmptySpaceItem1
         '
@@ -2939,10 +3329,11 @@ Partial Class FrmReport_Matome
         '
         'FrmReport_Matome
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmReport_Matome"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)

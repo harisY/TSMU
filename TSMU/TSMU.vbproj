@@ -71,6 +71,7 @@
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -168,6 +169,9 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
+    <Compile Include="Classes\ComboBoxObj.vb" />
+    <Compile Include="Classes\MenuManager.vb" />
+    <Compile Include="Classes\Page1Interface.vb" />
     <Compile Include="Classes\Payment\Cls_barcode.vb" />
     <Compile Include="Classes\Payment\Cls_FP.vb" />
     <Compile Include="Classes\Payment\Cls_Payment.vb" />
@@ -217,6 +221,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bank.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\bank.vb">
+      <DependentUpon>bank.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +246,11 @@
     </Compile>
     <Compile Include="dataset\dsLaporan.vb">
       <DependentUpon>dsLaporan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\dsLaporan2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\mizuho.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -494,6 +506,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Direct\report\FrmReportBankTransfer.Designer.vb">
+      <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportBankTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\FrmReportEntertain.Designer.vb">
       <DependentUpon>FrmReportEntertain.vb</DependentUpon>
     </Compile>
@@ -540,6 +558,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>relasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBankTransfer.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer2.vb">
+      <DependentUpon>RptBankTransfer2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer3.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBankTransfer3.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\RptsettleDetail.vb">
@@ -876,6 +912,18 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmJogres.Designer.vb">
+      <DependentUpon>frmJogres.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmJogres.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
+      <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmSoRegTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmKaryawanQrCode.Designer.vb">
       <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
     </Compile>
@@ -1218,6 +1266,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReportSo.Designer.vb">
+      <DependentUpon>frmReportSo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReportSo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_yim.Designer.vb">
       <DependentUpon>frmReport_yim.vb</DependentUpon>
     </Compile>
@@ -1300,6 +1354,18 @@
       <DependentUpon>frmSales.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\frmSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\MenuNew.Designer.vb">
+      <DependentUpon>MenuNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\MenuNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\frmAbout.Designer.vb">
@@ -1446,6 +1512,13 @@
     <Compile Include="Form\System\MainForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Menu\ActionType.vb" />
+    <Compile Include="Menu\FormTypes.vb" />
+    <Compile Include="Menu\IUserInterface.vb" />
+    <Compile Include="Menu\MenuItem.vb" />
+    <Compile Include="Models\ar2_detail_models.vb" />
+    <Compile Include="Models\AR2_Header_Models.vb" />
+    <Compile Include="Models\ARTaxHeaderModel.vb" />
     <Compile Include="Models\ar_detail_models.vb" />
     <Compile Include="Models\AR_Header_Models.vb" />
     <Compile Include="Models\ar_pph_detail_models.vb" />
@@ -1476,8 +1549,10 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />
@@ -1500,6 +1575,7 @@
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
+    <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
@@ -1536,6 +1612,30 @@
       <DependentUpon>Frm_AR.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_AR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_AR2.Designer.vb">
+      <DependentUpon>frm_AR2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_AR2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\frm_AR2_details.Designer.vb">
+      <DependentUpon>frm_AR2_details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\frm_AR2_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax.Designer.vb">
+      <DependentUpon>Frm_AR_Tax.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax_detail.Designer.vb">
+      <DependentUpon>Frm_AR_Tax_detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_AR_Tax_detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\frm_lookup_cmdm.designer.vb">
@@ -1694,6 +1794,18 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\RptAR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptAR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_AR2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_AR2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_upload.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1804,6 +1916,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\report\FrmReportBankTransfer.resx">
+      <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer3.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\coba.resx">
       <DependentUpon>coba.vb</DependentUpon>
     </EmbeddedResource>
@@ -1936,6 +2063,12 @@
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmJogres.resx">
+      <DependentUpon>frmJogres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
+      <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmKaryawanQrCode.resx">
       <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
     </EmbeddedResource>
@@ -1951,11 +2084,20 @@
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReportSo.resx">
+      <DependentUpon>frmReportSo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_yim.resx">
       <DependentUpon>frmReport_yim.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\MenuNew.resx">
+      <DependentUpon>MenuNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmSystem_UserSetupNew.resx">
       <DependentUpon>FrmSystem_UserSetupNew.vb</DependentUpon>
@@ -2176,6 +2318,18 @@
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport2.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport3.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.XtraReport4.resources" />
+    <EmbeddedResource Include="Payment\frm_AR2.resx">
+      <DependentUpon>frm_AR2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\frm_AR2_details.resx">
+      <DependentUpon>frm_AR2_details.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_AR_Tax.resx">
+      <DependentUpon>Frm_AR_Tax.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_AR_Tax_detail.resx">
+      <DependentUpon>Frm_AR_Tax_detail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_lookup_cmdm_ar.resx">
       <DependentUpon>frm_lookup_cmdm_ar.vb</DependentUpon>
     </EmbeddedResource>
@@ -2187,6 +2341,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\RptAR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptAR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_AR2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_AR2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_upload.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2208,6 +2370,17 @@
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="dataset\dsLaporan2.xsc">
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dsLaporan2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLaporan2.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\dsLaporan2.xss">
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </None>
     <None Include="dbml\BoM.dbml.layout">
       <DependentUpon>BoM.dbml</DependentUpon>
     </None>
@@ -3038,6 +3211,9 @@
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
     <None Include="Resources\download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816_980.png" />
+    <Content Include="Resources\budget.png" />
+    <Content Include="Resources\map.png" />
+    <Content Include="Resources\sales.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

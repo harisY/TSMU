@@ -72,7 +72,7 @@
             ff_Detail.Close()
         End If
         ff_Detail = New frmBoM_Budget_Calculate_detail(ls_Code, ls_Code2, ls_Code3, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         'ff_Detail._cmbStatus.Focus()
         ff_Detail.Show()
     End Sub

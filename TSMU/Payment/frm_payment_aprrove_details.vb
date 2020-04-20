@@ -249,6 +249,7 @@ Public Class frm_payment_aprrove_details
                 End If
             End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+
             Me.Close()
             ''tsBtn_next.PerformClick()
 
@@ -329,6 +330,7 @@ Public Class frm_payment_aprrove_details
                     Next
                 End If
             End If
+            Timer1.Enabled = True
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             ''RefreshDataApproval()
             'Me.Close()
@@ -336,8 +338,8 @@ Public Class frm_payment_aprrove_details
             GridDtl.DataSource = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
             IsClosed = True
             Me.Hide()
-            ''LoadGridRefresh()
-            ''frm_payment_approve.Proc_Refresh()
+            'LoadGridRefresh()
+            'frm_payment_approve.Proc_Refresh()
             'tsBtn_next.PerformClick()
 
         Catch ex As Exception
@@ -608,4 +610,8 @@ Public Class frm_payment_aprrove_details
         gridView.UpdateCurrentRow()
     End Sub
 
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        SendKeys.Send("{ENTER}")
+        Timer1.Enabled = False
+    End Sub
 End Class

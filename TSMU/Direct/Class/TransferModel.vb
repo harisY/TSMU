@@ -14,10 +14,33 @@
     Public Property CuryID_tujuan As String
     Public Property Rate_Solomon As String
     Public Property Rate_Transaksi As String
-    Public Property Selisih_Kursi As String
+    Public Property Selisih_Kursi As Double
 
 
+    Public Function loadreport2() As DataSet
+        Dim query As String
+        query = "SELECT Tgl
+      ,NoBukti
+      ,Perpost
+      ,AcctID_Asal
+      ,Descr_Asal
+      ,CheckNo
+      ,AcctID_tujuan
+      ,Descr_tujuan
+      ,CurryID
+      ,Jumlah
+      ,Remark
+      ,CuryID_tujuan
+      ,Rate_Solomon
+      ,Rate_Transaksi
+      ,Selisih_Kursi
+  FROM banktransfer where NoBukti='" & NoBukti & "'"
 
+        Dim ds As New dsLaporan2
+        ds = GetDsReport2_Solomon(query, "banktransfer")
+        Return ds
+
+    End Function
 
 
     Public Function GetRate(VendorId) As String
@@ -58,10 +81,10 @@
            ,[Descr_tujuan]
            ,[CurryID]
            ,[Jumlah]
-           ,[Remark])
-           ,[CuryID_tujuan])
-           ,[Rate_Solomon])
-           ,[Rate_Transaksi])
+           ,[Remark]
+           ,[CuryID_tujuan]
+           ,[Rate_Solomon]
+           ,[Rate_Transaksi]
            ,[Selisih_Kursi])
      VALUES
            (" & QVal(Tgl) & "
@@ -93,6 +116,7 @@
             'Else
             '    chek = 0
             'End If
+
             Dim ket As String = "Transfer"
             Dim sql As String =
             "INSERT INTO [cashbank2]
@@ -159,7 +183,9 @@
     End Sub
     Public Sub InsertToTable3()
         Try
-
+            If CuryID_tujuan <> CurryID Then
+                Jumlah = Jumlah * Rate_Solomon
+            End If
             'If Checked Then
             '    chek = 1
             'Else
@@ -192,8 +218,6 @@
            ," & QVal(AcctID_Asal) & "
            ," & 0 & ")"
             MainModul.ExecQuery_Solomon(sql)
-
-
 
             Dim sql2 As String =
  "INSERT INTO [cashbank]
@@ -330,6 +354,10 @@
                     CurryID = Trim(.Item("CurryID") & "")
                     Jumlah = Trim(.Item("Jumlah") & "")
                     Remark = Trim(.Item("Remark") & "")
+                    CuryID_tujuan = Trim(.Item("CuryID_tujuan") & "")
+                    Rate_Transaksi = Trim(.Item("Rate_Transaksi") & "")
+                    Rate_Solomon = Trim(.Item("Rate_Solomon") & "")
+                    Selisih_Kursi = Trim(.Item("Selisih_Kursi") & "")
                 End With
             End If
         Catch ex As Exception
