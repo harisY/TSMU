@@ -95,42 +95,12 @@ Public Class forecast_price_models_header
                                 Dim IsExist As Boolean = .IsDataADMExist
                                 If Not IsExist Then
                                     .InsertData()
-                                    .UpdateDataByBulanADM(Bulan)
+                                    .UpdateDataByBulanNew(Bulan)
                                 Else
-                                    .UpdateDataByBulanADM(Bulan)
+
+                                    .UpdateDataByBulanNew(Bulan)
                                 End If
-                                'If CustID.ToLower.TrimEnd <> "adm" Then
-                                '    Dim IsExist1 As Boolean = .IsDataADMExist
-                                '    If Not IsExist1 Then
-                                '        .InsertData()
-                                '        .UpdateDataByBulanADM(Bulan)
-                                '    Else
-                                '        .UpdateDataByBulanADM(Bulan)
-                                '    End If
-                                '    '.InsertDataTempTable()
 
-                                'Else
-                                '    'If .Flag = "N/A" Then
-                                '    '    Dim IsExist2 As Boolean = .IsDataADMExist
-                                '    '    If Not IsExist2 Then
-                                '    '        .InsertData()
-                                '    '        .UpdateDataByBulanADM(Bulan)
-                                '    '    Else
-                                '    '        .UpdateDataByBulanADM(Bulan)
-                                '    '    End If
-                                '    'Else
-                                '    Dim IsExist As Boolean = .IsDataADMExist
-                                '    If Not IsExist Then
-                                '        .InsertData()
-                                '        .UpdateDataByBulanADM(Bulan)
-                                '    Else
-                                '        .UpdateDataByBulanADM(Bulan)
-                                '    End If
-                                '    'End If
-
-
-                                '    '.InsertDataTempTable()
-                                'End If
                             End With
                         Next
 
@@ -143,6 +113,7 @@ Public Class forecast_price_models_header
                     End Try
                 End Using
             End Using
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -297,33 +268,9 @@ Public Class forecast_price_models
 
     Public Function GetAllDataGrid(ByVal ls_Filter As String) As DataTable
         Try
-            Dim ls_SP As String = "SELECT [Id],[Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site],[Flag]
-                                      ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2]
-                                      ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2]
-                                      ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2]
-                                      ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2]
-                                      ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2]
-                                      ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2]
-                                      ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2]
-                                      ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2]
-                                      ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2]
-                                      ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2]
-                                      ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2]
-                                      ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
-                                      ,[JanHarga1],[JanHarga2],[JanHarga3],[FebHarga1]
-                                      ,[FebHarga2],[FebHarga3],[MarHarga1],[MarHarga2]
-                                      ,[MarHarga3],[AprHarga1],[AprHarga2],[AprHarga3]
-                                      ,[MeiHarga1],[MeiHarga2],[MeiHarga3]
-                                      ,[JunHarga1],[JunHarga2],[JunHarga3]
-                                      ,[JulHarga1],[JulHarga2],[JulHarga3]
-                                      ,[AgtHarga1],[AgtHarga2],[AgtHarga3]
-                                      ,[SepHarga1],[SepHarga2],[SepHarga3]
-                                      ,[OktHarga1],[OktHarga2],[OktHarga3]
-                                      ,[NovHarga1],[NovHarga2],[NovHarga3]
-                                      ,[DesHarga1],[DesHarga2],[DesHarga3]
-                                  FROM [tForecastPrice] Order by Id, Tahun, CustID"
+            Dim ls_SP As String = "tForecast_getDataGrid"
             Dim dtTable As New DataTable
-            dtTable = GetDataTable(ls_SP)
+            dtTable = GetDataTableByCommand_SP(ls_SP)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -522,36 +469,65 @@ Public Class forecast_price_models
         End Try
     End Sub
 
+    Public Function getSalesPrice(bulan As String, tahun As String) As Double
+        Dim salesPrice As Double = 0
+
+        Try
+
+            Dim Sql As String = "SO_getLastPrice"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
+            pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)
+            pParam(0).Value = tahun
+            pParam(1) = New SqlClient.SqlParameter("@bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@custId", SqlDbType.Char)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@invtId", SqlDbType.Char)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@alternateId", SqlDbType.Char)
+            pParam(4).Value = PartNo
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP_Solomon(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                salesPrice = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return salesPrice
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub InsertData()
         Try
+
             Dim Query As String = String.Empty
             Query = "INSERT INTO [tForecastPrice]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site],[Flag]
-                            ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2],[JanHarga1],[JanHarga2],[JanHarga3]
-                            ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2],[FebHarga1],[FebHarga2],[FebHarga3]
-                            ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2],[MarHarga1],[MarHarga2],[MarHarga3]
-                            ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2],[AprHarga1],[AprHarga2],[AprHarga3]
-                            ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2],[MeiHarga1],[MeiHarga2],[MeiHarga3]
-                            ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2],[JunHarga1],[JunHarga2],[JunHarga3]
-                            ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2],[JulHarga1],[JulHarga2],[JulHarga3]
-                            ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2],[AgtHarga1],[AgtHarga2],[AgtHarga3]
-                            ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2],[SepHarga1],[SepHarga2],[SepHarga3]
-                            ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2],[OktHarga1],[OktHarga2],[OktHarga3]
-                            ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2],[NovHarga1],[NovHarga2],[NovHarga3]
-                            ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2],[DesHarga1],[DesHarga2],[DesHarga3]
+                            ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2]
+                            ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2]
+                            ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2]
+                            ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2]
+                            ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2]
+                            ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2]
+                            ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2]
+                            ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2]
+                            ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2]
+                            ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2]
+                            ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2]
+                            ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
                             ,[created_date],[created_by])
                     Values(" & QVal(Tahun) & "," & QVal(CustID) & "," & QVal(Customer) & "," & QVal(InvtID) & "," & QVal(Description) & "," & QVal(PartNo) & "," & QVal(Model) & "," & QVal(OePe) & "," & QVal(INSub) & "," & QVal(Site) & "," & QVal(Flag) & "
-                           ," & QVal(JanQty1) & "," & QVal(JanQty2) & "," & QVal(JanQty3) & "," & QVal(Jan_PO1) & "," & QVal(Jan_PO2) & "," & QVal(JanHarga1) & "," & QVal(JanHarga2) & "," & QVal(JanHarga3) & "
-                           ," & QVal(FebQty1) & "," & QVal(FebQty2) & "," & QVal(FebQty3) & "," & QVal(Feb_PO1) & "," & QVal(Feb_PO2) & "," & QVal(FebHarga1) & "," & QVal(FebHarga2) & "," & QVal(FebHarga3) & "
-                           ," & QVal(MarQty1) & "," & QVal(MarQty2) & "," & QVal(MarQty3) & "," & QVal(Mar_PO1) & "," & QVal(Mar_PO2) & "," & QVal(MarHarga1) & "," & QVal(MarHarga2) & "," & QVal(MarHarga3) & "
-                           ," & QVal(AprQty1) & "," & QVal(AprQty2) & "," & QVal(AprQty3) & "," & QVal(Apr_PO1) & "," & QVal(Apr_PO2) & "," & QVal(AprHarga1) & "," & QVal(AprHarga2) & "," & QVal(AprHarga3) & "
-                           ," & QVal(MeiQty1) & "," & QVal(MeiQty2) & "," & QVal(MeiQty3) & "," & QVal(Mei_PO1) & "," & QVal(Mei_PO2) & "," & QVal(MeiHarga1) & "," & QVal(MeiHarga2) & "," & QVal(MeiHarga3) & "
-                           ," & QVal(JunQty1) & "," & QVal(JunQty2) & "," & QVal(JunQty3) & "," & QVal(Jun_PO1) & "," & QVal(Jun_PO2) & "," & QVal(JunHarga1) & "," & QVal(JunHarga2) & "," & QVal(JunHarga3) & "
-                           ," & QVal(JulQty1) & "," & QVal(JulQty2) & "," & QVal(JulQty3) & "," & QVal(Jul_PO1) & "," & QVal(Jul_PO2) & "," & QVal(JulHarga1) & "," & QVal(JulHarga2) & "," & QVal(JulHarga3) & "
-                           ," & QVal(AgtQty1) & "," & QVal(AgtQty2) & "," & QVal(AgtQty3) & "," & QVal(Agt_PO1) & "," & QVal(Agt_PO2) & "," & QVal(AgtHarga1) & "," & QVal(AgtHarga2) & "," & QVal(AgtHarga3) & "
-                           ," & QVal(SepQty1) & "," & QVal(SepQty2) & "," & QVal(SepQty3) & "," & QVal(Sep_PO1) & "," & QVal(Sep_PO2) & "," & QVal(SepHarga1) & "," & QVal(SepHarga2) & "," & QVal(SepHarga3) & "
-                           ," & QVal(OktQty1) & "," & QVal(OktQty2) & "," & QVal(OktQty3) & "," & QVal(Okt_PO1) & "," & QVal(Okt_PO2) & "," & QVal(OktHarga1) & "," & QVal(OktHarga2) & "," & QVal(OktHarga3) & "
-                           ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "," & QVal(NovHarga1) & "," & QVal(NovHarga2) & "," & QVal(NovHarga3) & "
-                           ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "," & QVal(DesHarga1) & "," & QVal(DesHarga2) & "," & QVal(DesHarga3) & "
+                           ," & QVal(JanQty1) & "," & QVal(JanQty2) & "," & QVal(JanQty3) & "," & QVal(Jan_PO1) & "," & QVal(Jan_PO2) & "
+                           ," & QVal(FebQty1) & "," & QVal(FebQty2) & "," & QVal(FebQty3) & "," & QVal(Feb_PO1) & "," & QVal(Feb_PO2) & "
+                           ," & QVal(MarQty1) & "," & QVal(MarQty2) & "," & QVal(MarQty3) & "," & QVal(Mar_PO1) & "," & QVal(Mar_PO2) & "
+                           ," & QVal(AprQty1) & "," & QVal(AprQty2) & "," & QVal(AprQty3) & "," & QVal(Apr_PO1) & "," & QVal(Apr_PO2) & "
+                           ," & QVal(MeiQty1) & "," & QVal(MeiQty2) & "," & QVal(MeiQty3) & "," & QVal(Mei_PO1) & "," & QVal(Mei_PO2) & "
+                           ," & QVal(JunQty1) & "," & QVal(JunQty2) & "," & QVal(JunQty3) & "," & QVal(Jun_PO1) & "," & QVal(Jun_PO2) & "
+                           ," & QVal(JulQty1) & "," & QVal(JulQty2) & "," & QVal(JulQty3) & "," & QVal(Jul_PO1) & "," & QVal(Jul_PO2) & "
+                           ," & QVal(AgtQty1) & "," & QVal(AgtQty2) & "," & QVal(AgtQty3) & "," & QVal(Agt_PO1) & "," & QVal(Agt_PO2) & "
+                           ," & QVal(SepQty1) & "," & QVal(SepQty2) & "," & QVal(SepQty3) & "," & QVal(Sep_PO1) & "," & QVal(Sep_PO2) & "
+                           ," & QVal(OktQty1) & "," & QVal(OktQty2) & "," & QVal(OktQty3) & "," & QVal(Okt_PO1) & "," & QVal(Okt_PO2) & "
+                           ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "
+                           ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                            ," & QVal(created_date) & "," & QVal(created_by) & ")"
             ExecQuery(Query)
         Catch ex As Exception
@@ -1341,709 +1317,26 @@ Public Class forecast_price_models
     End Sub
 
     Public Sub UpdateDataByBulanNew(Bulan As String)
-        Dim sql As String = String.Empty
-        Dim Harga As Double = 0
-        Dim Query1 As String = String.Empty
         Try
-            If Bulan.ToLower = "januari" Then
+            Dim salesPrice As Double = 0
+            salesPrice = getSalesPrice(Bulan, Tahun)
 
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JanHarga1] =  " & QVal(JanHarga1) & " 
-                                    ,[JanHarga2] =  " & QVal(JanHarga2) & " 
-                                    ,[JanHarga3] =  " & QVal(JanHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
+            Dim Sql As String = "tForecastPrice_updateHarga"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@bulan", SqlDbType.VarChar)
+            pParam(1).Value = Bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            pParam(5).Value = salesPrice
 
-                sql =
-                    "SELECT
-                                    Harga_jan =
-	                                CASE 
-	                                        WHEN JanHarga1!=0 and JanHarga2=0  and JanHarga3=0 THEN JanHarga1  
-	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2  
-	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3!=0 THEN JanHarga3  
-	                                        WHEN JanHarga1=0  and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2  
-	                                        WHEN JanHarga1=0 and JanHarga2=0  and JanHarga3!=0 THEN JanHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [FebHarga1] =  " & QVal(Harga) & " 
-                                    ,[MarHarga1] =  " & QVal(Harga) & "
-                                    ,[AprHarga1] =  " & QVal(Harga) & "
-                                    ,[MeiHarga1] =  " & QVal(Harga) & "
-                                    ,[JunHarga1] =  " & QVal(Harga) & "
-                                    ,[JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[JanQty1] =    " & QVal(JanQty1) & "
-                                    ,[JanQty2] = " & QVal(JanQty2) & "
-                                    ,[JanQty3] = " & QVal(JanQty3) & "
-                                    ,[Jan PO1] =  " & QVal(Jan_PO1) & "
-                                    ,[Jan PO2] =  " & QVal(Jan_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========FEBRUARI===============
-            ElseIf Bulan.ToLower = "februari" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [FebHarga1] =  " & QVal(FebHarga1) & " 
-                                    ,[FebHarga2] =  " & QVal(FebHarga2) & " 
-                                    ,[FebHarga3] =  " & QVal(FebHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Feb =
-	                                CASE 
-	                                        WHEN FebHarga1!=0 and FebHarga2=0  and FebHarga3=0 THEN FebHarga1  
-	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2  
-	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3!=0 THEN FebHarga3  
-	                                        WHEN FebHarga1=0  and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2  
-	                                        WHEN FebHarga1=0 and FebHarga2=0  and FebHarga3!=0 THEN FebHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [MarHarga1] =  " & QVal(Harga) & "
-                                    ,[AprHarga1] =  " & QVal(Harga) & "
-                                    ,[MeiHarga1] =  " & QVal(Harga) & "
-                                    ,[JunHarga1] =  " & QVal(Harga) & "
-                                    ,[JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[FebQty1] = " & QVal(FebQty1) & "
-                                    ,[FebQty2] = " & QVal(FebQty2) & "
-                                    ,[FebQty3] = " & QVal(FebQty3) & "
-                                    ,[Feb PO1] =  " & QVal(Feb_PO1) & "
-                                    ,[Feb PO2] =  " & QVal(Feb_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========MARET===============
-            ElseIf Bulan.ToLower = "maret" Then
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [MarHarga1] =  " & QVal(MarHarga1) & " 
-                                    ,[MarHarga2] =  " & QVal(MarHarga2) & " 
-                                    ,[MarHarga3] =  " & QVal(MarHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Mar =
-	                                CASE 
-	                                        WHEN MarHarga1!=0 and MarHarga2=0  and MarHarga3=0 THEN MarHarga1  
-	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2  
-	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3!=0 THEN MarHarga3  
-	                                        WHEN MarHarga1=0  and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2  
-	                                        WHEN MarHarga1=0 and MarHarga2=0  and MarHarga3!=0 THEN MarHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [AprHarga1] =  " & QVal(Harga) & "
-                                    ,[MeiHarga1] =  " & QVal(Harga) & "
-                                    ,[JunHarga1] =  " & QVal(Harga) & "
-                                    ,[JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[MarQty1] = " & QVal(MarQty1) & "
-                                    ,[MarQty2] = " & QVal(MarQty2) & "
-                                    ,[MarQty3] = " & QVal(MarQty3) & "
-                                    ,[Mar PO1] =  " & QVal(Mar_PO1) & "
-                                    ,[Mar PO2] =  " & QVal(Mar_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========APRIL===============
-            ElseIf Bulan.ToLower = "april" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [AprHarga1] =  " & QVal(AprHarga1) & " 
-                                    ,[AprHarga2] =  " & QVal(AprHarga2) & " 
-                                    ,[AprHarga3] =  " & QVal(AprHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN AprHarga1!=0 and AprHarga2=0  and AprHarga3=0 THEN AprHarga1  
-	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2  
-	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3!=0 THEN AprHarga3  
-	                                        WHEN AprHarga1=0  and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2  
-	                                        WHEN AprHarga1=0 and AprHarga2=0  and AprHarga3!=0 THEN AprHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [MeiHarga1] =  " & QVal(Harga) & "
-                                    ,[JunHarga1] =  " & QVal(Harga) & "
-                                    ,[JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[AprQty1] = " & QVal(AprQty1) & "
-                                    ,[AprQty2] = " & QVal(AprQty2) & "
-                                    ,[AprQty3] = " & QVal(AprQty3) & "
-                                    ,[Apr PO1] =  " & QVal(Apr_PO1) & "
-                                    ,[Apr PO2] =  " & QVal(Apr_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========MEI===============
-            ElseIf Bulan.ToLower = "mei" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [MeiHarga1] =  " & QVal(MeiHarga1) & " 
-                                    ,[MeiHarga2] =  " & QVal(MeiHarga2) & " 
-                                    ,[MeiHarga3] =  " & QVal(MeiHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN MeiHarga1!=0 and MeiHarga2=0  and MeiHarga3=0 THEN MeiHarga1  
-	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2  
-	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3!=0 THEN MeiHarga3  
-	                                        WHEN MeiHarga1=0  and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2  
-	                                        WHEN MeiHarga1=0 and MeiHarga2=0  and MeiHarga3!=0 THEN MeiHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [JunHarga1] =  " & QVal(Harga) & "
-                                    ,[JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[MeiQty1] = " & QVal(MeiQty1) & "
-                                    ,[MeiQty2] = " & QVal(MeiQty2) & "
-                                    ,[MeiQty3] = " & QVal(MeiQty3) & "
-                                    ,[Mei PO1] =  " & QVal(Mei_PO1) & "
-                                    ,[Mei PO2] =  " & QVal(Mei_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========JUNI===============
-            ElseIf Bulan.ToLower = "juni" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JunHarga1] =  " & QVal(JunHarga1) & " 
-                                    ,[JunHarga2] =  " & QVal(JunHarga2) & " 
-                                    ,[JunHarga3] =  " & QVal(JunHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN JunHarga1!=0 and JunHarga2=0  and JunHarga3=0 THEN JunHarga1  
-	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2  
-	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3!=0 THEN JunHarga3  
-	                                        WHEN JunHarga1=0  and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2  
-	                                        WHEN JunHarga1=0 and JunHarga2=0  and JunHarga3!=0 THEN JunHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [JulHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[JunQty1] = " & QVal(JunQty1) & "
-                                    ,[JunQty2] = " & QVal(JunQty2) & "
-                                    ,[JunQty3] = " & QVal(JunQty3) & "
-                                    ,[Jun PO1] =  " & QVal(Jun_PO1) & "
-                                    ,[Jun PO2] =  " & QVal(Jun_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========JULI===============
-            ElseIf Bulan.ToLower = "juli" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JulHarga1] =  " & QVal(JulHarga1) & " 
-                                    ,[JulHarga2] =  " & QVal(JulHarga2) & " 
-                                    ,[JulHarga3] =  " & QVal(JulHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN JulHarga1!=0 and JulHarga2=0  and JulHarga3=0 THEN JulHarga1  
-	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2  
-	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3!=0 THEN JulHarga3  
-	                                        WHEN JulHarga1=0  and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2  
-	                                        WHEN JulHarga1=0 and JulHarga2=0  and JulHarga3!=0 THEN JulHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [AgtHarga1] =  " & QVal(Harga) & "
-                                    ,[SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[JulQty1] = " & QVal(JulQty1) & "
-                                    ,[JulQty2] = " & QVal(JulQty2) & "
-                                    ,[JulQty3] = " & QVal(JulQty3) & "
-                                    ,[Jul PO1] =  " & QVal(Jul_PO1) & "
-                                    ,[Jul PO2] =  " & QVal(Jul_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & ""
-                ExecQuery(Query1)
-
-                '===========AGUSTUS===============
-            ElseIf Bulan.ToLower = "agustus" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [AgtHarga1] =  " & QVal(AgtHarga1) & " 
-                                    ,[AgtHarga2] =  " & QVal(AgtHarga2) & " 
-                                    ,[AgtHarga3] =  " & QVal(AgtHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN AgtHarga1!=0 and AgtHarga2=0  and AgtHarga3=0 THEN AgtHarga1  
-	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2  
-	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3!=0 THEN AgtHarga3  
-	                                        WHEN AgtHarga1=0  and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2  
-	                                        WHEN AgtHarga1=0 and AgtHarga2=0  and AgtHarga3!=0 THEN AgtHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [SepHarga1] =  " & QVal(Harga) & "
-                                    ,[OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[AgtQty1] = " & QVal(AgtQty1) & "
-                                    ,[AgtQty2] = " & QVal(AgtQty2) & "
-                                    ,[AgtQty3] = " & QVal(AgtQty3) & "
-                                    ,[Agt PO1] =  " & QVal(Agt_PO1) & "
-                                    ,[Agt PO2] =  " & QVal(Agt_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query1)
-
-                '===========SEPTEMBER===============
-            ElseIf Bulan.ToLower = "september" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [SepHarga1] =  " & QVal(SepHarga1) & " 
-                                    ,[SepHarga2] =  " & QVal(SepHarga2) & " 
-                                    ,[SepHarga3] =  " & QVal(SepHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN SepHarga1!=0 and SepHarga2=0  and SepHarga3=0 THEN SepHarga1  
-	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2  
-	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3!=0 THEN SepHarga3  
-	                                        WHEN SepHarga1=0  and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2  
-	                                        WHEN SepHarga1=0 and SepHarga2=0  and SepHarga3!=0 THEN SepHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [OktHarga1] =  " & QVal(Harga) & "
-                                    ,[NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[SepQty1] = " & QVal(SepQty1) & "
-                                    ,[SepQty2] = " & QVal(SepQty2) & "
-                                    ,[SepQty3] = " & QVal(SepQty3) & "
-                                    ,[Sep PO1] =  " & QVal(Sep_PO1) & "
-                                    ,[Sep PO2] =  " & QVal(Sep_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query1)
-
-                '===========OKTOBER===============
-            ElseIf Bulan.ToLower = "oktober" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [OktHarga1] =  " & QVal(OktHarga1) & " 
-                                    ,[OktHarga2] =  " & QVal(OktHarga2) & " 
-                                    ,[OktHarga3] =  " & QVal(OktHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Apr =
-	                                CASE 
-	                                        WHEN OktHarga1!=0 and OktHarga2=0  and OktHarga3=0 THEN OktHarga1  
-	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2  
-	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3!=0 THEN OktHarga3  
-	                                        WHEN OktHarga1=0  and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2  
-	                                        WHEN OktHarga1=0 and OktHarga2=0  and OktHarga3!=0 THEN OktHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [NovHarga1] =  " & QVal(Harga) & "
-                                    ,[DesHarga1] =  " & QVal(Harga) & "
-                                    ,[OktQty1] = " & QVal(OktQty1) & "
-                                    ,[OktQty2] = " & QVal(OktQty2) & "
-                                    ,[OktQty3] = " & QVal(OktQty3) & "
-                                    ,[Okt PO1] =  " & QVal(Okt_PO1) & "
-                                    ,[Okt PO2] =  " & QVal(Okt_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query1)
-
-                '===========NOVEMBER===============
-            ElseIf Bulan.ToLower = "november" Then
-
-                Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [NovHarga1] =  " & QVal(NovHarga1) & " 
-                                    ,[NovHarga2] =  " & QVal(NovHarga2) & " 
-                                    ,[NovHarga3] =  " & QVal(NovHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & " AND Flag ='N/A'"
-                ExecQuery(query2)
-
-                sql =
-                    "SELECT
-                                    Harga_Nov =
-	                                CASE 
-	                                        WHEN NovHarga1!=0 and NovHarga2=0  and NovHarga3=0 THEN NovHarga1  
-	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2  
-	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3!=0 THEN NovHarga3  
-	                                        WHEN NovHarga1=0  and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2  
-	                                        WHEN NovHarga1=0 and NovHarga2=0  and NovHarga3!=0 THEN NovHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [DesHarga1] =  " & QVal(Harga) & "
-                                    ,[NovQty1] = " & QVal(NovQty1) & "
-                                    ,[NovQty2] = " & QVal(NovQty2) & "
-                                    ,[NovQty3] = " & QVal(NovQty3) & "
-                                    ,[Nov PO1] =  " & QVal(Nov_PO1) & "
-                                    ,[Nov PO2] =  " & QVal(Nov_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query1)
-
-
-                '===========DESEMBER===============
-            ElseIf Bulan.ToLower = "desember" Then
-
-                Dim t As Integer = Convert.ToInt32(Tahun) + 1
-                'Query = Sql1 & "   ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
-                '       ,[DesHarga1],[DesHarga2],[DesHarga3]
-                '       ,[created_date]
-                '       ,[created_by])
-                ' VALUES
-                '       (" & QVal(Tahun) & "," & QVal(CustID) & "," & QVal(Customer) & "," & QVal(InvtID) & "," & QVal(Description) & "
-                '       ," & QVal(PartNo) & "," & QVal(Model) & "," & QVal(OePe) & "," & QVal(INSub) & "," & QVal(Site) & "
-                '       ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
-                '       ," & QVal(DesHarga1) & "," & QVal(DesHarga2) & "," & QVal(DesHarga3) & "," & QVal(created_date) & "," & QVal(created_by) & " )"
-                'ExecQuery(Query)
-                Dim query3 As String =
-                    "UPDATE [tForecastPrice] SET [DesHarga1] =  " & QVal(DesHarga1) & " 
-                                    ,[DesHarga2] =  " & QVal(DesHarga2) & " 
-                                    ,[DesHarga3] =  " & QVal(DesHarga3) & " 
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(query3)
-
-                sql =
-                    "SELECT
-                                    Harga_Des =
-	                                CASE 
-	                                        WHEN DesHarga1!=0 and DesHarga2=0  and DesHarga3=0 THEN DesHarga1  
-	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
-	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3!=0 THEN DesHarga3  
-	                                        WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
-                                            WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3!0 THEN DesHarga3
-	                                        WHEN DesHarga1=0 and DesHarga2=0  and DesHarga3!=0 THEN DesHarga3 
-                                            ELSE 0 
-	                                END
-                                FROM tForecastPrice
-                                WHERE
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                Dim dt As DataTable = New DataTable
-                dt = MainModul.GetDataTable(sql)
-                If dt.Rows.Count > 0 Then
-                    Harga = Double.Parse(dt.Rows(0)(0).ToString())
-                End If
-
-                Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [JanHarga1] =  " & QVal(Harga) & "
-                                WHERE 
-                                    Tahun =  " & QVal(t.ToString()) & "  AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query1)
-
-                Dim Query2 As String =
-                    "UPDATE [tForecastPrice] 
-                                SET [DesQty1] = " & QVal(DesQty1) & "
-                                    ,[DesQty2] = " & QVal(DesQty2) & "
-                                    ,[DesQty3] = " & QVal(DesQty3) & "
-                                    ,[Des PO1] =  " & QVal(Des_PO1) & "
-                                    ,[Des PO2] =  " & QVal(Des_PO2) & "
-                                WHERE 
-                                    Tahun =  " & QVal(Tahun) & " AND
-                                    PartNo = " & QVal(PartNo) & " AND
-                                    InvtID = " & QVal(InvtID) & " AND
-                                    CustID = " & QVal(CustID) & "  AND Flag ='N/A'"
-                ExecQuery(Query2)
-            End If
+            ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try

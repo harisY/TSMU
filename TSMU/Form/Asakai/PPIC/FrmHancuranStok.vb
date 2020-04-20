@@ -39,7 +39,7 @@
             ff_Detail.Close()
         End If
         ff_Detail = New FrmHancuranStokDetail(ls_Code, Me, li_Row, GridControl)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub

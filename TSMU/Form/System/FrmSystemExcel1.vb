@@ -43,7 +43,7 @@ Public Class FrmSystemExcel1
 
     ReadOnly Property Bulan As String
         Get
-            Return _cmbBulan.Text.Trim
+            Return _cmbBulan.EditValue.Trim
         End Get
     End Property
 
@@ -58,7 +58,8 @@ Public Class FrmSystemExcel1
         FillComboCustomer()
         FillComboBulan()
         lblStatus.Text = ""
-        XtraTabControl1.SelectedTabPageIndex = 0
+        'XtraTabControl1.SelectedTabPageIndex = 0
+        XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
     Private Sub FillComboTahun()
         Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
@@ -75,14 +76,33 @@ Public Class FrmSystemExcel1
         Next
     End Sub
 
+    'Private Sub FillComboBulan()
+    '    Dim tahun() As Object = [{Text = "", Value = "0", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"}]
+    '    _cmbBulan.Properties.Items.Clear()
+    '    For Each var As String In tahun
+    '        _cmbBulan.Properties.Items.Add(var)
+    '    Next
+    'End Sub
     Private Sub FillComboBulan()
-        Dim tahun() As String = {"", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"}
-        _cmbBulan.Properties.Items.Clear()
-        For Each var As String In tahun
-            _cmbBulan.Properties.Items.Add(var)
-        Next
-    End Sub
 
+        Dim items = {New With {Key .Text = "Januari", Key .Value = "01"},
+                    New With {Key .Text = "Februari", Key .Value = "02"},
+                    New With {Key .Text = "Maret", Key .Value = "03"},
+                    New With {Key .Text = "April", Key .Value = "04"},
+                    New With {Key .Text = "Mei", Key .Value = "05"},
+                    New With {Key .Text = "Juni", Key .Value = "06"},
+                    New With {Key .Text = "Juli", Key .Value = "07"},
+                    New With {Key .Text = "Agustus", Key .Value = "08"},
+                    New With {Key .Text = "September", Key .Value = "09"},
+                    New With {Key .Text = "Oktober", Key .Value = "10"},
+                    New With {Key .Text = "November", Key .Value = "11"},
+                    New With {Key .Text = "Desember", Key .Value = "12"}
+        }
+        _cmbBulan.Properties.DataSource = Nothing
+        _cmbBulan.Properties.DataSource = items
+        _cmbBulan.Properties.DisplayMember = "Text"
+        _cmbBulan.Properties.ValueMember = "Value"
+    End Sub
     Private Sub FillComboCustomer()
         Dim dtTabel As New DataTable
         dtTabel = fc_class.getCusstID_Solomon

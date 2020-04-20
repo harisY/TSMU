@@ -212,8 +212,8 @@ Public Class frmKanbanInternal
                 urut = urut + 1
             Next
 
-            Dim Laporan As New PrintKanbanInternalTes()
-            'Dim Laporan As New PrintKanbanInternal_new()
+            'Dim Laporan As New PrintKanbanInternalTes()
+            Dim Laporan As New PrintKanbanInternal_new()
             With Laporan
                 '.param1 = _param
                 .DataSource = dtTemp1

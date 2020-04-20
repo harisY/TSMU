@@ -72,7 +72,7 @@
 
     Private Sub FrmSystem_ChangePassword_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.StartPosition = FormStartPosition.CenterScreen
-        Me.MdiParent = MenuUtamaForm
+        Me.MdiParent = FrmMain
 
         TxtPwdLama.Text = ""
         TxtPwdBaru.Text = ""

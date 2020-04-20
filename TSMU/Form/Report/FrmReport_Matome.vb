@@ -94,6 +94,7 @@ Public Class FrmReport_Matome
             tsBtn_refresh.PerformClick()
         Else
             e.Handled = True
+
         End If
     End Sub
 End Class

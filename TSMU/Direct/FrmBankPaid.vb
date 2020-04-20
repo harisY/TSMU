@@ -50,7 +50,7 @@ Public Class FrmBankPaid
         End If
         '  FrmPaymentDirect.Close()
         ff_Detail = New FrmPaymentDirect(ls_Code, ls_Code2, Me)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub

@@ -71,6 +71,7 @@
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -168,6 +169,9 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
+    <Compile Include="Classes\ComboBoxObj.vb" />
+    <Compile Include="Classes\MenuManager.vb" />
+    <Compile Include="Classes\Page1Interface.vb" />
     <Compile Include="Classes\Payment\Cls_barcode.vb" />
     <Compile Include="Classes\Payment\Cls_FP.vb" />
     <Compile Include="Classes\Payment\Cls_Payment.vb" />
@@ -908,6 +912,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmJogres.Designer.vb">
+      <DependentUpon>frmJogres.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmJogres.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -1346,6 +1356,12 @@
     <Compile Include="Form\Report\frmSales.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\MenuNew.Designer.vb">
       <DependentUpon>MenuNew.vb</DependentUpon>
     </Compile>
@@ -1496,6 +1512,10 @@
     <Compile Include="Form\System\MainForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Menu\ActionType.vb" />
+    <Compile Include="Menu\FormTypes.vb" />
+    <Compile Include="Menu\IUserInterface.vb" />
+    <Compile Include="Menu\MenuItem.vb" />
     <Compile Include="Models\ar2_detail_models.vb" />
     <Compile Include="Models\AR2_Header_Models.vb" />
     <Compile Include="Models\ARTaxHeaderModel.vb" />
@@ -1532,6 +1552,7 @@
     <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
     <Compile Include="Models\barcode_models.vb" />
@@ -2042,6 +2063,9 @@
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmJogres.resx">
+      <DependentUpon>frmJogres.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </EmbeddedResource>
@@ -2068,6 +2092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\MenuNew.resx">
       <DependentUpon>MenuNew.vb</DependentUpon>
@@ -3183,6 +3210,9 @@
     <Content Include="obj\Debug\TSMU.vbproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="Resources\budget.png" />
+    <Content Include="Resources\map.png" />
+    <Content Include="Resources\sales.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

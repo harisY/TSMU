@@ -302,7 +302,7 @@ Public Class FrmPaymentDirect
             ff_Detail7.Close()
         End If
         ff_Detail7 = New frm_payment_aprrove_details(ls_Code, ls_Code2, Me, li_Row, GridControl1, IsNew)
-        ff_Detail7.MdiParent = MenuUtamaForm
+        ff_Detail7.MdiParent = FrmMain
         ff_Detail7.StartPosition = FormStartPosition.CenterScreen
         ff_Detail7.Show()
     End Sub
@@ -315,7 +315,7 @@ Public Class FrmPaymentDirect
             ff_Detail8.Close()
         End If
         ff_Detail8 = New FrmBankReceipt_Detail(ls_Code, ls_Code2, ls_Code3, ls_Code4, sts_skreen, Me, li_Row, GridControl1)
-        ff_Detail8.MdiParent = MenuUtamaForm
+        ff_Detail8.MdiParent = FrmMain
         ff_Detail8.StartPosition = FormStartPosition.CenterScreen
         ff_Detail8.Show()
     End Sub

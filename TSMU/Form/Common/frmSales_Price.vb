@@ -625,7 +625,7 @@ Public Class frmSales_Price
             ff_Detail.Close()
         End If
         ff_Detail = New frmSales_Price_detail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = frmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
