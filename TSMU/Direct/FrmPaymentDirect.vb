@@ -1437,7 +1437,6 @@ Public Class FrmPaymentDirect
                     GetTot2()
                 Else
                     GetTot2()
-
                 End If
             End If
 
@@ -1502,9 +1501,6 @@ Public Class FrmPaymentDirect
                     ff_Detail = New FrmDetailPaymentDirect(id)
                     ff_Detail.Show()
                 End If
-
-
-
             End If
 
         Catch ex As Exception
@@ -1520,7 +1516,6 @@ Public Class FrmPaymentDirect
         'FrmBankReceipt_Detail.TxtCuryID.Text = _txtcuryid.Text
         'FrmBankReceipt_Detail.Show()
         Try
-
             Dim account As String = String.Empty
             Dim accountname As String = String.Empty
             Dim curyid As String = String.Empty
@@ -1531,9 +1526,7 @@ Public Class FrmPaymentDirect
             curyid = _txtcuryid.Text
             perpost = _txtperpost.Text
 
-
             Call CallFrm2(account, accountname, curyid, perpost, 1, GridView1.RowCount)
-
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -1546,6 +1539,5 @@ Public Class FrmPaymentDirect
         FrmBankTransfer_Detail.TxtNoRekTujuanname.Text = _txtaccountname.Text
         FrmBankTransfer_Detail.TxtCuryID.Text = _txtcuryid.Text
         FrmBankTransfer_Detail.Show()
-
     End Sub
 End Class

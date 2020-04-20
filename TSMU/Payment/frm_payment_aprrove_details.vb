@@ -25,7 +25,6 @@ Public Class frm_payment_aprrove_details
 
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
@@ -140,7 +139,6 @@ Public Class frm_payment_aprrove_details
                     _TxtTMV.Text = ""
                     _TxtPPH.Text = Format(.PPh, "##,0")
                     _TxtPPN.Text = Format(.Tot_PPN, "##,0")
-
                 End With
             Else
                 _txtVoucher.Text = ""
@@ -181,6 +179,7 @@ Public Class frm_payment_aprrove_details
             If dtGrid.Rows.Count > 0 Then
                 GridInvoice.DataSource = dtGrid
             End If
+
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -411,7 +410,6 @@ Public Class frm_payment_aprrove_details
             '            '    '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
             '            'End If
 
-
             '            If frm_payment_approve.GridView1.Columns(i).VisibleIndex <> 10 Then
             '                frm_payment_approve.GridView1.Columns(i).OptionsColumn.AllowEdit = False
             '                ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
@@ -421,7 +419,6 @@ Public Class frm_payment_aprrove_details
             '            End If
 
             '        Next
-
             '        'GridView1.OptionsBehavior.Editable = True
             '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
             '        'GridView1.Columns(16).OptionsColumn.AllowEdit = False
@@ -495,7 +492,6 @@ Public Class frm_payment_aprrove_details
             '            '    '    GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
             '            'End If
 
-
             '            If GridView1.Columns(i).VisibleIndex <> 10 Then
             '                GridView1.Columns(i).OptionsColumn.AllowEdit = False
             '                ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
@@ -505,12 +501,6 @@ Public Class frm_payment_aprrove_details
             '            End If
 
             '        Next
-
-
-
-
-
-
             '        'GridView1.OptionsBehavior.Editable = True
             '        'GridView1.Columns(15).OptionsColumn.AllowEdit = False
             '        'GridView1.Columns(16).OptionsColumn.AllowEdit = False
@@ -616,7 +606,6 @@ Public Class frm_payment_aprrove_details
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-
     End Sub
 
 End Class

@@ -103,6 +103,17 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property download_for_free_10_png_paper_icon_png_top_images_at_carlisle_paper_icon_png_816_980() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816"& _ 
+                        "_980", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property UI_2__20_512() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("UI_2__20-512", resourceCulture)

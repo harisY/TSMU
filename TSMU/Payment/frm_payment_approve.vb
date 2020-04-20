@@ -226,7 +226,6 @@ Public Class frm_payment_approve
                             GridView4.Columns(i).OptionsColumn.AllowEdit = True
                         End If
                     Next
-
                     'GridView1.Columns(15).OptionsColumn.AllowEdit = False
                     'GridView1.Columns(16).OptionsColumn.AllowEdit = True
                     'GridView1.Columns(17).OptionsColumn.AllowEdit = False
@@ -368,8 +367,7 @@ Public Class frm_payment_approve
 
     Public Overrides Sub Proc_DeleteData()
         Try
-
-            'Dim fc_Class1 As New clsBoMTrans
+            'Dim fc_Class1 As New clsBoMTrans 
             'fc_Class1.BoMID = Trim(Grid.SelectedRows(0).Cells(0).Value)
             'fc_Class1.DeleteData()
             'Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
@@ -515,11 +513,9 @@ Public Class frm_payment_approve
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-
             dtSearch = ObjPaymentDetail.GetBank
             ls_OldKode = _txtBankId.Text.Trim
             ls_Judul = "Bank"
-
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -528,8 +524,6 @@ Public Class frm_payment_approve
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
             Dim Value2 As String = ""
-
-
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
@@ -646,10 +640,6 @@ Public Class frm_payment_approve
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-    End Sub
-
-    Private Sub btnLoad_Click(sender As Object, e As EventArgs)
-
     End Sub
 
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged
