@@ -44,12 +44,10 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -58,6 +56,9 @@ Partial Class FrmBankTransfer_Detail
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -84,9 +85,8 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem34 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,12 +113,10 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +125,9 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -155,9 +156,8 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -247,6 +247,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtAmount.EditValue = "0"
         Me.TxtAmount.Location = New System.Drawing.Point(669, 60)
         Me.TxtAmount.Name = "TxtAmount"
+        Me.TxtAmount.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtAmount.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount.Properties.EditFormat.FormatString = "n"
+        Me.TxtAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount.Properties.Mask.EditMask = "n"
+        Me.TxtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtAmount.Size = New System.Drawing.Size(331, 20)
         Me.TxtAmount.StyleController = Me.LayoutControl1
         Me.TxtAmount.TabIndex = 10
@@ -304,6 +312,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtRate.EditValue = "0"
         Me.TxtRate.Location = New System.Drawing.Point(669, 84)
         Me.TxtRate.Name = "TxtRate"
+        Me.TxtRate.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtRate.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtRate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRate.Properties.EditFormat.FormatString = "n"
+        Me.TxtRate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRate.Properties.Mask.EditMask = "n"
+        Me.TxtRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtRate.Size = New System.Drawing.Size(331, 20)
         Me.TxtRate.StyleController = Me.LayoutControl1
         Me.TxtRate.TabIndex = 12
@@ -313,6 +329,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtRateSolomon.EditValue = "0"
         Me.TxtRateSolomon.Location = New System.Drawing.Point(146, 84)
         Me.TxtRateSolomon.Name = "TxtRateSolomon"
+        Me.TxtRateSolomon.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtRateSolomon.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtRateSolomon.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtRateSolomon.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRateSolomon.Properties.EditFormat.FormatString = "n"
+        Me.TxtRateSolomon.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRateSolomon.Properties.Mask.EditMask = "n"
+        Me.TxtRateSolomon.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtRateSolomon.Size = New System.Drawing.Size(385, 20)
         Me.TxtRateSolomon.StyleController = Me.LayoutControl1
         Me.TxtRateSolomon.TabIndex = 11
@@ -334,6 +358,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtSelisihRate.EditValue = "0"
         Me.TxtSelisihRate.Location = New System.Drawing.Point(146, 132)
         Me.TxtSelisihRate.Name = "TxtSelisihRate"
+        Me.TxtSelisihRate.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtSelisihRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtSelisihRate.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtSelisihRate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtSelisihRate.Properties.EditFormat.FormatString = "n"
+        Me.TxtSelisihRate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtSelisihRate.Properties.Mask.EditMask = "n"
+        Me.TxtSelisihRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtSelisihRate.Properties.ReadOnly = True
         Me.TxtSelisihRate.Size = New System.Drawing.Size(385, 20)
         Me.TxtSelisihRate.StyleController = Me.LayoutControl1
@@ -344,6 +376,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtAmount1.EditValue = "0"
         Me.TxtAmount1.Location = New System.Drawing.Point(146, 108)
         Me.TxtAmount1.Name = "TxtAmount1"
+        Me.TxtAmount1.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtAmount1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtAmount1.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtAmount1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount1.Properties.EditFormat.FormatString = "n"
+        Me.TxtAmount1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount1.Properties.Mask.EditMask = "n"
+        Me.TxtAmount1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtAmount1.Properties.ReadOnly = True
         Me.TxtAmount1.Size = New System.Drawing.Size(385, 20)
         Me.TxtAmount1.StyleController = Me.LayoutControl1
@@ -354,6 +394,14 @@ Partial Class FrmBankTransfer_Detail
         Me.TxtAmount2.EditValue = "0"
         Me.TxtAmount2.Location = New System.Drawing.Point(669, 108)
         Me.TxtAmount2.Name = "TxtAmount2"
+        Me.TxtAmount2.Properties.Appearance.Options.UseTextOptions = True
+        Me.TxtAmount2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtAmount2.Properties.DisplayFormat.FormatString = "n"
+        Me.TxtAmount2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount2.Properties.EditFormat.FormatString = "n"
+        Me.TxtAmount2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtAmount2.Properties.Mask.EditMask = "n"
+        Me.TxtAmount2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtAmount2.Properties.ReadOnly = True
         Me.TxtAmount2.Size = New System.Drawing.Size(331, 20)
         Me.TxtAmount2.StyleController = Me.LayoutControl1
@@ -413,15 +461,6 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem2.Text = "Perpost"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(131, 13)
         '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.TxtNoRekAsalname
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(254, 24)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(154, 24)
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
-        '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.TxtNoRekTujuanname
@@ -457,16 +496,6 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem13.Size = New System.Drawing.Size(523, 24)
         Me.LayoutControlItem13.Text = "Solomon Rate"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(131, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.TxtCuryID
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(408, 24)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(115, 24)
-        Me.LayoutControlItem6.Text = " "
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem14
         '
@@ -540,6 +569,35 @@ Partial Class FrmBankTransfer_Detail
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(469, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem2"
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 192)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(992, 113)
+        Me.EmptySpaceItem1.Text = "EmptySpaceItem2"
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.TxtCuryID
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(408, 24)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(115, 24)
+        Me.LayoutControlItem6.Text = " "
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem6.TextVisible = False
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.TxtNoRekAsalname
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(254, 24)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(154, 24)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
         'errProvider
         '
         Me.errProvider.ContainerControl = Me
@@ -574,7 +632,7 @@ Partial Class FrmBankTransfer_Detail
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(788, 421)
+        Me.TabPage2.Size = New System.Drawing.Size(1032, 421)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Currency IDR"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -802,16 +860,6 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem26.Text = "Tanggal"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(80, 13)
         '
-        'LayoutControlItem28
-        '
-        Me.LayoutControlItem28.Control = Me.ComboBoxEdit1
-        Me.LayoutControlItem28.Location = New System.Drawing.Point(229, 72)
-        Me.LayoutControlItem28.Name = "LayoutControlItem6"
-        Me.LayoutControlItem28.Size = New System.Drawing.Size(138, 24)
-        Me.LayoutControlItem28.Text = " "
-        Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem28.TextVisible = False
-        '
         'LayoutControlItem34
         '
         Me.LayoutControlItem34.Control = Me.TextEdit5
@@ -821,15 +869,15 @@ Partial Class FrmBankTransfer_Detail
         Me.LayoutControlItem34.Text = "Amount "
         Me.LayoutControlItem34.TextSize = New System.Drawing.Size(80, 13)
         '
-        'EmptySpaceItem1
+        'LayoutControlItem28
         '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.CustomizationFormText = "EmptySpaceItem2"
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 192)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(992, 113)
-        Me.EmptySpaceItem1.Text = "EmptySpaceItem2"
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem28.Control = Me.ComboBoxEdit1
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(229, 72)
+        Me.LayoutControlItem28.Name = "LayoutControlItem6"
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem28.Text = " "
+        Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem28.TextVisible = False
         '
         'FrmBankTransfer_Detail
         '
@@ -864,12 +912,10 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
@@ -878,6 +924,9 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -906,9 +955,8 @@ Partial Class FrmBankTransfer_Detail
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

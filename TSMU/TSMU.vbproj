@@ -217,6 +217,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bank.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\bank.vb">
+      <DependentUpon>bank.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +242,11 @@
     </Compile>
     <Compile Include="dataset\dsLaporan.vb">
       <DependentUpon>dsLaporan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\dsLaporan2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\mizuho.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -494,6 +502,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Direct\report\FrmReportBankTransfer.Designer.vb">
+      <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportBankTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\FrmReportEntertain.Designer.vb">
       <DependentUpon>FrmReportEntertain.vb</DependentUpon>
     </Compile>
@@ -540,6 +554,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>relasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBankTransfer.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer2.vb">
+      <DependentUpon>RptBankTransfer2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Direct\report\RptBankTransfer3.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBankTransfer3.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\RptsettleDetail.vb">
@@ -1741,6 +1773,18 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\RptAR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptAR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_AR2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_AR2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_upload.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1851,6 +1895,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\report\FrmReportBankTransfer.resx">
+      <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\RptBankTransfer3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBankTransfer3.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\coba.resx">
       <DependentUpon>coba.vb</DependentUpon>
     </EmbeddedResource>
@@ -2256,6 +2315,14 @@
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\RptAR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptAR.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_AR2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_AR2.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_upload.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_upload.vb</LastGenOutput>
@@ -2276,6 +2343,17 @@
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="dataset\dsLaporan2.xsc">
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\dsLaporan2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLaporan2.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\dsLaporan2.xss">
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </None>
     <None Include="dbml\BoM.dbml.layout">
       <DependentUpon>BoM.dbml</DependentUpon>
     </None>

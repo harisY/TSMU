@@ -61,26 +61,47 @@ Module MainModul
     Public MyForms As New Collection(Of Form)
 
     '# Server Instance...
+    'Public gs_Database As String = "New_BoM"
+    'Public gs_DBServer As String = "HARIS\SQL2008R2"
+    'Public gs_DBAuthMode As String = "mixed"
+    'Public gs_DBUserName As String = "sa"
+    'Public gs_DBPassword As String = "fid123!!"
+    'Public gs_DBPasswordDefault As String = "fid123!!"
+
+    'Public gs_Database1 As String = "Tsc16Application"
+    'Public gs_DBServer1 As String = "HARIS\SQL2008R2"
+    'Public gs_DBAuthMode1 As String = "mixed"
+    'Public gs_DBUserName1 As String = "sa"
+    'Public gs_DBPassword1 As String = "fid123!!"
+    'Public gs_DBPasswordDefault1 As String = "fid123!!"
+
+    'Public gs_Database2 As String = "DbCKR"
+    'Public gs_DBServer2 As String = "HARIS\SQL2008R2"
+    'Public gs_DBAuthMode2 As String = "mixed"
+    'Public gs_DBUserName2 As String = "sa"
+    'Public gs_DBPassword2 As String = "fid123!!"
+    'Public gs_DBPasswordDefault2 As String = "fid123!!"
+
     Public gs_Database As String = "New_BoM"
-    Public gs_DBServer As String = "HARIS\SQL2008R2"
+    Public gs_DBServer As String = "10.10.1.10"
     Public gs_DBAuthMode As String = "mixed"
     Public gs_DBUserName As String = "sa"
-    Public gs_DBPassword As String = "fid123!!"
-    Public gs_DBPasswordDefault As String = "fid123!!"
+    Public gs_DBPassword As String = "Tsc2011"
+    Public gs_DBPasswordDefault As String = "Tsc2011"
 
     Public gs_Database1 As String = "Tsc16Application"
-    Public gs_DBServer1 As String = "HARIS\SQL2008R2"
+    Public gs_DBServer1 As String = "10.10.1.10"
     Public gs_DBAuthMode1 As String = "mixed"
     Public gs_DBUserName1 As String = "sa"
-    Public gs_DBPassword1 As String = "fid123!!"
-    Public gs_DBPasswordDefault1 As String = "fid123!!"
+    Public gs_DBPassword1 As String = "Tsc2011"
+    Public gs_DBPasswordDefault1 As String = "Tsc2011"
 
     Public gs_Database2 As String = "DbCKR"
-    Public gs_DBServer2 As String = "HARIS\SQL2008R2"
+    Public gs_DBServer2 As String = "10.10.3.6"
     Public gs_DBAuthMode2 As String = "mixed"
     Public gs_DBUserName2 As String = "sa"
-    Public gs_DBPassword2 As String = "fid123!!"
-    Public gs_DBPasswordDefault2 As String = "fid123!!"
+    Public gs_DBPassword2 As String = "Tsc2011"
+    Public gs_DBPasswordDefault2 As String = "Tsc2011"
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -937,6 +958,35 @@ Module MainModul
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
+            Else
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnStringSolomon()
+                    kon.Open()
+                    da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
+                End Using
+                'conn = New SqlConnection(GetConnStringSolomon)
+                'da = New SqlDataAdapter(pQuery, conn)
+            End If
+
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDsReport2_Solomon(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan2
+        Dim conn As SqlConnection = Nothing
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan2
         Try
             If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
                 gh_Trans.Command.CommandType = CommandType.Text
