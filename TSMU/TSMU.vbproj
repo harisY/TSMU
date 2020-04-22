@@ -110,13 +110,13 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\..\File\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\..\File\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\..\BackUp\TSMU_02032020\TSMU\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.CSharp" />
@@ -800,12 +800,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>suspendreport1.rpt</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Form\Asakai\coba.Designer.vb">
-      <DependentUpon>coba.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\Asakai\coba.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.Designer.vb">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
@@ -2279,9 +2273,6 @@
     <EmbeddedResource Include="Direct\report\FrmReportTravelSett.resx">
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\coba.resx">
-      <DependentUpon>coba.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptBankTransfer.vb</LastGenOutput>
@@ -2293,9 +2284,6 @@
     <EmbeddedResource Include="Direct\report\RptBankTransfer3.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptBankTransfer3.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\coba.resx">
-      <DependentUpon>coba.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
@@ -2523,7 +2511,6 @@
       <DependentUpon>SplashWait.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\TSMU.baseForm.resources" />
-    <EmbeddedResource Include="obj\Debug\TSMU.coba.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.CustomMsgBox.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.DXReport_UploadToSolomon.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.Form2.resources" />

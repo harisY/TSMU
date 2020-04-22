@@ -34,7 +34,6 @@ Public Class FrmTravel_Detail2
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _TravelID As String = ""
-
     Public Sub New()
 
         ' This call is required by the designer.
@@ -51,7 +50,7 @@ Public Class FrmTravel_Detail2
                    ByVal li_GridRow As Integer,
                    ByRef _Grid As GridControl)
         ' this call is required by the windows form designer
-        Me.New()
+        'Me.New()
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
