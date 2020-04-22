@@ -2,6 +2,8 @@
 Imports System.Data.OleDb
 Imports System.Globalization
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraSplashScreen
+
 Public Class frmBoM
     Dim ff_Detail As frmBoM_detail
     Dim dtGrid As DataTable
@@ -15,29 +17,24 @@ Public Class frmBoM
 
     Private Sub frmBoM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
-        FilterData = New FrmSystem_FilterData(dtGrid)
+
+        'Dim dtGrid As New DataTable
+        'dtGrid = Grid.DataSource
+        'FilterData = New FrmSystem_FilterData(dtGrid)
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
-            'Grid.ReadOnly = True
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
+            SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = BomHeader.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
                 GridView1.BestFitColumns()
             End If
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
+            SplashScreenManager.CloseForm()
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
@@ -414,7 +411,7 @@ Public Class frmBoM
             ff_Detail.Close()
         End If
         ff_Detail = New frmBoM_detail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -517,5 +514,9 @@ Public Class frmBoM
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub frmBoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Call LoadGrid()
     End Sub
 End Class

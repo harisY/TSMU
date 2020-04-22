@@ -61,7 +61,7 @@ Public Class PaintingProduksiModel
 
 
     Public Sub New()
-        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiPaintingStraightPass"
+        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiPaintingStraightPass order by IdTransaksi Desc "
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

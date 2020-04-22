@@ -144,9 +144,11 @@
             Dim dt As New DataTable
             Dim sql As String =
                 "PROSES_VOUCHER_APNOTPAYYMENT1_New"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@vendorID", SqlDbType.VarChar)
             pParam(0).Value = VendorId
+            pParam(1) = New SqlClient.SqlParameter("@CuryId", SqlDbType.VarChar)
+            pParam(1).Value = CuryID
             dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
             Return dt
         Catch ex As Exception

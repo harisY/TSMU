@@ -93,7 +93,45 @@ Public Class AR_Header_Models
                 ,[penerima]
                 ,[cmdm_manual]
                 ,[cmdm_manual_ket]
-            FROM [AR_Header] Order By id desc"
+            FROM [AR_Header]  where [Total_DPP_PPN]-[PPh]-[Biaya_Transfer]-[CM_DM]=0  Order By id desc"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataGrid3() As DataTable
+        Try
+            Dim sql As String = "SELECT [id]
+                ,[vrno]
+                ,[tgl]
+                ,[BankID]
+                ,[BankName]
+      ,[CustID]
+      ,[CustomerName]
+                ,[Descr]
+                ,[Tot_DPP]
+                ,[Tot_PPN]
+                ,[Total_DPP_PPN]
+                ,[PPh]
+                ,[Biaya_Transfer]
+                ,[CM_DM]
+                ,[CuryID]
+                ,[cek1]
+                ,[cek2]
+                ,[cek3]
+                ,[cek4]
+                ,[prosespay]
+                ,[uploaded]
+                ,[detsupplier]
+                ,[bankrek]
+                ,[norek]
+                ,[penerima]
+                ,[cmdm_manual]
+                ,[cmdm_manual_ket]
+            FROM [AR_Header] where [Total_DPP_PPN]-[PPh]-[Biaya_Transfer]-[CM_DM]!=0 Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

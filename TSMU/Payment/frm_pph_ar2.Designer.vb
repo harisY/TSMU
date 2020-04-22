@@ -60,6 +60,9 @@ Partial Class frm_pph_ar2
         Me._TsbOk = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtNilaiPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,10 +99,14 @@ Partial Class frm_pph_ar2
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.LayoutControl2)
         Me.LayoutControl1.Controls.Add(Me._TxtNilaiPPh)
         Me.LayoutControl1.Controls.Add(Me._TxtNoBuktiPot)
         Me.LayoutControl1.Controls.Add(Me._TxtBulan)
@@ -144,8 +151,6 @@ Partial Class frm_pph_ar2
         Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 180)
         Me._TxtNoBuktiPot.Name = "_TxtNoBuktiPot"
         Me._TxtNoBuktiPot.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me._TxtNoBuktiPot.Properties.Appearance.Options.UseBackColor = True
-        Me._TxtNoBuktiPot.Properties.ReadOnly = True
         Me._TxtNoBuktiPot.Size = New System.Drawing.Size(507, 20)
         Me._TxtNoBuktiPot.StyleController = Me.LayoutControl1
         Me._TxtNoBuktiPot.TabIndex = 16
@@ -219,7 +224,7 @@ Partial Class frm_pph_ar2
         Me._TxtDPP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtDPP.Properties.EditFormat.FormatString = "#,#.##"
         Me._TxtDPP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtDPP.Size = New System.Drawing.Size(507, 20)
+        Me._TxtDPP.Size = New System.Drawing.Size(80, 20)
         Me._TxtDPP.StyleController = Me.LayoutControl1
         Me._TxtDPP.TabIndex = 6
         '
@@ -284,7 +289,7 @@ Partial Class frm_pph_ar2
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(614, 422)
         Me.LayoutControlGroup1.TextVisible = False
@@ -320,7 +325,7 @@ Partial Class frm_pph_ar2
         Me.LayoutControlItem3.Control = Me._TxtDPP
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(594, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(167, 24)
         Me.LayoutControlItem3.Text = "Nilai DPP"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -449,6 +454,32 @@ Partial Class frm_pph_ar2
         Me.ToolStrip1.TabIndex = 7
         Me.ToolStrip1.Text = "ToolStrip1"
         '
+        'LayoutControl2
+        '
+        Me.LayoutControl2.Location = New System.Drawing.Point(179, 36)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.Root = Me.Root
+        Me.LayoutControl2.Size = New System.Drawing.Size(423, 20)
+        Me.LayoutControl2.TabIndex = 19
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.LayoutControl2
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(167, 24)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(427, 24)
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem16.TextVisible = False
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(423, 20)
+        Me.Root.TextVisible = False
+        '
         'frm_pph_ar2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -495,6 +526,9 @@ Partial Class frm_pph_ar2
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -536,4 +570,7 @@ Partial Class frm_pph_ar2
     Friend WithEvents _TsbOk As ToolStripButton
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
+    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
 End Class

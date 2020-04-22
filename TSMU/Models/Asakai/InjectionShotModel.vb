@@ -23,7 +23,7 @@ Public Class InjectionShotModel
 
 
     Public Sub New()
-        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal,Shift,Pic From AsakaiInjectionAnalisaShot  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me.Query = "SELECT IDTransaksi,CONVERT(varchar,Tanggal,105) As Tanggal,Shift,Pic From AsakaiInjectionAnalisaShot order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

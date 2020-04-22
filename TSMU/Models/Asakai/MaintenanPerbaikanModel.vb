@@ -9,15 +9,11 @@ Public Class MaintenanPerbaikanModel
     Public Property H_IDTransaksi As String
     Public Property H_Tanggal As DateTime
 
-
-
-
-
     Public Property ObjDetailMaintenancePerbaikan() As New Collection(Of MaintenancePerbaikanDetailModel)
 
 
     Public Sub New()
-        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenanPerbaikan  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me._Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenanPerbaikan order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

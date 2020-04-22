@@ -64,38 +64,31 @@
             UsernameTextBox.Text = ""
             PasswordTextBox.Text = ""
             UsernameTextBox.Focus()
-            MenuUtamaForm.LblDatabase.Text = "Database : " & gs_Database & " (" & gs_DBServer & ")"
+            FrmMain.LblDatabase.Caption = "Database : " & gs_Database & " (" & gs_DBServer & ")"
         End If
         UsernameTextBox.Focus()
     End Sub
     Private Sub BeginApp()
-        MenuUtamaForm.tsmLogin.Text = "Log Out"
-        Dim DaftarMenu As ToolStripMenuItem = Nothing
-        For Each DaftarMenu In MenuUtamaForm.MenuStrip.Items
-            DaftarMenu.Enabled = True
-        Next
+        FrmMain.LoginBar.Caption = "Log Out"
+        'Dim DaftarMenu As ToolStripMenuItem = Nothing
+        'For Each DaftarMenu In FrmMain.MenuStrip.Items
+        '    DaftarMenu.Enabled = True
+        'Next
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
     End Sub
 
     Private Sub CloseApp()
-        MenuUtamaForm.tsmLogin.Text = "Log In"
-        Dim DaftarMenu As ToolStripMenuItem = Nothing
-        For Each DaftarMenu In MenuUtamaForm.MenuStrip.Items
-            If DaftarMenu.Name <> "FileToolStripMenuItem" Then DaftarMenu.Enabled = False
-        Next
-        For Each DaftarMenu In MyMenus
-            DaftarMenu.Enabled = False
-        Next
-        MenuUtamaForm.FileMenu.Enabled = True
-        MenuUtamaForm.tsmLogin.Enabled = True
-        MenuUtamaForm.ExitToolStripMenuItem.Enabled = True
-        MenuUtamaForm.tsnChangePass.Enabled = False
-        MenuUtamaForm.LblLogin.Text = ""
-        MenuUtamaForm.lblGroup.Text = ""
-        'MenuUtamaForm.LblPeriod.Text = ""
-        MenuUtamaForm.LblDatabase.Text = ""
+        FrmMain.LoginBar.Caption = "Log In"
+
+        FrmMain.Ribbon.Enabled = True
+        FrmMain.LoginBar.Enabled = True
+        FrmMain.ExitBar.Enabled = True
+        FrmMain.ChngePasBar.Enabled = False
+        FrmMain.LblLogin.Caption = ""
+        FrmMain.lblGroup.Caption = ""
+        FrmMain.LblDatabase.Caption = ""
+        FrmMain.WindowState = FormWindowState.Maximized
         ShowMessage("", MessageTypeEnum.NotBoxMessage)
-        'Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
 
     Private Sub FrmLogin_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -105,7 +98,7 @@
                 UsernameTextBox.Text = ""
                 PasswordTextBox.Text = ""
                 UsernameTextBox.Focus()
-                MenuUtamaForm.LblDatabase.Text = "Database : " & gs_Database & " (" & gs_DBServer & ")"
+                FrmMain.LblDatabase.Caption = "Database : " & gs_Database & " (" & gs_DBServer & ")"
             End If
         End If
     End Sub
@@ -141,11 +134,11 @@
 
                 '# Nama Form Perusahaan...
                 If gs_CompanyName <> "" Then
-                    MenuUtamaForm.Text = fs_Product & " - " & gs_CompanyName
+                    FrmMain.Text = fs_Product & " - " & gs_CompanyName
                 Else
                     'FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-                    'MenuUtamaForm.Text = "TSMU - " & fs_Product
-                    MenuUtamaForm.Text = "TSMU "
+                    'frmMain.Text = "TSMU - " & fs_Product
+                    FrmMain.Text = "TSMU "
                 End If
                 'gd_SumRound = gc_Setting.JumlahRounding
                 'gb_RoundUp = gc_Setting.RoundingUp
@@ -155,62 +148,17 @@
                 gs_CompanyPhoneNo = ""
                 gs_CompanyFaxNo = ""
 
-                'gs_PhysicalFlow = "FIFO"
+                FrmMain.Text = "TSMU "
 
-                '# Nama Form Perusahaan...            
-                'FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-                'MenuUtamaForm.Text = "TSMU - " & fs_Product
-                MenuUtamaForm.Text = "TSMU "
-                'gd_SumRound = 1
-                'gb_RoundUp = False
             End If
 
-            ''# Load default accounts...
-            'query = _
-            '"SELECT TOP 1 * FROM tb_SystemSetting" & vbLf & _
-            '"SELECT * FROM tb_SystemUserAkses WHERE UserName = " & QVal(gs_LoginUserID) & vbLf & _
-            '""
-            'ls_Error = GetDataSet(query, ds)
-            'If ls_Error <> "" Then ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage) : Exit Sub
 
-            'If ds.Tables(0).Rows.Count > 0 Then
-            '    With ds.Tables(0).Rows(0)
-            '        '# Nama & Unit Usaha...
-            '        gs_CompanyName = Trim(.Item("NamaPerusahaan") & "")
-            '        gs_CompanyAddress = Trim(.Item("Alamat") & "")
-            '        gs_CompanyPhoneNo = Trim(.Item("Telp") & "")
-            '        gs_CompanyFaxNo = Trim(.Item("Fax") & "")
-
-            '        gs_PhysicalFlow = "FIFO" ' Trim(.Item("MetodeStok") & "")
-
-            '        '# Nama Form Perusahaan...
-            '        If Trim(.Item("NamaPerusahaan") & "") <> "" Then
-            '            FrmSystem_Menu.Text = fs_Product & " - " & Trim(.Item("NamaPerusahaan") & "")
-            '        Else
-            '            FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-            '        End If
-            '        gd_SumRound = NumValue(IIf(Trim(.Item("JumlahRounding") & "") = "", 1, Trim(.Item("JumlahRounding") & "")))
-            '        gb_RoundUp = IIf(Trim(.Item("RoundingUp") & "") = "1", True, False)
-            '    End With
-            'Else
-            '    gs_CompanyName = "Takagi"
-            '    gs_CompanyAddress = ""
-            '    gs_CompanyPhoneNo = ""
-            '    gs_CompanyFaxNo = ""
-
-            '    gs_PhysicalFlow = "FIFO"
-
-            '    '# Nama Form Perusahaan...            
-            '    FrmSystem_Menu.Text = fs_Product & " - [Company Name]"
-            '    gd_SumRound = 1
-            '    gb_RoundUp = False
-            'End If
-            query = _
-            "SELECT * FROM S_UserPermission WHERE UserName = " & QVal(gh_Common.Username) & vbLf & _
+            query =
+            "SELECT * FROM S_UserPermission WHERE UserName = " & QVal(gh_Common.Username) & vbLf &
             ""
             Dim dt As DataTable = MainModul.GetDataTable(query)
             '# Main Menu Display
-            MenuUtamaForm.AddMenuNavBar()
+            FrmMain.LoadMenu()
 
             '# User rights ( access, update )...
             'Dim dtRights As DataTable = ds.Tables(1)
@@ -233,14 +181,14 @@
             '# Enable menu group...
             BeginApp()
             '# Menu Backup...
-            MenuUtamaForm.tsnChangePass.Enabled = True
+            FrmMain.ChngePasBar.Enabled = True
             '# Settings menu can only be accessed by Admin users...
             'FrmMenu.MenuSetting.Enabled = gb_AdminStatus
             'FrmMenu.FrmSystem_Configuration.Enabled = gb_AdminStatus
             'FrmMenu.FrmSystem_UserSetup.Enabled = gb_AdminStatus
             '# Menu Labels...
-            MenuUtamaForm.LblLogin.Text = "User : " & gh_Common.Username
-            MenuUtamaForm.lblGroup.Text = "Group : " & gh_Common.Group
+            FrmMain.LblLogin.Caption = "User : " & gh_Common.Username
+            FrmMain.lblGroup.Caption = "Group : " & gh_Common.Group
             'FrmSystem_Menu.LblPeriod.Text = "Periode " & Format(ServerDate, "MMM-yyyy")
             'FrmMenu.LblDatabase.Text = "File : " & gs_Database & " (" & gs_DBServer & ")"
             '# Form name...

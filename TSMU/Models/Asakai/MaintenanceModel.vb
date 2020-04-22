@@ -31,7 +31,7 @@ Public Class MaintenanceModel
 
 
     Public Sub New()
-        Me.Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenance  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
+        Me.Query = "SELECT IDTransaksi,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenance order by IDTransaksi Desc"
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable

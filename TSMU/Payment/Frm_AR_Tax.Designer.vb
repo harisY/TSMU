@@ -48,6 +48,10 @@ Partial Class Frm_AR_Tax
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -243,7 +247,7 @@ Partial Class Frm_AR_Tax
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -254,7 +258,7 @@ Partial Class Frm_AR_Tax
         'GridColumn9
         '
         Me.GridColumn9.Caption = "ID"
-        Me.GridColumn9.FieldName = "SuspendHeaderID"
+        Me.GridColumn9.FieldName = "id"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.FixedWidth = True
         Me.GridColumn9.Visible = True
@@ -262,9 +266,10 @@ Partial Class Frm_AR_Tax
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Advance No."
-        Me.GridColumn11.FieldName = "SuspendID"
+        Me.GridColumn11.Caption = "Invoice No"
+        Me.GridColumn11.FieldName = "FPNo"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.FixedWidth = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
@@ -272,71 +277,106 @@ Partial Class Frm_AR_Tax
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Currency"
-        Me.GridColumn12.FieldName = "Currency"
+        Me.GridColumn12.Caption = "No. Bukti Potong"
+        Me.GridColumn12.FieldName = "No_Bukti_Potong"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.OptionsColumn.FixedWidth = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.VisibleIndex = 3
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Department"
-        Me.GridColumn13.FieldName = "DeptID"
+        Me.GridColumn13.Caption = "CMDMNo"
+        Me.GridColumn13.FieldName = "CMDMNo"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.FixedWidth = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.VisibleIndex = 8
+        Me.GridColumn13.Width = 100
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "PR No"
-        Me.GridColumn14.FieldName = "PRNo"
+        Me.GridColumn14.Caption = "Pasal Pph"
+        Me.GridColumn14.FieldName = "Pphid"
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.FixedWidth = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
-        Me.GridColumn14.Width = 100
         '
         'GridColumn15
         '
-        Me.GridColumn15.Caption = "Remark"
-        Me.GridColumn15.FieldName = "Remark"
+        Me.GridColumn15.Caption = "Tarif"
+        Me.GridColumn15.FieldName = "Tarif"
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.FixedWidth = True
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 5
-        Me.GridColumn15.Width = 200
         '
         'GridColumn16
         '
-        Me.GridColumn16.Caption = "Date"
-        Me.GridColumn16.FieldName = "Tgl"
+        Me.GridColumn16.Caption = "Tahun"
+        Me.GridColumn16.FieldName = "Tahun"
         Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.FixedWidth = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 6
-        Me.GridColumn16.Width = 80
         '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Amount"
-        Me.GridColumn17.FieldName = "Total"
+        Me.GridColumn17.Caption = "Bulan"
+        Me.GridColumn17.FieldName = "Bulan"
         Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.FixedWidth = True
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 7
-        Me.GridColumn17.Width = 100
         '
         'GridColumn18
         '
-        Me.GridColumn18.Caption = "Status"
-        Me.GridColumn18.FieldName = "Status"
+        Me.GridColumn18.Caption = "Currency"
+        Me.GridColumn18.FieldName = "CuryID"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.OptionsColumn.FixedWidth = True
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 8
+        Me.GridColumn18.VisibleIndex = 2
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Amount DPP"
+        Me.GridColumn23.FieldName = "Tot_Dpp_Invoice"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.OptionsColumn.FixedWidth = True
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 10
+        Me.GridColumn23.Width = 100
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Amount PPH"
+        Me.GridColumn24.FieldName = "Tot_Pph"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 11
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Remark"
+        Me.GridColumn25.FieldName = "ket_dpp"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.OptionsColumn.FixedWidth = True
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 9
+        Me.GridColumn25.Width = 200
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Status"
+        Me.GridColumn26.FieldName = "Status"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.OptionsColumn.FixedWidth = True
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 12
         '
         'Frm_AR_Tax
         '
@@ -371,6 +411,11 @@ Partial Class Frm_AR_Tax
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
@@ -382,9 +427,8 @@ Partial Class Frm_AR_Tax
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -94,8 +94,8 @@ Public Class FrmTravelSettleDetail
             End If
             ff_Detail7.Close()
         End If
-        ff_Detail7 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridEntertain)
-        ff_Detail7.MdiParent = MenuUtamaForm
+        ff_Detail7 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid4)
+        ff_Detail7.MdiParent = FrmMain
         ff_Detail7.StartPosition = FormStartPosition.CenterScreen
         ff_Detail7.Show()
     End Sub

@@ -6,7 +6,7 @@ Public Class HarigamiModels
         Try
             Dim data As String =
             "SELECT
-                Id, FileNo, FilePath, Type 
+                Id, FileNo, InvtId , FilePath, Type 
             FROM [TbHarigamiMaster]"
             Dim dtTable As New DataTable
 
@@ -22,6 +22,7 @@ Public Class HarigamiModels
             Dim data As String = "SELECT
                 h.Id,
 	            h.FileNo,
+                m.InvtId,
 	            m.FilePath,
 	            h.Type,
 	            h.LastCounter,
@@ -118,13 +119,14 @@ Public Class HarigamiDetailsModels
     Public Property FileNo() As String
     Public Property FilePath() As String
     Public Property Type() As String
+    Public Property InvtId() As String
 
 
     Public Sub InsertData()
         Try
             Dim Query As String = String.Empty
-            Query = "INSERT INTO [TbHarigamiMaster]([FileNo],[FilePath],[Type],[CreatedDate])
-                    Values(" & QVal(FileNo) & "," & QVal(FilePath) & "," & QVal(Type) & ", GETDATE())"
+            Query = "INSERT INTO [TbHarigamiMaster]([FileNo],[FilePath],[Type],InvtId,[CreatedDate])
+                    Values(" & QVal(FileNo) & "," & QVal(FilePath) & "," & QVal(Type) & "," & QVal(InvtId) & ", GETDATE())"
 
             ExecQueryCKR(Query)
 
@@ -139,6 +141,7 @@ Public Class HarigamiDetailsModels
             Query = "Update [TbHarigamiMaster]
                     Set [FileNo] = " & QVal(FileNo) & " 
                         ,[FilePath] = " & QVal(FilePath) & "
+                        ,[InvtId] = " & QVal(InvtId) & "
                         ,[Type]) = " & QVal(Type) & " where Id = " & QVal(Id) & ""
 
             ExecQueryCKR(Query)

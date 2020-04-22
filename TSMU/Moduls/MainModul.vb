@@ -4,6 +4,7 @@ Imports System.Collections.ObjectModel
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraPrinting
 
 Module MainModul
 #Region "--Global Enumerations--"
@@ -59,7 +60,7 @@ Module MainModul
     '# Form Collection...
     Public MyForms As New Collection(Of Form)
 
-    '# Server Instance...
+    '# Server Instance...  Local
     Public gs_Database As String = "New_BoM"
     Public gs_DBServer As String = "10.10.1.10"
     Public gs_DBAuthMode As String = "mixed"
@@ -80,6 +81,32 @@ Module MainModul
     Public gs_DBUserName2 As String = "sa"
     Public gs_DBPassword2 As String = "Tsc2011"
     Public gs_DBPasswordDefault2 As String = "Tsc2011"
+
+    '# Server Instance Server Takagi
+    '    Public gs_Database As String = "New_BoM"
+    '    Public gs_DBServer As String = "10.10.1.10"
+    '    Public gs_DBAuthMode As String = "mixed"
+    '    Public gs_DBUserName As String = "sa"
+    '    Public gs_DBPassword As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault As String = "Tsc2011"
+
+    '    Public gs_Database1 As String = "Tsc16Application"
+    '    Public gs_DBServer1 As String = "10.10.1.10"
+    '    Public gs_DBAuthMode1 As String = "mixed"
+    '    Public gs_DBUserName1 As String = "sa"
+    '    Public gs_DBPassword1 As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault1 As String = "Tsc2011"
+
+    '    Public gs_Database2 As String = "DbCKR"
+    '    Public gs_DBServer2 As String = "10.10.3.6"
+    '    Public gs_DBAuthMode2 As String = "mixed"
+    '    Public gs_DBUserName2 As String = "sa"
+    '    Public gs_DBPassword2 As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault2 As String = "Tsc2011"
+
+
+
+
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -227,15 +254,15 @@ Module MainModul
         If ls_StackTrace <> "" Then Call WriteToErrorLog(message, gh_Common.Username, ls_StackTrace)
         If Flag = MessageTypeEnum.NormalMessage Then
             MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Information)
-            MenuUtamaForm.StatMsg.ForeColor = Color.Black
+            'frmMain.StatMsg.ForeColor = Color.Black
         ElseIf Flag = MessageTypeEnum.ErrorMessage Then
             '# Checkbox...
             MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
-            MenuUtamaForm.StatMsg.ForeColor = Color.Red
+            'frmMain.StatMsg.ForeColor = Color.Red
         Else
-            MenuUtamaForm.StatMsg.ForeColor = Color.Black
+            'frmMain.StatMsg.ForeColor = Color.Black
         End If
-        'MenuUtamaForm.StatMsg.Text = message
+        'frmMain.StatMsg.Text = message
     End Sub
 
     Public Sub WriteToErrorLog(ByVal ls_Message As String, ByVal ls_User As String, ByVal ls_StackTrace As String)
@@ -340,6 +367,8 @@ Module MainModul
                 Return ""
         End Select
     End Function
+
+
     Public Function GetConnStringSolomon(Optional ByVal DBMS As String = "SQLServer") As String
         Select Case DBMS
             Case "SQLServer"
@@ -960,6 +989,35 @@ Module MainModul
             Throw
         End Try
     End Function
+
+    Public Function GetDsReport2_Solomon(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan2
+        Dim conn As SqlConnection = Nothing
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan2
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa, dtTable)
+            Else
+                Using kon As New SqlConnection
+                    kon.ConnectionString = GetConnStringSolomon()
+                    kon.Open()
+                    da = New SqlDataAdapter(pQuery, kon)
+                    da.Fill(dsa, dtTable)
+                End Using
+                'conn = New SqlConnection(GetConnStringSolomon)
+                'da = New SqlDataAdapter(pQuery, conn)
+            End If
+
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDataSetByCommand_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -1147,6 +1205,30 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Function GetDataTableSP(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    conn.Open()
+                    da = New SqlDataAdapter(pQuery, conn)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDataTable_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1298,36 +1380,37 @@ Module MainModul
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
         Try
-            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
-                gh_Trans.Command.CommandType = CommandType.StoredProcedure
-                gh_Trans.Command.CommandText = pQuery
-                gh_Trans.Command.CommandTimeout = pTimeOut
-                gh_Trans.Command.Parameters.Clear()
+            Using conn As New SqlClient.SqlConnection
+                conn.ConnectionString = GetConnStringSolomon()
+                Dim cmd As New SqlCommand
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = pQuery
+                cmd.CommandTimeout = pTimeOut
+                cmd.Connection = conn
                 If pParam IsNot Nothing Then
                     For i As Integer = 0 To pParam.Length - 1
-                        gh_Trans.Command.Parameters.Add(pParam(i))
+                        cmd.Parameters.Add(pParam(i))
                     Next
                 End If
-                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                conn.Open()
+                da = New SqlDataAdapter(cmd)
                 da.Fill(dta)
-            Else
-                Using conn As New SqlClient.SqlConnection
-                    conn.ConnectionString = GetConnStringSolomon()
-                    Dim cmd As New SqlCommand
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = pQuery
-                    cmd.CommandTimeout = pTimeOut
-                    cmd.Connection = conn
-                    If pParam IsNot Nothing Then
-                        For i As Integer = 0 To pParam.Length - 1
-                            cmd.Parameters.Add(pParam(i))
-                        Next
-                    End If
-                    conn.Open()
-                    da = New SqlDataAdapter(cmd)
-                    da.Fill(dta)
-                End Using
-            End If
+            End Using
+            'If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+            '    gh_Trans.Command.CommandType = CommandType.StoredProcedure
+            '    gh_Trans.Command.CommandText = pQuery
+            '    gh_Trans.Command.CommandTimeout = pTimeOut
+            '    gh_Trans.Command.Parameters.Clear()
+            '    If pParam IsNot Nothing Then
+            '        For i As Integer = 0 To pParam.Length - 1
+            '            gh_Trans.Command.Parameters.Add(pParam(i))
+            '        Next
+            '    End If
+            '    da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+            '    da.Fill(dta)
+            'Else
+
+            'End If
             da = Nothing
             Return dta
         Catch ex As Exception
@@ -2085,19 +2168,27 @@ Module MainModul
 
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
 
         End With
     End Sub
 
-    Public Sub GridCellFormat(ByVal View As GridView)
+    Public Sub GridCellFormat(ByVal View As GridView, Optional ByVal IsIndonesianDate As Boolean = True)
         With View
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
                 If col.ColumnType Is GetType(DateTime) Then
-                    If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
-                        col.DisplayFormat.FormatType = FormatType.DateTime
-                        col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                    If IsIndonesianDate Then
+                        If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                        End If
+                    Else
+                        If col.DisplayFormat.FormatString <> "dd/MMM/yyyy" AndAlso col.DisplayFormat.FormatString <> "dd/MMMM/yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "MM/dd/yyyy"
+                        End If
                     End If
+
                 ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
                     Dim lb_Nothing As Boolean = True
                     col.DisplayFormat.FormatString = gs_FormatPecahan
@@ -2128,7 +2219,7 @@ Module MainModul
                 End If
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
         End With
     End Sub
     Public Sub GridCellFormatDatewithTime(ByVal View As GridView)
@@ -2168,7 +2259,7 @@ Module MainModul
                 End If
             Next
             .RefreshData()
-            MenuUtamaForm.LblRecords.Text = CStr(.RowCount) & " record(s)"
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
         End With
     End Sub
 
@@ -2191,12 +2282,81 @@ Module MainModul
         Return isOpen
     End Function
 
-    Public Sub SaveToExcel(_Grid As GridControl)
+    Public Sub SaveToExcel(_Grid As GridControl, Optional sheetName As String = "", Optional _name As String = "", Optional ByVal xls As Boolean = True)
         Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xlsx"
-        save.Title = "Save an Excel File"
-        If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXlsx(save.FileName)
+        If xls Then
+            save.Filter = "Excel File|*.xls"
+            save.Title = "Save an Excel File"
+            save.FileName = _name
+            Dim options As XlsExportOptionsEx = New XlsExportOptionsEx()
+
+            options.SheetName = sheetName
+            options.ShowGridLines = True
+            options.AllowSortingAndFiltering = DefaultBoolean.False
+            If save.ShowDialog = DialogResult.OK Then
+                _Grid.ExportToXls(save.FileName, options)
+            End If
+        Else
+            save.Filter = "Excel File|*.xlsx"
+            save.Title = "Save an Excel File"
+            Dim options As XlsxExportOptionsEx = New XlsxExportOptionsEx()
+
+            options.SheetName = sheetName
+            options.ShowGridLines = True
+            save.FileName = _name
+            options.AllowSortingAndFiltering = DefaultBoolean.False
+            If save.ShowDialog = DialogResult.OK Then
+                _Grid.ExportToXlsx(save.FileName, options)
+            End If
         End If
+
     End Sub
+
+    Public Function GetConnStringTsc(Optional ByVal DBMS As String = "SQLServer") As String
+        Return "Data Source=NOTE\SQL2008R2;Initial Catalog=tsc;User ID=sa;pwd=admin12345"
+
+    End Function
+
+    Public Function GetDataTableByCommand_SP_Tsc(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringTsc()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
 End Module

@@ -47,7 +47,7 @@ Public Class FrmDetailPaymentDirect
             ff_Detail1.Close()
         End If
         ff_Detail1 = New FrmSuspendSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridControl1)
-        ff_Detail1.MdiParent = MenuUtamaForm
+        ff_Detail1.MdiParent = FrmMain
         ff_Detail1.StartPosition = FormStartPosition.CenterScreen
         ff_Detail1.Show()
     End Sub

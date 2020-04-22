@@ -27,8 +27,6 @@ Public Class FrmBankTransfer_Detail
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
-
-
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -87,6 +85,13 @@ Public Class FrmBankTransfer_Detail
                     TxtAmount.Text = .Jumlah
                     TxtRemark.Text = .Remark
                     TxtNoBukti.ReadOnly = True
+                    TxtCuryTujuan.Text = .CuryID_tujuan
+                    TxtRate.Text = .Rate_Transaksi
+                    TxtRateSolomon.Text = .Rate_Solomon
+                    TxtSelisihRate.Text = .Selisih_Kursi
+                    TxtAmount1.Text = Format(.Jumlah * .Rate_Solomon, "##,0")
+                    TxtAmount2.Text = Format(.Jumlah * .Rate_Transaksi, "##,0")
+
                     ''_txtaccname.focus()
                 End With
             Else
@@ -95,8 +100,8 @@ Public Class FrmBankTransfer_Detail
                 TxtNoBukti.Text = ""
                 ''TxtPerpost.Text = ""
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
-                TxtNoRekAsal.Text = ""
-                TxtNoRekAsalname.Text = ""
+                TxtNoRekTujuan.Text = ""
+                TxtNoRekTujuanname.Text = ""
                 TxtCheckNo.Text = ""
                 '        TxtNoRekTujuan.Text = ""
                 '       TxtNoRekTujuanname.Text = ""
@@ -177,6 +182,10 @@ Public Class FrmBankTransfer_Detail
                     .CurryID = TxtCuryID.Text
                     .Jumlah = TxtAmount.Text
                     .Remark = TxtRemark.Text
+                    .CuryID_tujuan = TxtCuryTujuan.Text
+                    .Rate_Transaksi = TxtRate.Text
+                    .Rate_Solomon = TxtRateSolomon.Text
+                    .Selisih_Kursi = TxtSelisihRate.Text
                 End With
             End If
         Catch ex As Exception
@@ -187,9 +196,6 @@ Public Class FrmBankTransfer_Detail
     End Function
     Public Overrides Sub Proc_SaveData()
         Try
-
-
-
             If isUpdate = False Then
                 fc_Class.Insert()
                 fc_Class.NoVouch = fc_Class.autononb()
@@ -218,7 +224,48 @@ Public Class FrmBankTransfer_Detail
     End Sub
 
     Private Sub TxtNoRekAsal_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekAsal.EditValueChanged
+        'Try
+        '    Dim ls_Judul As String = ""
+        '    Dim dtSearch As New DataTable
+        '    Dim ls_OldKode As String = ""
 
+        '    Dim ObjSuspend As New ClsSuspend
+        '    If sender.Name = TxtNoRekAsal.Name Then
+        '        dtSearch = ObjSuspend.GetBank
+        '        ls_OldKode = TxtNoRekAsal.Text.Trim
+        '        ls_Judul = "Account"
+        '    End If
+
+        '    Dim lF_SearchData As FrmSystem_LookupGrid
+        '    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+        '    lF_SearchData.Text = "Select Data " & ls_Judul
+        '    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+        '    lF_SearchData.ShowDialog()
+        '    Dim Value1 As String = ""
+        '    Dim Value2 As String = ""
+        '    Dim Value3 As String = ""
+        '    Dim Rate1 As String = ""
+
+        '    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+        '        If sender.Name = TxtNoRekAsal.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+        '            Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+        '            Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+        '            Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+        '            TxtNoRekAsal.Text = Value1
+        '            TxtNoRekAsalname.Text = Value2
+        '            TxtCuryID.Text = Value3
+        '        End If
+        '    End If
+
+        '    Dim Rate As String
+        '    Rate = ObjSuspendHeader.GetRate(Value3.TrimEnd)
+        '    TxtRateSolomon.Text = Rate
+
+        '    lF_SearchData.Close()
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
     End Sub
 
     Private Sub TxtNoRekAsal_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekAsal.ButtonClick
@@ -241,15 +288,17 @@ Public Class FrmBankTransfer_Detail
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
             Dim Value2 As String = ""
+            Dim Value3 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
                 If sender.Name = TxtNoRekAsal.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     TxtNoRekAsal.Text = Value1
                     TxtNoRekAsalname.Text = Value2
-
+                    TxtCuryID.Text = Value3
                 End If
             End If
             lF_SearchData.Close()
@@ -257,10 +306,6 @@ Public Class FrmBankTransfer_Detail
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-    End Sub
-
-    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
-
     End Sub
 
     Private Sub TxtNoRekTujuan_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoRekTujuan.ButtonClick
@@ -287,7 +332,6 @@ Public Class FrmBankTransfer_Detail
             Dim Rate1 As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-
                 If sender.Name = TxtNoRekTujuan.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
@@ -298,12 +342,9 @@ Public Class FrmBankTransfer_Detail
                 End If
             End If
 
-
-
             Dim Rate As String
             Rate = ObjSuspendHeader.GetRate(Value3.TrimEnd)
             TxtRateSolomon.Text = Rate
-
 
             lF_SearchData.Close()
         Catch ex As Exception
@@ -312,19 +353,26 @@ Public Class FrmBankTransfer_Detail
         End Try
 
     End Sub
-
+    Public Overrides Sub Proc_print()
+        Try
+            Dim newform As New FrmReportBankTransfer(TxtNoBukti.Text, TxtCuryID.Text, TxtCuryTujuan.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub FrmBankTransfer_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
+        ''Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
+
         Call InitialSetForm()
     End Sub
 
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     Private Sub TxtAmount_EditValueChanged(sender As Object, e As EventArgs) Handles TxtAmount.EditValueChanged
@@ -332,8 +380,22 @@ Public Class FrmBankTransfer_Detail
     End Sub
 
     Private Sub TxtAmount_LostFocus(sender As Object, e As EventArgs) Handles TxtAmount.LostFocus
-        TxtAmount1.Text = TxtRateSolomon.Text * TxtAmount.Text
-        TxtAmount2.Text = TxtRate.Text * TxtAmount.Text
-        TxtSelisihRate.Text = TxtAmount1.Text - TxtAmount2.Text
+        'TxtAmount1.Text = TxtRateSolomon.Text * TxtAmount.Text
+        'TxtAmount2.Text = TxtRate.Text * TxtAmount.Text
+        'TxtSelisihRate.Text = TxtAmount1.Text - TxtAmount2.Text
+
+        'TxtAmount1.Text = Format(TxtRateSolomon.Text * TxtAmount.Text, "##,0")
+        'TxtAmount2.Text = Format(TxtRate.Text * TxtAmount.Text, "##,0")
+        'TxtSelisihRate.Text = Format(TxtAmount1.Text - TxtAmount2.Text, "##,0")
+
+        'TxtAmount1.Text = Format(TxtRateSolomon.Text * TxtAmount.Text, gs_FormatBulat)
+        'TxtAmount2.Text = Format(TxtRate.Text * TxtAmount.Text, gs_FormatBulat)
+        'TxtSelisihRate.Text = Format(TxtAmount1.Text - TxtAmount2.Text, gs_FormatBulat)
+
+        TxtAmount1.EditValue = Format(TxtRateSolomon.EditValue * TxtAmount.EditValue, gs_FormatBulat)
+        TxtAmount2.EditValue = Format(TxtRate.EditValue * TxtAmount.EditValue, gs_FormatBulat)
+        TxtSelisihRate.EditValue = Format(TxtAmount1.EditValue - TxtAmount2.EditValue, gs_FormatBulat)
+
     End Sub
+
 End Class

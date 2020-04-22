@@ -67,7 +67,7 @@ Public Class HancuranModel
                   ,[5. Hancuran Internal] As [Hancuran Internal]
                   ,[6. Total] as Total
                   ,[7. Target] as Target
-          FROM [AsakaiHancuranHeader] order By tanggal Desc"
+          FROM [AsakaiHancuranHeader] order By IDTransaksi Desc"
             'dt = GetDataTableByCommand(sql)
             dt = GetDataTableByCommand(sql)
             Return dt
@@ -91,7 +91,7 @@ Public Class HancuranModel
               ,[7. IN HANCURAN] AS MASUK
               ,[8. OUT HANCURAN] AS KELUAR
               ,[9. STOK AHIR] AS [STOK AHIR]
-          FROM [AsakaiHancuranStok] order By Tanggal Desc"
+          FROM [AsakaiHancuranStok] order By IDTransaksi Desc"
             'dt = GetDataTableByCommand(sql)
             dt = GetDataTableByCommand(sql)
             Return dt

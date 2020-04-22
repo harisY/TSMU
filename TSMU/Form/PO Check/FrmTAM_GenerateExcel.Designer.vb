@@ -60,11 +60,11 @@ Partial Class FrmTAM_GenerateExcel
         '
         'RadioGroup1
         '
-        Me.RadioGroup1.Location = New System.Drawing.Point(61, 12)
+        Me.RadioGroup1.Location = New System.Drawing.Point(90, 12)
         Me.RadioGroup1.Name = "RadioGroup1"
         Me.RadioGroup1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.[Default]
         Me.RadioGroup1.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Export Baru"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Export Ulang")})
-        Me.RadioGroup1.Size = New System.Drawing.Size(151, 26)
+        Me.RadioGroup1.Size = New System.Drawing.Size(227, 26)
         Me.RadioGroup1.StyleController = Me.LayoutControl1
         Me.RadioGroup1.TabIndex = 7
         '
@@ -88,15 +88,15 @@ Partial Class FrmTAM_GenerateExcel
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(216, 12)
+        Me.Panel1.Location = New System.Drawing.Point(321, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(600, 52)
+        Me.Panel1.Size = New System.Drawing.Size(495, 52)
         Me.Panel1.TabIndex = 5
         '
         'TxtEtd
         '
         Me.TxtEtd.EditValue = Nothing
-        Me.TxtEtd.Location = New System.Drawing.Point(61, 42)
+        Me.TxtEtd.Location = New System.Drawing.Point(90, 42)
         Me.TxtEtd.Name = "TxtEtd"
         Me.TxtEtd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtEtd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -106,7 +106,7 @@ Partial Class FrmTAM_GenerateExcel
         Me.TxtEtd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtEtd.Properties.Mask.EditMask = ""
         Me.TxtEtd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtEtd.Size = New System.Drawing.Size(151, 22)
+        Me.TxtEtd.Size = New System.Drawing.Size(227, 22)
         Me.TxtEtd.StyleController = Me.LayoutControl1
         Me.TxtEtd.TabIndex = 4
         '
@@ -124,16 +124,16 @@ Partial Class FrmTAM_GenerateExcel
         Me.LayoutControlItem1.Control = Me.TxtEtd
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(204, 26)
-        Me.LayoutControlItem1.Text = "PO Date"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(46, 16)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(309, 26)
+        Me.LayoutControlItem1.Text = "Delivery Date"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(75, 16)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.Panel1
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(204, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(309, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(604, 56)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(499, 56)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -151,9 +151,9 @@ Partial Class FrmTAM_GenerateExcel
         Me.LayoutControlItem4.Control = Me.RadioGroup1
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(204, 30)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(309, 30)
         Me.LayoutControlItem4.Text = "Type"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(46, 16)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(75, 16)
         '
         'FrmTAM_GenerateExcel
         '

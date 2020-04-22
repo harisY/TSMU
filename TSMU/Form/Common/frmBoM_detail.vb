@@ -76,9 +76,9 @@ Public Class frmBoM_detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Master BoM " & fs_Code
+                Me.Text = "MASTER->BOM->" & fs_Code
             Else
-                Me.Text = "Master New BoM"
+                Me.Text = "MASTER->BOM->NEW"
             End If
             Call LoadGridDetil()
             Call LoadGridDetil1()

@@ -34,7 +34,7 @@
             ff_Detail.Close()
         End If
         ff_Detail = New FrmMaterialPainting(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -111,7 +111,8 @@
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     IdTrans = GridView1.GetRowCellValue(rowHandle, "IDTrans")
-                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "TanggalDari"))
+                    Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal Dari"))
+                    'Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
                 End If
             Next rowHandle
 

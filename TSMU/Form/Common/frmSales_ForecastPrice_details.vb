@@ -63,9 +63,9 @@ Public Class frmSales_ForecastPrice_details
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Sales Forecast Price " & fs_Code2
+                Me.Text = "SALES->FORECAST->" & fs_Code
             Else
-                Me.Text = "New Sales Forecast Price"
+                Me.Text = "SALES->FORECAST->NEW"
             End If
 
             Call LoadTxtBox()
@@ -417,13 +417,13 @@ Public Class frmSales_ForecastPrice_details
                 ObjForecastPrice.Id = TxtId.Text
                 ObjForecastPrice.UpdateData()
 
-                tsBtn_next.PerformClick()
+                'tsBtn_next.PerformClick()
 
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
         Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
@@ -639,7 +639,7 @@ Public Class frmSales_ForecastPrice_details
             End If
             lF_SearchData.Close()
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
@@ -653,215 +653,215 @@ Public Class frmSales_ForecastPrice_details
         End Try
     End Sub
 
-    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-        Try
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 0 Then
-                GridView1.SetRowCellValue(1, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 0 Then
-                GridView1.SetRowCellValue(1, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
-            End If
-            '=====Februari
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 1 Then
-                GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 1 Then
-                GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
-            End If
+    'Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+    '    Try
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 0 Then
+    '            GridView1.SetRowCellValue(1, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(0, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 0 Then
+    '            GridView1.SetRowCellValue(1, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(0, "Harga3"))
+    '        End If
+    '        '=====Februari
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 1 Then
+    '            GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(1, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 1 Then
+    '            GridView1.SetRowCellValue(2, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(1, "Harga3"))
+    '        End If
 
-            '=====Maret
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 2 Then
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 2 Then
-                GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
-            End If
+    '        '=====Maret
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 2 Then
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(2, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 2 Then
+    '            GridView1.SetRowCellValue(3, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(2, "Harga3"))
+    '        End If
 
-            '=====April
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 3 Then
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 3 Then
-                GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
-            End If
+    '        '=====April
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 3 Then
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(3, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 3 Then
+    '            GridView1.SetRowCellValue(4, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(3, "Harga3"))
+    '        End If
 
-            '=====Mei
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 4 Then
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 4 Then
-                GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
-            End If
+    '        '=====Mei
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 4 Then
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(4, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 4 Then
+    '            GridView1.SetRowCellValue(5, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(4, "Harga3"))
+    '        End If
 
-            '=====Juni
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 5 Then
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 5 Then
-                GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
-            End If
+    '        '=====Juni
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 5 Then
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(5, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 5 Then
+    '            GridView1.SetRowCellValue(6, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(5, "Harga3"))
+    '        End If
 
-            '=====Juli
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 6 Then
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 6 Then
-                GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
-            End If
+    '        '=====Juli
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 6 Then
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(6, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 6 Then
+    '            GridView1.SetRowCellValue(7, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(6, "Harga3"))
+    '        End If
 
-            '=====Agustus
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 7 Then
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 7 Then
-                GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
-            End If
+    '        '=====Agustus
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 7 Then
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(7, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 7 Then
+    '            GridView1.SetRowCellValue(8, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(7, "Harga3"))
+    '        End If
 
-            '=====September
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 8 Then
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 8 Then
-                GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
-            End If
+    '        '=====September
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 8 Then
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(8, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 8 Then
+    '            GridView1.SetRowCellValue(9, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(8, "Harga3"))
+    '        End If
 
-            '=====Oktober
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 9 Then
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(9, "Harga2"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(9, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 9 Then
-                GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(9, "Harga3"))
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(9, "Harga3"))
-            End If
+    '        '=====Oktober
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 9 Then
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(9, "Harga2"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(9, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 9 Then
+    '            GridView1.SetRowCellValue(10, "Harga1", GridView1.GetRowCellValue(9, "Harga3"))
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(9, "Harga3"))
+    '        End If
 
-            '=====November
-            If e.Column.FieldName = "Harga2" And e.RowHandle = 10 Then
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(10, "Harga2"))
-            End If
-            If e.Column.FieldName = "Harga3" And e.RowHandle = 10 Then
-                GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(10, "Harga3"))
-            End If
+    '        '=====November
+    '        If e.Column.FieldName = "Harga2" And e.RowHandle = 10 Then
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(10, "Harga2"))
+    '        End If
+    '        If e.Column.FieldName = "Harga3" And e.RowHandle = 10 Then
+    '            GridView1.SetRowCellValue(11, "Harga1", GridView1.GetRowCellValue(10, "Harga3"))
+    '        End If
 
-            ''=====Desember
-            'If e.Column.FieldName = "Harga2" And e.RowHandle = 11 Then
-            '    GridView1.SetRowCellValue(12, "Harga1", GridView1.GetRowCellValue(11, "Harga2"))
-            'End If
-            'If e.Column.FieldName = "Harga3" And e.RowHandle = 11 Then
-            '    GridView1.SetRowCellValue(12, "Harga1", GridView1.GetRowCellValue(11, "Harga3"))
-            'End If
-        Catch ex As Exception
-            XtraMessageBox.Show(ex.Message)
-        End Try
-    End Sub
+    '        ''=====Desember
+    '        'If e.Column.FieldName = "Harga2" And e.RowHandle = 11 Then
+    '        '    GridView1.SetRowCellValue(12, "Harga1", GridView1.GetRowCellValue(11, "Harga2"))
+    '        'End If
+    '        'If e.Column.FieldName = "Harga3" And e.RowHandle = 11 Then
+    '        '    GridView1.SetRowCellValue(12, "Harga1", GridView1.GetRowCellValue(11, "Harga3"))
+    '        'End If
+    '    Catch ex As Exception
+    '        XtraMessageBox.Show(ex.Message)
+    '    End Try
+    'End Sub
 
     'Private Sub GridView1_FocusedColumnChanged(sender As Object, e As FocusedColumnChangedEventArgs) Handles GridView1.FocusedColumnChanged
     '    Dim view As GridView = TryCast(sender, GridView)

@@ -11,6 +11,7 @@ Namespace InstanceVariables
         Dim _groupId As String
         Dim _Site As String
         Dim _Level As String
+
         Public Property Username() As String
             Get
                 Return _Username

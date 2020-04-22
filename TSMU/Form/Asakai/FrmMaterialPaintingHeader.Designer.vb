@@ -41,6 +41,8 @@ Partial Class FrmMaterialPaintingHeader
         '
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
         'FrmMaterialPaintingHeader
         '

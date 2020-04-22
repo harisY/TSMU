@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 Imports System.IO
 Imports ExcelDataReader
-Imports GemBox.Spreadsheet
+'Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
 
 Public Class FrmDeliveryDetail
