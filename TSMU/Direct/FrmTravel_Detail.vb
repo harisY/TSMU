@@ -814,7 +814,7 @@ Public Class FrmTravel_Detail
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjTravelHeader.GetTraveller
+            dtSearch = ObjTravelHeader.GetTraveler
             ls_OldKode = TxtNama.Text
             ls_Judul = "Traveller"
 
