@@ -962,11 +962,11 @@ Public Class FrmInjection
                                 .LB_PIC = dtLimaBesar.Rows(i).Item(15)
                             End If
 
-                            If dtLimaBesar.Rows(i).Item(16) Is DBNull.Value Then
-                                .LB_Target = ""
-                            Else
-                                .LB_Target = dtLimaBesar.Rows(i).Item(16)
-                            End If
+                            'If dtLimaBesar.Rows(i).Item(16) Is DBNull.Value Then
+                            '    .LB_Target = ""
+                            'Else
+                            '    .LB_Target = dtLimaBesar.Rows(i).Item(16)
+                            'End If
 
                             If dtLimaBesar.Rows(i).Item(17) Is DBNull.Value Then
                                 .LB_Status = ""

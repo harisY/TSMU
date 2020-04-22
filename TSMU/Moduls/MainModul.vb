@@ -60,28 +60,7 @@ Module MainModul
     '# Form Collection...
     Public MyForms As New Collection(Of Form)
 
-    '# Server Instance...
-    'Public gs_Database As String = "New_BoM"
-    'Public gs_DBServer As String = "HARIS\SQL2008R2"
-    'Public gs_DBAuthMode As String = "mixed"
-    'Public gs_DBUserName As String = "sa"
-    'Public gs_DBPassword As String = "fid123!!"
-    'Public gs_DBPasswordDefault As String = "fid123!!"
-
-    'Public gs_Database1 As String = "Tsc16Application"
-    'Public gs_DBServer1 As String = "HARIS\SQL2008R2"
-    'Public gs_DBAuthMode1 As String = "mixed"
-    'Public gs_DBUserName1 As String = "sa"
-    'Public gs_DBPassword1 As String = "fid123!!"
-    'Public gs_DBPasswordDefault1 As String = "fid123!!"
-
-    'Public gs_Database2 As String = "DbCKR"
-    'Public gs_DBServer2 As String = "HARIS\SQL2008R2"
-    'Public gs_DBAuthMode2 As String = "mixed"
-    'Public gs_DBUserName2 As String = "sa"
-    'Public gs_DBPassword2 As String = "fid123!!"
-    'Public gs_DBPasswordDefault2 As String = "fid123!!"
-
+    '# Server Instance...  Local
     Public gs_Database As String = "New_BoM"
     Public gs_DBServer As String = "10.10.1.10"
     Public gs_DBAuthMode As String = "mixed"
@@ -102,6 +81,32 @@ Module MainModul
     Public gs_DBUserName2 As String = "sa"
     Public gs_DBPassword2 As String = "Tsc2011"
     Public gs_DBPasswordDefault2 As String = "Tsc2011"
+
+    '# Server Instance Server Takagi
+    '    Public gs_Database As String = "New_BoM"
+    '    Public gs_DBServer As String = "10.10.1.10"
+    '    Public gs_DBAuthMode As String = "mixed"
+    '    Public gs_DBUserName As String = "sa"
+    '    Public gs_DBPassword As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault As String = "Tsc2011"
+
+    '    Public gs_Database1 As String = "Tsc16Application"
+    '    Public gs_DBServer1 As String = "10.10.1.10"
+    '    Public gs_DBAuthMode1 As String = "mixed"
+    '    Public gs_DBUserName1 As String = "sa"
+    '    Public gs_DBPassword1 As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault1 As String = "Tsc2011"
+
+    '    Public gs_Database2 As String = "DbCKR"
+    '    Public gs_DBServer2 As String = "10.10.3.6"
+    '    Public gs_DBAuthMode2 As String = "mixed"
+    '    Public gs_DBUserName2 As String = "sa"
+    '    Public gs_DBPassword2 As String = "Tsc2011"
+    '    Public gs_DBPasswordDefault2 As String = "Tsc2011"
+
+
+
+
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -362,6 +367,8 @@ Module MainModul
                 Return ""
         End Select
     End Function
+
+
     Public Function GetConnStringSolomon(Optional ByVal DBMS As String = "SQLServer") As String
         Select Case DBMS
             Case "SQLServer"
@@ -2304,4 +2311,52 @@ Module MainModul
         End If
 
     End Sub
+
+    Public Function GetConnStringTsc(Optional ByVal DBMS As String = "SQLServer") As String
+        Return "Data Source=NOTE\SQL2008R2;Initial Catalog=tsc;User ID=sa;pwd=admin12345"
+
+    End Function
+
+    Public Function GetDataTableByCommand_SP_Tsc(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringTsc()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
 End Module

@@ -1,6 +1,15 @@
 ﻿Partial Class dsLaporan
-    Partial Public Class ARDataTable
+
+
+    Partial Public Class NPPRevInfoDataTable
+        Private Sub NPPRevInfoDataTable_NPPRevInfoRowChanging(sender As Object, e As NPPRevInfoRowChangeEvent) Handles Me.NPPRevInfoRowChanging
+
+        End Sub
+
+
+
     End Class
+
 
     Partial Public Class suspendDataTable
     End Class
