@@ -25,7 +25,7 @@ Public Class frmSales_ForecastPrice
 
     Private Sub frmSales_ForecastPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
+
         'Dim dtGrid As New DataTable
         'dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
@@ -45,6 +45,9 @@ Public Class frmSales_ForecastPrice
     End Sub
     Private Sub LoadGrid()
         Try
+
+            SplashScreenManager.ShowForm(GetType(FrmWait))
+            'SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             'Grid.ReadOnly = True
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = New DataTable
@@ -64,15 +67,9 @@ Public Class frmSales_ForecastPrice
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
             End If
-
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
-            'SetEditColumnGrid()
+            SplashScreenManager.CloseForm()
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
@@ -457,7 +454,7 @@ Public Class frmSales_ForecastPrice
             ff_Detail.Close()
         End If
         ff_Detail = New frmSales_ForecastPrice_details(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -542,9 +539,9 @@ Public Class frmSales_ForecastPrice
     End Sub
 
     Private Sub GridView1_MouseDown(sender As Object, e As MouseEventArgs) Handles GridView1.MouseDown
-        If e.Button = System.Windows.Forms.MouseButtons.Right Then
-            ContextMenuStrip1.Show(e.Location)
-        End If
+        'If e.Button = System.Windows.Forms.MouseButtons.Right Then
+        '    ContextMenuStrip1.Show(e.Location)
+        'End If
     End Sub
 
     Private Sub CekHargaADMTSM_Click(sender As Object, e As EventArgs) Handles CekHargaADMTSM.Click
@@ -635,6 +632,10 @@ Public Class frmSales_ForecastPrice
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Private Sub frmSales_ForecastPrice_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Call LoadGrid()
     End Sub
 
     'Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle

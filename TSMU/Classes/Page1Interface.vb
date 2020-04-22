@@ -26,100 +26,73 @@ Public Class Page1Interface
                 .GroupIndex = 0,
                 .Text = row("Title"),
                 .Index = row("GroupIndex"),
-                .Image = If(IsDBNull(row("Image")), My.Resources.map, My.Resources.ResourceManager.GetObject(row("Image"))),
+                .Image = If(IsDBNull(row("Image")), My.Resources.Square, My.Resources.ResourceManager.GetObject(row("Image"))),
                 .Icon = My.Resources.map,
-                .Type = row("MenuCode"),' GetType(), 'Type.GetType(row("MenuCode"), True, True),
+                .Type = If(row("MenuCode") = "NotForm", "", row("MenuCode")),' GetType(), 'Type.GetType(row("MenuCode"), True, True),
                 .Key = 1016,
-                .Dialog = row("FlagFullScreen")
-                })
+                .Dialog = row("FlagFullScreen"),
+                .Items = GetNamaForm(row("ParentMenu"), row("MenuCode"))
+            })
 
-            'If IsDBNull(row("ParentMenuChild")) Then
-            '    menus.Add(New MenuItem With {
-            '    .Page = row("ParentMenu"),
-            '    .PageIndex = 0,
-            '    .Group = row("ParentMenuChild"),
-            '    .GroupIndex = 0,
-            '    .Text = row("Title"),
-            '    .Index = row("GroupIndex"),
-            '    .Image = My.Resources.addressbook32,
-            '    .Icon = My.Resources.Resources.addressbook32,
-            '    .Type = openFormH,' GetType(), 'Type.GetType(row("MenuCode"), True, True),
-            '    .Key = 1016
-            '})
-            'Else
-            '    menus.Add(New MenuItem With {
-            '    .Page = row("ParentMenu"),
-            '    .PageIndex = 0,
-            '    .Group = row("ParentMenuChild"),
-            '    .GroupIndex = 0,
-            '    .Text = row("Title"),
-            '    .Index = row("GroupIndex"),
-            '    .Image = My.Resources.addressbook32,
-            '    .Icon = My.Resources.Resources.addressbook32,
-            '    .Key = 1016,
-            '    .Items = New List(Of MenuItem) From {
-            '            New MenuItem With {
-            '                .Text = row("Title"),
-            '                .Index = row("GroupIndex"),
-            '                .Image = My.Resources.delete_route,
-            '                .Icon = My.Resources.arrow,
-            '                .Type = openFormH,
-            '                .Key = 1012
-            '            }
-            '    }
-            '})
-            'End If
+            '    If IsDBNull(row("ParentMenuChild")) Then
+            '        menus.Add(New MenuItem With {
+            '        .Page = row("ParentMenu"),
+            '        .PageIndex = 0,
+            '        .Group = If(IsDBNull(row("ParentMenuChild")), row("ParentMenu"), row("ParentMenuChild")),
+            '        .GroupIndex = 0,
+            '        .Text = row("Title"),
+            '        .Index = row("GroupIndex"),
+            '        .Image = If(IsDBNull(row("Image")), My.Resources.map, My.Resources.ResourceManager.GetObject(row("Image"))),
+            '        .Icon = My.Resources.map,
+            '        .Type = row("MenuCode"),
+            '        .Key = 1016
+            '    })
+            '    Else
+            '        menus.Add(New MenuItem With {
+            '        .Page = row("ParentMenu"),
+            '        .PageIndex = 0,
+            '        .Group = If(IsDBNull(row("ParentMenuChild")), row("ParentMenu"), row("ParentMenuChild")),
+            '        .GroupIndex = 0,
+            '        .Text = row("Title"),
+            '        .Index = row("GroupIndex"),
+            '        .Image = If(IsDBNull(row("Image")), My.Resources.map, My.Resources.ResourceManager.GetObject(row("Image"))),
+            '        .Icon = My.Resources.map,
+            '        .Key = 1016,
+            '        .Items = GetNamaForm(row("ParentMenu"))
+            '    })
+            '    End If
 
         Next
-        'MyAss.CreateInstance(My.Application.Info.AssemblyName & "." & row("ParentMenu")))
-        'Dim menus As List(Of MenuItem) = New List(Of MenuItem) From {
-        '    New MenuItem With {
-        '        .Page = "Page 1",
-        '        .PageIndex = 0,
-        '        .Group = "Group 1",
-        '        .GroupIndex = 0,
-        '        .Text = "Form 1",
-        '        .Index = 0,
-        '        .Image = My.Resources.addressbook32,
-        '        .Icon = My.Resources.Resources.addressbook32,
-        '        .Type = GetType(Form1),
-        '        .Key = 1016,
-        '        .Dialog = True
-        '    },
-        '    New MenuItem With {
-        '        .Page = "Page 1",
-        '        .PageIndex = 0,
-        '        .Group = "Group 1",
-        '        .GroupIndex = 0,
-        '        .Text = "Form 2",
-        '        .Index = 1,
-        '        .Image = My.Resources.Resources.map32,
-        '        .Icon = My.Resources.Resources.map24,
-        '        .Type = GetType(frmBoM),
-        '        .Key = 1016
-        '    },
-        '    New MenuItem With {
-        '        .Page = "Page 1",
-        '        .PageIndex = 0,
-        '        .Group = "Group 2",
-        '        .GroupIndex = 1,
-        '        .Text = "Form 3",
-        '        .Index = 0,
-        '        .Image = My.Resources.Resources.multivehicle32,
-        '        .Icon = My.Resources.Resources.multivehicle24,
-        '        .Key = 1016,
-        '        .Items = New List(Of MenuItem) From {
-        '            New MenuItem With {
-        '                .Text = "Form 4",
-        '                .Index = 0,
-        '                .Image = My.Resources.Resources.delete_route,
-        '                .Icon = My.Resources.Resources.arrow,
-        '                .Type = GetType(Form4),
-        '                .Key = 1012
-        '            }
-        '        }
-        '    }
-        '}
         Return menus
+    End Function
+
+    Public Function GetNamaForm(ByVal ParentMenu As String, ByVal MenuCode As String) As List(Of MenuItem)
+        Dim List As List(Of MenuItem) = New List(Of MenuItem)
+        Try
+            If MenuCode.ToLower = "notform" Then
+                Dim sql As String = "GetMenuLevel"
+                Dim param() As SqlParameter = New SqlParameter(0) {}
+                param(0) = New SqlParameter("@menu", SqlDbType.VarChar)
+                param(0).Value = ParentMenu
+                'param(1) = New SqlParameter("@childMenu", SqlDbType.VarChar)
+                'param(1).Value = ChildMenu
+                Dim dt As New DataTable
+                dt = GetDataTableByCommand_SP(sql, param)
+                For Each row In dt.Rows
+                    List.Add(New MenuItem With {
+                        .Text = row("Title"),
+                        .Index = row("GroupIndex"),
+                        .Image = If(IsDBNull(row("Image")), My.Resources.Square, My.Resources.ResourceManager.GetObject(row("Image"))),
+                        .Icon = My.Resources.map,
+                        .Type = row("MenuCode"),
+                        .Key = 1012
+                    })
+                Next
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+        Return List
     End Function
 End Class

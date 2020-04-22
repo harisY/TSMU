@@ -38,6 +38,7 @@ Partial Public Class FrmMain
                 }
                 page.Groups.Add(ribbonPageGroup)
 
+
                 For Each mnuItem As Item In group.Items.OrderBy(Function(c) c.Index)
                     Dim barButtonItem As BarButtonItem = New BarButtonItem With {
                         .Caption = mnuItem.Text,
@@ -57,8 +58,8 @@ Partial Public Class FrmMain
                         barButtonItem.Glyph = mnuItem.Image
                     Else
                         barButtonItem.ButtonStyle = BarButtonStyle.DropDown
-                        barButtonItem.RibbonStyle = RibbonItemStyles.SmallWithText
-                        barButtonItem.Glyph = mnuItem.Image
+                        barButtonItem.RibbonStyle = RibbonItemStyles.Large
+                        barButtonItem.LargeGlyph = mnuItem.Image
                         barButtonItem.ActAsDropDown = True
                         Dim popup As PopupMenu = New PopupMenu(barManager1) With {
                             .Ribbon = ribbon

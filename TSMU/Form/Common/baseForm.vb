@@ -20,6 +20,7 @@ Public Class baseForm
     Protected fs_Code3 As String = ""
     Protected sts_screen As Byte = 1
     Protected fbbt_ColCode2 As Byte = 1
+    Protected columnIndex As Integer = 1
     ''' <summary>
     ''' Untuk Format Pecahan 4 Digit Belakang Koma di FlexGrid
     ''' Peletakan di Form Load dan Sebelum Load Grid
@@ -471,6 +472,7 @@ Public Class baseForm
                         End If
                     End If
                     fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
+
                     If fb_2PK Then
                         fs_Code2 = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode2).Value.ToString.Trim
                         'fs_Code3 = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode2).Value.ToString.Trim
@@ -497,12 +499,13 @@ Public Class baseForm
                             bi_GridParentRow -= 1
                         End If
                     End If
-                    Dim gridView = TryCast(FrmParent.DevControl.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView)
+                    Dim gridView = TryCast(FrmParent.DevControl.FocusedView, GridView)
                     'fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
                     fs_Code = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(0))
-                    If fb_2PK Then
-                        fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
-                    End If
+                    fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(columnIndex))
+                    'If fb_2PK Then
+                    '    fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
+                    'End If
                     Call InitialSetForm()
                     Call bf_ValidateHakAkses()
                 End If
@@ -535,6 +538,7 @@ Public Class baseForm
                 If ls_NamaMenu <> "" Then
                     If bs_JenisForm <> "" Then
                         Me.Text = Me.Text & "->" & ls_NamaMenu
+                        'Me.Text = ls_NamaMenu
                     Else
                         Me.Text = ls_NamaMenu
                     End If
@@ -661,6 +665,7 @@ Public Class baseForm
                         End If
                     End If
                     fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
+
                     If fb_2PK Then
                         fs_Code2 = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode2).Value.ToString.Trim
                     End If
@@ -690,9 +695,10 @@ Public Class baseForm
                     Dim gridView = TryCast(FrmParent.DevControl.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView)
                     'fs_Code = FrmParent.BaseFlexGrid.Rows(bi_GridParentRow).Cells(fbbt_ColCode).Value.ToString.Trim
                     fs_Code = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(0))
-                    If fb_2PK Then
-                        fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
-                    End If
+                    fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(columnIndex))
+                    'If fb_2PK Then
+                    '    fs_Code2 = gridView.GetRowCellValue(bi_GridParentRow, gridView.Columns(1))
+                    'End If
                     Call InitialSetForm()
                     Call bf_ValidateHakAkses()
                 End If
