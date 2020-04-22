@@ -161,6 +161,7 @@ Partial Class Frm_Get_Npp_Detail
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.GridColumn9.FieldName = "Check"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
