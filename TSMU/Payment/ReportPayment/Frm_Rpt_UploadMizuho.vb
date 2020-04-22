@@ -62,7 +62,7 @@ Public Class Frm_Rpt_UploadMizuho
     End Sub
 
     Private Sub tsBtn_excel_Click(sender As Object, e As EventArgs) Handles tsBtn_excel.Click
-        Proc_Excel()
+        Proc_Text()
     End Sub
 
     Private Sub SaveToExcel(_Grid As GridControl)
@@ -73,18 +73,48 @@ Public Class Frm_Rpt_UploadMizuho
             _Grid.ExportToCsv(save.FileName, New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
         End If
     End Sub
+
+
+
     Private Sub SaveToExcel1(_Grid As GridControl)
+        If My.Settings.FilePath = "" OrElse My.Settings.Filename = "" Then
+            XtraMessageBox.Show("Setting dulu file path atau file name pada menu setting !")
+        Else
+            _Grid.ExportToXls(My.Settings.FilePath & "\" & My.Settings.Filename & Format(DateTime.Today, "yyyyMMdd") & ".xls")
+            'New DevExpress.XtraPrinting.XlsExportOptions(",", Encoding.Default))
+        End If
+    End Sub
+
+    Private Sub SaveToText(_Grid As GridControl)
         If My.Settings.FilePath = "" OrElse My.Settings.Filename = "" Then
             XtraMessageBox.Show("Setting dulu file path atau file name pada menu setting !")
         Else
             _Grid.ExportToCsv(My.Settings.FilePath & "\" & My.Settings.Filename & Format(DateTime.Today, "yyyyMMdd") & ".txt", New DevExpress.XtraPrinting.CsvExportOptions(",", Encoding.Default))
         End If
     End Sub
+
     Private Sub Proc_Excel()
         Try
             If TabControl1.SelectedTab Is TabPage1 Then
                 If GridView4.RowCount > 0 Then
                     SaveToExcel1(GridControl3)
+                    'SaveToExcel(GridControl3)
+                    MsgBox("Data Berhasil di Export!")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Proc_Text()
+        Try
+            If TabControl1.SelectedTab Is TabPage1 Then
+                If GridView4.RowCount > 0 Then
+                    SaveToText(GridControl3)
                     'SaveToExcel(GridControl3)
                     MsgBox("Data Berhasil di Export!")
                 Else
@@ -243,7 +273,6 @@ Public Class Frm_Rpt_UploadMizuho
                 End If
 
             Else
-
                 Dim ds As DataSet = New DataSet
                 Dim dt As DataTable = New DataTable
                 Dim date1 As String = ""
@@ -681,6 +710,10 @@ Public Class Frm_Rpt_UploadMizuho
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Proc_Excel()
     End Sub
 
     'Private Sub tsBtn_save_Click(sender As Object, e As EventArgs) Handles tsBtn_save.Click

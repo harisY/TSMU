@@ -353,9 +353,19 @@ Public Class FrmBankTransfer_Detail
         End Try
 
     End Sub
-
+    Public Overrides Sub Proc_print()
+        Try
+            Dim newform As New FrmReportBankTransfer(TxtNoBukti.Text, TxtCuryID.Text, TxtCuryTujuan.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub FrmBankTransfer_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
+        ''Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
+
         Call InitialSetForm()
     End Sub
 
@@ -374,9 +384,17 @@ Public Class FrmBankTransfer_Detail
         'TxtAmount2.Text = TxtRate.Text * TxtAmount.Text
         'TxtSelisihRate.Text = TxtAmount1.Text - TxtAmount2.Text
 
-        TxtAmount1.Text = Format(TxtRateSolomon.Text * TxtAmount.Text, "##,0")
-        TxtAmount2.Text = Format(TxtRate.Text * TxtAmount.Text, "##,0")
-        TxtSelisihRate.Text = Format(TxtAmount1.Text - TxtAmount2.Text, "##,0")
+        'TxtAmount1.Text = Format(TxtRateSolomon.Text * TxtAmount.Text, "##,0")
+        'TxtAmount2.Text = Format(TxtRate.Text * TxtAmount.Text, "##,0")
+        'TxtSelisihRate.Text = Format(TxtAmount1.Text - TxtAmount2.Text, "##,0")
+
+        'TxtAmount1.Text = Format(TxtRateSolomon.Text * TxtAmount.Text, gs_FormatBulat)
+        'TxtAmount2.Text = Format(TxtRate.Text * TxtAmount.Text, gs_FormatBulat)
+        'TxtSelisihRate.Text = Format(TxtAmount1.Text - TxtAmount2.Text, gs_FormatBulat)
+
+        TxtAmount1.EditValue = Format(TxtRateSolomon.EditValue * TxtAmount.EditValue, gs_FormatBulat)
+        TxtAmount2.EditValue = Format(TxtRate.EditValue * TxtAmount.EditValue, gs_FormatBulat)
+        TxtSelisihRate.EditValue = Format(TxtAmount1.EditValue - TxtAmount2.EditValue, gs_FormatBulat)
 
     End Sub
 
