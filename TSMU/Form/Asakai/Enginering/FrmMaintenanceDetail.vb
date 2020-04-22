@@ -125,6 +125,7 @@ Public Class FrmMaintenanceDetail
 
 
     Private Sub Plan_Mesin_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Plan_Mesin.KeyPress
+
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -435,6 +436,14 @@ Public Class FrmMaintenanceDetail
     End Sub
 
     Private Sub DtTanggalLaporan_ValueChanged(sender As Object, e As EventArgs) Handles DtTanggalLaporan.ValueChanged
+
+    End Sub
+
+    Private Sub Balance_Mesin_TextChanged(sender As Object, e As EventArgs) Handles Balance_Mesin.TextChanged
+
+    End Sub
+
+    Private Sub Plan_Mesin_TextChanged(sender As Object, e As EventArgs) Handles Plan_Mesin.TextChanged
 
     End Sub
 End Class

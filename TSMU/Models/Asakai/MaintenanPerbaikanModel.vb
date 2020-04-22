@@ -9,10 +9,6 @@ Public Class MaintenanPerbaikanModel
     Public Property H_IDTransaksi As String
     Public Property H_Tanggal As DateTime
 
-
-
-
-
     Public Property ObjDetailMaintenancePerbaikan() As New Collection(Of MaintenancePerbaikanDetailModel)
 
 

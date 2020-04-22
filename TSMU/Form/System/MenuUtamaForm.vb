@@ -379,6 +379,8 @@ Public Class MenuUtamaForm
                             '    TSMPLM.DropDownItems.Add(TSMenuD)
                         Case "Asakai"
                             tsMenuAsakai.DropDownItems.Add(TSMenuD)
+                        Case "Circulation"
+                            tsMenuCirculation.DropDownItems.Add(TSMenuD)
                         Case "Sales"
                             If childMenu Is DBNull.Value OrElse childMenu = "" Then
                             ElseIf childMenu = "Budget" Then
@@ -748,6 +750,11 @@ Public Class MenuUtamaForm
         If Me.tsMenuAsakai.DropDownItems.Count > 0 Then
             Me.tsMenuAsakai.DropDownItems.Clear()
         End If
+
+        If Me.tsMenuCirculation.DropDownItems.Count > 0 Then
+            Me.tsMenuCirculation.DropDownItems.Clear()
+        End If
+
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click

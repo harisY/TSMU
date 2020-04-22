@@ -124,7 +124,7 @@ Public Class FrmProblemDeliveryUpload
                                                                         ,F12 as [Transporter]
                                                                         ,F13 as [Keterangan]
                                                                         ,F14 as [Gambar]
-                                                                         FROM [PROBLEM$A8:Z200] 
+                                                                         FROM [PROBLEM$A8:Z300] 
                                                                          where F2 = #" & tanggal & "#", cn)
 
                             'Dim dt As New DataTable

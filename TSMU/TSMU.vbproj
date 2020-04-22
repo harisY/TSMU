@@ -167,7 +167,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\Circulation\clsCR_ApproveDeptHead.vb" />
+    <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
+    <Compile Include="Classes\Npwo\Cls_NPP_Detail.vb" />
+    <Compile Include="Classes\Npwo\Cls_Npwo_Detail.vb" />
+    <Compile Include="Classes\Npwo\Cls_NPP_Header.vb" />
+    <Compile Include="Classes\Npwo\Cls_Npwo_Header.vb" />
     <Compile Include="Classes\Payment\Cls_barcode.vb" />
     <Compile Include="Classes\Payment\Cls_FP.vb" />
     <Compile Include="Classes\Payment\Cls_Payment.vb" />
@@ -866,6 +872,30 @@
     <Compile Include="Form\Asakai\Quality\FrmQualityProblemDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.Designer.vb">
+      <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.Designer.vb">
+      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.Designer.vb">
+      <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.Designer.vb">
+      <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1194,6 +1224,78 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPP\Frm_Input_NPPDetail.Designer.vb">
+      <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Input_NPPDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Detail.Designer.vb">
+      <DependentUpon>Frm_NPP_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Header.Designer.vb">
+      <DependentUpon>Frm_NPP_Header.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Header.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Set_Grup.Designer.vb">
+      <DependentUpon>Frm_NPP_Set_Grup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Set_Grup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\CRNpwo.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRNpwo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\CrystalReport1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NPP_RevInformasi.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPP_RevInformasi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\ReportNPWO.Designer.vb">
+      <DependentUpon>ReportNPWO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Report\ReportNPWO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Get_Npp_Detail.Designer.vb">
+      <DependentUpon>Frm_Get_Npp_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Get_Npp_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Input_NpwoDetail.Designer.vb">
+      <DependentUpon>Frm_Input_NpwoDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Input_NpwoDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_NPWO_Head.Designer.vb">
+      <DependentUpon>Frm_NPWO_Head.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_NPWO_Head.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Npwo_Detail1.Designer.vb">
+      <DependentUpon>Frm_Npwo_Detail1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Npwo_Detail1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PO Check\FrmTam_Scan.Designer.vb">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>
     </Compile>
@@ -1476,6 +1578,7 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -1936,8 +2039,59 @@
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Dies Bom\Frm_CR_BOM.resx">
+      <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
+      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateDetail.resx">
+      <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
+      <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmKaryawanQrCode.resx">
       <DependentUpon>frmKaryawanQrCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_Input_NPPDetail.resx">
+      <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPP_Detail.resx">
+      <DependentUpon>Frm_NPP_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPP_Header.resx">
+      <DependentUpon>Frm_NPP_Header.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPP_Set_Grup.resx">
+      <DependentUpon>Frm_NPP_Set_Grup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\CRNpwo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRNpwo.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\NPP_RevInformasi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NPP_RevInformasi.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\ReportNPWO.resx">
+      <DependentUpon>ReportNPWO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Frm_Get_Npp_Detail.resx">
+      <DependentUpon>Frm_Get_Npp_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Frm_Input_NpwoDetail.resx">
+      <DependentUpon>Frm_Input_NpwoDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Frm_NPWO_Head.resx">
+      <DependentUpon>Frm_NPWO_Head.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Detail1.resx">
+      <DependentUpon>Frm_Npwo_Detail1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\FrmTam_Scan.resx">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>
