@@ -16,13 +16,6 @@
             'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = fc_Class.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
-            'Grid.Columns(0).Visible = False
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -64,6 +57,7 @@
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -85,19 +79,12 @@
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     ID = GridView1.GetRowCellValue(rowHandle, "NIK")
-                    'bomid = GridView1.GetRowCellValue(rowHandle, "BOM ID")
                 End If
             Next rowHandle
 
             fc_Class.Delete(ID)
             'Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()
-            'Grid.RemoveItem(Grid.Row)
-            'If Grid.Rows.Count > Grid.Rows.Fixed Then
-            '    Call Proc_EnableButtons(True, False, True, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(True, False, False, True, True, True, False, False)
-            'End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -129,6 +116,7 @@
 
     Dim NIK As String
     Dim Nama As String
+
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
             NIK = String.Empty
@@ -152,4 +140,5 @@
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
 End Class

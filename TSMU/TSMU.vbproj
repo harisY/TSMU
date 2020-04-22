@@ -276,6 +276,7 @@
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
+    <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
@@ -468,10 +469,40 @@
     <Compile Include="Direct\FrmTravelerDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTravelPocketAllowance.Designer.vb">
+      <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelPocketAllowance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.Designer.vb">
+      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelRequest.Designer.vb">
+      <DependentUpon>FrmTravelRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelRequestDetail.Designer.vb">
+      <DependentUpon>FrmTravelRequestDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelRequestDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmTravelSettle.Designer.vb">
       <DependentUpon>FrmTravelSettle.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelTicketDetail.Designer.vb">
+      <DependentUpon>FrmTravelTicketDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelTicketDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravel_Detail.Designer.vb">
@@ -491,6 +522,120 @@
     </Compile>
     <Compile Include="Direct\FrmTravelSettleDetail.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravel.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravel.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailAllowance.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailAllowance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailAllowanceSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailAllowanceSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailAllowanceSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailAllowanceSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailSafetyMoney.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailSafetyMoney.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailSafetyMoneySett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailSafetyMoneySett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailSafetyMoneySettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailSafetyMoneySettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailStaying.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailStaying.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailStayingSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailStayingSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailStayingSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailStayingSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTicket.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTicket.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTicketSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTicketSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTicketSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTicketSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTransport.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTransport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTransportSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTransportSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTransportSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTransportSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelSettlement.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelSettlement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelTotalExpenseSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelTotalExpenseSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelTotalSuspenseSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelTotalSuspenseSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\entertain1.vb">
       <DependentUpon>entertain1.rpt</DependentUpon>
@@ -538,6 +683,18 @@
       <DependentUpon>FrmReportSuspend2.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportSuspend2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportTravel.designer.vb">
+      <DependentUpon>FrmReportTravel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportTravel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportTravelSett.Designer.vb">
+      <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportTravelSett.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\relasi.vb">
@@ -1788,6 +1945,103 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
+      <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelPocketAllowanceDetail.resx">
+      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelRequest.resx">
+      <DependentUpon>FrmTravelRequest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelRequestDetail.resx">
+      <DependentUpon>FrmTravelRequestDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelTicketDetail.resx">
+      <DependentUpon>FrmTravelTicketDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravel.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravel.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailAllowance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailAllowance.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailAllowanceSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailAllowanceSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailAllowanceSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailAllowanceSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailSafetyMoney.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailSafetyMoney.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailSafetyMoneySett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailSafetyMoneySett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailSafetyMoneySettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailSafetyMoneySettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailStaying.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailStaying.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailStayingSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailStayingSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailStayingSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailStayingSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTicket.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTicket.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTicketSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTicketSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTicketSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTicketSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTransport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTransport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTransportSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTransportSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelSettlement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelSettlement.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelTotalExpenseSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelTotalExpenseSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelTotalSuspenseSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportTravel.resx">
+      <DependentUpon>FrmReportTravel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportTravelSett.resx">
+      <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\coba.resx">
       <DependentUpon>coba.vb</DependentUpon>
     </EmbeddedResource>

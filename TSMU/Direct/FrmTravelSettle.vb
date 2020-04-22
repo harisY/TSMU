@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmTravelSettle
     Dim ff_Detail As FrmTravelSettleDetail
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
+    Dim objSettHeader As TravelSettlementHeaderModel
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim ObjSettle As TravelHeaderModel
@@ -18,11 +19,11 @@ Public Class FrmTravelSettle
     End Sub
     Private Sub LoadGrid()
         Try
-            ObjSettle = New TravelHeaderModel
-            dtGrid = ObjSettle.GetDataGrid()
+            objSettHeader = New TravelSettlementHeaderModel
+            dtGrid = objSettHeader.GetTravelSettHeader()
             Grid.DataSource = dtGrid
             With GridView1
-                .Columns(0).Visible = False
+                '.Columns(0).Visible = False
                 .BestFitColumns()
             End With
             GridCellFormat(GridView1)
@@ -87,17 +88,17 @@ Public Class FrmTravelSettle
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
-        Dim ID As String = String.Empty
-
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                    objSettHeader.TravelSettID = GridView1.GetRowCellValue(rowHandle, "TravelSettleID").ToString()
+                    objSettHeader.TravelID = GridView1.GetRowCellValue(rowHandle, "TravelID").ToString()
+                    objSettHeader.NIK = GridView1.GetRowCellValue(rowHandle, "NIK").ToString()
                 End If
             Next rowHandle
 
-            ' fc_Class.Delete(ID)
+            objSettHeader.DeleteTravelSett()
 
             tsBtn_refresh.PerformClick()
 
@@ -133,11 +134,52 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs)
-        Try
+    'Private Sub Grid_DoubleClick(sender As Object, e As EventArgs)
+    '    Try
 
+    '        Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+    '        'Dim view As GridView = TryCast(sender, GridView)
+    '        Dim view As BaseView = Grid.GetViewAt(ea.Location)
+    '        If view Is Nothing Then
+    '            Return
+    '        End If
+    '        Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+    '        Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+    '        If info.InRow OrElse info.InRowCell Then
+
+    '            ID = String.Empty
+    '            suspendid = String.Empty
+    '            suspend1 = String.Empty
+    '            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+    '            For Each rowHandle As Integer In selectedRows
+    '                If rowHandle >= 0 Then
+    '                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+    '                    suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
+    '                    suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
+    '                End If
+    '            Next rowHandle
+
+    '            If suspend1 = "" Then
+    '                'Dim objGrid As DataGridView = sender
+    '                Call CallFrmDirect(ID, suspendid,
+    '                     GridView1.RowCount)
+    '            Else
+    '                'Dim objGrid As DataGridView = sender
+    '                Call CallFrm(ID,
+    '                         suspendid,
+    '                         GridView1.RowCount)
+    '            End If
+    '        End If
+
+    '    Catch ex As Exception
+    '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+    '    End Try
+    'End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        Try
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-            'Dim view As GridView = TryCast(sender, GridView)
             Dim view As BaseView = Grid.GetViewAt(ea.Location)
             If view Is Nothing Then
                 Return
@@ -146,27 +188,21 @@ Public Class FrmTravelSettle
             Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
             If info.InRow OrElse info.InRowCell Then
 
-                ID = String.Empty
-                suspendid = String.Empty
-                suspend1 = String.Empty
+                Dim TravelSettID As String = String.Empty
+                Dim TravelID = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
-                        suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
+                        TravelSettID = GridView1.GetRowCellValue(rowHandle, "TravelSettleID")
+                        TravelID = GridView1.GetRowCellValue(rowHandle, "TravelID")
                     End If
                 Next rowHandle
 
-                If suspend1 = "" Then
+                If GridView1.GetSelectedRows.Length > 0 Then
                     'Dim objGrid As DataGridView = sender
-                    Call CallFrmDirect(ID, suspendid,
+                    Call CallFrm(TravelSettID,
+                         TravelID,
                          GridView1.RowCount)
-                Else
-                    'Dim objGrid As DataGridView = sender
-                    Call CallFrm(ID,
-                             suspendid,
-                             GridView1.RowCount)
                 End If
             End If
 
