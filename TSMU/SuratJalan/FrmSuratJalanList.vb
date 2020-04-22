@@ -35,6 +35,27 @@ Public Class FrmSuratJalanList
         LayoutControlItem6.Enabled = False
         Call Proc_EnableButtons(True, True, False, True, True, False, True, True, False, False)
     End Sub
+    Dim dtTemp As DataTable
+    Private Sub TempTable()
+        dtTemp = New DataTable
+        dtTemp.Columns.Add("No")
+        dtTemp.Columns.Add("InvtID")
+        dtTemp.Columns.Add("Color")
+        dtTemp.Columns.Add("PartNo")
+        dtTemp.Columns.Add("KodePart")
+        dtTemp.Columns.Add("JobNo")
+        dtTemp.Columns.Add("PartName")
+        dtTemp.Columns.Add("Bulan")
+        dtTemp.Columns.Add("Status")
+        dtTemp.Columns.Add("Qty")
+        dtTemp.Columns.Add("QrCode")
+        dtTemp.Columns.Add("Warna")
+        dtTemp.Columns.Add("LR")
+        dtTemp.Columns.Add("KodeWarna")
+        dtTemp.Columns.Add("CustomerID")
+        dtTemp.Columns.Add("QrCode1")
+        dtTemp.Clear()
+    End Sub
 
     Private Sub LoadData()
         Try
@@ -173,14 +194,15 @@ Public Class FrmSuratJalanList
         End Try
         Return Nomor
     End Function
+    Dim IsNoTranEmpty As Boolean = False
+    Dim ValidateNotran As Boolean = True
     Public Overrides Sub Proc_PrintPreview()
         Try
             If XtraTabControl1.SelectedTabPageIndex = 1 Then
                 If GridView2.RowCount = 0 Then
                     Throw New Exception("Tidak ada data yang di akan print.")
                 End If
-                Dim IsNoTranEmpty As Boolean = False
-                Dim ValidateNotran As Boolean = True
+
                 For i As Integer = 0 To GridView2.RowCount - 1
                     IsNoTranEmpty = SuratJalan.CheckNoTran(GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan")))
                     If IsNoTranEmpty Then
@@ -189,42 +211,46 @@ Public Class FrmSuratJalanList
                     End If
                 Next
 
-                No = GetAutoNo()
-
                 If ValidateNotran Then
-                    SuratJalan.NoTran = No
+                    No = GetAutoNo()
 
-                    For i As Integer = 0 To GridView2.RowCount - 1
-                        SuratJalan.ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
-                        SuratJalan.UpdateNoTran()
-                    Next
+                    'Dim ds As DataSet = New DataSet
+                    'Dim dt As DataTable = New DataTable
+                    'ds = SuratJalan.PrintPO(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text, Format(_TxtTglKirimFrom.EditValue, gs_FormatSQLDate), Format(_TglKirimTo.EditValue, gs_FormatSQLDate))
+                    Dim dt As New DataTable()
+                    For Each column As GridColumn In GridView2.VisibleColumns
+                        dt.Columns.Add(column.FieldName, column.ColumnType)
+                    Next column
+                    For i As Integer = 0 To GridView2.DataRowCount - 1
+                        Dim row As DataRow = dt.NewRow()
+                        For Each column As GridColumn In GridView2.VisibleColumns
+                            row(column.FieldName) = GridView2.GetRowCellValue(i, column)
+                        Next column
+                        dt.Rows.Add(row)
+                    Next i
+                    'dt = ds.Tables("PrintPO")
 
-                Else
-                    MsgBox("No Trans '[" & No & "]' sudah ada atau sudah pernah di print !")
-                    Exit Sub
+                    Dim Laporan As PrintPO = New PrintPO
+                    With Laporan
+                        .param1 = No
+                        .param2 = No
+                        .DataSource = dt
+                        '.DataMember = ds.Tables("PrintPO").TableName
+                        AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+                    End With
+
+                    Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+                        PrintTool.ShowPreviewDialog()
+                        PrintTool.ShowPreview(UserLookAndFeel.Default)
+                    End Using
+                    'SuratJalan.UpdateNo(DateTime.Now.Year, DateTime.Now.Month, 1, _TxtLokasi.Text)
                 End If
+                LoadDataEdit()
+            Else
+                Throw New Exception("No Trans '[" & No & "]' sudah ada atau sudah pernah di print !")
 
-                Dim ds As DataSet = New DataSet
-                Dim dt As DataTable = New DataTable
-                ds = SuratJalan.PrintPO(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text, Format(_TxtTglKirimFrom.EditValue, gs_FormatSQLDate), Format(_TglKirimTo.EditValue, gs_FormatSQLDate))
-
-                dt = ds.Tables("PrintPO")
-
-                Dim Laporan As PrintPO = New PrintPO
-                With Laporan
-                    .param1 = No
-                    .param2 = No
-                    .DataSource = dt
-                    '.DataMember = ds.Tables("PrintPO").TableName
-                End With
-
-                Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-                    PrintTool.ShowPreviewDialog()
-                    PrintTool.ShowPreview(UserLookAndFeel.Default)
-                End Using
-                SuratJalan.UpdateNo(DateTime.Now.Year, DateTime.Now.Month, 1, _TxtLokasi.Text)
             End If
-            LoadDataEdit()
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -257,24 +283,26 @@ Public Class FrmSuratJalanList
                 End If
             End If
             lF_SearchData.Close()
+            If No <> "" Then
+                SuratJalan.NoTran = No
+                Dim ds As DataSet = New DataSet
+                Dim dt As DataTable = New DataTable
+                ds = SuratJalan.ReprintPrintPO()
+                dt = ds.Tables("PrintPO")
+                Dim Laporan As PrintPO = New PrintPO
+                With Laporan
+                    .param1 = No
+                    .param2 = No
+                    .DataSource = dt
+                    '.DataMember = ds.Tables("PrintPO").TableName
+                End With
 
-            SuratJalan.NoTran = No
-            Dim ds As DataSet = New DataSet
-            Dim dt As DataTable = New DataTable
-            ds = SuratJalan.ReprintPrintPO()
-            dt = ds.Tables("PrintPO")
-            Dim Laporan As PrintPO = New PrintPO
-            With Laporan
-                .param1 = No
-                .param2 = No
-                .DataSource = dt
-                '.DataMember = ds.Tables("PrintPO").TableName
-            End With
+                Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+                    PrintTool.ShowPreviewDialog()
+                    PrintTool.ShowPreview(UserLookAndFeel.Default)
+                End Using
+            End If
 
-            Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-                PrintTool.ShowPreviewDialog()
-                PrintTool.ShowPreview(UserLookAndFeel.Default)
-            End Using
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -467,8 +495,18 @@ Public Class FrmSuratJalanList
             'MsgBox(XtraTabControl1.SelectedTabPageIndex.ToString)
         End If
     End Sub
+    Private Sub PrintingSystem_EndPrint(sender As Object, e As EventArgs)
+        Try
+            SuratJalan.UpdateNo(Date.Now.Year, Date.Now.Month, 1, _TxtLokasi.Text)
 
-    Private Sub _TglSJFrom_EditValueChanged(sender As Object, e As EventArgs) Handles _TglSJFrom.EditValueChanged
+            SuratJalan.NoTran = No
 
+            For i As Integer = 0 To GridView2.RowCount - 1
+                SuratJalan.ShipperID = GridView2.GetRowCellValue(i, GridView2.Columns("No Surat Jalan"))
+                SuratJalan.UpdateNoTran()
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

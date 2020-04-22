@@ -225,6 +225,7 @@ Partial Class frm_AR_details
         '
         'TextEdit1
         '
+        Me.TextEdit1.EditValue = ""
         Me.TextEdit1.Location = New System.Drawing.Point(348, 36)
         Me.TextEdit1.Name = "TextEdit1"
         Me.TextEdit1.Size = New System.Drawing.Size(165, 20)
@@ -831,7 +832,7 @@ Partial Class frm_AR_details
         '
         Me.ColCheck.Caption = "Check"
         Me.ColCheck.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.ColCheck.FieldName = "Check"
+        Me.ColCheck.FieldName = "Check1"
         Me.ColCheck.Name = "ColCheck"
         Me.ColCheck.OptionsFilter.AllowAutoFilter = False
         Me.ColCheck.Visible = True

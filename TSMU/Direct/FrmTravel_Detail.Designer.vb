@@ -20,7 +20,7 @@ Partial Class FrmTravel_Detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.RepositoryItemDateEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemComboBox5 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -112,7 +112,7 @@ Partial Class FrmTravel_Detail
         Me.RepositoryItemButtonEdit14 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemDateEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.DxValidationProvider2 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.TxtNama = New DevExpress.XtraEditors.ButtonEdit()
+        Me.TxtNama = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.RepositoryItemDateEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit8.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,10 +306,10 @@ Partial Class FrmTravel_Detail
         Me.TxtDep.Size = New System.Drawing.Size(63, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 3
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Isi Departemen"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Isi Departemen"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDep, ConditionValidationRule1)
         '
         'txtPickUp
         '
@@ -990,7 +990,8 @@ Partial Class FrmTravel_Detail
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Location = New System.Drawing.Point(464, 12)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtNama.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.TxtNama.Size = New System.Drawing.Size(297, 20)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 2
@@ -1181,5 +1182,5 @@ Partial Class FrmTravel_Detail
     Friend WithEvents jmltot2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents jmltot3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents jmltot4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents TxtNama As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents TxtNama As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class

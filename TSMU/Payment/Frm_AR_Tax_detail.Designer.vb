@@ -36,6 +36,7 @@ Partial Class Frm_AR_Tax_detail
         Me._TxtPPh = New DevExpress.XtraEditors.ButtonEdit()
         Me._TxtKetPPh = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -51,7 +52,12 @@ Partial Class Frm_AR_Tax_detail
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtNilaiPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +76,7 @@ Partial Class Frm_AR_Tax_detail
         CType(Me._TxtPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtKetPPh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,11 +92,18 @@ Partial Class Frm_AR_Tax_detail
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.LayoutControl3)
+        Me.LayoutControl1.Controls.Add(Me.LayoutControl2)
         Me.LayoutControl1.Controls.Add(Me._TxtNilaiPPh)
         Me.LayoutControl1.Controls.Add(Me._TxtNoBuktiPot)
         Me.LayoutControl1.Controls.Add(Me._TxtBulan)
@@ -134,9 +148,7 @@ Partial Class Frm_AR_Tax_detail
         Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 180)
         Me._TxtNoBuktiPot.Name = "_TxtNoBuktiPot"
         Me._TxtNoBuktiPot.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me._TxtNoBuktiPot.Properties.Appearance.Options.UseBackColor = True
-        Me._TxtNoBuktiPot.Properties.ReadOnly = True
-        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(721, 20)
+        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(350, 20)
         Me._TxtNoBuktiPot.StyleController = Me.LayoutControl1
         Me._TxtNoBuktiPot.TabIndex = 16
         '
@@ -209,7 +221,7 @@ Partial Class Frm_AR_Tax_detail
         Me._TxtDPP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtDPP.Properties.EditFormat.FormatString = "#,#.##"
         Me._TxtDPP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me._TxtDPP.Size = New System.Drawing.Size(721, 20)
+        Me._TxtDPP.Size = New System.Drawing.Size(350, 20)
         Me._TxtDPP.StyleController = Me.LayoutControl1
         Me._TxtDPP.TabIndex = 6
         '
@@ -274,10 +286,19 @@ Partial Class Frm_AR_Tax_detail
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 535)
         Me.LayoutControlGroup1.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me._TxtFP
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(437, 24)
+        Me.LayoutControlItem1.Text = "No. Faktur Pajak"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
         '
         'EmptySpaceItem1
         '
@@ -301,7 +322,7 @@ Partial Class Frm_AR_Tax_detail
         Me.LayoutControlItem3.Control = Me._TxtDPP
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(808, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(437, 24)
         Me.LayoutControlItem3.Text = "Nilai DPP"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -391,7 +412,7 @@ Partial Class Frm_AR_Tax_detail
         Me.LayoutControlItem13.Control = Me._TxtNoBuktiPot
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(808, 24)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(437, 24)
         Me.LayoutControlItem13.Text = "No. Bukti Potong"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -413,14 +434,57 @@ Partial Class Frm_AR_Tax_detail
         Me.LayoutControlItem15.Text = "Keterangan"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(80, 13)
         '
-        'LayoutControlItem1
+        'LayoutControl2
         '
-        Me.LayoutControlItem1.Control = Me._TxtFP
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(437, 24)
-        Me.LayoutControlItem1.Text = "No. Faktur Pajak"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControl2.Location = New System.Drawing.Point(449, 180)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.Root = Me.Root
+        Me.LayoutControl2.Size = New System.Drawing.Size(367, 20)
+        Me.LayoutControl2.TabIndex = 19
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.LayoutControl2
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(437, 168)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(371, 24)
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem16.TextVisible = False
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(367, 20)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControl3
+        '
+        Me.LayoutControl3.Location = New System.Drawing.Point(449, 36)
+        Me.LayoutControl3.Name = "LayoutControl3"
+        Me.LayoutControl3.Root = Me.LayoutControlGroup2
+        Me.LayoutControl3.Size = New System.Drawing.Size(367, 20)
+        Me.LayoutControl3.TabIndex = 20
+        Me.LayoutControl3.Text = "LayoutControl3"
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.LayoutControl3
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(437, 24)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(371, 24)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
+        '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(367, 20)
+        Me.LayoutControlGroup2.TextVisible = False
         '
         'Frm_AR_Tax_detail
         '
@@ -447,6 +511,7 @@ Partial Class Frm_AR_Tax_detail
         CType(Me._TxtPPh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtKetPPh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -462,7 +527,12 @@ Partial Class Frm_AR_Tax_detail
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -501,4 +571,10 @@ Partial Class Frm_AR_Tax_detail
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControl3 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
 End Class

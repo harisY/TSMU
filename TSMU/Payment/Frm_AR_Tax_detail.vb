@@ -136,17 +136,21 @@ Public Class Frm_AR_Tax_detail
                 .Pphid = _TxtPPh.Text
                 .Ket_Pph = _TxtKetPPh.Text
                 .Tarif = _TxtTarif.Text
-                .Tot_Dpp_Invoice = Format(_TxtDPP.Text, gs_FormatBulat)
+                ''  .Tot_Dpp_Invoice = Format(_TxtDPP.Text, gs_FormatBulat)
+                .Tot_Dpp_Invoice = _TxtDPP.Text
                 .Tahun = _TxtTahun.Text
                 .Bulan = _TxtBulan.Text
                 .Lokasi = _TxtLokasi.Text
-                .Tot_Pph = Format(_TxtNilaiPPh.Text, gs_FormatBulat)
+                ' .Tot_Pph = Format(_TxtNilaiPPh.Text, gs_FormatBulat)
+                .Tot_Pph = _TxtNilaiPPh.Text
                 .ket_dpp = _TxtKetDPP.Text
             End With
             ObjAR_Pph.UpdateHeader()
-
+            GridDtl.DataSource = ObjAR_Pph.GetDataGrid()
+            IsClosed = True
+            Me.Hide()
         Catch ex As Exception
-            Throw
+            'Throw
         End Try
     End Sub
 End Class

@@ -68,7 +68,7 @@
             frmUser_detail.Close()
         End If
         frmUser_detail = New FrmSystem_User_detail(ls_Code, Me, li_Row, Grid)
-        frmUser_detail.MdiParent = MenuUtamaForm
+        frmUser_detail.MdiParent = FrmMain
         'ff_Detail._cmbStatus.Focus()
         frmUser_detail.Show()
     End Sub

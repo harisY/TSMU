@@ -65,7 +65,7 @@ Public Class frmHarigami
                         .FileNo = If(row("File No") Is DBNull.Value, "", row("File No").ToString())
                         .FilePath = If(row("File Path") Is DBNull.Value, "", row("File Path").ToString())
                         .Type = If(row("Type") Is DBNull.Value, "", row("Type").ToString())
-                        .Type = If(row("InvtId") Is DBNull.Value, "", row("InvtId").ToString())
+                        .InvtId = If(row("InvtId") Is DBNull.Value, "", row("InvtId").ToString())
                     End With
                     Obj.ObjDetails.Add(ObjDet)
                 Next

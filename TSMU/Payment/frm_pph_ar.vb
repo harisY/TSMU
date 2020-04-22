@@ -81,7 +81,7 @@ Public Class frm_pph_ar
                     _TxtNilaiPPh.Text = dt.Rows(0).Item("Tot_Pph")
                     _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
                     '_TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
-
+                    TextEdit1.Text = dt.Rows(0).Item("CMDMNo").ToString()
                 End If
                 'For Each ctl As Control In Me.LayoutControl1.Controls
                 '    ctl.Enabled = False
@@ -155,6 +155,7 @@ Public Class frm_pph_ar
                     .Tarif = _TxtTarif.Text
                     .Tot_Dpp_Invoice = _TxtDPP.Text
                     .Tot_Pph = _TxtNilaiPPh.Text
+                    .CMDMNo = TextEdit1.Text
                 End With
                 ObjPPHTransaction.ObjPPHDetails.Clear()
 

@@ -79,7 +79,7 @@ Partial Class FrmTravel_Detail2
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ReposAmount = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.TxtNama = New DevExpress.XtraEditors.ButtonEdit()
+        Me.TxtNama = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtTotIDR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -685,7 +685,8 @@ Partial Class FrmTravel_Detail2
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Location = New System.Drawing.Point(465, 12)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtNama.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.TxtNama.Size = New System.Drawing.Size(295, 20)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 2
@@ -816,5 +817,5 @@ Partial Class FrmTravel_Detail2
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
-    Friend WithEvents TxtNama As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents TxtNama As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class

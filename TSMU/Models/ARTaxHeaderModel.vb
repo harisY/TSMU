@@ -78,22 +78,35 @@ Public Class ARTaxHeaderModel
     End Sub
     Public Sub UpdateHeader()
         Try
-            Dim ls_SP As String = " " & vbCrLf &
-   "UPDATE ar_pph_header " & vbCrLf &
-   "SET FPNo = " & QVal(FPNo.TrimEnd) & ", " & vbCrLf &
-   "       No_Bukti_Potong = " & QVal(No_Bukti_Potong.TrimEnd) & ", " & vbCrLf &
-   "       Pphid = " & QVal(Pphid.TrimEnd) & ", " & vbCrLf &
-   "       Ket_Pph = " & QVal(Ket_Pph.TrimEnd) & ", " & vbCrLf &
-   "       Tarif = " & QVal(Tarif) & ", " & vbCrLf &
-   "       Tahun = " & QVal(Tahun.TrimEnd) & ", " & vbCrLf &
-   "       Bulan = " & QVal(Bulan.TrimEnd) & ", " & vbCrLf &
-   "       Lokasi = " & QVal(Lokasi.TrimEnd) & ", " & vbCrLf &
-   "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
-   "       Tot_Dpp_Invoice = " & QVal(Tot_Dpp_Invoice) & ", " & vbCrLf &
-   "       No_Faktur = " & QVal(No_Faktur.TrimEnd) & ", " & vbCrLf &
-   "       Tot_Pph = " & QVal(Tot_Pph) & ", " & vbCrLf &
-   "       ket_dpp = " & QVal(ket_dpp.TrimEnd) & ", " & vbCrLf &
-   "       CMDMNo = " & QVal(CMDMNo.TrimEnd) & " WHERE FPNo= '" & FPNo & "'"
+            Dim ls_sp As String = " " & vbCrLf &
+   "update ar_pph_header " & vbCrLf &
+   "set fpno = " & QVal(FPNo) & ", " & vbCrLf &
+   "       no_bukti_potong = " & QVal(No_Bukti_Potong) & ", " & vbCrLf &
+   "       pphid = " & QVal(Pphid) & ", " & vbCrLf &
+   "       ket_pph = " & QVal(Ket_Pph) & ", " & vbCrLf &
+   "       tarif = " & QVal(Tarif) & ", " & vbCrLf &
+   "       tahun = " & QVal(Tahun) & ", " & vbCrLf &
+   "       bulan = " & QVal(Bulan) & ", " & vbCrLf &
+   "       lokasi = " & QVal(Lokasi) & ", " & vbCrLf &
+   "       curyid = " & QVal(CuryID) & ", " & vbCrLf &
+   "       tot_dpp_invoice = " & QVal(Tot_Dpp_Invoice) & ", " & vbCrLf &
+   "       no_faktur = " & QVal(No_Faktur) & ", " & vbCrLf &
+   "       tot_pph = " & QVal(Tot_Pph) & ", " & vbCrLf &
+   "       ket_dpp = " & QVal(ket_dpp) & ", " & vbCrLf &
+   "       cmdmno = " & QVal(CMDMNo) & " where fpno= '" & FPNo & "'"
+
+            'Dim ls_SP As String = " " & vbCrLf &
+            '                        "UPDATE suspend_header " & vbCrLf &
+            '                        "SET    Currency = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       DeptID = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       PRNo = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       Remark = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       Tgl = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       Status = " & QVal(Ket_Pph) & ", " & vbCrLf &
+            '                        "       Total = " & QVal(Tot_Pph) & ", " & vbCrLf &
+            '                        "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+            '                        "       UpdatedDate = GETDATE() WHERE SuspendID = '" & Tot_Pph & "'"
+
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex

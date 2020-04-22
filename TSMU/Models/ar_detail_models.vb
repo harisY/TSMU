@@ -80,6 +80,19 @@
             Throw ex
         End Try
     End Function
+    Public Function GetCustomer2() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                customer.CustID [Customer ID],
+                                    customer.name [Customer Name]
+                                FROM customer inner join vendor on vendor.vendid=customer.user5"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetBank() As DataTable
         Try
             Dim sql As String = "SELECT 
