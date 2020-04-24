@@ -193,6 +193,8 @@ Public Class Cls_Npwo_Detail
 
     End Function
 
+
+
     Public Function Get_Detail1_Npwo(Npwo_ As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
@@ -253,17 +255,17 @@ Public Class Cls_Npwo_Detail
 
                             End With
 
-                            For j As Integer = 0 To Collection_Detail_1.Count - 1
-                                With Collection_Detail_1(j)
-                                    Join2 = .Join
+                        Next
 
-                                    If Join1 = Join2 Then
-                                        .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
-                                    End If
+                        For j As Integer = 0 To Collection_Detail_1.Count - 1
+                            With Collection_Detail_1(j)
+                                'Join2 = .Join
 
-                                End With
-                            Next
+                                'If Join1 = Join2 Then
+                                .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
+                                'End If
 
+                            End With
                         Next
 
 
@@ -782,6 +784,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
     Public Property StatusMold As String
     Public Property Injection As Boolean
     Public Property LOI_Number As String
+    Public Property GroupID As String
     Public Property Machine As String
     Public Property Material_Resin As String
     Public Property No_Npwo As String
@@ -804,7 +807,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
         Try
 
             Dim query As String = "[NPWO_Insert_Npwo_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(19) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -825,6 +828,8 @@ Public Class Col_Cls_Npwo_Detail_NPWO
             pParam(17) = New SqlClient.SqlParameter("@Rev", SqlDbType.Int)
             pParam(18) = New SqlClient.SqlParameter("@Ultrasonic", SqlDbType.Bit)
             pParam(19) = New SqlClient.SqlParameter("@vibration", SqlDbType.Bit)
+            pParam(20) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
+
 
 
             pParam(0).Value = _Npwo_No
@@ -847,6 +852,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
             pParam(17).Value = Rev
             pParam(18).Value = Ultrasonic
             pParam(19).Value = Vibration
+            pParam(20).Value = GroupID
 
 
             Dim dtTable As New DataTable
@@ -893,6 +899,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
     Public Property Weight As Double
     Public Property Forecast As Integer
     Public Property OrderMonth As Integer
+    Public Property GroupID As String
 
     Public Property Rev As Integer
 
@@ -903,7 +910,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
         Try
 
             Dim query As String = "[NPWO_Insert_Npwo_Detail_1]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -926,6 +933,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(19) = New SqlClient.SqlParameter("@Ultrasonic", SqlDbType.Bit)
             pParam(20) = New SqlClient.SqlParameter("@Vibration", SqlDbType.Bit)
             pParam(21) = New SqlClient.SqlParameter("@ID", SqlDbType.VarChar)
+            pParam(22) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
 
             pParam(0).Value = _Npwo_No
             pParam(1).Value = Part_No
@@ -949,6 +957,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(19).Value = Ultrasonic
             pParam(20).Value = Vibration
             pParam(21).Value = ID
+            pParam(22).Value = GroupID
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)

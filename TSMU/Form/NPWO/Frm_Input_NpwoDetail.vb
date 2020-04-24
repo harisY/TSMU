@@ -89,7 +89,7 @@ Public Class Frm_Input_NpwoDetail
                    ByVal _StatusMold As String,
                    ByVal _OrderMonth As String,
                    ByVal _Type As String,
-                    ByVal _LOI As Boolean,
+                    ByVal _LOI As String,
                   ByVal _IsNew As Boolean,
                    ByRef _dt As DataTable,
                    ByRef _grid As GridControl)
@@ -189,7 +189,7 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Vibration") = CbVibration.CheckState
                     .Item("Status Mold") = TStatusMold.EditValue.Trim
                     .Item("Order Month") = TOrder.EditValue.Trim
-                    .Item("LOI") = TLOI.EditValue.Trim
+                    '.Item("LOI") = TLOI.EditValue.Trim
 
                 End With
 

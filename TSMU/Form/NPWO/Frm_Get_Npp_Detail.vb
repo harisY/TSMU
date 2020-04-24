@@ -186,7 +186,7 @@ Public Class Frm_Get_Npp_Detail
                             If chkSelect2 = True Then
                                 If Group2 = Group Then
                                     With MyNewRow
-                                        .Item("IDB") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
+                                        .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
                                         .Item("Part No") = .Item("Part No") & GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString & " - "
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
                                         .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
@@ -229,7 +229,7 @@ Public Class Frm_Get_Npp_Detail
 
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail
-                                        .Item("IDB1") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
+                                        .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
                                         .Item("ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part No") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
@@ -272,7 +272,7 @@ Public Class Frm_Get_Npp_Detail
                                 If Group2 = Group Then
                                     MyNewRow = DtTabale.NewRow
                                     With MyNewRow
-                                        .Item("IDB") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
+                                        .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
                                         .Item("Part No") = .Item("Part No") & GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString & " - "
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
                                         .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
@@ -311,7 +311,7 @@ Public Class Frm_Get_Npp_Detail
 
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail
-                                        .Item("IDB1") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
+                                        .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
                                         .Item("ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part No") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString

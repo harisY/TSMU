@@ -67,8 +67,8 @@ Public Class Frm_Npwo_Detail1
     Private Sub CreateTableBarang()
 
         dt = New DataTable
-        dt.Columns.AddRange(New DataColumn(17) {New DataColumn("Part No", GetType(String)),
-                                                           New DataColumn("IDB", GetType(String)),
+        dt.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
+                                                           New DataColumn("Group ID", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(Double)),
@@ -84,15 +84,13 @@ Public Class Frm_Npwo_Detail1
                                                            New DataColumn("Forecast", GetType(String)),
                                                            New DataColumn("Ultrasonic", GetType(Boolean)),
                                                            New DataColumn("Vibration", GetType(Boolean)),
+                                                           New DataColumn("LOI", GetType(String)),
                                                            New DataColumn("Order Month", GetType(Int32))})
 
 
-
-
-
         dtDetail = New DataTable
-        dtDetail.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
-                                                           New DataColumn("IDB1", GetType(String)),
+        dtDetail.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
+                                                           New DataColumn("Group ID", GetType(String)),
                                                            New DataColumn("ID", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
@@ -109,6 +107,7 @@ Public Class Frm_Npwo_Detail1
                                                            New DataColumn("Forecast", GetType(String)),
                                                            New DataColumn("Ultrasonic", GetType(Boolean)),
                                                            New DataColumn("Vibration", GetType(Boolean)),
+                                                           New DataColumn("LOI", GetType(String)),
                                                            New DataColumn("Order Month", GetType(Int32))})
 
 
@@ -116,11 +115,12 @@ Public Class Frm_Npwo_Detail1
         dtDetail.TableName = "Detail"
         dataSet.Tables.Add(dt)
         dataSet.Tables.Add(dtDetail)
-        dataSet.Relations.Add("NPWO", dt.Columns("IDB"), dtDetail.Columns("IDB1"))
+        dataSet.Relations.Add("NPWO", dt.Columns("Group ID"), dtDetail.Columns("Group ID"))
 
         'Grid.DataSource = dt
         Grid.DataSource = dataSet
         Grid.DataMember = "Master"
+        'Grid.DataMember = "Detail"
         GridView1.OptionsView.ShowAutoFilterRow = False
 
 
@@ -143,9 +143,6 @@ Public Class Frm_Npwo_Detail1
                 End If
 
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
-                'TNpwo_No.Enabled = False
-                'TCustomer.Enabled = False
-                'TModel.Enabled = False
                 Me.Text = "NPWO FORM -> " & fs_Code
             Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
@@ -235,14 +232,18 @@ Public Class Frm_Npwo_Detail1
             If fs_Code <> "" Then
                 Cursor.Current = Cursors.WaitCursor
 
-                'Dim DtGridNPWO As New DataTable
                 dt = fc_Class.Get_Detail_Npwo(NPwo_)
-                Grid.DataSource = dt
+                dtDetail = fc_Class.Get_Detail1_Npwo(NPwo_)
 
-                'dtBayangan = fc_Class.Get_Detail1_Npwo(NPwo_)
-                'GridBayangan.DataSource = dtBayangan
 
-                Cursor.Current = Cursors.Default
+                dt.TableName = "Master1"
+                dtDetail.TableName = "Detail1"
+                dataSet.Tables.Add(dt)
+                dataSet.Tables.Add(dtDetail)
+                dataSet.Relations.Add("NPWO1", dt.Columns("Group ID"), dtDetail.Columns("Group ID"))
+                Grid.DataSource = dataSet
+                Grid.DataMember = "Master1"
+
             Else
                 'Code
             End If
@@ -283,6 +284,9 @@ Public Class Frm_Npwo_Detail1
                     TNpwo_No.EditValue = fc_Class.H_No_Npwo
                 End If
 
+                dataSet.Clear()
+                Grid.DataSource = dataSet
+                Grid.Refresh()
 
             End If
             Cursor.Current = Cursors.Default
@@ -293,6 +297,7 @@ Public Class Frm_Npwo_Detail1
     End Sub
 
     Private Sub BDetail_Click(sender As Object, e As EventArgs) Handles BDetail.Click
+
 
         FormDetail = 1
         CallForm(TNoNpp.EditValue, "")
@@ -382,14 +387,6 @@ Public Class Frm_Npwo_Detail1
                             MessageBoxDefaultButton.Button1)
                 Exit Sub
 
-                'ElseIf GridView2.RowCount = 0 Then
-
-                '    MessageBox.Show("Please Fill Grid 2 ", "Warning",
-                '                MessageBoxButtons.OK,
-                '                MessageBoxIcon.Exclamation,
-                '                MessageBoxDefaultButton.Button1)
-                '    Exit Sub
-
             Else
 
                 For i As Integer = 0 To GridView1.RowCount - 1
@@ -440,7 +437,7 @@ Public Class Frm_Npwo_Detail1
                     Fc_Clas_Col_Detail = New Col_Cls_Npwo_Detail_NPWO
                     With Fc_Clas_Col_Detail
                         .Join = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
-
+                        .GroupID = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                         .No_Npwo = TNpwo_No.EditValue
                         .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
                         .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
@@ -469,38 +466,39 @@ Public Class Frm_Npwo_Detail1
                 'Colletion Detail_1
 
                 fc_Class.Collection_Detail_1.Clear()
-                'For i As Integer = 0 To GridView2.RowCount - 1
+                For i As Integer = 0 To dtDetail.Rows.Count - 1
 
-                '    Fc_Clas_Col_Detail_1 = New Col_Cls_Npwo_Detail_1_NPWO
-                '    With Fc_Clas_Col_Detail_1
+                    Fc_Clas_Col_Detail_1 = New Col_Cls_Npwo_Detail_1_NPWO
+                    With Fc_Clas_Col_Detail_1
 
-                '        .Join = Convert.ToString(GridView2.GetRowCellValue(i, "ID"))
+                        .Join = Convert.ToString(dtDetail.Rows(i).Item("ID"))
 
-                '        .No_Npwo = TNpwo_No.EditValue
-                '        .ID = Convert.ToString(GridView2.GetRowCellValue(i, "ID"))
-                '        .Part_No = Convert.ToString(GridView2.GetRowCellValue(i, "Part No"))
-                '        .Part_Name = Convert.ToString(GridView2.GetRowCellValue(i, "Part Name"))
-                '        .Machine = Convert.ToString(GridView2.GetRowCellValue(i, "Machine"))
-                '        .Cycle_Time = Convert.ToDouble(GridView2.GetRowCellValue(i, "C/T"))
-                '        .Cavity = Convert.ToString(GridView2.GetRowCellValue(i, "Cav"))
-                '        .Weight = Convert.ToDouble(GridView2.GetRowCellValue(i, "Weight"))
-                '        .Qty_Mold = Convert.ToDouble(GridView2.GetRowCellValue(i, "Qty Mold"))
-                '        .Material_Resin = Convert.ToString(GridView2.GetRowCellValue(i, "Material"))
-                '        .Injection = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Inj"))
-                '        .Painting = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Painting"))
-                '        .Chrome = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Chrome"))
-                '        .Vibration = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Vibration"))
-                '        .Assy = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Assy"))
-                '        .Ultrasonic = Convert.ToBoolean(GridView2.GetRowCellValue(i, "Ultrasonic"))
-                '        .StatusMold = Convert.ToString(GridView2.GetRowCellValue(i, "Status Mold"))
-                '        .OrderMonth = Convert.ToInt32(GridView2.GetRowCellValue(i, "Order Month"))
-                '        .LOI_Number = Convert.ToString(GridView2.GetRowCellValue(i, "LOI"))
-                '        .Rev = 0
+                        .No_Npwo = TNpwo_No.EditValue
+                        .ID = Convert.ToString(dtDetail.Rows(i).Item("ID"))
+                        .Part_No = Convert.ToString(dtDetail.Rows(i).Item("Part No"))
+                        .Part_Name = Convert.ToString(dtDetail.Rows(i).Item("Part Name"))
+                        .Machine = Convert.ToString(dtDetail.Rows(i).Item("Machine"))
+                        .Cycle_Time = Convert.ToDouble(dtDetail.Rows(i).Item("C/T"))
+                        .Cavity = Convert.ToString(dtDetail.Rows(i).Item("Cav"))
+                        .Weight = Convert.ToDouble(dtDetail.Rows(i).Item("Weight"))
+                        .Qty_Mold = Convert.ToDouble(dtDetail.Rows(i).Item("Qty Mold"))
+                        .Material_Resin = Convert.ToString(dtDetail.Rows(i).Item("Material"))
+                        .Injection = Convert.ToBoolean(dtDetail.Rows(i).Item("Inj"))
+                        .Painting = Convert.ToBoolean(dtDetail.Rows(i).Item("Painting"))
+                        .Chrome = Convert.ToBoolean(dtDetail.Rows(i).Item("Chrome"))
+                        .Vibration = Convert.ToBoolean(dtDetail.Rows(i).Item("Vibration"))
+                        .Assy = Convert.ToBoolean(dtDetail.Rows(i).Item("Assy"))
+                        .Ultrasonic = Convert.ToBoolean(dtDetail.Rows(i).Item("Ultrasonic"))
+                        .StatusMold = Convert.ToString(dtDetail.Rows(i).Item("Status Mold"))
+                        .OrderMonth = Convert.ToInt32(dtDetail.Rows(i).Item("Order Month"))
+                        .LOI_Number = Convert.ToString(dtDetail.Rows(i).Item("LOI"))
+                        .GroupID = Convert.ToString(dtDetail.Rows(i).Item("Group ID"))
+                        .Rev = 0
 
-                '    End With
-                '    fc_Class.Collection_Detail_1.Add(Fc_Clas_Col_Detail_1)
+                    End With
+                    fc_Class.Collection_Detail_1.Add(Fc_Clas_Col_Detail_1)
 
-                'Next
+                Next
 
                 fc_Class.Insert(TNpwo_No.EditValue)
                 bs_Filter = gh_Common.GroupID
@@ -712,4 +710,6 @@ Public Class Frm_Npwo_Detail1
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
     End Sub
+
+
 End Class
