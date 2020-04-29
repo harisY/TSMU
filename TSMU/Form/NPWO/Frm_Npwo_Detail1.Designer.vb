@@ -21,29 +21,12 @@ Partial Class Frm_Npwo_Detail1
     Private Sub InitializeComponent()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TPartNo = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PartName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Machine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -90,12 +73,14 @@ Partial Class Frm_Npwo_Detail1
         Me.TCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
-        Me.TTargetDr = New DevExpress.XtraEditors.DateEdit()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TT0 = New DevExpress.XtraEditors.DateEdit()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.TT2 = New DevExpress.XtraEditors.DateEdit()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.TT1 = New DevExpress.XtraEditors.DateEdit()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TMp = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TMp = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,151 +98,28 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT0.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT0.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn13, Me.GridColumn12, Me.GridColumn11, Me.GridColumn10, Me.GridColumn9, Me.GridColumn8, Me.GridColumn7, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn2, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2})
         Me.GridView2.GridControl = Me.Grid
         Me.GridView2.Name = "GridView2"
         '
-        'GridColumn22
-        '
-        Me.GridColumn22.FieldName = "Part No"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 0
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.FieldName = "ID"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 1
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.FieldName = "IDB1"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.FieldName = "Part Name"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.FieldName = "Machine"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.FieldName = "C/T"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.FieldName = "CAV"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.FieldName = "Weight"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.FieldName = "Qty Mold"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.FieldName = "Material"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 9
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.FieldName = "Inj"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 10
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.FieldName = "Painting"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 11
-        '
         'GridColumn2
         '
-        Me.GridColumn2.FieldName = "Chrome"
+        Me.GridColumn2.FieldName = "Part No"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 12
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.FieldName = "Assy"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 13
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.FieldName = "Status Mold"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 14
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.FieldName = "Forecast"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 15
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.FieldName = "Ultrasonic"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 16
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.FieldName = "Vibration"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 17
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.FieldName = "Order Month"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 18
+        Me.GridColumn2.VisibleIndex = 0
         '
         'Grid
         '
@@ -277,7 +139,7 @@ Partial Class Frm_Npwo_Detail1
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.QtyMold, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.LOI, Me.IDB, Me.GridColumn17})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.GridColumn1, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.QtyMold, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.LOI, Me.IDB, Me.GridColumn17})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -289,22 +151,35 @@ Partial Class Frm_Npwo_Detail1
         Me.PartNo.ColumnEdit = Me.TPartNo
         Me.PartNo.FieldName = "Part No"
         Me.PartNo.Name = "PartNo"
+        Me.PartNo.OptionsColumn.AllowEdit = False
         Me.PartNo.Visible = True
         Me.PartNo.VisibleIndex = 0
-        Me.PartNo.Width = 185
+        Me.PartNo.Width = 158
         '
         'TPartNo
         '
         Me.TPartNo.AutoHeight = False
         Me.TPartNo.Name = "TPartNo"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.FieldName = "Type"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        '
         'PartName
         '
         Me.PartName.FieldName = "Part Name"
         Me.PartName.Name = "PartName"
+        Me.PartName.OptionsColumn.AllowEdit = False
         Me.PartName.Visible = True
         Me.PartName.VisibleIndex = 1
-        Me.PartName.Width = 198
+        Me.PartName.Width = 178
         '
         'Machine
         '
@@ -315,7 +190,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Machine.FieldName = "Machine"
         Me.Machine.Name = "Machine"
         Me.Machine.Visible = True
-        Me.Machine.VisibleIndex = 2
+        Me.Machine.VisibleIndex = 3
         Me.Machine.Width = 65
         '
         'CT
@@ -327,7 +202,7 @@ Partial Class Frm_Npwo_Detail1
         Me.CT.FieldName = "C/T"
         Me.CT.Name = "CT"
         Me.CT.Visible = True
-        Me.CT.VisibleIndex = 3
+        Me.CT.VisibleIndex = 4
         Me.CT.Width = 52
         '
         'Cav
@@ -339,8 +214,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Cav.FieldName = "Cav"
         Me.Cav.Name = "Cav"
         Me.Cav.Visible = True
-        Me.Cav.VisibleIndex = 4
-        Me.Cav.Width = 50
+        Me.Cav.VisibleIndex = 5
+        Me.Cav.Width = 43
         '
         'Weight
         '
@@ -351,8 +226,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Weight.FieldName = "Weight"
         Me.Weight.Name = "Weight"
         Me.Weight.Visible = True
-        Me.Weight.VisibleIndex = 5
-        Me.Weight.Width = 83
+        Me.Weight.VisibleIndex = 6
+        Me.Weight.Width = 62
         '
         'QtyMold
         '
@@ -363,8 +238,8 @@ Partial Class Frm_Npwo_Detail1
         Me.QtyMold.FieldName = "Qty Mold"
         Me.QtyMold.Name = "QtyMold"
         Me.QtyMold.Visible = True
-        Me.QtyMold.VisibleIndex = 6
-        Me.QtyMold.Width = 69
+        Me.QtyMold.VisibleIndex = 7
+        Me.QtyMold.Width = 56
         '
         'Material
         '
@@ -375,8 +250,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Material.FieldName = "Material"
         Me.Material.Name = "Material"
         Me.Material.Visible = True
-        Me.Material.VisibleIndex = 7
-        Me.Material.Width = 95
+        Me.Material.VisibleIndex = 8
+        Me.Material.Width = 62
         '
         'Inj
         '
@@ -387,7 +262,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Inj.FieldName = "Inj"
         Me.Inj.Name = "Inj"
         Me.Inj.Visible = True
-        Me.Inj.VisibleIndex = 8
+        Me.Inj.VisibleIndex = 9
+        Me.Inj.Width = 45
         '
         'Painting
         '
@@ -398,7 +274,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Painting.FieldName = "Painting"
         Me.Painting.Name = "Painting"
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 9
+        Me.Painting.VisibleIndex = 10
+        Me.Painting.Width = 50
         '
         'Chrome
         '
@@ -409,8 +286,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Chrome.FieldName = "Chrome"
         Me.Chrome.Name = "Chrome"
         Me.Chrome.Visible = True
-        Me.Chrome.VisibleIndex = 10
-        Me.Chrome.Width = 81
+        Me.Chrome.VisibleIndex = 11
+        Me.Chrome.Width = 53
         '
         'Assy
         '
@@ -421,7 +298,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Assy.FieldName = "Assy"
         Me.Assy.Name = "Assy"
         Me.Assy.Visible = True
-        Me.Assy.VisibleIndex = 11
+        Me.Assy.VisibleIndex = 12
+        Me.Assy.Width = 41
         '
         'StatusMold
         '
@@ -432,8 +310,8 @@ Partial Class Frm_Npwo_Detail1
         Me.StatusMold.FieldName = "Status Mold"
         Me.StatusMold.Name = "StatusMold"
         Me.StatusMold.Visible = True
-        Me.StatusMold.VisibleIndex = 14
-        Me.StatusMold.Width = 103
+        Me.StatusMold.VisibleIndex = 15
+        Me.StatusMold.Width = 82
         '
         'OrderMonth
         '
@@ -444,8 +322,8 @@ Partial Class Frm_Npwo_Detail1
         Me.OrderMonth.FieldName = "Order Month"
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.Visible = True
-        Me.OrderMonth.VisibleIndex = 15
-        Me.OrderMonth.Width = 96
+        Me.OrderMonth.VisibleIndex = 16
+        Me.OrderMonth.Width = 81
         '
         'Ultrasonic
         '
@@ -456,8 +334,8 @@ Partial Class Frm_Npwo_Detail1
         Me.Ultrasonic.FieldName = "Ultrasonic"
         Me.Ultrasonic.Name = "Ultrasonic"
         Me.Ultrasonic.Visible = True
-        Me.Ultrasonic.VisibleIndex = 12
-        Me.Ultrasonic.Width = 82
+        Me.Ultrasonic.VisibleIndex = 13
+        Me.Ultrasonic.Width = 57
         '
         'LOI
         '
@@ -468,21 +346,23 @@ Partial Class Frm_Npwo_Detail1
         Me.LOI.FieldName = "LOI"
         Me.LOI.Name = "LOI"
         Me.LOI.Visible = True
-        Me.LOI.VisibleIndex = 16
+        Me.LOI.VisibleIndex = 17
+        Me.LOI.Width = 77
         '
         'IDB
         '
         Me.IDB.FieldName = "Group ID"
         Me.IDB.Name = "IDB"
         Me.IDB.Visible = True
-        Me.IDB.VisibleIndex = 17
+        Me.IDB.VisibleIndex = 18
         '
         'GridColumn17
         '
         Me.GridColumn17.FieldName = "Vibration"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 13
+        Me.GridColumn17.VisibleIndex = 14
+        Me.GridColumn17.Width = 55
         '
         'GroupBox3
         '
@@ -758,19 +638,21 @@ Partial Class Frm_Npwo_Detail1
         '
         'B_AddRows
         '
-        Me.B_AddRows.Location = New System.Drawing.Point(115, 89)
+        Me.B_AddRows.Location = New System.Drawing.Point(292, 94)
         Me.B_AddRows.Name = "B_AddRows"
-        Me.B_AddRows.Size = New System.Drawing.Size(131, 23)
+        Me.B_AddRows.Size = New System.Drawing.Size(65, 23)
         Me.B_AddRows.TabIndex = 8
         Me.B_AddRows.Text = "Add"
         Me.B_AddRows.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TTargetQuot)
-        Me.GroupBox1.Controls.Add(Me.TTargetDr)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.TT0)
         Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Controls.Add(Me.TT2)
         Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.TT1)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.B_AddRows)
         Me.GroupBox1.Controls.Add(Me.TMp)
@@ -781,59 +663,103 @@ Partial Class Frm_Npwo_Detail1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Schedule"
         '
-        'TTargetQuot
+        'Label12
         '
-        Me.TTargetQuot.EditValue = Nothing
-        Me.TTargetQuot.Location = New System.Drawing.Point(115, 65)
-        Me.TTargetQuot.Name = "TTargetQuot"
-        Me.TTargetQuot.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetQuot.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetQuot.Size = New System.Drawing.Size(131, 20)
-        Me.TTargetQuot.TabIndex = 41
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 99)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(48, 13)
+        Me.Label12.TabIndex = 43
+        Me.Label12.Text = "MassPro"
         '
-        'TTargetDr
+        'TT0
         '
-        Me.TTargetDr.EditValue = Nothing
-        Me.TTargetDr.Location = New System.Drawing.Point(115, 43)
-        Me.TTargetDr.Name = "TTargetDr"
-        Me.TTargetDr.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetDr.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetDr.Size = New System.Drawing.Size(131, 20)
-        Me.TTargetDr.TabIndex = 40
+        Me.TT0.EditValue = Nothing
+        Me.TT0.Location = New System.Drawing.Point(115, 16)
+        Me.TT0.Name = "TT0"
+        Me.TT0.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT0.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT0.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT0.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT0.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT0.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT0.Properties.Mask.EditMask = ""
+        Me.TT0.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT0.Size = New System.Drawing.Size(131, 20)
+        Me.TT0.TabIndex = 42
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 72)
+        Me.Label9.Location = New System.Drawing.Point(6, 73)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(87, 13)
-        Me.Label9.TabIndex = 39
-        Me.Label9.Text = "Target Quotation"
+        Me.Label9.Size = New System.Drawing.Size(20, 13)
+        Me.Label9.TabIndex = 41
+        Me.Label9.Text = "T2"
+        '
+        'TT2
+        '
+        Me.TT2.EditValue = Nothing
+        Me.TT2.Location = New System.Drawing.Point(115, 69)
+        Me.TT2.Name = "TT2"
+        Me.TT2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT2.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT2.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT2.Properties.Mask.EditMask = ""
+        Me.TT2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT2.Size = New System.Drawing.Size(131, 20)
+        Me.TT2.TabIndex = 40
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(6, 48)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 13)
-        Me.Label8.TabIndex = 38
-        Me.Label8.Text = "Target DR"
+        Me.Label8.Size = New System.Drawing.Size(20, 13)
+        Me.Label8.TabIndex = 39
+        Me.Label8.Text = "T1"
+        '
+        'TT1
+        '
+        Me.TT1.EditValue = Nothing
+        Me.TT1.Location = New System.Drawing.Point(115, 44)
+        Me.TT1.Name = "TT1"
+        Me.TT1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT1.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT1.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT1.Properties.Mask.EditMask = ""
+        Me.TT1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT1.Size = New System.Drawing.Size(131, 20)
+        Me.TT1.TabIndex = 38
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(6, 23)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(48, 13)
+        Me.Label7.Size = New System.Drawing.Size(20, 13)
         Me.Label7.TabIndex = 37
-        Me.Label7.Text = "MassPro"
+        Me.Label7.Text = "T0"
         '
         'TMp
         '
-        Me.TMp.Location = New System.Drawing.Point(115, 19)
+        Me.TMp.EditValue = Nothing
+        Me.TMp.Location = New System.Drawing.Point(115, 95)
         Me.TMp.Name = "TMp"
         Me.TMp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TMp.Properties.Items.AddRange(New Object() {"2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035"})
+        Me.TMp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TMp.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TMp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TMp.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TMp.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TMp.Properties.Mask.EditMask = ""
+        Me.TMp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.TMp.Size = New System.Drawing.Size(131, 20)
         Me.TMp.TabIndex = 36
         '
@@ -871,10 +797,13 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT0.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT0.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -917,13 +846,8 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents CBDrawing As CheckBox
     Friend WithEvents TCategory As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TTargetQuot As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TTargetDr As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents B_AddRows As Button
-    Friend WithEvents TMp As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Label10 As Label
     Friend WithEvents TNoNpp As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BDetail As Button
@@ -938,23 +862,13 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents Label11 As Label
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TT0 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TT2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TT1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TMp As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

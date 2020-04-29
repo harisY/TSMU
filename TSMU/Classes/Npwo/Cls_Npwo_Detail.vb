@@ -13,10 +13,10 @@ Public Class Cls_Npwo_Detail
     Public Property H_Customer_Name As String
     Public Property H_Order_Month As Integer
     Public Property H_Order_Max_Month As Integer
-    Public Property H_T0 As String
-    Public Property H_T1 As String
-    Public Property H_T2 As String
-    Public Property H_MP As String
+    Public Property H_T0 As Date
+    Public Property H_T1 As Date
+    Public Property H_T2 As Date
+    Public Property H_MP As Date
     Public Property H_Drawing As Boolean
     Public Property H_CAD_Data As Boolean
     Public Property H_Sample As Boolean
@@ -39,61 +39,61 @@ Public Class Cls_Npwo_Detail
     Public Property Collection_Detail_1() As New Collection(Of Col_Cls_Npwo_Detail_1_NPWO)
 
 
-
-
-
-
-
-    Public Function NpwoReport() As DataSet
+    Public Function NpwoReport(No As String, Rev As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "SELECT [NPP_Head].[No_NPP]
-                  ,[NPP_Head].[Issue_Date]
-                  ,[NPP_Head].[Model_Name]
-                  ,[NPP_Head].[Customer_Name]
-                  ,[NPP_Head].[Order_Month]
-                  ,[NPP_Head].[Order_Max_Month]
-                  ,[NPP_Head].[T0]
-                  ,[NPP_Head].[T1]
-                  ,[NPP_Head].[T2]
-                  ,[NPP_Head].[MP]
-                  ,[NPP_Head].[Drawing]
-                  ,[NPP_Head].[CAD_Data]
-                  ,[NPP_Head].[Sample]
-                  ,[NPP_Head].[Special_Technical_Requires]
-                  ,[NPP_Head].[Category_Class]
-                  ,[NPP_Head].[Factory_Tsc_TNG]
-                  ,[NPP_Head].[Factory_Tsc_CKR]
-                  ,[NPP_Head].[Factory_Tsc_0]
-                  ,[NPP_Head].[Factory_Tsc_1]
-                  ,[NPP_Head].[CreatedBy]
-                  ,[NPP_Head].[CreatedDate]
-                  ,[NPP_Head].[UpdatedBy]
-                  ,[NPP_Head].[UpdatedDate]
-                  ,[NPP_Head].[Approve]
-                  ,[NPP_Detail].[Part_No]
-                  ,[NPP_Detail].[Part_Name]
-                  ,[NPP_Detail].[Machine]
-                  ,[NPP_Detail].[Cycle_Time]
-                  ,[NPP_Detail].[Cavity]
-                  ,[NPP_Detail].[Weight]
-                  ,[NPP_Detail].[Qty_Mold]
-                  ,[NPP_Detail].[Material_Resin]
-                  ,[NPP_Detail].[Injection]
-                  ,[NPP_Detail].[Painting]
-                  ,[NPP_Detail].[Chrome]
-                  ,[NPP_Detail].[Assy]
-                  ,[NPP_Detail].[StatusMold]
-                  ,[NPP_Detail].[Order_Month]
-                  ,[NPP_Detail].[LOI_Number]
-                  ,[NPP_Detail].[Forecast]
-                  ,[NPP_Detail].[Rev]
-        From [NPP_Head] inner Join [NPP_Detail] On
-                    [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
-		            Where [NPP_Head].[No_NPP] = '" & H_No_Npwo & "'"
+        query = "SELECT [NPWO_Head].[No_NPP]
+                  ,[Npwo_Head].[No_Npwo]
+                  ,[Npwo_Head].[Issue_Date]
+                  ,[Npwo_Head].[Model_Name]
+                  ,[Npwo_Head].[Customer_Name]
+                  ,[Npwo_Head].[Order_Month]
+                  ,[Npwo_Head].[Order_Max_Month]
+                  ,[Npwo_Head].[T0]
+                  ,[Npwo_Head].[T1]
+                  ,[Npwo_Head].[T2]
+                  ,[Npwo_Head].[MP]
+                  ,[Npwo_Head].[Drawing]
+                  ,[Npwo_Head].[CAD_Data]
+                  ,[Npwo_Head].[Sample]
+                  ,[Npwo_Head].[Special_Technical_Requires]
+                  ,[Npwo_Head].[Category_Class]
+                  ,[Npwo_Head].[Factory_Tsc_TNG]
+                  ,[Npwo_Head].[Factory_Tsc_CKR]
+                  ,[Npwo_Head].[Factory_Tsc_0]
+                  ,[Npwo_Head].[Factory_Tsc_1]
+                  ,[Npwo_Head].[CreatedBy]
+                  ,[Npwo_Head].[CreatedDate]
+                  ,[Npwo_Head].[UpdatedBy]
+                  ,[Npwo_Head].[UpdatedDate]
+                  ,[Npwo_Head].[Approve]
+                  ,[NpwoDetail1].[Part_No]
+                  ,[NpwoDetail1].[Part_Name]
+                  ,[NpwoDetail1].[Machine]
+                  ,[NpwoDetail1].[Cycle_Time]
+                  ,[NpwoDetail1].[Cavity]
+                  ,[NpwoDetail1].[Weight]
+                  ,[NpwoDetail1].[Qty_Mold]
+                  ,[NpwoDetail1].[Material_Resin]
+                  ,[NpwoDetail1].[Injection]
+                  ,[NpwoDetail1].[Painting]
+                  ,[NpwoDetail1].[Chrome]
+                  ,[NpwoDetail1].[Assy]
+                  ,[NpwoDetail1].[Ultrasonic]
+                  ,[NpwoDetail1].[Vibration]
+                  ,[NpwoDetail1].[StatusMold]
+                  ,[NpwoDetail1].[Order_Month]
+                  ,[NpwoDetail1].[LOI_Number]
+                  ,[NpwoDetail1].[Forecast]
+                  ,[NpwoDetail1].[GroupID]
+                  ,[NpwoDetail1].[Type]
+                  ,[NpwoDetail1].[Rev]
+        From [NPWO_Head] inner Join [NpwoDetail1] On
+        [NPWO_Head].[No_Npwo] = [NpwoDetail1].No_Npwo
+		            Where [NPWO_Head].[No_Npwo] = '" & No & "'"
 
         Dim ds As New dsLaporan
-        ds = GetDsReport(query, "NPP")
+        ds = GetDsReport(query, "NPWO")
         Return ds
 
     End Function
@@ -230,6 +230,9 @@ Public Class Cls_Npwo_Detail
                                             H_Customer_Name,
                                             H_Order_Month,
                                             H_Order_Max_Month,
+                                            H_T0,
+                                            H_T1,
+                                            H_T2,
                                             H_MP,
                                             H_Drawing,
                                             H_CAD_Data,
@@ -250,7 +253,6 @@ Public Class Cls_Npwo_Detail
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
 
-                                Join1 = .Join
                                 AutoIncrement = .Insert_Npwo_Detail(NPWO_)
 
                             End With
@@ -259,11 +261,7 @@ Public Class Cls_Npwo_Detail
 
                         For j As Integer = 0 To Collection_Detail_1.Count - 1
                             With Collection_Detail_1(j)
-                                'Join2 = .Join
-
-                                'If Join1 = Join2 Then
                                 .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
-                                'End If
 
                             End With
                         Next
@@ -291,7 +289,10 @@ Public Class Cls_Npwo_Detail
                                         _H_Customer_Name As String,
                                         _H_Order_Month As Integer,
                                         _H_Order_Max_Month As Integer,
-                                        _H_MP As String,
+                                        _H_T0 As Date,
+                                        _H_T1 As Date,
+                                        _H_T2 As Date,
+                                        _H_MP As Date,
                                         _H_Drawing As Boolean,
                                         _H_CAD_Data As Boolean,
                                         _H_Sample As Boolean,
@@ -307,21 +308,21 @@ Public Class Cls_Npwo_Detail
 
         Try
 
-            If _H_T0 = "" Then
-                _H_T0 = DBNull.Value.ToString
-            End If
+            'If _H_T0 = "" Then
+            '    _H_T0 = DBNull.Value.ToString
+            'End If
 
-            If _H_T1 = "" Then
-                _H_T1 = DBNull.Value.ToString
-            End If
+            'If _H_T1 = "" Then
+            '    _H_T1 = DBNull.Value.ToString
+            'End If
 
-            If _H_T2 = "" Then
-                _H_T2 = DBNull.Value.ToString
-            End If
+            'If _H_T2 = "" Then
+            '    _H_T2 = DBNull.Value.ToString
+            'End If
 
 
             Dim query As String = "[NPWO_Insert_Npwo_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(18) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -329,7 +330,7 @@ Public Class Cls_Npwo_Detail
             pParam(4) = New SqlClient.SqlParameter("@Customer_Name", SqlDbType.VarChar)
             pParam(5) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(6) = New SqlClient.SqlParameter("@Order_Max_Month", SqlDbType.Int)
-            pParam(7) = New SqlClient.SqlParameter("@MP", SqlDbType.VarChar)
+            pParam(7) = New SqlClient.SqlParameter("@MP", SqlDbType.Date)
             pParam(8) = New SqlClient.SqlParameter("@Drawing", SqlDbType.Bit)
             pParam(9) = New SqlClient.SqlParameter("@CAD_Data", SqlDbType.Bit)
             pParam(10) = New SqlClient.SqlParameter("@Sample", SqlDbType.Bit)
@@ -341,6 +342,10 @@ Public Class Cls_Npwo_Detail
             pParam(16) = New SqlClient.SqlParameter("@CreatedDate ", SqlDbType.Date)
             pParam(17) = New SqlClient.SqlParameter("@Rev ", SqlDbType.Int)
             pParam(18) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
+            pParam(19) = New SqlClient.SqlParameter("@T0", SqlDbType.Date)
+            pParam(20) = New SqlClient.SqlParameter("@T1", SqlDbType.Date)
+            pParam(21) = New SqlClient.SqlParameter("@T2", SqlDbType.Date)
+
 
 
             pParam(0).Value = _H_No_Npwo
@@ -362,6 +367,9 @@ Public Class Cls_Npwo_Detail
             pParam(16).Value = _H_CreatedDate
             pParam(17).Value = _H_Revisi
             pParam(18).Value = H_No_NPP
+            pParam(19).Value = H_T0
+            pParam(20).Value = H_T1
+            pParam(21).Value = H_T2
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -407,25 +415,41 @@ Public Class Cls_Npwo_Detail
                         Dim Join1 As String = ""
                         Dim Join2 As String = ""
 
+                        'For i As Integer = 0 To Collection_Detail.Count - 1
+                        '    With Collection_Detail(i)
+
+                        '        Join1 = .Join
+                        '        AutoIncrement = .Insert_Npwo_Detail(NPWO_)
+
+                        '    End With
+
+                        '    For j As Integer = 0 To Collection_Detail_1.Count - 1
+                        '        With Collection_Detail_1(j)
+                        '            Join2 = .Join
+
+                        '            If Join1 = Join2 Then
+                        '                .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
+                        '            End If
+
+                        '        End With
+                        '    Next
+
+                        'Next
+
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
 
-                                Join1 = .Join
                                 AutoIncrement = .Insert_Npwo_Detail(NPWO_)
 
                             End With
 
-                            For j As Integer = 0 To Collection_Detail_1.Count - 1
-                                With Collection_Detail_1(j)
-                                    Join2 = .Join
+                        Next
 
-                                    If Join1 = Join2 Then
-                                        .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
-                                    End If
+                        For j As Integer = 0 To Collection_Detail_1.Count - 1
+                            With Collection_Detail_1(j)
+                                .Insert_Npwo_Detail_1(NPWO_, AutoIncrement)
 
-                                End With
-                            Next
-
+                            End With
                         Next
 
 
@@ -733,8 +757,11 @@ Public Class Cls_Npwo_Detail
     Public Function GetNoNpp() As DataTable
         Try
 
-            Dim ls_SP As String = "SELECT [No_NPP] as Value
-                                          FROM [NPP_Head] order by RIGHT(No_NPP,3) asc"
+            Dim ls_SP As String = "SELECT A.[No_NPP] as Value
+                                        FROM [NPP_Head] A Left join [NPWO_HEAD] B 
+                                        ON A.[No_NPP] = B.[No_NPP]
+                                        where B.No_Npwo IS NULL
+                                        order by RIGHT(A.No_NPP,3) asc"
 
             Dim dtTable As New DataTable
             dtTable = GetDataTableByCommand(ls_SP)
@@ -796,6 +823,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
     Public Property Weight As Double
     Public Property Forecast As Integer
     Public Property OrderMonth As Integer
+    Public Property Type As String
 
     Public Property Rev As Integer
 
@@ -807,7 +835,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
         Try
 
             Dim query As String = "[NPWO_Insert_Npwo_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -829,6 +857,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
             pParam(18) = New SqlClient.SqlParameter("@Ultrasonic", SqlDbType.Bit)
             pParam(19) = New SqlClient.SqlParameter("@vibration", SqlDbType.Bit)
             pParam(20) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
+            pParam(21) = New SqlClient.SqlParameter("@Type", SqlDbType.VarChar)
 
 
 
@@ -853,6 +882,7 @@ Public Class Col_Cls_Npwo_Detail_NPWO
             pParam(18).Value = Ultrasonic
             pParam(19).Value = Vibration
             pParam(20).Value = GroupID
+            pParam(21).Value = Type
 
 
             Dim dtTable As New DataTable
@@ -900,6 +930,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
     Public Property Forecast As Integer
     Public Property OrderMonth As Integer
     Public Property GroupID As String
+    Public Property Type As String
 
     Public Property Rev As Integer
 
@@ -932,8 +963,8 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(18) = New SqlClient.SqlParameter("@NoUrut", SqlDbType.Int)
             pParam(19) = New SqlClient.SqlParameter("@Ultrasonic", SqlDbType.Bit)
             pParam(20) = New SqlClient.SqlParameter("@Vibration", SqlDbType.Bit)
-            pParam(21) = New SqlClient.SqlParameter("@ID", SqlDbType.VarChar)
-            pParam(22) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
+            pParam(21) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
+            pParam(22) = New SqlClient.SqlParameter("@Type", SqlDbType.VarChar)
 
             pParam(0).Value = _Npwo_No
             pParam(1).Value = Part_No
@@ -956,8 +987,8 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(18).Value = _NoUrut
             pParam(19).Value = Ultrasonic
             pParam(20).Value = Vibration
-            pParam(21).Value = ID
-            pParam(22).Value = GroupID
+            pParam(21).Value = GroupID
+            pParam(22).Value = Type
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)

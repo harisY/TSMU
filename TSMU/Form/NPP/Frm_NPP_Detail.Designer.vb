@@ -308,6 +308,8 @@ Partial Class Frm_NPP_Detail
         Me.GridColumn3.FieldName = "Group ID"
         Me.GridColumn3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 16
         '
         'GroupBox1
         '

@@ -98,6 +98,12 @@ Public Class Frm_Input_NPPDetail
             TMaterial.EditValue = ""
             TStatusMold.EditValue = ""
             TOrder.EditValue = order
+            TCt.EditValue = "0"
+
+            BNext.Enabled = False
+            BPrev.Enabled = False
+            BindingNavigator1.Enabled = False
+
         Else
             BAdd.Text = "Update"
             ' Dim dtB As DataTable
@@ -224,22 +230,22 @@ Public Class Frm_Input_NPPDetail
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
-                    .Item("Part No") = TPartNo.EditValue.Trim
-                    .Item("Part Name") = TPartName.EditValue.Trim
-                    .Item("Machine") = TMachine.EditValue.Trim
-                    .Item("C/T") = TCt.EditValue.Trim
-                    .Item("Cav") = TCav.EditValue.Trim
-                    .Item("Weight") = TWeight.EditValue.Trim
-                    .Item("Material") = TMaterial.EditValue.Trim
+                    .Item("Part No") = TPartNo.Text.Trim
+                    .Item("Part Name") = TPartName.Text.Trim
+                    .Item("Machine") = TMachine.Text.Trim
+                    .Item("C/T") = TCt.Text.Trim
+                    .Item("Cav") = TCav.Text.Trim
+                    .Item("Weight") = TWeight.Text.Trim
+                    .Item("Material") = TMaterial.Text.Trim
                     .Item("Inj") = CInjection.CheckState
                     .Item("Painting") = CPainting.CheckState
                     .Item("Chrome") = CChrome.CheckState
                     .Item("Assy") = CAssy.CheckState
                     .Item("Ultrasonic") = CAssy.CheckState
                     .Item("Vibration") = CbVibration.CheckState
-                    .Item("Status Mold") = TStatusMold.EditValue.Trim
-                    .Item("Order Month") = TOrder.EditValue.Trim
-                    .Item("Group ID") = TPartNo.EditValue.Trim
+                    .Item("Status Mold") = TStatusMold.Text.Trim
+                    .Item("Order Month") = TOrder.Text
+                    .Item("Group ID") = TPartNo.Text.Trim
 
                 End With
 
@@ -315,16 +321,7 @@ Public Class Frm_Input_NPPDetail
 
     End Sub
 
-    Private Sub TCt_KeyPress(sender As Object, e As KeyPressEventArgs)
 
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
-
-        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
-            e.Handled = True
-        End If
-
-    End Sub
 
     Private Sub TForecast_KeyPress(sender As Object, e As KeyPressEventArgs)
 
@@ -392,22 +389,11 @@ Public Class Frm_Input_NPPDetail
         e.KeyChar = Char.ToUpper(e.KeyChar)
     End Sub
 
-    Private Sub TMachine_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TMachine.KeyPress
-        e.KeyChar = Char.ToUpper(e.KeyChar)
-    End Sub
-
     Private Sub TCav_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCav.KeyPress
         e.KeyChar = Char.ToUpper(e.KeyChar)
     End Sub
 
-    Private Sub TCt_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TCt.KeyPress
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
 
-        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
-            e.Handled = True
-        End If
-    End Sub
 
     Private Sub BNext_Click(sender As Object, e As EventArgs) Handles BNext.Click
 
@@ -419,5 +405,14 @@ Public Class Frm_Input_NPPDetail
 
         BindingNavigator1.BindingSource.MovePrevious()
 
+    End Sub
+
+    Private Sub TCt_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCt.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
     End Sub
 End Class

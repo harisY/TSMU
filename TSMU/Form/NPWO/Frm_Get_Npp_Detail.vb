@@ -44,8 +44,8 @@ Public Class Frm_Get_Npp_Detail
                    ByVal _IsNew As Boolean,
                    ByRef _dt As DataTable,
                    ByRef _grid As GridControl,
-                   ByRef _dtBayangan As DataTable,
-                   ByRef _gridBayangan As GridControl)
+                   ByRef _dtDetail As DataTable,
+                   ByRef _grid1 As GridControl)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -65,9 +65,9 @@ Public Class Frm_Get_Npp_Detail
         Grid1 = _grid
         DtTabale = _dt
 
-        GridBayangan = _gridBayangan
+        GridBayangan = _grid1
 
-        dtDetail = _dtBayangan
+        dtDetail = _dtDetail
 
 
     End Sub
@@ -188,6 +188,7 @@ Public Class Frm_Get_Npp_Detail
                                     With MyNewRow
                                         .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
                                         .Item("Part No") = .Item("Part No") & GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString & " - "
+                                        .Item("Type") = "MOLD"
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
                                         .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
                                         .Item("Material") = GridView1.GetRowCellValue(j, GridView1.Columns("Material"))
@@ -209,6 +210,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Qty Mold") = "0"
                                         .Item("Ultrasonic") = ultra
                                         .Item("Vibration") = vibra
+                                        .Item("Type") = "MOLD"
 
                                     End With
 
@@ -230,7 +232,6 @@ Public Class Frm_Get_Npp_Detail
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail
                                         .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
-                                        .Item("ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part No") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
                                         .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
@@ -245,6 +246,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("C/T") = "0"
                                         .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
+                                        .Item("Type") = "PROCESS"
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)
@@ -293,6 +295,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Qty Mold") = "0"
                                         .Item("Ultrasonic") = ultra
                                         .Item("Vibration") = vibra
+                                        .Item("Type") = "MOLD"
                                     End With
 
                                 End If
@@ -312,7 +315,6 @@ Public Class Frm_Get_Npp_Detail
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail
                                         .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
-                                        .Item("ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part No") = GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
                                         .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
@@ -327,6 +329,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("C/T") = "0"
                                         .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
+                                        .Item("Type") = "PROCESS"
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)

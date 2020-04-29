@@ -181,8 +181,16 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
+        If TOrderMonth.Text = "" Then
+            MessageBox.Show("Please Fill Order Month",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        Else
+            CallForm()
+        End If
 
-        CallForm()
 
     End Sub
 
@@ -217,6 +225,7 @@ Public Class Frm_NPP_Detail
             Else
                 TRevisi.EditValue = "0"
                 TRevisiInformasi.EditValue = "New Model"
+                BSetGroup.Enabled = False
             End If
         Catch ex As Exception
             Throw
@@ -863,6 +872,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub BSetGroup_Click(sender As Object, e As EventArgs) Handles BSetGroup.Click
+
         CForm = 1
 
         CallForm()

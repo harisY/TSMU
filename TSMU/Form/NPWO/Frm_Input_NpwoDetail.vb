@@ -26,6 +26,7 @@ Public Class Frm_Input_NpwoDetail
     Dim Grid_V As DataGridView
     Dim IsNew As Boolean
     Dim DtTabale As DataTable
+    Dim DtDetail As DataTable
     Dim H_Order As String
 
     Private Sub Frm_Input_NpwoDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -36,10 +37,10 @@ Public Class Frm_Input_NpwoDetail
             TPartNo.EditValue = ""
             TPartName.EditValue = ""
             TMachine.EditValue = ""
-            TCT.EditValue = ""
+            TCT.EditValue = "0"
             TCav.EditValue = ""
             TWeight.EditValue = "0"
-            TQtyMold.EditValue = ""
+            TQtyMold.EditValue = "0"
             TMaterial.EditValue = ""
             CInjection.Checked = False
             CPainting.Checked = False
@@ -89,9 +90,10 @@ Public Class Frm_Input_NpwoDetail
                    ByVal _StatusMold As String,
                    ByVal _OrderMonth As String,
                    ByVal _Type As String,
-                    ByVal _LOI As String,
-                  ByVal _IsNew As Boolean,
+                   ByVal _LOI As String,
+                   ByVal _IsNew As Boolean,
                    ByRef _dt As DataTable,
+                   ByRef _dtDetail As DataTable,
                    ByRef _grid As GridControl)
 
         ' This call is required by the designer.
@@ -122,6 +124,7 @@ Public Class Frm_Input_NpwoDetail
         IsNew = _IsNew
         Grid = _grid
         DtTabale = _dt
+        DtDetail = _dtDetail
 
     End Sub
 
@@ -173,41 +176,78 @@ Public Class Frm_Input_NpwoDetail
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
-                    .Item("Part No") = TPartNo.EditValue.Trim
-                    .Item("Part Name") = TPartName.EditValue.Trim
-                    .Item("Machine") = TMachine.EditValue.Trim
-                    .Item("C/T") = TCT.EditValue.Trim
-                    .Item("Cav") = TCav.EditValue.Trim
-                    .Item("Weight") = TWeight.EditValue.Trim
-                    .Item("Qty Mold") = TQtyMold.EditValue.Trim
-                    .Item("Material") = TMaterial.EditValue.Trim
+                    .Item("Part No") = TPartNo.Text.Trim
+                    .Item("Part Name") = TPartName.Text.Trim
+                    .Item("Machine") = TMachine.Text.Trim
+                    .Item("C/T") = TCT.Text.Trim
+                    .Item("Cav") = TCav.Text.Trim
+                    .Item("Weight") = TWeight.Text.Trim
+                    .Item("Qty Mold") = TQtyMold.Text.Trim
+                    .Item("Material") = TMaterial.Text.Trim
                     .Item("Inj") = CInjection.CheckState
                     .Item("Painting") = CPainting.CheckState
                     .Item("Chrome") = CChrome.CheckState
                     .Item("Assy") = CAssy.CheckState
                     .Item("Ultrasonic") = CAssy.CheckState
                     .Item("Vibration") = CbVibration.CheckState
-                    .Item("Status Mold") = TStatusMold.EditValue.Trim
-                    .Item("Order Month") = TOrder.EditValue.Trim
-                    '.Item("LOI") = TLOI.EditValue.Trim
+                    .Item("Status Mold") = TStatusMold.Text.Trim
+                    .Item("Order Month") = TOrder.Text.Trim
+                    .Item("LOI") = TLOI.Text.Trim
+                    .Item("Group ID") = TPartNo.Text.Trim
+                    .Item("Type") = TType.Text.Trim
 
                 End With
 
 
                 DtTabale.Rows.Add(MyNewRow)
                 DtTabale.AcceptChanges()
+
+                Dim MyNewRowDetail As DataRow
+                MyNewRowDetail = DtDetail.NewRow
+                With MyNewRowDetail
+                    .Item("Part No") = TPartNo.Text.Trim
+                    .Item("Part Name") = TPartName.Text.Trim
+                    .Item("Machine") = TMachine.Text.Trim
+                    .Item("C/T") = TCT.Text.Trim
+                    .Item("Cav") = TCav.Text.Trim
+                    .Item("Weight") = TWeight.Text.Trim
+                    .Item("Qty Mold") = TQtyMold.Text.Trim
+                    .Item("Material") = TMaterial.Text.Trim
+                    .Item("Inj") = CInjection.CheckState
+                    .Item("Painting") = CPainting.CheckState
+                    .Item("Chrome") = CChrome.CheckState
+                    .Item("Assy") = CAssy.CheckState
+                    .Item("Ultrasonic") = CAssy.CheckState
+                    .Item("Vibration") = CbVibration.CheckState
+                    .Item("Status Mold") = TStatusMold.Text.Trim
+                    .Item("Order Month") = TOrder.Text.Trim
+                    .Item("LOI") = TLOI.Text.Trim
+                    .Item("Group ID") = TPartNo.Text.Trim
+                    .Item("Type") = TType.Text.Trim
+
+                End With
+
+
+                DtDetail.Rows.Add(MyNewRowDetail)
+                DtDetail.AcceptChanges()
+
                 TPartNo.EditValue = ""
                 TPartName.EditValue = ""
+                TMachine.EditValue = ""
+                TCT.EditValue = "0"
+                TCav.EditValue = ""
                 TWeight.EditValue = "0"
+                TQtyMold.EditValue = "0"
                 TMaterial.EditValue = ""
-                TStatusMold.EditValue = ""
-                CAssy.Checked = False
-                CbVibration.Checked = False
-                CPainting.Checked = False
-                CAssy.Checked = False
-                CChrome.Checked = False
                 CInjection.Checked = False
-                TOrder.EditValue = H_Order
+                CPainting.Checked = False
+                CChrome.Checked = False
+                CAssy.Checked = False
+                CUltrasonic.Checked = False
+                CbVibration.Checked = False
+                TStatusMold.EditValue = ""
+                TOrder.EditValue = "0"
+                TType.EditValue = ""
 
             End If
 
@@ -217,22 +257,23 @@ Public Class Frm_Input_NpwoDetail
             For i As Integer = 0 To DtTabale.Rows.Count - 1
                 If TPartNo.EditValue.Trim = DtTabale.Rows(i).Item("Part No") Then
                     With DtTabale.Rows(i)
-                        .Item("Part Name") = TPartName.EditValue.Trim
-                        .Item("Machine") = TMachine.EditValue.Trim
-                        .Item("C/T") = TCT.EditValue.Trim
-                        .Item("Cav") = TCav.EditValue.Trim
-                        .Item("Weight") = TWeight.EditValue.Trim
-                        .Item("Qty Mold") = TQtyMold.EditValue.Trim
-                        .Item("Material") = TMaterial.EditValue.Trim
+                        .Item("Part Name") = TPartName.Text.Trim
+                        .Item("Machine") = TMachine.Text.Trim
+                        .Item("C/T") = TCT.Text.Trim
+                        .Item("Cav") = TCav.Text.Trim
+                        .Item("Weight") = TWeight.Text.Trim
+                        .Item("Qty Mold") = TQtyMold.Text.Trim
+                        .Item("Material") = TMaterial.Text.Trim
                         .Item("Inj") = CInjection.CheckState
                         .Item("Painting") = CPainting.CheckState
                         .Item("Chrome") = CChrome.CheckState
                         .Item("Assy") = CAssy.CheckState
                         .Item("Ultrasonic") = CAssy.CheckState
                         .Item("Vibration") = CbVibration.CheckState
-                        .Item("Status Mold") = TStatusMold.EditValue.Trim
-                        .Item("Order Month") = TOrder.EditValue.Trim
-                        .Item("LOI") = TLOI.EditValue.Trim
+                        .Item("Status Mold") = TStatusMold.Text.Trim
+                        .Item("Order Month") = TOrder.Text.Trim
+                        .Item("LOI") = TLOI.Text.Trim
+                        .Item("Group ID") = TLOI.Text.Trim
                     End With
 
                 End If
@@ -241,5 +282,69 @@ Public Class Frm_Input_NpwoDetail
 
         End If
 
+    End Sub
+
+    Private Sub TCT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCT.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TWeight_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TWeight.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TQtyMold_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TQtyMold.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TOrder_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TOrder.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TPartNo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TPartNo.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub TPartName_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TPartName.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub TMachine_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TMachine.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub TCav_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCav.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub TMaterial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TMaterial.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub TLOI_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TLOI.KeyPress
+        e.KeyChar = Char.ToUpper(e.KeyChar)
+    End Sub
+
+    Private Sub BFinish_Click(sender As Object, e As EventArgs) Handles BFinish.Click
+        Me.Close()
     End Sub
 End Class
