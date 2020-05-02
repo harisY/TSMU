@@ -194,7 +194,7 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Order Month") = TOrder.Text.Trim
                     .Item("LOI") = TLOI.Text.Trim
                     .Item("Group ID") = TPartNo.Text.Trim
-                    .Item("Type") = TType.Text.Trim
+                    .Item("Type") = "PROCCES"
 
                 End With
 
@@ -223,7 +223,8 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Order Month") = TOrder.Text.Trim
                     .Item("LOI") = TLOI.Text.Trim
                     .Item("Group ID") = TPartNo.Text.Trim
-                    .Item("Type") = TType.Text.Trim
+                    .Item("Type") = "PROCCES"
+                    .Item("Type1") = "PROCCES"
 
                 End With
 

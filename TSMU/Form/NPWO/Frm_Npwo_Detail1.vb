@@ -103,9 +103,10 @@ Public Class Frm_Npwo_Detail1
 
 
         dtDetail = New DataTable
-        dtDetail.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
+        dtDetail.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Type", GetType(String)),
+                                                           New DataColumn("Type1", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(Double)),
                                                            New DataColumn("Cav", GetType(String)),
@@ -209,10 +210,8 @@ Public Class Frm_Npwo_Detail1
                     TModelDesc.EditValue = .H_Model_Desc
                     TCustomer.EditValue = .H_Customer_Name
                     TModel.EditValue = .H_Model_Name
-                    'TModelDesc.EditValue = .H_Model_Desc
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
-                    TMp.EditValue = .H_MP
                     CBCad.Checked = .H_CAD_Data
                     CBDrawing.Checked = .H_Drawing
                     CBSample.Checked = .H_Sample
@@ -221,8 +220,30 @@ Public Class Frm_Npwo_Detail1
                     CBCkr.Checked = .H_Factory_Tsc_CKR
                     TCategory.EditValue = .H_Category_Class
                     TNoNpp.Enabled = False
-                    'TTargetDr.EditValue = .H_TargetDRR
-                    'TTargetQuot.EditValue = .H_TargetQuot
+
+                    Dim Mp As Date = "1900-01-01"
+                    Dim HMP As Date = .H_MP
+                    Dim HT0 As Date = .H_T0
+                    Dim HT1 As Date = .H_T1
+                    Dim HT2 As Date = .H_T2
+
+                    If HMP <> Mp Then
+                        TMp.EditValue = .H_MP
+                    End If
+
+
+                    If HT0 <> Mp Then
+                        TT0.EditValue = .H_T0
+                    End If
+
+                    If HT1 <> Mp Then
+                        TT1.EditValue = .H_T1
+                    End If
+
+                    If HT2 <> Mp Then
+                        TT2.EditValue = .H_T2
+                    End If
+
                 End With
 
                 If fc_Class.H_Approve = True Then
@@ -233,7 +254,6 @@ Public Class Frm_Npwo_Detail1
                 ' TRevisiInformasi.EditValue = ""
             Else
                 TRevisi.EditValue = "0"
-                TRevisi.EditValue = "New Model"
             End If
         Catch ex As Exception
             Throw
@@ -431,10 +451,34 @@ Public Class Frm_Npwo_Detail1
                     .H_Customer_Name = TCustomer.EditValue
                     .H_Order_Month = TOrderMonth.EditValue
                     .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                    .H_T0 = TT0.EditValue
-                    .H_T1 = TT1.EditValue
-                    .H_T2 = TT2.EditValue
-                    .H_MP = TMp.EditValue
+
+                    Dim iDate As String = "1900-01-01"
+                    Dim oDate As Date = DateTime.ParseExact(iDate, "yyyy-MM-dd", Nothing)
+
+                    If TMp.Text = "" Then
+                        .H_MP = oDate
+                    Else
+                        .H_MP = TMp.EditValue
+                    End If
+
+                    If TT0.Text = "" Then
+                        .H_T0 = oDate
+                    Else
+                        .H_T0 = TT0.EditValue
+                    End If
+
+                    If TT1.Text = "" Then
+                        .H_T1 = oDate
+                    Else
+                        .H_T1 = TT0.EditValue
+                    End If
+
+                    If TT2.Text = "" Then
+                        .H_T2 = oDate
+                    Else
+                        .H_T2 = TT0.EditValue
+                    End If
+
                     .H_Drawing = CBDrawing.CheckState
                     .H_CAD_Data = CBCad.CheckState
                     .H_Sample = CBSample.CheckState
@@ -507,6 +551,8 @@ Public Class Frm_Npwo_Detail1
                         .LOI_Number = Convert.ToString(dtDetail.Rows(i).Item("LOI"))
                         .GroupID = Convert.ToString(dtDetail.Rows(i).Item("Group ID"))
                         .Type = Convert.ToString(dtDetail.Rows(i).Item("Type"))
+                        .Type1 = Convert.ToString(dtDetail.Rows(i).Item("Type1"))
+
                         .Rev = 0
 
                     End With
@@ -568,7 +614,34 @@ Public Class Frm_Npwo_Detail1
                     .H_Customer_Name = TCustomer.EditValue
                     .H_Order_Month = TOrderMonth.EditValue
                     .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                    .H_MP = TMp.EditValue
+
+                    Dim iDate As String = "1900-01-01"
+                    Dim oDate As Date = DateTime.ParseExact(iDate, "yyyy-MM-dd", Nothing)
+
+                    If TMp.Text = "" Then
+                        .H_MP = oDate
+                    Else
+                        .H_MP = TMp.EditValue
+                    End If
+
+                    If TT0.Text = "" Then
+                        .H_T0 = oDate
+                    Else
+                        .H_T0 = TT0.EditValue
+                    End If
+
+                    If TT1.Text = "" Then
+                        .H_T1 = oDate
+                    Else
+                        .H_T1 = TT0.EditValue
+                    End If
+
+                    If TT2.Text = "" Then
+                        .H_T2 = oDate
+                    Else
+                        .H_T2 = TT0.EditValue
+                    End If
+
                     .H_Drawing = CBDrawing.CheckState
                     .H_CAD_Data = CBCad.CheckState
                     .H_Sample = CBSample.CheckState
@@ -642,6 +715,7 @@ Public Class Frm_Npwo_Detail1
                         .LOI_Number = Convert.ToString(dtDetail.Rows(i).Item("LOI"))
                         .GroupID = Convert.ToString(dtDetail.Rows(i).Item("Group ID"))
                         .Type = Convert.ToString(dtDetail.Rows(i).Item("Type"))
+                        .Type1 = Convert.ToString(dtDetail.Rows(i).Item("Type1"))
                         .Rev = 0
 
                     End With

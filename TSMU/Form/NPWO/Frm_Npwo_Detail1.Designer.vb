@@ -133,7 +133,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.TPartNo})
-        Me.Grid.Size = New System.Drawing.Size(1339, 367)
+        Me.Grid.Size = New System.Drawing.Size(1339, 377)
         Me.Grid.TabIndex = 8
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
         '
@@ -390,7 +390,7 @@ Partial Class Frm_Npwo_Detail1
         '
         'TRevisi
         '
-        Me.TRevisi.Location = New System.Drawing.Point(361, 23)
+        Me.TRevisi.Location = New System.Drawing.Point(361, 25)
         Me.TRevisi.Name = "TRevisi"
         Me.TRevisi.Properties.MaxLength = 30
         Me.TRevisi.Size = New System.Drawing.Size(59, 20)

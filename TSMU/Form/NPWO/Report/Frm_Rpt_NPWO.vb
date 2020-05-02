@@ -3,6 +3,7 @@
     Dim laporan As New Rpt_NPWO
     Dim laporanRev As New NPP_RevInformasi
     Dim report As New Cls_Npwo_Detail
+    Dim dsSub As DataSet
     Public NPWO_No As String = ""
     Public REV As String = ""
     Private Sub Frm_Rpt_NPWO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -21,6 +22,9 @@
         'laporan.PrintToPrinter(1, False, 0, 0)
 
         laporan.SetDataSource(ds)
+
+        dsSub = report.NPWOReportRev(NPWO_No)
+        laporan.Subreports("Rpt_Npwo_Rev.rpt").SetDataSource(dsSub)
 
         With CrystalReportViewer1
             .ReportSource = (laporan)

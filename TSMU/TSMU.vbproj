@@ -1507,6 +1507,12 @@
       <DependentUpon>Rpt_NPWO.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\NPWO\Report\Rpt_Npwo_Rev.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_Npwo_Rev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\PO Check\FrmTam_Scan.Designer.vb">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>
     </Compile>
@@ -2492,6 +2498,10 @@
     <EmbeddedResource Include="Form\NPWO\Report\Rpt_NPWO.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_NPWO.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\Rpt_Npwo_Rev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_Npwo_Rev.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\FrmTam_Scan.resx">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>

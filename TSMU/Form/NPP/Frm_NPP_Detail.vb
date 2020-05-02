@@ -236,6 +236,8 @@ Public Class Frm_NPP_Detail
 
         Dim lb_Validated As Boolean = False
         Try
+            Dim DR As Date = CDate(TTargetDr.EditValue)
+            Dim QUOT As Date = CDate(TTargetQuot.EditValue)
 
             If TNPP_No.EditValue = "" Then
                 MessageBox.Show("Please Choose Customer and Model", "Warning",
@@ -273,7 +275,21 @@ Public Class Frm_NPP_Detail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-
+            ElseIf TTargetDr.Text = "" Then
+                MessageBox.Show("Please fill Target DR", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
+            ElseIf TTargetQuot.Text = "" Then
+                MessageBox.Show("Please fill Quotation Target", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
+            ElseIf DR > QUOT Then
+                MessageBox.Show("Please Check DR Target and Quotatio Target", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
             Else
 
                 lb_Validated = True

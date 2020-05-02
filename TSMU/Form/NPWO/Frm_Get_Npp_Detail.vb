@@ -145,7 +145,6 @@ Public Class Frm_Get_Npp_Detail
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
 
-
         Dim MyNewRow As DataRow
         Dim MyNewRowDetail As DataRow
 
@@ -247,6 +246,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
                                         .Item("Type") = "PROCESS"
+                                        .Item("Type1") = "MOLD"
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)

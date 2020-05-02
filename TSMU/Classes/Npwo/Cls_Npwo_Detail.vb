@@ -42,17 +42,17 @@ Public Class Cls_Npwo_Detail
     Public Function NpwoReport(No As String, Rev As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "SELECT [NPWO_Head].[No_NPP]
+        query = "SELECT Distinct [NPWO_Head].[No_NPP]
                   ,[Npwo_Head].[No_Npwo]
                   ,[Npwo_Head].[Issue_Date]
                   ,[Npwo_Head].[Model_Name]
                   ,[Npwo_Head].[Customer_Name]
                   ,[Npwo_Head].[Order_Month]
                   ,[Npwo_Head].[Order_Max_Month]
-                  ,[Npwo_Head].[T0]
-                  ,[Npwo_Head].[T1]
-                  ,[Npwo_Head].[T2]
-                  ,[Npwo_Head].[MP]
+                  ,convert(varchar, [Npwo_Head].[T0], 110) as [T0]
+                  ,convert(varchar, [Npwo_Head].[T1], 110) as [T1]
+                  ,convert(varchar, [Npwo_Head].[T2], 110) as [T2]
+                  ,convert(varchar, [Npwo_Head].[MP], 110) as [MP]
                   ,[Npwo_Head].[Drawing]
                   ,[Npwo_Head].[CAD_Data]
                   ,[Npwo_Head].[Sample]
@@ -87,13 +87,30 @@ Public Class Cls_Npwo_Detail
                   ,[NpwoDetail1].[Forecast]
                   ,[NpwoDetail1].[GroupID]
                   ,[NpwoDetail1].[Type]
+                  ,[NpwoDetail1].[Type1]
                   ,[NpwoDetail1].[Rev]
         From [NPWO_Head] inner Join [NpwoDetail1] On
         [NPWO_Head].[No_Npwo] = [NpwoDetail1].No_Npwo
-		            Where [NPWO_Head].[No_Npwo] = '" & No & "'"
+		Where [NPWO_Head].[No_Npwo] = '" & No & "'"
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "NPWO")
+        Return ds
+
+    End Function
+
+
+    Public Function NPWOReportRev(No As String) As DataSet
+        Dim query As String
+        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        query = "SELECT [No_NPWO]
+                  ,[Rev]
+                  ,[Information]
+              FROM [NPWO_Rev_Information]
+		           Where [No_Npwo] = '" & No & "'"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport(query, "NpwoRev")
         Return ds
 
     End Function
@@ -222,6 +239,7 @@ Public Class Cls_Npwo_Detail
 
                     Try
 
+                        InsertRevisi(NPWO_)
                         Insert_NPWOHeader(H_No_Npwo,
                                             H_No_NPP,
                                             Date.Now,
@@ -276,6 +294,28 @@ Public Class Cls_Npwo_Detail
                     End Try
                 End Using
             End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub InsertRevisi(_Npwo As String)
+        Dim result As Integer = 0
+        Try
+            Dim ls_SP As String = "INSERT INTO [NPWO_Rev_Information]
+                                               ([No_Npwo]
+                                               ,[Rev]
+                                               ,[Information]
+                                               ,[ReviceBy]
+                                               ,[ReviceDate])
+                                     VALUES 
+                                            (" & QVal(_Npwo) & " 
+                                            ," & QVal(H_Rev) & "
+                                            ," & QVal(H_Rev_Info) & "
+                                            ," & QVal(gh_Common.Username) & "
+                                            ,GETDATE())"
+
+
+            MainModul.ExecQueryByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -931,6 +971,8 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
     Public Property OrderMonth As Integer
     Public Property GroupID As String
     Public Property Type As String
+    Public Property Type1 As String
+
 
     Public Property Rev As Integer
 
@@ -941,7 +983,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
         Try
 
             Dim query As String = "[NPWO_Insert_Npwo_Detail_1]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -965,6 +1007,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(20) = New SqlClient.SqlParameter("@Vibration", SqlDbType.Bit)
             pParam(21) = New SqlClient.SqlParameter("@GroupID", SqlDbType.VarChar)
             pParam(22) = New SqlClient.SqlParameter("@Type", SqlDbType.VarChar)
+            pParam(23) = New SqlClient.SqlParameter("@Type1", SqlDbType.VarChar)
 
             pParam(0).Value = _Npwo_No
             pParam(1).Value = Part_No
@@ -989,6 +1032,7 @@ Public Class Col_Cls_Npwo_Detail_1_NPWO
             pParam(20).Value = Vibration
             pParam(21).Value = GroupID
             pParam(22).Value = Type
+            pParam(23).Value = Type1
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)

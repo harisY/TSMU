@@ -1,4 +1,9 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class NpwoRevDataTable
+
+
+    End Class
+
     Partial Public Class ARDataTable
     End Class
 

@@ -254,7 +254,7 @@ Partial Class Frm_Get_Npp_Detail
         Me.Controls.Add(Me.BAdd)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_Get_Npp_Detail"
-        Me.Text = "p "
+        Me.Text = "NPWO Detail"
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
