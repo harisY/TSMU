@@ -19,10 +19,14 @@ Partial Class Frm_Npwo_Detail1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TPartNo = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PartName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Machine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,12 +73,15 @@ Partial Class Frm_Npwo_Detail1
         Me.TCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
-        Me.TTargetDr = New DevExpress.XtraEditors.DateEdit()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TT0 = New DevExpress.XtraEditors.DateEdit()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.TT2 = New DevExpress.XtraEditors.DateEdit()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.TT1 = New DevExpress.XtraEditors.DateEdit()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TMp = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TMp = New DevExpress.XtraEditors.DateEdit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TPartNo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,29 +98,48 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT0.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT0.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2})
+        Me.GridView2.GridControl = Me.Grid
+        Me.GridView2.Name = "GridView2"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.FieldName = "Part No"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.Grid.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.Grid.Location = New System.Drawing.Point(12, 167)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.TPartNo})
-        Me.Grid.Size = New System.Drawing.Size(1339, 367)
+        Me.Grid.Size = New System.Drawing.Size(1339, 377)
         Me.Grid.TabIndex = 8
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.QtyMold, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.LOI, Me.IDB, Me.GridColumn17})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.GridColumn1, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.QtyMold, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.LOI, Me.IDB, Me.GridColumn17})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -125,22 +151,35 @@ Partial Class Frm_Npwo_Detail1
         Me.PartNo.ColumnEdit = Me.TPartNo
         Me.PartNo.FieldName = "Part No"
         Me.PartNo.Name = "PartNo"
+        Me.PartNo.OptionsColumn.AllowEdit = False
         Me.PartNo.Visible = True
         Me.PartNo.VisibleIndex = 0
-        Me.PartNo.Width = 185
+        Me.PartNo.Width = 158
         '
         'TPartNo
         '
         Me.TPartNo.AutoHeight = False
         Me.TPartNo.Name = "TPartNo"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.FieldName = "Type"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 17
+        '
         'PartName
         '
         Me.PartName.FieldName = "Part Name"
         Me.PartName.Name = "PartName"
+        Me.PartName.OptionsColumn.AllowEdit = False
         Me.PartName.Visible = True
         Me.PartName.VisibleIndex = 1
-        Me.PartName.Width = 198
+        Me.PartName.Width = 178
         '
         'Machine
         '
@@ -176,7 +215,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Cav.Name = "Cav"
         Me.Cav.Visible = True
         Me.Cav.VisibleIndex = 4
-        Me.Cav.Width = 50
+        Me.Cav.Width = 43
         '
         'Weight
         '
@@ -188,7 +227,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Weight.Name = "Weight"
         Me.Weight.Visible = True
         Me.Weight.VisibleIndex = 5
-        Me.Weight.Width = 83
+        Me.Weight.Width = 62
         '
         'QtyMold
         '
@@ -200,7 +239,7 @@ Partial Class Frm_Npwo_Detail1
         Me.QtyMold.Name = "QtyMold"
         Me.QtyMold.Visible = True
         Me.QtyMold.VisibleIndex = 6
-        Me.QtyMold.Width = 69
+        Me.QtyMold.Width = 56
         '
         'Material
         '
@@ -212,7 +251,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Material.Name = "Material"
         Me.Material.Visible = True
         Me.Material.VisibleIndex = 7
-        Me.Material.Width = 95
+        Me.Material.Width = 62
         '
         'Inj
         '
@@ -224,6 +263,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Inj.Name = "Inj"
         Me.Inj.Visible = True
         Me.Inj.VisibleIndex = 8
+        Me.Inj.Width = 45
         '
         'Painting
         '
@@ -235,6 +275,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Painting.Name = "Painting"
         Me.Painting.Visible = True
         Me.Painting.VisibleIndex = 9
+        Me.Painting.Width = 50
         '
         'Chrome
         '
@@ -246,7 +287,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Chrome.Name = "Chrome"
         Me.Chrome.Visible = True
         Me.Chrome.VisibleIndex = 10
-        Me.Chrome.Width = 81
+        Me.Chrome.Width = 53
         '
         'Assy
         '
@@ -258,6 +299,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Assy.Name = "Assy"
         Me.Assy.Visible = True
         Me.Assy.VisibleIndex = 11
+        Me.Assy.Width = 41
         '
         'StatusMold
         '
@@ -269,7 +311,7 @@ Partial Class Frm_Npwo_Detail1
         Me.StatusMold.Name = "StatusMold"
         Me.StatusMold.Visible = True
         Me.StatusMold.VisibleIndex = 14
-        Me.StatusMold.Width = 103
+        Me.StatusMold.Width = 82
         '
         'OrderMonth
         '
@@ -281,7 +323,7 @@ Partial Class Frm_Npwo_Detail1
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.Visible = True
         Me.OrderMonth.VisibleIndex = 15
-        Me.OrderMonth.Width = 96
+        Me.OrderMonth.Width = 81
         '
         'Ultrasonic
         '
@@ -293,7 +335,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Ultrasonic.Name = "Ultrasonic"
         Me.Ultrasonic.Visible = True
         Me.Ultrasonic.VisibleIndex = 12
-        Me.Ultrasonic.Width = 82
+        Me.Ultrasonic.Width = 57
         '
         'LOI
         '
@@ -305,13 +347,14 @@ Partial Class Frm_Npwo_Detail1
         Me.LOI.Name = "LOI"
         Me.LOI.Visible = True
         Me.LOI.VisibleIndex = 16
+        Me.LOI.Width = 77
         '
         'IDB
         '
-        Me.IDB.FieldName = "IDB"
+        Me.IDB.FieldName = "Group ID"
         Me.IDB.Name = "IDB"
         Me.IDB.Visible = True
-        Me.IDB.VisibleIndex = 17
+        Me.IDB.VisibleIndex = 18
         '
         'GridColumn17
         '
@@ -319,6 +362,7 @@ Partial Class Frm_Npwo_Detail1
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 13
+        Me.GridColumn17.Width = 55
         '
         'GroupBox3
         '
@@ -346,7 +390,7 @@ Partial Class Frm_Npwo_Detail1
         '
         'TRevisi
         '
-        Me.TRevisi.Location = New System.Drawing.Point(361, 23)
+        Me.TRevisi.Location = New System.Drawing.Point(361, 25)
         Me.TRevisi.Name = "TRevisi"
         Me.TRevisi.Properties.MaxLength = 30
         Me.TRevisi.Size = New System.Drawing.Size(59, 20)
@@ -594,19 +638,21 @@ Partial Class Frm_Npwo_Detail1
         '
         'B_AddRows
         '
-        Me.B_AddRows.Location = New System.Drawing.Point(115, 89)
+        Me.B_AddRows.Location = New System.Drawing.Point(292, 94)
         Me.B_AddRows.Name = "B_AddRows"
-        Me.B_AddRows.Size = New System.Drawing.Size(131, 23)
+        Me.B_AddRows.Size = New System.Drawing.Size(65, 23)
         Me.B_AddRows.TabIndex = 8
         Me.B_AddRows.Text = "Add"
         Me.B_AddRows.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TTargetQuot)
-        Me.GroupBox1.Controls.Add(Me.TTargetDr)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.TT0)
         Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Controls.Add(Me.TT2)
         Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.TT1)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.B_AddRows)
         Me.GroupBox1.Controls.Add(Me.TMp)
@@ -617,59 +663,103 @@ Partial Class Frm_Npwo_Detail1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Schedule"
         '
-        'TTargetQuot
+        'Label12
         '
-        Me.TTargetQuot.EditValue = Nothing
-        Me.TTargetQuot.Location = New System.Drawing.Point(115, 65)
-        Me.TTargetQuot.Name = "TTargetQuot"
-        Me.TTargetQuot.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetQuot.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetQuot.Size = New System.Drawing.Size(131, 20)
-        Me.TTargetQuot.TabIndex = 41
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 99)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(48, 13)
+        Me.Label12.TabIndex = 43
+        Me.Label12.Text = "MassPro"
         '
-        'TTargetDr
+        'TT0
         '
-        Me.TTargetDr.EditValue = Nothing
-        Me.TTargetDr.Location = New System.Drawing.Point(115, 43)
-        Me.TTargetDr.Name = "TTargetDr"
-        Me.TTargetDr.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetDr.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TTargetDr.Size = New System.Drawing.Size(131, 20)
-        Me.TTargetDr.TabIndex = 40
+        Me.TT0.EditValue = Nothing
+        Me.TT0.Location = New System.Drawing.Point(115, 16)
+        Me.TT0.Name = "TT0"
+        Me.TT0.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT0.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT0.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT0.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT0.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT0.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT0.Properties.Mask.EditMask = ""
+        Me.TT0.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT0.Size = New System.Drawing.Size(131, 20)
+        Me.TT0.TabIndex = 42
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 72)
+        Me.Label9.Location = New System.Drawing.Point(6, 73)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(87, 13)
-        Me.Label9.TabIndex = 39
-        Me.Label9.Text = "Target Quotation"
+        Me.Label9.Size = New System.Drawing.Size(20, 13)
+        Me.Label9.TabIndex = 41
+        Me.Label9.Text = "T2"
+        '
+        'TT2
+        '
+        Me.TT2.EditValue = Nothing
+        Me.TT2.Location = New System.Drawing.Point(115, 69)
+        Me.TT2.Name = "TT2"
+        Me.TT2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT2.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT2.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT2.Properties.Mask.EditMask = ""
+        Me.TT2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT2.Size = New System.Drawing.Size(131, 20)
+        Me.TT2.TabIndex = 40
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(6, 48)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(57, 13)
-        Me.Label8.TabIndex = 38
-        Me.Label8.Text = "Target DR"
+        Me.Label8.Size = New System.Drawing.Size(20, 13)
+        Me.Label8.TabIndex = 39
+        Me.Label8.Text = "T1"
+        '
+        'TT1
+        '
+        Me.TT1.EditValue = Nothing
+        Me.TT1.Location = New System.Drawing.Point(115, 44)
+        Me.TT1.Name = "TT1"
+        Me.TT1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TT1.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TT1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT1.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TT1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TT1.Properties.Mask.EditMask = ""
+        Me.TT1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TT1.Size = New System.Drawing.Size(131, 20)
+        Me.TT1.TabIndex = 38
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(6, 23)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(48, 13)
+        Me.Label7.Size = New System.Drawing.Size(20, 13)
         Me.Label7.TabIndex = 37
-        Me.Label7.Text = "MassPro"
+        Me.Label7.Text = "T0"
         '
         'TMp
         '
-        Me.TMp.Location = New System.Drawing.Point(115, 19)
+        Me.TMp.EditValue = Nothing
+        Me.TMp.Location = New System.Drawing.Point(115, 95)
         Me.TMp.Name = "TMp"
         Me.TMp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TMp.Properties.Items.AddRange(New Object() {"2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035"})
+        Me.TMp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TMp.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TMp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TMp.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TMp.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.TMp.Properties.Mask.EditMask = ""
+        Me.TMp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.TMp.Size = New System.Drawing.Size(131, 20)
         Me.TMp.TabIndex = 36
         '
@@ -687,6 +777,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TPartNo, System.ComponentModel.ISupportInitialize).EndInit()
@@ -706,10 +797,13 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT0.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT0.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -752,13 +846,8 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents CBDrawing As CheckBox
     Friend WithEvents TCategory As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TTargetQuot As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TTargetDr As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents B_AddRows As Button
-    Friend WithEvents TMp As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Label10 As Label
     Friend WithEvents TNoNpp As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BDetail As Button
@@ -772,4 +861,14 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents TRevInfo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label11 As Label
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TT0 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TT2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TT1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TMp As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

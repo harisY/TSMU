@@ -47,6 +47,13 @@ Public Class Frm_NPP_Detail
 
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
+
+        Me.TOrderMonth.Properties.Mask.EditMask = "n0"
+        Me.TOrderMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+        Me.TOrderMaxMonth.Properties.Mask.EditMask = "n0"
+        Me.TOrderMaxMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
     End Sub
 
     Private Sub FillComboCustomer()
@@ -78,7 +85,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -96,6 +103,7 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Ultrasonic", GetType(Boolean)),
                                                            New DataColumn("Single", GetType(Boolean)),
                                                            New DataColumn("Group ID", GetType(String)),
+                                                           New DataColumn("ID", GetType(Integer)),
                                                            New DataColumn("Order Month", GetType(Int32))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -181,8 +189,16 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
+        If TOrderMonth.Text = "" Then
+            MessageBox.Show("Please Fill Order Month",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        Else
+            CallForm()
+        End If
 
-        CallForm()
 
     End Sub
 
@@ -217,6 +233,7 @@ Public Class Frm_NPP_Detail
             Else
                 TRevisi.EditValue = "0"
                 TRevisiInformasi.EditValue = "New Model"
+                BSetGroup.Enabled = False
             End If
         Catch ex As Exception
             Throw
@@ -227,6 +244,8 @@ Public Class Frm_NPP_Detail
 
         Dim lb_Validated As Boolean = False
         Try
+            Dim DR As Date = CDate(TTargetDr.EditValue)
+            Dim QUOT As Date = CDate(TTargetQuot.EditValue)
 
             If TNPP_No.EditValue = "" Then
                 MessageBox.Show("Please Choose Customer and Model", "Warning",
@@ -264,7 +283,21 @@ Public Class Frm_NPP_Detail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-
+            ElseIf TTargetDr.Text = "" Then
+                MessageBox.Show("Please fill Target DR", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
+            ElseIf TTargetQuot.Text = "" Then
+                MessageBox.Show("Please fill Quotation Target", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
+            ElseIf DR > QUOT Then
+                MessageBox.Show("Please Check DR Target and Quotatio Target", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
             Else
 
                 lb_Validated = True
@@ -863,9 +896,14 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub BSetGroup_Click(sender As Object, e As EventArgs) Handles BSetGroup.Click
+
         CForm = 1
 
         CallForm()
+
+    End Sub
+
+    Private Sub TOrderMonth_Leave(sender As Object, e As EventArgs) Handles TOrderMonth.Leave
 
     End Sub
 End Class

@@ -22,23 +22,23 @@ Public Class Frm_NPP_Set_Grup
     Private Sub Frm_NPP_Set_Grup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         CreateTable()
-        If ID <> "" Then
-            Call LoadGrid(ID)
-        End If
+        'If ID <> "" Then
+        '    Call LoadGrid(ID)
+        'End If
 
     End Sub
 
     Private Sub CreateTable()
 
-        dt = New DataTable
+        'dt = New DataTable
 
 
-        dt.Columns.AddRange(New DataColumn(3) {New DataColumn("Part No", GetType(String)),
-                                                           New DataColumn("Group ID", GetType(String)),
-                                                           New DataColumn("Check", GetType(Boolean)),
-                                                           New DataColumn("Part Name", GetType(String))})
-        Grid.DataSource = dt
-        GridView1.OptionsView.ShowAutoFilterRow = True
+        'dt.Columns.AddRange(New DataColumn(3) {New DataColumn("Part No", GetType(String)),
+        '                                                   New DataColumn("Group ID", GetType(String)),
+        '                                                   New DataColumn("Check", GetType(Boolean)),
+        '                                                   New DataColumn("Part Name", GetType(String))})
+        'Grid.DataSource = dt
+        'GridView1.OptionsView.ShowAutoFilterRow = True
 
 
     End Sub
@@ -60,6 +60,8 @@ Public Class Frm_NPP_Set_Grup
         IsNew = _IsNew
         Grid1 = _grid
         dtInduk = _dt
+
+        Grid.DataSource = dtInduk
 
     End Sub
     Private Sub LoadGrid(NPP_ As String)
@@ -99,16 +101,16 @@ Public Class Frm_NPP_Set_Grup
                     For i As Integer = 0 To dtInduk.Rows.Count - 1
                         If dtInduk.Rows(i).Item("Part No") = PN Then
                             With dtInduk.Rows(i)
-                                .Item("Group ID") = TGroupID.EditValue.Trim
+                                .Item("Group ID") = "G" & TGroupID.EditValue.Trim
                             End With
                         End If
                     Next
 
 
-                    For i As Integer = 0 To dt.Rows.Count - 1
-                        If dt.Rows(i).Item("Part No") = PN Then
-                            With dt.Rows(i)
-                                .Item("Group ID") = TGroupID.EditValue.Trim
+                    For i As Integer = 0 To dtInduk.Rows.Count - 1
+                        If dtInduk.Rows(i).Item("Part No") = PN Then
+                            With dtInduk.Rows(i)
+                                .Item("Group ID") = "G" & TGroupID.EditValue.Trim
                             End With
                         End If
                     Next
@@ -118,5 +120,16 @@ Public Class Frm_NPP_Set_Grup
 
             Me.Close()
         End If
+    End Sub
+
+    Private Sub TGroupID_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TGroupID.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+
     End Sub
 End Class

@@ -193,7 +193,7 @@ Partial Class Frm_Input_NpwoDetail
         Me.TStatusMold.Location = New System.Drawing.Point(105, 215)
         Me.TStatusMold.Name = "TStatusMold"
         Me.TStatusMold.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TStatusMold.Properties.Items.AddRange(New Object() {"Paid", "Depre", "Trans"})
+        Me.TStatusMold.Properties.Items.AddRange(New Object() {"PAID", "DEPRE", "TRANS"})
         Me.TStatusMold.Size = New System.Drawing.Size(210, 20)
         Me.TStatusMold.TabIndex = 9
         '
@@ -355,7 +355,7 @@ Partial Class Frm_Input_NpwoDetail
         Me.TType.Location = New System.Drawing.Point(105, 296)
         Me.TType.Name = "TType"
         Me.TType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TType.Properties.Items.AddRange(New Object() {"Paid", "Depre", "Trans"})
+        Me.TType.Properties.Items.AddRange(New Object() {"MOLD", "PROCESS"})
         Me.TType.Size = New System.Drawing.Size(210, 20)
         Me.TType.TabIndex = 51
         '

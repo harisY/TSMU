@@ -11,6 +11,7 @@
     End Sub
 
     Sub loadreport()
+
         'report.H_No_Npwo = "001"
         Dim ds As New DataSet
         ds = report.NPPReport(NPP_No, REV)
@@ -23,11 +24,14 @@
 
         laporan.SetDataSource(ds)
 
+
         With CrystalReportViewer1
             .ReportSource = (laporan)
             .RefreshReport()
             .Zoom(90)
         End With
+
+
     End Sub
 
 End Class

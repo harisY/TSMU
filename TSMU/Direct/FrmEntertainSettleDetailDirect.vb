@@ -15,6 +15,7 @@ Public Class FrmEntertainSettleDetailDirect
     Dim fc_Class As New ClsSuspend
     Dim ObjEntertainHeader As New EntertainHeaderModel
     Dim ObjEntertainDetail As New EntertainDetailModel
+    Dim ObjTravelSettDetail As New TravelSettlementDetailModel
     Dim ObjSettle As New SettleHeader
     Dim ObjSettleDetail As New SettleDetail
     Dim GridDtl As GridControl
@@ -32,6 +33,7 @@ Public Class FrmEntertainSettleDetailDirect
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SettleID As String = ""
+    Dim row As Integer
 
     Public Sub New()
 
@@ -53,6 +55,7 @@ Public Class FrmEntertainSettleDetailDirect
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
         End If
+        row = li_GridRow
         GridDtl = _Grid
         FrmParent = lf_FormParent
     End Sub
@@ -379,7 +382,7 @@ Public Class FrmEntertainSettleDetailDirect
                 'Next
 
                 ObjSettle.InsertDataEntSettleDirect()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
@@ -416,17 +419,25 @@ Public Class FrmEntertainSettleDetailDirect
                 '    End If
                 'Next
                 ObjSettle.UpdateData(TxtNoSettlement.Text)
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjSettle.GetDataGrid()
-            IsClosed = True
-            Me.Hide()
+
+            If GridDtl.Name <> "GridEntertain" Then
+                GridDtl.DataSource = ObjSettle.GetDataGrid()
+            Else
+                'Dim dtTable As DataTable = GridDtl.DataSource
+                'dtTable.Rows(row)("EntertainID") = _SettleID
+                'dtTable.Rows(row)("AmountSett") = TxtTotExpense.Text
+                'dtTable.Rows(row)("CuryIDSett") = TxtCurrency.Text
+            End If
+
+            'IsClosed = True
+            'Me.Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
 
     Private Sub getdataview2()
         Try
@@ -486,7 +497,16 @@ Public Class FrmEntertainSettleDetailDirect
                 ObjEntertainHeader.UpdateDataRelasi()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
+
+            If GridDtl.Name = "GridEntertain" Then
+                Dim dtTable As DataTable = GridDtl.DataSource
+                dtTable.Rows(row)("EntertainID") = _SettleID
+                dtTable.Rows(row)("AmountSett") = TxtTotExpense.Text
+                'dtTable.Rows(row)("CuryIDSett") = TxtCurrency.Text
+            Else
+                GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
+            End If
+
             IsClosed = True
             Me.Hide()
         Catch ex As Exception

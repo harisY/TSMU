@@ -53,7 +53,7 @@ Public Class Frm_NPWO_Head
             ff_Detail.Close()
         End If
         ff_Detail = New Frm_Npwo_Detail1(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -130,6 +130,7 @@ Public Class Frm_NPWO_Head
         End Try
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
-
+    End Sub
 End Class
