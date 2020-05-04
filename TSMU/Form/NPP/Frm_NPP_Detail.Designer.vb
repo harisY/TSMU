@@ -39,6 +39,7 @@ Partial Class Frm_NPP_Detail
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
         Me.TTargetDr = New DevExpress.XtraEditors.DateEdit()
@@ -110,7 +111,7 @@ Partial Class Frm_NPP_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -175,6 +176,7 @@ Partial Class Frm_NPP_Detail
         Me.Weight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Weight.FieldName = "Weight"
         Me.Weight.Name = "Weight"
+        Me.Weight.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Weight.Visible = True
         Me.Weight.VisibleIndex = 5
         Me.Weight.Width = 83
@@ -310,6 +312,11 @@ Partial Class Frm_NPP_Detail
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 16
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "ID"
+        Me.GridColumn4.Name = "GridColumn4"
         '
         'GroupBox1
         '
@@ -551,6 +558,7 @@ Partial Class Frm_NPP_Detail
         Me.TOrderMaxMonth.Name = "TOrderMaxMonth"
         Me.TOrderMaxMonth.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.TOrderMaxMonth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TOrderMaxMonth.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TOrderMaxMonth.Size = New System.Drawing.Size(92, 20)
         Me.TOrderMaxMonth.TabIndex = 29
         '
@@ -569,6 +577,7 @@ Partial Class Frm_NPP_Detail
         Me.TOrderMonth.Name = "TOrderMonth"
         Me.TOrderMonth.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.TOrderMonth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TOrderMonth.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TOrderMonth.Size = New System.Drawing.Size(92, 20)
         Me.TOrderMonth.TabIndex = 27
         '
@@ -757,4 +766,5 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SingleCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BSetGroup As Button
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -101,7 +101,7 @@ Public Class Frm_NPP_Set_Grup
                     For i As Integer = 0 To dtInduk.Rows.Count - 1
                         If dtInduk.Rows(i).Item("Part No") = PN Then
                             With dtInduk.Rows(i)
-                                .Item("Group ID") = TGroupID.EditValue.Trim
+                                .Item("Group ID") = "G" & TGroupID.EditValue.Trim
                             End With
                         End If
                     Next
@@ -110,7 +110,7 @@ Public Class Frm_NPP_Set_Grup
                     For i As Integer = 0 To dtInduk.Rows.Count - 1
                         If dtInduk.Rows(i).Item("Part No") = PN Then
                             With dtInduk.Rows(i)
-                                .Item("Group ID") = TGroupID.EditValue.Trim
+                                .Item("Group ID") = "G" & TGroupID.EditValue.Trim
                             End With
                         End If
                     Next
@@ -120,5 +120,16 @@ Public Class Frm_NPP_Set_Grup
 
             Me.Close()
         End If
+    End Sub
+
+    Private Sub TGroupID_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TGroupID.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+            e.Handled = True
+        End If
+
     End Sub
 End Class

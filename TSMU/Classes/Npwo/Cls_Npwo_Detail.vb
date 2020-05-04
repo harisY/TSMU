@@ -99,7 +99,40 @@ Public Class Cls_Npwo_Detail
 
     End Function
 
+    Public Function GetGroupIDAuto(Row As Integer) As String
+        Try
+            Dim GroupID As String = ""
 
+            Dim ls_SP As String = "SELECT top 1 Mold_Number as GroupID , RIGHT(Mold_Number,5) AS NoUrut
+                                          FROM NPP_Detail order by Mold_Number desc"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
+                Dim NoUrut As String = "0"
+
+                NoUrut = Val(NoUrut + 1) + Row
+                GroupID = "G0000" & NoUrut
+            Else
+                Dim NoUrut As String = dtTable.Rows(0).Item("NoUrut")
+                NoUrut = Val(NoUrut + 1) + Row
+                If Len(NoUrut) = 1 Then
+                    GroupID = "G0000" & NoUrut
+                ElseIf Len(NoUrut) = 2 Then
+                    GroupID = "G000" & NoUrut
+                ElseIf Len(NoUrut) = 3 Then
+                    GroupID = "G00" & NoUrut
+                ElseIf Len(NoUrut) = 4 Then
+                    GroupID = "G0" & NoUrut
+                Else
+                    GroupID = "G" & NoUrut
+                End If
+            End If
+            Return GroupID
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function NPWOReportRev(No As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"

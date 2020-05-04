@@ -330,6 +330,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
                                         .Item("Type") = "PROCESS"
+                                        .Item("Type1") = "MOLD"
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)

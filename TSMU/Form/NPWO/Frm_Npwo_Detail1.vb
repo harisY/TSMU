@@ -82,7 +82,6 @@ Public Class Frm_Npwo_Detail1
         dt = New DataTable
         dt.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
-                                                           New DataColumn("Type", GetType(String)),
                                                            New DataColumn("Group ID", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(Double)),
@@ -99,14 +98,12 @@ Public Class Frm_Npwo_Detail1
                                                            New DataColumn("Ultrasonic", GetType(Boolean)),
                                                            New DataColumn("Vibration", GetType(Boolean)),
                                                            New DataColumn("LOI", GetType(String)),
-                                                           New DataColumn("Order Month", GetType(Int32))})
-
+                                                           New DataColumn("Order Month", GetType(Int32)),
+                                                           New DataColumn("Type", GetType(String))})
 
         dtDetail = New DataTable
         dtDetail.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
-                                                           New DataColumn("Type", GetType(String)),
-                                                           New DataColumn("Type1", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(Double)),
                                                            New DataColumn("Cav", GetType(String)),
@@ -122,7 +119,9 @@ Public Class Frm_Npwo_Detail1
                                                            New DataColumn("Status Mold", GetType(String)),
                                                            New DataColumn("LOI", GetType(String)),
                                                            New DataColumn("Order Month", GetType(Int32)),
-                                                           New DataColumn("Group ID", GetType(String))})
+                                                           New DataColumn("Group ID", GetType(String)),
+                                                           New DataColumn("Type", GetType(String)),
+                                                           New DataColumn("Type1", GetType(String))})
 
 
         dt.TableName = "Master"
@@ -743,7 +742,6 @@ Public Class Frm_Npwo_Detail1
     Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
         If e.KeyData = Keys.Delete Then
 
-
             Try
                 Dim provider As CultureInfo = CultureInfo.InvariantCulture
                 Dim ID As String = ""
@@ -760,7 +758,7 @@ Public Class Frm_Npwo_Detail1
                 For b As Integer = 0 To dtDetail.Rows.Count - 1
                     If dtDetail.Rows(b).Item("Part No") = ID Then
                         Dim rows() As DataRow = dtDetail.Select()
-                        rows(0).Delete()
+                        rows(b).Delete()
                     End If
 
                 Next
@@ -768,8 +766,7 @@ Public Class Frm_Npwo_Detail1
                 For a As Integer = 0 To dt.Rows.Count - 1
                     If dt.Rows(a).Item("Part No") = ID Then
                         Dim rows() As DataRow = dt.Select()
-                        rows(0).Delete()
-                        'dt.Rows.Remove()
+                        rows(a).Delete()
 
                     End If
                 Next

@@ -170,7 +170,7 @@ Partial Class Frm_Npwo_Detail1
         Me.GridColumn1.FieldName = "Type"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 17
         '
         'PartName
         '
@@ -190,7 +190,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Machine.FieldName = "Machine"
         Me.Machine.Name = "Machine"
         Me.Machine.Visible = True
-        Me.Machine.VisibleIndex = 3
+        Me.Machine.VisibleIndex = 2
         Me.Machine.Width = 65
         '
         'CT
@@ -202,7 +202,7 @@ Partial Class Frm_Npwo_Detail1
         Me.CT.FieldName = "C/T"
         Me.CT.Name = "CT"
         Me.CT.Visible = True
-        Me.CT.VisibleIndex = 4
+        Me.CT.VisibleIndex = 3
         Me.CT.Width = 52
         '
         'Cav
@@ -214,7 +214,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Cav.FieldName = "Cav"
         Me.Cav.Name = "Cav"
         Me.Cav.Visible = True
-        Me.Cav.VisibleIndex = 5
+        Me.Cav.VisibleIndex = 4
         Me.Cav.Width = 43
         '
         'Weight
@@ -226,7 +226,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Weight.FieldName = "Weight"
         Me.Weight.Name = "Weight"
         Me.Weight.Visible = True
-        Me.Weight.VisibleIndex = 6
+        Me.Weight.VisibleIndex = 5
         Me.Weight.Width = 62
         '
         'QtyMold
@@ -238,7 +238,7 @@ Partial Class Frm_Npwo_Detail1
         Me.QtyMold.FieldName = "Qty Mold"
         Me.QtyMold.Name = "QtyMold"
         Me.QtyMold.Visible = True
-        Me.QtyMold.VisibleIndex = 7
+        Me.QtyMold.VisibleIndex = 6
         Me.QtyMold.Width = 56
         '
         'Material
@@ -250,7 +250,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Material.FieldName = "Material"
         Me.Material.Name = "Material"
         Me.Material.Visible = True
-        Me.Material.VisibleIndex = 8
+        Me.Material.VisibleIndex = 7
         Me.Material.Width = 62
         '
         'Inj
@@ -262,7 +262,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Inj.FieldName = "Inj"
         Me.Inj.Name = "Inj"
         Me.Inj.Visible = True
-        Me.Inj.VisibleIndex = 9
+        Me.Inj.VisibleIndex = 8
         Me.Inj.Width = 45
         '
         'Painting
@@ -274,7 +274,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Painting.FieldName = "Painting"
         Me.Painting.Name = "Painting"
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 10
+        Me.Painting.VisibleIndex = 9
         Me.Painting.Width = 50
         '
         'Chrome
@@ -286,7 +286,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Chrome.FieldName = "Chrome"
         Me.Chrome.Name = "Chrome"
         Me.Chrome.Visible = True
-        Me.Chrome.VisibleIndex = 11
+        Me.Chrome.VisibleIndex = 10
         Me.Chrome.Width = 53
         '
         'Assy
@@ -298,7 +298,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Assy.FieldName = "Assy"
         Me.Assy.Name = "Assy"
         Me.Assy.Visible = True
-        Me.Assy.VisibleIndex = 12
+        Me.Assy.VisibleIndex = 11
         Me.Assy.Width = 41
         '
         'StatusMold
@@ -310,7 +310,7 @@ Partial Class Frm_Npwo_Detail1
         Me.StatusMold.FieldName = "Status Mold"
         Me.StatusMold.Name = "StatusMold"
         Me.StatusMold.Visible = True
-        Me.StatusMold.VisibleIndex = 15
+        Me.StatusMold.VisibleIndex = 14
         Me.StatusMold.Width = 82
         '
         'OrderMonth
@@ -322,7 +322,7 @@ Partial Class Frm_Npwo_Detail1
         Me.OrderMonth.FieldName = "Order Month"
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.Visible = True
-        Me.OrderMonth.VisibleIndex = 16
+        Me.OrderMonth.VisibleIndex = 15
         Me.OrderMonth.Width = 81
         '
         'Ultrasonic
@@ -334,7 +334,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Ultrasonic.FieldName = "Ultrasonic"
         Me.Ultrasonic.Name = "Ultrasonic"
         Me.Ultrasonic.Visible = True
-        Me.Ultrasonic.VisibleIndex = 13
+        Me.Ultrasonic.VisibleIndex = 12
         Me.Ultrasonic.Width = 57
         '
         'LOI
@@ -346,7 +346,7 @@ Partial Class Frm_Npwo_Detail1
         Me.LOI.FieldName = "LOI"
         Me.LOI.Name = "LOI"
         Me.LOI.Visible = True
-        Me.LOI.VisibleIndex = 17
+        Me.LOI.VisibleIndex = 16
         Me.LOI.Width = 77
         '
         'IDB
@@ -361,7 +361,7 @@ Partial Class Frm_Npwo_Detail1
         Me.GridColumn17.FieldName = "Vibration"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 14
+        Me.GridColumn17.VisibleIndex = 13
         Me.GridColumn17.Width = 55
         '
         'GroupBox3

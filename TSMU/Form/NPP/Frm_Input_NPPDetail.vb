@@ -28,12 +28,14 @@ Public Class Frm_Input_NPPDetail
     Dim Grid_V As DataGridView
     Dim IsNew As Boolean
     Dim DtTabale As DataTable
-    Dim order As String
+    Dim order As Double
     Dim NoNPP As String
 
 
     Dim dtB As DataTable
     Dim BS As New BindingSource
+
+    Dim RowsAwal As Integer
 
 
     Public Sub New(ByVal _ID As String,
@@ -54,7 +56,7 @@ Public Class Frm_Input_NPPDetail
                    ByVal _IsNew As Boolean,
                    ByRef _dt As DataTable,
                    ByRef _grid As GridControl,
-                   ByVal _Order As String,
+                   ByVal _Order As Double,
                    ByVal _NoNpp As String)
 
         ' This call is required by the designer.
@@ -90,6 +92,11 @@ Public Class Frm_Input_NPPDetail
 
 
     Private Sub Frm_Input_NpwoDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+
+        Me.TOrder.Properties.Mask.EditMask = "n0"
+        Me.TOrder.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
 
         If IsNew Then
             TPartNo.EditValue = ""
@@ -128,6 +135,7 @@ Public Class Frm_Input_NPPDetail
             CAssy.DataBindings.Add(New Binding("Checked", BS, "Assy"))
             CUltrasonic.DataBindings.Add(New Binding("Checked", BS, "Ultrasonic"))
             CbVibration.DataBindings.Add(New Binding("Checked", BS, "Vibration"))
+            TID.DataBindings.Add(New Binding("text", BS, "ID"))
 
 
             'TCt.DataBindings.Add(New Binding("text", BS, "Part Name"))
@@ -142,7 +150,7 @@ Public Class Frm_Input_NPPDetail
 
             'BindingNavigator1.BindingSource.DataSource = dt
 
-            TPartNo.Enabled = False
+            'TPartNo.Enabled = False
             'TPartNo.EditValue = ID
             'TPartName.EditValue = Nama
             'TWeight.EditValue = Weight
@@ -168,6 +176,8 @@ Public Class Frm_Input_NPPDetail
 
         End If
 
+
+        RowsAwal = DtTabale.Rows.Count
 
 
 
@@ -226,7 +236,7 @@ Public Class Frm_Input_NPPDetail
                     Exit Sub
 
                 End If
-
+                Dim GroupID As String = fc_Class.GetGroupIDAuto(DtTabale.Rows.Count, RowsAwal)
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
@@ -244,8 +254,8 @@ Public Class Frm_Input_NPPDetail
                     .Item("Ultrasonic") = CAssy.CheckState
                     .Item("Vibration") = CbVibration.CheckState
                     .Item("Status Mold") = TStatusMold.Text.Trim
-                    .Item("Order Month") = TOrder.Text
-                    .Item("Group ID") = TPartNo.Text.Trim
+                    .Item("Order Month") = TOrder.EditValue
+                    .Item("Group ID") = GroupID
 
                 End With
 
@@ -257,6 +267,8 @@ Public Class Frm_Input_NPPDetail
                 TWeight.EditValue = "0"
                 TMaterial.EditValue = ""
                 TStatusMold.EditValue = ""
+                TMachine.EditValue = ""
+                TCav.EditValue = ""
                 CAssy.Checked = False
                 CbVibration.Checked = False
                 CPainting.Checked = False
@@ -270,8 +282,9 @@ Public Class Frm_Input_NPPDetail
         Else
 
             For i As Integer = 0 To DtTabale.Rows.Count - 1
-                If TPartNo.EditValue.Trim = DtTabale.Rows(i).Item("Part No") Then
+                If TID.EditValue.Trim = DtTabale.Rows(i).Item("ID") Then
                     With DtTabale.Rows(i)
+                        .Item("Part No") = TPartNo.EditValue.Trim
                         .Item("Part Name") = TPartName.EditValue.Trim
                         .Item("Weight") = TWeight.EditValue.Trim
                         .Item("Material") = TMaterial.EditValue.Trim
@@ -295,18 +308,17 @@ Public Class Frm_Input_NPPDetail
         End If
 
 
-
     End Sub
 
 
-    Private Sub TWeight_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TWeight.KeyPress
+    Private Sub TWeight_KeyPress(sender As Object, e As KeyPressEventArgs)
 
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
+        'Dim tombol As Integer
+        'tombol = Asc(e.KeyChar)
 
-        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
-            e.Handled = True
-        End If
+        'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+        '    e.Handled = True
+        'End If
 
     End Sub
 
@@ -339,7 +351,7 @@ Public Class Frm_Input_NPPDetail
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
-        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 46)) Then
             e.Handled = True
         End If
 
@@ -411,7 +423,16 @@ Public Class Frm_Input_NPPDetail
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
-        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 44)) Then
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 46)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TWeight_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TWeight.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 46)) Then
             e.Handled = True
         End If
     End Sub

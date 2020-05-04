@@ -47,6 +47,13 @@ Public Class Frm_NPP_Detail
 
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
+
+        Me.TOrderMonth.Properties.Mask.EditMask = "n0"
+        Me.TOrderMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+        Me.TOrderMaxMonth.Properties.Mask.EditMask = "n0"
+        Me.TOrderMaxMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
     End Sub
 
     Private Sub FillComboCustomer()
@@ -78,7 +85,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -96,6 +103,7 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Ultrasonic", GetType(Boolean)),
                                                            New DataColumn("Single", GetType(Boolean)),
                                                            New DataColumn("Group ID", GetType(String)),
+                                                           New DataColumn("ID", GetType(Integer)),
                                                            New DataColumn("Order Month", GetType(Int32))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -892,6 +900,10 @@ Public Class Frm_NPP_Detail
         CForm = 1
 
         CallForm()
+
+    End Sub
+
+    Private Sub TOrderMonth_Leave(sender As Object, e As EventArgs) Handles TOrderMonth.Leave
 
     End Sub
 End Class

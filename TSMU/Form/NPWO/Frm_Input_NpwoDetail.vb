@@ -131,6 +131,8 @@ Public Class Frm_Input_NpwoDetail
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If IsNew = True Then
 
+            Dim GroupID As String = fc_Class.GetGroupIDAuto(DtTabale.Rows.Count)
+
             If TPartNo.Text = "" Then
                 MessageBox.Show("Please Fill Part No",
                                       "Warning",
@@ -145,6 +147,12 @@ Public Class Frm_Input_NpwoDetail
                                       MessageBoxDefaultButton.Button1)
             ElseIf TOrder.Text = "" Then
                 MessageBox.Show("Order Must be Number",
+                                     "Warning",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Exclamation,
+                                     MessageBoxDefaultButton.Button1)
+            ElseIf TType.Text = "" Then
+                MessageBox.Show("Please Select Type",
                                      "Warning",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Exclamation,
@@ -193,8 +201,8 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Status Mold") = TStatusMold.Text.Trim
                     .Item("Order Month") = TOrder.Text.Trim
                     .Item("LOI") = TLOI.Text.Trim
-                    .Item("Group ID") = TPartNo.Text.Trim
-                    .Item("Type") = "PROCCES"
+                    .Item("Group ID") = GroupID
+                    .Item("Type") = TType.Text.Trim
 
                 End With
 
@@ -222,9 +230,15 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Status Mold") = TStatusMold.Text.Trim
                     .Item("Order Month") = TOrder.Text.Trim
                     .Item("LOI") = TLOI.Text.Trim
-                    .Item("Group ID") = TPartNo.Text.Trim
-                    .Item("Type") = "PROCCES"
-                    .Item("Type1") = "PROCCES"
+                    .Item("Group ID") = GroupID
+                    If TType.EditValue = "MOLD" Then
+                        .Item("Type") = "PROCESS"
+                        .Item("Type1") = "MOLD"
+                    ElseIf TType.EditValue = "PROCESS" Then
+                        .Item("Type") = "PROCESS"
+                        .Item("Type1") = "PROCESS"
+                    End If
+
 
                 End With
 
@@ -274,7 +288,7 @@ Public Class Frm_Input_NpwoDetail
                         .Item("Status Mold") = TStatusMold.Text.Trim
                         .Item("Order Month") = TOrder.Text.Trim
                         .Item("LOI") = TLOI.Text.Trim
-                        .Item("Group ID") = TLOI.Text.Trim
+                        '.Item("Group ID") =GroupID
                     End With
 
                 End If

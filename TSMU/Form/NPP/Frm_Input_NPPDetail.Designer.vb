@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Frm_Input_NPPDetail
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Frm_Input_NPPDetail
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Input_NPPDetail))
@@ -29,7 +29,6 @@ Partial Class Frm_Input_NPPDetail
         Me.TPartName = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.BAdd = New System.Windows.Forms.Button()
-        Me.TWeight = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TMaterial = New DevExpress.XtraEditors.TextEdit()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -65,9 +64,10 @@ Partial Class Frm_Input_NPPDetail
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BPrev = New System.Windows.Forms.Button()
         Me.BNext = New System.Windows.Forms.Button()
+        Me.TID = New DevExpress.XtraEditors.TextEdit()
+        Me.TWeight = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TPartNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TPartName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMaterial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TStatusMold.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +77,8 @@ Partial Class Frm_Input_NPPDetail
         CType(Me.TCav.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
+        CType(Me.TID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -120,13 +122,6 @@ Partial Class Frm_Input_NPPDetail
         Me.BAdd.Text = "Add"
         Me.BAdd.UseVisualStyleBackColor = True
         '
-        'TWeight
-        '
-        Me.TWeight.Location = New System.Drawing.Point(104, 196)
-        Me.TWeight.Name = "TWeight"
-        Me.TWeight.Size = New System.Drawing.Size(210, 20)
-        Me.TWeight.TabIndex = 7
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -162,7 +157,7 @@ Partial Class Frm_Input_NPPDetail
         Me.GroupBox1.Controls.Add(Me.CInjection)
         Me.GroupBox1.Location = New System.Drawing.Point(325, 36)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(107, 231)
+        Me.GroupBox1.Size = New System.Drawing.Size(107, 206)
         Me.GroupBox1.TabIndex = 17
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Process"
@@ -249,6 +244,8 @@ Partial Class Frm_Input_NPPDetail
         '
         Me.TOrder.Location = New System.Drawing.Point(104, 247)
         Me.TOrder.Name = "TOrder"
+        Me.TOrder.Properties.DisplayFormat.FormatString = "{0:N0}"
+        Me.TOrder.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TOrder.Size = New System.Drawing.Size(210, 20)
         Me.TOrder.TabIndex = 9
         '
@@ -438,12 +435,31 @@ Partial Class Frm_Input_NPPDetail
         Me.BNext.Text = ">"
         Me.BNext.UseVisualStyleBackColor = True
         '
+        'TID
+        '
+        Me.TID.Enabled = False
+        Me.TID.Location = New System.Drawing.Point(325, 246)
+        Me.TID.Name = "TID"
+        Me.TID.Size = New System.Drawing.Size(107, 20)
+        Me.TID.TabIndex = 35
+        '
+        'TWeight
+        '
+        Me.TWeight.Location = New System.Drawing.Point(104, 196)
+        Me.TWeight.Name = "TWeight"
+        Me.TWeight.Properties.DisplayFormat.FormatString = "{0:N0}"
+        Me.TWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TWeight.Size = New System.Drawing.Size(210, 20)
+        Me.TWeight.TabIndex = 36
+        '
         'Frm_Input_NPPDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(453, 315)
+        Me.Controls.Add(Me.TWeight)
+        Me.Controls.Add(Me.TID)
         Me.Controls.Add(Me.BNext)
         Me.Controls.Add(Me.BPrev)
         Me.Controls.Add(Me.BindingNavigator1)
@@ -460,7 +476,6 @@ Partial Class Frm_Input_NPPDetail
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.TMaterial)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.TWeight)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.BAdd)
         Me.Controls.Add(Me.TPartName)
@@ -474,7 +489,6 @@ Partial Class Frm_Input_NPPDetail
         Me.Text = "NPP Detail"
         CType(Me.TPartNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TPartName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMaterial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -486,6 +500,8 @@ Partial Class Frm_Input_NPPDetail
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindingNavigator1.ResumeLayout(False)
         Me.BindingNavigator1.PerformLayout()
+        CType(Me.TID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -497,7 +513,6 @@ Partial Class Frm_Input_NPPDetail
     Friend WithEvents TPartName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents BAdd As Button
-    Friend WithEvents TWeight As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label5 As Label
     Friend WithEvents TMaterial As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label7 As Label
@@ -533,4 +548,6 @@ Partial Class Frm_Input_NPPDetail
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
     Friend WithEvents BPrev As Button
     Friend WithEvents BNext As Button
+    Friend WithEvents TID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TWeight As DevExpress.XtraEditors.TextEdit
 End Class
