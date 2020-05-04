@@ -40,46 +40,51 @@ Partial Public Class FrmMain
 
 
                 For Each mnuItem As Item In group.Items.OrderBy(Function(c) c.Index)
-                    Dim barButtonItem As BarButtonItem = New BarButtonItem With {
+                    If mnuItem.FormType = 2 Then
+                    Else
+                        Dim barButtonItem As BarButtonItem = New BarButtonItem With {
                         .Caption = mnuItem.Text,
                         .Tag = mnuItem
                     }
-                    barButtonItem.ItemAppearance.Disabled.Options.UseTextOptions = True
-                    barButtonItem.ItemAppearance.Disabled.TextOptions.WordWrap = WordWrap.NoWrap
-                    barButtonItem.ItemAppearance.Hovered.Options.UseTextOptions = True
-                    barButtonItem.ItemAppearance.Hovered.TextOptions.WordWrap = WordWrap.NoWrap
-                    barButtonItem.ItemAppearance.Normal.Options.UseTextOptions = True
-                    barButtonItem.ItemAppearance.Normal.TextOptions.WordWrap = WordWrap.NoWrap
-                    barButtonItem.ItemAppearance.Pressed.Options.UseTextOptions = True
-                    barButtonItem.ItemAppearance.Pressed.TextOptions.WordWrap = WordWrap.NoWrap
+                        barButtonItem.ItemAppearance.Disabled.Options.UseTextOptions = True
+                        barButtonItem.ItemAppearance.Disabled.TextOptions.WordWrap = WordWrap.NoWrap
+                        barButtonItem.ItemAppearance.Hovered.Options.UseTextOptions = True
+                        barButtonItem.ItemAppearance.Hovered.TextOptions.WordWrap = WordWrap.NoWrap
+                        barButtonItem.ItemAppearance.Normal.Options.UseTextOptions = True
+                        barButtonItem.ItemAppearance.Normal.TextOptions.WordWrap = WordWrap.NoWrap
+                        barButtonItem.ItemAppearance.Pressed.Options.UseTextOptions = True
+                        barButtonItem.ItemAppearance.Pressed.TextOptions.WordWrap = WordWrap.NoWrap
 
-                    If mnuItem.Items.Count = 0 Then
-                        barButtonItem.RibbonStyle = RibbonItemStyles.SmallWithText
-                        barButtonItem.Glyph = mnuItem.Image
-                    Else
-                        barButtonItem.ButtonStyle = BarButtonStyle.DropDown
-                        barButtonItem.RibbonStyle = RibbonItemStyles.Large
-                        barButtonItem.LargeGlyph = mnuItem.Image
-                        barButtonItem.ActAsDropDown = True
-                        Dim popup As PopupMenu = New PopupMenu(barManager1) With {
-                            .Ribbon = ribbon
-                        }
-
-                        For Each child As Item In mnuItem.Items.OrderBy(Function(c) c.Index)
-                            Dim childButton As BarButtonItem = New BarButtonItem With {
-                                .Caption = child.Text,
-                                .Tag = child,
-                                .Glyph = child.Image
+                        If mnuItem.Items.Count = 0 Then
+                            barButtonItem.RibbonStyle = RibbonItemStyles.SmallWithText
+                            barButtonItem.Glyph = mnuItem.Image
+                        Else
+                            barButtonItem.ButtonStyle = BarButtonStyle.DropDown
+                            barButtonItem.RibbonStyle = RibbonItemStyles.Large
+                            barButtonItem.LargeGlyph = mnuItem.Image
+                            barButtonItem.ActAsDropDown = True
+                            Dim popup As PopupMenu = New PopupMenu(barManager1) With {
+                                .Ribbon = ribbon
                             }
-                            popup.AddItem(childButton)
-                            AddHandler childButton.ItemClick, AddressOf barButtonItem_ItemClick
-                        Next
 
-                        barButtonItem.DropDownControl = popup
+                            For Each child As Item In mnuItem.Items.OrderBy(Function(c) c.Index)
+
+                                Dim childButton As BarButtonItem = New BarButtonItem With {
+                                    .Caption = child.Text,
+                                    .Tag = child,
+                                    .Glyph = child.Image
+                                }
+                                popup.AddItem(childButton)
+                                AddHandler childButton.ItemClick, AddressOf barButtonItem_ItemClick
+                            Next
+
+                            barButtonItem.DropDownControl = popup
+                        End If
+
+                        AddHandler barButtonItem.ItemClick, AddressOf barButtonItem_ItemClick
+                        ribbonPageGroup.ItemLinks.Add(barButtonItem)
                     End If
 
-                    AddHandler barButtonItem.ItemClick, AddressOf barButtonItem_ItemClick
-                    ribbonPageGroup.ItemLinks.Add(barButtonItem)
                 Next
             Next
         Next
@@ -117,13 +122,13 @@ Partial Public Class FrmMain
                         _form.MdiParent = Me
                     End If
 
-                    If item.FormType = FormTypes.FORM_CALLCENTER Then
-                        _form.TopMost = True
-                        _form.ShowIcon = False
-                        _form.ShowInTaskbar = False
-                        _form.FormBorderStyle = FormBorderStyle.None
-                        _form.Location = New Point(Screen.PrimaryScreen.WorkingArea.Right - _form.Width, Screen.PrimaryScreen.WorkingArea.Bottom - _form.Height)
-                    End If
+                    'If item.FormType = FormTypes.FORM_CALLCENTER Then
+                    '    _form.TopMost = True
+                    '    _form.ShowIcon = False
+                    '    _form.ShowInTaskbar = False
+                    '    _form.FormBorderStyle = FormBorderStyle.None
+                    '    _form.Location = New Point(Screen.PrimaryScreen.WorkingArea.Right - _form.Width, Screen.PrimaryScreen.WorkingArea.Bottom - _form.Height)
+                    'End If
 
                     _form.Show()
                     Return _form
@@ -160,7 +165,7 @@ Partial Public Class FrmMain
     End Function
 
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-
+        ribbon.Minimized = True
         'Me.MaximizeBox = False
         'HasLoad = True
         LblLogin.Caption = ""
