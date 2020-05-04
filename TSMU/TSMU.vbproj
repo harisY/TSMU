@@ -1368,6 +1368,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
+      <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_SalesPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReportSo.Designer.vb">
       <DependentUpon>frmReportSo.vb</DependentUpon>
     </Compile>
@@ -2243,6 +2249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
+      <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReportSo.resx">
       <DependentUpon>frmReportSo.vb</DependentUpon>
