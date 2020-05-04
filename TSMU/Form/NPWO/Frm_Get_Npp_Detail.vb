@@ -122,11 +122,14 @@ Public Class Frm_Get_Npp_Detail
         dt = New DataTable
 
 
-        dt.Columns.AddRange(New DataColumn(15) {New DataColumn("Part No", GetType(String)),
+        dt.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Check", GetType(Boolean)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Weight", GetType(Double)),
                                                            New DataColumn("Material", GetType(String)),
+                                                           New DataColumn("Machine", GetType(String)),
+                                                           New DataColumn("Cav", GetType(String)),
+                                                           New DataColumn("C/T", GetType(String)),
                                                            New DataColumn("Inj", GetType(Boolean)),
                                                            New DataColumn("Painting", GetType(Boolean)),
                                                            New DataColumn("Chrome", GetType(Boolean)),
@@ -157,6 +160,10 @@ Public Class Frm_Get_Npp_Detail
             Dim assy As Boolean = False
             Dim ultra As Boolean = False
             Dim vibra As Boolean = False
+
+            Dim CT As Integer = 0
+            Dim Weight As Double = 0
+
 
             MyNewRow = DtTabale.NewRow
             MyNewRowDetail = dtDetail.NewRow
@@ -189,7 +196,6 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Part No") = .Item("Part No") & GridView1.GetRowCellValue(j, GridView1.Columns("Part No")).ToString & " - "
                                         .Item("Type") = "MOLD"
                                         .Item("Part Name") = GridView1.GetRowCellValue(j, GridView1.Columns("Part Name")).ToString
-                                        .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight")).ToString
                                         .Item("Material") = GridView1.GetRowCellValue(j, GridView1.Columns("Material"))
                                         Inj = Inj Or Convert.ToBoolean(GridView1.GetRowCellValue(j, GridView1.Columns("Inj")))
                                         paint = paint Or GridView1.GetRowCellValue(j, GridView1.Columns("Painting"))
@@ -204,12 +210,20 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Painting") = paint
                                         .Item("Chrome") = chrome
                                         .Item("Assy") = assy
-                                        .Item("C/T") = "0"
-                                        .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
                                         .Item("Ultrasonic") = ultra
                                         .Item("Vibration") = vibra
                                         .Item("Type") = "MOLD"
+
+                                        CT = CT + GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        Weight = Weight + GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
+                                        .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
+                                        .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
+                                        .Item("C/T") = CT
+                                        .Item("Weight") = Weight
+
+                                        .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
+
 
                                     End With
 
@@ -242,11 +256,15 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Ultrasonic") = GridView1.GetRowCellValue(j, GridView1.Columns("Ultrasonic"))
                                         .Item("Vibration") = GridView1.GetRowCellValue(j, GridView1.Columns("Vibration"))
                                         .Item("Order Month") = GridView1.GetRowCellValue(j, GridView1.Columns("Order Month"))
-                                        .Item("C/T") = "0"
-                                        .Item("Weight") = "0"
+                                        .Item("C/T") = GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
+                                        .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
+                                        .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
                                         .Item("Qty Mold") = "0"
                                         .Item("Type") = "PROCESS"
                                         .Item("Type1") = "MOLD"
+
+                                        .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)
@@ -290,12 +308,20 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Painting") = paint
                                         .Item("Chrome") = chrome
                                         .Item("Assy") = assy
-                                        .Item("C/T") = "0"
-                                        .Item("Weight") = "0"
                                         .Item("Qty Mold") = "0"
                                         .Item("Ultrasonic") = ultra
                                         .Item("Vibration") = vibra
                                         .Item("Type") = "MOLD"
+
+                                        CT = CT + GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        Weight = Weight + GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
+                                        .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
+                                        .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
+                                        .Item("C/T") = CT
+                                        .Item("Weight") = Weight
+
+                                        .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
+
                                     End With
 
                                 End If
@@ -326,11 +352,15 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Ultrasonic") = GridView1.GetRowCellValue(j, GridView1.Columns("Ultrasonic"))
                                         .Item("Vibration") = GridView1.GetRowCellValue(j, GridView1.Columns("Vibration"))
                                         .Item("Order Month") = GridView1.GetRowCellValue(j, GridView1.Columns("Order Month"))
-                                        .Item("C/T") = "0"
-                                        .Item("Weight") = "0"
+                                        .Item("C/T") = GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        .Item("Weight") = GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
+                                        .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
+                                        .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
                                         .Item("Qty Mold") = "0"
                                         .Item("Type") = "PROCESS"
                                         .Item("Type1") = "MOLD"
+
+                                        .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
 
                                     End With
                                     dtDetail.Rows.Add(MyNewRowDetail)

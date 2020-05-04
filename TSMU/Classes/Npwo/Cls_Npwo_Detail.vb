@@ -785,7 +785,7 @@ Public Class Cls_Npwo_Detail
             Dim Bulan As String = Format(Now, "MM")
             Dim Tanggal As String = Format(Now, "dd")
 
-            Dim Head As String = "TSC/NPPWO/MKT" & "/" & Bulan & "/" & Customer_ & "-" & Model_ & "/"
+            Dim Head As String = "TSC/NPWO/MKT" & "/" & Bulan & "/" & Customer_ & "-" & Model_ & "/"
 
 
             Dim ls_SP As String = "SELECT No_Npwo
