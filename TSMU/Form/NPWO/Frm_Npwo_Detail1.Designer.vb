@@ -68,10 +68,10 @@ Partial Class Frm_Npwo_Detail1
         Me.CBTng = New System.Windows.Forms.CheckBox()
         Me.CBStr = New System.Windows.Forms.CheckBox()
         Me.CBSample = New System.Windows.Forms.CheckBox()
+        Me.B_AddRows = New System.Windows.Forms.Button()
         Me.CBCad = New System.Windows.Forms.CheckBox()
         Me.CBDrawing = New System.Windows.Forms.CheckBox()
         Me.TCategory = New DevExpress.XtraEditors.LookUpEdit()
-        Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TT0 = New DevExpress.XtraEditors.DateEdit()
@@ -607,6 +607,15 @@ Partial Class Frm_Npwo_Detail1
         Me.CBSample.Text = "Sampel"
         Me.CBSample.UseVisualStyleBackColor = True
         '
+        'B_AddRows
+        '
+        Me.B_AddRows.Location = New System.Drawing.Point(356, 77)
+        Me.B_AddRows.Name = "B_AddRows"
+        Me.B_AddRows.Size = New System.Drawing.Size(149, 23)
+        Me.B_AddRows.TabIndex = 8
+        Me.B_AddRows.Text = "Add"
+        Me.B_AddRows.UseVisualStyleBackColor = True
+        '
         'CBCad
         '
         Me.CBCad.AutoSize = True
@@ -636,15 +645,6 @@ Partial Class Frm_Npwo_Detail1
         Me.TCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.TCategory.Size = New System.Drawing.Size(429, 20)
         Me.TCategory.TabIndex = 44
-        '
-        'B_AddRows
-        '
-        Me.B_AddRows.Location = New System.Drawing.Point(459, 77)
-        Me.B_AddRows.Name = "B_AddRows"
-        Me.B_AddRows.Size = New System.Drawing.Size(65, 23)
-        Me.B_AddRows.TabIndex = 8
-        Me.B_AddRows.Text = "Add"
-        Me.B_AddRows.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
