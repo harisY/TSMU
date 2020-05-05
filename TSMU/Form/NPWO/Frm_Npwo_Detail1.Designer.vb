@@ -530,6 +530,7 @@ Partial Class Frm_Npwo_Detail1
         Me.GroupBox2.Controls.Add(Me.CBTng)
         Me.GroupBox2.Controls.Add(Me.CBStr)
         Me.GroupBox2.Controls.Add(Me.CBSample)
+        Me.GroupBox2.Controls.Add(Me.B_AddRows)
         Me.GroupBox2.Controls.Add(Me.CBCad)
         Me.GroupBox2.Controls.Add(Me.CBDrawing)
         Me.GroupBox2.Controls.Add(Me.TCategory)
@@ -638,7 +639,7 @@ Partial Class Frm_Npwo_Detail1
         '
         'B_AddRows
         '
-        Me.B_AddRows.Location = New System.Drawing.Point(292, 94)
+        Me.B_AddRows.Location = New System.Drawing.Point(459, 77)
         Me.B_AddRows.Name = "B_AddRows"
         Me.B_AddRows.Size = New System.Drawing.Size(65, 23)
         Me.B_AddRows.TabIndex = 8
@@ -654,7 +655,6 @@ Partial Class Frm_Npwo_Detail1
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.TT1)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.B_AddRows)
         Me.GroupBox1.Controls.Add(Me.TMp)
         Me.GroupBox1.Location = New System.Drawing.Point(988, 34)
         Me.GroupBox1.Name = "GroupBox1"

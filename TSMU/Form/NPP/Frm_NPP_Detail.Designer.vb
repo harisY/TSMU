@@ -325,7 +325,6 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.B_AddRows)
         Me.GroupBox1.Controls.Add(Me.TMp)
         Me.GroupBox1.Location = New System.Drawing.Point(988, 34)
         Me.GroupBox1.Name = "GroupBox1"
@@ -383,9 +382,9 @@ Partial Class Frm_NPP_Detail
         '
         'B_AddRows
         '
-        Me.B_AddRows.Location = New System.Drawing.Point(282, 18)
+        Me.B_AddRows.Location = New System.Drawing.Point(17, 73)
         Me.B_AddRows.Name = "B_AddRows"
-        Me.B_AddRows.Size = New System.Drawing.Size(75, 23)
+        Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
         Me.B_AddRows.TabIndex = 8
         Me.B_AddRows.Text = "Add Detail"
         Me.B_AddRows.UseVisualStyleBackColor = True
@@ -406,6 +405,7 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox2.Controls.Add(Me.CBCkr)
         Me.GroupBox2.Controls.Add(Me.TModelDesc)
         Me.GroupBox2.Controls.Add(Me.CBTng)
+        Me.GroupBox2.Controls.Add(Me.B_AddRows)
         Me.GroupBox2.Controls.Add(Me.CBStr)
         Me.GroupBox2.Controls.Add(Me.CBSample)
         Me.GroupBox2.Controls.Add(Me.CBCad)
