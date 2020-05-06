@@ -1603,7 +1603,8 @@ Public Class TravelRequestModel
     Public Property Purpose As String
     Public Property Status As String
 
-    Public Property ObjDetails() As New Collection(Of TravelRequestDetailModel)
+    Public Property ObjRequestDetails() As New Collection(Of TravelRequestDetailModel)
+    Public Property ObjRequestCost() As New Collection(Of TravelRequestCostModel)
 
     'Public Property ObjAllowance() As New Collection(Of TravelRequestAllowanceModel)
 
@@ -1646,8 +1647,32 @@ Public Class TravelRequestModel
                                         TravelType ,
                                         Golongan ,
                                         Purpose ,
-                                        Status
+                                        Status ,
+                                        '' AS Approved ,
+                                        '' AS Comment
                                 FROM    dbo.TravelRequestHeader"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTravelRequest() As DataTable
+        Try
+            Dim sql As String = "SELECT  NoRequest ,
+                                        NIK ,
+                                        Nama ,
+                                        Date ,
+                                        DeptID ,
+                                        TravelType ,
+                                        Golongan ,
+                                        Purpose ,
+                                        '' AS Approved ,
+                                        '' AS Comment
+                                FROM    dbo.TravelRequestHeader
+                                WHERE   Status = 'OPEN'"
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -1728,17 +1753,17 @@ Public Class TravelRequestModel
                     Try
                         InsertHeader()
 
-                        For i As Integer = 0 To ObjDetails.Count - 1
-                            With ObjDetails(i)
+                        For i As Integer = 0 To ObjRequestDetails.Count - 1
+                            With ObjRequestDetails(i)
                                 .InsertDetails()
                             End With
                         Next
 
-                        'For i As Integer = 0 To ObjAllowance.Count - 1
-                        '    With ObjAllowance(i)
-                        '        .InsertAllowance()
-                        '    End With
-                        'Next
+                        For i As Integer = 0 To ObjRequestCost.Count - 1
+                            With ObjRequestCost(i)
+                                .InsertCost()
+                            End With
+                        Next
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -1768,7 +1793,7 @@ Public Class TravelRequestModel
             pParam(2) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
             pParam(2).Value = Nama
             pParam(3) = New SqlClient.SqlParameter("@Tanggal", SqlDbType.Date)
-            pParam(3).Value = Tanggal
+            pParam(3).Value = Date.Today
             pParam(4) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
             pParam(4).Value = DeptID
             pParam(5) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
@@ -1778,7 +1803,7 @@ Public Class TravelRequestModel
             pParam(7) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
             pParam(7).Value = Purpose
             pParam(8) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
-            pParam(8).Value = "Open"
+            pParam(8).Value = Status
             pParam(9) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(9).Value = gh_Common.Username
 
@@ -1789,7 +1814,120 @@ Public Class TravelRequestModel
         End Try
     End Sub
 
-    Public Function GetPocketAllowance() As DataTable
+    Public Sub UpdateData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        UpdateHeader(NoRequest)
+
+                        Dim ObjRequestDetail As New TravelRequestDetailModel
+                        ObjRequestDetail.DeleteDetail(NoRequest)
+
+                        For i As Integer = 0 To ObjRequestDetails.Count - 1
+                            With ObjRequestDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Dim _ObjRequestCost As New TravelRequestCostModel
+                        _ObjRequestCost.DeleteCost(NoRequest)
+
+                        For i As Integer = 0 To ObjRequestCost.Count - 1
+                            With ObjRequestCost(i)
+                                .InsertCost()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateHeader(ByVal _NoRequest As String)
+        Try
+            Dim query As String
+            query = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+                    " SET     NIK = " & QVal(NIK) & " , " & vbCrLf &
+                    "         Nama = " & QVal(Nama) & " , " & vbCrLf &
+                    "         TravelType = " & QVal(TravelType) & " , " & vbCrLf &
+                    "         Golongan = " & QVal(Golongan) & " , " & vbCrLf &
+                    "         Purpose = " & QVal(Purpose) & " , " & vbCrLf &
+                    "         Status = " & QVal(Status) & " , " & vbCrLf &
+                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+                    "         UpdatedDate = GETDATE() " & vbCrLf &
+                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+            ExecQuery_Solomon(query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateStatusHeader(ByVal _NoRequest As String)
+        Try
+            Dim query As String
+            query = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+                    " SET     Status = " & QVal(Status) & " , " & vbCrLf &
+                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+                    "         UpdatedDate = GETDATE() " & vbCrLf &
+                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+            ExecQuery_Solomon(query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Delete()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Dim query As String
+                    Try
+                        query = " DELETE  FROM dbo.TravelRequestHeader " & vbCrLf &
+                                " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
+                        MainModul.ExecQuery_Solomon(query)
+
+                        query = " DELETE  FROM dbo.TravelRequestDetail " & vbCrLf &
+                                " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
+                        MainModul.ExecQuery_Solomon(query)
+
+                        query = " DELETE  FROM dbo.TravelRequestCost " & vbCrLf &
+                                " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
+                        MainModul.ExecQuery_Solomon(query)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer) As DataTable
         Try
             Dim sql As String = " SELECT  CuryID ,
                                         CASE WHEN CuryID = 'IDR' THEN Amount
@@ -1797,10 +1935,14 @@ Public Class TravelRequestModel
                                         END AdvanceIDR ,
                                         CASE WHEN CuryID = 'USD' THEN Amount
                                                 ELSE 0
-                                        END AdvanceUSD
+                                        END AdvanceUSD ,
+                                        CASE WHEN CuryID = 'YEN' THEN Amount
+                                                ELSE 0
+                                        END AdvanceUSD ,
+                                        FirstTravel
                                 FROM    dbo.TravelPocketAllowance
-                                WHERE   TravelType = " & QVal(TravelType) & "
-                                        AND Golongan = " & QVal(Golongan) & ""
+                                WHERE   TravelType = " & QVal(TravelType__) & "
+                                        AND Golongan = " & QVal(Golongan__) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -1809,11 +1951,12 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetFirstTravel(ByVal nik As String, tahun As String) As Integer
+    Public Function GetFirstTravel(ByVal nik As String, ByVal traveltype As String, ByVal tahun As String) As Integer
         Try
             Dim sql As String = "SELECT  COUNT(NoRequest) AS Data
                                 FROM    dbo.TravelRequestHeader
                                 WHERE   NIK = " & QVal(nik) & "
+                                        AND TravelType = " & QVal(traveltype) & "
                                         AND SUBSTRING(NoRequest, 4, 4) = " & QVal(tahun) & ""
             Dim value As Integer
             Dim dt As New DataTable
@@ -1833,12 +1976,10 @@ Public Class TravelRequestDetailModel
     Public Property NoRequest As String
     Public Property Seq As Integer
     Public Property Negara As String
+    Public Property Visa As String
     Public Property Destination As String
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
-    Public Property SafetyMoneyIDR As Double
-    Public Property SafetyMoneyUSD As Double
-    Public Property SafetyMoneyYEN As Double
 
     Public Function GetDetailByID() As DataTable
         Try
@@ -1886,21 +2027,28 @@ Public Class TravelRequestDetailModel
                     "            ,[Seq] " & vbCrLf &
                     "            ,[Destination] " & vbCrLf &
                     "            ,[Negara] " & vbCrLf &
+                    "            ,[Visa] " & vbCrLf &
                     "            ,[DepartureDate] " & vbCrLf &
-                    "            ,[ArrivalDate] " & vbCrLf &
-                    "            ,[SafetyMoneyIDR] " & vbCrLf &
-                    "            ,[SafetyMoneyUSD] " & vbCrLf &
-                    "            ,[SafetyMoneyYEN]) " & vbCrLf &
+                    "            ,[ArrivalDate]) " & vbCrLf &
                     "      VALUES " & vbCrLf &
                     "            (" & QVal(NoRequest) & ", " & vbCrLf &
                     "            " & QVal(Seq) & ", " & vbCrLf &
                     "            " & QVal(Destination) & ", " & vbCrLf &
                     "            " & QVal(Negara) & ", " & vbCrLf &
+                    "            " & QVal(Visa) & ", " & vbCrLf &
                     "            " & QVal(DepartureDate) & ", " & vbCrLf &
-                    "            " & QVal(ArrivalDate) & ", " & vbCrLf &
-                    "            " & QVal(SafetyMoneyIDR) & ", " & vbCrLf &
-                    "            " & QVal(SafetyMoneyUSD) & ", " & vbCrLf &
-                    "            " & QVal(SafetyMoneyYEN) & ")"
+                    "            " & QVal(ArrivalDate) & ")"
+
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteDetail(ByVal _NoRequest As String)
+        Try
+            Dim ls_SP As String = " DELETE  FROM dbo.TravelRequestDetail
+                                    WHERE   NoRequest = " & QVal(_NoRequest.TrimEnd) & ""
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -1911,6 +2059,8 @@ End Class
 
 Public Class TravelRequestCostModel
     Public Property NoRequest As String
+    Public Property Description As String
+    Public Property CostType As String
     Public Property Days As Integer
     Public Property AdvanceIDR As String
     Public Property AdvanceUSD As Double
@@ -1918,13 +2068,16 @@ Public Class TravelRequestCostModel
 
     Public Function GetCostByID() As DataTable
         Try
-            Dim sql As String = " SELECT  Description ,
+            Dim sql As String = " SELECT  NoRequest ,
+                                            CostType ,
+                                            Description ,
                                             Days ,
                                             AdvanceIDR ,
                                             AdvanceUSD ,
                                             AdvanceYEN
                                     FROM    dbo.TravelRequestCost
-                                    WHERE   NoRequest = " & QVal(NoRequest) & ""
+                                    WHERE   NoRequest = " & QVal(NoRequest) & "
+                                    ORDER BY Seq "
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -1933,23 +2086,50 @@ Public Class TravelRequestCostModel
         End Try
     End Function
 
-    Public Sub InsertAllowance()
-        'Try
-        '    Dim ls_SP As String = " " & vbCrLf &
-        '    "INSERT INTO TravelDetail (TravelID,SubAcct,AcctID,ID,Description,Amount,CuryID,Rate,AmountIDR ) " & vbCrLf &
-        '    "Values(" & QVal(TravelID) & ", " & vbCrLf &
-        '    "       " & QVal(SubAcct) & ", " & vbCrLf &
-        '    "       " & QVal(AcctID) & ", " & vbCrLf &
-        '    "       " & QVal(ID) & ", " & vbCrLf &
-        '    "       " & QVal(Description) & ", " & vbCrLf &
-        '    "       " & QVal(Amount) & ", " & vbCrLf &
-        '    "       " & QVal(CuryID) & ", " & vbCrLf &
-        '    "       " & QVal(Rate) & ", " & vbCrLf &
-        '    "       " & QVal(AmountIDR) & ")"
-        '    ExecQuery_Solomon(ls_SP)
-        'Catch ex As Exception
-        '    Throw
-        'End Try
+    Public Sub InsertCost()
+        Try
+            Dim ls_SP As String
+            ls_SP = " INSERT  INTO dbo.TravelRequestCost " & vbCrLf &
+                    "         ( NoRequest , " & vbCrLf &
+                    "           CostType , " & vbCrLf &
+                    "           Description , " & vbCrLf &
+                    "           Days , " & vbCrLf &
+                    "           AdvanceIDR , " & vbCrLf &
+                    "           AdvanceUSD , " & vbCrLf &
+                    "           AdvanceYEN " & vbCrLf &
+                    "         ) " & vbCrLf &
+                    " VALUES( " & QVal(NoRequest) & " ,  " & vbCrLf &
+                    "           " & QVal(CostType) & " ,  " & vbCrLf &
+                    "           " & QVal(Description) & " ,  " & vbCrLf &
+                    "           " & QVal(Days) & " ,  " & vbCrLf &
+                    "           " & QVal(AdvanceIDR) & " ,  " & vbCrLf &
+                    "           " & QVal(AdvanceUSD) & " ,  " & vbCrLf &
+                    "           " & QVal(AdvanceYEN) & "   " & vbCrLf &
+                    "         ); "
+            '"INSERT INTO TravelDetail (TravelID,SubAcct,AcctID,ID,Description,Amount,CuryID,Rate,AmountIDR ) " & vbCrLf &
+            '"Values(" & QVal(TravelID) & ", " & vbCrLf &
+            '"       " & QVal(SubAcct) & ", " & vbCrLf &
+            '"       " & QVal(AcctID) & ", " & vbCrLf &
+            '"       " & QVal(ID) & ", " & vbCrLf &
+            '"       " & QVal(Description) & ", " & vbCrLf &
+            '"       " & QVal(Amount) & ", " & vbCrLf &
+            '"       " & QVal(CuryID) & ", " & vbCrLf &
+            '"       " & QVal(Rate) & ", " & vbCrLf &
+            '"       " & QVal(AmountIDR) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteCost(ByVal _NoRequest As String)
+        Try
+            Dim ls_SP As String = " DELETE  FROM dbo.TravelRequestCost
+                                    WHERE   NoRequest = " & QVal(_NoRequest.TrimEnd) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
 End Class

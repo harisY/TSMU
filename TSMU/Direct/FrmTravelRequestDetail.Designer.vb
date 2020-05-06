@@ -49,6 +49,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtPurpose = New DevExpress.XtraEditors.TextEdit()
         Me.GridAdvance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewAdvance = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.CostType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,6 +63,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceYEN = New DevExpress.XtraEditors.TextEdit()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +85,7 @@ Partial Class FrmTravelRequestDetail
         CType(Me.txtAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -105,9 +108,9 @@ Partial Class FrmTravelRequestDetail
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(1385, 86)
+        Me.btnAdd.Location = New System.Drawing.Point(1403, 86)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(145, 37)
+        Me.btnAdd.Size = New System.Drawing.Size(124, 37)
         Me.btnAdd.TabIndex = 6
         Me.btnAdd.Text = "Add Detail ++"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -161,13 +164,14 @@ Partial Class FrmTravelRequestDetail
         '
         'GridDetail
         '
-        Me.GridDetail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GridDetail.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDetail.Location = New System.Drawing.Point(25, 134)
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNegara})
-        Me.GridDetail.Size = New System.Drawing.Size(1505, 601)
+        Me.GridDetail.Size = New System.Drawing.Size(1502, 520)
         Me.GridDetail.TabIndex = 2
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
@@ -324,30 +328,37 @@ Partial Class FrmTravelRequestDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Location = New System.Drawing.Point(848, 48)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(682, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(679, 22)
         Me.txtPurpose.TabIndex = 9
         '
         'GridAdvance
         '
-        Me.GridAdvance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GridAdvance.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridAdvance.Location = New System.Drawing.Point(31, 766)
+        Me.GridAdvance.Location = New System.Drawing.Point(6, 22)
         Me.GridAdvance.MainView = Me.GridViewAdvance
         Me.GridAdvance.Name = "GridAdvance"
-        Me.GridAdvance.Size = New System.Drawing.Size(1493, 72)
+        Me.GridAdvance.Size = New System.Drawing.Size(1490, 156)
         Me.GridAdvance.TabIndex = 23
         Me.GridAdvance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAdvance})
         '
         'GridViewAdvance
         '
-        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Description, Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GridViewAdvance.GridControl = Me.GridAdvance
         Me.GridViewAdvance.Name = "GridViewAdvance"
         Me.GridViewAdvance.OptionsBehavior.Editable = False
         Me.GridViewAdvance.OptionsBehavior.KeepGroupExpandedOnSorting = False
         Me.GridViewAdvance.OptionsBehavior.ReadOnly = True
         Me.GridViewAdvance.OptionsView.ShowGroupPanel = False
+        '
+        'CostType
+        '
+        Me.CostType.Caption = "Cost Type"
+        Me.CostType.FieldName = "CostType"
+        Me.CostType.MinWidth = 25
+        Me.CostType.Name = "CostType"
+        Me.CostType.Width = 94
         '
         'Description
         '
@@ -405,23 +416,25 @@ Partial Class FrmTravelRequestDetail
         '
         'txtAdvanceIDR
         '
-        Me.txtAdvanceIDR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceIDR.EditValue = ""
         Me.txtAdvanceIDR.Location = New System.Drawing.Point(74, 19)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
+        Me.txtAdvanceIDR.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceIDR.Size = New System.Drawing.Size(10, 22)
+        Me.txtAdvanceIDR.Size = New System.Drawing.Size(190, 22)
         Me.txtAdvanceIDR.TabIndex = 24
         '
         'txtAdvanceUSD
         '
-        Me.txtAdvanceUSD.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceUSD.EditValue = ""
-        Me.txtAdvanceUSD.Location = New System.Drawing.Point(144, 19)
+        Me.txtAdvanceUSD.Location = New System.Drawing.Point(331, 19)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
+        Me.txtAdvanceUSD.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceUSD.Size = New System.Drawing.Size(187, 22)
+        Me.txtAdvanceUSD.Size = New System.Drawing.Size(190, 22)
         Me.txtAdvanceUSD.TabIndex = 26
         '
         'LabelControl7
@@ -434,8 +447,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl9
         '
-        Me.LabelControl9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl9.Location = New System.Drawing.Point(101, 22)
+        Me.LabelControl9.Location = New System.Drawing.Point(286, 22)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(24, 16)
         Me.LabelControl9.TabIndex = 29
@@ -443,8 +455,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl10
         '
-        Me.LabelControl10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl10.Location = New System.Drawing.Point(348, 22)
+        Me.LabelControl10.Location = New System.Drawing.Point(550, 22)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(22, 16)
         Me.LabelControl10.TabIndex = 30
@@ -452,22 +463,26 @@ Partial Class FrmTravelRequestDetail
         '
         'txtAdvanceYEN
         '
-        Me.txtAdvanceYEN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtAdvanceYEN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceYEN.EditValue = ""
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(387, 19)
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(592, 19)
+        Me.txtAdvanceYEN.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
+        Me.txtAdvanceYEN.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceYEN.Size = New System.Drawing.Size(200, 22)
+        Me.txtAdvanceYEN.Size = New System.Drawing.Size(10, 22)
         Me.txtAdvanceYEN.TabIndex = 27
         '
         'GroupBox1
         '
-        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Location = New System.Drawing.Point(25, 741)
+        Me.GroupBox1.Controls.Add(Me.GridAdvance)
+        Me.GroupBox1.Location = New System.Drawing.Point(25, 660)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1505, 103)
+        Me.GroupBox1.Size = New System.Drawing.Size(1502, 184)
         Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Advance dan Pocket Allowance"
@@ -476,25 +491,35 @@ Partial Class FrmTravelRequestDetail
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.LabelControl9)
         Me.GroupBox2.Controls.Add(Me.LabelControl7)
         Me.GroupBox2.Controls.Add(Me.LabelControl10)
         Me.GroupBox2.Controls.Add(Me.txtAdvanceYEN)
         Me.GroupBox2.Controls.Add(Me.txtAdvanceIDR)
         Me.GroupBox2.Controls.Add(Me.txtAdvanceUSD)
-        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.8!)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.6!)
         Me.GroupBox2.Location = New System.Drawing.Point(774, 75)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(593, 53)
+        Me.GroupBox2.Size = New System.Drawing.Size(608, 53)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Advance"
         '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.Location = New System.Drawing.Point(311, 22)
+        Me.Label1.Name = "Label1"
+        Me.Label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.Label1.Size = New System.Drawing.Size(275, 16)
+        Me.Label1.TabIndex = 31
+        Me.Label1.Text = "l"
+        '
         'FrmTravelRequestDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1555, 875)
-        Me.Controls.Add(Me.GridAdvance)
+        Me.ClientSize = New System.Drawing.Size(1552, 875)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtGolongan)
@@ -532,7 +557,6 @@ Partial Class FrmTravelRequestDetail
         Me.Controls.SetChildIndex(Me.txtGolongan, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
-        Me.Controls.SetChildIndex(Me.GridAdvance, 0)
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -554,6 +578,7 @@ Partial Class FrmTravelRequestDetail
         CType(Me.txtAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
@@ -602,4 +627,6 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents CNegara As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CDepartureDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents CArrivalDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CostType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
