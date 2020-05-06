@@ -33,6 +33,7 @@ Public Class Frm_Npwo_Detail1
 
     Dim FormDetail As Integer = 0
     Dim dataSet As New DataSet
+    Dim dtApprove As New DataTable
 
     Dim FrmReport As New Frm_Rpt_NPWO
 
@@ -45,9 +46,6 @@ Public Class Frm_Npwo_Detail1
         Call FillComboNPP()
         Call FillComboCategory()
 
-
-
-        'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
 
     End Sub
@@ -441,6 +439,11 @@ Public Class Frm_Npwo_Detail1
             If isUpdate = False Then
 
 #Region "Insert"
+
+                dtApprove = New DataTable
+
+                dtApprove = fc_Class.GetApprove()
+
                 With fc_Class
 
                     .H_No_Npwo = TNpwo_No.EditValue
@@ -469,13 +472,13 @@ Public Class Frm_Npwo_Detail1
                     If TT1.Text = "" Then
                         .H_T1 = oDate
                     Else
-                        .H_T1 = TT0.EditValue
+                        .H_T1 = TT1.EditValue
                     End If
 
                     If TT2.Text = "" Then
                         .H_T2 = oDate
                     Else
-                        .H_T2 = TT0.EditValue
+                        .H_T2 = TT2.EditValue
                     End If
 
                     .H_Drawing = CBDrawing.CheckState
@@ -487,6 +490,12 @@ Public Class Frm_Npwo_Detail1
                     .H_Factory_Tsc_CKR = CBCkr.CheckState
                     .H_Rev = 0
                     .H_Rev_Info = TRevInfo.EditValue
+
+                    .H_Checked = dtApprove.Rows(0).Item("Checked")
+                    .H_A1 = dtApprove.Rows(0).Item("A1")
+                    .H_A2 = dtApprove.Rows(0).Item("A2")
+                    .H_A3 = dtApprove.Rows(0).Item("A3")
+                    .H_A4 = dtApprove.Rows(0).Item("A4")
 
                 End With
                 'Colletion Detail
@@ -559,37 +568,6 @@ Public Class Frm_Npwo_Detail1
 
                 Next
 
-                'fc_Class.Collection_Detail_1.Clear()
-                'For i As Integer = 0 To GridView2.RowCount - 1
-
-                '    Fc_Clas_Col_Detail_1 = New Col_Cls_Npwo_Detail_1_NPWO
-                '    With Fc_Clas_Col_Detail_1
-                '        .No_Npwo = TNpwo_No.EditValue
-                '        .Part_No = Convert.ToString(GridView2.GetRowCellValue(i, "Part No"))
-                '        '.Part_Name = Convert.ToString(dtDetail.Rows(i).Item("Part Name"))
-                '        '.Machine = Convert.ToString(dtDetail.Rows(i).Item("Machine"))
-                '        '.Cycle_Time = Convert.ToDouble(dtDetail.Rows(i).Item("C/T"))
-                '        '.Cavity = Convert.ToString(dtDetail.Rows(i).Item("Cav"))
-                '        '.Weight = Convert.ToDouble(dtDetail.Rows(i).Item("Weight"))
-                '        '.Qty_Mold = Convert.ToDouble(dtDetail.Rows(i).Item("Qty Mold"))
-                '        '.Material_Resin = Convert.ToString(dtDetail.Rows(i).Item("Material"))
-                '        '.Injection = Convert.ToBoolean(dtDetail.Rows(i).Item("Inj"))
-                '        '.Painting = Convert.ToBoolean(dtDetail.Rows(i).Item("Painting"))
-                '        '.Chrome = Convert.ToBoolean(dtDetail.Rows(i).Item("Chrome"))
-                '        '.Vibration = Convert.ToBoolean(dtDetail.Rows(i).Item("Vibration"))
-                '        '.Assy = Convert.ToBoolean(dtDetail.Rows(i).Item("Assy"))
-                '        '.Ultrasonic = Convert.ToBoolean(dtDetail.Rows(i).Item("Ultrasonic"))
-                '        '.StatusMold = Convert.ToString(dtDetail.Rows(i).Item("Status Mold"))
-                '        '.OrderMonth = Convert.ToInt32(dtDetail.Rows(i).Item("Order Month"))
-                '        '.LOI_Number = Convert.ToString(dtDetail.Rows(i).Item("LOI"))
-                '        '.GroupID = Convert.ToString(dtDetail.Rows(i).Item("Group ID"))
-                '        '.Type = Convert.ToString(dtDetail.Rows(i).Item("Type"))
-                '        '.Rev = 0
-
-                '    End With
-                '    fc_Class.Collection_Detail_1.Add(Fc_Clas_Col_Detail_1)
-
-                'Next
 
                 fc_Class.Insert(TNpwo_No.EditValue)
                 bs_Filter = gh_Common.GroupID
@@ -900,5 +878,36 @@ Public Class Frm_Npwo_Detail1
         If Not ((tombol = 0)) Then
             e.Handled = True
         End If
+    End Sub
+
+    Public Overrides Sub Proc_Approve()
+
+
+        fc_Class.GetDataByID(fs_Code)
+        If fc_Class.H_Approve = False Then
+            Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                Try
+                    With fc_Class
+                        .H_Approve = 1
+                    End With
+                    fc_Class.UpdateApprove(fs_Code)
+                    bs_Filter = gh_Common.Username()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPWO()
+
+                    IsClosed = True
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Me.Hide()
+                Catch ex As Exception
+                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                End Try
+
+            End If
+        Else
+            XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+        End If
+
+
     End Sub
 End Class
