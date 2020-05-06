@@ -47,7 +47,8 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[Issue_Date]
                   ,[NPP_Head].[Model_Name]
                   ,[NPP_HEAD].[Model_Desc]
-                  ,[NPP_Head].[Customer_Name]
+                  ,[NPP_Head].[Customer_Name] as [Customer_Name1]
+                  ,[Customer].[BillName] as [Customer_Name]
                   ,[NPP_Head].[Order_Month]
                   ,[NPP_Head].[Order_Max_Month]
                   ,[NPP_Head].[T0]
@@ -95,6 +96,7 @@ Public Class Cls_NPP_Detail
                     [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
                     inner join [NPP_Rev_Information] on
                     [NPP_Head].[No_NPP] = [NPP_Rev_Information].No_NPP
+                    inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
 		            Where [NPP_Head].[No_NPP] = '" & No & "'"
 
         Dim ds As New dsLaporan

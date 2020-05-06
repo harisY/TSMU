@@ -46,7 +46,7 @@ Public Class Cls_Npwo_Detail
                   ,[Npwo_Head].[No_Npwo]
                   ,[Npwo_Head].[Issue_Date]
                   ,[Npwo_Head].[Model_Name]
-                  ,[Npwo_Head].[Customer_Name]
+                  ,[Customer].[BillName] as [Customer_Name]
                   ,[Npwo_Head].[Order_Month]
                   ,[Npwo_Head].[Order_Max_Month]
                   ,convert(varchar, [Npwo_Head].[T0], 110) as [T0]
@@ -91,6 +91,7 @@ Public Class Cls_Npwo_Detail
                   ,[NpwoDetail1].[Rev]
         From [NPWO_Head] inner Join [NpwoDetail1] On
         [NPWO_Head].[No_Npwo] = [NpwoDetail1].No_Npwo
+        inner join Customer on Customer.CustId =  [NPWO_Head].[Customer_Name]
 		Where [NPWO_Head].[No_Npwo] = '" & No & "'"
 
         Dim ds As New dsLaporan

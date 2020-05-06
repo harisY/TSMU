@@ -76,7 +76,7 @@ Public Class Frm_NPP_Detail
             TCategory.Properties.DataSource = Nothing
             TCategory.Properties.DataSource = dt
             TCategory.Properties.ValueMember = "Value"
-            TCategory.Properties.DisplayMember = "Value"
+            TCategory.Properties.DisplayMember = "Name"
         Catch ex As Exception
             Throw
         End Try
@@ -603,18 +603,18 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TCustomer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCustomer.KeyPress
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
+        'Dim tombol As Integer
+        'tombol = Asc(e.KeyChar)
 
-        If Not ((tombol = 0)) Then
-            e.Handled = True
-        End If
+        'If Not ((tombol = 0)) Then
+        '    e.Handled = True
+        'End If
     End Sub
 
     Private Sub TCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles TCustomer.EditValueChanged
 
         If TModel.EditValue <> "" Then
-            fc_Class.GetNpwoNoAuto(TCustomer.EditValue, TModel.EditValue)
+            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), TModel.EditValue)
             TNPP_No.EditValue = fc_Class.H_No_NPP
         End If
 
