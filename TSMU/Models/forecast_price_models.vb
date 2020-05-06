@@ -1322,19 +1322,36 @@ Public Class forecast_price_models
             salesPrice = getSalesPrice(Bulan, Tahun)
 
             Dim Sql As String = "tForecastPrice_updateHarga"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(13) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Tahun
             pParam(1) = New SqlClient.SqlParameter("@bulan", SqlDbType.VarChar)
             pParam(1).Value = Bulan
             pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(2).Value = CustID
-            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
-            pParam(3).Value = InvtID
-            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
-            pParam(4).Value = PartNo
-            pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
-            pParam(5).Value = salesPrice
+            pParam(3) = New SqlClient.SqlParameter("@Customer", SqlDbType.VarChar)
+            pParam(3).Value = Customer
+            pParam(4) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(4).Value = InvtID
+            pParam(5) = New SqlClient.SqlParameter("@Description", SqlDbType.VarChar)
+            pParam(5).Value = Description
+
+            pParam(6) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(6).Value = PartNo
+            pParam(7) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            pParam(7).Value = Model
+            pParam(8) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            pParam(8).Value = OePe
+            pParam(9) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            pParam(9).Value = INSub
+            pParam(10) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(10).Value = Site
+            pParam(11) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(11).Value = Flag
+            pParam(12) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            pParam(12).Value = salesPrice
+            pParam(13) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            pParam(13).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception

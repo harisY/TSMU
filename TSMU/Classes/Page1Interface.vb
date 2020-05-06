@@ -31,7 +31,8 @@ Public Class Page1Interface
                 .Type = If(row("MenuCode") = "NotForm", "", row("MenuCode")),' GetType(), 'Type.GetType(row("MenuCode"), True, True),
                 .Key = 1016,
                 .Dialog = row("FlagFullScreen"),
-                .Items = GetNamaForm(row("ParentMenu"), row("MenuCode"))
+                .Items = GetNamaForm(Convert.ToInt32(row("Id")), Convert.ToInt32(row("Level"))),
+                .FormType = row("Level")
             })
 
             '    If IsDBNull(row("ParentMenuChild")) Then
@@ -66,14 +67,14 @@ Public Class Page1Interface
         Return menus
     End Function
 
-    Public Function GetNamaForm(ByVal ParentMenu As String, ByVal MenuCode As String) As List(Of MenuItem)
+    Public Function GetNamaForm(ByVal NodeId As Integer, ByVal Level As Integer) As List(Of MenuItem)
         Dim List As List(Of MenuItem) = New List(Of MenuItem)
         Try
-            If MenuCode.ToLower = "notform" Then
+            If Level = 1 Then
                 Dim sql As String = "GetMenuLevel"
                 Dim param() As SqlParameter = New SqlParameter(0) {}
-                param(0) = New SqlParameter("@menu", SqlDbType.VarChar)
-                param(0).Value = ParentMenu
+                param(0) = New SqlParameter("@parentNode", SqlDbType.Int)
+                param(0).Value = NodeId
                 'param(1) = New SqlParameter("@childMenu", SqlDbType.VarChar)
                 'param(1).Value = ChildMenu
                 Dim dt As New DataTable

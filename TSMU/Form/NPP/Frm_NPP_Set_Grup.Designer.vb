@@ -116,6 +116,7 @@ Partial Class Frm_NPP_Set_Grup
         '
         Me.TGroupID.Location = New System.Drawing.Point(94, 10)
         Me.TGroupID.Name = "TGroupID"
+        Me.TGroupID.Properties.MaxLength = 5
         Me.TGroupID.Size = New System.Drawing.Size(223, 20)
         Me.TGroupID.TabIndex = 10
         '

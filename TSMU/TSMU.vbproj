@@ -1502,6 +1502,24 @@
     <Compile Include="Form\NPWO\Frm_Npwo_Detail1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPWO\Report\Frm_Rpt_NPWO.Designer.vb">
+      <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\Frm_Rpt_NPWO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\Rpt_NPWO.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_NPWO.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\Rpt_Npwo_Rev.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_Npwo_Rev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\PO Check\FrmTam_Scan.Designer.vb">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>
     </Compile>
@@ -1524,6 +1542,12 @@
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
+      <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_SalesPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReportSo.Designer.vb">
@@ -2484,6 +2508,17 @@
     <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Detail1.resx">
       <DependentUpon>Frm_Npwo_Detail1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\Frm_Rpt_NPWO.resx">
+      <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\Rpt_NPWO.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_NPWO.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\Rpt_Npwo_Rev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_Npwo_Rev.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\FrmTam_Scan.resx">
       <DependentUpon>FrmTam_Scan.vb</DependentUpon>
     </EmbeddedResource>
@@ -2495,6 +2530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
+      <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReportSo.resx">
       <DependentUpon>frmReportSo.vb</DependentUpon>

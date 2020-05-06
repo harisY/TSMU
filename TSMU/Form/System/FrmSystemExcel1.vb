@@ -43,7 +43,11 @@ Public Class FrmSystemExcel1
 
     ReadOnly Property Bulan As String
         Get
-            Return _cmbBulan.EditValue.Trim
+            If _cmbBulan.EditValue <> "" Then
+                Return _cmbBulan.EditValue.Trim
+            Else
+                Return ""
+            End If
         End Get
     End Property
 

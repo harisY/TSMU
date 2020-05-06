@@ -2357,6 +2357,61 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Function GetDataTableByCommand_HotReload(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0, Optional ByVal dep_onchange As OnChangeEventHandler = Nothing) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            SqlDependency.Stop(GetConnString)
+            SqlDependency.Start(GetConnString)
 
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+
+                gh_Trans.Command.Notification = Nothing
+
+                Dim dep As SqlDependency = New SqlDependency(gh_Trans.Command)
+                AddHandler dep.OnChange, dep_onchange
+
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+
+                    cmd.Notification = Nothing
+
+                    Dim dep As SqlDependency = New SqlDependency(cmd)
+                    AddHandler dep.OnChange, dep_onchange
+
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Module
