@@ -79,7 +79,7 @@ Public Class Frm_NPP_Detail
             TCategory.Properties.DataSource = Nothing
             TCategory.Properties.DataSource = dt
             TCategory.Properties.ValueMember = "Value"
-            TCategory.Properties.DisplayMember = "Name"
+            TCategory.Properties.DisplayMember = "Value"
         Catch ex As Exception
             Throw
         End Try
