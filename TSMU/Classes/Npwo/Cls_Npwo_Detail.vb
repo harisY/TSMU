@@ -834,7 +834,7 @@ Public Class Cls_Npwo_Detail
             Dim ls_SP As String = "SELECT A.[No_NPP] as Value
                                         FROM [NPP_Head] A Left join [NPWO_HEAD] B 
                                         ON A.[No_NPP] = B.[No_NPP]
-                                        where B.No_Npwo IS NULL
+                                        where B.No_Npwo IS NULL and A.Approve ='True'
                                         order by RIGHT(A.No_NPP,3) asc"
 
             Dim dtTable As New DataTable

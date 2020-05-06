@@ -30,7 +30,10 @@ Public Class Frm_NPP_Detail
 
     Dim frmInput As Frm_Input_NPPDetail
     Dim frmSetGroup As Frm_NPP_Set_Grup
+
+
     Dim dt As New DataTable
+    Dim dtApprove As New DataTable
 
     Dim FrmReport As ReportNPWO
 
@@ -364,6 +367,10 @@ Public Class Frm_NPP_Detail
 
             If isUpdate = False Then
 
+                dtApprove = New DataTable
+                dtApprove = fc_Class.GetApprove
+
+
                 With fc_Class
 
                     .H_No_NPP = TNPP_No.EditValue
@@ -384,6 +391,11 @@ Public Class Frm_NPP_Detail
                     .H_RevInformasi = TRevisiInformasi.EditValue
                     .H_TargetDRR = TTargetDr.EditValue
                     .H_TargetQuot = TTargetQuot.EditValue
+                    .H_Checked = dtApprove.Rows(0).Item("Checked")
+                    .H_A1 = dtApprove.Rows(0).Item("A1")
+                    .H_A2 = dtApprove.Rows(0).Item("A2")
+                    .H_A3 = dtApprove.Rows(0).Item("A3")
+                    .H_A4 = dtApprove.Rows(0).Item("A4")
 
                 End With
                 'Insert To ObjDetailMaterial
@@ -429,7 +441,6 @@ Public Class Frm_NPP_Detail
                 If fc_Class.H_Approve = False Then
 
                     With fc_Class
-
 
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
@@ -595,7 +606,7 @@ Public Class Frm_NPP_Detail
             TNPP_No.EditValue = ""
         Else
 
-            fc_Class.GetNpwoNoAuto(TCustomer.EditValue, TModel.EditValue)
+            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), Trim(TModel.EditValue))
             TNPP_No.EditValue = fc_Class.H_No_NPP
         End If
 

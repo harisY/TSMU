@@ -594,7 +594,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.TModel.Location = New System.Drawing.Point(76, 70)
         Me.TModel.Name = "TModel"
-        Me.TModel.Properties.MaxLength = 30
+        Me.TModel.Properties.MaxLength = 6
         Me.TModel.Size = New System.Drawing.Size(171, 20)
         Me.TModel.TabIndex = 25
         '
@@ -630,6 +630,7 @@ Partial Class Frm_NPP_Detail
         Me.TCustomer.Name = "TCustomer"
         Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TCustomer.Properties.DropDownRows = 10
+        Me.TCustomer.Properties.MaxLength = 6
         Me.TCustomer.Properties.NullText = ""
         Me.TCustomer.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.TCustomer.Properties.PopupSizeable = False

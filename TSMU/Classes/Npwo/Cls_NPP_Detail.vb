@@ -35,6 +35,12 @@ Public Class Cls_NPP_Detail
     Public Property H_TargetDRR As Date
     Public Property H_TargetQuot As Date
 
+    Public Property H_Checked As String
+    Public Property H_A1 As String
+    Public Property H_A2 As String
+    Public Property H_A3 As String
+    Public Property H_A4 As String
+
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
@@ -211,7 +217,12 @@ Public Class Cls_NPP_Detail
                                             Date.Now,
                                             H_TargetDRR,
                                             H_TargetQuot,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Checked,
+                                            H_A1,
+                                            H_A2,
+                                            H_A3,
+                                            H_A4)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -292,7 +303,12 @@ Public Class Cls_NPP_Detail
                                         _H_CreatedDate As Date,
                                         _H_TargetDR As Date,
                                         _H_TargetQuot As Date,
-                                        _H_Revisi As Integer)
+                                        _H_Revisi As Integer,
+                                        _H_Checked As String,
+                                        _H_A1 As String,
+                                        _H_A2 As String,
+                                        _H_A3 As String,
+                                        _H_A4 As String)
         Dim result As Integer = 0
 
 
@@ -315,7 +331,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(19) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(24) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -336,6 +352,11 @@ Public Class Cls_NPP_Detail
             pParam(17) = New SqlClient.SqlParameter("@TargetDRR", SqlDbType.Date)
             pParam(18) = New SqlClient.SqlParameter("@TargetQuot", SqlDbType.Date)
             pParam(19) = New SqlClient.SqlParameter("@ModelDesc", SqlDbType.VarChar)
+            pParam(20) = New SqlClient.SqlParameter("@Checked", SqlDbType.VarChar)
+            pParam(21) = New SqlClient.SqlParameter("@A1", SqlDbType.VarChar)
+            pParam(22) = New SqlClient.SqlParameter("@A2", SqlDbType.VarChar)
+            pParam(23) = New SqlClient.SqlParameter("@A3", SqlDbType.VarChar)
+            pParam(24) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
 
 
             pParam(0).Value = _H_No_Npwo
@@ -358,6 +379,11 @@ Public Class Cls_NPP_Detail
             pParam(17).Value = _H_TargetDR
             pParam(18).Value = _H_TargetQuot
             pParam(19).Value = _H_Model_Desc
+            pParam(20).Value = _H_Checked
+            pParam(21).Value = _H_A1
+            pParam(22).Value = _H_A2
+            pParam(23).Value = _H_A3
+            pParam(24).Value = _H_A4
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -728,6 +754,17 @@ Public Class Cls_NPP_Detail
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetApprove() As DataTable
+        Try
+            Dim query As String = "Select * From NPP_Approve"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
             Return dt
         Catch ex As Exception
             Throw
