@@ -11819,6 +11819,18 @@ Partial Public Class dsLaporan
         
         Private columnRev_Date As Global.System.Data.DataColumn
         
+        Private columnChecked As Global.System.Data.DataColumn
+        
+        Private columnA1 As Global.System.Data.DataColumn
+        
+        Private columnA2 As Global.System.Data.DataColumn
+        
+        Private columnA3 As Global.System.Data.DataColumn
+        
+        Private columnA4 As Global.System.Data.DataColumn
+        
+        Private columnCreatedBy As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -12191,6 +12203,54 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CheckedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnChecked
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property A1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnA1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property A2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnA2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property A3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnA3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property A4Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnA4
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CreatedByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCreatedBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12269,9 +12329,15 @@ Partial Public Class dsLaporan
                     ByVal Vibration As Boolean,  _
                     ByVal Model_Desc As String,  _
                     ByVal Mold_Number As String,  _
-                    ByVal Rev_Date As Date) As NPPRow
+                    ByVal Rev_Date As Date,  _
+                    ByVal Checked As String,  _
+                    ByVal A1 As String,  _
+                    ByVal A2 As String,  _
+                    ByVal A3 As String,  _
+                    ByVal A4 As String,  _
+                    ByVal CreatedBy As String) As NPPRow
             Dim rowNPPRow As NPPRow = CType(Me.NewRow,NPPRow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy}
             rowNPPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPPRow)
             Return rowNPPRow
@@ -12336,6 +12402,12 @@ Partial Public Class dsLaporan
             Me.columnModel_Desc = MyBase.Columns("Model_Desc")
             Me.columnMold_Number = MyBase.Columns("Mold_Number")
             Me.columnRev_Date = MyBase.Columns("Rev_Date")
+            Me.columnChecked = MyBase.Columns("Checked")
+            Me.columnA1 = MyBase.Columns("A1")
+            Me.columnA2 = MyBase.Columns("A2")
+            Me.columnA3 = MyBase.Columns("A3")
+            Me.columnA4 = MyBase.Columns("A4")
+            Me.columnCreatedBy = MyBase.Columns("CreatedBy")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12433,6 +12505,18 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnMold_Number)
             Me.columnRev_Date = New Global.System.Data.DataColumn("Rev_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRev_Date)
+            Me.columnChecked = New Global.System.Data.DataColumn("Checked", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnChecked)
+            Me.columnA1 = New Global.System.Data.DataColumn("A1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnA1)
+            Me.columnA2 = New Global.System.Data.DataColumn("A2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnA2)
+            Me.columnA3 = New Global.System.Data.DataColumn("A3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnA3)
+            Me.columnA4 = New Global.System.Data.DataColumn("A4", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnA4)
+            Me.columnCreatedBy = New Global.System.Data.DataColumn("CreatedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCreatedBy)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26241,6 +26325,96 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Checked() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.CheckedColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Checked' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.CheckedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property A1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.A1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'A1' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.A1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property A2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.A2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'A2' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.A2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property A3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.A3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'A3' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.A3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property A4() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.A4Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'A4' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.A4Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CreatedBy() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.CreatedByColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CreatedBy' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.CreatedByColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPP.No_NPPColumn)
         End Function
@@ -26741,6 +26915,78 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetRev_DateNull()
             Me(Me.tableNPP.Rev_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCheckedNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.CheckedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCheckedNull()
+            Me(Me.tableNPP.CheckedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsA1Null() As Boolean
+            Return Me.IsNull(Me.tableNPP.A1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetA1Null()
+            Me(Me.tableNPP.A1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsA2Null() As Boolean
+            Return Me.IsNull(Me.tableNPP.A2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetA2Null()
+            Me(Me.tableNPP.A2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsA3Null() As Boolean
+            Return Me.IsNull(Me.tableNPP.A3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetA3Null()
+            Me(Me.tableNPP.A3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsA4Null() As Boolean
+            Return Me.IsNull(Me.tableNPP.A4Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetA4Null()
+            Me(Me.tableNPP.A4Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCreatedByNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.CreatedByColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCreatedByNull()
+            Me(Me.tableNPP.CreatedByColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
