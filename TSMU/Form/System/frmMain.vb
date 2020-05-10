@@ -16,6 +16,7 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
+        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Silver" ' <<< NEW LINE 
         InitializeComponent()
     End Sub
 
