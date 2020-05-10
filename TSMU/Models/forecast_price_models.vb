@@ -119,6 +119,38 @@ Public Class forecast_price_models_header
         End Try
     End Sub
 
+    Public Sub SinkronasiHarga()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        For i As Integer = 0 To ObjForecastCollection.Count - 1
+                            With ObjForecastCollection(i)
+                                .SinkronisasiHarga(Bulan)
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub InsertDataADM()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -1352,6 +1384,33 @@ Public Class forecast_price_models
             pParam(12).Value = salesPrice
             pParam(13) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
             pParam(13).Value = gh_Common.Username
+
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub SinkronisasiHarga(Bulan As String)
+        Try
+            Dim salesPrice As Double = 0
+            salesPrice = getSalesPrice(Bulan, Tahun)
+
+            Dim Sql As String = "tForecastPrice_SinkornisasiHarga"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(6) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@bulan", SqlDbType.VarChar)
+            pParam(1).Value = Bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            pParam(5).Value = salesPrice
+            pParam(6) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            pParam(6).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception

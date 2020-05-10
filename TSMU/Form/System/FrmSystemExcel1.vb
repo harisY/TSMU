@@ -10,6 +10,8 @@ Public Class FrmSystemExcel1
     Dim Gridfilter As DataTable = Nothing
     Dim a As Integer = 0
     Dim b As Integer = 0
+    Dim _isSync As Boolean
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -18,12 +20,14 @@ Public Class FrmSystemExcel1
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Public Sub New(ByRef dt As DataTable, ByVal x As Integer)
+
+    Public Sub New(ByRef dt As DataTable, ByVal x As Integer, Optional ByVal IsSync As Boolean = False)
         ' This call is required by the Windows Form Designer.
         Me.New()
         ' Add any initialization after the InitializeComponent() call.
         GridData = dt
         a = x
+        _isSync = IsSync
     End Sub
     ReadOnly Property Tahun As String
         Get
@@ -154,6 +158,7 @@ Public Class FrmSystemExcel1
     Private Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
         Try
             If XtraTabControl1.SelectedTabPageIndex = 0 Then
+
                 If lblStatus.Text <> "" Then
                     Throw New Exception("Proses masih berjalan !")
                 End If

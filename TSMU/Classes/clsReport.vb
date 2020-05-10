@@ -552,9 +552,23 @@
         End Try
 
     End Function
-    Public Function Sales_ForecastPrice_report_New(ByVal strSite As Integer) As DataTable
+    Public Function POAmount_report(ByVal strSite As Integer) As DataTable
         Try
             Dim query As String = "tForecast_getDataGrid_report1"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.Int)
+            pParam(0).Value = strSite
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function ForecastPrice_report(ByVal strSite As Integer) As DataTable
+        Try
+            Dim query As String = "tForecast_report_Forecast"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.Int)
             pParam(0).Value = strSite
