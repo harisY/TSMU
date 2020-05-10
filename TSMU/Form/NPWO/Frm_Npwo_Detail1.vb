@@ -312,7 +312,7 @@ Public Class Frm_Npwo_Detail1
                 'TTargetQuot.EditValue = dtHeader.Rows(0).Item("TargetQuot")
 
                 If isUpdate = False Then
-                    Call fc_Class.GetNpwoNoAuto(dtHeader.Rows(0).Item("Customer_Name"), dtHeader.Rows(0).Item("Model_Name"))
+                    Call fc_Class.GetNpwoNoAuto(Trim(dtHeader.Rows(0).Item("Customer_Name")), Trim(dtHeader.Rows(0).Item("Model_Name")))
                     TNpwo_No.EditValue = fc_Class.H_No_Npwo
                 End If
 
@@ -870,28 +870,35 @@ Public Class Frm_Npwo_Detail1
     End Sub
     Public Overrides Sub Proc_Print()
 
-        'fc_Class.GetDataByID(fs_Code)
-        'If fc_Class.H_Approve = True Then
+        fc_Class.GetDataByID(fs_Code)
+        If fc_Class.H_Approve = True Then
 
-        FrmReport = New Frm_Rpt_NPWO
-        FrmReport.NPWO_No = TNpwo_No.EditValue
-        FrmReport.REV = TRevisi.EditValue
+            FrmReport = New Frm_Rpt_NPWO
+            FrmReport.NPWO_No = TNpwo_No.EditValue
+            FrmReport.REV = TRevisi.EditValue
 
             FrmReport.StartPosition = FormStartPosition.CenterScreen
             FrmReport.WindowState = FormWindowState.Maximized
             FrmReport.MaximizeBox = False
             FrmReport.ShowDialog()
 
-        'Else
+        Else
 
-        '    MessageBox.Show("NPP No " & TNpwo_No.EditValue & " Must be Approved First",
-        '                        "Warning",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation,
-        '                        MessageBoxDefaultButton.Button1)
-        'End If
+            MessageBox.Show("NPWO No " & TNpwo_No.EditValue & " Must be Approved First",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        End If
 
     End Sub
 
+    Private Sub TNoNpp_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TNoNpp.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
 
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
 End Class

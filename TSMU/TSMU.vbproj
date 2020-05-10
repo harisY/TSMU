@@ -291,6 +291,7 @@
     <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
+    <Compile Include="Direct\Class\TravelTicketModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
     </Compile>
@@ -511,6 +512,12 @@
       <DependentUpon>FrmTravelSettle.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelSettle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelTicket.Designer.vb">
+      <DependentUpon>FrmTravelTicket.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelTicket.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelTicketDetail.Designer.vb">
@@ -2217,6 +2224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelRequestDetail.resx">
       <DependentUpon>FrmTravelRequestDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelTicket.resx">
+      <DependentUpon>FrmTravelTicket.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelTicketDetail.resx">
       <DependentUpon>FrmTravelTicketDetail.vb</DependentUpon>

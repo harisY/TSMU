@@ -46,8 +46,8 @@ Partial Class Frm_NPP_Detail
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.B_AddRows = New System.Windows.Forms.Button()
         Me.TMp = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -325,7 +325,6 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.B_AddRows)
         Me.GroupBox1.Controls.Add(Me.TMp)
         Me.GroupBox1.Location = New System.Drawing.Point(988, 34)
         Me.GroupBox1.Name = "GroupBox1"
@@ -381,15 +380,6 @@ Partial Class Frm_NPP_Detail
         Me.Label7.TabIndex = 37
         Me.Label7.Text = "MassPro"
         '
-        'B_AddRows
-        '
-        Me.B_AddRows.Location = New System.Drawing.Point(282, 18)
-        Me.B_AddRows.Name = "B_AddRows"
-        Me.B_AddRows.Size = New System.Drawing.Size(75, 23)
-        Me.B_AddRows.TabIndex = 8
-        Me.B_AddRows.Text = "Add Detail"
-        Me.B_AddRows.UseVisualStyleBackColor = True
-        '
         'TMp
         '
         Me.TMp.Location = New System.Drawing.Point(115, 19)
@@ -399,6 +389,15 @@ Partial Class Frm_NPP_Detail
         Me.TMp.Size = New System.Drawing.Size(131, 20)
         Me.TMp.TabIndex = 36
         '
+        'B_AddRows
+        '
+        Me.B_AddRows.Location = New System.Drawing.Point(17, 73)
+        Me.B_AddRows.Name = "B_AddRows"
+        Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
+        Me.B_AddRows.TabIndex = 8
+        Me.B_AddRows.Text = "Add Detail"
+        Me.B_AddRows.UseVisualStyleBackColor = True
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label5)
@@ -406,6 +405,7 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox2.Controls.Add(Me.CBCkr)
         Me.GroupBox2.Controls.Add(Me.TModelDesc)
         Me.GroupBox2.Controls.Add(Me.CBTng)
+        Me.GroupBox2.Controls.Add(Me.B_AddRows)
         Me.GroupBox2.Controls.Add(Me.CBStr)
         Me.GroupBox2.Controls.Add(Me.CBSample)
         Me.GroupBox2.Controls.Add(Me.CBCad)
@@ -594,7 +594,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.TModel.Location = New System.Drawing.Point(76, 70)
         Me.TModel.Name = "TModel"
-        Me.TModel.Properties.MaxLength = 30
+        Me.TModel.Properties.MaxLength = 6
         Me.TModel.Size = New System.Drawing.Size(171, 20)
         Me.TModel.TabIndex = 25
         '
@@ -629,7 +629,10 @@ Partial Class Frm_NPP_Detail
         Me.TCustomer.Location = New System.Drawing.Point(76, 47)
         Me.TCustomer.Name = "TCustomer"
         Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TCustomer.Properties.DropDownRows = 10
+        Me.TCustomer.Properties.MaxLength = 6
         Me.TCustomer.Properties.NullText = ""
+        Me.TCustomer.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.TCustomer.Properties.PopupSizeable = False
         Me.TCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.TCustomer.Size = New System.Drawing.Size(171, 20)
