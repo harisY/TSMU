@@ -25,8 +25,8 @@ Public Class FrmClaimCustomerDetail
     Dim fc_Class As New ClaimCustomerModel
     Dim GridDtl As GridControl
 
-    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
-    'Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
