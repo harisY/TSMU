@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmQualityProblemDetail
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FrmQualityProblemDetail
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -36,6 +36,8 @@ Partial Class FrmQualityProblemDetail
         Me.Target = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LotNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Path = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GambarHapus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -87,40 +89,57 @@ Partial Class FrmQualityProblemDetail
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 208)
+        Me.Grid.Location = New System.Drawing.Point(12, 161)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.Grid.Size = New System.Drawing.Size(1306, 361)
+        Me.Grid.Size = New System.Drawing.Size(1307, 502)
         Me.Grid.TabIndex = 26
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Shift, Me.Status, Me.Customer, Me.InvtId, Me.InvtName, Me.Type, Me.Qty, Me.Problem, Me.Analisis, Me.CorrectionAction, Me.PreventiveAction, Me.Pic, Me.Target, Me.Gambar, Me.LotNo})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Shift, Me.Status, Me.Customer, Me.InvtId, Me.InvtName, Me.Type, Me.Qty, Me.Problem, Me.Analisis, Me.CorrectionAction, Me.PreventiveAction, Me.Pic, Me.Target, Me.Gambar, Me.LotNo, Me.Path, Me.GambarHapus})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'Shift
         '
+        Me.Shift.AppearanceCell.Options.UseTextOptions = True
+        Me.Shift.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Shift.AppearanceHeader.Options.UseTextOptions = True
+        Me.Shift.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Shift.FieldName = "Shift"
         Me.Shift.Name = "Shift"
         Me.Shift.Visible = True
         Me.Shift.VisibleIndex = 0
+        Me.Shift.Width = 42
         '
         'Status
         '
+        Me.Status.AppearanceCell.Options.UseTextOptions = True
+        Me.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Status.AppearanceHeader.Options.UseTextOptions = True
+        Me.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Status.FieldName = "Status"
         Me.Status.Name = "Status"
         Me.Status.Visible = True
         Me.Status.VisibleIndex = 1
+        Me.Status.Width = 100
         '
         'Customer
         '
+        Me.Customer.AppearanceCell.Options.UseTextOptions = True
+        Me.Customer.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Customer.AppearanceHeader.Options.UseTextOptions = True
+        Me.Customer.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Customer.FieldName = "Customer"
         Me.Customer.Name = "Customer"
         Me.Customer.Visible = True
         Me.Customer.VisibleIndex = 2
+        Me.Customer.Width = 124
         '
         'InvtId
         '
@@ -128,6 +147,7 @@ Partial Class FrmQualityProblemDetail
         Me.InvtId.Name = "InvtId"
         Me.InvtId.Visible = True
         Me.InvtId.VisibleIndex = 3
+        Me.InvtId.Width = 164
         '
         'InvtName
         '
@@ -135,20 +155,31 @@ Partial Class FrmQualityProblemDetail
         Me.InvtName.Name = "InvtName"
         Me.InvtName.Visible = True
         Me.InvtName.VisibleIndex = 4
+        Me.InvtName.Width = 172
         '
         'Type
         '
+        Me.Type.AppearanceCell.Options.UseTextOptions = True
+        Me.Type.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Type.AppearanceHeader.Options.UseTextOptions = True
+        Me.Type.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Type.FieldName = "Type"
         Me.Type.Name = "Type"
         Me.Type.Visible = True
         Me.Type.VisibleIndex = 5
+        Me.Type.Width = 132
         '
         'Qty
         '
+        Me.Qty.AppearanceCell.Options.UseTextOptions = True
+        Me.Qty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Qty.AppearanceHeader.Options.UseTextOptions = True
+        Me.Qty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Qty.FieldName = "Qty"
         Me.Qty.Name = "Qty"
         Me.Qty.Visible = True
         Me.Qty.VisibleIndex = 6
+        Me.Qty.Width = 95
         '
         'Problem
         '
@@ -156,6 +187,7 @@ Partial Class FrmQualityProblemDetail
         Me.Problem.Name = "Problem"
         Me.Problem.Visible = True
         Me.Problem.VisibleIndex = 8
+        Me.Problem.Width = 90
         '
         'Analisis
         '
@@ -170,6 +202,7 @@ Partial Class FrmQualityProblemDetail
         Me.CorrectionAction.Name = "CorrectionAction"
         Me.CorrectionAction.Visible = True
         Me.CorrectionAction.VisibleIndex = 10
+        Me.CorrectionAction.Width = 254
         '
         'PreventiveAction
         '
@@ -177,34 +210,70 @@ Partial Class FrmQualityProblemDetail
         Me.PreventiveAction.Name = "PreventiveAction"
         Me.PreventiveAction.Visible = True
         Me.PreventiveAction.VisibleIndex = 11
+        Me.PreventiveAction.Width = 202
         '
         'Pic
         '
+        Me.Pic.AppearanceCell.Options.UseTextOptions = True
+        Me.Pic.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Pic.AppearanceHeader.Options.UseTextOptions = True
+        Me.Pic.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Pic.FieldName = "Pic"
         Me.Pic.Name = "Pic"
         Me.Pic.Visible = True
         Me.Pic.VisibleIndex = 12
+        Me.Pic.Width = 117
         '
         'Target
         '
+        Me.Target.AppearanceCell.Options.UseTextOptions = True
+        Me.Target.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Target.AppearanceHeader.Options.UseTextOptions = True
+        Me.Target.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Target.FieldName = "Target"
         Me.Target.Name = "Target"
         Me.Target.Visible = True
         Me.Target.VisibleIndex = 13
+        Me.Target.Width = 107
         '
         'Gambar
         '
+        Me.Gambar.AppearanceCell.Options.UseTextOptions = True
+        Me.Gambar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Gambar.AppearanceHeader.Options.UseTextOptions = True
+        Me.Gambar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Gambar.FieldName = "Gambar"
         Me.Gambar.Name = "Gambar"
         Me.Gambar.Visible = True
         Me.Gambar.VisibleIndex = 14
+        Me.Gambar.Width = 185
         '
         'LotNo
         '
+        Me.LotNo.AppearanceCell.Options.UseTextOptions = True
+        Me.LotNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.LotNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.LotNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.LotNo.FieldName = "Lot No"
         Me.LotNo.Name = "LotNo"
         Me.LotNo.Visible = True
         Me.LotNo.VisibleIndex = 7
+        Me.LotNo.Width = 87
+        '
+        'Path
+        '
+        Me.Path.AppearanceCell.Options.UseTextOptions = True
+        Me.Path.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Path.AppearanceHeader.Options.UseTextOptions = True
+        Me.Path.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Path.FieldName = "Path"
+        Me.Path.Name = "Path"
+        Me.Path.Width = 276
+        '
+        'GambarHapus
+        '
+        Me.GambarHapus.FieldName = "Gambar Hapus"
+        Me.GambarHapus.Name = "GambarHapus"
         '
         'RepositoryItemTextEdit1
         '
@@ -227,7 +296,7 @@ Partial Class FrmQualityProblemDetail
         '
         'BAdd
         '
-        Me.BAdd.Location = New System.Drawing.Point(12, 178)
+        Me.BAdd.Location = New System.Drawing.Point(12, 132)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(84, 23)
         Me.BAdd.TabIndex = 87
@@ -237,7 +306,7 @@ Partial Class FrmQualityProblemDetail
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(505, 129)
+        Me.Label11.Location = New System.Drawing.Point(436, 85)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(38, 13)
         Me.Label11.TabIndex = 84
@@ -246,7 +315,7 @@ Partial Class FrmQualityProblemDetail
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(257, 108)
+        Me.Label12.Location = New System.Drawing.Point(9, 107)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(24, 13)
         Me.Label12.TabIndex = 82
@@ -254,15 +323,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtPic
         '
-        Me.TxtPic.Location = New System.Drawing.Point(316, 108)
+        Me.TxtPic.Location = New System.Drawing.Point(76, 105)
         Me.TxtPic.Name = "TxtPic"
-        Me.TxtPic.Size = New System.Drawing.Size(154, 20)
-        Me.TxtPic.TabIndex = 81
+        Me.TxtPic.Size = New System.Drawing.Size(130, 20)
+        Me.TxtPic.TabIndex = 4
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(9, 64)
+        Me.Label13.Location = New System.Drawing.Point(9, 63)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(37, 13)
         Me.Label13.TabIndex = 80
@@ -272,13 +341,13 @@ Partial Class FrmQualityProblemDetail
         '
         Me.TxtStatus.Location = New System.Drawing.Point(76, 61)
         Me.TxtStatus.Name = "TxtStatus"
-        Me.TxtStatus.Size = New System.Drawing.Size(154, 20)
-        Me.TxtStatus.TabIndex = 77
+        Me.TxtStatus.Size = New System.Drawing.Size(130, 20)
+        Me.TxtStatus.TabIndex = 2
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(257, 84)
+        Me.Label6.Location = New System.Drawing.Point(211, 85)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(23, 13)
         Me.Label6.TabIndex = 76
@@ -286,16 +355,16 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(316, 84)
+        Me.TxtQty.Location = New System.Drawing.Point(278, 83)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Size = New System.Drawing.Size(154, 20)
-        Me.TxtQty.TabIndex = 75
+        Me.TxtQty.TabIndex = 7
         Me.TxtQty.Text = "0"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(257, 61)
+        Me.Label5.Location = New System.Drawing.Point(211, 107)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(31, 13)
         Me.Label5.TabIndex = 74
@@ -303,15 +372,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtType
         '
-        Me.TxtType.Location = New System.Drawing.Point(316, 61)
+        Me.TxtType.Location = New System.Drawing.Point(278, 105)
         Me.TxtType.Name = "TxtType"
         Me.TxtType.Size = New System.Drawing.Size(154, 20)
-        Me.TxtType.TabIndex = 73
+        Me.TxtType.TabIndex = 8
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 137)
+        Me.Label4.Location = New System.Drawing.Point(211, 63)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(57, 13)
         Me.Label4.TabIndex = 72
@@ -319,15 +388,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtInvtName
         '
-        Me.TxtInvtName.Location = New System.Drawing.Point(76, 132)
+        Me.TxtInvtName.Location = New System.Drawing.Point(278, 61)
         Me.TxtInvtName.Name = "TxtInvtName"
         Me.TxtInvtName.Size = New System.Drawing.Size(154, 20)
-        Me.TxtInvtName.TabIndex = 71
+        Me.TxtInvtName.TabIndex = 6
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 113)
+        Me.Label3.Location = New System.Drawing.Point(211, 41)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 70
@@ -335,15 +404,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtInvtID
         '
-        Me.TxtInvtID.Location = New System.Drawing.Point(76, 108)
+        Me.TxtInvtID.Location = New System.Drawing.Point(278, 39)
         Me.TxtInvtID.Name = "TxtInvtID"
         Me.TxtInvtID.Size = New System.Drawing.Size(154, 20)
-        Me.TxtInvtID.TabIndex = 69
+        Me.TxtInvtID.TabIndex = 5
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 88)
+        Me.Label2.Location = New System.Drawing.Point(9, 85)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(51, 13)
         Me.Label2.TabIndex = 68
@@ -355,13 +424,13 @@ Partial Class FrmQualityProblemDetail
         Me.DtTanggalLaporan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DtTanggalLaporan.Location = New System.Drawing.Point(76, 39)
         Me.DtTanggalLaporan.Name = "DtTanggalLaporan"
-        Me.DtTanggalLaporan.Size = New System.Drawing.Size(154, 20)
-        Me.DtTanggalLaporan.TabIndex = 67
+        Me.DtTanggalLaporan.Size = New System.Drawing.Size(130, 20)
+        Me.DtTanggalLaporan.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 40)
+        Me.Label1.Location = New System.Drawing.Point(9, 41)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(49, 13)
         Me.Label1.TabIndex = 66
@@ -369,15 +438,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtCustomer
         '
-        Me.TxtCustomer.Location = New System.Drawing.Point(76, 84)
+        Me.TxtCustomer.Location = New System.Drawing.Point(76, 83)
         Me.TxtCustomer.Name = "TxtCustomer"
-        Me.TxtCustomer.Size = New System.Drawing.Size(154, 20)
-        Me.TxtCustomer.TabIndex = 65
+        Me.TxtCustomer.Size = New System.Drawing.Size(130, 20)
+        Me.TxtCustomer.TabIndex = 3
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(257, 39)
+        Me.Label8.Location = New System.Drawing.Point(436, 41)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(28, 13)
         Me.Label8.TabIndex = 88
@@ -387,23 +456,23 @@ Partial Class FrmQualityProblemDetail
         '
         Me.CmbShift.FormattingEnabled = True
         Me.CmbShift.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CmbShift.Location = New System.Drawing.Point(316, 37)
+        Me.CmbShift.Location = New System.Drawing.Point(485, 39)
         Me.CmbShift.Name = "CmbShift"
-        Me.CmbShift.Size = New System.Drawing.Size(154, 21)
-        Me.CmbShift.TabIndex = 89
+        Me.CmbShift.Size = New System.Drawing.Size(146, 21)
+        Me.CmbShift.TabIndex = 9
         '
         'TxtProblem
         '
-        Me.TxtProblem.Location = New System.Drawing.Point(569, 37)
+        Me.TxtProblem.Location = New System.Drawing.Point(704, 39)
         Me.TxtProblem.Multiline = True
         Me.TxtProblem.Name = "TxtProblem"
-        Me.TxtProblem.Size = New System.Drawing.Size(192, 40)
-        Me.TxtProblem.TabIndex = 90
+        Me.TxtProblem.Size = New System.Drawing.Size(160, 40)
+        Me.TxtProblem.TabIndex = 12
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(505, 40)
+        Me.Label7.Location = New System.Drawing.Point(643, 42)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(45, 13)
         Me.Label7.TabIndex = 94
@@ -411,25 +480,25 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtAnalisis
         '
-        Me.TxtAnalisis.Location = New System.Drawing.Point(569, 82)
+        Me.TxtAnalisis.Location = New System.Drawing.Point(704, 84)
         Me.TxtAnalisis.Multiline = True
         Me.TxtAnalisis.Name = "TxtAnalisis"
-        Me.TxtAnalisis.Size = New System.Drawing.Size(192, 40)
-        Me.TxtAnalisis.TabIndex = 93
+        Me.TxtAnalisis.Size = New System.Drawing.Size(160, 40)
+        Me.TxtAnalisis.TabIndex = 13
         '
         'DtTarget
         '
         Me.DtTarget.CustomFormat = "dd-MM-yyyy"
         Me.DtTarget.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTarget.Location = New System.Drawing.Point(569, 132)
+        Me.DtTarget.Location = New System.Drawing.Point(485, 83)
         Me.DtTarget.Name = "DtTarget"
-        Me.DtTarget.Size = New System.Drawing.Size(192, 20)
-        Me.DtTarget.TabIndex = 95
+        Me.DtTarget.Size = New System.Drawing.Size(146, 20)
+        Me.DtTarget.TabIndex = 11
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(505, 88)
+        Me.Label10.Location = New System.Drawing.Point(643, 85)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(42, 13)
         Me.Label10.TabIndex = 96
@@ -438,7 +507,7 @@ Partial Class FrmQualityProblemDetail
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(789, 91)
+        Me.Label9.Location = New System.Drawing.Point(866, 90)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(91, 13)
         Me.Label9.TabIndex = 100
@@ -447,7 +516,7 @@ Partial Class FrmQualityProblemDetail
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(792, 46)
+        Me.Label14.Location = New System.Drawing.Point(869, 42)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(88, 13)
         Me.Label14.TabIndex = 99
@@ -455,33 +524,35 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtPreventive
         '
-        Me.TxtPreventive.Location = New System.Drawing.Point(886, 82)
+        Me.TxtPreventive.Location = New System.Drawing.Point(963, 86)
         Me.TxtPreventive.Multiline = True
         Me.TxtPreventive.Name = "TxtPreventive"
-        Me.TxtPreventive.Size = New System.Drawing.Size(192, 40)
-        Me.TxtPreventive.TabIndex = 98
+        Me.TxtPreventive.Size = New System.Drawing.Size(160, 40)
+        Me.TxtPreventive.TabIndex = 15
         '
         'TxtCorrection
         '
-        Me.TxtCorrection.Location = New System.Drawing.Point(886, 37)
+        Me.TxtCorrection.Location = New System.Drawing.Point(963, 41)
         Me.TxtCorrection.Multiline = True
         Me.TxtCorrection.Name = "TxtCorrection"
-        Me.TxtCorrection.Size = New System.Drawing.Size(192, 40)
-        Me.TxtCorrection.TabIndex = 97
+        Me.TxtCorrection.Size = New System.Drawing.Size(160, 40)
+        Me.TxtCorrection.TabIndex = 14
         '
         'PictureBox1
         '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(1112, 36)
+        Me.PictureBox1.Location = New System.Drawing.Point(1141, 39)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(148, 94)
+        Me.PictureBox1.Size = New System.Drawing.Size(178, 85)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 101
         Me.PictureBox1.TabStop = False
         '
         'BGambar
         '
-        Me.BGambar.Location = New System.Drawing.Point(1160, 137)
+        Me.BGambar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BGambar.Location = New System.Drawing.Point(1194, 130)
         Me.BGambar.Name = "BGambar"
         Me.BGambar.Size = New System.Drawing.Size(75, 23)
         Me.BGambar.TabIndex = 102
@@ -491,7 +562,7 @@ Partial Class FrmQualityProblemDetail
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(257, 129)
+        Me.Label15.Location = New System.Drawing.Point(436, 63)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(22, 13)
         Me.Label15.TabIndex = 104
@@ -499,15 +570,15 @@ Partial Class FrmQualityProblemDetail
         '
         'TxtLotNo
         '
-        Me.TxtLotNo.Location = New System.Drawing.Point(316, 132)
+        Me.TxtLotNo.Location = New System.Drawing.Point(485, 61)
         Me.TxtLotNo.Name = "TxtLotNo"
-        Me.TxtLotNo.Size = New System.Drawing.Size(154, 20)
-        Me.TxtLotNo.TabIndex = 103
+        Me.TxtLotNo.Size = New System.Drawing.Size(146, 20)
+        Me.TxtLotNo.TabIndex = 10
         '
         'FrmQualityProblemDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1330, 581)
+        Me.ClientSize = New System.Drawing.Size(1331, 581)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.TxtLotNo)
         Me.Controls.Add(Me.BGambar)
@@ -643,4 +714,6 @@ Partial Class FrmQualityProblemDetail
     Friend WithEvents Label15 As Label
     Friend WithEvents TxtLotNo As TextBox
     Friend WithEvents LotNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Path As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GambarHapus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

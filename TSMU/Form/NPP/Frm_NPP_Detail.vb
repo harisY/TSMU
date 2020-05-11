@@ -33,6 +33,7 @@ Public Class Frm_NPP_Detail
 
 
     Dim dt As New DataTable
+    Dim DtDelete As New DataTable
     Dim dtApprove As New DataTable
 
     Dim FrmReport As ReportNPWO
@@ -462,7 +463,6 @@ Public Class Frm_NPP_Detail
                         .H_TargetQuot = TTargetQuot.EditValue
 
                         .H_RevInformasi = TRevisiInformasi.EditValue
-
 
                     End With
 

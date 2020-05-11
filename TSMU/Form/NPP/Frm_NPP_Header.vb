@@ -4,6 +4,7 @@ Public Class Frm_NPP_Header
 
     Dim ff_Detail As Frm_NPP_Detail
     Dim dtGrid As DataTable
+    Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
 
     Dim FrmReport As ReportNPWO
@@ -103,9 +104,24 @@ Public Class Frm_NPP_Header
                 End If
             Next rowHandle
 
-            fc_Class.Delete(NP)
-            Call LoadGrid()
-            Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            DtDelete = New DataTable
+            DtDelete = fc_Class.GetDelete(NP)
+
+            If DtDelete.Rows.Count <= 0 Then
+                fc_Class.Delete(NP)
+                Call LoadGrid()
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                MessageBox.Show("Data Cannot be Deleted
+                                 (Already in NPWO)",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            End If
+
+
+
         Else
 
         End If

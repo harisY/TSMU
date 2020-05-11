@@ -25,7 +25,8 @@ Public Class FrmClaimCustomerDetail
     Dim fc_Class As New ClaimCustomerModel
     Dim GridDtl As GridControl
 
-    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
+    'Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
@@ -85,6 +86,10 @@ Public Class FrmClaimCustomerDetail
         dt.Columns.Add("TargetClose")
         dt.Columns.Add("Lot")
         dt.Columns.Add("Gambar")
+        dt.Columns.Add("Type")
+        dt.Columns.Add("Gambar Hapus")
+        dt.Columns.Add("Path")
+
         Grid.DataSource = dt
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
@@ -256,9 +261,13 @@ Public Class FrmClaimCustomerDetail
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
                         .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot"))
                         .D_Foto = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
+                        .D_Type = Convert.ToString(GridView1.GetRowCellValue(i, "Type"))
 
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
+
+                    'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
+                    'File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
 
                 Next
 
@@ -273,28 +282,6 @@ Public Class FrmClaimCustomerDetail
                 'Insert To ObjDetailMaterial
                 fc_Class.ObjDetailClaimCustomer.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
-
-                    'If GridView1.GetRowCellValue(i, "Customer") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "TanggalClaim") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Customer") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "InvtId") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Invt Name") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Problem") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Pic") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Qty") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Status") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "TargetClose") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Lot") = vbNull Or
-                    '    GridView1.GetRowCellValue(i, "Gambar") = vbNull Then
-
-                    '    MessageBox.Show("Data Null", "Warning",
-                    '           MessageBoxButtons.OK,
-                    '           MessageBoxIcon.Exclamation,
-                    '           MessageBoxDefaultButton.Button1)
-                    '    Exit Sub
-
-
-                    'End If
 
                     ObjClaimCustomerDetail = New ClaimCustomerDetailModel
                     With ObjClaimCustomerDetail
@@ -311,9 +298,17 @@ Public Class FrmClaimCustomerDetail
                         .D_TanggalClose = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TargetClose"))
                         .D_Lot = Convert.ToString(GridView1.GetRowCellValue(i, "Lot"))
                         .D_Foto = Convert.ToString(GridView1.GetRowCellValue(i, "Gambar"))
+                        .D_Type = Convert.ToString(GridView1.GetRowCellValue(i, "Type"))
 
                     End With
                     fc_Class.ObjDetailClaimCustomer.Add(ObjClaimCustomerDetail)
+
+
+                    If Convert.ToString(GridView1.GetRowCellValue(i, "Path")) <> "" And Convert.ToString(GridView1.GetRowCellValue(i, "Gambar Hapus")) <> "" Then
+                        File.Delete(SimpanFoto & "/" & Convert.ToString(GridView1.GetRowCellValue(i, "Gambar Hapus")))
+                        'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
+                        'File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
+                    End If
 
                 Next
 
@@ -384,6 +379,12 @@ Public Class FrmClaimCustomerDetail
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button1)
+            ElseIf TxtType.Text = "" Then
+                MessageBox.Show("Type Jangan Kosong",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
             Else
                 GridView1.AddNewRow()
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Customer, TxtCustomer.Text)
@@ -398,6 +399,8 @@ Public Class FrmClaimCustomerDetail
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, TargetClose, Format(DtTargetClose.Value, "yyyy-MM-dd"))
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Lot, TxtLotNo.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Type, TxtType.Text)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PathGrid, PathFoto)
 
                 GridView1.UpdateCurrentRow()
 
@@ -508,24 +511,32 @@ Public Class FrmClaimCustomerDetail
 
         opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
 
+        Dim a As String = "D:\@KERJA\Project\Foto\"
+
         If opfImage.ShowDialog = DialogResult.OK Then
 
 
-            'PictureBox1.Image = Image.FromFile(opfImage.FileName)
-            'PathFoto = opfImage.FileName
-            'NamaFile = Path.GetFileName(PathFoto)
-
-
+            Dim Tanggal As String = Convert.ToString(Format(Date.Now, "yyyy-MM-dd"))
             PictureBox1.Image = Image.FromFile(opfImage.FileName)
+
+            Dim NewSize As New Size(600, 400)
+            Dim Resize As Image = New Bitmap(PictureBox1.Image, NewSize)
+            PictureBox1.Image = Resize
+            'PictureBox1.BackgroundImageLayout = ImageLayout.Stretch
+
             PathFoto = opfImage.FileName
-            'NamaFile = Path.GetFileName(PathFoto)
-            Dim extension As String = Path.GetExtension(PathFoto)
-            NamaFile = "QCPROBLEM_" + Path.GetRandomFileName() + extension
-            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
-            File.Copy(opfImage.FileName, fileSavePath, True)
+            Dim extension As String = IO.Path.GetExtension(PathFoto)
+            NamaFile = Tanggal & "_QCCLAIM_" + IO.Path.GetRandomFileName() + extension
 
 
+            'fileSavePath = IO.Path.Combine(SimpanFoto, NamaFile)
+            'File.Copy(opfImage.FileName, fileSavePath, True)
 
+            ' PictureBox1.Image.Save(PathFoto, System.Drawing.Imaging.ImageFormat.Jpeg)
+            Dim i As Image = PictureBox1.Image
+
+            Dim i2 As Image = New Bitmap(i)
+            i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
 
         End If
 
@@ -536,23 +547,64 @@ Public Class FrmClaimCustomerDetail
     End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+
+
+        'opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        'If opfImage.ShowDialog = DialogResult.OK Then
+
+        '    Dim Tanggal As String = Convert.ToString(Format(Date.Now, "yyyy-MM-dd"))
+        '    PictureBox1.Image = Image.FromFile(opfImage.FileName)
+        '    PathFoto = opfImage.FileName
+        '    'NamaFile = Path.GetFileName(PathFoto)
+        '    Dim extension As String = IO.Path.GetExtension(PathFoto)
+        '    NamaFile = Tanggal & "_QCCLAIM_" + IO.Path.GetRandomFileName() + extension
+
+        '    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+        '    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PathGrid, PathFoto)
+
+        '    'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PathGrid, PathFoto)
+
+
+        'End If
+
+
+
+        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        Dim a As String = "D:\@KERJA\Project\Foto\"
 
         If opfImage.ShowDialog = DialogResult.OK Then
 
 
+            Dim Tanggal As String = Convert.ToString(Format(Date.Now, "yyyy-MM-dd"))
             PictureBox1.Image = Image.FromFile(opfImage.FileName)
-            PathFoto = opfImage.FileName
-            'NamaFile = Path.GetFileName(PathFoto)
-            Dim extension As String = Path.GetExtension(PathFoto)
-            NamaFile = "DEL" + Path.GetRandomFileName() + extension
-            fileSavePath = Path.Combine(SimpanFoto, NamaFile)
-            File.Copy(opfImage.FileName, fileSavePath, True)
 
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, "")
+            Dim NewSize As New Size(600, 400)
+            Dim Resize As Image = New Bitmap(PictureBox1.Image, NewSize)
+            PictureBox1.Image = Resize
+            'PictureBox1.BackgroundImageLayout = ImageLayout.Stretch
+
+            PathFoto = opfImage.FileName
+            Dim extension As String = IO.Path.GetExtension(PathFoto)
+            NamaFile = Tanggal & "_QCCLAIM_" + IO.Path.GetRandomFileName() + extension
+
+
+            'fileSavePath = IO.Path.Combine(SimpanFoto, NamaFile)
+            'File.Copy(opfImage.FileName, fileSavePath, True)
+
+            ' PictureBox1.Image.Save(PathFoto, System.Drawing.Imaging.ImageFormat.Jpeg)
+            Dim i As Image = PictureBox1.Image
+
+            Dim i2 As Image = New Bitmap(i)
+            i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
+
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PathGrid, PathFoto)
 
         End If
+
+
 
     End Sub
 End Class
