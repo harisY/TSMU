@@ -28,6 +28,8 @@ Module MainModul
         ValidasiInsertGagal = 4000
         ValidasiUpdateGagal = 4001
         ValidasiDeleteGagal = 4002
+        UpdateBerhasil = 5000
+        UpdateGagal = 50001
     End Enum
 
     Public Enum MessageTypeEnum As Byte

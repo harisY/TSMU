@@ -25,6 +25,7 @@ Partial Class frmSales_ForecastPrice
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SinkronasiDataTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -47,9 +48,9 @@ Partial Class frmSales_ForecastPrice
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 104)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 100)
         '
         'ExportToExcelTSM
         '
@@ -62,12 +63,20 @@ Partial Class frmSales_ForecastPrice
         Me.CekHargaADMTSM.Name = "CekHargaADMTSM"
         Me.CekHargaADMTSM.Size = New System.Drawing.Size(248, 24)
         Me.CekHargaADMTSM.Text = "Cek Harga SAP-KAP ADM"
+        Me.CekHargaADMTSM.Visible = False
         '
         'CekInventory1ToolStripMenuItem
         '
         Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
         Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(248, 24)
         Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
+        Me.CekInventory1ToolStripMenuItem.Visible = False
+        '
+        'SinkronasiDataTsm
+        '
+        Me.SinkronasiDataTsm.Name = "SinkronasiDataTsm"
+        Me.SinkronasiDataTsm.Size = New System.Drawing.Size(248, 24)
+        Me.SinkronasiDataTsm.Text = "Sinkronasi Data"
         '
         'GridView1
         '
@@ -104,4 +113,5 @@ Partial Class frmSales_ForecastPrice
     Friend WithEvents ExportToExcelTSM As ToolStripMenuItem
     Friend WithEvents CekHargaADMTSM As ToolStripMenuItem
     Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SinkronasiDataTsm As ToolStripMenuItem
 End Class

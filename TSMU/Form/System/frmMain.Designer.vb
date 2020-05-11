@@ -10,9 +10,8 @@ Partial Class FrmMain
     End Sub
 
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
-        Me.barManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barManager1 = New DevExpress.XtraBars.BarManager()
         Me.bar1 = New DevExpress.XtraBars.Bar()
         Me.bar2 = New DevExpress.XtraBars.Bar()
         Me.bar3 = New DevExpress.XtraBars.Bar()
@@ -25,7 +24,7 @@ Partial Class FrmMain
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.xtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Me.xtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager()
         Me.RibbonPage3 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.Filemenu = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.FileRibbon = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -34,10 +33,10 @@ Partial Class FrmMain
         Me.ExitBar = New DevExpress.XtraBars.BarButtonItem()
         Me.CloseAllBar = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.SkinRibbonGalleryBarItem2 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.ribbon = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.RibbonPageCategory1 = New DevExpress.XtraBars.Ribbon.RibbonPageCategory()
-        Me.SkinRibbonGalleryBarItem2 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         CType(Me.barManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.xtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,16 +124,16 @@ Partial Class FrmMain
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.barManager1
         Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlTop.Size = New System.Drawing.Size(879, 51)
+        Me.barDockControlTop.Size = New System.Drawing.Size(885, 51)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 409)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 412)
         Me.barDockControlBottom.Manager = Me.barManager1
         Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(879, 31)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(885, 31)
         '
         'barDockControlLeft
         '
@@ -143,16 +142,16 @@ Partial Class FrmMain
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 51)
         Me.barDockControlLeft.Manager = Me.barManager1
         Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 358)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 361)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(879, 51)
+        Me.barDockControlRight.Location = New System.Drawing.Point(885, 51)
         Me.barDockControlRight.Manager = Me.barManager1
         Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 358)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 361)
         '
         'RepositoryItemTextEdit1
         '
@@ -226,6 +225,12 @@ Partial Class FrmMain
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Theme"
         '
+        'SkinRibbonGalleryBarItem2
+        '
+        Me.SkinRibbonGalleryBarItem2.Caption = "SkinRibbonGalleryBarItem2"
+        Me.SkinRibbonGalleryBarItem2.Id = 11
+        Me.SkinRibbonGalleryBarItem2.Name = "SkinRibbonGalleryBarItem2"
+        '
         'SkinRibbonGalleryBarItem1
         '
         Me.SkinRibbonGalleryBarItem1.Caption = "SkinRibbonGalleryBarItem1"
@@ -242,7 +247,7 @@ Partial Class FrmMain
         Me.ribbon.Name = "ribbon"
         Me.ribbon.PageCategories.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageCategory() {Me.RibbonPageCategory1})
         Me.ribbon.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.Filemenu})
-        Me.ribbon.Size = New System.Drawing.Size(879, 145)
+        Me.ribbon.Size = New System.Drawing.Size(885, 145)
         Me.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
         '
         'RibbonPageCategory1
@@ -250,17 +255,11 @@ Partial Class FrmMain
         Me.RibbonPageCategory1.Name = "RibbonPageCategory1"
         Me.RibbonPageCategory1.Text = "RibbonPageCategory1"
         '
-        'SkinRibbonGalleryBarItem2
-        '
-        Me.SkinRibbonGalleryBarItem2.Caption = "SkinRibbonGalleryBarItem2"
-        Me.SkinRibbonGalleryBarItem2.Id = 11
-        Me.SkinRibbonGalleryBarItem2.Name = "SkinRibbonGalleryBarItem2"
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(879, 440)
+        Me.ClientSize = New System.Drawing.Size(885, 443)
         Me.Controls.Add(Me.ribbon)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
