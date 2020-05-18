@@ -36,7 +36,15 @@ Public Class frmReport_SalesPrice
                 .Columns(5).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(6).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .OptionsView.ShowFooter = True
-                .OptionsBehavior.Editable = False
+                '.OptionsBehavior.Editable = False
+                '.Columns(5).OptionsColumn.AllowEdit = True
+                For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                    If col.Name.ToLower = "colinvtid" Then
+                        col.OptionsColumn.AllowEdit = True
+                    Else
+                        col.OptionsColumn.AllowEdit = False
+                    End If
+                Next
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -61,10 +69,18 @@ Public Class frmReport_SalesPrice
                 .Columns(0).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(2).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                .Columns(3).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                .Columns(4).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .Columns(5).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
                 .OptionsView.ShowFooter = True
-                .OptionsBehavior.Editable = False
+                '.OptionsBehavior.Editable = False
+                '.Columns(4).OptionsColumn.AllowEdit = True
+                For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                    If col.Name.ToLower = "colinvtid" Then
+                        col.OptionsColumn.AllowEdit = True
+                    Else
+                        col.OptionsColumn.AllowEdit = False
+                    End If
+                Next
             End With
             If GridView2.RowCount > 0 Then
                 GridCellFormat(GridView2)
