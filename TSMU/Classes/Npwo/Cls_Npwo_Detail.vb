@@ -32,12 +32,29 @@ Public Class Cls_Npwo_Detail
     Public Property H_UpdatedDate As Date
     Public Property H_Approve As Boolean
     Public Property H_Rev As Integer
+    Public Property H_Checked As String
+    Public Property H_A1 As String
+    Public Property H_A2 As String
+    Public Property H_A3 As String
+    Public Property H_A4 As String
     Public Property H_Rev_Info As String
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_Npwo_Detail_NPWO)
     Public Property Collection_Detail_1() As New Collection(Of Col_Cls_Npwo_Detail_1_NPWO)
 
+
+
+    Public Function GetApprove() As DataTable
+        Try
+            Dim query As String = "Select * From NPP_Approve"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Function NpwoReport(No As String, Rev As String) As DataSet
         Dim query As String
@@ -67,6 +84,12 @@ Public Class Cls_Npwo_Detail
                   ,[Npwo_Head].[UpdatedBy]
                   ,[Npwo_Head].[UpdatedDate]
                   ,[Npwo_Head].[Approve]
+                  ,[Npwo_Head].[Checked]
+                  ,[Npwo_Head].[A1]
+                  ,[Npwo_Head].[A2]
+                  ,[Npwo_Head].[A3]
+                  ,[Npwo_Head].[A4]
+                  ,[Npwo_Head].[CreatedBy]
                   ,[NpwoDetail1].[Part_No]
                   ,[NpwoDetail1].[Part_Name]
                   ,[NpwoDetail1].[Machine]
@@ -295,7 +318,12 @@ Public Class Cls_Npwo_Detail
                                             H_Factory_Tsc_CKR,
                                             gh_Common.Username,
                                             Date.Now,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Checked,
+                                            H_A1,
+                                            H_A2,
+                                            H_A3,
+                                            H_A4)
 
 
                         Dim AutoIncrement As Integer
@@ -376,7 +404,12 @@ Public Class Cls_Npwo_Detail
                                         _H_Factory_Tsc_CKR As Boolean,
                                         _H_CreatedBy As String,
                                         _H_CreatedDate As Date,
-                                        _H_Revisi As Integer)
+                                        _H_Revisi As Integer,
+                                        _H_Checked As String,
+                                        _H_A1 As String,
+                                        _H_A2 As String,
+                                        _H_A3 As String,
+                                        _H_A4 As String)
         Dim result As Integer = 0
 
 
@@ -396,7 +429,7 @@ Public Class Cls_Npwo_Detail
 
 
             Dim query As String = "[NPWO_Insert_Npwo_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -419,6 +452,11 @@ Public Class Cls_Npwo_Detail
             pParam(19) = New SqlClient.SqlParameter("@T0", SqlDbType.Date)
             pParam(20) = New SqlClient.SqlParameter("@T1", SqlDbType.Date)
             pParam(21) = New SqlClient.SqlParameter("@T2", SqlDbType.Date)
+            pParam(22) = New SqlClient.SqlParameter("@Checked", SqlDbType.VarChar)
+            pParam(23) = New SqlClient.SqlParameter("@A1", SqlDbType.VarChar)
+            pParam(24) = New SqlClient.SqlParameter("@A2", SqlDbType.VarChar)
+            pParam(25) = New SqlClient.SqlParameter("@A3", SqlDbType.VarChar)
+            pParam(26) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
 
 
 
@@ -444,6 +482,11 @@ Public Class Cls_Npwo_Detail
             pParam(19).Value = H_T0
             pParam(20).Value = H_T1
             pParam(21).Value = H_T2
+            pParam(22).Value = H_Checked
+            pParam(23).Value = H_A1
+            pParam(24).Value = H_A2
+            pParam(25).Value = H_A3
+            pParam(26).Value = H_A4
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)

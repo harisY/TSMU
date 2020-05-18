@@ -1,5 +1,7 @@
 ﻿Public Class Cls_Npwo_Header
 
+
+
     Public Function Get_NPP() As DataTable
         Try
             Dim query As String = "[NPP_Get_NPP]"
