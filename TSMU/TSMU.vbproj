@@ -1078,6 +1078,12 @@
     <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Get_Mold.Designer.vb">
+      <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Get_Mold.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.Designer.vb">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
     </Compile>
@@ -1452,6 +1458,12 @@
       <DependentUpon>Frm_NPP_Header.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\NPP\Frm_NPP_Header.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Prepare.Designer.vb">
+      <DependentUpon>Frm_NPP_Prepare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPP_Prepare.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_NPP_Set_Grup.Designer.vb">
@@ -2460,6 +2472,9 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_Get_Mold.resx">
+      <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateDetail.resx">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -2486,6 +2501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Header.resx">
       <DependentUpon>Frm_NPP_Header.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPP_Prepare.resx">
+      <DependentUpon>Frm_NPP_Prepare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Set_Grup.resx">
       <DependentUpon>Frm_NPP_Set_Grup.vb</DependentUpon>

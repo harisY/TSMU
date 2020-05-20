@@ -80,7 +80,9 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[A2]
                   ,[NPP_Head].[A3]
                   ,[NPP_Head].[A4]
-                  ,[NPP_Head].[CreatedBy]
+                  ,[NPP_Head].[A4]
+                  ,[NPP_Head].[Prepare]
+                  ,[NPP_Head].[UpdatedBy] as [UpdateBy]
                   ,[NPP_Detail].[Part_No]
                   ,[NPP_Detail].[Part_Name]
                   ,[NPP_Detail].[Machine]
@@ -228,7 +230,9 @@ Public Class Cls_NPP_Detail
                                             H_A1,
                                             H_A2,
                                             H_A3,
-                                            H_A4)
+                                            H_A4,
+                                            gh_Common.Username,
+                                            Date.Now)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -314,7 +318,10 @@ Public Class Cls_NPP_Detail
                                         _H_A1 As String,
                                         _H_A2 As String,
                                         _H_A3 As String,
-                                        _H_A4 As String)
+                                        _H_A4 As String,
+                                        _H_UpdateBy As String,
+                                        _H_UpdateDate As Date)
+
         Dim result As Integer = 0
 
 
@@ -337,7 +344,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(24) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -363,6 +370,8 @@ Public Class Cls_NPP_Detail
             pParam(22) = New SqlClient.SqlParameter("@A2", SqlDbType.VarChar)
             pParam(23) = New SqlClient.SqlParameter("@A3", SqlDbType.VarChar)
             pParam(24) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
+            pParam(25) = New SqlClient.SqlParameter("@UpdateBy", SqlDbType.VarChar)
+            pParam(26) = New SqlClient.SqlParameter("@UpdateDate", SqlDbType.Date)
 
 
             pParam(0).Value = _H_No_Npwo
@@ -390,6 +399,8 @@ Public Class Cls_NPP_Detail
             pParam(22).Value = _H_A2
             pParam(23).Value = _H_A3
             pParam(24).Value = _H_A4
+            pParam(25).Value = _H_UpdateBy
+            pParam(26).Value = _H_UpdateDate
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -609,7 +620,14 @@ Public Class Cls_NPP_Detail
 
     End Sub
 
+    Public Sub UpdatePrepare(id_ As String, Prepare_ As String)
+        Dim Query As String = "UPDATE [NPP_Head]
+                               SET [Prepare] = '" & Prepare_ & "'
+                                WHERE [No_NPP]   = '" & id_ & "'"
 
+        MainModul.ExecQueryByCommand(Query)
+
+    End Sub
 
     Public Sub GetDataByID(ByVal ID As String)
         Try
@@ -760,6 +778,18 @@ Public Class Cls_NPP_Detail
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetPrepare() As DataTable
+        Try
+            Dim query As String = "Select Prepare as Value From NPP_Prepare order by Prepare"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
             Return dt
         Catch ex As Exception
             Throw

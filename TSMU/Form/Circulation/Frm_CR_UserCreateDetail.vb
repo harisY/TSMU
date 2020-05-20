@@ -37,6 +37,10 @@ Public Class Frm_CR_UserCreateDetail
     Dim NoSirkulasi As String = ""
 
 
+    Dim CForm As Integer = 0
+    Dim FGetMold As Frm_CR_Get_Mold
+
+
 
 
 
@@ -106,8 +110,8 @@ Public Class Frm_CR_UserCreateDetail
             Call LoadGridInstallment(fc_Class.H_CirculationNo)
             'Call LoadGridDetil1()
 
-            Call FillComboCurrency()
             Call FillComboOtherDept()
+            Call FillComboCurrency()
             Call Sub_Dept(gh_Common.GroupID)
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
@@ -126,25 +130,13 @@ Public Class Frm_CR_UserCreateDetail
                     T_RequirementDate.EditValue = .H_RequirementDate
                     T_CRType.EditValue = .H_CR_Type
                     T_Reason.Text = .H_Reason
-                    T_Account.EditValue = .H_Account
                     T_Parent.EditValue = .H_Parent_Circulation
                     T_ParentAmount.EditValue = .H_Parent_Circulation_Amount.ToString("#,##0.00")
-                    C_Currency.EditValue = .H_Currency
-                    T_Rate.EditValue = .H_Rate.ToString("#,##0.00")
-                    T_PRNumber.EditValue = .H_PR
-                    T_RemainingBudget.EditValue = .H_RemainingBudget.ToString("#,##0.00")
-                    T_CurrentCirculation.EditValue = .H_CurrentCR.ToString("#,##0.00")
-                    T_Balance.EditValue = .H_Balance.ToString("#,##0.00")
 
 
                 End With
             Else
                 T_RequirementDate.EditValue = DateTime.Now
-                T_Rate.Text = 0.ToString("#,##0.00")
-                T_Rate.EditValue = "1"
-                T_CurrentCirculation.EditValue = 0.ToString("#,##0.00")
-                T_RemainingBudget.EditValue = 0.ToString("#,##0.00")
-                T_Balance.EditValue = 0.ToString("#,##0.00")
             End If
         Catch ex As Exception
             Throw
@@ -191,26 +183,40 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
 
-    Private Sub FillComboCurrency()
-        Try
-            Dim dt As New DataTable
-            dt = fc_Class.getWC
-            C_Currency.Properties.DataSource = Nothing
-            C_Currency.Properties.DataSource = dt
-            C_Currency.Properties.ValueMember = "Value"
-            C_Currency.Properties.DisplayMember = "Value"
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
+
     Private Sub FillComboOtherDept()
         Try
-            Dim dt As New DataTable
-            dt = fc_Class.Get_Other_DeptID
-            T_Dept.Properties.DataSource = Nothing
-            T_Dept.Properties.DataSource = dt
-            T_Dept.Properties.ValueMember = "Value"
-            T_Dept.Properties.DisplayMember = "Value"
+            If fs_Code <> "" Then
+
+                Dim A As ArrayList = New ArrayList
+                Dim dt1 As New DataTable
+                dt1 = fc_Class.Get_Other_DeptID_Filter(fs_Code)
+
+                For i As Integer = 0 To dt1.Rows.Count - 1
+                    A.Add(dt1.Rows(i).Item("DeptID"))
+                Next
+
+                Dim s As String = ""
+                Dim dt As New DataTable
+                dt = fc_Class.Get_Other_DeptID
+                T_Dept.Properties.DataSource = Nothing
+                T_Dept.Properties.DataSource = dt
+                T_Dept.Properties.ValueMember = "Value"
+                T_Dept.Properties.DisplayMember = "Value"
+                For b As Integer = 0 To A.Count - 1
+                    s = s & A.Item(b) & ","
+                Next
+                T_Dept.SetEditValue(s)
+            Else
+
+                Dim dt As New DataTable
+                dt = fc_Class.Get_Other_DeptID
+                T_Dept.Properties.DataSource = Nothing
+                T_Dept.Properties.DataSource = dt
+                T_Dept.Properties.ValueMember = "Value"
+                T_Dept.Properties.DisplayMember = "Value"
+            End If
+
         Catch ex As Exception
             Throw
         End Try
@@ -252,12 +258,16 @@ Public Class Frm_CR_UserCreateDetail
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button1)
-                T_Rate.EditValue = "1"
-                C_Currency.EditValue = "IDR"
+                ' T_Rate.EditValue = "1"
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Curr", "IDR")
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Rate", "1")
                 Exit Sub
             Else
                 Dim rate As Double = (dt.Rows(0).Item("Rate"))
-                T_Rate.EditValue = rate.ToString("#,##0.00")
+
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Rate", rate)
+
+                'T_Rate.EditValue = rate.ToString("#,##0.00")
             End If
 
 
@@ -267,67 +277,6 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
 
-    Private Sub T_BudgetNo_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles T_Account.ButtonClick
-        Try
-            fc_Class = New ClsCR_CreateUser
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-            Dept = gh_Common.GroupID
-            Dim Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue)
-            Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
-            Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
-
-
-
-
-            dtSearch = fc_Class.GetBudget(DeptSub, Tahun, Bulan)
-            ls_OldKode = T_Account.Text
-            ls_Judul = "Budget No"
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
-            Dim Value2 As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                'Dim Value21 As Double = Convert.ToDouble(Value2)
-                T_Account.Text = Value1
-                'T_RemainingBudget.EditValue = Value21.ToString("#,##0.00")
-                Try
-                    Dim ACC_Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue)
-                    Dim Acc_Departemen As String = gh_Common.GroupID
-                    Dim Acc_Site As String = gh_Common.Site
-                    Dim Acc_NoAccount As String = T_Account.EditValue
-                    Dim Acc_Tahun As String = Convert.ToString(ACC_Param.ToString("yyyy"))
-                    Dim Acc_Bulan As String = Convert.ToString(ACC_Param.ToString("MM"))
-
-                    Call Get_Total_Sisa_Budget_Dept(DeptSub, Acc_NoAccount, Acc_Tahun, Acc_Bulan)
-                    'Call Get_Total_CR_Dept(Acc_Departemen, Acc_Site, Acc_NoAccount, Acc_Tahun)
-
-
-                    T_RemainingBudget.EditValue = SisaBudget.ToString("#,##0.00")
-                    CR = T_CurrentCirculation.EditValue
-                    Balance = SisaBudget - CR
-                    T_Balance.EditValue = Balance.ToString("#,##0.00")
-                Catch ex As Exception
-                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                End Try
-
-
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -346,7 +295,7 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub T_Account_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_Account.KeyPress
+    Private Sub T_Account_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -366,7 +315,7 @@ Public Class Frm_CR_UserCreateDetail
 
 
 
-    Private Sub C_Currency_EditValueChanged(sender As Object, e As EventArgs) Handles C_Currency.EditValueChanged
+    Private Sub C_Currency_EditValueChanged(sender As Object, e As EventArgs)
         'Try
         '    If T_RequirementDate.EditValue = Nothing Then
 
@@ -395,7 +344,7 @@ Public Class Frm_CR_UserCreateDetail
         'End Try
     End Sub
 
-    Private Sub C_Currency_KeyPress(sender As Object, e As KeyPressEventArgs) Handles C_Currency.KeyPress
+    Private Sub C_Currency_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -419,12 +368,17 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub CreateTableBarang()
         DtGridBarang = New DataTable
-        DtGridBarang.Columns.AddRange(New DataColumn(5) {New DataColumn("Name Of Goods", GetType(String)),
+        DtGridBarang.Columns.AddRange(New DataColumn(10) {New DataColumn("Name Of Goods", GetType(String)),
                                                             New DataColumn("Spesification", GetType(String)),
                                                             New DataColumn("Qty", GetType(Double)),
                                                             New DataColumn("Price", GetType(Double)),
                                                             New DataColumn("Amount", GetType(Double)),
-                                                            New DataColumn("PR No", GetType(String))})
+                                                            New DataColumn("Curr", GetType(String)),
+                                                            New DataColumn("Category", GetType(String)),
+                                                            New DataColumn("Balance", GetType(Double)),
+                                                            New DataColumn("Rate", GetType(Double)),
+                                                            New DataColumn("Remaining Budget", GetType(Double)),
+                                                            New DataColumn("Account", GetType(String))})
 
         Grid.DataSource = DtGridBarang
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -450,6 +404,20 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
+    Private Sub FillComboCurrency()
+        Try
+            Dim dt As New DataTable
+            dt = fc_Class.getWC
+
+            For a As Integer = 0 To dt.Rows.Count - 1
+                CurrRepository.Items.Add(dt.Rows(a).Item(0))
+            Next
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Private Sub C_Qty_EditValueChanged(sender As Object, e As EventArgs) Handles C_Qty.EditValueChanged
         Try
             Dim baseEdit = TryCast(sender, BaseEdit)
@@ -459,15 +427,31 @@ Public Class Frm_CR_UserCreateDetail
 
             Dim Qty As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty"))
             Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Amount", Qty * Price)
+            Dim Rate As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate"))
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Amount", Qty * Price * Rate)
+
+            CR = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+            SisaBudget = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget"))
+
+            Balance = SisaBudget - CR
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Balance", Balance)
+
+
 
             Dim Total1 As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
-            T_CurrentCirculation.EditValue = Total1.ToString("#,##0.00")
 
             For r As Integer = 1 To GridView2.RowCount
                 GridView2.SelectRow(r)
                 GridView2.DeleteSelectedRows()
             Next
+
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Category") <> "N" Then
+                If Balance <= 0 Then
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "O")
+                Else
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "B")
+                End If
+            End If
 
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -486,9 +470,24 @@ Public Class Frm_CR_UserCreateDetail
 
             Dim Qty As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty"))
             Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Amount", Qty * Price)
+            Dim Rate As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate"))
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Amount", Qty * Price * Rate)
+
+            CR = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+            SisaBudget = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget"))
+
+            Balance = SisaBudget - CR
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Balance", Balance)
+
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Category") <> "N" Then
+                If Balance <= 0 Then
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "O")
+                Else
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "B")
+                End If
+            End If
+
             Dim Total As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
-            T_CurrentCirculation.EditValue = Total.ToString("#,##0.00")
 
             For r As Integer = 1 To GridView2.RowCount
                 GridView2.SelectRow(r)
@@ -505,46 +504,12 @@ Public Class Frm_CR_UserCreateDetail
 
 
 
-        'Percent
-        'Dim CurrentCR As Double = "0"
-        'If T_CurrentCirculation.EditValue = "" Then
-        '    CurrentCR = "0"
-        'Else
-        '    CurrentCR = CDec(T_CurrentCirculation.EditValue)
-        'End If
-        ''Dim Total1 As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
-
-        'Try
-        '    Dim baseEdit = TryCast(sender, BaseEdit)
-        '    Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        '    gridView.PostEditor()
-        '    gridView.UpdateCurrentRow()
-
-        '    Dim Percent As Double = IIf(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "%") Is DBNull.Value, 0, GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "%"))
-        '    Dim CR As Double = CurrentCR
-        '    'Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
-        '    GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "Total", (Percent / 100) * CR)
-
-        'Catch ex As Exception
-        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-
-
-
-
-
-
     End Sub
 
     Private Sub C_Percent_Term__EditValueChanged(sender As Object, e As EventArgs) Handles C_Percent_Term.EditValueChanged
 
         Dim CurrentCR As Double = "0"
-        If T_CurrentCirculation.EditValue = "" Then
-            CurrentCR = "0"
-        Else
-            CurrentCR = CDec(T_CurrentCirculation.EditValue)
-        End If
+
         'Dim Total1 As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
 
         Try
@@ -569,11 +534,7 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub C_Total__EditValueChanged(sender As Object, e As EventArgs) Handles C_Total.EditValueChanged
 
         Dim CurrentCR As Double = "0"
-        If T_CurrentCirculation.EditValue = "" Then
-            CurrentCR = "0"
-        Else
-            CurrentCR = CDec(T_CurrentCirculation.EditValue)
-        End If
+
         Dim Total1 As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
 
         Try
@@ -629,7 +590,7 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub T_RemainingBudget_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_RemainingBudget.KeyPress
+    Private Sub T_RemainingBudget_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -638,7 +599,7 @@ Public Class Frm_CR_UserCreateDetail
         End If
     End Sub
 
-    Private Sub T_CurrentCirculation_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_CurrentCirculation.KeyPress
+    Private Sub T_CurrentCirculation_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -647,7 +608,7 @@ Public Class Frm_CR_UserCreateDetail
         End If
     End Sub
 
-    Private Sub T_Balance_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_Balance.KeyPress
+    Private Sub T_Balance_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -658,7 +619,7 @@ Public Class Frm_CR_UserCreateDetail
 
 
 
-    Private Sub T_Rate_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_Rate.KeyPress
+    Private Sub T_Rate_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
@@ -713,21 +674,7 @@ Public Class Frm_CR_UserCreateDetail
         End Try
     End Sub
 
-    Private Sub T_CurrentCirculation_EditValueChanged(sender As Object, e As EventArgs) Handles T_CurrentCirculation.EditValueChanged
 
-        Try
-            SisaBudget = T_RemainingBudget.EditValue
-            CR = T_CurrentCirculation.EditValue
-            Balance = SisaBudget - CR
-
-            T_Balance.EditValue = Balance.ToString("#,##0.00")
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
-
-    End Sub
 
     Public Overrides Sub Proc_SaveData()
 
@@ -807,16 +754,9 @@ Public Class Frm_CR_UserCreateDetail
                     .H_CR_Type = T_CRType.EditValue
                     .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
-                    .H_Account = T_Account.EditValue
-                    .H_Currency = C_Currency.EditValue
-                    .H_Rate = CDec(T_Rate.EditValue)
-                    .H_RemainingBudget = CDec(T_RemainingBudget.EditValue)
-                    .H_CurrentCR = CDec(T_CurrentCirculation.EditValue)
-                    .H_Balance = CDec(T_Balance.EditValue)
                     .H_Status = "Create"
                     .H_Parent_Circulation = T_Parent.EditValue
                     .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
-                    .H_PR = T_PRNumber.EditValue
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
                     .H_Dies_Model = T_ModelName.EditValue
@@ -848,10 +788,7 @@ Public Class Frm_CR_UserCreateDetail
                         .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
                         .D_Qty = Convert.ToDouble(GridView1.GetRowCellValue(i, "Qty"))
                         .D_Price = Convert.ToDouble(GridView1.GetRowCellValue(i, "Price"))
-                        .D_Currency = C_Currency.EditValue
-                        .D_Rate = CDec(T_Rate.EditValue)
                         .D_Amount = Convert.ToInt32(GridView1.GetRowCellValue(i, "Amount"))
-                        .D_Amount_IDR = Convert.ToInt32(GridView1.GetRowCellValue(i, "Amount")) * CDec(T_Rate.EditValue)
                         .D_PR_No = Convert.ToString(GridView1.GetRowCellValue(i, "PR No"))
 
                     End With
@@ -980,16 +917,6 @@ Public Class Frm_CR_UserCreateDetail
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
-            ElseIf T_Account.EditValue = "" Then
-                MessageBox.Show("Please fill Account No", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
-            ElseIf C_Currency.EditValue = "" Then
-                MessageBox.Show("Please Select Currency", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
             ElseIf T_Reason.Text = "" Then
                 MessageBox.Show("Please fill Reason Of Description", "Warning",
                         MessageBoxButtons.OK,
@@ -1023,7 +950,7 @@ Public Class Frm_CR_UserCreateDetail
 
             Else
 
-            lb_Validated = True
+                lb_Validated = True
             End If
 
             If lb_Validated Then
@@ -1043,26 +970,6 @@ Public Class Frm_CR_UserCreateDetail
 
     End Function
 
-    Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
-        If e.KeyData = Keys.Delete Then
-            GridView1.DeleteRow(GridView1.FocusedRowHandle)
-            GridView1.RefreshData()
-
-
-            Try
-                Dim Total As Double = Convert.ToDouble((GridView1.Columns("Amount").SummaryItem.SummaryValue))
-                T_CurrentCirculation.EditValue = Total.ToString("#,##0.00")
-            Catch ex As Exception
-                ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-            End Try
-
-
-        End If
-        If e.KeyData = Keys.Insert Then
-            GridView1.AddNewRow()
-        End If
-    End Sub
 
     Private Sub Grid1_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid1.KeyDown
         If e.KeyData = Keys.Delete Then
@@ -1151,7 +1058,7 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub T_PRNumber_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles T_PRNumber.ButtonClick
+    Private Sub T_PRNumber_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
 
         Try
             fc_Class = New ClsCR_CreateUser
@@ -1164,7 +1071,7 @@ Public Class Frm_CR_UserCreateDetail
             Dim Bulan As Double = Convert.ToDouble(Param.ToString("MM"))
 
             dtSearch = fc_Class.GetPR(DeptSub, Tahun, Bulan)
-            ls_OldKode = T_Account.Text
+            'ls_OldKode = T_Account.Text
             ls_Judul = "Budget No"
 
             Dim lF_SearchData As FrmSystem_LookupGrid
@@ -1178,7 +1085,6 @@ Public Class Frm_CR_UserCreateDetail
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                T_PRNumber.EditValue = Value1
             End If
             lF_SearchData.Close()
         Catch ex As Exception
@@ -1188,27 +1094,185 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub T_PRNumber_BindingContextChanged(sender As Object, e As EventArgs) Handles T_PRNumber.BindingContextChanged
+    Private Sub T_PRNumber_BindingContextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub C_Currency_MouseClick(sender As Object, e As MouseEventArgs) Handles C_Currency.MouseClick
+    Private Sub C_Currency_MouseClick(sender As Object, e As MouseEventArgs)
 
     End Sub
 
-    Private Sub C_Currency_CursorChanged(sender As Object, e As EventArgs) Handles C_Currency.CursorChanged
+    Private Sub C_Currency_CursorChanged(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub C_Currency_MouseLeave(sender As Object, e As EventArgs) Handles C_Currency.MouseLeave
+    Private Sub C_Currency_MouseLeave(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub C_Currency_Click(sender As Object, e As EventArgs) Handles C_Currency.Click
+    Private Sub C_Currency_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub C_Currency_Leave(sender As Object, e As EventArgs) Handles C_Currency.Leave
+    'Private Sub C_Currency_Leave(sender As Object, e As EventArgs)
+    '    Try
+    '        If T_RequirementDate.EditValue = Nothing Then
+
+    '            MessageBox.Show("Please Select Requirement Date ",
+    '                           "Warning",
+    '                           MessageBoxButtons.OK,
+    '                           MessageBoxIcon.Exclamation,
+    '                           MessageBoxDefaultButton.Button1)
+
+    '        Else
+
+    '            ' Dim Cur As String = C_Currency.EditValue
+    '            Dim Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue.AddMonths(-1))
+    '            Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
+    '            Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
+
+
+
+    '            Call FillRate(Tahun, Bulan, Cur)
+    '        End If
+
+    '    Catch ex As Exception
+    '        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+
+    '    End Try
+    'End Sub
+
+    Private Sub T_Account_EditValueChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Grid1_Click(sender As Object, e As EventArgs) Handles Grid1.Click
+
+    End Sub
+
+    Private Sub BMold_Click(sender As Object, e As EventArgs) Handles BMold.Click
+
+
+        CForm = 1
+
+        CallForm()
+
+
+
+    End Sub
+
+    Public Sub CallForm(Optional ByVal ID As String = "",
+                        Optional ByVal Nama As String = "",
+                        Optional ByVal IsNew As Boolean = True)
+
+        If CForm = 1 Then
+            FGetMold = New Frm_CR_Get_Mold(ID, DtGridBarang, Grid1)
+            FGetMold.StartPosition = FormStartPosition.CenterScreen
+            FGetMold.MaximizeBox = False
+            FGetMold.ShowDialog()
+        End If
+
+
+
+    End Sub
+
+    Private Sub BAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BAccount.ButtonClick
+
+        Try
+            fc_Class = New ClsCR_CreateUser
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+            Dept = gh_Common.GroupID
+            Dim Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue)
+            Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
+            Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
+
+
+
+
+            dtSearch = fc_Class.GetBudget(DeptSub, Tahun, Bulan)
+            'ls_OldKode = T_Account.Text
+            ls_Judul = "Budget No"
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+            Dim Value3 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                'Dim Value21 As Double = Convert.ToDouble(Value2)
+                'T_Account.Text = Value1
+                If Val(Value2) <= 0 Then
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "N")
+                Else
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "B")
+                End If
+
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", Value1)
+                'T_RemainingBudget.EditValue = Value21.ToString("#,##0.00")
+                Try
+                    Dim ACC_Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue)
+                    Dim Acc_Departemen As String = gh_Common.GroupID
+                    Dim Acc_Site As String = gh_Common.Site
+                    Dim Acc_NoAccount As String = Value1
+                    Dim Acc_Tahun As String = Convert.ToString(ACC_Param.ToString("yyyy"))
+                    Dim Acc_Bulan As String = Convert.ToString(ACC_Param.ToString("MM"))
+
+                    Call Get_Total_Sisa_Budget_Dept(DeptSub, Acc_NoAccount, Acc_Tahun, Acc_Bulan)
+
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget", SisaBudget)
+
+                    'Call Get_Total_CR_Dept(Acc_Departemen, Acc_Site, Acc_NoAccount, Acc_Tahun)
+
+
+                    'T_RemainingBudget.EditValue = SisaBudget.ToString("#,##0.00")
+                    CR = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+                    Balance = SisaBudget - CR
+                    GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Balance", Balance)
+
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Category") <> "N" Then
+                        If Balance <= 0 Then
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "O")
+                        Else
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Category", "B")
+                        End If
+                    End If
+
+
+
+
+
+                Catch ex As Exception
+                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                End Try
+
+
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub CurrRepository_EditValueChanged(sender As Object, e As EventArgs) Handles CurrRepository.EditValueChanged
+
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
         Try
             If T_RequirementDate.EditValue = Nothing Then
 
@@ -1220,14 +1284,24 @@ Public Class Frm_CR_UserCreateDetail
 
             Else
 
-                Dim Cur As String = C_Currency.EditValue
+                Dim Cur As String = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Curr")
                 Dim Param As Date = Convert.ToDateTime(T_RequirementDate.EditValue.AddMonths(-1))
                 Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
                 Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
 
-
-
                 Call FillRate(Tahun, Bulan, Cur)
+
+                Dim Qty As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty"))
+                Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
+                Dim Rate As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate"))
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Amount", Qty * Price * Rate)
+
+                CR = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Amount"))
+                SisaBudget = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget"))
+
+                Balance = SisaBudget - CR
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Balance", Balance)
+
             End If
 
         Catch ex As Exception
@@ -1235,13 +1309,14 @@ Public Class Frm_CR_UserCreateDetail
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
 
         End Try
-    End Sub
-
-    Private Sub T_Account_EditValueChanged(sender As Object, e As EventArgs) Handles T_Account.EditValueChanged
 
     End Sub
 
-    Private Sub Grid1_Click(sender As Object, e As EventArgs) Handles Grid1.Click
+    Private Sub CurrRepository_Leave(sender As Object, e As EventArgs) Handles CurrRepository.Leave
+
+    End Sub
+
+    Private Sub CurrRepository_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles CurrRepository.EditValueChanging
 
     End Sub
 End Class
