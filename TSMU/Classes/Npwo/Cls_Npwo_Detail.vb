@@ -89,6 +89,7 @@ Public Class Cls_Npwo_Detail
                   ,[Npwo_Head].[A2]
                   ,[Npwo_Head].[A3]
                   ,[Npwo_Head].[A4]
+                  ,[Npwo_Head].[Prepare]
                   ,[Npwo_Head].[CreatedBy]
                   ,[NpwoDetail1].[Part_No]
                   ,[NpwoDetail1].[Part_Name]

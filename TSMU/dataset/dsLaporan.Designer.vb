@@ -11835,6 +11835,10 @@ Partial Public Class dsLaporan
         
         Private columnPrepare As Global.System.Data.DataColumn
         
+        Private columnTargetDRR As Global.System.Data.DataColumn
+        
+        Private columnTargetQuot As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -12271,6 +12275,22 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TargetDRRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTargetDRR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TargetQuotColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTargetQuot
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12311,8 +12331,8 @@ Partial Public Class dsLaporan
                     ByVal No_NPP As String,  _
                     ByVal Model_Name As String,  _
                     ByVal Customer_Name As String,  _
-                    ByVal Order_Month As String,  _
-                    ByVal Order_Max_Month As String,  _
+                    ByVal Order_Month As Integer,  _
+                    ByVal Order_Max_Month As Integer,  _
                     ByVal T0 As String,  _
                     ByVal T1 As String,  _
                     ByVal T2 As String,  _
@@ -12357,9 +12377,11 @@ Partial Public Class dsLaporan
                     ByVal A4 As String,  _
                     ByVal CreatedBy As String,  _
                     ByVal UpdateBy As String,  _
-                    ByVal Prepare As String) As NPPRow
+                    ByVal Prepare As String,  _
+                    ByVal TargetDRR As Date,  _
+                    ByVal TargetQuot As Date) As NPPRow
             Dim rowNPPRow As NPPRow = CType(Me.NewRow,NPPRow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot}
             rowNPPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPPRow)
             Return rowNPPRow
@@ -12432,6 +12454,8 @@ Partial Public Class dsLaporan
             Me.columnCreatedBy = MyBase.Columns("CreatedBy")
             Me.columnUpdateBy = MyBase.Columns("UpdateBy")
             Me.columnPrepare = MyBase.Columns("Prepare")
+            Me.columnTargetDRR = MyBase.Columns("TargetDRR")
+            Me.columnTargetQuot = MyBase.Columns("TargetQuot")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12443,9 +12467,9 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnModel_Name)
             Me.columnCustomer_Name = New Global.System.Data.DataColumn("Customer_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCustomer_Name)
-            Me.columnOrder_Month = New Global.System.Data.DataColumn("Order_Month", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnOrder_Month = New Global.System.Data.DataColumn("Order_Month", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrder_Month)
-            Me.columnOrder_Max_Month = New Global.System.Data.DataColumn("Order_Max_Month", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnOrder_Max_Month = New Global.System.Data.DataColumn("Order_Max_Month", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrder_Max_Month)
             Me.columnT0 = New Global.System.Data.DataColumn("T0", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnT0)
@@ -12545,6 +12569,10 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnUpdateBy)
             Me.columnPrepare = New Global.System.Data.DataColumn("Prepare", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrepare)
+            Me.columnTargetDRR = New Global.System.Data.DataColumn("TargetDRR", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTargetDRR)
+            Me.columnTargetQuot = New Global.System.Data.DataColumn("TargetQuot", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTargetQuot)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12787,6 +12815,8 @@ Partial Public Class dsLaporan
         Private columnA4 As Global.System.Data.DataColumn
         
         Private columnCreatedBy As Global.System.Data.DataColumn
+        
+        Private columnPrepare As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -13248,6 +13278,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PrepareColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrepare
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -13337,9 +13375,10 @@ Partial Public Class dsLaporan
                     ByVal A2 As String,  _
                     ByVal A3 As String,  _
                     ByVal A4 As String,  _
-                    ByVal CreatedBy As String) As NPWORow
+                    ByVal CreatedBy As String,  _
+                    ByVal Prepare As String) As NPWORow
             Dim rowNPWORow As NPWORow = CType(Me.NewRow,NPWORow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy, Prepare}
             rowNPWORow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPWORow)
             Return rowNPWORow
@@ -13415,6 +13454,7 @@ Partial Public Class dsLaporan
             Me.columnA3 = MyBase.Columns("A3")
             Me.columnA4 = MyBase.Columns("A4")
             Me.columnCreatedBy = MyBase.Columns("CreatedBy")
+            Me.columnPrepare = MyBase.Columns("Prepare")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13534,6 +13574,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnA4)
             Me.columnCreatedBy = New Global.System.Data.DataColumn("CreatedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCreatedBy)
+            Me.columnPrepare = New Global.System.Data.DataColumn("Prepare", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrepare)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -25852,10 +25894,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Order_Month() As String
+        Public Property Order_Month() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableNPP.Order_MonthColumn),String)
+                    Return CType(Me(Me.tableNPP.Order_MonthColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Order_Month' in table 'NPP' is DBNull.", e)
                 End Try
@@ -25867,10 +25909,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Order_Max_Month() As String
+        Public Property Order_Max_Month() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableNPP.Order_Max_MonthColumn),String)
+                    Return CType(Me(Me.tableNPP.Order_Max_MonthColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Order_Max_Month' in table 'NPP' is DBNull.", e)
                 End Try
@@ -26557,6 +26599,36 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TargetDRR() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.TargetDRRColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TargetDRR' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.TargetDRRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TargetQuot() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.TargetQuotColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TargetQuot' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.TargetQuotColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPP.No_NPPColumn)
         End Function
@@ -27153,6 +27225,30 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPrepareNull()
             Me(Me.tableNPP.PrepareColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTargetDRRNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.TargetDRRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTargetDRRNull()
+            Me(Me.tableNPP.TargetDRRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTargetQuotNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.TargetQuotColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTargetQuotNull()
+            Me(Me.tableNPP.TargetQuotColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -27968,6 +28064,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Prepare() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.PrepareColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Prepare' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.PrepareColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPWO.No_NPPColumn)
         End Function
@@ -28600,6 +28711,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCreatedByNull()
             Me(Me.tableNPWO.CreatedByColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPrepareNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.PrepareColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPrepareNull()
+            Me(Me.tableNPWO.PrepareColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

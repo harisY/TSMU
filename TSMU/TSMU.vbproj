@@ -1520,6 +1520,12 @@
     <Compile Include="Form\NPWO\Frm_Npwo_Detail1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPWO\Frm_Npwo_Prepare.Designer.vb">
+      <DependentUpon>Frm_Npwo_Prepare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Frm_Npwo_Prepare.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\NPWO\Report\Frm_Rpt_NPWO.Designer.vb">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
     </Compile>
@@ -2534,6 +2540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Detail1.resx">
       <DependentUpon>Frm_Npwo_Detail1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Prepare.resx">
+      <DependentUpon>Frm_Npwo_Prepare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Report\Frm_Rpt_NPWO.resx">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>

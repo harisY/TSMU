@@ -82,6 +82,8 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[A4]
                   ,[NPP_Head].[A4]
                   ,[NPP_Head].[Prepare]
+                  ,[NPP_Head].[TargetDRR]
+                  ,[NPP_Head].[TargetQuot]
                   ,[NPP_Head].[UpdatedBy] as [UpdateBy]
                   ,[NPP_Detail].[Part_No]
                   ,[NPP_Detail].[Part_Name]
@@ -624,6 +626,14 @@ Public Class Cls_NPP_Detail
         Dim Query As String = "UPDATE [NPP_Head]
                                SET [Prepare] = '" & Prepare_ & "'
                                 WHERE [No_NPP]   = '" & id_ & "'"
+
+        MainModul.ExecQueryByCommand(Query)
+
+    End Sub
+    Public Sub UpdatePrepareNPWO(id_ As String, Prepare_ As String)
+        Dim Query As String = "UPDATE [Npwo_Head]
+                               SET [Prepare] = '" & Prepare_ & "'
+                                WHERE [No_Npwo]   = '" & id_ & "'"
 
         MainModul.ExecQueryByCommand(Query)
 
