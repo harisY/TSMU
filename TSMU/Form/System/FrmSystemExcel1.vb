@@ -48,6 +48,15 @@ Public Class FrmSystemExcel1
     ReadOnly Property Bulan As String
         Get
             If _cmbBulan.EditValue <> "" Then
+                Return Microsoft.VisualBasic.Left(_cmbBulan.Text.Trim, 3)
+            Else
+                Return ""
+            End If
+        End Get
+    End Property
+    ReadOnly Property BulanAngka As String
+        Get
+            If _cmbBulan.EditValue <> "" Then
                 Return _cmbBulan.EditValue.Trim
             Else
                 Return ""

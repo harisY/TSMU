@@ -58,10 +58,17 @@ Public Class frmSales_ForecastPrice
                 .Columns(1).Fixed = FixedStyle.Left
                 .Columns(2).Fixed = FixedStyle.Left
                 .Columns(3).Fixed = FixedStyle.Left
-                .Columns(4).Fixed = FixedStyle.Left
+                .Columns(5).Fixed = FixedStyle.Left
                 .Columns(6).Fixed = FixedStyle.Left
                 .OptionsView.ShowFooter = True
-                .OptionsBehavior.Editable = False
+                '.OptionsBehavior.Editable = False
+                For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                    If col.Name.ToLower = "colinvtid" Then
+                        col.OptionsColumn.AllowEdit = True
+                    Else
+                        col.OptionsColumn.AllowEdit = False
+                    End If
+                Next
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -131,6 +138,7 @@ Public Class frmSales_ForecastPrice
         Dim table As New DataTable
         Dim ls_Judul As String = "Forecast/Price"
         Dim Bulan As String = ""
+        Dim BulanAngka As String = ""
         Dim strTahun As String = ""
         Dim strCustomer As String = ""
 
@@ -144,6 +152,7 @@ Public Class frmSales_ForecastPrice
             strTahun = frmExcel.Tahun
             strCustomer = frmExcel.Customer
             Bulan = frmExcel.Bulan
+            BulanAngka = frmExcel.BulanAngka
 
             Try
                 Dim dv As DataView = New DataView(table)
@@ -264,6 +273,7 @@ Public Class frmSales_ForecastPrice
                         .Tahun = strTahun
                         .CustID = strCustomer
                         .Bulan = Bulan
+                        .BulanAngka = BulanAngka
                         .InsertData1()
 
                         SplashScreenManager.CloseForm()

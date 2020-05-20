@@ -89,7 +89,8 @@ Public Class FrmSales_ForecastPriceSync
             Next
 
             With ObjHeader
-                .Bulan = _cmbBulan.EditValue
+                .BulanAngka = _CmbBulan.EditValue
+                .Bulan = Microsoft.VisualBasic.Left(_CmbBulan.Text.Trim, 3)
                 .SinkronasiHarga()
             End With
             SplashScreenManager.CloseForm()

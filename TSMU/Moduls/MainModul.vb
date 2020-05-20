@@ -2091,17 +2091,17 @@ Module MainModul
         With StyleColumn
             .Alignment = DataGridViewContentAlignment.MiddleLeft
             .BackColor = gcl_GridFixedDarkblue
-            .Font = New System.Drawing.Font(gs_AppFontName, gsi_AppFontSize, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            .Font = New Font(gs_AppFontName, gsi_AppFontSize, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
             .ForeColor = gcl_GridFixedFore
-            .SelectionBackColor = System.Drawing.SystemColors.Highlight
-            .SelectionForeColor = System.Drawing.SystemColors.HighlightText
-            .WrapMode = System.Windows.Forms.DataGridViewTriState.False
+            .SelectionBackColor = SystemColors.Highlight
+            .SelectionForeColor = SystemColors.HighlightText
+            .WrapMode = DataGridViewTriState.False
         End With
         StyleAlternate.BackColor = gcl_GridNormalBack1
         With StyleNormal
             .BackColor = gcl_GridAlternateBack1 'gcl_GridNormalBack
-            .WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-            .Padding = New System.Windows.Forms.Padding(5, 0, 5, 0)
+            .WrapMode = DataGridViewTriState.[False]
+            .Padding = New Padding(5, 0, 5, 0)
         End With
 
         With Grid
@@ -2114,15 +2114,15 @@ Module MainModul
             '.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             '            Or System.Windows.Forms.AnchorStyles.Right Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
             .Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right Or AnchorStyles.Bottom
-            .AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
             '.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-            .ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised
+            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Raised
             .ColumnHeadersDefaultCellStyle = StyleColumn
             .ColumnHeadersHeight = 30
             .CellBorderStyle = DataGridViewCellBorderStyle.Raised
-            .ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            .EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystrokeOrF2
+            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+            .EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2
             .EnableHeadersVisualStyles = False
             .ReadOnly = False
             .RowHeadersVisible = False
@@ -2141,9 +2141,9 @@ Module MainModul
     Public Sub FormatGridView(ByVal View As GridView)
         With View
             For i As Integer = 0 To .Columns.Count - 1
-                If .Columns(i).ColumnType Is GetType(DateTime) Then
+                If .Columns(i).ColumnType Is GetType(Date) Then
                     If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd-MM-yyyy"
-                ElseIf .Columns(i).ColumnType Is GetType(Int64) Then
+                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
                     Dim lb_Nothing As Boolean = True
                     .Columns(i).DisplayFormat.Format = GetType(String)
                     If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
@@ -2177,8 +2177,8 @@ Module MainModul
 
     Public Sub GridCellFormat(ByVal View As GridView, Optional ByVal IsIndonesianDate As Boolean = True)
         With View
-            For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
-                If col.ColumnType Is GetType(DateTime) Then
+            For Each col As Columns.GridColumn In .Columns
+                If col.ColumnType Is GetType(Date) Then
                     If IsIndonesianDate Then
                         If col.DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
                             col.DisplayFormat.FormatType = FormatType.DateTime
@@ -2214,11 +2214,17 @@ Module MainModul
                     End If
                     If lb_Nothing = True Then
                         col.DisplayFormat.FormatType = FormatType.Numeric
-                        col.DisplayFormat.FormatString = gs_FormatDecimal
+                        col.DisplayFormat.FormatString = gs_FormatPecahan
                     End If
                     col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
 
+                ElseIf col.ColumnType Is GetType(Integer) Then
+                    col.DisplayFormat.FormatType = FormatType.Numeric
+                    col.DisplayFormat.FormatString = gs_FormatBulat
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
                 End If
+
             Next
             .RefreshData()
             'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
