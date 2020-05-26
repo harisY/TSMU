@@ -251,7 +251,7 @@ Public Class Frm_Input_NPPDetail
                     .Item("Painting") = CPainting.CheckState
                     .Item("Chrome") = CChrome.CheckState
                     .Item("Assy") = CAssy.CheckState
-                    .Item("Ultrasonic") = CAssy.CheckState
+                    .Item("Ultrasonic") = CUltrasonic.CheckState
                     .Item("Vibration") = CbVibration.CheckState
                     .Item("Status Mold") = TStatusMold.Text.Trim
                     .Item("Order Month") = TOrder.EditValue

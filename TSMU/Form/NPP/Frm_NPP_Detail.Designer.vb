@@ -509,6 +509,7 @@ Partial Class Frm_NPP_Detail
         Me.TCategory.Location = New System.Drawing.Point(97, 23)
         Me.TCategory.Name = "TCategory"
         Me.TCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TCategory.Properties.DropDownRows = 4
         Me.TCategory.Properties.NullText = ""
         Me.TCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.TCategory.Size = New System.Drawing.Size(429, 20)

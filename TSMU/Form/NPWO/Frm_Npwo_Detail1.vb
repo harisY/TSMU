@@ -30,6 +30,7 @@ Public Class Frm_Npwo_Detail1
     Dim frmInput As Frm_Get_Npp_Detail
     Dim frmInput1 As Frm_Input_NpwoDetail
     Dim frmInput2 As Frm_Input_NPPDetail
+    Dim frmPrepare As Frm_Npwo_Prepare
 
     Dim FormDetail As Integer = 0
     Dim dataSet As New DataSet
@@ -366,6 +367,11 @@ Public Class Frm_Npwo_Detail1
             frmInput1.StartPosition = FormStartPosition.CenterScreen
             frmInput1.MaximizeBox = False
             frmInput1.ShowDialog()
+        ElseIf FormDetail = 3 Then
+            frmPrepare = New Frm_Npwo_Prepare(ID)
+            frmPrepare.StartPosition = FormStartPosition.CenterScreen
+            frmPrepare.MaximizeBox = False
+            frmPrepare.ShowDialog()
 
         End If
 
@@ -850,6 +856,10 @@ Public Class Frm_Npwo_Detail1
 
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve = True Then
+
+
+            FormDetail = 3
+            CallForm(fs_Code)
 
             FrmReport = New Frm_Rpt_NPWO
             FrmReport.NPWO_No = TNpwo_No.EditValue

@@ -61,6 +61,10 @@ Public Class Frm_NPP_Set_Grup
         Grid1 = _grid
         dtInduk = _dt
 
+
+        For a As Integer = 0 To dtInduk.Rows.Count - 1
+            dtInduk.Rows(a).Item("Check") = "False"
+        Next
         Grid.DataSource = dtInduk
 
     End Sub

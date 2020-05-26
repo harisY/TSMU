@@ -89,6 +89,7 @@ Public Class Cls_Npwo_Detail
                   ,[Npwo_Head].[A2]
                   ,[Npwo_Head].[A3]
                   ,[Npwo_Head].[A4]
+                  ,[Npwo_Head].[Prepare]
                   ,[Npwo_Head].[CreatedBy]
                   ,[NpwoDetail1].[Part_No]
                   ,[NpwoDetail1].[Part_Name]
@@ -323,7 +324,9 @@ Public Class Cls_Npwo_Detail
                                             H_A1,
                                             H_A2,
                                             H_A3,
-                                            H_A4)
+                                            H_A4,
+                                            gh_Common.Username,
+                                            Date.Now)
 
 
                         Dim AutoIncrement As Integer
@@ -409,7 +412,9 @@ Public Class Cls_Npwo_Detail
                                         _H_A1 As String,
                                         _H_A2 As String,
                                         _H_A3 As String,
-                                        _H_A4 As String)
+                                        _H_A4 As String,
+                                        _H_UpdateBy As String,
+                                        _H_UpdateDate As Date)
         Dim result As Integer = 0
 
 
@@ -429,7 +434,7 @@ Public Class Cls_Npwo_Detail
 
 
             Dim query As String = "[NPWO_Insert_Npwo_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(28) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -457,6 +462,8 @@ Public Class Cls_Npwo_Detail
             pParam(24) = New SqlClient.SqlParameter("@A2", SqlDbType.VarChar)
             pParam(25) = New SqlClient.SqlParameter("@A3", SqlDbType.VarChar)
             pParam(26) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
+            pParam(27) = New SqlClient.SqlParameter("@UpdatedBy", SqlDbType.VarChar)
+            pParam(28) = New SqlClient.SqlParameter("@UpdatedDate", SqlDbType.Date)
 
 
 
@@ -478,15 +485,17 @@ Public Class Cls_Npwo_Detail
             pParam(15).Value = _H_CreatedBy
             pParam(16).Value = _H_CreatedDate
             pParam(17).Value = _H_Revisi
-            pParam(18).Value = H_No_NPP
-            pParam(19).Value = H_T0
-            pParam(20).Value = H_T1
-            pParam(21).Value = H_T2
-            pParam(22).Value = H_Checked
-            pParam(23).Value = H_A1
-            pParam(24).Value = H_A2
-            pParam(25).Value = H_A3
-            pParam(26).Value = H_A4
+            pParam(18).Value = _H_No_NPP
+            pParam(19).Value = _H_T0
+            pParam(20).Value = _H_T1
+            pParam(21).Value = _H_T2
+            pParam(22).Value = _H_Checked
+            pParam(23).Value = _H_A1
+            pParam(24).Value = _H_A2
+            pParam(25).Value = _H_A3
+            pParam(26).Value = _H_A4
+            pParam(27).Value = _H_UpdateBy
+            pParam(28).Value = _H_UpdateDate
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
