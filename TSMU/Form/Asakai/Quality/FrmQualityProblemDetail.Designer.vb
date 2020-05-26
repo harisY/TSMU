@@ -93,7 +93,7 @@ Partial Class FrmQualityProblemDetail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.Grid.Size = New System.Drawing.Size(1307, 502)
+        Me.Grid.Size = New System.Drawing.Size(1307, 408)
         Me.Grid.TabIndex = 26
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '

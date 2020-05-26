@@ -30,6 +30,7 @@ Public Class Frm_NPP_Detail
 
     Dim frmInput As Frm_Input_NPPDetail
     Dim frmSetGroup As Frm_NPP_Set_Grup
+    Dim frmPrepare As Frm_NPP_Prepare
 
 
     Dim dt As New DataTable
@@ -193,6 +194,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
+
         If TOrderMonth.Text = "" Then
             MessageBox.Show("Please Fill Order Month",
                                 "Warning",
@@ -673,12 +675,16 @@ Public Class Frm_NPP_Detail
             frmSetGroup.StartPosition = FormStartPosition.CenterScreen
             frmSetGroup.MaximizeBox = False
             frmSetGroup.ShowDialog()
+        ElseIf CForm = 3 Then
+            frmPrepare = New Frm_NPP_Prepare(ID)
+            frmPrepare.StartPosition = FormStartPosition.CenterScreen
+            frmPrepare.MaximizeBox = False
+            frmPrepare.ShowDialog()
         Else
             frmInput = New Frm_Input_NPPDetail(ID, Nama, Machine, CycleTime, Cav, Weight, Material, Inj, Paint, Chrome, Assy, Ultrasonic, Vibration, StatusMold, OrderMonth, IsNew, DtGridNPWO, Grid, TOrderMonth.EditValue, TNPP_No.EditValue)
             frmInput.StartPosition = FormStartPosition.CenterScreen
             frmInput.MaximizeBox = False
             frmInput.ShowDialog()
-
         End If
 
 
@@ -712,6 +718,14 @@ Public Class Frm_NPP_Detail
         If e.KeyData = Keys.Delete Then
             GridView1.DeleteRow(GridView1.FocusedRowHandle)
             GridView1.RefreshData()
+            Grid.Refresh()
+
+            DtGridNPWO.AcceptChanges()
+
+            'Dim baseEdit = TryCast(sender, BaseEdit)
+            'Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+            'gridView.PostEditor()
+            'gridView.UpdateCurrentRow()
 
         End If
         'If e.KeyData = Keys.Insert Then
@@ -766,6 +780,10 @@ Public Class Frm_NPP_Detail
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve = True Then
 
+            CForm = 3
+            CallForm(fs_Code)
+
+
             FrmReport = New ReportNPWO
             FrmReport.NPP_No = TNPP_No.EditValue
             FrmReport.REV = TRevisi.EditValue
@@ -787,7 +805,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TModel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TModel.KeyPress
-        e.KeyChar = Char.ToUpper(e.KeyChar)
+        'e.KeyChar = Char.ToUpper(e.KeyChar)
     End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
