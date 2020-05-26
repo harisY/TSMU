@@ -110,15 +110,18 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="LibDataAccess">
+      <HintPath>..\..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
