@@ -166,7 +166,7 @@
         Try
             'Dim query As String = "[Generate_Report_Matome]"
             'Dim query As String = "[GetREportMatome_New2]"
-            Dim query As String = "[Matome]"
+            Dim query As String = "[Matome1]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Left(strYear, 4)
