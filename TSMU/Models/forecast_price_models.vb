@@ -3,6 +3,7 @@ Public Class forecast_price_models_header
     Public Property Tahun As String
     Public Property CustID As String
     Public Property Bulan As String
+    Public Property BulanAngka As String
     Public Property ObjForecastCollection() As New Collection(Of forecast_price_models)
     Public Sub DeleteByTahun(Tahun As String)
         Try
@@ -95,12 +96,44 @@ Public Class forecast_price_models_header
                                 Dim IsExist As Boolean = .IsDataADMExist
                                 If Not IsExist Then
                                     .InsertData()
-                                    .UpdateDataByBulanNew(Bulan)
+                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 Else
-
-                                    .UpdateDataByBulanNew(Bulan)
+                                    .UpdateData1()
+                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 End If
 
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub SinkronasiHarga()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        For i As Integer = 0 To ObjForecastCollection.Count - 1
+                            With ObjForecastCollection(i)
+                                .SinkronisasiHarga(Bulan, BulanAngka)
                             End With
                         Next
 
@@ -1316,42 +1349,69 @@ Public Class forecast_price_models
         End Try
     End Sub
 
-    Public Sub UpdateDataByBulanNew(Bulan As String)
+    Public Sub UpdateDataByBulanNew(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
-            salesPrice = getSalesPrice(Bulan, Tahun)
+            salesPrice = getSalesPrice(BulanAngka, Tahun)
 
             Dim Sql As String = "tForecastPrice_updateHarga"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(13) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Tahun
-            pParam(1) = New SqlClient.SqlParameter("@bulan", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
             pParam(1).Value = Bulan
             pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(2).Value = CustID
-            pParam(3) = New SqlClient.SqlParameter("@Customer", SqlDbType.VarChar)
-            pParam(3).Value = Customer
-            pParam(4) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
-            pParam(4).Value = InvtID
-            pParam(5) = New SqlClient.SqlParameter("@Description", SqlDbType.VarChar)
-            pParam(5).Value = Description
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            pParam(5).Value = salesPrice
 
-            pParam(6) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
-            pParam(6).Value = PartNo
-            pParam(7) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
-            pParam(7).Value = Model
-            pParam(8) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
-            pParam(8).Value = OePe
-            pParam(9) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
-            pParam(9).Value = INSub
-            pParam(10) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
-            pParam(10).Value = Site
-            pParam(11) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
-            pParam(11).Value = Flag
-            pParam(12) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
-            pParam(12).Value = salesPrice
-            pParam(13) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
-            pParam(13).Value = gh_Common.Username
+            'pParam(6) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(6).Value = PartNo
+            'pParam(7) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(7).Value = Model
+            'pParam(8) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(8).Value = OePe
+            'pParam(9) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(9).Value = INSub
+            'pParam(10) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(10).Value = Site
+            'pParam(11) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(11).Value = Flag
+            'pParam(12) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(12).Value = salesPrice
+            'pParam(13) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(13).Value = gh_Common.Username
+
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
+        Try
+            Dim salesPrice As Double = 0
+            salesPrice = getSalesPrice(BulanAngka, Tahun)
+
+            Dim Sql As String = "tForecastPrice_SinkornisasiHarga"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            pParam(1).Value = Bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            pParam(5).Value = salesPrice
+            'pParam(6) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(6).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
@@ -1473,6 +1533,92 @@ Public Class forecast_price_models
                         ,[update_date] = " & QVal(update_date) & "
                         ,[updated_by] = " & QVal(updated_by) & " 
                     WHERE Id = " & QVal(Id) & ""
+            ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateData1()
+        Try
+            Dim Query As String = String.Empty
+            Query = "UPDATE [tForecastPrice]
+                    SET [Tahun] = " & QVal(Tahun) & "
+                        ,[CustID] = " & QVal(CustID) & "
+                        ,[Customer] = " & QVal(Customer) & "
+                        ,[InvtID] = " & QVal(InvtID) & "
+                        ,[Description] = " & QVal(Description) & "
+                        ,[PartNo] = " & QVal(PartNo) & "
+                        ,[Model] = " & QVal(Model) & "
+                        ,[Oe/Pe] = " & QVal(OePe) & "
+                        ,[IN/SUB] = " & QVal(INSub) & "
+                        ,[Site] = " & QVal(Site) & "
+                        ,[Flag] = " & QVal(Flag) & "
+                        ,[JanQty1] = " & QVal(JanQty1) & "
+                        ,[JanQty2] = " & QVal(JanQty2) & "
+                        ,[JanQty3] = " & QVal(JanQty3) & "
+                        ,[Jan PO1] = " & QVal(Jan_PO1) & "
+                        ,[Jan PO2] = " & QVal(Jan_PO2) & "
+                        ,[FebQty1] = " & QVal(FebQty1) & "
+                        ,[FebQty2] = " & QVal(FebQty2) & "
+                        ,[FebQty3] = " & QVal(FebQty3) & "
+                        ,[Feb PO1] = " & QVal(Feb_PO1) & "
+                        ,[Feb PO2] = " & QVal(Feb_PO2) & "
+                        ,[MarQty1] = " & QVal(MarQty1) & "
+                        ,[MarQty2] = " & QVal(MarQty2) & "
+                        ,[MarQty3] = " & QVal(MarQty3) & "
+                        ,[Mar PO1] = " & QVal(Mar_PO1) & "
+                        ,[Mar PO2] = " & QVal(Mar_PO2) & "
+                        ,[AprQty1] = " & QVal(AprQty1) & "
+                        ,[AprQty2] = " & QVal(AprQty2) & "
+                        ,[AprQty3] = " & QVal(AprQty3) & "
+                        ,[Apr PO1] = " & QVal(Apr_PO1) & "
+                        ,[Apr PO2] = " & QVal(Apr_PO2) & "
+                        ,[MeiQty1] = " & QVal(MeiQty1) & "
+                        ,[MeiQty2] = " & QVal(MeiQty2) & "
+                        ,[MeiQty3] = " & QVal(MeiQty3) & "
+                        ,[Mei PO1] = " & QVal(Mei_PO1) & "
+                        ,[Mei PO2] = " & QVal(Mei_PO2) & "
+                        ,[JunQty1] = " & QVal(JunQty1) & "
+                        ,[JunQty2] = " & QVal(JunQty2) & "
+                        ,[JunQty3] = " & QVal(JunQty3) & "
+                        ,[Jun PO1] = " & QVal(Jun_PO1) & "
+                        ,[Jun PO2] = " & QVal(Jun_PO2) & "
+                        ,[JulQty1] = " & QVal(JulQty1) & "
+                        ,[JulQty2] = " & QVal(JulQty2) & "
+                        ,[JulQty3] = " & QVal(JulQty3) & "
+                        ,[Jul PO1] = " & QVal(Jul_PO1) & "
+                        ,[Jul PO2] = " & QVal(Jul_PO2) & "
+                        ,[AgtQty1] = " & QVal(AgtQty1) & "
+                        ,[AgtQty2] = " & QVal(AgtQty2) & "
+                        ,[AgtQty3] = " & QVal(AgtQty3) & "
+                        ,[Agt PO1] = " & QVal(Agt_PO1) & "
+                        ,[Agt PO2] = " & QVal(Agt_PO2) & "
+                        ,[SepQty1] = " & QVal(SepQty1) & "
+                        ,[SepQty2] = " & QVal(SepQty2) & "
+                        ,[SepQty3] = " & QVal(SepQty3) & "
+                        ,[Sep PO1] = " & QVal(Sep_PO1) & "
+                        ,[Sep PO2] = " & QVal(Sep_PO2) & "
+                        ,[OktQty1] = " & QVal(OktQty1) & "
+                        ,[OktQty2] = " & QVal(OktQty2) & "
+                        ,[OktQty3] = " & QVal(OktQty3) & "
+                        ,[Okt PO1] = " & QVal(Okt_PO1) & "
+                        ,[Okt PO2] = " & QVal(Okt_PO2) & "
+                        ,[NovQty1] = " & QVal(NovQty1) & "
+                        ,[NovQty2] = " & QVal(NovQty2) & "
+                        ,[NovQty3] = " & QVal(NovQty3) & "
+                        ,[Nov PO1] = " & QVal(Nov_PO1) & "
+                        ,[Nov PO2] = " & QVal(Nov_PO2) & "
+                        ,[DesQty1] = " & QVal(DesQty1) & "
+                        ,[DesQty2] = " & QVal(DesQty2) & "
+                        ,[DesQty3] = " & QVal(DesQty3) & "
+                        ,[Des PO1] = " & QVal(Des_PO1) & "
+                        ,[Des PO2] = " & QVal(Des_PO2) & "WHERE 
+                Tahun =  " & QVal(Tahun) & " AND 
+                PartNo = " & QVal(PartNo) & " AND 
+                InvtID = " & QVal(InvtID) & " AND 
+                Flag = " & QVal(Flag) & " AND 
+                CustID = " & QVal(CustID) & ""
             ExecQuery(Query)
         Catch ex As Exception
             Throw ex

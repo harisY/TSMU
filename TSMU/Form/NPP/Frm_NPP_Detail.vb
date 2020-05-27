@@ -30,7 +30,12 @@ Public Class Frm_NPP_Detail
 
     Dim frmInput As Frm_Input_NPPDetail
     Dim frmSetGroup As Frm_NPP_Set_Grup
+    Dim frmPrepare As Frm_NPP_Prepare
+
+
     Dim dt As New DataTable
+    Dim DtDelete As New DataTable
+    Dim dtApprove As New DataTable
 
     Dim FrmReport As ReportNPWO
 
@@ -189,6 +194,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
+
         If TOrderMonth.Text = "" Then
             MessageBox.Show("Please Fill Order Month",
                                 "Warning",
@@ -364,6 +370,10 @@ Public Class Frm_NPP_Detail
 
             If isUpdate = False Then
 
+                dtApprove = New DataTable
+                dtApprove = fc_Class.GetApprove
+
+
                 With fc_Class
 
                     .H_No_NPP = TNPP_No.EditValue
@@ -384,6 +394,11 @@ Public Class Frm_NPP_Detail
                     .H_RevInformasi = TRevisiInformasi.EditValue
                     .H_TargetDRR = TTargetDr.EditValue
                     .H_TargetQuot = TTargetQuot.EditValue
+                    .H_Checked = dtApprove.Rows(0).Item("Checked")
+                    .H_A1 = dtApprove.Rows(0).Item("A1")
+                    .H_A2 = dtApprove.Rows(0).Item("A2")
+                    .H_A3 = dtApprove.Rows(0).Item("A3")
+                    .H_A4 = dtApprove.Rows(0).Item("A4")
 
                 End With
                 'Insert To ObjDetailMaterial
@@ -430,7 +445,6 @@ Public Class Frm_NPP_Detail
 
                     With fc_Class
 
-
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
                         .H_Model_Description = TModelDesc.EditValue
@@ -451,7 +465,6 @@ Public Class Frm_NPP_Detail
                         .H_TargetQuot = TTargetQuot.EditValue
 
                         .H_RevInformasi = TRevisiInformasi.EditValue
-
 
                     End With
 
@@ -595,7 +608,7 @@ Public Class Frm_NPP_Detail
             TNPP_No.EditValue = ""
         Else
 
-            fc_Class.GetNpwoNoAuto(TCustomer.EditValue, TModel.EditValue)
+            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), Trim(TModel.EditValue))
             TNPP_No.EditValue = fc_Class.H_No_NPP
         End If
 
@@ -603,18 +616,18 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TCustomer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCustomer.KeyPress
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
+        'Dim tombol As Integer
+        'tombol = Asc(e.KeyChar)
 
-        If Not ((tombol = 0)) Then
-            e.Handled = True
-        End If
+        'If Not ((tombol = 0)) Then
+        '    e.Handled = True
+        'End If
     End Sub
 
     Private Sub TCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles TCustomer.EditValueChanged
 
         If TModel.EditValue <> "" Then
-            fc_Class.GetNpwoNoAuto(TCustomer.EditValue, TModel.EditValue)
+            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), TModel.EditValue)
             TNPP_No.EditValue = fc_Class.H_No_NPP
         End If
 
@@ -662,12 +675,16 @@ Public Class Frm_NPP_Detail
             frmSetGroup.StartPosition = FormStartPosition.CenterScreen
             frmSetGroup.MaximizeBox = False
             frmSetGroup.ShowDialog()
+        ElseIf CForm = 3 Then
+            frmPrepare = New Frm_NPP_Prepare(ID)
+            frmPrepare.StartPosition = FormStartPosition.CenterScreen
+            frmPrepare.MaximizeBox = False
+            frmPrepare.ShowDialog()
         Else
             frmInput = New Frm_Input_NPPDetail(ID, Nama, Machine, CycleTime, Cav, Weight, Material, Inj, Paint, Chrome, Assy, Ultrasonic, Vibration, StatusMold, OrderMonth, IsNew, DtGridNPWO, Grid, TOrderMonth.EditValue, TNPP_No.EditValue)
             frmInput.StartPosition = FormStartPosition.CenterScreen
             frmInput.MaximizeBox = False
             frmInput.ShowDialog()
-
         End If
 
 
@@ -701,6 +718,14 @@ Public Class Frm_NPP_Detail
         If e.KeyData = Keys.Delete Then
             GridView1.DeleteRow(GridView1.FocusedRowHandle)
             GridView1.RefreshData()
+            Grid.Refresh()
+
+            DtGridNPWO.AcceptChanges()
+
+            'Dim baseEdit = TryCast(sender, BaseEdit)
+            'Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+            'gridView.PostEditor()
+            'gridView.UpdateCurrentRow()
 
         End If
         'If e.KeyData = Keys.Insert Then
@@ -755,6 +780,10 @@ Public Class Frm_NPP_Detail
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve = True Then
 
+            CForm = 3
+            CallForm(fs_Code)
+
+
             FrmReport = New ReportNPWO
             FrmReport.NPP_No = TNPP_No.EditValue
             FrmReport.REV = TRevisi.EditValue
@@ -776,7 +805,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TModel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TModel.KeyPress
-        e.KeyChar = Char.ToUpper(e.KeyChar)
+        'e.KeyChar = Char.ToUpper(e.KeyChar)
     End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick

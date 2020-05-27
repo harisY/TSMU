@@ -7,6 +7,9 @@ Public Class Frm_NPWO_Head
 
     Dim FrmReport As ReportNPWO
 
+    Dim DtDelete As DataTable
+
+
     Private Sub Frm_NPWO_Head_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         dtGrid = New DataTable
@@ -85,6 +88,10 @@ Public Class Frm_NPWO_Head
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
+
+
+
+
         Dim NP As String = ""
 
 
@@ -96,6 +103,7 @@ Public Class Frm_NPWO_Head
                     NP = GridView1.GetRowCellValue(rowHandle, "NPWO")
                 End If
             Next rowHandle
+
 
             fc_Class.Delete(NP)
             Call LoadGrid()

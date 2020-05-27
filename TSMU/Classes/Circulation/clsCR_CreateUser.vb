@@ -55,6 +55,22 @@ Public Class ClsCR_CreateUser
     Public Property Collection_BomT1() As New Collection(Of ClsCR_BomT1)
 
 
+    Public Function Get_Mold(NPP_ As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_Detail_NPP]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@NPP", SqlDbType.VarChar)
+            pParam(0).Value = NPP_
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function Get_Detail_DescriptionOfCost(CirculationNo As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
@@ -101,10 +117,27 @@ Public Class ClsCR_CreateUser
         End Try
 
     End Function
+
+    Public Function GetMold() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "Select 
+                                    Part_No as [Name Of Goods]
+                                    ,Part_Name as [Spesification]
+                                    ,[Check]  
+                                  from Npwo_Detail"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetPR(Dept_Sub As String, Tahun As String, Bulan As Double) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
-            Dim query As String = "[CR_Get_PRNo]"
+            Dim query1 As String = "[CR_Get_PRNo]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@Sub", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
@@ -113,7 +146,7 @@ Public Class ClsCR_CreateUser
             pParam(1).Value = Tahun
             pParam(2).Value = Bulan
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP_Solomon(query, pParam)
+            dt = GetDataTableByCommand_SP_Solomon(query1, pParam)
             Return dt
         Catch ex As Exception
             Throw
@@ -174,6 +207,25 @@ Public Class ClsCR_CreateUser
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_Other_DeptID_Filter(Circulation_ As String) As DataTable
+        Try
+            Dim query As String = "SELECT [CirculationNo]
+                                  ,[DeptID]
+                                  ,[DeptHead_ID]
+                                  ,[DeptHead_Name]
+                                  ,[DeptHead_Email]
+                                  ,[Date]
+                                  ,[Opinion]
+                                  ,[Approve]
+                              FROM [CR_Other_Dept] where [CirculationNo] = '" & Circulation_ & "'"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
             Return dt
         Catch ex As Exception
             Throw

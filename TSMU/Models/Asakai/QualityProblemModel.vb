@@ -91,6 +91,8 @@ Public Class QualityProblemModel
                                   ,[PREVENTIVE ACTION] as [Preventive Action]
                                   ,[Pic]
                                   ,[Target]
+                                  ,[Path]  
+                                  ,[Foto] as [Gambar Hapus]
                               From [AsakaiQualityProblemDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)

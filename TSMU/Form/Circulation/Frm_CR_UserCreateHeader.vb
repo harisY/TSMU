@@ -69,7 +69,7 @@ Public Class Frm_CR_UserCreateHeader
             ff_Detail.Close()
         End If
         ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        ff_Detail.MdiParent = MenuUtamaForm
+        ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
@@ -162,7 +162,7 @@ Public Class Frm_CR_UserCreateHeader
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "CirculationNo")
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
                     'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
                     ' Dim oDate As DateTime = DateTime.ParseExact(GridView1.GetRowCellValue(rowHandle, "Tanggal"), "dd-MM-yyyy", provider)
                     'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))

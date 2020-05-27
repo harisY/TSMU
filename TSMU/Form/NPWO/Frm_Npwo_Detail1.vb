@@ -30,9 +30,11 @@ Public Class Frm_Npwo_Detail1
     Dim frmInput As Frm_Get_Npp_Detail
     Dim frmInput1 As Frm_Input_NpwoDetail
     Dim frmInput2 As Frm_Input_NPPDetail
+    Dim frmPrepare As Frm_Npwo_Prepare
 
     Dim FormDetail As Integer = 0
     Dim dataSet As New DataSet
+    Dim dtApprove As New DataTable
 
     Dim FrmReport As New Frm_Rpt_NPWO
 
@@ -45,9 +47,6 @@ Public Class Frm_Npwo_Detail1
         Call FillComboNPP()
         Call FillComboCategory()
 
-
-
-        'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
 
     End Sub
@@ -312,7 +311,7 @@ Public Class Frm_Npwo_Detail1
                 'TTargetQuot.EditValue = dtHeader.Rows(0).Item("TargetQuot")
 
                 If isUpdate = False Then
-                    Call fc_Class.GetNpwoNoAuto(dtHeader.Rows(0).Item("Customer_Name"), dtHeader.Rows(0).Item("Model_Name"))
+                    Call fc_Class.GetNpwoNoAuto(Trim(dtHeader.Rows(0).Item("Customer_Name")), Trim(dtHeader.Rows(0).Item("Model_Name")))
                     TNpwo_No.EditValue = fc_Class.H_No_Npwo
                 End If
 
@@ -368,6 +367,11 @@ Public Class Frm_Npwo_Detail1
             frmInput1.StartPosition = FormStartPosition.CenterScreen
             frmInput1.MaximizeBox = False
             frmInput1.ShowDialog()
+        ElseIf FormDetail = 3 Then
+            frmPrepare = New Frm_Npwo_Prepare(ID)
+            frmPrepare.StartPosition = FormStartPosition.CenterScreen
+            frmPrepare.MaximizeBox = False
+            frmPrepare.ShowDialog()
 
         End If
 
@@ -441,6 +445,11 @@ Public Class Frm_Npwo_Detail1
             If isUpdate = False Then
 
 #Region "Insert"
+
+                dtApprove = New DataTable
+
+                dtApprove = fc_Class.GetApprove()
+
                 With fc_Class
 
                     .H_No_Npwo = TNpwo_No.EditValue
@@ -469,13 +478,13 @@ Public Class Frm_Npwo_Detail1
                     If TT1.Text = "" Then
                         .H_T1 = oDate
                     Else
-                        .H_T1 = TT0.EditValue
+                        .H_T1 = TT1.EditValue
                     End If
 
                     If TT2.Text = "" Then
                         .H_T2 = oDate
                     Else
-                        .H_T2 = TT0.EditValue
+                        .H_T2 = TT2.EditValue
                     End If
 
                     .H_Drawing = CBDrawing.CheckState
@@ -487,6 +496,12 @@ Public Class Frm_Npwo_Detail1
                     .H_Factory_Tsc_CKR = CBCkr.CheckState
                     .H_Rev = 0
                     .H_Rev_Info = TRevInfo.EditValue
+
+                    .H_Checked = dtApprove.Rows(0).Item("Checked")
+                    .H_A1 = dtApprove.Rows(0).Item("A1")
+                    .H_A2 = dtApprove.Rows(0).Item("A2")
+                    .H_A3 = dtApprove.Rows(0).Item("A3")
+                    .H_A4 = dtApprove.Rows(0).Item("A4")
 
                 End With
                 'Colletion Detail
@@ -559,37 +574,6 @@ Public Class Frm_Npwo_Detail1
 
                 Next
 
-                'fc_Class.Collection_Detail_1.Clear()
-                'For i As Integer = 0 To GridView2.RowCount - 1
-
-                '    Fc_Clas_Col_Detail_1 = New Col_Cls_Npwo_Detail_1_NPWO
-                '    With Fc_Clas_Col_Detail_1
-                '        .No_Npwo = TNpwo_No.EditValue
-                '        .Part_No = Convert.ToString(GridView2.GetRowCellValue(i, "Part No"))
-                '        '.Part_Name = Convert.ToString(dtDetail.Rows(i).Item("Part Name"))
-                '        '.Machine = Convert.ToString(dtDetail.Rows(i).Item("Machine"))
-                '        '.Cycle_Time = Convert.ToDouble(dtDetail.Rows(i).Item("C/T"))
-                '        '.Cavity = Convert.ToString(dtDetail.Rows(i).Item("Cav"))
-                '        '.Weight = Convert.ToDouble(dtDetail.Rows(i).Item("Weight"))
-                '        '.Qty_Mold = Convert.ToDouble(dtDetail.Rows(i).Item("Qty Mold"))
-                '        '.Material_Resin = Convert.ToString(dtDetail.Rows(i).Item("Material"))
-                '        '.Injection = Convert.ToBoolean(dtDetail.Rows(i).Item("Inj"))
-                '        '.Painting = Convert.ToBoolean(dtDetail.Rows(i).Item("Painting"))
-                '        '.Chrome = Convert.ToBoolean(dtDetail.Rows(i).Item("Chrome"))
-                '        '.Vibration = Convert.ToBoolean(dtDetail.Rows(i).Item("Vibration"))
-                '        '.Assy = Convert.ToBoolean(dtDetail.Rows(i).Item("Assy"))
-                '        '.Ultrasonic = Convert.ToBoolean(dtDetail.Rows(i).Item("Ultrasonic"))
-                '        '.StatusMold = Convert.ToString(dtDetail.Rows(i).Item("Status Mold"))
-                '        '.OrderMonth = Convert.ToInt32(dtDetail.Rows(i).Item("Order Month"))
-                '        '.LOI_Number = Convert.ToString(dtDetail.Rows(i).Item("LOI"))
-                '        '.GroupID = Convert.ToString(dtDetail.Rows(i).Item("Group ID"))
-                '        '.Type = Convert.ToString(dtDetail.Rows(i).Item("Type"))
-                '        '.Rev = 0
-
-                '    End With
-                '    fc_Class.Collection_Detail_1.Add(Fc_Clas_Col_Detail_1)
-
-                'Next
 
                 fc_Class.Insert(TNpwo_No.EditValue)
                 bs_Filter = gh_Common.GroupID
@@ -870,28 +854,70 @@ Public Class Frm_Npwo_Detail1
     End Sub
     Public Overrides Sub Proc_Print()
 
-        'fc_Class.GetDataByID(fs_Code)
-        'If fc_Class.H_Approve = True Then
+        fc_Class.GetDataByID(fs_Code)
+        If fc_Class.H_Approve = True Then
 
-        FrmReport = New Frm_Rpt_NPWO
-        FrmReport.NPWO_No = TNpwo_No.EditValue
-        FrmReport.REV = TRevisi.EditValue
+
+            FormDetail = 3
+            CallForm(fs_Code)
+
+            FrmReport = New Frm_Rpt_NPWO
+            FrmReport.NPWO_No = TNpwo_No.EditValue
+            FrmReport.REV = TRevisi.EditValue
 
             FrmReport.StartPosition = FormStartPosition.CenterScreen
             FrmReport.WindowState = FormWindowState.Maximized
             FrmReport.MaximizeBox = False
             FrmReport.ShowDialog()
 
-        'Else
+        Else
 
-        '    MessageBox.Show("NPP No " & TNpwo_No.EditValue & " Must be Approved First",
-        '                        "Warning",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation,
-        '                        MessageBoxDefaultButton.Button1)
-        'End If
+            MessageBox.Show("NPWO No " & TNpwo_No.EditValue & " Must be Approved First",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        End If
 
     End Sub
 
+    Private Sub TNoNpp_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TNoNpp.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
 
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Public Overrides Sub Proc_Approve()
+
+
+        fc_Class.GetDataByID(fs_Code)
+        If fc_Class.H_Approve = False Then
+            Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                Try
+                    With fc_Class
+                        .H_Approve = 1
+                    End With
+                    fc_Class.UpdateApprove(fs_Code)
+                    bs_Filter = gh_Common.Username()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPWO()
+
+                    IsClosed = True
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Me.Hide()
+                Catch ex As Exception
+                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                End Try
+
+            End If
+        Else
+            XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+        End If
+
+
+    End Sub
 End Class
