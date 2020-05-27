@@ -28,6 +28,7 @@ Public Class FrmEntertainSettleDetailDirect
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
     Dim DtScan1 As DataTable
+    'Dim dtEntertain As DataTable
 
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
@@ -58,6 +59,7 @@ Public Class FrmEntertainSettleDetailDirect
         row = li_GridRow
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        'dtEntertain = _dtEntertain
     End Sub
 
     Private Sub FrmEntertainSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -209,7 +211,8 @@ Public Class FrmEntertainSettleDetailDirect
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
                     .PRNo = TxtPrNo.Text
-
+                    'dtEntertain.Clear()
+                    'dtEntertain.Rows.Add("TRANSPORTATION FEE", 1, 2, 3, 4, 5, 6)
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else
@@ -501,8 +504,9 @@ Public Class FrmEntertainSettleDetailDirect
             If GridDtl.Name = "GridEntertain" Then
                 Dim dtTable As DataTable = GridDtl.DataSource
                 dtTable.Rows(row)("EntertainID") = _SettleID
-                dtTable.Rows(row)("AmountSett") = TxtTotExpense.Text
-                'dtTable.Rows(row)("CuryIDSett") = TxtCurrency.Text
+                dtTable.Rows(row)("Description") = TxtRemark.Text
+                dtTable.Rows(row)("CurryID") = TxtCurrency.Text
+                dtTable.Rows(row)("Amount") = TxtTotExpense.Text
             Else
                 GridDtl.DataSource = ObjEntertainHeader.GetDataGrid()
             End If

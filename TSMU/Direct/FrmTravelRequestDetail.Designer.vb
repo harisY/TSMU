@@ -217,6 +217,7 @@ Partial Class FrmTravelRequestDetail
         Me.Visa.FieldName = "Visa"
         Me.Visa.MinWidth = 25
         Me.Visa.Name = "Visa"
+        Me.Visa.OptionsColumn.AllowEdit = False
         Me.Visa.Visible = True
         Me.Visa.VisibleIndex = 2
         Me.Visa.Width = 94
@@ -350,6 +351,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridViewAdvance.OptionsBehavior.Editable = False
         Me.GridViewAdvance.OptionsBehavior.KeepGroupExpandedOnSorting = False
         Me.GridViewAdvance.OptionsBehavior.ReadOnly = True
+        Me.GridViewAdvance.OptionsView.ShowFooter = True
         Me.GridViewAdvance.OptionsView.ShowGroupPanel = False
         '
         'CostType
@@ -388,6 +390,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridColumn1.MinWidth = 25
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
+        Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         Me.GridColumn1.Width = 200
@@ -399,6 +402,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
+        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
         Me.GridColumn2.Width = 200
@@ -410,6 +414,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridColumn3.MinWidth = 25
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.FixedWidth = True
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 200

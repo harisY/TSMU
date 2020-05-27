@@ -289,8 +289,10 @@
     <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
+    <Compile Include="Direct\Class\TravelCreditCardModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
+    <Compile Include="Direct\Class\TravelSettleHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelTicketModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
@@ -470,6 +472,18 @@
       <DependentUpon>FrmTravel.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCard.Designer.vb">
+      <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCardDetail.Designer.vb">
+      <DependentUpon>FrmTravelCreditCardDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCardDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTraveler.Designer.vb">
@@ -2207,6 +2221,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
+      <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelCreditCardDetail.resx">
+      <DependentUpon>FrmTravelCreditCardDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
     </EmbeddedResource>

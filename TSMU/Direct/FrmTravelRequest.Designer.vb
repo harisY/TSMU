@@ -45,7 +45,10 @@ Partial Class FrmTravelRequest
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageApproved = New DevExpress.XtraTab.XtraTabPage()
+        Me.CComment = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GridApprovedReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CApproved, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +58,7 @@ Partial Class FrmTravelRequest
         CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageApproved.SuspendLayout()
+        CType(Me.CComment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridApprovedReq
@@ -65,7 +69,7 @@ Partial Class FrmTravelRequest
         Me.GridApprovedReq.Location = New System.Drawing.Point(3, 3)
         Me.GridApprovedReq.MainView = Me.GridViewApproved
         Me.GridApprovedReq.Name = "GridApprovedReq"
-        Me.GridApprovedReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CApproved})
+        Me.GridApprovedReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CApproved, Me.CComment})
         Me.GridApprovedReq.Size = New System.Drawing.Size(1149, 480)
         Me.GridApprovedReq.TabIndex = 1
         Me.GridApprovedReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewApproved})
@@ -195,6 +199,7 @@ Partial Class FrmTravelRequest
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Comment"
+        Me.GridColumn20.ColumnEdit = Me.CComment
         Me.GridColumn20.FieldName = "Comment"
         Me.GridColumn20.MinWidth = 25
         Me.GridColumn20.Name = "GridColumn20"
@@ -235,11 +240,10 @@ Partial Class FrmTravelRequest
         '
         'GridViewAll
         '
-        Me.GridViewAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GridViewAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn9, Me.GridColumn21})
         Me.GridViewAll.GridControl = Me.GridRequestAll
         Me.GridViewAll.Name = "GridViewAll"
         Me.GridViewAll.OptionsBehavior.Editable = False
-        Me.GridViewAll.OptionsView.ColumnAutoWidth = False
         '
         'GridColumn10
         '
@@ -326,7 +330,7 @@ Partial Class FrmTravelRequest
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 7
-        Me.GridColumn17.Width = 500
+        Me.GridColumn17.Width = 94
         '
         'GridColumn18
         '
@@ -339,12 +343,38 @@ Partial Class FrmTravelRequest
         Me.GridColumn18.VisibleIndex = 8
         Me.GridColumn18.Width = 80
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Approved"
+        Me.GridColumn9.FieldName = "Approved"
+        Me.GridColumn9.MinWidth = 25
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.FixedWidth = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.Width = 90
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Comment"
+        Me.GridColumn21.FieldName = "Comment"
+        Me.GridColumn21.MinWidth = 25
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 10
+        Me.GridColumn21.Width = 94
+        '
         'TabPageApproved
         '
         Me.TabPageApproved.Controls.Add(Me.GridApprovedReq)
         Me.TabPageApproved.Name = "TabPageApproved"
         Me.TabPageApproved.Size = New System.Drawing.Size(1155, 486)
         Me.TabPageApproved.Text = "Approved Request"
+        '
+        'CComment
+        '
+        Me.CComment.AutoHeight = False
+        Me.CComment.Name = "CComment"
         '
         'FrmTravelRequest
         '
@@ -362,6 +392,7 @@ Partial Class FrmTravelRequest
         CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageApproved.ResumeLayout(False)
+        CType(Me.CComment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -394,4 +425,7 @@ Partial Class FrmTravelRequest
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TabPageApproved As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents CApproved As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CComment As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

@@ -3,6 +3,8 @@
     Dim fc_Class As New TravelTicketModel
     Dim ff_Detail As FrmTravelTicketDetail
 
+    Dim TabPage As String
+
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -18,21 +20,28 @@
 
     Private Sub FrmTravelTicket_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = GridRequest.DataSource
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
+        XtraTabControl1.SelectedTabPage = TabPageRequest
+        TabPage = XtraTabControl1.SelectedTabPage.Name
+        Call LoadGridRequest()
     End Sub
 
-    Private Sub LoadGrid()
+    Private Sub LoadGridRequest()
         Try
             dtGrid = fc_Class.GetTravelRequest()
             GridRequest.DataSource = dtGrid
-            GridCellFormat(GridView1)
+            GridCellFormat(GridViewRequest)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
 
+    Private Sub LoadGridTicket()
+        Try
             dtGrid = fc_Class.GetTravelTicket()
             GridTicket.DataSource = dtGrid
-            GridCellFormat(GridView2)
+            GridCellFormat(GridViewTicket)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -40,7 +49,11 @@
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        Call LoadGrid()
+        If TabPage = "TabPageRequest" Then
+            LoadGridRequest()
+        Else
+            LoadGridTicket()
+        End If
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
@@ -51,10 +64,10 @@
         Dim NoVoucher As String = String.Empty
 
         Try
-            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            Dim selectedRows() As Integer = GridViewTicket.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    NoVoucher = GridView2.GetRowCellValue(rowHandle, "NoVoucher")
+                    NoVoucher = GridViewTicket.GetRowCellValue(rowHandle, "NoVoucher")
                 End If
             Next rowHandle
 
@@ -68,6 +81,7 @@
             '    '                MessageBoxIcon.Exclamation,
             '    '                MessageBoxDefaultButton.Button1)
             'Else
+
             fc_Class.NoVoucher = NoVoucher
             fc_Class.DeleteData()
 
@@ -80,27 +94,29 @@
     End Sub
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
-        Dim TabPage As String = XtraTabControl1.SelectedTabPage.Name()
-        If TabPage = "XtraTabPage1" Then
+        TabPage = XtraTabControl1.SelectedTabPage.Name()
+        If TabPage = "TabPageRequest" Then
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
+            LoadGridRequest()
         Else
             Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+            LoadGridTicket()
         End If
     End Sub
 
     Private Sub GridTicket_DoubleClick(sender As Object, e As EventArgs) Handles GridTicket.DoubleClick
         Try
             Dim NoVoucher = String.Empty
-            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            Dim selectedRows() As Integer = GridViewTicket.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    NoVoucher = GridView2.GetRowCellValue(rowHandle, "NoVoucher")
+                    NoVoucher = GridViewTicket.GetRowCellValue(rowHandle, "NoVoucher")
                 End If
             Next rowHandle
 
-            If GridView2.GetSelectedRows.Length > 0 Then
+            If GridViewTicket.GetSelectedRows.Length > 0 Then
                 Call CallFrm(NoVoucher,
-                         GridView2.RowCount)
+                         GridViewTicket.RowCount)
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
