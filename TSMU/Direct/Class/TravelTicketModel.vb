@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class TravelTicketModel
+    Public Property NoRequest As String
     Public Property NoVoucher As String
     Public Property Tanggal As Date
     Public Property VendorID As String
@@ -55,7 +56,9 @@ Public Class TravelTicketModel
                                 LEFT JOIN dbo.TravelRequestDetail AS trd ON trd.NoRequest = trh.NoRequest
                                 LEFT JOIN dbo.TravelTicketDetail AS ttd ON ttd.NoRequest = trd.NoRequest
                                                                             AND ttd.Seq = trd.Seq
-                        WHERE   ttd.NoRequest IS NULL "
+                        WHERE   ttd.NoRequest IS NULL
+                                AND trh.Status = 'PENDING'
+                                AND trh.Approved = 'APPROVED' "
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(strQuery)
             Return dt
@@ -268,6 +271,7 @@ Public Class TravelTicketModel
                         DeleteHeader(NoVoucher)
 
                         Dim ObjTicketDetail As New TravelTicketDetailModel
+                        ObjTicketDetail.UpdateRequest(NoVoucher)
                         ObjTicketDetail.DeleteDetail(NoVoucher)
 
                         Trans1.Commit()
@@ -350,6 +354,19 @@ Public Class TravelTicketDetailModel
             Dim ls_SP As String = " DELETE FROM dbo.TravelTicketDetail
                                     WHERE NoVoucher = " & QVal(_NoVoucher) & ""
             ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateRequest(ByVal _NoVoucher As String)
+        Try
+            strQuery = " UPDATE dbo.TravelRequestHeader
+                         SET    Status = 'PENDING'
+                         WHERE  NoRequest IN ( SELECT   NoRequest
+                                               FROM     dbo.TravelTicketDetail WITH ( NOLOCK )
+                                               WHERE    NoVoucher = " & QVal(_NoVoucher) & " ); "
+            ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw
         End Try

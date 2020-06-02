@@ -20,6 +20,7 @@ Public Class FrmTravelTicketDetail
     Dim row As Integer
 
     Public NoVoucher As String
+    Dim VendorID As String = "T0001"
 
     Public Sub New()
 
@@ -64,9 +65,9 @@ Public Class FrmTravelTicketDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Travel Ticket Detail" + ": " + fs_Code
+                Me.Text = "REQUEST TICKET" + ": " + fs_Code
             Else
-                Me.Text = "Travel Ticket Detail"
+                Me.Text = "NEW REQUEST TICKET"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
@@ -88,6 +89,8 @@ Public Class FrmTravelTicketDetail
 
                 GridTicket.DataSource = dtGrid
                 GridCellFormat(GridViewTicket)
+                txtTotal.Text = Format(dtGrid.Compute("SUM(Amount)", ""), gs_FormatDecimal)
+                txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
             Else
                 dtGrid = New DataTable
                 dtGrid = ObjTravelTicket.GetTravelTicketDetail()
@@ -109,14 +112,16 @@ Public Class FrmTravelTicketDetail
                     txtVendor.Text = .VendorID
                     txtNoInvoice.Text = .NoInvoice
                     txtCuryID.Text = .CuryID
+                    txtTotal.Text = 0
                     txtTotAmount.Text = .TotAmount
                 End With
             Else
                 txtNoVoucher.Text = ""
                 dtTanggal.EditValue = DateTime.Today
-                txtVendor.Text = ""
+                txtVendor.Text = "TARA TOUR"
                 txtNoInvoice.Text = ""
                 txtCuryID.Text = "IDR"
+                txtTotal.Text = Format(0, gs_FormatDecimal)
                 txtTotAmount.Text = Format(0, gs_FormatDecimal)
             End If
         Catch ex As Exception
@@ -134,6 +139,20 @@ Public Class FrmTravelTicketDetail
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
+
+            Dim filterString As String = "[CheckList] = True"
+            GridViewTicket.Columns("CheckList").FilterInfo = New ColumnFilterInfo(filterString)
+
+            If GridViewTicket.RowCount = 0 Then
+                GridViewTicket.Columns("CheckList").ClearFilter()
+                Err.Raise(ErrNumber, , "Tidak ada data yang dipilih !")
+            Else
+                If chkBalance.Checked = False Then
+                    Err.Raise(ErrNumber, , "Total Amount ticket tidak balance dengan detail !")
+                End If
+            End If
+
+
 
             If txtNoInvoice.Text = "" Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
@@ -166,9 +185,6 @@ Public Class FrmTravelTicketDetail
         Try
             ObjTravelTicket.ObjTravelTicketDetail.Clear()
 
-            Dim filterString As String = "[CheckList] = True"
-            GridViewTicket.Columns("CheckList").FilterInfo = New ColumnFilterInfo(filterString)
-
             For i As Integer = 0 To GridViewTicket.RowCount - 1
                 ObjTravelTicketDetail = New TravelTicketDetailModel
                 With ObjTravelTicketDetail
@@ -200,24 +216,6 @@ Public Class FrmTravelTicketDetail
         End Try
     End Sub
 
-    Private Sub txtTotAmount_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmount.EditValueChanged
-        If String.IsNullOrEmpty(txtTotAmount.Text) Then
-            txtTotAmount.Text = 0
-        End If
-        txtTotAmount.Text = Format(Convert.ToDecimal(txtTotAmount.Text), gs_FormatDecimal)
-    End Sub
-
-    Private Sub CCheck_EditValueChanged(sender As Object, e As EventArgs) Handles CCheck.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        'If GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CheckList") = False Then
-        '    GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "Amount", 0)
-        'End If
-    End Sub
-
     Private Sub txtVendor_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtVendor.ButtonClick
         Try
             ObjTravelTicket = New TravelTicketModel
@@ -226,6 +224,7 @@ Public Class FrmTravelTicketDetail
             Dim ls_OldKode As String = ""
 
             dtSearch = ObjTravelTicket.GetTravelVendor
+            dtSearch.Rows.Add("T0001", "TARA TOUR")
             ls_OldKode = txtVendor.Text
             ls_Judul = "Vendor"
 
@@ -234,13 +233,12 @@ Public Class FrmTravelTicketDetail
             lF_SearchData.Text = "Select Data " & ls_Judul
             lF_SearchData.StartPosition = FormStartPosition.CenterScreen
             lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
-            Dim Value2 As String = ""
+            Dim Vendor As String = ""
 
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                txtVendor.Text = Value1
+                VendorID = lF_SearchData.Values.Item(0).ToString.Trim
+                Vendor = lF_SearchData.Values.Item(1).ToString.Trim
+                txtVendor.Text = Vendor
             End If
             lF_SearchData.Close()
         Catch ex As Exception
@@ -249,8 +247,68 @@ Public Class FrmTravelTicketDetail
         End Try
     End Sub
 
+    Private Sub txtTotAmount_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmount.EditValueChanged
+        If String.IsNullOrEmpty(txtTotAmount.Text) Then
+            txtTotAmount.Text = 0
+        End If
+        txtTotAmount.Text = Format(Convert.ToDecimal(txtTotAmount.Text), gs_FormatDecimal)
+        txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
+        If txtBalance.Text = 0 Then
+            chkBalance.Checked = True
+        Else
+            chkBalance.Checked = False
+        End If
+    End Sub
+
+    Private Sub CCheck_EditValueChanged(sender As Object, e As EventArgs) Handles CCheck.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim checkList As Boolean
+        Dim noRequest As String
+
+        checkList = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CheckList")
+        noRequest = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRequest")
+        If checkList Then
+            For i As Integer = 0 To GridViewTicket.RowCount - 1
+                If GridViewTicket.GetRowCellValue(i, "NoRequest") = noRequest Then
+                    GridViewTicket.SetRowCellValue(i, "CheckList", checkList)
+                End If
+            Next
+        End If
+        HitungTotal()
+
+    End Sub
+
+    Private Sub CAmount_EditValueChanged(sender As Object, e As EventArgs) Handles CAmount.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        HitungTotal()
+
+    End Sub
+
     Private Sub HitungTotal()
-        txtTotal.Text = Format(0, gs_FormatDecimal)
+        Dim totalAmount As Double
+        For i As Integer = 0 To GridViewTicket.RowCount - 1
+            Dim checkList As Boolean
+            Dim amount As Double
+            checkList = GridViewTicket.GetRowCellValue(i, "CheckList")
+            amount = IIf(GridViewTicket.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, GridViewTicket.GetRowCellValue(i, "Amount"))
+            If checkList Then
+                totalAmount = totalAmount + amount
+            End If
+        Next
+        txtTotal.Text = Format(totalAmount, gs_FormatDecimal)
+        txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
+        If txtBalance.Text = 0 Then
+            chkBalance.Checked = True
+        Else
+            chkBalance.Checked = False
+        End If
     End Sub
 
 End Class
