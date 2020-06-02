@@ -697,6 +697,7 @@ Public Class Frm_Rpt_UploadMizuho
 
     End Sub
 
+
     Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Try
             If ProgBar5.Visible = True Then
@@ -704,7 +705,7 @@ Public Class Frm_Rpt_UploadMizuho
             End If
             ProgBar5.Visible = True
             ProgBar5.Style = ProgressBarStyle.Marquee
-            Await Task.Run(Sub() GetDataSyncMizuho())
+            Await Task.Run(Sub() GetDataSyncTemplate())
         Catch ex As Exception
             ProgBar5.Visible = False
             MsgBox(ex.Message)
@@ -714,6 +715,10 @@ Public Class Frm_Rpt_UploadMizuho
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         Proc_Excel()
+    End Sub
+
+    Private Sub ToolStrip3_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip3.ItemClicked
+
     End Sub
 
     'Private Sub tsBtn_save_Click(sender As Object, e As EventArgs) Handles tsBtn_save.Click
