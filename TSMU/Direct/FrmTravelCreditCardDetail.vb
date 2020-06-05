@@ -43,13 +43,12 @@ Public Class FrmTravelCreditCardDetail
 
     Private Sub FrmTravelCreditCardDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
-        'Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
-        'Call LoadGrid()
         Mati()
         'Call InitialSetForm()
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
+        fs_Code = ""
         Call InitialSetForm()
     End Sub
 
@@ -84,6 +83,7 @@ Public Class FrmTravelCreditCardDetail
         Hidup()
         Try
             If fs_Code <> "" Then
+                Call Proc_EnableButtons(True, True, True, True, False, False, False, True, False, False, True)
                 With cls_Creditcard
                     txtCreditCardID.Text = .CreditCardID
                     txtCreditCardNumber.Text = .CreditCardNumber
@@ -91,14 +91,17 @@ Public Class FrmTravelCreditCardDetail
                     txtBankName.Text = .BankName
                     txtType.Text = .Type
                     dtExpDate.EditValue = .ExpDate
+                    txtCreditCardNumber.Focus()
                 End With
             Else
+                Call Proc_EnableButtons(False, True, True, True, False, False, False, True, False, False, True)
                 txtCreditCardID.Text = ""
                 txtCreditCardNumber.Text = ""
                 txtAccountName.Text = ""
                 txtBankName.Text = ""
                 txtType.Text = "VISA"
                 dtExpDate.EditValue = Date.Today
+                txtCreditCardNumber.Focus()
             End If
         Catch ex As Exception
             Throw
@@ -109,7 +112,7 @@ Public Class FrmTravelCreditCardDetail
         Try
             dtGrid = cls_Creditcard.GetAllDataTable(bs_Filter)
             GridCreditCard.DataSource = dtGrid
-            GridCellFormat(GridViewCreditCard)
+            'GridCellFormat(GridViewCreditCard)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -127,7 +130,11 @@ Public Class FrmTravelCreditCardDetail
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
 
-            If txtCreditCardNumber.Text = "" Or txtAccountName.Text = "" Or txtBankName.Text = "" Then
+            If Len(Replace(txtCreditCardNumber.Text,"-","")) <> 16 Then
+                Err.Raise(ErrNumber, , "Credit Card Number harus 16 digit !")
+            End If
+
+            If txtAccountName.Text = "" Or txtBankName.Text = "" Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
             End If
 
@@ -138,7 +145,7 @@ Public Class FrmTravelCreditCardDetail
 
                 With cls_Creditcard
                     .CreditCardID = txtCreditCardID.Text.Trim.ToUpper
-                    .CreditCardNumber = txtCreditCardNumber.Text.Trim.ToUpper
+                    .CreditCardNumber = Replace(txtCreditCardNumber.Text, "-", "")
                     .AccountName = txtAccountName.Text.Trim.ToUpper
                     .BankName = txtBankName.Text.Trim.ToUpper
                     .Type = txtType.Text.Trim.ToUpper
@@ -200,7 +207,6 @@ Public Class FrmTravelCreditCardDetail
     End Sub
 
     Private Sub Hidup()
-        Call Proc_EnableButtons(False, True, True, True, False, False, False, True, False, False, True)
         txtCreditCardNumber.Enabled = True
         txtAccountName.Enabled = True
         txtBankName.Enabled = True

@@ -31,7 +31,7 @@
                       ,[Dpp] DPP
                       ,[Ppn]
                       ,[Pph] PPH
-                      ,[cek1] [Check]
+                      ,[cek1] [Check1]
                       ,[cek4] [CheckPPH]
                       ,[Paid]
                   FROM [AR_Detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
@@ -161,6 +161,23 @@
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(0).Value = VendorId
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetGridDetailPaymentByVendorIDXX(VendorId) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "PROSES_VOUCHER_ARNOTPAYYMENT1_NewX"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(0).Value = VendorId
+            pParam(1) = New SqlClient.SqlParameter("@vrno", SqlDbType.VarChar)
+            pParam(1).Value = vrno
             dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
             Return dt
         Catch ex As Exception

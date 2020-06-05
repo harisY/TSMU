@@ -585,6 +585,18 @@
       <DependentUpon>CRTravelDetailAllowanceSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRTravelDetailEntertainSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailEntertainSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailEntertainSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailEntertainSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRTravelDetailSafetyMoney.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -655,6 +667,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRTravelDetailTransportSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTransportSettRightSum.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTransportSettRightSum.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\CRTravelSettlement.vb">
@@ -2288,6 +2306,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelDetailAllowanceSettRight.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailEntertainSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailEntertainSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailEntertainSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailEntertainSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravelDetailSafetyMoney.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelDetailSafetyMoney.vb</LastGenOutput>
@@ -2335,6 +2361,10 @@
     <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelDetailTransportSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSettRightSum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTransportSettRightSum.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravelSettlement.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

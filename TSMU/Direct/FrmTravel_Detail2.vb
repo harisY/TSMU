@@ -13,8 +13,8 @@ Public Class FrmTravel_Detail2
 
     Dim ObjTravelHeader As New TravelHeaderModel
     Dim ObjTravelDetail As New TravelDetailModel
-    Dim ObjTravelerDetail As New TravelerDetailModel
-    Dim ObjTravelSettHeader As New TravelSettlementHeaderModel
+    'Dim ObjTravelerDetail As New TravelerDetailModel
+    'Dim ObjTravelSettHeader As New TravelSettlementHeaderModel
 
     Dim GridDtl As GridControl
     Dim f As FrmTravel_Detail2
@@ -160,7 +160,7 @@ Public Class FrmTravel_Detail2
                     TxtArrDate.EditValue = .Arrdate
                     TxtDepDate.EditValue = .Depdate
                 End With
-                dtGrid = ObjTravelerDetail.GetTravelerDetail(TxtNoTravel.Text)
+                'dtGrid = ObjTravelerDetail.GetTravelerDetail(TxtNoTravel.Text)
                 AddItemsTraveler(dtGrid)
             Else
                 TxtNama.Text = ""
@@ -219,7 +219,7 @@ Public Class FrmTravel_Detail2
             End If
 
             Dim dt As DataTable
-            dt = ObjTravelSettHeader.GetTravelSettHeaderByTravelID(TxtNoTravel.Text)
+            'dt = ObjTravelSettHeader.GetTravelSettHeaderByTravelID(TxtNoTravel.Text)
             Dim ada As Integer
             ada = dt.Rows.Count()
 
@@ -344,24 +344,24 @@ Public Class FrmTravel_Detail2
                     End If
                 Next
 
-                ObjTravelHeader.ObjTravelerDetails.Clear()
+                'ObjTravelHeader.ObjTravelerDetails.Clear()
 
                 For Each item As CheckedListBoxItem In TxtNama.Properties.GetItems()
                     If item.CheckState = CheckState.Checked Then
-                        ObjTravelerDetail = New TravelerDetailModel
+                        'ObjTravelerDetail = New TravelerDetailModel
                         Dim FilteredRows As DataRow()
                         Dim deptid As String
                         FilteredRows = dtTraveler.Select("NIK = " + item.Value)
                         deptid = (FilteredRows.FirstOrDefault().Item("DeptID"))
 
-                        With ObjTravelerDetail
-                            .TravelID = ObjTravelHeader.TravelID
-                            .NIK = item.Value
-                            .Nama = item.Description
-                            .DeptID = deptid
-                            .Status = 0
-                        End With
-                        ObjTravelHeader.ObjTravelerDetails.Add(ObjTravelerDetail)
+                        'With ObjTravelerDetail
+                        '    .TravelID = ObjTravelHeader.TravelID
+                        '    .NIK = item.Value
+                        '    .Nama = item.Description
+                        '    .DeptID = deptid
+                        '    .Status = 0
+                        'End With
+                        'ObjTravelHeader.ObjTravelerDetails.Add(ObjTravelerDetail)
                     End If
                 Next
 
@@ -388,23 +388,23 @@ Public Class FrmTravel_Detail2
                     End If
                 Next
 
-                ObjTravelHeader.ObjTravelerDetails.Clear()
+                'ObjTravelHeader.ObjTravelerDetails.Clear()
 
                 For Each item As CheckedListBoxItem In TxtNama.Properties.GetItems()
                     If item.CheckState = CheckState.Checked Then
-                        ObjTravelerDetail = New TravelerDetailModel
+                        'ObjTravelerDetail = New TravelerDetailModel
                         Dim FilteredRows As DataRow()
                         Dim deptid As String
                         FilteredRows = dtTraveler.Select("NIK = " + item.Value)
                         deptid = (FilteredRows.FirstOrDefault().Item("DeptID"))
 
-                        With ObjTravelerDetail
-                            .TravelID = TxtNoTravel.Text
-                            .NIK = item.Value
-                            .Nama = item.Description
-                            .DeptID = deptid
-                        End With
-                        ObjTravelHeader.ObjTravelerDetails.Add(ObjTravelerDetail)
+                        'With ObjTravelerDetail
+                        '    .TravelID = TxtNoTravel.Text
+                        '    .NIK = item.Value
+                        '    .Nama = item.Description
+                        '    .DeptID = deptid
+                        'End With
+                        'ObjTravelHeader.ObjTravelerDetails.Add(ObjTravelerDetail)
                     End If
                 Next
 

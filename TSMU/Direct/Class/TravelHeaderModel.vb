@@ -69,8 +69,6 @@ Public Class TravelHeaderModel
 
     Public Property ObjDetails() As New Collection(Of TravelDetailModel)
 
-    Public Property ObjTravelerDetails() As New Collection(Of TravelerDetailModel)
-
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
@@ -409,12 +407,6 @@ Public Class TravelHeaderModel
                     Try
                         InsertHeader()
 
-                        For i As Integer = 0 To ObjTravelerDetails.Count - 1
-                            With ObjTravelerDetails(i)
-                                .InsertTravelerDetail()
-                            End With
-                        Next
-
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
                                 .InsertDetails()
@@ -447,15 +439,6 @@ Public Class TravelHeaderModel
                     Try
 
                         UpdateHeader(TravelID)
-
-                        Dim ObjTravelerDetail As New TravelerDetailModel
-                        ObjTravelerDetail.DeleteTravelerDetail(TravelID)
-
-                        For i As Integer = 0 To ObjTravelerDetails.Count - 1
-                            With ObjTravelerDetails(i)
-                                .InsertTravelerDetail()
-                            End With
-                        Next
 
                         Dim ObjTravelDetail As New TravelDetailModel
                         ObjTravelDetail.DeleteDetail(TravelID)
@@ -935,677 +918,6 @@ Public Class TravelDetailModel
     End Function
 End Class
 
-Public Class TravelSettlementHeaderModel
-    Public Property TravelSettHeaderID As Integer
-    Public Property TravelSettID As String
-    Public Property TravelID As String
-    Public Property DeptID As String
-    Public Property Destination As String
-    Public Property Nama As String
-    Public Property PickUp As String
-    Public Property Purpose As String
-    Public Property Term As String
-    Public Property TotalAdvanceIDR As Double
-    Public Property TotalAdvanceYEN As Double
-    Public Property TotalAdvanceUSD As Double
-    Public Property TotalAdvIDR As Double
-    Public Property TotalSettIDR As Double
-    Public Property TotalSettYEN As Double
-    Public Property TotalSettUSD As Double
-    Public Property TotalAmountSettIDR As Double
-    Public Property Visa As String
-    Public Property Tgl As DateTime
-    Public Property Depdate As DateTime
-    Public Property Arrdate As DateTime
-    Public Property NIK As String
-
-    Public Property ObjSettDetails() As New Collection(Of TravelSettlementDetailModel)
-
-    Public Function GetTravelSettHeader() As DataTable
-        Try
-            Dim dt As New DataTable
-            Dim sql As String
-            sql = " SELECT  TravelSettleID ,
-                            Nama ,
-                            Purpose ,
-                            Destination ,
-                            Term ,
-                            DeptID
-                    FROM    dbo.TravelSettleHeader "
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Function TravelSettAutoNo() As String
-        Try
-            Dim query As String
-
-            query = " DECLARE @bulan VARCHAR(4) " &
-                    " DECLARE @tahun VARCHAR(4) " &
-                    " DECLARE @seq VARCHAR(4) " &
-                    " SET @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                    " SET @tahun = DATEPART(YEAR, GETDATE()) " &
-                    " SET @seq = ( SELECT RIGHT('0000' " &
-                    "                             + CAST(RIGHT(RTRIM(MAX(TravelSettleID)), 4) + 1 AS VARCHAR), " &
-                    "                             4) " &
-                    "                 From dbo.TravelSettleHeader " &
-                    "                 WHERE  SUBSTRING(TravelSettleID, 1, 7) = 'TR' + '-' + RIGHT(@tahun, 4) " &
-                    "                     And SUBSTRING(TravelSettleID, 9, 2) = RIGHT(@bulan, 2) " &
-                    "             ) " &
-                    " SELECT 'TS' + '-' + RIGHT(@tahun, 4) + '-' + @bulan + '-' + COALESCE(@seq, " &
-                    "                                                               '0001') "
-
-            Dim dt As DataTable = New DataTable
-            dt = GetDataTable_Solomon(query)
-            Return dt.Rows(0).Item(0).ToString
-
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Sub GetTravelSettById()
-        Try
-            Dim sql As String
-            sql = " SELECT  TravelSettleID ,
-                            TravelID ,
-                            NIK ,
-                            Nama ,
-                            DeptID ,
-                            Destination ,
-                            Tgl ,
-                            TglBerangkat ,
-                            TglTiba ,
-                            Term ,
-                            Purpose ,
-                            Visa ,
-                            TotalAdvanceIDR ,
-                            TotalSettIDR ,
-                            TotalAdvanceUSD ,
-                            TotalSettUSD ,
-                            TotalAdvanceYEN ,
-                            TotalSettYEN ,
-                            TotalAdvIDR ,
-                            GrandTotalSettIDR
-                    FROM    dbo.TravelSettleHeader 
-                    WHERE TravelSettleID = " & QVal(TravelSettID) & ""
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            If dt.Rows.Count > 0 Then
-                TravelSettID = If(IsDBNull(dt.Rows(0).Item("TravelSettleID")), "", Trim(dt.Rows(0).Item("TravelSettleID").ToString()))
-                TravelID = If(IsDBNull(dt.Rows(0).Item("TravelID")), "", Trim(dt.Rows(0).Item("TravelID").ToString()))
-                DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
-                NIK = If(IsDBNull(dt.Rows(0).Item("NIK")), "", Trim(dt.Rows(0).Item("NIK").ToString()))
-                Nama = If(IsDBNull(dt.Rows(0).Item("Nama")), "", Trim(dt.Rows(0).Item("Nama").ToString()))
-                Destination = If(IsDBNull(dt.Rows(0).Item("Destination")), "", Trim(dt.Rows(0).Item("Destination").ToString()))
-                Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
-                Depdate = If(IsDBNull(dt.Rows(0).Item("TglBerangkat")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("TglBerangkat")))
-                Arrdate = If(IsDBNull(dt.Rows(0).Item("TglTiba")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("TglTiba")))
-                Term = If(IsDBNull(dt.Rows(0).Item("Term")), "", Trim(dt.Rows(0).Item("Term").ToString()))
-                TotalAdvanceIDR = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceIDR")))
-                TotalAdvanceUSD = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceUSD")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceUSD")))
-                TotalAdvanceYEN = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceYEN")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceYEN")))
-                TotalAdvIDR = If(IsDBNull(dt.Rows(0).Item("TotalAdvIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvIDR")))
-                TotalSettIDR = If(IsDBNull(dt.Rows(0).Item("TotalSettIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalSettIDR")))
-                TotalSettUSD = If(IsDBNull(dt.Rows(0).Item("TotalSettUSD")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalSettUSD")))
-                TotalSettYEN = If(IsDBNull(dt.Rows(0).Item("TotalSettYEN")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalSettYEN")))
-                TotalAmountSettIDR = If(IsDBNull(dt.Rows(0).Item("GrandTotalSettIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("GrandTotalSettIDR")))
-                Purpose = If(IsDBNull(dt.Rows(0).Item("Purpose")), "", Convert.ToString(dt.Rows(0).Item("Purpose")))
-                Visa = If(IsDBNull(dt.Rows(0).Item("Visa")), "", Trim(dt.Rows(0).Item("Visa").ToString()))
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Function GetTravelerFromTravelID(_TravelID As String) As DataTable
-        Try
-            Dim sql As String = " SELECT  TravelID ,
-                                            NIK ,
-                                            Nama ,
-                                            Dept
-                                    FROM    dbo.TravelToTravelerDetail
-                                    WHERE   TravelID = " & QVal(_TravelID) & "
-                                            AND Status <> 1 "
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Sub InsertDataTravelSett()
-        Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
-
-                    Try
-                        InsertTravelSettHeader()
-
-                        For i As Integer = 0 To ObjSettDetails.Count - 1
-                            With ObjSettDetails(i)
-                                .InsertTravelSettDetails()
-                            End With
-                        Next
-
-                        Trans1.Commit()
-                    Catch ex As Exception
-                        Trans1.Rollback()
-                        Throw
-                    Finally
-                        gh_Trans = Nothing
-                    End Try
-                End Using
-            End Using
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub InsertTravelSettHeader()
-        Try
-            Dim dt As New DataTable
-
-            Dim SP_Name As String = "Travel_Insert_TravelSettHeader"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
-            pParam(0) = New SqlClient.SqlParameter("@TravelSettID", SqlDbType.VarChar)
-            pParam(0).Value = TravelSettID
-            pParam(1) = New SqlClient.SqlParameter("@TravelID", SqlDbType.VarChar)
-            pParam(1).Value = TravelID
-            pParam(2) = New SqlClient.SqlParameter("@NIK", SqlDbType.VarChar)
-            pParam(2).Value = NIK
-            pParam(3) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
-            pParam(3).Value = Nama
-            pParam(4) = New SqlClient.SqlParameter("@Destination", SqlDbType.VarChar)
-            pParam(4).Value = Destination
-            pParam(5) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
-            pParam(5).Value = Term
-            pParam(6) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
-            pParam(6).Value = Purpose
-            pParam(7) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
-            pParam(7).Value = DeptID
-            pParam(8) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
-            pParam(8).Value = PickUp
-            pParam(9) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
-            pParam(9).Value = Visa
-            pParam(10) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
-            pParam(10).Value = TotalAdvanceIDR
-            pParam(11) = New SqlClient.SqlParameter("@TotalSettIDR", SqlDbType.Float)
-            pParam(11).Value = TotalSettIDR
-            pParam(12) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
-            pParam(12).Value = TotalAdvanceYEN
-            pParam(13) = New SqlClient.SqlParameter("@TotalSettYEN", SqlDbType.Float)
-            pParam(13).Value = TotalSettYEN
-            pParam(14) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
-            pParam(14).Value = TotalAdvanceUSD
-            pParam(15) = New SqlClient.SqlParameter("@TotalSettUSD", SqlDbType.Float)
-            pParam(15).Value = TotalSettUSD
-            pParam(16) = New SqlClient.SqlParameter("@TotalAdvIDR", SqlDbType.Float)
-            pParam(16).Value = TotalAdvIDR
-            pParam(17) = New SqlClient.SqlParameter("@TotalAmountSettIDR", SqlDbType.Float)
-            pParam(17).Value = TotalAmountSettIDR
-            pParam(18) = New SqlClient.SqlParameter("@Tgl", SqlDbType.Date)
-            pParam(18).Value = Tgl
-            pParam(19) = New SqlClient.SqlParameter("@Depdate", SqlDbType.Date)
-            pParam(19).Value = Depdate
-            pParam(20) = New SqlClient.SqlParameter("@Arrdate", SqlDbType.Date)
-            pParam(20).Value = Arrdate
-            pParam(21) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(21).Value = gh_Common.Username
-
-            MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Sub DeleteTravelSett()
-        Try
-            Dim dt As New DataTable
-
-            Dim SP_Name As String = "Travel_Delete_TravelSettlement"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
-            pParam(0) = New SqlClient.SqlParameter("@TravelSettID", SqlDbType.VarChar)
-            pParam(0).Value = TravelSettID
-            pParam(1) = New SqlClient.SqlParameter("@TravelID", SqlDbType.VarChar)
-            pParam(1).Value = TravelID
-            pParam(2) = New SqlClient.SqlParameter("@NIK", SqlDbType.VarChar)
-            pParam(2).Value = NIK
-            pParam(3) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(3).Value = gh_Common.Username
-
-            MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Sub UpdateTravelSett()
-        Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
-
-                    Try
-
-                        UpdateTravelSettHeader(TravelSettID)
-
-                        Dim ObjTravelSettDetail As New TravelSettlementDetailModel
-                        ObjTravelSettDetail.DeleteTravelSettDetail(TravelSettID)
-
-                        For i As Integer = 0 To ObjSettDetails.Count - 1
-                            With ObjSettDetails(i)
-                                .InsertTravelSettDetails()
-                            End With
-                        Next
-
-                        Trans1.Commit()
-                    Catch ex As Exception
-                        Trans1.Rollback()
-                        Throw
-                    Finally
-                        MainModul.gh_Trans = Nothing
-                    End Try
-                End Using
-            End Using
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Sub UpdateTravelSettHeader(ByVal _TravelSettID As String)
-        Try
-            Dim ls_SP As String = " UPDATE  TravelSettleHeader " & vbCrLf &
-                                    " SET   TotalSettIDR = " & QVal(TotalSettIDR) & ", " & vbCrLf &
-                                    "       TotalSettUSD = " & QVal(TotalSettUSD) & ", " & vbCrLf &
-                                    "       TotalSettYEN = " & QVal(TotalSettYEN) & ", " & vbCrLf &
-                                    "       GrandTotalSettIDR = " & QVal(TotalAmountSettIDR) & ", " & vbCrLf &
-                                    "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
-                                    "       UpdatedDate = GETDATE() " & vbCrLf &
-                                    " WHERE TravelSettleID = '" & _TravelSettID & "'"
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Function GetTravelSettHeaderByTravelID(ByVal _TravelID As String) As DataTable
-        Try
-            Dim dt As New DataTable
-            Dim sql As String
-            sql = "SELECT  TravelSettleID ,
-                            TravelID ,
-                            NIK ,
-                            Nama ,
-                            DeptID ,
-                            Destination ,
-                            TglBerangkat ,
-                            TglTiba ,
-                            TotalAdvanceIDR ,
-                            TotalSettIDR ,
-                            TotalAdvanceUSD ,
-                            TotalSettUSD ,
-                            TotalAdvanceYEN ,
-                            TotalSettYEN ,
-                            TotalAdvIDR ,
-                            GrandTotalSettIDR
-                    FROM    dbo.TravelSettleHeader
-                    WHERE   TravelID = " & QVal(_TravelID) & " "
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Function LoadReportTravelSett() As DataTable
-        Try
-            Dim dt As New DataTable
-
-            Dim SP_Name As String = "Travel_Rpt_GetHeaderSett"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
-            pParam(0).Value = TravelSettID
-            pParam(1) = New SqlClient.SqlParameter("@TravelID", SqlDbType.VarChar)
-            pParam(1).Value = TravelID
-
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
-
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-    End Function
-
-    Public Function LoadReportTravelSettDetail() As DataTable
-        Try
-            Dim dt As New DataTable
-
-            Dim SP_Name As String = "Travel_Rpt_GetDetailSett"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
-            pParam(0).Value = TravelSettID
-            pParam(1) = New SqlClient.SqlParameter("@TravelID", SqlDbType.VarChar)
-            pParam(1).Value = TravelID
-
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
-
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-
-    End Function
-
-    Public Function LoadReportTravelSettExpense() As DataTable
-        Try
-            Dim Query As String
-            Query = "DECLARE @sum_Amount TABLE
-                        (
-                            TravelSettleID VARCHAR(15) ,
-                            ID INT ,
-                            IDR FLOAT ,
-                            USD FLOAT ,
-                            YEN FLOAT
-                        );
-
-                    INSERT  INTO @sum_Amount
-                            SELECT  pivot_table.TravelSettleID ,
-                                    pivot_table.ID ,
-                                    pivot_table.IDR ,
-                                    pivot_table.USD ,
-                                    pivot_table.YEN
-                            FROM    ( SELECT    TravelSettleID ,
-                                                CASE WHEN ID IN ( 4, 6 ) THEN 7
-                                                        ELSE ID
-                                                END ID ,
-                                                CuryIDSett ,
-                                                AmountSett
-                                        FROM      dbo.TravelSettleDetail
-                                        WHERE     TravelSettleID = " & QVal(TravelSettID) & "
-                                    ) AS t PIVOT ( SUM(AmountSett) FOR CuryIDSett IN ( [IDR],
-                                                                                    [USD], [YEN] ) ) AS pivot_table;
-
-                    SELECT  sum2.TravelSettleID ,
-                            ISNULL(sum2.IDR, 0) AS IDRTransport ,
-                            ISNULL(sum2.USD, 0) AS USDTransport ,
-                            ISNULL(sum2.YEN, 0) AS YENTransport ,
-                            ISNULL(sum3.IDR, 0) AS IDRHotel ,
-                            ISNULL(sum3.USD, 0) AS USDHotel ,
-                            ISNULL(sum3.YEN, 0) AS YENHotel ,
-                            ISNULL(sumOther.IDR, 0) AS IDROther ,
-                            ISNULL(sumOther.USD, 0) AS USDOther ,
-                            ISNULL(sumOther.YEN, 0) AS YENOther ,
-                            ISNULL(sumAll.IDR, 0) AS IDRAll ,
-                            ISNULL(sumAll.USD, 0) AS USDAll ,
-                            ISNULL(sumAll.YEN, 0) AS YENAll
-                    FROM    @sum_Amount AS sum2
-                            LEFT JOIN @sum_Amount AS sum3 ON sum3.TravelSettleID = sum2.TravelSettleID
-                            LEFT JOIN @sum_Amount AS sumOther ON sumOther.TravelSettleID = sum2.TravelSettleID
-                            LEFT JOIN ( SELECT  TravelSettleID ,
-                                                        SUM(IDR) AS IDR ,
-                                                        SUM(USD) AS USD ,
-                                                        SUM(YEN) AS YEN
-                                                FROM    @sum_Amount
-                                                WHERE   ID IN ( 2, 3, 7 )
-                                                GROUP BY TravelSettleID
-                  ) AS sumAll ON sumAll.TravelSettleID = sum2.TravelSettleID
-                    WHERE   sum2.ID = 2
-                            AND sum3.ID = 3
-                            AND sumOther.ID = 7;"
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(Query)
-
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-End Class
-
-Public Class TravelSettlementDetailModel
-    Public Property TravelSettDetailID As Integer
-    Public Property TravelSettID As String
-    Public Property TravelID As String
-    Public Property ID As Integer
-    Public Property Seq As Integer
-    Public Property DetailDate As Date
-    Public Property AcctID As String
-    Public Property SubAcct As String
-    Public Property Description As String
-    Public Property EntertainID As String
-    Public Property CuryID As String
-    Public Property Amount As Double
-    Public Property Rate As Double
-    Public Property AmountIDR As Double
-    Public Property PaymentType As String
-    Public Property Norek As String
-    Public Property CuryIDSett As String
-    Public Property RateSett As Double
-    Public Property AmountSett As Double
-    Public Property AmountIDRSett As Double
-    Public Property Proses As String
-
-    Public Sub InsertTravelSettDetails()
-        Try
-            Dim ls_SP As String
-            ls_SP = "INSERT INTO dbo.TravelSettleDetail
-                            ( TravelSettleID ,
-                              TravelID ,
-                              ID ,
-                              Seq ,
-                              DateDetail ,
-                              AcctID ,
-                              Description ,
-                              EntertainID ,
-                              CuryID ,
-                              Rate ,
-                              Amount ,
-                              AmountIDR ,
-                              PaymentType ,
-                              NoRekening ,
-                              CuryIDSett ,
-                              RateSett ,      
-                              AmountSett ,
-                              AmountIDRSett ,
-                              SubAcct ,
-                              Proses
-                            )
-                    VALUES  ( " & QVal(TravelSettID) & " ,
-                              " & QVal(TravelID) & " ,
-                              CASE WHEN " & QVal(ID) & " > 7 THEN 7
-                                   ELSE " & QVal(ID) & "
-                              END ,
-                              " & QVal(Seq) & " ,
-                              " & QVal(DetailDate) & " ,
-                              " & QVal(AcctID) & " ,
-                              " & QVal(Description) & " ,
-                              " & QVal(EntertainID) & " ,
-                              " & QVal(CuryID) & " ,
-                              " & QVal(Rate) & " ,
-                              " & QVal(Amount) & " ,
-                              " & QVal(AmountIDR) & " ,
-                              " & QVal(PaymentType) & " ,
-                              " & QVal(Norek) & " ,
-                              " & QVal(CuryIDSett) & " ,
-                              " & QVal(RateSett) & " ,
-                              " & QVal(AmountSett) & " ,
-                              " & QVal(AmountIDRSett) & " ,
-                              " & QVal(SubAcct) & " ,
-                              " & QVal(Proses) & " )"
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteTravelSettDetail(ByVal _TravelSettID As String)
-        Try
-            Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleDetail " & vbCrLf &
-                    " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Function GetTravelSettDetailByID() As DataTable
-        Try
-            Dim sql As String = "SELECT  TravelSettleID ,
-                                        TravelID ,
-                                        ID ,
-                                        DateDetail AS Date ,
-                                        AcctID AS Account ,
-                                        Description ,
-                                        ISNULL(EntertainID, '') AS EntertainID ,
-                                        CuryID ,
-                                        Rate ,
-                                        Amount ,
-                                        AmountIDR ,
-                                        PaymentType ,
-                                        ISNULL(NoRekening, '') AS NoRekening ,
-                                        ISNULL(CuryIDSett, '') AS CuryIDSett ,
-                                        ISNULL(RateSett, 1) AS RateSett ,
-                                        ISNULL(AmountSett, 0) AS AmountSett ,
-                                        ISNULL(AmountIDRSett, 0) AS AmountIDRSett
-                                FROM    dbo.TravelSettleDetail
-                                WHERE   TravelSettleID = " & QVal(TravelSettID) & ""
-
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Function GetDataSummary() As DataTable
-        Try
-            Dim sql As String
-            sql = " SELECT  ID ,
-                            Description ,
-                            CONVERT(FLOAT, 0) AS AdvanceIDR ,
-                            CONVERT(FLOAT, 0) AS AdvanceYEN ,
-                            CONVERT(FLOAT, 0) AS AdvanceUSD ,
-                            CONVERT(FLOAT, 0) AS TotalAdvanceIDR ,
-                            CONVERT(FLOAT, 0) AS SettIDR ,
-                            CONVERT(FLOAT, 0) AS SettYEN ,
-                            CONVERT(FLOAT, 0) AS SettUSD ,
-                            CONVERT(FLOAT, 0) AS TotalSettIDR
-                    FROM    TempTravel
-                    WHERE   IsActive = 1 "
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Function GetSettleID(ByVal _EntertainID As String) As String
-        Try
-            Dim SettleID As String
-            Dim sql As String = "   SELECT  ID
-                                    FROM    dbo.settle_header
-                                    WHERE   SettleID = " & QVal(_EntertainID) & " "
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            SettleID = dt.Rows(0).Item(0).ToString
-
-            Return SettleID
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-End Class
-
-Public Class TravelerDetailModel
-    Public Property TravelID As String
-    Public Property NIK As String
-    Public Property Nama As String
-    Public Property DeptID As String
-    Public Property Status As Integer
-
-
-    Public Sub InsertTravelerDetail()
-        Try
-            Dim ls_SP As String
-            ls_SP = " INSERT  INTO dbo.TravelToTravelerDetail " & vbCrLf &
-                    "            ( TravelID , " & vbCrLf &
-                    "                NIK , " & vbCrLf &
-                    "                Nama , " & vbCrLf &
-                    "                Dept , " & vbCrLf &
-                    "                Status , " & vbCrLf &
-                    "                CreatedBy , " & vbCrLf &
-                    "                CreatedDate, " & vbCrLf &
-                    "                UpdatedBy , " & vbCrLf &
-                    "                UpdatedDate " & vbCrLf &
-                    "            ) " & vbCrLf &
-                    "    VALUES( " & QVal(TravelID) & " , " & vbCrLf &
-                    "              " & QVal(NIK) & " , " & vbCrLf &
-                    "              " & QVal(Nama) & " , " & vbCrLf &
-                    "              " & QVal(DeptID) & " , " & vbCrLf &
-                    "              " & QVal(Status) & " , " & vbCrLf &
-                    "              " & QVal(gh_Common.Username) & " , " & vbCrLf &
-                    "                GETDATE() , " & vbCrLf &
-                    "              " & QVal(gh_Common.Username) & " , " & vbCrLf &
-                    "                GETDATE() " & vbCrLf &
-                    "            ) "
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteTravelerDetail(_TravelID)
-        Try
-            Dim ls_SP As String = " DELETE  FROM TravelToTravelerDetail
-                                    WHERE   RTRIM(TravelID) = " & QVal(_TravelID.TrimEnd) & ""
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Function GetTravelerDetail(_TravelID As String) As DataTable
-        Try
-            Dim sql As String = " SELECT  TravelID ,
-                                            NIK
-                                    FROM    dbo.TravelToTravelerDetail
-                                    WHERE   TravelID = " & QVal(_TravelID) & ""
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-End Class
-
 Public Class TravelRequestModel
     Public Property NoRequest As String
     Public Property Tanggal As Date
@@ -1621,8 +933,6 @@ Public Class TravelRequestModel
 
     Public Property ObjRequestDetails() As New Collection(Of TravelRequestDetailModel)
     Public Property ObjRequestCost() As New Collection(Of TravelRequestCostModel)
-
-    'Public Property ObjAllowance() As New Collection(Of TravelRequestAllowanceModel)
 
     Public Function TravelRequestAutoNo() As String
         Try
@@ -1653,7 +963,71 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
+    Public Function GetTravelRequest() As DataTable
+        Try
+            Dim aksesApproval As List(Of String)
+            aksesApproval = GetDept()
+            aksesApproval.Add("" & QVal(gh_Common.GroupID) & "")
+            Dim nilai = String.Join(",", aksesApproval.ToArray)
+
+            Dim sql As String = "SELECT  NoRequest ,
+                                        NIK ,
+                                        Nama ,
+                                        Date ,
+                                        DeptID ,
+                                        TravelType ,
+                                        Golongan ,
+                                        Purpose ,
+                                        Status ,
+                                        Approved ,
+                                        Comment
+                                FROM    dbo.TravelRequestHeader
+                                WHERE   Status IN ('PENDING', 'OPEN')
+                                        AND DeptID IN (" & nilai & ") "
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTravelApproved() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim nilai = String.Join(",", GetDept.ToArray)
+
+            Dim level As Integer = GetUsernameLevel()
+
+            If level = 3 Then
+                Dim sql As String
+                sql = " SELECT  NoRequest ,
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Approved ,
+                                Comment
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   Status = 'PENDING'
+                                AND ( Approved = ''
+                                  OR Approved IS NULL
+                                )
+                                AND DeptID IN (" & nilai & ") "
+
+                dt = GetDataTable_Solomon(sql)
+            End If
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTravelRequestAll() As DataTable
         Try
             Dim aksesApproval As List(Of String)
             aksesApproval = GetDept()
@@ -1711,41 +1085,6 @@ Public Class TravelRequestModel
             dt = GetDataTable(sql)
             result = Convert.ToInt32(dt.Rows(0)(0))
             Return result
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Function GetTravelRequest() As DataTable
-        Try
-            Dim dt As New DataTable
-            Dim nilai = String.Join(",", GetDept.ToArray)
-
-            Dim level As Integer = GetUsernameLevel()
-
-            If level = 3 Then
-                Dim sql As String
-                sql = " SELECT  NoRequest ,
-                                NIK ,
-                                Nama ,
-                                Date ,
-                                DeptID ,
-                                TravelType ,
-                                Golongan ,
-                                Purpose ,
-                                Approved ,
-                                Comment
-                        FROM    dbo.TravelRequestHeader
-                        WHERE   Status = 'PENDING'
-                                AND ( Approved = ''
-                                  OR Approved IS NULL
-                                )
-                                AND DeptID IN (" & nilai & ") "
-
-                dt = GetDataTable_Solomon(sql)
-            End If
-
-            Return dt
         Catch ex As Exception
             Throw ex
         End Try
@@ -2037,11 +1376,13 @@ Public Class TravelRequestModel
                         END
                      ELSE
                         BEGIN
-                            SELECT  CASE WHEN EXISTS ( SELECT   *
-                                                       FROM     dbo.TravelRequestHeader
-                                                       WHERE    NIK = " & QVal(nik) & "
-                                                                AND TravelType = " & QVal(traveltype) & "
-                                                                AND SUBSTRING(NoRequest, 4, 4) = " & QVal(traveltype) & " )
+                            SELECT  CASE WHEN EXISTS ( SELECT   trh.NoRequest
+                                                       FROM     dbo.TravelRequestHeader AS trh
+                                                                INNER JOIN dbo.TravelRequestDetail trd ON trd.NoRequest = trh.NoRequest
+                                                       WHERE    trh.NIK = " & QVal(nik) & "
+                                                                AND trh.TravelType = " & QVal(traveltype) & "
+                                                       GROUP BY trh.NoRequest
+                                                       HAVING   YEAR(MIN(trd.DepartureDate)) = " & QVal(tahun) & " )
                                          THEN CAST(0 AS BIT)
                                          ELSE CAST(1 AS BIT)
                                     END FirstTravel
@@ -2064,6 +1405,7 @@ Public Class TravelRequestDetailModel
     Public Property NoRequest As String
     Public Property Seq As Integer
     Public Property Negara As String
+    Public Property NoPaspor As String
     Public Property Visa As String
     Public Property Destination As String
     Public Property DepartureDate As Date
@@ -2074,6 +1416,7 @@ Public Class TravelRequestDetailModel
             Dim sql As String = " SELECT  Destination ,
                                         Negara ,
                                         DepartureDate ,
+                                        NoPaspor ,
                                         Visa ,
                                         ArrivalDate
                                 FROM    dbo.TravelRequestDetail
@@ -2095,6 +1438,25 @@ Public Class TravelRequestDetailModel
                                 FROM    dbo.TravelerVisa
                                 WHERE   NIK = " & QVal(nik) & "
                                         AND Negara = " & QVal(negara) & ""
+
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            If dt.Rows.Count > 0 Then
+                hasil = dt.Rows(0).Item(0).ToString()
+            End If
+            Return hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As String
+        Try
+            Dim hasil As String = String.Empty
+            Dim sql As String = " SELECT  NoPaspor
+                                  FROM    dbo.TravelerPaspor
+                                  WHERE   NIK = " & QVal(nik) & "
+                                          AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE) "
 
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
@@ -2192,17 +1554,7 @@ Public Class TravelRequestCostModel
                     "           " & QVal(AdvanceIDR) & " ,  " & vbCrLf &
                     "           " & QVal(AdvanceUSD) & " ,  " & vbCrLf &
                     "           " & QVal(AdvanceYEN) & "   " & vbCrLf &
-                    "         ); "
-            '"INSERT INTO TravelDetail (TravelID,SubAcct,AcctID,ID,Description,Amount,CuryID,Rate,AmountIDR ) " & vbCrLf &
-            '"Values(" & QVal(TravelID) & ", " & vbCrLf &
-            '"       " & QVal(SubAcct) & ", " & vbCrLf &
-            '"       " & QVal(AcctID) & ", " & vbCrLf &
-            '"       " & QVal(ID) & ", " & vbCrLf &
-            '"       " & QVal(Description) & ", " & vbCrLf &
-            '"       " & QVal(Amount) & ", " & vbCrLf &
-            '"       " & QVal(CuryID) & ", " & vbCrLf &
-            '"       " & QVal(Rate) & ", " & vbCrLf &
-            '"       " & QVal(AmountIDR) & ")"
+                    "         ) "
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -2220,33 +1572,3 @@ Public Class TravelRequestCostModel
     End Sub
 
 End Class
-
-'Public Class TravelRequestAllowanceModel
-'    Public Property NoRequest As String
-'    Public Property Term As String
-'    Public Property Days As Integer
-'    Public Property CuryID As String
-'    Public Property Amount As Double
-'    Public Property TotalAmount As Double
-
-'    Public Sub InsertAllowance()
-'        'Try
-'        '    Dim ls_SP As String = " " & vbCrLf &
-'        '    "INSERT INTO TravelDetail (TravelID,SubAcct,AcctID,ID,Description,Amount,CuryID,Rate,AmountIDR ) " & vbCrLf &
-'        '    "Values(" & QVal(TravelID) & ", " & vbCrLf &
-'        '    "       " & QVal(SubAcct) & ", " & vbCrLf &
-'        '    "       " & QVal(AcctID) & ", " & vbCrLf &
-'        '    "       " & QVal(ID) & ", " & vbCrLf &
-'        '    "       " & QVal(Description) & ", " & vbCrLf &
-'        '    "       " & QVal(Amount) & ", " & vbCrLf &
-'        '    "       " & QVal(CuryID) & ", " & vbCrLf &
-'        '    "       " & QVal(Rate) & ", " & vbCrLf &
-'        '    "       " & QVal(AmountIDR) & ")"
-'        '    ExecQuery_Solomon(ls_SP)
-'        'Catch ex As Exception
-'        '    Throw
-'        'End Try
-'    End Sub
-
-'End Class
-

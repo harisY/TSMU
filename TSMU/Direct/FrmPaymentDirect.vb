@@ -751,10 +751,12 @@ Public Class FrmPaymentDirect
             For i As Integer = 0 To GridView1.RowCount - 1
                 '      If GridView1.GetRowCellValue(i, "cek") = True Then
                 With ObjCashBank
-                        .cek = CBool(GridView1.GetRowCellValue(i, "cek"))
-                        .NoBukti = CStr(GridView1.GetRowCellValue(i, "NoBukti"))
-                        .UpdateCek()
-                    End With
+                    .cek = CBool(GridView1.GetRowCellValue(i, "cek"))
+                    .recon = CBool(GridView1.GetRowCellValue(i, "recon"))
+                    .NoBukti = CStr(GridView1.GetRowCellValue(i, "NoBukti"))
+                    .UpdateCek()
+                    .UpdateRecon()
+                End With
                 ''       End If
             Next
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -1188,6 +1190,13 @@ Public Class FrmPaymentDirect
         ' ff_Detail6.ShowDialog()
     End Sub
     Private Sub RepositoryItemCheckEdit5_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit5.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub RepositoryItemCheckEdit6_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit6.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

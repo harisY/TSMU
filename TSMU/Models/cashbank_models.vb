@@ -20,7 +20,7 @@ Public Class cashbank_models
     Public Property account() As String
     Public Property _id As String
     Public Property cek As Boolean
-    Public Property rekonsal As Boolean
+    Public Property recon As Boolean
     Public Property ID() As String
         Get
             Return _id
@@ -340,7 +340,7 @@ Public Class cashbank_models
     Public Function GetGridDetailCashBankByAccountID02() As DataTable
         Try
             ' Dim sql As String = "Select Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
-            Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek,recon  FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
             ''Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " "
 
             Dim dt As New DataTable
@@ -468,6 +468,16 @@ Public Class cashbank_models
         Try
             Dim ls_SP As String = String.Empty
             ls_SP = "UPDATE cashbank2 SET cek= " & QVal(cek) & " WHERE NoBukti=" & QVal(NoBukti.TrimEnd) & ""
+
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub UpdateRecon()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "UPDATE cashbank2 SET recon= " & QVal(recon) & " WHERE NoBukti=" & QVal(NoBukti.TrimEnd) & ""
 
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

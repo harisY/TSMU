@@ -235,6 +235,16 @@ Partial Class FrmTravelSettleDetail
         Me.BalanceYENOther = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BalanceIDROther = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageVoucher = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.GridSumBalance = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewSumBalance = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn74 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.GridBalance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewBalance = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -244,6 +254,8 @@ Partial Class FrmTravelSettleDetail
         Me.SisaBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReturnBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CReturnBalance = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PaidBalance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AmountIDRBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtTravelType = New DevExpress.XtraEditors.TextEdit()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -362,6 +374,9 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalanceOther, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewBalanceOther, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageVoucher.SuspendLayout()
+        Me.GroupBox16.SuspendLayout()
+        CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox15.SuspendLayout()
         CType(Me.GridBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -507,9 +522,19 @@ Partial Class FrmTravelSettleDetail
         '
         'CAmountHotel
         '
+        Me.CAmountHotel.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.CAmountHotel.AutoHeight = False
         Me.CAmountHotel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAmountHotel.DisplayFormat.FormatString = "n2"
+        Me.CAmountHotel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAmountHotel.EditFormat.FormatString = "n2"
+        Me.CAmountHotel.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAmountHotel.Mask.EditMask = "n2"
+        Me.CAmountHotel.Mask.IgnoreMaskBlank = False
         Me.CAmountHotel.Name = "CAmountHotel"
+        Me.CAmountHotel.NullText = "0"
+        Me.CAmountHotel.NullValuePrompt = "0"
+        Me.CAmountHotel.NullValuePromptShowForEmptyValue = True
         '
         'CAmontIDRHotel
         '
@@ -601,8 +626,9 @@ Partial Class FrmTravelSettleDetail
         Me.txtPurpose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Enabled = False
-        Me.txtPurpose.Location = New System.Drawing.Point(1391, 55)
+        Me.txtPurpose.Location = New System.Drawing.Point(1434, 55)
         Me.txtPurpose.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPurpose.MaximumSize = New System.Drawing.Size(587, 0)
         Me.txtPurpose.Name = "txtPurpose"
         Me.txtPurpose.Size = New System.Drawing.Size(134, 22)
         Me.txtPurpose.TabIndex = 5
@@ -704,10 +730,10 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Enabled = False
-        Me.TxtNama.Location = New System.Drawing.Point(837, 55)
+        Me.TxtNama.Location = New System.Drawing.Point(778, 55)
         Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(424, 22)
+        Me.TxtNama.Size = New System.Drawing.Size(542, 22)
         Me.TxtNama.TabIndex = 4
         '
         'GridTransport
@@ -783,6 +809,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.DateTransport.Caption = "Date"
         Me.DateTransport.ColumnEdit = Me.CDateTransport
+        Me.DateTransport.DisplayFormat.FormatString = "dd-mm-yyyy"
+        Me.DateTransport.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DateTransport.FieldName = "Date"
         Me.DateTransport.MinWidth = 27
         Me.DateTransport.Name = "DateTransport"
@@ -803,7 +831,6 @@ Partial Class FrmTravelSettleDetail
         Me.CDateTransport.Mask.EditMask = "dd-MM-yyyy"
         Me.CDateTransport.Mask.UseMaskAsDisplayFormat = True
         Me.CDateTransport.Name = "CDateTransport"
-        Me.CDateTransport.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'GridColumn10
         '
@@ -859,6 +886,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridColumn11.Caption = "Amount"
         Me.GridColumn11.ColumnEdit = Me.CAmountTransport
+        Me.GridColumn11.DisplayFormat.FormatString = "n2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "Amount"
         Me.GridColumn11.MinWidth = 27
         Me.GridColumn11.Name = "GridColumn11"
@@ -869,6 +898,7 @@ Partial Class FrmTravelSettleDetail
         '
         'CAmountTransport
         '
+        Me.CAmountTransport.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.CAmountTransport.AutoHeight = False
         Me.CAmountTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CAmountTransport.DisplayFormat.FormatString = "n2"
@@ -876,7 +906,7 @@ Partial Class FrmTravelSettleDetail
         Me.CAmountTransport.EditFormat.FormatString = "n2"
         Me.CAmountTransport.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CAmountTransport.Mask.EditMask = "n2"
-        Me.CAmountTransport.Mask.UseMaskAsDisplayFormat = True
+        Me.CAmountTransport.Mask.IgnoreMaskBlank = False
         Me.CAmountTransport.Name = "CAmountTransport"
         Me.CAmountTransport.NullText = "0"
         Me.CAmountTransport.NullValuePrompt = "0"
@@ -886,6 +916,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridColumn14.Caption = "IDR Amount"
         Me.GridColumn14.ColumnEdit = Me.CAmountIDRTranspsort
+        Me.GridColumn14.DisplayFormat.FormatString = "n2"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "AmountIDR"
         Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
@@ -1053,6 +1085,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridColumn21.Caption = "IDR Amount"
         Me.GridColumn21.ColumnEdit = Me.CAmontIDRHotel
+        Me.GridColumn21.DisplayFormat.FormatString = "n2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "AmountIDR"
         Me.GridColumn21.MinWidth = 27
         Me.GridColumn21.Name = "GridColumn21"
@@ -1259,6 +1293,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridColumn25.Caption = "Amount"
         Me.GridColumn25.ColumnEdit = Me.CAmountEntertain
+        Me.GridColumn25.DisplayFormat.FormatString = "n2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "Amount"
         Me.GridColumn25.MinWidth = 27
         Me.GridColumn25.Name = "GridColumn25"
@@ -1278,6 +1314,8 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridColumn28.Caption = "IDR Amount"
         Me.GridColumn28.ColumnEdit = Me.CAmountIDREntertain
+        Me.GridColumn28.DisplayFormat.FormatString = "n2"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn28.FieldName = "AmountIDR"
         Me.GridColumn28.MinWidth = 27
         Me.GridColumn28.Name = "GridColumn28"
@@ -1465,14 +1503,23 @@ Partial Class FrmTravelSettleDetail
         '
         'CAmountOther
         '
+        Me.CAmountOther.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.CAmountOther.AutoHeight = False
         Me.CAmountOther.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAmountOther.DisplayFormat.FormatString = "n2"
+        Me.CAmountOther.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAmountOther.EditFormat.FormatString = "n2"
+        Me.CAmountOther.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAmountOther.Mask.EditMask = "n2"
+        Me.CAmountOther.Mask.IgnoreMaskBlank = False
         Me.CAmountOther.Name = "CAmountOther"
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "IDR Amount"
         Me.GridColumn7.ColumnEdit = Me.CAmountIDROther
+        Me.GridColumn7.DisplayFormat.FormatString = "n2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "AmountIDR"
         Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
@@ -1568,7 +1615,7 @@ Partial Class FrmTravelSettleDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(734, 57)
+        Me.Label3.Location = New System.Drawing.Point(721, 57)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 17)
         Me.Label3.TabIndex = 16
@@ -1604,7 +1651,7 @@ Partial Class FrmTravelSettleDetail
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(1299, 57)
+        Me.Label10.Location = New System.Drawing.Point(1347, 57)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 17)
         Me.Label10.TabIndex = 20
@@ -1810,6 +1857,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceUSDTransport
         '
         Me.BalanceUSDTransport.Caption = "Balance USD"
+        Me.BalanceUSDTransport.DisplayFormat.FormatString = "n2"
+        Me.BalanceUSDTransport.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceUSDTransport.FieldName = "BalanceUSD"
         Me.BalanceUSDTransport.MinWidth = 25
         Me.BalanceUSDTransport.Name = "BalanceUSDTransport"
@@ -1821,6 +1870,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceYENTransport
         '
         Me.BalanceYENTransport.Caption = "Balance YEN"
+        Me.BalanceYENTransport.DisplayFormat.FormatString = "n2"
+        Me.BalanceYENTransport.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceYENTransport.FieldName = "BalanceYEN"
         Me.BalanceYENTransport.MinWidth = 25
         Me.BalanceYENTransport.Name = "BalanceYENTransport"
@@ -1832,6 +1883,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceIDRTransport
         '
         Me.BalanceIDRTransport.Caption = "Balance IDR"
+        Me.BalanceIDRTransport.DisplayFormat.FormatString = "n2"
+        Me.BalanceIDRTransport.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceIDRTransport.FieldName = "BalanceIDR"
         Me.BalanceIDRTransport.MinWidth = 25
         Me.BalanceIDRTransport.Name = "BalanceIDRTransport"
@@ -1892,6 +1945,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn42
         '
         Me.GridColumn42.Caption = "Cash USD"
+        Me.GridColumn42.DisplayFormat.FormatString = "n2"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn42.FieldName = "CashUSD"
         Me.GridColumn42.MinWidth = 25
         Me.GridColumn42.Name = "GridColumn42"
@@ -1904,6 +1959,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn43
         '
         Me.GridColumn43.Caption = "Cash YEN"
+        Me.GridColumn43.DisplayFormat.FormatString = "n2"
+        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn43.FieldName = "CashYEN"
         Me.GridColumn43.MinWidth = 25
         Me.GridColumn43.Name = "GridColumn43"
@@ -1916,6 +1973,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Cash IDR"
+        Me.GridColumn41.DisplayFormat.FormatString = "n2"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn41.FieldName = "CashIDR"
         Me.GridColumn41.MinWidth = 25
         Me.GridColumn41.Name = "GridColumn41"
@@ -1928,6 +1987,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn45
         '
         Me.GridColumn45.Caption = "Credit USD"
+        Me.GridColumn45.DisplayFormat.FormatString = "n2"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn45.FieldName = "CreditUSD"
         Me.GridColumn45.MinWidth = 25
         Me.GridColumn45.Name = "GridColumn45"
@@ -1940,6 +2001,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn46
         '
         Me.GridColumn46.Caption = "Credit YEN"
+        Me.GridColumn46.DisplayFormat.FormatString = "n2"
+        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn46.FieldName = "CreditYEN"
         Me.GridColumn46.MinWidth = 25
         Me.GridColumn46.Name = "GridColumn46"
@@ -1952,6 +2015,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn44
         '
         Me.GridColumn44.Caption = "Credit IDR"
+        Me.GridColumn44.DisplayFormat.FormatString = "n2"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
         Me.GridColumn44.FieldName = "CreditIDR"
         Me.GridColumn44.MinWidth = 25
         Me.GridColumn44.Name = "GridColumn44"
@@ -2029,6 +2094,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceUSDHotel
         '
         Me.BalanceUSDHotel.Caption = "Balance USD"
+        Me.BalanceUSDHotel.DisplayFormat.FormatString = "n2"
+        Me.BalanceUSDHotel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceUSDHotel.FieldName = "BalanceUSD"
         Me.BalanceUSDHotel.MinWidth = 25
         Me.BalanceUSDHotel.Name = "BalanceUSDHotel"
@@ -2040,6 +2107,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceYENHotel
         '
         Me.BalanceYENHotel.Caption = "Balance YEN"
+        Me.BalanceYENHotel.DisplayFormat.FormatString = "n2"
+        Me.BalanceYENHotel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceYENHotel.FieldName = "BalanceYEN"
         Me.BalanceYENHotel.MinWidth = 25
         Me.BalanceYENHotel.Name = "BalanceYENHotel"
@@ -2051,6 +2120,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceIDRHotel
         '
         Me.BalanceIDRHotel.Caption = "Balance IDR"
+        Me.BalanceIDRHotel.DisplayFormat.FormatString = "n2"
+        Me.BalanceIDRHotel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceIDRHotel.FieldName = "BalanceIDR"
         Me.BalanceIDRHotel.MinWidth = 25
         Me.BalanceIDRHotel.Name = "BalanceIDRHotel"
@@ -2112,6 +2183,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn48
         '
         Me.GridColumn48.Caption = "Cash USD"
+        Me.GridColumn48.DisplayFormat.FormatString = "n2"
+        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn48.FieldName = "CashUSD"
         Me.GridColumn48.MinWidth = 25
         Me.GridColumn48.Name = "GridColumn48"
@@ -2124,6 +2197,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn49
         '
         Me.GridColumn49.Caption = "Cash YEN"
+        Me.GridColumn49.DisplayFormat.FormatString = "n2"
+        Me.GridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn49.FieldName = "CashYEN"
         Me.GridColumn49.MinWidth = 25
         Me.GridColumn49.Name = "GridColumn49"
@@ -2136,6 +2211,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn50
         '
         Me.GridColumn50.Caption = "Cash IDR"
+        Me.GridColumn50.DisplayFormat.FormatString = "n2"
+        Me.GridColumn50.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn50.FieldName = "CashIDR"
         Me.GridColumn50.MinWidth = 25
         Me.GridColumn50.Name = "GridColumn50"
@@ -2148,6 +2225,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn51
         '
         Me.GridColumn51.Caption = "Credit USD"
+        Me.GridColumn51.DisplayFormat.FormatString = "n2"
+        Me.GridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn51.FieldName = "CreditUSD"
         Me.GridColumn51.MinWidth = 25
         Me.GridColumn51.Name = "GridColumn51"
@@ -2160,6 +2239,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn52
         '
         Me.GridColumn52.Caption = "Credit YEN"
+        Me.GridColumn52.DisplayFormat.FormatString = "n2"
+        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn52.FieldName = "CreditYEN"
         Me.GridColumn52.MinWidth = 25
         Me.GridColumn52.Name = "GridColumn52"
@@ -2172,6 +2253,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn53
         '
         Me.GridColumn53.Caption = "Credit IDR"
+        Me.GridColumn53.DisplayFormat.FormatString = "n2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn53.FieldName = "CreditIDR"
         Me.GridColumn53.MinWidth = 25
         Me.GridColumn53.Name = "GridColumn53"
@@ -2254,6 +2337,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn34
         '
         Me.GridColumn34.Caption = "Cash USD"
+        Me.GridColumn34.DisplayFormat.FormatString = "n2"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn34.FieldName = "CashUSD"
         Me.GridColumn34.MinWidth = 25
         Me.GridColumn34.Name = "GridColumn34"
@@ -2266,6 +2351,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn35
         '
         Me.GridColumn35.Caption = "Cash YEN"
+        Me.GridColumn35.DisplayFormat.FormatString = "n2"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn35.FieldName = "CashYEN"
         Me.GridColumn35.MinWidth = 25
         Me.GridColumn35.Name = "GridColumn35"
@@ -2278,6 +2365,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn36
         '
         Me.GridColumn36.Caption = "Cash IDR"
+        Me.GridColumn36.DisplayFormat.FormatString = "n2"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn36.FieldName = "CashIDR"
         Me.GridColumn36.MinWidth = 25
         Me.GridColumn36.Name = "GridColumn36"
@@ -2290,6 +2379,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn37
         '
         Me.GridColumn37.Caption = "Credit USD"
+        Me.GridColumn37.DisplayFormat.FormatString = "n2"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn37.FieldName = "CreditUSD"
         Me.GridColumn37.MinWidth = 25
         Me.GridColumn37.Name = "GridColumn37"
@@ -2302,6 +2393,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn38
         '
         Me.GridColumn38.Caption = "Credit YEN"
+        Me.GridColumn38.DisplayFormat.FormatString = "n2"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn38.FieldName = "CreditYEN"
         Me.GridColumn38.MinWidth = 25
         Me.GridColumn38.Name = "GridColumn38"
@@ -2314,6 +2407,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn39
         '
         Me.GridColumn39.Caption = "Credit IDR"
+        Me.GridColumn39.DisplayFormat.FormatString = "n2"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn39.FieldName = "CreditIDR"
         Me.GridColumn39.MinWidth = 25
         Me.GridColumn39.Name = "GridColumn39"
@@ -2368,6 +2463,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceUSDEntertain
         '
         Me.BalanceUSDEntertain.Caption = "Balance USD"
+        Me.BalanceUSDEntertain.DisplayFormat.FormatString = "n2"
+        Me.BalanceUSDEntertain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceUSDEntertain.FieldName = "BalanceUSD"
         Me.BalanceUSDEntertain.MinWidth = 25
         Me.BalanceUSDEntertain.Name = "BalanceUSDEntertain"
@@ -2379,6 +2476,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceYENEntertain
         '
         Me.BalanceYENEntertain.Caption = "Balance YEN"
+        Me.BalanceYENEntertain.DisplayFormat.FormatString = "n2"
+        Me.BalanceYENEntertain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceYENEntertain.FieldName = "BalanceYEN"
         Me.BalanceYENEntertain.MinWidth = 25
         Me.BalanceYENEntertain.Name = "BalanceYENEntertain"
@@ -2390,6 +2489,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceIDREntertain
         '
         Me.BalanceIDREntertain.Caption = "Balance IDR"
+        Me.BalanceIDREntertain.DisplayFormat.FormatString = "n2"
+        Me.BalanceIDREntertain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceIDREntertain.FieldName = "BalanceIDR"
         Me.BalanceIDREntertain.MinWidth = 25
         Me.BalanceIDREntertain.Name = "BalanceIDREntertain"
@@ -2471,6 +2572,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn55
         '
         Me.GridColumn55.Caption = "Cash USD"
+        Me.GridColumn55.DisplayFormat.FormatString = "n2"
+        Me.GridColumn55.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn55.FieldName = "CashUSD"
         Me.GridColumn55.MinWidth = 25
         Me.GridColumn55.Name = "GridColumn55"
@@ -2483,6 +2586,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn56
         '
         Me.GridColumn56.Caption = "Cash YEN"
+        Me.GridColumn56.DisplayFormat.FormatString = "n2"
+        Me.GridColumn56.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn56.FieldName = "CashYEN"
         Me.GridColumn56.MinWidth = 25
         Me.GridColumn56.Name = "GridColumn56"
@@ -2495,6 +2600,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn57
         '
         Me.GridColumn57.Caption = "Cash IDR"
+        Me.GridColumn57.DisplayFormat.FormatString = "n2"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn57.FieldName = "CashIDR"
         Me.GridColumn57.MinWidth = 25
         Me.GridColumn57.Name = "GridColumn57"
@@ -2507,6 +2614,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn58
         '
         Me.GridColumn58.Caption = "Credit USD"
+        Me.GridColumn58.DisplayFormat.FormatString = "n2"
+        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn58.FieldName = "CreditUSD"
         Me.GridColumn58.MinWidth = 25
         Me.GridColumn58.Name = "GridColumn58"
@@ -2519,6 +2628,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn59
         '
         Me.GridColumn59.Caption = "Credit YEN"
+        Me.GridColumn59.DisplayFormat.FormatString = "n2"
+        Me.GridColumn59.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn59.FieldName = "CreditYEN"
         Me.GridColumn59.MinWidth = 25
         Me.GridColumn59.Name = "GridColumn59"
@@ -2531,6 +2642,8 @@ Partial Class FrmTravelSettleDetail
         'GridColumn60
         '
         Me.GridColumn60.Caption = "Credit IDR"
+        Me.GridColumn60.DisplayFormat.FormatString = "n2"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn60.FieldName = "CreditIDR"
         Me.GridColumn60.MinWidth = 25
         Me.GridColumn60.Name = "GridColumn60"
@@ -2585,6 +2698,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceUSDOther
         '
         Me.BalanceUSDOther.Caption = "Balance USD"
+        Me.BalanceUSDOther.DisplayFormat.FormatString = "n2"
+        Me.BalanceUSDOther.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceUSDOther.FieldName = "BalanceUSD"
         Me.BalanceUSDOther.MinWidth = 25
         Me.BalanceUSDOther.Name = "BalanceUSDOther"
@@ -2596,6 +2711,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceYENOther
         '
         Me.BalanceYENOther.Caption = "Balance YEN"
+        Me.BalanceYENOther.DisplayFormat.FormatString = "n2"
+        Me.BalanceYENOther.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceYENOther.FieldName = "BalanceYEN"
         Me.BalanceYENOther.MinWidth = 25
         Me.BalanceYENOther.Name = "BalanceYENOther"
@@ -2607,6 +2724,8 @@ Partial Class FrmTravelSettleDetail
         'BalanceIDROther
         '
         Me.BalanceIDROther.Caption = "Balance IDR"
+        Me.BalanceIDROther.DisplayFormat.FormatString = "n2"
+        Me.BalanceIDROther.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BalanceIDROther.FieldName = "BalanceIDR"
         Me.BalanceIDROther.MinWidth = 25
         Me.BalanceIDROther.Name = "BalanceIDROther"
@@ -2616,10 +2735,142 @@ Partial Class FrmTravelSettleDetail
         '
         'TabPageVoucher
         '
+        Me.TabPageVoucher.Controls.Add(Me.GroupBox16)
         Me.TabPageVoucher.Controls.Add(Me.GroupBox15)
         Me.TabPageVoucher.Name = "TabPageVoucher"
         Me.TabPageVoucher.Size = New System.Drawing.Size(1482, 495)
         Me.TabPageVoucher.Text = "Voucher"
+        '
+        'GroupBox16
+        '
+        Me.GroupBox16.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox16.Controls.Add(Me.GridSumBalance)
+        Me.GroupBox16.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.GroupBox16.Location = New System.Drawing.Point(4, 3)
+        Me.GroupBox16.Name = "GroupBox16"
+        Me.GroupBox16.Size = New System.Drawing.Size(1473, 202)
+        Me.GroupBox16.TabIndex = 18
+        Me.GroupBox16.TabStop = False
+        Me.GroupBox16.Text = "Summary"
+        '
+        'GridSumBalance
+        '
+        Me.GridSumBalance.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridSumBalance.Location = New System.Drawing.Point(6, 23)
+        Me.GridSumBalance.MainView = Me.GridViewSumBalance
+        Me.GridSumBalance.Name = "GridSumBalance"
+        Me.GridSumBalance.Size = New System.Drawing.Size(1461, 173)
+        Me.GridSumBalance.TabIndex = 10
+        Me.GridSumBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumBalance})
+        '
+        'GridViewSumBalance
+        '
+        Me.GridViewSumBalance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn72, Me.GridColumn73, Me.GridColumn74, Me.GridColumn75})
+        Me.GridViewSumBalance.GridControl = Me.GridSumBalance
+        Me.GridViewSumBalance.Name = "GridViewSumBalance"
+        Me.GridViewSumBalance.OptionsBehavior.Editable = False
+        Me.GridViewSumBalance.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridViewSumBalance.OptionsSelection.EnableAppearanceFocusedRow = False
+        Me.GridViewSumBalance.OptionsSelection.EnableAppearanceHideSelection = False
+        Me.GridViewSumBalance.OptionsView.ShowFooter = True
+        Me.GridViewSumBalance.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.Caption = "Description"
+        Me.GridColumn67.FieldName = "Description"
+        Me.GridColumn67.MinWidth = 25
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Description", "TOTAL")})
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 0
+        Me.GridColumn67.Width = 400
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "Cash USD"
+        Me.GridColumn68.DisplayFormat.FormatString = "n2"
+        Me.GridColumn68.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn68.FieldName = "CashUSD"
+        Me.GridColumn68.MinWidth = 25
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.OptionsColumn.FixedWidth = True
+        Me.GridColumn68.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CashUSD", "{0:#,##0.#0}")})
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 1
+        Me.GridColumn68.Width = 250
+        '
+        'GridColumn69
+        '
+        Me.GridColumn69.Caption = "Cash YEN"
+        Me.GridColumn69.DisplayFormat.FormatString = "n2"
+        Me.GridColumn69.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn69.FieldName = "CashYEN"
+        Me.GridColumn69.MinWidth = 25
+        Me.GridColumn69.Name = "GridColumn69"
+        Me.GridColumn69.OptionsColumn.FixedWidth = True
+        Me.GridColumn69.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CashYEN", "{0:#,##0.#0}")})
+        Me.GridColumn69.Visible = True
+        Me.GridColumn69.VisibleIndex = 2
+        Me.GridColumn69.Width = 250
+        '
+        'GridColumn72
+        '
+        Me.GridColumn72.Caption = "Cash IDR"
+        Me.GridColumn72.DisplayFormat.FormatString = "n2"
+        Me.GridColumn72.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn72.FieldName = "CashIDR"
+        Me.GridColumn72.MinWidth = 25
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.OptionsColumn.FixedWidth = True
+        Me.GridColumn72.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CashIDR", "{0:#,##0.#0}")})
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 3
+        Me.GridColumn72.Width = 250
+        '
+        'GridColumn73
+        '
+        Me.GridColumn73.Caption = "Credit USD"
+        Me.GridColumn73.DisplayFormat.FormatString = "n2"
+        Me.GridColumn73.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn73.FieldName = "CreditUSD"
+        Me.GridColumn73.MinWidth = 25
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.OptionsColumn.FixedWidth = True
+        Me.GridColumn73.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CreditUSD", "{0:#,##0.#0}")})
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 4
+        Me.GridColumn73.Width = 250
+        '
+        'GridColumn74
+        '
+        Me.GridColumn74.Caption = "Credit YEN"
+        Me.GridColumn74.DisplayFormat.FormatString = "n2"
+        Me.GridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn74.FieldName = "CreditYEN"
+        Me.GridColumn74.MinWidth = 25
+        Me.GridColumn74.Name = "GridColumn74"
+        Me.GridColumn74.OptionsColumn.FixedWidth = True
+        Me.GridColumn74.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CreditYEN", "{0:#,##0.#0}")})
+        Me.GridColumn74.Visible = True
+        Me.GridColumn74.VisibleIndex = 5
+        Me.GridColumn74.Width = 250
+        '
+        'GridColumn75
+        '
+        Me.GridColumn75.Caption = "Credit IDR"
+        Me.GridColumn75.DisplayFormat.FormatString = "n2"
+        Me.GridColumn75.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn75.FieldName = "CreditIDR"
+        Me.GridColumn75.MinWidth = 25
+        Me.GridColumn75.Name = "GridColumn75"
+        Me.GridColumn75.OptionsColumn.FixedWidth = True
+        Me.GridColumn75.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CreditIDR", "{0:#,##0.#0}")})
+        Me.GridColumn75.Visible = True
+        Me.GridColumn75.VisibleIndex = 6
+        Me.GridColumn75.Width = 250
         '
         'GroupBox15
         '
@@ -2628,9 +2879,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox15.Controls.Add(Me.GridBalance)
         Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox15.Location = New System.Drawing.Point(4, 3)
+        Me.GroupBox15.Location = New System.Drawing.Point(4, 211)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(1473, 489)
+        Me.GroupBox15.Size = New System.Drawing.Size(1473, 281)
         Me.GroupBox15.TabIndex = 17
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Voucher"
@@ -2644,15 +2895,16 @@ Partial Class FrmTravelSettleDetail
         Me.GridBalance.MainView = Me.GridViewBalance
         Me.GridBalance.Name = "GridBalance"
         Me.GridBalance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CReturnBalance})
-        Me.GridBalance.Size = New System.Drawing.Size(1461, 460)
+        Me.GridBalance.Size = New System.Drawing.Size(1461, 252)
         Me.GridBalance.TabIndex = 0
         Me.GridBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewBalance})
         '
         'GridViewBalance
         '
-        Me.GridViewBalance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CurryIDBalance, Me.AdvanceBalance, Me.ActualBalance, Me.SisaBalance, Me.ReturnBalance})
+        Me.GridViewBalance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CurryIDBalance, Me.AdvanceBalance, Me.ActualBalance, Me.SisaBalance, Me.ReturnBalance, Me.PaidBalance, Me.AmountIDRBalance})
         Me.GridViewBalance.GridControl = Me.GridBalance
         Me.GridViewBalance.Name = "GridViewBalance"
+        Me.GridViewBalance.OptionsView.ShowFooter = True
         Me.GridViewBalance.OptionsView.ShowGroupPanel = False
         '
         'CurryIDBalance
@@ -2663,6 +2915,7 @@ Partial Class FrmTravelSettleDetail
         Me.CurryIDBalance.Name = "CurryIDBalance"
         Me.CurryIDBalance.OptionsColumn.AllowEdit = False
         Me.CurryIDBalance.OptionsColumn.FixedWidth = True
+        Me.CurryIDBalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "CurryID", "TOTAL IDR")})
         Me.CurryIDBalance.Visible = True
         Me.CurryIDBalance.VisibleIndex = 0
         Me.CurryIDBalance.Width = 140
@@ -2670,46 +2923,54 @@ Partial Class FrmTravelSettleDetail
         'AdvanceBalance
         '
         Me.AdvanceBalance.Caption = "Advance"
+        Me.AdvanceBalance.DisplayFormat.FormatString = "n2"
+        Me.AdvanceBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.AdvanceBalance.FieldName = "Advance"
         Me.AdvanceBalance.MinWidth = 25
         Me.AdvanceBalance.Name = "AdvanceBalance"
         Me.AdvanceBalance.OptionsColumn.AllowEdit = False
         Me.AdvanceBalance.Visible = True
         Me.AdvanceBalance.VisibleIndex = 1
-        Me.AdvanceBalance.Width = 323
+        Me.AdvanceBalance.Width = 257
         '
         'ActualBalance
         '
         Me.ActualBalance.Caption = "Actual"
+        Me.ActualBalance.DisplayFormat.FormatString = "n2"
+        Me.ActualBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ActualBalance.FieldName = "Actual"
         Me.ActualBalance.MinWidth = 25
         Me.ActualBalance.Name = "ActualBalance"
         Me.ActualBalance.OptionsColumn.AllowEdit = False
         Me.ActualBalance.Visible = True
         Me.ActualBalance.VisibleIndex = 2
-        Me.ActualBalance.Width = 323
+        Me.ActualBalance.Width = 257
         '
         'SisaBalance
         '
         Me.SisaBalance.Caption = "Balance"
+        Me.SisaBalance.DisplayFormat.FormatString = "n2"
+        Me.SisaBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.SisaBalance.FieldName = "SisaBalance"
         Me.SisaBalance.MinWidth = 25
         Me.SisaBalance.Name = "SisaBalance"
         Me.SisaBalance.OptionsColumn.AllowEdit = False
         Me.SisaBalance.Visible = True
         Me.SisaBalance.VisibleIndex = 3
-        Me.SisaBalance.Width = 323
+        Me.SisaBalance.Width = 257
         '
         'ReturnBalance
         '
         Me.ReturnBalance.Caption = "Return"
         Me.ReturnBalance.ColumnEdit = Me.CReturnBalance
+        Me.ReturnBalance.DisplayFormat.FormatString = "n2"
+        Me.ReturnBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ReturnBalance.FieldName = "ReturnBalance"
         Me.ReturnBalance.MinWidth = 25
         Me.ReturnBalance.Name = "ReturnBalance"
         Me.ReturnBalance.Visible = True
         Me.ReturnBalance.VisibleIndex = 4
-        Me.ReturnBalance.Width = 325
+        Me.ReturnBalance.Width = 259
         '
         'CReturnBalance
         '
@@ -2723,6 +2984,33 @@ Partial Class FrmTravelSettleDetail
         Me.CReturnBalance.Name = "CReturnBalance"
         Me.CReturnBalance.NullText = "0"
         Me.CReturnBalance.NullValuePrompt = "0"
+        '
+        'PaidBalance
+        '
+        Me.PaidBalance.Caption = "Paid-Actual Currency"
+        Me.PaidBalance.DisplayFormat.FormatString = "n2"
+        Me.PaidBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PaidBalance.FieldName = "PaidBalance"
+        Me.PaidBalance.MinWidth = 25
+        Me.PaidBalance.Name = "PaidBalance"
+        Me.PaidBalance.OptionsColumn.AllowEdit = False
+        Me.PaidBalance.Visible = True
+        Me.PaidBalance.VisibleIndex = 5
+        Me.PaidBalance.Width = 260
+        '
+        'AmountIDRBalance
+        '
+        Me.AmountIDRBalance.Caption = "Paid-IDR"
+        Me.AmountIDRBalance.DisplayFormat.FormatString = "n2"
+        Me.AmountIDRBalance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AmountIDRBalance.FieldName = "AmountIDRBalance"
+        Me.AmountIDRBalance.MinWidth = 25
+        Me.AmountIDRBalance.Name = "AmountIDRBalance"
+        Me.AmountIDRBalance.OptionsColumn.AllowEdit = False
+        Me.AmountIDRBalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDRBalance", "{0:#,##0.#0}")})
+        Me.AmountIDRBalance.Visible = True
+        Me.AmountIDRBalance.VisibleIndex = 6
+        Me.AmountIDRBalance.Width = 94
         '
         'Label4
         '
@@ -2913,6 +3201,9 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalanceOther, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewBalanceOther, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageVoucher.ResumeLayout(False)
+        Me.GroupBox16.ResumeLayout(False)
+        CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox15.ResumeLayout(False)
         CType(Me.GridBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3148,4 +3439,16 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents ReturnBalance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupBox15 As GroupBox
     Friend WithEvents CReturnBalance As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents PaidBalance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AmountIDRBalance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupBox16 As GroupBox
+    Friend WithEvents GridSumBalance As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewSumBalance As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn72 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

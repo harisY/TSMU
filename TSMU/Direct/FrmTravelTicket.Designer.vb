@@ -89,6 +89,7 @@ Partial Class FrmTravelTicket
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsBehavior.Editable = False
+        Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -225,6 +226,7 @@ Partial Class FrmTravelTicket
         Me.GridViewTicket.Name = "GridViewTicket"
         Me.GridViewTicket.OptionsBehavior.Editable = False
         Me.GridViewTicket.OptionsView.ColumnAutoWidth = False
+        Me.GridViewTicket.OptionsView.ShowGroupPanel = False
         '
         'GridColumn11
         '

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmTravelRequest
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FrmTravelRequest
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GridApprovedReq = New DevExpress.XtraGrid.GridControl()
         Me.GridViewApproved = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -32,10 +32,11 @@ Partial Class FrmTravelRequest
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CApproved = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CComment = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.TabPageRequest = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridRequestAll = New DevExpress.XtraGrid.GridControl()
-        Me.GridViewAll = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridRequest = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,17 +49,32 @@ Partial Class FrmTravelRequest
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageApproved = New DevExpress.XtraTab.XtraTabPage()
-        Me.CComment = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.TabPageRequestAll = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridRequestAll = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewRequestAll = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridApprovedReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CApproved, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CComment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageRequest.SuspendLayout()
-        CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridViewAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageApproved.SuspendLayout()
-        CType(Me.CComment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPageRequestAll.SuspendLayout()
+        CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridApprovedReq
@@ -70,7 +86,7 @@ Partial Class FrmTravelRequest
         Me.GridApprovedReq.MainView = Me.GridViewApproved
         Me.GridApprovedReq.Name = "GridApprovedReq"
         Me.GridApprovedReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CApproved, Me.CComment})
-        Me.GridApprovedReq.Size = New System.Drawing.Size(1149, 480)
+        Me.GridApprovedReq.Size = New System.Drawing.Size(1487, 480)
         Me.GridApprovedReq.TabIndex = 1
         Me.GridApprovedReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewApproved})
         '
@@ -79,7 +95,6 @@ Partial Class FrmTravelRequest
         Me.GridViewApproved.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn20})
         Me.GridViewApproved.GridControl = Me.GridApprovedReq
         Me.GridViewApproved.Name = "GridViewApproved"
-        Me.GridViewApproved.OptionsView.ShowAutoFilterRow = True
         Me.GridViewApproved.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -207,6 +222,11 @@ Partial Class FrmTravelRequest
         Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 500
         '
+        'CComment
+        '
+        Me.CComment.AutoHeight = False
+        Me.CComment.Name = "CComment"
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -215,35 +235,36 @@ Partial Class FrmTravelRequest
         Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1162, 520)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1500, 520)
         Me.XtraTabControl1.TabIndex = 2
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageApproved})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageApproved, Me.TabPageRequestAll})
         '
         'TabPageRequest
         '
-        Me.TabPageRequest.Controls.Add(Me.GridRequestAll)
+        Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(1155, 486)
-        Me.TabPageRequest.Text = "Travel Request"
+        Me.TabPageRequest.Size = New System.Drawing.Size(1493, 486)
+        Me.TabPageRequest.Text = "Request"
         '
-        'GridRequestAll
+        'GridRequest
         '
-        Me.GridRequestAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.GridRequest.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridRequestAll.Location = New System.Drawing.Point(3, 3)
-        Me.GridRequestAll.MainView = Me.GridViewAll
-        Me.GridRequestAll.Name = "GridRequestAll"
-        Me.GridRequestAll.Size = New System.Drawing.Size(1149, 480)
-        Me.GridRequestAll.TabIndex = 2
-        Me.GridRequestAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAll})
+        Me.GridRequest.Location = New System.Drawing.Point(3, 3)
+        Me.GridRequest.MainView = Me.GridViewRequest
+        Me.GridRequest.Name = "GridRequest"
+        Me.GridRequest.Size = New System.Drawing.Size(1487, 480)
+        Me.GridRequest.TabIndex = 2
+        Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
-        'GridViewAll
+        'GridViewRequest
         '
-        Me.GridViewAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn9, Me.GridColumn21})
-        Me.GridViewAll.GridControl = Me.GridRequestAll
-        Me.GridViewAll.Name = "GridViewAll"
-        Me.GridViewAll.OptionsBehavior.Editable = False
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn9, Me.GridColumn21})
+        Me.GridViewRequest.GridControl = Me.GridRequest
+        Me.GridViewRequest.Name = "GridViewRequest"
+        Me.GridViewRequest.OptionsBehavior.Editable = False
+        Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
         'GridColumn10
         '
@@ -368,31 +389,165 @@ Partial Class FrmTravelRequest
         '
         Me.TabPageApproved.Controls.Add(Me.GridApprovedReq)
         Me.TabPageApproved.Name = "TabPageApproved"
-        Me.TabPageApproved.Size = New System.Drawing.Size(1155, 486)
-        Me.TabPageApproved.Text = "Approved Request"
+        Me.TabPageApproved.Size = New System.Drawing.Size(1493, 486)
+        Me.TabPageApproved.Text = "Approved"
         '
-        'CComment
+        'TabPageRequestAll
         '
-        Me.CComment.AutoHeight = False
-        Me.CComment.Name = "CComment"
+        Me.TabPageRequestAll.Controls.Add(Me.GridRequestAll)
+        Me.TabPageRequestAll.Name = "TabPageRequestAll"
+        Me.TabPageRequestAll.Size = New System.Drawing.Size(1493, 486)
+        Me.TabPageRequestAll.Text = "Search"
+        '
+        'GridRequestAll
+        '
+        Me.GridRequestAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridRequestAll.Location = New System.Drawing.Point(3, 3)
+        Me.GridRequestAll.MainView = Me.GridViewRequestAll
+        Me.GridRequestAll.Name = "GridRequestAll"
+        Me.GridRequestAll.Size = New System.Drawing.Size(1487, 480)
+        Me.GridRequestAll.TabIndex = 3
+        Me.GridRequestAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequestAll})
+        '
+        'GridViewRequestAll
+        '
+        Me.GridViewRequestAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
+        Me.GridViewRequestAll.GridControl = Me.GridRequestAll
+        Me.GridViewRequestAll.Name = "GridViewRequestAll"
+        Me.GridViewRequestAll.OptionsBehavior.Editable = False
+        Me.GridViewRequestAll.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "No Request"
+        Me.GridColumn22.FieldName = "NoRequest"
+        Me.GridColumn22.MinWidth = 25
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.FixedWidth = True
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        Me.GridColumn22.Width = 130
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "NIK"
+        Me.GridColumn23.FieldName = "NIK"
+        Me.GridColumn23.MinWidth = 25
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.FixedWidth = True
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        Me.GridColumn23.Width = 100
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Nama"
+        Me.GridColumn24.FieldName = "Nama"
+        Me.GridColumn24.MinWidth = 25
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.FixedWidth = True
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 2
+        Me.GridColumn24.Width = 200
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Tanggal"
+        Me.GridColumn25.FieldName = "Date"
+        Me.GridColumn25.MinWidth = 25
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.FixedWidth = True
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.Width = 110
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Dept ID"
+        Me.GridColumn26.FieldName = "DeptID"
+        Me.GridColumn26.MinWidth = 25
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.FixedWidth = True
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn26.Width = 70
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Travel Type"
+        Me.GridColumn27.FieldName = "TravelType"
+        Me.GridColumn27.MinWidth = 25
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.FixedWidth = True
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn27.Width = 90
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Golongan"
+        Me.GridColumn28.FieldName = "Golongan"
+        Me.GridColumn28.MinWidth = 25
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.FixedWidth = True
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 6
+        Me.GridColumn28.Width = 80
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Purpose"
+        Me.GridColumn29.FieldName = "Purpose"
+        Me.GridColumn29.MinWidth = 25
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 7
+        Me.GridColumn29.Width = 94
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Status"
+        Me.GridColumn30.FieldName = "Status"
+        Me.GridColumn30.MinWidth = 25
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.FixedWidth = True
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 8
+        Me.GridColumn30.Width = 80
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Approved"
+        Me.GridColumn31.FieldName = "Approved"
+        Me.GridColumn31.MinWidth = 25
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.FixedWidth = True
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 9
+        Me.GridColumn31.Width = 90
         '
         'FrmTravelRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1186, 564)
+        Me.ClientSize = New System.Drawing.Size(1524, 564)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmTravelRequest"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.GridApprovedReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewApproved, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CApproved, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CComment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.TabPageRequest.ResumeLayout(False)
-        CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageApproved.ResumeLayout(False)
-        CType(Me.CComment, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageRequestAll.ResumeLayout(False)
+        CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -412,8 +567,8 @@ Partial Class FrmTravelRequest
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents TabPageRequest As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridRequestAll As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridViewAll As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridRequest As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewRequest As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -428,4 +583,17 @@ Partial Class FrmTravelRequest
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CComment As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TabPageRequestAll As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridRequestAll As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewRequestAll As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
