@@ -52,6 +52,9 @@ Partial Class FrmTravelTicketDetail
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.txtTotal = New DevExpress.XtraEditors.TextEdit()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtBalance = New DevExpress.XtraEditors.TextEdit()
+        Me.chkBalance = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.txtNoInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +68,8 @@ Partial Class FrmTravelTicketDetail
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtBalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkBalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtNoInvoice
@@ -94,6 +99,7 @@ Partial Class FrmTravelTicketDetail
         Me.txtVendor.Location = New System.Drawing.Point(780, 51)
         Me.txtVendor.Name = "txtVendor"
         Me.txtVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.txtVendor.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtVendor.Size = New System.Drawing.Size(216, 22)
         Me.txtVendor.TabIndex = 0
         '
@@ -120,11 +126,11 @@ Partial Class FrmTravelTicketDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(656, 53)
+        Me.Label3.Location = New System.Drawing.Point(670, 53)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 17)
+        Me.Label3.Size = New System.Drawing.Size(54, 17)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Vendor ID"
+        Me.Label3.Text = "Vendor"
         '
         'Label4
         '
@@ -142,13 +148,14 @@ Partial Class FrmTravelTicketDetail
         Me.txtCuryID.Name = "txtCuryID"
         Me.txtCuryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtCuryID.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.txtCuryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtCuryID.Size = New System.Drawing.Size(81, 22)
         Me.txtCuryID.TabIndex = 2
         '
         'txtNoVoucher
         '
         Me.txtNoVoucher.Enabled = False
-        Me.txtNoVoucher.Location = New System.Drawing.Point(138, 51)
+        Me.txtNoVoucher.Location = New System.Drawing.Point(156, 51)
         Me.txtNoVoucher.Name = "txtNoVoucher"
         Me.txtNoVoucher.Size = New System.Drawing.Size(147, 22)
         Me.txtNoVoucher.TabIndex = 8
@@ -165,7 +172,7 @@ Partial Class FrmTravelTicketDetail
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(338, 53)
+        Me.Label6.Location = New System.Drawing.Point(356, 53)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(60, 17)
         Me.Label6.TabIndex = 11
@@ -357,7 +364,7 @@ Partial Class FrmTravelTicketDetail
         '
         Me.dtTanggal.EditValue = Nothing
         Me.dtTanggal.Enabled = False
-        Me.dtTanggal.Location = New System.Drawing.Point(452, 51)
+        Me.dtTanggal.Location = New System.Drawing.Point(470, 51)
         Me.dtTanggal.Name = "dtTanggal"
         Me.dtTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -367,6 +374,7 @@ Partial Class FrmTravelTicketDetail
         Me.dtTanggal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtTanggal.Properties.Mask.EditMask = ""
         Me.dtTanggal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtTanggal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.dtTanggal.Size = New System.Drawing.Size(143, 22)
         Me.dtTanggal.TabIndex = 13
         '
@@ -391,16 +399,55 @@ Partial Class FrmTravelTicketDetail
         Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(1681, 549)
+        Me.Label7.Location = New System.Drawing.Point(1734, 549)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 17)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "TOTAL"
         '
+        'Label8
+        '
+        Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(1416, 549)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(71, 17)
+        Me.Label8.TabIndex = 17
+        Me.Label8.Text = "BALANCE"
+        '
+        'txtBalance
+        '
+        Me.txtBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtBalance.Enabled = False
+        Me.txtBalance.Location = New System.Drawing.Point(1527, 547)
+        Me.txtBalance.MaximumSize = New System.Drawing.Size(140, 0)
+        Me.txtBalance.Name = "txtBalance"
+        Me.txtBalance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtBalance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtBalance.Properties.Mask.EditMask = "n0"
+        Me.txtBalance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtBalance.Size = New System.Drawing.Size(140, 22)
+        Me.txtBalance.TabIndex = 16
+        '
+        'chkBalance
+        '
+        Me.chkBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkBalance.EditValue = True
+        Me.chkBalance.Location = New System.Drawing.Point(1673, 548)
+        Me.chkBalance.Name = "chkBalance"
+        Me.chkBalance.Properties.Caption = ""
+        Me.chkBalance.Size = New System.Drawing.Size(39, 19)
+        Me.chkBalance.TabIndex = 18
+        '
         'FrmTravelTicketDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1849, 578)
+        Me.Controls.Add(Me.chkBalance)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.txtBalance)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtTotal)
         Me.Controls.Add(Me.GridTicket)
@@ -432,6 +479,9 @@ Partial Class FrmTravelTicketDetail
         Me.Controls.SetChildIndex(Me.GridTicket, 0)
         Me.Controls.SetChildIndex(Me.txtTotal, 0)
         Me.Controls.SetChildIndex(Me.Label7, 0)
+        Me.Controls.SetChildIndex(Me.txtBalance, 0)
+        Me.Controls.SetChildIndex(Me.Label8, 0)
+        Me.Controls.SetChildIndex(Me.chkBalance, 0)
         CType(Me.txtNoInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -445,6 +495,8 @@ Partial Class FrmTravelTicketDetail
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtBalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkBalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -482,4 +534,7 @@ Partial Class FrmTravelTicketDetail
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtTotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtBalance As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents chkBalance As DevExpress.XtraEditors.CheckEdit
 End Class

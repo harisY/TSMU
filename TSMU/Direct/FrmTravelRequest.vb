@@ -30,18 +30,25 @@ Public Class FrmTravelRequest
 
     Private Sub FrmTravelRequest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = GridApprovedReq.DataSource
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageRequest
+        TabPage = XtraTabControl1.SelectedTabPage.Name
+        LoadGridRequestAll()
     End Sub
 
-    Private Sub LoadGrid()
+    Private Sub LoadGridRequestAll()
         Try
             dtGrid = fc_Class.GetAllDataTable(bs_Filter)
             GridRequestAll.DataSource = dtGrid
             GridCellFormat(GridViewAll)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub LoadGridApprovedReq()
+        Try
             dtGrid = fc_Class.GetTravelRequest()
             GridApprovedReq.DataSource = dtGrid
             GridCellFormat(GridViewApproved)
@@ -56,21 +63,16 @@ Public Class FrmTravelRequest
         Dim flag As Boolean = False
         Try
             Dim Approved As String = String.Empty
+            Dim Comment As String = String.Empty
             Dim NoRequest As String
             fc_Class = New TravelRequestModel
             For i As Integer = 0 To GridViewApproved.RowCount - 1
-                Approved = GridViewApproved.GetRowCellValue(i, "Approved")
-                NoRequest = GridViewApproved.GetRowCellValue(i, "NoRequest")
-                If Approved = "APPROVED" Then
-                    fc_Class.Status = "Approved"
-                    fc_Class.UpdateStatusHeader(NoRequest)
-                    flag = True
-                ElseIf Approved = "REVISED" Then
-                    fc_Class.Status = "Revised"
-                    fc_Class.UpdateStatusHeader(NoRequest)
-                    flag = True
-                ElseIf Approved = "REJECT" Then
-                    fc_Class.Status = "Reject"
+                Approved = IIf(GridViewApproved.GetRowCellValue(i, "Approved") Is DBNull.Value, "", GridViewApproved.GetRowCellValue(i, "Approved"))
+                Comment = IIf(GridViewApproved.GetRowCellValue(i, "Comment") Is DBNull.Value, "", GridViewApproved.GetRowCellValue(i, "Comment"))
+                NoRequest = IIf(GridViewApproved.GetRowCellValue(i, "NoRequest") Is DBNull.Value, "", GridViewApproved.GetRowCellValue(i, "NoRequest"))
+                If Approved <> "" Then
+                    fc_Class.Approved = Approved
+                    fc_Class.Comment = Comment
                     fc_Class.UpdateStatusHeader(NoRequest)
                     flag = True
                 End If
@@ -80,7 +82,7 @@ Public Class FrmTravelRequest
         End Try
         If flag Then
             MessageBox.Show("Data Updated.")
-            LoadGrid()
+            LoadGridApprovedReq()
         End If
 
     End Sub
@@ -97,8 +99,7 @@ Public Class FrmTravelRequest
                 End If
             Next rowHandle
 
-            If status = "Approved" Then
-                'Err.Raise(ErrNumber, , "Travel ID " & ID & " dalam proses settlement !")
+            If status = "Open" Then
                 MessageBox.Show("No Request " & ID & " sudah di Approve oleh atasan !", "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
@@ -122,7 +123,11 @@ Public Class FrmTravelRequest
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
-        Call LoadGrid()
+        If TabPage = "TabPageRequest" Then
+            LoadGridRequestAll()
+        Else
+            LoadGridApprovedReq()
+        End If
     End Sub
 
     Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequestAll.DoubleClick
@@ -152,13 +157,21 @@ Public Class FrmTravelRequest
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageRequest" Then
             Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+            LoadGridRequestAll()
         Else
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
+            LoadGridApprovedReq()
         End If
-        LoadGrid()
     End Sub
 
     Private Sub CApproved_EditValueChanged(sender As Object, e As EventArgs) Handles CApproved.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CComment_EditValueChanged(sender As Object, e As EventArgs) Handles CComment.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
