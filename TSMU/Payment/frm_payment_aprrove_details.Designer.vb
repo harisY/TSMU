@@ -42,25 +42,26 @@ Partial Class frm_payment_aprrove_details
         Me._TxtCM = New DevExpress.XtraEditors.TextEdit()
         Me._TxtCurrency = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GridInvoice = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -103,25 +104,26 @@ Partial Class frm_payment_aprrove_details
         CType(Me._TxtCM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GridInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,30 +166,30 @@ Partial Class frm_payment_aprrove_details
         '_TxtTotal
         '
         Me._TxtTotal.EditValue = "0"
-        Me._TxtTotal.Location = New System.Drawing.Point(422, 84)
+        Me._TxtTotal.Location = New System.Drawing.Point(419, 84)
         Me._TxtTotal.Name = "_TxtTotal"
         Me._TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtTotal.Properties.ReadOnly = True
-        Me._TxtTotal.Size = New System.Drawing.Size(193, 20)
+        Me._TxtTotal.Size = New System.Drawing.Size(196, 20)
         Me._TxtTotal.StyleController = Me.LayoutControl1
         Me._TxtTotal.TabIndex = 29
         '
         '_TxtPPN
         '
         Me._TxtPPN.EditValue = "0"
-        Me._TxtPPN.Location = New System.Drawing.Point(422, 60)
+        Me._TxtPPN.Location = New System.Drawing.Point(419, 60)
         Me._TxtPPN.Name = "_TxtPPN"
         Me._TxtPPN.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtPPN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtPPN.Properties.ReadOnly = True
-        Me._TxtPPN.Size = New System.Drawing.Size(193, 20)
+        Me._TxtPPN.Size = New System.Drawing.Size(196, 20)
         Me._TxtPPN.StyleController = Me.LayoutControl1
         Me._TxtPPN.TabIndex = 28
         '
         '_TxtBankName
         '
-        Me._TxtBankName.Location = New System.Drawing.Point(219, 36)
+        Me._TxtBankName.Location = New System.Drawing.Point(219, 60)
         Me._TxtBankName.Name = "_TxtBankName"
         Me._TxtBankName.Properties.ReadOnly = True
         Me._TxtBankName.Size = New System.Drawing.Size(126, 20)
@@ -196,29 +198,29 @@ Partial Class frm_payment_aprrove_details
         '
         '_TxtNoRek
         '
-        Me._TxtNoRek.Location = New System.Drawing.Point(422, 108)
+        Me._TxtNoRek.Location = New System.Drawing.Point(419, 108)
         Me._TxtNoRek.Name = "_TxtNoRek"
         Me._TxtNoRek.Properties.ReadOnly = True
-        Me._TxtNoRek.Size = New System.Drawing.Size(193, 20)
+        Me._TxtNoRek.Size = New System.Drawing.Size(196, 20)
         Me._TxtNoRek.StyleController = Me.LayoutControl1
         Me._TxtNoRek.TabIndex = 26
         '
         '_TxtDebit
         '
         Me._TxtDebit.EditValue = "0"
-        Me._TxtDebit.Location = New System.Drawing.Point(692, 84)
+        Me._TxtDebit.Location = New System.Drawing.Point(689, 84)
         Me._TxtDebit.Name = "_TxtDebit"
         Me._TxtDebit.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtDebit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtDebit.Properties.ReadOnly = True
-        Me._TxtDebit.Size = New System.Drawing.Size(124, 20)
+        Me._TxtDebit.Size = New System.Drawing.Size(127, 20)
         Me._TxtDebit.StyleController = Me.LayoutControl1
         Me._TxtDebit.TabIndex = 25
         '
         '_TxtBiaya
         '
         Me._TxtBiaya.EditValue = "0"
-        Me._TxtBiaya.Location = New System.Drawing.Point(692, 60)
+        Me._TxtBiaya.Location = New System.Drawing.Point(689, 60)
         Me._TxtBiaya.Name = "_TxtBiaya"
         Me._TxtBiaya.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtBiaya.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -229,49 +231,49 @@ Partial Class frm_payment_aprrove_details
         Me._TxtBiaya.Properties.Mask.EditMask = "n"
         Me._TxtBiaya.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me._TxtBiaya.Properties.ReadOnly = True
-        Me._TxtBiaya.Size = New System.Drawing.Size(124, 20)
+        Me._TxtBiaya.Size = New System.Drawing.Size(127, 20)
         Me._TxtBiaya.StyleController = Me.LayoutControl1
         Me._TxtBiaya.TabIndex = 24
         '
         '_TxtDpp
         '
         Me._TxtDpp.EditValue = "0"
-        Me._TxtDpp.Location = New System.Drawing.Point(422, 36)
+        Me._TxtDpp.Location = New System.Drawing.Point(419, 36)
         Me._TxtDpp.Name = "_TxtDpp"
         Me._TxtDpp.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtDpp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtDpp.Properties.ReadOnly = True
-        Me._TxtDpp.Size = New System.Drawing.Size(193, 20)
+        Me._TxtDpp.Size = New System.Drawing.Size(196, 20)
         Me._TxtDpp.StyleController = Me.LayoutControl1
         Me._TxtDpp.TabIndex = 19
         '
         '_TxtTMV
         '
         Me._TxtTMV.EditValue = "0"
-        Me._TxtTMV.Location = New System.Drawing.Point(422, 12)
+        Me._TxtTMV.Location = New System.Drawing.Point(419, 12)
         Me._TxtTMV.Name = "_TxtTMV"
         Me._TxtTMV.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtTMV.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtTMV.Properties.ReadOnly = True
-        Me._TxtTMV.Size = New System.Drawing.Size(193, 20)
+        Me._TxtTMV.Size = New System.Drawing.Size(196, 20)
         Me._TxtTMV.StyleController = Me.LayoutControl1
         Me._TxtTMV.TabIndex = 18
         '
         '_TxtAttentionTo
         '
-        Me._TxtAttentionTo.Location = New System.Drawing.Point(85, 108)
+        Me._TxtAttentionTo.Location = New System.Drawing.Point(82, 108)
         Me._TxtAttentionTo.Name = "_TxtAttentionTo"
         Me._TxtAttentionTo.Properties.ReadOnly = True
-        Me._TxtAttentionTo.Size = New System.Drawing.Size(260, 20)
+        Me._TxtAttentionTo.Size = New System.Drawing.Size(263, 20)
         Me._TxtAttentionTo.StyleController = Me.LayoutControl1
         Me._TxtAttentionTo.TabIndex = 16
         '
         '_TxtToBank
         '
-        Me._TxtToBank.Location = New System.Drawing.Point(692, 108)
+        Me._TxtToBank.Location = New System.Drawing.Point(689, 108)
         Me._TxtToBank.Name = "_TxtToBank"
         Me._TxtToBank.Properties.ReadOnly = True
-        Me._TxtToBank.Size = New System.Drawing.Size(124, 20)
+        Me._TxtToBank.Size = New System.Drawing.Size(127, 20)
         Me._TxtToBank.StyleController = Me.LayoutControl1
         Me._TxtToBank.TabIndex = 15
         '
@@ -300,18 +302,18 @@ Partial Class frm_payment_aprrove_details
         '_TxtPPH
         '
         Me._TxtPPH.EditValue = "0"
-        Me._TxtPPH.Location = New System.Drawing.Point(692, 12)
+        Me._TxtPPH.Location = New System.Drawing.Point(689, 12)
         Me._TxtPPH.Name = "_TxtPPH"
         Me._TxtPPH.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtPPH.Properties.ReadOnly = True
-        Me._TxtPPH.Size = New System.Drawing.Size(124, 20)
+        Me._TxtPPH.Size = New System.Drawing.Size(127, 20)
         Me._TxtPPH.StyleController = Me.LayoutControl1
         Me._TxtPPH.TabIndex = 8
         '
         '_TxtPerpost
         '
-        Me._TxtPerpost.Location = New System.Drawing.Point(85, 12)
+        Me._TxtPerpost.Location = New System.Drawing.Point(82, 12)
         Me._TxtPerpost.Name = "_TxtPerpost"
         Me._TxtPerpost.Properties.DisplayFormat.FormatString = "yyyy-MM"
         Me._TxtPerpost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -320,13 +322,13 @@ Partial Class frm_payment_aprrove_details
         Me._TxtPerpost.Properties.Mask.EditMask = "yyyy-MM"
         Me._TxtPerpost.Properties.Mask.SaveLiteral = False
         Me._TxtPerpost.Properties.ReadOnly = True
-        Me._TxtPerpost.Size = New System.Drawing.Size(130, 20)
+        Me._TxtPerpost.Size = New System.Drawing.Size(133, 20)
         Me._TxtPerpost.StyleController = Me.LayoutControl1
         Me._TxtPerpost.TabIndex = 7
         '
         '_TxtTgl
         '
-        Me._TxtTgl.Location = New System.Drawing.Point(85, 60)
+        Me._TxtTgl.Location = New System.Drawing.Point(82, 36)
         Me._TxtTgl.Name = "_TxtTgl"
         Me._TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me._TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -334,46 +336,46 @@ Partial Class frm_payment_aprrove_details
         Me._TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TxtTgl.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me._TxtTgl.Properties.ReadOnly = True
-        Me._TxtTgl.Size = New System.Drawing.Size(130, 20)
+        Me._TxtTgl.Size = New System.Drawing.Size(133, 20)
         Me._TxtTgl.StyleController = Me.LayoutControl1
         Me._TxtTgl.TabIndex = 12
         '
         '_TxtVendorID
         '
-        Me._TxtVendorID.Location = New System.Drawing.Point(85, 84)
+        Me._TxtVendorID.Location = New System.Drawing.Point(82, 84)
         Me._TxtVendorID.Name = "_TxtVendorID"
         Me._TxtVendorID.Properties.ReadOnly = True
-        Me._TxtVendorID.Size = New System.Drawing.Size(130, 20)
+        Me._TxtVendorID.Size = New System.Drawing.Size(133, 20)
         Me._TxtVendorID.StyleController = Me.LayoutControl1
         Me._TxtVendorID.TabIndex = 13
         '
         '_TxtBankID
         '
-        Me._TxtBankID.Location = New System.Drawing.Point(85, 36)
+        Me._TxtBankID.Location = New System.Drawing.Point(82, 60)
         Me._TxtBankID.Name = "_TxtBankID"
         Me._TxtBankID.Properties.ReadOnly = True
-        Me._TxtBankID.Size = New System.Drawing.Size(130, 20)
+        Me._TxtBankID.Size = New System.Drawing.Size(133, 20)
         Me._TxtBankID.StyleController = Me.LayoutControl1
         Me._TxtBankID.TabIndex = 5
         '
         '_TxtCM
         '
         Me._TxtCM.EditValue = "0"
-        Me._TxtCM.Location = New System.Drawing.Point(692, 36)
+        Me._TxtCM.Location = New System.Drawing.Point(689, 36)
         Me._TxtCM.Name = "_TxtCM"
         Me._TxtCM.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtCM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me._TxtCM.Properties.ReadOnly = True
-        Me._TxtCM.Size = New System.Drawing.Size(124, 20)
+        Me._TxtCM.Size = New System.Drawing.Size(127, 20)
         Me._TxtCM.StyleController = Me.LayoutControl1
         Me._TxtCM.TabIndex = 23
         '
         '_TxtCurrency
         '
-        Me._TxtCurrency.Location = New System.Drawing.Point(292, 60)
+        Me._TxtCurrency.Location = New System.Drawing.Point(289, 36)
         Me._TxtCurrency.Name = "_TxtCurrency"
         Me._TxtCurrency.Properties.ReadOnly = True
-        Me._TxtCurrency.Size = New System.Drawing.Size(53, 20)
+        Me._TxtCurrency.Size = New System.Drawing.Size(56, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 17
         '
@@ -381,28 +383,10 @@ Partial Class frm_payment_aprrove_details
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem11, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem2, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LayoutControlItem10})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem7, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.EmptySpaceItem1, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem11, Me.LayoutControlItem3})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 174)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me._TxtBankID
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(207, 24)
-        Me.LayoutControlItem2.Text = "Paid By"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me._TxtPerpost
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(207, 24)
-        Me.LayoutControlItem1.Text = "Id"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(70, 13)
         '
         'LayoutControlItem4
         '
@@ -411,7 +395,7 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(201, 24)
         Me.LayoutControlItem4.Text = "PPH (TAX)"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem5
         '
@@ -422,69 +406,6 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me._TxtTgl
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(207, 24)
-        Me.LayoutControlItem8.Text = "Date"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me._TxtVendorID
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(207, 24)
-        Me.LayoutControlItem6.Text = "Supplier"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me._TxtToBank
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(607, 96)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(201, 58)
-        Me.LayoutControlItem9.Text = "To Bank"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me._TxtAttentionTo
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 96)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(337, 58)
-        Me.LayoutControlItem10.Text = "Beneficiary"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me._TxtCurrency
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(207, 48)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(130, 24)
-        Me.LayoutControlItem11.Text = "Currency"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me._TxtTMV
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(337, 0)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem12.Text = "TMV"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(70, 13)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me._TxtDpp
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(337, 24)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem13.Text = "DPP Invoice"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(70, 13)
-        '
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me._TxtCM
@@ -492,7 +413,7 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
         Me.LayoutControlItem17.Size = New System.Drawing.Size(201, 24)
         Me.LayoutControlItem17.Text = "CM/DM"
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem18
         '
@@ -500,8 +421,8 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem18.Location = New System.Drawing.Point(607, 48)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
         Me.LayoutControlItem18.Size = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem18.Text = "Biaya Transfer"
-        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem18.Text = "Trans Exp."
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem19
         '
@@ -510,7 +431,7 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
         Me.LayoutControlItem19.Size = New System.Drawing.Size(201, 24)
         Me.LayoutControlItem19.Text = "Debit Bank"
-        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem7
         '
@@ -522,23 +443,23 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
-        'LayoutControlItem3
+        'LayoutControlItem1
         '
-        Me.LayoutControlItem3.Control = Me._TxtBankName
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(207, 24)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(130, 24)
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem3.TextVisible = False
+        Me.LayoutControlItem1.Control = Me._TxtPerpost
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(207, 24)
+        Me.LayoutControlItem1.Text = "Id"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(67, 13)
         '
-        'LayoutControlItem14
+        'LayoutControlItem6
         '
-        Me.LayoutControlItem14.Control = Me._TxtPPN
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(337, 48)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem14.Text = "PPN (VAT)"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem6.Control = Me._TxtVendorID
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(207, 24)
+        Me.LayoutControlItem6.Text = "Supplier"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem20
         '
@@ -546,8 +467,8 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem20.Location = New System.Drawing.Point(337, 96)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(270, 58)
-        Me.LayoutControlItem20.Text = "No. Rekening"
-        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem20.Text = "Bank Acct No."
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(67, 13)
         '
         'LayoutControlItem15
         '
@@ -557,7 +478,96 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem15.Size = New System.Drawing.Size(270, 24)
         Me.LayoutControlItem15.Tag = ""
         Me.LayoutControlItem15.Text = "Total"
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(70, 13)
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me._TxtTMV
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(337, 0)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(270, 24)
+        Me.LayoutControlItem12.Text = "TMV"
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me._TxtDpp
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(337, 24)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(270, 24)
+        Me.LayoutControlItem13.Text = "DPP Invoice"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me._TxtPPN
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(337, 48)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(270, 24)
+        Me.LayoutControlItem14.Text = "PPN (VAT)"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me._TxtToBank
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(607, 96)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(201, 58)
+        Me.LayoutControlItem9.Text = "To Bank"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me._TxtAttentionTo
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(337, 24)
+        Me.LayoutControlItem10.Text = "Beneficiary"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(337, 34)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me._TxtTgl
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(207, 24)
+        Me.LayoutControlItem8.Text = "Date"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me._TxtBankID
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(207, 24)
+        Me.LayoutControlItem2.Text = "Paid By"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me._TxtCurrency
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(207, 24)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(130, 24)
+        Me.LayoutControlItem11.Text = "Currency"
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(67, 13)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me._TxtBankName
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(207, 48)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(130, 24)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem3.TextVisible = False
         '
         'TableLayoutPanel1
         '
@@ -761,25 +771,26 @@ Partial Class frm_payment_aprrove_details
         CType(Me._TxtCM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.GridInvoice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -853,4 +864,5 @@ Partial Class frm_payment_aprrove_details
     Friend WithEvents BtnScan1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

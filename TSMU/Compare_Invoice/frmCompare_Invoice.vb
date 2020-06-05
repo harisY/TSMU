@@ -70,7 +70,7 @@ Public Class frmCompare_Invoice
         fc_Class.txtFileLocation = txtFileLocation.Text
 
         fc_Class.Delete()
-
+        fc_Class.perpost = _cmbperpost.Text
         Try
             For i As Integer = 0 To DataGridView1.Rows.Count - 1
                 '     Dim tglx As DateTime = Format(Date.Now(), "yyyy-MM-dd")
@@ -193,7 +193,7 @@ Public Class frmCompare_Invoice
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+        fc_Class.perpost = _cmbperpost.Text
         Call LoadGrid()
         Dim dtGrid As New DataTable
         dtGrid = DataGridView1.DataSource

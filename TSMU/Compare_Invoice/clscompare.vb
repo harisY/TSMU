@@ -103,7 +103,7 @@ Public Class clscompare
             If cekbalance = True Then
                 ls_SP = "select * from Temp_Copas_sol where balance=0 "
             Else
-                ls_SP = "select * from Temp_Copas_sol where balance!=0 "
+                ls_SP = "select * from Temp_Copas_sol where balance!=0  or balance is null "
 
             End If
 

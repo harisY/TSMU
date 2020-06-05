@@ -320,7 +320,7 @@ Public Class Cls_report
 
     Public Function DataGridSyncTemplate(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
-            Dim query As String = "SyncBasedOnTemplate"
+            Dim query As String = "SyncMizuhoTemplate"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
             pParam(0).Value = date1

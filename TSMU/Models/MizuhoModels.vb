@@ -196,14 +196,14 @@
     End Function
 
     Public Function GetAllDataMizuhoTemplate() As DataTable
-        Try
-            Dim sql As String = "TemplateMizuho"
-            Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(sql)
-            Return dt
-        Catch ex As Exception
-            Throw
-        End Try
+        'Try
+        '    Dim sql As String = "TemplateMizuho"
+        '    Dim dt As New DataTable
+        '    dt = GetDataTableByCommand_SP(sql)
+        '    Return dt
+        'Catch ex As Exception
+        '    Throw
+        'End Try
     End Function
 
     Public Function GetMizuhoUpload() As DataTable
