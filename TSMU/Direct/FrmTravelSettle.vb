@@ -45,22 +45,6 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    Private Sub LoadGrid2()
-        'Try
-        '    ObjSettle = New TravelHeaderModel
-        'dtGrid2 = ObjSettle.GetDataGrid2()
-        '    GridControl1.DataSource = dtGrid2
-        '    With GridView2
-        '        .Columns(0).Visible = False
-        '        .BestFitColumns()
-        '    End With
-        '    GridCellFormat(GridView2)
-        'Catch ex As Exception
-        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-    End Sub
-
     Public Overrides Sub Proc_InputNewData()
         If TabPage = "TabPageReq" Then
             If GridViewRequest.SelectedRowsCount > 0 Then
@@ -81,8 +65,6 @@ Public Class FrmTravelSettle
             LoadGridRequest()
         ElseIf TabPage = "TabPageSett" Then
             LoadGridSettle()
-        Else
-            LoadGrid2()
         End If
     End Sub
 
@@ -98,19 +80,6 @@ Public Class FrmTravelSettle
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
-
-    'Private Sub CallFrmDirect(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
-    '    If ff_Detail1 IsNot Nothing AndAlso ff_Detail1.Visible Then
-    '        If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
-    '            Exit Sub
-    '        End If
-    '        ff_Detail1.Close()
-    '    End If
-    '    ff_Detail1 = New FrmSuspendSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
-    '    ff_Detail1.MdiParent = FrmMain
-    '    ff_Detail1.StartPosition = FormStartPosition.CenterScreen
-    '    ff_Detail1.Show()
-    'End Sub
 
     Public Overrides Sub Proc_DeleteData()
         Try
@@ -144,33 +113,6 @@ Public Class FrmTravelSettle
 
             tsBtn_refresh.PerformClick()
 
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Dim ID As String
-    Dim suspendid As String
-    Dim suspend1 As String
-    Private Sub FrmSuspendSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        Try
-            If e.KeyCode = Keys.F1 Then
-                Dim selectedRows() As Integer = GridViewSettle.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        ID = GridViewSettle.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridViewSettle.GetRowCellValue(rowHandle, "SettleID")
-                    End If
-                Next rowHandle
-
-                If GridViewSettle.GetSelectedRows.Length > 0 Then
-                    Call CallFrm(ID,
-                         suspendid,
-                         GridViewSettle.RowCount)
-                End If
-
-            End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -212,15 +154,27 @@ Public Class FrmTravelSettle
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageReq" Then
-            Call Proc_EnableButtons(True, False, False, True, True, False, False, False)
+            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             LoadGridRequest()
         ElseIf TabPage = "TabPageSett" Then
             Call Proc_EnableButtons(False, False, True, True, True, False, False, False)
             LoadGridSettle()
-        Else
-            Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
-            LoadGrid2()
         End If
     End Sub
 
+    Private Sub btnProses_Click(sender As Object, e As EventArgs) Handles btnProses.Click
+        If GridViewRequest.SelectedRowsCount > 0 Then
+            Dim result As DialogResult = XtraMessageBox.Show("Apakah sudah berangkat?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                CallFrm("", "YA")
+            ElseIf result = System.Windows.Forms.DialogResult.No Then
+                CallFrm("", "TIDAK")
+            End If
+        Else
+            MessageBox.Show("Harap pilih dulu travelnya", "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        End If
+    End Sub
 End Class

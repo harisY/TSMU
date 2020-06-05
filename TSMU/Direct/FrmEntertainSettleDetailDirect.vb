@@ -15,7 +15,7 @@ Public Class FrmEntertainSettleDetailDirect
     Dim fc_Class As New ClsSuspend
     Dim ObjEntertainHeader As New EntertainHeaderModel
     Dim ObjEntertainDetail As New EntertainDetailModel
-    Dim ObjTravelSettDetail As New TravelSettlementDetailModel
+    'Dim ObjTravelSettDetail As New TravelSettlementDetailModel
     Dim ObjSettle As New SettleHeader
     Dim ObjSettleDetail As New SettleDetail
     Dim GridDtl As GridControl

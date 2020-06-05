@@ -42,7 +42,7 @@ Partial Class FrmTravelerDetail
         Me.CNoVisa = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.Category = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Entries = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CEntries = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.DateIssued = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CDateIssued = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -277,7 +277,7 @@ Partial Class FrmTravelerDetail
         '
         'GridViewVisa
         '
-        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.GridColumn9, Me.Category, Me.DateIssued, Me.DateExpired})
+        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.GridColumn9, Me.Entries, Me.DateIssued, Me.DateExpired})
         Me.GridViewVisa.GridControl = Me.GridVisa
         Me.GridViewVisa.Name = "GridViewVisa"
         Me.GridViewVisa.OptionsView.ShowGroupPanel = False
@@ -316,17 +316,17 @@ Partial Class FrmTravelerDetail
         Me.CNegara.Name = "CNegara"
         Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'Category
+        'Entries
         '
-        Me.Category.Caption = "Entries"
-        Me.Category.ColumnEdit = Me.CEntries
-        Me.Category.FieldName = "Entries"
-        Me.Category.MinWidth = 25
-        Me.Category.Name = "Category"
-        Me.Category.OptionsColumn.FixedWidth = True
-        Me.Category.Visible = True
-        Me.Category.VisibleIndex = 2
-        Me.Category.Width = 120
+        Me.Entries.Caption = "Entries"
+        Me.Entries.ColumnEdit = Me.CEntries
+        Me.Entries.FieldName = "Entries"
+        Me.Entries.MinWidth = 25
+        Me.Entries.Name = "Entries"
+        Me.Entries.OptionsColumn.FixedWidth = True
+        Me.Entries.Visible = True
+        Me.Entries.VisibleIndex = 2
+        Me.Entries.Width = 120
         '
         'CEntries
         '
@@ -442,7 +442,7 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlItem3.Location = New System.Drawing.Point(540, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(154, 29)
-        Me.LayoutControlItem3.Text = "Departement"
+        Me.LayoutControlItem3.Text = "Dept ID"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem4
@@ -565,7 +565,7 @@ Partial Class FrmTravelerDetail
     Friend WithEvents GridVisa As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewVisa As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents NoVisa As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Category As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Entries As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DateIssued As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DateExpired As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CDateExpired As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit

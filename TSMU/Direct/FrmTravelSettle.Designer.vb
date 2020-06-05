@@ -30,13 +30,15 @@ Partial Class FrmTravelSettle
         Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Purpose = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Term = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Pay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageReq = New DevExpress.XtraTab.XtraTabPage()
+        Me.btnProses = New DevExpress.XtraEditors.SimpleButton()
         Me.GridRequest = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Nama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TravelType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,20 +46,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TabPageSettPaid = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Pay = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoVoucher = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageSett.SuspendLayout()
@@ -66,9 +55,6 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.SuspendLayout()
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPageSettPaid.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -86,7 +72,7 @@ Partial Class FrmTravelSettle
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageSett
         Me.XtraTabControl1.Size = New System.Drawing.Size(1371, 590)
         Me.XtraTabControl1.TabIndex = 3
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageReq, Me.TabPageSett, Me.TabPageSettPaid})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageReq, Me.TabPageSett})
         '
         'TabPageSett
         '
@@ -152,7 +138,7 @@ Partial Class FrmTravelSettle
         Me.TravelerName.OptionsColumn.FixedWidth = True
         Me.TravelerName.Visible = True
         Me.TravelerName.VisibleIndex = 2
-        Me.TravelerName.Width = 260
+        Me.TravelerName.Width = 500
         '
         'Destination
         '
@@ -163,7 +149,7 @@ Partial Class FrmTravelSettle
         Me.Destination.OptionsColumn.FixedWidth = True
         Me.Destination.Visible = True
         Me.Destination.VisibleIndex = 3
-        Me.Destination.Width = 260
+        Me.Destination.Width = 250
         '
         'Purpose
         '
@@ -173,7 +159,7 @@ Partial Class FrmTravelSettle
         Me.Purpose.Name = "Purpose"
         Me.Purpose.Visible = True
         Me.Purpose.VisibleIndex = 4
-        Me.Purpose.Width = 94
+        Me.Purpose.Width = 95
         '
         'Term
         '
@@ -186,28 +172,45 @@ Partial Class FrmTravelSettle
         Me.Term.VisibleIndex = 5
         Me.Term.Width = 260
         '
+        'Pay
+        '
+        Me.Pay.Caption = "Pay"
+        Me.Pay.FieldName = "Pay"
+        Me.Pay.MinWidth = 25
+        Me.Pay.Name = "Pay"
+        Me.Pay.Width = 94
+        '
         'TabPageReq
         '
+        Me.TabPageReq.Controls.Add(Me.btnProses)
         Me.TabPageReq.Controls.Add(Me.GridRequest)
         Me.TabPageReq.Name = "TabPageReq"
         Me.TabPageReq.Size = New System.Drawing.Size(1364, 556)
         Me.TabPageReq.Text = "Request"
+        '
+        'btnProses
+        '
+        Me.btnProses.Location = New System.Drawing.Point(4, 6)
+        Me.btnProses.Name = "btnProses"
+        Me.btnProses.Size = New System.Drawing.Size(94, 29)
+        Me.btnProses.TabIndex = 2
+        Me.btnProses.Text = "PROSES"
         '
         'GridRequest
         '
         Me.GridRequest.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridRequest.Location = New System.Drawing.Point(3, 3)
+        Me.GridRequest.Location = New System.Drawing.Point(4, 41)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
-        Me.GridRequest.Size = New System.Drawing.Size(1358, 551)
+        Me.GridRequest.Size = New System.Drawing.Size(1355, 508)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
         'GridViewRequest
         '
-        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn21, Me.GridColumn22, Me.GridColumn10, Me.GridColumn9, Me.GridColumn7, Me.GridColumn8})
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.NoRequest, Me.Nama, Me.GridColumn3, Me.TravelType, Me.GridColumn6, Me.GridColumn21, Me.GridColumn22, Me.GridColumn10, Me.GridColumn9, Me.GridColumn7, Me.GridColumn8})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsBehavior.Editable = False
@@ -215,27 +218,27 @@ Partial Class FrmTravelSettle
         Me.GridViewRequest.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'NoRequest
         '
-        Me.GridColumn1.Caption = "No Request"
-        Me.GridColumn1.FieldName = "NoRequest"
-        Me.GridColumn1.MinWidth = 25
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.FixedWidth = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 130
+        Me.NoRequest.Caption = "No Request"
+        Me.NoRequest.FieldName = "NoRequest"
+        Me.NoRequest.MinWidth = 25
+        Me.NoRequest.Name = "NoRequest"
+        Me.NoRequest.OptionsColumn.FixedWidth = True
+        Me.NoRequest.Visible = True
+        Me.NoRequest.VisibleIndex = 2
+        Me.NoRequest.Width = 130
         '
-        'GridColumn2
+        'Nama
         '
-        Me.GridColumn2.Caption = "Nama"
-        Me.GridColumn2.FieldName = "Nama"
-        Me.GridColumn2.MinWidth = 25
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.FixedWidth = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        Me.GridColumn2.Width = 200
+        Me.Nama.Caption = "Nama"
+        Me.Nama.FieldName = "Nama"
+        Me.Nama.MinWidth = 25
+        Me.Nama.Name = "Nama"
+        Me.Nama.OptionsColumn.FixedWidth = True
+        Me.Nama.Visible = True
+        Me.Nama.VisibleIndex = 3
+        Me.Nama.Width = 200
         '
         'GridColumn3
         '
@@ -245,19 +248,19 @@ Partial Class FrmTravelSettle
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.FixedWidth = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 80
         '
-        'GridColumn5
+        'TravelType
         '
-        Me.GridColumn5.Caption = "Travel Type"
-        Me.GridColumn5.FieldName = "TravelType"
-        Me.GridColumn5.MinWidth = 25
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.FixedWidth = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 100
+        Me.TravelType.Caption = "Travel Type"
+        Me.TravelType.FieldName = "TravelType"
+        Me.TravelType.MinWidth = 25
+        Me.TravelType.Name = "TravelType"
+        Me.TravelType.OptionsColumn.FixedWidth = True
+        Me.TravelType.Visible = True
+        Me.TravelType.VisibleIndex = 5
+        Me.TravelType.Width = 100
         '
         'GridColumn6
         '
@@ -266,7 +269,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn6.MinWidth = 25
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 25
         '
         'GridColumn21
@@ -277,7 +280,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.FixedWidth = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.VisibleIndex = 7
         Me.GridColumn21.Width = 120
         '
         'GridColumn22
@@ -288,7 +291,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.FixedWidth = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 8
         Me.GridColumn22.Width = 120
         '
         'GridColumn10
@@ -299,7 +302,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.FixedWidth = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 8
+        Me.GridColumn10.VisibleIndex = 9
         Me.GridColumn10.Width = 260
         '
         'GridColumn9
@@ -310,7 +313,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.FixedWidth = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.VisibleIndex = 10
         Me.GridColumn9.Width = 130
         '
         'GridColumn7
@@ -321,7 +324,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.FixedWidth = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
+        Me.GridColumn7.VisibleIndex = 11
         Me.GridColumn7.Width = 130
         '
         'GridColumn8
@@ -332,158 +335,19 @@ Partial Class FrmTravelSettle
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 11
+        Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 130
         '
-        'TabPageSettPaid
+        'NoVoucher
         '
-        Me.TabPageSettPaid.Controls.Add(Me.GridControl1)
-        Me.TabPageSettPaid.Margin = New System.Windows.Forms.Padding(4)
-        Me.TabPageSettPaid.Name = "TabPageSettPaid"
-        Me.TabPageSettPaid.Size = New System.Drawing.Size(1364, 556)
-        Me.TabPageSettPaid.Text = "Settlement Paid"
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridControl1.Location = New System.Drawing.Point(4, 4)
-        Me.GridControl1.MainView = Me.GridView2
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1356, 549)
-        Me.GridControl1.TabIndex = 3
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
-        Me.GridView2.DetailHeight = 458
-        Me.GridView2.FixedLineWidth = 3
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowAutoFilterRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "ID"
-        Me.GridColumn11.FieldName = "ID"
-        Me.GridColumn11.MinWidth = 27
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.FixedWidth = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 100
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Settle ID"
-        Me.GridColumn12.FieldName = "SettleID"
-        Me.GridColumn12.MinWidth = 27
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.FixedWidth = True
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 133
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Suspend ID"
-        Me.GridColumn13.FieldName = "SuspendID"
-        Me.GridColumn13.MinWidth = 27
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.FixedWidth = True
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 133
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Department"
-        Me.GridColumn14.FieldName = "DeptID"
-        Me.GridColumn14.MinWidth = 27
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.FixedWidth = True
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 100
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Remark"
-        Me.GridColumn15.FieldName = "Remark"
-        Me.GridColumn15.MinWidth = 27
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.FixedWidth = True
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
-        Me.GridColumn15.Width = 267
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Date"
-        Me.GridColumn16.FieldName = "Tgl"
-        Me.GridColumn16.MinWidth = 27
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.FixedWidth = True
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 5
-        Me.GridColumn16.Width = 107
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Currency"
-        Me.GridColumn17.FieldName = "CuryID"
-        Me.GridColumn17.MinWidth = 27
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.FixedWidth = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
-        Me.GridColumn17.Width = 67
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Amount"
-        Me.GridColumn18.FieldName = "Total"
-        Me.GridColumn18.MinWidth = 27
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.FixedWidth = True
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 7
-        Me.GridColumn18.Width = 133
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Suspend Amount"
-        Me.GridColumn19.FieldName = "SuspendAmount"
-        Me.GridColumn19.MinWidth = 27
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 8
-        Me.GridColumn19.Width = 100
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Settle Amount"
-        Me.GridColumn20.FieldName = "SettleAmount"
-        Me.GridColumn20.MinWidth = 27
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 9
-        Me.GridColumn20.Width = 100
-        '
-        'Pay
-        '
-        Me.Pay.Caption = "Pay"
-        Me.Pay.FieldName = "Pay"
-        Me.Pay.MinWidth = 25
-        Me.Pay.Name = "Pay"
-        Me.Pay.Width = 94
+        Me.NoVoucher.Caption = "No Voucher"
+        Me.NoVoucher.FieldName = "NoVoucher"
+        Me.NoVoucher.MinWidth = 25
+        Me.NoVoucher.Name = "NoVoucher"
+        Me.NoVoucher.OptionsColumn.FixedWidth = True
+        Me.NoVoucher.Visible = True
+        Me.NoVoucher.VisibleIndex = 1
+        Me.NoVoucher.Width = 130
         '
         'FrmTravelSettle
         '
@@ -501,9 +365,6 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.ResumeLayout(False)
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPageSettPaid.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -512,19 +373,6 @@ Partial Class FrmTravelSettle
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents TabPageSett As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents TabPageSettPaid As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridSettle As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewSettle As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents TravelSettleID As DevExpress.XtraGrid.Columns.GridColumn
@@ -534,10 +382,10 @@ Partial Class FrmTravelSettle
     Friend WithEvents TabPageReq As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridRequest As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewRequest As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoRequest As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Nama As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TravelType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
@@ -548,4 +396,6 @@ Partial Class FrmTravelSettle
     Friend WithEvents Purpose As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Term As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Pay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnProses As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents NoVoucher As DevExpress.XtraGrid.Columns.GridColumn
 End Class

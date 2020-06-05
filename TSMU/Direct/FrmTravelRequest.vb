@@ -22,7 +22,7 @@ Public Class FrmTravelRequest
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, GridRequestAll)
+        ff_Detail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, GridRequest)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -33,14 +33,14 @@ Public Class FrmTravelRequest
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageRequest
         TabPage = XtraTabControl1.SelectedTabPage.Name
-        LoadGridRequestAll()
+        LoadGridRequest()
     End Sub
 
-    Private Sub LoadGridRequestAll()
+    Private Sub LoadGridRequest()
         Try
-            dtGrid = fc_Class.GetAllDataTable(bs_Filter)
-            GridRequestAll.DataSource = dtGrid
-            GridCellFormat(GridViewAll)
+            dtGrid = fc_Class.GetTravelRequest()
+            GridRequest.DataSource = dtGrid
+            GridCellFormat(GridViewRequest)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -49,9 +49,20 @@ Public Class FrmTravelRequest
 
     Private Sub LoadGridApprovedReq()
         Try
-            dtGrid = fc_Class.GetTravelRequest()
+            dtGrid = fc_Class.GetTravelApproved()
             GridApprovedReq.DataSource = dtGrid
             GridCellFormat(GridViewApproved)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub LoadGridRequestAll()
+        Try
+            'dtGrid = fc_Class.GetTravelRequestAll()
+            'GridRequestAll.DataSource = dtGrid
+            'GridCellFormat(GridViewRequestAll)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -91,21 +102,16 @@ Public Class FrmTravelRequest
         Dim ID As String = String.Empty
         Dim status As String = String.Empty
         Try
-            Dim selectedRows() As Integer = GridViewAll.GetSelectedRows()
+            Dim selectedRows() As Integer = GridViewRequest.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridViewAll.GetRowCellValue(rowHandle, "NoRequest")
-                    status = GridViewAll.GetRowCellValue(rowHandle, "Status")
+                    ID = GridViewRequest.GetRowCellValue(rowHandle, "NoRequest")
+                    status = GridViewRequest.GetRowCellValue(rowHandle, "Status")
                 End If
             Next rowHandle
 
-            If status = "Open" Then
+            If status = "OPEN" Then
                 MessageBox.Show("No Request " & ID & " sudah di Approve oleh atasan !", "Warning",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation,
-                                MessageBoxDefaultButton.Button1)
-            ElseIf status = "Reject" Then
-                MessageBox.Show("No Request " & ID & " sudah di Reject oleh atasan !", "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
@@ -122,30 +128,54 @@ Public Class FrmTravelRequest
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        bs_Filter = ""
         If TabPage = "TabPageRequest" Then
-            LoadGridRequestAll()
-        Else
+            LoadGridRequest()
+        ElseIf TabPage = "TabPageApproved" Then
             LoadGridApprovedReq()
+        Else
+            LoadGridRequestAll()
         End If
     End Sub
 
-    Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequestAll.DoubleClick
+    Public Overrides Sub Proc_Filter()
+        FilterData = New FrmSystem_FilterData(dtGrid)
+        FilterData.Text = "Search Travel Request"
+        FilterData.ShowDialog()
+        If Not FilterData.isCancel Then
+            bs_Filter = FilterData.strWhereClauseWithoutWhere
+            Call FilterGrid()
+        End If
+        FilterData.Hide()
+    End Sub
+
+    Private Sub FilterGrid()
+        Try
+            Dim dv As New DataView(dtGrid)
+            dv.RowFilter = bs_Filter
+            dtGrid = dv.ToTable
+            GridRequestAll.DataSource = dtGrid
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
         Try
             Dim NoRequest = String.Empty
             Dim NIK = String.Empty
-            Dim selectedRows() As Integer = GridViewAll.GetSelectedRows()
+            Dim selectedRows() As Integer = GridViewRequest.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    NoRequest = GridViewAll.GetRowCellValue(rowHandle, "NoRequest")
-                    NIK = GridViewAll.GetRowCellValue(rowHandle, "NIK")
+                    NoRequest = GridViewRequest.GetRowCellValue(rowHandle, "NoRequest")
+                    NIK = GridViewRequest.GetRowCellValue(rowHandle, "NIK")
                 End If
             Next rowHandle
 
-            If GridViewAll.GetSelectedRows.Length > 0 Then
+            If GridViewRequest.GetSelectedRows.Length > 0 Then
                 Call CallFrm(NoRequest,
                          NIK,
-                         GridViewAll.RowCount)
+                         GridViewRequest.RowCount)
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -157,10 +187,13 @@ Public Class FrmTravelRequest
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageRequest" Then
             Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
-            LoadGridRequestAll()
-        Else
+            LoadGridRequest()
+        ElseIf TabPage = "TabPageApproved" Then
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
             LoadGridApprovedReq()
+        Else
+            Call Proc_EnableButtons(False, False, False, True, False, True, False, False)
+            LoadGridRequestAll()
         End If
     End Sub
 

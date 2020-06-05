@@ -206,71 +206,40 @@ Public Class FrmTravelerDetail
 
     Public Overrides Sub Proc_SaveData()
         Try
+            fc_Class.ObjVisa.Clear()
+            For i As Integer = 0 To GridViewVisa.RowCount - 1
+                ObjTravelerVisa = New ClsTravelerVisa
+                With ObjTravelerVisa
+                    .NIK = TxtNIK.Text
+                    .NoVisa = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "NoVisa")), Nothing, GridViewVisa.GetRowCellValue(i, "NoVisa"))
+                    .Negara = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Negara")), Nothing, GridViewVisa.GetRowCellValue(i, "Negara"))
+                    .Category = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Entries")), Nothing, GridViewVisa.GetRowCellValue(i, "Entries"))
+                    .DateIssued = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateIssued")), Nothing, GridViewVisa.GetRowCellValue(i, "DateIssued"))
+                    .DateExpired = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateExpired")), Nothing, GridViewVisa.GetRowCellValue(i, "DateExpired"))
+                End With
+                fc_Class.ObjVisa.Add(ObjTravelerVisa)
+            Next
+
+            fc_Class.ObjPaspor.Clear()
+            For i As Integer = 0 To GridViewPaspor.RowCount - 1
+                ObjTravelerPaspor = New ClsTravelerPaspor
+                With ObjTravelerPaspor
+                    .NIK = TxtNIK.Text
+                    .NoPaspor = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "NoPaspor")), Nothing, GridViewPaspor.GetRowCellValue(i, "NoPaspor"))
+                    .Nama = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "Nama")), Nothing, GridViewPaspor.GetRowCellValue(i, "Nama"))
+                    .KodeNegara = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "KodeNegara")), Nothing, GridViewPaspor.GetRowCellValue(i, "KodeNegara"))
+                    .TanggalLahir = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalLahir")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalLahir"))
+                    .JenisKelamin = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "JenisKelamin")), Nothing, GridViewPaspor.GetRowCellValue(i, "JenisKelamin"))
+                    .TanggalKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalKeluar"))
+                    .ExpiredDate = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "ExpiredDate")), Nothing, GridViewPaspor.GetRowCellValue(i, "ExpiredDate"))
+                    .TempatKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TempatKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TempatKeluar"))
+                End With
+                fc_Class.ObjPaspor.Add(ObjTravelerPaspor)
+            Next
+
             If isUpdate = False Then
-                fc_Class.ObjVisa.Clear()
-                For i As Integer = 0 To GridViewVisa.RowCount - 1
-                    ObjTravelerVisa = New ClsTravelerVisa
-                    With ObjTravelerVisa
-                        .NIK = TxtNIK.Text
-                        .NoVisa = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "NoVisa")), Nothing, GridViewVisa.GetRowCellValue(i, "NoVisa"))
-                        .Negara = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Negara")), Nothing, GridViewVisa.GetRowCellValue(i, "Negara"))
-                        .Category = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Category")), Nothing, GridViewVisa.GetRowCellValue(i, "Category"))
-                        .DateIssued = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateIssued")), Nothing, GridViewVisa.GetRowCellValue(i, "DateIssued"))
-                        .DateExpired = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateExpired")), Nothing, GridViewVisa.GetRowCellValue(i, "DateExpired"))
-                    End With
-                    fc_Class.ObjVisa.Add(ObjTravelerVisa)
-                Next
-
-                fc_Class.ObjPaspor.Clear()
-                For i As Integer = 0 To GridViewPaspor.RowCount - 1
-                    ObjTravelerPaspor = New ClsTravelerPaspor
-                    With ObjTravelerPaspor
-                        .NIK = TxtNIK.Text
-                        .NoPaspor = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "NoPaspor")), Nothing, GridViewPaspor.GetRowCellValue(i, "NoPaspor"))
-                        .Nama = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "Nama")), Nothing, GridViewPaspor.GetRowCellValue(i, "Nama"))
-                        .KodeNegara = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "KodeNegara")), Nothing, GridViewPaspor.GetRowCellValue(i, "KodeNegara"))
-                        .TanggalLahir = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalLahir")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalLahir"))
-                        .JenisKelamin = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "JenisKelamin")), Nothing, GridViewPaspor.GetRowCellValue(i, "JenisKelamin"))
-                        .TanggalKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalKeluar"))
-                        .ExpiredDate = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "ExpiredDate")), Nothing, GridViewPaspor.GetRowCellValue(i, "ExpiredDate"))
-                        .TempatKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TempatKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TempatKeluar"))
-                    End With
-                    fc_Class.ObjPaspor.Add(ObjTravelerPaspor)
-                Next
-
                 fc_Class.Insert()
             Else
-                fc_Class.ObjVisa.Clear()
-                For i As Integer = 0 To GridViewVisa.RowCount - 1
-                    ObjTravelerVisa = New ClsTravelerVisa
-                    With ObjTravelerVisa
-                        .NIK = TxtNIK.Text
-                        .NoVisa = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "NoVisa")), Nothing, GridViewVisa.GetRowCellValue(i, "NoVisa"))
-                        .Negara = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Negara")), Nothing, GridViewVisa.GetRowCellValue(i, "Negara"))
-                        .Category = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "Category")), Nothing, GridViewVisa.GetRowCellValue(i, "Category"))
-                        .DateIssued = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateIssued")), Nothing, GridViewVisa.GetRowCellValue(i, "DateIssued"))
-                        .DateExpired = If(IsDBNull(GridViewVisa.GetRowCellValue(i, "DateExpired")), Nothing, GridViewVisa.GetRowCellValue(i, "DateExpired"))
-                    End With
-                    fc_Class.ObjVisa.Add(ObjTravelerVisa)
-                Next
-
-                fc_Class.ObjPaspor.Clear()
-                For i As Integer = 0 To GridViewPaspor.RowCount - 1
-                    ObjTravelerPaspor = New ClsTravelerPaspor
-                    With ObjTravelerPaspor
-                        .NIK = TxtNIK.Text
-                        .NoPaspor = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "NoPaspor")), Nothing, GridViewPaspor.GetRowCellValue(i, "NoPaspor"))
-                        .Nama = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "Nama")), Nothing, GridViewPaspor.GetRowCellValue(i, "Nama"))
-                        .KodeNegara = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "KodeNegara")), Nothing, GridViewPaspor.GetRowCellValue(i, "KodeNegara"))
-                        .TanggalLahir = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalLahir")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalLahir"))
-                        .JenisKelamin = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "JenisKelamin")), Nothing, GridViewPaspor.GetRowCellValue(i, "JenisKelamin"))
-                        .TanggalKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TanggalKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TanggalKeluar"))
-                        .ExpiredDate = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "ExpiredDate")), Nothing, GridViewPaspor.GetRowCellValue(i, "ExpiredDate"))
-                        .TempatKeluar = If(IsDBNull(GridViewPaspor.GetRowCellValue(i, "TempatKeluar")), Nothing, GridViewPaspor.GetRowCellValue(i, "TempatKeluar"))
-                    End With
-                    fc_Class.ObjPaspor.Add(ObjTravelerPaspor)
-                Next
-
                 fc_Class.NIK = fs_Code
                 fc_Class.Update()
             End If

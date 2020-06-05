@@ -25,7 +25,6 @@ Partial Class FrmTravelRequestDetail
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.txtNoRequest = New DevExpress.XtraEditors.TextEdit()
-        Me.txtDepartement = New DevExpress.XtraEditors.ButtonEdit()
         Me.txtTravelType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.GridDetail = New DevExpress.XtraGrid.GridControl()
@@ -33,6 +32,7 @@ Partial Class FrmTravelRequestDetail
         Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Visa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,13 +64,13 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtDepartement = New DevExpress.XtraEditors.TextEdit()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNoRequest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +87,7 @@ Partial Class FrmTravelRequestDetail
         CType(Me.txtAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CDepartureDate
@@ -94,16 +95,24 @@ Partial Class FrmTravelRequestDetail
         Me.CDepartureDate.AutoHeight = False
         Me.CDepartureDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CDepartureDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CDepartureDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.CDepartureDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CDepartureDate.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.CDepartureDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CDepartureDate.Mask.EditMask = "dd-MM-yyyy"
         Me.CDepartureDate.Name = "CDepartureDate"
-        Me.CDepartureDate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'CArrivalDate
         '
         Me.CArrivalDate.AutoHeight = False
         Me.CArrivalDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CArrivalDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CArrivalDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.CArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CArrivalDate.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.CArrivalDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CArrivalDate.Mask.EditMask = "dd-MM-yyyy"
         Me.CArrivalDate.Name = "CArrivalDate"
-        Me.CArrivalDate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'btnAdd
         '
@@ -111,7 +120,7 @@ Partial Class FrmTravelRequestDetail
         Me.btnAdd.Location = New System.Drawing.Point(1403, 86)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(124, 37)
-        Me.btnAdd.TabIndex = 6
+        Me.btnAdd.TabIndex = 10
         Me.btnAdd.Text = "Add Detail ++"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
@@ -122,7 +131,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtNIK.Name = "txtNIK"
         Me.txtNIK.Properties.MaxLength = 9
         Me.txtNIK.Size = New System.Drawing.Size(105, 22)
-        Me.txtNIK.TabIndex = 8
+        Me.txtNIK.TabIndex = 2
         '
         'txtNoRequest
         '
@@ -131,17 +140,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtNoRequest.Location = New System.Drawing.Point(120, 48)
         Me.txtNoRequest.Name = "txtNoRequest"
         Me.txtNoRequest.Size = New System.Drawing.Size(130, 22)
-        Me.txtNoRequest.TabIndex = 7
-        '
-        'txtDepartement
-        '
-        Me.txtDepartement.EditValue = ""
-        Me.txtDepartement.Enabled = False
-        Me.txtDepartement.Location = New System.Drawing.Point(316, 48)
-        Me.txtDepartement.Name = "txtDepartement"
-        Me.txtDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtDepartement.Size = New System.Drawing.Size(83, 22)
-        Me.txtDepartement.TabIndex = 5
+        Me.txtNoRequest.TabIndex = 0
         '
         'txtTravelType
         '
@@ -152,7 +151,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtTravelType.Properties.Items.AddRange(New Object() {"DN", "LN"})
         Me.txtTravelType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtTravelType.Size = New System.Drawing.Size(69, 22)
-        Me.txtTravelType.TabIndex = 12
+        Me.txtTravelType.TabIndex = 6
         '
         'EmptySpaceItem1
         '
@@ -177,7 +176,7 @@ Partial Class FrmTravelRequestDetail
         '
         'GridViewDetail
         '
-        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Destination, Me.Negara, Me.Visa, Me.DepartureDate, Me.ArrivalDate})
+        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Destination, Me.Negara, Me.NoPaspor, Me.Visa, Me.DepartureDate, Me.ArrivalDate})
         Me.GridViewDetail.GridControl = Me.GridDetail
         Me.GridViewDetail.Name = "GridViewDetail"
         Me.GridViewDetail.OptionsView.ShowGroupPanel = False
@@ -211,6 +210,17 @@ Partial Class FrmTravelRequestDetail
         Me.CNegara.Name = "CNegara"
         Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
+        'NoPaspor
+        '
+        Me.NoPaspor.Caption = "Paspor"
+        Me.NoPaspor.FieldName = "NoPaspor"
+        Me.NoPaspor.MinWidth = 25
+        Me.NoPaspor.Name = "NoPaspor"
+        Me.NoPaspor.OptionsColumn.AllowEdit = False
+        Me.NoPaspor.Visible = True
+        Me.NoPaspor.VisibleIndex = 2
+        Me.NoPaspor.Width = 94
+        '
         'Visa
         '
         Me.Visa.Caption = "Visa"
@@ -219,31 +229,35 @@ Partial Class FrmTravelRequestDetail
         Me.Visa.Name = "Visa"
         Me.Visa.OptionsColumn.AllowEdit = False
         Me.Visa.Visible = True
-        Me.Visa.VisibleIndex = 2
+        Me.Visa.VisibleIndex = 3
         Me.Visa.Width = 94
         '
         'DepartureDate
         '
         Me.DepartureDate.Caption = "Departure Date"
         Me.DepartureDate.ColumnEdit = Me.CDepartureDate
+        Me.DepartureDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.DepartureDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DepartureDate.FieldName = "DepartureDate"
         Me.DepartureDate.MinWidth = 25
         Me.DepartureDate.Name = "DepartureDate"
         Me.DepartureDate.OptionsColumn.FixedWidth = True
         Me.DepartureDate.Visible = True
-        Me.DepartureDate.VisibleIndex = 3
+        Me.DepartureDate.VisibleIndex = 4
         Me.DepartureDate.Width = 150
         '
         'ArrivalDate
         '
         Me.ArrivalDate.Caption = "Arrival Date"
         Me.ArrivalDate.ColumnEdit = Me.CArrivalDate
+        Me.ArrivalDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.ArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ArrivalDate.FieldName = "ArrivalDate"
         Me.ArrivalDate.MinWidth = 25
         Me.ArrivalDate.Name = "ArrivalDate"
         Me.ArrivalDate.OptionsColumn.FixedWidth = True
         Me.ArrivalDate.Visible = True
-        Me.ArrivalDate.VisibleIndex = 4
+        Me.ArrivalDate.VisibleIndex = 5
         Me.ArrivalDate.Width = 150
         '
         'LabelControl1
@@ -296,7 +310,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtNama.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.txtNama.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.txtNama.Size = New System.Drawing.Size(451, 22)
-        Me.txtNama.TabIndex = 4
+        Me.txtNama.TabIndex = 5
         '
         'LabelControl6
         '
@@ -321,7 +335,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtGolongan.Size = New System.Drawing.Size(69, 22)
-        Me.txtGolongan.TabIndex = 22
+        Me.txtGolongan.TabIndex = 3
         '
         'txtPurpose
         '
@@ -330,7 +344,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtPurpose.Location = New System.Drawing.Point(848, 48)
         Me.txtPurpose.Name = "txtPurpose"
         Me.txtPurpose.Size = New System.Drawing.Size(679, 22)
-        Me.txtPurpose.TabIndex = 9
+        Me.txtPurpose.TabIndex = 4
         '
         'GridAdvance
         '
@@ -386,6 +400,8 @@ Partial Class FrmTravelRequestDetail
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Advance IDR"
+        Me.GridColumn1.DisplayFormat.FormatString = "n2"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "AdvanceIDR"
         Me.GridColumn1.MinWidth = 25
         Me.GridColumn1.Name = "GridColumn1"
@@ -398,6 +414,8 @@ Partial Class FrmTravelRequestDetail
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Advance USD"
+        Me.GridColumn2.DisplayFormat.FormatString = "n2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "AdvanceUSD"
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
@@ -410,6 +428,8 @@ Partial Class FrmTravelRequestDetail
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Advance YEN"
+        Me.GridColumn3.DisplayFormat.FormatString = "n2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "AdvanceYEN"
         Me.GridColumn3.MinWidth = 25
         Me.GridColumn3.Name = "GridColumn3"
@@ -424,23 +444,23 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceIDR.EditValue = ""
         Me.txtAdvanceIDR.Location = New System.Drawing.Point(74, 19)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
-        Me.txtAdvanceIDR.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.txtAdvanceIDR.Size = New System.Drawing.Size(190, 22)
-        Me.txtAdvanceIDR.TabIndex = 24
+        Me.txtAdvanceIDR.TabIndex = 7
         '
         'txtAdvanceUSD
         '
         Me.txtAdvanceUSD.EditValue = ""
         Me.txtAdvanceUSD.Location = New System.Drawing.Point(331, 19)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
-        Me.txtAdvanceUSD.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceUSD.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.txtAdvanceUSD.Size = New System.Drawing.Size(190, 22)
-        Me.txtAdvanceUSD.TabIndex = 26
+        Me.txtAdvanceUSD.TabIndex = 8
         '
         'LabelControl7
         '
@@ -474,11 +494,11 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceYEN.Location = New System.Drawing.Point(592, 19)
         Me.txtAdvanceYEN.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
-        Me.txtAdvanceYEN.Properties.Mask.EditMask = "n0"
+        Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.txtAdvanceYEN.Size = New System.Drawing.Size(10, 22)
-        Me.txtAdvanceYEN.TabIndex = 27
+        Me.txtAdvanceYEN.TabIndex = 9
         '
         'GroupBox1
         '
@@ -521,6 +541,14 @@ Partial Class FrmTravelRequestDetail
         Me.Label1.TabIndex = 31
         Me.Label1.Text = "l"
         '
+        'txtDepartement
+        '
+        Me.txtDepartement.EditValue = ""
+        Me.txtDepartement.Location = New System.Drawing.Point(325, 48)
+        Me.txtDepartement.Name = "txtDepartement"
+        Me.txtDepartement.Size = New System.Drawing.Size(70, 22)
+        Me.txtDepartement.TabIndex = 1
+        '
         'FrmTravelRequestDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -539,15 +567,15 @@ Partial Class FrmTravelRequestDetail
         Me.Controls.Add(Me.txtNoRequest)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.txtPurpose)
-        Me.Controls.Add(Me.txtDepartement)
         Me.Controls.Add(Me.txtNIK)
         Me.Controls.Add(Me.txtTravelType)
         Me.Controls.Add(Me.txtNama)
+        Me.Controls.Add(Me.txtDepartement)
         Me.Name = "FrmTravelRequestDetail"
+        Me.Controls.SetChildIndex(Me.txtDepartement, 0)
         Me.Controls.SetChildIndex(Me.txtNama, 0)
         Me.Controls.SetChildIndex(Me.txtTravelType, 0)
         Me.Controls.SetChildIndex(Me.txtNIK, 0)
-        Me.Controls.SetChildIndex(Me.txtDepartement, 0)
         Me.Controls.SetChildIndex(Me.txtPurpose, 0)
         Me.Controls.SetChildIndex(Me.btnAdd, 0)
         Me.Controls.SetChildIndex(Me.txtNoRequest, 0)
@@ -568,7 +596,6 @@ Partial Class FrmTravelRequestDetail
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNoRequest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -586,6 +613,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -598,7 +626,6 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Destination As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents txtDepartement As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents txtNIK As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtTravelType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
@@ -634,4 +661,6 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents CArrivalDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents CostType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtDepartement As DevExpress.XtraEditors.TextEdit
 End Class

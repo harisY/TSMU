@@ -11,7 +11,7 @@ Public Class FrmTravel
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim ObjTravel As TravelHeaderModel
-    Dim ObjTravelSett As TravelSettlementHeaderModel
+    'Dim ObjTravelSett As TravelSettlementHeaderModel
     Dim TabPage As String
 
     Private Sub FrmTravel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -115,8 +115,8 @@ Public Class FrmTravel
                 End If
             Next rowHandle
             Dim dt As DataTable
-            ObjTravelSett = New TravelSettlementHeaderModel
-            dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
+            'ObjTravelSett = New TravelSettlementHeaderModel
+            'dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
             Dim ada As Integer
             ada = dt.Rows.Count()
             If ada > 0 Then

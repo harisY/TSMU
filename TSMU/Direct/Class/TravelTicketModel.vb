@@ -7,6 +7,7 @@ Public Class TravelTicketModel
     Public Property VendorID As String
     Public Property NoInvoice As String
     Public Property CuryID As String
+    Public Property Status As String
     Public Property TotAmount As Double
 
     Dim strQuery As String

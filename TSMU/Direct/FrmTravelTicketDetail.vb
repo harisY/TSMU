@@ -113,6 +113,7 @@ Public Class FrmTravelTicketDetail
                     txtNoInvoice.Text = .NoInvoice
                     txtCuryID.Text = .CuryID
                     txtTotal.Text = 0
+                    txtStatus.Text = .Status
                     txtTotAmount.Text = .TotAmount
                 End With
             Else
@@ -122,6 +123,7 @@ Public Class FrmTravelTicketDetail
                 txtNoInvoice.Text = ""
                 txtCuryID.Text = "IDR"
                 txtTotal.Text = Format(0, gs_FormatDecimal)
+                txtStatus.Text = "PESAN"
                 txtTotAmount.Text = Format(0, gs_FormatDecimal)
             End If
         Catch ex As Exception
@@ -152,11 +154,9 @@ Public Class FrmTravelTicketDetail
                 End If
             End If
 
-
-
-            If txtNoInvoice.Text = "" Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-            End If
+            'If txtNoInvoice.Text = "" Then
+            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
+            'End If
 
             If lb_Validated Then
                 If isUpdate = False Then

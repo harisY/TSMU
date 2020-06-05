@@ -387,7 +387,7 @@ Public Class ClsTravelerVisa
                                 ([NIK]
                                 ,[NoVisa]
                                 ,[Negara]
-                                ,[Category]
+                                ,[Entries]
                                 ,[DateIssued]
                                 ,[DateExpired])
                             VALUES

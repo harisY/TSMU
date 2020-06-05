@@ -30,12 +30,9 @@ Public Class FrmTravelRequestDetail
     Dim ObjTravelRequestCost As New TravelRequestCostModel
 
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     Public Sub New(ByVal strCode As String,
@@ -97,36 +94,39 @@ Public Class FrmTravelRequestDetail
                 ObjTravelRequestDetail.NoRequest = txtNoRequest.Text
                 dtGrid = ObjTravelRequestDetail.GetDetailByID()
                 GridDetail.DataSource = dtGrid
-                GridCellFormat(GridViewDetail)
+                'GridCellFormat(GridViewDetail)
 
                 ObjTravelRequestCost.NoRequest = txtNoRequest.Text
                 dtGrid = ObjTravelRequestCost.GetCostByID()
                 GridAdvance.DataSource = dtGrid
-                GridCellFormat(GridViewAdvance)
+                'GridCellFormat(GridViewAdvance)
 
                 Dim FilteredRows As DataRow()
                 FilteredRows = dtGrid.Select("CostType = 'C01'")
-                row_ = FilteredRows(0)
+                If FilteredRows.Count > 0 Then
+                    row_ = FilteredRows(0)
+                End If
+
 
                 FilteredRows = dtGrid.Select("CostType = 'C03'")
-                If FilteredRows.Count > 0 Then
-                    txtAdvanceIDR.Text = Format(FilteredRows(0).Item("AdvanceIDR"), gs_FormatDecimal)
-                    txtAdvanceUSD.Text = Format(FilteredRows(0).Item("AdvanceUSD"), gs_FormatDecimal)
-                    txtAdvanceYEN.Text = Format(FilteredRows(0).Item("AdvanceYEN"), gs_FormatDecimal)
-                End If
-                GetTravelDate()
-                isLoad = False
-            Else
-                dtGrid = New DataTable
+                    If FilteredRows.Count > 0 Then
+                        txtAdvanceIDR.Text = Format(FilteredRows(0).Item("AdvanceIDR"), gs_FormatDecimal)
+                        txtAdvanceUSD.Text = Format(FilteredRows(0).Item("AdvanceUSD"), gs_FormatDecimal)
+                        txtAdvanceYEN.Text = Format(FilteredRows(0).Item("AdvanceYEN"), gs_FormatDecimal)
+                    End If
+                    GetTravelDate()
+                    isLoad = False
+                Else
+                    dtGrid = New DataTable
                 ObjTravelRequestDetail.NoRequest = ""
                 dtGrid = ObjTravelRequestDetail.GetDetailByID()
                 GridDetail.DataSource = dtGrid
-                GridCellFormat(GridViewDetail)
+                'GridCellFormat(GridViewDetail)
 
                 ObjTravelRequestCost.NoRequest = ""
                 dtGrid = ObjTravelRequestCost.GetCostByID()
                 GridAdvance.DataSource = dtGrid
-                GridCellFormat(GridViewAdvance)
+                'GridCellFormat(GridViewAdvance)
 
             End If
         Catch ex As Exception
@@ -191,8 +191,6 @@ Public Class FrmTravelRequestDetail
             If isUpdate Then
                 If ObjTravelRequest.Status = "Open" Then
                     Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan proses ticket !")
-                ElseIf ObjTravelRequest.Status = "Reject" Then
-                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah di Reject oleh atasan !")
                 End If
             End If
 
@@ -305,7 +303,7 @@ Public Class FrmTravelRequestDetail
                 ObjTravelRequest.UpdateData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjTravelRequest.GetAllDataTable("")
+            GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
@@ -420,10 +418,11 @@ Public Class FrmTravelRequestDetail
         If ArrivalDate = Nothing Or DepartureDate > ArrivalDate Then
             GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate", DepartureDate)
         End If
-        CheckVisa()
         GetTravelDate()
         CheckFirstTravel()
         HitungTotalAmount()
+        CheckVisa()
+        CheckPaspor()
     End Sub
 
     Private Sub CArrivalDate_EditValueChanged(sender As Object, e As EventArgs) Handles CArrivalDate.EditValueChanged
@@ -442,8 +441,9 @@ Public Class FrmTravelRequestDetail
             GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate", departureDate)
         End If
         GetTravelDate()
+        CheckFirstTravel()
         HitungTotalAmount()
-
+        CheckPaspor()
     End Sub
 
     Private Sub CNegara_EditValueChanged(sender As Object, e As EventArgs) Handles CNegara.EditValueChanged
@@ -529,7 +529,7 @@ Public Class FrmTravelRequestDetail
             End If
         Else
             If row_ IsNot Nothing Then
-                If ObjTravelRequest.NIK = txtNIK.Text And txtGolongan.Text = "LN" Then
+                If ObjTravelRequest.NIK = txtNIK.Text And txtTravelType.Text = "LN" Then
                     firstTravel = True
                     amountFirstTravel = row_("AdvanceIDR")
                     descFirstTravel = row_("Description")
@@ -594,13 +594,26 @@ Public Class FrmTravelRequestDetail
         Dim deptDate As Date
         Dim ArrivDate As Date
 
-        negara = GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "Negara")
+        negara = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "Negara") Is DBNull.Value, "", GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "Negara"))
         deptDate = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate"))
-        ArrivDate = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate"))
+        ArrivDate = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate"))
         If (deptDate <> Nothing Or ArrivDate <> Nothing) Then
             visa = ObjTravelRequestDetail.GetVisa(txtNIK.Text, negara, deptDate, ArrivDate)
         End If
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Visa", visa)
+    End Sub
+
+    Private Sub CheckPaspor()
+        Dim NoPaspor As String = String.Empty
+        Dim deptDate As Date
+        Dim ArrivDate As Date
+
+        deptDate = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate"))
+        ArrivDate = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate"))
+        If (deptDate <> Nothing Or ArrivDate <> Nothing) Then
+            NoPaspor = ObjTravelRequestDetail.GetPaspor(txtNIK.Text, deptDate, ArrivDate)
+        End If
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "NoPaspor", NoPaspor)
     End Sub
 
 End Class

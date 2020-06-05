@@ -60,7 +60,8 @@ Public Class TravelSettleHeaderModel
     Public Function GetDataGridRequest() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  trh.NoRequest ,
+            strQuery = " SELECT  ttd.NoVoucher ,
+                                trh.NoRequest ,
                                 trh.Nama ,
                                 trh.DeptID ,
                                 trh.TravelType ,
@@ -71,7 +72,8 @@ Public Class TravelSettleHeaderModel
                                 trc.AdvanceIDR ,
                                 trc.AdvanceUSD ,
                                 trc.AdvanceYEN
-                        FROM    dbo.TravelRequestHeader AS trh
+                        FROM    dbo.TravelTicketDetail AS ttd
+                                LEFT JOIN dbo.TravelRequestHeader AS trh ON trh.NoRequest = ttd.NoRequest
                                 LEFT JOIN ( SELECT  NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
                                                     MAX(ArrivalDate) AS ArrivalDate ,
@@ -226,7 +228,7 @@ Public Class TravelSettleHeaderModel
 
             Dim SP_Name As String = "Travel_Insert_TravelSettleHeader"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
             pParam(1) = New SqlClient.SqlParameter("@DateHeader", SqlDbType.Date)
@@ -239,28 +241,30 @@ Public Class TravelSettleHeaderModel
             pParam(4).Value = Destination
             pParam(5) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
             pParam(5).Value = Purpose
-            pParam(6) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
-            pParam(6).Value = DepartureDate
-            pParam(7) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
-            pParam(7).Value = ArrivalDate
-            pParam(8) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
-            pParam(8).Value = Term
-            pParam(9) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
-            pParam(9).Value = PickUp
-            pParam(10) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
-            pParam(10).Value = Visa
-            pParam(11) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
-            pParam(11).Value = RateUSD
-            pParam(12) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
-            pParam(12).Value = RateYEN
-            pParam(13) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
-            pParam(13).Value = TotalAdvanceIDR
-            pParam(14) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
-            pParam(14).Value = TotalAdvanceUSD
-            pParam(15) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
-            pParam(15).Value = TotalAdvanceYEN
-            pParam(16) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(16).Value = gh_Common.Username
+            pParam(6) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
+            pParam(6).Value = TravelType
+            pParam(7) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
+            pParam(7).Value = DepartureDate
+            pParam(8) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
+            pParam(8).Value = ArrivalDate
+            pParam(9) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
+            pParam(9).Value = Term
+            pParam(10) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
+            pParam(10).Value = PickUp
+            pParam(11) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
+            pParam(11).Value = Visa
+            pParam(12) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
+            pParam(12).Value = RateUSD
+            pParam(13) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
+            pParam(13).Value = RateYEN
+            pParam(14) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
+            pParam(14).Value = TotalAdvanceIDR
+            pParam(15) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
+            pParam(15).Value = TotalAdvanceUSD
+            pParam(16) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
+            pParam(16).Value = TotalAdvanceYEN
+            pParam(17) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(17).Value = gh_Common.Username
 
             ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
 
@@ -479,8 +483,259 @@ Public Class TravelSettleHeaderModel
         Catch ex As Exception
             Throw ex
         End Try
+    End Function
+
+    Public Function LoadReportSettleTransport() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT  TravelSettleID ,
+                                Seq ,
+                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                TFrom ,
+                                TTo ,
+                                Transport ,
+                                CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                     ELSE CurryID
+                                END AS CurryID ,
+                                Amount ,
+                                CASE WHEN PaymentType = 'CASH' THEN 'CH'
+                                     ELSE 'CC'
+                                END AS PaymentType
+                        FROM    dbo.TravelSettleTransport
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+            'Dim ds As New dsLaporan
+            'ds = GetDsReport_Solomon(strQuery, "TravelSettTransport")
+            'Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportSumTransport() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  TravelSettleID ,
+                            'TOTAL' AS SumDesc ,
+                            CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                 ELSE CurryID
+                            END AS CurryID ,
+                            SUM(Amount) AS TotAmount
+                    FROM    dbo.TravelSettleTransport
+                    WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                    GROUP BY TravelSettleID ,
+                            CurryID "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
 
     End Function
+
+    Public Function LoadReportSettleStaying() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT  TravelSettleID ,
+                                Seq ,
+                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                Description ,
+                                CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                     ELSE CurryID
+                                END AS CurryID ,
+                                Amount ,
+                                CASE WHEN PaymentType = 'CASH' THEN 'CH'
+                                     ELSE 'CC'
+                                END AS PaymentType
+                        FROM    dbo.TravelSettleStaying
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function LoadReportSettleEntertain() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT  TravelSettleID ,
+                                Seq ,
+                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                Description ,
+                                CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                     ELSE CurryID
+                                END AS CurryID ,
+                                Amount ,
+                                CASE WHEN PaymentType = 'CASH' THEN 'CH'
+                                     ELSE 'CC'
+                                END AS PaymentType
+                        FROM    dbo.TravelSettleEntertainment
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function LoadReportSettleOther() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT  TravelSettleID ,
+                                Seq ,
+                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                Description ,
+                                CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                     ELSE CurryID
+                                END AS CurryID ,
+                                Amount ,
+                                CASE WHEN PaymentType = 'CASH' THEN 'CH'
+                                     ELSE 'CC'
+                                END AS PaymentType
+                        FROM    dbo.TravelSettleOther
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function LoadReportSettleExpense() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  TravelSettleID ,
+                                'A)' AS ID ,
+                                'Transportation Fee' AS CostType ,
+                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
+                                     ELSE PaymentType
+                                END AS PaymentType ,
+                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS USD ,
+                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS YEN ,
+                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS IDR
+                        FROM    dbo.TravelSettleTransport
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY TravelSettleID ,
+                                PaymentType ,
+                                CurryID
+                        UNION ALL
+                        SELECT  TravelSettleID ,
+                                'B)' AS ID ,
+                                'Staying Fee' AS CostType ,
+                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
+                                     ELSE PaymentType
+                                END AS PaymentType ,
+                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS USD ,
+                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS YEN ,
+                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS IDR
+                        FROM    dbo.TravelSettleStaying
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY TravelSettleID ,
+                                PaymentType ,
+                                CurryID
+                        UNION ALL
+                        SELECT  TravelSettleID ,
+                                'C)' AS ID ,
+                                'Entertainment Fee' AS CostType ,
+                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
+                                     ELSE PaymentType
+                                END AS PaymentType ,
+                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS USD ,
+                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS YEN ,
+                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS IDR
+                        FROM    dbo.TravelSettleEntertainment
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY TravelSettleID ,
+                                PaymentType ,
+                                CurryID
+                        UNION ALL
+                        SELECT  TravelSettleID ,
+                                'D)' AS ID ,
+                                'Others' AS CostType ,
+                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
+                                     ELSE PaymentType
+                                END AS PaymentType ,
+                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS USD ,
+                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS YEN ,
+                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
+                                     ELSE 0
+                                END AS IDR
+                        FROM    dbo.TravelSettleOther
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY TravelSettleID ,
+                                PaymentType ,
+                                CurryID"
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportSettleAllowance() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT  tsd.TravelSettleID ,
+                                CASE WHEN trc.AdvanceUSD <> 0
+                                     THEN 'USD ' + CAST(trc.AdvanceUSD / trc.Days AS VARCHAR(100))
+                                     ELSE ''
+                                END + CASE WHEN trc.AdvanceYEN <> 0
+                                           THEN ' | YEN '
+                                                + CAST(trc.AdvanceYEN / trc.Days AS VARCHAR(100))
+                                           ELSE ''
+                                      END + CASE WHEN trc.AdvanceIDR <> 0
+                                                 THEN ' | IDR '
+                                                      + CAST(trc.AdvanceIDR / trc.Days AS VARCHAR(100))
+                                                 ELSE ''
+                                            END AS Rate ,
+                                CAST(trc.Days AS VARCHAR(2)) + ' days' AS Days ,
+                                CAST(COUNT(tsd.TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
+                                CAST(SUM(trc.AdvanceUSD) AS FLOAT) AS USD ,
+                                CAST(SUM(trc.AdvanceYEN) AS FLOAT) AS YEN ,
+                                CAST(SUM(trc.AdvanceIDR) AS FLOAT) AS IDR
+                        FROM    dbo.TravelSettleDetail AS tsd
+                                LEFT JOIN TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
+                        WHERE   CostType = 'C02'
+                                AND tsd.TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY tsd.TravelSettleID ,
+                                trc.Days ,
+                                trc.AdvanceUSD ,
+                                trc.AdvanceYEN ,
+                                trc.AdvanceIDR "
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class
