@@ -3,6 +3,9 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports Microsoft.Office.Interop
+
+
 Public Class Frm_CR_UserCreateDetail
 
     Public IsClosed As Boolean = False
@@ -39,6 +42,8 @@ Public Class Frm_CR_UserCreateDetail
 
     Dim CForm As Integer = 0
     Dim FGetMold As Frm_CR_Get_Mold
+    Dim BG As String = ""
+
 
 
 
@@ -77,7 +82,8 @@ Public Class Frm_CR_UserCreateDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                fc_Class.getDataByID(fs_Code)
+                fc_Class.GetDataByID(fs_Code)
+
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -123,15 +129,27 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub LoadTxtBox()
+
         Try
             If fs_Code <> "" Then
                 With fc_Class
+
                     T_CRNo.EditValue = .H_CirculationNo
                     T_RequirementDate.EditValue = .H_RequirementDate
                     T_CRType.EditValue = .H_CR_Type
                     T_Reason.Text = .H_Reason
                     T_Parent.EditValue = .H_Parent_Circulation
-                    T_ParentAmount.EditValue = .H_Parent_Circulation_Amount.ToString("#,##0.00")
+                    T_ParentAmount.EditValue = .H_Parent_Circulation_Amount
+                    T_DS.EditValue = .H_Dies_Sales_Type
+                    T_CustomerName.EditValue = .H_Dies_Customer_Name
+                    T_ModelName.EditValue = .H_Dies_Model
+                    If .H_ChargedOf = 1 Then
+                        T_Charged.EditValue = "YES"
+                    Else
+                        T_Charged.EditValue = "NO"
+                    End If
+
+                    T_Remark.EditValue = .H_Dies_Remark
 
 
                 End With
@@ -790,6 +808,11 @@ Public Class Frm_CR_UserCreateDetail
                         .D_Price = Convert.ToDouble(GridView1.GetRowCellValue(i, "Price"))
                         .D_Amount = Convert.ToInt32(GridView1.GetRowCellValue(i, "Amount"))
                         .D_PR_No = Convert.ToString(GridView1.GetRowCellValue(i, "PR No"))
+                        .D_Currency = Convert.ToString(GridView1.GetRowCellValue(i, "Curr"))
+                        .D_Rate = Convert.ToString(GridView1.GetRowCellValue(i, "Rate"))
+                        .D_RemainingBudget = Convert.ToString(GridView1.GetRowCellValue(i, "Remaining Budget"))
+                        .D_Account = Convert.ToString(GridView1.GetRowCellValue(i, "Account"))
+                        .D_Category = Convert.ToString(GridView1.GetRowCellValue(i, "Category"))
 
                     End With
                     fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
@@ -942,7 +965,7 @@ Public Class Frm_CR_UserCreateDetail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-            ElseIf T_RequirementDate.EditValue = "" Then
+            ElseIf T_RequirementDate.Text = "" Then
                 MessageBox.Show("Please Choose RequirementDate", "Warning",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
@@ -1153,6 +1176,18 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub BMold_Click(sender As Object, e As EventArgs) Handles BMold.Click
 
+        If RB_Budget.Checked = True And RB_NonBudget.Checked = False Then
+            BG = "B"
+        ElseIf RB_Budget.Checked = False And RB_NonBudget.Checked = True Then
+            BG = "N"
+        Else
+            MessageBox.Show("Please Select Budget",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
 
         CForm = 1
 
@@ -1167,7 +1202,7 @@ Public Class Frm_CR_UserCreateDetail
                         Optional ByVal IsNew As Boolean = True)
 
         If CForm = 1 Then
-            FGetMold = New Frm_CR_Get_Mold(ID, DtGridBarang, Grid1)
+            FGetMold = New Frm_CR_Get_Mold(ID, DtGridBarang, Grid1, BG)
             FGetMold.StartPosition = FormStartPosition.CenterScreen
             FGetMold.MaximizeBox = False
             FGetMold.ShowDialog()
@@ -1208,7 +1243,7 @@ Public Class Frm_CR_UserCreateDetail
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                'Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                 'Dim Value21 As Double = Convert.ToDouble(Value2)
                 'T_Account.Text = Value1
                 If Val(Value2) <= 0 Then
@@ -1317,6 +1352,22 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub CurrRepository_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles CurrRepository.EditValueChanging
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+
+        Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
+
+        With oMsg
+            .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
+            .Body = "Test"
+            .Send()
+        End With
+
+
+
 
     End Sub
 End Class

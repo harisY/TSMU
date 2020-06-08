@@ -229,7 +229,6 @@ Public Class Frm_Npwo_Detail1
                         TMp.EditValue = .H_MP
                     End If
 
-
                     If HT0 <> Mp Then
                         TT0.EditValue = .H_T0
                     End If
