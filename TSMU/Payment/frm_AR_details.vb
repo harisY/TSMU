@@ -488,7 +488,15 @@ Public Class frm_AR_details
 
     Private Sub _TxtVendorID_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtVendorID.EditValueChanged
         If fs_Code <> "" And sts_screen2 = 1 Then
-            LoadGridDetail()
+
+            Dim dtGrid As New DataTable
+            ObjPaymentDetail.vrno = _txtVoucher.Text
+            dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorIDXX(_TxtVendorID.Text.TrimEnd)
+            If dtGrid.Rows.Count > 0 Then
+                GridInvoice.DataSource = dtGrid
+                GridCellFormat(GridView1)
+            End If
+            ''  LoadGridDetail()
         Else
 
             Dim dtGrid As New DataTable

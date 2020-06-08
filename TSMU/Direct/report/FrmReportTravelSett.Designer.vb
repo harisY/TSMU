@@ -23,9 +23,7 @@ Partial Class FrmReportTravelSett
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
-        Me.txtTravelID = New DevExpress.XtraEditors.TextEdit()
         Me.txtTravelSettleID = New DevExpress.XtraEditors.TextEdit()
-        CType(Me.txtTravelID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelSettleID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,20 +38,13 @@ Partial Class FrmReportTravelSett
         Me.CrystalReportViewer1.Size = New System.Drawing.Size(1055, 600)
         Me.CrystalReportViewer1.TabIndex = 0
         '
-        'txtTravelID
-        '
-        Me.txtTravelID.Location = New System.Drawing.Point(506, 12)
-        Me.txtTravelID.Name = "txtTravelID"
-        Me.txtTravelID.Size = New System.Drawing.Size(125, 22)
-        Me.txtTravelID.TabIndex = 1
-        Me.txtTravelID.Visible = False
-        '
         'txtTravelSettleID
         '
-        Me.txtTravelSettleID.Location = New System.Drawing.Point(674, 15)
+        Me.txtTravelSettleID.Location = New System.Drawing.Point(493, 12)
         Me.txtTravelSettleID.Name = "txtTravelSettleID"
         Me.txtTravelSettleID.Size = New System.Drawing.Size(125, 22)
         Me.txtTravelSettleID.TabIndex = 2
+        Me.txtTravelSettleID.Visible = False
         '
         'FrmReportTravelSett
         '
@@ -61,17 +52,14 @@ Partial Class FrmReportTravelSett
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1055, 600)
         Me.Controls.Add(Me.txtTravelSettleID)
-        Me.Controls.Add(Me.txtTravelID)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Name = "FrmReportTravelSett"
         Me.Text = "FrmReportTravelSett"
-        CType(Me.txtTravelID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelSettleID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
-    Friend WithEvents txtTravelID As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtTravelSettleID As DevExpress.XtraEditors.TextEdit
 End Class

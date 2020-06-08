@@ -27,20 +27,23 @@ Partial Class FrmTravelerDetail
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CKodeNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CJenisKelamin = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.txtGolongan = New DevExpress.XtraEditors.TextEdit()
         Me.GridVisa = New DevExpress.XtraGrid.GridControl()
         Me.GridViewVisa = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoVisa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNoVisa = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Category = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CCategory = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.Entries = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEntries = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.DateIssued = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CDateIssued = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.DateExpired = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,19 +64,19 @@ Partial Class FrmTravelerDetail
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.CKodeNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CJenisKelamin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridVisa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewVisa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CNoVisa, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CNegara, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEntries, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDateIssued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDateIssued.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDateExpired, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,9 +96,6 @@ Partial Class FrmTravelerDetail
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CNegara, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -179,6 +179,13 @@ Partial Class FrmTravelerDetail
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 120
         '
+        'CKodeNegara
+        '
+        Me.CKodeNegara.AutoHeight = False
+        Me.CKodeNegara.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CKodeNegara.Name = "CKodeNegara"
+        Me.CKodeNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Tanggal Lahir"
@@ -241,6 +248,12 @@ Partial Class FrmTravelerDetail
         Me.GridColumn8.VisibleIndex = 7
         Me.GridColumn8.Width = 94
         '
+        'RepositoryItemButtonEdit1
+        '
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
+        '
         'txtGolongan
         '
         Me.txtGolongan.Location = New System.Drawing.Point(794, 12)
@@ -257,14 +270,14 @@ Partial Class FrmTravelerDetail
         Me.GridVisa.Location = New System.Drawing.Point(12, 325)
         Me.GridVisa.MainView = Me.GridViewVisa
         Me.GridVisa.Name = "GridVisa"
-        Me.GridVisa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDateExpired, Me.CDateIssued, Me.CCategory, Me.CNoVisa, Me.CNegara})
+        Me.GridVisa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDateExpired, Me.CDateIssued, Me.CEntries, Me.CNoVisa, Me.CNegara})
         Me.GridVisa.Size = New System.Drawing.Size(1044, 277)
         Me.GridVisa.TabIndex = 4
         Me.GridVisa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewVisa})
         '
         'GridViewVisa
         '
-        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.GridColumn9, Me.Category, Me.DateIssued, Me.DateExpired})
+        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.GridColumn9, Me.Entries, Me.DateIssued, Me.DateExpired})
         Me.GridViewVisa.GridControl = Me.GridVisa
         Me.GridViewVisa.Name = "GridViewVisa"
         Me.GridViewVisa.OptionsView.ShowGroupPanel = False
@@ -296,24 +309,31 @@ Partial Class FrmTravelerDetail
         Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 94
         '
-        'Category
+        'CNegara
         '
-        Me.Category.Caption = "Category"
-        Me.Category.ColumnEdit = Me.CCategory
-        Me.Category.FieldName = "Category"
-        Me.Category.MinWidth = 25
-        Me.Category.Name = "Category"
-        Me.Category.OptionsColumn.FixedWidth = True
-        Me.Category.Visible = True
-        Me.Category.VisibleIndex = 2
-        Me.Category.Width = 120
+        Me.CNegara.AutoHeight = False
+        Me.CNegara.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CNegara.Name = "CNegara"
+        Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'CCategory
+        'Entries
         '
-        Me.CCategory.AutoHeight = False
-        Me.CCategory.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCategory.Items.AddRange(New Object() {"S", "M"})
-        Me.CCategory.Name = "CCategory"
+        Me.Entries.Caption = "Entries"
+        Me.Entries.ColumnEdit = Me.CEntries
+        Me.Entries.FieldName = "Entries"
+        Me.Entries.MinWidth = 25
+        Me.Entries.Name = "Entries"
+        Me.Entries.OptionsColumn.FixedWidth = True
+        Me.Entries.Visible = True
+        Me.Entries.VisibleIndex = 2
+        Me.Entries.Width = 120
+        '
+        'CEntries
+        '
+        Me.CEntries.AutoHeight = False
+        Me.CEntries.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CEntries.Items.AddRange(New Object() {"S", "M"})
+        Me.CEntries.Name = "CEntries"
         '
         'DateIssued
         '
@@ -422,7 +442,7 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlItem3.Location = New System.Drawing.Point(540, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(154, 29)
-        Me.LayoutControlItem3.Text = "Departement"
+        Me.LayoutControlItem3.Text = "Dept ID"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem4
@@ -490,26 +510,6 @@ Partial Class FrmTravelerDetail
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'RepositoryItemButtonEdit1
-        '
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
-        '
-        'CKodeNegara
-        '
-        Me.CKodeNegara.AutoHeight = False
-        Me.CKodeNegara.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CKodeNegara.Name = "CKodeNegara"
-        Me.CKodeNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        '
-        'CNegara
-        '
-        Me.CNegara.AutoHeight = False
-        Me.CNegara.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CNegara.Name = "CNegara"
-        Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        '
         'FrmTravelerDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -522,12 +522,15 @@ Partial Class FrmTravelerDetail
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewPaspor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CJenisKelamin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridVisa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewVisa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CNoVisa, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCategory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CNegara, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEntries, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDateIssued.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDateIssued, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDateExpired.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -547,9 +550,6 @@ Partial Class FrmTravelerDetail
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CNegara, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -565,7 +565,7 @@ Partial Class FrmTravelerDetail
     Friend WithEvents GridVisa As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewVisa As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents NoVisa As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Category As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Entries As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DateIssued As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DateExpired As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CDateExpired As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
@@ -574,7 +574,7 @@ Partial Class FrmTravelerDetail
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents CCategory As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CEntries As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CDateIssued As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents txtGolongan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem

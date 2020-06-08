@@ -195,7 +195,7 @@ Public Class frm_AR
     Dim NoVoucher, id, NoBukti As String
     Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
 
     End Sub
 

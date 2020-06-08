@@ -12,39 +12,31 @@ Public Class FrmTravelSettleDetail
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
 
-    Dim ObjTravelHeader As New TravelHeaderModel
-    Dim ObjTravelDetail As New TravelDetailModel
-    Dim ObjTravelSettHeader As New TravelSettlementHeaderModel
-    Dim ObjTravelSettDetail As New TravelSettlementDetailModel
+    Dim cls_TravelSett As New TravelSettleHeaderModel
+    Dim cls_TravelSettDetail As New TravelSettleDetailModel
+    Dim cls_TravelSettTransport As New TravelSettleTransportModel
+    Dim cls_TravelSettStaying As New TravelSettleStayingModel
+    Dim cls_TravelSettEntertain As New TravelSettleEntertainModel
+    Dim cls_TravelSettOther As New TravelSettleOtherModel
 
     Dim GridDtl As GridControl
-    Dim f As FrmTravel_Detail2
-    Dim dt As New DataTable
-    Dim fs_Split As String = "'"
-    Dim lg_Grid As DataGridView
-    Dim boomId As String = String.Empty
+    Dim gv_Request As New GridView
     Dim dtGrid As New DataTable
-    Dim DtScan As DataTable
-    Dim DtScan2 As DataTable
-    Dim DtScan3 As DataTable
-    Dim DtScan4 As DataTable
+    Dim dtSummary As New DataTable
+    Dim dtBalance As New DataTable
+    Dim dtEntertain As New DataTable
 
-    Dim ls_Judul As String = ""
-    Dim dtSearch As New DataTable
-    Dim ls_OldKode As String = ""
-    Dim _TravelID As String = ""
-    Dim _TravelSettID As String
+    Dim Rows As New ArrayList()
     Dim row As Integer
     Dim flag As Integer
+    Dim TabPage As String
 
-    Dim AdvanceIDR As Decimal
-    Dim SettIDR As Decimal
-    Dim AdvanceYEN As Decimal
-    Dim SettYEN As Decimal
-    Dim AdvanceUSD As Decimal
-    Dim SettUSD As Decimal
-    Dim TotalAdvanceIDR As Decimal
-    Dim TotalSettIDR As Decimal
+    Dim CashIDR As Double
+    Dim CashUSD As Double
+    Dim CashYEN As Double
+    Dim CreditIDR As Double
+    Dim CreditUSD As Double
+    Dim CreditYEN As Double
 
     Dim ff_Detail7 As FrmEntertainSettleDetailDirect
 
@@ -61,6 +53,7 @@ Public Class FrmTravelSettleDetail
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
+                   ByVal gv_GridView As GridView,
                    ByRef _Grid As GridControl)
         ' this call is required by the windows form designer
         Me.New()
@@ -71,20 +64,7 @@ Public Class FrmTravelSettleDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
-    End Sub
-
-    Private Sub CreateTable()
-        DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(6) {New DataColumn("Account", GetType(String)),
-                                                            New DataColumn("SubAccount", GetType(String)),
-                                                            New DataColumn("Description", GetType(String)),
-                                                            New DataColumn("Amount", GetType(Double)),
-                                                            New DataColumn("CuryID", GetType(String)),
-                                                            New DataColumn("TSC Rare", GetType(String)),
-                                                            New DataColumn("IDR Amount", GetType(Double))})
-        GridTicket.DataSource = DtScan
-        GridViewTicket.OptionsView.ShowAutoFilterRow = False
-
+        gv_Request = gv_GridView
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
@@ -94,7 +74,7 @@ Public Class FrmTravelSettleDetail
             End If
             ff_Detail7.Close()
         End If
-        ff_Detail7 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridDtl)
+        ff_Detail7 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridEntertain)
         ff_Detail7.MdiParent = FrmMain
         ff_Detail7.StartPosition = FormStartPosition.CenterScreen
         ff_Detail7.Show()
@@ -103,14 +83,13 @@ Public Class FrmTravelSettleDetail
     Private Sub FrmTravelSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
         Call InitialSetForm()
-
     End Sub
 
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjTravelSettHeader.TravelSettID = fs_Code
-                ObjTravelSettHeader.GetTravelSettById()
+                cls_TravelSett.TravelSettleID = fs_Code
+                cls_TravelSett.GetTravelSettHeaderByID()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -119,12 +98,11 @@ Public Class FrmTravelSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Travel Settement Detail" + ": " + fs_Code
+                Me.Text = "TRAVEL SETTLEMENT" + ": " + fs_Code
             Else
-                Me.Text = "Travel Settement Detail"
+                Me.Text = "NEW TRAVEL SETTLEMENT"
             End If
             Call LoadTxtBox()
-            LoadGridSummary()
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
@@ -145,7 +123,7 @@ Public Class FrmTravelSettleDetail
                 row = rowHandle
                 id = IIf(GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID"))
                 If id <> "" Then
-                    id2 = ObjTravelSettDetail.GetSettleID(id)
+                    'id2 = ObjTravelSettDetail.GetSettleID(id)
                 End If
             End If
         Next rowHandle
@@ -156,71 +134,33 @@ Public Class FrmTravelSettleDetail
 
     Public Sub LoadGridDetail()
         Try
-            If fs_Code <> "" Then
-                dtGrid = New DataTable
-                ObjTravelSettDetail.TravelSettID = txtTravelSettID.Text
-                dtGrid = ObjTravelSettDetail.GetTravelSettDetailByID()
+            dtGrid = New DataTable
+            cls_TravelSettTransport.TravelSettleID = txtTravelSettID.Text
+            dtGrid = cls_TravelSettTransport.GetTravelSettTransportByID
+            GridTransport.DataSource = dtGrid
+            'GridCellFormat(GridViewTransport)
 
-                Dim FilteredRows As DataRow()
+            cls_TravelSettStaying.TravelSettleID = txtTravelSettID.Text
+            dtGrid = cls_TravelSettStaying.GetTravelSettHotelByID
+            GridHotel.DataSource = dtGrid
+            'GridCellFormat(GridViewHotel)
 
-                FilteredRows = dtGrid.Select("ID = 1")
-                GridTicket.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewTicket)
-                FilteredRows = dtGrid.Select("ID = 2")
-                GridTransport.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewTransport)
-                FilteredRows = dtGrid.Select("ID = 3")
-                GridHotel.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewHotel)
-                FilteredRows = dtGrid.Select("ID = 4")
-                GridEntertain.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewEntertain)
-                FilteredRows = dtGrid.Select("ID = 5")
-                GridAllowance.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewAllowance)
-                FilteredRows = dtGrid.Select("ID = 6")
-                GridPreTrip.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewPreTrip)
-                FilteredRows = dtGrid.Select("ID >= 7")
-                GridOther.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewOther)
+            cls_TravelSettEntertain.TravelSettleID = txtTravelSettID.Text
+            dtGrid = cls_TravelSettEntertain.GetTravelSettEntertainByID
+            GridEntertain.DataSource = dtGrid
+            'GridCellFormat(GridViewEntertain)
 
-                HitungAmountDetail(GridViewTicket, 0)
-                HitungAmountDetail(GridViewTransport, 1)
-                HitungAmountDetail(GridViewHotel, 2)
-                HitungAmountDetail(GridViewEntertain, 3)
-                HitungAmountDetail(GridViewAllowance, 4)
-                HitungAmountDetail(GridViewPreTrip, 5)
-                HitungAmountDetail(GridViewOther, 6)
-            Else
-                dtGrid = New DataTable
-                ObjTravelDetail.TravelID = ""
-                dtGrid = ObjTravelDetail.GetDataDetailByID()
+            cls_TravelSettOther.TravelSettleID = txtTravelSettID.Text
+            dtGrid = cls_TravelSettOther.GetTravelSettOtherByID
+            GridOther.DataSource = dtGrid
+            'GridCellFormat(GridViewOther)
 
-                Dim FilteredRows As DataRow()
+            CreateTable()
+            HitungSummaryAll(GridSumTransport, GridViewSumTransport)
 
-                FilteredRows = dtGrid.Select("ID = 1")
-                GridTicket.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewTicket)
-                FilteredRows = dtGrid.Select("ID = 2")
-                GridTransport.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewTransport)
-                FilteredRows = dtGrid.Select("ID = 3")
-                GridHotel.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewHotel)
-                FilteredRows = dtGrid.Select("ID = 4")
-                GridEntertain.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewEntertain)
-                FilteredRows = dtGrid.Select("ID = 5")
-                GridAllowance.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewAllowance)
-                FilteredRows = dtGrid.Select("ID = 6")
-                GridPreTrip.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewPreTrip)
-                FilteredRows = dtGrid.Select("ID >= 7")
-                GridOther.DataSource = FilteredRows.CopyToDataTable
-                GridCellFormat(GridViewOther)
-            End If
+            GridBalanceTransport.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceTransport)
+
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -229,65 +169,67 @@ Public Class FrmTravelSettleDetail
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
-                With ObjTravelSettHeader
-                    txtTravelSettID.Text = .TravelSettID
-                    TxtNoTravel.Text = .TravelID
-                    TxtNama.Text = .Nama
+                With cls_TravelSett
+                    txtTravelSettID.Text = .TravelSettleID
+                    TxtTgl.EditValue = .DateHeader
                     TxtDep.Text = .DeptID
-                    TxtDestination.Text = .Destination
+                    TxtNama.Text = .Nama
                     txtPurpose.Text = .Purpose
-                    TxtTerm.Text = .Term
-                    'txtPickUp.Text = .PickUp
-                    txtVisa.Text = .Visa
-                    TxtTgl.EditValue = .Tgl
-                    TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatBulat)
-                    TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatBulat)
-                    TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatBulat)
-                    TxtTotIDR.Text = Format(.TotalAdvIDR, gs_FormatBulat)
-                    txtTotalSettIDR.Text = Format(.TotalSettIDR, gs_FormatBulat)
-                    txtTotalSettYEN.Text = Format(.TotalSettYEN, gs_FormatBulat)
-                    txtTotalSettUSD.Text = Format(.TotalSettUSD, gs_FormatBulat)
-                    txtTotalAmountSettIDR.Text = Format(.TotalAmountSettIDR, gs_FormatBulat)
-                    TxtArrDate.EditValue = .Arrdate
-                    TxtDepDate.EditValue = .Depdate
+                    txtTravelType.Text = .TravelType
+                    TxtDepDate.EditValue = .DepartureDate
+                    TxtArrDate.EditValue = .ArrivalDate
                     txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
-                    TxtTgl.Enabled = False
-                    TxtNama.Enabled = False
-                    TxtNoTravel.Enabled = False
+                    TxtTerm.Text = .Term
+                    TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatDecimal)
+                    TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatDecimal)
+                    TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatDecimal)
+                    txtRateUSD.Text = Format(.RateUSD, gs_FormatDecimal)
+                    txtRateYEN.Text = Format(.RateYEN, gs_FormatDecimal)
                 End With
+                dtGrid = New DataTable
+                cls_TravelSettDetail.TravelSettleID = txtTravelSettID.Text
+                dtGrid = cls_TravelSettDetail.GetTravelSettDetailByID
+                For Each row As DataRow In dtGrid.Rows
+                    Rows.Add(row)
+                Next
             Else
-                TxtNama.Text = ""
-                TxtNoTravel.Text = ""
-                TxtDep.Text = ""
-                TxtDestination.Text = ""
-                txtVisa.Text = "YES"
-                txtPurpose.Text = ""
-                'txtPickUp.Text = ""
+                Dim i As Integer
+                For i = 0 To gv_Request.SelectedRowsCount() - 1
+                    If (gv_Request.GetSelectedRows()(i) >= 0) Then
+                        Rows.Add(gv_Request.GetDataRow(gv_Request.GetSelectedRows()(i)))
+                    End If
+                Next
+
+                Dim listNama = New ArrayList()
+                Dim advanceIDR As Double
+                Dim advanceUSD As Double
+                Dim advanceYEN As Double
+
+                For i = 0 To Rows.Count - 1
+                    Dim Row As DataRow = CType(Rows(i), DataRow)
+                    TxtDep.Text = Row("DeptID")
+                    listNama.Add(Row("Nama"))
+                    txtPurpose.Text = Row("Purpose")
+                    txtTravelType.Text = Row("TravelType")
+                    TxtDepDate.EditValue = Row("DepartureDate")
+                    TxtArrDate.EditValue = Row("ArrivalDate")
+                    TxtTerm.Text = Row("Term")
+                    advanceIDR = advanceIDR + Row("AdvanceIDR")
+                    advanceUSD = advanceUSD + Row("AdvanceUSD")
+                    advanceYEN = advanceYEN + Row("AdvanceYEN")
+                Next
+                TxtNama.Text = String.Join(", ", listNama.ToArray)
                 TxtTgl.EditValue = DateTime.Today
-                TxtTotalAdvanceIDR.Text = "0"
-                TxtTotalAdvanceYEN.Text = "0"
-                TxtTotalAdvanceUSD.Text = "0"
-                TxtTotIDR.Text = "0"
-                txtTotalSettIDR.Text = "0"
-                txtTotalSettYEN.Text = "0"
-                txtTotalSettUSD.Text = "0"
-                txtTotalAmountSettIDR.Text = "0"
-                txtBalanceTotalIDR.Text = "0"
-                txtBalanceTotalYEN.Text = "0"
-                txtBalanceTotalUSD.Text = "0"
-                txtBalanceTotalAmountIDR.Text = "0"
-                TxtArrDate.EditValue = DateTime.Today
-                TxtDepDate.EditValue = DateTime.Today
-                txtTotalDay.Text = DateDiff(DateInterval.Day, TxtArrDate.EditValue, TxtDepDate.EditValue) + 1
+                TxtTotalAdvanceIDR.Text = Format(advanceIDR, gs_FormatDecimal)
+                TxtTotalAdvanceUSD.Text = Format(advanceUSD, gs_FormatDecimal)
+                TxtTotalAdvanceYEN.Text = Format(advanceYEN, gs_FormatDecimal)
+                txtRateUSD.Text = Format(cls_TravelSett.GetRate("USD", TxtTgl.EditValue), gs_FormatDecimal)
+                txtRateYEN.Text = Format(cls_TravelSett.GetRate("JPY", TxtTgl.EditValue), gs_FormatDecimal)
+                txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
             End If
         Catch ex As Exception
             Throw
         End Try
-    End Sub
-
-    Public Overrides Sub Proc_Refresh()
-        Call LoadTxtBox()
-        LoadGridDetail()
     End Sub
 
     Public Overrides Function ValidateSave() As Boolean
@@ -300,46 +242,35 @@ Public Class FrmTravelSettleDetail
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
 
-            If TxtNoTravel.Text = "" OrElse TxtNama.Text = "" Then
-                Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-            End If
-
             DataTravelSettDetail()
-            For i As Integer = 0 To ObjTravelSettHeader.ObjSettDetails.Count - 1
-                Dim _date As Date = ObjTravelSettHeader.ObjSettDetails(i).DetailDate
-                Dim payType As String = ObjTravelSettHeader.ObjSettDetails(i).PaymentType
-                Dim noRek As String = ObjTravelSettHeader.ObjSettDetails(i).Norek
-                If _date = Nothing OrElse payType = "CC" And noRek = "" Then
-                    Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-                End If
-            Next
 
             If lb_Validated Then
-                With ObjTravelSettHeader
-                    _TravelSettID = txtTravelSettID.Text
-                    .TravelSettID = _TravelSettID
-                    .TravelID = TxtNoTravel.Text
-                    .Nama = TxtNama.Text
+                If isUpdate = False Then
+                    txtTravelSettID.Text = cls_TravelSett.TravelSettAutoNo
+                End If
+
+                With cls_TravelSett
+                    .TravelSettleID = txtTravelSettID.Text
+                    .DateHeader = TxtTgl.EditValue
                     .DeptID = TxtDep.Text
-                    .Destination = TxtDestination.Text
+                    .Nama = TxtNama.Text
+                    .Destination = ""
+                    .TravelType = txtTravelType.Text
                     .Purpose = txtPurpose.Text
+                    .DepartureDate = TxtDepDate.EditValue
+                    .ArrivalDate = TxtArrDate.EditValue
                     .Term = TxtTerm.Text
                     .PickUp = ""
-                    '.PickUp = txtPickUp.Text
-                    .Visa = txtVisa.Text
-                    .Tgl = TxtTgl.EditValue
+                    .Visa = ""
+                    .RateUSD = txtRateUSD.Text
+                    .RateYEN = txtRateYEN.Text
                     .TotalAdvanceIDR = TxtTotalAdvanceIDR.Text
                     .TotalAdvanceYEN = TxtTotalAdvanceYEN.Text
                     .TotalAdvanceUSD = TxtTotalAdvanceUSD.Text
-                    .TotalAdvIDR = TxtTotIDR.Text
-                    .TotalSettIDR = txtTotalSettIDR.Text
-                    .TotalSettYEN = txtTotalSettYEN.Text
-                    .TotalSettUSD = txtTotalSettUSD.Text
-                    .TotalAmountSettIDR = txtTotalAmountSettIDR.Text
-                    .Arrdate = TxtArrDate.EditValue
-                    .Depdate = TxtDepDate.EditValue
                 End With
+
             End If
+
         Catch ex As Exception
             lb_Validated = False
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -348,173 +279,16 @@ Public Class FrmTravelSettleDetail
         Return lb_Validated
     End Function
 
-    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CAccountTicket.ButtonClick, CAccountTransport.ButtonClick, CAccountHotel.ButtonClick, CAccountEntertain.ButtonClick, CAccountAllowance.ButtonClick, CAccountPreTrip.ButtonClick, CAccountOther.ButtonClick
-        Try
-            ObjTravelHeader = New TravelHeaderModel
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            dtSearch = ObjTravelHeader.GetAccount
-            ls_Judul = "Account"
-
-            Dim editor As ButtonEdit = CType(sender, ButtonEdit)
-
-            If editor.AccessibleName = CAccountTicket.Name Then
-                ls_OldKode = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountTransport.Name Then
-                ls_OldKode = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountHotel.Name Then
-                ls_OldKode = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountEntertain.Name Then
-                ls_OldKode = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountAllowance.Name Then
-                ls_OldKode = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountPreTrip.Name Then
-                ls_OldKode = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Account"))
-            ElseIf editor.AccessibleName = CAccountOther.Name Then
-                ls_OldKode = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Account") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Account"))
-            End If
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
-            Dim Value2 As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                If editor.AccessibleName = CAccountTicket.Name Then
-                    GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountTransport.Name Then
-                    GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountHotel.Name Then
-                    GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountEntertain.Name Then
-                    GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountAllowance.Name Then
-                    GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountPreTrip.Name Then
-                    GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Account", Value1)
-                ElseIf editor.AccessibleName = CAccountOther.Name Then
-                    GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "Account", Value1)
-                End If
-
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub CNoRekening_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CNoRekTicket.ButtonClick, CNoRekTransport.ButtonClick, CNoRekHotel.ButtonClick, CNoRekEntertain.ButtonClick, CNoRekAllowance.ButtonClick, CNoRekPreTrip.ButtonClick, CNoRekOther.ButtonClick
-        Try
-            'ObjTravelSettHeader = New TravelSettlementHeaderModel
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-            Dim paymentType As String = ""
-            Dim norek As String = ""
-            Dim NIK As String = ""
-
-            Dim editor As ButtonEdit = CType(sender, ButtonEdit)
-
-            If editor.AccessibleName = CNoRekTicket.Name Then
-                ls_OldKode = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekTransport.Name Then
-                ls_OldKode = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekHotel.Name Then
-                ls_OldKode = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekEntertain.Name Then
-                ls_OldKode = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekAllowance.Name Then
-                ls_OldKode = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekPreTrip.Name Then
-                ls_OldKode = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "PaymentType"))
-            ElseIf editor.AccessibleName = CNoRekOther.Name Then
-                ls_OldKode = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "NoRekening") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "NoRekening"))
-                paymentType = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType"))
-            End If
-
-            If paymentType = "CC" Then
-                NIK = ObjTravelSettHeader.NIK
-                norek = ""
-            Else
-                NIK = ""
-            End If
-
-            dtSearch = ObjTravelSettHeader.GetTravelerCreditCard(NIK)
-            ls_Judul = "Credit Card"
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(1).ToString.Trim <> ls_OldKode Then
-                norek = lF_SearchData.Values.Item(1).ToString.Trim
-                If editor.AccessibleName = CNoRekTicket.Name Then
-                    GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekTransport.Name Then
-                    GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekHotel.Name Then
-                    GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekEntertain.Name Then
-                    GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekAllowance.Name Then
-                    GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekPreTrip.Name Then
-                    GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "NoRekening", norek)
-                ElseIf editor.AccessibleName = CNoRekOther.Name Then
-                    GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "NoRekening", norek)
-                End If
-            End If
-
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
-
-        'f = New FrmTravel_Detail2(ID, Nama, IsNew, dt, Grid)
-        'f.StartPosition = FormStartPosition.CenterScreen
-        'f.MaximizeBox = False
-        'f.ShowDialog()
-
-    End Sub
-
-    Public Overrides Sub Proc_Approve()
-        ''CallForm()
-    End Sub
-
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                _TravelSettID = ObjTravelSettHeader.TravelSettAutoNo
-                ObjTravelSettHeader.TravelSettID = _TravelSettID
-                DataTravelSettDetail()
-                ObjTravelSettHeader.InsertDataTravelSett()
+                cls_TravelSett.InsertDataTravelSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                DataTravelSettDetail()
-                ObjTravelSettHeader.UpdateTravelSett()
+                cls_TravelSett.UpdateDataTravelSettle()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjTravelSettHeader.GetTravelSettHeader()
+            GridDtl.DataSource = cls_TravelSett.GetDataGridRequest()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
@@ -523,17 +297,57 @@ Public Class FrmTravelSettleDetail
         End Try
     End Sub
 
-    Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
+    Public Overrides Sub Proc_Refresh()
+        InitialSetForm()
+    End Sub
+
+    Public Overrides Sub Proc_print()
+        FrmReportTravelSett.StartPosition = FormStartPosition.CenterScreen
+        FrmReportTravelSett.txtTravelSettleID.Text = txtTravelSettID.Text
+        FrmReportTravelSett.Show()
+    End Sub
+
+    Private Sub txtRateUSD_EditValueChanged(sender As Object, e As EventArgs) Handles txtRateUSD.EditValueChanged
+        If String.IsNullOrEmpty(txtRateUSD.Text) Then
+            txtRateUSD.Text = 1
+        End If
+        txtRateUSD.Text = Format(Convert.ToDecimal(txtRateUSD.Text), gs_FormatDecimal)
+        HitungAmountDetail()
+        If TabPage = "TabPageVoucher" Then
+            HitungAmountBalance()
+        End If
+    End Sub
+
+    Private Sub txtRateYEN_EditValueChanged(sender As Object, e As EventArgs) Handles txtRateYEN.EditValueChanged
+        If String.IsNullOrEmpty(txtRateYEN.Text) Then
+            txtRateYEN.Text = 1
+        End If
+        txtRateYEN.Text = Format(Convert.ToDecimal(txtRateYEN.Text), gs_FormatDecimal)
+        HitungAmountDetail()
+        If TabPage = "TabPageVoucher" Then
+            HitungAmountBalance()
+        End If
+    End Sub
+
+    Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CAccountTransport.ButtonClick, CAccountHotel.ButtonClick, CAccountEntertain.ButtonClick, CAccountOther.ButtonClick
         Try
-            ObjTravelHeader = New TravelHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjTravelHeader.GetDept
-            ls_OldKode = TxtDep.Text
-            ls_Judul = "Departemen"
+            dtSearch = cls_TravelSett.GetAccount
+            ls_Judul = "Account"
 
+            Dim editor As ButtonEdit = CType(sender, ButtonEdit)
+
+            If editor.AccessibleName = CAccountTransport.Name Then
+                ls_OldKode = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AccountID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AccountID"))
+            ElseIf editor.AccessibleName = CAccountHotel.Name Then
+                ls_OldKode = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AccountID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AccountID"))
+            ElseIf editor.AccessibleName = CAccountEntertain.Name Then
+                ls_OldKode = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AccountID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AccountID"))
+            Else ls_OldKode = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AccountID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AccountID"))
+            End If
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -546,8 +360,16 @@ Public Class FrmTravelSettleDetail
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                TxtDep.Text = Value1
+                If editor.AccessibleName = CAccountTransport.Name Then
+                    GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AccountID", Value1)
+                ElseIf editor.AccessibleName = CAccountHotel.Name Then
+                    GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AccountID", Value1)
+                ElseIf editor.AccessibleName = CAccountEntertain.Name Then
+                    GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AccountID", Value1)
+                Else GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AccountID", Value1)
+                End If
             End If
+
             lF_SearchData.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -555,473 +377,223 @@ Public Class FrmTravelSettleDetail
         End Try
     End Sub
 
-    Private Sub TxtNama_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNama.ButtonClick
+    Private Sub CPayType_EditValueChanged(sender As Object, e As EventArgs) Handles CPayTypeTransport.EditValueChanged, CPayTypeHotel.EditValueChanged, CPayTypeEntertain.EditValueChanged, CPayTypeOther.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
 
-        Try
-            ObjTravelSettHeader = New TravelSettlementHeaderModel
+        Dim PayType As String
+        Dim CreditCardID As String = ""
+        Dim CreditCardNumber As String = ""
+        Dim AccountNameNBank As String = ""
+        Dim PaymentType As String = ""
+
+        Dim editor As ComboBoxEdit = CType(sender, ComboBoxEdit)
+
+        If editor.AccessibleName = CPayTypeTransport.Name Then
+            PayType = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "PaymentType"))
+        ElseIf editor.AccessibleName = CPayTypeHotel.Name Then
+            PayType = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "PaymentType"))
+        ElseIf editor.AccessibleName = CPayTypeEntertain.Name Then
+            PayType = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "PaymentType"))
+        Else PayType = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType"))
+        End If
+
+
+        If PayType = "CREDIT CARD" Then
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
 
-            dtSearch = ObjTravelSettHeader.GetTravelerFromTravelID(TxtNoTravel.Text)
-            ls_OldKode = TxtNama.Text
-            ls_Judul = "Traveller"
+            dtSearch = cls_TravelSett.GetCreditCard
+            ls_Judul = "CREDIT CARD"
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
             lF_SearchData.Text = "Select Data " & ls_Judul
             lF_SearchData.StartPosition = FormStartPosition.CenterScreen
             lF_SearchData.ShowDialog()
-            Dim nama As String = ""
-            Dim deptid As String = ""
 
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                ObjTravelSettHeader.NIK = lF_SearchData.Values.Item(1).ToString.Trim
-                nama = lF_SearchData.Values.Item(2).ToString.Trim
-                deptid = lF_SearchData.Values.Item(3).ToString.Trim
-                TxtNama.Text = nama
-                TxtDep.Text = deptid
-                ResetGridDetail()
+            If lF_SearchData.Values IsNot Nothing Then
+                CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
+                CreditCardNumber = lF_SearchData.Values.Item(1).ToString.Trim
+                AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                PaymentType = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
+            Else
+                PaymentType = "CASH"
             End If
+
             lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
+        Else
+            PaymentType = PayType
+        End If
 
-    Private Sub TxtNoTravel_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoTravel.ButtonClick
-        Try
-            ObjTravelHeader = New TravelHeaderModel
-            Dim title As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            dtSearch = ObjTravelHeader.GetAdvanceTravel
-            ls_OldKode = TxtNoTravel.Text
-            title = "Travel"
-
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & title
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim TravelID As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                TravelID = lF_SearchData.Values.Item(0).ToString.Trim
-                TxtNoTravel.Text = TravelID
-                ObjTravelHeader.TravelID = TravelID
-
-                ObjTravelHeader.GetTravelByTravelID()
-
-                With ObjTravelHeader
-                    TxtNama.Text = ""
-                    TxtDep.Text = ""
-                    TxtDestination.Text = .Destination
-                    txtPurpose.Text = .Purpose
-                    TxtTerm.Text = .Term
-                    'txtPickUp.Text = .PickUp
-                    txtVisa.Text = .Visa
-                    'TxtTgl.EditValue = .Tgl
-                    TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatBulat)
-                    TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatBulat)
-                    TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatBulat)
-                    TxtTotIDR.Text = Format(.TotalAdvIDR, gs_FormatBulat)
-                    TxtArrDate.EditValue = .Arrdate
-                    TxtDepDate.EditValue = .Depdate
-                    txtTotalDay.Text = DateDiff(DateInterval.Day, .Depdate, .Arrdate) + 1
-
-                    ResetGridDetail()
-                End With
-            End If
-            lF_SearchData.Close()
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub ResetGridDetail()
-        Dim dtGrid As New DataTable
-        Dim FilteredRows As DataRow()
-
-        ObjTravelDetail.TravelID = TxtNoTravel.Text
-        dtGrid = ObjTravelDetail.GetDataDetailByID2()
-
-        FilteredRows = dtGrid.Select("ID = 1")
-        GridTicket.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewTicket)
-        FilteredRows = dtGrid.Select("ID = 2")
-        GridTransport.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewTransport)
-        FilteredRows = dtGrid.Select("ID = 3")
-        GridHotel.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewHotel)
-        FilteredRows = dtGrid.Select("ID = 4")
-        GridEntertain.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewEntertain)
-        FilteredRows = dtGrid.Select("ID = 5")
-        GridAllowance.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewAllowance)
-        FilteredRows = dtGrid.Select("ID = 6")
-        GridPreTrip.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewPreTrip)
-        FilteredRows = dtGrid.Select("ID >= 7")
-        GridOther.DataSource = FilteredRows.CopyToDataTable
-        GridCellFormat(GridViewOther)
-
-        HitungAmountDetail(GridViewTicket, 0)
-        HitungAmountDetail(GridViewTransport, 1)
-        HitungAmountDetail(GridViewHotel, 2)
-        HitungAmountDetail(GridViewEntertain, 3)
-        HitungAmountDetail(GridViewAllowance, 4)
-        HitungAmountDetail(GridViewPreTrip, 5)
-        HitungAmountDetail(GridViewOther, 6)
+        If editor.AccessibleName = CPayTypeTransport.Name Then
+            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "CreditCardID", CreditCardID)
+            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AccountName", AccountNameNBank)
+            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "PaymentType", PaymentType)
+            HitungSummaryAll(GridSumTransport, GridViewSumTransport)
+            GridBalanceTransport.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceTransport)
+        ElseIf editor.AccessibleName = CPayTypeHotel.Name Then
+            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "CreditCardID", CreditCardID)
+            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AccountName", AccountNameNBank)
+            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "PaymentType", PaymentType)
+            HitungSummaryAll(GridSumHotel, GridViewSumHotel)
+            GridBalanceHotel.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceHotel)
+        ElseIf editor.AccessibleName = CPayTypeEntertain.Name Then
+            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "CreditCardID", CreditCardID)
+            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AccountName", AccountNameNBank)
+            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "PaymentType", PaymentType)
+            HitungSummaryAll(GridSumEntertain, GridViewSumEntertain)
+            GridBalanceEntertain.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceEntertain)
+        Else GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "CreditCardID", CreditCardID)
+            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AccountName", AccountNameNBank)
+            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType", PaymentType)
+            HitungSummaryAll(GridSumOthers, GridViewSumOthers)
+            GridBalanceOther.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceOther)
+        End If
     End Sub
 
     Private Sub DataTravelSettDetail()
-        ObjTravelSettHeader.ObjSettDetails.Clear()
         Dim seq As Integer
-        'Data from grid ticket
-        seq = 0
-        For i As Integer = 0 To GridViewTicket.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 1 'GridViewTicket.GetRowCellValue(i, "ID")
-                seq = seq + 1
-                .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewTicket.GetRowCellValue(i, "Date")), Nothing, GridViewTicket.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewTicket.GetRowCellValue(i, "Account").ToString().TrimEnd
-                .Description = GridViewTicket.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewTicket.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewTicket.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewTicket.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewTicket.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewTicket.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewTicket.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewTicket.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewTicket.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewTicket.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewTicket.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewTicket.GetRowCellValue(i, "SubAccount")
+
+        'Data settlement detail
+        cls_TravelSett.ObjSettleDetail.Clear()
+        For i As Integer = 0 To Rows.Count - 1
+            Dim Row As DataRow = CType(Rows(i), DataRow)
+            cls_TravelSettDetail = New TravelSettleDetailModel
+            With cls_TravelSettDetail
+                .TravelSettleID = txtTravelSettID.Text
+                .NoRequest = Row("NoRequest")
+                .Nama = Row("Nama")
             End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
+            cls_TravelSett.ObjSettleDetail.Add(cls_TravelSettDetail)
         Next
 
         'Data from grid transportasi
+        cls_TravelSett.ObjSettleTransport.Clear()
         seq = 0
         For i As Integer = 0 To GridViewTransport.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 2 'GridViewTransport.GetRowCellValue(i, "ID")
-                seq = seq + 1
+            cls_TravelSettTransport = New TravelSettleTransportModel
+            seq = seq + 1
+            With cls_TravelSettTransport
+                .TravelSettleID = txtTravelSettID.Text
+                .ID = GridViewTransport.GetRowCellValue(i, "ID")
                 .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewTransport.GetRowCellValue(i, "Date")), Nothing, GridViewTransport.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewTransport.GetRowCellValue(i, "Account").ToString().TrimEnd
-                .Description = GridViewTransport.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewTransport.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewTransport.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewTransport.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewTransport.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewTransport.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewTransport.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewTransport.GetRowCellValue(i, "SubAccount")
+                .AccountID = IIf(GridViewTransport.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(i, "AccountID"))
+                If String.IsNullOrEmpty(IIf(GridViewTransport.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(i, "Date"))) Then
+                    Err.Raise(ErrNumber, , "Tanggal transport tidak boleh kosong !")
+                End If
+                .DateTransport = IIf(String.IsNullOrEmpty(GridViewTransport.GetRowCellValue(i, "Date")), Nothing, GridViewTransport.GetRowCellValue(i, "Date"))
+                .TFrom = GridViewTransport.GetRowCellValue(i, "TFrom").ToString()
+                .TTo = GridViewTransport.GetRowCellValue(i, "TTo").ToString()
+                .Transport = GridViewTransport.GetRowCellValue(i, "Transport").ToString()
+                .PaymentType = IIf(GridViewTransport.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewTransport.GetRowCellValue(i, "PaymentType").ToString())
+                .CreditCardID = GridViewTransport.GetRowCellValue(i, "CreditCardID").ToString()
+                .CreditCardNumber = GridViewTransport.GetRowCellValue(i, "CreditCardNumber").ToString()
+                .AccountName = GridViewTransport.GetRowCellValue(i, "AccountName").ToString()
+                .CurryID = GridViewTransport.GetRowCellValue(i, "CurryID").ToString()
+                .Amount = IIf(GridViewTransport.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "Amount")))
+                .AmountIDR = IIf(GridViewTransport.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "AmountIDR")))
             End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
+            cls_TravelSett.ObjSettleTransport.Add(cls_TravelSettTransport)
         Next
 
         'Data from grid hotel
+        cls_TravelSett.ObjSettleStaying.Clear()
         seq = 0
         For i As Integer = 0 To GridViewHotel.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 3 'GridViewHotel.GetRowCellValue(i, "ID")
-                seq = seq + 1
+            cls_TravelSettStaying = New TravelSettleStayingModel
+            seq = seq + 1
+            With cls_TravelSettStaying
+                .TravelSettleID = txtTravelSettID.Text
+                .ID = GridViewHotel.GetRowCellValue(i, "ID")
                 .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewHotel.GetRowCellValue(i, "Date")), Nothing, GridViewHotel.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewHotel.GetRowCellValue(i, "Account").ToString().TrimEnd
+                .AccountID = IIf(GridViewHotel.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(i, "AccountID"))
+                If String.IsNullOrEmpty(IIf(GridViewHotel.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(i, "Date"))) Then
+                    Err.Raise(ErrNumber, , "Tanggal Hotel tidak boleh kosong !")
+                End If
+                .DateStaying = GridViewHotel.GetRowCellValue(i, "Date")
                 .Description = GridViewHotel.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewHotel.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewHotel.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewHotel.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewHotel.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewHotel.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewHotel.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewHotel.GetRowCellValue(i, "SubAccount")
+                .PaymentType = IIf(GridViewHotel.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewHotel.GetRowCellValue(i, "PaymentType").ToString())
+                .CreditCardID = GridViewHotel.GetRowCellValue(i, "CreditCardID").ToString()
+                .CreditCardNumber = GridViewHotel.GetRowCellValue(i, "CreditCardNumber").ToString()
+                .AccountName = GridViewHotel.GetRowCellValue(i, "AccountName").ToString()
+                .CurryID = GridViewHotel.GetRowCellValue(i, "CurryID").ToString()
+                .Amount = IIf(GridViewHotel.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "Amount")))
+                .AmountIDR = IIf(GridViewHotel.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "AmountIDR")))
             End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
+            cls_TravelSett.ObjSettleStaying.Add(cls_TravelSettStaying)
         Next
 
         'Data from grid entertainment
+        cls_TravelSett.ObjSettleEntertain.Clear()
         seq = 0
         For i As Integer = 0 To GridViewEntertain.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 4 'GridViewEntertain.GetRowCellValue(i, "ID")
-                seq = seq + 1
+            cls_TravelSettEntertain = New TravelSettleEntertainModel
+            seq = seq + 1
+            With cls_TravelSettEntertain
+                .TravelSettleID = txtTravelSettID.Text
+                .ID = GridViewEntertain.GetRowCellValue(i, "ID")
                 .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewEntertain.GetRowCellValue(i, "Date")), Nothing, GridViewEntertain.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewEntertain.GetRowCellValue(i, "Account").ToString().TrimEnd
+                .AccountID = IIf(GridViewEntertain.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(i, "AccountID"))
+                If String.IsNullOrEmpty(IIf(GridViewEntertain.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(i, "Date"))) Then
+                    Err.Raise(ErrNumber, , "Tanggal Entertain tidak boleh kosong !")
+                End If
+                .DateEntertain = GridViewEntertain.GetRowCellValue(i, "Date")
+                .EntertainID = GridViewEntertain.GetRowCellValue(i, "EntertainID").ToString()
                 .Description = GridViewEntertain.GetRowCellValue(i, "Description").ToString()
-                .EntertainID = IIf(GridViewEntertain.GetRowCellValue(i, "EntertainID") Is Nothing, "", GridViewEntertain.GetRowCellValue(i, "EntertainID"))
-                .CuryID = GridViewEntertain.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewEntertain.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewEntertain.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewEntertain.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewEntertain.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewEntertain.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewEntertain.GetRowCellValue(i, "SubAccount")
+                .PaymentType = IIf(GridViewEntertain.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewEntertain.GetRowCellValue(i, "PaymentType").ToString())
+                .CreditCardID = GridViewEntertain.GetRowCellValue(i, "CreditCardID").ToString()
+                .CreditCardNumber = GridViewEntertain.GetRowCellValue(i, "CreditCardNumber").ToString()
+                .AccountName = GridViewEntertain.GetRowCellValue(i, "AccountName").ToString()
+                .CurryID = GridViewEntertain.GetRowCellValue(i, "CurryID").ToString()
+                .Amount = IIf(GridViewEntertain.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "Amount")))
+                .AmountIDR = IIf(GridViewEntertain.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountIDR")))
             End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
-        Next
-
-        'Data from grid poket allowance
-        seq = 0
-        For i As Integer = 0 To GridViewAllowance.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 5 'GridViewAllowance.GetRowCellValue(i, "ID")
-                seq = seq + 1
-                .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewAllowance.GetRowCellValue(i, "Date")), Nothing, GridViewAllowance.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewAllowance.GetRowCellValue(i, "Account").ToString().TrimEnd
-                .Description = GridViewAllowance.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewAllowance.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewAllowance.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewAllowance.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewAllowance.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewAllowance.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewAllowance.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewAllowance.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewAllowance.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewAllowance.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewAllowance.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewAllowance.GetRowCellValue(i, "SubAccount")
-            End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
-        Next
-
-        'Data from grid preparation B-Trip
-        seq = 0
-        For i As Integer = 0 To GridViewPreTrip.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 6 'GridViewPreTrip.GetRowCellValue(i, "ID")
-                seq = seq + 1
-                .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewPreTrip.GetRowCellValue(i, "Date")), Nothing, GridViewPreTrip.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewPreTrip.GetRowCellValue(i, "Account").ToString().TrimEnd
-                .Description = GridViewPreTrip.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewPreTrip.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewPreTrip.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewPreTrip.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewPreTrip.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewPreTrip.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewPreTrip.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewPreTrip.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewPreTrip.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewPreTrip.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewPreTrip.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewPreTrip.GetRowCellValue(i, "SubAccount")
-            End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
+            cls_TravelSett.ObjSettleEntertain.Add(cls_TravelSettEntertain)
         Next
 
         'Data from grid other
+        cls_TravelSett.ObjSettleOther.Clear()
         seq = 0
         For i As Integer = 0 To GridViewOther.RowCount - 1
-            ObjTravelSettDetail = New TravelSettlementDetailModel
-            With ObjTravelSettDetail
-                .TravelSettID = _TravelSettID
-                .TravelID = TxtNoTravel.Text
-                .ID = 7 'GridViewOther.GetRowCellValue(i, "ID")
-                seq = seq + 1
+            cls_TravelSettOther = New TravelSettleOtherModel
+            seq = seq + 1
+            With cls_TravelSettOther
+                .TravelSettleID = txtTravelSettID.Text
+                .ID = GridViewOther.GetRowCellValue(i, "ID")
                 .Seq = seq
-                .DetailDate = IIf(String.IsNullOrEmpty(GridViewOther.GetRowCellValue(i, "Date")), Nothing, GridViewOther.GetRowCellValue(i, "Date"))
-                .AcctID = GridViewOther.GetRowCellValue(i, "Account").ToString().TrimEnd
+                .AccountID = IIf(GridViewOther.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(i, "AccountID"))
+                If String.IsNullOrEmpty(IIf(GridViewOther.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewOther.GetRowCellValue(i, "Date"))) Then
+                    Err.Raise(ErrNumber, , "Tanggal Others tidak boleh kosong !")
+                End If
+                .DateOther = GridViewOther.GetRowCellValue(i, "Date")
                 .Description = GridViewOther.GetRowCellValue(i, "Description").ToString()
-                .CuryID = GridViewOther.GetRowCellValue(i, "CuryID")
-                .Rate = GridViewOther.GetRowCellValue(i, "Rate")
-                .Amount = Convert.ToDouble(GridViewOther.GetRowCellValue(i, "Amount"))
-                .AmountIDR = Convert.ToDouble(GridViewOther.GetRowCellValue(i, "AmountIDR"))
-                .PaymentType = GridViewOther.GetRowCellValue(i, "PaymentType")
-                .Norek = GridViewOther.GetRowCellValue(i, "NoRekening")
-                .CuryIDSett = GridViewOther.GetRowCellValue(i, "CuryIDSett")
-                .RateSett = GridViewOther.GetRowCellValue(i, "RateSett")
-                .AmountSett = Convert.ToDouble(GridViewOther.GetRowCellValue(i, "AmountSett"))
-                .AmountIDRSett = Convert.ToDouble(GridViewOther.GetRowCellValue(i, "AmountIDRSett"))
-                .SubAcct = GridViewOther.GetRowCellValue(i, "SubAccount")
+                .PaymentType = IIf(GridViewOther.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewOther.GetRowCellValue(i, "PaymentType").ToString())
+                .CreditCardID = GridViewOther.GetRowCellValue(i, "CreditCardID").ToString()
+                .CreditCardNumber = GridViewOther.GetRowCellValue(i, "CreditCardNumber").ToString()
+                .AccountName = GridViewOther.GetRowCellValue(i, "AccountName").ToString()
+                .CurryID = GridViewOther.GetRowCellValue(i, "CurryID").ToString()
+                .Amount = IIf(GridViewOther.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewOther.GetRowCellValue(i, "Amount")))
+                .AmountIDR = IIf(GridViewOther.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewOther.GetRowCellValue(i, "AmountIDR")))
             End With
-            ObjTravelSettHeader.ObjSettDetails.Add(ObjTravelSettDetail)
+            cls_TravelSett.ObjSettleOther.Add(cls_TravelSettOther)
         Next
-    End Sub
-
-#Region "Event From Grid Ticket"
-    Private Sub GridTicket_DoubleClick(sender As Object, e As EventArgs) Handles GridTicket.DoubleClick
-        AddNewRow(GridViewTicket)
-    End Sub
-
-    Private Sub CDateTicket1_EditValueChanged(sender As Object, e As EventArgs) Handles CDateTicket1.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-    End Sub
-
-    Private Sub CAmountTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Rate"))
-
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewTicket, 0)
 
     End Sub
-
-    Private Sub CRateTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CRateTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "Rate"))
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "Rate", Rate)
-
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewTicket, 0)
-
-    End Sub
-
-    Private Sub CCurryTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub CCuryIDSettTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
-
-        curyID = IIf(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett")
-        End If
-
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub CPayTypeTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CPayTypeTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRekening", "")
-        GridViewTicket.RefreshData()
-    End Sub
-
-    Private Sub CAmountSettTicket_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettTicket.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewTicket.SetRowCellValue(GridViewTicket.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub GridViewTicket_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewTicket.KeyDown
-        Dim index As Integer
-        index = GridViewTicket.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
-            GridViewTicket.DeleteRow(GridViewTicket.FocusedRowHandle)
-            GridViewTicket.RefreshData()
-            HitungAmountDetail(GridViewTicket, 0)
-        End If
-
-        If e.KeyData = Keys.Insert Then
-            GridViewTicket.AddNewRow()
-        End If
-    End Sub
-
-#End Region
 
 #Region "Event From Grid Transportasi"
     Private Sub GridTransport_DoubleClick(sender As Object, e As EventArgs) Handles GridTransport.DoubleClick
-        AddNewRow(GridViewTransport)
+        AddNewRow(GridViewTransport, 2)
     End Sub
 
     Private Sub CDateTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CDateTransport.EditValueChanged
@@ -1029,7 +601,6 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
     End Sub
 
     Private Sub CAmountTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountTransport.EditValueChanged
@@ -1039,31 +610,20 @@ Public Class FrmTravelSettleDetail
         gridView.UpdateCurrentRow()
 
         Dim Amount As Double
-        Dim Rate As Double
-
+        Dim Rate As Double = 1
+        Dim CurryID As String
         Amount = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Rate"))
+        CurryID = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CurryID"))
 
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
+        End If
         GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewTransport, 1)
-
-    End Sub
-
-    Private Sub CRateTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CRateTransport.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Rate"))
-
-        GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewTransport, 1)
-
+        HitungSummaryAll(GridSumTransport, GridViewSumTransport)
+        GridBalanceTransport.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceTransport)
     End Sub
 
     Private Sub CCurryTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryTransport.EditValueChanged
@@ -1071,74 +631,34 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTransport, 1)
-    End Sub
 
-    Private Sub CCuryIDSettTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettTransport.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
+        Dim Amount As Double
+        Dim Rate As Double = 1
+        Dim CurryID As String
+        Amount = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "Amount"))
+        CurryID = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CurryID"))
 
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
-
-        curyID = IIf(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett")
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
-
-        GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewTransport, 1)
-    End Sub
-
-    Private Sub CAmountSettTransport_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettTransport.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewTransport.GetRowCellValue(GridViewTransport.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewTransport, 1)
+        GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDR", Amount * Rate)
+        HitungSummaryAll(GridSumTransport, GridViewSumTransport)
+        GridBalanceTransport.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceTransport)
     End Sub
 
     Private Sub GridViewTransport_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewTransport.KeyDown
-        Dim index As Integer
-        index = GridViewTransport.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
+        If e.KeyData = Keys.Delete Then
             GridViewTransport.DeleteRow(GridViewTransport.FocusedRowHandle)
             GridViewTransport.RefreshData()
-            HitungAmountDetail(GridViewTransport, 1)
+            HitungSummaryAll(GridSumTransport, GridViewSumTransport)
+            GridBalanceTransport.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceTransport)
         End If
-        If e.KeyData = Keys.Insert Then
-            GridViewTransport.AddNewRow()
+        If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
+            AddNewRow(GridViewTransport, 2)
         End If
     End Sub
 
@@ -1146,7 +666,7 @@ Public Class FrmTravelSettleDetail
 
 #Region "Event From Grid Hotel"
     Private Sub GridHotel_DoubleClick(sender As Object, e As EventArgs) Handles GridHotel.DoubleClick
-        AddNewRow(GridViewHotel)
+        AddNewRow(GridViewHotel, 3)
     End Sub
 
     Private Sub CDateHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CDateHotel.EditValueChanged
@@ -1154,7 +674,6 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
     End Sub
 
     Private Sub CAmountHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountHotel.EditValueChanged
@@ -1164,29 +683,22 @@ Public Class FrmTravelSettleDetail
         gridView.UpdateCurrentRow()
 
         Dim Amount As Double
-        Dim Rate As Double
+        Dim Rate As Double = 1
+        Dim CurryID As String
 
         Amount = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Rate"))
+        CurryID = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CurryID"))
+
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
+        End If
 
         GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewHotel, 2)
-    End Sub
-
-    Private Sub CRateHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CRateHotel.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Rate"))
-
-        GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewHotel, 2)
+        HitungSummaryAll(GridSumHotel, GridViewSumHotel)
+        GridBalanceHotel.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceHotel)
     End Sub
 
     Private Sub CCurryHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryHotel.EditValueChanged
@@ -1194,74 +706,36 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewHotel, 2)
-    End Sub
 
-    Private Sub CCuryIDSettHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettHotel.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
+        Dim Amount As Double
+        Dim Rate As Double = 1
+        Dim CurryID As String
 
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
+        Amount = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "Amount"))
+        CurryID = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CurryID"))
 
-        curyID = IIf(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett")
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
-        GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewHotel, 2)
-    End Sub
-
-    Private Sub CAmountSettHotel_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettHotel.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewHotel.GetRowCellValue(GridViewHotel.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewHotel, 2)
+        GridViewHotel.SetRowCellValue(GridViewHotel.FocusedRowHandle, "AmountIDR", Amount * Rate)
+        HitungSummaryAll(GridSumHotel, GridViewSumHotel)
+        GridBalanceHotel.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceHotel)
     End Sub
 
     Private Sub GridViewHotel_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewHotel.KeyDown
-        Dim index As Integer
-        index = GridViewHotel.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
+        If e.KeyData = Keys.Delete Then
             GridViewHotel.DeleteRow(GridViewHotel.FocusedRowHandle)
             GridViewHotel.RefreshData()
-            HitungAmountDetail(GridViewHotel, 2)
+            HitungSummaryAll(GridSumHotel, GridViewSumHotel)
+            GridBalanceHotel.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceHotel)
         End If
-        If e.KeyData = Keys.Insert Then
-            GridViewHotel.AddNewRow()
+        If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
+            AddNewRow(GridViewHotel, 3)
         End If
     End Sub
 
@@ -1269,7 +743,14 @@ Public Class FrmTravelSettleDetail
 
 #Region "Event From Grid Entertainment"
     Private Sub GridEntertain_DoubleClick(sender As Object, e As EventArgs) Handles GridEntertain.DoubleClick
-        AddNewRow(GridViewEntertain)
+        AddNewRow(GridViewEntertain, 4)
+    End Sub
+
+    Private Sub CDateEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CDateEntertain.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
     End Sub
 
     Private Sub CAmountEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountEntertain.EditValueChanged
@@ -1285,31 +766,6 @@ Public Class FrmTravelSettleDetail
         Rate = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Rate"))
 
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewEntertain, 3)
-    End Sub
-
-    Private Sub CDateEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CDateEntertain.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub CRateEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CRateEntertain.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Rate"))
-
-        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewEntertain, 3)
     End Sub
 
     Private Sub CCurryEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryEntertain.EditValueChanged
@@ -1317,320 +773,18 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewEntertain, 3)
-    End Sub
-
-    Private Sub CCuryIDSettEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettEntertain.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
-
-        curyID = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett")
-        End If
-
-        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewEntertain, 3)
-    End Sub
-
-    Private Sub CAmountSettEntertain_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettEntertain.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewEntertain, 3)
     End Sub
 
     Private Sub GridViewEntertain_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewEntertain.KeyDown
-        Dim index As Integer
-        index = GridViewEntertain.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
+        If e.KeyData = Keys.Delete Then
             GridViewEntertain.DeleteRow(GridViewEntertain.FocusedRowHandle)
             GridViewEntertain.RefreshData()
-            HitungAmountDetail(GridViewEntertain, 3)
+            HitungSummaryAll(GridSumEntertain, GridViewSumEntertain)
+            GridBalanceEntertain.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceEntertain)
         End If
-        If e.KeyData = Keys.Insert Then
-            GridViewEntertain.AddNewRow()
-        End If
-    End Sub
-
-#End Region
-
-#Region "Event From Grid Allowance"
-    Private Sub GridAllowance_DoubleClick(sender As Object, e As EventArgs) Handles GridAllowance.DoubleClick
-        AddNewRow(GridViewAllowance)
-    End Sub
-
-    Private Sub CDateAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CDateAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub CAmountAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Rate"))
-
-        GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewAllowance, 4)
-    End Sub
-
-    Private Sub CRateAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CRateAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "Rate"))
-
-        GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewAllowance, 4)
-    End Sub
-
-    Private Sub CCurryAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewAllowance, 4)
-    End Sub
-
-    Private Sub CCuryIDSettAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
-
-        curyID = IIf(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett")
-        End If
-
-        GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewAllowance, 4)
-    End Sub
-
-    Private Sub CAmountSettAllowance_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettAllowance.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewAllowance.GetRowCellValue(GridViewAllowance.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewAllowance.SetRowCellValue(GridViewAllowance.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewAllowance, 4)
-    End Sub
-
-    Private Sub GridViewAllowance_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewAllowance.KeyDown
-        Dim index As Integer
-        index = GridViewAllowance.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
-            GridViewAllowance.DeleteRow(GridViewAllowance.FocusedRowHandle)
-            GridViewAllowance.RefreshData()
-            HitungAmountDetail(GridViewAllowance, 4)
-        End If
-        If e.KeyData = Keys.Insert Then
-            GridViewAllowance.AddNewRow()
-        End If
-    End Sub
-
-#End Region
-
-#Region "Event From Grid B-Trip"
-    Private Sub GridPreTrip_DoubleClick(sender As Object, e As EventArgs) Handles GridPreTrip.DoubleClick
-        AddNewRow(GridViewPreTrip)
-    End Sub
-
-    Private Sub CDatePreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CDatePreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
-    End Sub
-
-    Private Sub CAmountPreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountPreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Rate"))
-
-        GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewPreTrip, 5)
-    End Sub
-
-    Private Sub CRatePreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CRatePreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "Rate"))
-
-        GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewPreTrip, 5)
-    End Sub
-
-    Private Sub CCurryPreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryPreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewPreTrip, 5)
-    End Sub
-
-    Private Sub CCuryIDSettPreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettPreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
-
-        curyID = IIf(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett")
-        End If
-
-        GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewPreTrip, 5)
-    End Sub
-
-    Private Sub CAmountSettPreTrip_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettPreTrip.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewPreTrip.GetRowCellValue(GridViewPreTrip.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewPreTrip.SetRowCellValue(GridViewPreTrip.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewPreTrip, 5)
-    End Sub
-
-    Private Sub GridViewPreTrip_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewPreTrip.KeyDown
-        Dim index As Integer
-        index = GridViewPreTrip.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
-            GridViewPreTrip.DeleteRow(GridViewPreTrip.FocusedRowHandle)
-            GridViewPreTrip.RefreshData()
-            HitungAmountDetail(GridViewPreTrip, 5)
-        End If
-        If e.KeyData = Keys.Insert Then
-            GridViewPreTrip.AddNewRow()
+        If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
+            AddNewRow(GridViewEntertain, 4)
         End If
     End Sub
 
@@ -1638,7 +792,7 @@ Public Class FrmTravelSettleDetail
 
 #Region "Event From Grid Others"
     Private Sub GridOther_DoubleClick(sender As Object, e As EventArgs) Handles GridOther.DoubleClick
-        AddNewRow(GridViewOther)
+        AddNewRow(GridViewOther, 7)
     End Sub
 
     Private Sub CDateOther_EditValueChanged(sender As Object, e As EventArgs) Handles CDateOther.EditValueChanged
@@ -1646,7 +800,6 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewTicket, 0)
     End Sub
 
     Private Sub CAmountOther_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountOther.EditValueChanged
@@ -1656,29 +809,22 @@ Public Class FrmTravelSettleDetail
         gridView.UpdateCurrentRow()
 
         Dim Amount As Double
-        Dim Rate As Double
+        Dim Rate As Double = 1
+        Dim CurryID As String
 
         Amount = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Rate"))
+        CurryID = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CurryID"))
+
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
+        End If
 
         GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewOther, 6)
-    End Sub
-
-    Private Sub CRateOther_EditValueChanged(sender As Object, e As EventArgs) Handles CRateOther.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim Amount As Double
-        Dim Rate As Double
-
-        Amount = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount"))
-        Rate = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Rate") Is DBNull.Value, 1, GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Rate"))
-
-        GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountIDR", Amount * Rate)
-        HitungAmountDetail(GridViewOther, 6)
+        HitungSummaryAll(GridSumOthers, GridViewSumOthers)
+        GridBalanceOther.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceOther)
     End Sub
 
     Private Sub CCurryOther_EditValueChanged(sender As Object, e As EventArgs) Handles CCurryOther.EditValueChanged
@@ -1686,216 +832,90 @@ Public Class FrmTravelSettleDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        HitungAmountDetail(GridViewOther, 6)
-    End Sub
 
-    Private Sub CCuryIDSettOther_EditValueChanged(sender As Object, e As EventArgs) Handles CCuryIDSettOther.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
+        Dim Amount As Double
+        Dim Rate As Double = 1
+        Dim CurryID As String
 
-        Dim jumlah As Double
-        Dim vrate As Double
-        Dim curyID As String
+        Amount = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "Amount"))
+        CurryID = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CurryID"))
 
-        curyID = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CuryIDSett") = "YEN", "JPY", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "CuryIDSett"))
-        vrate = ObjTravelHeader.GetRate(curyID, TxtTgl.EditValue)
-        GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "RateSett", vrate)
-
-        If IsDBNull(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett")
+        If CurryID = "USD" Then
+            Rate = Convert.ToDouble(txtRateUSD.Text)
+        ElseIf CurryID = "YEN" Then
+            Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
-        GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewOther, 6)
-    End Sub
-
-    Private Sub CAmountSettOther_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountSettOther.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-
-        Dim jumlah As Double
-        Dim vrate As Double
-
-        If IsDBNull(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett")) Then
-            jumlah = 0
-            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett", jumlah)
-        Else
-            jumlah = GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "AmountSett")
-        End If
-
-        If IsDBNull(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "RateSett")) Then
-            vrate = 1
-            GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "RateSett", jumlah)
-        Else
-            vrate = GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "RateSett")
-        End If
-
-        GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-
-        HitungAmountDetail(GridViewOther, 6)
+        GridViewOther.SetRowCellValue(GridViewOther.FocusedRowHandle, "AmountIDR", Amount * Rate)
+        HitungSummaryAll(GridSumOthers, GridViewSumOthers)
+        GridBalanceOther.DataSource = dtBalance
+        'GridCellFormat(GridViewBalanceOther)
     End Sub
 
     Private Sub GridViewOther_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewOther.KeyDown
-        Dim index As Integer
-        index = GridViewOther.GetFocusedDataSourceRowIndex()
-
-        If e.KeyData = Keys.Delete And index <> 0 Then
+        If e.KeyData = Keys.Delete Then
             GridViewOther.DeleteRow(GridViewOther.FocusedRowHandle)
             GridViewOther.RefreshData()
-            HitungAmountDetail(GridViewOther, 6)
+            HitungSummaryAll(GridSumOthers, GridViewSumOthers)
+            GridBalanceOther.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceOther)
         End If
-        If e.KeyData = Keys.Insert Then
-            GridViewOther.AddNewRow()
+        If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
+            AddNewRow(GridViewOther, 7)
         End If
     End Sub
 
 #End Region
 
-    Private Sub AddNewRow(ByVal view As GridView)
+    Private Sub AddNewRow(ByVal view As GridView, ByVal ID As Integer)
         view.AddNewRow()
         view.OptionsNavigation.AutoFocusNewRow = True
-        view.FocusedColumn = view.VisibleColumns(0)
+        'GridCellFormat(view)
+        Dim defaultAccount As String
+        If view Is GridViewEntertain Then
+            defaultAccount = "62300"
+        Else
+            defaultAccount = "62250"
+        End If
 
-        view.SetRowCellValue(view.FocusedRowHandle, "Date", "")
-        view.SetRowCellValue(view.FocusedRowHandle, "Account", "")
-        view.SetRowCellValue(view.FocusedRowHandle, "CuryID", "IDR")
-        view.SetRowCellValue(view.FocusedRowHandle, "Rate", 1)
+        Dim defaultCurryID As String
+        If txtTravelType.Text = "DN" Then
+            defaultCurryID = "IDR"
+        Else
+            defaultCurryID = "YEN"
+        End If
+
+        view.SetRowCellValue(view.FocusedRowHandle, "ID", ID)
+        view.SetRowCellValue(view.FocusedRowHandle, "AccountID", defaultAccount)
+        view.SetRowCellValue(view.FocusedRowHandle, "SubAccount", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "Date", TxtDepDate.EditValue)
+        view.SetRowCellValue(view.FocusedRowHandle, "TFrom", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "TTo", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "Transport", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "EntertainID", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "Description", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "PaymentType", "CASH")
+        view.SetRowCellValue(view.FocusedRowHandle, "CreditCardID", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "CreditCardNumber", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "AccountName", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "CurryID", defaultCurryID)
         view.SetRowCellValue(view.FocusedRowHandle, "Amount", 0)
         view.SetRowCellValue(view.FocusedRowHandle, "AmountIDR", 0)
-        view.SetRowCellValue(view.FocusedRowHandle, "PaymentType", "CASH")
-        view.SetRowCellValue(view.FocusedRowHandle, "NoRekening", "")
-        view.SetRowCellValue(view.FocusedRowHandle, "CuryIDSett", "IDR")
-        view.SetRowCellValue(view.FocusedRowHandle, "RateSett", 1)
-        view.SetRowCellValue(view.FocusedRowHandle, "AmountSett", 0)
-        view.SetRowCellValue(view.FocusedRowHandle, "AmountIDRSett", 0)
-        view.SetRowCellValue(view.FocusedRowHandle, "ID", view.GetRowCellValue(0, "ID"))
-        view.SetRowCellValue(view.FocusedRowHandle, "SubAccount", view.GetRowCellValue(0, "SubAccount"))
+        'GridCellFormat(view)
     End Sub
 
-    Private Sub HitungAmountHeader()
-        txtTotalSettIDR.Text = Format(GridViewSummary.Columns("SettIDR").SummaryItem.SummaryValue, gs_FormatBulat)
-        txtTotalSettYEN.Text = Format(GridViewSummary.Columns("SettYEN").SummaryItem.SummaryValue, gs_FormatBulat)
-        txtTotalSettUSD.Text = Format(GridViewSummary.Columns("SettUSD").SummaryItem.SummaryValue, gs_FormatBulat)
-        txtTotalAmountSettIDR.Text = Format(GridViewSummary.Columns("TotalSettIDR").SummaryItem.SummaryValue, gs_FormatBulat)
+    Private Sub CreateTable()
+        dtSummary.Columns.AddRange(New DataColumn(6) {New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("CashIDR", GetType(Double)),
+                                                            New DataColumn("CashUSD", GetType(Double)),
+                                                            New DataColumn("CashYEN", GetType(Double)),
+                                                            New DataColumn("CreditIDR", GetType(Double)),
+                                                            New DataColumn("CreditUSD", GetType(Double)),
+                                                            New DataColumn("CreditYEN", GetType(Double))})
 
-        txtBalanceTotalIDR.Text = Format(TxtTotalAdvanceIDR.Text - txtTotalSettIDR.Text, gs_FormatBulat)
-        txtBalanceTotalYEN.Text = Format(TxtTotalAdvanceYEN.Text - txtTotalSettYEN.Text, gs_FormatBulat)
-        txtBalanceTotalUSD.Text = Format(TxtTotalAdvanceUSD.Text - txtTotalSettUSD.Text, gs_FormatBulat)
-        txtBalanceTotalAmountIDR.Text = Format(TxtTotIDR.Text - txtTotalAmountSettIDR.Text, gs_FormatBulat)
-    End Sub
-
-    Private Sub HitungAmountDetail(ByVal view As GridView, ByVal row As Integer)
-        AdvanceIDR = 0
-        SettIDR = 0
-        AdvanceYEN = 0
-        SettYEN = 0
-        AdvanceUSD = 0
-        SettUSD = 0
-        TotalAdvanceIDR = 0
-        TotalSettIDR = 0
-
-        Try
-            For i As Integer = 0 To view.RowCount - 1
-                If Not IsDBNull(view.GetRowCellValue(i, "Amount")) Then
-                    If view.GetRowCellValue(i, "CuryID") = "IDR" Then
-                        AdvanceIDR = AdvanceIDR + Convert.ToDecimal(view.GetRowCellValue(i, "Amount"))
-                    End If
-                    If view.GetRowCellValue(i, "CuryID") = "USD" Then
-                        AdvanceUSD = AdvanceUSD + Convert.ToDecimal(view.GetRowCellValue(i, "Amount"))
-                    End If
-                    If view.GetRowCellValue(i, "CuryID") = "YEN" Then
-                        AdvanceYEN = AdvanceYEN + Convert.ToDecimal(view.GetRowCellValue(i, "Amount"))
-                    End If
-                    TotalAdvanceIDR = TotalAdvanceIDR + Convert.ToDecimal(view.GetRowCellValue(i, "AmountIDR"))
-                End If
-            Next
-
-            For i As Integer = 0 To view.RowCount - 1
-                If Not IsDBNull(view.GetRowCellValue(i, "AmountSett")) Then
-                    If view.GetRowCellValue(i, "CuryIDSett") = "IDR" Then
-                        SettIDR = SettIDR + Convert.ToDecimal(view.GetRowCellValue(i, "AmountSett"))
-                    End If
-                    If view.GetRowCellValue(i, "CuryIDSett") = "USD" Then
-                        SettUSD = SettUSD + Convert.ToDecimal(view.GetRowCellValue(i, "AmountSett"))
-                    End If
-                    If view.GetRowCellValue(i, "CuryIDSett") = "YEN" Then
-                        SettYEN = SettYEN + Convert.ToDecimal(view.GetRowCellValue(i, "AmountSett"))
-                    End If
-                    TotalSettIDR = TotalSettIDR + Convert.ToDecimal(view.GetRowCellValue(i, "AmountIDRSett"))
-                End If
-            Next
-
-            If row = 0 Then
-                TxtTotTicketIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotTicketYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotTicketUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotTicketIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            ElseIf row = 1 Then
-                TxtTotTransIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotTransYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotTransUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotTransIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            ElseIf row = 2 Then
-                TxtTotHotelIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotHotelYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotHotelUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotHotelIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            ElseIf row = 3 Then
-                TxtTotEnterIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotEnterYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotEnterUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotEnterIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            ElseIf row = 4 Then
-                TxtTotPocketIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotPocketYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotPocketUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotPocketIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            ElseIf row = 5 Then
-                TxtTotTripIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotTripYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotTripUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotTripIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            Else
-                TxtTotOtherIDR.Text = Format(AdvanceIDR, gs_FormatBulat)
-                TxtTotOtherYEN.Text = Format(AdvanceYEN, gs_FormatBulat)
-                TxtTotOtherUSD.Text = Format(AdvanceUSD, gs_FormatBulat)
-                TxtTotOtherIDRAmt.Text = Format(TotalAdvanceIDR, gs_FormatBulat)
-            End If
-
-            HitungSummary(row)
-            HitungAmountHeader()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub HitungSummary(ByVal row As Integer)
-        GridViewSummary.SetRowCellValue(row, "AdvanceIDR", AdvanceIDR)
-        GridViewSummary.SetRowCellValue(row, "SettIDR", SettIDR)
-        GridViewSummary.SetRowCellValue(row, "AdvanceYEN", AdvanceYEN)
-        GridViewSummary.SetRowCellValue(row, "SettYEN", SettYEN)
-        GridViewSummary.SetRowCellValue(row, "AdvanceUSD", AdvanceUSD)
-        GridViewSummary.SetRowCellValue(row, "SettUSD", SettUSD)
-        GridViewSummary.SetRowCellValue(row, "TotalAdvanceIDR", TotalAdvanceIDR)
-        GridViewSummary.SetRowCellValue(row, "TotalSettIDR", TotalSettIDR)
-
-        GridViewSummary.RefreshData()
-    End Sub
-
-    Private Sub LoadGridSummary()
-        dtGrid = New DataTable
-        dtGrid = ObjTravelSettDetail.GetDataSummary()
-
-        GridSummary.DataSource = dtGrid
-        GridCellFormat(GridViewSummary)
+        dtBalance.Columns.AddRange(New DataColumn(2) {New DataColumn("BalanceUSD", GetType(Double)),
+                                                            New DataColumn("BalanceYEN", GetType(Double)),
+                                                            New DataColumn("BalanceIDR", GetType(Double))})
     End Sub
 
     Private Sub FrmTravelSettleDetail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -1908,7 +928,7 @@ Public Class FrmTravelSettleDetail
             EntertainID = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID"))
 
             If EntertainID <> "" Then
-                IDSettle = ObjTravelSettDetail.GetSettleID(EntertainID)
+                'IDSettle = ObjTravelSettDetail.GetSettleID(EntertainID)
                 GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "IDSettle", IDSettle)
             End If
 
@@ -1916,16 +936,225 @@ Public Class FrmTravelSettleDetail
             vrate = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett") Is DBNull.Value, 1, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett"))
 
             GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
-            HitungAmountDetail(GridViewEntertain, 3)
             flag = 0
         End If
     End Sub
 
-    Public Overrides Sub Proc_print()
-        FrmReportTravelSett.StartPosition = FormStartPosition.CenterScreen
-        FrmReportTravelSett.txtTravelID.Text = TxtNoTravel.Text
-        FrmReportTravelSett.txtTravelSettleID.Text = txtTravelSettID.Text
-        FrmReportTravelSett.Show()
+    Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
+        TabPage = XtraTabControl1.SelectedTabPage.Name()
+        If TabPage = "TabPageTransport" Then
+            GridSumTransport.DataSource = dtSummary
+            'GridCellFormat(GridViewSumTransport)
+
+            GridBalanceTransport.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceTransport)
+
+        ElseIf TabPage = "TabPageHotel" Then
+            GridSumHotel.DataSource = dtSummary
+            'GridCellFormat(GridViewSumHotel)
+
+            GridBalanceHotel.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceHotel)
+        ElseIf TabPage = "TabPageEntertain" Then
+            GridSumEntertain.DataSource = dtSummary
+            'GridCellFormat(GridViewSumEntertain)
+
+            GridBalanceEntertain.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceEntertain)
+        ElseIf TabPage = "TabPageOthers" Then
+            GridSumOthers.DataSource = dtSummary
+            'GridCellFormat(GridViewSumOthers)
+
+            GridBalanceOther.DataSource = dtBalance
+            'GridCellFormat(GridViewBalanceOther)
+        ElseIf TabPage = "TabPageVoucher" Then
+            GridSumBalance.DataSource = dtSummary
+            'GridCellFormat(GridViewSumBalance)
+
+            HitungAmountBalance()
+        End If
+    End Sub
+
+    Private Sub HitungSummaryAll(ByVal gridSum As GridControl, ByVal viewSum As GridView)
+        dtSummary.Clear()
+        HitungSummary(GridViewTransport)
+        dtSummary.Rows.Add("TRANSPORTATION FEE", CashIDR, CashUSD, CashYEN, CreditIDR, CreditUSD, CreditYEN)
+        HitungSummary(GridViewHotel)
+        dtSummary.Rows.Add("STAYING FEE", CashIDR, CashUSD, CashYEN, CreditIDR, CreditUSD, CreditYEN)
+        HitungSummary(GridViewEntertain)
+        dtSummary.Rows.Add("ENTERTAINMENT", CashIDR, CashUSD, CashYEN, CreditIDR, CreditUSD, CreditYEN)
+        HitungSummary(GridViewOther)
+        dtSummary.Rows.Add("OTHERS", CashIDR, CashUSD, CashYEN, CreditIDR, CreditUSD, CreditYEN)
+
+        gridSum.DataSource = dtSummary
+        'GridCellFormat(viewSum)
+
+        Dim balanceUSD As Double = Convert.ToDouble(TxtTotalAdvanceUSD.Text) - viewSum.Columns("CashUSD").SummaryItem.SummaryValue
+        Dim balanceYEN As Double = Convert.ToDouble(TxtTotalAdvanceYEN.Text) - viewSum.Columns("CashYEN").SummaryItem.SummaryValue
+        Dim balanceIDR As Double = Convert.ToDouble(TxtTotalAdvanceIDR.Text) - viewSum.Columns("CashIDR").SummaryItem.SummaryValue
+
+        dtBalance.Clear()
+        dtBalance.Rows.Add(balanceUSD, balanceYEN, balanceIDR)
+    End Sub
+
+    Private Sub HitungSummary(ByVal view As GridView)
+        Try
+            CashIDR = 0
+            CashUSD = 0
+            CashYEN = 0
+            CreditIDR = 0
+            CreditUSD = 0
+            CreditYEN = 0
+
+            For i As Integer = 0 To view.RowCount - 1
+                Dim payType As String = IIf(view.GetRowCellValue(i, "PaymentType") Is DBNull.Value, "", view.GetRowCellValue(i, "PaymentType"))
+                Dim curryID As String = IIf(view.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", view.GetRowCellValue(i, "CurryID"))
+                Dim amount As Double = IIf(view.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(view.GetRowCellValue(i, "Amount")))
+
+                If payType = "CASH" And curryID = "IDR" Then
+                    CashIDR = CashIDR + amount
+                ElseIf payType = "CASH" And curryID = "USD" Then
+                    CashUSD = CashUSD + amount
+                ElseIf payType = "CASH" And curryID = "YEN" Then
+                    CashYEN = CashYEN + amount
+                ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "IDR" Then
+                    CreditIDR = CreditIDR + amount
+                ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "USD" Then
+                    CreditUSD = CreditUSD + amount
+                ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "YEN" Then
+                    CreditYEN = CreditYEN + amount
+                End If
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub HitungAmountDetail()
+        Try
+            Dim curryID As String
+            Dim amount As Double
+            Dim Rate As Double = 1
+
+            For i As Integer = 0 To GridViewTransport.RowCount - 1
+                curryID = IIf(GridViewTransport.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(i, "CurryID"))
+                amount = IIf(GridViewTransport.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDecimal(GridViewTransport.GetRowCellValue(i, "Amount")))
+
+                If curryID = "USD" Then
+                    Rate = Convert.ToDouble(txtRateUSD.Text)
+                ElseIf curryID = "YEN" Then
+                    Rate = Convert.ToDouble(txtRateYEN.Text)
+                End If
+                GridViewTransport.SetRowCellValue(i, "AmountIDR", amount * Rate)
+            Next
+
+            For i As Integer = 0 To GridViewHotel.RowCount - 1
+                curryID = IIf(GridViewHotel.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(i, "CurryID"))
+                amount = IIf(GridViewHotel.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDecimal(GridViewHotel.GetRowCellValue(i, "Amount")))
+
+                If curryID = "USD" Then
+                    Rate = Convert.ToDouble(txtRateUSD.Text)
+                ElseIf curryID = "YEN" Then
+                    Rate = Convert.ToDouble(txtRateYEN.Text)
+                End If
+                GridViewHotel.SetRowCellValue(i, "AmountIDR", amount * Rate)
+            Next
+
+            For i As Integer = 0 To GridViewEntertain.RowCount - 1
+                curryID = IIf(GridViewEntertain.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(i, "CurryID"))
+                amount = IIf(GridViewEntertain.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDecimal(GridViewEntertain.GetRowCellValue(i, "Amount")))
+
+                If curryID = "USD" Then
+                    Rate = Convert.ToDouble(txtRateUSD.Text)
+                ElseIf curryID = "YEN" Then
+                    Rate = Convert.ToDouble(txtRateYEN.Text)
+                End If
+                GridViewEntertain.SetRowCellValue(i, "AmountIDR", amount * Rate)
+            Next
+
+            For i As Integer = 0 To GridViewOther.RowCount - 1
+                curryID = IIf(GridViewOther.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(i, "CurryID"))
+                amount = IIf(GridViewOther.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDecimal(GridViewOther.GetRowCellValue(i, "Amount")))
+
+                If curryID = "USD" Then
+                    Rate = Convert.ToDouble(txtRateUSD.Text)
+                ElseIf curryID = "YEN" Then
+                    Rate = Convert.ToDouble(txtRateYEN.Text)
+                End If
+                GridViewOther.SetRowCellValue(i, "AmountIDR", amount * Rate)
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub HitungAmountBalance()
+        Dim dtBalance As New DataTable
+        Dim BalanceUSD As Double
+        Dim BalanceYEN As Double
+        Dim BalanceIDR As Double
+        Dim ReturnUSD As Double
+        Dim ReturnYEN As Double
+        Dim ReturnIDR As Double
+        Dim PaidUSD As Double
+        Dim PaidYEN As Double
+        Dim PaidIDR As Double
+        dtBalance.Columns.AddRange(New DataColumn(6) {New DataColumn("CurryID", GetType(String)),
+                                                            New DataColumn("Advance", GetType(Double)),
+                                                            New DataColumn("Actual", GetType(Double)),
+                                                            New DataColumn("SisaBalance", GetType(Double)),
+                                                            New DataColumn("ReturnBalance", GetType(Double)),
+                                                            New DataColumn("PaidBalance", GetType(Double)),
+                                                            New DataColumn("AmountIDRBalance", GetType(Double))})
+        BalanceUSD = GridViewBalanceTransport.GetRowCellValue(0, "BalanceUSD")
+        BalanceYEN = GridViewBalanceTransport.GetRowCellValue(0, "BalanceYEN")
+        BalanceIDR = GridViewBalanceTransport.GetRowCellValue(0, "BalanceIDR")
+
+        If GridViewBalance.RowCount > 0 Then
+            For i As Integer = 0 To GridViewBalance.RowCount - 1
+                Dim curryID As String = GridViewBalance.GetRowCellValue(i, "CurryID")
+                If curryID = "USD" Then
+                    ReturnUSD = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
+                ElseIf curryID = "YEN" Then
+                    ReturnYEN = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
+                ElseIf curryID = "IDR" Then
+                    ReturnIDR = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
+                End If
+            Next
+        End If
+        PaidUSD = BalanceUSD - ReturnUSD
+        PaidYEN = BalanceYEN - ReturnYEN
+        PaidIDR = BalanceIDR - ReturnIDR
+
+        dtBalance.Rows.Add("USD", Convert.ToDouble(TxtTotalAdvanceUSD.Text), GridViewSumTransport.Columns("CashUSD").SummaryItem.SummaryValue, BalanceUSD, ReturnUSD, PaidUSD, PaidUSD * Convert.ToDouble(txtRateUSD.Text))
+        dtBalance.Rows.Add("YEN", Convert.ToDouble(TxtTotalAdvanceYEN.Text), GridViewSumTransport.Columns("CashYEN").SummaryItem.SummaryValue, BalanceYEN, ReturnYEN, PaidYEN, PaidYEN * Convert.ToDouble(txtRateYEN.Text))
+        dtBalance.Rows.Add("IDR", Convert.ToDouble(TxtTotalAdvanceIDR.Text), GridViewSumTransport.Columns("CashIDR").SummaryItem.SummaryValue, BalanceIDR, ReturnIDR, PaidIDR, PaidIDR)
+        GridBalance.DataSource = dtBalance
+        'GridCellFormat(GridViewBalance)
+    End Sub
+
+    Private Sub CReturnBalance_EditValueChanged(sender As Object, e As EventArgs) Handles CReturnBalance.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim curryID As String
+        Dim balance As Double
+        Dim return_ As Double
+        curryID = GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "CurryID")
+        balance = IIf(GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "SisaBalance") Is DBNull.Value, 0, GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "SisaBalance"))
+        return_ = IIf(GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "ReturnBalance") Is DBNull.Value, 0, GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "ReturnBalance"))
+        GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "PaidBalance", balance - return_)
+        If curryID = "USD" Then
+            GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateUSD.Text))
+        ElseIf curryID = "YEN" Then
+            GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateYEN.Text))
+        ElseIf curryID = "IDR" Then
+            GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", balance - return_)
+        End If
     End Sub
 
 End Class

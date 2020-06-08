@@ -367,7 +367,7 @@ Public Class ClsTravelerVisa
             Query = " SELECT  NIK ,
                             NoVisa ,
                             Negara ,
-                            Category ,
+                            Entries ,
                             DateIssued ,
                             DateExpired
                     FROM    dbo.TravelerVisa
@@ -387,7 +387,7 @@ Public Class ClsTravelerVisa
                                 ([NIK]
                                 ,[NoVisa]
                                 ,[Negara]
-                                ,[Category]
+                                ,[Entries]
                                 ,[DateIssued]
                                 ,[DateExpired])
                             VALUES
