@@ -15,6 +15,7 @@ Public Class Cls_NPP_Detail
     Public Property H_T1 As String
     Public Property H_T2 As String
     Public Property H_MP As String
+    Public Property H_MassPro As Date
     Public Property H_Drawing As Boolean
     Public Property H_CAD_Data As Boolean
     Public Property H_Sample As Boolean
@@ -34,6 +35,7 @@ Public Class Cls_NPP_Detail
 
     Public Property H_TargetDRR As Date
     Public Property H_TargetQuot As Date
+    Public Property H_DRR As Boolean
 
     Public Property H_Checked As String
     Public Property H_A1 As String
@@ -44,6 +46,26 @@ Public Class Cls_NPP_Detail
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
+
+    Public Sub ValidateInsert(No As String)
+        Try
+            Dim ls_SP As String = "SELECT TOP 1 [No_NPP]                  
+                                    FROM [NPP_Head] where No_NPP = '" & No & "' "
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+                "[" & No & " ")
+
+            Else
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
 
     Public Function NPPReport(No As String, Rev As String) As DataSet
@@ -151,6 +173,17 @@ Public Class Cls_NPP_Detail
         End Try
 
     End Sub
+    Public Sub UpdateDrrRecive(ByVal _FsCode As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE NPP_Head" & vbCrLf &
+                                    "SET [DRR] = '" & H_DRR & "' WHERE [No_NPP] = '" & _FsCode & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
 
     Public Function GetMesin() As DataTable
         Try
@@ -215,7 +248,7 @@ Public Class Cls_NPP_Detail
                                             H_Customer_Name,
                                             H_Order_Month,
                                             H_Order_Max_Month,
-                                            H_MP,
+                                            H_MassPro,
                                             H_Drawing,
                                             H_CAD_Data,
                                             H_Sample,
@@ -303,7 +336,7 @@ Public Class Cls_NPP_Detail
                                         _H_Customer_Name As String,
                                         _H_Order_Month As Integer,
                                         _H_Order_Max_Month As Integer,
-                                        _H_MP As String,
+                                        _H_MP As Date,
                                         _H_Drawing As Boolean,
                                         _H_CAD_Data As Boolean,
                                         _H_Sample As Boolean,
@@ -353,7 +386,7 @@ Public Class Cls_NPP_Detail
             pParam(3) = New SqlClient.SqlParameter("@Customer_Name", SqlDbType.VarChar)
             pParam(4) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(5) = New SqlClient.SqlParameter("@Order_Max_Month", SqlDbType.Int)
-            pParam(6) = New SqlClient.SqlParameter("@MP", SqlDbType.VarChar)
+            pParam(6) = New SqlClient.SqlParameter("@MP", SqlDbType.Date)
             pParam(7) = New SqlClient.SqlParameter("@Drawing", SqlDbType.Bit)
             pParam(8) = New SqlClient.SqlParameter("@CAD_Data", SqlDbType.Bit)
             pParam(9) = New SqlClient.SqlParameter("@Sample", SqlDbType.Bit)
@@ -429,7 +462,7 @@ Public Class Cls_NPP_Detail
                                           H_Model_Description,
                                           H_Order_Month,
                                             H_Order_Max_Month,
-                                            H_MP,
+                                            H_MassPro,
                                             H_Drawing,
                                             H_CAD_Data,
                                             H_Sample,
@@ -484,7 +517,7 @@ Public Class Cls_NPP_Detail
                                           H_Model_Description,
                                           H_Order_Month,
                                             H_Order_Max_Month,
-                                            H_MP,
+                                            H_MassPro,
                                             H_Drawing,
                                             H_CAD_Data,
                                             H_Sample,
@@ -556,7 +589,7 @@ Public Class Cls_NPP_Detail
                                         _H_Model_Description As String,
                                         _H_Order_Month As Integer,
                                         _H_Order_Max_Month As Integer,
-                                        _H_MP As String,
+                                        _H_MP As Date,
                                         _H_Drawing As Boolean,
                                         _H_CAD_Data As Boolean,
                                         _H_Sample As Boolean,
@@ -580,7 +613,7 @@ Public Class Cls_NPP_Detail
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Order_Max_Month ", SqlDbType.Int)
-            pParam(3) = New SqlClient.SqlParameter("@MP", SqlDbType.VarChar)
+            pParam(3) = New SqlClient.SqlParameter("@MP", SqlDbType.Date)
             pParam(4) = New SqlClient.SqlParameter("@Drawing", SqlDbType.Bit)
             pParam(5) = New SqlClient.SqlParameter("@CAD_Data", SqlDbType.Bit)
             pParam(6) = New SqlClient.SqlParameter("@Sample", SqlDbType.Bit)
@@ -661,7 +694,7 @@ Public Class Cls_NPP_Detail
                     H_T0 = Trim(.Item("T0") & "")
                     H_T1 = Trim(.Item("T1") & "")
                     H_T2 = Trim(.Item("T2") & "")
-                    H_MP = Trim(.Item("MP") & "")
+                    H_MassPro = Trim(.Item("MP") & "")
                     H_Drawing = Trim(.Item("Drawing") & "")
                     H_CAD_Data = Trim(.Item("CAD_Data") & "")
                     H_Sample = Trim(.Item("Sample") & "")
@@ -673,6 +706,7 @@ Public Class Cls_NPP_Detail
                     H_Rev = Trim(.Item("Rev") & "")
                     H_TargetDRR = Trim(.Item("TargetDRR") & "")
                     H_TargetQuot = Trim(.Item("TargetQuot") & "")
+                    H_DRR = Trim(.Item("DRR") & "")
 
                 End With
             Else
