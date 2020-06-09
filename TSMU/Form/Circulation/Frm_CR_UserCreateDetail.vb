@@ -1358,13 +1358,13 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
 
-        Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
+        'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
 
-        With oMsg
-            .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
-            .Body = "Test"
-            .Send()
-        End With
+        'With oMsg
+        '    .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
+        '    .Body = "Test"
+        '    .Send()
+        'End With
 
 
 
