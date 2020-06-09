@@ -112,7 +112,7 @@ Public Class Frm_CR_UserCreateHeader
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         'ObjMaterialUsageDetail.IDMaterialUsage = GridView1.GetRowCellValue(rowHandle, "IDMaterialUsage")
-                        IDTrans = GridView1.GetRowCellValue(rowHandle, "CirculationNo")
+                        IDTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
                     End If
                 Next rowHandle
 

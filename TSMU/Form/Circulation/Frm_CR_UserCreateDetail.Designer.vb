@@ -431,6 +431,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.T_CRNo.Location = New System.Drawing.Point(109, 41)
         Me.T_CRNo.Name = "T_CRNo"
+        Me.T_CRNo.Properties.MaxLength = 49
         Me.T_CRNo.Size = New System.Drawing.Size(240, 20)
         Me.T_CRNo.TabIndex = 1
         '
@@ -573,6 +574,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_ParentAmount.EditValue = "0"
         Me.T_ParentAmount.Location = New System.Drawing.Point(1025, 42)
         Me.T_ParentAmount.Name = "T_ParentAmount"
+        Me.T_ParentAmount.Properties.DisplayFormat.FormatString = "{0:N0}"
+        Me.T_ParentAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.T_ParentAmount.Size = New System.Drawing.Size(170, 20)
         Me.T_ParentAmount.TabIndex = 66
         '
@@ -708,7 +711,7 @@ Partial Class Frm_CR_UserCreateDetail
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button4.Location = New System.Drawing.Point(335, 1)
+        Me.Button4.Location = New System.Drawing.Point(324, 2)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 71
