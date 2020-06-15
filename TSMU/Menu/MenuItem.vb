@@ -7,6 +7,7 @@ Public Class MenuItem
         Dialog = False
         Duplicate = False
         Popup = False
+        PageIndex = 0
     End Sub
 
     Public Property Group() As String

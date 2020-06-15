@@ -178,4 +178,21 @@
         End Try
 
     End Function
+
+    Public Function Generate_Report_BoM_PO_ForecastCalculate(strYear As String, ParentId As String) As DataTable
+        Try
+            Dim query As String = "BoM_PO_Forecast_Calculate"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Left(strYear, 4)
+            pParam(1) = New SqlClient.SqlParameter("@ParentId", SqlDbType.VarChar)
+            pParam(1).Value = ParentId
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
 End Class
