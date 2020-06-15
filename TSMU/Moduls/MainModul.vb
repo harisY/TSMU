@@ -2166,6 +2166,50 @@ Module MainModul
                         .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
                     End If
                     .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+                    .Columns(i).DisplayFormat.FormatType = FormatType.Numeric
+                    .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                End If
+
+            Next
+            .RefreshData()
+            'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
+
+        End With
+    End Sub
+    Public Sub FormatGridBadgeView(ByVal View As Views.BandedGrid.AdvBandedGridView)
+        With View
+            For i As Integer = 0 To .Columns.Count - 1
+                If .Columns(i).ColumnType Is GetType(Date) Then
+                    If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd-MM-yyyy"
+                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+                    Dim lb_Nothing As Boolean = True
+                    .Columns(i).DisplayFormat.Format = GetType(String)
+                    If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+                        Array.Sort(bia_FormatPecahan)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, .Columns(i).ColumnHandle)
+                        If li_Found > -1 Then
+                            .Columns(i).DisplayFormat.FormatString = gs_FormatPecahan
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+                        Array.Sort(bia_FormatBulat)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, .Columns(i).ColumnHandle)
+                        If li_Found > -1 Then
+                            .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                            lb_Nothing = False
+                        End If
+                    End If
+                    If lb_Nothing = True Then
+                        .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
+                    End If
+                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+                    .Columns(i).DisplayFormat.FormatType = FormatType.Numeric
+                    .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                 End If
 
             Next

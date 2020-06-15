@@ -166,7 +166,7 @@ Partial Public Class FrmMain
     End Function
 
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        ribbon.Minimized = True
+        ribbon.Minimized = False
         'Me.MaximizeBox = False
         'HasLoad = True
         LblLogin.Caption = ""
@@ -357,4 +357,6 @@ Partial Public Class FrmMain
             ChildForm.Close()
         Next
     End Sub
+
+
 End Class

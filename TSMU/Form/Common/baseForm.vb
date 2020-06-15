@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
 
@@ -534,15 +535,17 @@ Public Class baseForm
             End If
             'Me.BtnJudul.Text = Me.Text
             If bs_MainFormName.Trim = "" Then
-                If bs_JenisForm <> "" Then Me.Text = bs_JenisForm & ""
-                If ls_NamaMenu <> "" Then
-                    If bs_JenisForm <> "" Then
-                        Me.Text = Me.Text & "->" & ls_NamaMenu
-                        'Me.Text = ls_NamaMenu
-                    Else
-                        Me.Text = ls_NamaMenu
-                    End If
-                End If
+                'If bs_JenisForm <> "" Then Me.Text = bs_JenisForm & ""
+                'If ls_NamaMenu <> "" Then
+                '    If bs_JenisForm <> "" Then
+                '        Me.Text = Me.Text & "->" & ls_NamaMenu
+                '        'Me.Text = ls_NamaMenu
+                '    Else
+                '        Me.Text = ls_NamaMenu
+                '    End If
+                'End If
+                Me.Text = ls_NamaMenu
+
                 'If ls_KeteranganMenu <> "" Then
                 '    Me.BtnJudul.Text = ls_KeteranganMenu
                 'ElseIf ls_NamaMenu <> "" Then
@@ -997,4 +1000,12 @@ Public Class baseForm
         End If
     End Sub
 
+    Private Sub baseForm_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
+        'Dim mainRibbon = TryCast(sender, RibbonForm)
+
+        'If mainRibbon IsNot Nothing AndAlso mainRibbon.Ribbon IsNot Nothing Then
+        '    mainRibbon.Ribbon.SelectedPage = mainRibbon.Ribbon.Pages(Tag.Index)
+        'End If
+    End Sub
 End Class

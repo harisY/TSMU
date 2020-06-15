@@ -221,6 +221,7 @@
     <Compile Include="Classes\Payment\Cls_Report.vb" />
     <Compile Include="Classes\sales_model.vb" />
     <Compile Include="Classes\Security.vb" />
+    <Compile Include="Classes\TagModel.vb" />
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
@@ -1608,6 +1609,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.designer.vb">
+      <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </Compile>
@@ -2624,6 +2631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
+      <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>

@@ -1730,6 +1730,7 @@ Public Class Frm_CR_UserCreateDetail
 
     Public Overrides Sub Proc_Approve()
 
+        'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
 
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_UserSubmition = False Then
@@ -1743,18 +1744,23 @@ Public Class Frm_CR_UserCreateDetail
                     fc_Class.UpdateUserSubmit(fs_Code)
                     bs_Filter = gh_Common.Username()
                     'GridDtl.DataSource = fc_Class_Head.Get_NPP()
+                    'With oMsg
+                    '    .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
+                    '    .Body = "Test"
+                    '    .Send()
+                    'End With
 
                     IsClosed = True
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                    Me.Hide()
-                Catch ex As Exception
-                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                End Try
+        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        Me.Hide()
+        Catch ex As Exception
+        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
-            End If
+        End If
         Else
-            XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+        XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
         End If
 
 

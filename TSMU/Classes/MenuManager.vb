@@ -52,7 +52,8 @@ Public Class MenuManager
                     .Dialog = mnu.Dialog,
                     .Duplicate = mnu.Duplicate,
                     .Popup = mnu.Popup,
-                    .FormType = mnu.FormType
+                    .FormType = mnu.FormType,
+                    .PageIndex = mnu.PageIndex
                 }
             group.Items.Add(item)
 
@@ -70,7 +71,8 @@ Public Class MenuManager
                             .Dialog = menuItem.Dialog,
                             .Duplicate = mnu.Duplicate,
                             .Popup = mnu.Popup,
-                            .FormType = mnu.FormType
+                            .FormType = mnu.FormType,
+                            .PageIndex = mnu.PageIndex
                         }
                     item.Items.Add(subItem)
                 Next
@@ -159,6 +161,7 @@ Public Class Item
     Friend Property Icon As Image
     Friend Property ActionType As Integer
     Friend Property FormType As Integer
+    Public Property PageIndex As Integer
     Friend Property Items As List(Of Item)
     Friend Property Url As String
     Public Property Dialog As Boolean
