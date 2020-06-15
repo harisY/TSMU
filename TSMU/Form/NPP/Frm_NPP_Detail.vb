@@ -40,8 +40,10 @@ Public Class Frm_NPP_Detail
     Dim FrmReport As ReportNPWO
 
     Dim NoSirkulasi As String = ""
+    Dim _Tag As TagModel
 
     Public Property Test As String = "t"
+
 
     Private Sub Frm_Npwo_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -191,6 +193,9 @@ Public Class Frm_NPP_Detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
