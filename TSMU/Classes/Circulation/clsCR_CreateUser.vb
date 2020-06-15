@@ -89,7 +89,9 @@ Public Class ClsCR_CreateUser
 
     Public Function Get_Detail_Installment(CirculationNo As String) As DataTable
         Try
-            'Dim query As String = "[Generate_Report_Matome]"
+
+
+
             Dim query As String = "[CR_Get_Detail_Installment]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
@@ -412,11 +414,11 @@ Public Class ClsCR_CreateUser
                     ' H_Balance = Trim(.Item("Balance") & "")
                     H_InvoiceNo = Trim(.Item("InvoiceNo") & "")
                     H_Status = Trim(.Item("Status") & "")
-                    'H_UserSubmition = Trim(.Item("") & "")
+                    H_UserSubmition = Trim(.Item("UserSubmition") & "")
                     'H_DeptHead_ID = Trim(.Item("") & "")
                     'H_DeptHead_Name = Trim(.Item("") & "")
                     'H_DeptHead_Opinion = Trim(.Item("") & "")
-                    'H_DeptHead_Approve = Trim(.Item("") & "")
+                    H_DeptHead_Approve = Trim(.Item("DeptHead_Approve") & "")
                     'H_DeptHead_Approve_Date = Trim(.Item("") & "")
                     'H_DivHead_ID = Trim(.Item("") & "")
                     'H_DivHead_Name = Trim(.Item("") & "")
@@ -465,11 +467,8 @@ Public Class ClsCR_CreateUser
                 pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
                 pParam(1) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
 
-
                 pParam(0).Value = CirculationNo
                 pParam(1).Value = Dept_
-
-
 
                 'Dim dtTable As New DataTable
                 'dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
@@ -830,7 +829,17 @@ Public Class ClsCR_CreateUser
         End Try
     End Sub
 
+    Public Sub UpdateUserSubmit(ByVal _FsCode As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE CR_Request" & vbCrLf &
+                                    "SET [UserSubmition] = '" & H_UserSubmition & "' WHERE [CirculationNo] = '" & _FsCode & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
 
+    End Sub
 
 
 
@@ -948,6 +957,8 @@ Public Class ClsCR_Installment
     Public Property D_Date As Date
     Public Property D_Amount As Double
     Public Property D_Percent As Double
+    Public Property D_Curr As String
+    Public Property D_Value As Double
 
     Public Sub InsertCR_Installment(CirculationNo As String)
 
@@ -958,18 +969,20 @@ Public Class ClsCR_Installment
 
 
             Dim query As String = "[CR_Insert_Installment]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Term", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Date", SqlDbType.Date)
             pParam(3) = New SqlClient.SqlParameter("@Percent", SqlDbType.Float)
-            pParam(4) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
+            pParam(4) = New SqlClient.SqlParameter("@Curr", SqlDbType.VarChar)
+            pParam(5) = New SqlClient.SqlParameter("@Value", SqlDbType.Float)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = D_Term
             pParam(2).Value = D_Date
             pParam(3).Value = D_Percent
-            pParam(4).Value = D_Amount
+            pParam(4).Value = D_Curr
+            pParam(5).Value = D_Value
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)

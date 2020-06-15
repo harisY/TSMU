@@ -37,6 +37,8 @@ Public Class FrmQualityProblemDetail
     Dim opfImage As New OpenFileDialog
 
     Dim Kode As String = ""
+    Dim _Tag As TagModel
+
 
     Private Sub FrmQualityProblemDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -87,6 +89,9 @@ Public Class FrmQualityProblemDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
 

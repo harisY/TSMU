@@ -45,6 +45,8 @@ Public Class FrmPemakaianMaterial
     Dim BarisKompone1 As String
     Dim BarisKomponen2 As String
     Dim KodeTran As String = ""
+    Dim _Tag As TagModel
+
 
     Private TabelExcel As DataTableCollection
 
@@ -72,6 +74,9 @@ Public Class FrmPemakaianMaterial
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmPemakaianMaterial_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -30,8 +30,7 @@ Public Class FrmBankReceipt_Detail
     Dim fs_kode3 As String
     Dim fs_kode4 As String
     Dim sts_screen2 As Byte
-
-
+    Dim _Tag As TagModel
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -43,9 +42,13 @@ Public Class FrmBankReceipt_Detail
             fs_Code = strCode
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
+
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,

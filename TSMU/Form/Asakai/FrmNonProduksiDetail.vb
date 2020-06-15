@@ -43,6 +43,7 @@ Public Class FrmNonProduksiDetail
     Dim extension As String = ""
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
+    Dim _Tag As TagModel
 
 
 
@@ -69,6 +70,9 @@ Public Class FrmNonProduksiDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -84,9 +88,9 @@ Public Class FrmNonProduksiDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Kebijakan" & fs_Code
+                Me.Text = "Non Produksi"
             Else
-                Me.Text = "Kebijakan"
+                Me.Text = "Non Produksi"
             End If
             Call LoadTxtBox()
             Call LoadGridDetail()

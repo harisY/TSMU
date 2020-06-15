@@ -67,52 +67,37 @@ Public Class FrmDetailPaymentDirect
         '    MsgBox(ex.Message)
         'End Try
 
-
         Try
+            Dim stext As String
 
-            'Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-            'Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
-            'If view Is Nothing Then
-            '    Return
-            'End If
-            'Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
-            'Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-            'If info.InRow OrElse info.InRowCell Then
 
             ID = String.Empty
                 suspendid = String.Empty
                 suspend1 = String.Empty
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-
                 For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                    suspendid = Replace(GridView1.GetRowCellValue(rowHandle, "Noref"), " ", "")
-                    suspendid = RTrim(Microsoft.VisualBasic.Right(suspendid, 15))
-                    ''   suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
+                If rowHandle >= 0 Then
+                    stext = GridView1.GetRowCellValue(rowHandle, "Noref")
+                    stext = Replace(stext, " / ", "")
+                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                    suspendid = GridView1.GetRowCellValue(rowHandle, "stext")
+                    suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "stext") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "stext")))
+                    MsgBox(stext)
                 End If
-                Next rowHandle
+            Next rowHandle
 
-                If suspend1 = "" Then
+            '' If suspend1 <> "" Then
 
-                'Call CallFrmDirect(ID, suspendid,
-                '     GridView1.RowCount)
+            Call CallFrmDirect(ID, suspendid, GridView1.RowCount)
 
-                Dim fs As FrmSuspendSettleDetailDirect
-                '' belum                fs = New FrmSuspendSettleDetailDirect(suspendid)
-                fs.Show()
-            Else
+            ''  End If
 
-                    ''Call CallFrm(ID,
-                    ''    suspendid,
-                    ''   GridView1.RowCount)
-                End If
-            '         End If
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
 
     End Sub
     Private Sub GetTot2()

@@ -33,6 +33,7 @@ Public Class FrmMaterialUsageDetail
     Dim FileLokasi As String
 
     Private TabelExcel As DataTableCollection
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -57,6 +58,9 @@ Public Class FrmMaterialUsageDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
 

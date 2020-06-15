@@ -35,6 +35,7 @@ Public Class FrmEntertainSettleDetailDirect
     Dim ls_OldKode As String = ""
     Dim _SettleID As String = ""
     Dim row As Integer
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -60,6 +61,9 @@ Public Class FrmEntertainSettleDetailDirect
         GridDtl = _Grid
         FrmParent = lf_FormParent
         'dtEntertain = _dtEntertain
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmEntertainSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -45,6 +45,7 @@ Public Class FrmIPMIDetail
     Dim extension As String = ""
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
+    Dim _Tag As TagModel
 
 
 
@@ -103,6 +104,9 @@ Public Class FrmIPMIDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub Tambah_Click(sender As Object, e As EventArgs) Handles Tambah.Click
