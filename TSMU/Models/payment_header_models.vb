@@ -464,7 +464,7 @@ Public Class payment_header_models
                                 ,payment_header1.CuryID
                                 ,payment_header1.VendorName
                                 ,(sum(payment_detail1.dpp)+sum(payment_detail1.Ppn)-sum(payment_detail1.pph))-payment_header1.cm_dm-payment_header1.Biaya_Transfer as PaidAmount
-                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_header1.cek3 as Level3, payment_detail1.cek4 as CheckDetail, payment_header1.cek4 as Direktur 
+                                , payment_header1.cek1 as Level1, payment_header1.cek2 as Level2, payment_detail1.cek4 as CheckDetail, payment_header1.cek4 as Direktur 
                             FROM payment_detail1  inner join payment_header1 on payment_detail1.vrno=payment_header1.vrno  
 							 
 							 					
@@ -480,7 +480,7 @@ Public Class payment_header_models
                                 ,payment_header1.VendorName
 								,payment_header1.cek1, 
 								payment_header1.cek2, 
-								payment_header1.cek3, payment_header1.cek4 
+								payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
                                 ,Payment_Detail1.cek4
@@ -494,7 +494,7 @@ Public Class payment_header_models
                                 ,payment_header1.VendorName
 								,payment_header1.cek1, 
 								payment_header1.cek2, 
-								payment_header1.cek3, payment_header1.cek4 
+								payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
                                 ,Payment_Detail1.cek4
@@ -508,7 +508,7 @@ Public Class payment_header_models
                                 ,payment_header1.VendorName
 								,payment_header1.cek1, 
 								payment_header1.cek2, 
-								payment_header1.cek3, payment_header1.cek4 
+								payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
                                 ,Payment_Detail1.cek4
@@ -522,7 +522,7 @@ Public Class payment_header_models
                                 ,payment_header1.VendorName
 								,payment_header1.cek1, 
 								payment_header1.cek2, 
-								payment_header1.cek3, payment_header1.cek4 
+								payment_header1.cek4 
 								,payment_header1.cm_dm
 								,payment_header1.Biaya_Transfer
                                 ,Payment_Detail1.cek4

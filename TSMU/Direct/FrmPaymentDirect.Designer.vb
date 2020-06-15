@@ -122,8 +122,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -137,6 +137,8 @@ Partial Class FrmPaymentDirect
         Me.EditRek = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.cek = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -194,6 +196,7 @@ Partial Class FrmPaymentDirect
         CType(Me.vtxtkeluar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,26 +239,26 @@ Partial Class FrmPaymentDirect
         '
         '_txtsaldo
         '
-        Me._txtsaldo.Location = New System.Drawing.Point(765, 12)
+        Me._txtsaldo.Location = New System.Drawing.Point(799, 12)
         Me._txtsaldo.Name = "_txtsaldo"
-        Me._txtsaldo.Size = New System.Drawing.Size(98, 20)
+        Me._txtsaldo.Size = New System.Drawing.Size(64, 20)
         Me._txtsaldo.StyleController = Me.LayoutControl1
         Me._txtsaldo.TabIndex = 5
         '
         '_txtperpost
         '
-        Me._txtperpost.Location = New System.Drawing.Point(67, 12)
+        Me._txtperpost.Location = New System.Drawing.Point(101, 12)
         Me._txtperpost.Name = "_txtperpost"
-        Me._txtperpost.Size = New System.Drawing.Size(97, 20)
+        Me._txtperpost.Size = New System.Drawing.Size(63, 20)
         Me._txtperpost.StyleController = Me.LayoutControl1
         Me._txtperpost.TabIndex = 0
         '
         '_txtaccount
         '
-        Me._txtaccount.Location = New System.Drawing.Point(223, 12)
+        Me._txtaccount.Location = New System.Drawing.Point(257, 12)
         Me._txtaccount.Name = "_txtaccount"
         Me._txtaccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtaccount.Size = New System.Drawing.Size(165, 20)
+        Me._txtaccount.Size = New System.Drawing.Size(131, 20)
         Me._txtaccount.StyleController = Me.LayoutControl1
         Me._txtaccount.TabIndex = 2
         '
@@ -275,7 +278,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(156, 24)
         Me.LayoutControlItem1.Text = "PerPost"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(52, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(86, 13)
         '
         'EmptySpaceItem1
         '
@@ -292,7 +295,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(224, 24)
         Me.LayoutControlItem2.Text = "Rekening"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(52, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem3
         '
@@ -300,8 +303,8 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem3.Location = New System.Drawing.Point(698, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(157, 24)
-        Me.LayoutControlItem3.Text = "Saldo Awal"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(52, 13)
+        Me.LayoutControlItem3.Text = "Beginning Balance"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem11
         '
@@ -1047,27 +1050,29 @@ Partial Class FrmPaymentDirect
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.ID, Me.GridColumn44, Me.GridColumn57})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn43, Me.GridColumn41, Me.GridColumn40, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.ID, Me.GridColumn44, Me.GridColumn57, Me.GridColumn58})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Tanggal"
+        Me.GridColumn1.Caption = "Date"
         Me.GridColumn1.FieldName = "Tgl"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 70
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "NoBukti"
+        Me.GridColumn2.Caption = "Voucher No."
         Me.GridColumn2.ColumnEdit = Me.RepositoryItemButtonEdit2
         Me.GridColumn2.FieldName = "NoBukti"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 88
         '
         'RepositoryItemButtonEdit2
         '
@@ -1075,19 +1080,23 @@ Partial Class FrmPaymentDirect
         Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Description"
+        Me.GridColumn4.FieldName = "Keterangan"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 275
+        '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Transaksi"
+        Me.GridColumn3.Caption = "Transaction"
         Me.GridColumn3.FieldName = "Transaksi"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Keterangan"
-        Me.GridColumn4.FieldName = "Keterangan"
-        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 71
         '
         'GridColumn43
         '
@@ -1097,31 +1106,34 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn41
         '
-        Me.GridColumn41.Caption = "Advance Amount"
+        Me.GridColumn41.Caption = "Advance"
         Me.GridColumn41.FieldName = "SuspendAmount"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 3
+        Me.GridColumn41.VisibleIndex = 4
+        Me.GridColumn41.Width = 65
         '
         'GridColumn40
         '
-        Me.GridColumn40.Caption = "Settle Amount"
+        Me.GridColumn40.Caption = "Settlement"
         Me.GridColumn40.FieldName = "SettleAmount"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.OptionsColumn.AllowEdit = False
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 4
+        Me.GridColumn40.VisibleIndex = 5
+        Me.GridColumn40.Width = 77
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Masuk"
+        Me.GridColumn5.Caption = "Debit"
         Me.GridColumn5.ColumnEdit = Me.vtxtmasuk
         Me.GridColumn5.FieldName = "Masuk"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.Width = 89
         '
         'vtxtmasuk
         '
@@ -1130,13 +1142,14 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "keluar"
+        Me.GridColumn6.Caption = "Credit"
         Me.GridColumn6.ColumnEdit = Me.vtxtkeluar
         Me.GridColumn6.FieldName = "Keluar"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 72
         '
         'vtxtkeluar
         '
@@ -1145,11 +1158,11 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Saldo"
+        Me.GridColumn7.Caption = "Balance"
         Me.GridColumn7.FieldName = "Saldo"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'ID
         '
@@ -1164,7 +1177,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn44.FieldName = "AcctID"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 8
+        Me.GridColumn44.VisibleIndex = 9
+        Me.GridColumn44.Width = 46
         '
         'EditRek
         '
@@ -1174,17 +1188,33 @@ Partial Class FrmPaymentDirect
         '
         'GridColumn57
         '
-        Me.GridColumn57.Caption = "cek"
+        Me.GridColumn57.Caption = "Check"
         Me.GridColumn57.ColumnEdit = Me.RepositoryItemCheckEdit5
         Me.GridColumn57.FieldName = "cek"
         Me.GridColumn57.Name = "GridColumn57"
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 9
+        Me.GridColumn57.VisibleIndex = 10
+        Me.GridColumn57.Width = 42
         '
         'RepositoryItemCheckEdit5
         '
         Me.RepositoryItemCheckEdit5.AutoHeight = False
         Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "Reconciliation"
+        Me.GridColumn58.ColumnEdit = Me.RepositoryItemCheckEdit6
+        Me.GridColumn58.FieldName = "recon"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 11
+        Me.GridColumn58.Width = 82
+        '
+        'RepositoryItemCheckEdit6
+        '
+        Me.RepositoryItemCheckEdit6.AutoHeight = False
+        Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
         '
         'GridControl1
         '
@@ -1193,7 +1223,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl1.Location = New System.Drawing.Point(8, 91)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek, Me.vtxtmasuk, Me.vtxtkeluar, Me.cek, Me.RepositoryItemCheckEdit5, Me.RepositoryItemTextEdit1})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek, Me.vtxtmasuk, Me.vtxtkeluar, Me.cek, Me.RepositoryItemCheckEdit5, Me.RepositoryItemTextEdit1, Me.RepositoryItemCheckEdit6})
         Me.GridControl1.Size = New System.Drawing.Size(1154, 281)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -1300,6 +1330,7 @@ Partial Class FrmPaymentDirect
         CType(Me.vtxtkeluar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EditRek, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cek, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1429,4 +1460,6 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

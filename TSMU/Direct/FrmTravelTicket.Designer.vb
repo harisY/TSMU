@@ -20,9 +20,9 @@ Partial Class FrmTravelTicket
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.TabPageRequest = New DevExpress.XtraTab.XtraTabPage()
         Me.GridRequest = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,9 +33,9 @@ Partial Class FrmTravelTicket
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.TabPageTicket = New DevExpress.XtraTab.XtraTabPage()
         Me.GridTicket = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridViewTicket = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,12 +44,12 @@ Partial Class FrmTravelTicket
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
+        Me.TabPageRequest.SuspendLayout()
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPageTicket.SuspendLayout()
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -59,17 +59,17 @@ Partial Class FrmTravelTicket
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
+        Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
         Me.XtraTabControl1.Size = New System.Drawing.Size(1433, 555)
         Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageTicket})
         '
-        'XtraTabPage1
+        'TabPageRequest
         '
-        Me.XtraTabPage1.Controls.Add(Me.GridRequest)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1426, 521)
-        Me.XtraTabPage1.Text = "Travel Request"
+        Me.TabPageRequest.Controls.Add(Me.GridRequest)
+        Me.TabPageRequest.Name = "TabPageRequest"
+        Me.TabPageRequest.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageRequest.Text = "Request"
         '
         'GridRequest
         '
@@ -77,18 +77,19 @@ Partial Class FrmTravelTicket
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridRequest.Location = New System.Drawing.Point(3, 3)
-        Me.GridRequest.MainView = Me.GridView1
+        Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
         Me.GridRequest.Size = New System.Drawing.Size(1420, 515)
         Me.GridRequest.TabIndex = 0
-        Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
-        'GridView1
+        'GridViewRequest
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn10, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7})
-        Me.GridView1.GridControl = Me.GridRequest
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn10, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7})
+        Me.GridViewRequest.GridControl = Me.GridRequest
+        Me.GridViewRequest.Name = "GridViewRequest"
+        Me.GridViewRequest.OptionsBehavior.Editable = False
+        Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -199,12 +200,12 @@ Partial Class FrmTravelTicket
         Me.GridColumn7.VisibleIndex = 9
         Me.GridColumn7.Width = 120
         '
-        'XtraTabPage2
+        'TabPageTicket
         '
-        Me.XtraTabPage2.Controls.Add(Me.GridTicket)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1426, 521)
-        Me.XtraTabPage2.Text = "Travel Ticket"
+        Me.TabPageTicket.Controls.Add(Me.GridTicket)
+        Me.TabPageTicket.Name = "TabPageTicket"
+        Me.TabPageTicket.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageTicket.Text = "Ticket"
         '
         'GridTicket
         '
@@ -212,19 +213,20 @@ Partial Class FrmTravelTicket
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridTicket.Location = New System.Drawing.Point(3, 3)
-        Me.GridTicket.MainView = Me.GridView2
+        Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
         Me.GridTicket.Size = New System.Drawing.Size(1420, 515)
         Me.GridTicket.TabIndex = 0
-        Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
-        'GridView2
+        'GridViewTicket
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
-        Me.GridView2.GridControl = Me.GridTicket
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GridViewTicket.GridControl = Me.GridTicket
+        Me.GridViewTicket.Name = "GridViewTicket"
+        Me.GridViewTicket.OptionsBehavior.Editable = False
+        Me.GridViewTicket.OptionsView.ColumnAutoWidth = False
+        Me.GridViewTicket.OptionsView.ShowGroupPanel = False
         '
         'GridColumn11
         '
@@ -300,21 +302,21 @@ Partial Class FrmTravelTicket
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
+        Me.TabPageRequest.ResumeLayout(False)
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageTicket.ResumeLayout(False)
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents TabPageRequest As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridRequest As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridViewRequest As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -325,9 +327,9 @@ Partial Class FrmTravelTicket
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents TabPageTicket As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridTicket As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridViewTicket As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn

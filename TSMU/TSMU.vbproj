@@ -110,15 +110,18 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\TSMU_\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="LibDataAccess">
+      <HintPath>..\..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -290,8 +293,10 @@
     <Compile Include="Direct\Class\SuspendApproval.vb" />
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
+    <Compile Include="Direct\Class\TravelCreditCardModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
+    <Compile Include="Direct\Class\TravelSettleHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelTicketModel.vb" />
     <Compile Include="Direct\FrmApprovalEntertain.Designer.vb">
       <DependentUpon>FrmApprovalEntertain.vb</DependentUpon>
@@ -473,6 +478,18 @@
     <Compile Include="Direct\FrmTravel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTravelCreditCard.Designer.vb">
+      <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCardDetail.Designer.vb">
+      <DependentUpon>FrmTravelCreditCardDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelCreditCardDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmTraveler.Designer.vb">
       <DependentUpon>FrmTraveler.vb</DependentUpon>
     </Compile>
@@ -569,6 +586,18 @@
       <DependentUpon>CRTravelDetailAllowanceSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRTravelDetailEntertainSett.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailEntertainSett.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailEntertainSettRight.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailEntertainSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRTravelDetailSafetyMoney.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -639,6 +668,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRTravelDetailTransportSettRight.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRTravelDetailTransportSettRightSum.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRTravelDetailTransportSettRightSum.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\CRTravelSettlement.vb">
@@ -2238,6 +2273,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
+      <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelCreditCardDetail.resx">
+      <DependentUpon>FrmTravelCreditCardDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
     </EmbeddedResource>
@@ -2271,6 +2312,14 @@
     <EmbeddedResource Include="Direct\report\CRTravelDetailAllowanceSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelDetailAllowanceSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailEntertainSett.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailEntertainSett.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailEntertainSettRight.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailEntertainSettRight.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravelDetailSafetyMoney.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2319,6 +2368,10 @@
     <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelDetailTransportSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRTravelDetailTransportSettRightSum.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRTravelDetailTransportSettRightSum.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravelSettlement.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3598,6 +3651,15 @@
       <VersionMinor>4</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>

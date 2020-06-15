@@ -93,7 +93,7 @@ Public Class frm_payment_approve
                         'End If
 
 
-                        If GridView1.Columns(i).VisibleIndex <> 10 Then
+                        If GridView1.Columns(i).VisibleIndex <> 9 Then
                             GridView1.Columns(i).OptionsColumn.AllowEdit = False
                             ''GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
                             ''GridView1.Columns(i).AppearanceCell.ForeColor = Color.Black
@@ -640,6 +640,10 @@ Public Class frm_payment_approve
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
     End Sub
 
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged

@@ -41,12 +41,12 @@ Partial Class Frm_NPP_Detail
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
         Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
         Me.TTargetDr = New DevExpress.XtraEditors.DateEdit()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TMp = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -74,15 +74,17 @@ Partial Class Frm_NPP_Detail
         Me.TRevisiInformasi = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.BSetGroup = New System.Windows.Forms.Button()
+        Me.BtnDrr = New System.Windows.Forms.Button()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.TMassPro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TMassPro.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.TModelDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -320,18 +322,33 @@ Partial Class Frm_NPP_Detail
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TMassPro)
         Me.GroupBox1.Controls.Add(Me.TTargetQuot)
         Me.GroupBox1.Controls.Add(Me.TTargetDr)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.TMp)
         Me.GroupBox1.Location = New System.Drawing.Point(988, 34)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(363, 102)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Schedule"
+        '
+        'TMassPro
+        '
+        Me.TMassPro.EditValue = Nothing
+        Me.TMassPro.Location = New System.Drawing.Point(115, 20)
+        Me.TMassPro.Name = "TMassPro"
+        Me.TMassPro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TMassPro.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TMassPro.Properties.DisplayFormat.FormatString = "MMMM-yyyy"
+        Me.TMassPro.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TMassPro.Properties.EditFormat.FormatString = "MMMM-yyyy"
+        Me.TMassPro.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TMassPro.Properties.Mask.EditMask = "MMMM-yyyy"
+        Me.TMassPro.Size = New System.Drawing.Size(131, 20)
+        Me.TMassPro.TabIndex = 42
         '
         'TTargetQuot
         '
@@ -340,6 +357,11 @@ Partial Class Frm_NPP_Detail
         Me.TTargetQuot.Name = "TTargetQuot"
         Me.TTargetQuot.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TTargetQuot.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TTargetQuot.Properties.DisplayFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TTargetQuot.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TTargetQuot.Properties.EditFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TTargetQuot.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TTargetQuot.Properties.Mask.EditMask = "dd-MMMM-yyyy"
         Me.TTargetQuot.Size = New System.Drawing.Size(131, 20)
         Me.TTargetQuot.TabIndex = 41
         '
@@ -350,6 +372,11 @@ Partial Class Frm_NPP_Detail
         Me.TTargetDr.Name = "TTargetDr"
         Me.TTargetDr.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TTargetDr.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TTargetDr.Properties.DisplayFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TTargetDr.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TTargetDr.Properties.EditFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TTargetDr.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TTargetDr.Properties.Mask.EditMask = "dd-MMMM-yyyy"
         Me.TTargetDr.Size = New System.Drawing.Size(131, 20)
         Me.TTargetDr.TabIndex = 40
         '
@@ -379,15 +406,6 @@ Partial Class Frm_NPP_Detail
         Me.Label7.Size = New System.Drawing.Size(48, 13)
         Me.Label7.TabIndex = 37
         Me.Label7.Text = "MassPro"
-        '
-        'TMp
-        '
-        Me.TMp.Location = New System.Drawing.Point(115, 19)
-        Me.TMp.Name = "TMp"
-        Me.TMp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TMp.Properties.Items.AddRange(New Object() {"2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035"})
-        Me.TMp.Size = New System.Drawing.Size(131, 20)
-        Me.TMp.TabIndex = 36
         '
         'B_AddRows
         '
@@ -595,7 +613,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.TModel.Location = New System.Drawing.Point(76, 70)
         Me.TModel.Name = "TModel"
-        Me.TModel.Properties.MaxLength = 6
+        Me.TModel.Properties.MaxLength = 12
         Me.TModel.Size = New System.Drawing.Size(171, 20)
         Me.TModel.TabIndex = 25
         '
@@ -619,9 +637,9 @@ Partial Class Frm_NPP_Detail
         '
         'TNPP_No
         '
-        Me.TNPP_No.Enabled = False
         Me.TNPP_No.Location = New System.Drawing.Point(76, 23)
         Me.TNPP_No.Name = "TNPP_No"
+        Me.TNPP_No.Properties.MaxLength = 48
         Me.TNPP_No.Size = New System.Drawing.Size(310, 20)
         Me.TNPP_No.TabIndex = 21
         '
@@ -668,11 +686,21 @@ Partial Class Frm_NPP_Detail
         Me.BSetGroup.Text = "Set Group"
         Me.BSetGroup.UseVisualStyleBackColor = True
         '
+        'BtnDrr
+        '
+        Me.BtnDrr.Location = New System.Drawing.Point(340, 2)
+        Me.BtnDrr.Name = "BtnDrr"
+        Me.BtnDrr.Size = New System.Drawing.Size(104, 23)
+        Me.BtnDrr.TabIndex = 35
+        Me.BtnDrr.Text = "DRR Receive"
+        Me.BtnDrr.UseVisualStyleBackColor = True
+        '
         'Frm_NPP_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1363, 472)
+        Me.Controls.Add(Me.BtnDrr)
         Me.Controls.Add(Me.BSetGroup)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.TRevisiInformasi)
@@ -689,16 +717,18 @@ Partial Class Frm_NPP_Detail
         Me.Controls.SetChildIndex(Me.TRevisiInformasi, 0)
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.BSetGroup, 0)
+        Me.Controls.SetChildIndex(Me.BtnDrr, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.TMassPro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TMassPro.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TTargetQuot.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TTargetQuot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.TModelDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -761,7 +791,6 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents TTargetDr As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents TMp As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Ultrasonic As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label10 As Label
     Friend WithEvents TModelDesc As DevExpress.XtraEditors.TextEdit
@@ -771,4 +800,6 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents SingleCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BSetGroup As Button
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TMassPro As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BtnDrr As Button
 End Class
