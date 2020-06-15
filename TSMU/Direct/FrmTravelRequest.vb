@@ -7,6 +7,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class FrmTravelRequest
     Dim ff_Detail As FrmTravelRequestDetail
     Dim dtGrid As DataTable
+    Dim dtRequestAll As DataTable
     Dim fc_Class As New TravelRequestModel
 
     Dim TabPage As String
@@ -60,7 +61,7 @@ Public Class FrmTravelRequest
 
     Private Sub LoadGridRequestAll()
         Try
-            'dtGrid = fc_Class.GetTravelRequestAll()
+            dtRequestAll = fc_Class.GetTravelRequestAll()
             'GridRequestAll.DataSource = dtGrid
             'GridCellFormat(GridViewRequestAll)
         Catch ex As Exception
@@ -137,28 +138,28 @@ Public Class FrmTravelRequest
         End If
     End Sub
 
-    Public Overrides Sub Proc_Filter()
-        FilterData = New FrmSystem_FilterData(dtGrid)
-        FilterData.Text = "Search Travel Request"
-        FilterData.ShowDialog()
-        If Not FilterData.isCancel Then
-            bs_Filter = FilterData.strWhereClauseWithoutWhere
-            Call FilterGrid()
-        End If
-        FilterData.Hide()
-    End Sub
+    'Public Overrides Sub Proc_Filter()
+    '    FilterData = New FrmSystem_FilterData(dtGrid)
+    '    FilterData.Text = "Search Travel Request"
+    '    FilterData.ShowDialog()
+    '    If Not FilterData.isCancel Then
+    '        bs_Filter = FilterData.strWhereClauseWithoutWhere
+    '        Call FilterGrid()
+    '    End If
+    '    FilterData.Hide()
+    'End Sub
 
-    Private Sub FilterGrid()
-        Try
-            Dim dv As New DataView(dtGrid)
-            dv.RowFilter = bs_Filter
-            dtGrid = dv.ToTable
-            GridRequestAll.DataSource = dtGrid
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
+    'Private Sub FilterGrid()
+    '    Try
+    '        Dim dv As New DataView(dtGrid)
+    '        dv.RowFilter = bs_Filter
+    '        dtGrid = dv.ToTable
+    '        GridRequestAll.DataSource = dtGrid
+    '    Catch ex As Exception
+    '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+    '    End Try
+    'End Sub
 
     Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
         Try
@@ -192,7 +193,7 @@ Public Class FrmTravelRequest
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
             LoadGridApprovedReq()
         Else
-            Call Proc_EnableButtons(False, False, False, True, False, True, False, False)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
             LoadGridRequestAll()
         End If
     End Sub
@@ -209,6 +210,25 @@ Public Class FrmTravelRequest
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Dim filterParam As String
+        Dim filteredRows As DataRow()
+
+        filterParam = Replace(txtColumnName.Text, " ", "") + " = " + QVal(txtValue.Text)
+        If Not String.IsNullOrEmpty(txtColumnName.Text) Then
+            filteredRows = dtRequestAll.[Select](filterParam)
+            If filteredRows.Count > 0 Then
+                GridRequestAll.DataSource = filteredRows.CopyToDataTable
+                GridCellFormat(GridViewRequestAll)
+            Else
+                GridRequestAll.DataSource = Nothing
+            End If
+        Else
+            GridRequestAll.DataSource = Nothing
+        End If
+
     End Sub
 
 End Class

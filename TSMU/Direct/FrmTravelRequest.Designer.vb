@@ -50,6 +50,8 @@ Partial Class FrmTravelRequest
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageApproved = New DevExpress.XtraTab.XtraTabPage()
         Me.TabPageRequestAll = New DevExpress.XtraTab.XtraTabPage()
+        Me.btnSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GridRequestAll = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRequestAll = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,6 +64,8 @@ Partial Class FrmTravelRequest
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.txtColumnName = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtValue = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GridApprovedReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CApproved, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,6 +79,8 @@ Partial Class FrmTravelRequest
         Me.TabPageRequestAll.SuspendLayout()
         CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRequestAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtColumnName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridApprovedReq
@@ -394,20 +400,41 @@ Partial Class FrmTravelRequest
         '
         'TabPageRequestAll
         '
+        Me.TabPageRequestAll.Controls.Add(Me.btnSearch)
+        Me.TabPageRequestAll.Controls.Add(Me.Label1)
         Me.TabPageRequestAll.Controls.Add(Me.GridRequestAll)
+        Me.TabPageRequestAll.Controls.Add(Me.txtColumnName)
+        Me.TabPageRequestAll.Controls.Add(Me.txtValue)
         Me.TabPageRequestAll.Name = "TabPageRequestAll"
         Me.TabPageRequestAll.Size = New System.Drawing.Size(1493, 486)
         Me.TabPageRequestAll.Text = "Search"
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(582, 7)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(87, 29)
+        Me.btnSearch.TabIndex = 7
+        Me.btnSearch.Text = "Search"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(20, 14)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(94, 17)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Column Name"
         '
         'GridRequestAll
         '
         Me.GridRequestAll.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridRequestAll.Location = New System.Drawing.Point(3, 3)
+        Me.GridRequestAll.Location = New System.Drawing.Point(3, 42)
         Me.GridRequestAll.MainView = Me.GridViewRequestAll
         Me.GridRequestAll.Name = "GridRequestAll"
-        Me.GridRequestAll.Size = New System.Drawing.Size(1487, 480)
+        Me.GridRequestAll.Size = New System.Drawing.Size(1490, 441)
         Me.GridRequestAll.TabIndex = 3
         Me.GridRequestAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequestAll})
         '
@@ -528,6 +555,22 @@ Partial Class FrmTravelRequest
         Me.GridColumn31.VisibleIndex = 9
         Me.GridColumn31.Width = 90
         '
+        'txtColumnName
+        '
+        Me.txtColumnName.Location = New System.Drawing.Point(155, 11)
+        Me.txtColumnName.Name = "txtColumnName"
+        Me.txtColumnName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtColumnName.Properties.Items.AddRange(New Object() {"No Request", "NIK", "Nama", "Dept ID", "Status"})
+        Me.txtColumnName.Size = New System.Drawing.Size(157, 22)
+        Me.txtColumnName.TabIndex = 5
+        '
+        'txtValue
+        '
+        Me.txtValue.Location = New System.Drawing.Point(329, 11)
+        Me.txtValue.Name = "txtValue"
+        Me.txtValue.Size = New System.Drawing.Size(232, 22)
+        Me.txtValue.TabIndex = 6
+        '
         'FrmTravelRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -546,8 +589,11 @@ Partial Class FrmTravelRequest
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageApproved.ResumeLayout(False)
         Me.TabPageRequestAll.ResumeLayout(False)
+        Me.TabPageRequestAll.PerformLayout()
         CType(Me.GridRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRequestAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtColumnName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -596,4 +642,8 @@ Partial Class FrmTravelRequest
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txtColumnName As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents txtValue As DevExpress.XtraEditors.TextEdit
 End Class
