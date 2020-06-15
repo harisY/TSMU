@@ -12,7 +12,7 @@ Public Class FrmPaymentDirect
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim ff_Detail As FrmDetailPaymentDirect
+    Dim ff_Detail As FrmDetailPaymentDirect1
     Dim ff_Detail2 As FrmDetailPaymentSuspend
     Dim ff_Detail3 As FrmDetailPaymentSettle
     Dim ff_Detail4 As FrmDetailPaymentSuspend
@@ -1219,7 +1219,7 @@ Public Class FrmPaymentDirect
             Call CallFrm(id2, id,
                          GridView1.RowCount)
         Else
-            ff_Detail = New FrmDetailPaymentDirect(id)
+            ff_Detail = New FrmDetailPaymentDirect1(id)
             ff_Detail.Show()
         End If
 
@@ -1507,7 +1507,7 @@ Public Class FrmPaymentDirect
                     Call CallFrm(id2, id,
                          GridView1.RowCount)
                 Else
-                    ff_Detail = New FrmDetailPaymentDirect(id)
+                    ff_Detail = New FrmDetailPaymentDirect1(id)
                     ff_Detail.Show()
                 End If
             End If

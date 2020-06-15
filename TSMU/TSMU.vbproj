@@ -339,6 +339,12 @@
     <Compile Include="Direct\FrmDetailPaymentDirect.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmDetailPaymentDirect1.Designer.vb">
+      <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmDetailPaymentDirect1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmDetailPaymentSettle.Designer.vb">
       <DependentUpon>FrmDetailPaymentSettle.vb</DependentUpon>
     </Compile>
@@ -2266,6 +2272,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
+      <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
     </EmbeddedResource>
