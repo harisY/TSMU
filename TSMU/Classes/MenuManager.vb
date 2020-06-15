@@ -11,15 +11,18 @@ Public Class MenuManager
     Public Property Pages As List(Of Page)
 
     Public Sub Add(ByVal mdl As IUserInterface)
+        Dim index As Integer = 0
         For Each mnu As MenuItem In mdl.GetUserInterface()
             Dim page As Page = Pages.FirstOrDefault(Function(c) c.Text.Equals(mnu.Page, StringComparison.CurrentCultureIgnoreCase))
 
             If page Is Nothing Then
+                index = index + 1
                 page = New Page With {
                         .Text = mnu.Page,
-                        .Index = mnu.PageIndex
+                        .Index = index
                     }
                 Pages.Add(page)
+
             End If
 
             Dim group As Group = page.Groups.FirstOrDefault(Function(c) c.Text.Equals(mnu.Group, StringComparison.CurrentCultureIgnoreCase))
@@ -53,7 +56,7 @@ Public Class MenuManager
                     .Duplicate = mnu.Duplicate,
                     .Popup = mnu.Popup,
                     .FormType = mnu.FormType,
-                    .PageIndex = mnu.PageIndex
+                    .PageIndex = index
                 }
             group.Items.Add(item)
 
@@ -72,11 +75,12 @@ Public Class MenuManager
                             .Duplicate = mnu.Duplicate,
                             .Popup = mnu.Popup,
                             .FormType = mnu.FormType,
-                            .PageIndex = mnu.PageIndex
+                            .PageIndex = index
                         }
                     item.Items.Add(subItem)
                 Next
             End If
+
         Next
     End Sub
 
