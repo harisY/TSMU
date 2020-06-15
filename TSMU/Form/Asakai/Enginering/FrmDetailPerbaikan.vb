@@ -32,6 +32,7 @@ Public Class FrmDetailPerbaikan
     Dim extension As String = ""
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -57,6 +58,9 @@ Public Class FrmDetailPerbaikan
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmDetailPerbaikan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -86,7 +90,7 @@ Public Class FrmDetailPerbaikan
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Perbaikan" & fs_Code
+                Me.Text = "Perbaikan"
                 DateTanggal.Enabled = False
             Else
                 Me.Text = "Perbaikan"

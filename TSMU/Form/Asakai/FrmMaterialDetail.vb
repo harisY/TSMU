@@ -18,6 +18,7 @@ Public Class FrmMaterialDetail
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -42,6 +43,9 @@ Public Class FrmMaterialDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub FrmMaterialDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)

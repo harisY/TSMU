@@ -26,6 +26,7 @@ Public Class FrmKebijakaDetail
     Dim DtScan As DataTable
     Dim ObjKebijakan As New KebijakanModel
     Dim ObjKebijakanDetail As New KebijakanDetailModel
+    Dim _Tag As TagModel
 
 
     Public Sub New()
@@ -50,6 +51,9 @@ Public Class FrmKebijakaDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub FrmKebijakaDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
@@ -70,7 +74,7 @@ Public Class FrmKebijakaDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Kebijakan" & fs_Code
+                Me.Text = "Kebijakan"
             Else
                 Me.Text = "Kebijakan"
             End If

@@ -31,6 +31,7 @@ Public Class FrmMaterialPainting
     Dim TanggalMulai As Date
     Dim TanggalSampai As Date
     Dim Keterangan As String = ""
+    Dim _Tag As TagModel
 
 
     Dim FileLokasi As String
@@ -57,6 +58,9 @@ Public Class FrmMaterialPainting
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub FrmMaterialPainting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
@@ -75,7 +79,7 @@ Public Class FrmMaterialPainting
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Penggunaan Painting " & fs_Code
+                Me.Text = "Penggunaan Painting "
             Else
                 Me.Text = "Penggunaan Painting"
             End If
