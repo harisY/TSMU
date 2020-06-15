@@ -13,6 +13,8 @@ Imports System.Data.OleDb
 
 
 
+
+
 Public Class FrmProblemDeliveryDetail
 
     Private dt As DataTable
@@ -42,6 +44,7 @@ Public Class FrmProblemDeliveryDetail
     Dim extension As String = ""
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -65,6 +68,9 @@ Public Class FrmProblemDeliveryDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
 
@@ -104,7 +110,7 @@ Public Class FrmProblemDeliveryDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Problem Delivery " & fs_Code
+                Me.Text = "Problem Delivery "
             Else
                 Me.Text = "Problem Delivery"
             End If

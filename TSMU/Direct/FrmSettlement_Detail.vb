@@ -12,6 +12,7 @@ Public Class FrmSettlement_Detail
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -35,6 +36,9 @@ Public Class FrmSettlement_Detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmSettlement_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

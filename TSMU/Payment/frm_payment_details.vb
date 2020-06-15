@@ -20,6 +20,7 @@ Public Class frm_payment_details
     Dim ObjFP As New Cls_FP
     Dim ObjPayment As New Cls_Payment
     Dim ObjCM As New Cls_cmdm
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -43,6 +44,9 @@ Public Class frm_payment_details
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub frm_payment_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)

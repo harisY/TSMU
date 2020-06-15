@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraBars.Ribbon
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraSplashScreen
 Public Class frmCalculate
     Dim dtGrid As DataTable
@@ -252,69 +253,74 @@ Public Class frmCalculate
             Dim Status As Boolean
             'Hitung Forecast Januari terhadap BOM
             Dim dt As New DataTable
-            dt = ObjSales.GetForecastAll
+            dt = ObjSales.GetForecastAll(strTahun)
 
-            If Bulan1 = 1 Then
-                For i As Integer = 1 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 2 Then
-                For i As Integer = 2 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 3 Then
-                For i As Integer = 3 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 4 Then
-                For i As Integer = 4 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 5 Then
-                For i As Integer = 5 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 6 Then
-                For i As Integer = 6 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 7 Then
-                For i As Integer = 7 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 8 Then
-                For i As Integer = 8 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 9 Then
-                For i As Integer = 9 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 10 Then
-                For i As Integer = 10 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 11 Then
-                For i As Integer = 11 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            ElseIf Bulan1 = 12 Then
-                For i As Integer = 12 To Bulan2
-                    ObjSales.DeleteHeader(strTahun, i)
-                    ObjSales.DeleteDetails(strTahun, i)
-                Next
-            End If
+            For i As Integer = Bulan1 To Bulan2
+                ObjSales.DeleteHeader(strTahun, i)
+                ObjSales.DeleteDetails(strTahun, i)
+            Next
+
+            'If Bulan1 = 1 Then
+            '    For i As Integer = 1 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 2 Then
+            '    For i As Integer = 2 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 3 Then
+            '    For i As Integer = 3 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 4 Then
+            '    For i As Integer = 4 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 5 Then
+            '    For i As Integer = 5 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 6 Then
+            '    For i As Integer = 6 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 7 Then
+            '    For i As Integer = 7 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 8 Then
+            '    For i As Integer = 8 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 9 Then
+            '    For i As Integer = 9 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 10 Then
+            '    For i As Integer = 10 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 11 Then
+            '    For i As Integer = 11 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'ElseIf Bulan1 = 12 Then
+            '    For i As Integer = 12 To Bulan2
+            '        ObjSales.DeleteHeader(strTahun, i)
+            '        ObjSales.DeleteDetails(strTahun, i)
+            '    Next
+            'End If
 
             For i As Integer = 0 To dataTB.Rows.Count - 1
                 Dim bomidH As String = ""
@@ -333,7 +339,7 @@ Public Class frmCalculate
                 Dim IsForecastAlreadyCalculated As Boolean = False
                 descr = dataTB.Rows(i).Item("Description").ToString
                 unit = dataTB.Rows(i).Item("Unit").ToString
-                qty = dataTB.Rows(i).Item("Qty").ToString
+                qty = dataTB.Rows(i).Item("Qty")
                 level0 = dataTB.Rows(i).Item("Level 0").ToString
                 level1 = dataTB.Rows(i).Item("Level 1").ToString
                 level2 = dataTB.Rows(i).Item("Level 2").ToString
@@ -2235,4 +2241,5 @@ Public Class frmCalculate
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
 End Class

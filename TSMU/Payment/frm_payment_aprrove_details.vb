@@ -21,6 +21,7 @@ Public Class frm_payment_aprrove_details
     Dim ObjPayment As New Cls_Payment
     Dim ObjCM As New Cls_cmdm
     Dim IsNew As Boolean
+    Dim _Tag As TagModel
     Public Sub New()
 
         ' This call is required by the designer.
@@ -43,6 +44,9 @@ Public Class frm_payment_aprrove_details
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub frm_payment_aprrove_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IsNew Then

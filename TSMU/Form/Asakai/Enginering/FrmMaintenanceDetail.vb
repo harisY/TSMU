@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 Imports System.IO
 Imports ExcelDataReader
-Imports GemBox.Spreadsheet
+'Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
 Public Class FrmMaintenanceDetail
 
@@ -23,6 +23,7 @@ Public Class FrmMaintenanceDetail
     Dim KodeTrans As String = ""
     Dim fc_Class As New MaintenanceModel
     Dim GridDtl As GridControl
+    Dim _Tag As TagModel
 
     Private Sub FrmMaintenanceDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
@@ -51,6 +52,9 @@ Public Class FrmMaintenanceDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()

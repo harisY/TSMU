@@ -65,18 +65,20 @@ Partial Class frmCalculate
         '
         Me.XtraTabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 28)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 37)
+        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(835, 128)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1113, 167)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl1)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(829, 100)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1106, 133)
         Me.XtraTabPage1.Text = "Filter Data"
         '
         'LayoutControl1
@@ -87,46 +89,51 @@ Partial Class frmCalculate
         Me.LayoutControl1.Controls.Add(Me.CmbTahun)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(829, 100)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1106, 133)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'CmbSales
         '
-        Me.CmbSales.Location = New System.Drawing.Point(45, 12)
+        Me.CmbSales.Location = New System.Drawing.Point(51, 12)
+        Me.CmbSales.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbSales.Name = "CmbSales"
         Me.CmbSales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CmbSales.Properties.Items.AddRange(New Object() {"Forecast VS BoM", "Budget VS BOM"})
-        Me.CmbSales.Size = New System.Drawing.Size(258, 20)
+        Me.CmbSales.Size = New System.Drawing.Size(353, 22)
         Me.CmbSales.StyleController = Me.LayoutControl1
         Me.CmbSales.TabIndex = 4
         '
         'CmbBulan2
         '
-        Me.CmbBulan2.Location = New System.Drawing.Point(187, 60)
+        Me.CmbBulan2.Location = New System.Drawing.Point(243, 64)
+        Me.CmbBulan2.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbBulan2.Name = "CmbBulan2"
         Me.CmbBulan2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbBulan2.Size = New System.Drawing.Size(116, 20)
+        Me.CmbBulan2.Size = New System.Drawing.Size(161, 22)
         Me.CmbBulan2.StyleController = Me.LayoutControl1
         Me.CmbBulan2.TabIndex = 8
         '
         'CmbBulan1
         '
-        Me.CmbBulan1.Location = New System.Drawing.Point(45, 60)
+        Me.CmbBulan1.Location = New System.Drawing.Point(51, 64)
+        Me.CmbBulan1.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbBulan1.Name = "CmbBulan1"
         Me.CmbBulan1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbBulan1.Size = New System.Drawing.Size(118, 20)
+        Me.CmbBulan1.Size = New System.Drawing.Size(165, 22)
         Me.CmbBulan1.StyleController = Me.LayoutControl1
         Me.CmbBulan1.TabIndex = 6
         '
         'CmbTahun
         '
-        Me.CmbTahun.Location = New System.Drawing.Point(45, 36)
+        Me.CmbTahun.Location = New System.Drawing.Point(51, 38)
+        Me.CmbTahun.Margin = New System.Windows.Forms.Padding(4)
         Me.CmbTahun.Name = "CmbTahun"
         Me.CmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbTahun.Size = New System.Drawing.Size(258, 20)
+        Me.CmbTahun.Size = New System.Drawing.Size(353, 22)
         Me.CmbTahun.StyleController = Me.LayoutControl1
         Me.CmbTahun.TabIndex = 5
         '
@@ -136,15 +143,15 @@ Partial Class frmCalculate
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(829, 100)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1106, 133)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(295, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(396, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(514, 80)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(690, 113)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
@@ -152,37 +159,37 @@ Partial Class frmCalculate
         Me.LayoutControlItem1.Control = Me.CmbSales
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(295, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(396, 26)
         Me.LayoutControlItem1.Text = "Sales"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(30, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(36, 16)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.CmbTahun
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(295, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(396, 26)
         Me.LayoutControlItem2.Text = "Tahun"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(30, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(36, 16)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.CmbBulan1
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 52)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(155, 32)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(208, 61)
         Me.LayoutControlItem3.Text = "Bulan"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(30, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(36, 16)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.CmbBulan2
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(155, 48)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(208, 52)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(140, 32)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(188, 61)
         Me.LayoutControlItem5.Text = "s/d"
         Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(15, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(18, 16)
         Me.LayoutControlItem5.TextToControlDistance = 5
         '
         'Panel1
@@ -192,23 +199,28 @@ Partial Class frmCalculate
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(1, 157)
+        Me.Panel1.Location = New System.Drawing.Point(1, 205)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(827, 423)
+        Me.Panel1.Size = New System.Drawing.Size(1103, 553)
         Me.Panel1.TabIndex = 2
         '
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(0, 27)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(827, 398)
+        Me.Grid.Size = New System.Drawing.Size(1103, 526)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsCustomization.AllowSort = False
@@ -216,10 +228,11 @@ Partial Class frmCalculate
         '
         'ToolStrip2
         '
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnProses, Me.ToolStripSeparator1, Me.btnPrioses1})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(827, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1103, 27)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -228,29 +241,31 @@ Partial Class frmCalculate
         Me.BtnProses.Image = CType(resources.GetObject("BtnProses.Image"), System.Drawing.Image)
         Me.BtnProses.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnProses.Name = "BtnProses"
-        Me.BtnProses.Size = New System.Drawing.Size(152, 22)
+        Me.BtnProses.Size = New System.Drawing.Size(189, 24)
         Me.BtnProses.Text = "Show BoM To Calculate"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'btnPrioses1
         '
         Me.btnPrioses1.Image = CType(resources.GetObject("btnPrioses1.Image"), System.Drawing.Image)
         Me.btnPrioses1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPrioses1.Name = "btnPrioses1"
-        Me.btnPrioses1.Size = New System.Drawing.Size(61, 22)
+        Me.btnPrioses1.Size = New System.Drawing.Size(75, 24)
         Me.btnPrioses1.Text = "Proses"
         '
         'frmCalculate
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmCalculate"
+        Me.Tag = "2"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()

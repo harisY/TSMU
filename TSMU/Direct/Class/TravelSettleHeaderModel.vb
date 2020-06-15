@@ -18,13 +18,13 @@ Public Class TravelSettleHeaderModel
     Public Property TotalAdvanceIDR As Double
     Public Property TotalAdvanceUSD As Double
     Public Property TotalAdvanceYEN As Double
+    Public Property TotalReturnIDR As Double
+    Public Property TotalReturnUSD As Double
+    Public Property TotalReturnYEN As Double
     Public Property Status As String
 
     Public Property ObjSettleDetail() As New Collection(Of TravelSettleDetailModel)
-    Public Property ObjSettleTransport() As New Collection(Of TravelSettleTransportModel)
-    Public Property ObjSettleStaying() As New Collection(Of TravelSettleStayingModel)
-    Public Property ObjSettleEntertain() As New Collection(Of TravelSettleEntertainModel)
-    Public Property ObjSettleOther() As New Collection(Of TravelSettleOtherModel)
+    Public Property ObjSettleCost() As New Collection(Of TravelSettleCostModel)
 
     Dim strQuery As String
 
@@ -77,15 +77,18 @@ Public Class TravelSettleHeaderModel
                                 LEFT JOIN ( SELECT  NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
                                                     MAX(ArrivalDate) AS ArrivalDate ,
-                                                    CASE WHEN FORMAT(MIN(DepartureDate), 'MMyyyy') = FORMAT(MAX(ArrivalDate),
+                                                    CASE WHEN dbo.FormatDateTime(MIN(DepartureDate),
+                                                                                 'MMyyyy') = dbo.FormatDateTime(MAX(ArrivalDate),
                                                                                       'MMyyyy')
-                                                         THEN FORMAT(MIN(DepartureDate), 'dd') + ' - '
-                                                              + FORMAT(MAX(ArrivalDate),
-                                                                       'dd MMMM yyyy')
-                                                         ELSE FORMAT(MIN(DepartureDate),
-                                                                     'dd MMMM yyyy') + ' - '
-                                                              + FORMAT(MAX(ArrivalDate),
-                                                                       'dd MMMM yyyy')
+                                                         THEN dbo.FormatDateTime(MIN(DepartureDate),
+                                                                                 'dd') + ' - '
+                                                              + dbo.FormatDateTime(MAX(ArrivalDate),
+                                                                                   'dd MMMM yyyy')
+                                                         ELSE dbo.FormatDateTime(MIN(DepartureDate),
+                                                                                 'dd MMMM yyyy')
+                                                              + ' - '
+                                                              + dbo.FormatDateTime(MAX(ArrivalDate),
+                                                                                   'dd MMMM yyyy')
                                                     END AS Term
                                             FROM    dbo.TravelRequestDetail
                                             GROUP BY NoRequest
@@ -137,7 +140,10 @@ Public Class TravelSettleHeaderModel
                                 RateYEN ,
                                 TotalAdvanceIDR ,
                                 TotalAdvanceUSD ,
-                                TotalAdvanceYEN
+                                TotalAdvanceYEN ,
+                                TotalReturnIDR ,
+                                TotalReturnUSD ,
+                                TotalReturnYEN
                         FROM    dbo.TravelSettleHeader
                         WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             Dim dt As New DataTable
@@ -159,6 +165,9 @@ Public Class TravelSettleHeaderModel
                 TotalAdvanceIDR = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceIDR")))
                 TotalAdvanceUSD = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceUSD")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceUSD")))
                 TotalAdvanceYEN = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceYEN")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalAdvanceYEN")))
+                TotalReturnIDR = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceIDR")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalReturnIDR")))
+                TotalReturnUSD = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceUSD")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalReturnUSD")))
+                TotalReturnYEN = If(IsDBNull(dt.Rows(0).Item("TotalAdvanceYEN")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalReturnYEN")))
             End If
         Catch ex As Exception
             Throw ex
@@ -184,27 +193,9 @@ Public Class TravelSettleHeaderModel
                             End With
                         Next
 
-                        For i As Integer = 0 To ObjSettleTransport.Count - 1
-                            With ObjSettleTransport(i)
-                                .InsertSettleTransport()
-                            End With
-                        Next
-
-                        For i As Integer = 0 To ObjSettleStaying.Count - 1
-                            With ObjSettleStaying(i)
-                                .InsertSettleStaying()
-                            End With
-                        Next
-
-                        For i As Integer = 0 To ObjSettleEntertain.Count - 1
-                            With ObjSettleEntertain(i)
-                                .InsertSettleEntertain()
-                            End With
-                        Next
-
-                        For i As Integer = 0 To ObjSettleOther.Count - 1
-                            With ObjSettleOther(i)
-                                .InsertSettleOther()
+                        For i As Integer = 0 To ObjSettleCost.Count - 1
+                            With ObjSettleCost(i)
+                                .InsertSettleCost()
                             End With
                         Next
 
@@ -228,7 +219,7 @@ Public Class TravelSettleHeaderModel
 
             Dim SP_Name As String = "Travel_Insert_TravelSettleHeader"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
             pParam(1) = New SqlClient.SqlParameter("@DateHeader", SqlDbType.Date)
@@ -263,8 +254,14 @@ Public Class TravelSettleHeaderModel
             pParam(15).Value = TotalAdvanceUSD
             pParam(16) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
             pParam(16).Value = TotalAdvanceYEN
-            pParam(17) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(17).Value = gh_Common.Username
+            pParam(17) = New SqlClient.SqlParameter("@TotalReturnIDR", SqlDbType.Float)
+            pParam(17).Value = TotalReturnIDR
+            pParam(18) = New SqlClient.SqlParameter("@TotalReturnUSD", SqlDbType.Float)
+            pParam(18).Value = TotalReturnUSD
+            pParam(19) = New SqlClient.SqlParameter("@TotalReturnYEN", SqlDbType.Float)
+            pParam(19).Value = TotalReturnYEN
+            pParam(20) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(20).Value = gh_Common.Username
 
             ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
 
@@ -285,35 +282,11 @@ Public Class TravelSettleHeaderModel
                     Try
                         UpdateSettleHeader()
 
-                        Dim cls_SettleTransport As New TravelSettleTransportModel
-                        cls_SettleTransport.DeleteSettleTransport(TravelSettleID)
-                        For i As Integer = 0 To ObjSettleTransport.Count - 1
-                            With ObjSettleTransport(i)
-                                .InsertSettleTransport()
-                            End With
-                        Next
-
-                        Dim cls_SettleStaying As New TravelSettleStayingModel
-                        cls_SettleStaying.DeleteSettleStaying(TravelSettleID)
-                        For i As Integer = 0 To ObjSettleStaying.Count - 1
-                            With ObjSettleStaying(i)
-                                .InsertSettleStaying()
-                            End With
-                        Next
-
-                        Dim cls_SettleEntertain As New TravelSettleEntertainModel
-                        cls_SettleEntertain.DeleteSettleEntertain(TravelSettleID)
-                        For i As Integer = 0 To ObjSettleEntertain.Count - 1
-                            With ObjSettleEntertain(i)
-                                .InsertSettleEntertain()
-                            End With
-                        Next
-
-                        Dim cls_SettleOther As New TravelSettleOtherModel
-                        cls_SettleOther.DeleteSettleOther(TravelSettleID)
-                        For i As Integer = 0 To ObjSettleOther.Count - 1
-                            With ObjSettleOther(i)
-                                .InsertSettleOther()
+                        Dim cls_SettleCost As New TravelSettleCostModel
+                        cls_SettleCost.DeleteSettleCost(TravelSettleID)
+                        For i As Integer = 0 To ObjSettleCost.Count - 1
+                            With ObjSettleCost(i)
+                                .InsertSettleCost()
                             End With
                         Next
 
@@ -336,6 +309,9 @@ Public Class TravelSettleHeaderModel
             strQuery = " UPDATE  dbo.TravelSettleHeader " & vbCrLf &
                         " SET     RateUSD = " & QVal(RateUSD) & " , " & vbCrLf &
                         "         RateYEN = " & QVal(RateYEN) & " , " & vbCrLf &
+                        "         TotalReturnUSD = " & QVal(TotalReturnUSD) & " , " & vbCrLf &
+                        "         TotalReturnYEN = " & QVal(TotalReturnYEN) & " , " & vbCrLf &
+                        "         TotalReturnIDR = " & QVal(TotalReturnIDR) & " , " & vbCrLf &
                         "         UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   TravelSettleID = '" & TravelSettleID & "' "
@@ -366,17 +342,8 @@ Public Class TravelSettleHeaderModel
                             End With
                         Next
 
-                        Dim cls_SettleTransport As New TravelSettleTransportModel
-                        cls_SettleTransport.DeleteSettleTransport(TravelSettleID)
-
-                        Dim cls_SettleStaying As New TravelSettleStayingModel
-                        cls_SettleStaying.DeleteSettleStaying(TravelSettleID)
-
-                        Dim cls_SettleEntertain As New TravelSettleEntertainModel
-                        cls_SettleEntertain.DeleteSettleEntertain(TravelSettleID)
-
-                        Dim cls_SettleOther As New TravelSettleOtherModel
-                        cls_SettleOther.DeleteSettleOther(TravelSettleID)
+                        Dim cls_SettleCost As New TravelSettleCostModel
+                        cls_SettleCost.DeleteSettleCost(TravelSettleID)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -473,9 +440,9 @@ Public Class TravelSettleHeaderModel
                                 Visa ,
                                 RateUSD ,
                                 RateYEN ,
-                                TotalAdvanceIDR ,
-                                TotalAdvanceUSD ,
-                                TotalAdvanceYEN
+                                CAST(TotalAdvanceIDR AS INTEGER) AS TotalAdvanceIDR ,
+                                CAST(TotalAdvanceUSD AS INTEGER) AS TotalAdvanceUSD ,
+                                CAST(TotalAdvanceYEN AS INTEGER) AS TotalAdvanceYEN
                         FROM    dbo.TravelSettleHeader
                         WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             dt = GetDataTable_Solomon(strQuery)
@@ -488,9 +455,9 @@ Public Class TravelSettleHeaderModel
     Public Function LoadReportSettleTransport() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  TravelSettleID ,
+            strQuery = "SELECT  TravelSettleID ,
                                 Seq ,
-                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                dbo.FormatDateTime(Date, 'dd-MMM') AS Date ,
                                 TFrom ,
                                 TTo ,
                                 Transport ,
@@ -502,7 +469,7 @@ Public Class TravelSettleHeaderModel
                                      ELSE 'CC'
                                 END AS PaymentType
                         FROM    dbo.TravelSettleTransport
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & ""
             dt = GetDataTable_Solomon(strQuery)
             Return dt
             'Dim ds As New dsLaporan
@@ -517,15 +484,15 @@ Public Class TravelSettleHeaderModel
         Try
             Dim dt As New DataTable
             strQuery = "SELECT  TravelSettleID ,
-                            'TOTAL' AS SumDesc ,
-                            CASE WHEN CurryID = 'YEN' THEN 'JPY'
-                                 ELSE CurryID
-                            END AS CurryID ,
-                            SUM(Amount) AS TotAmount
-                    FROM    dbo.TravelSettleTransport
-                    WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
-                    GROUP BY TravelSettleID ,
-                            CurryID "
+                                'TOTAL' AS SumDesc ,
+                                CASE WHEN CurryID = 'YEN' THEN 'JPY'
+                                        ELSE CurryID
+                                END AS CurryID ,
+                                SUM(Amount) AS TotAmount
+                        FROM    dbo.TravelSettleTransport
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                        GROUP BY TravelSettleID ,
+                                CurryID "
             dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
@@ -537,9 +504,9 @@ Public Class TravelSettleHeaderModel
     Public Function LoadReportSettleStaying() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  TravelSettleID ,
+            strQuery = "SELECT  TravelSettleID ,
                                 Seq ,
-                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                dbo.FormatDateTime (Date, 'dd-MMM') AS Date ,
                                 Description ,
                                 CASE WHEN CurryID = 'YEN' THEN 'JPY'
                                      ELSE CurryID
@@ -549,7 +516,7 @@ Public Class TravelSettleHeaderModel
                                      ELSE 'CC'
                                 END AS PaymentType
                         FROM    dbo.TravelSettleStaying
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & ""
             dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
@@ -563,7 +530,7 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT  TravelSettleID ,
                                 Seq ,
-                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                dbo.FormatDateTime(Date, 'dd-MMM') AS Date ,
                                 Description ,
                                 CASE WHEN CurryID = 'YEN' THEN 'JPY'
                                      ELSE CurryID
@@ -587,7 +554,7 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT  TravelSettleID ,
                                 Seq ,
-                                FORMAT(Date, 'dd-MMM') AS Date ,
+                                dbo.FormatDateTime(Date, 'dd-MMM') AS Date ,
                                 Description ,
                                 CASE WHEN CurryID = 'YEN' THEN 'JPY'
                                      ELSE CurryID
@@ -606,97 +573,91 @@ Public Class TravelSettleHeaderModel
 
     End Function
 
+    Public Function LoadReportSettleDetail() As DataTable
+        Try
+            Dim dt As New DataTable
+
+            Dim SP_Name As String = "Travel_Rpt_GetTravelSettleDetail"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportSettleDetailSum() As DataTable
+        Try
+            Dim dt As New DataTable
+
+            Dim SP_Name As String = "Travel_Rpt_GetTravelSettleDetailSum"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function LoadReportSettleExpense() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = "SELECT  TravelSettleID ,
-                                'A)' AS ID ,
-                                'Transportation Fee' AS CostType ,
-                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
-                                     ELSE PaymentType
-                                END AS PaymentType ,
-                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS USD ,
-                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS YEN ,
-                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS IDR
-                        FROM    dbo.TravelSettleTransport
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
-                        GROUP BY TravelSettleID ,
-                                PaymentType ,
-                                CurryID
-                        UNION ALL
+
+            Dim SP_Name As String = "Travel_Rpt_GetSumExpense"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportSumExpense() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "DECLARE @tblSum TABLE
+                            (
+                                TravelSettleID CHAR(15) ,
+                                ID CHAR(2) ,
+                                CostType VARCHAR(20) ,
+                                PaymentType VARCHAR(11) ,
+                                USD FLOAT ,
+                                YEN FLOAT ,
+                                IDR FLOAT
+                            );
+
+                        INSERT  INTO @tblSum
+                                EXEC dbo.Travel_Rpt_GetSumExpense @TravelSettleID = " & QVal(TravelSettleID) & ";
+        
                         SELECT  TravelSettleID ,
-                                'B)' AS ID ,
-                                'Staying Fee' AS CostType ,
-                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
-                                     ELSE PaymentType
-                                END AS PaymentType ,
-                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS USD ,
-                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS YEN ,
-                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS IDR
-                        FROM    dbo.TravelSettleStaying
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                                'TOTAL EXPENSE MONEY ' + PaymentType AS SumDesc ,
+                                SUM(USD) AS USD ,
+                                SUM(YEN) AS YEN ,
+                                SUM(IDR) AS IDR
+                        FROM    @tblSum
                         GROUP BY TravelSettleID ,
-                                PaymentType ,
-                                CurryID
-                        UNION ALL
-                        SELECT  TravelSettleID ,
-                                'C)' AS ID ,
-                                'Entertainment Fee' AS CostType ,
-                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
-                                     ELSE PaymentType
-                                END AS PaymentType ,
-                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS USD ,
-                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS YEN ,
-                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS IDR
-                        FROM    dbo.TravelSettleEntertainment
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
-                        GROUP BY TravelSettleID ,
-                                PaymentType ,
-                                CurryID
-                        UNION ALL
-                        SELECT  TravelSettleID ,
-                                'D)' AS ID ,
-                                'Others' AS CostType ,
-                                CASE WHEN PaymentType = 'CREDIT CARD' THEN 'CREDIT'
-                                     ELSE PaymentType
-                                END AS PaymentType ,
-                                CASE WHEN CurryID = 'USD' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS USD ,
-                                CASE WHEN CurryID = 'YEN' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS YEN ,
-                                CASE WHEN CurryID = 'IDR' THEN ISNULL(SUM(Amount), 0)
-                                     ELSE 0
-                                END AS IDR
-                        FROM    dbo.TravelSettleOther
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
-                        GROUP BY TravelSettleID ,
-                                PaymentType ,
-                                CurryID"
+                                PaymentType"
             dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
+
     End Function
 
     Public Function LoadReportSettleAllowance() As DataTable
@@ -798,117 +759,16 @@ Public Class TravelSettleDetailModel
 
 End Class
 
-Public Class TravelSettleTransportModel
+Public Class TravelSettleCostModel
     Public Property TravelSettleID As String
     Public Property ID As Integer
     Public Property Seq As Integer
     Public Property AccountID As String
-    Public Property DateTransport As Date
+    Public Property DateCost As Date
+    Public Property EntertainID As String
     Public Property TFrom As String
     Public Property TTo As String
     Public Property Transport As String
-    Public Property PaymentType As String
-    Public Property CreditCardID As String
-    Public Property CreditCardNumber As String
-    Public Property AccountName As String
-    Public Property CurryID As String
-    Public Property Amount As Double
-    Public Property AmountIDR As Double
-
-    Dim strQuery As String
-
-    Public Function GetTravelSettTransportByID() As DataTable
-        Try
-            strQuery = " SELECT  TravelSettleID ,
-                                ID ,
-                                AccountID ,
-                                '' AS SubAccount ,
-                                Date ,
-                                TFrom ,
-                                TTo ,
-                                Transport ,
-                                CASE WHEN PaymentType = 'CREDIT CARD'
-                                     THEN 'CC-' + ISNULL(CreditCardNumber, '')
-                                     ELSE PaymentType
-                                END PaymentType ,
-                                CreditCardID ,
-                                CreditCardNumber ,
-                                AccountName ,
-                                CurryID ,
-                                Amount ,
-                                AmountIDR
-                        FROM    dbo.TravelSettleTransport
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Sub InsertSettleTransport()
-        Try
-            strQuery = " INSERT  INTO dbo.TravelSettleTransport
-                                ( TravelSettleID ,
-                                  ID ,
-                                  Seq ,
-                                  AccountID ,
-                                  Date ,
-                                  TFrom ,
-                                  TTo ,
-                                  Transport ,
-                                  PaymentType ,
-                                  CreditCardID ,
-                                  CreditCardNumber ,
-                                  AccountName ,
-                                  CurryID ,
-                                  Amount ,
-                                  AmountIDR
-                                )
-                        VALUES  ( " & QVal(TravelSettleID) & " , -- TravelSettleID - char(15)
-                                  " & QVal(ID) & " , -- ID - int
-                                  " & QVal(Seq) & " , -- Seq - int
-                                  " & QVal(AccountID) & " , -- AccountID - varchar(10)
-                                  " & QVal(DateTransport) & " , -- Date - date
-                                  " & QVal(TFrom) & " , -- TFrom - varchar(50)
-                                  " & QVal(TTo) & " , -- TTo - varchar(50)
-                                  " & QVal(Transport) & " , -- Transport - varchar(50)
-                                  " & QVal(PaymentType) & " , -- PaymentType - varchar(11)
-                                  " & QVal(CreditCardID) & " , -- CreditCardID - char(5)
-                                  " & QVal(CreditCardNumber) & " , -- CreditCardNumber - varchar(20)
-                                  " & QVal(AccountName) & " , -- AccountName - varchar(50)
-                                  " & QVal(CurryID) & " , -- CurryID - char(3)
-                                  " & QVal(Amount) & " , -- Amount - float
-                                  " & QVal(AmountIDR) & "  -- AmountIDR - float
-                                ) "
-            ExecQuery_Solomon(strQuery)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteSettleTransport(ByVal _TravelSettID As String)
-        Try
-            Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleTransport " & vbCrLf &
-                    " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-
-
-End Class
-
-Public Class TravelSettleStayingModel
-    Public Property TravelSettleID As String
-    Public Property ID As Integer
-    Public Property Seq As Integer
-    Public Property AccountID As String
-    Public Property DateStaying As Date
     Public Property Description As String
     Public Property PaymentType As String
     Public Property CreditCardID As String
@@ -920,269 +780,77 @@ Public Class TravelSettleStayingModel
 
     Dim strQuery As String
 
-    Public Function GetTravelSettHotelByID() As DataTable
+    Public Function GetTravelSettleCostByID() As DataTable
         Try
-            strQuery = " SELECT  TravelSettleID ,
-                                ID ,
-                                AccountID ,
-                                '' AS SubAccount ,
-                                Date ,
-                                Description ,
-                                CASE WHEN PaymentType = 'CREDIT CARD'
-                                     THEN 'CC-' + ISNULL(CreditCardNumber, '')
-                                     ELSE PaymentType
-                                END PaymentType ,
-                                CreditCardID ,
-                                CreditCardNumber ,
-                                AccountName ,
-                                CurryID ,
-                                Amount ,
-                                AmountIDR
-                        FROM    dbo.TravelSettleStaying
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+
+            Dim SP_Name As String = "Travel_Get_TravelSettleCost"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    Public Sub InsertSettleStaying()
+    Public Sub InsertSettleCost()
         Try
-            strQuery = " INSERT  INTO dbo.TravelSettleStaying
-                                ( TravelSettleID ,
-                                  ID ,
-                                  Seq ,
-                                  AccountID ,
-                                  Date ,
-                                  Description ,
-                                  PaymentType ,
-                                  CreditCardID ,
-                                  CreditCardNumber ,
-                                  AccountName ,
-                                  CurryID ,
-                                  Amount ,
-                                  AmountIDR
-                                )
-                        VALUES  ( " & QVal(TravelSettleID) & " , -- TravelSettleID - char(15)
-                                  " & QVal(ID) & " , -- ID - int
-                                  " & QVal(Seq) & " , -- Seq - int
-                                  " & QVal(AccountID) & " , -- AccountID - varchar(10)
-                                  " & QVal(DateStaying) & " , -- Date - date
-                                  " & QVal(Description) & " , -- Transport - varchar(50)
-                                  " & QVal(PaymentType) & " , -- PaymentType - varchar(11)
-                                  " & QVal(CreditCardID) & " , -- CreditCardID - char(5)
-                                  " & QVal(CreditCardNumber) & " , -- CreditCardNumber - varchar(20)
-                                  " & QVal(AccountName) & " , -- AccountName - varchar(50)
-                                  " & QVal(CurryID) & " , -- CurryID - char(3)
-                                  " & QVal(Amount) & " , -- Amount - float
-                                  " & QVal(AmountIDR) & "  -- AmountIDR - float
-                                ) "
-            ExecQuery_Solomon(strQuery)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteSettleStaying(ByVal _TravelSettID As String)
-        Try
-            Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleStaying " & vbCrLf &
-                    " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-End Class
-
-Public Class TravelSettleEntertainModel
-    Public Property TravelSettleID As String
-    Public Property ID As Integer
-    Public Property Seq As Integer
-    Public Property AccountID As String
-    Public Property DateEntertain As Date
-    Public Property EntertainID As String
-    Public Property Description As String
-    Public Property PaymentType As String
-    Public Property CreditCardID As String
-    Public Property CreditCardNumber As String
-    Public Property AccountName As String
-    Public Property CurryID As String
-    Public Property Amount As Double
-    Public Property AmountIDR As Double
-
-    Dim strQuery As String
-
-    Public Function GetTravelSettEntertainByID() As DataTable
-        Try
-            strQuery = " SELECT  TravelSettleID ,
-                                ID ,
-                                AccountID ,
-                                '' AS SubAccount ,
-                                Date ,
-                                EntertainID ,
-                                Description ,
-                                CASE WHEN PaymentType = 'CREDIT CARD'
-                                     THEN 'CC-' + ISNULL(CreditCardNumber, '')
-                                     ELSE PaymentType
-                                END PaymentType ,
-                                CreditCardID ,
-                                CreditCardNumber ,
-                                AccountName ,
-                                CurryID ,
-                                Amount ,
-                                AmountIDR
-                        FROM    dbo.TravelSettleEntertainment
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
-            Return dt
+
+            Dim SP_Name As String = "Travel_Insert_TravelSettleCost"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+            pParam(1) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(1).Value = ID
+            pParam(2) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(2).Value = Seq
+            pParam(3) = New SqlClient.SqlParameter("@AccountID", SqlDbType.VarChar)
+            pParam(3).Value = AccountID
+            pParam(4) = New SqlClient.SqlParameter("@DateCost", SqlDbType.Date)
+            pParam(4).Value = DateCost
+            pParam(5) = New SqlClient.SqlParameter("@EntertainID", SqlDbType.VarChar)
+            pParam(5).Value = EntertainID
+            pParam(6) = New SqlClient.SqlParameter("@TFrom", SqlDbType.VarChar)
+            pParam(6).Value = TFrom
+            pParam(7) = New SqlClient.SqlParameter("@TTo", SqlDbType.VarChar)
+            pParam(7).Value = TTo
+            pParam(8) = New SqlClient.SqlParameter("@Transport", SqlDbType.VarChar)
+            pParam(8).Value = Transport
+            pParam(9) = New SqlClient.SqlParameter("@Description", SqlDbType.VarChar)
+            pParam(9).Value = Description
+            pParam(10) = New SqlClient.SqlParameter("@PaymentType", SqlDbType.VarChar)
+            pParam(10).Value = PaymentType
+            pParam(11) = New SqlClient.SqlParameter("@CreditCardID", SqlDbType.VarChar)
+            pParam(11).Value = CreditCardID
+            pParam(12) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(12).Value = CreditCardNumber
+            pParam(13) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
+            pParam(13).Value = AccountName
+            pParam(14) = New SqlClient.SqlParameter("@CurryID", SqlDbType.VarChar)
+            pParam(14).Value = CurryID
+            pParam(15) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
+            pParam(15).Value = Amount
+            pParam(16) = New SqlClient.SqlParameter("@AmountIDR", SqlDbType.Float)
+            pParam(16).Value = AmountIDR
+
+            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+
         Catch ex As Exception
             Throw ex
         End Try
-    End Function
-
-    Public Sub InsertSettleEntertain()
-        Try
-            strQuery = " INSERT  INTO dbo.TravelSettleEntertainment
-                                ( TravelSettleID ,
-                                  ID ,
-                                  Seq ,
-                                  AccountID ,
-                                  Date ,
-                                  EntertainID ,
-                                  Description ,
-                                  PaymentType ,
-                                  CreditCardID ,
-                                  CreditCardNumber ,
-                                  AccountName ,
-                                  CurryID ,
-                                  Amount ,
-                                  AmountIDR
-                                )
-                        VALUES  ( " & QVal(TravelSettleID) & " , -- TravelSettleID - char(15)
-                                  " & QVal(ID) & " , -- ID - int
-                                  " & QVal(Seq) & " , -- Seq - int
-                                  " & QVal(AccountID) & " , -- AccountID - varchar(10)
-                                  " & QVal(DateEntertain) & " , -- Date - date
-                                  " & QVal(EntertainID) & " , -- EntertainID - varchar(15)
-                                  " & QVal(Description) & " , -- Description - varchar(50)
-                                  " & QVal(PaymentType) & " , -- PaymentType - varchar(11)
-                                  " & QVal(CreditCardID) & " , -- CreditCardID - char(5)
-                                  " & QVal(CreditCardNumber) & " , -- CreditCardNumber - varchar(20)
-                                  " & QVal(AccountName) & " , -- AccountName - varchar(50)
-                                  " & QVal(CurryID) & " , -- CurryID - char(3)
-                                  " & QVal(Amount) & " , -- Amount - float
-                                  " & QVal(AmountIDR) & "  -- AmountIDR - float
-                                ) "
-            ExecQuery_Solomon(strQuery)
-        Catch ex As Exception
-            Throw
-        End Try
     End Sub
 
-    Public Sub DeleteSettleEntertain(ByVal _TravelSettID As String)
+    Public Sub DeleteSettleCost(ByVal _TravelSettID As String)
         Try
             Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleEntertainment " & vbCrLf &
-                    " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-End Class
-
-Public Class TravelSettleOtherModel
-    Public Property TravelSettleID As String
-    Public Property ID As Integer
-    Public Property Seq As Integer
-    Public Property AccountID As String
-    Public Property DateOther As Date
-    Public Property Description As String
-    Public Property PaymentType As String
-    Public Property CreditCardID As String
-    Public Property CreditCardNumber As String
-    Public Property AccountName As String
-    Public Property CurryID As String
-    Public Property Amount As Double
-    Public Property AmountIDR As Double
-
-    Dim strQuery As String
-
-    Public Function GetTravelSettOtherByID() As DataTable
-        Try
-            strQuery = " SELECT  TravelSettleID ,
-                                ID ,
-                                AccountID ,
-                                '' AS SubAccount ,
-                                Date ,
-                                Description ,
-                                CASE WHEN PaymentType = 'CREDIT CARD'
-                                     THEN 'CC-' + ISNULL(CreditCardNumber, '')
-                                     ELSE PaymentType
-                                END PaymentType ,
-                                CreditCardID ,
-                                CreditCardNumber ,
-                                AccountName ,
-                                CurryID ,
-                                Amount ,
-                                AmountIDR
-                        FROM    dbo.TravelSettleOther
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
-            Return dt
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-    Public Sub InsertSettleOther()
-        Try
-            strQuery = " INSERT  INTO dbo.TravelSettleOther
-                                ( TravelSettleID ,
-                                  ID ,
-                                  Seq ,
-                                  AccountID ,
-                                  Date ,
-                                  Description ,
-                                  PaymentType ,
-                                  CreditCardID ,
-                                  CreditCardNumber ,
-                                  AccountName ,
-                                  CurryID ,
-                                  Amount ,
-                                  AmountIDR
-                                )
-                        VALUES  ( " & QVal(TravelSettleID) & " , -- TravelSettleID - char(15)
-                                  " & QVal(ID) & " , -- ID - int
-                                  " & QVal(Seq) & " , -- Seq - int
-                                  " & QVal(AccountID) & " , -- AccountID - varchar(10)
-                                  " & QVal(DateOther) & " , -- Date - date
-                                  " & QVal(Description) & " , -- Description - varchar(50)
-                                  " & QVal(PaymentType) & " , -- PaymentType - varchar(11)
-                                  " & QVal(CreditCardID) & " , -- CreditCardID - char(5)
-                                  " & QVal(CreditCardNumber) & " , -- CreditCardNumber - varchar(20)
-                                  " & QVal(AccountName) & " , -- AccountName - varchar(50)
-                                  " & QVal(CurryID) & " , -- CurryID - char(3)
-                                  " & QVal(Amount) & " , -- Amount - float
-                                  " & QVal(AmountIDR) & "  -- AmountIDR - float
-                                ) "
-            ExecQuery_Solomon(strQuery)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteSettleOther(ByVal _TravelSettID As String)
-        Try
-            Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleOther " & vbCrLf &
+            ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
                     " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

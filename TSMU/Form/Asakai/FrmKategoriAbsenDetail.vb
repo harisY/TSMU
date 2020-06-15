@@ -13,6 +13,7 @@ Public Class FrmKategoriAbsenDetail
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -37,6 +38,9 @@ Public Class FrmKategoriAbsenDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmKategoriAbsenDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -56,7 +60,7 @@ Public Class FrmKategoriAbsenDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Master Kategori Absen " & fs_Code
+                Me.Text = "Master Kategori Absen "
             Else
                 Me.Text = "Master New Kategori Absen"
             End If

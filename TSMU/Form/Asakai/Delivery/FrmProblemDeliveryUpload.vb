@@ -46,6 +46,7 @@ Public Class FrmProblemDeliveryUpload
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
     Private dt1 As DataTable
+    Dim _Tag As TagModel
 
 
     Private Sub FrmProblemDeliveryUpload_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -87,6 +88,9 @@ Public Class FrmProblemDeliveryUpload
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub BCari_Click(sender As Object, e As EventArgs) Handles BCari.Click

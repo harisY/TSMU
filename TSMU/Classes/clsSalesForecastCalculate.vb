@@ -450,10 +450,10 @@ Public Class clsSalesForecastCalculate
             Throw
         End Try
     End Function
-    Public Function GetForecastAll() As DataTable
+    Public Function GetForecastAll(Tahun As String) As DataTable
         Dim dt As DataTable
         Try
-            Dim sql = "SELECT * FROM [tForecastPrice] "
+            Dim sql = "SELECT * FROM [tForecastPrice] where Tahun = '" & Tahun & "'"
             dt = New DataTable
             dt = GetDataTable(sql)
             Return dt

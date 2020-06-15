@@ -33,6 +33,7 @@ Public Class FrmClaimCustomerDetail
     Dim extension As String = ""
     Dim fileSavePath As String = ""
     Dim opfImage As New OpenFileDialog
+    Dim _Tag As TagModel
 
 
 
@@ -70,6 +71,9 @@ Public Class FrmClaimCustomerDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub FrmClaimCustomerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -108,7 +112,7 @@ Public Class FrmClaimCustomerDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Claim Customer " & fs_Code
+                Me.Text = "Claim Customer "
                 DtTanggalLaporan.Enabled = False
             Else
                 Me.Text = "Claim Customer"

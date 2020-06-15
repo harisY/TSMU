@@ -16,7 +16,10 @@ Public Class FrmTravelTicketDetail
     Dim ObjTravelTicketDetail As New TravelTicketDetailModel
 
     Dim GridDtl As GridControl
-    Dim dtGrid = New DataTable
+    Dim dtGrid As New DataTable
+    Dim dtRequest As New DataTable
+    Dim dtInvoiceHeader As New DataTable
+    Dim dtInvoiceDetail As New DataTable
     Dim row As Integer
 
     Public NoVoucher As String
@@ -30,6 +33,7 @@ Public Class FrmTravelTicketDetail
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
@@ -48,7 +52,7 @@ Public Class FrmTravelTicketDetail
     End Sub
 
     Private Sub FrmTravelTicketDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True)
         Call InitialSetForm()
     End Sub
 
@@ -65,9 +69,9 @@ Public Class FrmTravelTicketDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "REQUEST TICKET" + ": " + fs_Code
+                Me.Text = "TICKET"
             Else
-                Me.Text = "NEW REQUEST TICKET"
+                Me.Text = "NEW TICKET"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
@@ -86,17 +90,18 @@ Public Class FrmTravelTicketDetail
                 dtGrid = New DataTable
                 ObjTravelTicket.NoVoucher = fs_Code
                 dtGrid = ObjTravelTicket.GetTravelTicketDetail()
-
-                GridTicket.DataSource = dtGrid
-                GridCellFormat(GridViewTicket)
-                txtTotal.Text = Format(dtGrid.Compute("SUM(Amount)", ""), gs_FormatDecimal)
-                txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
+                dtRequest = dtGrid.Copy
+                GridTicket.DataSource = dtRequest
             Else
+                GridViewTicket.Columns("TicketNumber").Visible = False
+                GridViewTicket.Columns("CuryID").Visible = False
+                GridViewTicket.Columns("Amount").Visible = False
+                GridViewTicket.Columns("Invoice").Visible = False
                 dtGrid = New DataTable
                 dtGrid = ObjTravelTicket.GetTravelTicketDetail()
-
-                GridTicket.DataSource = dtGrid
-                GridCellFormat(GridViewTicket)
+                dtRequest = dtGrid.Copy
+                GridTicket.DataSource = dtRequest
+                'GridCellFormat(GridViewTicket)
             End If
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
@@ -109,155 +114,34 @@ Public Class FrmTravelTicketDetail
                 With ObjTravelTicket
                     txtNoVoucher.Text = .NoVoucher
                     dtTanggal.EditValue = .Tanggal
-                    txtVendor.Text = .VendorID
-                    txtNoInvoice.Text = .NoInvoice
-                    txtCuryID.Text = .CuryID
-                    txtTotal.Text = 0
-                    txtStatus.Text = .Status
-                    txtTotAmount.Text = .TotAmount
+                    dtInvoiceHeader = New DataTable
+                    dtInvoiceHeader.Columns.Add("NoVoucher", GetType(String))
+                    dtInvoiceHeader.Columns.Add("Tanggal", GetType(Date))
+                    dtInvoiceHeader.Columns.Add("Vendor", GetType(String))
+                    dtInvoiceHeader.Columns.Add("NoInvoice", GetType(String))
+                    dtInvoiceHeader.Columns.Add("DateInvoice", GetType(Date))
+                    dtInvoiceHeader.Columns.Add("DueDateInvoice", GetType(Date))
+                    dtInvoiceHeader.Columns.Add("CurryID", GetType(String))
+                    dtInvoiceHeader.Columns.Add("TotAmount", GetType(String))
+
+                    Dim rowHeader As DataRow = dtInvoiceHeader.NewRow
+                    rowHeader("NoVoucher") = .NoVoucher
+                    rowHeader("Tanggal") = .Tanggal
+                    rowHeader("Vendor") = .Vendor
+                    rowHeader("NoInvoice") = .NoInvoice
+                    rowHeader("DateInvoice") = .DateInvoice
+                    rowHeader("DueDateInvoice") = .DueDateInvoice
+                    rowHeader("CurryID") = .CurryID
+                    rowHeader("TotAmount") = .TotAmount
+                    dtInvoiceHeader.Rows.Add(rowHeader)
                 End With
             Else
                 txtNoVoucher.Text = ""
                 dtTanggal.EditValue = DateTime.Today
-                txtVendor.Text = "TARA TOUR"
-                txtNoInvoice.Text = ""
-                txtCuryID.Text = "IDR"
-                txtTotal.Text = Format(0, gs_FormatDecimal)
-                txtStatus.Text = "PESAN"
-                txtTotAmount.Text = Format(0, gs_FormatDecimal)
             End If
         Catch ex As Exception
             Throw
         End Try
-    End Sub
-
-    Public Overrides Function ValidateSave() As Boolean
-        Dim lb_Validated As Boolean = False
-        Try
-            Dim success As Boolean = True
-
-            If DxValidationProvider1.Validate Then
-                lb_Validated = True
-            Else
-                Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
-            End If
-
-            Dim filterString As String = "[CheckList] = True"
-            GridViewTicket.Columns("CheckList").FilterInfo = New ColumnFilterInfo(filterString)
-
-            If GridViewTicket.RowCount = 0 Then
-                GridViewTicket.Columns("CheckList").ClearFilter()
-                Err.Raise(ErrNumber, , "Tidak ada data yang dipilih !")
-            Else
-                If chkBalance.Checked = False Then
-                    Err.Raise(ErrNumber, , "Total Amount ticket tidak balance dengan detail !")
-                End If
-            End If
-
-            'If txtNoInvoice.Text = "" Then
-            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-            'End If
-
-            If lb_Validated Then
-                If isUpdate = False Then
-                    txtNoVoucher.Text = ObjTravelTicket.TravelAutoNoVoucher
-                End If
-
-                With ObjTravelTicket
-                    .NoVoucher = txtNoVoucher.Text
-                    .Tanggal = dtTanggal.EditValue
-                    .VendorID = txtVendor.Text.Trim.ToUpper
-                    .NoInvoice = txtNoInvoice.Text.Trim.ToUpper
-                    .CuryID = txtCuryID.Text.Trim.ToUpper
-                    .TotAmount = txtTotAmount.Text
-                End With
-
-            End If
-        Catch ex As Exception
-            lb_Validated = False
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-        Return lb_Validated
-    End Function
-
-    Public Overrides Sub Proc_SaveData()
-        Try
-            ObjTravelTicket.ObjTravelTicketDetail.Clear()
-
-            For i As Integer = 0 To GridViewTicket.RowCount - 1
-                ObjTravelTicketDetail = New TravelTicketDetailModel
-                With ObjTravelTicketDetail
-                    .NoVoucher = txtNoVoucher.Text
-                    .NoRequest = GridViewTicket.GetRowCellValue(i, "NoRequest").ToString().TrimEnd
-                    .Seq = Convert.ToInt16(GridViewTicket.GetRowCellValue(i, "Seq"))
-                    .TicketNumber = GridViewTicket.GetRowCellValue(i, "TicketNumber").ToString().TrimEnd
-                    .CuryID = GridViewTicket.GetRowCellValue(i, "CuryID").ToString().TrimEnd
-                    .Amount = IIf(GridViewTicket.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, GridViewTicket.GetRowCellValue(i, "Amount"))
-                End With
-                ObjTravelTicket.ObjTravelTicketDetail.Add(ObjTravelTicketDetail)
-            Next
-            GridViewTicket.Columns("CheckList").ClearFilter()
-
-            If isUpdate = False Then
-                ObjTravelTicket.InsertData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Else
-                ObjTravelTicket.NoVoucher = txtNoVoucher.Text
-                ObjTravelTicket.UpdateData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            End If
-            GridDtl.DataSource = ObjTravelTicket.GetTravelTicket()
-            IsClosed = True
-            Me.Hide()
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub txtVendor_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtVendor.ButtonClick
-        Try
-            ObjTravelTicket = New TravelTicketModel
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            dtSearch = ObjTravelTicket.GetTravelVendor
-            dtSearch.Rows.Add("T0001", "TARA TOUR")
-            ls_OldKode = txtVendor.Text
-            ls_Judul = "Vendor"
-
-            Dim lF_SearchData As FrmSystem_LookupGrid
-            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-            lF_SearchData.Text = "Select Data " & ls_Judul
-            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-            lF_SearchData.ShowDialog()
-            Dim Vendor As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                VendorID = lF_SearchData.Values.Item(0).ToString.Trim
-                Vendor = lF_SearchData.Values.Item(1).ToString.Trim
-                txtVendor.Text = Vendor
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub txtTotAmount_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmount.EditValueChanged
-        If String.IsNullOrEmpty(txtTotAmount.Text) Then
-            txtTotAmount.Text = 0
-        End If
-        txtTotAmount.Text = Format(Convert.ToDecimal(txtTotAmount.Text), gs_FormatDecimal)
-        txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
-        If txtBalance.Text = 0 Then
-            chkBalance.Checked = True
-        Else
-            chkBalance.Checked = False
-        End If
     End Sub
 
     Private Sub CCheck_EditValueChanged(sender As Object, e As EventArgs) Handles CCheck.EditValueChanged
@@ -302,13 +186,61 @@ Public Class FrmTravelTicketDetail
                 totalAmount = totalAmount + amount
             End If
         Next
-        txtTotal.Text = Format(totalAmount, gs_FormatDecimal)
-        txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
-        If txtBalance.Text = 0 Then
-            chkBalance.Checked = True
+        'txtTotal.Text = Format(totalAmount, gs_FormatDecimal)
+        'txtBalance.Text = Format(txtTotAmount.Text - txtTotal.Text, gs_FormatDecimal)
+        'If txtBalance.Text = 0 Then
+        '    chkBalance.Checked = True
+        'Else
+        '    chkBalance.Checked = False
+        'End If
+    End Sub
+
+    Private Sub btnProsesInvoice_Click(sender As Object, e As EventArgs) Handles btnProsesInvoice.Click
+        dtInvoiceDetail = New DataTable
+        Dim filterRows As DataRow()
+        filterRows = dtRequest.Select("CheckList = true")
+        If filterRows.Count() = 0 Then
+            MessageBox.Show("Tidak ada data yang dipilih !",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            Exit Sub
         Else
-            chkBalance.Checked = False
+            dtInvoiceDetail = dtRequest.Copy
         End If
+
+        Dim frm_TicketInvoice As FrmTravelTicketInvoice
+        frm_TicketInvoice = New FrmTravelTicketInvoice(fs_Code, dtInvoiceHeader, dtInvoiceDetail)
+        frm_TicketInvoice.Text = "Input Invoice"
+        frm_TicketInvoice.StartPosition = FormStartPosition.CenterScreen
+        frm_TicketInvoice.ShowDialog()
+
+        If frm_TicketInvoice.Proses Then
+            GridDtl.DataSource = ObjTravelTicket.GetTravelTicket()
+            IsClosed = True
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
+        Dim dtRequestUncheck As New DataTable
+        dtRequest = New DataTable
+
+        ObjTravelTicket.NoVoucher = ""
+        dtRequestUncheck = ObjTravelTicket.GetTravelTicketDetail()
+
+        If fs_Code <> "" Then
+            dtRequest = dtGrid.Copy
+            For Each row As DataRow In dtRequestUncheck.Rows
+                dtRequest.Rows.Add(row.ItemArray)
+            Next
+            GridTicket.DataSource = dtRequest
+        Else
+            dtRequest = dtRequestUncheck
+            GridTicket.DataSource = dtRequest
+        End If
+
     End Sub
 
 End Class

@@ -85,7 +85,7 @@ Public Class frmSalesForecast_calculated
         Try
             If GridView1.RowCount > 0 Then
                 Dim save As New SaveFileDialog
-                save.Filter = "Excel File|*.xls"
+                save.Filter = "Excel File|*.xlsx"
                 save.Title = "Save an Excel File"
                 If save.ShowDialog = DialogResult.OK Then
                     'GridView1.ZoomView()
@@ -94,7 +94,7 @@ Public Class frmSalesForecast_calculated
                     GridView1.OptionsPrint.PrintDetails = True
                     GridView1.OptionsPrint.ExpandAllDetails = True
                     GridView1.OptionsPrint.ExpandAllGroups = True
-                    Grid.ExportToXls(save.FileName, New XlsExportOptionsEx() With {
+                    Grid.ExportToXlsx(save.FileName, New XlsxExportOptionsEx() With {
                         .ExportType = DevExpress.Export.ExportType.WYSIWYG
                     })
                     Process.Start(save.FileName)
