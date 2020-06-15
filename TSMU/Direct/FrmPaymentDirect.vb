@@ -28,6 +28,7 @@ Public Class FrmPaymentDirect
     Dim tempacct As String
     Dim tempperpost As String = Format(DateTime.Today, "yyyy-MM")
     Dim level As Integer = 0
+    Dim _Tag As TagModel
     'Dim ID As String
     'Dim suspendid As String
     'Dim suspend1 As String
@@ -48,9 +49,15 @@ Public Class FrmPaymentDirect
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
+            ' bi_GridParentRow = li_GridRow
         End If
         InitialSetForm()
         '   FrmParent = lf_FormParent
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
+
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
