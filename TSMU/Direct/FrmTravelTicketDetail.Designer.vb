@@ -20,137 +20,43 @@ Partial Class FrmTravelTicketDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.txtNoInvoice = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTotAmount = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVendor = New DevExpress.XtraEditors.ButtonEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtCuryID = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtNoVoucher = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GridTicket = New DevExpress.XtraGrid.GridControl()
         Me.GridViewTicket = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Seq = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Nama = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DeptID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Purpose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TicketNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CuryID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.StatusTicket = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CStatusTicket = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.Invoice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Check = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.dtTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.txtTotal = New DevExpress.XtraEditors.TextEdit()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtBalance = New DevExpress.XtraEditors.TextEdit()
-        Me.chkBalance = New DevExpress.XtraEditors.CheckEdit()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtStatus = New DevExpress.XtraEditors.ComboBoxEdit()
-        CType(Me.txtNoInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCuryID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.btnAddDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnProsesInvoice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.txtNoVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAmount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtBalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkBalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'txtNoInvoice
-        '
-        Me.txtNoInvoice.Location = New System.Drawing.Point(1058, 51)
-        Me.txtNoInvoice.Name = "txtNoInvoice"
-        Me.txtNoInvoice.Size = New System.Drawing.Size(152, 22)
-        Me.txtNoInvoice.TabIndex = 1
-        '
-        'txtTotAmount
-        '
-        Me.txtTotAmount.Location = New System.Drawing.Point(1627, 51)
-        Me.txtTotAmount.Name = "txtTotAmount"
-        Me.txtTotAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotAmount.Properties.Mask.EditMask = "n0"
-        Me.txtTotAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtTotAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtTotAmount.Size = New System.Drawing.Size(141, 22)
-        Me.txtTotAmount.TabIndex = 3
-        '
-        'txtVendor
-        '
-        Me.txtVendor.Location = New System.Drawing.Point(663, 51)
-        Me.txtVendor.Name = "txtVendor"
-        Me.txtVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtVendor.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtVendor.Size = New System.Drawing.Size(223, 22)
-        Me.txtVendor.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(941, 53)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(74, 17)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "No Invoice"
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1481, 53)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 17)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Total Amount"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(574, 53)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(54, 17)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Vendor"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(1251, 53)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 17)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "Cury ID"
-        '
-        'txtCuryID
-        '
-        Me.txtCuryID.EditValue = "IDR"
-        Me.txtCuryID.Location = New System.Drawing.Point(1355, 51)
-        Me.txtCuryID.Name = "txtCuryID"
-        Me.txtCuryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtCuryID.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
-        Me.txtCuryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCuryID.Size = New System.Drawing.Size(81, 22)
-        Me.txtCuryID.TabIndex = 2
         '
         'txtNoVoucher
         '
@@ -186,174 +92,213 @@ Partial Class FrmTravelTicketDetail
         Me.GridTicket.Location = New System.Drawing.Point(15, 89)
         Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
-        Me.GridTicket.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmount, Me.CCheck})
-        Me.GridTicket.Size = New System.Drawing.Size(1507, 455)
+        Me.GridTicket.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmount, Me.CCheck, Me.CStatusTicket})
+        Me.GridTicket.Size = New System.Drawing.Size(1507, 477)
         Me.GridTicket.TabIndex = 12
         Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
         'GridViewTicket
         '
-        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn13, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn10, Me.GridColumn12})
+        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Seq, Me.Nama, Me.DeptID, Me.Purpose, Me.Destination, Me.Negara, Me.DepartureDate, Me.ArrivalDate, Me.TicketNumber, Me.CuryID, Me.Amount, Me.StatusTicket, Me.Invoice, Me.Check})
         Me.GridViewTicket.GridControl = Me.GridTicket
         Me.GridViewTicket.Name = "GridViewTicket"
         Me.GridViewTicket.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'NoRequest
         '
-        Me.GridColumn1.Caption = "NoRequest"
-        Me.GridColumn1.FieldName = "NoRequest"
-        Me.GridColumn1.MinWidth = 25
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.FixedWidth = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 140
+        Me.NoRequest.Caption = "No Request"
+        Me.NoRequest.FieldName = "NoRequest"
+        Me.NoRequest.MinWidth = 25
+        Me.NoRequest.Name = "NoRequest"
+        Me.NoRequest.OptionsColumn.AllowEdit = False
+        Me.NoRequest.OptionsColumn.FixedWidth = True
+        Me.NoRequest.Visible = True
+        Me.NoRequest.VisibleIndex = 0
+        Me.NoRequest.Width = 140
         '
-        'GridColumn13
+        'Seq
         '
-        Me.GridColumn13.Caption = "Seq"
-        Me.GridColumn13.FieldName = "Seq"
-        Me.GridColumn13.MinWidth = 25
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Width = 94
+        Me.Seq.Caption = "Seq"
+        Me.Seq.FieldName = "Seq"
+        Me.Seq.MinWidth = 25
+        Me.Seq.Name = "Seq"
+        Me.Seq.Width = 94
         '
-        'GridColumn2
+        'Nama
         '
-        Me.GridColumn2.Caption = "Nama"
-        Me.GridColumn2.FieldName = "Nama"
-        Me.GridColumn2.MinWidth = 25
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.FixedWidth = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 200
+        Me.Nama.Caption = "Nama"
+        Me.Nama.FieldName = "Nama"
+        Me.Nama.MinWidth = 25
+        Me.Nama.Name = "Nama"
+        Me.Nama.OptionsColumn.AllowEdit = False
+        Me.Nama.OptionsColumn.FixedWidth = True
+        Me.Nama.Visible = True
+        Me.Nama.VisibleIndex = 1
+        Me.Nama.Width = 200
         '
-        'GridColumn3
+        'DeptID
         '
-        Me.GridColumn3.Caption = "DeptID"
-        Me.GridColumn3.FieldName = "DeptID"
-        Me.GridColumn3.MinWidth = 25
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.FixedWidth = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 80
+        Me.DeptID.Caption = "Dept ID"
+        Me.DeptID.FieldName = "DeptID"
+        Me.DeptID.MinWidth = 25
+        Me.DeptID.Name = "DeptID"
+        Me.DeptID.OptionsColumn.AllowEdit = False
+        Me.DeptID.OptionsColumn.FixedWidth = True
+        Me.DeptID.Visible = True
+        Me.DeptID.VisibleIndex = 2
+        Me.DeptID.Width = 80
         '
-        'GridColumn4
+        'Purpose
         '
-        Me.GridColumn4.Caption = "Purpose"
-        Me.GridColumn4.FieldName = "Purpose"
-        Me.GridColumn4.MinWidth = 25
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 112
+        Me.Purpose.Caption = "Purpose"
+        Me.Purpose.FieldName = "Purpose"
+        Me.Purpose.MinWidth = 25
+        Me.Purpose.Name = "Purpose"
+        Me.Purpose.OptionsColumn.AllowEdit = False
+        Me.Purpose.Visible = True
+        Me.Purpose.VisibleIndex = 3
+        Me.Purpose.Width = 25
         '
-        'GridColumn5
+        'Destination
         '
-        Me.GridColumn5.Caption = "Destination"
-        Me.GridColumn5.FieldName = "Destination"
-        Me.GridColumn5.MinWidth = 25
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.FixedWidth = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 150
+        Me.Destination.Caption = "Destination"
+        Me.Destination.FieldName = "Destination"
+        Me.Destination.MinWidth = 25
+        Me.Destination.Name = "Destination"
+        Me.Destination.OptionsColumn.AllowEdit = False
+        Me.Destination.OptionsColumn.FixedWidth = True
+        Me.Destination.Visible = True
+        Me.Destination.VisibleIndex = 4
+        Me.Destination.Width = 150
         '
-        'GridColumn6
+        'Negara
         '
-        Me.GridColumn6.Caption = "Negara"
-        Me.GridColumn6.FieldName = "Negara"
-        Me.GridColumn6.MinWidth = 25
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.OptionsColumn.FixedWidth = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 120
+        Me.Negara.Caption = "Negara"
+        Me.Negara.FieldName = "Negara"
+        Me.Negara.MinWidth = 25
+        Me.Negara.Name = "Negara"
+        Me.Negara.OptionsColumn.AllowEdit = False
+        Me.Negara.OptionsColumn.FixedWidth = True
+        Me.Negara.Visible = True
+        Me.Negara.VisibleIndex = 5
+        Me.Negara.Width = 120
         '
-        'GridColumn7
+        'DepartureDate
         '
-        Me.GridColumn7.Caption = "DepartureDate"
-        Me.GridColumn7.FieldName = "DepartureDate"
-        Me.GridColumn7.MinWidth = 25
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.FixedWidth = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 120
+        Me.DepartureDate.Caption = "Departure Date"
+        Me.DepartureDate.FieldName = "DepartureDate"
+        Me.DepartureDate.MinWidth = 25
+        Me.DepartureDate.Name = "DepartureDate"
+        Me.DepartureDate.OptionsColumn.AllowEdit = False
+        Me.DepartureDate.OptionsColumn.FixedWidth = True
+        Me.DepartureDate.Visible = True
+        Me.DepartureDate.VisibleIndex = 6
+        Me.DepartureDate.Width = 120
         '
-        'GridColumn8
+        'ArrivalDate
         '
-        Me.GridColumn8.Caption = "ArrivalDate"
-        Me.GridColumn8.FieldName = "ArrivalDate"
-        Me.GridColumn8.MinWidth = 25
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.FixedWidth = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 120
+        Me.ArrivalDate.Caption = "Arrival Date"
+        Me.ArrivalDate.FieldName = "ArrivalDate"
+        Me.ArrivalDate.MinWidth = 25
+        Me.ArrivalDate.Name = "ArrivalDate"
+        Me.ArrivalDate.OptionsColumn.AllowEdit = False
+        Me.ArrivalDate.OptionsColumn.FixedWidth = True
+        Me.ArrivalDate.Visible = True
+        Me.ArrivalDate.VisibleIndex = 7
+        Me.ArrivalDate.Width = 120
         '
-        'GridColumn9
+        'TicketNumber
         '
-        Me.GridColumn9.Caption = "Ticket Number"
-        Me.GridColumn9.FieldName = "TicketNumber"
-        Me.GridColumn9.MinWidth = 25
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.FixedWidth = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 140
+        Me.TicketNumber.Caption = "Ticket Number"
+        Me.TicketNumber.FieldName = "TicketNumber"
+        Me.TicketNumber.MinWidth = 25
+        Me.TicketNumber.Name = "TicketNumber"
+        Me.TicketNumber.OptionsColumn.AllowEdit = False
+        Me.TicketNumber.OptionsColumn.FixedWidth = True
+        Me.TicketNumber.Visible = True
+        Me.TicketNumber.VisibleIndex = 8
+        Me.TicketNumber.Width = 140
         '
-        'GridColumn11
+        'CuryID
         '
-        Me.GridColumn11.Caption = "Cury ID"
-        Me.GridColumn11.FieldName = "CuryID"
-        Me.GridColumn11.MinWidth = 25
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.FixedWidth = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 9
-        Me.GridColumn11.Width = 70
+        Me.CuryID.Caption = "Curry ID"
+        Me.CuryID.FieldName = "CuryID"
+        Me.CuryID.MinWidth = 25
+        Me.CuryID.Name = "CuryID"
+        Me.CuryID.OptionsColumn.AllowEdit = False
+        Me.CuryID.OptionsColumn.FixedWidth = True
+        Me.CuryID.Visible = True
+        Me.CuryID.VisibleIndex = 9
+        Me.CuryID.Width = 70
         '
-        'GridColumn10
+        'Amount
         '
-        Me.GridColumn10.Caption = "Amount"
-        Me.GridColumn10.ColumnEdit = Me.CAmount
-        Me.GridColumn10.FieldName = "Amount"
-        Me.GridColumn10.MinWidth = 25
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.FixedWidth = True
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:#,##0.#0}")})
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 10
-        Me.GridColumn10.Width = 140
+        Me.Amount.Caption = "Amount"
+        Me.Amount.ColumnEdit = Me.CAmount
+        Me.Amount.FieldName = "Amount"
+        Me.Amount.MinWidth = 25
+        Me.Amount.Name = "Amount"
+        Me.Amount.OptionsColumn.AllowEdit = False
+        Me.Amount.OptionsColumn.FixedWidth = True
+        Me.Amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:#,##0.#0}")})
+        Me.Amount.Visible = True
+        Me.Amount.VisibleIndex = 10
+        Me.Amount.Width = 140
         '
         'CAmount
         '
         Me.CAmount.AutoHeight = False
         Me.CAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAmount.DisplayFormat.FormatString = "n2"
+        Me.CAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAmount.EditFormat.FormatString = "n2"
+        Me.CAmount.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CAmount.Name = "CAmount"
         '
-        'GridColumn12
+        'StatusTicket
         '
-        Me.GridColumn12.Caption = "Check"
-        Me.GridColumn12.ColumnEdit = Me.CCheck
-        Me.GridColumn12.FieldName = "CheckList"
-        Me.GridColumn12.MinWidth = 25
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.FixedWidth = True
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
-        Me.GridColumn12.Width = 60
+        Me.StatusTicket.Caption = "Status Ticket"
+        Me.StatusTicket.ColumnEdit = Me.CStatusTicket
+        Me.StatusTicket.FieldName = "StatusTicket"
+        Me.StatusTicket.MinWidth = 25
+        Me.StatusTicket.Name = "StatusTicket"
+        Me.StatusTicket.OptionsColumn.AllowEdit = False
+        Me.StatusTicket.OptionsColumn.FixedWidth = True
+        Me.StatusTicket.Visible = True
+        Me.StatusTicket.VisibleIndex = 11
+        Me.StatusTicket.Width = 100
+        '
+        'CStatusTicket
+        '
+        Me.CStatusTicket.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CStatusTicket.AutoHeight = False
+        Me.CStatusTicket.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CStatusTicket.Items.AddRange(New Object() {"ISSUE", "INVOICE", "CLOSE", "CANCEL"})
+        Me.CStatusTicket.Name = "CStatusTicket"
+        '
+        'Invoice
+        '
+        Me.Invoice.Caption = "Invoice"
+        Me.Invoice.FieldName = "Invoice"
+        Me.Invoice.MinWidth = 25
+        Me.Invoice.Name = "Invoice"
+        Me.Invoice.OptionsColumn.AllowEdit = False
+        Me.Invoice.OptionsColumn.FixedWidth = True
+        Me.Invoice.Visible = True
+        Me.Invoice.VisibleIndex = 12
+        Me.Invoice.Width = 120
+        '
+        'Check
+        '
+        Me.Check.Caption = "Check"
+        Me.Check.ColumnEdit = Me.CCheck
+        Me.Check.FieldName = "CheckList"
+        Me.Check.MinWidth = 25
+        Me.Check.Name = "Check"
+        Me.Check.OptionsColumn.FixedWidth = True
+        Me.Check.Visible = True
+        Me.Check.VisibleIndex = 13
+        Me.Check.Width = 60
         '
         'CCheck
         '
@@ -378,193 +323,79 @@ Partial Class FrmTravelTicketDetail
         Me.dtTanggal.Size = New System.Drawing.Size(125, 22)
         Me.dtTanggal.TabIndex = 13
         '
-        'txtTotal
+        'btnAddDetail
         '
-        Me.txtTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtTotal.Enabled = False
-        Me.txtTotal.Location = New System.Drawing.Point(1818, 547)
-        Me.txtTotal.MaximumSize = New System.Drawing.Size(140, 0)
-        Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotal.Properties.Mask.EditMask = "n0"
-        Me.txtTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtTotal.Size = New System.Drawing.Size(85, 22)
-        Me.txtTotal.TabIndex = 14
+        Me.btnAddDetail.Location = New System.Drawing.Point(1790, 47)
+        Me.btnAddDetail.Name = "btnAddDetail"
+        Me.btnAddDetail.Size = New System.Drawing.Size(100, 29)
+        Me.btnAddDetail.TabIndex = 21
+        Me.btnAddDetail.Text = "Add Detail"
         '
-        'Label7
+        'btnProsesInvoice
         '
-        Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(1734, 549)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 17)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "TOTAL"
-        '
-        'Label8
-        '
-        Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(1416, 549)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(71, 17)
-        Me.Label8.TabIndex = 17
-        Me.Label8.Text = "BALANCE"
-        '
-        'txtBalance
-        '
-        Me.txtBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtBalance.Enabled = False
-        Me.txtBalance.Location = New System.Drawing.Point(1527, 547)
-        Me.txtBalance.MaximumSize = New System.Drawing.Size(140, 0)
-        Me.txtBalance.Name = "txtBalance"
-        Me.txtBalance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtBalance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtBalance.Properties.Mask.EditMask = "n0"
-        Me.txtBalance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtBalance.Size = New System.Drawing.Size(140, 22)
-        Me.txtBalance.TabIndex = 16
-        '
-        'chkBalance
-        '
-        Me.chkBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.chkBalance.EditValue = True
-        Me.chkBalance.Location = New System.Drawing.Point(1673, 548)
-        Me.chkBalance.Name = "chkBalance"
-        Me.chkBalance.Properties.Caption = ""
-        Me.chkBalance.Size = New System.Drawing.Size(39, 19)
-        Me.chkBalance.TabIndex = 18
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(1815, 53)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(48, 17)
-        Me.Label9.TabIndex = 20
-        Me.Label9.Text = "Status"
-        '
-        'txtStatus
-        '
-        Me.txtStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtStatus.EditValue = ""
-        Me.txtStatus.Location = New System.Drawing.Point(1900, 51)
-        Me.txtStatus.MaximumSize = New System.Drawing.Size(120, 0)
-        Me.txtStatus.Name = "txtStatus"
-        Me.txtStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtStatus.Properties.Items.AddRange(New Object() {"PESAN", "YES", "NO", "CANCEL"})
-        Me.txtStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtStatus.Size = New System.Drawing.Size(12, 22)
-        Me.txtStatus.TabIndex = 19
+        Me.btnProsesInvoice.Location = New System.Drawing.Point(1910, 47)
+        Me.btnProsesInvoice.Name = "btnProsesInvoice"
+        Me.btnProsesInvoice.Size = New System.Drawing.Size(110, 29)
+        Me.btnProsesInvoice.TabIndex = 22
+        Me.btnProsesInvoice.Text = "Input Invoice"
         '
         'FrmTravelTicketDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1924, 578)
-        Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.txtStatus)
-        Me.Controls.Add(Me.chkBalance)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.txtBalance)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.txtTotal)
+        Me.Controls.Add(Me.btnProsesInvoice)
+        Me.Controls.Add(Me.btnAddDetail)
         Me.Controls.Add(Me.GridTicket)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtNoVoucher)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtTotAmount)
-        Me.Controls.Add(Me.txtNoInvoice)
-        Me.Controls.Add(Me.txtVendor)
-        Me.Controls.Add(Me.txtCuryID)
         Me.Controls.Add(Me.dtTanggal)
         Me.Name = "FrmTravelTicketDetail"
         Me.Controls.SetChildIndex(Me.dtTanggal, 0)
-        Me.Controls.SetChildIndex(Me.txtCuryID, 0)
-        Me.Controls.SetChildIndex(Me.txtVendor, 0)
-        Me.Controls.SetChildIndex(Me.txtNoInvoice, 0)
-        Me.Controls.SetChildIndex(Me.txtTotAmount, 0)
-        Me.Controls.SetChildIndex(Me.Label1, 0)
-        Me.Controls.SetChildIndex(Me.Label2, 0)
-        Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.Controls.SetChildIndex(Me.txtNoVoucher, 0)
         Me.Controls.SetChildIndex(Me.Label5, 0)
         Me.Controls.SetChildIndex(Me.Label6, 0)
         Me.Controls.SetChildIndex(Me.GridTicket, 0)
-        Me.Controls.SetChildIndex(Me.txtTotal, 0)
-        Me.Controls.SetChildIndex(Me.Label7, 0)
-        Me.Controls.SetChildIndex(Me.txtBalance, 0)
-        Me.Controls.SetChildIndex(Me.Label8, 0)
-        Me.Controls.SetChildIndex(Me.chkBalance, 0)
-        Me.Controls.SetChildIndex(Me.txtStatus, 0)
-        Me.Controls.SetChildIndex(Me.Label9, 0)
-        CType(Me.txtNoInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCuryID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Controls.SetChildIndex(Me.btnAddDetail, 0)
+        Me.Controls.SetChildIndex(Me.btnProsesInvoice, 0)
         CType(Me.txtNoVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAmount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtBalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkBalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents txtNoInvoice As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotAmount As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVendor As DevExpress.XtraEditors.ButtonEdit
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txtCuryID As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txtNoVoucher As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents GridTicket As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewTicket As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoRequest As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Nama As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DeptID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Purpose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Destination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Negara As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TicketNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CuryID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Amount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents dtTanggal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents CAmount As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Check As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents txtTotal As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents txtBalance As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents chkBalance As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents Label9 As Label
-    Friend WithEvents txtStatus As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Seq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents StatusTicket As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CStatusTicket As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents Invoice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnAddDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnProsesInvoice As DevExpress.XtraEditors.SimpleButton
 End Class

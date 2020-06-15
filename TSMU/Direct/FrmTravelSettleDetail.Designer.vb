@@ -2914,11 +2914,10 @@ Partial Class FrmTravelSettleDetail
         Me.CurryIDBalance.MinWidth = 25
         Me.CurryIDBalance.Name = "CurryIDBalance"
         Me.CurryIDBalance.OptionsColumn.AllowEdit = False
-        Me.CurryIDBalance.OptionsColumn.FixedWidth = True
         Me.CurryIDBalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "CurryID", "TOTAL IDR")})
         Me.CurryIDBalance.Visible = True
         Me.CurryIDBalance.VisibleIndex = 0
-        Me.CurryIDBalance.Width = 140
+        Me.CurryIDBalance.Width = 70
         '
         'AdvanceBalance
         '
@@ -2929,9 +2928,10 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceBalance.MinWidth = 25
         Me.AdvanceBalance.Name = "AdvanceBalance"
         Me.AdvanceBalance.OptionsColumn.AllowEdit = False
+        Me.AdvanceBalance.OptionsColumn.FixedWidth = True
         Me.AdvanceBalance.Visible = True
         Me.AdvanceBalance.VisibleIndex = 1
-        Me.AdvanceBalance.Width = 257
+        Me.AdvanceBalance.Width = 250
         '
         'ActualBalance
         '
@@ -2942,9 +2942,10 @@ Partial Class FrmTravelSettleDetail
         Me.ActualBalance.MinWidth = 25
         Me.ActualBalance.Name = "ActualBalance"
         Me.ActualBalance.OptionsColumn.AllowEdit = False
+        Me.ActualBalance.OptionsColumn.FixedWidth = True
         Me.ActualBalance.Visible = True
         Me.ActualBalance.VisibleIndex = 2
-        Me.ActualBalance.Width = 257
+        Me.ActualBalance.Width = 250
         '
         'SisaBalance
         '
@@ -2955,9 +2956,10 @@ Partial Class FrmTravelSettleDetail
         Me.SisaBalance.MinWidth = 25
         Me.SisaBalance.Name = "SisaBalance"
         Me.SisaBalance.OptionsColumn.AllowEdit = False
+        Me.SisaBalance.OptionsColumn.FixedWidth = True
         Me.SisaBalance.Visible = True
         Me.SisaBalance.VisibleIndex = 3
-        Me.SisaBalance.Width = 257
+        Me.SisaBalance.Width = 250
         '
         'ReturnBalance
         '
@@ -2968,9 +2970,10 @@ Partial Class FrmTravelSettleDetail
         Me.ReturnBalance.FieldName = "ReturnBalance"
         Me.ReturnBalance.MinWidth = 25
         Me.ReturnBalance.Name = "ReturnBalance"
+        Me.ReturnBalance.OptionsColumn.FixedWidth = True
         Me.ReturnBalance.Visible = True
         Me.ReturnBalance.VisibleIndex = 4
-        Me.ReturnBalance.Width = 259
+        Me.ReturnBalance.Width = 250
         '
         'CReturnBalance
         '
@@ -2994,9 +2997,10 @@ Partial Class FrmTravelSettleDetail
         Me.PaidBalance.MinWidth = 25
         Me.PaidBalance.Name = "PaidBalance"
         Me.PaidBalance.OptionsColumn.AllowEdit = False
+        Me.PaidBalance.OptionsColumn.FixedWidth = True
         Me.PaidBalance.Visible = True
         Me.PaidBalance.VisibleIndex = 5
-        Me.PaidBalance.Width = 260
+        Me.PaidBalance.Width = 250
         '
         'AmountIDRBalance
         '
@@ -3007,10 +3011,11 @@ Partial Class FrmTravelSettleDetail
         Me.AmountIDRBalance.MinWidth = 25
         Me.AmountIDRBalance.Name = "AmountIDRBalance"
         Me.AmountIDRBalance.OptionsColumn.AllowEdit = False
+        Me.AmountIDRBalance.OptionsColumn.FixedWidth = True
         Me.AmountIDRBalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDRBalance", "{0:#,##0.#0}")})
         Me.AmountIDRBalance.Visible = True
         Me.AmountIDRBalance.VisibleIndex = 6
-        Me.AmountIDRBalance.Width = 94
+        Me.AmountIDRBalance.Width = 250
         '
         'Label4
         '

@@ -68,9 +68,9 @@ Public Class FrmTravelRequestDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "TRAVEL REQUEST : " & fs_Code
+                Me.Text = "REQUEST"
             Else
-                Me.Text = "NEW TRAVEL REQUEST"
+                Me.Text = "NEW REQUEST"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
