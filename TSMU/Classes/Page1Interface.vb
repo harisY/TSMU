@@ -21,7 +21,7 @@ Public Class Page1Interface
             'openFormH = MyAss.CreateInstance(My.Application.Info.AssemblyName & "." & row("MenuCode"))
             menus.Add(New MenuItem With {
                 .Page = row("ParentMenu"),
-                .PageIndex = 0,
+                .PageIndex = row("PageIndex"),
                 .Group = If(IsDBNull(row("ParentMenuChild")), row("ParentMenu"), row("ParentMenuChild")),
                 .GroupIndex = 0,
                 .Text = row("Title"),
@@ -86,7 +86,8 @@ Public Class Page1Interface
                         .Image = If(IsDBNull(row("Image")), My.Resources.Square, My.Resources.ResourceManager.GetObject(row("Image"))),
                         .Icon = My.Resources.map,
                         .Type = row("MenuCode"),
-                        .Key = 1012
+                        .Key = 1012,
+                        .PageIndex = row("PageIndex")
                     })
                 Next
             End If

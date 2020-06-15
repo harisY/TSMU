@@ -128,7 +128,7 @@ Public Class Frm_NPP_Detail
                 End If
 
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
-                TNPP_No.Enabled = False
+                'TNPP_No.Enabled = False
                 TCustomer.Enabled = False
                 TModel.Enabled = False
                 Me.Text = "NPP FORM -> " & fs_Code
@@ -218,7 +218,7 @@ Public Class Frm_NPP_Detail
                     TModelDesc.EditValue = .H_Model_Description
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
-                    TMp.EditValue = .H_MP
+                    TMassPro.EditValue = .H_MassPro
                     CBCad.Checked = .H_CAD_Data
                     CBDrawing.Checked = .H_Drawing
                     CBSample.Checked = .H_Sample
@@ -284,7 +284,7 @@ Public Class Frm_NPP_Detail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-            ElseIf TMp.EditValue = "" Then
+            ElseIf TMassPro.Text = "" Then
                 MessageBox.Show("Please fill MP", "Warning",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
@@ -312,7 +312,7 @@ Public Class Frm_NPP_Detail
             If lb_Validated Then
                 With fc_Class
                     If isUpdate = False Then
-                        '.ValidateInsert()
+                        .ValidateInsert(TNPP_No.EditValue)
                     End If
                 End With
 
@@ -382,7 +382,7 @@ Public Class Frm_NPP_Detail
                     .H_Customer_Name = TCustomer.EditValue
                     .H_Order_Month = TOrderMonth.EditValue
                     .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                    .H_MP = TMp.EditValue
+                    .H_MassPro = TMassPro.EditValue
                     .H_Drawing = CBDrawing.CheckState
                     .H_CAD_Data = CBCad.CheckState
                     .H_Sample = CBSample.CheckState
@@ -451,7 +451,7 @@ Public Class Frm_NPP_Detail
                         .H_Customer_Name = TCustomer.EditValue
                         .H_Order_Month = TOrderMonth.EditValue
                         .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                        .H_MP = TMp.EditValue
+                        .H_MassPro = TMassPro.EditValue
                         .H_Drawing = CBDrawing.CheckState
                         .H_CAD_Data = CBCad.CheckState
                         .H_Sample = CBSample.CheckState
@@ -524,7 +524,7 @@ Public Class Frm_NPP_Detail
                         .H_Customer_Name = TCustomer.EditValue
                         .H_Order_Month = TOrderMonth.EditValue
                         .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                        .H_MP = TMp.EditValue
+                        .H_MassPro = TMassPro.EditValue
                         .H_Drawing = CBDrawing.CheckState
                         .H_CAD_Data = CBCad.CheckState
                         .H_Sample = CBSample.CheckState
@@ -596,21 +596,21 @@ Public Class Frm_NPP_Detail
 
     Private Sub TModel_Leave(sender As Object, e As EventArgs) Handles TModel.Leave
 
-        If TCustomer.EditValue = "" Then
-            MessageBox.Show("Please Select Customer",
-                                "Warning",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation,
-                                MessageBoxDefaultButton.Button1)
-            TModel.EditValue = ""
-            Exit Sub
-        ElseIf TModel.EditValue = "" Then
-            TNPP_No.EditValue = ""
-        Else
+        'If TCustomer.EditValue = "" Then
+        '    MessageBox.Show("Please Select Customer",
+        '                        "Warning",
+        '                        MessageBoxButtons.OK,
+        '                        MessageBoxIcon.Exclamation,
+        '                        MessageBoxDefaultButton.Button1)
+        '    TModel.EditValue = ""
+        '    Exit Sub
+        'ElseIf TModel.EditValue = "" Then
+        '    TNPP_No.EditValue = ""
+        'Else
 
-            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), Trim(TModel.EditValue))
-            TNPP_No.EditValue = fc_Class.H_No_NPP
-        End If
+        '    fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), Trim(TModel.EditValue))
+        '    TNPP_No.EditValue = fc_Class.H_No_NPP
+        'End If
 
 
     End Sub
@@ -634,12 +634,12 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TNpwo_No_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TNPP_No.KeyPress
-        Dim tombol As Integer
-        tombol = Asc(e.KeyChar)
+        'Dim tombol As Integer
+        'tombol = Asc(e.KeyChar)
 
-        If Not ((tombol = 0)) Then
-            e.Handled = True
-        End If
+        'If Not ((tombol = 0)) Then
+        '    e.Handled = True
+        'End If
     End Sub
 
     Private Sub Frm_Npwo_Detail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -933,6 +933,35 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub TOrderMonth_Leave(sender As Object, e As EventArgs) Handles TOrderMonth.Leave
+
+    End Sub
+
+    Private Sub BtnDrr_Click(sender As Object, e As EventArgs) Handles BtnDrr.Click
+
+
+        fc_Class.GetDataByID(fs_Code)
+        If fc_Class.H_DRR = False Then
+            Dim result As DialogResult = XtraMessageBox.Show("DRR " & fs_Code & "  Receive ?", "Confirmation", MessageBoxButtons.YesNo)
+            If result = System.Windows.Forms.DialogResult.Yes Then
+                Try
+                    fc_Class = New Cls_NPP_Detail
+                    With fc_Class
+                        .H_DRR = 1
+                    End With
+                    fc_Class.UpdateDrrRecive(fs_Code)
+                    bs_Filter = gh_Common.Username()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPP()
+
+                    IsClosed = True
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Me.Hide()
+                Catch ex As Exception
+                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                End Try
+
+            End If
+        End If
 
     End Sub
 End Class

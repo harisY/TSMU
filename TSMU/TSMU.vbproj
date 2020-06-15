@@ -127,6 +127,11 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -216,6 +221,7 @@
     <Compile Include="Classes\Payment\Cls_Report.vb" />
     <Compile Include="Classes\sales_model.vb" />
     <Compile Include="Classes\Security.vb" />
+    <Compile Include="Classes\TagModel.vb" />
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
@@ -1634,6 +1640,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.designer.vb">
+      <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </Compile>
@@ -2670,6 +2682,9 @@
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
+      <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </EmbeddedResource>
@@ -3691,6 +3706,15 @@
       <VersionMinor>4</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>

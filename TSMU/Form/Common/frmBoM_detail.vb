@@ -18,7 +18,9 @@ Public Class frmBoM_detail
     Dim dtGrid1 As New DataTable
     Dim intRevisi As Integer
     Dim NoReg As String = String.Empty
+    Dim _Tag As TagModel
     Public Sub New()
+
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -40,6 +42,9 @@ Public Class frmBoM_detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub frmBoM_detai_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -76,9 +81,9 @@ Public Class frmBoM_detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "MASTER->BOM->" & fs_Code
+                Me.Text = "BOM Detail"
             Else
-                Me.Text = "MASTER->BOM->NEW"
+                Me.Text = "BOM Detail"
             End If
             Call LoadGridDetil()
             Call LoadGridDetil1()

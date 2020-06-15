@@ -37,6 +37,8 @@ Partial Class Frm_CR_Get_Mold
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PAmoutIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Price, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +92,7 @@ Partial Class Frm_CR_Get_Mold
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Check, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Check, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.PAmoutIDR})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowFooter = True
@@ -127,8 +129,6 @@ Partial Class Frm_CR_Get_Mold
         Me.Qty.FieldName = "Qty"
         Me.Qty.Name = "Qty"
         Me.Qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 2
         '
         'Price
         '
@@ -141,8 +141,6 @@ Partial Class Frm_CR_Get_Mold
         Me.Price.FieldName = "Price"
         Me.Price.Name = "Price"
         Me.Price.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.Price.Visible = True
-        Me.Price.VisibleIndex = 3
         Me.Price.Width = 96
         '
         'PTotal
@@ -150,12 +148,10 @@ Partial Class Frm_CR_Get_Mold
         Me.PTotal.ColumnEdit = Me.C_Amount_Barang
         Me.PTotal.DisplayFormat.FormatString = "{0:N2}"
         Me.PTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PTotal.FieldName = "Amount"
+        Me.PTotal.FieldName = "Total Amount Currency"
         Me.PTotal.Name = "PTotal"
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:N2}")})
-        Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 4
         Me.PTotal.Width = 121
         '
         'Check
@@ -163,7 +159,7 @@ Partial Class Frm_CR_Get_Mold
         Me.Check.FieldName = "Check"
         Me.Check.Name = "Check"
         Me.Check.Visible = True
-        Me.Check.VisibleIndex = 5
+        Me.Check.VisibleIndex = 2
         '
         'GridColumn1
         '
@@ -179,6 +175,16 @@ Partial Class Frm_CR_Get_Mold
         '
         Me.GridColumn3.FieldName = "Balance"
         Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "Category"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'PAmoutIDR
+        '
+        Me.PAmoutIDR.FieldName = "Total IDR"
+        Me.PAmoutIDR.Name = "PAmoutIDR"
         '
         'Frm_CR_Get_Mold
         '
@@ -212,4 +218,6 @@ Partial Class Frm_CR_Get_Mold
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PAmoutIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

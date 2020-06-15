@@ -89,7 +89,9 @@ Public Class ClsCR_CreateUser
 
     Public Function Get_Detail_Installment(CirculationNo As String) As DataTable
         Try
-            'Dim query As String = "[Generate_Report_Matome]"
+
+
+
             Dim query As String = "[CR_Get_Detail_Installment]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
@@ -405,18 +407,18 @@ Public Class ClsCR_CreateUser
                     H_Account = Trim(.Item("Account") & "")
                     H_CR_Type = Trim(.Item("CR_Type") & "")
                     H_Currency = Trim(.Item("Currency") & "")
-                    H_Rate = Trim(.Item("Rate") & "")
+                    ' H_Rate = Trim(.Item("Rate") & "")
                     H_Reason = Trim(.Item("Reason") & "")
-                    H_RemainingBudget = Trim(.Item("RemainingBudget") & "")
-                    H_CurrentCR = Trim(.Item("CurrentCR") & "")
-                    H_Balance = Trim(.Item("Balance") & "")
+                    ' H_RemainingBudget = Trim(.Item("RemainingBudget") & "")
+                    'H_CurrentCR = Trim(.Item("CurrentCR") & "")
+                    ' H_Balance = Trim(.Item("Balance") & "")
                     H_InvoiceNo = Trim(.Item("InvoiceNo") & "")
                     H_Status = Trim(.Item("Status") & "")
-                    'H_UserSubmition = Trim(.Item("") & "")
+                    H_UserSubmition = Trim(.Item("UserSubmition") & "")
                     'H_DeptHead_ID = Trim(.Item("") & "")
                     'H_DeptHead_Name = Trim(.Item("") & "")
                     'H_DeptHead_Opinion = Trim(.Item("") & "")
-                    'H_DeptHead_Approve = Trim(.Item("") & "")
+                    H_DeptHead_Approve = Trim(.Item("DeptHead_Approve") & "")
                     'H_DeptHead_Approve_Date = Trim(.Item("") & "")
                     'H_DivHead_ID = Trim(.Item("") & "")
                     'H_DivHead_Name = Trim(.Item("") & "")
@@ -430,6 +432,12 @@ Public Class ClsCR_CreateUser
                     H_Dies_Customer_Name = Trim(.Item("Dies_Customer_Name") & "")
                     H_Dies_Model = Trim(.Item("Dies_Model_Name") & "")
                     H_Dies_Remark = Trim(.Item("Dies_Remark") & "")
+                    If Trim(.Item("ChargedOfCustomer") & "") = "0" Then
+                        H_ChargedOf = 0
+                    Else
+                        H_ChargedOf = 1
+                    End If
+
 
                     If .Item("ChargedOfCustomer") = "True" Then
                         H_ChargedOf = 1
@@ -459,11 +467,8 @@ Public Class ClsCR_CreateUser
                 pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
                 pParam(1) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
 
-
                 pParam(0).Value = CirculationNo
                 pParam(1).Value = Dept_
-
-
 
                 'Dim dtTable As New DataTable
                 'dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
@@ -524,26 +529,48 @@ Public Class ClsCR_CreateUser
 
                     Try
 
+                        'Insert_CrRequest(H_CirculationNo,
+                        '                 H_RequirementDate,
+                        '                 gh_Common.GroupID,
+                        '                 gh_Common.Site,
+                        '                 H_Budget,
+                        '                 H_Account,
+                        '                 H_CR_Type,
+                        '                 H_Reason,
+                        '                 H_Currency,
+                        '                 H_Rate,
+                        '                 H_RemainingBudget,
+                        '                 H_CurrentCR,
+                        '                 H_Balance,
+                        '                 H_UserSubmition,
+                        '                 H_Status,
+                        '                 H_Parent_Circulation,
+                        '                 H_Parent_Circulation_Amount,
+                        '                 gh_Common.Username,
+                        '                 Date.Now,
+                        '                 H_PR,
+                        '                 H_Dies_Sales_Type,
+                        '                 H_Dies_Customer_Name,
+                        '                 H_Dies_Model,
+                        '                 H_Dies,
+                        '                 H_Dies_Remark,
+                        '                 H_ChargedOf,
+                        '                 H_InvoiceNo,
+                        '                 H_InvoiceStatus)
+
                         Insert_CrRequest(H_CirculationNo,
                                          H_RequirementDate,
                                          gh_Common.GroupID,
                                          gh_Common.Site,
                                          H_Budget,
-                                         H_Account,
                                          H_CR_Type,
                                          H_Reason,
-                                         H_Currency,
-                                         H_Rate,
-                                         H_RemainingBudget,
-                                         H_CurrentCR,
-                                         H_Balance,
                                          H_UserSubmition,
                                          H_Status,
                                          H_Parent_Circulation,
                                          H_Parent_Circulation_Amount,
                                          gh_Common.Username,
                                          Date.Now,
-                                         H_PR,
                                          H_Dies_Sales_Type,
                                          H_Dies_Customer_Name,
                                          H_Dies_Model,
@@ -552,6 +579,7 @@ Public Class ClsCR_CreateUser
                                          H_ChargedOf,
                                          H_InvoiceNo,
                                          H_InvoiceStatus)
+
 
                         For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
                             With Collection_Description_Of_Cost(i)
@@ -595,21 +623,14 @@ Public Class ClsCR_CreateUser
                                 DeptID As String,
                                 SiteID As String,
                                 Budget As Integer,
-                                Account As String,
                                 CR_Type As String,
                                 Reason As String,
-                                Currency As String,
-                                Rate As Double,
-                                RemainingBudget As Double,
-                                CurrentCR As Double,
-                                Balance As Double,
                                 UserSubmition As Integer,
                                 Status As String,
                                 Parent As String,
                                 ParentAmount As Double,
                                 CreatedBy As String,
                                 CreatedDate As Date,
-                                PRNo As String,
                                 Sales_Type As String,
                                 Customer_Name As String,
                                 Model As String,
@@ -618,14 +639,42 @@ Public Class ClsCR_CreateUser
                                 ChangedOf As Int32,
                                 InvoiceNo As String,
                                 InvoiceStatus As Int32)
+
+
+        'Public Sub Insert_CrRequest(CirculationNo As String,
+        'RequirementDate As Date,
+        '                        DeptID As String,
+        '                        SiteID As String,
+        '                        Budget As Integer,
+        '                        Account As String,
+        '                        CR_Type As String,
+        '                        Reason As String,
+        '                        Currency As String,
+        '                        Rate As Double,
+        '                        RemainingBudget As Double,
+        '                        CurrentCR As Double,
+        '                        Balance As Double,
+        '                        UserSubmition As Integer,
+        '                        Status As String,
+        '                        Parent As String,
+        '                        ParentAmount As Double,
+        '                        CreatedBy As String,
+        '                        CreatedDate As Date,
+        '                        PRNo As String,
+        '                        Sales_Type As String,
+        '                        Customer_Name As String,
+        '                        Model As String,
+        '                        Dies As Int32,
+        '                        DiesRemark As String,
+        '                        ChangedOf As Int32,
+        '                        InvoiceNo As String,
+        '                        InvoiceStatus As Int32)
         Dim result As Integer = 0
 
 
         Try
 
-            If PRNo = "" Then
-                PRNo = DBNull.Value.ToString
-            End If
+
 
             If Parent = "" Then
                 Parent = DBNull.Value.ToString
@@ -664,64 +713,64 @@ Public Class ClsCR_CreateUser
 
 
             Dim query As String = "[CR_Insert_CrRequest]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(27) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@RequirementDate", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
             pParam(3) = New SqlClient.SqlParameter("@SiteID", SqlDbType.VarChar)
             pParam(4) = New SqlClient.SqlParameter("@Budget", SqlDbType.Int)
-            pParam(5) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
-            pParam(6) = New SqlClient.SqlParameter("@CR_Type", SqlDbType.VarChar)
-            pParam(7) = New SqlClient.SqlParameter("@Reason", SqlDbType.VarChar)
-            pParam(8) = New SqlClient.SqlParameter("@Currency", SqlDbType.VarChar)
-            pParam(9) = New SqlClient.SqlParameter("@Rate", SqlDbType.Float)
-            pParam(10) = New SqlClient.SqlParameter("@RemainingBudget", SqlDbType.Float)
-            pParam(11) = New SqlClient.SqlParameter("@CurrentCR", SqlDbType.Float)
-            pParam(12) = New SqlClient.SqlParameter("@Balance", SqlDbType.Float)
-            pParam(13) = New SqlClient.SqlParameter("@UserSubmition", SqlDbType.Int)
-            pParam(14) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
-            pParam(15) = New SqlClient.SqlParameter("@Parent", SqlDbType.VarChar)
-            pParam(16) = New SqlClient.SqlParameter("@ParentAmount ", SqlDbType.Float)
-            pParam(17) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
-            pParam(18) = New SqlClient.SqlParameter("@CreatedDate ", SqlDbType.Date)
-            pParam(19) = New SqlClient.SqlParameter("@PRNo ", SqlDbType.VarChar)
-            pParam(20) = New SqlClient.SqlParameter("@SalesType ", SqlDbType.VarChar)
-            pParam(21) = New SqlClient.SqlParameter("@CustomerName ", SqlDbType.VarChar)
-            pParam(22) = New SqlClient.SqlParameter("@Model ", SqlDbType.VarChar)
-            pParam(23) = New SqlClient.SqlParameter("@Dies ", SqlDbType.Int)
-            pParam(24) = New SqlClient.SqlParameter("@DiesRemark ", SqlDbType.VarChar)
-            pParam(25) = New SqlClient.SqlParameter("@ChargedOf ", SqlDbType.Int)
-            pParam(26) = New SqlClient.SqlParameter("@InvoiceNo ", SqlDbType.VarChar)
-            pParam(27) = New SqlClient.SqlParameter("@InvoiceStatus ", SqlDbType.Int)
+            'pParam(5) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
+            pParam(5) = New SqlClient.SqlParameter("@CR_Type", SqlDbType.VarChar)
+            pParam(6) = New SqlClient.SqlParameter("@Reason", SqlDbType.VarChar)
+            'pParam(8) = New SqlClient.SqlParameter("@Currency", SqlDbType.VarChar)
+            'pParam(9) = New SqlClient.SqlParameter("@Rate", SqlDbType.Float)
+            'pParam(10) = New SqlClient.SqlParameter("@RemainingBudget", SqlDbType.Float)
+            'pParam(11) = New SqlClient.SqlParameter("@CurrentCR", SqlDbType.Float)
+            'pParam(12) = New SqlClient.SqlParameter("@Balance", SqlDbType.Float)
+            pParam(7) = New SqlClient.SqlParameter("@UserSubmition", SqlDbType.Int)
+            pParam(8) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(9) = New SqlClient.SqlParameter("@Parent", SqlDbType.VarChar)
+            pParam(10) = New SqlClient.SqlParameter("@ParentAmount ", SqlDbType.Float)
+            pParam(11) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
+            pParam(12) = New SqlClient.SqlParameter("@CreatedDate ", SqlDbType.Date)
+            'pParam(19) = New SqlClient.SqlParameter("@PRNo ", SqlDbType.VarChar)
+            pParam(13) = New SqlClient.SqlParameter("@SalesType ", SqlDbType.VarChar)
+            pParam(14) = New SqlClient.SqlParameter("@CustomerName ", SqlDbType.VarChar)
+            pParam(15) = New SqlClient.SqlParameter("@Model ", SqlDbType.VarChar)
+            pParam(16) = New SqlClient.SqlParameter("@Dies ", SqlDbType.Int)
+            pParam(17) = New SqlClient.SqlParameter("@DiesRemark ", SqlDbType.VarChar)
+            pParam(18) = New SqlClient.SqlParameter("@ChargedOf ", SqlDbType.Int)
+            pParam(19) = New SqlClient.SqlParameter("@InvoiceNo ", SqlDbType.VarChar)
+            pParam(20) = New SqlClient.SqlParameter("@InvoiceStatus ", SqlDbType.Int)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = RequirementDate
             pParam(2).Value = DeptID
             pParam(3).Value = SiteID
             pParam(4).Value = Budget
-            pParam(5).Value = Account
-            pParam(6).Value = CR_Type
-            pParam(7).Value = Reason
-            pParam(8).Value = Currency
-            pParam(9).Value = Rate
-            pParam(10).Value = RemainingBudget
-            pParam(11).Value = CurrentCR
-            pParam(12).Value = Balance
-            pParam(13).Value = UserSubmition
-            pParam(14).Value = Status
-            pParam(15).Value = Parent
-            pParam(16).Value = ParentAmount
-            pParam(17).Value = CreatedBy
-            pParam(18).Value = CreatedDate
-            pParam(19).Value = PRNo
-            pParam(20).Value = Sales_Type
-            pParam(21).Value = Customer_Name
-            pParam(22).Value = Model
-            pParam(23).Value = Dies
-            pParam(24).Value = DiesRemark
-            pParam(25).Value = ChangedOf
-            pParam(26).Value = InvoiceNo
-            pParam(27).Value = InvoiceStatus
+            'pParam(5).Value = ""
+            pParam(5).Value = CR_Type
+            pParam(6).Value = Reason
+            'pParam(8).Value = ""
+            'pParam(9).Value = 0
+            'pParam(10).Value = 0
+            'pParam(11).Value = 0
+            'pParam(12).Value = 0
+            pParam(7).Value = UserSubmition
+            pParam(8).Value = Status
+            pParam(9).Value = Parent
+            pParam(10).Value = ParentAmount
+            pParam(11).Value = CreatedBy
+            pParam(12).Value = CreatedDate
+            'pParam(19).Value = ""
+            pParam(13).Value = Sales_Type
+            pParam(14).Value = Customer_Name
+            pParam(15).Value = Model
+            pParam(16).Value = Dies
+            pParam(17).Value = DiesRemark
+            pParam(18).Value = ChangedOf
+            pParam(19).Value = InvoiceNo
+            pParam(20).Value = InvoiceStatus
 
 
             'Dim dtTable As New DataTable
@@ -780,7 +829,17 @@ Public Class ClsCR_CreateUser
         End Try
     End Sub
 
+    Public Sub UpdateUserSubmit(ByVal _FsCode As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE CR_Request" & vbCrLf &
+                                    "SET [UserSubmition] = '" & H_UserSubmition & "' WHERE [CirculationNo] = '" & _FsCode & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
 
+    End Sub
 
 
 
@@ -805,6 +864,9 @@ Public Class ClsCR_Description_of_Cost
     Public Property D_Amount As Double
     Public Property D_Amount_IDR As Double
     Public Property D_PR_No As String
+    Public Property D_RemainingBudget As Double
+    Public Property D_Account As String
+    Public Property D_Category As String
 
 
     Public Sub InsertCR_Description_Of_Cost(CirculationNo As String)
@@ -814,7 +876,7 @@ Public Class ClsCR_Description_of_Cost
         Try
 
             Dim query As String = "[CR_Insert_Description_Of_Cost]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(9) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(12) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Name_Of_Goods", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Spesification", SqlDbType.VarChar)
@@ -825,6 +887,9 @@ Public Class ClsCR_Description_of_Cost
             pParam(7) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
             pParam(8) = New SqlClient.SqlParameter("@Amount_IDR", SqlDbType.Float)
             pParam(9) = New SqlClient.SqlParameter("@PR_No", SqlDbType.VarChar)
+            pParam(10) = New SqlClient.SqlParameter("@RemainingBudget", SqlDbType.Float)
+            pParam(11) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
+            pParam(12) = New SqlClient.SqlParameter("@Category", SqlDbType.VarChar)
 
 
             pParam(0).Value = CirculationNo
@@ -837,7 +902,9 @@ Public Class ClsCR_Description_of_Cost
             pParam(7).Value = D_Amount
             pParam(8).Value = D_Amount_IDR
             pParam(9).Value = D_PR_No
-
+            pParam(10).Value = D_RemainingBudget
+            pParam(11).Value = D_Account
+            pParam(12).Value = D_Category
 
 
             Dim dtTable As New DataTable
@@ -890,6 +957,8 @@ Public Class ClsCR_Installment
     Public Property D_Date As Date
     Public Property D_Amount As Double
     Public Property D_Percent As Double
+    Public Property D_Curr As String
+    Public Property D_Value As Double
 
     Public Sub InsertCR_Installment(CirculationNo As String)
 
@@ -900,18 +969,20 @@ Public Class ClsCR_Installment
 
 
             Dim query As String = "[CR_Insert_Installment]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Term", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Date", SqlDbType.Date)
             pParam(3) = New SqlClient.SqlParameter("@Percent", SqlDbType.Float)
-            pParam(4) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
+            pParam(4) = New SqlClient.SqlParameter("@Curr", SqlDbType.VarChar)
+            pParam(5) = New SqlClient.SqlParameter("@Value", SqlDbType.Float)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = D_Term
             pParam(2).Value = D_Date
             pParam(3).Value = D_Percent
-            pParam(4).Value = D_Amount
+            pParam(4).Value = D_Curr
+            pParam(5).Value = D_Value
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)

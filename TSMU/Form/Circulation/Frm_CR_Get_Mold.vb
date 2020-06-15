@@ -15,6 +15,7 @@ Public Class Frm_CR_Get_Mold
     Dim dt As DataTable
     Dim dt1 As DataTable
     Dim dtRef As DataTable
+    Dim BG As String
 
     Private Sub Frm_CR_Get_Mold_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call LoadGrid()
@@ -22,7 +23,8 @@ Public Class Frm_CR_Get_Mold
 
     Public Sub New(ByVal _ID As String,
                   ByRef _dt As DataTable,
-                  ByRef _grid As GridControl)
+                  ByRef _grid As GridControl,
+                  ByVal _BG As String)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -30,6 +32,7 @@ Public Class Frm_CR_Get_Mold
         ID = _ID
         Grid1 = _grid
         dtRef = _dt
+        BG = _BG
 
 
     End Sub
@@ -56,23 +59,27 @@ Public Class Frm_CR_Get_Mold
 
             dt.Columns.Add("Qty")
             dt.Columns.Add("Price")
-            dt.Columns.Add("Amount")
+            dt.Columns.Add("Total Amount Currency")
+            dt.Columns.Add("Total IDR")
             dt.Columns.Add("PR No")
             dt.Columns.Add("Curr")
             dt.Columns.Add("Rate")
             dt.Columns.Add("Balance")
             dt.Columns.Add("Remaining Budget")
+            dt.Columns.Add("Category")
 
 
             For a As Integer = 0 To dt.Rows.Count - 1
-                dt.Rows(a).Item("Qty") = "0"
+                dt.Rows(a).Item("Qty") = "1"
                 dt.Rows(a).Item("Price") = "0"
-                dt.Rows(a).Item("Amount") = "0"
+                dt.Rows(a).Item("Total Amount Currency") = "0"
                 dt.Rows(a).Item("PR No") = ""
                 dt.Rows(a).Item("Curr") = ""
                 dt.Rows(a).Item("Rate") = "1"
                 dt.Rows(a).Item("Balance") = "0"
-                dt.Rows(a).Item("Remaining Budget") = 0
+                dt.Rows(a).Item("Remaining Budget") = "0"
+                dt.Rows(a).Item("Category") = BG
+                dt.Rows(a).Item("Total IDR") = "0"
             Next
 
             Grid.DataSource = dt
@@ -100,11 +107,13 @@ Public Class Frm_CR_Get_Mold
                     .Item("Spesification") = GridView1.GetRowCellValue(j, GridView1.Columns("Spesification")).ToString
                     .Item("Qty") = GridView1.GetRowCellValue(j, GridView1.Columns("Qty")).ToString
                     .Item("Price") = GridView1.GetRowCellValue(j, GridView1.Columns("Price")).ToString
-                    .Item("Amount") = GridView1.GetRowCellValue(j, GridView1.Columns("Amount")).ToString
+                    .Item("Total Amount Currency") = GridView1.GetRowCellValue(j, GridView1.Columns("Total Amount Currency")).ToString
                     .Item("Curr") = "IDR"
                     .Item("Rate") = GridView1.GetRowCellValue(j, GridView1.Columns("Rate")).ToString
                     .Item("Balance") = GridView1.GetRowCellValue(j, GridView1.Columns("Balance")).ToString
                     .Item("Remaining Budget") = 0
+                    .Item("Category") = GridView1.GetRowCellValue(j, GridView1.Columns("Category")).ToString
+                    .Item("Total IDR") = GridView1.GetRowCellValue(j, GridView1.Columns("Total IDR")).ToString
                 End With
                 dtRef.Rows.Add(MyNewRow)
                 dtRef.AcceptChanges()
