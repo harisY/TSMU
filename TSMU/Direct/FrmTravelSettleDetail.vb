@@ -14,22 +14,25 @@ Public Class FrmTravelSettleDetail
 
     Dim cls_TravelSett As New TravelSettleHeaderModel
     Dim cls_TravelSettDetail As New TravelSettleDetailModel
-    Dim cls_TravelSettTransport As New TravelSettleTransportModel
-    Dim cls_TravelSettStaying As New TravelSettleStayingModel
-    Dim cls_TravelSettEntertain As New TravelSettleEntertainModel
-    Dim cls_TravelSettOther As New TravelSettleOtherModel
+    Dim cls_TravelSettCost As New TravelSettleCostModel
 
     Dim GridDtl As GridControl
     Dim gv_Request As New GridView
     Dim dtGrid As New DataTable
+    Dim filterRows As DataRow()
     Dim dtSummary As New DataTable
     Dim dtBalance As New DataTable
+    Dim dtVoucher As New DataTable
     Dim dtEntertain As New DataTable
 
     Dim Rows As New ArrayList()
     Dim row As Integer
     Dim flag As Integer
     Dim TabPage As String
+
+    Dim ReturnUSD As Double
+    Dim ReturnYEN As Double
+    Dim ReturnIDR As Double
 
     Dim CashIDR As Double
     Dim CashUSD As Double
@@ -81,13 +84,14 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub FrmTravelSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
         Call InitialSetForm()
     End Sub
 
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
                 cls_TravelSett.TravelSettleID = fs_Code
                 cls_TravelSett.GetTravelSettHeaderByID()
                 If ls_Error <> "" Then
@@ -98,9 +102,9 @@ Public Class FrmTravelSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "TRAVEL SETTLEMENT" + ": " + fs_Code
+                Me.Text = "SETTLEMENT"
             Else
-                Me.Text = "NEW TRAVEL SETTLEMENT"
+                Me.Text = "NEW SETTLEMENT"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
@@ -134,32 +138,89 @@ Public Class FrmTravelSettleDetail
 
     Public Sub LoadGridDetail()
         Try
-            dtGrid = New DataTable
-            cls_TravelSettTransport.TravelSettleID = txtTravelSettID.Text
-            dtGrid = cls_TravelSettTransport.GetTravelSettTransportByID
-            GridTransport.DataSource = dtGrid
-            'GridCellFormat(GridViewTransport)
+            Dim dtGridKosong = New DataTable
+            dtGridKosong.Columns.AddRange(New DataColumn(16) {New DataColumn("TravelSettleID", GetType(String)),
+                                                            New DataColumn("ID", GetType(Integer)),
+                                                            New DataColumn("AccountID", GetType(String)),
+                                                            New DataColumn("SubAccount", GetType(String)),
+                                                            New DataColumn("Date", GetType(Date)),
+                                                            New DataColumn("EntertainID", GetType(String)),
+                                                            New DataColumn("TFrom", GetType(String)),
+                                                            New DataColumn("TTo", GetType(String)),
+                                                            New DataColumn("Transport", GetType(String)),
+                                                            New DataColumn("Description", GetType(String)),
+                                                            New DataColumn("PaymentType", GetType(String)),
+                                                            New DataColumn("CreditCardID", GetType(String)),
+                                                            New DataColumn("CreditCardNumber", GetType(String)),
+                                                            New DataColumn("AccountName", GetType(String)),
+                                                            New DataColumn("CurryID", GetType(String)),
+                                                            New DataColumn("Amount", GetType(Double)),
+                                                            New DataColumn("AmountIDR", GetType(Double))})
 
-            cls_TravelSettStaying.TravelSettleID = txtTravelSettID.Text
-            dtGrid = cls_TravelSettStaying.GetTravelSettHotelByID
-            GridHotel.DataSource = dtGrid
-            'GridCellFormat(GridViewHotel)
+            Dim dtGridTransport = New DataTable
+            Dim dtGridHotel = New DataTable
+            Dim dtGridEntertain = New DataTable
+            Dim dtGridOther = New DataTable
 
-            cls_TravelSettEntertain.TravelSettleID = txtTravelSettID.Text
-            dtGrid = cls_TravelSettEntertain.GetTravelSettEntertainByID
-            GridEntertain.DataSource = dtGrid
-            'GridCellFormat(GridViewEntertain)
+            If fs_Code <> "" Then
+                dtGrid = New DataTable
+                cls_TravelSettCost.TravelSettleID = txtTravelSettID.Text
+                dtGrid = cls_TravelSettCost.GetTravelSettleCostByID
 
-            cls_TravelSettOther.TravelSettleID = txtTravelSettID.Text
-            dtGrid = cls_TravelSettOther.GetTravelSettOtherByID
-            GridOther.DataSource = dtGrid
-            'GridCellFormat(GridViewOther)
+                filterRows = dtGrid.Select("ID = 2")
+                If filterRows.Count > 0 Then
+                    GridTransport.DataSource = filterRows.CopyToDataTable
+                Else
+                    dtGridTransport = dtGridKosong.Copy
+                    GridTransport.DataSource = dtGridTransport
+                End If
+
+                filterRows = dtGrid.Select("ID = 3")
+                If filterRows.Count > 0 Then
+                    GridHotel.DataSource = filterRows.CopyToDataTable
+                Else
+                    dtGridHotel = dtGridKosong.Copy
+                    GridHotel.DataSource = dtGridHotel
+                End If
+
+                filterRows = dtGrid.Select("ID = 4")
+                If filterRows.Count > 0 Then
+                    GridEntertain.DataSource = filterRows.CopyToDataTable
+                Else
+                    dtGridEntertain = dtGridKosong.Copy
+                    GridEntertain.DataSource = dtGridEntertain
+                End If
+
+                filterRows = dtGrid.Select("ID = 7")
+                If filterRows.Count > 0 Then
+                    GridOther.DataSource = filterRows.CopyToDataTable
+                Else
+                    dtGridOther = dtGridKosong.Copy
+                    GridOther.DataSource = dtGridOther
+                End If
+            Else
+                dtGridTransport = dtGridKosong.Copy
+                GridTransport.DataSource = dtGridTransport
+
+                dtGridHotel = dtGridKosong.Copy
+                GridHotel.DataSource = dtGridHotel
+
+                dtGridEntertain = dtGridKosong.Copy
+                GridEntertain.DataSource = dtGridEntertain
+
+                dtGridOther = dtGridKosong.Copy
+                GridOther.DataSource = dtGridOther
+            End If
 
             CreateTable()
             HitungSummaryAll(GridSumTransport, GridViewSumTransport)
 
             GridBalanceTransport.DataSource = dtBalance
-            'GridCellFormat(GridViewBalanceTransport)
+
+            dtVoucher.Rows.Add("USD", 0, 0, 0, ReturnUSD, 0, 0)
+            dtVoucher.Rows.Add("YEN", 0, 0, 0, ReturnYEN, 0, 0)
+            dtVoucher.Rows.Add("IDR", 0, 0, 0, ReturnIDR, 0, 0)
+            GridBalance.DataSource = dtVoucher
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
@@ -183,6 +244,9 @@ Public Class FrmTravelSettleDetail
                     TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatDecimal)
                     TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatDecimal)
                     TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatDecimal)
+                    ReturnIDR = .TotalReturnIDR
+                    ReturnUSD = .TotalReturnUSD
+                    ReturnYEN = .TotalReturnYEN
                     txtRateUSD.Text = Format(.RateUSD, gs_FormatDecimal)
                     txtRateYEN.Text = Format(.RateYEN, gs_FormatDecimal)
                 End With
@@ -242,12 +306,11 @@ Public Class FrmTravelSettleDetail
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
 
-            DataTravelSettDetail()
-
             If lb_Validated Then
                 If isUpdate = False Then
                     txtTravelSettID.Text = cls_TravelSett.TravelSettAutoNo
                 End If
+                DataTravelSettDetail()
 
                 With cls_TravelSett
                     .TravelSettleID = txtTravelSettID.Text
@@ -267,6 +330,9 @@ Public Class FrmTravelSettleDetail
                     .TotalAdvanceIDR = TxtTotalAdvanceIDR.Text
                     .TotalAdvanceYEN = TxtTotalAdvanceYEN.Text
                     .TotalAdvanceUSD = TxtTotalAdvanceUSD.Text
+                    .TotalReturnIDR = ReturnIDR
+                    .TotalReturnUSD = ReturnUSD
+                    .TotalReturnYEN = ReturnYEN
                 End With
 
             End If
@@ -479,12 +545,12 @@ Public Class FrmTravelSettleDetail
         Next
 
         'Data from grid transportasi
-        cls_TravelSett.ObjSettleTransport.Clear()
+        cls_TravelSett.ObjSettleCost.Clear()
         seq = 0
         For i As Integer = 0 To GridViewTransport.RowCount - 1
-            cls_TravelSettTransport = New TravelSettleTransportModel
+            cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
-            With cls_TravelSettTransport
+            With cls_TravelSettCost
                 .TravelSettleID = txtTravelSettID.Text
                 .ID = GridViewTransport.GetRowCellValue(i, "ID")
                 .Seq = seq
@@ -492,10 +558,12 @@ Public Class FrmTravelSettleDetail
                 If String.IsNullOrEmpty(IIf(GridViewTransport.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(i, "Date"))) Then
                     Err.Raise(ErrNumber, , "Tanggal transport tidak boleh kosong !")
                 End If
-                .DateTransport = IIf(String.IsNullOrEmpty(GridViewTransport.GetRowCellValue(i, "Date")), Nothing, GridViewTransport.GetRowCellValue(i, "Date"))
+                .DateCost = IIf(String.IsNullOrEmpty(GridViewTransport.GetRowCellValue(i, "Date")), Nothing, GridViewTransport.GetRowCellValue(i, "Date"))
+                .EntertainID = ""
                 .TFrom = GridViewTransport.GetRowCellValue(i, "TFrom").ToString()
                 .TTo = GridViewTransport.GetRowCellValue(i, "TTo").ToString()
                 .Transport = GridViewTransport.GetRowCellValue(i, "Transport").ToString()
+                .Description = ""
                 .PaymentType = IIf(GridViewTransport.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewTransport.GetRowCellValue(i, "PaymentType").ToString())
                 .CreditCardID = GridViewTransport.GetRowCellValue(i, "CreditCardID").ToString()
                 .CreditCardNumber = GridViewTransport.GetRowCellValue(i, "CreditCardNumber").ToString()
@@ -504,16 +572,15 @@ Public Class FrmTravelSettleDetail
                 .Amount = IIf(GridViewTransport.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "Amount")))
                 .AmountIDR = IIf(GridViewTransport.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewTransport.GetRowCellValue(i, "AmountIDR")))
             End With
-            cls_TravelSett.ObjSettleTransport.Add(cls_TravelSettTransport)
+            cls_TravelSett.ObjSettleCost.Add(cls_TravelSettCost)
         Next
 
         'Data from grid hotel
-        cls_TravelSett.ObjSettleStaying.Clear()
         seq = 0
         For i As Integer = 0 To GridViewHotel.RowCount - 1
-            cls_TravelSettStaying = New TravelSettleStayingModel
+            cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
-            With cls_TravelSettStaying
+            With cls_TravelSettCost
                 .TravelSettleID = txtTravelSettID.Text
                 .ID = GridViewHotel.GetRowCellValue(i, "ID")
                 .Seq = seq
@@ -521,7 +588,11 @@ Public Class FrmTravelSettleDetail
                 If String.IsNullOrEmpty(IIf(GridViewHotel.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(i, "Date"))) Then
                     Err.Raise(ErrNumber, , "Tanggal Hotel tidak boleh kosong !")
                 End If
-                .DateStaying = GridViewHotel.GetRowCellValue(i, "Date")
+                .DateCost = GridViewHotel.GetRowCellValue(i, "Date")
+                .EntertainID = ""
+                .TFrom = ""
+                .TTo = ""
+                .Transport = ""
                 .Description = GridViewHotel.GetRowCellValue(i, "Description").ToString()
                 .PaymentType = IIf(GridViewHotel.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewHotel.GetRowCellValue(i, "PaymentType").ToString())
                 .CreditCardID = GridViewHotel.GetRowCellValue(i, "CreditCardID").ToString()
@@ -531,16 +602,15 @@ Public Class FrmTravelSettleDetail
                 .Amount = IIf(GridViewHotel.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "Amount")))
                 .AmountIDR = IIf(GridViewHotel.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewHotel.GetRowCellValue(i, "AmountIDR")))
             End With
-            cls_TravelSett.ObjSettleStaying.Add(cls_TravelSettStaying)
+            cls_TravelSett.ObjSettleCost.Add(cls_TravelSettCost)
         Next
 
         'Data from grid entertainment
-        cls_TravelSett.ObjSettleEntertain.Clear()
         seq = 0
         For i As Integer = 0 To GridViewEntertain.RowCount - 1
-            cls_TravelSettEntertain = New TravelSettleEntertainModel
+            cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
-            With cls_TravelSettEntertain
+            With cls_TravelSettCost
                 .TravelSettleID = txtTravelSettID.Text
                 .ID = GridViewEntertain.GetRowCellValue(i, "ID")
                 .Seq = seq
@@ -548,8 +618,11 @@ Public Class FrmTravelSettleDetail
                 If String.IsNullOrEmpty(IIf(GridViewEntertain.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(i, "Date"))) Then
                     Err.Raise(ErrNumber, , "Tanggal Entertain tidak boleh kosong !")
                 End If
-                .DateEntertain = GridViewEntertain.GetRowCellValue(i, "Date")
+                .DateCost = GridViewEntertain.GetRowCellValue(i, "Date")
                 .EntertainID = GridViewEntertain.GetRowCellValue(i, "EntertainID").ToString()
+                .TFrom = ""
+                .TTo = ""
+                .Transport = ""
                 .Description = GridViewEntertain.GetRowCellValue(i, "Description").ToString()
                 .PaymentType = IIf(GridViewEntertain.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewEntertain.GetRowCellValue(i, "PaymentType").ToString())
                 .CreditCardID = GridViewEntertain.GetRowCellValue(i, "CreditCardID").ToString()
@@ -559,16 +632,15 @@ Public Class FrmTravelSettleDetail
                 .Amount = IIf(GridViewEntertain.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "Amount")))
                 .AmountIDR = IIf(GridViewEntertain.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountIDR")))
             End With
-            cls_TravelSett.ObjSettleEntertain.Add(cls_TravelSettEntertain)
+            cls_TravelSett.ObjSettleCost.Add(cls_TravelSettCost)
         Next
 
         'Data from grid other
-        cls_TravelSett.ObjSettleOther.Clear()
         seq = 0
         For i As Integer = 0 To GridViewOther.RowCount - 1
-            cls_TravelSettOther = New TravelSettleOtherModel
+            cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
-            With cls_TravelSettOther
+            With cls_TravelSettCost
                 .TravelSettleID = txtTravelSettID.Text
                 .ID = GridViewOther.GetRowCellValue(i, "ID")
                 .Seq = seq
@@ -576,7 +648,11 @@ Public Class FrmTravelSettleDetail
                 If String.IsNullOrEmpty(IIf(GridViewOther.GetRowCellValue(i, "Date") Is DBNull.Value, "", GridViewOther.GetRowCellValue(i, "Date"))) Then
                     Err.Raise(ErrNumber, , "Tanggal Others tidak boleh kosong !")
                 End If
-                .DateOther = GridViewOther.GetRowCellValue(i, "Date")
+                .DateCost = GridViewOther.GetRowCellValue(i, "Date")
+                .EntertainID = ""
+                .TFrom = ""
+                .TTo = ""
+                .Transport = ""
                 .Description = GridViewOther.GetRowCellValue(i, "Description").ToString()
                 .PaymentType = IIf(GridViewOther.GetRowCellValue(i, "PaymentType").ToString().Substring(0, 2) = "CC", "CREDIT CARD", GridViewOther.GetRowCellValue(i, "PaymentType").ToString())
                 .CreditCardID = GridViewOther.GetRowCellValue(i, "CreditCardID").ToString()
@@ -586,7 +662,7 @@ Public Class FrmTravelSettleDetail
                 .Amount = IIf(GridViewOther.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewOther.GetRowCellValue(i, "Amount")))
                 .AmountIDR = IIf(GridViewOther.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewOther.GetRowCellValue(i, "AmountIDR")))
             End With
-            cls_TravelSett.ObjSettleOther.Add(cls_TravelSettOther)
+            cls_TravelSett.ObjSettleCost.Add(cls_TravelSettCost)
         Next
 
     End Sub
@@ -916,6 +992,14 @@ Public Class FrmTravelSettleDetail
         dtBalance.Columns.AddRange(New DataColumn(2) {New DataColumn("BalanceUSD", GetType(Double)),
                                                             New DataColumn("BalanceYEN", GetType(Double)),
                                                             New DataColumn("BalanceIDR", GetType(Double))})
+
+        dtVoucher.Columns.AddRange(New DataColumn(6) {New DataColumn("CurryID", GetType(String)),
+                                                            New DataColumn("Advance", GetType(Double)),
+                                                            New DataColumn("Actual", GetType(Double)),
+                                                            New DataColumn("SisaBalance", GetType(Double)),
+                                                            New DataColumn("ReturnBalance", GetType(Double)),
+                                                            New DataColumn("PaidBalance", GetType(Double)),
+                                                            New DataColumn("AmountIDRBalance", GetType(Double))})
     End Sub
 
     Private Sub FrmTravelSettleDetail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -1091,7 +1175,6 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub HitungAmountBalance()
-        Dim dtBalance As New DataTable
         Dim BalanceUSD As Double
         Dim BalanceYEN As Double
         Dim BalanceIDR As Double
@@ -1101,13 +1184,7 @@ Public Class FrmTravelSettleDetail
         Dim PaidUSD As Double
         Dim PaidYEN As Double
         Dim PaidIDR As Double
-        dtBalance.Columns.AddRange(New DataColumn(6) {New DataColumn("CurryID", GetType(String)),
-                                                            New DataColumn("Advance", GetType(Double)),
-                                                            New DataColumn("Actual", GetType(Double)),
-                                                            New DataColumn("SisaBalance", GetType(Double)),
-                                                            New DataColumn("ReturnBalance", GetType(Double)),
-                                                            New DataColumn("PaidBalance", GetType(Double)),
-                                                            New DataColumn("AmountIDRBalance", GetType(Double))})
+
         BalanceUSD = GridViewBalanceTransport.GetRowCellValue(0, "BalanceUSD")
         BalanceYEN = GridViewBalanceTransport.GetRowCellValue(0, "BalanceYEN")
         BalanceIDR = GridViewBalanceTransport.GetRowCellValue(0, "BalanceIDR")
@@ -1128,10 +1205,11 @@ Public Class FrmTravelSettleDetail
         PaidYEN = BalanceYEN - ReturnYEN
         PaidIDR = BalanceIDR - ReturnIDR
 
-        dtBalance.Rows.Add("USD", Convert.ToDouble(TxtTotalAdvanceUSD.Text), GridViewSumTransport.Columns("CashUSD").SummaryItem.SummaryValue, BalanceUSD, ReturnUSD, PaidUSD, PaidUSD * Convert.ToDouble(txtRateUSD.Text))
-        dtBalance.Rows.Add("YEN", Convert.ToDouble(TxtTotalAdvanceYEN.Text), GridViewSumTransport.Columns("CashYEN").SummaryItem.SummaryValue, BalanceYEN, ReturnYEN, PaidYEN, PaidYEN * Convert.ToDouble(txtRateYEN.Text))
-        dtBalance.Rows.Add("IDR", Convert.ToDouble(TxtTotalAdvanceIDR.Text), GridViewSumTransport.Columns("CashIDR").SummaryItem.SummaryValue, BalanceIDR, ReturnIDR, PaidIDR, PaidIDR)
-        GridBalance.DataSource = dtBalance
+        dtVoucher.Clear()
+        dtVoucher.Rows.Add("USD", Convert.ToDouble(TxtTotalAdvanceUSD.Text), GridViewSumTransport.Columns("CashUSD").SummaryItem.SummaryValue, BalanceUSD, ReturnUSD, PaidUSD, PaidUSD * Convert.ToDouble(txtRateUSD.Text))
+        dtVoucher.Rows.Add("YEN", Convert.ToDouble(TxtTotalAdvanceYEN.Text), GridViewSumTransport.Columns("CashYEN").SummaryItem.SummaryValue, BalanceYEN, ReturnYEN, PaidYEN, PaidYEN * Convert.ToDouble(txtRateYEN.Text))
+        dtVoucher.Rows.Add("IDR", Convert.ToDouble(TxtTotalAdvanceIDR.Text), GridViewSumTransport.Columns("CashIDR").SummaryItem.SummaryValue, BalanceIDR, ReturnIDR, PaidIDR, PaidIDR)
+        GridBalance.DataSource = dtVoucher
         'GridCellFormat(GridViewBalance)
     End Sub
 
@@ -1149,10 +1227,13 @@ Public Class FrmTravelSettleDetail
         return_ = IIf(GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "ReturnBalance") Is DBNull.Value, 0, GridViewBalance.GetRowCellValue(GridViewBalance.FocusedRowHandle, "ReturnBalance"))
         GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "PaidBalance", balance - return_)
         If curryID = "USD" Then
+            ReturnUSD = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateUSD.Text))
         ElseIf curryID = "YEN" Then
+            ReturnYEN = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateYEN.Text))
         ElseIf curryID = "IDR" Then
+            ReturnIDR = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", balance - return_)
         End If
     End Sub

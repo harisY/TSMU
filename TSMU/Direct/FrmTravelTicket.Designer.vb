@@ -23,30 +23,34 @@ Partial Class FrmTravelTicket
         Me.TabPageRequest = New DevExpress.XtraTab.XtraTabPage()
         Me.GridRequest = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Nama = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DeptID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Purpose = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TravelType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Visa = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.StatusTicket = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CStatusTicket = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.TabPageTicket = New DevExpress.XtraTab.XtraTabPage()
         Me.GridTicket = New DevExpress.XtraGrid.GridControl()
         Me.GridViewTicket = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoVoucher = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Vendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoInvoice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CuryID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageRequest.SuspendLayout()
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageTicket.SuspendLayout()
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +73,7 @@ Partial Class FrmTravelTicket
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
         Me.TabPageRequest.Size = New System.Drawing.Size(1426, 521)
-        Me.TabPageRequest.Text = "Request"
+        Me.TabPageRequest.Text = "Ticket"
         '
         'GridRequest
         '
@@ -79,133 +83,170 @@ Partial Class FrmTravelTicket
         Me.GridRequest.Location = New System.Drawing.Point(3, 3)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
+        Me.GridRequest.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CStatusTicket})
         Me.GridRequest.Size = New System.Drawing.Size(1420, 515)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
         'GridViewRequest
         '
-        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn9, Me.GridColumn5, Me.GridColumn10, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7})
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DeptID, Me.Purpose, Me.TravelType, Me.Destination, Me.Negara, Me.Visa, Me.DepartureDate, Me.ArrivalDate, Me.Status, Me.StatusTicket})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
-        Me.GridViewRequest.OptionsBehavior.Editable = False
         Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'NoRequest
         '
-        Me.GridColumn1.Caption = "No Request"
-        Me.GridColumn1.FieldName = "NoRequest"
-        Me.GridColumn1.MinWidth = 25
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.FixedWidth = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 140
+        Me.NoRequest.Caption = "No Request"
+        Me.NoRequest.FieldName = "NoRequest"
+        Me.NoRequest.MinWidth = 25
+        Me.NoRequest.Name = "NoRequest"
+        Me.NoRequest.OptionsColumn.AllowEdit = False
+        Me.NoRequest.OptionsColumn.FixedWidth = True
+        Me.NoRequest.Visible = True
+        Me.NoRequest.VisibleIndex = 0
+        Me.NoRequest.Width = 140
         '
-        'GridColumn2
+        'Nama
         '
-        Me.GridColumn2.Caption = "Nama"
-        Me.GridColumn2.FieldName = "Nama"
-        Me.GridColumn2.MinWidth = 25
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.FixedWidth = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 200
+        Me.Nama.Caption = "Nama"
+        Me.Nama.FieldName = "Nama"
+        Me.Nama.MinWidth = 25
+        Me.Nama.Name = "Nama"
+        Me.Nama.OptionsColumn.AllowEdit = False
+        Me.Nama.OptionsColumn.FixedWidth = True
+        Me.Nama.Visible = True
+        Me.Nama.VisibleIndex = 1
+        Me.Nama.Width = 200
         '
-        'GridColumn3
+        'DeptID
         '
-        Me.GridColumn3.Caption = "Dept ID"
-        Me.GridColumn3.FieldName = "DeptID"
-        Me.GridColumn3.MinWidth = 25
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.FixedWidth = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 80
+        Me.DeptID.Caption = "Dept ID"
+        Me.DeptID.FieldName = "DeptID"
+        Me.DeptID.MinWidth = 25
+        Me.DeptID.Name = "DeptID"
+        Me.DeptID.OptionsColumn.AllowEdit = False
+        Me.DeptID.OptionsColumn.FixedWidth = True
+        Me.DeptID.Visible = True
+        Me.DeptID.VisibleIndex = 2
+        Me.DeptID.Width = 80
         '
-        'GridColumn4
+        'Purpose
         '
-        Me.GridColumn4.Caption = "Purpose"
-        Me.GridColumn4.FieldName = "Purpose"
-        Me.GridColumn4.MinWidth = 25
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 578
+        Me.Purpose.Caption = "Purpose"
+        Me.Purpose.FieldName = "Purpose"
+        Me.Purpose.MinWidth = 25
+        Me.Purpose.Name = "Purpose"
+        Me.Purpose.OptionsColumn.AllowEdit = False
+        Me.Purpose.Visible = True
+        Me.Purpose.VisibleIndex = 3
+        Me.Purpose.Width = 166
         '
-        'GridColumn9
+        'TravelType
         '
-        Me.GridColumn9.Caption = "TravelType"
-        Me.GridColumn9.FieldName = "TravelType"
-        Me.GridColumn9.MinWidth = 25
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.FixedWidth = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 100
+        Me.TravelType.Caption = "Travel Type"
+        Me.TravelType.FieldName = "TravelType"
+        Me.TravelType.MinWidth = 25
+        Me.TravelType.Name = "TravelType"
+        Me.TravelType.OptionsColumn.AllowEdit = False
+        Me.TravelType.OptionsColumn.FixedWidth = True
+        Me.TravelType.Visible = True
+        Me.TravelType.VisibleIndex = 4
+        Me.TravelType.Width = 100
         '
-        'GridColumn5
+        'Destination
         '
-        Me.GridColumn5.Caption = "Destination"
-        Me.GridColumn5.FieldName = "Negara"
-        Me.GridColumn5.MinWidth = 25
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.FixedWidth = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
-        Me.GridColumn5.Width = 200
+        Me.Destination.Caption = "Destination"
+        Me.Destination.FieldName = "Negara"
+        Me.Destination.MinWidth = 25
+        Me.Destination.Name = "Destination"
+        Me.Destination.OptionsColumn.AllowEdit = False
+        Me.Destination.OptionsColumn.FixedWidth = True
+        Me.Destination.Visible = True
+        Me.Destination.VisibleIndex = 5
+        Me.Destination.Width = 200
         '
-        'GridColumn10
+        'Negara
         '
-        Me.GridColumn10.Caption = "Negara"
-        Me.GridColumn10.FieldName = "Negara"
-        Me.GridColumn10.MinWidth = 25
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.FixedWidth = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
-        Me.GridColumn10.Width = 120
+        Me.Negara.Caption = "Negara"
+        Me.Negara.FieldName = "Negara"
+        Me.Negara.MinWidth = 25
+        Me.Negara.Name = "Negara"
+        Me.Negara.OptionsColumn.AllowEdit = False
+        Me.Negara.OptionsColumn.FixedWidth = True
+        Me.Negara.Visible = True
+        Me.Negara.VisibleIndex = 6
+        Me.Negara.Width = 120
         '
-        'GridColumn8
+        'Visa
         '
-        Me.GridColumn8.Caption = "Visa"
-        Me.GridColumn8.FieldName = "Visa"
-        Me.GridColumn8.MinWidth = 25
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.FixedWidth = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 60
+        Me.Visa.Caption = "Visa"
+        Me.Visa.FieldName = "Visa"
+        Me.Visa.MinWidth = 25
+        Me.Visa.Name = "Visa"
+        Me.Visa.OptionsColumn.AllowEdit = False
+        Me.Visa.OptionsColumn.FixedWidth = True
+        Me.Visa.Visible = True
+        Me.Visa.VisibleIndex = 7
+        Me.Visa.Width = 60
         '
-        'GridColumn6
+        'DepartureDate
         '
-        Me.GridColumn6.Caption = "DepartureDate"
-        Me.GridColumn6.FieldName = "DepartureDate"
-        Me.GridColumn6.MinWidth = 25
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.FixedWidth = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 8
-        Me.GridColumn6.Width = 120
+        Me.DepartureDate.Caption = "Departure Date"
+        Me.DepartureDate.FieldName = "DepartureDate"
+        Me.DepartureDate.MinWidth = 25
+        Me.DepartureDate.Name = "DepartureDate"
+        Me.DepartureDate.OptionsColumn.AllowEdit = False
+        Me.DepartureDate.OptionsColumn.FixedWidth = True
+        Me.DepartureDate.Visible = True
+        Me.DepartureDate.VisibleIndex = 8
+        Me.DepartureDate.Width = 120
         '
-        'GridColumn7
+        'ArrivalDate
         '
-        Me.GridColumn7.Caption = "ArrivalDate"
-        Me.GridColumn7.FieldName = "ArrivalDate"
-        Me.GridColumn7.MinWidth = 25
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.FixedWidth = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 9
-        Me.GridColumn7.Width = 120
+        Me.ArrivalDate.Caption = "Arrival Date"
+        Me.ArrivalDate.FieldName = "ArrivalDate"
+        Me.ArrivalDate.MinWidth = 25
+        Me.ArrivalDate.Name = "ArrivalDate"
+        Me.ArrivalDate.OptionsColumn.AllowEdit = False
+        Me.ArrivalDate.OptionsColumn.FixedWidth = True
+        Me.ArrivalDate.Visible = True
+        Me.ArrivalDate.VisibleIndex = 9
+        Me.ArrivalDate.Width = 120
+        '
+        'Status
+        '
+        Me.Status.Caption = "Status"
+        Me.Status.FieldName = "Status"
+        Me.Status.MinWidth = 25
+        Me.Status.Name = "Status"
+        Me.Status.Width = 94
+        '
+        'StatusTicket
+        '
+        Me.StatusTicket.Caption = "StatusTicket"
+        Me.StatusTicket.ColumnEdit = Me.CStatusTicket
+        Me.StatusTicket.FieldName = "StatusTicket"
+        Me.StatusTicket.MinWidth = 25
+        Me.StatusTicket.Name = "StatusTicket"
+        Me.StatusTicket.OptionsColumn.FixedWidth = True
+        Me.StatusTicket.Visible = True
+        Me.StatusTicket.VisibleIndex = 10
+        Me.StatusTicket.Width = 100
+        '
+        'CStatusTicket
+        '
+        Me.CStatusTicket.AutoHeight = False
+        Me.CStatusTicket.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CStatusTicket.Items.AddRange(New Object() {"ISSUE", "CLOSE", "CANCEL"})
+        Me.CStatusTicket.Name = "CStatusTicket"
         '
         'TabPageTicket
         '
         Me.TabPageTicket.Controls.Add(Me.GridTicket)
         Me.TabPageTicket.Name = "TabPageTicket"
         Me.TabPageTicket.Size = New System.Drawing.Size(1426, 521)
-        Me.TabPageTicket.Text = "Ticket"
+        Me.TabPageTicket.Text = "Invoice"
         '
         'GridTicket
         '
@@ -221,77 +262,81 @@ Partial Class FrmTravelTicket
         '
         'GridViewTicket
         '
-        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.Tanggal, Me.Vendor, Me.NoInvoice, Me.CuryID, Me.TotAmount})
         Me.GridViewTicket.GridControl = Me.GridTicket
         Me.GridViewTicket.Name = "GridViewTicket"
         Me.GridViewTicket.OptionsBehavior.Editable = False
         Me.GridViewTicket.OptionsView.ColumnAutoWidth = False
         Me.GridViewTicket.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn11
+        'NoVoucher
         '
-        Me.GridColumn11.Caption = "No Voucher"
-        Me.GridColumn11.FieldName = "NoVoucher"
-        Me.GridColumn11.MinWidth = 25
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.FixedWidth = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 150
+        Me.NoVoucher.Caption = "No Voucher"
+        Me.NoVoucher.FieldName = "NoVoucher"
+        Me.NoVoucher.MinWidth = 25
+        Me.NoVoucher.Name = "NoVoucher"
+        Me.NoVoucher.OptionsColumn.FixedWidth = True
+        Me.NoVoucher.Visible = True
+        Me.NoVoucher.VisibleIndex = 0
+        Me.NoVoucher.Width = 150
         '
-        'GridColumn12
+        'Tanggal
         '
-        Me.GridColumn12.Caption = "Tanggal"
-        Me.GridColumn12.FieldName = "Tanggal"
-        Me.GridColumn12.MinWidth = 25
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.FixedWidth = True
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 140
+        Me.Tanggal.Caption = "Tanggal"
+        Me.Tanggal.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.Tanggal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.Tanggal.FieldName = "Tanggal"
+        Me.Tanggal.MinWidth = 25
+        Me.Tanggal.Name = "Tanggal"
+        Me.Tanggal.OptionsColumn.FixedWidth = True
+        Me.Tanggal.Visible = True
+        Me.Tanggal.VisibleIndex = 1
+        Me.Tanggal.Width = 140
         '
-        'GridColumn13
+        'Vendor
         '
-        Me.GridColumn13.Caption = "Vendor"
-        Me.GridColumn13.FieldName = "VendorID"
-        Me.GridColumn13.MinWidth = 25
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.FixedWidth = True
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 180
+        Me.Vendor.Caption = "Vendor"
+        Me.Vendor.FieldName = "Vendor"
+        Me.Vendor.MinWidth = 25
+        Me.Vendor.Name = "Vendor"
+        Me.Vendor.OptionsColumn.FixedWidth = True
+        Me.Vendor.Visible = True
+        Me.Vendor.VisibleIndex = 2
+        Me.Vendor.Width = 180
         '
-        'GridColumn14
+        'NoInvoice
         '
-        Me.GridColumn14.Caption = "No Invoice"
-        Me.GridColumn14.FieldName = "NoInvoice"
-        Me.GridColumn14.MinWidth = 25
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.FixedWidth = True
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 150
+        Me.NoInvoice.Caption = "No Invoice"
+        Me.NoInvoice.FieldName = "NoInvoice"
+        Me.NoInvoice.MinWidth = 25
+        Me.NoInvoice.Name = "NoInvoice"
+        Me.NoInvoice.OptionsColumn.FixedWidth = True
+        Me.NoInvoice.Visible = True
+        Me.NoInvoice.VisibleIndex = 3
+        Me.NoInvoice.Width = 150
         '
-        'GridColumn15
+        'CuryID
         '
-        Me.GridColumn15.Caption = "Cury ID"
-        Me.GridColumn15.FieldName = "CuryID"
-        Me.GridColumn15.MinWidth = 25
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.FixedWidth = True
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
-        Me.GridColumn15.Width = 120
+        Me.CuryID.Caption = "Cury ID"
+        Me.CuryID.FieldName = "CuryID"
+        Me.CuryID.MinWidth = 25
+        Me.CuryID.Name = "CuryID"
+        Me.CuryID.OptionsColumn.FixedWidth = True
+        Me.CuryID.Visible = True
+        Me.CuryID.VisibleIndex = 4
+        Me.CuryID.Width = 120
         '
-        'GridColumn16
+        'TotAmount
         '
-        Me.GridColumn16.Caption = "Total Amount"
-        Me.GridColumn16.FieldName = "TotAmount"
-        Me.GridColumn16.MinWidth = 25
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 5
-        Me.GridColumn16.Width = 150
+        Me.TotAmount.Caption = "Total Amount"
+        Me.TotAmount.DisplayFormat.FormatString = "n2"
+        Me.TotAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TotAmount.FieldName = "TotAmount"
+        Me.TotAmount.MinWidth = 25
+        Me.TotAmount.Name = "TotAmount"
+        Me.TotAmount.Visible = True
+        Me.TotAmount.VisibleIndex = 5
+        Me.TotAmount.Width = 150
         '
         'FrmTravelTicket
         '
@@ -305,6 +350,7 @@ Partial Class FrmTravelTicket
         Me.TabPageRequest.ResumeLayout(False)
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageTicket.ResumeLayout(False)
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
@@ -317,23 +363,26 @@ Partial Class FrmTravelTicket
     Friend WithEvents TabPageRequest As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridRequest As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewRequest As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoRequest As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Nama As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DeptID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Purpose As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TravelType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Destination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Negara As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Visa As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TabPageTicket As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridTicket As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewTicket As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoVoucher As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Tanggal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Vendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoInvoice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CuryID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents StatusTicket As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CStatusTicket As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
 End Class
