@@ -29,6 +29,7 @@ Public Class frm_fp_details
     Dim _emptyItem As RepositoryItem
     Dim btnActivate As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim btnDeactivate As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
+    Dim _Tag As TagModel
     Public Sub New()
 
         ' This call is required by the designer.
@@ -50,6 +51,9 @@ Public Class frm_fp_details
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub frm_fp_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load

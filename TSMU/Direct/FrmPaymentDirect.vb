@@ -12,7 +12,7 @@ Public Class FrmPaymentDirect
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim ff_Detail As FrmDetailPaymentDirect
+    Dim ff_Detail As FrmDetailPaymentDirect1
     Dim ff_Detail2 As FrmDetailPaymentSuspend
     Dim ff_Detail3 As FrmDetailPaymentSettle
     Dim ff_Detail4 As FrmDetailPaymentSuspend
@@ -28,6 +28,7 @@ Public Class FrmPaymentDirect
     Dim tempacct As String
     Dim tempperpost As String = Format(DateTime.Today, "yyyy-MM")
     Dim level As Integer = 0
+    Dim _Tag As TagModel
     'Dim ID As String
     'Dim suspendid As String
     'Dim suspend1 As String
@@ -48,9 +49,15 @@ Public Class FrmPaymentDirect
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
+            ' bi_GridParentRow = li_GridRow
         End If
         InitialSetForm()
         '   FrmParent = lf_FormParent
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
+
     End Sub
     Public Overrides Sub InitialSetForm()
         Try
@@ -1219,7 +1226,7 @@ Public Class FrmPaymentDirect
             Call CallFrm(id2, id,
                          GridView1.RowCount)
         Else
-            ff_Detail = New FrmDetailPaymentDirect(id)
+            ff_Detail = New FrmDetailPaymentDirect1(id)
             ff_Detail.Show()
         End If
 
@@ -1507,7 +1514,7 @@ Public Class FrmPaymentDirect
                     Call CallFrm(id2, id,
                          GridView1.RowCount)
                 Else
-                    ff_Detail = New FrmDetailPaymentDirect(id)
+                    ff_Detail = New FrmDetailPaymentDirect1(id)
                     ff_Detail.Show()
                 End If
             End If

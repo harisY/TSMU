@@ -12,6 +12,7 @@ Public Class FrmDepartemenDetail
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -36,6 +37,9 @@ Public Class FrmDepartemenDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
 
@@ -57,7 +61,7 @@ Public Class FrmDepartemenDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Master Departemen " & fs_Code
+                Me.Text = "Master Departemen "
             Else
                 Me.Text = "Master New Departemen"
             End If

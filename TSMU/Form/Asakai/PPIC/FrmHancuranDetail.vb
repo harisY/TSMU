@@ -24,6 +24,7 @@ Public Class FrmHancuranDetail
     Dim KodeTrans As String = ""
     Dim Fc_Class As New HancuranModel
     Dim ObjHancuranDetail As New HancuranDetailModel
+    Dim _Tag As TagModel
 
     Private Sub FrmHancuranDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dt = New DataTable
@@ -61,6 +62,9 @@ Public Class FrmHancuranDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()

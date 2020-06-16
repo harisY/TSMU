@@ -1001,7 +1001,12 @@ Public Class baseForm
     End Sub
 
     Private Sub baseForm_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-        FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
+        Try
+            FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
         'Dim mainRibbon = TryCast(sender, RibbonForm)
 
         'If mainRibbon IsNot Nothing AndAlso mainRibbon.Ribbon IsNot Nothing Then

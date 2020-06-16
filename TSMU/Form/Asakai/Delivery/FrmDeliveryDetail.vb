@@ -34,6 +34,7 @@ Public Class FrmDeliveryDetail
     Dim IdTransaksi As String = ""
 
     Dim FileLokasi As String
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -63,6 +64,9 @@ Public Class FrmDeliveryDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -78,7 +82,7 @@ Public Class FrmDeliveryDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Delivery " & fs_Code
+                Me.Text = "Delivery "
             Else
                 Me.Text = "Delivery"
             End If

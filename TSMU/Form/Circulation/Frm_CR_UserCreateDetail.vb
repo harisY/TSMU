@@ -50,6 +50,7 @@ Public Class Frm_CR_UserCreateDetail
     Dim DtGrid_PYM As DataTable
 
     Dim DtTerm As DataTable
+    Dim _Tag As TagModel
 
 
 
@@ -83,6 +84,9 @@ Public Class Frm_CR_UserCreateDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()

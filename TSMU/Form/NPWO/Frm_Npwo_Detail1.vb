@@ -37,6 +37,7 @@ Public Class Frm_Npwo_Detail1
     Dim dtApprove As New DataTable
 
     Dim FrmReport As New Frm_Rpt_NPWO
+    Dim _Tag As TagModel
 
 
     'Dim DtGridNPWO As DataTable
@@ -188,6 +189,9 @@ Public Class Frm_Npwo_Detail1
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Sub New()

@@ -22,6 +22,7 @@ Public Class FrmAbsenDetail
 
 
     Dim DeptID As String
+    Dim _Tag As TagModel
 
 
 
@@ -60,6 +61,10 @@ Public Class FrmAbsenDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
+
     End Sub
 
 
