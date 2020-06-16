@@ -9,6 +9,8 @@ Public Class FrmTravelerDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag = New TagModel
+
     Dim fc_Class As New ClsTraveller
     Dim GridDtl As GridControl
     'Dim ObjTravelerDetail As New ClsTravelerDetail
@@ -43,6 +45,9 @@ Public Class FrmTravelerDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmTravelerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

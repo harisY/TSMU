@@ -10,6 +10,7 @@ Public Class FrmTravelCreditCardDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag = New TagModel
 
     Dim cls_Creditcard As New TravelCreditCardModel
 
@@ -39,6 +40,9 @@ Public Class FrmTravelCreditCardDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmTravelCreditCardDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

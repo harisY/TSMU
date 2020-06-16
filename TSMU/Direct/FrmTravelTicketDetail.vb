@@ -11,6 +11,7 @@ Public Class FrmTravelTicketDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag As TagModel
 
     Dim ObjTravelTicket As New TravelTicketModel
     Dim ObjTravelTicketDetail As New TravelTicketDetailModel
@@ -49,6 +50,9 @@ Public Class FrmTravelTicketDetail
         row = li_GridRow
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmTravelTicketDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

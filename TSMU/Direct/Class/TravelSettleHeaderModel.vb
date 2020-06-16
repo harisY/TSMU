@@ -650,6 +650,7 @@ Public Class TravelSettleHeaderModel
                                 SUM(YEN) AS YEN ,
                                 SUM(IDR) AS IDR
                         FROM    @tblSum
+                        WHERE   TravelSettleID IS NOT NULL
                         GROUP BY TravelSettleID ,
                                 PaymentType"
             dt = GetDataTable_Solomon(strQuery)

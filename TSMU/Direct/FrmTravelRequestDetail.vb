@@ -11,6 +11,7 @@ Public Class FrmTravelRequestDetail
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
     Dim isLoad As Boolean = False
+    Dim _Tag As TagModel
 
     Dim dtCost As New DataTable
     Dim row_ As DataRow
@@ -49,6 +50,9 @@ Public Class FrmTravelRequestDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub FrmTravelRequestDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -840,7 +840,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 221
+        Me.GridColumn10.Width = 206
         '
         'GridColumn13
         '
@@ -850,7 +850,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 3
-        Me.GridColumn13.Width = 221
+        Me.GridColumn13.Width = 206
         '
         'GridColumn29
         '
@@ -860,7 +860,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 4
-        Me.GridColumn29.Width = 222
+        Me.GridColumn29.Width = 209
         '
         'GridColumn12
         '
@@ -944,7 +944,7 @@ Partial Class FrmTravelSettleDetail
         Me.PayTypeTransport.OptionsColumn.FixedWidth = True
         Me.PayTypeTransport.Visible = True
         Me.PayTypeTransport.VisibleIndex = 8
-        Me.PayTypeTransport.Width = 170
+        Me.PayTypeTransport.Width = 190
         '
         'CPayTypeTransport
         '
@@ -1055,7 +1055,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 2
-        Me.GridColumn17.Width = 664
+        Me.GridColumn17.Width = 621
         '
         'GridColumn19
         '
@@ -1107,7 +1107,7 @@ Partial Class FrmTravelSettleDetail
         Me.PayTypeHotel.OptionsColumn.FixedWidth = True
         Me.PayTypeHotel.Visible = True
         Me.PayTypeHotel.VisibleIndex = 6
-        Me.PayTypeHotel.Width = 170
+        Me.PayTypeHotel.Width = 190
         '
         'CPayTypeHotel
         '
@@ -1266,7 +1266,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 3
-        Me.GridColumn24.Width = 514
+        Me.GridColumn24.Width = 471
         '
         'GridColumn26
         '
@@ -1342,7 +1342,7 @@ Partial Class FrmTravelSettleDetail
         Me.PayTypeEntertain.OptionsColumn.FixedWidth = True
         Me.PayTypeEntertain.Visible = True
         Me.PayTypeEntertain.VisibleIndex = 7
-        Me.PayTypeEntertain.Width = 170
+        Me.PayTypeEntertain.Width = 190
         '
         'CPayTypeEntertain
         '
@@ -1467,7 +1467,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 664
+        Me.GridColumn3.Width = 621
         '
         'GridColumn4
         '
@@ -1546,7 +1546,7 @@ Partial Class FrmTravelSettleDetail
         Me.PayTypeOther.OptionsColumn.FixedWidth = True
         Me.PayTypeOther.Visible = True
         Me.PayTypeOther.VisibleIndex = 6
-        Me.PayTypeOther.Width = 170
+        Me.PayTypeOther.Width = 190
         '
         'CPayTypeOther
         '

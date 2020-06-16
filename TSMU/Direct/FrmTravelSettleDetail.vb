@@ -11,6 +11,7 @@ Public Class FrmTravelSettleDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag As TagModel
 
     Dim cls_TravelSett As New TravelSettleHeaderModel
     Dim cls_TravelSettDetail As New TravelSettleDetailModel
@@ -68,6 +69,9 @@ Public Class FrmTravelSettleDetail
         GridDtl = _Grid
         FrmParent = lf_FormParent
         gv_Request = gv_GridView
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
@@ -981,6 +985,7 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub CreateTable()
+        dtSummary = New DataTable
         dtSummary.Columns.AddRange(New DataColumn(6) {New DataColumn("Description", GetType(String)),
                                                             New DataColumn("CashIDR", GetType(Double)),
                                                             New DataColumn("CashUSD", GetType(Double)),
@@ -989,10 +994,12 @@ Public Class FrmTravelSettleDetail
                                                             New DataColumn("CreditUSD", GetType(Double)),
                                                             New DataColumn("CreditYEN", GetType(Double))})
 
+        dtBalance = New DataTable
         dtBalance.Columns.AddRange(New DataColumn(2) {New DataColumn("BalanceUSD", GetType(Double)),
                                                             New DataColumn("BalanceYEN", GetType(Double)),
                                                             New DataColumn("BalanceIDR", GetType(Double))})
 
+        dtVoucher = New DataTable
         dtVoucher.Columns.AddRange(New DataColumn(6) {New DataColumn("CurryID", GetType(String)),
                                                             New DataColumn("Advance", GetType(Double)),
                                                             New DataColumn("Actual", GetType(Double)),
