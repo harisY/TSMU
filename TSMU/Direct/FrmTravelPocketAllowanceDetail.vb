@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class FrmTravelPocketAllowanceDetail
 
+    Dim _Tag = New TagModel
     Dim GridDtl As GridControl
 
     Public Sub New()
@@ -31,6 +32,9 @@ Public Class FrmTravelPocketAllowanceDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub FrmTravelPocketAllowanceDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 

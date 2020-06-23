@@ -111,21 +111,21 @@ Public Class TravelRequestModel
             aksesApproval.Add("" & QVal(gh_Common.GroupID) & "")
             Dim nilai = String.Join(",", aksesApproval.ToArray)
 
-            Dim sql As String = "SELECT  NoRequest ,
-                                        NIK ,
-                                        Nama ,
-                                        Date ,
-                                        DeptID ,
-                                        TravelType ,
-                                        Golongan ,
-                                        Purpose ,
-                                        Status ,
-                                        Approved ,
-                                        Comment
-                                FROM    dbo.TravelRequestHeader
-                                WHERE   DeptID IN (" & nilai & ") "
+            strQuery = "SELECT  NoRequest ,
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Status ,
+                                Approved ,
+                                Comment
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   DeptID IN (" & nilai & ")"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -176,21 +176,21 @@ Public Class TravelRequestModel
 
     Public Function GetRequestHeaderByID(ByVal _NoReq As String) As DataTable
         Try
-            Dim sql As String = "SELECT  NoRequest ,
-                                        NIK ,
-                                        Nama ,
-                                        Date ,
-                                        DeptID ,
-                                        TravelType ,
-                                        Golongan ,
-                                        Purpose ,
-                                        Status ,
-		                                Approved ,
-		                                Comment                                        
-                                FROM    dbo.TravelRequestHeader
-                                WHERE   NoRequest = " & QVal(_NoReq) & ""
+            strQuery = "SELECT  NoRequest ,
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Status ,
+		                        Approved ,
+		                        Comment                                        
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   NoRequest = " & QVal(_NoReq) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
                 With dt.Rows(0)
                     Me.NoRequest = Trim(.Item("NoRequest") & "")
@@ -214,11 +214,11 @@ Public Class TravelRequestModel
 
     Public Function GetListGolongan() As DataTable
         Try
-            Dim sql As String = "SELECT DISTINCT
-                                        Golongan
-                                FROM    dbo.TravelPocketAllowance"
+            strQuery = "SELECT DISTINCT
+                                Golongan
+                        FROM    dbo.TravelPocketAllowance"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -227,11 +227,11 @@ Public Class TravelRequestModel
 
     Public Function GetListNegara(ByVal _travelType As String) As DataTable
         Try
-            Dim sql As String = "SELECT  NamaNegara
-                                 FROM    dbo.TravelNegara                                 
-                                 WHERE   TravelType = " & QVal(_travelType) & ""
+            strQuery = "SELECT  NamaNegara
+                        FROM    dbo.TravelNegara
+                        WHERE   TravelType = " & QVal(_travelType) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -357,20 +357,19 @@ Public Class TravelRequestModel
 
     Public Sub UpdateHeader(ByVal _NoRequest As String)
         Try
-            Dim query As String
-            query = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-                    " SET     NIK = " & QVal(NIK) & " , " & vbCrLf &
-                    "         Nama = " & QVal(Nama) & " , " & vbCrLf &
-                    "         TravelType = " & QVal(TravelType) & " , " & vbCrLf &
-                    "         Golongan = " & QVal(Golongan) & " , " & vbCrLf &
-                    "         Purpose = " & QVal(Purpose) & " , " & vbCrLf &
-                    "         Status = " & QVal(Status) & " , " & vbCrLf &
-                    "         Approved = " & QVal(Approved) & " , " & vbCrLf &
-                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
-                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
-                    "         UpdatedDate = GETDATE() " & vbCrLf &
-                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-            ExecQuery_Solomon(query)
+            strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+                        " SET     NIK = " & QVal(NIK) & " , " & vbCrLf &
+                        "         Nama = " & QVal(Nama) & " , " & vbCrLf &
+                        "         TravelType = " & QVal(TravelType) & " , " & vbCrLf &
+                        "         Golongan = " & QVal(Golongan) & " , " & vbCrLf &
+                        "         Purpose = " & QVal(Purpose) & " , " & vbCrLf &
+                        "         Status = " & QVal(Status) & " , " & vbCrLf &
+                        "         Approved = " & QVal(Approved) & " , " & vbCrLf &
+                        "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+                        "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+                        "         UpdatedDate = GETDATE() " & vbCrLf &
+                        " WHERE   NoRequest = " & QVal(_NoRequest) & ""
+            ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
@@ -378,14 +377,13 @@ Public Class TravelRequestModel
 
     Public Sub UpdateStatusHeader(ByVal _NoRequest As String)
         Try
-            Dim query As String
-            query = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-                    " SET     Approved = " & QVal(Approved) & " , " & vbCrLf &
-                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
-                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
-                    "         UpdatedDate = GETDATE() " & vbCrLf &
-                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-            ExecQuery_Solomon(query)
+            strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+                        " SET     Approved = " & QVal(Approved) & " , " & vbCrLf &
+                        "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+                        "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+                        "         UpdatedDate = GETDATE() " & vbCrLf &
+                        " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+            ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
@@ -429,22 +427,26 @@ Public Class TravelRequestModel
 
     Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer) As DataTable
         Try
-            Dim sql As String = " SELECT  CuryID ,
-                                        CASE WHEN CuryID = 'IDR' THEN Amount
-                                                ELSE 0
-                                        END AdvanceIDR ,
-                                        CASE WHEN CuryID = 'USD' THEN Amount
-                                                ELSE 0
-                                        END AdvanceUSD ,
-                                        CASE WHEN CuryID = 'YEN' THEN Amount
-                                                ELSE 0
-                                        END AdvanceUSD ,
-                                        FirstTravel
-                                FROM    dbo.TravelPocketAllowance
-                                WHERE   TravelType = " & QVal(TravelType__) & "
-                                        AND Golongan = " & QVal(Golongan__) & ""
+            strQuery = " SELECT SUM(tbl.AllowanceUSD) AS AllowanceUSD ,
+                                SUM(tbl.AllowanceYEN) AS AllowanceYEN ,
+                                SUM(tbl.AllowanceIDR) AS AllowanceIDR ,
+                                SUM(DISTINCT tbl.FirstTravel) AS FirstTravel
+                         FROM   ( SELECT    CASE WHEN CuryID = 'IDR' THEN Amount
+                                                 ELSE 0
+                                            END AllowanceIDR ,
+                                            CASE WHEN CuryID = 'USD' THEN Amount
+                                                 ELSE 0
+                                            END AllowanceUSD ,
+                                            CASE WHEN CuryID = 'YEN' THEN Amount
+                                                 ELSE 0
+                                            END AllowanceYEN ,
+                                            FirstTravel
+                                  FROM      dbo.TravelPocketAllowance
+                                  WHERE     TravelType = " & QVal(TravelType__) & "
+                                            AND Golongan = " & QVal(Golongan__) & "
+                                ) AS tbl "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -453,27 +455,26 @@ Public Class TravelRequestModel
 
     Public Function GetFirstTravel(ByVal nik As String, ByVal traveltype As String, ByVal tahun As String) As Boolean
         Try
-            Dim sql As String
-            sql = " IF " & QVal(traveltype) & " = 'DN'
-                        BEGIN
-                            SELECT  CAST(0 AS BIT) AS FirstTravel;
-                        END
-                     ELSE
-                        BEGIN
-                            SELECT  CASE WHEN EXISTS ( SELECT   trh.NoRequest
-                                                       FROM     dbo.TravelRequestHeader AS trh
-                                                                INNER JOIN dbo.TravelRequestDetail trd ON trd.NoRequest = trh.NoRequest
-                                                       WHERE    trh.NIK = " & QVal(nik) & "
-                                                                AND trh.TravelType = " & QVal(traveltype) & "
-                                                       GROUP BY trh.NoRequest
-                                                       HAVING   YEAR(MIN(trd.DepartureDate)) = " & QVal(tahun) & " )
-                                         THEN CAST(0 AS BIT)
-                                         ELSE CAST(1 AS BIT)
-                                    END FirstTravel
-                        END "
+            strQuery = " IF " & QVal(traveltype) & " = 'DN'
+                            BEGIN
+                                SELECT  CAST(0 AS BIT) AS FirstTravel;
+                            END
+                         ELSE
+                            BEGIN
+                                SELECT  CASE WHEN EXISTS ( SELECT   trh.NoRequest
+                                                           FROM     dbo.TravelRequestHeader AS trh
+                                                                    INNER JOIN dbo.TravelRequestDetail trd ON trd.NoRequest = trh.NoRequest
+                                                           WHERE    trh.NIK = " & QVal(nik) & "
+                                                                    AND trh.TravelType = " & QVal(traveltype) & "
+                                                           GROUP BY trh.NoRequest
+                                                           HAVING   YEAR(MIN(trd.DepartureDate)) = " & QVal(tahun) & " )
+                                             THEN CAST(0 AS BIT)
+                                             ELSE CAST(1 AS BIT)
+                                        END FirstTravel
+                            END "
             Dim value As Boolean
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             If dt.Rows.Count > 0 Then
                 value = dt.Rows(0).Item(0)
             End If
@@ -494,6 +495,8 @@ Public Class TravelRequestDetailModel
     Public Property Destination As String
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
+
+    Dim strQuery As String
 
     Public Function GetDetailByID() As DataTable
         Try
@@ -516,15 +519,14 @@ Public Class TravelRequestDetailModel
     Public Function GetVisa(ByVal nik As String, negara As String, deptDate As Date, ArrivDate As Date) As String
         Try
             Dim hasil As String = String.Empty
-            Dim sql As String = "SELECT  CASE WHEN COUNT(NIK) > 0 THEN 'YES'
-                                                ELSE 'NO'
-                                        END Visa
-                                FROM    dbo.TravelerVisa
-                                WHERE   NIK = " & QVal(nik) & "
-                                        AND Negara = " & QVal(negara) & ""
-
+            strQuery = "SELECT  NoVisa
+                        FROM    dbo.TravelerVisa
+                        WHERE   NIK = " & QVal(nik) & "
+                                AND Negara = " & QVal(negara) & "
+                                AND DateIssued <= " & QVal(deptDate) & "
+                                AND DateExpired >= " & QVal(ArrivDate) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable_Solomon(strQuery)
             If dt.Rows.Count > 0 Then
                 hasil = dt.Rows(0).Item(0).ToString()
             End If
@@ -534,20 +536,26 @@ Public Class TravelRequestDetailModel
         End Try
     End Function
 
-    Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As String
+    Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As DataTable
         Try
-            Dim hasil As String = String.Empty
-            Dim sql As String = " SELECT  NoPaspor
-                                  FROM    dbo.TravelerPaspor
-                                  WHERE   NIK = " & QVal(nik) & "
-                                          AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE) "
-
+            strQuery = "SELECT  Ada.NIK ,
+                                Ada.NoPaspor ,
+                                CASE WHEN Expired.NIK IS NULL THEN 'YES'
+                                     ELSE 'NO'
+                                END AS Expired
+                        FROM    dbo.TravelerPaspor AS Ada
+                                LEFT JOIN ( SELECT  NIK ,
+                                                    NoPaspor
+                                            FROM    dbo.TravelerPaspor
+                                            WHERE   NIK = " & QVal(nik) & "
+                                                    AND TanggalKeluar <= CAST(" & QVal(deptDate) & " AS DATE)
+                                                    AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE)
+                                          ) AS Expired ON Expired.NIK = Ada.NIK
+                                                          AND Expired.NoPaspor = Ada.NoPaspor
+                        WHERE   Ada.NIK = " & QVal(nik) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            If dt.Rows.Count > 0 Then
-                hasil = dt.Rows(0).Item(0).ToString()
-            End If
-            Return hasil
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

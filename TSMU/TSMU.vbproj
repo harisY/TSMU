@@ -502,6 +502,12 @@
     <Compile Include="Direct\FrmTravelCreditCardDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmTravelEntertainDetail.Designer.vb">
+      <DependentUpon>FrmTravelEntertainDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelEntertainDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmTraveler.Designer.vb">
       <DependentUpon>FrmTraveler.vb</DependentUpon>
     </Compile>
@@ -512,6 +518,12 @@
       <DependentUpon>FrmTravelerDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelerDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmTravelOption.Designer.vb">
+      <DependentUpon>FrmTravelOption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmTravelOption.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelPocketAllowance.Designer.vb">
@@ -2329,6 +2341,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCardDetail.resx">
       <DependentUpon>FrmTravelCreditCardDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelEntertainDetail.resx">
+      <DependentUpon>FrmTravelEntertainDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmTravelOption.resx">
+      <DependentUpon>FrmTravelOption.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>

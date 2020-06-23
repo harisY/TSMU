@@ -138,30 +138,7 @@ Public Class FrmTravelRequest
         End If
     End Sub
 
-    'Public Overrides Sub Proc_Filter()
-    '    FilterData = New FrmSystem_FilterData(dtGrid)
-    '    FilterData.Text = "Search Travel Request"
-    '    FilterData.ShowDialog()
-    '    If Not FilterData.isCancel Then
-    '        bs_Filter = FilterData.strWhereClauseWithoutWhere
-    '        Call FilterGrid()
-    '    End If
-    '    FilterData.Hide()
-    'End Sub
-
-    'Private Sub FilterGrid()
-    '    Try
-    '        Dim dv As New DataView(dtGrid)
-    '        dv.RowFilter = bs_Filter
-    '        dtGrid = dv.ToTable
-    '        GridRequestAll.DataSource = dtGrid
-    '    Catch ex As Exception
-    '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-    '    End Try
-    'End Sub
-
-    Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
+    Private Sub GridRequest_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
         Try
             Dim NoRequest = String.Empty
             Dim NIK = String.Empty
@@ -229,6 +206,27 @@ Public Class FrmTravelRequest
             GridRequestAll.DataSource = Nothing
         End If
 
+    End Sub
+
+    Private Sub GridRequestAll_DoubleClick(sender As Object, e As EventArgs) Handles GridRequestAll.DoubleClick
+        Try
+            Dim NoRequest = String.Empty
+            Dim selectedRows() As Integer = GridViewRequestAll.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoRequest = GridViewRequestAll.GetRowCellValue(rowHandle, "NoRequest")
+                End If
+            Next rowHandle
+
+            If GridViewRequestAll.GetSelectedRows.Length > 0 Then
+                Call CallFrm(NoRequest,
+                         TabPage,
+                         GridViewRequest.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
 End Class

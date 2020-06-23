@@ -24,7 +24,9 @@ Partial Class FrmReportTravelSett
     Private Sub InitializeComponent()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.txtTravelSettleID = New DevExpress.XtraEditors.TextEdit()
+        Me.txtPersonInCharge = New DevExpress.XtraEditors.TextEdit()
         CType(Me.txtTravelSettleID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPersonInCharge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -46,20 +48,31 @@ Partial Class FrmReportTravelSett
         Me.txtTravelSettleID.TabIndex = 2
         Me.txtTravelSettleID.Visible = False
         '
+        'txtPersonInCharge
+        '
+        Me.txtPersonInCharge.Location = New System.Drawing.Point(642, 13)
+        Me.txtPersonInCharge.Name = "txtPersonInCharge"
+        Me.txtPersonInCharge.Size = New System.Drawing.Size(125, 22)
+        Me.txtPersonInCharge.TabIndex = 3
+        Me.txtPersonInCharge.Visible = False
+        '
         'FrmReportTravelSett
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1055, 600)
+        Me.Controls.Add(Me.txtPersonInCharge)
         Me.Controls.Add(Me.txtTravelSettleID)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Name = "FrmReportTravelSett"
         Me.Text = "FrmReportTravelSett"
         CType(Me.txtTravelSettleID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPersonInCharge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents txtTravelSettleID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtPersonInCharge As DevExpress.XtraEditors.TextEdit
 End Class
