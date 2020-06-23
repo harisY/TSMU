@@ -124,8 +124,8 @@ Public Class ClsTraveller
         End Try
     End Function
 
-    Public Sub ValidateInsert(_dataKosong As Integer)
-        If Me.Nama = "" OrElse Me.NIK = "" OrElse _dataKosong = 1 Then
+    Public Sub ValidateInsert()
+        If Me.Nama = "" OrElse Me.NIK = "" Then
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
         End If
         Try
@@ -158,6 +158,12 @@ Public Class ClsTraveller
 
                     Try
                         InsertData()
+
+                        For i As Integer = 0 To ObjPaspor.Count - 1
+                            With ObjPaspor(i)
+                                .InsertTravelerPaspor()
+                            End With
+                        Next
 
                         For i As Integer = 0 To ObjVisa.Count - 1
                             With ObjVisa(i)
@@ -210,21 +216,21 @@ Public Class ClsTraveller
                     Try
                         UpdateData(NIK)
 
-                        Dim ObjTravelerVisa As New ClsTravelerVisa
-                        ObjTravelerVisa.DeleteVisa(NIK)
-
-                        For i As Integer = 0 To ObjVisa.Count - 1
-                            With ObjVisa(i)
-                                .InsertTravelerVisa()
-                            End With
-                        Next
-
                         Dim ObjTravelerPaspor As New ClsTravelerPaspor
                         ObjTravelerPaspor.DeletePaspor(NIK)
 
                         For i As Integer = 0 To ObjPaspor.Count - 1
                             With ObjPaspor(i)
                                 .InsertTravelerPaspor()
+                            End With
+                        Next
+
+                        Dim ObjTravelerVisa As New ClsTravelerVisa
+                        ObjTravelerVisa.DeleteVisa(NIK)
+
+                        For i As Integer = 0 To ObjVisa.Count - 1
+                            With ObjVisa(i)
+                                .InsertTravelerVisa()
                             End With
                         Next
 
@@ -497,7 +503,7 @@ Public Class ClsTravelerPaspor
 
     Public Sub DeletePaspor(ByVal NIK As String)
         Try
-            Dim ls_SP As String = "DELETE FROM TravelerPaspor WHERE NIK =" & QVal(NIK) & ""
+            Dim ls_SP As String = "DELETE FROM dbo.TravelerPaspor WHERE NIK =" & QVal(NIK) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

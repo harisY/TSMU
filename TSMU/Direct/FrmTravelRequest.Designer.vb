@@ -557,10 +557,12 @@ Partial Class FrmTravelRequest
         '
         'txtColumnName
         '
+        Me.txtColumnName.EditValue = "No Request"
         Me.txtColumnName.Location = New System.Drawing.Point(155, 11)
         Me.txtColumnName.Name = "txtColumnName"
         Me.txtColumnName.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtColumnName.Properties.Items.AddRange(New Object() {"No Request", "NIK", "Nama", "Dept ID", "Status"})
+        Me.txtColumnName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtColumnName.Size = New System.Drawing.Size(157, 22)
         Me.txtColumnName.TabIndex = 5
         '
