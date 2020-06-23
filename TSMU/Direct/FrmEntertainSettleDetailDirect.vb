@@ -60,7 +60,6 @@ Public Class FrmEntertainSettleDetailDirect
         row = li_GridRow
         GridDtl = _Grid
         FrmParent = lf_FormParent
-        'dtEntertain = _dtEntertain
         _Tag = New TagModel
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
         Tag = _Tag

@@ -10,6 +10,7 @@ Public Class FrmTravel_Detail2
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag = New TagModel
 
     Dim ObjTravelHeader As New TravelHeaderModel
     Dim ObjTravelDetail As New TravelDetailModel
@@ -59,6 +60,9 @@ Public Class FrmTravel_Detail2
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub CreateTable()

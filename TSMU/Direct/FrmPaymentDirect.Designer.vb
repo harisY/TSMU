@@ -213,35 +213,38 @@ Partial Class FrmPaymentDirect
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(716, 0, 650, 400)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(875, 61)
+        Me.LayoutControl1.Size = New System.Drawing.Size(918, 61)
         Me.LayoutControl1.TabIndex = 8
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         '_txtcuryid
         '
-        Me._txtcuryid.Location = New System.Drawing.Point(644, 12)
+        Me._txtcuryid.Location = New System.Drawing.Point(605, 12)
         Me._txtcuryid.Name = "_txtcuryid"
         Me._txtcuryid.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtcuryid.Properties.Appearance.Options.UseBackColor = True
-        Me._txtcuryid.Size = New System.Drawing.Size(62, 20)
+        Me._txtcuryid.Size = New System.Drawing.Size(64, 20)
         Me._txtcuryid.StyleController = Me.LayoutControl1
         Me._txtcuryid.TabIndex = 4
         '
         '_txtaccountname
         '
-        Me._txtaccountname.Location = New System.Drawing.Point(392, 12)
+        Me._txtaccountname.Location = New System.Drawing.Point(323, 12)
         Me._txtaccountname.Name = "_txtaccountname"
         Me._txtaccountname.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtaccountname.Properties.Appearance.Options.UseBackColor = True
-        Me._txtaccountname.Size = New System.Drawing.Size(248, 20)
+        Me._txtaccountname.Size = New System.Drawing.Size(278, 20)
         Me._txtaccountname.StyleController = Me.LayoutControl1
         Me._txtaccountname.TabIndex = 3
         '
         '_txtsaldo
         '
-        Me._txtsaldo.Location = New System.Drawing.Point(799, 12)
+        Me._txtsaldo.Location = New System.Drawing.Point(762, 12)
         Me._txtsaldo.Name = "_txtsaldo"
-        Me._txtsaldo.Size = New System.Drawing.Size(64, 20)
+        Me._txtsaldo.Properties.Appearance.Options.UseTextOptions = True
+        Me._txtsaldo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me._txtsaldo.Properties.ReadOnly = True
+        Me._txtsaldo.Size = New System.Drawing.Size(144, 20)
         Me._txtsaldo.StyleController = Me.LayoutControl1
         Me._txtsaldo.TabIndex = 5
         '
@@ -249,16 +252,16 @@ Partial Class FrmPaymentDirect
         '
         Me._txtperpost.Location = New System.Drawing.Point(101, 12)
         Me._txtperpost.Name = "_txtperpost"
-        Me._txtperpost.Size = New System.Drawing.Size(63, 20)
+        Me._txtperpost.Size = New System.Drawing.Size(50, 20)
         Me._txtperpost.StyleController = Me.LayoutControl1
         Me._txtperpost.TabIndex = 0
         '
         '_txtaccount
         '
-        Me._txtaccount.Location = New System.Drawing.Point(257, 12)
+        Me._txtaccount.Location = New System.Drawing.Point(244, 12)
         Me._txtaccount.Name = "_txtaccount"
         Me._txtaccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtaccount.Size = New System.Drawing.Size(131, 20)
+        Me._txtaccount.Size = New System.Drawing.Size(75, 20)
         Me._txtaccount.StyleController = Me.LayoutControl1
         Me._txtaccount.TabIndex = 2
         '
@@ -268,7 +271,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem11, Me.LayoutControlItem4})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(875, 61)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(918, 61)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -276,7 +279,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem1.Control = Me._txtperpost
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(156, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(143, 24)
         Me.LayoutControlItem1.Text = "PerPost"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(86, 13)
         '
@@ -285,24 +288,24 @@ Partial Class FrmPaymentDirect
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 24)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(855, 17)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(898, 17)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me._txtaccount
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(156, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(143, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(224, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(168, 24)
         Me.LayoutControlItem2.Text = "Rekening"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(86, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._txtsaldo
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(698, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(661, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(157, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(237, 24)
         Me.LayoutControlItem3.Text = "Beginning Balance"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(86, 13)
         '
@@ -310,9 +313,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlItem11.Control = Me._txtaccountname
         Me.LayoutControlItem11.Enabled = False
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(380, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(311, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(252, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(282, 24)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -320,9 +323,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlItem4.Control = Me._txtcuryid
         Me.LayoutControlItem4.Enabled = False
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(632, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(593, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(66, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(68, 24)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
@@ -1110,8 +1113,6 @@ Partial Class FrmPaymentDirect
         Me.GridColumn41.FieldName = "SuspendAmount"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.OptionsColumn.AllowEdit = False
-        Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 4
         Me.GridColumn41.Width = 65
         '
         'GridColumn40
@@ -1120,8 +1121,6 @@ Partial Class FrmPaymentDirect
         Me.GridColumn40.FieldName = "SettleAmount"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.OptionsColumn.AllowEdit = False
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 5
         Me.GridColumn40.Width = 77
         '
         'GridColumn5
@@ -1132,7 +1131,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 89
         '
         'vtxtmasuk
@@ -1148,7 +1147,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 5
         Me.GridColumn6.Width = 72
         '
         'vtxtkeluar
@@ -1162,7 +1161,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn7.FieldName = "Saldo"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 8
+        Me.GridColumn7.VisibleIndex = 6
         '
         'ID
         '
@@ -1177,7 +1176,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn44.FieldName = "AcctID"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 9
+        Me.GridColumn44.VisibleIndex = 7
         Me.GridColumn44.Width = 46
         '
         'EditRek
@@ -1193,7 +1192,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn57.FieldName = "cek"
         Me.GridColumn57.Name = "GridColumn57"
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 10
+        Me.GridColumn57.VisibleIndex = 8
         Me.GridColumn57.Width = 42
         '
         'RepositoryItemCheckEdit5
@@ -1208,7 +1207,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn58.FieldName = "recon"
         Me.GridColumn58.Name = "GridColumn58"
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 11
+        Me.GridColumn58.VisibleIndex = 9
         Me.GridColumn58.Width = 82
         '
         'RepositoryItemCheckEdit6
@@ -1240,7 +1239,7 @@ Partial Class FrmPaymentDirect
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(880, 38)
+        Me.Button1.Location = New System.Drawing.Point(919, 38)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(104, 23)
         Me.Button1.TabIndex = 10
@@ -1249,7 +1248,7 @@ Partial Class FrmPaymentDirect
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(990, 39)
+        Me.Button2.Location = New System.Drawing.Point(1029, 39)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(104, 23)
         Me.Button2.TabIndex = 11

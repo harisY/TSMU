@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports TSMU
-Public Class FrmDetailPaymentDirect
+Public Class FrmDetailPaymentDirect1
     Dim ObjCashBank As New cashbank_models
     Dim _NoBukti As String
     Dim ff_Detail As FrmSuspendSettleDetail
@@ -35,7 +35,7 @@ Public Class FrmDetailPaymentDirect
 
     End Sub
 
-    Private Sub FrmDetailPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmDetailPaymentDirect1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DataCashBank()
         GetTot2()
     End Sub
@@ -53,50 +53,50 @@ Public Class FrmDetailPaymentDirect
     End Sub
     Private Sub BtnRefNo_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BtnRefNo.ButtonClick
 
-        'Try
-        '    Dim newform As New FrmReportSettle
-        '    Dim stext As String
-        '    newform.StartPosition = FormStartPosition.CenterScreen
-        '    For i As Integer = 0 To GridView1.RowCount - 1
-        '        stext = GridView1.GetRowCellValue(i, "Noref")
-        '        stext = Replace(stext, " / ", "")
-        '        newform.TxtNosettle.Text = stext
-        '    Next
-        '    newform.Show()
-        'Catch ex As Exception
-        '    MsgBox(ex.Message)
-        'End Try
-
         Try
+            Dim newform As New FrmReportSettle
             Dim stext As String
-
-
-            ID = String.Empty
-                suspendid = String.Empty
-                suspend1 = String.Empty
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    stext = GridView1.GetRowCellValue(rowHandle, "Noref")
-                    stext = Replace(stext, " / ", "")
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                    suspendid = GridView1.GetRowCellValue(rowHandle, "stext")
-                    suspend1 = IIf(GridView1.GetRowCellValue(rowHandle, "stext") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "stext")))
-                    MsgBox(stext)
-                End If
-            Next rowHandle
-
-            '' If suspend1 <> "" Then
-
-            Call CallFrmDirect(ID, suspendid, GridView1.RowCount)
-
-            ''  End If
-
-
+            newform.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Replace(stext, " / ", "")
+                newform.TxtNosettle.Text = stext
+            Next
+            newform.Show()
         Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            MsgBox(ex.Message)
         End Try
+
+        'Try
+        '    Dim stext As String
+
+
+        '    ID = String.Empty
+        '    suspendid = String.Empty
+        '    suspend1 = String.Empty
+        '    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        '    For Each rowHandle As Integer In selectedRows
+        '        If rowHandle >= 0 Then
+        '            stext = GridView1.GetRowCellValue(rowHandle, "Noref")
+        '            stext = Replace(stext, " / ", "")
+        '            ID = GridView1.GetRowCellValue(rowHandle, "ID")
+        '            suspendid = stext
+        '            suspend1 = stext
+
+        '        End If
+        '    Next rowHandle
+
+        '    '' If suspend1 <> "" Then
+
+        '    Call CallFrmDirect("1", suspendid, GridView1.RowCount)
+
+        '    ''  End If
+
+
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
 
 
     End Sub

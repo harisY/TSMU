@@ -52,6 +52,7 @@ Public Class FrmSuspendSettleDetailDirect
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
         End If
+        'MsgBox(strCode2)
         GridDtl = _Grid
         FrmParent = lf_FormParent
         _Tag = New TagModel
@@ -67,7 +68,8 @@ Public Class FrmSuspendSettleDetailDirect
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSettle.ID = fs_Code
+
+                ObjSettle.SettleID = fs_Code2
                 ObjSettle.GetSettleById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
@@ -77,7 +79,7 @@ Public Class FrmSuspendSettleDetailDirect
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Expenses " & fs_Code
+                Me.Text = "Expenses " & fs_Code2
             Else
                 Me.Text = "Expenses"
             End If

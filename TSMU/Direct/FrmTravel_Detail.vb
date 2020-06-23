@@ -11,7 +11,8 @@ Public Class FrmTravel_Detail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    ''   Dim fc_Class As New ClsTravel
+    Dim _Tag = New TagModel
+
     Dim ObjTravelHeader As New TravelHeaderModel
     Dim ObjTravelDetail As New TravelDetailModel
     Dim GridDtl As GridControl
@@ -26,8 +27,6 @@ Public Class FrmTravel_Detail
     Dim DtScan3 As DataTable
     Dim DtScan4 As DataTable
 
-
-    ''   Dim ObjTravel As New ClsTravel
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
@@ -55,6 +54,9 @@ Public Class FrmTravel_Detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub CreateTable()
         DtScan = New DataTable

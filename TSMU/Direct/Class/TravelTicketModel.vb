@@ -422,7 +422,7 @@ Public Class TravelTicketDetailModel
     Public Sub UpdateRequest(ByVal _NoVoucher As String)
         Try
             strQuery = " UPDATE dbo.TravelRequestHeader
-                         SET    Status = 'PENDING'
+                         SET    Status = 'PENDING' ,
                                 StatusTicket = 'ISSUE'
                          WHERE  NoRequest IN ( SELECT   NoRequest
                                                FROM     dbo.TravelTicketDetail WITH ( NOLOCK )

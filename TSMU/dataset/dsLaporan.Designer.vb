@@ -10211,15 +10211,57 @@ Partial Public Class dsLaporan
         
         Private columnVisa As Global.System.Data.DataColumn
         
+        Private columnRateSalomonUSD As Global.System.Data.DataColumn
+        
+        Private columnRateSalomonYEN As Global.System.Data.DataColumn
+        
         Private columnRateUSD As Global.System.Data.DataColumn
         
         Private columnRateYEN As Global.System.Data.DataColumn
         
-        Private columnTotalAdvanceIDR As Global.System.Data.DataColumn
-        
         Private columnTotalAdvanceUSD As Global.System.Data.DataColumn
         
         Private columnTotalAdvanceYEN As Global.System.Data.DataColumn
+        
+        Private columnTotalAdvanceIDR As Global.System.Data.DataColumn
+        
+        Private columnTotalReturnUSD As Global.System.Data.DataColumn
+        
+        Private columnTotalReturnYEN As Global.System.Data.DataColumn
+        
+        Private columnTotalReturnIDR As Global.System.Data.DataColumn
+        
+        Private columnPenanggung As Global.System.Data.DataColumn
+        
+        Private columnTotalUSD As Global.System.Data.DataColumn
+        
+        Private columnTotalYEN As Global.System.Data.DataColumn
+        
+        Private columnTotalIDR As Global.System.Data.DataColumn
+        
+        Private columnSettleUSD As Global.System.Data.DataColumn
+        
+        Private columnSettleYEN As Global.System.Data.DataColumn
+        
+        Private columnSettleIDR As Global.System.Data.DataColumn
+        
+        Private columnBalanceUSD As Global.System.Data.DataColumn
+        
+        Private columnBalanceYEN As Global.System.Data.DataColumn
+        
+        Private columnBalanceIDR As Global.System.Data.DataColumn
+        
+        Private columnPaidActualUSD As Global.System.Data.DataColumn
+        
+        Private columnPaidActualYEN As Global.System.Data.DataColumn
+        
+        Private columnPaidActualIDR As Global.System.Data.DataColumn
+        
+        Private columnPaidIDRUSD As Global.System.Data.DataColumn
+        
+        Private columnPaidIDRYEN As Global.System.Data.DataColumn
+        
+        Private columnSumPaidIDR As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -10330,6 +10372,22 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property RateSalomonUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRateSalomonUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property RateSalomonYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRateSalomonYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property RateUSDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnRateUSD
@@ -10346,14 +10404,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property TotalAdvanceIDRColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTotalAdvanceIDR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property TotalAdvanceUSDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTotalAdvanceUSD
@@ -10365,6 +10415,166 @@ Partial Public Class dsLaporan
         Public ReadOnly Property TotalAdvanceYENColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTotalAdvanceYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalAdvanceIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalAdvanceIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalReturnUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalReturnUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalReturnYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalReturnYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalReturnIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalReturnIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PenanggungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPenanggung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TotalIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTotalIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SettleUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSettleUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SettleYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSettleYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SettleIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSettleIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BalanceUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBalanceUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BalanceYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBalanceYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BalanceIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBalanceIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidActualUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidActualUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidActualYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidActualYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidActualIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidActualIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidIDRUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidIDRUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidIDRYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidIDRYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SumPaidIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumPaidIDR
             End Get
         End Property
         
@@ -10405,9 +10615,44 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTravelRow(ByVal TravelSettleID As String, ByVal _Date As String, ByVal DeptID As String, ByVal Nama As String, ByVal Purpose As String, ByVal Destination As String, ByVal Term As String, ByVal Pickup As String, ByVal Visa As String, ByVal RateUSD As String, ByVal RateYEN As String, ByVal TotalAdvanceIDR As String, ByVal TotalAdvanceUSD As String, ByVal TotalAdvanceYEN As String) As TravelRow
+        Public Overloads Function AddTravelRow( _
+                    ByVal TravelSettleID As String,  _
+                    ByVal _Date As String,  _
+                    ByVal DeptID As String,  _
+                    ByVal Nama As String,  _
+                    ByVal Purpose As String,  _
+                    ByVal Destination As String,  _
+                    ByVal Term As String,  _
+                    ByVal Pickup As String,  _
+                    ByVal Visa As String,  _
+                    ByVal RateSalomonUSD As String,  _
+                    ByVal RateSalomonYEN As String,  _
+                    ByVal RateUSD As String,  _
+                    ByVal RateYEN As String,  _
+                    ByVal TotalAdvanceUSD As String,  _
+                    ByVal TotalAdvanceYEN As String,  _
+                    ByVal TotalAdvanceIDR As String,  _
+                    ByVal TotalReturnUSD As String,  _
+                    ByVal TotalReturnYEN As String,  _
+                    ByVal TotalReturnIDR As String,  _
+                    ByVal Penanggung As String,  _
+                    ByVal TotalUSD As String,  _
+                    ByVal TotalYEN As String,  _
+                    ByVal TotalIDR As String,  _
+                    ByVal SettleUSD As String,  _
+                    ByVal SettleYEN As String,  _
+                    ByVal SettleIDR As String,  _
+                    ByVal BalanceUSD As String,  _
+                    ByVal BalanceYEN As String,  _
+                    ByVal BalanceIDR As String,  _
+                    ByVal PaidActualUSD As String,  _
+                    ByVal PaidActualYEN As String,  _
+                    ByVal PaidActualIDR As String,  _
+                    ByVal PaidIDRUSD As String,  _
+                    ByVal PaidIDRYEN As String,  _
+                    ByVal SumPaidIDR As String) As TravelRow
             Dim rowTravelRow As TravelRow = CType(Me.NewRow,TravelRow)
-            Dim columnValuesArray() As Object = New Object() {TravelSettleID, _Date, DeptID, Nama, Purpose, Destination, Term, Pickup, Visa, RateUSD, RateYEN, TotalAdvanceIDR, TotalAdvanceUSD, TotalAdvanceYEN}
+            Dim columnValuesArray() As Object = New Object() {TravelSettleID, _Date, DeptID, Nama, Purpose, Destination, Term, Pickup, Visa, RateSalomonUSD, RateSalomonYEN, RateUSD, RateYEN, TotalAdvanceUSD, TotalAdvanceYEN, TotalAdvanceIDR, TotalReturnUSD, TotalReturnYEN, TotalReturnIDR, Penanggung, TotalUSD, TotalYEN, TotalIDR, SettleUSD, SettleYEN, SettleIDR, BalanceUSD, BalanceYEN, BalanceIDR, PaidActualUSD, PaidActualYEN, PaidActualIDR, PaidIDRUSD, PaidIDRYEN, SumPaidIDR}
             rowTravelRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTravelRow)
             Return rowTravelRow
@@ -10439,11 +10684,32 @@ Partial Public Class dsLaporan
             Me.columnTerm = MyBase.Columns("Term")
             Me.columnPickup = MyBase.Columns("Pickup")
             Me.columnVisa = MyBase.Columns("Visa")
+            Me.columnRateSalomonUSD = MyBase.Columns("RateSalomonUSD")
+            Me.columnRateSalomonYEN = MyBase.Columns("RateSalomonYEN")
             Me.columnRateUSD = MyBase.Columns("RateUSD")
             Me.columnRateYEN = MyBase.Columns("RateYEN")
-            Me.columnTotalAdvanceIDR = MyBase.Columns("TotalAdvanceIDR")
             Me.columnTotalAdvanceUSD = MyBase.Columns("TotalAdvanceUSD")
             Me.columnTotalAdvanceYEN = MyBase.Columns("TotalAdvanceYEN")
+            Me.columnTotalAdvanceIDR = MyBase.Columns("TotalAdvanceIDR")
+            Me.columnTotalReturnUSD = MyBase.Columns("TotalReturnUSD")
+            Me.columnTotalReturnYEN = MyBase.Columns("TotalReturnYEN")
+            Me.columnTotalReturnIDR = MyBase.Columns("TotalReturnIDR")
+            Me.columnPenanggung = MyBase.Columns("Penanggung")
+            Me.columnTotalUSD = MyBase.Columns("TotalUSD")
+            Me.columnTotalYEN = MyBase.Columns("TotalYEN")
+            Me.columnTotalIDR = MyBase.Columns("TotalIDR")
+            Me.columnSettleUSD = MyBase.Columns("SettleUSD")
+            Me.columnSettleYEN = MyBase.Columns("SettleYEN")
+            Me.columnSettleIDR = MyBase.Columns("SettleIDR")
+            Me.columnBalanceUSD = MyBase.Columns("BalanceUSD")
+            Me.columnBalanceYEN = MyBase.Columns("BalanceYEN")
+            Me.columnBalanceIDR = MyBase.Columns("BalanceIDR")
+            Me.columnPaidActualUSD = MyBase.Columns("PaidActualUSD")
+            Me.columnPaidActualYEN = MyBase.Columns("PaidActualYEN")
+            Me.columnPaidActualIDR = MyBase.Columns("PaidActualIDR")
+            Me.columnPaidIDRUSD = MyBase.Columns("PaidIDRUSD")
+            Me.columnPaidIDRYEN = MyBase.Columns("PaidIDRYEN")
+            Me.columnSumPaidIDR = MyBase.Columns("SumPaidIDR")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10470,16 +10736,58 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnPickup)
             Me.columnVisa = New Global.System.Data.DataColumn("Visa", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnVisa)
+            Me.columnRateSalomonUSD = New Global.System.Data.DataColumn("RateSalomonUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRateSalomonUSD)
+            Me.columnRateSalomonYEN = New Global.System.Data.DataColumn("RateSalomonYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRateSalomonYEN)
             Me.columnRateUSD = New Global.System.Data.DataColumn("RateUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRateUSD)
             Me.columnRateYEN = New Global.System.Data.DataColumn("RateYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRateYEN)
-            Me.columnTotalAdvanceIDR = New Global.System.Data.DataColumn("TotalAdvanceIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTotalAdvanceIDR)
             Me.columnTotalAdvanceUSD = New Global.System.Data.DataColumn("TotalAdvanceUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalAdvanceUSD)
             Me.columnTotalAdvanceYEN = New Global.System.Data.DataColumn("TotalAdvanceYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalAdvanceYEN)
+            Me.columnTotalAdvanceIDR = New Global.System.Data.DataColumn("TotalAdvanceIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalAdvanceIDR)
+            Me.columnTotalReturnUSD = New Global.System.Data.DataColumn("TotalReturnUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalReturnUSD)
+            Me.columnTotalReturnYEN = New Global.System.Data.DataColumn("TotalReturnYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalReturnYEN)
+            Me.columnTotalReturnIDR = New Global.System.Data.DataColumn("TotalReturnIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalReturnIDR)
+            Me.columnPenanggung = New Global.System.Data.DataColumn("Penanggung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPenanggung)
+            Me.columnTotalUSD = New Global.System.Data.DataColumn("TotalUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalUSD)
+            Me.columnTotalYEN = New Global.System.Data.DataColumn("TotalYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalYEN)
+            Me.columnTotalIDR = New Global.System.Data.DataColumn("TotalIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTotalIDR)
+            Me.columnSettleUSD = New Global.System.Data.DataColumn("SettleUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSettleUSD)
+            Me.columnSettleYEN = New Global.System.Data.DataColumn("SettleYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSettleYEN)
+            Me.columnSettleIDR = New Global.System.Data.DataColumn("SettleIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSettleIDR)
+            Me.columnBalanceUSD = New Global.System.Data.DataColumn("BalanceUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBalanceUSD)
+            Me.columnBalanceYEN = New Global.System.Data.DataColumn("BalanceYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBalanceYEN)
+            Me.columnBalanceIDR = New Global.System.Data.DataColumn("BalanceIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBalanceIDR)
+            Me.columnPaidActualUSD = New Global.System.Data.DataColumn("PaidActualUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidActualUSD)
+            Me.columnPaidActualYEN = New Global.System.Data.DataColumn("PaidActualYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidActualYEN)
+            Me.columnPaidActualIDR = New Global.System.Data.DataColumn("PaidActualIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidActualIDR)
+            Me.columnPaidIDRUSD = New Global.System.Data.DataColumn("PaidIDRUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidIDRUSD)
+            Me.columnPaidIDRYEN = New Global.System.Data.DataColumn("PaidIDRYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidIDRYEN)
+            Me.columnSumPaidIDR = New Global.System.Data.DataColumn("SumPaidIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumPaidIDR)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16081,6 +16389,12 @@ Partial Public Class dsLaporan
         
         Private columnIDR As Global.System.Data.DataColumn
         
+        Private columnSumUSD As Global.System.Data.DataColumn
+        
+        Private columnSumYEN As Global.System.Data.DataColumn
+        
+        Private columnSumIDR As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -16181,6 +16495,30 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SumUSDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumUSD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SumYENColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumYEN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SumIDRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumIDR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16217,9 +16555,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddTravelPocketAllowanceRow(ByVal TravelSettleID As String, ByVal Seq As String, ByVal Rate As String, ByVal Days As String, ByVal Persons As String, ByVal USD As String, ByVal YEN As String, ByVal IDR As String) As TravelPocketAllowanceRow
+        Public Overloads Function AddTravelPocketAllowanceRow(ByVal TravelSettleID As String, ByVal Seq As String, ByVal Rate As String, ByVal Days As String, ByVal Persons As String, ByVal USD As String, ByVal YEN As String, ByVal IDR As String, ByVal SumUSD As String, ByVal SumYEN As String, ByVal SumIDR As String) As TravelPocketAllowanceRow
             Dim rowTravelPocketAllowanceRow As TravelPocketAllowanceRow = CType(Me.NewRow,TravelPocketAllowanceRow)
-            Dim columnValuesArray() As Object = New Object() {TravelSettleID, Seq, Rate, Days, Persons, USD, YEN, IDR}
+            Dim columnValuesArray() As Object = New Object() {TravelSettleID, Seq, Rate, Days, Persons, USD, YEN, IDR, SumUSD, SumYEN, SumIDR}
             rowTravelPocketAllowanceRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTravelPocketAllowanceRow)
             Return rowTravelPocketAllowanceRow
@@ -16250,6 +16588,9 @@ Partial Public Class dsLaporan
             Me.columnUSD = MyBase.Columns("USD")
             Me.columnYEN = MyBase.Columns("YEN")
             Me.columnIDR = MyBase.Columns("IDR")
+            Me.columnSumUSD = MyBase.Columns("SumUSD")
+            Me.columnSumYEN = MyBase.Columns("SumYEN")
+            Me.columnSumIDR = MyBase.Columns("SumIDR")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16271,6 +16612,12 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnYEN)
             Me.columnIDR = New Global.System.Data.DataColumn("IDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnIDR)
+            Me.columnSumUSD = New Global.System.Data.DataColumn("SumUSD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumUSD)
+            Me.columnSumYEN = New Global.System.Data.DataColumn("SumYEN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumYEN)
+            Me.columnSumIDR = New Global.System.Data.DataColumn("SumIDR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumIDR)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26994,6 +27341,36 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property RateSalomonUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.RateSalomonUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RateSalomonUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.RateSalomonUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property RateSalomonYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.RateSalomonYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RateSalomonYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.RateSalomonYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property RateUSD() As String
             Get
                 Try 
@@ -27024,21 +27401,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property TotalAdvanceIDR() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableTravel.TotalAdvanceIDRColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalAdvanceIDR' in table 'Travel' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTravel.TotalAdvanceIDRColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property TotalAdvanceUSD() As String
             Get
                 Try 
@@ -27064,6 +27426,306 @@ Partial Public Class dsLaporan
             End Get
             Set
                 Me(Me.tableTravel.TotalAdvanceYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalAdvanceIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalAdvanceIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalAdvanceIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalAdvanceIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalReturnUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalReturnUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalReturnUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalReturnUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalReturnYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalReturnYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalReturnYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalReturnYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalReturnIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalReturnIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalReturnIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalReturnIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Penanggung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PenanggungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Penanggung' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PenanggungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TotalIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.TotalIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.TotalIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SettleUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.SettleUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SettleUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.SettleUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SettleYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.SettleYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SettleYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.SettleYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SettleIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.SettleIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SettleIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.SettleIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BalanceUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.BalanceUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BalanceUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.BalanceUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BalanceYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.BalanceYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BalanceYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.BalanceYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BalanceIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.BalanceIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BalanceIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.BalanceIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidActualUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PaidActualUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidActualUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PaidActualUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidActualYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PaidActualYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidActualYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PaidActualYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidActualIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PaidActualIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidActualIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PaidActualIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidIDRUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PaidIDRUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidIDRUSD' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PaidIDRUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidIDRYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.PaidIDRYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidIDRYEN' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.PaidIDRYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SumPaidIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravel.SumPaidIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SumPaidIDR' in table 'Travel' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravel.SumPaidIDRColumn) = value
             End Set
         End Property
         
@@ -27177,6 +27839,30 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsRateSalomonUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.RateSalomonUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetRateSalomonUSDNull()
+            Me(Me.tableTravel.RateSalomonUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsRateSalomonYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.RateSalomonYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetRateSalomonYENNull()
+            Me(Me.tableTravel.RateSalomonYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsRateUSDNull() As Boolean
             Return Me.IsNull(Me.tableTravel.RateUSDColumn)
         End Function
@@ -27201,18 +27887,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsTotalAdvanceIDRNull() As Boolean
-            Return Me.IsNull(Me.tableTravel.TotalAdvanceIDRColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetTotalAdvanceIDRNull()
-            Me(Me.tableTravel.TotalAdvanceIDRColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsTotalAdvanceUSDNull() As Boolean
             Return Me.IsNull(Me.tableTravel.TotalAdvanceUSDColumn)
         End Function
@@ -27233,6 +27907,246 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetTotalAdvanceYENNull()
             Me(Me.tableTravel.TotalAdvanceYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalAdvanceIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalAdvanceIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalAdvanceIDRNull()
+            Me(Me.tableTravel.TotalAdvanceIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalReturnUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalReturnUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalReturnUSDNull()
+            Me(Me.tableTravel.TotalReturnUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalReturnYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalReturnYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalReturnYENNull()
+            Me(Me.tableTravel.TotalReturnYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalReturnIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalReturnIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalReturnIDRNull()
+            Me(Me.tableTravel.TotalReturnIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPenanggungNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PenanggungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPenanggungNull()
+            Me(Me.tableTravel.PenanggungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalUSDNull()
+            Me(Me.tableTravel.TotalUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalYENNull()
+            Me(Me.tableTravel.TotalYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTotalIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.TotalIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTotalIDRNull()
+            Me(Me.tableTravel.TotalIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSettleUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.SettleUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSettleUSDNull()
+            Me(Me.tableTravel.SettleUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSettleYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.SettleYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSettleYENNull()
+            Me(Me.tableTravel.SettleYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSettleIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.SettleIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSettleIDRNull()
+            Me(Me.tableTravel.SettleIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBalanceUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.BalanceUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBalanceUSDNull()
+            Me(Me.tableTravel.BalanceUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBalanceYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.BalanceYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBalanceYENNull()
+            Me(Me.tableTravel.BalanceYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBalanceIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.BalanceIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBalanceIDRNull()
+            Me(Me.tableTravel.BalanceIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidActualUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PaidActualUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidActualUSDNull()
+            Me(Me.tableTravel.PaidActualUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidActualYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PaidActualYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidActualYENNull()
+            Me(Me.tableTravel.PaidActualYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidActualIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PaidActualIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidActualIDRNull()
+            Me(Me.tableTravel.PaidActualIDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidIDRUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PaidIDRUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidIDRUSDNull()
+            Me(Me.tableTravel.PaidIDRUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidIDRYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.PaidIDRYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidIDRYENNull()
+            Me(Me.tableTravel.PaidIDRYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSumPaidIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravel.SumPaidIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSumPaidIDRNull()
+            Me(Me.tableTravel.SumPaidIDRColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -33107,6 +34021,51 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SumUSD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravelPocketAllowance.SumUSDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SumUSD' in table 'TravelPocketAllowance' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravelPocketAllowance.SumUSDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SumYEN() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravelPocketAllowance.SumYENColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SumYEN' in table 'TravelPocketAllowance' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravelPocketAllowance.SumYENColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SumIDR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTravelPocketAllowance.SumIDRColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SumIDR' in table 'TravelPocketAllowance' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTravelPocketAllowance.SumIDRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsTravelSettleIDNull() As Boolean
             Return Me.IsNull(Me.tableTravelPocketAllowance.TravelSettleIDColumn)
         End Function
@@ -33199,6 +34158,42 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetIDRNull()
             Me(Me.tableTravelPocketAllowance.IDRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSumUSDNull() As Boolean
+            Return Me.IsNull(Me.tableTravelPocketAllowance.SumUSDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSumUSDNull()
+            Me(Me.tableTravelPocketAllowance.SumUSDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSumYENNull() As Boolean
+            Return Me.IsNull(Me.tableTravelPocketAllowance.SumYENColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSumYENNull()
+            Me(Me.tableTravelPocketAllowance.SumYENColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSumIDRNull() As Boolean
+            Return Me.IsNull(Me.tableTravelPocketAllowance.SumIDRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSumIDRNull()
+            Me(Me.tableTravelPocketAllowance.SumIDRColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

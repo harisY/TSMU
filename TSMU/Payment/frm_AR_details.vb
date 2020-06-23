@@ -25,6 +25,7 @@ Public Class frm_AR_details
     Dim vbalance As Double = 0
     Dim dtTemp1 As DataTable
     Dim sts_screen2 As Byte
+    Dim _Tag As TagModel
 
     Public Sub New()
 
@@ -56,9 +57,13 @@ Public Class frm_AR_details
             'fs_Code6 = strCode6
             bi_GridParentRow = li_GridRow
             sts_screen2 = stsscreen
+            bi_GridParentRow = li_GridRow
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
@@ -77,6 +82,9 @@ Public Class frm_AR_details
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub TempTable1()
         dtTemp1 = New DataTable

@@ -11,6 +11,7 @@ Public Class FrmTravelSettleDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim _Tag As TagModel
 
     Dim cls_TravelSett As New TravelSettleHeaderModel
     Dim cls_TravelSettDetail As New TravelSettleDetailModel
@@ -23,13 +24,18 @@ Public Class FrmTravelSettleDetail
     Dim dtSummary As New DataTable
     Dim dtBalance As New DataTable
     Dim dtVoucher As New DataTable
-    Dim dtEntertain As New DataTable
+
+    Dim dtEntertainHeader As New DataTable
+    Dim dtEntertainDetail As New DataTable
+    Dim dtEntertainRelasi As New DataTable
 
     Dim Rows As New ArrayList()
     Dim row As Integer
     Dim flag As Integer
     Dim TabPage As String
 
+    Dim RateSalomonUSD As Double
+    Dim RateSalomonYEN As Double
     Dim ReturnUSD As Double
     Dim ReturnYEN As Double
     Dim ReturnIDR As Double
@@ -41,7 +47,8 @@ Public Class FrmTravelSettleDetail
     Dim CreditUSD As Double
     Dim CreditYEN As Double
 
-    Dim ff_Detail7 As FrmEntertainSettleDetailDirect
+    'Dim frm_Entertain As FrmTravelEntertainDetail
+    Dim frm_Entertainment As FrmEntertainSettleDetailDirect
 
     Public Sub New()
 
@@ -68,19 +75,32 @@ Public Class FrmTravelSettleDetail
         GridDtl = _Grid
         FrmParent = lf_FormParent
         gv_Request = gv_GridView
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
-        If ff_Detail7 IsNot Nothing AndAlso ff_Detail7.Visible Then
+        'If frm_Entertain IsNot Nothing AndAlso frm_Entertain.Visible Then
+        '    If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+        '        Exit Sub
+        '    End If
+        '    frm_Entertain.Close()
+        'End If
+        'frm_Entertain = New FrmTravelEntertainDetail(ls_Code, Me)
+        'frm_Entertain.MdiParent = FrmMain
+        'frm_Entertain.StartPosition = FormStartPosition.CenterScreen
+        'frm_Entertain.Show()
+        If frm_Entertainment IsNot Nothing AndAlso frm_Entertainment.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
-            ff_Detail7.Close()
+            frm_Entertainment.Close()
         End If
-        ff_Detail7 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridEntertain)
-        ff_Detail7.MdiParent = FrmMain
-        ff_Detail7.StartPosition = FormStartPosition.CenterScreen
-        ff_Detail7.Show()
+        frm_Entertainment = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridEntertain)
+        frm_Entertainment.MdiParent = FrmMain
+        frm_Entertainment.StartPosition = FormStartPosition.CenterScreen
+        frm_Entertainment.Show()
     End Sub
 
     Private Sub FrmTravelSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -102,7 +122,7 @@ Public Class FrmTravelSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "SETTLEMENT"
+                Me.Text = "SETTLEMENT DETAIL"
             Else
                 Me.Text = "NEW SETTLEMENT"
             End If
@@ -247,6 +267,8 @@ Public Class FrmTravelSettleDetail
                     ReturnIDR = .TotalReturnIDR
                     ReturnUSD = .TotalReturnUSD
                     ReturnYEN = .TotalReturnYEN
+                    RateSalomonUSD = .RateSalomonUSD
+                    RateSalomonYEN = .RateYEN
                     txtRateUSD.Text = Format(.RateUSD, gs_FormatDecimal)
                     txtRateYEN.Text = Format(.RateYEN, gs_FormatDecimal)
                 End With
@@ -287,8 +309,10 @@ Public Class FrmTravelSettleDetail
                 TxtTotalAdvanceIDR.Text = Format(advanceIDR, gs_FormatDecimal)
                 TxtTotalAdvanceUSD.Text = Format(advanceUSD, gs_FormatDecimal)
                 TxtTotalAdvanceYEN.Text = Format(advanceYEN, gs_FormatDecimal)
-                txtRateUSD.Text = Format(cls_TravelSett.GetRate("USD", TxtTgl.EditValue), gs_FormatDecimal)
-                txtRateYEN.Text = Format(cls_TravelSett.GetRate("JPY", TxtTgl.EditValue), gs_FormatDecimal)
+                RateSalomonUSD = cls_TravelSett.GetRate("USD", TxtTgl.EditValue)
+                RateSalomonYEN = cls_TravelSett.GetRate("JPY", TxtTgl.EditValue)
+                txtRateUSD.Text = Format(RateSalomonUSD, gs_FormatDecimal)
+                txtRateYEN.Text = Format(RateSalomonYEN, gs_FormatDecimal)
                 txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
             End If
         Catch ex As Exception
@@ -325,6 +349,8 @@ Public Class FrmTravelSettleDetail
                     .Term = TxtTerm.Text
                     .PickUp = ""
                     .Visa = ""
+                    .RateSalomonUSD = RateSalomonUSD
+                    .RateSalomonYEN = RateSalomonYEN
                     .RateUSD = txtRateUSD.Text
                     .RateYEN = txtRateYEN.Text
                     .TotalAdvanceIDR = TxtTotalAdvanceIDR.Text
@@ -368,8 +394,13 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Public Overrides Sub Proc_print()
+        'Dim PersonInCharge As String = InputBox("Siapa yang bertanggung jawab ?", "Input Penanggung Jawab")
+        Dim strArr() As String
+        strArr = TxtNama.Text.Split(",")
+        Dim PersonInCharge As String = strArr(0)
         FrmReportTravelSett.StartPosition = FormStartPosition.CenterScreen
         FrmReportTravelSett.txtTravelSettleID.Text = txtTravelSettID.Text
+        FrmReportTravelSett.txtPersonInCharge.Text = PersonInCharge
         FrmReportTravelSett.Show()
     End Sub
 
@@ -981,6 +1012,7 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub CreateTable()
+        dtSummary = New DataTable
         dtSummary.Columns.AddRange(New DataColumn(6) {New DataColumn("Description", GetType(String)),
                                                             New DataColumn("CashIDR", GetType(Double)),
                                                             New DataColumn("CashUSD", GetType(Double)),
@@ -989,10 +1021,12 @@ Public Class FrmTravelSettleDetail
                                                             New DataColumn("CreditUSD", GetType(Double)),
                                                             New DataColumn("CreditYEN", GetType(Double))})
 
+        dtBalance = New DataTable
         dtBalance.Columns.AddRange(New DataColumn(2) {New DataColumn("BalanceUSD", GetType(Double)),
                                                             New DataColumn("BalanceYEN", GetType(Double)),
                                                             New DataColumn("BalanceIDR", GetType(Double))})
 
+        dtVoucher = New DataTable
         dtVoucher.Columns.AddRange(New DataColumn(6) {New DataColumn("CurryID", GetType(String)),
                                                             New DataColumn("Advance", GetType(Double)),
                                                             New DataColumn("Actual", GetType(Double)),
@@ -1005,7 +1039,7 @@ Public Class FrmTravelSettleDetail
     Private Sub FrmTravelSettleDetail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         If flag = 1 Then
             Dim EntertainID As String
-            Dim IDSettle As String
+            Dim IDSettle As String = String.Empty
             Dim jumlah As Double
             Dim vrate As Double
 

@@ -22,6 +22,7 @@ Public Class MenuManager
                         .Index = index
                     }
                 Pages.Add(page)
+
             End If
 
             Dim group As Group = page.Groups.FirstOrDefault(Function(c) c.Text.Equals(mnu.Group, StringComparison.CurrentCultureIgnoreCase))
@@ -79,6 +80,7 @@ Public Class MenuManager
                     item.Items.Add(subItem)
                 Next
             End If
+
         Next
     End Sub
 
