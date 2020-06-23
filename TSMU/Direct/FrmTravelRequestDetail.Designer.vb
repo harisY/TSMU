@@ -544,6 +544,7 @@ Partial Class FrmTravelRequestDetail
         'txtDepartement
         '
         Me.txtDepartement.EditValue = ""
+        Me.txtDepartement.Enabled = False
         Me.txtDepartement.Location = New System.Drawing.Point(325, 48)
         Me.txtDepartement.Name = "txtDepartement"
         Me.txtDepartement.Size = New System.Drawing.Size(70, 22)

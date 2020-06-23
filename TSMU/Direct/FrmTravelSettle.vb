@@ -15,10 +15,8 @@ Public Class FrmTravelSettle
 
     Private Sub FrmTravelSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageReq
         TabPage = XtraTabControl1.SelectedTabPage.Name
-        'Call LoadGridRequest()
     End Sub
 
     Private Sub LoadGridRequest()
@@ -45,19 +43,19 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    Public Overrides Sub Proc_InputNewData()
-        If TabPage = "TabPageReq" Then
-            If GridViewRequest.SelectedRowsCount > 0 Then
-                CallFrm()
-            Else
-                MessageBox.Show("Harap pilih dulu travelnya", "Warning",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Exclamation,
-                                    MessageBoxDefaultButton.Button1)
-            End If
-        End If
+    'Public Overrides Sub Proc_InputNewData()
+    '    If TabPage = "TabPageReq" Then
+    '        If GridViewRequest.SelectedRowsCount > 0 Then
+    '            CallFrm()
+    '        Else
+    '            MessageBox.Show("Harap pilih dulu travelnya", "Warning",
+    '                                MessageBoxButtons.OK,
+    '                                MessageBoxIcon.Exclamation,
+    '                                MessageBoxDefaultButton.Button1)
+    '        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
@@ -154,22 +152,22 @@ Public Class FrmTravelSettle
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageReq" Then
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
             LoadGridRequest()
         ElseIf TabPage = "TabPageSett" Then
-            Call Proc_EnableButtons(False, False, True, True, True, False, False, False)
+            Call Proc_EnableButtons(False, False, True, True, False, False, False, False)
             LoadGridSettle()
         End If
     End Sub
 
     Private Sub btnProses_Click(sender As Object, e As EventArgs) Handles btnProses.Click
         If GridViewRequest.SelectedRowsCount > 0 Then
-            Dim result As DialogResult = XtraMessageBox.Show("Confirmation Travel ?", "Confirmation", MessageBoxButtons.YesNo)
+            Dim result As DialogResult = XtraMessageBox.Show("Confirmation Travel ?", "Confirmation", MessageBoxButtons.YesNoCancel)
             If result = System.Windows.Forms.DialogResult.Yes Then
                 CallFrm()
             ElseIf result = System.Windows.Forms.DialogResult.No Then
-                Dim Refound As DialogResult = XtraMessageBox.Show("Ada Refound ?", "Confirmation", MessageBoxButtons.YesNo)
-                If Refound = System.Windows.Forms.DialogResult.Yes Then
+                Dim Refund As DialogResult = XtraMessageBox.Show("Ada Refund ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+                If Refund = System.Windows.Forms.DialogResult.Yes Then
                 Else
                     For i As Integer = 0 To GridViewRequest.SelectedRowsCount() - 1
                         If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
@@ -179,7 +177,7 @@ Public Class FrmTravelSettle
                 End If
             End If
         Else
-            MessageBox.Show("Harap pilih dulu travelnya", "Warning",
+            MessageBox.Show("Tidak ada request travel yang dipilih", "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)

@@ -69,8 +69,9 @@ Public Class FrmTravelCreditCardDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "CREDIT CARD" + ": " + fs_Code
+                Me.Text = "CREDIT CARD"
             Else
+                isUpdate = False
                 Me.Text = "NEW CREDIT CARD"
             End If
             Call LoadTxtBox()
@@ -98,7 +99,7 @@ Public Class FrmTravelCreditCardDetail
                     txtCreditCardNumber.Focus()
                 End With
             Else
-                Call Proc_EnableButtons(False, True, True, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
                 txtCreditCardID.Text = ""
                 txtCreditCardNumber.Text = ""
                 txtAccountName.Text = ""
@@ -175,15 +176,28 @@ Public Class FrmTravelCreditCardDetail
                 cls_Creditcard.UpdateData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            'GridDtl.DataSource = cls_Creditcard.GetAllDataTable("")
-            Mati()
-            Bersih()
-            'IsClosed = True
-            'Me.Hide()
+            tsBtn_refresh.PerformClick()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_DeleteData()
+        Try
+            cls_Creditcard.CreditCardID = txtCreditCardID.Text
+            cls_Creditcard.DeleteData()
+
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        Mati()
+        Bersih()
     End Sub
 
     Private Sub GridCreditCard_DoubleClick(sender As Object, e As EventArgs) Handles GridCreditCard.DoubleClick

@@ -73,7 +73,7 @@ Public Class FrmTravelTicketDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "TICKET"
+                Me.Text = "TICKET DETAIL"
             Else
                 Me.Text = "NEW TICKET"
             End If

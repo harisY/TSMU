@@ -19,7 +19,6 @@ Partial Class FrmTravelCreditCardDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.txtCreditCardID = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -31,7 +30,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.dtExpDate = New DevExpress.XtraEditors.DateEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         Me.GridCreditCard = New DevExpress.XtraGrid.GridControl()
         Me.GridViewCreditCard = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CreditCardID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -151,9 +150,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.dtExpDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtExpDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me.dtExpDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.dtExpDate.Properties.Mask.EditMask = ""
-        Me.dtExpDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.dtExpDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtExpDate.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.dtExpDate.Size = New System.Drawing.Size(120, 22)
         Me.dtExpDate.TabIndex = 6
         '
@@ -249,7 +246,7 @@ Partial Class FrmTravelCreditCardDetail
         'ExpiredDate
         '
         Me.ExpiredDate.Caption = "Expired Date"
-        Me.ExpiredDate.DisplayFormat.FormatString = "dd-mm-yyyy"
+        Me.ExpiredDate.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.ExpiredDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ExpiredDate.FieldName = "ExpDate"
         Me.ExpiredDate.MinWidth = 25
