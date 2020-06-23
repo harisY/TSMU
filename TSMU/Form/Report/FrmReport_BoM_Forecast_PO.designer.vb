@@ -21,6 +21,8 @@ Partial Class FrmReport_BoM_Forecast_PO
     Private Sub InitializeComponent()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.AdvBandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.colAccount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.colProses = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColInvtId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -123,19 +125,40 @@ Partial Class FrmReport_BoM_Forecast_PO
         'AdvBandedGridView1
         '
         Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand5, Me.gridBand4, Me.gridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand6})
-        Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.ColLevel, Me.ColInvtId, Me.ColDescription, Me.ColUnit, Me.ColQty, Me.ColPOJan, Me.ColPOFeb, Me.ColPOMar, Me.ColPOApr, Me.ColPOMei, Me.ColPOJun, Me.ColPOJul, Me.ColPOAgt, Me.ColPOSep, Me.ColPOOkt, Me.ColPONov, Me.ColPODes, Me.ColFJan, Me.ColFFeb, Me.ColFMar, Me.ColFApr, Me.ColFMei, Me.ColFJun, Me.ColFJul, Me.ColFAgt, Me.ColFSep, Me.ColFOkt, Me.ColFNov, Me.ColFDes, Me.ColTotPOJan, Me.ColTotPOFeb, Me.ColTotPOMar, Me.ColTotPOApr, Me.ColTotPOMei, Me.ColTotPOJun, Me.ColTotPOJul, Me.ColTotPOAgt, Me.ColTotPOSep, Me.ColTotPOOkt, Me.ColTotPONov, Me.ColTotPODes, Me.ColTotFJan, Me.ColTotFFeb, Me.ColTotFMar, Me.ColTotFApr, Me.ColTotFMei, Me.ColTotFJun, Me.ColTotFJul, Me.ColTotFAgt, Me.ColTotFSep, Me.ColTotFOkt, Me.ColTotFNov, Me.ColTotFDes})
+        Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.colAccount, Me.colProses, Me.ColLevel, Me.ColInvtId, Me.ColDescription, Me.ColUnit, Me.ColQty, Me.ColPOJan, Me.ColPOFeb, Me.ColPOMar, Me.ColPOApr, Me.ColPOMei, Me.ColPOJun, Me.ColPOJul, Me.ColPOAgt, Me.ColPOSep, Me.ColPOOkt, Me.ColPONov, Me.ColPODes, Me.ColFJan, Me.ColFFeb, Me.ColFMar, Me.ColFApr, Me.ColFMei, Me.ColFJun, Me.ColFJul, Me.ColFAgt, Me.ColFSep, Me.ColFOkt, Me.ColFNov, Me.ColFDes, Me.ColTotPOJan, Me.ColTotPOFeb, Me.ColTotPOMar, Me.ColTotPOApr, Me.ColTotPOMei, Me.ColTotPOJun, Me.ColTotPOJul, Me.ColTotPOAgt, Me.ColTotPOSep, Me.ColTotPOOkt, Me.ColTotPONov, Me.ColTotPODes, Me.ColTotFJan, Me.ColTotFFeb, Me.ColTotFMar, Me.ColTotFApr, Me.ColTotFMei, Me.ColTotFJun, Me.ColTotFJul, Me.ColTotFAgt, Me.ColTotFSep, Me.ColTotFOkt, Me.ColTotFNov, Me.ColTotFDes})
         Me.AdvBandedGridView1.DetailHeight = 458
         Me.AdvBandedGridView1.FixedLineWidth = 3
         Me.AdvBandedGridView1.GridControl = Me.Grid
         Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
         Me.AdvBandedGridView1.OptionsBehavior.Editable = False
+        Me.AdvBandedGridView1.OptionsCustomization.AllowFilter = False
+        Me.AdvBandedGridView1.OptionsCustomization.AllowSort = False
         Me.AdvBandedGridView1.OptionsEditForm.EditFormColumnCount = 1
         Me.AdvBandedGridView1.OptionsPrint.AllowMultilineHeaders = True
         Me.AdvBandedGridView1.OptionsPrint.PrintHorzLines = False
         Me.AdvBandedGridView1.OptionsPrint.PrintVertLines = False
+        Me.AdvBandedGridView1.OptionsPrint.UsePrintStyles = False
         Me.AdvBandedGridView1.OptionsView.ShowAutoFilterRow = True
         Me.AdvBandedGridView1.OptionsView.ShowFooter = True
         Me.AdvBandedGridView1.OptionsView.ShowGroupPanel = False
+        '
+        'colAccount
+        '
+        Me.colAccount.Caption = "Account"
+        Me.colAccount.FieldName = "Account"
+        Me.colAccount.MinWidth = 25
+        Me.colAccount.Name = "colAccount"
+        Me.colAccount.Visible = True
+        Me.colAccount.Width = 94
+        '
+        'colProses
+        '
+        Me.colProses.Caption = "Proses"
+        Me.colProses.FieldName = "Proses"
+        Me.colProses.MinWidth = 25
+        Me.colProses.Name = "colProses"
+        Me.colProses.Visible = True
+        Me.colProses.Width = 94
         '
         'ColLevel
         '
@@ -722,6 +745,8 @@ Partial Class FrmReport_BoM_Forecast_PO
         '
         'gridBand4
         '
+        Me.gridBand4.Columns.Add(Me.colAccount)
+        Me.gridBand4.Columns.Add(Me.colProses)
         Me.gridBand4.Columns.Add(Me.ColLevel)
         Me.gridBand4.Columns.Add(Me.ColInvtId)
         Me.gridBand4.Columns.Add(Me.ColDescription)
@@ -731,7 +756,7 @@ Partial Class FrmReport_BoM_Forecast_PO
         Me.gridBand4.MinWidth = 13
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 500
+        Me.gridBand4.Width = 688
         '
         'gridBand1
         '
@@ -919,6 +944,8 @@ Partial Class FrmReport_BoM_Forecast_PO
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents txtInvtId As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colAccount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents colProses As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

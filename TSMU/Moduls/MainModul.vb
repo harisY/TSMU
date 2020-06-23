@@ -2357,6 +2357,7 @@ Module MainModul
             options.ShowGridLines = True
             save.FileName = _name
             options.AllowSortingAndFiltering = DefaultBoolean.False
+            options.ExportType = DevExpress.Export.ExportType.WYSIWYG
             If save.ShowDialog = DialogResult.OK Then
                 _Grid.ExportToXlsx(save.FileName, options)
             End If
