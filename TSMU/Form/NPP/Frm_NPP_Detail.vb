@@ -47,7 +47,6 @@ Public Class Frm_NPP_Detail
 
     Private Sub Frm_Npwo_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
         Call CreateTableBarang()
         Call FillComboCustomer()
         Call FillComboCategory()
@@ -223,7 +222,13 @@ Public Class Frm_NPP_Detail
                     TModelDesc.EditValue = .H_Model_Description
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
-                    TMassPro.EditValue = .H_MassPro
+
+                    If .H_MassPro = "01-01-1900" Then
+                        TMassPro.Text = ""
+                    Else
+                        TMassPro.EditValue = .H_MassPro
+                    End If
+
                     CBCad.Checked = .H_CAD_Data
                     CBDrawing.Checked = .H_Drawing
                     CBSample.Checked = .H_Sample
@@ -233,6 +238,7 @@ Public Class Frm_NPP_Detail
                     TCategory.EditValue = .H_Category_Class
                     TTargetDr.EditValue = .H_TargetDRR
                     TTargetQuot.EditValue = .H_TargetQuot
+                    TIssue_Date.EditValue = .H_Issue_Date
                 End With
 
                 If fc_Class.H_Approve = True Then
@@ -289,11 +295,11 @@ Public Class Frm_NPP_Detail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-            ElseIf TMassPro.Text = "" Then
-                MessageBox.Show("Please fill MP", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button1)
+                'ElseIf TMassPro.Text = "" Then
+                '    MessageBox.Show("Please fill MP", "Warning",
+                '            MessageBoxButtons.OK,
+                '            MessageBoxIcon.Exclamation,
+                '            MessageBoxDefaultButton.Button1)
             ElseIf TTargetDr.Text = "" Then
                 MessageBox.Show("Please fill Target DR", "Warning",
                         MessageBoxButtons.OK,
@@ -382,12 +388,19 @@ Public Class Frm_NPP_Detail
                 With fc_Class
 
                     .H_No_NPP = TNPP_No.EditValue
+                    .H_Issue_Date = TIssue_Date.EditValue
                     .H_Model_Name = TModel.EditValue
                     .H_Model_Description = TModelDesc.EditValue
                     .H_Customer_Name = TCustomer.EditValue
                     .H_Order_Month = TOrderMonth.EditValue
                     .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                    .H_MassPro = TMassPro.EditValue
+                    If TMassPro.Text = "" Then
+                        .H_MassPro = "01-01-1900"
+                    Else
+                        .H_MassPro = TMassPro.EditValue
+
+                    End If
+
                     .H_Drawing = CBDrawing.CheckState
                     .H_CAD_Data = CBCad.CheckState
                     .H_Sample = CBSample.CheckState
@@ -654,9 +667,6 @@ Public Class Frm_NPP_Detail
     Private Sub Frm_Npwo_Detail_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         TNPP_No.EditValue = Test
     End Sub
-
-
-
 
     Public Sub CallForm(Optional ByVal ID As String = "",
                         Optional ByVal Nama As String = "",
@@ -967,6 +977,10 @@ Public Class Frm_NPP_Detail
 
             End If
         End If
+
+    End Sub
+
+    Private Sub DateEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles TIssue_Date.EditValueChanged
 
     End Sub
 End Class

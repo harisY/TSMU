@@ -1,4 +1,6 @@
 ﻿Imports System.Globalization
+Imports DevExpress.XtraGrid.Views.Grid
+
 Public Class Frm_CR_UserCreateHeader
 
     Dim ff_Detail As Frm_CR_UserCreateDetail
@@ -9,6 +11,7 @@ Public Class Frm_CR_UserCreateHeader
     Dim Dept As String
     Dim Tanggal As Date
     Dim DeptSub As String = ""
+    Dim Active_Form As Integer = 1
 
     Private Sub Frm_CR_UserCreateHeader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -68,7 +71,7 @@ Public Class Frm_CR_UserCreateHeader
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -154,7 +157,9 @@ Public Class Frm_CR_UserCreateHeader
     End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+
         Try
+            'Active_Form = 1
             Dim provider As CultureInfo = CultureInfo.InvariantCulture
             IdTrans = String.Empty
 
@@ -175,13 +180,27 @@ Public Class Frm_CR_UserCreateHeader
                             Format(Tanggal, gs_FormatSQLDate),
                             GridView1.RowCount)
             End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub GridView1_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GridView1.RowStyle
 
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            Dim category As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Status"))
+            If category = "Revise" Then
+                e.Appearance.BackColor = Color.Yellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            ElseIf category = "Create" Then
+                e.Appearance.BackColor = Color.Green
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            End If
+        End If
     End Sub
 End Class

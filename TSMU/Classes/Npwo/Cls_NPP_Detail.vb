@@ -242,7 +242,7 @@ Public Class Cls_NPP_Detail
                     Try
                         InsertRevisi()
                         Insert_NPPHeader(H_No_NPP,
-                                            Date.Now,
+                                            H_Issue_Date,
                                             H_Model_Name,
                                             H_Model_Description,
                                             H_Customer_Name,
@@ -376,6 +376,9 @@ Public Class Cls_NPP_Detail
             If _H_Model_Desc = "" Then
                 _H_Model_Desc = DBNull.Value.ToString
             End If
+
+
+
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
