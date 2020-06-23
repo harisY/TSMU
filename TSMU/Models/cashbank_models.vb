@@ -348,6 +348,17 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
+    Public Function GetGridDetailCashBankReconsal() As DataTable
+        Try
+            '' Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek,recon  FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan FROM cashbank2 LEFT JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " And cashbank2.recon=1 union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon,VendorName as Keterangan from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function autononb() As String
         Try
             Dim auto2 As String

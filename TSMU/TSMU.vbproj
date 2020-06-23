@@ -328,6 +328,12 @@
     <Compile Include="Direct\FrmBankReceipt_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmBankReconsal.Designer.vb">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankReconsal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmBankTransfer.Designer.vb">
       <DependentUpon>FrmBankTransfer.vb</DependentUpon>
     </Compile>
@@ -2315,6 +2321,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>

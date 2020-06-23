@@ -106,6 +106,7 @@ Public Class FrmBankTransfer_Detail
                 '        TxtNoRekTujuan.Text = ""
                 '       TxtNoRekTujuanname.Text = ""
                 '      TxtCuryID.SelectedIndex = 0
+                TxtRateSolomon.Text = 1
                 TxtAmount.Text = 0
                 TxtRemark.Text = ""
                 TxtNoBukti.Focus()
@@ -398,4 +399,7 @@ Public Class FrmBankTransfer_Detail
 
     End Sub
 
+    Private Sub TxtNoRekTujuan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoRekTujuan.EditValueChanged
+
+    End Sub
 End Class
