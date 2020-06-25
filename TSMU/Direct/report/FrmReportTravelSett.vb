@@ -6,7 +6,8 @@
         Dim dtHeader As New DataTable
         Dim dtDetail As New DataTable
         Dim dtDetailSum As New DataTable
-        Dim dtPocketAllowance As New DataTable
+        Dim dtAllowanceAdvance As New DataTable
+        'Dim dtAllowanceSettle As New DataTable
         Dim dtExpense As New DataTable
         Dim dtExpenseSum As New DataTable
         Dim FilteredRows As DataRow()
@@ -71,18 +72,19 @@
         dtExpenseSum = report.LoadReportSumExpense()
         laporan.Subreports("CRTravelTotalExpenseSettRightSum.rpt").SetDataSource(dtExpenseSum)
 
-        dtPocketAllowance = report.LoadReportSettleAllowance()
+        dtAllowanceAdvance = report.LoadReportAllowanceAdvance()
+        'dtAllowanceSettle = report.LoadReportAllowanceSettle()
 
-        AllowanceUSD = Convert.ToDouble(dtPocketAllowance.Compute("SUM(USD)", String.Empty))
-        AllowanceYEN = Convert.ToDouble(dtPocketAllowance.Compute("SUM(YEN)", String.Empty))
-        AllowanceIDR = Convert.ToDouble(dtPocketAllowance.Compute("SUM(IDR)", String.Empty))
+        AllowanceUSD = Convert.ToDouble(dtAllowanceAdvance.Compute("SUM(USD)", String.Empty))
+        AllowanceYEN = Convert.ToDouble(dtAllowanceAdvance.Compute("SUM(YEN)", String.Empty))
+        AllowanceIDR = Convert.ToDouble(dtAllowanceAdvance.Compute("SUM(IDR)", String.Empty))
 
-        dtPocketAllowance.Rows(0)("SumUSD") = AllowanceUSD
-        dtPocketAllowance.Rows(0)("SumYEN") = AllowanceYEN
-        dtPocketAllowance.Rows(0)("SumYEN") = AllowanceIDR
+        dtAllowanceAdvance.Rows(0)("SumUSD") = AllowanceUSD
+        dtAllowanceAdvance.Rows(0)("SumYEN") = AllowanceYEN
+        dtAllowanceAdvance.Rows(0)("SumYEN") = AllowanceIDR
 
-        laporan.Subreports("CRTravelDetailAllowanceSett.rpt").SetDataSource(dtPocketAllowance)
-        laporan.Subreports("CRTravelDetailAllowanceSettRight.rpt").SetDataSource(dtPocketAllowance)
+        laporan.Subreports("CRTravelDetailAllowanceSett.rpt").SetDataSource(dtAllowanceAdvance)
+        laporan.Subreports("CRTravelDetailAllowanceSettRight.rpt").SetDataSource(dtAllowanceAdvance)
 
         FilteredRows = dtExpenseSum.[Select]("SumDesc like '%CASH%'")
         If FilteredRows.Count > 0 Then
@@ -128,8 +130,8 @@
         dtHeader.Rows(0)("PaidActualUSD") = USD - ExpenseUSD - dtHeader.Rows(0)("TotalReturnUSD")
         dtHeader.Rows(0)("PaidActualYEN") = YEN - ExpenseYEN - dtHeader.Rows(0)("TotalReturnYEN")
         dtHeader.Rows(0)("PaidActualIDR") = IDR - ExpenseIDR - dtHeader.Rows(0)("TotalReturnIDR")
-        Dim PaidIDRUSD As Double = (USD - ExpenseUSD - dtHeader.Rows(0)("TotalReturnUSD")) * dtHeader.Rows(0)("RateUSD")
-        Dim PaidIDRYEN As Double = (YEN - ExpenseYEN - dtHeader.Rows(0)("TotalReturnYEN")) * dtHeader.Rows(0)("RateYEN")
+        Dim PaidIDRUSD As Double = Math.Round((USD - ExpenseUSD - dtHeader.Rows(0)("TotalReturnUSD")) * dtHeader.Rows(0)("RateUSD") / 100, 0) * 100
+        Dim PaidIDRYEN As Double = Math.Round((YEN - ExpenseYEN - dtHeader.Rows(0)("TotalReturnYEN")) * dtHeader.Rows(0)("RateYEN") / 100, 0) * 100
         dtHeader.Rows(0)("PaidIDRUSD") = PaidIDRUSD
         dtHeader.Rows(0)("PaidIDRYEN") = PaidIDRYEN
         dtHeader.Rows(0)("SumPaidIDR") = Math.Abs(PaidIDRUSD + PaidIDRYEN + IDR - ExpenseIDR - dtHeader.Rows(0)("TotalReturnIDR"))

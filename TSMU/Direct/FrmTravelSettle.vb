@@ -88,28 +88,28 @@ Public Class FrmTravelSettle
                     TravelSettleID = GridViewSettle.GetRowCellValue(rowHandle, "TravelSettleID").ToString()
                     cls_SettHeader.TravelSettleID = TravelSettleID
                 End If
+
+                Dim dtSettleDetail As New DataTable
+                cls_SettDetail.TravelSettleID = TravelSettleID
+                dtSettleDetail = cls_SettDetail.GetTravelSettDetailByID
+
+                cls_SettHeader.ObjSettleDetail.Clear()
+                If dtSettleDetail.Rows.Count > 0 Then
+                    For i As Integer = 0 To dtSettleDetail.Rows.Count - 1
+                        cls_SettDetail = New TravelSettleDetailModel
+                        With cls_SettDetail
+                            .TravelSettleID = TravelSettleID
+                            .NoRequest = dtSettleDetail.Rows(i).Item(0)
+                            .Nama = dtSettleDetail.Rows(i).Item(1)
+                        End With
+                        cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
+                    Next
+                End If
+
+                cls_SettHeader.DeleteDataTravelSettle()
+
+                tsBtn_refresh.PerformClick()
             Next rowHandle
-
-            dtGrid = New DataTable
-            cls_SettDetail.TravelSettleID = TravelSettleID
-            dtGrid = cls_SettDetail.GetTravelSettDetailByID
-
-            cls_SettHeader.ObjSettleDetail.Clear()
-            If dtGrid.Rows.Count > 0 Then
-                For i As Integer = 0 To dtGrid.Rows.Count - 1
-                    cls_SettDetail = New TravelSettleDetailModel
-                    With cls_SettDetail
-                        .TravelSettleID = TravelSettleID
-                        .NoRequest = dtGrid.Rows(i).Item(0)
-                        .Nama = dtGrid.Rows(i).Item(1)
-                    End With
-                    cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
-                Next
-            End If
-
-            cls_SettHeader.DeleteDataTravelSettle()
-
-            tsBtn_refresh.PerformClick()
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -68,8 +68,8 @@ Public Class FrmTravelEntertainDetail
 
     Private Sub FrmTravelEntertainDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
+        CreateTable()
         Call InitialSetForm()
-        Call CreateTable()
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -155,8 +155,8 @@ Public Class FrmTravelEntertainDetail
     End Sub
 
     Private Sub CreateTable()
-        DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(8) {New DataColumn("Tgl", GetType(String)),
+        entertain = New DataTable
+        entertain.Columns.AddRange(New DataColumn(8) {New DataColumn("Tgl", GetType(Date)),
                                                             New DataColumn("SubAccount", GetType(String)),
                                                             New DataColumn("Account", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
@@ -165,18 +165,15 @@ Public Class FrmTravelEntertainDetail
                                                             New DataColumn("Alamat", GetType(String)),
                                                             New DataColumn("Jenis", GetType(String)),
                                                             New DataColumn("Amount", GetType(Double))})
-        GridEntertain.DataSource = DtScan
-        GridViewEntertain.OptionsView.ShowAutoFilterRow = False
+        GridEntertain.DataSource = entertain
 
-        DtScan1 = New DataTable
-        DtScan1.Columns.AddRange(New DataColumn(4) {New DataColumn("Nama", GetType(String)),
+        relasi = New DataTable
+        relasi.Columns.AddRange(New DataColumn(4) {New DataColumn("Nama", GetType(String)),
                                                            New DataColumn("Posisi", GetType(String)),
                                                            New DataColumn("Perusahaan", GetType(String)),
                                                            New DataColumn("JenisUsaha", GetType(String)),
                                                            New DataColumn("Remark", GetType(String))})
-        GridRelasi.DataSource = DtScan1
-        GridViewRelasi.OptionsView.ShowAutoFilterRow = False
-
+        GridRelasi.DataSource = relasi
     End Sub
 
     Public Overrides Sub Proc_print()
@@ -190,14 +187,13 @@ Public Class FrmTravelEntertainDetail
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        Call LoadTxtBox()
+        LoadTxtBox()
         LoadGridDetail()
     End Sub
 
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
             If DxValidationProvider1.Validate Then
                 lb_Validated = True
             Else
@@ -209,10 +205,9 @@ Public Class FrmTravelEntertainDetail
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    .SettleID = .SettleAutoNoEnt
-                    _SettleID = ObjSettle.SettleAutoNoEnt
-                    Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
-                    .Tgl = oDate
+                    '.SettleID = .SettleAutoNoEnt
+                    '_SettleID = ObjSettle.SettleAutoNoEnt
+                    .Tgl = TxtTgl.EditValue
                     .Total = TxtTotExpense.Text
                     .PRNo = TxtPrNo.Text
                 End With
