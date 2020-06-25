@@ -53,9 +53,15 @@
             pParam(0) = New SqlClient.SqlParameter("@CuryID", SqlDbType.VarChar)
             pParam(0).Value = VendorId
             dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
-            rate = dt.Rows(0).Item(1).ToString
+            If dt.Rows.Count > 0 Then
+                rate = dt.Rows(0).Item(1).ToString
+                Return rate
+            Else
+                rate = "1"
+                Return rate
+            End If
 
-            Return rate
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -130,6 +136,7 @@
            ,[Saldo]
            ,[Perpost]
            ,[AcctID]
+           ,[Noref]
            ,[Saldo_Awal])
      VALUES
            (" & QVal(Tgl) & "
@@ -142,6 +149,7 @@
            ," & 0 & "
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_tujuan) & "
+           ," & QVal(NoBukti) & "
            ," & 0 & ")"
             MainModul.ExecQuery_Solomon(sql)
 
@@ -161,6 +169,7 @@
            ,[Noref]
            ,[Perpost]
            ,[AcctID]
+           ,[Noref]
            ,[Saldo_Awal])
      VALUES
            (" & QVal(Tgl) & "
@@ -175,6 +184,7 @@
            ," & QVal(NoBukti) & "
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_tujuan) & "
+           ," & QVal(NoBukti) & "
            ," & 0 & ")"
             MainModul.ExecQuery_Solomon(sql2)
         Catch ex As Exception
@@ -184,7 +194,7 @@
     Public Sub InsertToTable3()
         Try
             If CuryID_tujuan <> CurryID Then
-                Jumlah = Jumlah * Rate_Solomon
+                Jumlah = Jumlah * Rate_Transaksi
             End If
             'If Checked Then
             '    chek = 1
@@ -382,4 +392,14 @@
 
         End Try
     End Function
+    Public Sub Delete(ByVal id As String)
+        Try
+            Dim ls_SP As String = "DELETE FROM [banktransfer] WHERE NoBukti =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery(ls_SP)
+            Dim ls_SP2 As String = "DELETE FROM [cashbank2] WHERE Noref =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery(ls_SP2)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 End Class

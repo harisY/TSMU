@@ -1,6 +1,7 @@
 ﻿Imports System.Globalization
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Views.BandedGrid
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
@@ -67,6 +68,7 @@ Public Class FrmReport_BoM_Forecast_PO
     Public Overrides Sub Proc_Excel()
         Try
             If AdvBandedGridView1.RowCount > 0 Then
+
                 SaveToExcel(Grid, "BoM vs PO/Forecast", "", False)
                 'getPath()
                 '    Dim Filename As String = path & "\Forecast_.xls"
@@ -133,5 +135,21 @@ Public Class FrmReport_BoM_Forecast_PO
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub AdvBandedGridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles AdvBandedGridView1.RowStyle
+        Dim View As AdvBandedGridView = sender
+        If e.RowHandle > 0 Then
+            Dim Level As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Level"))
+            'Dim array2() As String = TempSJ.ToArray
+            If Level = "Level 0" Then
+                e.Appearance.BackColor = Color.LightBlue
+                e.Appearance.BackColor2 = Color.SeaShell
+                e.HighPriority = True
+            End If
+            'For Each sj As String In array2
+
+            'Next
+        End If
     End Sub
 End Class

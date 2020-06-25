@@ -333,6 +333,12 @@
     <Compile Include="Direct\FrmBankReceipt_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmBankReconsal.Designer.vb">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankReconsal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmBankTransfer.Designer.vb">
       <DependentUpon>FrmBankTransfer.vb</DependentUpon>
     </Compile>
@@ -1675,6 +1681,12 @@
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\FrmReport_Matome_New.designer.vb">
+      <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_Matome_New.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </Compile>
@@ -2338,6 +2350,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>
@@ -2725,6 +2740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_Matome_New.resx">
+      <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>

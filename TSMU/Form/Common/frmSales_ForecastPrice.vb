@@ -62,11 +62,17 @@ Public Class frmSales_ForecastPrice
                 .Columns(6).Fixed = FixedStyle.Left
                 .OptionsView.ShowFooter = True
                 '.OptionsBehavior.Editable = False
-                For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
+                For Each col As GridColumn In .Columns
                     If col.Name.ToLower = "colinvtid" Then
                         col.OptionsColumn.AllowEdit = True
                     Else
                         col.OptionsColumn.AllowEdit = False
+                    End If
+                Next
+
+                For i As Integer = 0 To GridView1.RowCount - 1
+                    If GridView1.RowCount = 3 Then
+
                     End If
                 Next
             End With

@@ -309,7 +309,7 @@ Partial Class FrmBankTransfer_Detail
         '
         'TxtRate
         '
-        Me.TxtRate.EditValue = "0"
+        Me.TxtRate.EditValue = "1"
         Me.TxtRate.Location = New System.Drawing.Point(669, 84)
         Me.TxtRate.Name = "TxtRate"
         Me.TxtRate.Properties.Appearance.Options.UseTextOptions = True
@@ -326,7 +326,7 @@ Partial Class FrmBankTransfer_Detail
         '
         'TxtRateSolomon
         '
-        Me.TxtRateSolomon.EditValue = "0"
+        Me.TxtRateSolomon.EditValue = "1"
         Me.TxtRateSolomon.Location = New System.Drawing.Point(146, 84)
         Me.TxtRateSolomon.Name = "TxtRateSolomon"
         Me.TxtRateSolomon.Properties.Appearance.Options.UseTextOptions = True

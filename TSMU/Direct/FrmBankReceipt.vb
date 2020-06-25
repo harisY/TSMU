@@ -57,12 +57,13 @@ Public Class FrmBankReceipt
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                    ID = GridView1.GetRowCellValue(rowHandle, "NoBukti")
                 End If
             Next rowHandle
+            ObjEntertain.NoBukti = ID
+            ObjEntertain.Delete(ID)
 
-            ' fc_Class.Delete(ID)
-
+            ''ObjSuspend.Delete()
             tsBtn_refresh.PerformClick()
 
         Catch ex As Exception
