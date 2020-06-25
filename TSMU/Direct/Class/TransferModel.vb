@@ -394,10 +394,10 @@
     End Function
     Public Sub Delete(ByVal id As String)
         Try
-            Dim ls_SP As String = "DELETE FROM [banktransfer] WHERE NoBukti =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP)
-            Dim ls_SP2 As String = "DELETE FROM [cashbank2] WHERE Noref =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP2)
+            Dim ls_SP As String = "DELETE FROM banktransfer WHERE NoBukti =" & QVal(NoBukti) & ""
+            MainModul.GetDataTable_Solomon(ls_SP)
+            Dim ls_SP2 As String = "DELETE FROM cashbank2 WHERE Noref =" & QVal(NoBukti) & ""
+            MainModul.GetDataTable_Solomon(ls_SP2)
         Catch ex As Exception
             Throw
         End Try
