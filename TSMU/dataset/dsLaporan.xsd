@@ -681,6 +681,7 @@
               <xs:element name="Prepare" msprop:Generator_ColumnVarNameInTable="columnPrepare" msprop:Generator_ColumnPropNameInRow="Prepare" msprop:Generator_ColumnPropNameInTable="PrepareColumn" msprop:Generator_UserColumnName="Prepare" type="xs:string" minOccurs="0" />
               <xs:element name="TargetDRR" msprop:Generator_ColumnVarNameInTable="columnTargetDRR" msprop:Generator_ColumnPropNameInRow="TargetDRR" msprop:Generator_ColumnPropNameInTable="TargetDRRColumn" msprop:Generator_UserColumnName="TargetDRR" type="xs:dateTime" minOccurs="0" />
               <xs:element name="TargetQuot" msprop:Generator_ColumnVarNameInTable="columnTargetQuot" msprop:Generator_ColumnPropNameInRow="TargetQuot" msprop:Generator_ColumnPropNameInTable="TargetQuotColumn" msprop:Generator_UserColumnName="TargetQuot" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Revisi" msprop:Generator_ColumnVarNameInTable="columnRevisi" msprop:Generator_ColumnPropNameInRow="Revisi" msprop:Generator_ColumnPropNameInTable="RevisiColumn" msprop:Generator_UserColumnName="Revisi" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

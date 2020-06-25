@@ -133,6 +133,10 @@
       <HintPath>bin\Debug\Microsoft.Office.Interop.Outlook.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SecurityManager.2005, Version=6.0.3015.2005, Culture=neutral, PublicKeyToken=aa42cad61af07cf4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SecurityManager.2005.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -177,6 +181,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\Circulation\clsCR_ApproveDeptHead.vb" />
+    <Compile Include="Classes\Circulation\clsCR_ApproveDivHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
@@ -326,6 +331,12 @@
       <DependentUpon>FrmBankReceipt_Detail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmBankReceipt_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankReconsal.Designer.vb">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankReconsal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmBankTransfer.Designer.vb">
@@ -1168,6 +1179,12 @@
     <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.Designer.vb">
+      <DependentUpon>Frm_CR_ApproveDivHead_Header.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Get_Mold.Designer.vb">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </Compile>
@@ -1662,6 +1679,12 @@
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_Matome_New.designer.vb">
+      <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_Matome_New.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
@@ -2327,6 +2350,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
+      <DependentUpon>FrmBankReconsal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>
@@ -2620,6 +2646,9 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.resx">
+      <DependentUpon>Frm_CR_ApproveDivHead_Header.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Get_Mold.resx">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </EmbeddedResource>
@@ -2711,6 +2740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_Matome_New.resx">
+      <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
@@ -3727,6 +3759,24 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="CDO">
+      <Guid>{CD000000-8B95-11D1-82DB-00C04FB1625D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
