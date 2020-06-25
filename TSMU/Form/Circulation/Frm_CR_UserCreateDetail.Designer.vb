@@ -37,7 +37,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.T_Parent = New DevExpress.XtraEditors.ButtonEdit()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.T_CRType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.BAddRows = New System.Windows.Forms.Button()
         Me.BMold = New System.Windows.Forms.Button()
@@ -301,16 +300,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Parent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.T_Parent.Size = New System.Drawing.Size(174, 20)
         Me.T_Parent.TabIndex = 65
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button4.Location = New System.Drawing.Point(324, 2)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 71
-        Me.Button4.Text = "Submit"
-        Me.Button4.UseVisualStyleBackColor = False
         '
         'T_CRType
         '
@@ -616,7 +605,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'GroupBox2
         '
-        Me.GroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.Label20)
         Me.GroupBox2.Controls.Add(Me.T_Remark)
         Me.GroupBox2.Controls.Add(Me.Label19)
@@ -627,7 +616,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox2.Controls.Add(Me.Label16)
         Me.GroupBox2.Controls.Add(Me.T_DS)
         Me.GroupBox2.Controls.Add(Me.T_CustomerName)
-        Me.GroupBox2.Location = New System.Drawing.Point(9, 407)
+        Me.GroupBox2.Location = New System.Drawing.Point(818, 406)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(246, 132)
         Me.GroupBox2.TabIndex = 83
@@ -806,7 +795,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Grid4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid4.Location = New System.Drawing.Point(259, 412)
+        Me.Grid4.Location = New System.Drawing.Point(12, 412)
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
         Me.Grid4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit6, Me.RepositoryItemSpinEdit5})
@@ -842,7 +831,7 @@ Partial Class Frm_CR_UserCreateDetail
         'C_Term
         '
         Me.C_Term.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.C_Term.Location = New System.Drawing.Point(262, 518)
+        Me.C_Term.Location = New System.Drawing.Point(15, 518)
         Me.C_Term.Name = "C_Term"
         Me.C_Term.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.C_Term.Properties.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6"})
@@ -872,6 +861,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn6.FieldName = "Dept"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 0
         Me.GridColumn6.Width = 65
@@ -880,6 +870,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn7.FieldName = "Name"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 106
@@ -888,6 +879,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn8.FieldName = "Date"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
         Me.GridColumn8.Width = 118
@@ -896,6 +888,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn9.FieldName = "Opinion"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 779
@@ -933,7 +926,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.BMold)
         Me.Controls.Add(Me.BAddRows)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.T_ParentAmount)
@@ -963,7 +955,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.T_ParentAmount, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.Label14, 0)
-        Me.Controls.SetChildIndex(Me.Button4, 0)
         Me.Controls.SetChildIndex(Me.BAddRows, 0)
         Me.Controls.SetChildIndex(Me.BMold, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)
@@ -1040,7 +1031,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents T_Parent As DevExpress.XtraEditors.ButtonEdit
-    Friend WithEvents Button4 As Button
     Friend WithEvents T_CRType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents BAddRows As Button
     Friend WithEvents BMold As Button

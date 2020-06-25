@@ -147,11 +147,58 @@ Public Class ClsCR_CreateUser
     Public Function GetMold() As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
-            Dim query As String = "Select 
-                                    Part_No as [Name Of Goods]
-                                    ,Part_Name as [Spesification]
-                                    ,[Check]  
-                                  from Npwo_Detail"
+            Dim query As String = "Select Npwo_Detail.NoUrut
+                                      ,Npwo_Detail.[No_Npwo] as NPWO
+	                                  ,Npwo_Detail.Part_No as [Name Of Goods]
+                                      ,Npwo_Detail.Part_Name as [Spesification]
+                                      ,Npwo_Detail.[Check] 
+                                      ,Npwo_Head.[Model_Name]  as Model
+                                      ,Npwo_Head.[Customer_Name] as Customer
+                                 from Npwo_Detail inner join Npwo_Head
+	                                  on Npwo_Detail.[No_Npwo] = Npwo_Head.[No_Npwo]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetMold_ByModel(_Model As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "Select Npwo_Detail.NoUrut
+                                      ,Npwo_Detail.[No_Npwo] as NPWO
+	                                  ,Npwo_Detail.Part_No as [Name Of Goods]
+                                      ,Npwo_Detail.Part_Name as [Spesification]
+                                      ,Npwo_Detail.[Check] 
+                                      ,Npwo_Head.[Model_Name]  as Model
+                                      ,Npwo_Head.[Customer_Name] as Customer
+                                 from Npwo_Detail inner join Npwo_Head
+	                                  on Npwo_Detail.[No_Npwo] = Npwo_Head.[No_Npwo]
+                                      Where Npwo_Head.[Model_Name] = '" & _Model & "' "
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function GetMold_ByNpwo(Npwo_ As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "Select Npwo_Detail.NoUrut
+                                      ,Npwo_Detail.[No_Npwo] as NPWO
+	                                  ,Npwo_Detail.Part_No as [Name Of Goods]
+                                      ,Npwo_Detail.Part_Name as [Spesification]
+                                      ,Npwo_Detail.[Check] 
+                                      ,Npwo_Head.[Model_Name]  as Model
+                                      ,Npwo_Head.[Customer_Name] as Customer
+                                 from Npwo_Detail inner join Npwo_Head
+	                                  on Npwo_Detail.[No_Npwo] = Npwo_Head.[No_Npwo]
+                                      Where Npwo_Detail.[No_Npwo] = '" & Npwo_ & "'"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
@@ -257,6 +304,43 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+
+    Public Function Get_Email_Dept(Circulation_ As String) As DataTable
+        Try
+            Dim query As String = "SELECT isnull([DeptHead_Email],'')
+                                    FROM [CR_Other_Dept] where CirculationNo = '" & Circulation_ & "'"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_NPWO() As DataTable
+        Try
+            Dim query As String = "SELECT Distinct No_Npwo as NPWO 
+                                  FROM [Npwo_Head] "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_Model() As DataTable
+        Try
+            Dim query As String = "SELECT Distinct [Model_Name] as Model
+                                  FROM [Npwo_Head] "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function Rate(Tahun As String, Bulan As String, Curr As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"

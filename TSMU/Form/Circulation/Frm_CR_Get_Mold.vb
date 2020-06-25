@@ -8,7 +8,7 @@ Public Class Frm_CR_Get_Mold
 
     Dim DtGridNPWO As DataTable
 
-    Dim ID As String
+    Dim Model As String
     Dim Grid1 As GridControl
     Dim Grid_V As DataGridView
     Dim IsNew As Boolean
@@ -16,12 +16,16 @@ Public Class Frm_CR_Get_Mold
     Dim dt1 As DataTable
     Dim dtRef As DataTable
     Dim BG As String
+    Dim dtModel As DataTable
+    Dim dtNPWO As DataTable
 
     Private Sub Frm_CR_Get_Mold_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call LoadGrid()
+        'Call LoadGrid()
+        Call FillModel()
+        Call FillNPWO()
     End Sub
 
-    Public Sub New(ByVal _ID As String,
+    Public Sub New(ByRef _Model As String,
                   ByRef _dt As DataTable,
                   ByRef _grid As GridControl,
                   ByVal _BG As String)
@@ -29,7 +33,7 @@ Public Class Frm_CR_Get_Mold
         ' This call is required by the designer.
         InitializeComponent()
 
-        ID = _ID
+        Model = _Model
         Grid1 = _grid
         dtRef = _dt
         BG = _BG
@@ -91,6 +95,94 @@ Public Class Frm_CR_Get_Mold
 
     End Sub
 
+    Private Sub LoadGrid_ByNpwo(Npwo As String)
+
+        Try
+
+            Cursor.Current = Cursors.WaitCursor
+
+            'Dim DtGridNPWO As New DataTable
+            dt = fc_Class.GetMold_ByNpwo(Npwo)
+
+            dt.Columns.Add("Qty")
+            dt.Columns.Add("Price")
+            dt.Columns.Add("Total Amount Currency")
+            dt.Columns.Add("Total IDR")
+            dt.Columns.Add("PR No")
+            dt.Columns.Add("Curr")
+            dt.Columns.Add("Rate")
+            dt.Columns.Add("Balance")
+            dt.Columns.Add("Remaining Budget")
+            dt.Columns.Add("Category")
+
+
+            For a As Integer = 0 To dt.Rows.Count - 1
+                dt.Rows(a).Item("Qty") = "1"
+                dt.Rows(a).Item("Price") = "0"
+                dt.Rows(a).Item("Total Amount Currency") = "0"
+                dt.Rows(a).Item("PR No") = ""
+                dt.Rows(a).Item("Curr") = ""
+                dt.Rows(a).Item("Rate") = "1"
+                dt.Rows(a).Item("Balance") = "0"
+                dt.Rows(a).Item("Remaining Budget") = "0"
+                dt.Rows(a).Item("Category") = BG
+                dt.Rows(a).Item("Total IDR") = "0"
+
+            Next
+            'Model = dt.Rows(0).Item("Model")
+            Grid.DataSource = dt
+            Cursor.Current = Cursors.Default
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub LoadGrid_ByModel(Model As String)
+
+        Try
+
+            Cursor.Current = Cursors.WaitCursor
+
+            'Dim DtGridNPWO As New DataTable
+            dt = fc_Class.GetMold_ByModel(Model)
+
+            dt.Columns.Add("Qty")
+            dt.Columns.Add("Price")
+            dt.Columns.Add("Total Amount Currency")
+            dt.Columns.Add("Total IDR")
+            dt.Columns.Add("PR No")
+            dt.Columns.Add("Curr")
+            dt.Columns.Add("Rate")
+            dt.Columns.Add("Balance")
+            dt.Columns.Add("Remaining Budget")
+            dt.Columns.Add("Category")
+
+
+            For a As Integer = 0 To dt.Rows.Count - 1
+                dt.Rows(a).Item("Qty") = "1"
+                dt.Rows(a).Item("Price") = "0"
+                dt.Rows(a).Item("Total Amount Currency") = "0"
+                dt.Rows(a).Item("PR No") = ""
+                dt.Rows(a).Item("Curr") = ""
+                dt.Rows(a).Item("Rate") = "1"
+                dt.Rows(a).Item("Balance") = "0"
+                dt.Rows(a).Item("Remaining Budget") = "0"
+                dt.Rows(a).Item("Category") = BG
+                dt.Rows(a).Item("Total IDR") = "0"
+
+            Next
+            'Model = dt.Rows(0).Item("Model")
+            Grid.DataSource = dt
+            Cursor.Current = Cursors.Default
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
     Private Sub Badd_Click(sender As Object, e As EventArgs) Handles Badd.Click
 
         Dim MyNewRow As DataRow
@@ -117,6 +209,7 @@ Public Class Frm_CR_Get_Mold
                 End With
                 dtRef.Rows.Add(MyNewRow)
                 dtRef.AcceptChanges()
+                Model = dt.Rows(0).Item("Model")
 
             End If
 
@@ -127,7 +220,51 @@ Public Class Frm_CR_Get_Mold
 
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub FillModel()
+        Try
 
+            dtModel = fc_Class.Get_Model()
+
+            C_Model.Properties.DataSource = Nothing
+            C_Model.Properties.DataSource = dtModel
+            C_Model.Properties.ValueMember = "Model"
+            C_Model.Properties.DisplayMember = "Model"
+
+
+
+
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Private Sub FillNPWO()
+        Try
+
+            dtNPWO = fc_Class.Get_NPWO()
+
+
+
+
+            C_NPWO.Properties.DataSource = Nothing
+            C_NPWO.Properties.DataSource = dtNPWO
+            C_NPWO.Properties.ValueMember = "NPWO"
+            C_NPWO.Properties.DisplayMember = "NPWO"
+
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Private Sub C_NPWO_EditValueChanged(sender As Object, e As EventArgs) Handles C_NPWO.EditValueChanged
+        Grid.DataSource = Nothing
+        Call LoadGrid_ByNpwo(C_NPWO.EditValue)
+    End Sub
+
+    Private Sub C_Model_EditValueChanged(sender As Object, e As EventArgs) Handles C_Model.EditValueChanged
+        Grid.DataSource = Nothing
+        Call LoadGrid_ByModel(C_Model.EditValue)
     End Sub
 End Class

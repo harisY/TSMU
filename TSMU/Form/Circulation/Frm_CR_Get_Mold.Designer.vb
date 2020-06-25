@@ -39,11 +39,21 @@ Partial Class Frm_CR_Get_Mold
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PAmoutIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.C_Model = New DevExpress.XtraEditors.LookUpEdit()
+        Me.C_NPWO = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Price, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C_Model.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C_NPWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'C_Qty
@@ -86,13 +96,13 @@ Partial Class Frm_CR_Get_Mold
         Me.Grid.Location = New System.Drawing.Point(12, 41)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(731, 273)
+        Me.Grid.Size = New System.Drawing.Size(966, 273)
         Me.Grid.TabIndex = 11
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Check, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.PAmoutIDR})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Check, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.PAmoutIDR, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowFooter = True
@@ -104,16 +114,16 @@ Partial Class Frm_CR_Get_Mold
         Me.NameOfGoods.Name = "NameOfGoods"
         Me.NameOfGoods.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name Of Goods", "{0:N0}")})
         Me.NameOfGoods.Visible = True
-        Me.NameOfGoods.VisibleIndex = 0
-        Me.NameOfGoods.Width = 143
+        Me.NameOfGoods.VisibleIndex = 3
+        Me.NameOfGoods.Width = 269
         '
         'Spesification
         '
         Me.Spesification.FieldName = "Spesification"
         Me.Spesification.Name = "Spesification"
         Me.Spesification.Visible = True
-        Me.Spesification.VisibleIndex = 1
-        Me.Spesification.Width = 130
+        Me.Spesification.VisibleIndex = 4
+        Me.Spesification.Width = 342
         '
         'Qty
         '
@@ -159,7 +169,8 @@ Partial Class Frm_CR_Get_Mold
         Me.Check.FieldName = "Check"
         Me.Check.Name = "Check"
         Me.Check.Visible = True
-        Me.Check.VisibleIndex = 2
+        Me.Check.VisibleIndex = 5
+        Me.Check.Width = 55
         '
         'GridColumn1
         '
@@ -186,13 +197,88 @@ Partial Class Frm_CR_Get_Mold
         Me.PAmoutIDR.FieldName = "Total IDR"
         Me.PAmoutIDR.Name = "PAmoutIDR"
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.FieldName = "NoUrut"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.FieldName = "Model"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 90
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "Customer"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 87
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.FieldName = "NPWO"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 227
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(114, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(50, 13)
+        Me.Label1.TabIndex = 14
+        Me.Label1.Text = "By Npwo"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(432, 17)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(51, 13)
+        Me.Label2.TabIndex = 15
+        Me.Label2.Text = "By Model"
+        '
+        'C_Model
+        '
+        Me.C_Model.Location = New System.Drawing.Point(506, 14)
+        Me.C_Model.Name = "C_Model"
+        Me.C_Model.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.C_Model.Properties.DropDownRows = 10
+        Me.C_Model.Properties.NullText = ""
+        Me.C_Model.Properties.PopupSizeable = False
+        Me.C_Model.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.C_Model.Size = New System.Drawing.Size(130, 20)
+        Me.C_Model.TabIndex = 13
+        '
+        'C_NPWO
+        '
+        Me.C_NPWO.Location = New System.Drawing.Point(188, 14)
+        Me.C_NPWO.Name = "C_NPWO"
+        Me.C_NPWO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.C_NPWO.Properties.DropDownRows = 10
+        Me.C_NPWO.Properties.NullText = ""
+        Me.C_NPWO.Properties.PopupSizeable = False
+        Me.C_NPWO.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.C_NPWO.Size = New System.Drawing.Size(224, 20)
+        Me.C_NPWO.TabIndex = 12
+        '
         'Frm_CR_Get_Mold
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(755, 326)
+        Me.ClientSize = New System.Drawing.Size(990, 326)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.Badd)
+        Me.Controls.Add(Me.C_Model)
+        Me.Controls.Add(Me.C_NPWO)
         Me.Name = "Frm_CR_Get_Mold"
         Me.Text = "Circulation Get Mold"
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).EndInit()
@@ -200,7 +286,10 @@ Partial Class Frm_CR_Get_Mold
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C_Model.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C_NPWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Badd As Button
@@ -220,4 +309,12 @@ Partial Class Frm_CR_Get_Mold
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PAmoutIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents C_Model As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents C_NPWO As DevExpress.XtraEditors.LookUpEdit
 End Class

@@ -6,6 +6,11 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports Microsoft.Office.Interop
+Imports AddinExpress.Outlook.SecurityManager
+Imports System.IO
+Imports System.Net.Mail
+
+
 
 
 Public Class Frm_CR_UserCreateDetail
@@ -60,6 +65,13 @@ Public Class Frm_CR_UserCreateDetail
     Dim _Tag As TagModel
 
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
+
+
+    Dim OlSecurityManager As AddinExpress.Outlook.SecurityManager
+
+
+
+
 
     Public Sub New()
 
@@ -118,11 +130,13 @@ Public Class Frm_CR_UserCreateDetail
                         .Columns("Check").Visible = True
                         .Columns("Note").Visible = True
                     End With
-
+                    Grid4.Enabled = False
+                    GroupBox2.Enabled = False
+                    C_Term.Enabled = False
                     If fc_Class.H_UserSubmition = True Then
 
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        Call No_Edit_Grid()
+                        'Call No_Edit_Grid()
                         Call No_Edit_TextBox()
                         BAddRows.Enabled = False
                         BMold.Enabled = False
@@ -137,7 +151,7 @@ Public Class Frm_CR_UserCreateDetail
 
                     GridView3.OptionsBehavior.Editable = False
                     GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = False
+                    'GridView5.OptionsBehavior.Editable = False
                     GridView1.OptionsBehavior.Editable = True
                     BAddRows.Enabled = False
                     BMold.Enabled = False
@@ -173,7 +187,7 @@ Public Class Frm_CR_UserCreateDetail
                 ElseIf Active_Form = 3 Then
                     GridView3.OptionsBehavior.Editable = False
                     GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = False
+                    'GridView5.OptionsBehavior.Editable = False
                     GridView1.OptionsBehavior.Editable = True
                     BAddRows.Enabled = False
                     BMold.Enabled = False
@@ -193,31 +207,38 @@ Public Class Frm_CR_UserCreateDetail
                         .Columns("Total IDR").OptionsColumn.AllowEdit = False
                         .Columns("Account").OptionsColumn.AllowEdit = False
                         .Columns("Check").Visible = True
-                        .Columns("Check").OptionsColumn.AllowEdit = True
                         .Columns("Note").Visible = True
-                        .Columns("Note").OptionsColumn.AllowEdit = True
 
                     End With
 
 
                     If fc_Class.H_DivHead_Approve = True Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        GridView1.Columns("Check").OptionsColumn.AllowEdit = False
+                        GridView1.Columns("Check").OptionsColumn.AllowEdit = False
                     Else
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-                        GridView1.OptionsBehavior.Editable = False
+                        GridView1.OptionsBehavior.Editable = True
+                        GridView1.Columns("Check").OptionsColumn.AllowEdit = True
+                        GridView1.Columns("Note").OptionsColumn.AllowEdit = True
                     End If
 
                 End If
 
             Else
-                Call No_Edit_Grid()
+                'Call No_Edit_Grid()
                 Call No_Edit_TextBox()
                 BAddRows.Enabled = False
                 BMold.Enabled = False
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
                 Me.Text = "CIRCULATION FORM "
                 T_CRType.Enabled = True
+                Grid4.Visible = False
+                GroupBox2.Visible = True
+                C_Term.Visible = False
+
             End If
+
 
             Call Row_Other_Dept_Active()
             Call FillComboOtherDept()
@@ -238,7 +259,7 @@ Public Class Frm_CR_UserCreateDetail
         GridView1.OptionsBehavior.Editable = False
         GridView3.OptionsBehavior.Editable = False
         GridView4.OptionsBehavior.Editable = False
-        GridView5.OptionsBehavior.Editable = False
+        'GridView5.OptionsBehavior.Editable = False
 
 
 
@@ -248,7 +269,7 @@ Public Class Frm_CR_UserCreateDetail
         GridView1.OptionsBehavior.Editable = True
         GridView3.OptionsBehavior.Editable = True
         GridView4.OptionsBehavior.Editable = True
-        GridView5.OptionsBehavior.Editable = True
+        'GridView5.OptionsBehavior.Editable = True
 
 
 
@@ -1300,12 +1321,14 @@ Public Class Frm_CR_UserCreateDetail
 
 
 
-    Public Sub CallForm(Optional ByVal ID As String = "",
-                        Optional ByVal Nama As String = "",
+    Public Sub CallForm(Optional ByRef Model As String = "",
+                        Optional ByVal Customer As String = "",
                         Optional ByVal IsNew As Boolean = True)
 
         If CForm = 1 Then
-            FGetMold = New Frm_CR_Get_Mold(ID, DtGridBarang, Grid4, BG)
+
+            'T_ModelName.Text = Model
+            FGetMold = New Frm_CR_Get_Mold(T_ModelName.Text, DtGridBarang, Grid4, BG)
             FGetMold.StartPosition = FormStartPosition.CenterScreen
             FGetMold.MaximizeBox = False
             FGetMold.ShowDialog()
@@ -1315,23 +1338,34 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
-
-        'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
-
-        'With oMsg
-        '    .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
-        '    .Body = "Test"
-        '    .Send()
-        'End With
 
 
 
 
 
+    Private Function cdoSendPassword() As Object
+        Throw New NotImplementedException()
+    End Function
 
-    End Sub
+    Private Function cdoSMTPServer() As Object
+        Throw New NotImplementedException()
+    End Function
+
+    Private Function cdoSendUserName() As Object
+        Throw New NotImplementedException()
+    End Function
+
+    Private Function cdoSMTPServerPort() As Object
+        Throw New NotImplementedException()
+    End Function
+
+    Private Function cdoSendUsingPort() As Object
+        Throw New NotImplementedException()
+    End Function
+
+    Private Function cdoSendUsingMethod() As Object
+        Throw New NotImplementedException()
+    End Function
 
     Private Sub Label4_Click(sender As Object, e As EventArgs)
 
@@ -1655,6 +1689,7 @@ Public Class Frm_CR_UserCreateDetail
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Qty", 0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Price", 0)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Curr", "IDR")
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total Amount Currency", 0)
 
         'For r As Integer = 1 To GridView2.RowCount
@@ -1892,8 +1927,10 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox1.Enabled = True
             'Grid1.Enabled = True
             GroupBox2.Enabled = True
+            GroupBox2.Visible = True
             C_Term.Enabled = True
-            T_Dept.SetEditValue("1MKT,1PUR,")
+            'T_Dept.SetEditValue("")
+            C_Term.Enabled = False
 
             Call Edit_Grid()
             With GridView1
@@ -1929,10 +1966,40 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox1.Enabled = True
             'Grid1.Enabled = True
             GroupBox2.Enabled = False
+            GroupBox2.Visible = False
             C_Term.Enabled = True
-            T_Dept.SetEditValue("1PUR,")
+            'T_Dept.SetEditValue("1PUR,")
             GroupBox2.Enabled = False
             BMold.Enabled = False
+            C_Term.Enabled = False
+
+            GridView1.OptionsBehavior.Editable = True
+            GridView3.OptionsBehavior.Editable = False
+            GridView4.OptionsBehavior.Editable = False
+
+            With GridView1
+                .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
+                .Columns("Spesification").OptionsColumn.AllowEdit = True
+                .Columns("Qty").OptionsColumn.AllowEdit = True
+                .Columns("Price").OptionsColumn.AllowEdit = True
+                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                .Columns("Curr").OptionsColumn.AllowEdit = True
+                .Columns("Category").OptionsColumn.AllowEdit = False
+                .Columns("Balance").OptionsColumn.AllowEdit = False
+                .Columns("Rate").OptionsColumn.AllowEdit = False
+                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                .Columns("Account").OptionsColumn.AllowEdit = True
+                .Columns("Check").Visible = False
+                .Columns("Note").Visible = False
+
+            End With
+
+            GridView5.OptionsBehavior.Editable = True
+            BAddRows.Enabled = True
+            BMold.Enabled = False
+
+
         End If
 
     End Sub
@@ -2169,24 +2236,100 @@ Public Class Frm_CR_UserCreateDetail
 
         ElseIf Active_Form = 3 Then
 
-            With fc_Class
-                .H_CirculationNo = T_CRNo.EditValue
-                .H_Status = "Approve 2"
-                .H_UserSubmition = True
-                .H_DeptHead_Approve = True
-                .H_DivHead_Approve = True
-                .H_DeptHead_Approve_Date = Date.Now
-                .H_DivHead_Approve_Date = Date.Now
+            Dim _Check1 As Boolean = True
+            Dim _Check2 As Boolean = True
+            For i As Integer = 0 To GridView1.RowCount - 1
+                Dim _Check As String = GridView1.GetRowCellValue(i, "Check")
+                If _Check = "OK" Then
+                    _Check2 = True
+                Else
+                    _Check2 = False
+                End If
 
-            End With
+                _Check1 = _Check1 And _Check2
+
+            Next
+
+            If _Check1 = True Then
+
+                With fc_Class
+                    .H_CirculationNo = T_CRNo.EditValue
+                    .H_Status = "Approve 2"
+                    .H_UserSubmition = True
+                    .H_DeptHead_Approve = True
+                    .H_DivHead_Approve = True
+                    .H_DeptHead_Approve_Date = Date.Now
+                    .H_DivHead_Approve_Date = Date.Now
+
+                End With
 
 
-            fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
-            IsClosed = True
-            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            GridDtl.DataSource = fc_Class_ApproveDivHead.Get_ApproveDivHead(gh_Common.Username)
-            Me.Hide()
+                'Insert To ObjDetailMaterial
+                fc_Class.Collection_Description_Of_Cost.Clear()
+                For i As Integer = 0 To GridView1.RowCount - 1
 
+                    Description_Of_Cost = New ClsCR_Description_of_Cost
+                    With Description_Of_Cost
+
+                        .D_CirculationNo = NoSirkulasi
+                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
+                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
+                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
+
+
+                    End With
+                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
+
+                Next
+
+
+                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
+                Call Send_Email_OtherDept(T_CRNo.EditValue)
+
+                IsClosed = True
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
+                Me.Hide()
+            Else
+                With fc_Class
+                    .H_CirculationNo = T_CRNo.EditValue
+                    .H_Status = "Revise"
+                    .H_UserSubmition = False
+                    .H_DeptHead_Approve = False
+                    .H_DivHead_Approve = False
+                    .H_DeptHead_Approve_Date = Date.Now
+                    .H_DivHead_Approve_Date = Date.Now
+
+                End With
+
+                fc_Class.Collection_Description_Of_Cost.Clear()
+                For i As Integer = 0 To GridView1.RowCount - 1
+
+                    Description_Of_Cost = New ClsCR_Description_of_Cost
+                    With Description_Of_Cost
+
+                        .D_CirculationNo = NoSirkulasi
+                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
+                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
+                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
+
+
+                    End With
+                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
+
+                Next
+
+
+                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+                IsClosed = True
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
+                Me.Hide()
+
+
+
+            End If
 
 
         End If
@@ -2263,29 +2406,80 @@ Public Class Frm_CR_UserCreateDetail
         'Dim VGrid As GridView = sender
         'Dim CellValue As String = VGrid.getcell(VGrid.Rows("rowTrademark"), VGrid.CurrentRecord)
         'If CellValue = "BMW" Then
-        '    e.Cancel = True
         'End If
 
     End Sub
 
+    Private Sub GridView5_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridView5.FocusedRowChanged
 
-    'Private Function USCanada(ByVal view As GridView, ByVal row As Integer) As Boolean
-    '    Dim col As GridColumn = view.Columns(gh_Common.GroupID)
-    '    Dim val As String = Convert.ToString(view.GetRowCellValue(row, col))
-    '    'Return (val = "OK" OrElse val = "REVISE")
-    '    Return (val = gh_Common.GroupID)
-    'End Function
 
-    'Private Sub GridView5_ShowingEditor(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GridView5.ShowingEditor
+        Try
+            Dim Dept_ = String.Empty
+            Dim selectedRows() As Integer = GridView5.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    Dept_ = GridView5.GetRowCellValue(rowHandle, "Dept")
+                End If
+            Next rowHandle
 
-    '    Dim view As GridView = TryCast(sender, GridView)
-    '    If view.FocusedColumn.FieldName = gh_Common.GroupID AndAlso Not USCanada(view, view.FocusedRowHandle) Then
-    '        e.Cancel = True
-    '    End If
+            If Dept_ = gh_Common.GroupID Then
+                GridView5.Columns("Dept").OptionsColumn.AllowEdit = False
+                GridView5.Columns("Name").OptionsColumn.AllowEdit = False
+                GridView5.Columns("Date").OptionsColumn.AllowEdit = True
+                GridView5.Columns("Opinion").OptionsColumn.AllowEdit = True
+            Else
+                GridView5.Columns("Dept").OptionsColumn.AllowEdit = False
+                GridView5.Columns("Name").OptionsColumn.AllowEdit = False
+                GridView5.Columns("Date").OptionsColumn.AllowEdit = False
+                GridView5.Columns("Opinion").OptionsColumn.AllowEdit = False
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
-    'End Sub
 
-    ' disable editing  
+    End Sub
+
+
+    Private Sub Send_Email_OtherDept(NoSirkulasi As String)
+
+        Try
+            'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
+
+            'With oMsg
+            '    .Display()
+            '    .To = "miftah-mis@tsmu.co.id" And "hamidi-mis@tsmu.co.id" : .Subject = "Special Order Request"
+            '    .Body = "Test"
+            '    .Send()
+            'End With
+            Dim MyMailMessage As New MailMessage
+            Dim A As ArrayList = New ArrayList
+            Dim dtEmail As New DataTable
+            dtEmail = fc_Class.Get_Email_Dept(NoSirkulasi)
+            MyMailMessage.From = New MailAddress("miftah-mis@tsmu.co.id")
+            For i As Integer = 0 To dtEmail.Rows.Count - 1
+
+                Dim Cek As String = dtEmail.Rows(i).Item(0).ToString
+
+                If Cek <> "" Then
+                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                End If
+            Next
+            MyMailMessage.CC.Add("log@tsmu.co.id")
+            MyMailMessage.Subject = "Test"
+            MyMailMessage.Body = "Body"
+            Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+            SMTP.Port = 25
+            SMTP.EnableSsl = False
+            SMTP.Credentials = New System.Net.NetworkCredential("miftah-mis@tsmu.co.id", "W[QIWbV~$ZZQ")
+            SMTP.Send(MyMailMessage)
+            MsgBox("Mail was sent", MsgBoxStyle.Information)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 
 
 End Class

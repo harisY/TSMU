@@ -61,6 +61,7 @@ Public Class Frm_CR_UserCreateHeader
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
+        Active_Form = 1
         CallFrm()
     End Sub
 

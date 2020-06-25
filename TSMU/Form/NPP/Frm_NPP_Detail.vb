@@ -1,4 +1,5 @@
-﻿Imports System.Globalization
+﻿Imports System.Data.OleDb
+Imports System.Globalization
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
@@ -42,6 +43,11 @@ Public Class Frm_NPP_Detail
     Dim NoSirkulasi As String = ""
     Dim _Tag As TagModel
 
+    Dim FileLokasi As String = ""
+
+    Dim dtExcel As New DataTable
+    Dim RowsAwal As Integer
+
     Public Property Test As String = "t"
 
 
@@ -59,6 +65,8 @@ Public Class Frm_NPP_Detail
 
         Me.TOrderMaxMonth.Properties.Mask.EditMask = "n0"
         Me.TOrderMaxMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+
+        RowsAwal = DtGridNPWO.Rows.Count
 
     End Sub
 
@@ -91,7 +99,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(19) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(20) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -110,6 +118,7 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Single", GetType(Boolean)),
                                                            New DataColumn("Group ID", GetType(String)),
                                                            New DataColumn("ID", GetType(Integer)),
+                                                           New DataColumn("Revisi", GetType(String)),
                                                            New DataColumn("Order Month", GetType(Int32))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -443,7 +452,7 @@ Public Class Frm_NPP_Detail
                         .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
                         .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                         .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
-
+                        .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
                         .Rev = 0
 
                     End With
@@ -469,7 +478,12 @@ Public Class Frm_NPP_Detail
                         .H_Customer_Name = TCustomer.EditValue
                         .H_Order_Month = TOrderMonth.EditValue
                         .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                        .H_MassPro = TMassPro.EditValue
+                        If TMassPro.Text = "" Then
+                            .H_MassPro = "01-01-1900"
+                        Else
+                            .H_MassPro = TMassPro.EditValue
+
+                        End If
                         .H_Drawing = CBDrawing.CheckState
                         .H_CAD_Data = CBCad.CheckState
                         .H_Sample = CBSample.CheckState
@@ -510,6 +524,7 @@ Public Class Frm_NPP_Detail
                             .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
                             .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
+                            .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
 
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
@@ -542,7 +557,12 @@ Public Class Frm_NPP_Detail
                         .H_Customer_Name = TCustomer.EditValue
                         .H_Order_Month = TOrderMonth.EditValue
                         .H_Order_Max_Month = TOrderMaxMonth.EditValue
-                        .H_MassPro = TMassPro.EditValue
+                        If TMassPro.Text = "" Then
+                            .H_MassPro = "01-01-1900"
+                        Else
+                            .H_MassPro = TMassPro.EditValue
+
+                        End If
                         .H_Drawing = CBDrawing.CheckState
                         .H_CAD_Data = CBCad.CheckState
                         .H_Sample = CBSample.CheckState
@@ -584,6 +604,8 @@ Public Class Frm_NPP_Detail
                             .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                             .Rev = fc_Class.H_Rev
+                            .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
+
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
 
@@ -982,5 +1004,67 @@ Public Class Frm_NPP_Detail
 
     Private Sub DateEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles TIssue_Date.EditValueChanged
 
+    End Sub
+
+    Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
+
+        Dim Sheet As String = "NPP$A21:P30"
+
+        Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
+
+            If ofd.ShowDialog() = DialogResult.OK Then
+                FileLokasi = ofd.FileName
+                'TxtFileName.Text = FileLokasi
+
+                If IO.File.Exists(FileLokasi) Then
+
+                    Dim cb As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
+                    cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
+                    Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
+                    cn.Open()
+                    Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as PartNo
+                                                                      ,F3 as PartName
+                                                                      ,F4 as MC
+                                                                      ,F5 as CT
+                                                                      ,F6 as Cav
+                                                                      ,F7 as Berat
+                                                                      ,F8 as Material from [" & Sheet & "]", cn) '
+                    'Dim dtLimaBesar As New DataTable
+                    dtExcel = New DataTable
+                    dtExcel.Load(cmd.ExecuteReader)
+                End If
+
+
+
+                For i As Integer = 0 To dtExcel.Rows.Count - 1
+                    Dim MyNewRow As DataRow
+                    MyNewRow = DtGridNPWO.NewRow
+                    Dim GroupID As String = fc_Class.GetGroupIDAuto(DtGridNPWO.Rows.Count, RowsAwal)
+                    With MyNewRow
+                        .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
+                        .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
+                        .Item("Machine") = dtExcel.Rows(i).Item("MC")
+                        .Item("C/T") = dtExcel.Rows(i).Item("CT")
+                        .Item("Cav") = dtExcel.Rows(i).Item("Cav")
+                        .Item("Weight") = dtExcel.Rows(i).Item("Berat")
+                        .Item("Material") = dtExcel.Rows(i).Item("Material")
+                        .Item("Inj") = False
+                        .Item("Painting") = False
+                        .Item("Chrome") = False
+                        .Item("Assy") = False
+                        .Item("Ultrasonic") = False
+                        .Item("Vibration") = False
+                        .Item("Status Mold") = ""
+                        .Item("Order Month") = "0"
+                        .Item("Single") = False
+                        .Item("Group ID") = GroupID
+                    End With
+                    DtGridNPWO.Rows.Add(MyNewRow)
+                    DtGridNPWO.AcceptChanges()
+                Next
+
+            End If
+
+        End Using
     End Sub
 End Class
