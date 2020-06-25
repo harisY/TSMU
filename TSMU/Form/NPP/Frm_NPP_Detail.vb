@@ -1008,7 +1008,7 @@ Public Class Frm_NPP_Detail
 
     Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
 
-        Dim Sheet As String = "NPP$A21:P30"
+        Dim Sheet As String = "NPP$A21:P50"
 
         Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
 
@@ -1028,7 +1028,8 @@ Public Class Frm_NPP_Detail
                                                                       ,F5 as CT
                                                                       ,F6 as Cav
                                                                       ,F7 as Berat
-                                                                      ,F8 as Material from [" & Sheet & "]", cn) '
+                                                                      ,F8 as Material from [" & Sheet & "]
+                                                               Where F2 <>''", cn) '
                     'Dim dtLimaBesar As New DataTable
                     dtExcel = New DataTable
                     dtExcel.Load(cmd.ExecuteReader)
