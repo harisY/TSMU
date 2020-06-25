@@ -96,26 +96,26 @@ Partial Class FrmTravelSettleDetail
         Me.GridEntertain = New DevExpress.XtraGrid.GridControl()
         Me.GridViewEntertain = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.IDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AccountIDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAccountEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SubAccountEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSubAccountEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.DateEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CDateEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.EntertainIDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CEntertainIDEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DescriptionEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CurryIDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CCurryEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AmountEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAmountEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AmountIDREntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAmountIDREntertain = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PayTypeEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CPayTypeEntertain = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CreditCardIDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CreditCardNumberEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AccountNameEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridOther = New DevExpress.XtraGrid.GridControl()
         Me.GridViewOther = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.IDOther = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -235,6 +235,22 @@ Partial Class FrmTravelSettleDetail
         Me.BalanceYENOther = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BalanceIDROther = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageVoucher = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupBox17 = New System.Windows.Forms.GroupBox()
+        Me.GridPocketAllowance = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewPocketAllowance = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Nama = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CDepartureDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CArrivalDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.Days = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.GridSumBalance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumBalance = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -374,6 +390,16 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalanceOther, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewBalanceOther, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageVoucher.SuspendLayout()
+        Me.GroupBox17.SuspendLayout()
+        CType(Me.GridPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox16.SuspendLayout()
         CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -747,7 +773,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridTransport.Margin = New System.Windows.Forms.Padding(4)
         Me.GridTransport.Name = "GridTransport"
         Me.GridTransport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountTransport, Me.GSubAccountTransport, Me.CAccountTransport, Me.CCurryTransport, Me.CAmountIDRTranspsort, Me.CDateTransport, Me.CPayTypeTransport})
-        Me.GridTransport.Size = New System.Drawing.Size(1461, 147)
+        Me.GridTransport.Size = New System.Drawing.Size(1461, 186)
         Me.GridTransport.TabIndex = 7
         Me.GridTransport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTransport})
         '
@@ -992,7 +1018,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridHotel.Margin = New System.Windows.Forms.Padding(4)
         Me.GridHotel.Name = "GridHotel"
         Me.GridHotel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPayTypeHotel})
-        Me.GridHotel.Size = New System.Drawing.Size(1461, 147)
+        Me.GridHotel.Size = New System.Drawing.Size(1461, 186)
         Me.GridHotel.TabIndex = 7
         Me.GridHotel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewHotel})
         '
@@ -1155,13 +1181,13 @@ Partial Class FrmTravelSettleDetail
         Me.GridEntertain.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEntertain.Name = "GridEntertain"
         Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountEntertain, Me.GSubAccountEntertain, Me.CAccountEntertain, Me.CCurryEntertain, Me.CAmountIDREntertain, Me.CDateEntertain, Me.CEntertainIDEntertain, Me.CPayTypeEntertain})
-        Me.GridEntertain.Size = New System.Drawing.Size(1461, 147)
+        Me.GridEntertain.Size = New System.Drawing.Size(1461, 186)
         Me.GridEntertain.TabIndex = 7
         Me.GridEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEntertain})
         '
         'GridViewEntertain
         '
-        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDEntertain, Me.GridColumn22, Me.GridColumn23, Me.DateEntertain, Me.EntertainIDEntertain, Me.GridColumn24, Me.GridColumn26, Me.GridColumn25, Me.GridColumn28, Me.PayTypeEntertain, Me.GridColumn27, Me.GridColumn63, Me.GridColumn32})
+        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDEntertain, Me.AccountIDEntertain, Me.SubAccountEntertain, Me.DateEntertain, Me.EntertainIDEntertain, Me.DescriptionEntertain, Me.CurryIDEntertain, Me.AmountEntertain, Me.AmountIDREntertain, Me.PayTypeEntertain, Me.CreditCardIDEntertain, Me.CreditCardNumberEntertain, Me.AccountNameEntertain})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
         Me.GridViewEntertain.GridControl = Me.GridEntertain
@@ -1176,17 +1202,17 @@ Partial Class FrmTravelSettleDetail
         Me.IDEntertain.Name = "IDEntertain"
         Me.IDEntertain.Width = 100
         '
-        'GridColumn22
+        'AccountIDEntertain
         '
-        Me.GridColumn22.Caption = "Account"
-        Me.GridColumn22.ColumnEdit = Me.CAccountEntertain
-        Me.GridColumn22.FieldName = "AccountID"
-        Me.GridColumn22.MinWidth = 27
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.OptionsColumn.FixedWidth = True
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 0
-        Me.GridColumn22.Width = 140
+        Me.AccountIDEntertain.Caption = "Account"
+        Me.AccountIDEntertain.ColumnEdit = Me.CAccountEntertain
+        Me.AccountIDEntertain.FieldName = "AccountID"
+        Me.AccountIDEntertain.MinWidth = 27
+        Me.AccountIDEntertain.Name = "AccountIDEntertain"
+        Me.AccountIDEntertain.OptionsColumn.FixedWidth = True
+        Me.AccountIDEntertain.Visible = True
+        Me.AccountIDEntertain.VisibleIndex = 0
+        Me.AccountIDEntertain.Width = 140
         '
         'CAccountEntertain
         '
@@ -1196,15 +1222,15 @@ Partial Class FrmTravelSettleDetail
         Me.CAccountEntertain.Name = "CAccountEntertain"
         Me.CAccountEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'GridColumn23
+        'SubAccountEntertain
         '
-        Me.GridColumn23.Caption = "SubAccount"
-        Me.GridColumn23.ColumnEdit = Me.GSubAccountEntertain
-        Me.GridColumn23.FieldName = "SubAccount"
-        Me.GridColumn23.MinWidth = 27
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.OptionsColumn.FixedWidth = True
-        Me.GridColumn23.Width = 133
+        Me.SubAccountEntertain.Caption = "SubAccount"
+        Me.SubAccountEntertain.ColumnEdit = Me.GSubAccountEntertain
+        Me.SubAccountEntertain.FieldName = "SubAccount"
+        Me.SubAccountEntertain.MinWidth = 27
+        Me.SubAccountEntertain.Name = "SubAccountEntertain"
+        Me.SubAccountEntertain.OptionsColumn.FixedWidth = True
+        Me.SubAccountEntertain.Width = 133
         '
         'GSubAccountEntertain
         '
@@ -1258,28 +1284,28 @@ Partial Class FrmTravelSettleDetail
         Me.CEntertainIDEntertain.Name = "CEntertainIDEntertain"
         Me.CEntertainIDEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'GridColumn24
+        'DescriptionEntertain
         '
-        Me.GridColumn24.Caption = "Description"
-        Me.GridColumn24.FieldName = "Description"
-        Me.GridColumn24.MinWidth = 27
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 3
-        Me.GridColumn24.Width = 471
+        Me.DescriptionEntertain.Caption = "Description"
+        Me.DescriptionEntertain.FieldName = "Description"
+        Me.DescriptionEntertain.MinWidth = 27
+        Me.DescriptionEntertain.Name = "DescriptionEntertain"
+        Me.DescriptionEntertain.Visible = True
+        Me.DescriptionEntertain.VisibleIndex = 3
+        Me.DescriptionEntertain.Width = 471
         '
-        'GridColumn26
+        'CurryIDEntertain
         '
-        Me.GridColumn26.Caption = "Curry ID"
-        Me.GridColumn26.ColumnEdit = Me.CCurryEntertain
-        Me.GridColumn26.FieldName = "CurryID"
-        Me.GridColumn26.MinWidth = 27
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.OptionsColumn.AllowEdit = False
-        Me.GridColumn26.OptionsColumn.FixedWidth = True
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 4
-        Me.GridColumn26.Width = 110
+        Me.CurryIDEntertain.Caption = "Curry ID"
+        Me.CurryIDEntertain.ColumnEdit = Me.CCurryEntertain
+        Me.CurryIDEntertain.FieldName = "CurryID"
+        Me.CurryIDEntertain.MinWidth = 27
+        Me.CurryIDEntertain.Name = "CurryIDEntertain"
+        Me.CurryIDEntertain.OptionsColumn.AllowEdit = False
+        Me.CurryIDEntertain.OptionsColumn.FixedWidth = True
+        Me.CurryIDEntertain.Visible = True
+        Me.CurryIDEntertain.VisibleIndex = 4
+        Me.CurryIDEntertain.Width = 110
         '
         'CCurryEntertain
         '
@@ -1289,20 +1315,20 @@ Partial Class FrmTravelSettleDetail
         Me.CCurryEntertain.Name = "CCurryEntertain"
         Me.CCurryEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'GridColumn25
+        'AmountEntertain
         '
-        Me.GridColumn25.Caption = "Amount"
-        Me.GridColumn25.ColumnEdit = Me.CAmountEntertain
-        Me.GridColumn25.DisplayFormat.FormatString = "n2"
-        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn25.FieldName = "Amount"
-        Me.GridColumn25.MinWidth = 27
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.OptionsColumn.AllowEdit = False
-        Me.GridColumn25.OptionsColumn.FixedWidth = True
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 5
-        Me.GridColumn25.Width = 140
+        Me.AmountEntertain.Caption = "Amount"
+        Me.AmountEntertain.ColumnEdit = Me.CAmountEntertain
+        Me.AmountEntertain.DisplayFormat.FormatString = "n2"
+        Me.AmountEntertain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AmountEntertain.FieldName = "Amount"
+        Me.AmountEntertain.MinWidth = 27
+        Me.AmountEntertain.Name = "AmountEntertain"
+        Me.AmountEntertain.OptionsColumn.AllowEdit = False
+        Me.AmountEntertain.OptionsColumn.FixedWidth = True
+        Me.AmountEntertain.Visible = True
+        Me.AmountEntertain.VisibleIndex = 5
+        Me.AmountEntertain.Width = 140
         '
         'CAmountEntertain
         '
@@ -1310,21 +1336,21 @@ Partial Class FrmTravelSettleDetail
         Me.CAmountEntertain.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CAmountEntertain.Name = "CAmountEntertain"
         '
-        'GridColumn28
+        'AmountIDREntertain
         '
-        Me.GridColumn28.Caption = "IDR Amount"
-        Me.GridColumn28.ColumnEdit = Me.CAmountIDREntertain
-        Me.GridColumn28.DisplayFormat.FormatString = "n2"
-        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn28.FieldName = "AmountIDR"
-        Me.GridColumn28.MinWidth = 27
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.OptionsColumn.AllowEdit = False
-        Me.GridColumn28.OptionsColumn.FixedWidth = True
-        Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDR", "{0:#,##0.#0}")})
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 6
-        Me.GridColumn28.Width = 140
+        Me.AmountIDREntertain.Caption = "IDR Amount"
+        Me.AmountIDREntertain.ColumnEdit = Me.CAmountIDREntertain
+        Me.AmountIDREntertain.DisplayFormat.FormatString = "n2"
+        Me.AmountIDREntertain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AmountIDREntertain.FieldName = "AmountIDR"
+        Me.AmountIDREntertain.MinWidth = 27
+        Me.AmountIDREntertain.Name = "AmountIDREntertain"
+        Me.AmountIDREntertain.OptionsColumn.AllowEdit = False
+        Me.AmountIDREntertain.OptionsColumn.FixedWidth = True
+        Me.AmountIDREntertain.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDR", "{0:#,##0.#0}")})
+        Me.AmountIDREntertain.Visible = True
+        Me.AmountIDREntertain.VisibleIndex = 6
+        Me.AmountIDREntertain.Width = 140
         '
         'CAmountIDREntertain
         '
@@ -1353,31 +1379,31 @@ Partial Class FrmTravelSettleDetail
         Me.CPayTypeEntertain.Name = "CPayTypeEntertain"
         Me.CPayTypeEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'GridColumn27
+        'CreditCardIDEntertain
         '
-        Me.GridColumn27.Caption = "Credit Card ID"
-        Me.GridColumn27.FieldName = "CreditCardID"
-        Me.GridColumn27.MinWidth = 25
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Width = 255
+        Me.CreditCardIDEntertain.Caption = "Credit Card ID"
+        Me.CreditCardIDEntertain.FieldName = "CreditCardID"
+        Me.CreditCardIDEntertain.MinWidth = 25
+        Me.CreditCardIDEntertain.Name = "CreditCardIDEntertain"
+        Me.CreditCardIDEntertain.Width = 255
         '
-        'GridColumn63
+        'CreditCardNumberEntertain
         '
-        Me.GridColumn63.Caption = "Credit Card Number"
-        Me.GridColumn63.FieldName = "CreditCardNumber"
-        Me.GridColumn63.MinWidth = 25
-        Me.GridColumn63.Name = "GridColumn63"
-        Me.GridColumn63.Width = 94
+        Me.CreditCardNumberEntertain.Caption = "Credit Card Number"
+        Me.CreditCardNumberEntertain.FieldName = "CreditCardNumber"
+        Me.CreditCardNumberEntertain.MinWidth = 25
+        Me.CreditCardNumberEntertain.Name = "CreditCardNumberEntertain"
+        Me.CreditCardNumberEntertain.Width = 94
         '
-        'GridColumn32
+        'AccountNameEntertain
         '
-        Me.GridColumn32.Caption = "Account Name"
-        Me.GridColumn32.FieldName = "AccountName"
-        Me.GridColumn32.MinWidth = 25
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.OptionsColumn.AllowEdit = False
-        Me.GridColumn32.OptionsColumn.FixedWidth = True
-        Me.GridColumn32.Width = 220
+        Me.AccountNameEntertain.Caption = "Account Name"
+        Me.AccountNameEntertain.FieldName = "AccountName"
+        Me.AccountNameEntertain.MinWidth = 25
+        Me.AccountNameEntertain.Name = "AccountNameEntertain"
+        Me.AccountNameEntertain.OptionsColumn.AllowEdit = False
+        Me.AccountNameEntertain.OptionsColumn.FixedWidth = True
+        Me.AccountNameEntertain.Width = 220
         '
         'GridOther
         '
@@ -1390,7 +1416,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridOther.Margin = New System.Windows.Forms.Padding(4)
         Me.GridOther.Name = "GridOther"
         Me.GridOther.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPayTypeOther})
-        Me.GridOther.Size = New System.Drawing.Size(1461, 147)
+        Me.GridOther.Size = New System.Drawing.Size(1461, 186)
         Me.GridOther.TabIndex = 8
         Me.GridOther.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewOther})
         '
@@ -1783,7 +1809,7 @@ Partial Class FrmTravelSettleDetail
         Me.XtraTabControl1.Location = New System.Drawing.Point(13, 151)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageTransport
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1516, 502)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1516, 541)
         Me.XtraTabControl1.TabIndex = 27
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageTransport, Me.TabPageHotel, Me.TabPageEntertain, Me.TabPageOthers, Me.TabPageVoucher})
         '
@@ -1793,7 +1819,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageTransport.Controls.Add(Me.GroupBox7)
         Me.TabPageTransport.Controls.Add(Me.GroupBox6)
         Me.TabPageTransport.Name = "TabPageTransport"
-        Me.TabPageTransport.Size = New System.Drawing.Size(1482, 495)
+        Me.TabPageTransport.Size = New System.Drawing.Size(1482, 534)
         Me.TabPageTransport.Text = "Transport"
         '
         'GroupBox8
@@ -1805,7 +1831,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox8.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox8.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(1473, 177)
+        Me.GroupBox8.Size = New System.Drawing.Size(1473, 216)
         Me.GroupBox8.TabIndex = 13
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Detail"
@@ -1816,7 +1842,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox7.Controls.Add(Me.GridBalanceTransport)
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox7.Location = New System.Drawing.Point(4, 392)
+        Me.GroupBox7.Location = New System.Drawing.Point(4, 431)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(1473, 100)
         Me.GroupBox7.TabIndex = 12
@@ -1898,7 +1924,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox6.Controls.Add(Me.GridSumTransport)
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox6.Location = New System.Drawing.Point(4, 186)
+        Me.GroupBox6.Location = New System.Drawing.Point(4, 225)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(1473, 200)
         Me.GroupBox6.TabIndex = 11
@@ -2031,7 +2057,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageHotel.Controls.Add(Me.GroupBox4)
         Me.TabPageHotel.Controls.Add(Me.GroupBox3)
         Me.TabPageHotel.Name = "TabPageHotel"
-        Me.TabPageHotel.Size = New System.Drawing.Size(1482, 495)
+        Me.TabPageHotel.Size = New System.Drawing.Size(1482, 534)
         Me.TabPageHotel.Text = "Hotel"
         '
         'GroupBox5
@@ -2043,7 +2069,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox5.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1473, 177)
+        Me.GroupBox5.Size = New System.Drawing.Size(1473, 216)
         Me.GroupBox5.TabIndex = 13
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Detail"
@@ -2054,7 +2080,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox4.Controls.Add(Me.GridBalanceHotel)
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox4.Location = New System.Drawing.Point(4, 392)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 431)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(1473, 100)
         Me.GroupBox4.TabIndex = 12
@@ -2135,7 +2161,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.Controls.Add(Me.GridSumHotel)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox3.Location = New System.Drawing.Point(4, 186)
+        Me.GroupBox3.Location = New System.Drawing.Point(4, 225)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(1473, 200)
         Me.GroupBox3.TabIndex = 11
@@ -2269,7 +2295,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageEntertain.Controls.Add(Me.GroupBox10)
         Me.TabPageEntertain.Controls.Add(Me.GroupBox9)
         Me.TabPageEntertain.Name = "TabPageEntertain"
-        Me.TabPageEntertain.Size = New System.Drawing.Size(1482, 495)
+        Me.TabPageEntertain.Size = New System.Drawing.Size(1482, 534)
         Me.TabPageEntertain.Text = "Entertainment"
         '
         'GroupBox11
@@ -2281,7 +2307,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox11.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox11.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(1473, 177)
+        Me.GroupBox11.Size = New System.Drawing.Size(1473, 216)
         Me.GroupBox11.TabIndex = 15
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Detail"
@@ -2292,7 +2318,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox10.Controls.Add(Me.GridSumEntertain)
         Me.GroupBox10.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox10.Location = New System.Drawing.Point(4, 186)
+        Me.GroupBox10.Location = New System.Drawing.Point(4, 225)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(1473, 200)
         Me.GroupBox10.TabIndex = 14
@@ -2423,7 +2449,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox9.Controls.Add(Me.GridBalanceEntertain)
         Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox9.Location = New System.Drawing.Point(4, 392)
+        Me.GroupBox9.Location = New System.Drawing.Point(4, 431)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Size = New System.Drawing.Size(1473, 100)
         Me.GroupBox9.TabIndex = 13
@@ -2504,7 +2530,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageOthers.Controls.Add(Me.GroupBox13)
         Me.TabPageOthers.Controls.Add(Me.GroupBox12)
         Me.TabPageOthers.Name = "TabPageOthers"
-        Me.TabPageOthers.Size = New System.Drawing.Size(1482, 495)
+        Me.TabPageOthers.Size = New System.Drawing.Size(1482, 534)
         Me.TabPageOthers.Text = "Others"
         '
         'GroupBox14
@@ -2516,7 +2542,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox14.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(1473, 177)
+        Me.GroupBox14.Size = New System.Drawing.Size(1473, 216)
         Me.GroupBox14.TabIndex = 16
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Detail"
@@ -2527,7 +2553,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox13.Controls.Add(Me.GridSumOthers)
         Me.GroupBox13.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox13.Location = New System.Drawing.Point(4, 186)
+        Me.GroupBox13.Location = New System.Drawing.Point(4, 225)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(1473, 200)
         Me.GroupBox13.TabIndex = 15
@@ -2658,7 +2684,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox12.Controls.Add(Me.GridBalanceOther)
         Me.GroupBox12.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox12.Location = New System.Drawing.Point(4, 392)
+        Me.GroupBox12.Location = New System.Drawing.Point(4, 431)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Size = New System.Drawing.Size(1473, 100)
         Me.GroupBox12.TabIndex = 14
@@ -2735,11 +2761,203 @@ Partial Class FrmTravelSettleDetail
         '
         'TabPageVoucher
         '
+        Me.TabPageVoucher.Controls.Add(Me.GroupBox17)
         Me.TabPageVoucher.Controls.Add(Me.GroupBox16)
         Me.TabPageVoucher.Controls.Add(Me.GroupBox15)
         Me.TabPageVoucher.Name = "TabPageVoucher"
-        Me.TabPageVoucher.Size = New System.Drawing.Size(1482, 495)
+        Me.TabPageVoucher.Size = New System.Drawing.Size(1482, 534)
         Me.TabPageVoucher.Text = "Voucher"
+        '
+        'GroupBox17
+        '
+        Me.GroupBox17.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox17.Controls.Add(Me.GridPocketAllowance)
+        Me.GroupBox17.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.GroupBox17.Location = New System.Drawing.Point(4, 223)
+        Me.GroupBox17.Name = "GroupBox17"
+        Me.GroupBox17.Size = New System.Drawing.Size(1473, 104)
+        Me.GroupBox17.TabIndex = 19
+        Me.GroupBox17.TabStop = False
+        Me.GroupBox17.Text = "Pocket Allowance"
+        '
+        'GridPocketAllowance
+        '
+        Me.GridPocketAllowance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridPocketAllowance.Location = New System.Drawing.Point(6, 22)
+        Me.GridPocketAllowance.MainView = Me.GridViewPocketAllowance
+        Me.GridPocketAllowance.Name = "GridPocketAllowance"
+        Me.GridPocketAllowance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDepartureDate, Me.CArrivalDate, Me.CAdvanceUSD, Me.CAdvanceYEN, Me.CAdvanceIDR})
+        Me.GridPocketAllowance.Size = New System.Drawing.Size(1461, 76)
+        Me.GridPocketAllowance.TabIndex = 0
+        Me.GridPocketAllowance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPocketAllowance})
+        '
+        'GridViewPocketAllowance
+        '
+        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.AdvanceYEN, Me.AdvanceIDR})
+        Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
+        Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
+        Me.GridViewPocketAllowance.OptionsView.ShowFooter = True
+        Me.GridViewPocketAllowance.OptionsView.ShowGroupPanel = False
+        '
+        'NoRequest
+        '
+        Me.NoRequest.Caption = "No Request"
+        Me.NoRequest.FieldName = "NoRequest"
+        Me.NoRequest.MinWidth = 25
+        Me.NoRequest.Name = "NoRequest"
+        Me.NoRequest.OptionsColumn.AllowEdit = False
+        Me.NoRequest.OptionsColumn.FixedWidth = True
+        Me.NoRequest.Visible = True
+        Me.NoRequest.VisibleIndex = 0
+        Me.NoRequest.Width = 180
+        '
+        'Nama
+        '
+        Me.Nama.Caption = "Nama"
+        Me.Nama.FieldName = "Nama"
+        Me.Nama.MinWidth = 25
+        Me.Nama.Name = "Nama"
+        Me.Nama.OptionsColumn.AllowEdit = False
+        Me.Nama.Visible = True
+        Me.Nama.VisibleIndex = 1
+        Me.Nama.Width = 139
+        '
+        'DepartureDate
+        '
+        Me.DepartureDate.Caption = "Departure Date"
+        Me.DepartureDate.ColumnEdit = Me.CDepartureDate
+        Me.DepartureDate.FieldName = "DepartureDate"
+        Me.DepartureDate.MinWidth = 25
+        Me.DepartureDate.Name = "DepartureDate"
+        Me.DepartureDate.OptionsColumn.FixedWidth = True
+        Me.DepartureDate.Visible = True
+        Me.DepartureDate.VisibleIndex = 2
+        Me.DepartureDate.Width = 150
+        '
+        'CDepartureDate
+        '
+        Me.CDepartureDate.AutoHeight = False
+        Me.CDepartureDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CDepartureDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CDepartureDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.CDepartureDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CDepartureDate.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.CDepartureDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CDepartureDate.Mask.EditMask = "dd-MM-yyyy"
+        Me.CDepartureDate.Name = "CDepartureDate"
+        '
+        'ArrivalDate
+        '
+        Me.ArrivalDate.Caption = "Arrival Date"
+        Me.ArrivalDate.ColumnEdit = Me.CArrivalDate
+        Me.ArrivalDate.FieldName = "ArrivalDate"
+        Me.ArrivalDate.MinWidth = 25
+        Me.ArrivalDate.Name = "ArrivalDate"
+        Me.ArrivalDate.OptionsColumn.FixedWidth = True
+        Me.ArrivalDate.Visible = True
+        Me.ArrivalDate.VisibleIndex = 3
+        Me.ArrivalDate.Width = 150
+        '
+        'CArrivalDate
+        '
+        Me.CArrivalDate.AutoHeight = False
+        Me.CArrivalDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CArrivalDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CArrivalDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.CArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CArrivalDate.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.CArrivalDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CArrivalDate.Mask.EditMask = "dd-MM-yyyy"
+        Me.CArrivalDate.Name = "CArrivalDate"
+        '
+        'Days
+        '
+        Me.Days.Caption = "Days"
+        Me.Days.FieldName = "Days"
+        Me.Days.MinWidth = 25
+        Me.Days.Name = "Days"
+        Me.Days.OptionsColumn.AllowEdit = False
+        Me.Days.OptionsColumn.FixedWidth = True
+        Me.Days.Visible = True
+        Me.Days.VisibleIndex = 4
+        Me.Days.Width = 70
+        '
+        'AdvanceUSD
+        '
+        Me.AdvanceUSD.Caption = "Advance USD"
+        Me.AdvanceUSD.ColumnEdit = Me.CAdvanceUSD
+        Me.AdvanceUSD.FieldName = "AdvanceUSD"
+        Me.AdvanceUSD.MinWidth = 25
+        Me.AdvanceUSD.Name = "AdvanceUSD"
+        Me.AdvanceUSD.OptionsColumn.FixedWidth = True
+        Me.AdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
+        Me.AdvanceUSD.Visible = True
+        Me.AdvanceUSD.VisibleIndex = 5
+        Me.AdvanceUSD.Width = 250
+        '
+        'CAdvanceUSD
+        '
+        Me.CAdvanceUSD.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CAdvanceUSD.AutoHeight = False
+        Me.CAdvanceUSD.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceUSD.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceUSD.EditFormat.FormatString = "n2"
+        Me.CAdvanceUSD.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceUSD.Mask.EditMask = "n2"
+        Me.CAdvanceUSD.Name = "CAdvanceUSD"
+        '
+        'AdvanceYEN
+        '
+        Me.AdvanceYEN.Caption = "Advance YEN"
+        Me.AdvanceYEN.ColumnEdit = Me.CAdvanceYEN
+        Me.AdvanceYEN.FieldName = "AdvanceYEN"
+        Me.AdvanceYEN.MinWidth = 25
+        Me.AdvanceYEN.Name = "AdvanceYEN"
+        Me.AdvanceYEN.OptionsColumn.FixedWidth = True
+        Me.AdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
+        Me.AdvanceYEN.Visible = True
+        Me.AdvanceYEN.VisibleIndex = 6
+        Me.AdvanceYEN.Width = 250
+        '
+        'CAdvanceYEN
+        '
+        Me.CAdvanceYEN.AutoHeight = False
+        Me.CAdvanceYEN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceYEN.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceYEN.EditFormat.FormatString = "n2"
+        Me.CAdvanceYEN.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceYEN.Mask.EditMask = "n2"
+        Me.CAdvanceYEN.Name = "CAdvanceYEN"
+        '
+        'AdvanceIDR
+        '
+        Me.AdvanceIDR.Caption = "Advance IDR"
+        Me.AdvanceIDR.ColumnEdit = Me.CAdvanceIDR
+        Me.AdvanceIDR.FieldName = "AdvanceIDR"
+        Me.AdvanceIDR.MinWidth = 25
+        Me.AdvanceIDR.Name = "AdvanceIDR"
+        Me.AdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.AdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
+        Me.AdvanceIDR.Visible = True
+        Me.AdvanceIDR.VisibleIndex = 7
+        Me.AdvanceIDR.Width = 250
+        '
+        'CAdvanceIDR
+        '
+        Me.CAdvanceIDR.AutoHeight = False
+        Me.CAdvanceIDR.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceIDR.EditFormat.FormatString = "n2"
+        Me.CAdvanceIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceIDR.Mask.EditMask = "n2"
+        Me.CAdvanceIDR.Name = "CAdvanceIDR"
         '
         'GroupBox16
         '
@@ -2749,7 +2967,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox16.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox16.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(1473, 202)
+        Me.GroupBox16.Size = New System.Drawing.Size(1473, 214)
         Me.GroupBox16.TabIndex = 18
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Summary"
@@ -2758,10 +2976,10 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridSumBalance.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridSumBalance.Location = New System.Drawing.Point(6, 23)
+        Me.GridSumBalance.Location = New System.Drawing.Point(6, 22)
         Me.GridSumBalance.MainView = Me.GridViewSumBalance
         Me.GridSumBalance.Name = "GridSumBalance"
-        Me.GridSumBalance.Size = New System.Drawing.Size(1461, 173)
+        Me.GridSumBalance.Size = New System.Drawing.Size(1461, 186)
         Me.GridSumBalance.TabIndex = 10
         Me.GridSumBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumBalance})
         '
@@ -2874,14 +3092,13 @@ Partial Class FrmTravelSettleDetail
         '
         'GroupBox15
         '
-        Me.GroupBox15.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox15.Controls.Add(Me.GridBalance)
         Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox15.Location = New System.Drawing.Point(4, 211)
+        Me.GroupBox15.Location = New System.Drawing.Point(4, 333)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(1473, 281)
+        Me.GroupBox15.Size = New System.Drawing.Size(1473, 198)
         Me.GroupBox15.TabIndex = 17
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Voucher"
@@ -2891,11 +3108,11 @@ Partial Class FrmTravelSettleDetail
         Me.GridBalance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridBalance.Location = New System.Drawing.Point(6, 23)
+        Me.GridBalance.Location = New System.Drawing.Point(6, 22)
         Me.GridBalance.MainView = Me.GridViewBalance
         Me.GridBalance.Name = "GridBalance"
         Me.GridBalance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CReturnBalance})
-        Me.GridBalance.Size = New System.Drawing.Size(1461, 252)
+        Me.GridBalance.Size = New System.Drawing.Size(1461, 170)
         Me.GridBalance.TabIndex = 0
         Me.GridBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewBalance})
         '
@@ -3039,7 +3256,7 @@ Partial Class FrmTravelSettleDetail
         'FrmTravelSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1924, 661)
+        Me.ClientSize = New System.Drawing.Size(1924, 700)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTravelType)
         Me.Controls.Add(Me.XtraTabControl1)
@@ -3206,6 +3423,16 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalanceOther, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewBalanceOther, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageVoucher.ResumeLayout(False)
+        Me.GroupBox17.ResumeLayout(False)
+        CType(Me.GridPocketAllowance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewPocketAllowance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox16.ResumeLayout(False)
         CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3251,16 +3478,16 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridEntertain As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewEntertain As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AccountIDEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CAccountEntertain As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SubAccountEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSubAccountEntertain As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DescriptionEntertain As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AmountEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CAmountEntertain As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CurryIDEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CCurryEntertain As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
-    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AmountIDREntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CAmountIDREntertain As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents GridOther As DevExpress.XtraGrid.GridControl
@@ -3352,8 +3579,8 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CreditCardIDEntertain As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AccountNameEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label4 As Label
@@ -3428,7 +3655,7 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents BalanceIDROther As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CreditCardNumberEntertain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
@@ -3456,4 +3683,20 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn74 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn75 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupBox17 As GroupBox
+    Friend WithEvents GridPocketAllowance As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewPocketAllowance As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents NoRequest As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Nama As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Days As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CDepartureDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents CArrivalDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

@@ -67,7 +67,11 @@ Public Class Frm_CR_UserCreateDetail
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
 
 
-    ''Dim OlSecurityManager As AddinExpress.Outlook.SecurityManager
+    'Dim OlSecurityManager As AddinExpress.Outlook.SecurityManager
+
+
+
+
 
     Public Sub New()
 

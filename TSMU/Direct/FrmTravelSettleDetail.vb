@@ -29,7 +29,7 @@ Public Class FrmTravelSettleDetail
     Dim dtEntertainDetail As New DataTable
     Dim dtEntertainRelasi As New DataTable
 
-    Dim Rows As New ArrayList()
+    Dim dtAllowance As New DataTable
     Dim row As Integer
     Dim flag As Integer
     Dim TabPage As String
@@ -104,14 +104,14 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub FrmTravelSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
     End Sub
 
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
                 cls_TravelSett.TravelSettleID = fs_Code
                 cls_TravelSett.GetTravelSettHeaderByID()
                 If ls_Error <> "" Then
@@ -154,6 +154,80 @@ Public Class FrmTravelSettleDetail
 
         Call CallFrm(id2, id, row)
         flag = 1
+    End Sub
+
+    Private Sub LoadTxtBox()
+        Try
+            If fs_Code <> "" Then
+                With cls_TravelSett
+                    txtTravelSettID.Text = .TravelSettleID
+                    TxtTgl.EditValue = .DateHeader
+                    TxtDep.Text = .DeptID
+                    TxtNama.Text = .Nama
+                    txtPurpose.Text = .Purpose
+                    txtTravelType.Text = .TravelType
+                    TxtDepDate.EditValue = .DepartureDate
+                    TxtArrDate.EditValue = .ArrivalDate
+                    txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
+                    TxtTerm.Text = .Term
+                    TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatDecimal)
+                    TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatDecimal)
+                    TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatDecimal)
+                    ReturnIDR = .TotalReturnIDR
+                    ReturnUSD = .TotalReturnUSD
+                    ReturnYEN = .TotalReturnYEN
+                    RateSalomonUSD = .RateSalomonUSD
+                    RateSalomonYEN = .RateYEN
+                    txtRateUSD.Text = Format(.RateUSD, gs_FormatDecimal)
+                    txtRateYEN.Text = Format(.RateYEN, gs_FormatDecimal)
+                End With
+                cls_TravelSettDetail.TravelSettleID = txtTravelSettID.Text
+                dtAllowance = cls_TravelSettDetail.GetTravelSettDetailByID
+            Else
+                Dim listNama = New ArrayList()
+                Dim listRequest = New ArrayList()
+                Dim advanceIDR As Double
+                Dim advanceUSD As Double
+                Dim advanceYEN As Double
+
+                Dim Rows As New ArrayList()
+                For i As Integer = 0 To gv_Request.SelectedRowsCount() - 1
+                    If (gv_Request.GetSelectedRows()(i) >= 0) Then
+                        Rows.Add(gv_Request.GetDataRow(gv_Request.GetSelectedRows()(i)))
+                    End If
+                Next
+
+                For i = 0 To Rows.Count - 1
+                    Dim Row As DataRow = CType(Rows(i), DataRow)
+                    listRequest.Add("'" + Row("NoRequest") + "'")
+                    TxtDep.Text = Row("DeptID")
+                    listNama.Add(Row("Nama"))
+                    txtPurpose.Text = Row("Purpose")
+                    txtTravelType.Text = Row("TravelType")
+                    TxtDepDate.EditValue = Row("DepartureDate")
+                    TxtArrDate.EditValue = Row("ArrivalDate")
+                    TxtTerm.Text = Row("Term")
+                    advanceIDR = advanceIDR + Row("AdvanceIDR")
+                    advanceUSD = advanceUSD + Row("AdvanceUSD")
+                    advanceYEN = advanceYEN + Row("AdvanceYEN")
+                Next
+                TxtNama.Text = String.Join(", ", listNama.ToArray)
+                TxtTgl.EditValue = DateTime.Today
+                TxtTotalAdvanceIDR.Text = Format(advanceIDR, gs_FormatDecimal)
+                TxtTotalAdvanceUSD.Text = Format(advanceUSD, gs_FormatDecimal)
+                TxtTotalAdvanceYEN.Text = Format(advanceYEN, gs_FormatDecimal)
+                RateSalomonUSD = cls_TravelSett.GetRate("USD", TxtTgl.EditValue)
+                RateSalomonYEN = cls_TravelSett.GetRate("JPY", TxtTgl.EditValue)
+                txtRateUSD.Text = Format(RateSalomonUSD, gs_FormatDecimal)
+                txtRateYEN.Text = Format(RateSalomonYEN, gs_FormatDecimal)
+                txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
+
+                Dim inNoRequest As String = String.Join(",", listRequest.ToArray)
+                dtAllowance = cls_TravelSett.GetRequestAllowance(inNoRequest)
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
     Public Sub LoadGridDetail()
@@ -218,6 +292,8 @@ Public Class FrmTravelSettleDetail
                     dtGridOther = dtGridKosong.Copy
                     GridOther.DataSource = dtGridOther
                 End If
+
+                GridPocketAllowance.DataSource = dtAllowance
             Else
                 dtGridTransport = dtGridKosong.Copy
                 GridTransport.DataSource = dtGridTransport
@@ -230,6 +306,8 @@ Public Class FrmTravelSettleDetail
 
                 dtGridOther = dtGridKosong.Copy
                 GridOther.DataSource = dtGridOther
+
+                GridPocketAllowance.DataSource = dtAllowance
             End If
 
             CreateTable()
@@ -244,79 +322,6 @@ Public Class FrmTravelSettleDetail
 
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub LoadTxtBox()
-        Try
-            If fs_Code <> "" Then
-                With cls_TravelSett
-                    txtTravelSettID.Text = .TravelSettleID
-                    TxtTgl.EditValue = .DateHeader
-                    TxtDep.Text = .DeptID
-                    TxtNama.Text = .Nama
-                    txtPurpose.Text = .Purpose
-                    txtTravelType.Text = .TravelType
-                    TxtDepDate.EditValue = .DepartureDate
-                    TxtArrDate.EditValue = .ArrivalDate
-                    txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
-                    TxtTerm.Text = .Term
-                    TxtTotalAdvanceIDR.Text = Format(.TotalAdvanceIDR, gs_FormatDecimal)
-                    TxtTotalAdvanceYEN.Text = Format(.TotalAdvanceYEN, gs_FormatDecimal)
-                    TxtTotalAdvanceUSD.Text = Format(.TotalAdvanceUSD, gs_FormatDecimal)
-                    ReturnIDR = .TotalReturnIDR
-                    ReturnUSD = .TotalReturnUSD
-                    ReturnYEN = .TotalReturnYEN
-                    RateSalomonUSD = .RateSalomonUSD
-                    RateSalomonYEN = .RateYEN
-                    txtRateUSD.Text = Format(.RateUSD, gs_FormatDecimal)
-                    txtRateYEN.Text = Format(.RateYEN, gs_FormatDecimal)
-                End With
-                dtGrid = New DataTable
-                cls_TravelSettDetail.TravelSettleID = txtTravelSettID.Text
-                dtGrid = cls_TravelSettDetail.GetTravelSettDetailByID
-                For Each row As DataRow In dtGrid.Rows
-                    Rows.Add(row)
-                Next
-            Else
-                Dim i As Integer
-                For i = 0 To gv_Request.SelectedRowsCount() - 1
-                    If (gv_Request.GetSelectedRows()(i) >= 0) Then
-                        Rows.Add(gv_Request.GetDataRow(gv_Request.GetSelectedRows()(i)))
-                    End If
-                Next
-
-                Dim listNama = New ArrayList()
-                Dim advanceIDR As Double
-                Dim advanceUSD As Double
-                Dim advanceYEN As Double
-
-                For i = 0 To Rows.Count - 1
-                    Dim Row As DataRow = CType(Rows(i), DataRow)
-                    TxtDep.Text = Row("DeptID")
-                    listNama.Add(Row("Nama"))
-                    txtPurpose.Text = Row("Purpose")
-                    txtTravelType.Text = Row("TravelType")
-                    TxtDepDate.EditValue = Row("DepartureDate")
-                    TxtArrDate.EditValue = Row("ArrivalDate")
-                    TxtTerm.Text = Row("Term")
-                    advanceIDR = advanceIDR + Row("AdvanceIDR")
-                    advanceUSD = advanceUSD + Row("AdvanceUSD")
-                    advanceYEN = advanceYEN + Row("AdvanceYEN")
-                Next
-                TxtNama.Text = String.Join(", ", listNama.ToArray)
-                TxtTgl.EditValue = DateTime.Today
-                TxtTotalAdvanceIDR.Text = Format(advanceIDR, gs_FormatDecimal)
-                TxtTotalAdvanceUSD.Text = Format(advanceUSD, gs_FormatDecimal)
-                TxtTotalAdvanceYEN.Text = Format(advanceYEN, gs_FormatDecimal)
-                RateSalomonUSD = cls_TravelSett.GetRate("USD", TxtTgl.EditValue)
-                RateSalomonYEN = cls_TravelSett.GetRate("JPY", TxtTgl.EditValue)
-                txtRateUSD.Text = Format(RateSalomonUSD, gs_FormatDecimal)
-                txtRateYEN.Text = Format(RateSalomonYEN, gs_FormatDecimal)
-                txtTotalDay.Text = DateDiff(DateInterval.Day, TxtDepDate.EditValue, TxtArrDate.EditValue) + 1
-            End If
-        Catch ex As Exception
-            Throw
         End Try
     End Sub
 
@@ -564,13 +569,24 @@ Public Class FrmTravelSettleDetail
 
         'Data settlement detail
         cls_TravelSett.ObjSettleDetail.Clear()
-        For i As Integer = 0 To Rows.Count - 1
-            Dim Row As DataRow = CType(Rows(i), DataRow)
+        For i As Integer = 0 To GridViewPocketAllowance.RowCount - 1
             cls_TravelSettDetail = New TravelSettleDetailModel
             With cls_TravelSettDetail
                 .TravelSettleID = txtTravelSettID.Text
-                .NoRequest = Row("NoRequest")
-                .Nama = Row("Nama")
+                .NoRequest = GridViewPocketAllowance.GetRowCellValue(i, "NoRequest")
+                .Nama = GridViewPocketAllowance.GetRowCellValue(i, "Nama")
+                If String.IsNullOrEmpty(IIf(GridViewPocketAllowance.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, "", GridViewPocketAllowance.GetRowCellValue(i, "DepartureDate"))) Then
+                    Err.Raise(ErrNumber, , "Departure Date tidak boleh kosong !")
+                End If
+                .DepartureDate = GridViewPocketAllowance.GetRowCellValue(i, "DepartureDate")
+                If String.IsNullOrEmpty(IIf(GridViewPocketAllowance.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value, "", GridViewPocketAllowance.GetRowCellValue(i, "ArrivalDate"))) Then
+                    Err.Raise(ErrNumber, , "Arrival Date tidak boleh kosong !")
+                End If
+                .ArrivalDate = GridViewPocketAllowance.GetRowCellValue(i, "ArrivalDate")
+                .Days = GridViewPocketAllowance.GetRowCellValue(i, "Days")
+                .AllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceUSD")
+                .AllowanceYEN = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceYEN")
+                .AllowanceIDR = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceIDR")
             End With
             cls_TravelSett.ObjSettleDetail.Add(cls_TravelSettDetail)
         Next
@@ -970,6 +986,80 @@ Public Class FrmTravelSettleDetail
         If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
             AddNewRow(GridViewOther, 7)
         End If
+    End Sub
+
+#End Region
+
+#Region "Event From Grid Pocket Allowance"
+    Private Sub CDepartureDate_EditValueChanged(sender As Object, e As EventArgs) Handles CDepartureDate.EditValueChanged
+        Dim _departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
+        Dim _arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
+        Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+
+        If departureDate > arrivalDate And arrivalDate <> Nothing Then
+            MessageBox.Show("Departure Date tidak boleh lebih besar dari Arrival Date", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1)
+            GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate", _departureDate)
+            departureDate = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
+        End If
+
+        Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
+    End Sub
+
+    Private Sub CArrivalDate_EditValueChanged(sender As Object, e As EventArgs) Handles CArrivalDate.EditValueChanged
+        Dim _departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
+        Dim _arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
+        Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+
+        If arrivalDate < departureDate Then
+            MessageBox.Show("Arrival Date tidak boleh lebih kecil dari Departure Date", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1)
+            GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate", _arrivalDate)
+            arrivalDate = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+        End If
+
+        Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
+    End Sub
+
+    Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CAdvanceYEN_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceYEN.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CAdvanceIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceIDR.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
     End Sub
 
 #End Region

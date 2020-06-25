@@ -9,6 +9,7 @@ Public Class FrmTravelTicket
     Dim dtGrid As DataTable
     Dim fc_Class As New TravelTicketModel
     Dim ff_Detail As FrmTravelTicketDetail
+    Dim ff_RequestDetail As FrmTravelRequestDetail
 
     Dim TabPage As String
     Dim dtTempStatus As New DataTable
@@ -24,6 +25,19 @@ Public Class FrmTravelTicket
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
+    End Sub
+
+    Private Sub CallFrmRequest(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If ff_RequestDetail IsNot Nothing AndAlso ff_RequestDetail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_RequestDetail.Close()
+        End If
+        ff_RequestDetail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, GridRequest)
+        ff_RequestDetail.MdiParent = FrmMain
+        ff_RequestDetail.StartPosition = FormStartPosition.CenterScreen
+        ff_RequestDetail.Show()
     End Sub
 
     Private Sub FrmTravelTicket_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -87,31 +101,31 @@ Public Class FrmTravelTicket
 
     Public Overrides Sub Proc_DeleteData()
         Dim NoVoucher As String = String.Empty
-
         Try
             Dim selectedRows() As Integer = GridViewTicket.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     NoVoucher = GridViewTicket.GetRowCellValue(rowHandle, "NoVoucher")
                 End If
+
+                'dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
+                'Dim ada As Integer
+                'ada = dt.Rows.Count()
+                'If ada > 0 Then
+                '    Err.Raise(ErrNumber, , "Travel ID " & ID & " dalam proses settlement !")
+                '    'MessageBox.Show("Data dalam proses settlement", "Warning",
+                '    '                MessageBoxButtons.OK,
+                '    '                MessageBoxIcon.Exclamation,
+                '    '                MessageBoxDefaultButton.Button1)
+                'Else
+
+                fc_Class.NoVoucher = NoVoucher
+                fc_Class.DeleteData()
+
+                tsBtn_refresh.PerformClick()
+                'End If
             Next rowHandle
 
-            'dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
-            'Dim ada As Integer
-            'ada = dt.Rows.Count()
-            'If ada > 0 Then
-            '    Err.Raise(ErrNumber, , "Travel ID " & ID & " dalam proses settlement !")
-            '    'MessageBox.Show("Data dalam proses settlement", "Warning",
-            '    '                MessageBoxButtons.OK,
-            '    '                MessageBoxIcon.Exclamation,
-            '    '                MessageBoxDefaultButton.Button1)
-            'Else
-
-            fc_Class.NoVoucher = NoVoucher
-            fc_Class.DeleteData()
-
-            tsBtn_refresh.PerformClick()
-            'End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -168,6 +182,26 @@ Public Class FrmTravelTicket
         Else
             dtTempStatus.Rows.Add(noRequest, status, statusTicket)
         End If
+    End Sub
+
+    Private Sub GridRequest_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
+        Try
+            Dim NoRequest = String.Empty
+            Dim selectedRows() As Integer = GridViewRequest.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoRequest = GridViewRequest.GetRowCellValue(rowHandle, "NoRequest")
+                End If
+            Next rowHandle
+
+            If GridViewRequest.GetSelectedRows.Length > 0 Then
+                Call CallFrmRequest(NoRequest,
+                         GridViewRequest.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
 End Class
