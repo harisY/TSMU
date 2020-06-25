@@ -51,10 +51,13 @@ Partial Class FrmTravelRequestDetail
         Me.GridViewAdvance = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CostType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Description = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Days_ = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.txtAdvanceIDR = New DevExpress.XtraEditors.TextEdit()
         Me.txtAdvanceUSD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -82,6 +85,9 @@ Partial Class FrmTravelRequestDetail
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,18 +359,18 @@ Partial Class FrmTravelRequestDetail
         Me.GridAdvance.Location = New System.Drawing.Point(6, 22)
         Me.GridAdvance.MainView = Me.GridViewAdvance
         Me.GridAdvance.Name = "GridAdvance"
+        Me.GridAdvance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAdvanceIDR, Me.CAdvanceUSD, Me.CAdvanceYEN})
         Me.GridAdvance.Size = New System.Drawing.Size(1490, 156)
         Me.GridAdvance.TabIndex = 23
         Me.GridAdvance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAdvance})
         '
         'GridViewAdvance
         '
-        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridViewAdvance.ActiveFilterEnabled = False
+        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.Days_, Me.AdvanceUSD, Me.AdvanceYEN, Me.AdvanceIDR})
         Me.GridViewAdvance.GridControl = Me.GridAdvance
         Me.GridViewAdvance.Name = "GridViewAdvance"
-        Me.GridViewAdvance.OptionsBehavior.Editable = False
         Me.GridViewAdvance.OptionsBehavior.KeepGroupExpandedOnSorting = False
-        Me.GridViewAdvance.OptionsBehavior.ReadOnly = True
         Me.GridViewAdvance.OptionsView.ShowFooter = True
         Me.GridViewAdvance.OptionsView.ShowGroupPanel = False
         '
@@ -374,6 +380,7 @@ Partial Class FrmTravelRequestDetail
         Me.CostType.FieldName = "CostType"
         Me.CostType.MinWidth = 25
         Me.CostType.Name = "CostType"
+        Me.CostType.OptionsColumn.AllowEdit = False
         Me.CostType.Width = 94
         '
         'Description
@@ -382,79 +389,126 @@ Partial Class FrmTravelRequestDetail
         Me.Description.FieldName = "Description"
         Me.Description.MinWidth = 25
         Me.Description.Name = "Description"
+        Me.Description.OptionsColumn.AllowEdit = False
         Me.Description.Visible = True
         Me.Description.VisibleIndex = 0
         Me.Description.Width = 94
         '
-        'GridColumn4
+        'Days_
         '
-        Me.GridColumn4.Caption = "Days"
-        Me.GridColumn4.FieldName = "Days"
-        Me.GridColumn4.MinWidth = 25
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.FixedWidth = True
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 100
+        Me.Days_.Caption = "Days"
+        Me.Days_.FieldName = "Days"
+        Me.Days_.MinWidth = 25
+        Me.Days_.Name = "Days_"
+        Me.Days_.OptionsColumn.AllowEdit = False
+        Me.Days_.OptionsColumn.FixedWidth = True
+        Me.Days_.Visible = True
+        Me.Days_.VisibleIndex = 1
+        Me.Days_.Width = 100
         '
-        'GridColumn1
+        'AdvanceUSD
         '
-        Me.GridColumn1.Caption = "Advance IDR"
-        Me.GridColumn1.DisplayFormat.FormatString = "n2"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "AdvanceIDR"
-        Me.GridColumn1.MinWidth = 25
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.FixedWidth = True
-        Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 200
+        Me.AdvanceUSD.Caption = "Advance USD"
+        Me.AdvanceUSD.ColumnEdit = Me.CAdvanceUSD
+        Me.AdvanceUSD.DisplayFormat.FormatString = "n2"
+        Me.AdvanceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AdvanceUSD.FieldName = "AdvanceUSD"
+        Me.AdvanceUSD.MinWidth = 25
+        Me.AdvanceUSD.Name = "AdvanceUSD"
+        Me.AdvanceUSD.OptionsColumn.AllowEdit = False
+        Me.AdvanceUSD.OptionsColumn.FixedWidth = True
+        Me.AdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
+        Me.AdvanceUSD.Visible = True
+        Me.AdvanceUSD.VisibleIndex = 2
+        Me.AdvanceUSD.Width = 200
         '
-        'GridColumn2
+        'CAdvanceUSD
         '
-        Me.GridColumn2.Caption = "Advance USD"
-        Me.GridColumn2.DisplayFormat.FormatString = "n2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "AdvanceUSD"
-        Me.GridColumn2.MinWidth = 25
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.FixedWidth = True
-        Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 200
+        Me.CAdvanceUSD.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CAdvanceUSD.AutoHeight = False
+        Me.CAdvanceUSD.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceUSD.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceUSD.EditFormat.FormatString = "n2"
+        Me.CAdvanceUSD.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceUSD.Mask.EditMask = "n2"
+        Me.CAdvanceUSD.Name = "CAdvanceUSD"
         '
-        'GridColumn3
+        'AdvanceYEN
         '
-        Me.GridColumn3.Caption = "Advance YEN"
-        Me.GridColumn3.DisplayFormat.FormatString = "n2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "AdvanceYEN"
-        Me.GridColumn3.MinWidth = 25
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.FixedWidth = True
-        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 200
+        Me.AdvanceYEN.Caption = "Advance YEN"
+        Me.AdvanceYEN.ColumnEdit = Me.CAdvanceYEN
+        Me.AdvanceYEN.DisplayFormat.FormatString = "n2"
+        Me.AdvanceYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AdvanceYEN.FieldName = "AdvanceYEN"
+        Me.AdvanceYEN.MinWidth = 25
+        Me.AdvanceYEN.Name = "AdvanceYEN"
+        Me.AdvanceYEN.OptionsColumn.AllowEdit = False
+        Me.AdvanceYEN.OptionsColumn.FixedWidth = True
+        Me.AdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
+        Me.AdvanceYEN.Visible = True
+        Me.AdvanceYEN.VisibleIndex = 3
+        Me.AdvanceYEN.Width = 200
+        '
+        'CAdvanceYEN
+        '
+        Me.CAdvanceYEN.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CAdvanceYEN.AutoHeight = False
+        Me.CAdvanceYEN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceYEN.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceYEN.EditFormat.FormatString = "n2"
+        Me.CAdvanceYEN.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceYEN.Mask.EditMask = "n2"
+        Me.CAdvanceYEN.Name = "CAdvanceYEN"
+        '
+        'AdvanceIDR
+        '
+        Me.AdvanceIDR.Caption = "Advance IDR"
+        Me.AdvanceIDR.ColumnEdit = Me.CAdvanceIDR
+        Me.AdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.AdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.AdvanceIDR.FieldName = "AdvanceIDR"
+        Me.AdvanceIDR.MinWidth = 25
+        Me.AdvanceIDR.Name = "AdvanceIDR"
+        Me.AdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.AdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.AdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
+        Me.AdvanceIDR.Visible = True
+        Me.AdvanceIDR.VisibleIndex = 4
+        Me.AdvanceIDR.Width = 200
+        '
+        'CAdvanceIDR
+        '
+        Me.CAdvanceIDR.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CAdvanceIDR.AutoHeight = False
+        Me.CAdvanceIDR.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.CAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceIDR.EditFormat.FormatString = "n2"
+        Me.CAdvanceIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CAdvanceIDR.Mask.EditMask = "n2"
+        Me.CAdvanceIDR.Name = "CAdvanceIDR"
         '
         'txtAdvanceIDR
         '
+        Me.txtAdvanceIDR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceIDR.EditValue = ""
-        Me.txtAdvanceIDR.Location = New System.Drawing.Point(74, 19)
+        Me.txtAdvanceIDR.Location = New System.Drawing.Point(592, 19)
+        Me.txtAdvanceIDR.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceIDR.Size = New System.Drawing.Size(190, 22)
+        Me.txtAdvanceIDR.Size = New System.Drawing.Size(10, 22)
         Me.txtAdvanceIDR.TabIndex = 7
         '
         'txtAdvanceUSD
         '
         Me.txtAdvanceUSD.EditValue = ""
-        Me.txtAdvanceUSD.Location = New System.Drawing.Point(331, 19)
+        Me.txtAdvanceUSD.Location = New System.Drawing.Point(74, 19)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
         Me.txtAdvanceUSD.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -466,38 +520,35 @@ Partial Class FrmTravelRequestDetail
         '
         Me.LabelControl7.Location = New System.Drawing.Point(21, 22)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(21, 16)
+        Me.LabelControl7.Size = New System.Drawing.Size(24, 16)
         Me.LabelControl7.TabIndex = 28
-        Me.LabelControl7.Text = "IDR"
+        Me.LabelControl7.Text = "USD"
         '
         'LabelControl9
         '
         Me.LabelControl9.Location = New System.Drawing.Point(286, 22)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(24, 16)
+        Me.LabelControl9.Size = New System.Drawing.Size(22, 16)
         Me.LabelControl9.TabIndex = 29
-        Me.LabelControl9.Text = "USD"
+        Me.LabelControl9.Text = "YEN"
         '
         'LabelControl10
         '
         Me.LabelControl10.Location = New System.Drawing.Point(550, 22)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(22, 16)
+        Me.LabelControl10.Size = New System.Drawing.Size(21, 16)
         Me.LabelControl10.TabIndex = 30
-        Me.LabelControl10.Text = "YEN"
+        Me.LabelControl10.Text = "IDR"
         '
         'txtAdvanceYEN
         '
-        Me.txtAdvanceYEN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceYEN.EditValue = ""
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(592, 19)
-        Me.txtAdvanceYEN.MaximumSize = New System.Drawing.Size(190, 0)
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(331, 19)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
         Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceYEN.Size = New System.Drawing.Size(10, 22)
+        Me.txtAdvanceYEN.Size = New System.Drawing.Size(190, 22)
         Me.txtAdvanceYEN.TabIndex = 9
         '
         'GroupBox1
@@ -608,6 +659,9 @@ Partial Class FrmTravelRequestDetail
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridAdvance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewAdvance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -644,16 +698,16 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents GridAdvance As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewAdvance As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Description As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceYEN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtAdvanceIDR As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtAdvanceUSD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtAdvanceYEN As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Days_ As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Visa As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupBox2 As GroupBox
@@ -664,4 +718,7 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents CostType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtDepartement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class
