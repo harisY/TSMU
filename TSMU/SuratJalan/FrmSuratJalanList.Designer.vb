@@ -47,6 +47,7 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,6 +74,7 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.ColNoRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.colCust = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,8 +87,8 @@ Partial Class FrmSuratJalanList
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCalcEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNoInvoice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNoInvioce = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -358,7 +360,7 @@ Partial Class FrmSuratJalanList
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn24, Me.GridColumn7, Me.GridColumn10, Me.GridColumn14, Me.GridColumn15, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn24, Me.GridColumn7, Me.GridColumn10, Me.GridColumn14, Me.GridColumn15, Me.GridColumn17, Me.GridColumn18, Me.ColNoInvoice, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
         Me.GridView2.DetailHeight = 458
         Me.GridView2.FixedLineWidth = 3
         Me.GridView2.GridControl = Me._Grid1
@@ -407,7 +409,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.VisibleIndex = 6
         Me.GridColumn4.Width = 84
         '
         'GridColumn5
@@ -450,6 +452,16 @@ Partial Class FrmSuratJalanList
         '
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "No Mobil"
+        Me.GridColumn24.FieldName = "NoMobil"
+        Me.GridColumn24.MinWidth = 25
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 10
+        Me.GridColumn24.Width = 94
         '
         'GridColumn7
         '
@@ -546,7 +558,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 13
+        Me.GridColumn19.VisibleIndex = 14
         Me.GridColumn19.Width = 100
         '
         'GridColumn20
@@ -557,7 +569,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 14
+        Me.GridColumn20.VisibleIndex = 15
         Me.GridColumn20.Width = 100
         '
         'GridColumn21
@@ -569,7 +581,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 15
+        Me.GridColumn21.VisibleIndex = 16
         Me.GridColumn21.Width = 100
         '
         'RepositoryItemCheckEdit3
@@ -585,7 +597,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 16
+        Me.GridColumn22.VisibleIndex = 17
         Me.GridColumn22.Width = 100
         '
         'RepositoryItemCalcEdit2
@@ -617,7 +629,7 @@ Partial Class FrmSuratJalanList
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNoSJ, Me.ColSO, Me.ColPOCust, Me.ColTglSJ, Me.ColTglTerima, Me.ColNoRec, Me.GridColumn23, Me.ColCheck, Me.colCust, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn16})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNoSJ, Me.ColSO, Me.ColPOCust, Me.ColTglSJ, Me.ColTglTerima, Me.ColNoRec, Me.GridColumn23, Me.ColCheck, Me.colCust, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.ColNoInvioce, Me.GridColumn13, Me.GridColumn16})
         Me.GridView1.DetailHeight = 458
         Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me._Grid
@@ -666,7 +678,7 @@ Partial Class FrmSuratJalanList
         Me.ColTglSJ.Name = "ColTglSJ"
         Me.ColTglSJ.OptionsColumn.AllowEdit = False
         Me.ColTglSJ.Visible = True
-        Me.ColTglSJ.VisibleIndex = 7
+        Me.ColTglSJ.VisibleIndex = 6
         Me.ColTglSJ.Width = 84
         '
         'ColTglTerima
@@ -706,6 +718,16 @@ Partial Class FrmSuratJalanList
         '
         Me.RepositoryItemTextEdit3.AutoHeight = False
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "No Mobil"
+        Me.GridColumn23.FieldName = "NoMobil"
+        Me.GridColumn23.MinWidth = 25
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.Width = 94
         '
         'ColCheck
         '
@@ -805,7 +827,7 @@ Partial Class FrmSuratJalanList
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 11
+        Me.GridColumn13.VisibleIndex = 13
         Me.GridColumn13.Width = 100
         '
         'GridColumn16
@@ -825,25 +847,25 @@ Partial Class FrmSuratJalanList
         Me.RepositoryItemCalcEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemCalcEdit1.Name = "RepositoryItemCalcEdit1"
         '
-        'GridColumn23
+        'ColNoInvoice
         '
-        Me.GridColumn23.Caption = "No Mobil"
-        Me.GridColumn23.FieldName = "NoMobil"
-        Me.GridColumn23.MinWidth = 25
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
-        Me.GridColumn23.Width = 94
+        Me.ColNoInvoice.Caption = "No Invoice"
+        Me.ColNoInvoice.FieldName = "No Invoice"
+        Me.ColNoInvoice.MinWidth = 25
+        Me.ColNoInvoice.Name = "ColNoInvoice"
+        Me.ColNoInvoice.Visible = True
+        Me.ColNoInvoice.VisibleIndex = 13
+        Me.ColNoInvoice.Width = 94
         '
-        'GridColumn24
+        'ColNoInvioce
         '
-        Me.GridColumn24.Caption = "No Mobil"
-        Me.GridColumn24.FieldName = "NoMobil"
-        Me.GridColumn24.MinWidth = 25
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 10
-        Me.GridColumn24.Width = 94
+        Me.ColNoInvioce.Caption = "No Invoice"
+        Me.ColNoInvioce.FieldName = "No Invoice"
+        Me.ColNoInvioce.MinWidth = 25
+        Me.ColNoInvioce.Name = "ColNoInvioce"
+        Me.ColNoInvioce.Visible = True
+        Me.ColNoInvioce.VisibleIndex = 11
+        Me.ColNoInvioce.Width = 94
         '
         'FrmSuratJalanList
         '
@@ -974,4 +996,6 @@ Partial Class FrmSuratJalanList
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColNoInvoice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColNoInvioce As DevExpress.XtraGrid.Columns.GridColumn
 End Class
