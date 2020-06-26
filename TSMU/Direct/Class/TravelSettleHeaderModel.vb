@@ -553,9 +553,9 @@ Public Class TravelSettleHeaderModel
                                 ID CHAR(2) ,
                                 CostType VARCHAR(20) ,
                                 PaymentType VARCHAR(11) ,
-                                USD INTEGER ,
-                                YEN INTEGER ,
-                                IDR INTEGER
+                                USD FLOAT ,
+                                YEN FLOAT ,
+                                IDR FLOAT
                             );
 
                         INSERT  INTO @tblSum
@@ -596,12 +596,9 @@ Public Class TravelSettleHeaderModel
                                             END AS Rate ,
                                 CAST(trc.Days AS VARCHAR(2)) + ' days' AS Days ,
                                 CAST(COUNT(tsd.TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
-                                CAST(SUM(trc.AdvanceUSD) AS INTEGER) AS USD ,
-                                CAST(SUM(trc.AdvanceYEN) AS INTEGER) AS YEN ,
-                                CAST(SUM(trc.AdvanceIDR) AS INTEGER) AS IDR ,
-                                0 AS SumUSD ,
-                                0 AS SumYEN ,
-                                0 AS SumIDR
+                                SUM(trc.AdvanceUSD) AS USD ,
+                                SUM(trc.AdvanceYEN) AS YEN ,
+                                SUM(trc.AdvanceIDR) AS IDR
                         FROM    dbo.TravelSettleDetail AS tsd
                                 LEFT JOIN TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
                         WHERE   CostType = 'C02'
@@ -635,12 +632,9 @@ Public Class TravelSettleHeaderModel
                                             END AS Rate ,
                                 CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
                                 CAST(COUNT(TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
-                                CAST(SUM(AllowanceUSD) AS INTEGER) AS USD ,
-                                CAST(SUM(AllowanceYEN) AS INTEGER) AS YEN ,
-                                CAST(SUM(AllowanceIDR) AS INTEGER) AS IDR ,
-                                0 AS SumUSD ,
-                                0 AS SumYEN ,
-                                0 AS SumIDR
+                                SUM(AllowanceUSD) AS USD ,
+                                SUM(AllowanceYEN) AS YEN ,
+                                SUM(AllowanceIDR) AS IDR
                          FROM   dbo.TravelSettleDetail
                          WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
                          GROUP BY TravelSettleID ,
