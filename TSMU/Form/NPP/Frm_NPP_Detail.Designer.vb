@@ -40,6 +40,7 @@ Partial Class Frm_NPP_Detail
         Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
         Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
@@ -49,6 +50,8 @@ Partial Class Frm_NPP_Detail
         Me.Label7 = New System.Windows.Forms.Label()
         Me.B_AddRows = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TIssue_Date = New DevExpress.XtraEditors.DateEdit()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.CBCkr = New System.Windows.Forms.CheckBox()
@@ -75,6 +78,7 @@ Partial Class Frm_NPP_Detail
         Me.Label11 = New System.Windows.Forms.Label()
         Me.BSetGroup = New System.Windows.Forms.Button()
         Me.BtnDrr = New System.Windows.Forms.Button()
+        Me.BUpload = New System.Windows.Forms.Button()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +90,8 @@ Partial Class Frm_NPP_Detail
         CType(Me.TTargetDr.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.TIssue_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TIssue_Date.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TModelDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
@@ -107,13 +113,13 @@ Partial Class Frm_NPP_Detail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck})
-        Me.Grid.Size = New System.Drawing.Size(1339, 292)
+        Me.Grid.Size = New System.Drawing.Size(1235, 292)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -313,12 +319,23 @@ Partial Class Frm_NPP_Detail
         Me.GridColumn3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 16
+        Me.GridColumn3.VisibleIndex = 17
         '
         'GridColumn4
         '
         Me.GridColumn4.FieldName = "ID"
         Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.FieldName = "Revisi"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 16
         '
         'GroupBox1
         '
@@ -330,7 +347,7 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Location = New System.Drawing.Point(988, 34)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(363, 102)
+        Me.GroupBox1.Size = New System.Drawing.Size(259, 102)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Schedule"
@@ -409,7 +426,8 @@ Partial Class Frm_NPP_Detail
         '
         'B_AddRows
         '
-        Me.B_AddRows.Location = New System.Drawing.Point(17, 73)
+        Me.B_AddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.B_AddRows.Location = New System.Drawing.Point(1026, 443)
         Me.B_AddRows.Name = "B_AddRows"
         Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
         Me.B_AddRows.TabIndex = 8
@@ -418,12 +436,13 @@ Partial Class Frm_NPP_Detail
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.TIssue_Date)
+        Me.GroupBox2.Controls.Add(Me.Label12)
         Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.Label10)
         Me.GroupBox2.Controls.Add(Me.CBCkr)
         Me.GroupBox2.Controls.Add(Me.TModelDesc)
         Me.GroupBox2.Controls.Add(Me.CBTng)
-        Me.GroupBox2.Controls.Add(Me.B_AddRows)
         Me.GroupBox2.Controls.Add(Me.CBStr)
         Me.GroupBox2.Controls.Add(Me.CBSample)
         Me.GroupBox2.Controls.Add(Me.CBCad)
@@ -435,6 +454,30 @@ Partial Class Frm_NPP_Detail
         Me.GroupBox2.TabIndex = 31
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Technical Info (Available)"
+        '
+        'TIssue_Date
+        '
+        Me.TIssue_Date.EditValue = Nothing
+        Me.TIssue_Date.Location = New System.Drawing.Point(97, 45)
+        Me.TIssue_Date.Name = "TIssue_Date"
+        Me.TIssue_Date.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TIssue_Date.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TIssue_Date.Properties.DisplayFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TIssue_Date.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TIssue_Date.Properties.EditFormat.FormatString = "dd-MMMM-yyyy"
+        Me.TIssue_Date.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TIssue_Date.Properties.Mask.EditMask = "dd-MMMM-yyyy"
+        Me.TIssue_Date.Size = New System.Drawing.Size(125, 20)
+        Me.TIssue_Date.TabIndex = 47
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(14, 48)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(58, 13)
+        Me.Label12.TabIndex = 46
+        Me.Label12.Text = "Issue Date"
         '
         'Label5
         '
@@ -448,7 +491,7 @@ Partial Class Frm_NPP_Detail
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(16, 50)
+        Me.Label10.Location = New System.Drawing.Point(228, 48)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(64, 13)
         Me.Label10.TabIndex = 32
@@ -466,10 +509,10 @@ Partial Class Frm_NPP_Detail
         '
         'TModelDesc
         '
-        Me.TModelDesc.Location = New System.Drawing.Point(97, 45)
+        Me.TModelDesc.Location = New System.Drawing.Point(308, 45)
         Me.TModelDesc.Name = "TModelDesc"
         Me.TModelDesc.Properties.MaxLength = 30
-        Me.TModelDesc.Size = New System.Drawing.Size(344, 20)
+        Me.TModelDesc.Size = New System.Drawing.Size(216, 20)
         Me.TModelDesc.TabIndex = 31
         '
         'CBTng
@@ -679,9 +722,9 @@ Partial Class Frm_NPP_Detail
         'BSetGroup
         '
         Me.BSetGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BSetGroup.Location = New System.Drawing.Point(1276, 443)
+        Me.BSetGroup.Location = New System.Drawing.Point(1166, 443)
         Me.BSetGroup.Name = "BSetGroup"
-        Me.BSetGroup.Size = New System.Drawing.Size(75, 23)
+        Me.BSetGroup.Size = New System.Drawing.Size(75, 21)
         Me.BSetGroup.TabIndex = 34
         Me.BSetGroup.Text = "Set Group"
         Me.BSetGroup.UseVisualStyleBackColor = True
@@ -695,11 +738,22 @@ Partial Class Frm_NPP_Detail
         Me.BtnDrr.Text = "DRR Receive"
         Me.BtnDrr.UseVisualStyleBackColor = True
         '
+        'BUpload
+        '
+        Me.BUpload.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BUpload.Location = New System.Drawing.Point(1096, 443)
+        Me.BUpload.Name = "BUpload"
+        Me.BUpload.Size = New System.Drawing.Size(64, 21)
+        Me.BUpload.TabIndex = 36
+        Me.BUpload.Text = "Upload"
+        Me.BUpload.UseVisualStyleBackColor = True
+        '
         'Frm_NPP_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(1363, 472)
+        Me.ClientSize = New System.Drawing.Size(1253, 472)
+        Me.Controls.Add(Me.BUpload)
         Me.Controls.Add(Me.BtnDrr)
         Me.Controls.Add(Me.BSetGroup)
         Me.Controls.Add(Me.Label11)
@@ -707,10 +761,12 @@ Partial Class Frm_NPP_Detail
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.B_AddRows)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_NPP_Detail"
         Me.Text = " "
         Me.Controls.SetChildIndex(Me.Grid, 0)
+        Me.Controls.SetChildIndex(Me.B_AddRows, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
@@ -718,6 +774,7 @@ Partial Class Frm_NPP_Detail
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.BSetGroup, 0)
         Me.Controls.SetChildIndex(Me.BtnDrr, 0)
+        Me.Controls.SetChildIndex(Me.BUpload, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).EndInit()
@@ -731,6 +788,8 @@ Partial Class Frm_NPP_Detail
         CType(Me.TTargetDr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.TIssue_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TIssue_Date.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TModelDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
@@ -802,4 +861,8 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TMassPro As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BtnDrr As Button
+    Friend WithEvents TIssue_Date As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label12 As Label
+    Friend WithEvents BUpload As Button
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

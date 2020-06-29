@@ -292,6 +292,14 @@ Public Class TravelSettleHeaderModel
                     Try
                         UpdateSettleHeader()
 
+                        Dim cls_SettleDetail As New TravelSettleDetailModel
+                        cls_SettleDetail.DeleteSettleDetail(TravelSettleID)
+                        For i As Integer = 0 To ObjSettleDetail.Count - 1
+                            With ObjSettleDetail(i)
+                                .InsertSettleDetail()
+                            End With
+                        Next
+
                         Dim cls_SettleCost As New TravelSettleCostModel
                         cls_SettleCost.DeleteSettleCost(TravelSettleID)
                         For i As Integer = 0 To ObjSettleCost.Count - 1
@@ -435,6 +443,34 @@ Public Class TravelSettleHeaderModel
         End Try
     End Function
 
+    Public Function GetRequestAllowance(ByVal _noRequest As String) As DataTable
+        Try
+            strQuery = "SELECT  trh.NoRequest ,
+                                trh.Nama ,
+                                trd.DepartureDate ,
+                                trd.ArrivalDate ,
+                                trc.Days ,
+                                trc.AdvanceUSD ,
+                                trc.AdvanceYEN ,
+                                trc.AdvanceIDR
+                        FROM    dbo.TravelRequestHeader AS trh
+                                INNER JOIN ( SELECT NoRequest ,
+                                                    MIN(DepartureDate) AS DepartureDate ,
+                                                    MAX(ArrivalDate) AS ArrivalDate
+                                             FROM   dbo.TravelRequestDetail
+                                             GROUP BY NoRequest
+                                           ) AS trd ON trd.NoRequest = trh.NoRequest
+                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trd.NoRequest
+                        WHERE   trc.CostType = 'C02'
+                                AND trd.NoRequest IN ( " & _noRequest & " )"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 #Region "Function for report"
     Public Function LoadReportSettleHeader() As DataTable
         Try
@@ -517,9 +553,9 @@ Public Class TravelSettleHeaderModel
                                 ID CHAR(2) ,
                                 CostType VARCHAR(20) ,
                                 PaymentType VARCHAR(11) ,
-                                USD INTEGER ,
-                                YEN INTEGER ,
-                                IDR INTEGER
+                                USD FLOAT ,
+                                YEN FLOAT ,
+                                IDR FLOAT
                             );
 
                         INSERT  INTO @tblSum
@@ -542,7 +578,7 @@ Public Class TravelSettleHeaderModel
 
     End Function
 
-    Public Function LoadReportSettleAllowance() As DataTable
+    Public Function LoadReportAllowanceAdvance() As DataTable
         Try
             Dim dt As New DataTable
             strQuery = " SELECT  tsd.TravelSettleID ,
@@ -560,12 +596,9 @@ Public Class TravelSettleHeaderModel
                                             END AS Rate ,
                                 CAST(trc.Days AS VARCHAR(2)) + ' days' AS Days ,
                                 CAST(COUNT(tsd.TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
-                                CAST(SUM(trc.AdvanceUSD) AS INTEGER) AS USD ,
-                                CAST(SUM(trc.AdvanceYEN) AS INTEGER) AS YEN ,
-                                CAST(SUM(trc.AdvanceIDR) AS INTEGER) AS IDR ,
-                                0 AS SumUSD ,
-                                0 AS SumYEN ,
-                                0 AS SumIDR
+                                SUM(trc.AdvanceUSD) AS USD ,
+                                SUM(trc.AdvanceYEN) AS YEN ,
+                                SUM(trc.AdvanceIDR) AS IDR
                         FROM    dbo.TravelSettleDetail AS tsd
                                 LEFT JOIN TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
                         WHERE   CostType = 'C02'
@@ -582,6 +615,40 @@ Public Class TravelSettleHeaderModel
         End Try
     End Function
 
+    Public Function LoadReportAllowanceSettle() As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = " SELECT TravelSettleID ,
+                                CASE WHEN AllowanceUSD <> 0
+                                     THEN 'USD ' + CAST(AllowanceUSD / Days AS VARCHAR(100))
+                                     ELSE ''
+                                END + CASE WHEN AllowanceYEN <> 0
+                                           THEN ' | YEN ' + CAST(AllowanceYEN / Days AS VARCHAR(100))
+                                           ELSE ''
+                                      END + CASE WHEN AllowanceIDR <> 0
+                                                 THEN ' | IDR '
+                                                      + CAST(AllowanceIDR / Days AS VARCHAR(100))
+                                                 ELSE ''
+                                            END AS Rate ,
+                                CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
+                                CAST(COUNT(TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
+                                SUM(AllowanceUSD) AS USD ,
+                                SUM(AllowanceYEN) AS YEN ,
+                                SUM(AllowanceIDR) AS IDR
+                         FROM   dbo.TravelSettleDetail
+                         WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
+                         GROUP BY TravelSettleID ,
+                                Days ,
+                                AllowanceUSD ,
+                                AllowanceYEN ,
+                                AllowanceIDR"
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 #End Region
 
 End Class
@@ -590,15 +657,27 @@ Public Class TravelSettleDetailModel
     Public Property TravelSettleID As String
     Public Property NoRequest As String
     Public Property Nama As String
+    Public Property DepartureDate As Date
+    Public Property ArrivalDate As Date
+    Public Property Days As Integer
+    Public Property AllowanceUSD As Double
+    Public Property AllowanceYEN As Double
+    Public Property AllowanceIDR As Double
 
     Dim strQuery As String
 
     Public Function GetTravelSettDetailByID() As DataTable
         Try
-            strQuery = " SELECT  NoRequest ,
-                                Nama
-                        FROM    dbo.TravelSettleDetail
-                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
+            strQuery = " SELECT NoRequest ,
+                                Nama ,
+                                DepartureDate ,
+                                ArrivalDate ,
+                                Days ,
+                                AllowanceUSD AS AdvanceUSD ,
+                                AllowanceYEN AS AdvanceYEN ,
+                                AllowanceIDR AS AdvanceIDR
+                         FROM   dbo.TravelSettleDetail
+                         WHERE  TravelSettleID = " & QVal(TravelSettleID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(strQuery)
             Return dt
@@ -609,12 +688,27 @@ Public Class TravelSettleDetailModel
 
     Public Sub InsertSettleDetail()
         Try
-            strQuery = " INSERT  INTO dbo.TravelSettleDetail
-                                ( TravelSettleID, NoRequest, Nama )
-                        VALUES  ( " & QVal(TravelSettleID) & ", -- TravelSettleID - varchar(15)
-                                  " & QVal(NoRequest) & ", -- NoRequest - varchar(15)
-                                  " & QVal(Nama) & "  -- Nama - varchar(100)
-                                  ) "
+            strQuery = "INSERT INTO dbo.TravelSettleDetail
+                                ( TravelSettleID ,
+                                  NoRequest ,
+                                  Nama ,
+                                  DepartureDate ,
+                                  ArrivalDate ,
+                                  Days ,
+                                  AllowanceUSD ,
+                                  AllowanceYEN ,
+                                  AllowanceIDR
+                                )
+                        VALUES  ( " & QVal(TravelSettleID) & " , -- TravelSettleID - varchar(15)
+                                  " & QVal(NoRequest) & " , -- NoRequest - varchar(15)
+                                  " & QVal(Nama) & " , -- Nama - varchar(100)
+                                  " & QVal(DepartureDate) & " , -- DepartureDate - date
+                                  " & QVal(ArrivalDate) & " , -- ArrivalDate - date
+                                  " & QVal(Days) & " , -- Days - int
+                                  " & QVal(AllowanceUSD) & " , -- AllowanceUSD - float
+                                  " & QVal(AllowanceYEN) & " , -- AllowanceYEN - float
+                                  " & QVal(AllowanceIDR) & "  -- AllowanceIDR - float
+                                )"
             ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw
@@ -623,9 +717,9 @@ Public Class TravelSettleDetailModel
 
     Public Sub UpdateRequest(ByVal status As String)
         Try
-            strQuery = " UPDATE  dbo.TravelRequestHeader
+            strQuery = "UPDATE  dbo.TravelRequestHeader
                         SET     Status = " & QVal(status) & "
-                        WHERE   NoRequest = " & QVal(NoRequest) & " "
+                        WHERE   NoRequest = " & QVal(NoRequest) & ""
             ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw

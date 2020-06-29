@@ -169,7 +169,6 @@
            ,[Noref]
            ,[Perpost]
            ,[AcctID]
-           ,[Noref]
            ,[Saldo_Awal])
      VALUES
            (" & QVal(Tgl) & "
@@ -184,7 +183,6 @@
            ," & QVal(NoBukti) & "
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_tujuan) & "
-           ," & QVal(NoBukti) & "
            ," & 0 & ")"
             MainModul.ExecQuery_Solomon(sql2)
         Catch ex As Exception
@@ -214,6 +212,7 @@
            ,[Saldo]
            ,[Perpost]
            ,[AcctID]
+           ,[Noref]
            ,[Saldo_Awal])
      VALUES
            (" & QVal(Tgl) & "
@@ -226,6 +225,7 @@
            ," & 0 & "
            ," & QVal(Perpost) & "
            ," & QVal(AcctID_Asal) & "
+           ," & QVal(NoBukti) & "
            ," & 0 & ")"
             MainModul.ExecQuery_Solomon(sql)
 
@@ -394,10 +394,10 @@
     End Function
     Public Sub Delete(ByVal id As String)
         Try
-            Dim ls_SP As String = "DELETE FROM [banktransfer] WHERE NoBukti =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP)
-            Dim ls_SP2 As String = "DELETE FROM [cashbank2] WHERE Noref =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP2)
+            Dim ls_SP As String = "DELETE FROM banktransfer WHERE NoBukti =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(ls_SP)
+            Dim ls_SP2 As String = "DELETE FROM cashbank2 WHERE Noref =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(ls_SP2)
         Catch ex As Exception
             Throw
         End Try

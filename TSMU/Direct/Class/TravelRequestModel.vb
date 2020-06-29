@@ -77,8 +77,10 @@ Public Class TravelRequestModel
         Try
             Dim aksesApproval As List(Of String)
             aksesApproval = GetAksesApproval()
-            Dim nilai = String.Join(",", aksesApproval.ToArray)
-
+            Dim nilai As String = "''"
+            If aksesApproval.Count > 0 Then
+                nilai = String.Join(",", aksesApproval.ToArray)
+            End If
             strQuery = " SELECT NoRequest ,
                                 NIK ,
                                 Nama ,

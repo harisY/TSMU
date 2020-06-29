@@ -127,6 +127,7 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Detail].[Forecast]
                   ,[NPP_Detail].[Factory]
                   ,[NPP_Detail].[Rev]
+                  ,[NPP_Detail].[Revisi]
                   ,[NPP_Detail].[Mold_Number]
                   ,[NPP_Rev_Information].[Rev] as RevI
                   ,[NPP_Rev_Information].[Information] 
@@ -242,7 +243,7 @@ Public Class Cls_NPP_Detail
                     Try
                         InsertRevisi()
                         Insert_NPPHeader(H_No_NPP,
-                                            Date.Now,
+                                            H_Issue_Date,
                                             H_Model_Name,
                                             H_Model_Description,
                                             H_Customer_Name,
@@ -376,6 +377,9 @@ Public Class Cls_NPP_Detail
             If _H_Model_Desc = "" Then
                 _H_Model_Desc = DBNull.Value.ToString
             End If
+
+
+
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
@@ -891,6 +895,7 @@ Public Class Col_Cls_NPP_Detail_NPP
     Public Property MoldNumber As String
 
     Public Property Rev As Integer
+    Public Property Revisi As String
     Public Property Factory As String
 
 
@@ -899,7 +904,7 @@ Public Class Col_Cls_NPP_Detail_NPP
         Try
 
             Dim query As String = "[NPP_Insert_NPP_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(18) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -918,6 +923,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(15) = New SqlClient.SqlParameter("@Cav", SqlDbType.VarChar)
             pParam(16) = New SqlClient.SqlParameter("@CT", SqlDbType.Float)
             pParam(17) = New SqlClient.SqlParameter("@MoldNumber", SqlDbType.VarChar)
+            pParam(18) = New SqlClient.SqlParameter("@Revisi", SqlDbType.VarChar)
 
 
             pParam(0).Value = NPP_No
@@ -938,6 +944,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(15).Value = Cavity
             pParam(16).Value = Cycle_Time
             pParam(17).Value = MoldNumber
+            pParam(18).Value = Revisi
 
 
 
