@@ -25,6 +25,7 @@ Public Class Frm_CR_UserCreateDetail
     Dim fc_Class As New ClsCR_CreateUser
     Dim fc_Class_ApproveDeptHead As New clsCR_ApproveDeptHead
     Dim fc_Class_ApproveDivHead As New clsCR_ApproveDivHead
+    Dim fc_Class_OtherDept As New ClsCR_Other_Dept
     Dim Description_Of_Cost As New ClsCR_Description_of_Cost
     Dim Installment As New ClsCR_Installment
     Dim Other_Dept As New ClsCR_Other_Dept
@@ -69,10 +70,6 @@ Public Class Frm_CR_UserCreateDetail
 
     Dim OlSecurityManager As AddinExpress.Outlook.SecurityManager
 
-
-
-
-
     Public Sub New()
 
         ' This call is required by the designer.
@@ -110,7 +107,7 @@ Public Class Frm_CR_UserCreateDetail
                 fc_Class.GetDataByID(fs_Code)
                 Call LoadTxtBox()
                 Call LoadGridBarang(fc_Class.H_CirculationNo)
-                Call LoadGridInstallment(fc_Class.H_CirculationNo)
+                'Call LoadGridInstallment(fc_Class.H_CirculationNo)
                 Call LoadGrid_OtherDept(fc_Class.H_CirculationNo)
 
                 If ls_Error <> "" Then
@@ -131,8 +128,13 @@ Public Class Frm_CR_UserCreateDetail
                         .Columns("Note").Visible = True
                     End With
                     Grid4.Enabled = False
-                    GroupBox2.Enabled = False
-                    C_Term.Enabled = False
+                    If T_CRType.Text = "Mold" Then
+                        GroupBox2.Enabled = True
+                    Else
+                        GroupBox2.Enabled = False
+                    End If
+
+                    C_Term.Visible = False
                     If fc_Class.H_UserSubmition = True Then
 
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
@@ -223,6 +225,45 @@ Public Class Frm_CR_UserCreateDetail
                         GridView1.Columns("Note").OptionsColumn.AllowEdit = True
                     End If
 
+                ElseIf Active_Form = 4 Then
+                    GridView3.OptionsBehavior.Editable = False
+                    GridView4.OptionsBehavior.Editable = False
+                    GridView5.OptionsBehavior.Editable = True
+                    GridView1.OptionsBehavior.Editable = False
+                    BAddRows.Enabled = False
+                    BMold.Enabled = False
+                    Call No_Edit_TextBox()
+
+                    With GridView1
+                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                        .Columns("Spesification").OptionsColumn.AllowEdit = False
+                        .Columns("Qty").OptionsColumn.AllowEdit = False
+                        .Columns("Price").OptionsColumn.AllowEdit = False
+                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                        .Columns("Curr").OptionsColumn.AllowEdit = False
+                        .Columns("Category").OptionsColumn.AllowEdit = False
+                        .Columns("Balance").OptionsColumn.AllowEdit = False
+                        .Columns("Rate").OptionsColumn.AllowEdit = False
+                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                        .Columns("Account").OptionsColumn.AllowEdit = False
+                        .Columns("Check").Visible = True
+                        .Columns("Note").Visible = True
+
+                    End With
+
+
+                    'If fc_Class.H_DivHead_Approve = True Then
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    '    GridView1.Columns("Check").OptionsColumn.AllowEdit = False
+                    '    GridView1.Columns("Check").OptionsColumn.AllowEdit = False
+                    'Else
+                    '    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    '    GridView1.OptionsBehavior.Editable = True
+                    '    GridView1.Columns("Check").OptionsColumn.AllowEdit = True
+                    '    GridView1.Columns("Note").OptionsColumn.AllowEdit = True
+                    'End If
+
                 End If
 
             Else
@@ -233,9 +274,9 @@ Public Class Frm_CR_UserCreateDetail
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
                 Me.Text = "CIRCULATION FORM "
                 T_CRType.Enabled = True
-                Grid4.Visible = False
-                GroupBox2.Visible = True
-                C_Term.Visible = False
+                Grid4.Enabled = False
+                GroupBox2.Enabled = False
+                C_Term.Enabled = False
 
             End If
 
@@ -309,9 +350,6 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-
-
-
     Private Sub LoadTxtBox()
 
         Try
@@ -352,6 +390,7 @@ Public Class Frm_CR_UserCreateDetail
             Throw
         End Try
     End Sub
+
     Private Sub LoadGridBarang(CirculationNo As String)
 
         Try
@@ -374,7 +413,6 @@ Public Class Frm_CR_UserCreateDetail
 
 
     End Sub
-
 
     Public Sub LoadGridInstallment(CirculationNo As String)
         Try
@@ -419,8 +457,6 @@ Public Class Frm_CR_UserCreateDetail
 
 
     End Sub
-
-
 
     Private Sub FillComboOtherDept()
         Try
@@ -485,8 +521,6 @@ Public Class Frm_CR_UserCreateDetail
         End Try
     End Sub
 
-
-
     Private Sub FillRate(Tahun As String, Bulan As String, Cur As String)
         Try
 
@@ -517,7 +551,6 @@ Public Class Frm_CR_UserCreateDetail
         End Try
     End Sub
 
-
     Private Sub T_Account_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
@@ -536,8 +569,6 @@ Public Class Frm_CR_UserCreateDetail
         End If
     End Sub
 
-
-
     Private Sub C_Currency_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
@@ -546,7 +577,6 @@ Public Class Frm_CR_UserCreateDetail
             e.Handled = True
         End If
     End Sub
-
 
     Private Sub T_RequirementDate_KeyPress(sender As Object, e As KeyPressEventArgs) Handles T_RequirementDate.KeyPress
         Dim tombol As Integer
@@ -606,7 +636,6 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call CreateTableBarang()
@@ -662,10 +691,6 @@ Public Class Frm_CR_UserCreateDetail
         End If
     End Sub
 
-
-
-
-
     Private Sub T_RemainingBudget_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
@@ -692,8 +717,6 @@ Public Class Frm_CR_UserCreateDetail
             e.Handled = True
         End If
     End Sub
-
-
 
     Private Sub T_Rate_KeyPress(sender As Object, e As KeyPressEventArgs)
         Dim tombol As Integer
@@ -750,8 +773,6 @@ Public Class Frm_CR_UserCreateDetail
         End Try
     End Sub
 
-
-
     Public Overrides Sub Proc_SaveData()
 
         Try
@@ -774,12 +795,12 @@ Public Class Frm_CR_UserCreateDetail
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1)
                 Exit Sub
-            ElseIf GridView4.RowCount = 0 Then
-                MessageBox.Show("Please Fill Term of Paymen / Installment", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
-                Exit Sub
+                'ElseIf GridView4.RowCount = 0 Then
+                '    MessageBox.Show("Please Fill Term of Paymen / Installment", "Warning",
+                '                MessageBoxButtons.OK,
+                '                MessageBoxIcon.Exclamation,
+                '                MessageBoxDefaultButton.Button1)
+                '    Exit Sub
             Else
 
                 For i As Integer = 0 To GridView1.RowCount - 1
@@ -797,19 +818,19 @@ Public Class Frm_CR_UserCreateDetail
                 Next
 
 
-                For j As Integer = 0 To GridView4.RowCount - 1
-                    GridView4.MoveFirst()
-                    If GridView4.GetRowCellValue(j, GridView4.Columns(0)).ToString = "" Then
-                        IsEmpty = True
-                        MessageBox.Show("Ensure that nothing is empty of Term Of Payment", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
-                        Exit Sub
-                    Else
+                'For j As Integer = 0 To GridView4.RowCount - 1
+                '    GridView4.MoveFirst()
+                '    If GridView4.GetRowCellValue(j, GridView4.Columns(0)).ToString = "" Then
+                '        IsEmpty = True
+                '        MessageBox.Show("Ensure that nothing is empty of Term Of Payment", "Warning",
+                '            MessageBoxButtons.OK,
+                '            MessageBoxIcon.Exclamation,
+                '            MessageBoxDefaultButton.Button1)
+                '        Exit Sub
+                '    Else
 
-                    End If
-                Next
+                '    End If
+                'Next
 
 
             End If
@@ -872,6 +893,8 @@ Public Class Frm_CR_UserCreateDetail
                         .D_RemainingBudget = Convert.ToString(GridView1.GetRowCellValue(i, "Remaining Budget"))
                         .D_Account = Convert.ToString(GridView1.GetRowCellValue(i, "Account"))
                         .D_Category = Convert.ToString(GridView1.GetRowCellValue(i, "Category"))
+                        .D_Check = Convert.ToString(GridView1.GetRowCellValue(i, "Check"))
+                        .D_Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
 
                     End With
                     fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
@@ -893,6 +916,7 @@ Public Class Frm_CR_UserCreateDetail
                             .D_Dept = Trim(item).ToString
                             .D_UserName = "UserName"
                             .D_Name = "test"
+                            .D_Approve = False
 
 
                         End With
@@ -901,52 +925,51 @@ Public Class Frm_CR_UserCreateDetail
                 End If
 
 #Region "Term Data Table Payment"
-                Try
-                    DtTerm.Clear()
+                'Try
+                '    DtTerm.Clear()
 
-                    For a As Integer = 0 To GridView4.RowCount - 1
-                        For x As Integer = 0 To GridView3.RowCount - 1
-                            Dim NamaCurr As String = Convert.ToString(GridView4.GetRowCellValue(x, "Curr"))
-                            Dim dr As DataRow = DtTerm.NewRow
-                            dr("Term") = GridView4.GetRowCellValue(a, "Term")
-                            dr("Date") = GridView4.GetRowCellValue(a, "Date")
-                            dr("%") = GridView4.GetRowCellValue(a, "%")
-                            dr("Curr") = GridView3.GetRowCellValue(x, "Curr")
-                            dr("Value") = GridView4.GetRowCellValue(a, GridView3.GetRowCellValue(x, "Curr"))
-                            DtTerm.Rows.Add(dr)
-                        Next
-                    Next
+                '    For a As Integer = 0 To GridView4.RowCount - 1
+                '        For x As Integer = 0 To GridView3.RowCount - 1
+                '            Dim NamaCurr As String = Convert.ToString(GridView4.GetRowCellValue(x, "Curr"))
+                '            Dim dr As DataRow = DtTerm.NewRow
+                '            dr("Term") = GridView4.GetRowCellValue(a, "Term")
+                '            dr("Date") = GridView4.GetRowCellValue(a, "Date")
+                '            dr("%") = GridView4.GetRowCellValue(a, "%")
+                '            dr("Curr") = GridView3.GetRowCellValue(x, "Curr")
+                '            dr("Value") = GridView4.GetRowCellValue(a, GridView3.GetRowCellValue(x, "Curr"))
+                '            DtTerm.Rows.Add(dr)
+                '        Next
+                '    Next
 
-                Catch ex As Exception
+                'Catch ex As Exception
 
-                End Try
+                'End Try
 #End Region
 
+#Region "Installment"
+                'fc_Class.Collection_Installment.Clear()
+                'For j As Integer = 0 To DtTerm.Rows.Count - 1
 
-                fc_Class.Collection_Installment.Clear()
-                For j As Integer = 0 To DtTerm.Rows.Count - 1
+                '    Installment = New ClsCR_Installment
+                '    With Installment
 
-                    Installment = New ClsCR_Installment
-                    With Installment
+                '        .D_CirculationNo = NoSirkulasi
+                '        .D_Term = Convert.ToInt32(DtTerm.Rows(j).Item("Term"))
+                '        .D_Date = Convert.ToDateTime(DtTerm.Rows(j).Item("Date"))
+                '        .D_Percent = Convert.ToString(DtTerm.Rows(j).Item("%"))
+                '        .D_Curr = Convert.ToString(DtTerm.Rows(j).Item("Curr"))
+                '        .D_Value = Convert.ToDouble(DtTerm.Rows(j).Item("Value"))
 
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Term = Convert.ToInt32(DtTerm.Rows(j).Item("Term"))
-                        .D_Date = Convert.ToDateTime(DtTerm.Rows(j).Item("Date"))
-                        .D_Percent = Convert.ToString(DtTerm.Rows(j).Item("%"))
-                        .D_Curr = Convert.ToString(DtTerm.Rows(j).Item("Curr"))
-                        .D_Value = Convert.ToDouble(DtTerm.Rows(j).Item("Value"))
+                '    End With
+                '    fc_Class.Collection_Installment.Add(Installment)
 
-                    End With
-                    fc_Class.Collection_Installment.Add(Installment)
-
-                Next
-
-
-
+                'Next
+#End Region
 
                 fc_Class.Insert(NoSirkulasi)
                 bs_Filter = gh_Common.GroupID
                 GridDtl.DataSource = fc_Class.Get_CRRequest(bs_Filter)
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 IsClosed = True
                 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' End Insert
             Else
@@ -966,7 +989,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_CR_Type = T_CRType.EditValue
                     .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
-                    .H_Status = "Create"
+                    '.H_Status = "Revise"
                     .H_Parent_Circulation = T_Parent.EditValue
                     .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
                     .H_Dies_Sales_Type = T_DS.EditValue
@@ -1007,6 +1030,8 @@ Public Class Frm_CR_UserCreateDetail
                         .D_RemainingBudget = Convert.ToString(GridView1.GetRowCellValue(i, "Remaining Budget"))
                         .D_Account = Convert.ToString(GridView1.GetRowCellValue(i, "Account"))
                         .D_Category = Convert.ToString(GridView1.GetRowCellValue(i, "Category"))
+                        .D_Check = Convert.ToString(GridView1.GetRowCellValue(i, "Check"))
+                        .D_Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
 
                     End With
                     fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
@@ -1035,52 +1060,51 @@ Public Class Frm_CR_UserCreateDetail
                 End If
 
 #Region "Term Data Table Payment"
-                Try
-                    DtTerm.Clear()
+                'Try
+                '    DtTerm.Clear()
 
-                    For a As Integer = 0 To GridView4.RowCount - 1
-                        For x As Integer = 0 To GridView3.RowCount - 1
-                            Dim NamaCurr As String = Convert.ToString(GridView4.GetRowCellValue(x, "Curr"))
-                            Dim dr As DataRow = DtTerm.NewRow
-                            dr("Term") = GridView4.GetRowCellValue(a, "Term")
-                            dr("Date") = GridView4.GetRowCellValue(a, "Date")
-                            dr("%") = GridView4.GetRowCellValue(a, "%")
-                            dr("Curr") = GridView3.GetRowCellValue(x, "Curr")
-                            dr("Value") = GridView4.GetRowCellValue(a, GridView3.GetRowCellValue(x, "Curr"))
-                            DtTerm.Rows.Add(dr)
-                        Next
-                    Next
+                '    For a As Integer = 0 To GridView4.RowCount - 1
+                '        For x As Integer = 0 To GridView3.RowCount - 1
+                '            Dim NamaCurr As String = Convert.ToString(GridView4.GetRowCellValue(x, "Curr"))
+                '            Dim dr As DataRow = DtTerm.NewRow
+                '            dr("Term") = GridView4.GetRowCellValue(a, "Term")
+                '            dr("Date") = GridView4.GetRowCellValue(a, "Date")
+                '            dr("%") = GridView4.GetRowCellValue(a, "%")
+                '            dr("Curr") = GridView3.GetRowCellValue(x, "Curr")
+                '            dr("Value") = GridView4.GetRowCellValue(a, GridView3.GetRowCellValue(x, "Curr"))
+                '            DtTerm.Rows.Add(dr)
+                '        Next
+                '    Next
 
-                Catch ex As Exception
+                'Catch ex As Exception
 
-                End Try
+                'End Try
 #End Region
 
 
-                fc_Class.Collection_Installment.Clear()
-                For j As Integer = 0 To DtTerm.Rows.Count - 1
+                'fc_Class.Collection_Installment.Clear()
+                'For j As Integer = 0 To DtTerm.Rows.Count - 1
 
-                    Installment = New ClsCR_Installment
-                    With Installment
+                '    Installment = New ClsCR_Installment
+                '    With Installment
 
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Term = Convert.ToInt32(DtTerm.Rows(j).Item("Term"))
-                        .D_Date = Convert.ToDateTime(DtTerm.Rows(j).Item("Date"))
-                        .D_Percent = Convert.ToString(DtTerm.Rows(j).Item("%"))
-                        .D_Curr = Convert.ToString(DtTerm.Rows(j).Item("Curr"))
-                        .D_Value = Convert.ToDouble(DtTerm.Rows(j).Item("Value"))
+                '        .D_CirculationNo = NoSirkulasi
+                '        .D_Term = Convert.ToInt32(DtTerm.Rows(j).Item("Term"))
+                '        .D_Date = Convert.ToDateTime(DtTerm.Rows(j).Item("Date"))
+                '        .D_Percent = Convert.ToString(DtTerm.Rows(j).Item("%"))
+                '        .D_Curr = Convert.ToString(DtTerm.Rows(j).Item("Curr"))
+                '        .D_Value = Convert.ToDouble(DtTerm.Rows(j).Item("Value"))
 
-                    End With
-                    fc_Class.Collection_Installment.Add(Installment)
+                '    End With
+                '    fc_Class.Collection_Installment.Add(Installment)
 
-                Next
+                'Next
 
                 fc_Class.Update(NoSirkulasi)
-                'bs_Filter = gh_Common.GroupID
-                'GridDtl.DataSource = fc_Class_Head.Get_NPP()
-                'IsClosed = True
-                'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                'Me.Hide()
+                bs_Filter = gh_Common.GroupID
+                GridDtl.DataSource = fc_Class.Get_CRRequest(bs_Filter)
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                IsClosed = True
 
             End If
 
@@ -1118,35 +1142,40 @@ Public Class Frm_CR_UserCreateDetail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
-            ElseIf T_DS.EditValue = "" Then
-                MessageBox.Show("Please Choose Sales Type", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button1)
-            ElseIf T_CustomerName.EditValue = "" Then
-                MessageBox.Show("Please fill Customer Name", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button1)
-            ElseIf T_ModelName.EditValue = "" Then
-                MessageBox.Show("Please fill Model Name", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button1)
-            ElseIf T_Charged.EditValue = "" Then
-                MessageBox.Show("Please Choose Charge Of Customer", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button1)
             ElseIf T_RequirementDate.Text = "" Then
                 MessageBox.Show("Please Choose RequirementDate", "Warning",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
 
+            ElseIf T_CRType.Text = "Mold" Then
+
+                If T_DS.EditValue = "" Then
+                    MessageBox.Show("Please Choose Sales Type", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+
+                ElseIf T_CustomerName.EditValue = "" Then
+                    MessageBox.Show("Please fill Customer Name", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+                ElseIf T_ModelName.EditValue = "" Then
+                    MessageBox.Show("Please fill Model Name", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+                ElseIf T_Charged.EditValue = "" Then
+                    MessageBox.Show("Please Choose Charge Of Customer", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+                End If
+
             Else
 
-                lb_Validated = True
+                    lb_Validated = True
             End If
 
             If lb_Validated Then
@@ -1165,10 +1194,6 @@ Public Class Frm_CR_UserCreateDetail
         Return lb_Validated
 
     End Function
-
-
-
-
 
     Private Sub T_Parent_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles T_Parent.ButtonClick
         Try
@@ -1281,7 +1306,6 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-
     'Private Sub C_Currency_Leave(sender As Object, e As EventArgs)
     '    Try
     '        If T_RequirementDate.EditValue = Nothing Then
@@ -1319,29 +1343,26 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-
-
-    Public Sub CallForm(Optional ByRef Model As String = "",
+    Public Sub CallForm(Optional ByVal Model As String = "",
                         Optional ByVal Customer As String = "",
                         Optional ByVal IsNew As Boolean = True)
 
         If CForm = 1 Then
 
-            'T_ModelName.Text = Model
-            FGetMold = New Frm_CR_Get_Mold(T_ModelName.Text, DtGridBarang, Grid4, BG)
+            Model = T_ModelName.Text
+            FGetMold = New Frm_CR_Get_Mold(Model, DtGridBarang, Grid4, BG)
             FGetMold.StartPosition = FormStartPosition.CenterScreen
             FGetMold.MaximizeBox = False
             FGetMold.ShowDialog()
+            'T_ModelName.Text = Model
+            T_ModelName.Text = FGetMold.Values_Model
+            T_CustomerName.Text = FGetMold.Values_Customer
+
         End If
 
 
 
     End Sub
-
-
-
-
-
 
     Private Function cdoSendPassword() As Object
         Throw New NotImplementedException()
@@ -1370,11 +1391,6 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub Label4_Click(sender As Object, e As EventArgs)
 
     End Sub
-
-
-
-
-
 
     Private Sub BAccount_Click(sender As Object, e As EventArgs) Handles BAccount.Click
 
@@ -1688,6 +1704,7 @@ Public Class Frm_CR_UserCreateDetail
         GridView1.OptionsNavigation.AutoFocusNewRow = True
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Qty", 0)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Rate", 1)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Price", 0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Curr", "IDR")
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total Amount Currency", 0)
@@ -1728,8 +1745,6 @@ Public Class Frm_CR_UserCreateDetail
         CallForm()
 
     End Sub
-
-
 
     Private Sub Termin()
 
@@ -1927,7 +1942,6 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox1.Enabled = True
             'Grid1.Enabled = True
             GroupBox2.Enabled = True
-            GroupBox2.Visible = True
             C_Term.Enabled = True
             'T_Dept.SetEditValue("")
             C_Term.Enabled = False
@@ -1966,7 +1980,7 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox1.Enabled = True
             'Grid1.Enabled = True
             GroupBox2.Enabled = False
-            GroupBox2.Visible = False
+            GroupBox2.Enabled = False
             C_Term.Enabled = True
             'T_Dept.SetEditValue("1PUR,")
             GroupBox2.Enabled = False
@@ -2102,7 +2116,6 @@ Public Class Frm_CR_UserCreateDetail
 
         'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
         If Active_Form = 1 Then
-
             fc_Class.GetDataByID(fs_Code)
             If fc_Class.H_UserSubmition = False Then
                 Dim result As DialogResult = MessageBox.Show("Are You Want to Submit '" & fs_Code & "'?",
@@ -2118,12 +2131,6 @@ Public Class Frm_CR_UserCreateDetail
                         End With
                         fc_Class.UpdateUserSubmit(fs_Code)
                         bs_Filter = gh_Common.Username()
-                        'GridDtl.DataSource = fc_Class_Head.Get_NPP()
-                        'With oMsg
-                        '    .To = "miftah-mis@tsmu.co.id" : .Subject = "Special Order Request"
-                        '    .Body = "Test"
-                        '    .Send()
-                        'End With
 
                         IsClosed = True
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -2263,7 +2270,6 @@ Public Class Frm_CR_UserCreateDetail
 
                 End With
 
-
                 'Insert To ObjDetailMaterial
                 fc_Class.Collection_Description_Of_Cost.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
@@ -2289,7 +2295,7 @@ Public Class Frm_CR_UserCreateDetail
 
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
+                GridDtl.DataSource = fc_Class_ApproveDivHead.Get_ApproveDivHead(gh_Common.Username)
                 Me.Hide()
             Else
                 With fc_Class
@@ -2320,19 +2326,69 @@ Public Class Frm_CR_UserCreateDetail
 
                 Next
 
-
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
                 Me.Hide()
 
+            End If
+        ElseIf Active_Form = 4 Then
+            Dim a As New DataTable
+            a = fc_Class_ApproveDivHead.Get_Other_Dept_Cek(gh_Common.GroupID, fs_Code)
+            Dim Dept_Approve As Boolean = IIf(a.Rows(0).Item("Dept Approve") Is DBNull.Value, False, a.Rows(0).Item("Dept Approve"))
+            'IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
+            If Dept_Approve = True Then
+                Dim result As DialogResult = MessageBox.Show("Circulation No : '" & fs_Code & "' has been submitted",
+                                                        "CIRCULATION",
+                                                        MessageBoxButtons.OK,
+                                                        MessageBoxIcon.Information,
+                                                        MessageBoxDefaultButton.Button2)
+                Exit Sub
+            Else
 
+                Dim result As DialogResult = MessageBox.Show("Are You Want to Submit '" & fs_Code & "'?",
+                                                        "CIRCULATION",
+                                                        MessageBoxButtons.OKCancel,
+                                                        MessageBoxIcon.Question,
+                                                        MessageBoxDefaultButton.Button2)
+                If result = System.Windows.Forms.DialogResult.OK Then
+                    Try
+                        Dim Cek As String = gh_Common.GroupID
+                        For i As Integer = 0 To GridView5.RowCount - 1
+
+                            If Cek = GridView5.GetRowCellValue(i, "Dept") Then
+                                fc_Class_OtherDept = New ClsCR_Other_Dept
+                                With fc_Class_OtherDept
+                                    .D_Date = GridView5.GetRowCellValue(i, "Date")
+                                    .D_Opinion = GridView5.GetRowCellValue(i, "Opinion")
+                                    .D_Approve = 1
+                                End With
+                            End If
+                        Next
+
+                        fc_Class_OtherDept.UpdateOtherDept(fs_Code, gh_Common.GroupID)
+                        bs_Filter = gh_Common.Username()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        fc_Class = New ClsCR_CreateUser
+                        GridDtl.DataSource = fc_Class_ApproveDivHead.Get_Other_Dept(gh_Common.GroupID)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+                End If
 
             End If
 
 
         End If
+
+
+
+
 
 
     End Sub
@@ -2441,7 +2497,6 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-
     Private Sub Send_Email_OtherDept(NoSirkulasi As String)
 
         Try
@@ -2458,6 +2513,7 @@ Public Class Frm_CR_UserCreateDetail
             Dim dtEmail As New DataTable
             dtEmail = fc_Class.Get_Email_Dept(NoSirkulasi)
             MyMailMessage.From = New MailAddress("miftah-mis@tsmu.co.id")
+
             For i As Integer = 0 To dtEmail.Rows.Count - 1
 
                 Dim Cek As String = dtEmail.Rows(i).Item(0).ToString
@@ -2466,6 +2522,7 @@ Public Class Frm_CR_UserCreateDetail
                     MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
                 End If
             Next
+
             MyMailMessage.CC.Add("log@tsmu.co.id")
             MyMailMessage.Subject = "Test"
             MyMailMessage.Body = "Body"

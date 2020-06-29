@@ -829,7 +829,7 @@ Public Class ClsCR_CreateUser
                             End With
                         Next
 
-                        Insert_Bom(H_CirculationNo)
+                        'Insert_Bom(H_CirculationNo)
 
 
 
@@ -1180,6 +1180,8 @@ Public Class ClsCR_CreateUser
 
 
 
+
+
 End Class
 
 
@@ -1214,7 +1216,7 @@ Public Class ClsCR_Description_of_Cost
         Try
 
             Dim query As String = "[CR_Insert_Description_Of_Cost]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(12) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(14) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Name_Of_Goods", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Spesification", SqlDbType.VarChar)
@@ -1228,6 +1230,8 @@ Public Class ClsCR_Description_of_Cost
             pParam(10) = New SqlClient.SqlParameter("@RemainingBudget", SqlDbType.Float)
             pParam(11) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
             pParam(12) = New SqlClient.SqlParameter("@Category", SqlDbType.VarChar)
+            pParam(13) = New SqlClient.SqlParameter("@Check", SqlDbType.VarChar)
+            pParam(14) = New SqlClient.SqlParameter("@Note", SqlDbType.VarChar)
 
 
             pParam(0).Value = CirculationNo
@@ -1243,6 +1247,8 @@ Public Class ClsCR_Description_of_Cost
             pParam(10).Value = D_RemainingBudget
             pParam(11).Value = D_Account
             pParam(12).Value = D_Category
+            pParam(13).Value = D_Check
+            pParam(14).Value = D_Note
 
 
             Dim dtTable As New DataTable
@@ -1298,17 +1304,36 @@ Public Class ClsCR_Other_Dept
         Try
 
             Dim query As String = "[CR_Insert_Other_Dept]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
+            pParam(2) = New SqlClient.SqlParameter("@Approve", SqlDbType.Bit)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = D_Dept
+            pParam(2).Value = D_Approve
+
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
         Catch ex As Exception
             Throw
+        End Try
+
+    End Sub
+
+
+    Public Sub UpdateOtherDept(ByVal _FsCode As String, ByVal _Dept As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE CR_Other_Dept" & vbCrLf &
+                                    "SET [Date] = '" & D_Date & "'
+                                    ,[Opinion] = '" & D_Opinion & "' 
+                                    ,[Approve] = '" & D_Approve & "'
+                                    WHERE [CirculationNo] = '" & _FsCode & "' and [DeptID] = '" & _Dept & "' "
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
         End Try
 
     End Sub
@@ -1325,12 +1350,7 @@ Public Class ClsCR_Installment
     Public Property D_Value As Double
 
     Public Sub InsertCR_Installment(CirculationNo As String)
-
-
-
         Try
-
-
 
             Dim query As String = "[CR_Insert_Installment]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}

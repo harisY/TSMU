@@ -441,7 +441,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 8
+        Me.PTotal.VisibleIndex = 7
         Me.PTotal.Width = 171
         '
         'C_Amount_Barang
@@ -481,7 +481,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 7
+        Me.Rate.VisibleIndex = 8
         Me.Rate.Width = 88
         '
         'Account
