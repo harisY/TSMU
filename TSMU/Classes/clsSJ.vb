@@ -31,10 +31,12 @@ Public Class ClsSJ
                     ,Convert(bit,so.user6) as [Check] 
                     ,RTRIM(so.User4) [SR YIM]
                     ,RTRIM(so.user1) [Batch Invoice]
+                    ,RTRIM(Ar.RefNbr) [No Invoice]
                     ,note.sNoteText Ket
                     ,RTRIM(so.Inbatnbr) [Batch Issue]
-                    FROM soshipheader so left join
-                    snote note on so.noteid=note.nid
+                FROM soshipheader so left join
+                    snote note on so.noteid=note.nid left join
+                    ArDoc Ar on so.user1 = Ar.BatNbr 
                 where so.CustID=coalesce(nullif('" & cust & "','ALL'),so.CustID) 
                 AND so.RelDate >= '" & tgl1 & "' AND so.RelDate<='" & tgl2 & "'  
                 AND SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & lokasi & "') 
@@ -81,11 +83,13 @@ Public Class ClsSJ
                     ,Convert(bit,so.user6) as [Check] 
                     ,RTRIM(so.User4) [SR YIM]
                     ,RTRIM(so.user1) [Batch Invoice]
+                    ,RTRIM(Ar.RefNbr) [No Invoice]
                     ,note.sNoteText Ket
                     ,RTRIM(so.Inbatnbr) [Batch Issue]
                 FROM soshipheader so left join
                     snote note on so.noteid=note.nid inner join
-                    SJChecking sj on so.ShipperID= sj.ShipperID
+                    SJChecking sj on so.ShipperID= sj.ShipperID left join
+                    ArDoc Ar on so.user1 = Ar.BatNbr 
                 where so.CustID=coalesce(nullif('" & cust & "','ALL'),so.CustID) 
                 AND so.RelDate >= '" & tgl1 & "' AND so.RelDate<='" & tgl2 & "' AND convert(date,sj.RecDate) >= '" & tgl3 & "' AND convert(date,sj.RecDate) <= '" & tgl4 & "'
                 AND SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & lokasi & "') " & no & "
@@ -117,7 +121,7 @@ Public Class ClsSJ
                     ,RTRIM(so.user1) [Batch Invoice]
                     ,note.sNoteText Ket
                     ,RTRIM(so.Inbatnbr) [Batch Issue]
-                    FROM soshipheader so left join
+                FROM soshipheader so left join
                     snote note on so.noteid=note.nid
                 where 
                     SUBSTRING(so.ShipperID,1,1) in (SELECT ShipperID FROM SJShipperSetting WHERE Site ='" & Lokasi & "') 

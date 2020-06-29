@@ -30,7 +30,7 @@ Public Class FrmReport_BoM_Forecast_PO
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             Dim dt As New DataTable
-            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue)
+            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue, TxtPerost.EditValue)
             Grid.DataSource = dt
             AdvBandedGridView1.BestFitColumns()
             'If AdvBandedGridView1.RowCount > 0 Then
@@ -61,6 +61,9 @@ Public Class FrmReport_BoM_Forecast_PO
         ElseIf txtInvtId.Text = "" Then
             XtraMessageBox.Show("Inventory ID harus di isi !")
             txtInvtId.Focus()
+        ElseIf TxtPerost.Text = "" Then
+            XtraMessageBox.Show("Perpost harus di isi !")
+            TxtPerost.Focus()
         Else
             LoadGrid(_txtTahun.Text)
         End If
@@ -68,12 +71,34 @@ Public Class FrmReport_BoM_Forecast_PO
     Public Overrides Sub Proc_Excel()
         Try
             If AdvBandedGridView1.RowCount > 0 Then
-
-                SaveToExcel(Grid, "BoM vs PO/Forecast", "", False)
-                'getPath()
-                '    Dim Filename As String = path & "\Forecast_.xls"
-                '    'Dim FileName As String = "D:\Grid.xls"
-                '    Grid.ExportToXls(Filename)
+                Dim Bulan As String = String.Empty
+                Select Case Microsoft.VisualBasic.Right(TxtPerost.EditValue, 2)
+                    Case "01"
+                        Bulan = "Jan " & _txtTahun.EditValue
+                    Case "02"
+                        Bulan = "Feb " & _txtTahun.EditValue
+                    Case "03"
+                        Bulan = "Mar " & _txtTahun.EditValue
+                    Case "04"
+                        Bulan = "Apr " & _txtTahun.EditValue
+                    Case "05"
+                        Bulan = "Mei " & _txtTahun.EditValue
+                    Case "06"
+                        Bulan = "Jun " & _txtTahun.EditValue
+                    Case "07"
+                        Bulan = "Jul " & _txtTahun.EditValue
+                    Case "08"
+                        Bulan = "Agt " & _txtTahun.EditValue
+                    Case "09"
+                        Bulan = "Sep " & _txtTahun.EditValue
+                    Case "10"
+                        Bulan = "Okt " & _txtTahun.EditValue
+                    Case "11"
+                        Bulan = "Nov " & _txtTahun.EditValue
+                    Case "12"
+                        Bulan = "Des " & _txtTahun.EditValue
+                End Select
+                SaveToExcel(Grid, "Actual Sales " & Bulan, "Konsumsi Actual Sales Material", False)
 
             Else
                 Throw New Exception("Tidak ada Data yg di export")
@@ -142,7 +167,7 @@ Public Class FrmReport_BoM_Forecast_PO
         If e.RowHandle > 0 Then
             Dim Level As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Level"))
             'Dim array2() As String = TempSJ.ToArray
-            If Level = "Level 0" Then
+            If Level.ToLower = "level 0" Then
                 e.Appearance.BackColor = Color.LightBlue
                 e.Appearance.BackColor2 = Color.SeaShell
                 e.HighPriority = True
@@ -150,6 +175,16 @@ Public Class FrmReport_BoM_Forecast_PO
             'For Each sj As String In array2
 
             'Next
+        End If
+    End Sub
+
+    Private Sub TxtPerost_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtPerost.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Try
+                tsBtn_refresh.PerformClick()
+            Catch ex As Exception
+                Throw ex
+            End Try
         End If
     End Sub
 End Class

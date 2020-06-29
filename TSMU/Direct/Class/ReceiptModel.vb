@@ -263,11 +263,11 @@
     Public Sub Delete(ByVal id As String)
         Try
             Dim ls_SP As String = "DELETE FROM [bankreceipt] WHERE NoBukti =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP)
+            MainModul.ExecQuery_Solomon(ls_SP)
             Dim ls_SP1 As String = "DELETE FROM [cashbank2] INNER JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE cashbank.Noref =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP1)
+            MainModul.ExecQuery_Solomon(ls_SP1)
             Dim ls_SP2 As String = "DELETE FROM [cashbank] WHERE Noref =" & QVal(NoBukti) & ""
-            MainModul.ExecQuery(ls_SP2)
+            MainModul.ExecQuery_Solomon(ls_SP2)
         Catch ex As Exception
             Throw
         End Try

@@ -3,11 +3,11 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports System.Net.Mail
 
 Public Class FrmTravelRequestDetail
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
-    Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
     Dim isLoad As Boolean = False
@@ -22,16 +22,15 @@ Public Class FrmTravelRequestDetail
     Dim departureDate_ As Date
     Dim arrivalDate_ As Date
     Dim days As Integer
-    Dim NoRequest As String
     Dim dtGrid As DataTable
     Dim GridDtl As GridControl
-    Dim curryIDAllowance As String = "USD"
     Dim rateUSD As Double
     Dim rateYEN As Double
 
     Dim ObjTravelRequest As New TravelRequestModel
     Dim ObjTravelRequestDetail As New TravelRequestDetailModel
     Dim ObjTravelRequestCost As New TravelRequestCostModel
+    Dim fc_Class As New TravelTicketModel
 
     Public Sub New()
         ' This call is required by the designer.
@@ -207,15 +206,23 @@ Public Class FrmTravelRequestDetail
 
             Dim i As Integer
             If String.IsNullOrEmpty(txtGolongan.Text) Then
-                i = "0"
+                i = 0
             Else
                 i = Convert.ToInt16(txtGolongan.Text)
             End If
 
             If lb_Validated Then
+                Dim status As String = String.Empty
+                If isUpdate = False Then
+                    txtNoRequest.Text = ObjTravelRequest.TravelRequestAutoNo
+                Else
+                    If FrmParent.Name = "FrmTravelTicket" Then
+                        status = "APPROVED"
+                    End If
+                End If
+
                 With ObjTravelRequest
-                    NoRequest = .TravelRequestAutoNo
-                    .NoRequest = NoRequest
+                    .NoRequest = txtNoRequest.Text
                     .Nama = txtNama.Text.Trim.ToUpper
                     .DeptID = txtDepartement.Text.Trim.ToUpper
                     .TravelType = txtTravelType.Text.Trim.ToUpper
@@ -223,7 +230,7 @@ Public Class FrmTravelRequestDetail
                     .Golongan = i
                     .Purpose = txtPurpose.Text
                     .Status = "PENDING"
-                    .Approved = ""
+                    .Approved = status
                 End With
 
             End If
@@ -238,80 +245,54 @@ Public Class FrmTravelRequestDetail
     Public Overrides Sub Proc_SaveData()
         Try
             Dim seq As Integer = 0
+            ObjTravelRequest.ObjRequestDetails.Clear()
+            For i As Integer = 0 To GridViewDetail.RowCount - 1
+                seq = seq + 1
+                ObjTravelRequestDetail = New TravelRequestDetailModel
+                With ObjTravelRequestDetail
+                    .NoRequest = txtNoRequest.Text
+                    .Seq = seq
+                    .Destination = GridViewDetail.GetRowCellValue(i, "Destination").ToString().TrimEnd.ToUpper
+                    .Negara = GridViewDetail.GetRowCellValue(i, "Negara").ToString().TrimEnd
+                    .Visa = GridViewDetail.GetRowCellValue(i, "Visa").ToString().TrimEnd
+                    .DepartureDate = IIf(GridViewDetail.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DepartureDate"))
+                    .ArrivalDate = IIf(GridViewDetail.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "ArrivalDate"))
+                End With
+                ObjTravelRequest.ObjRequestDetails.Add(ObjTravelRequestDetail)
+            Next
+
+            ObjTravelRequest.ObjRequestCost.Clear()
+            For i As Integer = 0 To GridViewAdvance.RowCount - 1
+                ObjTravelRequestCost = New TravelRequestCostModel
+                With ObjTravelRequestCost
+                    .NoRequest = txtNoRequest.Text
+                    .CostType = GridViewAdvance.GetRowCellValue(i, "CostType").ToString().TrimEnd.ToUpper
+                    .Description = GridViewAdvance.GetRowCellValue(i, "Description").ToString().TrimEnd
+                    .Days = Convert.ToInt16(GridViewAdvance.GetRowCellValue(i, "Days"))
+                    .AdvanceIDR = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceIDR"))
+                    .AdvanceUSD = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceUSD"))
+                    .AdvanceYEN = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceYEN"))
+                End With
+                ObjTravelRequest.ObjRequestCost.Add(ObjTravelRequestCost)
+            Next
+
             If isUpdate = False Then
-                ObjTravelRequest.ObjRequestDetails.Clear()
-                For i As Integer = 0 To GridViewDetail.RowCount - 1
-                    seq = seq + 1
-                    ObjTravelRequestDetail = New TravelRequestDetailModel
-                    With ObjTravelRequestDetail
-                        .NoRequest = NoRequest
-                        .Seq = seq
-                        .Destination = GridViewDetail.GetRowCellValue(i, "Destination").ToString().TrimEnd.ToUpper
-                        .Negara = GridViewDetail.GetRowCellValue(i, "Negara").ToString().TrimEnd
-                        .Visa = GridViewDetail.GetRowCellValue(i, "Visa").ToString().TrimEnd
-                        .DepartureDate = IIf(GridViewDetail.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DepartureDate"))
-                        .ArrivalDate = IIf(GridViewDetail.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "ArrivalDate"))
-                    End With
-                    ObjTravelRequest.ObjRequestDetails.Add(ObjTravelRequestDetail)
-                Next
-
-                ObjTravelRequest.ObjRequestCost.Clear()
-                For i As Integer = 0 To GridViewAdvance.RowCount - 1
-                    ObjTravelRequestCost = New TravelRequestCostModel
-                    With ObjTravelRequestCost
-                        .NoRequest = NoRequest
-                        .CostType = GridViewAdvance.GetRowCellValue(i, "CostType").ToString().TrimEnd.ToUpper
-                        .Description = GridViewAdvance.GetRowCellValue(i, "Description").ToString().TrimEnd
-                        .Days = Convert.ToInt16(GridViewAdvance.GetRowCellValue(i, "Days"))
-                        .AdvanceIDR = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceIDR"))
-                        .AdvanceUSD = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceUSD"))
-                        .AdvanceYEN = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceYEN"))
-                    End With
-                    ObjTravelRequest.ObjRequestCost.Add(ObjTravelRequestCost)
-                Next
-
                 ObjTravelRequest.InsertData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-
             Else
-                ObjTravelRequest.ObjRequestDetails.Clear()
-                For i As Integer = 0 To GridViewDetail.RowCount - 1
-                    seq = seq + 1
-                    ObjTravelRequestDetail = New TravelRequestDetailModel
-                    With ObjTravelRequestDetail
-                        .NoRequest = txtNoRequest.Text
-                        .Seq = seq
-                        .Destination = GridViewDetail.GetRowCellValue(i, "Destination").ToString().TrimEnd.ToUpper
-                        .Negara = GridViewDetail.GetRowCellValue(i, "Negara").ToString().TrimEnd
-                        .Visa = GridViewDetail.GetRowCellValue(i, "Visa").ToString().TrimEnd
-                        .DepartureDate = IIf(GridViewDetail.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DepartureDate"))
-                        .ArrivalDate = IIf(GridViewDetail.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "ArrivalDate"))
-                    End With
-                    ObjTravelRequest.ObjRequestDetails.Add(ObjTravelRequestDetail)
-                Next
-
-                ObjTravelRequest.ObjRequestCost.Clear()
-                For i As Integer = 0 To GridViewAdvance.RowCount - 1
-                    ObjTravelRequestCost = New TravelRequestCostModel
-                    With ObjTravelRequestCost
-                        .NoRequest = txtNoRequest.Text
-                        .CostType = GridViewAdvance.GetRowCellValue(i, "CostType").ToString().TrimEnd.ToUpper
-                        .Description = GridViewAdvance.GetRowCellValue(i, "Description").ToString().TrimEnd
-                        .Days = Convert.ToInt16(GridViewAdvance.GetRowCellValue(i, "Days"))
-                        .AdvanceIDR = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceIDR"))
-                        .AdvanceUSD = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceUSD"))
-                        .AdvanceYEN = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceYEN"))
-                    End With
-                    ObjTravelRequest.ObjRequestCost.Add(ObjTravelRequestCost)
-                Next
-
                 ObjTravelRequest.NoRequest = txtNoRequest.Text
                 ObjTravelRequest.UpdateData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
+
+            If FrmParent.Name = "FrmTravelTicket" Then
+                GridDtl.DataSource = fc_Class.GetTravelRequest()
+            Else
+                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
+            End If
             IsClosed = True
             Me.Hide()
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -424,13 +405,13 @@ Public Class FrmTravelRequestDetail
                                 MessageBoxDefaultButton.Button1)
             Exit Sub
         End If
-        If txtTravelType.Text = "LN" AndAlso GridViewDetail.RowCount = 0 Then
-            Dim frmOption As New FrmTravelOption()
-            frmOption.Text = "Input Currency Allowance"
-            frmOption.StartPosition = FormStartPosition.CenterScreen
-            frmOption.ShowDialog()
-            curryIDAllowance = IIf(frmOption.Values = Nothing, "USD", frmOption.Values)
-        End If
+        'If txtTravelType.Text = "LN" AndAlso GridViewDetail.RowCount = 0 Then
+        '    Dim frmOption As New FrmTravelOption()
+        '    frmOption.Text = "Pilih Currency Allowance"
+        '    frmOption.StartPosition = FormStartPosition.CenterScreen
+        '    frmOption.ShowDialog()
+        '    curryIDAllowance = IIf(frmOption.Values = Nothing, "USD", frmOption.Values)
+        'End If
 
         GridViewDetail.AddNewRow()
         GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
@@ -465,7 +446,7 @@ Public Class FrmTravelRequestDetail
         Dim departureDate As Date = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "DepartureDate"))
         Dim arrivalDate As Date = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "ArrivalDate"))
         If departureDate > arrivalDate Then
-            MessageBox.Show("Arrival Date tidak boleh lehih kecil dari Departure Date", "Warning",
+            MessageBox.Show("Arrival Date tidak boleh lebih kecil dari Departure Date", "Warning",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1)
@@ -603,14 +584,19 @@ Public Class FrmTravelRequestDetail
         dt = ObjTravelRequest.GetPocketAllowance(txtTravelType.Text, txtGolongan.Text)
 
         If dt.Rows.Count > 0 Then
-            If curryIDAllowance = "YEN" Then
-                amountYEN = dt.Rows(0).Item("AllowanceYEN")
-                If amountYEN = 0 Then
-                    amountYEN = dt.Rows(0).Item("AllowanceUSD") * rateUSD / rateYEN
-                End If
-            Else
-                amountUSD = dt.Rows(0).Item("AllowanceUSD")
-            End If
+            'If curryIDAllowance = "YEN" Then
+            '    amountYEN = dt.Rows(0).Item("AllowanceYEN")
+            '    If amountYEN = 0 Then
+            '        amountYEN = dt.Rows(0).Item("AllowanceUSD") * rateUSD / rateYEN
+            '    End If
+            'ElseIf curryIDAllowance = "USD" Then
+            '    amountUSD = dt.Rows(0).Item("AllowanceUSD")
+            'Else
+            '    amountIDR = dt.Rows(0).Item("AllowanceIDR")
+            'End If
+            amountUSD = dt.Rows(0).Item("AllowanceUSD")
+            amountYEN = dt.Rows(0).Item("AllowanceYEN")
+            amountIDR = dt.Rows(0).Item("AllowanceIDR")
         End If
 
         Dim advanceIDR As Double = IIf(String.IsNullOrEmpty(txtAdvanceIDR.Text), 0, txtAdvanceIDR.Text)
@@ -672,6 +658,76 @@ Public Class FrmTravelRequestDetail
         txtAdvanceUSD.Enabled = False
         txtAdvanceYEN.Enabled = False
         btnAdd.Enabled = False
+    End Sub
+
+    Private Sub GridViewAdvance_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewAdvance.FocusedRowChanged
+        Try
+            Dim CostType = String.Empty
+            Dim selectedRows() As Integer = GridViewAdvance.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    CostType = GridViewAdvance.GetRowCellValue(rowHandle, "CostType")
+                End If
+            Next rowHandle
+
+            If CostType = "C02" Then
+                GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = True
+                GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = True
+                GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = True
+            Else
+                GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = False
+                GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = False
+                GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = False
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub CAdvanceIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceIDR.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CAdvanceYEN_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceYEN.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub sendMail()
+        Try
+            Dim smtpServer As New SmtpClient
+            Dim eMail As New MailMessage()
+            smtpServer.UseDefaultCredentials = False
+            smtpServer.Credentials = New Net.NetworkCredential("username@gmail.com", "password")
+            smtpServer.Port = 25
+            smtpServer.EnableSsl = True
+            smtpServer.Host = "smtp.gmail.com"
+
+            eMail = New MailMessage()
+            eMail.From = New MailAddress("")
+            eMail.To.Add("")
+            eMail.Subject = "Email Sending"
+            eMail.IsBodyHtml = False
+            eMail.Body = ""
+            smtpServer.Send(eMail)
+            MsgBox("Mail Sent")
+
+        Catch error_t As Exception
+            MsgBox(error_t.ToString)
+        End Try
     End Sub
 
 End Class
