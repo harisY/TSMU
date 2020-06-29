@@ -69,7 +69,7 @@ Public Class FrmSuspendSettleDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSettle.ID = fs_Code
+                ObjSettle.SettleID = fs_Code2
                 ObjSettle.GetSettleById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
