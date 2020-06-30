@@ -6,7 +6,7 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports Microsoft.Office.Interop
-Imports AddinExpress.Outlook.SecurityManager
+'Imports AddinExpress.Outlook.SecurityManager
 Imports System.IO
 Imports System.Net.Mail
 
@@ -14,6 +14,8 @@ Imports System.Net.Mail
 
 
 Public Class Frm_CR_UserCreateDetail
+
+    Dim FrmReport As FrmReportCirculation
 
     Dim Active_Form As Integer = 0
 
@@ -137,7 +139,7 @@ Public Class Frm_CR_UserCreateDetail
                     C_Term.Visible = False
                     If fc_Class.H_UserSubmition = True Then
 
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                         'Call No_Edit_Grid()
                         Call No_Edit_TextBox()
                         BAddRows.Enabled = False
@@ -2500,14 +2502,6 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub Send_Email_OtherDept(NoSirkulasi As String)
 
         Try
-            'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
-
-            'With oMsg
-            '    .Display()
-            '    .To = "miftah-mis@tsmu.co.id" And "hamidi-mis@tsmu.co.id" : .Subject = "Special Order Request"
-            '    .Body = "Test"
-            '    .Send()
-            'End With
             Dim MyMailMessage As New MailMessage
             Dim A As ArrayList = New ArrayList
             Dim dtEmail As New DataTable
@@ -2535,6 +2529,36 @@ Public Class Frm_CR_UserCreateDetail
         Catch ex As Exception
 
         End Try
+
+    End Sub
+
+
+
+    Public Overrides Sub Proc_Print()
+
+        'fc_Class.GetDataByID(fs_Code)
+        ' If fc_Class.H_Approve = True Then
+
+        CForm = 3
+            CallForm(fs_Code)
+
+
+        FrmReport = New FrmReportCirculation
+        FrmReport.Circulation = T_CRNo.Text
+
+        FrmReport.StartPosition = FormStartPosition.CenterScreen
+        FrmReport.WindowState = FormWindowState.Maximized
+        FrmReport.MaximizeBox = False
+        FrmReport.ShowDialog()
+
+        'Else
+
+        '    MessageBox.Show("NPP No " & TNPP_No.EditValue & " Must be Approved First",
+        '                        "Warning",
+        '                        MessageBoxButtons.OK,
+        '                        MessageBoxIcon.Exclamation,
+        '                        MessageBoxDefaultButton.Button1)
+        'End If
 
     End Sub
 

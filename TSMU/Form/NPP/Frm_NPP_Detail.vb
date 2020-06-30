@@ -1008,7 +1008,7 @@ Public Class Frm_NPP_Detail
 
     Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
 
-        Dim Sheet As String = "NPP$A21:P50"
+        Dim Sheet As String = "NPP$A21:P300"
 
         Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
 

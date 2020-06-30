@@ -1181,6 +1181,67 @@ Public Class ClsCR_CreateUser
 
 
 
+#Region "Laporan"
+    Public Function RptCirculation(No As String) As DataSet
+        Dim query As String
+        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        query = "SELECT [CR_Request].[CirculationNo]
+                  ,[CR_Request].[DeptID]
+                  ,[CR_Request].[CR_Type]
+                  ,[CR_Request].[Budget]
+                  ,[CR_Request].[Dies_Model_Name]
+                  ,[CR_Request].[Reason]
+                  ,[CR_Description_Of_Cost].[Name_Of_Goods]
+                  ,[CR_Description_Of_Cost].[Spesification]
+                  ,[CR_Description_Of_Cost].[Account]
+                  ,[CR_Description_Of_Cost].[RemainingBudget]
+                  ,[CR_Description_Of_Cost].[Qty]
+                  ,[CR_Description_Of_Cost].[Price]
+                  ,[CR_Description_Of_Cost].[Currency]
+                  ,[CR_Description_Of_Cost].[Rate]
+                  ,[CR_Description_Of_Cost].[Amount]
+                  ,[CR_Description_Of_Cost].[Category]
+                  ,[CR_Description_Of_Cost].[Amount_IDR]
+                From [CR_Request] inner join CR_Description_Of_Cost 
+                on [CR_Request].[CirculationNo] = [CR_Description_Of_Cost].[CirculationNo]
+	            Where [CR_Request].[CirculationNo] = '" & No & "'"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport(query, "CirculationHead")
+        Return ds
+
+        'Mold_Number
+
+    End Function
+
+
+
+    Public Function RptCirculation_OtherDept(No As String) As DataSet
+        Dim query As String
+        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        query = "SELECT [CirculationNo]
+                      ,[DeptID]
+                      ,[DeptHead_ID]
+                      ,[DeptHead_Name]
+                      ,[DeptHead_Email]
+                      ,[Date]
+                      ,[Opinion]
+                      ,[Approve]
+                  FROM [CR_Other_Dept]
+	            Where[CirculationNo] = '" & No & "'"
+
+        Dim ds1 As New dsLaporan
+        ds1 = GetDsReport(query, "CirculationOtherDept")
+        Return ds1
+
+        'Mold_Number
+
+    End Function
+
+#End Region
+
+
+
 
 End Class
 
