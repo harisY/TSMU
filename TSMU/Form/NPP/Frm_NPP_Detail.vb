@@ -471,7 +471,7 @@ Public Class Frm_NPP_Detail
                 If fc_Class.H_Approve = False Then
 
                     With fc_Class
-
+                        .H_Issue_Date = TIssue_Date.EditValue
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
                         .H_Model_Description = TModelDesc.EditValue
@@ -550,7 +550,7 @@ Public Class Frm_NPP_Detail
                     End If
 
                     With fc_Class
-
+                        .H_Issue_Date = TIssue_Date.EditValue
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
                         .H_Model_Description = TModelDesc.EditValue

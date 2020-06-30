@@ -478,7 +478,8 @@ Public Class Cls_NPP_Detail
                                             Date.Now,
                                             H_TargetDRR,
                                             H_TargetQuot,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Issue_Date)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -533,7 +534,8 @@ Public Class Cls_NPP_Detail
                                             Date.Now,
                                             H_TargetDRR,
                                             H_TargetQuot,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Issue_Date)
 
 
 
@@ -544,9 +546,6 @@ Public Class Cls_NPP_Detail
                                 .Insert_NPP_Detail(H_No_NPP)
                             End With
                         Next
-
-
-
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -605,7 +604,8 @@ Public Class Cls_NPP_Detail
                                         _H_UpdateDate As Date,
                                         _H_TargetDRR As Date,
                                         _H_TargetQuot As Date,
-                                        _H_Revisi As Int32)
+                                        _H_Revisi As Int32,
+                                        _H_Issue_Date As Date)
         Dim result As Integer = 0
 
 
@@ -613,7 +613,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Update_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Order_Max_Month ", SqlDbType.Int)
@@ -631,6 +631,7 @@ Public Class Cls_NPP_Detail
             pParam(14) = New SqlClient.SqlParameter("@TargetQuot", SqlDbType.Date)
             pParam(15) = New SqlClient.SqlParameter("@Revisi", SqlDbType.Int)
             pParam(16) = New SqlClient.SqlParameter("@ModelDesc", SqlDbType.VarChar)
+            pParam(17) = New SqlClient.SqlParameter("@IssueDate", SqlDbType.Date)
 
 
             pParam(0).Value = _H_No_NPP
@@ -650,6 +651,7 @@ Public Class Cls_NPP_Detail
             pParam(14).Value = _H_TargetQuot
             pParam(15).Value = _H_Revisi
             pParam(16).Value = _H_Model_Description
+            pParam(17).Value = _H_Issue_Date
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
