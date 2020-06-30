@@ -803,7 +803,7 @@ Public Class Cls_NPP_Detail
                 GroupID = "G0000" & NoUrut
             Else
                 Dim NoUrut As String = dtTable.Rows(0).Item("NoUrut")
-                NoUrut = Val(NoUrut + 1) + Row - RowsAwal
+                NoUrut = Val(NoUrut + 1) + Row
                 If Len(NoUrut) = 1 Then
                     GroupID = "G0000" & NoUrut
                 ElseIf Len(NoUrut) = 2 Then
