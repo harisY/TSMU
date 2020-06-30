@@ -10,10 +10,8 @@ Public Class FrmDetailPaymentSuspend
     Dim _NoBukti As String
 
     Sub New(SuspendID As String)
-
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
         _NoBukti = SuspendID
     End Sub
@@ -24,7 +22,6 @@ Public Class FrmDetailPaymentSuspend
         dtGrid = ObjCashBank.GetGridDetailSuspendByAccountID03(_NoBukti)
         GridControl1.DataSource = dtGrid
         GridCellFormat(GridView1)
-
     End Sub
 
     Private Sub FrmDetailPaymentSuspend_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -509,4 +509,27 @@ Public Class FrmSuratJalanList
             Throw ex
         End Try
     End Sub
+
+    Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
+    Private Sub setDataSource(table As DataTable, _Grid As GridControl)
+        ' Invoke method if required:
+        If Me.InvokeRequired Then
+            Me.Invoke(New SetDataSourceDelegate(AddressOf setDataSource), table, _Grid)
+        Else
+            _Grid.DataSource = table
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim sjno As String = ""
+        Invoke(Sub()
+                   sjno = txt_cekRFC.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = SuratJalan.DataGridViewRFC(sjno)
+        setDataSource(dt, GridControl3)
+        Invoke(Sub()
+               End Sub)
+    End Sub
+
 End Class
