@@ -348,7 +348,22 @@
     End Sub
     Public Sub getDataByID(ByVal ID As String)
         Try
-            Dim query As String = "select * from banktransfer where NoBukti = " & QVal(ID) & " order by NoBukti"
+            Dim query As String = "SELECT  Tgl
+      ,NoBukti
+      ,Perpost
+      ,AcctID_Asal
+      ,Descr_Asal
+      ,CheckNo
+      ,AcctID_tujuan
+      ,Descr_tujuan
+      ,CurryID
+      ,Jumlah
+      ,Remark
+      ,CuryID_tujuan
+      ,Rate_Solomon
+      ,Rate_Transaksi
+	  ,Selisih_Kursi
+  FROM banktransfer where NoBukti = " & QVal(ID) & " order by NoBukti"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable_Solomon(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then

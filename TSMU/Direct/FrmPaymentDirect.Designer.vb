@@ -28,7 +28,6 @@ Partial Class FrmPaymentDirect
         Me._txtaccount = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -153,7 +152,6 @@ Partial Class FrmPaymentDirect
         CType(Me._txtaccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +211,7 @@ Partial Class FrmPaymentDirect
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(716, 0, 650, 400)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(918, 61)
+        Me.LayoutControl1.Size = New System.Drawing.Size(918, 44)
         Me.LayoutControl1.TabIndex = 8
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -229,11 +227,11 @@ Partial Class FrmPaymentDirect
         '
         '_txtaccountname
         '
-        Me._txtaccountname.Location = New System.Drawing.Point(323, 12)
+        Me._txtaccountname.Location = New System.Drawing.Point(262, 12)
         Me._txtaccountname.Name = "_txtaccountname"
         Me._txtaccountname.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me._txtaccountname.Properties.Appearance.Options.UseBackColor = True
-        Me._txtaccountname.Size = New System.Drawing.Size(278, 20)
+        Me._txtaccountname.Size = New System.Drawing.Size(339, 20)
         Me._txtaccountname.StyleController = Me.LayoutControl1
         Me._txtaccountname.TabIndex = 3
         '
@@ -250,18 +248,18 @@ Partial Class FrmPaymentDirect
         '
         '_txtperpost
         '
-        Me._txtperpost.Location = New System.Drawing.Point(101, 12)
+        Me._txtperpost.Location = New System.Drawing.Point(50, 12)
         Me._txtperpost.Name = "_txtperpost"
-        Me._txtperpost.Size = New System.Drawing.Size(50, 20)
+        Me._txtperpost.Size = New System.Drawing.Size(76, 20)
         Me._txtperpost.StyleController = Me.LayoutControl1
         Me._txtperpost.TabIndex = 0
         '
         '_txtaccount
         '
-        Me._txtaccount.Location = New System.Drawing.Point(244, 12)
+        Me._txtaccount.Location = New System.Drawing.Point(179, 12)
         Me._txtaccount.Name = "_txtaccount"
         Me._txtaccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtaccount.Size = New System.Drawing.Size(75, 20)
+        Me._txtaccount.Size = New System.Drawing.Size(79, 20)
         Me._txtaccount.StyleController = Me.LayoutControl1
         Me._txtaccount.TabIndex = 2
         '
@@ -269,9 +267,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem11, Me.LayoutControlItem4})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem11, Me.LayoutControlItem4, Me.LayoutControlItem1})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(918, 61)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(918, 44)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -279,26 +277,22 @@ Partial Class FrmPaymentDirect
         Me.LayoutControlItem1.Control = Me._txtperpost
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(143, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(118, 24)
         Me.LayoutControlItem1.Text = "PerPost"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(86, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 24)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(898, 17)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(37, 13)
+        Me.LayoutControlItem1.TextToControlDistance = 1
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me._txtaccount
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(143, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(118, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(168, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(132, 24)
         Me.LayoutControlItem2.Text = "Rekening"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(86, 13)
+        Me.LayoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(44, 13)
+        Me.LayoutControlItem2.TextToControlDistance = 5
         '
         'LayoutControlItem3
         '
@@ -313,9 +307,9 @@ Partial Class FrmPaymentDirect
         '
         Me.LayoutControlItem11.Control = Me._txtaccountname
         Me.LayoutControlItem11.Enabled = False
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(311, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(250, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(282, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(343, 24)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -1219,7 +1213,7 @@ Partial Class FrmPaymentDirect
         '
         Me.GridControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(8, 91)
+        Me.GridControl1.Location = New System.Drawing.Point(8, 73)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit2, Me.EditRek, Me.vtxtmasuk, Me.vtxtkeluar, Me.cek, Me.RepositoryItemCheckEdit5, Me.RepositoryItemTextEdit1, Me.RepositoryItemCheckEdit6})
@@ -1279,7 +1273,6 @@ Partial Class FrmPaymentDirect
         CType(Me._txtaccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1343,7 +1336,6 @@ Partial Class FrmPaymentDirect
     Friend WithEvents _txtaccount As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TabControl1 As TabControl
