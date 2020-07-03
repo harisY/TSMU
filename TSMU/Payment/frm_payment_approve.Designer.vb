@@ -36,7 +36,6 @@ Partial Class frm_payment_approve
         Me.ChekLevel1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ChekLevel2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.ChekLevel3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CheckDetail = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,20 +43,28 @@ Partial Class frm_payment_approve
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TxtDirektur = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.ChekLevel3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ChekLevel4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.btnLoad = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
-        Me.btnLoad = New System.Windows.Forms.ToolStripButton()
-        Me.ProgBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.GridApproved = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GridSuspend = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,23 +79,23 @@ Partial Class frm_payment_approve
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekLevel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekLevel2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekDir, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDirektur, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChekLevel4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        Me.ToolStrip2.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip2.SuspendLayout()
         CType(Me.GridApproved, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
@@ -115,12 +122,14 @@ Partial Class frm_payment_approve
         '
         'Grid
         '
-        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(3, 3)
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.Location = New System.Drawing.Point(3, 6)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.TxtDirektur, Me.RepositoryItemCheckedComboBoxEdit1, Me.ChekLevel1, Me.ChekLevel2, Me.ChekLevel3, Me.ChekLevel4, Me.ChekDir, Me.CheckDetail})
-        Me.Grid.Size = New System.Drawing.Size(814, 487)
+        Me.Grid.Size = New System.Drawing.Size(814, 484)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -218,11 +227,6 @@ Partial Class frm_payment_approve
         Me.ChekLevel2.AutoHeight = False
         Me.ChekLevel2.Name = "ChekLevel2"
         '
-        'ChekLevel3
-        '
-        Me.ChekLevel3.AutoHeight = False
-        Me.ChekLevel3.Name = "ChekLevel3"
-        '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Check Detail"
@@ -266,6 +270,11 @@ Partial Class frm_payment_approve
         Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
         Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
+        '
+        'ChekLevel3
+        '
+        Me.ChekLevel3.AutoHeight = False
+        Me.ChekLevel3.Name = "ChekLevel3"
         '
         'ChekLevel4
         '
@@ -316,16 +325,39 @@ Partial Class frm_payment_approve
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl1.Appearance.Options.UseBackColor = True
+        Me.PanelControl1.Controls.Add(Me.ToolStrip2)
         Me.PanelControl1.Controls.Add(Me.DateEdit2)
         Me.PanelControl1.Controls.Add(Me.DateEdit1)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.Label1)
-        Me.PanelControl1.Controls.Add(Me.ToolStrip2)
         Me.PanelControl1.Location = New System.Drawing.Point(3, 6)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(814, 58)
+        Me.PanelControl1.Size = New System.Drawing.Size(814, 32)
         Me.PanelControl1.TabIndex = 4
-        Me.PanelControl1.Visible = False
+        '
+        'ToolStrip2
+        '
+        Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
+        Me.ToolStrip2.Location = New System.Drawing.Point(398, 4)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.Size = New System.Drawing.Size(185, 25)
+        Me.ToolStrip2.TabIndex = 5
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'btnLoad
+        '
+        Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
+        Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnLoad.Name = "btnLoad"
+        Me.btnLoad.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad.Text = "Load Data"
+        '
+        'ProgBar
+        '
+        Me.ProgBar.Name = "ProgBar"
+        Me.ProgBar.Size = New System.Drawing.Size(100, 22)
         '
         'DateEdit2
         '
@@ -365,49 +397,90 @@ Partial Class frm_payment_approve
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "From :"
         '
-        'ToolStrip2
-        '
-        Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
-        Me.ToolStrip2.Location = New System.Drawing.Point(2, 31)
-        Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(810, 25)
-        Me.ToolStrip2.TabIndex = 20
-        Me.ToolStrip2.Text = "ToolStrip2"
-        '
-        'btnLoad
-        '
-        Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
-        Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(80, 22)
-        Me.btnLoad.Text = "Load Data"
-        '
-        'ProgBar
-        '
-        Me.ProgBar.Name = "ProgBar"
-        Me.ProgBar.Size = New System.Drawing.Size(100, 22)
-        '
         'GridApproved
         '
         Me.GridApproved.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridApproved.Location = New System.Drawing.Point(3, 6)
+        Me.GridApproved.Location = New System.Drawing.Point(6, 44)
         Me.GridApproved.MainView = Me.GridView2
         Me.GridApproved.Name = "GridApproved"
-        Me.GridApproved.Size = New System.Drawing.Size(814, 484)
+        Me.GridApproved.Size = New System.Drawing.Size(814, 446)
         Me.GridApproved.TabIndex = 3
         Me.GridApproved.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
         Me.GridView2.GridControl = Me.GridApproved
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
         Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID"
+        Me.GridColumn11.FieldName = "id"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 87
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Voucher No."
+        Me.GridColumn13.FieldName = "VoucherNo"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.Width = 148
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Date"
+        Me.GridColumn14.FieldName = "Tanggal"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        Me.GridColumn14.Width = 124
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Bank Name"
+        Me.GridColumn15.FieldName = "BankName"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
+        Me.GridColumn15.Width = 114
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Currency"
+        Me.GridColumn16.FieldName = "CuryID"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        Me.GridColumn16.Width = 102
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Vendor Name"
+        Me.GridColumn17.FieldName = "VendorName"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 5
+        Me.GridColumn17.Width = 260
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Paid Amount"
+        Me.GridColumn18.FieldName = "PaidAmount"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.Width = 168
         '
         'TabPage3
         '
@@ -508,12 +581,12 @@ Partial Class frm_payment_approve
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekLevel1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekLevel2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekDir, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDirektur, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckedComboBoxEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ChekLevel3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChekLevel4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -521,12 +594,12 @@ Partial Class frm_payment_approve
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
         CType(Me.GridApproved, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
@@ -578,13 +651,20 @@ Partial Class frm_payment_approve
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckDetail As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents ToolStrip2 As ToolStrip
     Friend WithEvents btnLoad As ToolStripButton
     Friend WithEvents ProgBar As ToolStripProgressBar
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CheckDetail As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

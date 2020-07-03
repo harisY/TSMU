@@ -103,6 +103,20 @@ Partial Class FrmSuratJalanList
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.txt_custID_vs_SJ = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +168,11 @@ Partial Class FrmSuratJalanList
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage4.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -345,7 +364,7 @@ Partial Class FrmSuratJalanList
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage2
         Me.XtraTabControl1.Size = New System.Drawing.Size(828, 477)
         Me.XtraTabControl1.TabIndex = 20
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3, Me.XtraTabPage4})
         '
         'XtraTabPage2
         '
@@ -949,6 +968,137 @@ Partial Class FrmSuratJalanList
         Me.GridView3.GridControl = Me.GridControl3
         Me.GridView3.Name = "GridView3"
         '
+        'XtraTabPage4
+        '
+        Me.XtraTabPage4.Controls.Add(Me.GridControl1)
+        Me.XtraTabPage4.Controls.Add(Me.Panel2)
+        Me.XtraTabPage4.Name = "XtraTabPage4"
+        Me.XtraTabPage4.Size = New System.Drawing.Size(822, 449)
+        Me.XtraTabPage4.Text = "CustID vs SJ Check"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridControl1.DataMember = Nothing
+        Me.GridControl1.Location = New System.Drawing.Point(3, 61)
+        Me.GridControl1.MainView = Me.GridView5
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(816, 385)
+        Me.GridControl1.TabIndex = 27
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5, Me.GridView6})
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34})
+        Me.GridView5.GridControl = Me.GridControl1
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsBehavior.Editable = False
+        Me.GridView5.OptionsFilter.AllowFilterEditor = False
+        Me.GridView5.OptionsView.ColumnAutoWidth = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Batch No."
+        Me.GridColumn30.FieldName = "batnbr"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        Me.GridColumn30.Width = 158
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "ShipperID Invoice"
+        Me.GridColumn31.FieldName = "shipperid_invoice"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 1
+        Me.GridColumn31.Width = 198
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "CustID Invoice"
+        Me.GridColumn32.FieldName = "custid_invoice"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 2
+        Me.GridColumn32.Width = 205
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Customer"
+        Me.GridColumn33.FieldName = "custid"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 3
+        Me.GridColumn33.Width = 159
+        '
+        'GridView6
+        '
+        Me.GridView6.GridControl = Me.GridControl1
+        Me.GridView6.Name = "GridView6"
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Controls.Add(Me.Button3)
+        Me.Panel2.Controls.Add(Me.txt_custID_vs_SJ)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Location = New System.Drawing.Point(8, 3)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(808, 52)
+        Me.Panel2.TabIndex = 26
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(719, 8)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 37)
+        Me.Button3.TabIndex = 3
+        Me.Button3.Text = "Drop Table Dahulu"
+        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.Visible = False
+        '
+        'txt_custID_vs_SJ
+        '
+        Me.txt_custID_vs_SJ.Location = New System.Drawing.Point(101, 16)
+        Me.txt_custID_vs_SJ.Name = "txt_custID_vs_SJ"
+        Me.txt_custID_vs_SJ.Size = New System.Drawing.Size(171, 21)
+        Me.txt_custID_vs_SJ.TabIndex = 0
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(18, 20)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Input Perpost :"
+        '
+        'Button2
+        '
+        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button2.Location = New System.Drawing.Point(279, 16)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(21, 21)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = " "
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Created By"
+        Me.GridColumn34.FieldName = "LUpd_User"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.Width = 160
+        '
         'FrmSuratJalanList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1011,6 +1161,12 @@ Partial Class FrmSuratJalanList
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage4.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1099,4 +1255,18 @@ Partial Class FrmSuratJalanList
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents txt_custID_vs_SJ As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
