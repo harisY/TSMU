@@ -116,6 +116,7 @@ Partial Class FrmSuratJalanList
         Me.txt_custID_vs_SJ = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TglKirimTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -990,7 +991,7 @@ Partial Class FrmSuratJalanList
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34})
         Me.GridView5.GridControl = Me.GridControl1
         Me.GridView5.Name = "GridView5"
         Me.GridView5.OptionsBehavior.Editable = False
@@ -1088,6 +1089,15 @@ Partial Class FrmSuratJalanList
         Me.Button2.TabIndex = 2
         Me.Button2.Text = " "
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Created By"
+        Me.GridColumn34.FieldName = "LUpd_User"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 4
+        Me.GridColumn34.Width = 160
         '
         'FrmSuratJalanList
         '
@@ -1258,4 +1268,5 @@ Partial Class FrmSuratJalanList
     Friend WithEvents Label2 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
