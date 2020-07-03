@@ -43,6 +43,7 @@ Public Class ClsCR_CreateUser
     Public Property H_ChargedOf As Int32
     Public Property H_InvoiceNumber As String
     Public Property H_InvoiceStatus As Int32
+    Public Property H_TotalCR As Double
 
 
 
@@ -56,6 +57,7 @@ Public Class ClsCR_CreateUser
     Public Property Collection_Other_Dept() As New Collection(Of ClsCR_Other_Dept)
     Public Property Collection_Installment() As New Collection(Of ClsCR_Installment)
     Public Property Collection_BomT1() As New Collection(Of ClsCR_BomT1)
+    Public Property Collection_Approve() As New Collection(Of ClsCR_Approve)
 
 
     Public Function Get_Mold(NPP_ As String) As DataTable
@@ -333,6 +335,25 @@ Public Class ClsCR_CreateUser
         Try
             Dim query As String = "SELECT Distinct [Model_Name] as Model
                                   FROM [Npwo_Head] "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_ApproveBOD(Dept As String, Awal As Integer, ahir As Integer) As DataTable
+        Try
+            Dim query As String = "SELECT A.[No]
+                                  ,A.[DeptID]
+                                  ,A.[IDApprove]
+                                  ,B.ApproveBy
+                                  ,B.ApproveName
+                              FROM [CR_Approve_Dept_Master] 
+                              A inner join CR_Approve_Master B
+                              on A.IDApprove = B.IDApprove
+                              Where A.[DeptID] = '" & Dept & "' and A.[No] >= '" & Awal & "' and A.[No]<= '" & ahir & "' order by A.no asc "
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             Return dt
@@ -677,11 +698,12 @@ Public Class ClsCR_CreateUser
                                 End With
                             Next
 
-                            'For i As Integer = 0 To Collection_Other_Dept.Count - 1
-                            '    With Collection_Other_Dept(i)
-                            '        .InsertCR_Other_Dept(NoSirkulasi)
-                            '    End With
-                            'Next
+                            For a As Integer = 0 To Collection_Approve.Count - 1
+                                With Collection_Approve(a)
+                                    .Insert_Approve(NoSirkulasi)
+                                End With
+                            Next
+
                         ElseIf Active_Form = 3 Then
 
                             Update_Approve(H_CirculationNo,
@@ -692,8 +714,9 @@ Public Class ClsCR_CreateUser
                                              H_DivHead_Approve_Date,
                                              H_Status)
 
-                            End If
 
+
+                        End If
 
 
 
@@ -1191,6 +1214,9 @@ Public Class ClsCR_CreateUser
                   ,[CR_Request].[Budget]
                   ,[CR_Request].[Dies_Model_Name]
                   ,[CR_Request].[Reason]
+                  ,[CR_Request].[DeptHead_Name]
+                  ,[CR_Request].[DivHead_Name]
+                  ,[CR_Request].[CreatedBy]
                   ,[CR_Description_Of_Cost].[Name_Of_Goods]
                   ,[CR_Description_Of_Cost].[Spesification]
                   ,[CR_Description_Of_Cost].[Account]
@@ -1232,6 +1258,25 @@ Public Class ClsCR_CreateUser
 
         Dim ds1 As New dsLaporan
         ds1 = GetDsReport(query, "CirculationOtherDept")
+        Return ds1
+
+        'Mold_Number
+
+    End Function
+
+
+    Public Function RptCirculation_Approve(No As String) As DataSet
+        Dim query As String
+        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        query = "Select [CirculationNo]
+                      ,[No]
+                      ,[ApproveBy]
+                      ,[ApproveName]
+                  FROM [CR_Approve]
+	            Where[CirculationNo] = '" & No & "'"
+
+        Dim ds1 As New dsLaporan
+        ds1 = GetDsReport(query, "CirculationApprove")
         Return ds1
 
         'Mold_Number
@@ -1467,6 +1512,39 @@ Public Class ClsCR_BomT1
         Catch ex As Exception
             Throw
         End Try
+    End Sub
+
+
+End Class
+
+Public Class ClsCR_Approve
+    Public Property D_Circulation As String
+    Public Property D_No As Int32
+    Public Property D_ApproveBy As String
+    Public Property D_ApproveName As String
+
+    Public Sub Insert_Approve(CirculationNo As String)
+
+        Try
+
+            Dim query As String = "insert into [CR_Approve] 
+                                    ([CirculationNo]
+                                   ,[No]
+                                   ,[ApproveBy]
+                                   ,[ApproveName]) 
+                                    values 
+                                    ( '" & CirculationNo & "'
+                                       , '" & D_No & "'
+                                       , '" & D_ApproveBy & "'
+                                       , '" & D_ApproveName & "')
+                                    "
+
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand(query)
+        Catch ex As Exception
+            Throw
+        End Try
+
     End Sub
 
 

@@ -31,6 +31,8 @@ Public Class Frm_CR_UserCreateDetail
     Dim Description_Of_Cost As New ClsCR_Description_of_Cost
     Dim Installment As New ClsCR_Installment
     Dim Other_Dept As New ClsCR_Other_Dept
+    Dim Approvel As New ClsCR_Approve
+
     Dim GridDtl As GridControl
 
     Dim fs_Split As String = "'"
@@ -66,6 +68,9 @@ Public Class Frm_CR_UserCreateDetail
 
     Dim Dt_OtherDept As DataTable
     Dim _Tag As TagModel
+
+    Dim dtApprove As DataTable
+
 
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
 
@@ -2015,14 +2020,11 @@ Public Class Frm_CR_UserCreateDetail
             BAddRows.Enabled = True
             BMold.Enabled = False
 
-
         End If
 
     End Sub
 
     Private Sub CurrRepository_EditValueChanged(sender As Object, e As EventArgs) Handles CurrRepository.EditValueChanged
-
-
 
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -2197,8 +2199,38 @@ Public Class Frm_CR_UserCreateDetail
 
                 Next
 
+                ' fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
+                fc_Class.Collection_Approve.Clear()
+
+                dtApprove = New DataTable
+                Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
+                If Total > 10000000 And Total <= 50000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                ElseIf Total >= 50000000 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
+                ElseIf Total >= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                End If
+
+
+                For A As Integer = 0 To dtApprove.Rows.Count - 1
+
+                    Approvel = New ClsCR_Approve
+                    With Approvel
+
+                        .D_Circulation = NoSirkulasi
+                        .D_No = Convert.ToInt16(dtApprove.Rows(A).Item("No"))
+                        .D_ApproveBy = IIf(dtApprove.Rows(A).Item("ApproveBy") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveBy"))
+                        .D_ApproveName = IIf(dtApprove.Rows(A).Item("ApproveName") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveName"))
+
+                    End With
+                    fc_Class.Collection_Approve.Add(Approvel)
+
+                Next
 
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
@@ -2233,7 +2265,10 @@ Public Class Frm_CR_UserCreateDetail
                 Next
 
 
-                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+                'fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
+
+
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
@@ -2289,7 +2324,6 @@ Public Class Frm_CR_UserCreateDetail
                     fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
 
                 Next
-
 
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
 

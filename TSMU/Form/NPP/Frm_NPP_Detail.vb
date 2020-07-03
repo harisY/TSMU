@@ -1007,22 +1007,22 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
+        Try
+            Dim Sheet As String = "NPP$A21:P300"
 
-        Dim Sheet As String = "NPP$A21:P300"
+            Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
 
-        Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
+                If ofd.ShowDialog() = DialogResult.OK Then
+                    FileLokasi = ofd.FileName
+                    'TxtFileName.Text = FileLokasi
 
-            If ofd.ShowDialog() = DialogResult.OK Then
-                FileLokasi = ofd.FileName
-                'TxtFileName.Text = FileLokasi
+                    If IO.File.Exists(FileLokasi) Then
 
-                If IO.File.Exists(FileLokasi) Then
-
-                    Dim cb As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
-                    cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
-                    Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
-                    cn.Open()
-                    Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as PartNo
+                        Dim cb As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
+                        cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
+                        Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
+                        cn.Open()
+                        Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as PartNo
                                                                       ,F3 as PartName
                                                                       ,F4 as MC
                                                                       ,F5 as CT
@@ -1030,42 +1030,46 @@ Public Class Frm_NPP_Detail
                                                                       ,F7 as Berat
                                                                       ,F8 as Material from [" & Sheet & "]
                                                                Where F2 <>''", cn) '
-                    'Dim dtLimaBesar As New DataTable
-                    dtExcel = New DataTable
-                    dtExcel.Load(cmd.ExecuteReader)
+                        'Dim dtLimaBesar As New DataTable
+                        dtExcel = New DataTable
+                        dtExcel.Load(cmd.ExecuteReader)
+                    End If
+
+
+
+                    For i As Integer = 0 To dtExcel.Rows.Count - 1
+                        Dim MyNewRow As DataRow
+                        MyNewRow = DtGridNPWO.NewRow
+                        Dim GroupID As String = fc_Class.GetGroupIDAuto(DtGridNPWO.Rows.Count, RowsAwal)
+                        With MyNewRow
+                            .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
+                            .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
+                            .Item("Machine") = dtExcel.Rows(i).Item("MC")
+                            .Item("C/T") = dtExcel.Rows(i).Item("CT")
+                            .Item("Cav") = dtExcel.Rows(i).Item("Cav")
+                            .Item("Weight") = dtExcel.Rows(i).Item("Berat")
+                            .Item("Material") = dtExcel.Rows(i).Item("Material")
+                            .Item("Inj") = False
+                            .Item("Painting") = False
+                            .Item("Chrome") = False
+                            .Item("Assy") = False
+                            .Item("Ultrasonic") = False
+                            .Item("Vibration") = False
+                            .Item("Status Mold") = ""
+                            .Item("Order Month") = "0"
+                            .Item("Single") = False
+                            .Item("Group ID") = GroupID
+                        End With
+                        DtGridNPWO.Rows.Add(MyNewRow)
+                        DtGridNPWO.AcceptChanges()
+                    Next
+
                 End If
 
+            End Using
+        Catch ex As Exception
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
-
-                For i As Integer = 0 To dtExcel.Rows.Count - 1
-                    Dim MyNewRow As DataRow
-                    MyNewRow = DtGridNPWO.NewRow
-                    Dim GroupID As String = fc_Class.GetGroupIDAuto(DtGridNPWO.Rows.Count, RowsAwal)
-                    With MyNewRow
-                        .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
-                        .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
-                        .Item("Machine") = dtExcel.Rows(i).Item("MC")
-                        .Item("C/T") = dtExcel.Rows(i).Item("CT")
-                        .Item("Cav") = dtExcel.Rows(i).Item("Cav")
-                        .Item("Weight") = dtExcel.Rows(i).Item("Berat")
-                        .Item("Material") = dtExcel.Rows(i).Item("Material")
-                        .Item("Inj") = False
-                        .Item("Painting") = False
-                        .Item("Chrome") = False
-                        .Item("Assy") = False
-                        .Item("Ultrasonic") = False
-                        .Item("Vibration") = False
-                        .Item("Status Mold") = ""
-                        .Item("Order Month") = "0"
-                        .Item("Single") = False
-                        .Item("Group ID") = GroupID
-                    End With
-                    DtGridNPWO.Rows.Add(MyNewRow)
-                    DtGridNPWO.AcceptChanges()
-                Next
-
-            End If
-
-        End Using
     End Sub
 End Class
