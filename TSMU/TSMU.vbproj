@@ -2404,10 +2404,10 @@
     <Compile Include="UserControl\DashboardAbsen.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\DashboardEnginer.Designer.vb">
-      <DependentUpon>DashboardEnginer.vb</DependentUpon>
+    <Compile Include="UserControl\DashboardPainting.Designer.vb">
+      <DependentUpon>DashboardPainting.vb</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\DashboardEnginer.vb">
+    <Compile Include="UserControl\DashboardPainting.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\DashboardFinance.Designer.vb">
@@ -3123,8 +3123,8 @@
     <EmbeddedResource Include="UserControl\DashboardAbsen.resx">
       <DependentUpon>DashboardAbsen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\DashboardEnginer.resx">
-      <DependentUpon>DashboardEnginer.vb</DependentUpon>
+    <EmbeddedResource Include="UserControl\DashboardPainting.resx">
+      <DependentUpon>DashboardPainting.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\DashboardFinance.resx">
       <DependentUpon>DashboardFinance.vb</DependentUpon>

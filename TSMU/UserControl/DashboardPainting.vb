@@ -4,15 +4,15 @@ Imports DevExpress.DataAccess.ConnectionParameters
 Imports DevExpress.XtraSplashScreen
 Imports TSMU.Win_Dashboards
 
-Public Class DashboardEnginer
+Public Class DashboardPainting
     Dim dashboardKanban As New Dashboard_kanbanSum
     Dim Dashboard As New ClsDashbard
-    Private Shared _instance As DashboardEnginer
+    Private Shared _instance As DashboardPainting
     Private Initializing As Boolean = False
-    Public Shared ReadOnly Property Instance As DashboardEnginer
+    Public Shared ReadOnly Property Instance As DashboardPainting
         Get
             If _instance Is Nothing Then
-                _instance = New DashboardEnginer
+                _instance = New DashboardPainting
             End If
             Return _instance
         End Get

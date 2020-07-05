@@ -25,10 +25,10 @@
     Private Sub LoadDashboard(Dept As String, Optional Level As Integer = 0)
         Select Case Dept
             Case "1MIS"
-                If Not Controls.Contains(DashboardEnginer.Instance) Then
-                    Controls.Add(DashboardEnginer.Instance)
-                    DashboardEnginer.Instance.Dock = DockStyle.Fill
-                    DashboardEnginer.Instance.BringToFront()
+                If Not Controls.Contains(DashboardPainting.Instance) Then
+                    Controls.Add(DashboardPainting.Instance)
+                    DashboardPainting.Instance.Dock = DockStyle.Fill
+                    DashboardPainting.Instance.BringToFront()
 
                 End If
                 DashboardFinance.Instance.BringToFront()
