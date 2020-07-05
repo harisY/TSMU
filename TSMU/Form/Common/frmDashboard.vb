@@ -23,8 +23,8 @@
     End Sub
 
     Private Sub LoadDashboard(Dept As String, Optional Level As Integer = 0)
-        Select Case Dept
-            Case "1MIS"
+        Select Case True
+            Case Dept.Contains("MIS") OrElse Dept.Contains("PPC") OrElse Dept.Contains("INJ") OrElse Dept.Contains("2PP")
                 If Not Controls.Contains(DashboardPainting.Instance) Then
                     Controls.Add(DashboardPainting.Instance)
                     DashboardPainting.Instance.Dock = DockStyle.Fill

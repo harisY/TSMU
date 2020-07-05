@@ -20,7 +20,11 @@ Public Class ClsDashbard
             pParam(1).Value = _To
             ds = New DataSet
             dt = New DataTable
-            ds = GetDataSetByCommand_Dashboard_SP(Query, "DtKanbanSum", pParam)
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                ds = GetDataSetByCommand_Dashboard_SP(Query, "DtKanbanSum", pParam)
+            ElseIf Left(gh_Common.Site.ToLower, 3) = "tsc" Then
+                ds = GetDataSetByCommand_Dashboard_SP_CKR(Query, "DtKanbanSum", pParam)
+            End If
             Return ds.Tables("DtKanbanSum")
         Catch ex As Exception
             Throw ex
