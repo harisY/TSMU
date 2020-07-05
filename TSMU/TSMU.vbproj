@@ -1211,6 +1211,12 @@
     <Compile Include="Form\Circulation\Frm_CR_Get_Mold.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_OtherDeptHead.Designer.vb">
+      <DependentUpon>Frm_CR_OtherDeptHead.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_OtherDeptHead.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.Designer.vb">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
     </Compile>
@@ -1222,6 +1228,24 @@
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\FrmReportCirculation.Designer.vb">
+      <DependentUpon>FrmReportCirculation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\FrmReportCirculation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculationHead.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculationHead.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculation_OtherDept.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculation_OtherDept.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
@@ -2699,14 +2723,25 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Get_Mold.resx">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_OtherDeptHead.resx">
+      <DependentUpon>Frm_CR_OtherDeptHead.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateDetail.resx">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
       <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Common\frmDashboard.resx">
-      <DependentUpon>frmDashboard.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Circulation\Report\FrmReportCirculation.resx">
+      <DependentUpon>FrmReportCirculation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculationHead.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculationHead.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculation_OtherDept.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculation_OtherDept.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>

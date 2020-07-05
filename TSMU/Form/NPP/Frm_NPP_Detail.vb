@@ -471,7 +471,7 @@ Public Class Frm_NPP_Detail
                 If fc_Class.H_Approve = False Then
 
                     With fc_Class
-
+                        .H_Issue_Date = TIssue_Date.EditValue
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
                         .H_Model_Description = TModelDesc.EditValue
@@ -550,7 +550,7 @@ Public Class Frm_NPP_Detail
                     End If
 
                     With fc_Class
-
+                        .H_Issue_Date = TIssue_Date.EditValue
                         .H_No_NPP = TNPP_No.EditValue
                         .H_Model_Name = TModel.EditValue
                         .H_Model_Description = TModelDesc.EditValue
@@ -1008,7 +1008,7 @@ Public Class Frm_NPP_Detail
 
     Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
 
-        Dim Sheet As String = "NPP$A21:P50"
+        Dim Sheet As String = "NPP$A21:P300"
 
         Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
 

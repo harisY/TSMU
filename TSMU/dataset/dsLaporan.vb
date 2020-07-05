@@ -1,4 +1,8 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class CirculationHeadDataTable
+
+
+    End Class
 
     Partial Public Class NPPDataTable
     End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Frm_CR_UserCreateHeader
+Partial Class Frm_CR_OtherDeptHead
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -36,11 +36,11 @@ Partial Class Frm_CR_UserCreateHeader
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 28)
+        Me.Grid.Location = New System.Drawing.Point(0, 30)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(682, 381)
-        Me.Grid.TabIndex = 5
+        Me.Grid.Size = New System.Drawing.Size(774, 351)
+        Me.Grid.TabIndex = 8
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
@@ -55,11 +55,13 @@ Partial Class Frm_CR_UserCreateHeader
         '
         'GridColumn1
         '
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.FieldName = "Circulation No"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 167
+        Me.GridColumn1.Width = 170
         '
         'GridColumn2
         '
@@ -71,7 +73,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 97
+        Me.GridColumn2.Width = 109
         '
         'GridColumn3
         '
@@ -83,7 +85,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 98
+        Me.GridColumn3.Width = 104
         '
         'GridColumn4
         '
@@ -103,11 +105,11 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.FieldName = "Submit"
+        Me.GridColumn5.FieldName = "Approved"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 92
+        Me.GridColumn5.Width = 100
         '
         'GridColumn6
         '
@@ -119,14 +121,14 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 141
+        Me.GridColumn6.Width = 173
         '
-        'Frm_CR_UserCreateHeader
+        'Frm_CR_OtherDeptHead
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(706, 421)
+        Me.ClientSize = New System.Drawing.Size(786, 393)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "Frm_CR_UserCreateHeader"
+        Me.Name = "Frm_CR_OtherDeptHead"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
