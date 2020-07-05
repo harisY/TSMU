@@ -1205,6 +1205,12 @@
     <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculationTotal.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculationTotal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Report\FrmReportCirculation.Designer.vb">
       <DependentUpon>FrmReportCirculation.vb</DependentUpon>
     </Compile>
@@ -2692,6 +2698,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
       <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculationTotal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculationTotal.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\FrmReportCirculation.resx">
       <DependentUpon>FrmReportCirculation.vb</DependentUpon>

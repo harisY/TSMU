@@ -852,6 +852,12 @@ Public Class Frm_CR_UserCreateDetail
                     BudgetType = 0
                 End If
 
+                If RBPO.Checked = True Then
+                    fc_Class.H_PO = True
+                ElseIf RBNonPO.Checked = True Then
+                    fc_Class.H_PO = False
+                End If
+
                 NoSirkulasi = fc_Class.H_CirculationNo
                 With fc_Class
 
@@ -865,6 +871,8 @@ Public Class Frm_CR_UserCreateDetail
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
                     .H_Dies_Model = T_ModelName.EditValue
+                    .H_NameItem = T_NameItem.EditValue
+                    .H_Spesification = T_Spesification.EditValue
                     If T_Charged.EditValue = "YES" Then
                         .H_ChargedOf = 1
                     Else
@@ -875,10 +883,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_InvoiceStatus = 0
                     .H_Dies = 1
 
-
-
                 End With
-
 
                 'Insert To ObjDetailMaterial
                 fc_Class.Collection_Description_Of_Cost.Clear()
@@ -989,6 +994,12 @@ Public Class Frm_CR_UserCreateDetail
                     BudgetType = 0
                 End If
 
+                If RBPO.Checked = True Then
+                    fc_Class.H_PO = True
+                ElseIf RBNonPO.Checked = True Then
+                    fc_Class.H_PO = False
+                End If
+
 
                 With fc_Class
                     .H_CirculationNo = NoSirkulasi
@@ -996,12 +1007,14 @@ Public Class Frm_CR_UserCreateDetail
                     .H_CR_Type = T_CRType.EditValue
                     .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
-                    '.H_Status = "Revise"
+                    .H_Status = "Submit"
                     .H_Parent_Circulation = T_Parent.EditValue
                     .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
                     .H_Dies_Model = T_ModelName.EditValue
+                    .H_NameItem = T_NameItem.EditValue
+                    .H_Spesification = T_Spesification.EditValue
                     If T_Charged.EditValue = "YES" Then
                         .H_ChargedOf = 1
                     Else
@@ -1130,6 +1143,11 @@ Public Class Frm_CR_UserCreateDetail
         Try
             If RB_Budget.Checked = False And RB_NonBudget.Checked = False Then
                 MessageBox.Show("Please Choose a Budget Type", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            ElseIf RBPO.Checked = False And RBNonPO.Checked = False Then
+                MessageBox.Show("Please Choose a PO Type", "Warning",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1)
@@ -2265,7 +2283,7 @@ Public Class Frm_CR_UserCreateDetail
                 Next
 
 
-                'fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
 
 
 
@@ -2596,5 +2614,11 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+
+    End Sub
 End Class
