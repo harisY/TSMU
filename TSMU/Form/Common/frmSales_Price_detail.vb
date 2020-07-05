@@ -14,7 +14,7 @@ Public Class frmSales_Price_detail
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim id As System.Globalization.CultureInfo ' = New System.Globalization.CultureInfo("id-ID")
-
+    Dim _Tag As TagModel
     Public Sub New()
 
         ' This call is required by the designer.
@@ -37,6 +37,9 @@ Public Class frmSales_Price_detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub frmSales_Price_detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)

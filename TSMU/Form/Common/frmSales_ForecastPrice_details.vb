@@ -21,6 +21,7 @@ Public Class frmSales_ForecastPrice_details
     Dim EdtiPrice As Boolean
 
     Dim ObjGlobal As New global_function_models
+    Dim _Tag As TagModel
     Public Sub New()
 
         ' This call is required by the designer.
@@ -43,6 +44,9 @@ Public Class frmSales_ForecastPrice_details
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Private Sub frmSales_ForecastPrice_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -63,16 +67,16 @@ Public Class frmSales_ForecastPrice_details
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "SALES->FORECAST->" & fs_Code
+                Me.Text = "FORECAST DETAIL"
             Else
-                Me.Text = "SALES->FORECAST->NEW"
+                Me.Text = "FORECAST DETAIL"
             End If
 
             Call LoadTxtBox()
             'End If
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "frmSales_ForecastPrice"
+            bs_MainFormName = FrmParent.Name
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

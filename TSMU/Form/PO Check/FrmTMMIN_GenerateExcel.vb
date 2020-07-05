@@ -91,6 +91,6 @@ Public Class FrmTMMIN_GenerateExcel
     End Sub
 
     Private Sub FrmTMMIN_GenerateExcel_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        Initializing = True
+        Initializing = False
     End Sub
 End Class

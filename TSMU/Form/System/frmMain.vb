@@ -18,6 +18,7 @@ Partial Public Class FrmMain
     Public Sub New()
         DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
+
     End Sub
 
     Public Sub LoadMenu()
@@ -311,7 +312,12 @@ Partial Public Class FrmMain
             '# Close opened forms...
             For iCount As Integer = Application.OpenForms.Count - 1 To 0 Step -1
                 If Application.OpenForms(iCount).IsMdiChild Then
-                    Application.OpenForms(iCount).Dispose()
+                    If Application.OpenForms(iCount).Name <> "frmDashboard" Then
+
+                        Application.OpenForms(iCount).Dispose()
+                    Else
+                        Application.OpenForms(iCount).Hide()
+                    End If
                 End If
             Next
 
@@ -332,7 +338,10 @@ Partial Public Class FrmMain
     Private Sub ExitBar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ExitBar.ItemClick
 
         If MsgBox("Exit Application ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Exit ?") = MsgBoxResult.Yes Then
-            CloseALl()
+            For Each ChildForm As Form In Me.MdiChildren
+                ChildForm.Close()
+            Next
+            'Application.Exit()
             End
         End If
     End Sub
@@ -354,9 +363,27 @@ Partial Public Class FrmMain
     End Sub
     Private Sub CloseALl()
         For Each ChildForm As Form In Me.MdiChildren
-            ChildForm.Close()
+            If ChildForm.Name <> "frmDashboard" Then
+                ChildForm.Close()
+            End If
         Next
     End Sub
 
+    Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Try
+            If MsgBox("Exit Application ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Exit ?") = MsgBoxResult.Yes Then
+                For Each ChildForm As Form In Me.MdiChildren
+                    ChildForm.Close()
+                Next
+                RemoveHandler FormClosing, AddressOf FrmMain_FormClosing
+                'Application.Exit()
+                End
+            Else
+                e.Cancel = True
+            End If
+        Catch ex As Exception
+            ex = Nothing
+        End Try
 
+    End Sub
 End Class

@@ -11,7 +11,7 @@
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
-
+    Dim _Tag As TagModel
     Public Sub New()
 
         ' This call is required by the designer.
@@ -34,6 +34,9 @@
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub frmInventory_detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
