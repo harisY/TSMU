@@ -21,7 +21,7 @@ Public Class FrmBankTransfer_Detail
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
-
+    Dim _Tag = New TagModel
     Dim ObjSuspend As New ClsSuspend
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
@@ -41,6 +41,9 @@ Public Class FrmBankTransfer_Detail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
 
     Public Overrides Sub InitialSetForm()

@@ -113,7 +113,6 @@ Public Class FrmReport_BoM_Forecast_PO
             tsBtn_refresh.PerformClick()
         Else
             e.Handled = True
-
         End If
     End Sub
     Dim ObjReport As clsReport

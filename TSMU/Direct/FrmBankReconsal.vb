@@ -20,6 +20,7 @@ Public Class FrmBankReconsal
     Dim ff_Detail6 As FrmBankPaid
     Dim ff_Detail7 As frm_payment_aprrove_details
     Dim ff_Detail8 As FrmBankReceipt_Detail
+    Dim ff_Detail9 As FrmDetailPaymentDirect1
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim GridDtl As GridControl
@@ -302,6 +303,19 @@ Public Class FrmBankReconsal
         ff_Detail8.StartPosition = FormStartPosition.CenterScreen
         ff_Detail8.Show()
     End Sub
+
+    Private Sub CallFrm3(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
+        If ff_Detail9 IsNot Nothing AndAlso ff_Detail9.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail9.Close()
+        End If
+        ff_Detail9 = New FrmDetailPaymentDirect1(ls_Code, ls_Code2, Me, li_Row, GridControl1, IsNew)
+        ff_Detail9.MdiParent = FrmMain
+        ff_Detail9.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail9.Show()
+    End Sub
     Private Sub DataCashBank()
         Dim dtGrid As New DataTable
         ObjCashBank.Perpost = _txtperpost.Text
@@ -451,8 +465,12 @@ Public Class FrmBankReconsal
             Call CallFrm(id2, id,
                          GridView1.RowCount)
         Else
-            ff_Detail = New FrmDetailPaymentDirect1(id)
-            ff_Detail.Show()
+            ''    ff_Detail = New FrmDetailPaymentDirect1(id)
+            ''    ff_Detail.Show()
+            Call CallFrm3(id2, id,
+                         GridView1.RowCount)
+            ' this call is required by the windows form designer
+
         End If
 
     End Sub
@@ -541,8 +559,11 @@ Public Class FrmBankReconsal
                     Call CallFrm(id2, id,
                          GridView1.RowCount)
                 Else
-                    ff_Detail = New FrmDetailPaymentDirect1(id)
-                    ff_Detail.Show()
+                    '                    ff_Detail = New FrmDetailPaymentDirect1(id)
+                    ''                   ff_Detail.Show()
+
+                    Call CallFrm3(id2, id,
+              GridView1.RowCount)
                 End If
             End If
 

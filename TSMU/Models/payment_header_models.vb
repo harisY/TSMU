@@ -32,6 +32,9 @@ Public Class payment_header_models
     Public Property cmdm_manual_ket As String
     Public Property ObjPaymentDetails() As New Collection(Of payment_detail_models)
     Public Property ObjBatch() As New Collection(Of batch)
+    Public Property tglfrom As DateTime
+    Public Property tgluntil As DateTime
+
     Public Function GetDataGrid() As DataTable
         Try
             Dim sql As String = "SELECT [id]
@@ -69,6 +72,25 @@ Public Class payment_header_models
             Throw ex
         End Try
     End Function
+
+
+    Public Function DataApproved(ByVal date1 As String, ByVal date2 As String) As DataTable
+        Try
+            Dim query As String = "DataApprovedPaymentDirektur"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            pParam(0).Value = date1
+            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
     Public Sub GetPaymentByVoucherNo()
         Try
             Dim sql As String = "SELECT [id]
@@ -455,7 +477,8 @@ Public Class payment_header_models
     End Function
 
     Public Function GetDataGridApproveByBank(ByVal Level As Integer, BankID As String) As DataTable
-        Dim sql As String = "	
+        Dim sql As String = "
+
 			SELECT 
                                 payment_header1.id
                                 ,payment_header1.vrno as VoucherNo
@@ -472,7 +495,8 @@ Public Class payment_header_models
         Try
             '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
             If Level = 1 Then
-                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) group by payment_header1.id
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) 
+                                 group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName
@@ -486,7 +510,8 @@ Public Class payment_header_models
                                 ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 2 Then
-                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='0' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='0' AND payment_header1.cek3='0' AND payment_header1.cek4='0' 
+                                group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName
@@ -500,7 +525,8 @@ Public Class payment_header_models
                                 ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 3 Then
-                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek3='0' AND payment_header1.cek4='0' group by payment_header1.id
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek3='0' AND payment_header1.cek4='0' 
+                                 group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName
@@ -514,7 +540,8 @@ Public Class payment_header_models
                                 ,Payment_Detail1.cek4
 								ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             Else
-                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek4='0' group by payment_header1.id
+                sql = sql & " WHERE payment_header1.BankID = COALESCE(NULLIF('" & BankID & "',''),BankID) AND payment_header1.cek1 ='1' AND payment_header1.cek2='1' AND payment_header1.cek4='0' 
+                                 group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName
@@ -674,6 +701,7 @@ Public Class payment_header_models
 
 
     Public Function GetDataGridApproveDone(ByVal Level As Integer) As DataTable
+
         Dim sql As String = "SELECT 
                                 payment_header1.id
                                 ,payment_header1.vrno as VoucherNo
@@ -686,7 +714,8 @@ Public Class payment_header_models
         Try
             '' query = "Select vrno as No_Voucher,VendorName as Supplier,Total_DPP_PPN+PPh+Biaya_Transfer as Amount, cek3 as Check1, cek4 as Check2 from payment_header1"
             If Level = 2 Then
-                sql = sql & " WHERE payment_header1.cek2='1' group by payment_header1.id
+                sql = sql & " WHERE payment_header1.cek2='1'
+                                group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName
@@ -712,7 +741,11 @@ Public Class payment_header_models
 								,payment_header1.Biaya_Transfer
 							ORDER BY payment_header1.tgl, payment_header1.vendorname, payment_header1.vrno"
             ElseIf Level = 4 Then
-                sql = sql & " WHERE payment_header1.cek4='1' group by payment_header1.id
+                tglfrom = frm_payment_approve.DateEdit1.Text + " 00:00:00"
+                tgluntil = frm_payment_approve.DateEdit1.Text + " 00:00:00"
+                sql = sql & " WHERE payment_header1.cek4='1' and 
+                                tgl>='" & tglfrom & "' and tgl<='" & tgluntil & "'
+                                group by payment_header1.id
                                 ,payment_header1.vrno 
                                 ,payment_header1.tgl
                                 ,payment_header1.BankName

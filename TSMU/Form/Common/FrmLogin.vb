@@ -33,6 +33,9 @@
                     Call InitializeApp()
                     'Me.Dispose()
                     Me.Close()
+                    Dim f As New frmDashboard(gh_Common.GroupID)
+                    f.MdiParent = FrmMain
+                    f.Show()
                 Else
                     UsernameTextBox.Focus()
                     MsgBox("Wrong Username or Password!")

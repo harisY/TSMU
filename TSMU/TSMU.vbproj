@@ -73,12 +73,15 @@
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dashboard.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v18.2.Win, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.Win.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Persistent.Base.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -90,6 +93,7 @@
     <Reference Include="DevExpress.Snap.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Snap.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.TreeMap.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -99,9 +103,13 @@
     <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Presets, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Win, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -109,6 +117,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
       <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -179,6 +188,7 @@
     <Compile Include="Classes\Circulation\clsCR_ApproveDeptHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_ApproveDivHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
+    <Compile Include="Classes\ClsDashbard.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
     <Compile Include="Classes\MenuManager.vb" />
@@ -232,6 +242,12 @@
     <Compile Include="Compare_Invoice\frmCompare_Invoice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dashboard\Dashboard_kanbanSum.Designer.vb">
+      <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_kanbanSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +255,14 @@
     </Compile>
     <Compile Include="dataset\bank.vb">
       <DependentUpon>bank.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\DashboardDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\DashboardDS.vb">
+      <DependentUpon>DashboardDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -1251,6 +1275,12 @@
     <Compile Include="Classes\ClassSystemConfiguration.vb" />
     <Compile Include="Classes\ClassSystemUser1.vb" />
     <Compile Include="Classes\employeeClass.vb" />
+    <Compile Include="Form\Common\frmDashboard.Designer.vb">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmJogres.Designer.vb">
       <DependentUpon>frmJogres.vb</DependentUpon>
     </Compile>
@@ -2386,8 +2416,29 @@
     <Compile Include="UserControl\customTextbox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControl\DashboardAbsen.Designer.vb">
+      <DependentUpon>DashboardAbsen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DashboardAbsen.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\DashboardPainting.Designer.vb">
+      <DependentUpon>DashboardPainting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DashboardPainting.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\DashboardFinance.Designer.vb">
+      <DependentUpon>DashboardFinance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DashboardFinance.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
+      <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
     </EmbeddedResource>
@@ -3099,6 +3150,26 @@
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DashboardAbsen.resx">
+      <DependentUpon>DashboardAbsen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DashboardPainting.resx">
+      <DependentUpon>DashboardPainting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DashboardFinance.resx">
+      <DependentUpon>DashboardFinance.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dataset\DashboardDS.xsc">
+      <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DashboardDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DashboardDS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\DashboardDS.xss">
+      <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </None>
     <None Include="dataset\dsLaporan2.xsc">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
     </None>

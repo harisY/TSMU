@@ -41,6 +41,20 @@ Partial Class frmSales_ForecastPrice_details
         Me.TxtOePe = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TxtInSub = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TxtSite = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColBulan = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,20 +75,6 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColHarga3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtHarga3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me._TxtJanQty1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -89,17 +89,6 @@ Partial Class frmSales_ForecastPrice_details
         CType(Me.TxtOePe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtInSub.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtQty3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPO1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPO2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +103,17 @@ Partial Class frmSales_ForecastPrice_details
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtQty3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPO1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPO2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -133,32 +133,36 @@ Partial Class frmSales_ForecastPrice_details
         Me.LayoutControl1.Controls.Add(Me.TxtInSub)
         Me.LayoutControl1.Controls.Add(Me.TxtSite)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 144)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1104, 188)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'Panel2
         '
-        Me.Panel2.Location = New System.Drawing.Point(223, 36)
+        Me.Panel2.Location = New System.Drawing.Point(297, 44)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(593, 20)
+        Me.Panel2.Size = New System.Drawing.Size(791, 22)
         Me.Panel2.TabIndex = 16
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(223, 12)
+        Me.Panel1.Location = New System.Drawing.Point(297, 16)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(593, 20)
+        Me.Panel1.Size = New System.Drawing.Size(791, 22)
         Me.Panel1.TabIndex = 15
         '
         'TxtModel
         '
-        Me.TxtModel.Location = New System.Drawing.Point(724, 84)
+        Me.TxtModel.Location = New System.Drawing.Point(918, 100)
+        Me.TxtModel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtModel.Name = "TxtModel"
-        Me.TxtModel.Size = New System.Drawing.Size(92, 20)
+        Me.TxtModel.Size = New System.Drawing.Size(170, 22)
         Me.TxtModel.StyleController = Me.LayoutControl1
         Me.TxtModel.TabIndex = 11
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -168,36 +172,40 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtPartNo
         '
-        Me.TxtPartNo.Location = New System.Drawing.Point(530, 84)
+        Me.TxtPartNo.Location = New System.Drawing.Point(708, 100)
+        Me.TxtPartNo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtPartNo.Name = "TxtPartNo"
         Me.TxtPartNo.Properties.ReadOnly = True
-        Me.TxtPartNo.Size = New System.Drawing.Size(125, 20)
+        Me.TxtPartNo.Size = New System.Drawing.Size(165, 22)
         Me.TxtPartNo.StyleController = Me.LayoutControl1
         Me.TxtPartNo.TabIndex = 10
         '
         'TxtInvtName
         '
-        Me.TxtInvtName.Location = New System.Drawing.Point(288, 84)
+        Me.TxtInvtName.Location = New System.Drawing.Point(372, 100)
+        Me.TxtInvtName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtInvtName.Name = "TxtInvtName"
         Me.TxtInvtName.Properties.ReadOnly = True
-        Me.TxtInvtName.Size = New System.Drawing.Size(173, 20)
+        Me.TxtInvtName.Size = New System.Drawing.Size(242, 22)
         Me.TxtInvtName.StyleController = Me.LayoutControl1
         Me.TxtInvtName.TabIndex = 9
         '
         'TxtCustName
         '
-        Me.TxtCustName.Location = New System.Drawing.Point(288, 60)
+        Me.TxtCustName.Location = New System.Drawing.Point(372, 72)
+        Me.TxtCustName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtCustName.Name = "TxtCustName"
         Me.TxtCustName.Properties.ReadOnly = True
-        Me.TxtCustName.Size = New System.Drawing.Size(528, 20)
+        Me.TxtCustName.Size = New System.Drawing.Size(716, 22)
         Me.TxtCustName.StyleController = Me.LayoutControl1
         Me.TxtCustName.TabIndex = 7
         '
         'TxtTahun
         '
-        Me.TxtTahun.Location = New System.Drawing.Point(77, 36)
+        Me.TxtTahun.Location = New System.Drawing.Point(91, 44)
+        Me.TxtTahun.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTahun.Name = "TxtTahun"
-        Me.TxtTahun.Size = New System.Drawing.Size(142, 20)
+        Me.TxtTahun.Size = New System.Drawing.Size(200, 22)
         Me.TxtTahun.StyleController = Me.LayoutControl1
         Me.TxtTahun.TabIndex = 5
         ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -207,19 +215,21 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtId
         '
-        Me.TxtId.Location = New System.Drawing.Point(77, 12)
+        Me.TxtId.Location = New System.Drawing.Point(91, 16)
+        Me.TxtId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtId.Name = "TxtId"
         Me.TxtId.Properties.ReadOnly = True
-        Me.TxtId.Size = New System.Drawing.Size(142, 20)
+        Me.TxtId.Size = New System.Drawing.Size(200, 22)
         Me.TxtId.StyleController = Me.LayoutControl1
         Me.TxtId.TabIndex = 4
         '
         'TxtCustID
         '
-        Me.TxtCustID.Location = New System.Drawing.Point(77, 60)
+        Me.TxtCustID.Location = New System.Drawing.Point(91, 72)
+        Me.TxtCustID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtCustID.Name = "TxtCustID"
         Me.TxtCustID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtCustID.Size = New System.Drawing.Size(142, 20)
+        Me.TxtCustID.Size = New System.Drawing.Size(200, 22)
         Me.TxtCustID.StyleController = Me.LayoutControl1
         Me.TxtCustID.TabIndex = 6
         ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -229,10 +239,11 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtInvtID
         '
-        Me.TxtInvtID.Location = New System.Drawing.Point(77, 84)
+        Me.TxtInvtID.Location = New System.Drawing.Point(91, 100)
+        Me.TxtInvtID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtInvtID.Name = "TxtInvtID"
         Me.TxtInvtID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtInvtID.Size = New System.Drawing.Size(142, 20)
+        Me.TxtInvtID.Size = New System.Drawing.Size(200, 22)
         Me.TxtInvtID.StyleController = Me.LayoutControl1
         Me.TxtInvtID.TabIndex = 8
         ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -242,11 +253,12 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtOePe
         '
-        Me.TxtOePe.Location = New System.Drawing.Point(77, 108)
+        Me.TxtOePe.Location = New System.Drawing.Point(91, 128)
+        Me.TxtOePe.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtOePe.Name = "TxtOePe"
         Me.TxtOePe.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtOePe.Properties.Items.AddRange(New Object() {"", "OE", "PE"})
-        Me.TxtOePe.Size = New System.Drawing.Size(142, 20)
+        Me.TxtOePe.Size = New System.Drawing.Size(200, 22)
         Me.TxtOePe.StyleController = Me.LayoutControl1
         Me.TxtOePe.TabIndex = 12
         ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -256,11 +268,12 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtInSub
         '
-        Me.TxtInSub.Location = New System.Drawing.Point(288, 108)
+        Me.TxtInSub.Location = New System.Drawing.Point(372, 128)
+        Me.TxtInSub.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtInSub.Name = "TxtInSub"
         Me.TxtInSub.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtInSub.Properties.Items.AddRange(New Object() {"", "Inhouse", "Subcon"})
-        Me.TxtInSub.Size = New System.Drawing.Size(173, 20)
+        Me.TxtInSub.Size = New System.Drawing.Size(242, 22)
         Me.TxtInSub.StyleController = Me.LayoutControl1
         Me.TxtInSub.TabIndex = 13
         ConditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -270,11 +283,12 @@ Partial Class frmSales_ForecastPrice_details
         '
         'TxtSite
         '
-        Me.TxtSite.Location = New System.Drawing.Point(530, 108)
+        Me.TxtSite.Location = New System.Drawing.Point(708, 128)
+        Me.TxtSite.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtSite.Name = "TxtSite"
         Me.TxtSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtSite.Properties.Items.AddRange(New Object() {"", "TNG-U", "TSC3-U"})
-        Me.TxtSite.Size = New System.Drawing.Size(286, 20)
+        Me.TxtSite.Size = New System.Drawing.Size(380, 22)
         Me.TxtSite.StyleController = Me.LayoutControl1
         Me.TxtSite.TabIndex = 14
         ConditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -282,22 +296,158 @@ Partial Class frmSales_ForecastPrice_details
         ConditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
         Me.DxValidationProvider1.SetValidationRule(Me.TxtSite, ConditionValidationRule7)
         '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem11})
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1104, 188)
+        Me.LayoutControlGroup1.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.TxtId
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(281, 28)
+        Me.LayoutControlItem1.Text = "ID"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.TxtTahun
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 28)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(281, 28)
+        Me.LayoutControlItem2.Text = "Tahun"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.TxtCustID
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 56)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(281, 28)
+        Me.LayoutControlItem3.Text = "Customer ID"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.TxtInvtID
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(281, 28)
+        Me.LayoutControlItem5.Text = "Inventory ID"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.TxtCustName
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(281, 56)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(797, 28)
+        Me.LayoutControlItem4.Text = "Cust. Name"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.TxtInvtName
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(281, 84)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(323, 28)
+        Me.LayoutControlItem6.Text = "Inv. Name"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.TxtOePe
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 112)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(281, 50)
+        Me.LayoutControlItem9.Text = "OE / PE"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.Panel1
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(281, 0)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(797, 28)
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem12.TextVisible = False
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.Panel2
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(281, 28)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(797, 28)
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem13.TextVisible = False
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.TxtPartNo
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(604, 84)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(259, 28)
+        Me.LayoutControlItem7.Text = "Part No"
+        Me.LayoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(83, 17)
+        Me.LayoutControlItem7.TextToControlDistance = 5
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.TxtModel
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(863, 84)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(215, 28)
+        Me.LayoutControlItem8.Text = "Model"
+        Me.LayoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(34, 16)
+        Me.LayoutControlItem8.TextToControlDistance = 5
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.TxtInSub
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(281, 112)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(323, 50)
+        Me.LayoutControlItem10.Text = "IN / SUB"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.TxtSite
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(604, 112)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(474, 50)
+        Me.LayoutControlItem11.Text = "Site"
+        Me.LayoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(83, 17)
+        Me.LayoutControlItem11.TextToControlDistance = 5
+        '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 175)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(0, 229)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me._TxtJanQty1, Me.TxtQty1, Me.TxtQty2, Me.TxtQty3, Me.TxtPO1, Me.TxtPO2, Me.TxtHarga1, Me.TxtHarga2, Me.TxtHarga3})
-        Me.Grid.Size = New System.Drawing.Size(828, 405)
+        Me.Grid.Size = New System.Drawing.Size(1104, 530)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColBulan, Me.ColQty1, Me.ColQty2, Me.ColQty3, Me.ColPO1, Me.ColPO2, Me.ColHarga1, Me.ColHarga2, Me.ColHarga3})
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -307,20 +457,23 @@ Partial Class frmSales_ForecastPrice_details
         '
         Me.ColBulan.Caption = "Bulan"
         Me.ColBulan.FieldName = "Bulan"
+        Me.ColBulan.MinWidth = 27
         Me.ColBulan.Name = "ColBulan"
         Me.ColBulan.OptionsColumn.AllowEdit = False
         Me.ColBulan.Visible = True
         Me.ColBulan.VisibleIndex = 0
-        Me.ColBulan.Width = 150
+        Me.ColBulan.Width = 200
         '
         'ColQty1
         '
         Me.ColQty1.Caption = "Qty 1"
         Me.ColQty1.ColumnEdit = Me.TxtQty1
         Me.ColQty1.FieldName = "Qty1"
+        Me.ColQty1.MinWidth = 27
         Me.ColQty1.Name = "ColQty1"
         Me.ColQty1.Visible = True
         Me.ColQty1.VisibleIndex = 1
+        Me.ColQty1.Width = 100
         '
         'TxtQty1
         '
@@ -336,9 +489,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColQty2.Caption = "Qty 2"
         Me.ColQty2.ColumnEdit = Me.TxtQty2
         Me.ColQty2.FieldName = "Qty2"
+        Me.ColQty2.MinWidth = 27
         Me.ColQty2.Name = "ColQty2"
         Me.ColQty2.Visible = True
         Me.ColQty2.VisibleIndex = 2
+        Me.ColQty2.Width = 100
         '
         'TxtQty2
         '
@@ -354,9 +509,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColQty3.Caption = "Qty 3"
         Me.ColQty3.ColumnEdit = Me.TxtQty3
         Me.ColQty3.FieldName = "Qty3"
+        Me.ColQty3.MinWidth = 27
         Me.ColQty3.Name = "ColQty3"
         Me.ColQty3.Visible = True
         Me.ColQty3.VisibleIndex = 3
+        Me.ColQty3.Width = 100
         '
         'TxtQty3
         '
@@ -372,9 +529,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColPO1.Caption = "PO 1"
         Me.ColPO1.ColumnEdit = Me.TxtPO1
         Me.ColPO1.FieldName = "PO1"
+        Me.ColPO1.MinWidth = 27
         Me.ColPO1.Name = "ColPO1"
         Me.ColPO1.Visible = True
         Me.ColPO1.VisibleIndex = 4
+        Me.ColPO1.Width = 100
         '
         'TxtPO1
         '
@@ -390,9 +549,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColPO2.Caption = "PO 2"
         Me.ColPO2.ColumnEdit = Me.TxtPO2
         Me.ColPO2.FieldName = "PO2"
+        Me.ColPO2.MinWidth = 27
         Me.ColPO2.Name = "ColPO2"
         Me.ColPO2.Visible = True
         Me.ColPO2.VisibleIndex = 5
+        Me.ColPO2.Width = 100
         '
         'TxtPO2
         '
@@ -408,11 +569,12 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColHarga1.Caption = "Harga 1"
         Me.ColHarga1.ColumnEdit = Me.TxtHarga1
         Me.ColHarga1.FieldName = "Harga1"
+        Me.ColHarga1.MinWidth = 27
         Me.ColHarga1.Name = "ColHarga1"
         Me.ColHarga1.OptionsColumn.AllowEdit = False
         Me.ColHarga1.Visible = True
         Me.ColHarga1.VisibleIndex = 6
-        Me.ColHarga1.Width = 150
+        Me.ColHarga1.Width = 200
         '
         'TxtHarga1
         '
@@ -428,10 +590,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColHarga2.Caption = "Harga 2"
         Me.ColHarga2.ColumnEdit = Me.TxtHarga2
         Me.ColHarga2.FieldName = "Harga2"
+        Me.ColHarga2.MinWidth = 27
         Me.ColHarga2.Name = "ColHarga2"
         Me.ColHarga2.Visible = True
         Me.ColHarga2.VisibleIndex = 7
-        Me.ColHarga2.Width = 150
+        Me.ColHarga2.Width = 200
         '
         'TxtHarga2
         '
@@ -447,10 +610,11 @@ Partial Class frmSales_ForecastPrice_details
         Me.ColHarga3.Caption = "Harga 3"
         Me.ColHarga3.ColumnEdit = Me.TxtHarga3
         Me.ColHarga3.FieldName = "Harga3"
+        Me.ColHarga3.MinWidth = 27
         Me.ColHarga3.Name = "ColHarga3"
         Me.ColHarga3.Visible = True
         Me.ColHarga3.VisibleIndex = 8
-        Me.ColHarga3.Width = 150
+        Me.ColHarga3.Width = 200
         '
         'TxtHarga3
         '
@@ -468,138 +632,13 @@ Partial Class frmSales_ForecastPrice_details
         Me._TxtJanQty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtJanQty1.Name = "_TxtJanQty1"
         '
-        'LayoutControlGroup1
-        '
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem11})
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 144)
-        Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.TxtId
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(211, 24)
-        Me.LayoutControlItem1.Text = "ID"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.TxtTahun
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(211, 24)
-        Me.LayoutControlItem2.Text = "Tahun"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.TxtCustID
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(211, 24)
-        Me.LayoutControlItem3.Text = "Customer ID"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.TxtInvtID
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(211, 24)
-        Me.LayoutControlItem5.Text = "Inventory ID"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.TxtCustName
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(211, 48)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(597, 24)
-        Me.LayoutControlItem4.Text = "Cust. Name"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.TxtInvtName
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(211, 72)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(242, 24)
-        Me.LayoutControlItem6.Text = "Inv. Name"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.TxtOePe
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 96)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(211, 28)
-        Me.LayoutControlItem9.Text = "OE / PE"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.Panel1
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(211, 0)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(597, 24)
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem12.TextVisible = False
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.Panel2
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(211, 24)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(597, 24)
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem13.TextVisible = False
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.TxtPartNo
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(453, 72)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(194, 24)
-        Me.LayoutControlItem7.Text = "Part No"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.TxtModel
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(647, 72)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(161, 24)
-        Me.LayoutControlItem8.Text = "Model"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.TxtInSub
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(211, 96)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(242, 28)
-        Me.LayoutControlItem10.Text = "IN / SUB"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(62, 13)
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.TxtSite
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(453, 96)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(355, 28)
-        Me.LayoutControlItem11.Text = "Site"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(62, 13)
-        '
         'frmSales_ForecastPrice_details
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmSales_ForecastPrice_details"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
@@ -616,17 +655,6 @@ Partial Class frmSales_ForecastPrice_details
         CType(Me.TxtOePe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtInSub.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtQty3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPO1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPO2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -641,6 +669,17 @@ Partial Class frmSales_ForecastPrice_details
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtQty3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPO1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPO2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

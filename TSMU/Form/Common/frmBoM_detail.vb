@@ -20,8 +20,6 @@ Public Class frmBoM_detail
     Dim NoReg As String = String.Empty
     Dim _Tag As TagModel
     Public Sub New()
-
-
         ' This call is required by the designer.
         InitializeComponent()
 

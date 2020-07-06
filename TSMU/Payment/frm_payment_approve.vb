@@ -26,34 +26,35 @@ Public Class frm_payment_approve
 
     Private Sub frm_payment_approve_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid("")
         Dim dtGrid As New DataTable
         dtGrid = Grid.DataSource
+        Call LoadGrid("")
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         If gh_Common.Level = 1 Then
             TabControl1.TabPages.Remove(TabPage2)
             TabControl1.TabPages.Remove(TabPage3)
         Else
             TabControl1.SelectedTab = TabPage1
-            LoadGridApproved()
             LoadGridSuspend()
             LoadGridApprovedReject()
         End If
     End Sub
+
+
     Private Sub LoadGrid(BankID As String)
         Try
             dtGrid = ObjPaymentHeader.GetDataGridApproveByBank(gh_Common.Level, BankID)
             Grid.DataSource = dtGrid
 
             If GridView1.RowCount > 0 Then
-                    With GridView1
-                        .Columns(0).Visible = False
-                        .BestFitColumns()
-                        '.FixedLineWidth = 1
-                        '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                        '.OptionsView.ColumnAutoWidth = True
-                    End With
-                    GridCellFormat(GridView1)
+                With GridView1
+                    .Columns(0).Visible = False
+                    .BestFitColumns()
+                    '.FixedLineWidth = 1
+                    '.Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    '.OptionsView.ColumnAutoWidth = True
+                End With
+                GridCellFormat(GridView1)
                 If gh_Common.Level = 1 Then
                     GridView1.OptionsBehavior.Editable = False
                 ElseIf gh_Common.Level = 2 Then
@@ -82,7 +83,7 @@ Public Class frm_payment_approve
                 ElseIf gh_Common.Level = 4 Then
 
                     GridView1.OptionsBehavior.Editable = True
-                        For i As Integer = 0 To GridView1.Columns.Count - 1
+                    For i As Integer = 0 To GridView1.Columns.Count - 1
 
                         'If GridView1.GetRowCellValue(i, GridView1.Columns("CheckDetail")) = False Then
                         '    GridView1.Columns(i).AppearanceCell.BackColor = Color.Honeydew
@@ -115,9 +116,9 @@ Public Class frm_payment_approve
                     'GridView1.Columns(18).OptionsColumn.AllowEdit = True
                 Else
                     GridView1.OptionsBehavior.Editable = False
-                    End If
-
                 End If
+
+            End If
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -141,6 +142,8 @@ Public Class frm_payment_approve
     End Sub
     Private Sub LoadGridApproved()
         Try
+            ''DateEdit1.Text = ObjPaymentHeader.tglfrom + " 00:00:00"
+            ''DateEdit2.Text = ObjPaymentHeader.tgluntil + " 00:00:00"
             dtGrid2 = ObjPaymentHeader.GetDataGridApproveDone(gh_Common.Level)
             GridApproved.DataSource = dtGrid2
             If GridView2.RowCount > 0 Then
@@ -645,6 +648,67 @@ Public Class frm_payment_approve
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Call LoadGrid("")
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        LoadGridApproved()
+    End Sub
+
+    Private Sub btnLoad_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub TabPage2_Click(sender As Object, e As EventArgs) Handles TabPage2.Click
+
+    End Sub
+
+    Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
+    Private Sub setDataSource(table As DataTable, _Grid As GridControl)
+        ' Invoke method if required:
+        If Me.InvokeRequired Then
+            Me.Invoke(New SetDataSourceDelegate(AddressOf setDataSource), table, _Grid)
+        Else
+            _Grid.DataSource = table
+        End If
+    End Sub
+
+    Private Async Sub btnLoad_Click_1(sender As Object, e As EventArgs) Handles btnLoad.Click
+        Try
+            'If ProgBar.Visible = True Then
+            '    Throw New Exception("Process already running, Please wait!")
+            'End If
+            ProgBar.Visible = True
+            ProgBar.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataApproved())
+        Catch ex As Exception
+            ProgBar.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub GetDataApproved()
+        Dim date1 As String = ""
+        Dim date2 As String = ""
+        'Dim date1 As DateTime
+        'Dim date2 As DateTime
+        Invoke(Sub()
+                   date1 = DateEdit1.Text
+                   date2 = DateEdit2.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = ObjPaymentHeader.DataApproved(date1, date2)
+        setDataSource(dt, GridApproved)
+        Invoke(Sub()
+                   ProgBar.Visible = False
+               End Sub)
+    End Sub
+
+
+
 
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)

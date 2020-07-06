@@ -16,14 +16,26 @@ Public Class FrmDetailPaymentDirect1
     Dim ID As String
     Dim suspendid As String
     Dim suspend1 As String
+    Dim _Tag = New TagModel
 
-    Sub New(NoBukti As String)
-
+    '' Sub New(NoBukti As String, ByRef lf_FormParent As Form)
+    Public Sub New(ByVal strCode As String,
+                   ByVal strCode2 As String,
+                   ByRef lf_FormParent As Form,
+                   ByVal li_GridRow As Integer,
+                   ByRef _Grid As GridControl, ByVal _IsNew As Boolean)
+        ' this call is required by the windows form designer
+        ' Me.New()
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        _NoBukti = NoBukti
+        '' _NoBukti = NoBukti
+        _NoBukti = strCode2
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub DataCashBank()
         Dim dtGrid As New DataTable
