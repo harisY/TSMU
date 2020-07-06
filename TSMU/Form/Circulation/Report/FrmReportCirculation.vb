@@ -2,7 +2,7 @@
 
     Dim Laporan As New RptCirculationHead
     Dim Rpt_OtherDept As New RptCirculation_OtherDept
-
+    Dim LaporanTotal As New RptCirculationTotal
     Dim Report As New ClsCR_CreateUser
 
     Public Circulation As String = ""
@@ -25,21 +25,17 @@
         Dim dsTotal As New DataSet
 
         ds = Report.RptCirculation(Circulation)
-        Laporan.SetDataSource(ds)
+        dsTotal = Report.RptCirculationTotalDOC(Circulation)
 
+        Laporan.SetDataSource(ds)
 
         dsOtherDept = Report.RptCirculation_OtherDept(Circulation)
         dsApprove = Report.RptCirculation_Approve(Circulation)
         dsTotal = Report.RptCirculationTotalDOC(Circulation)
-        'Rpt_OtherDept.SetDataSource(dsOtherDept)
 
         Laporan.Subreports("RptCirculation_OtherDept.rpt").SetDataSource(dsOtherDept)
         Laporan.Subreports("RptCirculationApprove.rpt").SetDataSource(dsApprove)
         Laporan.Subreports("RptCirculationTotal.rpt").SetDataSource(dsTotal)
-
-        'dsOtherDept = Report.RptCirculation_OtherDept(Circulation)
-        'Rpt_OtherDept.SetDataSource(dsOtherDept)
-
 
         With CrystalReportViewer1
             .ReportSource = (Laporan)

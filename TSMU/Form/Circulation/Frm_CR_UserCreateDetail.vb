@@ -337,6 +337,9 @@ Public Class Frm_CR_UserCreateDetail
         'Grid1.Enabled = False
         GroupBox2.Enabled = False
         C_Term.Enabled = False
+        T_NameItem.Enabled = False
+        T_Spesification.Enabled = False
+        GroupBox3.Enabled = False
 
     End Sub
 
@@ -373,11 +376,23 @@ Public Class Frm_CR_UserCreateDetail
                     T_DS.EditValue = .H_Dies_Sales_Type
                     T_CustomerName.EditValue = .H_Dies_Customer_Name
                     T_ModelName.EditValue = .H_Dies_Model
+                    T_NameItem.EditValue = .H_NameItem
+                    T_Spesification.EditValue = .H_Spesification
+
+                    If .H_PO = True Then
+                        RBPO.Checked = True
+                        RBNonPO.Checked = False
+                    ElseIf .H_PO = False Then
+                        RBPO.Checked = False
+                        RBNonPO.Checked = True
+                    End If
+
                     If .H_ChargedOf = 1 Then
                         T_Charged.EditValue = "YES"
                     Else
                         T_Charged.EditValue = "NO"
                     End If
+
 
                     T_Remark.EditValue = .H_Dies_Remark
 
@@ -1970,6 +1985,9 @@ Public Class Frm_CR_UserCreateDetail
             C_Term.Enabled = True
             'T_Dept.SetEditValue("")
             C_Term.Enabled = False
+            T_NameItem.Enabled = True
+            T_Spesification.Enabled = True
+            GroupBox3.Enabled = True
 
             Call Edit_Grid()
             With GridView1
@@ -2011,6 +2029,9 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox2.Enabled = False
             BMold.Enabled = False
             C_Term.Enabled = False
+            T_NameItem.Enabled = True
+            T_Spesification.Enabled = True
+            GroupBox3.Enabled = True
 
             GridView1.OptionsBehavior.Editable = True
             GridView3.OptionsBehavior.Editable = False

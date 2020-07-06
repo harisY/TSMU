@@ -557,6 +557,9 @@ Public Class ClsCR_CreateUser
                     H_Dies_Customer_Name = Trim(.Item("Dies_Customer_Name") & "")
                     H_Dies_Model = Trim(.Item("Dies_Model_Name") & "")
                     H_Dies_Remark = Trim(.Item("Dies_Remark") & "")
+                    H_NameItem = Trim(.Item("NameItem") & "")
+                    H_Spesification = Trim(.Item("Spesification") & "")
+                    H_PO = Trim(.Item("PoType") & "")
                     If Trim(.Item("ChargedOfCustomer") & "") = "0" Then
                         H_ChargedOf = 0
                     Else
@@ -779,7 +782,10 @@ Public Class ClsCR_CreateUser
                                          H_Dies_Model,
                                          H_Dies,
                                          H_Dies_Remark,
-                                         H_ChargedOf)
+                                         H_ChargedOf,
+                                         H_NameItem,
+                                         H_Spesification,
+                                         H_PO)
 
                         Delete_Detail(NoSirkulasi)
 
@@ -1115,7 +1121,10 @@ Public Class ClsCR_CreateUser
                                 Model As String,
                                 Dies As Int32,
                                 DiesRemark As String,
-                                ChangedOf As Int32)
+                                ChangedOf As Int32,
+                                NameItem As String,
+                                Spesification As String,
+                                PO As Boolean)
 
         Dim result As Integer = 0
         Try
@@ -1139,16 +1148,22 @@ Public Class ClsCR_CreateUser
                 DiesRemark = DBNull.Value.ToString
             End If
 
-
-
             If DiesRemark = "" Then
                 DiesRemark = DBNull.Value.ToString
+            End If
+
+            If NameItem = "" Then
+                NameItem = DBNull.Value.ToString
+            End If
+
+            If Spesification = "" Then
+                Spesification = DBNull.Value.ToString
             End If
 
 
 
             Dim query As String = "[CR_Update_CrRequest]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
             pParam(0) = New SqlClient.SqlParameter("@ChargedOf ", SqlDbType.Int)
             pParam(1) = New SqlClient.SqlParameter("@RequirementDate", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
@@ -1167,6 +1182,9 @@ Public Class ClsCR_CreateUser
             pParam(15) = New SqlClient.SqlParameter("@Dies ", SqlDbType.Int)
             pParam(16) = New SqlClient.SqlParameter("@DiesRemark ", SqlDbType.VarChar)
             pParam(17) = New SqlClient.SqlParameter("@CirculationNo ", SqlDbType.VarChar)
+            pParam(18) = New SqlClient.SqlParameter("@NameItem ", SqlDbType.VarChar)
+            pParam(19) = New SqlClient.SqlParameter("@Spesification ", SqlDbType.VarChar)
+            pParam(20) = New SqlClient.SqlParameter("@PO ", SqlDbType.Bit)
 
             pParam(0).Value = ChangedOf
             pParam(1).Value = RequirementDate
@@ -1186,6 +1204,9 @@ Public Class ClsCR_CreateUser
             pParam(15).Value = Dies
             pParam(16).Value = DiesRemark
             pParam(17).Value = CirculationNo
+            pParam(18).Value = NameItem
+            pParam(19).Value = Spesification
+            pParam(20).Value = PO
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
         Catch ex As Exception

@@ -973,6 +973,8 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'T_Spesification
         '
+        Me.T_Spesification.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.T_Spesification.Location = New System.Drawing.Point(938, 36)
         Me.T_Spesification.Name = "T_Spesification"
         Me.T_Spesification.Size = New System.Drawing.Size(304, 20)
