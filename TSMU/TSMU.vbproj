@@ -1229,11 +1229,29 @@
     <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculationTotal.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculationTotal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Report\FrmReportCirculation.Designer.vb">
       <DependentUpon>FrmReportCirculation.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Circulation\Report\FrmReportCirculation.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculationApprove.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculationApprove.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\RptCirculationDOC.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCirculationDOC.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Report\RptCirculationHead.vb">
       <AutoGen>True</AutoGen>
@@ -2732,8 +2750,20 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
       <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculationTotal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculationTotal.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\FrmReportCirculation.resx">
       <DependentUpon>FrmReportCirculation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculationApprove.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculationApprove.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\RptCirculationDOC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCirculationDOC.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\RptCirculationHead.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

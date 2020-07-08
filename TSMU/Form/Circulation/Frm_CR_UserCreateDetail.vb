@@ -31,6 +31,8 @@ Public Class Frm_CR_UserCreateDetail
     Dim Description_Of_Cost As New ClsCR_Description_of_Cost
     Dim Installment As New ClsCR_Installment
     Dim Other_Dept As New ClsCR_Other_Dept
+    Dim Approvel As New ClsCR_Approve
+
     Dim GridDtl As GridControl
 
     Dim fs_Split As String = "'"
@@ -66,6 +68,9 @@ Public Class Frm_CR_UserCreateDetail
 
     Dim Dt_OtherDept As DataTable
     Dim _Tag As TagModel
+
+    Dim dtApprove As DataTable
+
 
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
 
@@ -332,6 +337,9 @@ Public Class Frm_CR_UserCreateDetail
         'Grid1.Enabled = False
         GroupBox2.Enabled = False
         C_Term.Enabled = False
+        T_NameItem.Enabled = False
+        T_Spesification.Enabled = False
+        GroupBox3.Enabled = False
 
     End Sub
 
@@ -368,11 +376,23 @@ Public Class Frm_CR_UserCreateDetail
                     T_DS.EditValue = .H_Dies_Sales_Type
                     T_CustomerName.EditValue = .H_Dies_Customer_Name
                     T_ModelName.EditValue = .H_Dies_Model
+                    T_NameItem.EditValue = .H_NameItem
+                    T_Spesification.EditValue = .H_Spesification
+
+                    If .H_PO = True Then
+                        RBPO.Checked = True
+                        RBNonPO.Checked = False
+                    ElseIf .H_PO = False Then
+                        RBPO.Checked = False
+                        RBNonPO.Checked = True
+                    End If
+
                     If .H_ChargedOf = 1 Then
                         T_Charged.EditValue = "YES"
                     Else
                         T_Charged.EditValue = "NO"
                     End If
+
 
                     T_Remark.EditValue = .H_Dies_Remark
 
@@ -847,6 +867,12 @@ Public Class Frm_CR_UserCreateDetail
                     BudgetType = 0
                 End If
 
+                If RBPO.Checked = True Then
+                    fc_Class.H_PO = True
+                ElseIf RBNonPO.Checked = True Then
+                    fc_Class.H_PO = False
+                End If
+
                 NoSirkulasi = fc_Class.H_CirculationNo
                 With fc_Class
 
@@ -860,6 +886,8 @@ Public Class Frm_CR_UserCreateDetail
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
                     .H_Dies_Model = T_ModelName.EditValue
+                    .H_NameItem = T_NameItem.EditValue
+                    .H_Spesification = T_Spesification.EditValue
                     If T_Charged.EditValue = "YES" Then
                         .H_ChargedOf = 1
                     Else
@@ -870,10 +898,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_InvoiceStatus = 0
                     .H_Dies = 1
 
-
-
                 End With
-
 
                 'Insert To ObjDetailMaterial
                 fc_Class.Collection_Description_Of_Cost.Clear()
@@ -984,6 +1009,12 @@ Public Class Frm_CR_UserCreateDetail
                     BudgetType = 0
                 End If
 
+                If RBPO.Checked = True Then
+                    fc_Class.H_PO = True
+                ElseIf RBNonPO.Checked = True Then
+                    fc_Class.H_PO = False
+                End If
+
 
                 With fc_Class
                     .H_CirculationNo = NoSirkulasi
@@ -991,12 +1022,14 @@ Public Class Frm_CR_UserCreateDetail
                     .H_CR_Type = T_CRType.EditValue
                     .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
-                    '.H_Status = "Revise"
+                    .H_Status = "Submit"
                     .H_Parent_Circulation = T_Parent.EditValue
                     .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
                     .H_Dies_Model = T_ModelName.EditValue
+                    .H_NameItem = T_NameItem.EditValue
+                    .H_Spesification = T_Spesification.EditValue
                     If T_Charged.EditValue = "YES" Then
                         .H_ChargedOf = 1
                     Else
@@ -1125,6 +1158,11 @@ Public Class Frm_CR_UserCreateDetail
         Try
             If RB_Budget.Checked = False And RB_NonBudget.Checked = False Then
                 MessageBox.Show("Please Choose a Budget Type", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            ElseIf RBPO.Checked = False And RBNonPO.Checked = False Then
+                MessageBox.Show("Please Choose a PO Type", "Warning",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1)
@@ -1947,6 +1985,9 @@ Public Class Frm_CR_UserCreateDetail
             C_Term.Enabled = True
             'T_Dept.SetEditValue("")
             C_Term.Enabled = False
+            T_NameItem.Enabled = True
+            T_Spesification.Enabled = True
+            GroupBox3.Enabled = True
 
             Call Edit_Grid()
             With GridView1
@@ -1988,6 +2029,9 @@ Public Class Frm_CR_UserCreateDetail
             GroupBox2.Enabled = False
             BMold.Enabled = False
             C_Term.Enabled = False
+            T_NameItem.Enabled = True
+            T_Spesification.Enabled = True
+            GroupBox3.Enabled = True
 
             GridView1.OptionsBehavior.Editable = True
             GridView3.OptionsBehavior.Editable = False
@@ -2015,14 +2059,11 @@ Public Class Frm_CR_UserCreateDetail
             BAddRows.Enabled = True
             BMold.Enabled = False
 
-
         End If
 
     End Sub
 
     Private Sub CurrRepository_EditValueChanged(sender As Object, e As EventArgs) Handles CurrRepository.EditValueChanged
-
-
 
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -2197,8 +2238,38 @@ Public Class Frm_CR_UserCreateDetail
 
                 Next
 
+                ' fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
+                fc_Class.Collection_Approve.Clear()
+
+                dtApprove = New DataTable
+                Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
+                If Total > 10000000 And Total <= 50000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                ElseIf Total >= 50000000 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
+                ElseIf Total >= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                End If
+
+
+                For A As Integer = 0 To dtApprove.Rows.Count - 1
+
+                    Approvel = New ClsCR_Approve
+                    With Approvel
+
+                        .D_Circulation = NoSirkulasi
+                        .D_No = Convert.ToInt16(dtApprove.Rows(A).Item("No"))
+                        .D_ApproveBy = IIf(dtApprove.Rows(A).Item("ApproveBy") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveBy"))
+                        .D_ApproveName = IIf(dtApprove.Rows(A).Item("ApproveName") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveName"))
+
+                    End With
+                    fc_Class.Collection_Approve.Add(Approvel)
+
+                Next
 
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
@@ -2234,6 +2305,9 @@ Public Class Frm_CR_UserCreateDetail
 
 
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+
+
+
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
@@ -2289,7 +2363,6 @@ Public Class Frm_CR_UserCreateDetail
                     fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
 
                 Next
-
 
                 fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
 
@@ -2562,5 +2635,11 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+
+    End Sub
 End Class
