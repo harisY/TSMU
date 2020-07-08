@@ -31,7 +31,7 @@ Public Class FrmTravelRequest
 
     Private Sub FrmTravelRequest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageRequest
         TabPage = XtraTabControl1.SelectedTabPage.Name
         LoadGridRequest()
@@ -112,7 +112,7 @@ Public Class FrmTravelRequest
             Next rowHandle
 
             If status = "OPEN" Then
-                MessageBox.Show("No Request " & ID & " sudah di Approve oleh atasan !", "Warning",
+                MessageBox.Show("No Request " & ID & " sudah dilakukan Invoice Ticket !", "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
@@ -164,7 +164,7 @@ Public Class FrmTravelRequest
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageRequest" Then
-            Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
             LoadGridRequest()
         ElseIf TabPage = "TabPageApproved" Then
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
@@ -193,7 +193,12 @@ Public Class FrmTravelRequest
         Dim filterParam As String
         Dim filteredRows As DataRow()
 
-        filterParam = Replace(txtColumnName.Text, " ", "") + " = " + QVal(txtValue.Text)
+        If txtValue.Text = "*" Then
+            filterParam = ""
+        Else
+            filterParam = Replace(txtColumnName.Text, " ", "") + " = " + QVal(txtValue.Text)
+        End If
+
         If Not String.IsNullOrEmpty(txtColumnName.Text) Then
             filteredRows = dtRequestAll.[Select](filterParam)
             If filteredRows.Count > 0 Then
@@ -219,6 +224,27 @@ Public Class FrmTravelRequest
             Next rowHandle
 
             If GridViewRequestAll.GetSelectedRows.Length > 0 Then
+                Call CallFrm(NoRequest,
+                         TabPage,
+                         GridViewRequest.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub GridApprovedReq_DoubleClick(sender As Object, e As EventArgs) Handles GridApprovedReq.DoubleClick
+        Try
+            Dim NoRequest = String.Empty
+            Dim selectedRows() As Integer = GridViewApproved.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoRequest = GridViewApproved.GetRowCellValue(rowHandle, "NoRequest")
+                End If
+            Next rowHandle
+
+            If GridViewApproved.GetSelectedRows.Length > 0 Then
                 Call CallFrm(NoRequest,
                          TabPage,
                          GridViewRequest.RowCount)

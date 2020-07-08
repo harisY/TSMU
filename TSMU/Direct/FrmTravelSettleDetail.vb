@@ -584,9 +584,10 @@ Public Class FrmTravelSettleDetail
                 End If
                 .ArrivalDate = GridViewPocketAllowance.GetRowCellValue(i, "ArrivalDate")
                 .Days = GridViewPocketAllowance.GetRowCellValue(i, "Days")
-                .AllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceUSD")
-                .AllowanceYEN = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceYEN")
-                .AllowanceIDR = GridViewPocketAllowance.GetRowCellValue(i, "AdvanceIDR")
+                .RateAllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "RateAllowanceUSD")
+                .AllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "SettlementUSD")
+                .AllowanceYEN = GridViewPocketAllowance.GetRowCellValue(i, "SettlementYEN")
+                .AllowanceIDR = GridViewPocketAllowance.GetRowCellValue(i, "SettlementIDR")
             End With
             cls_TravelSett.ObjSettleDetail.Add(cls_TravelSettDetail)
         Next
@@ -1002,6 +1003,7 @@ Public Class FrmTravelSettleDetail
 
         Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
         Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+        Dim rateAllowanceUSD As Double = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD") Is DBNull.Value, 0, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD"))
 
         If departureDate > arrivalDate And arrivalDate <> Nothing Then
             MessageBox.Show("Departure Date tidak boleh lebih besar dari Arrival Date", "Warning",
@@ -1014,6 +1016,9 @@ Public Class FrmTravelSettleDetail
 
         Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
         GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", rateAllowanceUSD * Days)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", 0)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", 0)
     End Sub
 
     Private Sub CArrivalDate_EditValueChanged(sender As Object, e As EventArgs) Handles CArrivalDate.EditValueChanged
@@ -1027,6 +1032,7 @@ Public Class FrmTravelSettleDetail
 
         Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
         Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
+        Dim rateAllowanceUSD As Double = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD") Is DBNull.Value, 0, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD"))
 
         If arrivalDate < departureDate Then
             MessageBox.Show("Arrival Date tidak boleh lebih kecil dari Departure Date", "Warning",
@@ -1039,6 +1045,9 @@ Public Class FrmTravelSettleDetail
 
         Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
         GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", rateAllowanceUSD * Days)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", 0)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", 0)
     End Sub
 
     Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged
@@ -1056,6 +1065,39 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub CAdvanceIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceIDR.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CSettlementUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CSettlementUSD.EditValueChanged
+        Dim amountUSDBefore As Double
+        Dim amountUSDAfter As Double
+        Dim amountIDR As Double
+        Dim totalAmountIDR As Double
+        amountUSDBefore = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD")
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        amountUSDAfter = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD")
+    End Sub
+
+    Private Sub CSettlementYEN_EditValueChanged(sender As Object, e As EventArgs) Handles CSettlementYEN.EditValueChanged
+        Dim amountYENBefore As Double
+        Dim amountYENAfter As Double
+        Dim amountIDR As Double
+        Dim totalAmountIDR As Double
+        amountYENBefore = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN")
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        amountYENAfter = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN")
+    End Sub
+
+    Private Sub CSettlementIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CSettlementIDR.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

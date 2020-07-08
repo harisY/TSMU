@@ -23,7 +23,6 @@ Partial Class FrmTravelRequestDetail
         Me.CDepartureDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.CArrivalDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.btnAdd = New System.Windows.Forms.Button()
-        Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.txtNoRequest = New DevExpress.XtraEditors.TextEdit()
         Me.txtTravelType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -32,7 +31,9 @@ Partial Class FrmTravelRequestDetail
         Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.Paspor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoVisa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Visa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,10 +55,14 @@ Partial Class FrmTravelRequestDetail
         Me.Days_ = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceIDRUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.AdvanceIDRYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RateAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotalAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtAdvanceIDR = New DevExpress.XtraEditors.TextEdit()
         Me.txtAdvanceUSD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -68,11 +73,11 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtDepartement = New DevExpress.XtraEditors.TextEdit()
+        Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNoRequest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +99,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CDepartureDate
@@ -130,15 +136,6 @@ Partial Class FrmTravelRequestDetail
         Me.btnAdd.Text = "Add Detail ++"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
-        'txtNIK
-        '
-        Me.txtNIK.EditValue = ""
-        Me.txtNIK.Location = New System.Drawing.Point(466, 48)
-        Me.txtNIK.Name = "txtNIK"
-        Me.txtNIK.Properties.MaxLength = 9
-        Me.txtNIK.Size = New System.Drawing.Size(105, 22)
-        Me.txtNIK.TabIndex = 2
-        '
         'txtNoRequest
         '
         Me.txtNoRequest.EditValue = ""
@@ -151,7 +148,7 @@ Partial Class FrmTravelRequestDetail
         'txtTravelType
         '
         Me.txtTravelType.EditValue = ""
-        Me.txtTravelType.Location = New System.Drawing.Point(679, 88)
+        Me.txtTravelType.Location = New System.Drawing.Point(700, 88)
         Me.txtTravelType.Name = "txtTravelType"
         Me.txtTravelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtTravelType.Properties.Items.AddRange(New Object() {"DN", "LN"})
@@ -182,7 +179,7 @@ Partial Class FrmTravelRequestDetail
         '
         'GridViewDetail
         '
-        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Destination, Me.Negara, Me.NoPaspor, Me.Visa, Me.DepartureDate, Me.ArrivalDate})
+        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Destination, Me.Negara, Me.Paspor, Me.NoPaspor, Me.NoVisa, Me.Visa, Me.DepartureDate, Me.ArrivalDate})
         Me.GridViewDetail.GridControl = Me.GridDetail
         Me.GridViewDetail.Name = "GridViewDetail"
         Me.GridViewDetail.OptionsView.ShowGroupPanel = False
@@ -216,9 +213,17 @@ Partial Class FrmTravelRequestDetail
         Me.CNegara.Name = "CNegara"
         Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
+        'Paspor
+        '
+        Me.Paspor.Caption = "Paspor"
+        Me.Paspor.FieldName = "Paspor"
+        Me.Paspor.MinWidth = 25
+        Me.Paspor.Name = "Paspor"
+        Me.Paspor.Width = 94
+        '
         'NoPaspor
         '
-        Me.NoPaspor.Caption = "Paspor"
+        Me.NoPaspor.Caption = "No Paspor"
         Me.NoPaspor.FieldName = "NoPaspor"
         Me.NoPaspor.MinWidth = 25
         Me.NoPaspor.Name = "NoPaspor"
@@ -226,6 +231,14 @@ Partial Class FrmTravelRequestDetail
         Me.NoPaspor.Visible = True
         Me.NoPaspor.VisibleIndex = 2
         Me.NoPaspor.Width = 94
+        '
+        'NoVisa
+        '
+        Me.NoVisa.Caption = "No Visa"
+        Me.NoVisa.FieldName = "NoVisa"
+        Me.NoVisa.MinWidth = 25
+        Me.NoVisa.Name = "NoVisa"
+        Me.NoVisa.Width = 94
         '
         'Visa
         '
@@ -284,7 +297,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(424, 51)
+        Me.LabelControl3.Location = New System.Drawing.Point(430, 51)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(19, 16)
         Me.LabelControl3.TabIndex = 16
@@ -300,7 +313,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(594, 51)
+        Me.LabelControl5.Location = New System.Drawing.Point(620, 51)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(53, 16)
         Me.LabelControl5.TabIndex = 18
@@ -315,12 +328,12 @@ Partial Class FrmTravelRequestDetail
         Me.txtNama.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.txtNama.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.txtNama.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtNama.Size = New System.Drawing.Size(451, 22)
+        Me.txtNama.Size = New System.Drawing.Size(468, 22)
         Me.txtNama.TabIndex = 5
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(784, 51)
+        Me.LabelControl6.Location = New System.Drawing.Point(804, 51)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(41, 16)
         Me.LabelControl6.TabIndex = 19
@@ -328,7 +341,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(594, 91)
+        Me.LabelControl8.Location = New System.Drawing.Point(620, 91)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(68, 16)
         Me.LabelControl8.TabIndex = 21
@@ -336,7 +349,7 @@ Partial Class FrmTravelRequestDetail
         '
         'txtGolongan
         '
-        Me.txtGolongan.Location = New System.Drawing.Point(679, 48)
+        Me.txtGolongan.Location = New System.Drawing.Point(700, 48)
         Me.txtGolongan.Name = "txtGolongan"
         Me.txtGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
@@ -347,9 +360,9 @@ Partial Class FrmTravelRequestDetail
         '
         Me.txtPurpose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPurpose.Location = New System.Drawing.Point(848, 48)
+        Me.txtPurpose.Location = New System.Drawing.Point(868, 48)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(679, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(659, 22)
         Me.txtPurpose.TabIndex = 4
         '
         'GridAdvance
@@ -367,10 +380,11 @@ Partial Class FrmTravelRequestDetail
         'GridViewAdvance
         '
         Me.GridViewAdvance.ActiveFilterEnabled = False
-        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.Days_, Me.AdvanceUSD, Me.AdvanceYEN, Me.AdvanceIDR})
+        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.Days_, Me.AdvanceUSD, Me.AdvanceIDRUSD, Me.AdvanceYEN, Me.AdvanceIDRYEN, Me.AdvanceIDR, Me.RateAdvanceIDR, Me.TotalAdvanceIDR})
         Me.GridViewAdvance.GridControl = Me.GridAdvance
         Me.GridViewAdvance.Name = "GridViewAdvance"
-        Me.GridViewAdvance.OptionsBehavior.KeepGroupExpandedOnSorting = False
+        Me.GridViewAdvance.OptionsCustomization.AllowFilter = False
+        Me.GridViewAdvance.OptionsCustomization.AllowSort = False
         Me.GridViewAdvance.OptionsView.ShowFooter = True
         Me.GridViewAdvance.OptionsView.ShowGroupPanel = False
         '
@@ -392,7 +406,7 @@ Partial Class FrmTravelRequestDetail
         Me.Description.OptionsColumn.AllowEdit = False
         Me.Description.Visible = True
         Me.Description.VisibleIndex = 0
-        Me.Description.Width = 94
+        Me.Description.Width = 385
         '
         'Days_
         '
@@ -434,6 +448,14 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceUSD.Mask.EditMask = "n2"
         Me.CAdvanceUSD.Name = "CAdvanceUSD"
         '
+        'AdvanceIDRUSD
+        '
+        Me.AdvanceIDRUSD.Caption = "Advance IDR USD"
+        Me.AdvanceIDRUSD.FieldName = "AdvanceIDRUSD"
+        Me.AdvanceIDRUSD.MinWidth = 25
+        Me.AdvanceIDRUSD.Name = "AdvanceIDRUSD"
+        Me.AdvanceIDRUSD.Width = 94
+        '
         'AdvanceYEN
         '
         Me.AdvanceYEN.Caption = "Advance YEN"
@@ -461,6 +483,16 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceYEN.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CAdvanceYEN.Mask.EditMask = "n2"
         Me.CAdvanceYEN.Name = "CAdvanceYEN"
+        Me.CAdvanceYEN.NullText = "0000"
+        Me.CAdvanceYEN.NullValuePrompt = "0000"
+        '
+        'AdvanceIDRYEN
+        '
+        Me.AdvanceIDRYEN.Caption = "Advance IDR YEN"
+        Me.AdvanceIDRYEN.FieldName = "AdvanceIDRYEN"
+        Me.AdvanceIDRYEN.MinWidth = 25
+        Me.AdvanceIDRYEN.Name = "AdvanceIDRYEN"
+        Me.AdvanceIDRYEN.Width = 94
         '
         'AdvanceIDR
         '
@@ -490,30 +522,60 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceIDR.Mask.EditMask = "n2"
         Me.CAdvanceIDR.Name = "CAdvanceIDR"
         '
+        'RateAdvanceIDR
+        '
+        Me.RateAdvanceIDR.Caption = "Rate Advance IDR"
+        Me.RateAdvanceIDR.FieldName = "RateAdvanceIDR"
+        Me.RateAdvanceIDR.MinWidth = 25
+        Me.RateAdvanceIDR.Name = "RateAdvanceIDR"
+        Me.RateAdvanceIDR.Width = 94
+        '
+        'TotalAdvanceIDR
+        '
+        Me.TotalAdvanceIDR.Caption = "Total Advance IDR"
+        Me.TotalAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.TotalAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TotalAdvanceIDR.FieldName = "TotalAdvanceIDR"
+        Me.TotalAdvanceIDR.MinWidth = 25
+        Me.TotalAdvanceIDR.Name = "TotalAdvanceIDR"
+        Me.TotalAdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.TotalAdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.TotalAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAdvanceIDR", "{0:#,##0.#0}")})
+        Me.TotalAdvanceIDR.UnboundExpression = "[AdvanceIDRUSD] + [AdvanceIDRYEN] + [AdvanceIDR]"
+        Me.TotalAdvanceIDR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.TotalAdvanceIDR.Visible = True
+        Me.TotalAdvanceIDR.VisibleIndex = 5
+        Me.TotalAdvanceIDR.Width = 200
+        '
         'txtAdvanceIDR
         '
         Me.txtAdvanceIDR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtAdvanceIDR.EditValue = ""
-        Me.txtAdvanceIDR.Location = New System.Drawing.Point(592, 19)
+        Me.txtAdvanceIDR.EditValue = "0"
+        Me.txtAdvanceIDR.Location = New System.Drawing.Point(572, 19)
         Me.txtAdvanceIDR.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceIDR.Size = New System.Drawing.Size(10, 22)
+        Me.txtAdvanceIDR.Size = New System.Drawing.Size(0, 22)
         Me.txtAdvanceIDR.TabIndex = 7
         '
         'txtAdvanceUSD
         '
-        Me.txtAdvanceUSD.EditValue = ""
+        Me.txtAdvanceUSD.EditValue = "0"
         Me.txtAdvanceUSD.Location = New System.Drawing.Point(74, 19)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
+        Me.txtAdvanceUSD.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.txtAdvanceUSD.Properties.DisplayFormat.FormatString = "n2"
+        Me.txtAdvanceUSD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtAdvanceUSD.Properties.EditFormat.FormatString = "n2"
+        Me.txtAdvanceUSD.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtAdvanceUSD.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceUSD.Size = New System.Drawing.Size(190, 22)
+        Me.txtAdvanceUSD.Size = New System.Drawing.Size(180, 22)
         Me.txtAdvanceUSD.TabIndex = 8
         '
         'LabelControl7
@@ -526,7 +588,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(286, 22)
+        Me.LabelControl9.Location = New System.Drawing.Point(276, 22)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(22, 16)
         Me.LabelControl9.TabIndex = 29
@@ -534,7 +596,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(550, 22)
+        Me.LabelControl10.Location = New System.Drawing.Point(530, 22)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(21, 16)
         Me.LabelControl10.TabIndex = 30
@@ -542,13 +604,13 @@ Partial Class FrmTravelRequestDetail
         '
         'txtAdvanceYEN
         '
-        Me.txtAdvanceYEN.EditValue = ""
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(331, 19)
+        Me.txtAdvanceYEN.EditValue = "0"
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(321, 19)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
         Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceYEN.Size = New System.Drawing.Size(190, 22)
+        Me.txtAdvanceYEN.Size = New System.Drawing.Size(180, 22)
         Me.txtAdvanceYEN.TabIndex = 9
         '
         'GroupBox1
@@ -575,9 +637,9 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.Controls.Add(Me.txtAdvanceIDR)
         Me.GroupBox2.Controls.Add(Me.txtAdvanceUSD)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.6!)
-        Me.GroupBox2.Location = New System.Drawing.Point(774, 75)
+        Me.GroupBox2.Location = New System.Drawing.Point(794, 75)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(608, 53)
+        Me.GroupBox2.Size = New System.Drawing.Size(588, 53)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Advance"
@@ -585,7 +647,7 @@ Partial Class FrmTravelRequestDetail
         'Label1
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.Location = New System.Drawing.Point(311, 22)
+        Me.Label1.Location = New System.Drawing.Point(300, 22)
         Me.Label1.Name = "Label1"
         Me.Label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Label1.Size = New System.Drawing.Size(275, 16)
@@ -600,6 +662,15 @@ Partial Class FrmTravelRequestDetail
         Me.txtDepartement.Name = "txtDepartement"
         Me.txtDepartement.Size = New System.Drawing.Size(70, 22)
         Me.txtDepartement.TabIndex = 1
+        '
+        'txtNIK
+        '
+        Me.txtNIK.EditValue = ""
+        Me.txtNIK.Location = New System.Drawing.Point(477, 48)
+        Me.txtNIK.Name = "txtNIK"
+        Me.txtNIK.Properties.MaxLength = 9
+        Me.txtNIK.Size = New System.Drawing.Size(111, 22)
+        Me.txtNIK.TabIndex = 2
         '
         'FrmTravelRequestDetail
         '
@@ -619,15 +690,15 @@ Partial Class FrmTravelRequestDetail
         Me.Controls.Add(Me.txtNoRequest)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.txtPurpose)
-        Me.Controls.Add(Me.txtNIK)
         Me.Controls.Add(Me.txtTravelType)
         Me.Controls.Add(Me.txtNama)
         Me.Controls.Add(Me.txtDepartement)
+        Me.Controls.Add(Me.txtNIK)
         Me.Name = "FrmTravelRequestDetail"
+        Me.Controls.SetChildIndex(Me.txtNIK, 0)
         Me.Controls.SetChildIndex(Me.txtDepartement, 0)
         Me.Controls.SetChildIndex(Me.txtNama, 0)
         Me.Controls.SetChildIndex(Me.txtTravelType, 0)
-        Me.Controls.SetChildIndex(Me.txtNIK, 0)
         Me.Controls.SetChildIndex(Me.txtPurpose, 0)
         Me.Controls.SetChildIndex(Me.btnAdd, 0)
         Me.Controls.SetChildIndex(Me.txtNoRequest, 0)
@@ -646,7 +717,6 @@ Partial Class FrmTravelRequestDetail
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNoRequest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -669,6 +739,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -681,7 +752,6 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Destination As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents txtNIK As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtTravelType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents Negara As DevExpress.XtraGrid.Columns.GridColumn
@@ -721,4 +791,11 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents Paspor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoVisa As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotalAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceIDRUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents AdvanceIDRYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtNIK As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents RateAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

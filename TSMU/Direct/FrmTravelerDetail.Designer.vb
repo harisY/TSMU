@@ -19,6 +19,7 @@ Partial Class FrmTravelerDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAddPaspor = New System.Windows.Forms.Button()
         Me.GridPaspor = New DevExpress.XtraGrid.GridControl()
@@ -65,8 +66,8 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,7 +310,7 @@ Partial Class FrmTravelerDetail
         '
         Me.txtGolongan.Location = New System.Drawing.Point(794, 12)
         Me.txtGolongan.Name = "txtGolongan"
-        Me.txtGolongan.Properties.Mask.EditMask = "n"
+        Me.txtGolongan.Properties.Mask.EditMask = "f0"
         Me.txtGolongan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
         Me.txtGolongan.StyleController = Me.LayoutControl1

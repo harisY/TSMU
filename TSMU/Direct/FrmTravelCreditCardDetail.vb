@@ -88,7 +88,7 @@ Public Class FrmTravelCreditCardDetail
         Hidup()
         Try
             If fs_Code <> "" Then
-                Call Proc_EnableButtons(True, True, True, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(True, True, True, True, False, False, False, True, False, False, False)
                 With cls_Creditcard
                     txtCreditCardID.Text = .CreditCardID
                     txtCreditCardNumber.Text = .CreditCardNumber
@@ -99,7 +99,7 @@ Public Class FrmTravelCreditCardDetail
                     txtCreditCardNumber.Focus()
                 End With
             Else
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
                 txtCreditCardID.Text = ""
                 txtCreditCardNumber.Text = ""
                 txtAccountName.Text = ""
@@ -233,7 +233,7 @@ Public Class FrmTravelCreditCardDetail
     End Sub
 
     Private Sub Mati()
-        Call Proc_EnableButtons(True, False, False, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, False, True, False, False, False, False)
         Call LoadGrid()
         txtCreditCardNumber.Enabled = False
         txtAccountName.Enabled = False

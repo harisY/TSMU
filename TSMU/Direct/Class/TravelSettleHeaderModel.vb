@@ -450,9 +450,13 @@ Public Class TravelSettleHeaderModel
                                 trd.DepartureDate ,
                                 trd.ArrivalDate ,
                                 trc.Days ,
+                                tpa.Amount AS RateAllowanceUSD ,
                                 trc.AdvanceUSD ,
+                                trc.AdvanceUSD AS SettlementUSD ,
                                 trc.AdvanceYEN ,
-                                trc.AdvanceIDR
+                                trc.AdvanceYEN AS SettlementYEN ,
+                                trc.AdvanceIDR ,
+                                trc.AdvanceIDR AS SettlementIDR
                         FROM    dbo.TravelRequestHeader AS trh
                                 INNER JOIN ( SELECT NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
@@ -461,8 +465,26 @@ Public Class TravelSettleHeaderModel
                                              GROUP BY NoRequest
                                            ) AS trd ON trd.NoRequest = trh.NoRequest
                                 INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trd.NoRequest
+                                LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
+                                                                              AND tpa.Golongan = trh.Golongan
                         WHERE   trc.CostType = 'C02'
                                 AND trd.NoRequest IN ( " & _noRequest & " )"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetPocketAllowance(ByVal noRequest__ As String) As DataTable
+        Try
+            strQuery = "SELECT  trh.Golongan ,
+                                tpa.Amount
+                        FROM    dbo.TravelRequestHeader AS trh
+                                LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
+                                                                              AND tpa.Golongan = trh.Golongan
+                        WHERE   NoRequest = " & QVal(noRequest__) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(strQuery)
             Return dt
@@ -620,14 +642,14 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT TravelSettleID ,
                                 CASE WHEN AllowanceUSD <> 0
-                                     THEN 'USD ' + CAST(AllowanceUSD / Days AS VARCHAR(100))
+                                     THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
                                      ELSE ''
                                 END + CASE WHEN AllowanceYEN <> 0
-                                           THEN ' | YEN ' + CAST(AllowanceYEN / Days AS VARCHAR(100))
+                                           THEN ' | YEN ' + CAST(0 AS VARCHAR(100))
                                            ELSE ''
                                       END + CASE WHEN AllowanceIDR <> 0
                                                  THEN ' | IDR '
-                                                      + CAST(AllowanceIDR / Days AS VARCHAR(100))
+                                                      + CAST(0 AS VARCHAR(100))
                                                  ELSE ''
                                             END AS Rate ,
                                 CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
@@ -639,6 +661,7 @@ Public Class TravelSettleHeaderModel
                          WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
                          GROUP BY TravelSettleID ,
                                 Days ,
+                                RateAllowanceUSD ,
                                 AllowanceUSD ,
                                 AllowanceYEN ,
                                 AllowanceIDR"
@@ -660,6 +683,7 @@ Public Class TravelSettleDetailModel
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
     Public Property Days As Integer
+    Public Property RateAllowanceUSD As Double
     Public Property AllowanceUSD As Double
     Public Property AllowanceYEN As Double
     Public Property AllowanceIDR As Double
@@ -668,16 +692,22 @@ Public Class TravelSettleDetailModel
 
     Public Function GetTravelSettDetailByID() As DataTable
         Try
-            strQuery = " SELECT NoRequest ,
-                                Nama ,
-                                DepartureDate ,
-                                ArrivalDate ,
-                                Days ,
-                                AllowanceUSD AS AdvanceUSD ,
-                                AllowanceYEN AS AdvanceYEN ,
-                                AllowanceIDR AS AdvanceIDR
-                         FROM   dbo.TravelSettleDetail
-                         WHERE  TravelSettleID = " & QVal(TravelSettleID) & ""
+            strQuery = " SELECT tsd.NoRequest ,
+                                tsd.Nama ,
+                                tsd.DepartureDate ,
+                                tsd.ArrivalDate ,
+                                tsd.Days ,
+                                tsd.RateAllowanceUSD ,
+                                trc.AdvanceUSD AS AdvanceUSD ,
+                                tsd.AllowanceUSD AS SettlementUSD ,
+                                trc.AdvanceYEN AS AdvanceYEN ,
+                                tsd.AllowanceYEN AS SettlementYEN ,
+                                trc.AdvanceIDR AS AdvanceIDR ,
+                                tsd.AllowanceIDR AS SettlementIDR
+                         FROM   dbo.TravelSettleDetail AS tsd
+                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
+                         WHERE  trc.CostType = 'C02'
+                                AND tsd.TravelSettleID = " & QVal(TravelSettleID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(strQuery)
             Return dt
@@ -695,6 +725,7 @@ Public Class TravelSettleDetailModel
                                   DepartureDate ,
                                   ArrivalDate ,
                                   Days ,
+                                  RateAllowanceUSD ,
                                   AllowanceUSD ,
                                   AllowanceYEN ,
                                   AllowanceIDR
@@ -705,6 +736,7 @@ Public Class TravelSettleDetailModel
                                   " & QVal(DepartureDate) & " , -- DepartureDate - date
                                   " & QVal(ArrivalDate) & " , -- ArrivalDate - date
                                   " & QVal(Days) & " , -- Days - int
+                                  " & QVal(RateAllowanceUSD) & " , -- RateAllowanceUSD - float
                                   " & QVal(AllowanceUSD) & " , -- AllowanceUSD - float
                                   " & QVal(AllowanceYEN) & " , -- AllowanceYEN - float
                                   " & QVal(AllowanceIDR) & "  -- AllowanceIDR - float

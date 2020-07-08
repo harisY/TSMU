@@ -159,13 +159,13 @@ Public Class FrmTravelTicketDetail
 
         checkList = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CheckList")
         noRequest = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRequest")
-        If checkList Then
-            For i As Integer = 0 To GridViewTicket.RowCount - 1
-                If GridViewTicket.GetRowCellValue(i, "NoRequest") = noRequest Then
-                    GridViewTicket.SetRowCellValue(i, "CheckList", checkList)
-                End If
-            Next
-        End If
+        'If checkList Then
+        For i As Integer = 0 To GridViewTicket.RowCount - 1
+            If GridViewTicket.GetRowCellValue(i, "NoRequest") = noRequest Then
+                GridViewTicket.SetRowCellValue(i, "CheckList", checkList)
+            End If
+        Next
+        'End If 
         HitungTotal()
 
     End Sub

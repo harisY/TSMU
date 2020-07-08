@@ -217,7 +217,7 @@ Public Class TravelTicketModel
             pParam(8) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(8).Value = gh_Common.Username
 
-            MainModul.ExecQueryByCommand_SP(SP_Name, pParam)
+            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
         Catch ex As Exception
             Throw
         End Try
@@ -358,6 +358,24 @@ Public Class TravelTicketModel
         End Try
     End Sub
 
+    Public Function CheckRequestSettle() As Boolean
+        Try
+            Dim ada As Boolean = False
+            strQuery = "SELECT  COUNT(ttd.NoVoucher) AS Ada
+                        FROM    dbo.TravelTicketDetail AS ttd
+                                INNER JOIN dbo.TravelSettleDetail AS tsd ON tsd.NoRequest = ttd.NoRequest
+                        WHERE   NoVoucher = " & QVal(NoVoucher) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            If dt.Rows(0).Item(0) > 0 Then
+                ada = True
+            End If
+            Return ada
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTravelVendor() As DataTable
         Try
             strQuery = "SELECT  VendId ,
@@ -403,7 +421,7 @@ Public Class TravelTicketDetailModel
             pParam(5) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
             pParam(5).Value = Amount
 
-            MainModul.ExecQueryByCommand_SP(SP_Name, pParam)
+            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
         Catch ex As Exception
             Throw
         End Try

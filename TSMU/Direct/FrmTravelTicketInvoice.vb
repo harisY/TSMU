@@ -172,6 +172,13 @@ Public Class FrmTravelTicketInvoice
                 Err.Raise(ErrNumber, , "Amount detail tidak balance dengan summary !")
             End If
 
+            If isUpdate = True Then
+                ObjTravelTicket.NoVoucher = fs_Code
+                If ObjTravelTicket.CheckRequestSettle Then
+                    Err.Raise(ErrNumber, , "No Voucher " & fs_Code & " sudah proses settlement !")
+                End If
+            End If
+
             If validasi Then
                 If isUpdate = False Then
                     NoVoucher = ObjTravelTicket.TravelAutoNoVoucher
@@ -227,4 +234,5 @@ Public Class FrmTravelTicketInvoice
             rows("CuryID") = txtCuryID.Text
         Next
     End Sub
+
 End Class

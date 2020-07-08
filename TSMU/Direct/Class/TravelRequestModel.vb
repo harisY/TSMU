@@ -306,7 +306,7 @@ Public Class TravelRequestModel
             pParam(9) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(9).Value = gh_Common.Username
 
-            MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
 
         Catch ex As Exception
             Throw ex
@@ -486,6 +486,18 @@ Public Class TravelRequestModel
         End Try
     End Function
 
+    Public Function GetListTraveler() As DataTable
+        Try
+            strQuery = "SELECT  *
+                        FROM    dbo.Traveler"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
 
 Public Class TravelRequestDetailModel
@@ -541,7 +553,7 @@ Public Class TravelRequestDetailModel
     Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As DataTable
         Try
             strQuery = "SELECT  Ada.NIK ,
-                                Ada.NoPaspor ,
+                                ISNULL(Expired.NoPaspor, '') AS NoPaspor ,
                                 CASE WHEN Expired.NIK IS NULL THEN 'YES'
                                      ELSE 'NO'
                                 END AS Expired
@@ -618,7 +630,11 @@ Public Class TravelRequestCostModel
                                             Days ,
                                             AdvanceIDR ,
                                             AdvanceUSD ,
-                                            AdvanceYEN
+                                            0 AS AdvanceIDRUSD ,
+                                            AdvanceYEN ,
+                                            0 AS AdvanceIDRYEN ,
+                                            0 AS RateAdvanceIDR ,
+                                            0 AS TotalAdvanceIDR
                                     FROM    dbo.TravelRequestCost
                                     WHERE   NoRequest = " & QVal(NoRequest) & " "
             Dim dt As New DataTable
