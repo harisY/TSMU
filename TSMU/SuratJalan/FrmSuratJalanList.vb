@@ -509,4 +509,62 @@ Public Class FrmSuratJalanList
             Throw ex
         End Try
     End Sub
+
+    Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
+    Private Sub setDataSource(table As DataTable, _Grid As GridControl)
+        ' Invoke method if required:
+        If Me.InvokeRequired Then
+            Me.Invoke(New SetDataSourceDelegate(AddressOf setDataSource), table, _Grid)
+        Else
+            _Grid.DataSource = table
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim sjno As String = ""
+        Invoke(Sub()
+                   sjno = txt_cekRFC.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = SuratJalan.DataGridViewRFC(sjno)
+        setDataSource(dt, GridControl3)
+        Invoke(Sub()
+               End Sub)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        CustID_vs_SJ_langkah1()
+        ''CustID_vs_SJ_langkah2()
+        ''CustID_vs_SJ_langkah3()
+    End Sub
+
+    Private Sub CustID_vs_SJ_langkah1()
+        Dim perpost1 As String = ""
+        Invoke(Sub()
+                   perpost1 = txt_custID_vs_SJ.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = SuratJalan.DataGridViewCustID_vs_SJ_Langkah1(perpost1)
+        setDataSource(dt, GridControl1)
+        Invoke(Sub()
+               End Sub)
+    End Sub
+    Private Sub CustID_vs_SJ_langkah2()
+        Dim dt As New DataTable
+        dt = SuratJalan.DataGridViewCustID_vs_SJ_Langkah2()
+        setDataSource(dt, GridControl1)
+        Invoke(Sub()
+               End Sub)
+    End Sub
+    Private Sub CustID_vs_SJ_langkah3()
+        Dim dt As New DataTable
+        dt = SuratJalan.DataGridViewCustID_vs_SJ_Langkah3()
+        setDataSource(dt, GridControl1)
+        Invoke(Sub()
+               End Sub)
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        CustID_vs_SJ_langkah3()
+    End Sub
 End Class

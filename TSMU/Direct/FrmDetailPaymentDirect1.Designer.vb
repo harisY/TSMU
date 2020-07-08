@@ -28,14 +28,18 @@ Partial Class FrmDetailPaymentDirect1
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BtnRefNo = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.btnrptadv = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LblTotAmount2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnrptsettle = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnRefNo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnrptadv, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnrptsettle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl1
@@ -45,7 +49,7 @@ Partial Class FrmDetailPaymentDirect1
         Me.GridControl1.Location = New System.Drawing.Point(0, 28)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.BtnRefNo})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.BtnRefNo, Me.btnrptadv, Me.btnrptsettle})
         Me.GridControl1.Size = New System.Drawing.Size(860, 255)
         Me.GridControl1.TabIndex = 9
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -107,14 +111,22 @@ Partial Class FrmDetailPaymentDirect1
         'GridColumn41
         '
         Me.GridColumn41.Caption = "Advance Amount"
+        Me.GridColumn41.ColumnEdit = Me.btnrptadv
         Me.GridColumn41.FieldName = "SuspendAmount"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 5
         '
+        'btnrptadv
+        '
+        Me.btnrptadv.AutoHeight = False
+        Me.btnrptadv.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.btnrptadv.Name = "btnrptadv"
+        '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "Settle Amount"
+        Me.GridColumn40.ColumnEdit = Me.btnrptsettle
         Me.GridColumn40.FieldName = "SettleAmount"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
@@ -158,6 +170,12 @@ Partial Class FrmDetailPaymentDirect1
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Total Settlement :"
         '
+        'btnrptsettle
+        '
+        Me.btnrptsettle.AutoHeight = False
+        Me.btnrptsettle.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.btnrptsettle.Name = "btnrptsettle"
+        '
         'FrmDetailPaymentDirect1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -172,6 +190,8 @@ Partial Class FrmDetailPaymentDirect1
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnRefNo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnrptadv, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnrptsettle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -191,4 +211,6 @@ Partial Class FrmDetailPaymentDirect1
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LblTotAmount2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents btnrptadv As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents btnrptsettle As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

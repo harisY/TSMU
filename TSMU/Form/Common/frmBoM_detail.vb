@@ -20,8 +20,6 @@ Public Class frmBoM_detail
     Dim NoReg As String = String.Empty
     Dim _Tag As TagModel
     Public Sub New()
-
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -350,7 +348,7 @@ Public Class frmBoM_detail
                         Optional ByVal Unit As String = "",
                           Optional ByVal isnew As Boolean = True)
 
-        ff_detail = New frmBoM_detail_input(InvtId, Desc, Qty, Unit, Me.Text, GridDetail, dtGrid, isnew)
+        ff_detail = New frmBoM_detail_input(InvtId, Desc, Qty, Unit, Me.Text, GridDetail, dtGrid, isnew, FrmParent)
         ff_detail.StartPosition = FormStartPosition.CenterScreen
         ff_detail.MaximizeBox = False
         ff_detail.ShowDialog()

@@ -236,6 +236,62 @@ Public Class ClsSJ
             Throw
         End Try
     End Function
+
+    Public Function DataGridViewCustID_vs_SJ_Langkah1(ByVal perpost1 As String) As DataTable
+        Try
+            Dim query As String = "CheckCustID_vs_SJ"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost1", SqlDbType.VarChar)
+            pParam(0).Value = perpost1
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function DataGridViewCustID_vs_SJ_Langkah2() As DataTable
+        Try
+            Dim query As String = "CheckCustID_vs_SJ_langkah2"
+            ''Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            ''pParam(0) = New SqlClient.SqlParameter("", SqlDbType.VarChar)
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function DataGridViewCustID_vs_SJ_Langkah3() As DataTable
+        Try
+            Dim query As String = "CheckCustID_vs_SJ_langkah3"
+            ''Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            ''pParam(0) = New SqlClient.SqlParameter("", SqlDbType.VarChar)
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+
+    Public Function DataGridViewRFC(ByVal sjno As String) As DataTable
+        Try
+            Dim query As String = "CheckRFC"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@sjno", SqlDbType.VarChar)
+            pParam(0).Value = sjno
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function IsShipperIDExist() As Boolean
         Try
             Dim ls_SP As String =

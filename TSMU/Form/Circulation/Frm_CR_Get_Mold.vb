@@ -18,6 +18,9 @@ Public Class Frm_CR_Get_Mold
     Dim BG As String
     Dim dtModel As DataTable
     Dim dtNPWO As DataTable
+    Dim Model1 As String
+    Dim _Customer As String
+
 
     Private Sub Frm_CR_Get_Mold_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Call LoadGrid()
@@ -25,7 +28,7 @@ Public Class Frm_CR_Get_Mold
         Call FillNPWO()
     End Sub
 
-    Public Sub New(ByRef _Model As String,
+    Public Sub New(ByVal _Model As String,
                   ByRef _dt As DataTable,
                   ByRef _grid As GridControl,
                   ByVal _BG As String)
@@ -41,16 +44,17 @@ Public Class Frm_CR_Get_Mold
 
     End Sub
 
-    'Public Sub CreateTable()
-    '    dt1 = New DataTable
-    '    dt1.Columns.AddRange(New DataColumn(2) {New DataColumn("Part No", GetType(String)),
-    '                                                        New DataColumn("Part Name", GetType(String)),
-    '                                                        New DataColumn("Check", GetType(Boolean))})
+    ReadOnly Property Values_Model() As String
+        Get
+            Return Model1
+        End Get
+    End Property
 
-    '    Grid.DataSource = dt1
-    '    GridView1.OptionsView.ShowAutoFilterRow = False
-    'End Sub
-
+    ReadOnly Property Values_Customer() As String
+        Get
+            Return _Customer
+        End Get
+    End Property
 
     Private Sub LoadGrid()
 
@@ -129,7 +133,7 @@ Public Class Frm_CR_Get_Mold
                 dt.Rows(a).Item("Total IDR") = "0"
 
             Next
-            'Model = dt.Rows(0).Item("Model")
+            ' Model = dt.Rows(0).Item("Model")
             Grid.DataSource = dt
             Cursor.Current = Cursors.Default
 
@@ -185,6 +189,22 @@ Public Class Frm_CR_Get_Mold
 
     Private Sub Badd_Click(sender As Object, e As EventArgs) Handles Badd.Click
 
+        Model1 = dt.Rows(0).Item("Model")
+
+        If Model <> "" Then
+
+            If Model <> Model1 Then
+                MessageBox.Show("Please Select Same Model",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+                Exit Sub
+            End If
+
+        End If
+
+
         Dim MyNewRow As DataRow
         Dim chkSelect As Boolean
 
@@ -209,7 +229,8 @@ Public Class Frm_CR_Get_Mold
                 End With
                 dtRef.Rows.Add(MyNewRow)
                 dtRef.AcceptChanges()
-                Model = dt.Rows(0).Item("Model")
+                Model1 = dt.Rows(0).Item("Model")
+                _Customer = dt.Rows(0).Item("Customer")
 
             End If
 
@@ -229,10 +250,6 @@ Public Class Frm_CR_Get_Mold
             C_Model.Properties.DataSource = dtModel
             C_Model.Properties.ValueMember = "Model"
             C_Model.Properties.DisplayMember = "Model"
-
-
-
-
 
         Catch ex As Exception
             Throw

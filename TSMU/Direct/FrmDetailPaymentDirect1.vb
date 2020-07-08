@@ -16,14 +16,26 @@ Public Class FrmDetailPaymentDirect1
     Dim ID As String
     Dim suspendid As String
     Dim suspend1 As String
+    Dim _Tag = New TagModel
 
-    Sub New(NoBukti As String)
-
+    '' Sub New(NoBukti As String, ByRef lf_FormParent As Form)
+    Public Sub New(ByVal strCode As String,
+                   ByVal strCode2 As String,
+                   ByRef lf_FormParent As Form,
+                   ByVal li_GridRow As Integer,
+                   ByRef _Grid As GridControl, ByVal _IsNew As Boolean)
+        ' this call is required by the windows form designer
+        ' Me.New()
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        _NoBukti = NoBukti
+        '' _NoBukti = NoBukti
+        _NoBukti = strCode2
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub DataCashBank()
         Dim dtGrid As New DataTable
@@ -98,6 +110,40 @@ Public Class FrmDetailPaymentDirect1
         '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         'End Try
 
+
+    End Sub
+    Private Sub btnrptadv_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnrptadv.ButtonClick
+
+        Try
+            Dim newform2 As New FrmReportSuspend
+            Dim stext As String
+            newform2.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Microsoft.VisualBasic.Left(stext, 15)
+                newform2.TxtNoSuspend.Text = stext
+            Next
+            newform2.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+    Private Sub btnrptsettle_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnrptsettle.ButtonClick
+
+        Try
+            Dim newform3 As New FrmReportSettle
+            Dim stext As String
+            newform3.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Microsoft.VisualBasic.Right(Trim(stext), 15)
+                newform3.TxtNosettle.Text = stext
+            Next
+            newform3.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
     End Sub
     Private Sub GetTot2()

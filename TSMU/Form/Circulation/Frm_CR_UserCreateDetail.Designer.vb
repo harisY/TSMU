@@ -27,7 +27,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_RequirementDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.T_Reason = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.T_CRNo = New DevExpress.XtraEditors.TextEdit()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
@@ -101,6 +100,14 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemSpinEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.T_NameItem = New DevExpress.XtraEditors.TextEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RBPO = New System.Windows.Forms.RadioButton()
+        Me.RBNonPO = New System.Windows.Forms.RadioButton()
+        Me.T_Spesification = New DevExpress.XtraEditors.TextEdit()
+        Me.T_Reason = New DevExpress.XtraEditors.TextEdit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,6 +150,10 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_NameItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_Reason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RB_Budget
@@ -172,7 +183,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox1.Controls.Add(Me.RB_Budget)
         Me.GroupBox1.Controls.Add(Me.RB_NonBudget)
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox1.Location = New System.Drawing.Point(802, 32)
+        Me.GroupBox1.Location = New System.Drawing.Point(419, 30)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(153, 30)
         Me.GroupBox1.TabIndex = 10
@@ -181,16 +192,16 @@ Partial Class Frm_CR_UserCreateDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(504, 41)
+        Me.Label3.Location = New System.Drawing.Point(187, 42)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(93, 13)
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
         Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Requirement Date"
+        Me.Label3.Text = "Req Date"
         '
         'T_RequirementDate
         '
         Me.T_RequirementDate.EditValue = Nothing
-        Me.T_RequirementDate.Location = New System.Drawing.Point(603, 38)
+        Me.T_RequirementDate.Location = New System.Drawing.Point(246, 37)
         Me.T_RequirementDate.Name = "T_RequirementDate"
         Me.T_RequirementDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.T_RequirementDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -206,34 +217,25 @@ Partial Class Frm_CR_UserCreateDetail
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(729, 41)
+        Me.Label6.Location = New System.Drawing.Point(372, 42)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(68, 13)
+        Me.Label6.Size = New System.Drawing.Size(41, 13)
         Me.Label6.TabIndex = 19
-        Me.Label6.Text = "Budget Type"
+        Me.Label6.Text = "Budget"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(962, 41)
+        Me.Label8.Location = New System.Drawing.Point(578, 41)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(44, 13)
         Me.Label8.TabIndex = 25
         Me.Label8.Text = "Reason"
         '
-        'T_Reason
-        '
-        Me.T_Reason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.T_Reason.Location = New System.Drawing.Point(1012, 38)
-        Me.T_Reason.Name = "T_Reason"
-        Me.T_Reason.Size = New System.Drawing.Size(230, 20)
-        Me.T_Reason.TabIndex = 27
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(261, 41)
+        Me.Label1.Location = New System.Drawing.Point(341, 5)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
         Me.Label1.TabIndex = 35
@@ -241,25 +243,25 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'T_CRNo
         '
-        Me.T_CRNo.Location = New System.Drawing.Point(324, 38)
+        Me.T_CRNo.Location = New System.Drawing.Point(386, 2)
         Me.T_CRNo.Name = "T_CRNo"
         Me.T_CRNo.Properties.MaxLength = 49
-        Me.T_CRNo.Size = New System.Drawing.Size(174, 20)
+        Me.T_CRNo.Size = New System.Drawing.Size(158, 20)
         Me.T_CRNo.TabIndex = 1
         '
         'T_Dept
         '
         Me.T_Dept.EditValue = ""
-        Me.T_Dept.Location = New System.Drawing.Point(93, 63)
+        Me.T_Dept.Location = New System.Drawing.Point(313, 65)
         Me.T_Dept.Name = "T_Dept"
         Me.T_Dept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_Dept.Size = New System.Drawing.Size(162, 20)
+        Me.T_Dept.Size = New System.Drawing.Size(138, 20)
         Me.T_Dept.TabIndex = 63
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 66)
+        Me.Label7.Location = New System.Drawing.Point(230, 68)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(77, 13)
         Me.Label7.TabIndex = 64
@@ -268,17 +270,17 @@ Partial Class Frm_CR_UserCreateDetail
         'T_ParentAmount
         '
         Me.T_ParentAmount.EditValue = "0"
-        Me.T_ParentAmount.Location = New System.Drawing.Point(603, 63)
+        Me.T_ParentAmount.Location = New System.Drawing.Point(756, 66)
         Me.T_ParentAmount.Name = "T_ParentAmount"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.T_ParentAmount.Size = New System.Drawing.Size(120, 20)
+        Me.T_ParentAmount.Size = New System.Drawing.Size(150, 20)
         Me.T_ParentAmount.TabIndex = 66
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(261, 66)
+        Me.Label13.Location = New System.Drawing.Point(457, 70)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(56, 13)
         Me.Label13.TabIndex = 67
@@ -287,7 +289,7 @@ Partial Class Frm_CR_UserCreateDetail
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(504, 66)
+        Me.Label14.Location = New System.Drawing.Point(673, 68)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(77, 13)
         Me.Label14.TabIndex = 68
@@ -295,20 +297,20 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'T_Parent
         '
-        Me.T_Parent.Location = New System.Drawing.Point(324, 63)
+        Me.T_Parent.Location = New System.Drawing.Point(519, 69)
         Me.T_Parent.Name = "T_Parent"
         Me.T_Parent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.T_Parent.Size = New System.Drawing.Size(174, 20)
+        Me.T_Parent.Size = New System.Drawing.Size(148, 20)
         Me.T_Parent.TabIndex = 65
         '
         'T_CRType
         '
         Me.T_CRType.EditValue = ""
-        Me.T_CRType.Location = New System.Drawing.Point(93, 38)
+        Me.T_CRType.Location = New System.Drawing.Point(62, 38)
         Me.T_CRType.Name = "T_CRType"
         Me.T_CRType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.T_CRType.Properties.Items.AddRange(New Object() {"Fixed Aset", "Expense", "Mold", "Dispose Mold", "Dispose Part"})
-        Me.T_CRType.Size = New System.Drawing.Size(162, 20)
+        Me.T_CRType.Size = New System.Drawing.Size(119, 20)
         Me.T_CRType.TabIndex = 4
         '
         'BAddRows
@@ -441,7 +443,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 8
+        Me.PTotal.VisibleIndex = 7
         Me.PTotal.Width = 171
         '
         'C_Amount_Barang
@@ -481,7 +483,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 7
+        Me.Rate.VisibleIndex = 8
         Me.Rate.Width = 88
         '
         'Account
@@ -795,11 +797,11 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Grid4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid4.Location = New System.Drawing.Point(12, 412)
+        Me.Grid4.Location = New System.Drawing.Point(0, 412)
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
         Me.Grid4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit6, Me.RepositoryItemSpinEdit5})
-        Me.Grid4.Size = New System.Drawing.Size(801, 129)
+        Me.Grid4.Size = New System.Drawing.Size(813, 129)
         Me.Grid4.TabIndex = 80
         Me.Grid4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -831,7 +833,7 @@ Partial Class Frm_CR_UserCreateDetail
         'C_Term
         '
         Me.C_Term.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.C_Term.Location = New System.Drawing.Point(15, 518)
+        Me.C_Term.Location = New System.Drawing.Point(0, 518)
         Me.C_Term.Name = "C_Term"
         Me.C_Term.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.C_Term.Properties.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6"})
@@ -911,11 +913,91 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemSpinEdit9.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit9.Name = "RepositoryItemSpinEdit9"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(8, 72)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(72, 13)
+        Me.Label4.TabIndex = 88
+        Me.Label4.Text = "Name Of Item"
+        '
+        'T_NameItem
+        '
+        Me.T_NameItem.Location = New System.Drawing.Point(87, 65)
+        Me.T_NameItem.Name = "T_NameItem"
+        Me.T_NameItem.Size = New System.Drawing.Size(137, 20)
+        Me.T_NameItem.TabIndex = 89
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(864, 40)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(68, 13)
+        Me.Label9.TabIndex = 91
+        Me.Label9.Text = "Specification"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.RBPO)
+        Me.GroupBox3.Controls.Add(Me.RBNonPO)
+        Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox3.Location = New System.Drawing.Point(911, 59)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(153, 30)
+        Me.GroupBox3.TabIndex = 93
+        Me.GroupBox3.TabStop = False
+        '
+        'RBPO
+        '
+        Me.RBPO.AutoSize = True
+        Me.RBPO.Location = New System.Drawing.Point(6, 9)
+        Me.RBPO.Name = "RBPO"
+        Me.RBPO.Size = New System.Drawing.Size(40, 17)
+        Me.RBPO.TabIndex = 2
+        Me.RBPO.TabStop = True
+        Me.RBPO.Text = "PO"
+        Me.RBPO.UseVisualStyleBackColor = True
+        '
+        'RBNonPO
+        '
+        Me.RBNonPO.AutoSize = True
+        Me.RBNonPO.Location = New System.Drawing.Point(67, 9)
+        Me.RBNonPO.Name = "RBNonPO"
+        Me.RBNonPO.Size = New System.Drawing.Size(63, 17)
+        Me.RBNonPO.TabIndex = 3
+        Me.RBNonPO.TabStop = True
+        Me.RBNonPO.Text = "Non PO"
+        Me.RBNonPO.UseVisualStyleBackColor = True
+        '
+        'T_Spesification
+        '
+        Me.T_Spesification.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.T_Spesification.Location = New System.Drawing.Point(938, 36)
+        Me.T_Spesification.Name = "T_Spesification"
+        Me.T_Spesification.Size = New System.Drawing.Size(304, 20)
+        Me.T_Spesification.TabIndex = 94
+        '
+        'T_Reason
+        '
+        Me.T_Reason.Location = New System.Drawing.Point(628, 36)
+        Me.T_Reason.Name = "T_Reason"
+        Me.T_Reason.Size = New System.Drawing.Size(230, 20)
+        Me.T_Reason.TabIndex = 95
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1254, 550)
+        Me.Controls.Add(Me.T_Reason)
+        Me.Controls.Add(Me.T_Spesification)
+        Me.Controls.Add(Me.GroupBox3)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.T_NameItem)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Grid5)
         Me.Controls.Add(Me.C_Term)
         Me.Controls.Add(Me.Grid4)
@@ -932,7 +1014,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.T_CRNo)
-        Me.Controls.Add(Me.T_Reason)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label3)
@@ -948,7 +1029,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.Label3, 0)
         Me.Controls.SetChildIndex(Me.Label6, 0)
         Me.Controls.SetChildIndex(Me.Label8, 0)
-        Me.Controls.SetChildIndex(Me.T_Reason, 0)
         Me.Controls.SetChildIndex(Me.T_CRNo, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
         Me.Controls.SetChildIndex(Me.Label7, 0)
@@ -965,6 +1045,12 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.Grid4, 0)
         Me.Controls.SetChildIndex(Me.C_Term, 0)
         Me.Controls.SetChildIndex(Me.Grid5, 0)
+        Me.Controls.SetChildIndex(Me.Label4, 0)
+        Me.Controls.SetChildIndex(Me.T_NameItem, 0)
+        Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.GroupBox3, 0)
+        Me.Controls.SetChildIndex(Me.T_Spesification, 0)
+        Me.Controls.SetChildIndex(Me.T_Reason, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1009,6 +1095,11 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_NameItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_Reason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1020,7 +1111,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents T_RequirementDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents T_Reason As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents T_CRNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Amount As DevExpress.XtraGrid.Columns.GridColumn
@@ -1095,4 +1185,12 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents CurrEdit As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label4 As Label
+    Friend WithEvents T_NameItem As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label9 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents RBPO As RadioButton
+    Friend WithEvents RBNonPO As RadioButton
+    Friend WithEvents T_Spesification As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents T_Reason As DevExpress.XtraEditors.TextEdit
 End Class
