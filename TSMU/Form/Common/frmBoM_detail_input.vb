@@ -11,15 +11,15 @@
     Dim fs_split As String = "'"
     Dim fc_Class As New clsBoM
     Dim dtTable As DataTable
-
-    Public Sub New(ByVal _InvtId As String, _
-                   ByVal _Desc As String, _
-                   ByVal _Qty As String, _
-                   ByVal _Unit As String, _
-                      ByVal _judul As String, _
-                      ByRef _grid As DataGridView, _
-                      ByRef _dt As DataTable, _
-                      ByVal _isNew As Boolean)
+    Dim _Tag As TagModel
+    Public Sub New(ByVal _InvtId As String,
+                   ByVal _Desc As String,
+                   ByVal _Qty As String,
+                   ByVal _Unit As String,
+                      ByVal _judul As String,
+                      ByRef _grid As DataGridView,
+                      ByRef _dt As DataTable,
+                      ByVal _isNew As Boolean, ByRef lf_FormParent As Form)
 
         InitializeComponent()
         fs_InvtId = _InvtId
@@ -30,6 +30,9 @@
         Grid = _grid
         dtTable = _dt
         isNew = _isNew
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Public Enum ColIndex As Byte
         InvtId = 0
