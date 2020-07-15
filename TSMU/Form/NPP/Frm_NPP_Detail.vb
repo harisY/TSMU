@@ -18,35 +18,28 @@ Public Class Frm_NPP_Detail
     Dim fc_Class_Head As New Cls_NPP_Header
     Dim NPP_Detail As New Col_Cls_NPP_Detail_NPP
     Dim GridDtl As GridControl
-
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim Dept As String
     Dim DeptSub As String = ""
-
     Dim DtGridNPWO As DataTable
     Dim DtGridPayment As DataTable
-
     Dim frmInput As Frm_Input_NPPDetail
     Dim frmSetGroup As Frm_NPP_Set_Grup
     Dim frmPrepare As Frm_NPP_Prepare
-
-
     Dim dt As New DataTable
     Dim DtDelete As New DataTable
     Dim dtApprove As New DataTable
-
     Dim FrmReport As ReportNPWO
-
     Dim NoSirkulasi As String = ""
     Dim _Tag As TagModel
-
     Dim FileLokasi As String = ""
-
     Dim dtExcel As New DataTable
     Dim RowsAwal As Integer
+    Dim Active_Form As Integer = 0
+    Dim ChekHeader As CheckBox
 
     Public Property Test As String = "t"
 
@@ -57,7 +50,11 @@ Public Class Frm_NPP_Detail
         Call FillComboCustomer()
         Call FillComboCategory()
 
+        'ChekHeader = New CheckBox
+        'ChekHeader.Size = New Size(15, 15)
+        'Grid.Controls.Add(ChekHeader)
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
+
         Call InitialSetForm()
 
         Me.TOrderMonth.Properties.Mask.EditMask = "n0"
@@ -67,6 +64,40 @@ Public Class Frm_NPP_Detail
         Me.TOrderMaxMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
 
         RowsAwal = DtGridNPWO.Rows.Count
+
+    End Sub
+
+    Private Sub TextBox_False()
+
+        TNPP_No.Enabled = False
+        TCustomer.Enabled = False
+        TModel.Enabled = False
+        TOrderMonth.Enabled = False
+        TOrderMaxMonth.Enabled = False
+        TCategory.Enabled = False
+        TIssue_Date.Enabled = False
+        TModelDesc.Enabled = False
+        TMassPro.Enabled = False
+        TTargetDr.Enabled = False
+        TTargetQuot.Enabled = False
+        TRevisiInformasi.Enabled = False
+
+    End Sub
+
+    Private Sub TextBox_True()
+
+        TNPP_No.Enabled = False
+        TCustomer.Enabled = False
+        TModel.Enabled = False
+        TOrderMonth.Enabled = False
+        TOrderMaxMonth.Enabled = False
+        TCategory.Enabled = False
+        TIssue_Date.Enabled = False
+        TModelDesc.Enabled = False
+        TMassPro.Enabled = False
+        TTargetDr.Enabled = False
+        TTargetQuot.Enabled = False
+        TRevisiInformasi.Enabled = False
 
     End Sub
 
@@ -96,10 +127,64 @@ Public Class Frm_NPP_Detail
         End Try
     End Sub
 
+    Private Sub Colums_AllowEdit_False()
+
+        Me.PartNo.OptionsColumn.AllowEdit = False
+        Me.PartName.OptionsColumn.AllowEdit = False
+        Me.Machine.OptionsColumn.AllowEdit = False
+        Me.CT.OptionsColumn.AllowEdit = False
+        Me.Cav.OptionsColumn.AllowEdit = False
+        Me.Weight.OptionsColumn.AllowEdit = False
+        Me.Material.OptionsColumn.AllowEdit = False
+        Me.Inj.OptionsColumn.AllowEdit = False
+        Me.Painting.OptionsColumn.AllowEdit = False
+        Me.Chrome.OptionsColumn.AllowEdit = False
+        Me.Assy.OptionsColumn.AllowEdit = False
+        Me.StatusMold.OptionsColumn.AllowEdit = False
+        Me.OrderMonth.OptionsColumn.AllowEdit = False
+        Me.Ultrasonic.OptionsColumn.AllowEdit = False
+        Me.Vibration.OptionsColumn.AllowEdit = False
+        Me.GroupID.OptionsColumn.AllowEdit = False
+        Me.Revisi.OptionsColumn.AllowEdit = False
+        Me.Status.OptionsColumn.AllowEdit = False
+        Me.CapabilityDate.OptionsColumn.AllowEdit = False
+        Me.Note.OptionsColumn.AllowEdit = False
+        Me.Cek.OptionsColumn.AllowEdit = False
+        Me.Commit.OptionsColumn.AllowEdit = False
+
+    End Sub
+
+    Private Sub Colums_AllowEdit_True()
+
+        Me.PartNo.OptionsColumn.AllowEdit = True
+        Me.PartName.OptionsColumn.AllowEdit = True
+        Me.Machine.OptionsColumn.AllowEdit = True
+        Me.CT.OptionsColumn.AllowEdit = True
+        Me.Cav.OptionsColumn.AllowEdit = True
+        Me.Weight.OptionsColumn.AllowEdit = True
+        Me.Material.OptionsColumn.AllowEdit = True
+        Me.Inj.OptionsColumn.AllowEdit = True
+        Me.Painting.OptionsColumn.AllowEdit = True
+        Me.Chrome.OptionsColumn.AllowEdit = True
+        Me.Assy.OptionsColumn.AllowEdit = True
+        Me.StatusMold.OptionsColumn.AllowEdit = True
+        Me.OrderMonth.OptionsColumn.AllowEdit = True
+        Me.Ultrasonic.OptionsColumn.AllowEdit = True
+        Me.Vibration.OptionsColumn.AllowEdit = True
+        Me.GroupID.OptionsColumn.AllowEdit = True
+        Me.Revisi.OptionsColumn.AllowEdit = True
+        Me.Status.OptionsColumn.AllowEdit = True
+        Me.CapabilityDate.OptionsColumn.AllowEdit = True
+        Me.Note.OptionsColumn.AllowEdit = True
+        Me.Cek.OptionsColumn.AllowEdit = True
+        Me.Commit.OptionsColumn.AllowEdit = True
+
+    End Sub
+
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(20) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(25) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -119,7 +204,12 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Group ID", GetType(String)),
                                                            New DataColumn("ID", GetType(Integer)),
                                                            New DataColumn("Revisi", GetType(String)),
-                                                           New DataColumn("Order Month", GetType(Int32))})
+                                                           New DataColumn("Order Month", GetType(Int32)),
+                                                           New DataColumn("Status", GetType(String)),
+                                                           New DataColumn("Cek", GetType(String)),
+                                                           New DataColumn("Note", GetType(String)),
+                                                           New DataColumn("Seq", GetType(Integer)),
+                                                           New DataColumn("Capability Date", GetType(Date))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
 
@@ -136,21 +226,113 @@ Public Class Frm_NPP_Detail
                 Else
                     isUpdate = True
                 End If
-
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
-                'TNPP_No.Enabled = False
-                TCustomer.Enabled = False
-                TModel.Enabled = False
-                Me.Text = "NPP FORM -> " & fs_Code
+                If Active_Form = 0 Then
+                    TCustomer.Enabled = False
+                    TModel.Enabled = False
+                    TNPP_No.Enabled = False
+                    Me.Text = "NPP FORM "
+                    If fc_Class.H_Approve = False Then
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Colums_AllowEdit_True()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        BUpload.Visible = True
+                        B_AddRows.Visible = True
+                        B_Submit.Visible = False
+                    ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = False Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        B_Submit.Visible = True
+                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                        Me.Commit.OptionsColumn.AllowEdit = False
+                    ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
+                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
+                        Call Colums_AllowEdit_True()
+                        Me.PartNo.OptionsColumn.AllowEdit = False
+                        Me.PartName.OptionsColumn.AllowEdit = False
+                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                        Me.Commit.OptionsColumn.AllowEdit = False
+                        Me.Status.OptionsColumn.AllowEdit = False
+                        Me.Revisi.OptionsColumn.AllowEdit = False
+                        'B_Revise.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        Call Colums_AllowEdit_False()
+                    End If
+                ElseIf Active_Form = 1 Then
+                    TCustomer.Enabled = False
+                    TModel.Enabled = False
+                    GridView1.OptionsView.ShowAutoFilterRow = True
+                    Me.Text = "NPP FORM "
+                    Me.GroupID.Fixed = False
+                    Call Colums_AllowEdit_False()
+                    Call TextBox_False()
+                    Me.Cek.OptionsColumn.AllowEdit = True
+                    Me.Note.OptionsColumn.AllowEdit = True
+                    If fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Dept Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                    ElseIf fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Div Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                    ElseIf fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Submit To NPD" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Revise.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Approve.Visible = True
+                        B_Reject.Visible = True
+                    End If
+                ElseIf Active_Form = 2 Then
+                    TCustomer.Enabled = False
+                    TModel.Enabled = False
+                    GridView1.OptionsView.ShowAutoFilterRow = True
+                    Me.Text = "NPP FORM "
+                    Me.GroupID.Fixed = False
+                    Call Colums_AllowEdit_False()
+                    Call TextBox_False()
+                    Me.Cek.OptionsColumn.AllowEdit = True
+                    Me.Note.OptionsColumn.AllowEdit = True
+                    If fc_Class.H_Approve_Div_Head = False Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        B_Approve.Visible = True
+                        B_Reject.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                    End If
+                ElseIf Active_Form = 3 Then
+                    TCustomer.Enabled = False
+                    TModel.Enabled = False
+                    GridView1.OptionsView.ShowAutoFilterRow = True
+                    Me.Text = "NPP FORM "
+                    Me.GroupID.Fixed = False
+                    Call Colums_AllowEdit_False()
+                    Call TextBox_False()
+                    Me.Cek.OptionsColumn.AllowEdit = True
+                    Me.Note.OptionsColumn.AllowEdit = True
+                    Me.CapabilityDate.OptionsColumn.AllowEdit = True
+                    Me.Commit.OptionsColumn.AllowEdit = True
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    B_AddRows.Enabled = False
+                    BUpload.Enabled = False
+                End If
             Else
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
-
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                Call Colums_AllowEdit_True()
+                Me.CapabilityDate.OptionsColumn.AllowEdit = False
                 Me.Text = "NPP FORM "
+                B_AddRows.Visible = True
+                BUpload.Visible = True
             End If
-
             Call LoadTxtBox()
             Call LoadGrid(fc_Class.H_No_NPP)
-
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
             bs_MainFormName = FrmParent.Name.ToString()
@@ -191,7 +373,8 @@ Public Class Frm_NPP_Detail
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
+                   ByRef _Grid As GridControl,
+                   ByRef _Active_Form As Integer)
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
@@ -204,6 +387,7 @@ Public Class Frm_NPP_Detail
         _Tag = New TagModel
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
         Tag = _Tag
+        Active_Form = _Active_Form
     End Sub
 
     Private Sub B_AddRows_Click(sender As Object, e As EventArgs) Handles B_AddRows.Click
@@ -231,13 +415,11 @@ Public Class Frm_NPP_Detail
                     TModelDesc.EditValue = .H_Model_Description
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
-
                     If .H_MassPro = "01-01-1900" Then
                         TMassPro.Text = ""
                     Else
                         TMassPro.EditValue = .H_MassPro
                     End If
-
                     CBCad.Checked = .H_CAD_Data
                     CBDrawing.Checked = .H_Drawing
                     CBSample.Checked = .H_Sample
@@ -250,11 +432,9 @@ Public Class Frm_NPP_Detail
                     TIssue_Date.EditValue = .H_Issue_Date
                 End With
 
-                If fc_Class.H_Approve = True Then
-                    TRevisi.EditValue = fc_Class.H_Rev + 1
-                Else
-                    TRevisi.EditValue = fc_Class.H_Rev
-                End If
+
+                TRevisi.EditValue = fc_Class.H_Rev
+
                 TRevisiInformasi.EditValue = ""
             Else
                 TRevisi.EditValue = "0"
@@ -392,10 +572,7 @@ Public Class Frm_NPP_Detail
 
                 dtApprove = New DataTable
                 dtApprove = fc_Class.GetApprove
-
-
                 With fc_Class
-
                     .H_No_NPP = TNPP_No.EditValue
                     .H_Issue_Date = TIssue_Date.EditValue
                     .H_Model_Name = TModel.EditValue
@@ -409,7 +586,6 @@ Public Class Frm_NPP_Detail
                         .H_MassPro = TMassPro.EditValue
 
                     End If
-
                     .H_Drawing = CBDrawing.CheckState
                     .H_CAD_Data = CBCad.CheckState
                     .H_Sample = CBSample.CheckState
@@ -426,15 +602,13 @@ Public Class Frm_NPP_Detail
                     .H_A2 = dtApprove.Rows(0).Item("A2")
                     .H_A3 = dtApprove.Rows(0).Item("A3")
                     .H_A4 = dtApprove.Rows(0).Item("A4")
-
+                    .H_Status = "Create"
                 End With
                 'Insert To ObjDetailMaterial
                 fc_Class.Collection_Detail.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
-
                     NPP_Detail = New Col_Cls_NPP_Detail_NPP
                     With NPP_Detail
-
                         .No_Npwo = TNPP_No.EditValue
                         .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
                         .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
@@ -453,11 +627,16 @@ Public Class Frm_NPP_Detail
                         .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                         .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                         .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
+                        .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                         .Rev = 0
-
+                        .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
+                        .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                        .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
+                        .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                        .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                        '.Id_NPP = Convert.ToString(GridView1.GetRowCellValue(i, "Id_NPP"))
                     End With
                     fc_Class.Collection_Detail.Add(NPP_Detail)
-
                 Next
 
                 fc_Class.Insert(fc_Class.H_No_NPP)
@@ -467,9 +646,7 @@ Public Class Frm_NPP_Detail
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 Me.Hide()
             Else
-
-                If fc_Class.H_Approve = False Then
-
+                If fc_Class.H_RevStatus = False Then
                     With fc_Class
                         .H_Issue_Date = TIssue_Date.EditValue
                         .H_No_NPP = TNPP_No.EditValue
@@ -482,7 +659,6 @@ Public Class Frm_NPP_Detail
                             .H_MassPro = "01-01-1900"
                         Else
                             .H_MassPro = TMassPro.EditValue
-
                         End If
                         .H_Drawing = CBDrawing.CheckState
                         .H_CAD_Data = CBCad.CheckState
@@ -495,9 +671,7 @@ Public Class Frm_NPP_Detail
                         .H_RevInformasi = TRevisiInformasi.EditValue
                         .H_TargetDRR = TTargetDr.EditValue
                         .H_TargetQuot = TTargetQuot.EditValue
-
                         .H_RevInformasi = TRevisiInformasi.EditValue
-
                     End With
 
                     'Insert To ObjDetailMaterial
@@ -525,10 +699,15 @@ Public Class Frm_NPP_Detail
                             .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                             .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
+                            .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
+                            .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
+                            .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                            .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
+                            .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                            .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
 
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
-
                     Next
 
 
@@ -573,7 +752,7 @@ Public Class Frm_NPP_Detail
                         .H_RevInformasi = TRevisiInformasi.EditValue
                         .H_TargetDRR = TTargetDr.EditValue
                         .H_TargetQuot = TTargetQuot.EditValue
-
+                        .H_RevStatus = False
 
                         .H_Rev = .H_Rev + 1
 
@@ -605,7 +784,12 @@ Public Class Frm_NPP_Detail
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                             .Rev = fc_Class.H_Rev
                             .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
-
+                            .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
+                            .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
+                            .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                            .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
+                            .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                            .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
 
@@ -772,33 +956,179 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Public Overrides Sub Proc_Approve()
-
-
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve = False Then
-            Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
-            If result = System.Windows.Forms.DialogResult.Yes Then
-                Try
-                    fc_Class = New Cls_NPP_Detail
-                    With fc_Class
-                        .H_Approve = 1
-                    End With
-                    fc_Class.UpdateApprove(fs_Code)
-                    bs_Filter = gh_Common.Username()
-                    GridDtl.DataSource = fc_Class_Head.Get_NPP()
+        If Active_Form = 0 Then
+            If fc_Class.H_Approve = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Approve_Date = Date.Now
+                            .H_Status = "Submit"
+                        End With
+                        fc_Class.UpdateApprove(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP()
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
 
-                    IsClosed = True
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                    Me.Hide()
-                Catch ex As Exception
-                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                End Try
-
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
             End If
-        Else
-            XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+
+        ElseIf Active_Form = 1 Then
+            If fc_Class.H_Approve_Dept_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Approve_Dept_Head = 1
+                            .H_Approve_Dept_Head_Date = Date.Now
+                            .H_Approve_Dept_Head_Name = gh_Common.Username
+                        End With
+
+
+
+                        'Next
+                        fc_Class.Update_DeptHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+
+        ElseIf Active_Form = 2 Then
+
+            If fc_Class.H_Approve_Div_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Approve_Div_Head = 1
+                            .H_Approve_Div_Head_Date = Date.Now
+                            .H_Approve_Div_Head_Name = gh_Common.Username
+                        End With
+
+
+                        fc_Class.Update_DivHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+
+        ElseIf Active_Form = 3 Then
+
+            With fc_Class
+                .H_Issue_Date = TIssue_Date.EditValue
+                .H_No_NPP = TNPP_No.EditValue
+                .H_Model_Name = TModel.EditValue
+                .H_Model_Description = TModelDesc.EditValue
+                .H_Customer_Name = TCustomer.EditValue
+                .H_Order_Month = TOrderMonth.EditValue
+                .H_Order_Max_Month = TOrderMaxMonth.EditValue
+                If TMassPro.Text = "" Then
+                    .H_MassPro = "01-01-1900"
+                Else
+                    .H_MassPro = TMassPro.EditValue
+
+                End If
+                .H_Drawing = CBDrawing.CheckState
+                .H_CAD_Data = CBCad.CheckState
+                .H_Sample = CBSample.CheckState
+                .H_Special_Technical_Requires = CBStr.CheckState
+                .H_Category_Class = TCategory.EditValue
+                .H_Factory_Tsc_TNG = CBTng.CheckState
+                .H_Factory_Tsc_CKR = CBCkr.CheckState
+                .H_Rev = TRevisi.EditValue
+                .H_RevInformasi = TRevisiInformasi.EditValue
+                .H_TargetDRR = TTargetDr.EditValue
+                .H_TargetQuot = TTargetQuot.EditValue
+
+                .H_RevInformasi = TRevisiInformasi.EditValue
+
+            End With
+
+            'Insert To ObjDetailMaterial
+            fc_Class.Collection_Detail.Clear()
+            For i As Integer = 0 To GridView1.RowCount - 1
+
+                NPP_Detail = New Col_Cls_NPP_Detail_NPP
+                With NPP_Detail
+
+                    .No_Npwo = TNPP_No.EditValue
+                    .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
+                    .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
+                    .Machine = Convert.ToString(GridView1.GetRowCellValue(i, "Machine"))
+                    .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                    .Cavity = Convert.ToString(GridView1.GetRowCellValue(i, "Cav"))
+                    .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                    .Material_Resin = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
+                    .Injection = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Inj"))
+                    .Painting = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Painting"))
+                    .Chrome = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Chrome"))
+                    .Vibration = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Vibration"))
+                    .Assy = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Assy"))
+                    .Ultrasonic = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Ultrasonic"))
+                    .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
+                    .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                    .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
+                    .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
+                    .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
+                    .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
+                    .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                    .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
+                    .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                    .Commit = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Commit NPD"))
+                End With
+                fc_Class.Collection_Detail.Add(NPP_Detail)
+
+            Next
+
+
+            'fc_Class.UpdateData(fs_Code)
+            fc_Class.Update_NPD(TNPP_No.EditValue)
+            bs_Filter = gh_Common.GroupID
+            GridDtl.DataSource = fc_Class_Head.Get_NPP_NPD()
+            IsClosed = True
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Me.Hide()
+
         End If
+
+
 
 
     End Sub
@@ -847,57 +1177,57 @@ Public Class Frm_NPP_Detail
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
-        'frmInput = New Frm_Input_NPPDetail
-        fc_Class.H_No_NPP = TNPP_No.EditValue
+        ''frmInput = New Frm_Input_NPPDetail
+        'fc_Class.H_No_NPP = TNPP_No.EditValue
 
-        Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            Dim PartNo As String = ""
-            Dim PartName As String = ""
-            Dim Machine As String = ""
-            Dim CT As String = ""
-            Dim Cav As String = ""
-            Dim Weight As String = ""
-            Dim Material As String = ""
-            Dim StatusMold As String = ""
-            Dim Order As String = ""
-            Dim Inj As Boolean = True
-            Dim Painting As Boolean = True
-            Dim Chrome As Boolean = True
-            Dim Assy As Boolean = True
-            Dim Ultrasonic As Boolean = True
-            Dim Vibration As Boolean = True
-            'fc_ClassCRUD = New ClsCR_CreateUser
+        'Try
+        '    Dim provider As CultureInfo = CultureInfo.InvariantCulture
+        '    Dim PartNo As String = ""
+        '    Dim PartName As String = ""
+        '    Dim Machine As String = ""
+        '    Dim CT As String = ""
+        '    Dim Cav As String = ""
+        '    Dim Weight As String = ""
+        '    Dim Material As String = ""
+        '    Dim StatusMold As String = ""
+        '    Dim Order As String = ""
+        '    Dim Inj As Boolean = True
+        '    Dim Painting As Boolean = True
+        '    Dim Chrome As Boolean = True
+        '    Dim Assy As Boolean = True
+        '    Dim Ultrasonic As Boolean = True
+        '    Dim Vibration As Boolean = True
+        '    'fc_ClassCRUD = New ClsCR_CreateUser
 
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    PartNo = GridView1.GetRowCellValue(rowHandle, "Part No")
-                    PartName = GridView1.GetRowCellValue(rowHandle, "Part Name")
-                    Machine = IIf(GridView1.GetRowCellValue(rowHandle, "Machine") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Machine"))
-                    CT = IIf(GridView1.GetRowCellValue(rowHandle, "C/T") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "C/T"))
-                    Cav = IIf(GridView1.GetRowCellValue(rowHandle, "Cav") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Cav"))
-                    Weight = GridView1.GetRowCellValue(rowHandle, "Weight")
-                    Material = GridView1.GetRowCellValue(rowHandle, "Material")
-                    StatusMold = GridView1.GetRowCellValue(rowHandle, "Status Mold")
-                    Order = GridView1.GetRowCellValue(rowHandle, "Order Month")
-                    Inj = GridView1.GetRowCellValue(rowHandle, "Inj")
-                    Painting = GridView1.GetRowCellValue(rowHandle, "Painting")
-                    Chrome = GridView1.GetRowCellValue(rowHandle, "Chrome")
-                    Assy = GridView1.GetRowCellValue(rowHandle, "Assy")
-                    Ultrasonic = GridView1.GetRowCellValue(rowHandle, "Ultrasonic")
-                    Vibration = GridView1.GetRowCellValue(rowHandle, "Vibration")
+        '    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        '    For Each rowHandle As Integer In selectedRows
+        '        If rowHandle >= 0 Then
+        '            PartNo = GridView1.GetRowCellValue(rowHandle, "Part No")
+        '            PartName = GridView1.GetRowCellValue(rowHandle, "Part Name")
+        '            Machine = IIf(GridView1.GetRowCellValue(rowHandle, "Machine") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Machine"))
+        '            CT = IIf(GridView1.GetRowCellValue(rowHandle, "C/T") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "C/T"))
+        '            Cav = IIf(GridView1.GetRowCellValue(rowHandle, "Cav") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Cav"))
+        '            Weight = GridView1.GetRowCellValue(rowHandle, "Weight")
+        '            Material = GridView1.GetRowCellValue(rowHandle, "Material")
+        '            StatusMold = GridView1.GetRowCellValue(rowHandle, "Status Mold")
+        '            Order = GridView1.GetRowCellValue(rowHandle, "Order Month")
+        '            Inj = GridView1.GetRowCellValue(rowHandle, "Inj")
+        '            Painting = GridView1.GetRowCellValue(rowHandle, "Painting")
+        '            Chrome = GridView1.GetRowCellValue(rowHandle, "Chrome")
+        '            Assy = GridView1.GetRowCellValue(rowHandle, "Assy")
+        '            Ultrasonic = GridView1.GetRowCellValue(rowHandle, "Ultrasonic")
+        '            Vibration = GridView1.GetRowCellValue(rowHandle, "Vibration")
 
-                End If
-            Next rowHandle
+        '        End If
+        '    Next rowHandle
 
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallForm(PartNo, PartName, Machine, CT, Cav, Weight, Material, Inj, Painting, Chrome, Assy, Ultrasonic, Vibration, StatusMold, Order, False)
-            End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+        '    If GridView1.GetSelectedRows.Length > 0 Then
+        '        Call CallForm(PartNo, PartName, Machine, CT, Cav, Weight, Material, Inj, Painting, Chrome, Assy, Ultrasonic, Vibration, StatusMold, Order, False)
+        '    End If
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
 
     End Sub
 
@@ -969,25 +1299,352 @@ Public Class Frm_NPP_Detail
 
     End Sub
 
-    Private Sub TOrderMonth_Leave(sender As Object, e As EventArgs) Handles TOrderMonth.Leave
+
+    Private Sub DateEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles TIssue_Date.EditValueChanged
 
     End Sub
 
-    Private Sub BtnDrr_Click(sender As Object, e As EventArgs) Handles BtnDrr.Click
+    Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
+
+        If TModel.Text = "" Then
+            MessageBox.Show("Please Fill Model",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        Else
+
+            Try
+                Dim Sheet As String = "NPP$A21:Z300"
+
+                Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
+
+                    If ofd.ShowDialog() = DialogResult.OK Then
+                        FileLokasi = ofd.FileName
+                        'TxtFileName.Text = FileLokasi
+
+                        If IO.File.Exists(FileLokasi) Then
+
+                            Dim cb As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
+                            cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
+                            Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
+                            cn.Open()
+                            Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as PartNo
+                                                                      ,F3 as PartName
+                                                                      ,F4 as MC
+                                                                      ,F5 as CT
+                                                                      ,F6 as Cav
+                                                                      ,F7 as Berat
+                                                                      ,F8 as Material
+                                                                      ,F16 as Bulan
+                                                                      ,F17 as Status
+                                                                      ,F18 as Revisi from [" & Sheet & "]
+                                                               Where F2 <>''", cn) '
+                            'Dim dtLimaBesar As New DataTable
+                            dtExcel = New DataTable
+                            dtExcel.Load(cmd.ExecuteReader)
+                        End If
 
 
-        fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_DRR = False Then
-            Dim result As DialogResult = XtraMessageBox.Show("DRR " & fs_Code & "  Receive ?", "Confirmation", MessageBoxButtons.YesNo)
+
+                        For i As Integer = 0 To dtExcel.Rows.Count - 1
+
+                            Dim Sequence As New DataTable
+                            Sequence = fc_Class.Get_Sequence_NppDetail()
+                            Dim Seq As Integer = Val(Sequence.Rows(0).Item(0)) + 1
+
+                            'Dim dt_SeqGroup As New DataTable
+                            'dt_SeqGroup = fc_Class.Get_Sequence_GroupID()
+                            'Dim SeqGroup As Integer = Val(dt_SeqGroup.Rows(0).Item(0)) + 1
+                            Dim GroupID As String = "G" & Seq
+
+                            Dim MyNewRow As DataRow
+                            MyNewRow = DtGridNPWO.NewRow
+                            'Dim GroupID As String = fc_Class.GetGroupIDAuto(DtGridNPWO.Rows.Count, RowsAwal)
+                            With MyNewRow
+                                .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
+                                .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
+                                .Item("Machine") = dtExcel.Rows(i).Item("MC")
+                                .Item("C/T") = dtExcel.Rows(i).Item("CT")
+                                .Item("Cav") = dtExcel.Rows(i).Item("Cav")
+                                .Item("Weight") = dtExcel.Rows(i).Item("Berat")
+                                .Item("Material") = dtExcel.Rows(i).Item("Material")
+                                .Item("Inj") = False
+                                .Item("Painting") = False
+                                .Item("Chrome") = False
+                                .Item("Assy") = False
+                                .Item("Ultrasonic") = False
+                                .Item("Vibration") = False
+                                .Item("Status Mold") = ""
+                                .Item("Order Month") = dtExcel.Rows(i).Item("Bulan")
+                                '.Item("Single") = False
+                                .Item("Group ID") = GroupID
+                                .Item("Status") = dtExcel.Rows(i).Item("Status")
+                                .Item("Revisi") = dtExcel.Rows(i).Item("Revisi")
+                                .Item("Seq") = Seq
+                            End With
+                            DtGridNPWO.Rows.Add(MyNewRow)
+                            DtGridNPWO.AcceptChanges()
+                            fc_Class.Update_Seq_NPPDetail(Seq)
+                        Next
+
+                    End If
+
+                End Using
+            Catch ex As Exception
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End Try
+        End If
+
+
+
+    End Sub
+
+    Private Sub Check_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Check.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If (tombol <> 0) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub B_Submit_Click(sender As Object, e As EventArgs) Handles B_Submit.Click
+
+
+        Dim result As DialogResult = XtraMessageBox.Show("Are You Want Submit To NPD " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+        If result = System.Windows.Forms.DialogResult.Yes Then
+            fc_Class = New Cls_NPP_Detail
+            With fc_Class
+                .H_Submit_NPD = 1
+                .H_Submit_NPD_Date = Date.Now
+            End With
+
+
+            fc_Class.Update_Submit_To_NPD(fs_Code)
+            bs_Filter = gh_Common.Username()
+            GridDtl.DataSource = fc_Class_Head.Get_NPP()
+
+            IsClosed = True
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Me.Hide()
+        End If
+
+
+    End Sub
+
+    Private Sub B_Approve_Click(sender As Object, e As EventArgs) Handles B_Approve.Click
+
+        If Active_Form = 1 Then
+            If fc_Class.H_Approve_Dept_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Approve_Dept_Head = 1
+                            .H_Approve_Dept_Head_Date = Date.Now
+                            .H_Approve_Dept_Head_Name = gh_Common.Username
+                            .H_Status = "Approve Dept Head"
+                        End With
+
+
+                        fc_Class.Update_DeptHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+
+        ElseIf Active_Form = 2 Then
+
+            If fc_Class.H_Approve_Div_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Approve_Dept_Head = 1
+                            .H_Approve_Div_Head = 1
+                            .H_Approve_Div_Head_Date = Date.Now
+                            .H_Approve_Div_Head_Name = gh_Common.Username
+                            .H_Status = "Approve Div Head"
+                        End With
+
+
+                        fc_Class.Update_DivHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+        End If
+    End Sub
+
+    Private Sub B_Reject_Click(sender As Object, e As EventArgs) Handles B_Reject.Click
+        If Active_Form = 1 Then
+            If fc_Class.H_Approve_Dept_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 0
+                            .H_Approve_Dept_Head = 0
+                            .H_Approve_Dept_Head_Date = Date.Now
+                            .H_Approve_Dept_Head_Name = gh_Common.Username
+                            .H_Status = "Revise"
+                        End With
+
+
+                        fc_Class.Update_DeptHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+
+        ElseIf Active_Form = 2 Then
+
+            If fc_Class.H_Approve_Div_Head = False Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        fc_Class = New Cls_NPP_Detail
+                        With fc_Class
+                            .H_Approve = 0
+                            .H_Approve_Dept_Head = 0
+                            .H_Approve_Div_Head = 0
+                            .H_Approve_Div_Head_Date = Date.Now
+                            .H_Approve_Div_Head_Name = gh_Common.Username
+                            .H_Status = "Revise"
+                        End With
+
+
+                        fc_Class.Update_DivHead(fs_Code)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()
+
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+        End If
+    End Sub
+
+    Private Sub GridView1_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridView1.FocusedRowChanged
+
+        If Active_Form = 3 Then
+            Try
+                Dim Comit As Boolean
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
+                    End If
+                Next rowHandle
+                If Comit = True Then
+                    GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Capability Date").OptionsColumn.AllowEdit = False
+                Else
+                    GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Capability Date").OptionsColumn.AllowEdit = True
+                End If
+            Catch ex As Exception
+                Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End Try
+        ElseIf Active_Form = 0 Then
+            If fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
+                Try
+                    Dim Comit As Boolean
+                    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                    For Each rowHandle As Integer In selectedRows
+                        If rowHandle >= 0 Then
+                            Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
+                        End If
+                    Next rowHandle
+                    If Comit = True Then
+                        Call Colums_AllowEdit_True()
+                        Me.PartNo.OptionsColumn.AllowEdit = False
+                        Me.PartName.OptionsColumn.AllowEdit = False
+                        Me.Revisi.OptionsColumn.AllowEdit = False
+                        Me.Status.OptionsColumn.AllowEdit = False
+                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                        Me.Note.OptionsColumn.AllowEdit = False
+                        Me.Cek.OptionsColumn.AllowEdit = False
+                        Me.Commit.OptionsColumn.AllowEdit = False
+                    Else
+                        Call Colums_AllowEdit_False()
+                    End If
+                Catch ex As Exception
+                    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                End Try
+            End If
+        End If
+    End Sub
+
+    Private Sub B_Revise_Click(sender As Object, e As EventArgs) Handles B_Revise.Click
+        If Active_Form = 1 Then
+
+            Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Revise " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
             If result = System.Windows.Forms.DialogResult.Yes Then
                 Try
                     fc_Class = New Cls_NPP_Detail
                     With fc_Class
-                        .H_DRR = 1
+                        .H_Approve = 0
+                        .H_Approve_Dept_Head = 0
+                        .H_Approve_Div_Head = 0
+                        .H_Submit_NPD = 0
+                        .H_RevStatus = 1
+                        .H_Status = "Revise"
                     End With
-                    fc_Class.UpdateDrrRecive(fs_Code)
+
+
+                    fc_Class.Update_DeptHead_Revisi(fs_Code)
                     bs_Filter = gh_Common.Username()
-                    GridDtl.DataSource = fc_Class_Head.Get_NPP()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
 
                     IsClosed = True
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -996,80 +1653,8 @@ Public Class Frm_NPP_Detail
                     ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                     WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
                 End Try
-
             End If
+
         End If
-
-    End Sub
-
-    Private Sub DateEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles TIssue_Date.EditValueChanged
-
-    End Sub
-
-    Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
-        Try
-            Dim Sheet As String = "NPP$A21:P300"
-
-            Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
-
-                If ofd.ShowDialog() = DialogResult.OK Then
-                    FileLokasi = ofd.FileName
-                    'TxtFileName.Text = FileLokasi
-
-                    If IO.File.Exists(FileLokasi) Then
-
-                        Dim cb As New OleDbConnectionStringBuilder With {.DataSource = FileLokasi, .Provider = "Microsoft.ACE.OLEDB.12.0"}  'Microsoft.ACE.OLEDB.12.0     Microsoft.Jet.OLEDB.4.0
-                        cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
-                        Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
-                        cn.Open()
-                        Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as PartNo
-                                                                      ,F3 as PartName
-                                                                      ,F4 as MC
-                                                                      ,F5 as CT
-                                                                      ,F6 as Cav
-                                                                      ,F7 as Berat
-                                                                      ,F8 as Material from [" & Sheet & "]
-                                                               Where F2 <>''", cn) '
-                        'Dim dtLimaBesar As New DataTable
-                        dtExcel = New DataTable
-                        dtExcel.Load(cmd.ExecuteReader)
-                    End If
-
-
-
-                    For i As Integer = 0 To dtExcel.Rows.Count - 1
-                        Dim MyNewRow As DataRow
-                        MyNewRow = DtGridNPWO.NewRow
-                        Dim GroupID As String = fc_Class.GetGroupIDAuto(DtGridNPWO.Rows.Count, RowsAwal)
-                        With MyNewRow
-                            .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
-                            .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
-                            .Item("Machine") = dtExcel.Rows(i).Item("MC")
-                            .Item("C/T") = dtExcel.Rows(i).Item("CT")
-                            .Item("Cav") = dtExcel.Rows(i).Item("Cav")
-                            .Item("Weight") = dtExcel.Rows(i).Item("Berat")
-                            .Item("Material") = dtExcel.Rows(i).Item("Material")
-                            .Item("Inj") = False
-                            .Item("Painting") = False
-                            .Item("Chrome") = False
-                            .Item("Assy") = False
-                            .Item("Ultrasonic") = False
-                            .Item("Vibration") = False
-                            .Item("Status Mold") = ""
-                            .Item("Order Month") = "0"
-                            .Item("Single") = False
-                            .Item("Group ID") = GroupID
-                        End With
-                        DtGridNPWO.Rows.Add(MyNewRow)
-                        DtGridNPWO.AcceptChanges()
-                    Next
-
-                End If
-
-            End Using
-        Catch ex As Exception
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
     End Sub
 End Class

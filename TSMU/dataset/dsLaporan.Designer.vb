@@ -12158,6 +12158,8 @@ Partial Public Class dsLaporan
         
         Private columnRevisi As Global.System.Data.DataColumn
         
+        Private columnGroupID As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -12618,6 +12620,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property GroupIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGroupID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12707,9 +12717,10 @@ Partial Public Class dsLaporan
                     ByVal Prepare As String,  _
                     ByVal TargetDRR As Date,  _
                     ByVal TargetQuot As Date,  _
-                    ByVal Revisi As String) As NPPRow
+                    ByVal Revisi As String,  _
+                    ByVal GroupID As String) As NPPRow
             Dim rowNPPRow As NPPRow = CType(Me.NewRow,NPPRow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi, GroupID}
             rowNPPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPPRow)
             Return rowNPPRow
@@ -12785,6 +12796,7 @@ Partial Public Class dsLaporan
             Me.columnTargetDRR = MyBase.Columns("TargetDRR")
             Me.columnTargetQuot = MyBase.Columns("TargetQuot")
             Me.columnRevisi = MyBase.Columns("Revisi")
+            Me.columnGroupID = MyBase.Columns("GroupID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12904,6 +12916,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnTargetQuot)
             Me.columnRevisi = New Global.System.Data.DataColumn("Revisi", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRevisi)
+            Me.columnGroupID = New Global.System.Data.DataColumn("GroupID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGroupID)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29800,6 +29814,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property GroupID() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.GroupIDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'GroupID' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.GroupIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPP.No_NPPColumn)
         End Function
@@ -30432,6 +30461,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetRevisiNull()
             Me(Me.tableNPP.RevisiColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsGroupIDNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.GroupIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetGroupIDNull()
+            Me(Me.tableNPP.GroupIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
