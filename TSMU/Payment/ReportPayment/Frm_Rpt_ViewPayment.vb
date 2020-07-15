@@ -9,6 +9,8 @@ Public Class Frm_Rpt_ViewPayment
         Init()
         ProgBar.Visible = False
         Progbar_sup.Visible = False
+        Progbar_sup2.Visible = False
+        txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
     End Sub
 
     Sub LoadTxtBox()
@@ -46,6 +48,13 @@ Public Class Frm_Rpt_ViewPayment
             ElseIf TabControl1.SelectedTab Is TabPage3 Then
                 If GridView2.RowCount > 0 Then
                     SaveToExcel(GridControl1)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            ElseIf TabControl1.SelectedTab Is TabPage2 Then
+                If GridView7.RowCount > 0 Then
+                    SaveToExcel(GridControl4)
                     MsgBox("Data Sudah Berhasil Di Export.")
                 Else
                     MsgBox("Grid Kosong!")
@@ -128,6 +137,38 @@ Public Class Frm_Rpt_ViewPayment
                End Sub)
     End Sub
 
+    Private Sub GetDataGridSup2()
+        Dim perpost As String = ""
+
+        Dim suppliername As String = ""
+
+        Invoke(Sub()
+                   perpost = txtperpost.Text
+                   suppliername = cmb_supplier2.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridViewPaymentSup2(perpost, suppliername)
+        setDataSource(dt, GridControl4)
+        Invoke(Sub()
+                   Progbar_sup2.Visible = False
+               End Sub)
+    End Sub
+    Private Sub GetDataGridSup3()
+        Dim perpost As String = ""
+
+        Dim suppliername As String = ""
+
+        Invoke(Sub()
+                   perpost = txtperpost.Text
+                   suppliername = cmb_supplier2.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridViewPaymentSup3(perpost, suppliername)
+        setDataSource(dt, GridControl5)
+        Invoke(Sub()
+                   Progbar_sup2.Visible = False
+               End Sub)
+    End Sub
     Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
     Private Sub setDataSource(table As DataTable, _Grid As GridControl)
         ' Invoke method if required:
@@ -206,4 +247,42 @@ Public Class Frm_Rpt_ViewPayment
         Proc_Excel()
     End Sub
 
+    Private Async Sub btnLoad_sup2_Click(sender As Object, e As EventArgs) Handles btnLoad_sup2.Click
+        Try
+            If Progbar_sup2.Visible = True Then
+                Throw New Exception("Process already running, Please wait !")
+            End If
+            Progbar_sup2.Visible = True
+            Progbar_sup2.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridSup2())
+            Await Task.Run(Sub() GetDataGridSup3())
+            ' GridView7.Columns(0).Visible = False
+            GridCellFormat(GridView7)
+
+        Catch ex As Exception
+            Progbar_sup2.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub cmb_supplier2_DropDown(sender As Object, e As EventArgs) Handles cmb_supplier2.DropDown
+        Try
+            Dim dtgrid As DataTable = New DataTable
+            dtgrid = pay_class.cmbsupplier()
+            cmb_supplier2.DataSource = dtgrid
+            cmb_supplier2.ValueMember = "Name"
+            cmb_supplier2.DisplayMember = "Name"
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub cmb_supplier2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_supplier2.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cmb_supplier_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_supplier.SelectedIndexChanged
+
+    End Sub
 End Class

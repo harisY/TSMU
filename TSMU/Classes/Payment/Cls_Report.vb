@@ -503,7 +503,36 @@ Public Class Cls_report
             Throw
         End Try
     End Function
-
+    Public Function DataGridViewPaymentSup2(ByVal perpost As String, ByVal suppliername As String) As DataTable
+        Try
+            Dim query As String = "ViewPaymentSup2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@suppliername", SqlDbType.VarChar)
+            pParam(1).Value = suppliername
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function DataGridViewPaymentSup3(ByVal perpost As String, ByVal suppliername As String) As DataTable
+        Try
+            Dim query As String = "ViewPaymentSup3"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@suppliername", SqlDbType.VarChar)
+            pParam(1).Value = suppliername
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function DataGridViewReportEntertainmentTaxSettle(ByVal datesup1 As String, ByVal datesup2 As String) As DataTable
         Try
             Dim query As String = "ViewReportEntertainmentSettle"

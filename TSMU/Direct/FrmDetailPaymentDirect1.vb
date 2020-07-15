@@ -112,6 +112,40 @@ Public Class FrmDetailPaymentDirect1
 
 
     End Sub
+    Private Sub btnrptadv_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnrptadv.ButtonClick
+
+        Try
+            Dim newform2 As New FrmReportSuspend
+            Dim stext As String
+            newform2.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Microsoft.VisualBasic.Left(stext, 15)
+                newform2.TxtNoSuspend.Text = stext
+            Next
+            newform2.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+    Private Sub btnrptsettle_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnrptsettle.ButtonClick
+
+        Try
+            Dim newform3 As New FrmReportSettle
+            Dim stext As String
+            newform3.StartPosition = FormStartPosition.CenterScreen
+            For i As Integer = 0 To GridView1.RowCount - 1
+                stext = GridView1.GetRowCellValue(i, "Noref")
+                stext = Microsoft.VisualBasic.Right(Trim(stext), 15)
+                newform3.TxtNosettle.Text = stext
+            Next
+            newform3.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
     Private Sub GetTot2()
         Dim TotAmount As Double = 0
 
