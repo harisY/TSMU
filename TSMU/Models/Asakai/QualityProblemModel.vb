@@ -13,10 +13,12 @@ Public Class QualityProblemModel
 
     Public Property ObjDetailQualityProblem() As New Collection(Of QualityProblemDetailModel)
     Public Sub New()
-        Me._Query = "SELECT Distinct AsakaiQualityProblem.IDTransaksi,Convert(varchar,AsakaiQualityProblem.Tanggal,105) as Tanggal,AsakaiQualityProblemDetail.Shift 
+        Me._Query = "SELECT AsakaiQualityProblem.IDTransaksi,Convert(varchar,AsakaiQualityProblem.Tanggal,105) as Tanggal
                     from AsakaiQualityProblem inner join AsakaiQualityProblemDetail
                     on AsakaiQualityProblem.IDTransaksi = AsakaiQualityProblemDetail.IDTransaksi
-                    Order by  AsakaiQualityProblem.IDTransaksi Desc"
+                    GROUP by  AsakaiQualityProblem.IDTransaksi
+								,AsakaiQualityProblem.tanggal
+					Order by AsakaiQualityProblem.tanggal Desc"
 
     End Sub
 

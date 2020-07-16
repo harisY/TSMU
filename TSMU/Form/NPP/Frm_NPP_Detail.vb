@@ -45,24 +45,18 @@ Public Class Frm_NPP_Detail
 
 
     Private Sub Frm_Npwo_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         Call CreateTableBarang()
         Call FillComboCustomer()
         Call FillComboCategory()
-
         'ChekHeader = New CheckBox
         'ChekHeader.Size = New Size(15, 15)
         'Grid.Controls.Add(ChekHeader)
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
-
         Call InitialSetForm()
-
         Me.TOrderMonth.Properties.Mask.EditMask = "n0"
         Me.TOrderMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-
         Me.TOrderMaxMonth.Properties.Mask.EditMask = "n0"
         Me.TOrderMaxMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-
         RowsAwal = DtGridNPWO.Rows.Count
 
     End Sub
@@ -151,6 +145,7 @@ Public Class Frm_NPP_Detail
         Me.Note.OptionsColumn.AllowEdit = False
         Me.Cek.OptionsColumn.AllowEdit = False
         Me.Commit.OptionsColumn.AllowEdit = False
+        Me.Runner.OptionsColumn.AllowEdit = False
 
     End Sub
 
@@ -178,17 +173,19 @@ Public Class Frm_NPP_Detail
         Me.Note.OptionsColumn.AllowEdit = True
         Me.Cek.OptionsColumn.AllowEdit = True
         Me.Commit.OptionsColumn.AllowEdit = True
+        Me.Runner.OptionsColumn.AllowEdit = True
 
     End Sub
 
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(25) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(26) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
                                                            New DataColumn("Cav", GetType(String)),
+                                                           New DataColumn("Runner", GetType(Double)),
                                                            New DataColumn("Weight", GetType(Double)),
                                                            New DataColumn("Qty Mold", GetType(Int32)),
                                                            New DataColumn("Material", GetType(String)),
@@ -231,7 +228,7 @@ Public Class Frm_NPP_Detail
                     TModel.Enabled = False
                     TNPP_No.Enabled = False
                     Me.Text = "NPP FORM "
-                    If fc_Class.H_Approve = False Then
+                    If fc_Class.H_Approve_Dept_Head = False Then
                         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
@@ -244,16 +241,15 @@ Public Class Frm_NPP_Detail
                         Call Colums_AllowEdit_False()
                         B_Submit.Visible = True
                         Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                        Me.Commit.OptionsColumn.AllowEdit = False
+                        Me.Commit.OptionsColumn.AllowEdit = True
                     ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
                         Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
                         Call Colums_AllowEdit_True()
                         Me.PartNo.OptionsColumn.AllowEdit = False
                         Me.PartName.OptionsColumn.AllowEdit = False
                         Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                        Me.Commit.OptionsColumn.AllowEdit = False
-                        Me.Status.OptionsColumn.AllowEdit = False
                         Me.Revisi.OptionsColumn.AllowEdit = False
+                        Me.Commit.OptionsColumn.AllowEdit = True
                         'B_Revise.Visible = True
                     Else
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
@@ -269,10 +265,7 @@ Public Class Frm_NPP_Detail
                     Call TextBox_False()
                     Me.Cek.OptionsColumn.AllowEdit = True
                     Me.Note.OptionsColumn.AllowEdit = True
-                    If fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Dept Head" Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        Call Colums_AllowEdit_False()
-                    ElseIf fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Div Head" Then
+                    If fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Div Head" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         Call Colums_AllowEdit_False()
                     ElseIf fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Submit To NPD" Then
@@ -529,6 +522,10 @@ Public Class Frm_NPP_Detail
     Public Overrides Sub Proc_SaveData()
 
         Try
+            'Dim baseEdit = TryCast(sender, BaseEdit)
+            'Dim gridView = (TryCast((TryCast(BaseEdit.Parent, GridControl)).MainView, GridView))
+            'gridView.PostEditor()
+            'GridView.UpdateCurrentRow()
             getdataview1()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -613,9 +610,6 @@ Public Class Frm_NPP_Detail
                         .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
                         .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
                         .Machine = Convert.ToString(GridView1.GetRowCellValue(i, "Machine"))
-                        .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
-                        .Cavity = Convert.ToString(GridView1.GetRowCellValue(i, "Cav"))
-                        .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
                         .Material_Resin = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
                         .Injection = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Inj"))
                         .Painting = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Painting"))
@@ -624,7 +618,7 @@ Public Class Frm_NPP_Detail
                         .Assy = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Assy"))
                         .Ultrasonic = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Ultrasonic"))
                         .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
-                        .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                        .Cavity = Convert.ToString(GridView1.GetRowCellValue(i, "Cav"))
                         .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                         .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
                         .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
@@ -632,9 +626,31 @@ Public Class Frm_NPP_Detail
                         .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
                         .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
                         .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
-                        .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                        .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
                         .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
-                        '.Id_NPP = Convert.ToString(GridView1.GetRowCellValue(i, "Id_NPP"))
+
+
+                        If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
+                            .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                        Else
+                            .Cycle_Time = 0
+                        End If
+                        If IsNumeric(GridView1.GetRowCellValue(i, "Weight")) = True Then
+                            .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                        Else
+                            .Weight = 0
+                        End If
+                        If IsNumeric(GridView1.GetRowCellValue(i, "Runner")) = True Then
+                            .Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
+                        Else
+                            .Runner = 0
+                        End If
+                        If IsNumeric(GridView1.GetRowCellValue(i, "Order Month")) = True Then
+                            .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                        Else
+                            .OrderMonth = 0
+                        End If
+
                     End With
                     fc_Class.Collection_Detail.Add(NPP_Detail)
                 Next
@@ -685,9 +701,9 @@ Public Class Frm_NPP_Detail
                             .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
                             .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
                             .Machine = Convert.ToString(GridView1.GetRowCellValue(i, "Machine"))
-                            .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                            '.Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
                             .Cavity = Convert.ToString(GridView1.GetRowCellValue(i, "Cav"))
-                            .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                            '.Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
                             .Material_Resin = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
                             .Injection = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Inj"))
                             .Painting = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Painting"))
@@ -696,21 +712,41 @@ Public Class Frm_NPP_Detail
                             .Assy = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Assy"))
                             .Ultrasonic = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Ultrasonic"))
                             .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
-                            .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                            '.OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                             .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
                             .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                             .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
                             .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                            '.Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
                             .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
-                            .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                            .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
                             .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+
+                            If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
+                                .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                            Else
+                                .Cycle_Time = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Weight")) = True Then
+                                .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                            Else
+                                .Weight = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Runner")) = True Then
+                                .Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
+                            Else
+                                .Runner = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Order Month")) = True Then
+                                .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                            Else
+                                .OrderMonth = 0
+                            End If
 
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
                     Next
-
-
                     'fc_Class.UpdateData(fs_Code)
                     fc_Class.Update(fc_Class.H_No_NPP)
                     bs_Filter = gh_Common.GroupID
@@ -769,9 +805,9 @@ Public Class Frm_NPP_Detail
                             .Part_No = Convert.ToString(GridView1.GetRowCellValue(i, "Part No"))
                             .Part_Name = Convert.ToString(GridView1.GetRowCellValue(i, "Part Name"))
                             .Machine = Convert.ToString(GridView1.GetRowCellValue(i, "Machine"))
-                            .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                            '.Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
                             .Cavity = Convert.ToString(GridView1.GetRowCellValue(i, "Cav"))
-                            .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                            '.Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
                             .Material_Resin = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
                             .Injection = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Inj"))
                             .Painting = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Painting"))
@@ -780,21 +816,43 @@ Public Class Frm_NPP_Detail
                             .Assy = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Assy"))
                             .Ultrasonic = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Ultrasonic"))
                             .StatusMold = Convert.ToString(GridView1.GetRowCellValue(i, "Status Mold"))
-                            .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                            '.OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
                             .MoldNumber = Convert.ToString(GridView1.GetRowCellValue(i, "Group ID"))
                             .Rev = fc_Class.H_Rev
                             .Revisi = Convert.ToString(GridView1.GetRowCellValue(i, "Revisi"))
                             .Status = Convert.ToString(GridView1.GetRowCellValue(i, "Status"))
                             .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
                             .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+                            '.Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
                             .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
-                            .Commit = Convert.ToInt64(GridView1.GetRowCellValue(i, "Commit NPD"))
+                            .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
                             .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+
+                            If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
+                                .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
+                            Else
+                                .Cycle_Time = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Weight")) = True Then
+                                .Weight = Convert.ToDouble(GridView1.GetRowCellValue(i, "Weight"))
+                            Else
+                                .Weight = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Runner")) = True Then
+                                .Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
+                            Else
+                                .Runner = 0
+                            End If
+                            If IsNumeric(GridView1.GetRowCellValue(i, "Order Month")) = True Then
+                                .OrderMonth = Convert.ToInt32(GridView1.GetRowCellValue(i, "Order Month"))
+                            Else
+                                .OrderMonth = 0
+                            End If
+
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
 
                     Next
-
 
                     'fc_Class.UpdateData(fs_Code)
                     fc_Class.UpdateaAndHistory(fc_Class.H_No_NPP)
@@ -850,10 +908,10 @@ Public Class Frm_NPP_Detail
 
     Private Sub TCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles TCustomer.EditValueChanged
 
-        If TModel.EditValue <> "" Then
-            fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), TModel.EditValue)
-            TNPP_No.EditValue = fc_Class.H_No_NPP
-        End If
+        'If TModel.EditValue <> "" Then
+        '    fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), TModel.EditValue)
+        '    TNPP_No.EditValue = fc_Class.H_No_NPP
+        'End If
 
     End Sub
 
@@ -1315,7 +1373,7 @@ Public Class Frm_NPP_Detail
         Else
 
             Try
-                Dim Sheet As String = "NPP$A21:Z300"
+                Dim Sheet As String = "NPP$A21:AZ300"
 
                 Using ofd As OpenFileDialog = New OpenFileDialog() With {.Filter = "Excel Files|*.xls;*.xlsx"}
 
@@ -1335,14 +1393,22 @@ Public Class Frm_NPP_Detail
                                                                       ,F5 as CT
                                                                       ,F6 as Cav
                                                                       ,F7 as Berat
-                                                                      ,F8 as Material
-                                                                      ,F16 as Bulan
-                                                                      ,F17 as Status
-                                                                      ,F18 as Revisi from [" & Sheet & "]
-                                                               Where F2 <>''", cn) '
+                                                                      ,F8 as Runner
+                                                                      ,F9 as Material
+                                                                      ,F10 as Inj
+                                                                      ,F11 as Painting
+                                                                      ,F12 as Chrome
+                                                                      ,F13 as Assy
+                                                                      ,F14 as Ultrasonic
+                                                                      ,F15 as Vibration
+                                                                      ,F19 as Bulan
+                                                                      ,F20 as Status
+                                                                      ,F21 as Revisi from [" & Sheet & "]
+                                                               Where F2 <>''", cn)
                             'Dim dtLimaBesar As New DataTable
                             dtExcel = New DataTable
                             dtExcel.Load(cmd.ExecuteReader)
+                            cn.Close()
                         End If
 
 
@@ -1365,19 +1431,79 @@ Public Class Frm_NPP_Detail
                                 .Item("Part No") = dtExcel.Rows(i).Item("PartNo")
                                 .Item("Part Name") = dtExcel.Rows(i).Item("PartName")
                                 .Item("Machine") = dtExcel.Rows(i).Item("MC")
-                                .Item("C/T") = dtExcel.Rows(i).Item("CT")
+
+                                If IsNumeric(dtExcel.Rows(i).Item("CT")) = True Then
+                                    .Item("C/T") = dtExcel.Rows(i).Item("CT")
+                                Else
+                                    .Item("C/T") = 0
+                                End If
+
                                 .Item("Cav") = dtExcel.Rows(i).Item("Cav")
-                                .Item("Weight") = dtExcel.Rows(i).Item("Berat")
+
+                                If IsNumeric(dtExcel.Rows(i).Item("Berat")) = True Then
+                                    .Item("Weight") = dtExcel.Rows(i).Item("Berat")
+                                Else
+                                    .Item("Weight") = 0
+                                End If
+
+                                If IsNumeric(dtExcel.Rows(i).Item("Runner")) = True Then
+                                    .Item("Runner") = dtExcel.Rows(i).Item("Runner")
+                                Else
+                                    .Item("Runner") = 0
+                                End If
+
                                 .Item("Material") = dtExcel.Rows(i).Item("Material")
-                                .Item("Inj") = False
-                                .Item("Painting") = False
-                                .Item("Chrome") = False
-                                .Item("Assy") = False
-                                .Item("Ultrasonic") = False
-                                .Item("Vibration") = False
+
+                                Dim inj As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Inj")))
+                                If inj = "1" Then
+                                    .Item("Inj") = 1
+                                Else
+                                    .Item("Inj") = 0
+                                End If
+
+                                Dim Painting As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Painting")))
+                                If Painting = "1" Then
+                                    .Item("Painting") = 1
+                                Else
+                                    .Item("Painting") = 0
+                                End If
+
+                                Dim Chrome As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Chrome")))
+                                If Chrome = "1" Then
+                                    .Item("Chrome") = 1
+                                Else
+                                    .Item("Chrome") = 0
+                                End If
+
+                                Dim Assy As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Assy")))
+                                If Assy = "1" Then
+                                    .Item("Assy") = 1
+                                Else
+                                    .Item("Assy") = 0
+                                End If
+
+                                Dim Vibration As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Vibration")))
+                                If Vibration = "1" Then
+                                    .Item("Vibration") = 1
+                                Else
+                                    .Item("Vibration") = 0
+                                End If
+
+                                Dim Ultrasonic As String = Trim(Convert.ToString(dtExcel.Rows(i).Item("Ultrasonic")))
+                                If Ultrasonic = "1" Then
+                                    .Item("Ultrasonic") = 1
+                                Else
+                                    .Item("Ultrasonic") = 0
+                                End If
+
                                 .Item("Status Mold") = ""
-                                .Item("Order Month") = dtExcel.Rows(i).Item("Bulan")
-                                '.Item("Single") = False
+
+                                If IsNumeric(dtExcel.Rows(i).Item("Bulan")) = True Then
+                                    .Item("Order Month") = dtExcel.Rows(i).Item("Bulan")
+                                Else
+                                    .Item("Order Month") = 0
+                                End If
+
                                 .Item("Group ID") = GroupID
                                 .Item("Status") = dtExcel.Rows(i).Item("Status")
                                 .Item("Revisi") = dtExcel.Rows(i).Item("Revisi")
@@ -1597,26 +1723,21 @@ Public Class Frm_NPP_Detail
         ElseIf Active_Form = 0 Then
             If fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
                 Try
-                    Dim Comit As Boolean
-                    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                    For Each rowHandle As Integer In selectedRows
-                        If rowHandle >= 0 Then
-                            Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
-                        End If
-                    Next rowHandle
-                    If Comit = True Then
-                        Call Colums_AllowEdit_True()
-                        Me.PartNo.OptionsColumn.AllowEdit = False
+                    'Dim Comit As Boolean
+                    'Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                    'For Each rowHandle As Integer In selectedRows
+                    '    If rowHandle >= 0 Then
+                    '        Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
+                    '    End If
+                    'Next rowHandle
+                    'If Comit = True Then
+                    Call Colums_AllowEdit_True()
+                    Me.PartNo.OptionsColumn.AllowEdit = False
                         Me.PartName.OptionsColumn.AllowEdit = False
-                        Me.Revisi.OptionsColumn.AllowEdit = False
-                        Me.Status.OptionsColumn.AllowEdit = False
-                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                        Me.Note.OptionsColumn.AllowEdit = False
-                        Me.Cek.OptionsColumn.AllowEdit = False
-                        Me.Commit.OptionsColumn.AllowEdit = False
-                    Else
-                        Call Colums_AllowEdit_False()
-                    End If
+                    Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                    'Else
+                    '    Call Colums_AllowEdit_False()
+                    'End If
                 Catch ex As Exception
                     Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                     WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

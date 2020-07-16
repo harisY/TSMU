@@ -49,6 +49,7 @@ Partial Class Frm_NPP_Detail
         Me.Seq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Commit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Commit1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Runner = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
@@ -134,7 +135,7 @@ Partial Class Frm_NPP_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -220,7 +221,7 @@ Partial Class Frm_NPP_Detail
         Me.Material.Name = "Material"
         Me.Material.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Material.Visible = True
-        Me.Material.VisibleIndex = 6
+        Me.Material.VisibleIndex = 7
         Me.Material.Width = 147
         '
         'Inj
@@ -233,7 +234,7 @@ Partial Class Frm_NPP_Detail
         Me.Inj.Name = "Inj"
         Me.Inj.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Inj.Visible = True
-        Me.Inj.VisibleIndex = 7
+        Me.Inj.VisibleIndex = 8
         '
         'Painting
         '
@@ -245,7 +246,7 @@ Partial Class Frm_NPP_Detail
         Me.Painting.Name = "Painting"
         Me.Painting.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 8
+        Me.Painting.VisibleIndex = 9
         '
         'Chrome
         '
@@ -257,7 +258,7 @@ Partial Class Frm_NPP_Detail
         Me.Chrome.Name = "Chrome"
         Me.Chrome.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Chrome.Visible = True
-        Me.Chrome.VisibleIndex = 9
+        Me.Chrome.VisibleIndex = 10
         Me.Chrome.Width = 81
         '
         'Assy
@@ -270,7 +271,7 @@ Partial Class Frm_NPP_Detail
         Me.Assy.Name = "Assy"
         Me.Assy.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Assy.Visible = True
-        Me.Assy.VisibleIndex = 10
+        Me.Assy.VisibleIndex = 11
         '
         'StatusMold
         '
@@ -283,7 +284,7 @@ Partial Class Frm_NPP_Detail
         Me.StatusMold.Name = "StatusMold"
         Me.StatusMold.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.StatusMold.Visible = True
-        Me.StatusMold.VisibleIndex = 13
+        Me.StatusMold.VisibleIndex = 14
         Me.StatusMold.Width = 145
         '
         'RepStatusMold
@@ -303,7 +304,7 @@ Partial Class Frm_NPP_Detail
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.OrderMonth.Visible = True
-        Me.OrderMonth.VisibleIndex = 14
+        Me.OrderMonth.VisibleIndex = 15
         Me.OrderMonth.Width = 130
         '
         'Ultrasonic
@@ -316,7 +317,7 @@ Partial Class Frm_NPP_Detail
         Me.Ultrasonic.Name = "Ultrasonic"
         Me.Ultrasonic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Ultrasonic.Visible = True
-        Me.Ultrasonic.VisibleIndex = 11
+        Me.Ultrasonic.VisibleIndex = 12
         Me.Ultrasonic.Width = 82
         '
         'Vibration
@@ -327,7 +328,7 @@ Partial Class Frm_NPP_Detail
         Me.Vibration.Name = "Vibration"
         Me.Vibration.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Vibration.Visible = True
-        Me.Vibration.VisibleIndex = 12
+        Me.Vibration.VisibleIndex = 13
         '
         'GroupID
         '
@@ -340,6 +341,7 @@ Partial Class Frm_NPP_Detail
         Me.GroupID.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GroupID.Visible = True
         Me.GroupID.VisibleIndex = 18
+        Me.GroupID.Width = 84
         '
         'GridColumn4
         '
@@ -356,7 +358,8 @@ Partial Class Frm_NPP_Detail
         Me.Revisi.Name = "Revisi"
         Me.Revisi.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Revisi.Visible = True
-        Me.Revisi.VisibleIndex = 15
+        Me.Revisi.VisibleIndex = 20
+        Me.Revisi.Width = 51
         '
         'Status
         '
@@ -413,6 +416,8 @@ Partial Class Frm_NPP_Detail
         Me.Note.FieldName = "Note"
         Me.Note.Name = "Note"
         Me.Note.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Note.Visible = True
+        Me.Note.VisibleIndex = 21
         Me.Note.Width = 279
         '
         'Seq
@@ -431,6 +436,17 @@ Partial Class Frm_NPP_Detail
         '
         Me.Commit1.FieldName = "Commit1"
         Me.Commit1.Name = "Commit1"
+        '
+        'Runner
+        '
+        Me.Runner.AppearanceCell.Options.UseTextOptions = True
+        Me.Runner.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Runner.AppearanceHeader.Options.UseTextOptions = True
+        Me.Runner.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Runner.FieldName = "Runner"
+        Me.Runner.Name = "Runner"
+        Me.Runner.Visible = True
+        Me.Runner.VisibleIndex = 6
         '
         'SingleCheck
         '
@@ -880,7 +896,7 @@ Partial Class Frm_NPP_Detail
         'B_Revise
         '
         Me.B_Revise.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Revise.Location = New System.Drawing.Point(1034, 442)
+        Me.B_Revise.Location = New System.Drawing.Point(1161, 443)
         Me.B_Revise.Name = "B_Revise"
         Me.B_Revise.Size = New System.Drawing.Size(73, 23)
         Me.B_Revise.TabIndex = 39
@@ -1026,4 +1042,5 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents Commit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Commit1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents B_Revise As Button
+    Friend WithEvents Runner As DevExpress.XtraGrid.Columns.GridColumn
 End Class

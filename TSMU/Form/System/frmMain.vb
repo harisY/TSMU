@@ -376,6 +376,7 @@ Partial Public Class FrmMain
                 Next
                 RemoveHandler FormClosing, AddressOf FrmMain_FormClosing
                 'Application.Exit()
+
                 End
             Else
                 e.Cancel = True

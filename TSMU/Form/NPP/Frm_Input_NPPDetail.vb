@@ -254,6 +254,7 @@ Public Class Frm_Input_NPPDetail
                     .Item("Order Month") = TOrder.EditValue
                     .Item("Group ID") = GroupID
                     .Item("Seq") = Seq
+                    .Item("Commit NPD") = False
 
                 End With
 
