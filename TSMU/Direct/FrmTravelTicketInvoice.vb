@@ -46,8 +46,46 @@ Public Class FrmTravelTicketInvoice
         End If
 
         Dim filterRow As DataRow()
-        filterRow = dtInvoiceDetail.Select("CheckList = true")
-        dtTicketCheck = filterRow.CopyToDataTable
+        Dim dtTemp As New DataTable
+        filterRow = dtInvoiceDetail.Select("CheckList = true And Seq <> 1", "NoRequest Asc, Seq Desc")
+        If filterRow.Count > 0 Then
+            dtTemp = filterRow.CopyToDataTable
+        End If
+        dtTicketCheck = dtInvoiceDetail.Select("CheckList = true").CopyToDataTable
+        For Each row_ As DataRow In dtTemp.Rows
+            Dim noRequest As String = String.Empty
+            Dim amount As Double
+            Dim TicketNumber As String = String.Empty
+            If row_("NoRequest") <> noRequest And row_("Seq") > 1 Then
+                If isUpdate Then
+                    Dim dtTSC As New DataTable
+                    dtTSC = ObjTravelTicket.GetTravelTicketTSC(fs_Code, row_("NoRequest"), row_("Seq") + 1)
+                    If dtTSC.Rows.Count > 0 Then
+                        amount = dtTSC(0).Item("Amount")
+                        TicketNumber = dtTSC(0).Item("TicketNumber")
+                    End If
+                End If
+                Dim row As DataRow = dtTicketCheck.NewRow
+                row("NoRequest") = row_("NoRequest")
+                row("Seq") = row_("Seq") + 1
+                row("Nama") = row_("Nama")
+                row("DeptID") = row_("DeptID")
+                row("Purpose") = row_("Purpose")
+                row("TravelType") = row_("TravelType")
+                row("Destination") = "TSC"
+                row("DepartureDate") = row_("ArrivalDate")
+                row("ArrivalDate") = row_("ArrivalDate")
+                row("TicketNumber") = row_("TicketNumber")
+                row("CuryID") = row_("CuryID")
+                row("Amount") = amount
+                row("StatusTicket") = row_("StatusTicket")
+                row("Invoice") = row_("Invoice")
+                row("CheckList") = True
+                dtTicketCheck.Rows.Add(row)
+                noRequest = row_("NoRequest")
+            End If
+        Next
+        dtTicketCheck = dtTicketCheck.Select("", "NoRequest ASC, Seq Asc").CopyToDataTable
         GridInvoice.DataSource = dtTicketCheck
 
         filterRow = dtInvoiceDetail.Select("CheckList = false AND StatusTicket = 'INVOICE'")
@@ -76,6 +114,7 @@ Public Class FrmTravelTicketInvoice
                 Tanggal = Date.Today
                 txtVendor.Text = "TARA TOUR"
                 txtCuryID.Text = "IDR"
+                dtDueDate.EditValue = Nothing
                 txtTotAmount.Text = Format(0, gs_FormatDecimal)
             End If
         Catch ex As Exception
@@ -150,7 +189,7 @@ Public Class FrmTravelTicketInvoice
                 Else
                     ObjTravelTicket.NoVoucher = NoVoucher
                     ObjTravelTicket.UpdateData()
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
                 End If
 
                 Value = True

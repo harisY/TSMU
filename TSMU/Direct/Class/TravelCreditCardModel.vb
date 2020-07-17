@@ -17,7 +17,7 @@
                         "            ) " &
                         " SELECT  'CC' + COALESCE(@seq, '001') "
             Dim dt As DataTable = New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
@@ -36,7 +36,7 @@
                                 ExpDate
                         FROM    dbo.TravelCreditCard "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(strQuery)
+            dtTable = MainModul.GetDataTable(strQuery)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -54,7 +54,7 @@
                         FROM    dbo.TravelCreditCard
                         WHERE CreditCardID = " & QVal(CreditCardID) & " "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 CreditCardID = If(IsDBNull(dt.Rows(0).Item("CreditCardID")), "", Trim(dt.Rows(0).Item("CreditCardID").ToString()))
                 CreditCardNumber = If(IsDBNull(dt.Rows(0).Item("CreditCardNumber")), "", Trim(dt.Rows(0).Item("CreditCardNumber").ToString()))
@@ -70,7 +70,7 @@
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -79,7 +79,7 @@
                     Try
                         strQuery = " DELETE  FROM dbo.TravelCreditCard
                                      WHERE   CreditCardID = " & QVal(CreditCardID) & " "
-                        ExecQuery_Solomon(strQuery)
+                        ExecQuery(strQuery)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -97,7 +97,7 @@
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -128,7 +128,7 @@
                                     "           " & QVal(gh_Common.Username) & " , " & vbCrLf &
                                     "           GETDATE()   " & vbCrLf &
                                     "         ) "
-                        ExecQuery_Solomon(strQuery)
+                        ExecQuery(strQuery)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -146,7 +146,7 @@
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -163,7 +163,7 @@
                                     "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                                     "         UpdatedDate = GETDATE() " & vbCrLf &
                                     " WHERE   CreditCardID = " & QVal(CreditCardID) & " "
-                        ExecQuery_Solomon(strQuery)
+                        ExecQuery(strQuery)
 
                         Trans1.Commit()
                     Catch ex As Exception

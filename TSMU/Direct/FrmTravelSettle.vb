@@ -107,7 +107,7 @@ Public Class FrmTravelSettle
                 End If
 
                 cls_SettHeader.DeleteDataTravelSettle()
-
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
             Next rowHandle
 

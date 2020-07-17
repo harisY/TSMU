@@ -30,6 +30,39 @@ Public Class ClsDashbard
             Throw ex
         End Try
     End Function
+
+    Public Function GetDashboardTravel() As DataTable
+        Try
+
+            'SqlDependency.Stop(GetConnString)
+            'SqlDependency.Start(GetConnString)
+
+            Dim Query As String = "Travel_Get_TravelDashboard"
+            ds = New DataSet
+            dt = New DataTable
+            ds = GetDataSetByCommand_Dashboard_SP(Query, "dtTravel")
+            Return ds.Tables("dtTravel")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDashboardTravelSum() As DataTable
+        Try
+
+            'SqlDependency.Stop(GetConnString)
+            'SqlDependency.Start(GetConnString)
+
+            Dim Query As String = "Travel_Get_TravelDashboardSum"
+            ds = New DataSet
+            dt = New DataTable
+            ds = GetDataSetByCommand_Dashboard_SP(Query, "dtTravel")
+            Return ds.Tables("dtTravel")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     'Private Sub dep_onchange1(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
 
     '    If e.Type = SqlNotificationType.Change Then

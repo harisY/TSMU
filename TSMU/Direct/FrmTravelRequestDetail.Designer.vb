@@ -74,6 +74,8 @@ Partial Class FrmTravelRequestDetail
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
+        Me.txtApproved = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +102,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.SuspendLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtApproved.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CDepartureDate
@@ -362,7 +365,7 @@ Partial Class FrmTravelRequestDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Location = New System.Drawing.Point(868, 48)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(659, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(427, 22)
         Me.txtPurpose.TabIndex = 4
         '
         'GridAdvance
@@ -406,7 +409,7 @@ Partial Class FrmTravelRequestDetail
         Me.Description.OptionsColumn.AllowEdit = False
         Me.Description.Visible = True
         Me.Description.VisibleIndex = 0
-        Me.Description.Width = 385
+        Me.Description.Width = 450
         '
         'Days_
         '
@@ -525,10 +528,17 @@ Partial Class FrmTravelRequestDetail
         'RateAdvanceIDR
         '
         Me.RateAdvanceIDR.Caption = "Rate Advance IDR"
+        Me.RateAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.RateAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RateAdvanceIDR.FieldName = "RateAdvanceIDR"
         Me.RateAdvanceIDR.MinWidth = 25
         Me.RateAdvanceIDR.Name = "RateAdvanceIDR"
-        Me.RateAdvanceIDR.Width = 94
+        Me.RateAdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.RateAdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.RateAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateAdvanceIDR", "{0:#,##0.#0}")})
+        Me.RateAdvanceIDR.Visible = True
+        Me.RateAdvanceIDR.VisibleIndex = 5
+        Me.RateAdvanceIDR.Width = 200
         '
         'TotalAdvanceIDR
         '
@@ -544,7 +554,7 @@ Partial Class FrmTravelRequestDetail
         Me.TotalAdvanceIDR.UnboundExpression = "[AdvanceIDRUSD] + [AdvanceIDRYEN] + [AdvanceIDR]"
         Me.TotalAdvanceIDR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.TotalAdvanceIDR.Visible = True
-        Me.TotalAdvanceIDR.VisibleIndex = 5
+        Me.TotalAdvanceIDR.VisibleIndex = 6
         Me.TotalAdvanceIDR.Width = 200
         '
         'txtAdvanceIDR
@@ -672,10 +682,31 @@ Partial Class FrmTravelRequestDetail
         Me.txtNIK.Size = New System.Drawing.Size(111, 22)
         Me.txtNIK.TabIndex = 2
         '
+        'txtApproved
+        '
+        Me.txtApproved.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtApproved.Location = New System.Drawing.Point(1403, 48)
+        Me.txtApproved.Name = "txtApproved"
+        Me.txtApproved.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtApproved.Properties.Items.AddRange(New Object() {"APPROVED", "REVISED", "CANCEL"})
+        Me.txtApproved.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtApproved.Size = New System.Drawing.Size(124, 22)
+        Me.txtApproved.TabIndex = 33
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl11.Location = New System.Drawing.Point(1312, 51)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(54, 16)
+        Me.LabelControl11.TabIndex = 34
+        Me.LabelControl11.Text = "Approved"
+        '
         'FrmTravelRequestDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1552, 875)
+        Me.Controls.Add(Me.LabelControl11)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtGolongan)
@@ -694,7 +725,9 @@ Partial Class FrmTravelRequestDetail
         Me.Controls.Add(Me.txtNama)
         Me.Controls.Add(Me.txtDepartement)
         Me.Controls.Add(Me.txtNIK)
+        Me.Controls.Add(Me.txtApproved)
         Me.Name = "FrmTravelRequestDetail"
+        Me.Controls.SetChildIndex(Me.txtApproved, 0)
         Me.Controls.SetChildIndex(Me.txtNIK, 0)
         Me.Controls.SetChildIndex(Me.txtDepartement, 0)
         Me.Controls.SetChildIndex(Me.txtNama, 0)
@@ -713,6 +746,7 @@ Partial Class FrmTravelRequestDetail
         Me.Controls.SetChildIndex(Me.txtGolongan, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
+        Me.Controls.SetChildIndex(Me.LabelControl11, 0)
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -740,6 +774,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.PerformLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtApproved.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -798,4 +833,6 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents AdvanceIDRYEN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtNIK As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RateAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtApproved As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -1,61 +1,25 @@
 ﻿Imports System.Collections.ObjectModel
+
 Public Class ClsTraveller
-    Dim _Query As String
     Public Property DeptID As String
     Public Property Nama As String
     Public Property NIK As String
     Public Property Golongan As String
-    'Public Property PassExpDate As DateTime
-    'Public Property PassNo As String
-    'Public Property VisaExpDate As DateTime
-    'Public Property VisaNo As String
-    'Public Property IDLokasiDetail() As String
-
-    Public Property ObjCreditCard() As New Collection(Of ClsTravelerDetail)
 
     Public Property ObjVisa() As New Collection(Of ClsTravelerVisa)
-
     Public Property ObjPaspor() As New Collection(Of ClsTravelerPaspor)
 
-    '  Public Sub New()
-    '      Me._Query = "SELECT NIK
-    '    ,Nama
-    '    ,DeptID
-    '    ,VisaNo
-    '    ,VisaExpDate
-    '    ,PassNo
-    '    ,PassExpDate
-    'FROM Traveller"
-    '  End Sub
+    Dim strQuery As String
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
-            _Query = "  SELECT  NIK ,
+            strQuery = "SELECT  NIK ,
                                 Nama ,
                                 DeptID ,
                                 Golongan
                         FROM    dbo.Traveler "
-
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(_Query)
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Function GetAllData() As DataTable
-        Try
-            Dim ls_SP As String = "SELECT NIK
-                                  ,Nama
-                                  ,DeptID
-                                  ,VisaNo
-                                  ,VisaExpDate
-                                  ,PassNo
-                                  ,PassExpDate
-                              FROM Traveler"
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(ls_SP)
+            dtTable = MainModul.GetDataTable(strQuery)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -64,32 +28,26 @@ Public Class ClsTraveller
 
     Public Sub getDataByID(ByVal NIK As String)
         Try
-            Dim query As String = " SELECT  NIK ,
-                                            Nama ,
-                                            DeptID ,
-                                            Golongan
-                                    FROM    dbo.Traveler
-                                    WHERE NIK = " & QVal(NIK) & " "
+            strQuery = "SELECT  NIK ,
+                                Nama ,
+                                DeptID ,
+                                Golongan
+                        FROM    dbo.Traveler
+                        WHERE NIK = " & QVal(NIK) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(query)
+            dtTable = MainModul.GetDataTable(strQuery)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.NIK = Trim(.Item("NIK") & "")
                     Me.Nama = Trim(.Item("Nama") & "")
                     Me.DeptID = Trim(.Item("DeptID") & "")
                     Me.Golongan = Trim(.Item("Golongan") & "")
-                    'Me.VisaExpDate = Convert.ToDateTime(.Item("VisaExpDate") & "")
-                    'Me.PassNo = Trim(.Item("PassNo") & "")
-                    'Me.PassExpDate = Convert.ToDateTime(.Item("PassExpDate") & "")
                 End With
             Else
                 NIK = ""
                 Nama = ""
                 DeptID = ""
                 Golongan = ""
-                'VisaExpDate = DateTime.Today
-                'PassNo = ""
-                'PassExpDate = DateTime.Today
             End If
         Catch ex As Exception
             Throw
@@ -98,12 +56,11 @@ Public Class ClsTraveller
 
     Public Function GetDept() As DataTable
         Try
-            Dim sql As String =
-            "SELECT [IdDept]
-                  ,[NamaDept]
-              FROM [mDept]"
+            strQuery = "SELECT  [IdDept] ,
+                                [NamaDept]
+                        FROM    [mDept]"
             Dim dt As New DataTable
-            dt = GetDataTable(sql)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -112,12 +69,11 @@ Public Class ClsTraveller
 
     Public Function GetListNegara() As DataTable
         Try
-            Dim sql As String
-            sql = "SELECT  KodeNegara ,
-                            NamaNegara
-                    FROM    dbo.TravelNegara"
+            strQuery = "SELECT  KodeNegara ,
+                                NamaNegara
+                        FROM    dbo.TravelNegara"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -129,13 +85,14 @@ Public Class ClsTraveller
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
         End If
         Try
-            Dim ls_SP As String = "SELECT NIK
-                                        ,Nama
-                                        ,DeptID
-                                        ,Golongan
-                                    FROM Traveler WHERE [NIK]  = " & QVal(NIK) & ""
+            strQuery = "SELECT  NIK ,
+                                Nama ,
+                                DeptID ,
+                                Golongan
+                        FROM    Traveler
+                        WHERE   [NIK] = " & QVal(NIK) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(ls_SP)
+            dtTable = GetDataTable(strQuery)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.NIK & "]")
@@ -149,7 +106,7 @@ Public Class ClsTraveller
 
     Public Sub Insert()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -187,18 +144,17 @@ Public Class ClsTraveller
 
     Public Sub InsertData()
         Try
-            Dim ls_SP As String = "INSERT INTO [Traveler] 
-                                               ([NIK]
-                                               ,[Nama]
-                                               ,[DeptID]
-                                               ,[Golongan])
-                                     VALUES
-                                                (" & QVal(NIK) & "
-                                               ," & QVal(Nama) & " 
-                                               ," & QVal(DeptID) & " 
-                                               ," & QVal(Golongan) & ")"
-
-            MainModul.ExecQuery_Solomon(ls_SP)
+            strQuery = "INSERT INTO [Traveler] 
+                                ([NIK]
+                                ,[Nama]
+                                ,[DeptID]
+                                ,[Golongan])
+                        VALUES
+                                (" & QVal(NIK) & "
+                                ," & QVal(Nama) & " 
+                                ," & QVal(DeptID) & " 
+                                ," & QVal(Golongan) & ")"
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -206,7 +162,7 @@ Public Class ClsTraveller
 
     Public Sub Update()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -250,11 +206,12 @@ Public Class ClsTraveller
 
     Public Sub UpdateData(ByVal NIK As String)
         Try
-            Dim ls_SP As String = "UPDATE  Traveler  SET Nama = " & QVal(Nama) & "
-                                  ,DeptID = " & QVal(DeptID) & "
-                                  ,Golongan = " & QVal(Golongan) & "
-                                    WHERE NIK = " & QVal(NIK) & ""
-            MainModul.ExecQuery_Solomon(ls_SP)
+            strQuery = "UPDATE  dbo.Traveler
+                        SET     Nama = " & QVal(Nama) & " ,
+                                DeptID = " & QVal(DeptID) & " ,
+                                Golongan = " & QVal(Golongan) & "
+                        WHERE   NIK = " & QVal(NIK) & ""
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -262,8 +219,8 @@ Public Class ClsTraveller
 
     Public Sub Delete(ByVal NIK As String)
         Try
-            Dim ls_SP As String = "DELETE FROM Traveler WHERE NIK =" & QVal(NIK) & ""
-            MainModul.ExecQuery_Solomon(ls_SP)
+            strQuery = "DELETE FROM Traveler WHERE NIK =" & QVal(NIK) & ""
+            MainModul.ExecQuery(strQuery)
 
             Dim ObjTravelerVisa As New ClsTravelerVisa
             ObjTravelerVisa.DeleteVisa(NIK)
@@ -278,70 +235,7 @@ Public Class ClsTraveller
 #End Region
 End Class
 
-Public Class ClsTravelerDetail
-    Dim Query As String
-    Public Property NIK As String
-    Public Property NoRekening As String
-    Public Property AccountName As String
-    Public Property BankName As String
-    Public Property Type As String
-    Public Property ExpDate As Date
-
-    Public Function GetTravelerCreditCard() As DataTable
-        Try
-            Query = "SELECT  NIK ,
-                            NoRekening ,
-                            AccountName ,
-                            BankName ,
-                            Type ,
-                            ExpDate
-                    FROM    TravelerCreditCard
-                    WHERE   NIK = " & QVal(NIK) & ""
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(query)
-
-            Return dtTable
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    Public Sub InsertTravelerCreditCard()
-        Try
-            Query = " INSERT INTO [dbo].[TravelerCreditCard]
-                                ([NIK]
-                                ,[NoRekening]
-                                ,[AccountName]
-                                ,[BankName]
-                                ,[Type]
-                                ,[ExpDate])
-                            VALUES
-                                (" & QVal(NIK) & "
-                                ," & QVal(NoRekening) & "
-                                ," & QVal(AccountName) & "
-                                ," & QVal(BankName) & "
-                                ," & QVal(Type) & "
-                                ," & QVal(ExpDate) & ")"
-
-            MainModul.ExecQuery_Solomon(Query)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-    Public Sub DeleteDetail(ByVal NIK As String)
-        Try
-            Dim ls_SP As String = "DELETE FROM TravelerCreditCard WHERE NIK =" & QVal(NIK) & ""
-            MainModul.ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
-End Class
-
 Public Class ClsTravelerVisa
-    Dim Query As String
     Public Property NIK As String
     Public Property NoVisa As String
     Public Property Negara As String
@@ -349,37 +243,20 @@ Public Class ClsTravelerVisa
     Public Property DateIssued As Date
     Public Property DateExpired As Date
 
-    'Public Function GetTravelerCreditCard() As DataTable
-    '    Try
-    '        Query = "SELECT  NIK ,
-    '                        NoRekening ,
-    '                        AccountName ,
-    '                        BankName ,
-    '                        Type ,
-    '                        ExpDate
-    '                FROM    TravelerCreditCard
-    '                WHERE   NIK = " & QVal(NIK) & ""
-    '        Dim dtTable As New DataTable
-    '        dtTable = MainModul.GetDataTable_Solomon(Query)
-
-    '        Return dtTable
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Function
+    Dim strQuery As String
 
     Public Function GetTravelerVisa() As DataTable
         Try
-            Query = " SELECT  NIK ,
-                            NoVisa ,
-                            Negara ,
-                            Entries ,
-                            DateIssued ,
-                            DateExpired
-                    FROM    dbo.TravelerVisa
-                    WHERE   NIK = " & QVal(NIK) & ""
+            strQuery = "SELECT  NIK ,
+                                NoVisa ,
+                                Negara ,
+                                Entries ,
+                                DateIssued ,
+                                DateExpired
+                        FROM    dbo.TravelerVisa
+                        WHERE   NIK = " & QVal(NIK) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(Query)
+            dtTable = MainModul.GetDataTable(strQuery)
 
             Return dtTable
         Catch ex As Exception
@@ -389,21 +266,21 @@ Public Class ClsTravelerVisa
 
     Public Sub InsertTravelerVisa()
         Try
-            Query = " INSERT INTO [dbo].[TravelerVisa]
-                                ([NIK]
-                                ,[NoVisa]
-                                ,[Negara]
-                                ,[Entries]
-                                ,[DateIssued]
-                                ,[DateExpired])
-                            VALUES
-                                (" & QVal(NIK) & "
-                                ," & QVal(NoVisa) & "
-                                ," & QVal(Negara) & "
-                                ," & QVal(Category) & "
-                                ," & QVal(DateIssued) & "
-                                ," & QVal(DateExpired) & ")"
-            MainModul.ExecQuery_Solomon(Query)
+            strQuery = "INSERT INTO [dbo].[TravelerVisa]
+                            ([NIK]
+                            ,[NoVisa]
+                            ,[Negara]
+                            ,[Entries]
+                            ,[DateIssued]
+                            ,[DateExpired])
+                        VALUES
+                            (" & QVal(NIK) & "
+                            ," & QVal(NoVisa) & "
+                            ," & QVal(Negara) & "
+                            ," & QVal(Category) & "
+                            ," & QVal(DateIssued) & "
+                            ," & QVal(DateExpired) & ")"
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -411,8 +288,8 @@ Public Class ClsTravelerVisa
 
     Public Sub DeleteVisa(ByVal NIK As String)
         Try
-            Dim ls_SP As String = "DELETE FROM TravelerVisa WHERE NIK =" & QVal(NIK) & ""
-            MainModul.ExecQuery_Solomon(ls_SP)
+            strQuery = "DELETE FROM TravelerVisa WHERE NIK =" & QVal(NIK) & ""
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -421,7 +298,6 @@ Public Class ClsTravelerVisa
 End Class
 
 Public Class ClsTravelerPaspor
-    Dim Query As String
     Public Property NIK As String
     Public Property NoPaspor As String
     Public Property Nama As String
@@ -432,40 +308,23 @@ Public Class ClsTravelerPaspor
     Public Property ExpiredDate As Date
     Public Property TempatKeluar As String
 
-    'Public Function GetTravelerCreditCard() As DataTable
-    '    Try
-    '        Query = "SELECT  NIK ,
-    '                        NoRekening ,
-    '                        AccountName ,
-    '                        BankName ,
-    '                        Type ,
-    '                        ExpDate
-    '                FROM    TravelerCreditCard
-    '                WHERE   NIK = " & QVal(NIK) & ""
-    '        Dim dtTable As New DataTable
-    '        dtTable = MainModul.GetDataTable_Solomon(Query)
-
-    '        Return dtTable
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Function
+    Dim strQuery As String
 
     Public Function GetTravelerPaspor() As DataTable
         Try
-            Query = " SELECT  NIK ,
-                            NoPaspor ,
-                            Nama ,
-                            KodeNegara ,
-                            TanggalLahir ,
-                            JenisKelamin ,
-                            TanggalKeluar ,
-                            ExpiredDate ,
-                            TempatKeluar
-                    FROM    dbo.TravelerPaspor
-                    WHERE   NIK = " & QVal(NIK) & ""
+            strQuery = "SELECT  NIK ,
+                                NoPaspor ,
+                                Nama ,
+                                KodeNegara ,
+                                TanggalLahir ,
+                                JenisKelamin ,
+                                TanggalKeluar ,
+                                ExpiredDate ,
+                                TempatKeluar
+                        FROM    dbo.TravelerPaspor
+                        WHERE   NIK = " & QVal(NIK) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTable_Solomon(Query)
+            dtTable = MainModul.GetDataTable(strQuery)
 
             Return dtTable
         Catch ex As Exception
@@ -475,7 +334,7 @@ Public Class ClsTravelerPaspor
 
     Public Sub InsertTravelerPaspor()
         Try
-            Query = " INSERT INTO [dbo].[TravelerPaspor]
+            strQuery = "INSERT INTO [dbo].[TravelerPaspor]
                                 ([NIK]
                                 ,[NoPaspor]
                                 ,[Nama]
@@ -495,7 +354,7 @@ Public Class ClsTravelerPaspor
                                 ," & QVal(TanggalKeluar) & "
                                 ," & QVal(ExpiredDate) & "
                                 ," & QVal(TempatKeluar) & ")"
-            MainModul.ExecQuery_Solomon(Query)
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -503,8 +362,8 @@ Public Class ClsTravelerPaspor
 
     Public Sub DeletePaspor(ByVal NIK As String)
         Try
-            Dim ls_SP As String = "DELETE FROM dbo.TravelerPaspor WHERE NIK =" & QVal(NIK) & ""
-            MainModul.ExecQuery_Solomon(ls_SP)
+            strQuery = "DELETE FROM dbo.TravelerPaspor WHERE NIK =" & QVal(NIK) & ""
+            MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try

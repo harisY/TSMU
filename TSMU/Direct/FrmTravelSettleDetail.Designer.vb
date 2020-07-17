@@ -244,7 +244,6 @@ Partial Class FrmTravelSettleDetail
         Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CArrivalDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.Days = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.SettlementUSD = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -257,6 +256,9 @@ Partial Class FrmTravelSettleDetail
         Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.SettlementIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CSettlementIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotalAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.GridSumBalance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumBalance = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -2800,7 +2802,7 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewPocketAllowance
         '
-        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.RateAllowanceUSD, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR})
+        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR, Me.RateAllowanceUSD, Me.RateAllowanceIDR, Me.TotalAllowanceIDR})
         Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
         Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
         Me.GridViewPocketAllowance.OptionsView.ShowFooter = True
@@ -2816,7 +2818,7 @@ Partial Class FrmTravelSettleDetail
         Me.NoRequest.OptionsColumn.FixedWidth = True
         Me.NoRequest.Visible = True
         Me.NoRequest.VisibleIndex = 0
-        Me.NoRequest.Width = 160
+        Me.NoRequest.Width = 150
         '
         'Nama
         '
@@ -2839,7 +2841,7 @@ Partial Class FrmTravelSettleDetail
         Me.DepartureDate.OptionsColumn.FixedWidth = True
         Me.DepartureDate.Visible = True
         Me.DepartureDate.VisibleIndex = 2
-        Me.DepartureDate.Width = 140
+        Me.DepartureDate.Width = 130
         '
         'CDepartureDate
         '
@@ -2863,7 +2865,7 @@ Partial Class FrmTravelSettleDetail
         Me.ArrivalDate.OptionsColumn.FixedWidth = True
         Me.ArrivalDate.Visible = True
         Me.ArrivalDate.VisibleIndex = 3
-        Me.ArrivalDate.Width = 140
+        Me.ArrivalDate.Width = 130
         '
         'CArrivalDate
         '
@@ -2887,15 +2889,7 @@ Partial Class FrmTravelSettleDetail
         Me.Days.OptionsColumn.FixedWidth = True
         Me.Days.Visible = True
         Me.Days.VisibleIndex = 4
-        Me.Days.Width = 70
-        '
-        'RateAllowanceUSD
-        '
-        Me.RateAllowanceUSD.Caption = "Rate Allowance USD"
-        Me.RateAllowanceUSD.FieldName = "RateAllowanceUSD"
-        Me.RateAllowanceUSD.MinWidth = 25
-        Me.RateAllowanceUSD.Name = "RateAllowanceUSD"
-        Me.RateAllowanceUSD.Width = 94
+        Me.Days.Width = 60
         '
         'AdvanceUSD
         '
@@ -2909,7 +2903,7 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
         Me.AdvanceUSD.Visible = True
         Me.AdvanceUSD.VisibleIndex = 5
-        Me.AdvanceUSD.Width = 180
+        Me.AdvanceUSD.Width = 150
         '
         'CAdvanceUSD
         '
@@ -2934,7 +2928,7 @@ Partial Class FrmTravelSettleDetail
         Me.SettlementUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementUSD", "{0:#,##0.#0}")})
         Me.SettlementUSD.Visible = True
         Me.SettlementUSD.VisibleIndex = 6
-        Me.SettlementUSD.Width = 180
+        Me.SettlementUSD.Width = 150
         '
         'CSettlementUSD
         '
@@ -2960,7 +2954,7 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
         Me.AdvanceYEN.Visible = True
         Me.AdvanceYEN.VisibleIndex = 7
-        Me.AdvanceYEN.Width = 180
+        Me.AdvanceYEN.Width = 150
         '
         'CAdvanceYEN
         '
@@ -2984,7 +2978,7 @@ Partial Class FrmTravelSettleDetail
         Me.SettlementYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementYEN", "{0:#,##0.#0}")})
         Me.SettlementYEN.Visible = True
         Me.SettlementYEN.VisibleIndex = 8
-        Me.SettlementYEN.Width = 180
+        Me.SettlementYEN.Width = 150
         '
         'CSettlementYEN
         '
@@ -3010,7 +3004,7 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
         Me.AdvanceIDR.Visible = True
         Me.AdvanceIDR.VisibleIndex = 9
-        Me.AdvanceIDR.Width = 180
+        Me.AdvanceIDR.Width = 150
         '
         'CAdvanceIDR
         '
@@ -3034,7 +3028,7 @@ Partial Class FrmTravelSettleDetail
         Me.SettlementIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementIDR", "{0:#,##0.#0}")})
         Me.SettlementIDR.Visible = True
         Me.SettlementIDR.VisibleIndex = 10
-        Me.SettlementIDR.Width = 180
+        Me.SettlementIDR.Width = 150
         '
         'CSettlementIDR
         '
@@ -3047,6 +3041,44 @@ Partial Class FrmTravelSettleDetail
         Me.CSettlementIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CSettlementIDR.Mask.EditMask = "n2"
         Me.CSettlementIDR.Name = "CSettlementIDR"
+        '
+        'RateAllowanceUSD
+        '
+        Me.RateAllowanceUSD.Caption = "Rate Allowance USD"
+        Me.RateAllowanceUSD.FieldName = "RateAllowanceUSD"
+        Me.RateAllowanceUSD.MinWidth = 25
+        Me.RateAllowanceUSD.Name = "RateAllowanceUSD"
+        Me.RateAllowanceUSD.Width = 150
+        '
+        'RateAllowanceIDR
+        '
+        Me.RateAllowanceIDR.Caption = "Rate Allowance IDR"
+        Me.RateAllowanceIDR.DisplayFormat.FormatString = "n2"
+        Me.RateAllowanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RateAllowanceIDR.FieldName = "RateAllowanceIDR"
+        Me.RateAllowanceIDR.MinWidth = 25
+        Me.RateAllowanceIDR.Name = "RateAllowanceIDR"
+        Me.RateAllowanceIDR.OptionsColumn.AllowEdit = False
+        Me.RateAllowanceIDR.OptionsColumn.FixedWidth = True
+        Me.RateAllowanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateAllowanceIDR", "{0:#,##0.#0}")})
+        Me.RateAllowanceIDR.Visible = True
+        Me.RateAllowanceIDR.VisibleIndex = 11
+        Me.RateAllowanceIDR.Width = 150
+        '
+        'TotalAllowanceIDR
+        '
+        Me.TotalAllowanceIDR.Caption = "Total Allowance IDR"
+        Me.TotalAllowanceIDR.DisplayFormat.FormatString = "n2"
+        Me.TotalAllowanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TotalAllowanceIDR.FieldName = "TotalAllowanceIDR"
+        Me.TotalAllowanceIDR.MinWidth = 25
+        Me.TotalAllowanceIDR.Name = "TotalAllowanceIDR"
+        Me.TotalAllowanceIDR.OptionsColumn.AllowEdit = False
+        Me.TotalAllowanceIDR.OptionsColumn.FixedWidth = True
+        Me.TotalAllowanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAllowanceIDR", "{0:#,##0.#0}")})
+        Me.TotalAllowanceIDR.Visible = True
+        Me.TotalAllowanceIDR.VisibleIndex = 12
+        Me.TotalAllowanceIDR.Width = 150
         '
         'GroupBox16
         '
@@ -3821,7 +3853,7 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents RateAllowanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RateAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtDep As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label5 As Label
     Friend WithEvents txtPRNo As DevExpress.XtraEditors.TextEdit
@@ -3831,4 +3863,6 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents CSettlementUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CSettlementYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CSettlementIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RateAllowanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotalAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

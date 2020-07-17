@@ -36,7 +36,7 @@ Public Class TravelTicketModel
                         "                                                               '0001') "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
@@ -67,7 +67,7 @@ Public Class TravelTicketModel
                                 AND trh.Status = 'PENDING'
                                 AND trh.Approved = 'APPROVED' "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -84,7 +84,7 @@ Public Class TravelTicketModel
                                 TotAmount
                         FROM    dbo.TravelTicket "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -101,7 +101,7 @@ Public Class TravelTicketModel
             pParam(0) = New SqlClient.SqlParameter("@NoVoucher", SqlDbType.VarChar)
             pParam(0).Value = IIf(NoVoucher = Nothing, "", NoVoucher)
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -124,7 +124,7 @@ Public Class TravelTicketModel
                         FROM    dbo.TravelRequestHeader AS trh
                                 LEFT JOIN dbo.TravelRequestDetail AS trd ON trd.NoRequest = trh.NoRequest "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -144,7 +144,7 @@ Public Class TravelTicketModel
                         FROM    dbo.TravelTicket
                         WHERE   NoVoucher = " & QVal(NoVoucher) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 NoVoucher = If(IsDBNull(dt.Rows(0).Item("NoVoucher")), "", Trim(dt.Rows(0).Item("NoVoucher").ToString()))
                 Tanggal = If(IsDBNull(dt.Rows(0).Item("Tanggal")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tanggal")))
@@ -162,7 +162,7 @@ Public Class TravelTicketModel
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -217,7 +217,7 @@ Public Class TravelTicketModel
             pParam(8) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(8).Value = gh_Common.Username
 
-            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP(SP_Name, pParam)
         Catch ex As Exception
             Throw
         End Try
@@ -225,7 +225,7 @@ Public Class TravelTicketModel
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -276,7 +276,7 @@ Public Class TravelTicketModel
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   NoVoucher = " & QVal(NoVoucher) & " "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -284,7 +284,7 @@ Public Class TravelTicketModel
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -315,7 +315,7 @@ Public Class TravelTicketModel
         Try
             Dim ls_SP As String = " DELETE FROM dbo.TravelTicket
                                     WHERE NoVoucher = " & QVal(_NoVoucher) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -323,7 +323,7 @@ Public Class TravelTicketModel
 
     Public Sub UpdateRequestStatusTicket(ByVal dtTempStatus As DataTable)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -341,7 +341,7 @@ Public Class TravelTicketModel
                                                 UpdatedBy = " & QVal(gh_Common.Username) & " ,
                                                 UpdatedDate = GETDATE()
                                         WHERE   NoRequest = " & QVal(noRequest) & ""
-                            ExecQuery_Solomon(strQuery)
+                            ExecQuery(strQuery)
                         Next
 
                         Trans1.Commit()
@@ -366,7 +366,7 @@ Public Class TravelTicketModel
                                 INNER JOIN dbo.TravelSettleDetail AS tsd ON tsd.NoRequest = ttd.NoRequest
                         WHERE   NoVoucher = " & QVal(NoVoucher) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows(0).Item(0) > 0 Then
                 ada = True
             End If
@@ -383,6 +383,23 @@ Public Class TravelTicketModel
                         FROM    dbo.Vendor"
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTravelTicketTSC(ByVal noVoucher_ As String, ByVal NoRequest_ As String, ByVal Seq_ As Integer) As DataTable
+        Try
+            strQuery = " SELECT Seq ,
+                                TicketNumber ,
+                                Amount
+                         FROM   dbo.TravelTicketDetail
+                         WHERE  NoVoucher = " & QVal(noVoucher_) & "
+                                AND NoRequest = " & QVal(NoRequest_) & "
+                                AND Seq = " & Seq_ & " "
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -421,7 +438,7 @@ Public Class TravelTicketDetailModel
             pParam(5) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
             pParam(5).Value = Amount
 
-            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP(SP_Name, pParam)
         Catch ex As Exception
             Throw
         End Try
@@ -431,7 +448,7 @@ Public Class TravelTicketDetailModel
         Try
             Dim ls_SP As String = " DELETE FROM dbo.TravelTicketDetail
                                     WHERE NoVoucher = " & QVal(_NoVoucher) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -445,7 +462,7 @@ Public Class TravelTicketDetailModel
                          WHERE  NoRequest IN ( SELECT   NoRequest
                                                FROM     dbo.TravelTicketDetail WITH ( NOLOCK )
                                                WHERE    NoVoucher = " & QVal(_NoVoucher) & " ); "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -457,7 +474,7 @@ Public Class TravelTicketDetailModel
                          SET    Status = 'PENDING' ,
                                 StatusTicket = 'ISSUE'
                          WHERE  NoRequest = " & QVal(NoRequest) & ""
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try

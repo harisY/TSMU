@@ -63,15 +63,28 @@ Public Class FrmTravelRequestDetail
     End Sub
 
     Private Sub FrmTravelRequestDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
         Call InitialSetForm()
-        If fs_Code2 = "TabPageRequestAll" Then
-            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False)
-            ViewForm()
-        ElseIf fs_Code2 = "TabPageApproved" Then
-            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-            ViewForm()
+        If FrmParent.Name = "FrmTravelTicket" Then
+            Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Else
+            If fs_Code2 = "TabPageRequestAll" Then
+                Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False)
+                ViewForm()
+            ElseIf fs_Code2 = "TabPageApproved" Then
+                Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                ViewForm()
+            ElseIf fs_Code2 = "TabPageProgress" Then
+                Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                ViewForm()
+            Else
+                If isUpdate And String.IsNullOrEmpty(ObjTravelRequest.Approved) Then
+                    Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+                Else
+                    Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+                End If
+            End If
         End If
+
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -120,16 +133,17 @@ Public Class FrmTravelRequestDetail
                 For Each row__ As DataRow In dt.Rows
                     row__("AdvanceIDRUSD") = row__("AdvanceUSD") * rateUSD
                     row__("AdvanceIDRYEN") = row__("AdvanceYEN") * rateYEN
-                    row__("RateAdvanceIDR") = row__("AdvanceIDRUSD") + row__("AdvanceIDRYEN") + row__("AdvanceIDR")
                     row__("TotalAdvanceIDR") = row__("AdvanceIDRUSD") + row__("AdvanceIDRYEN") + row__("AdvanceIDR")
                     If row__("CostType").Contains("C01") Then
                         rowC01 = row__
                     ElseIf row__("CostType").Contains("C02") Then
-                        rateAllowance = row__("AdvanceIDRUSD") + row__("AdvanceIDRYEN") + row__("AdvanceIDR")
+                        rowC02 = row__
+                        rateAllowance = row__("RateAdvanceIDR")
                     ElseIf row__("CostType").Contains("C03") Then
-                        txtAdvanceIDR.Text = Format(row__("AdvanceIDR"), gs_FormatDecimal)
-                        txtAdvanceUSD.Text = Format(row__("AdvanceUSD"), gs_FormatDecimal)
-                        txtAdvanceYEN.Text = Format(row__("AdvanceYEN"), gs_FormatDecimal)
+                        rowC03 = row__
+                        txtAdvanceIDR.Text = row__("AdvanceIDR")
+                        txtAdvanceUSD.Text = row__("AdvanceUSD")
+                        txtAdvanceYEN.Text = row__("AdvanceYEN")
                     End If
                 Next
                 GridAdvance.DataSource = dt
@@ -151,7 +165,6 @@ Public Class FrmTravelRequestDetail
     Private Sub LoadTxtBox()
         Try
             ListItemsGolongan()
-            Dim objTravelHeader = New TravelHeaderModel
             Dim ketRateUSD As String
             Dim ketRateYEN As String
 
@@ -164,9 +177,10 @@ Public Class FrmTravelRequestDetail
                     txtTravelType.Text = .TravelType
                     txtGolongan.Text = .Golongan
                     txtPurpose.Text = .Purpose
+                    txtApproved.Text = .Approved
                 End With
-                rateUSD = objTravelHeader.GetRate("USD", ObjTravelRequest.Tanggal)
-                rateYEN = objTravelHeader.GetRate("JPY", ObjTravelRequest.Tanggal)
+                rateUSD = ObjTravelRequest.GetRate("USD", ObjTravelRequest.Tanggal)
+                rateYEN = ObjTravelRequest.GetRate("JPY", ObjTravelRequest.Tanggal)
             Else
                 txtNoRequest.Text = ""
                 txtDepartement.Text = gh_Common.GroupID
@@ -174,14 +188,20 @@ Public Class FrmTravelRequestDetail
                 txtNama.Text = ""
                 txtGolongan.Text = ""
                 txtPurpose.Text = ""
+                txtApproved.Text = ""
                 txtTravelType.Text = "LN"
-                rateUSD = objTravelHeader.GetRate("USD", DateTime.Today)
-                rateYEN = objTravelHeader.GetRate("JPY", DateTime.Today)
+                rateUSD = ObjTravelRequest.GetRate("USD", DateTime.Today)
+                rateYEN = ObjTravelRequest.GetRate("JPY", DateTime.Today)
+
             End If
             ketRateUSD = "1USD : " + Format(rateUSD, gs_FormatDecimal)
             ketRateYEN = "1YEN : " + Format(rateYEN, gs_FormatDecimal)
             Label1.Text = "" & ketRateUSD & "   |   " & ketRateYEN & ""
-
+            If fs_Code2 = "TabPageApproved" Or fs_Code2 = "TabPageProgress" Then
+                txtApproved.Enabled = True
+            Else
+                txtApproved.Enabled = False
+            End If
         Catch ex As Exception
             Throw
         End Try
@@ -199,29 +219,30 @@ Public Class FrmTravelRequestDetail
             End If
 
             If isUpdate Then
-                If ObjTravelRequest.Status = "Open" Then
-                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan proses ticket !")
+                If ObjTravelRequest.StatusTicket = "INVOICE" Then
+                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Invoice ticket !")
                 End If
             End If
 
-            If txtNIK.Text = "" Then
+            If txtNIK.Text = "" Or txtGolongan.Text = "" Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-            End If
-
-            Dim i As Integer
-            If String.IsNullOrEmpty(txtGolongan.Text) Then
-                i = 0
-            Else
-                i = Convert.ToInt16(txtGolongan.Text)
+            ElseIf Len(txtNIK.Text) <> 9 Then
+                Err.Raise(ErrNumber, , "NIK harus 9 digit !")
+            ElseIf GridViewAdvance.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Data detail tidak boleh kosong !")
             End If
 
             If lb_Validated Then
-                Dim status As String = String.Empty
+                Dim status As String = "CREATE"
+                Dim approved As String = String.Empty
                 If isUpdate = False Then
                     txtNoRequest.Text = ObjTravelRequest.TravelRequestAutoNo
                 Else
                     If FrmParent.Name = "FrmTravelTicket" Then
-                        status = "APPROVED"
+                        approved = ObjTravelRequest.Approved
+                        status = ObjTravelRequest.Status
+                    ElseIf ObjTravelRequest.StatusTicket = "ISSUE" Then
+                        Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Pesan ticket !")
                     End If
                 End If
 
@@ -231,10 +252,11 @@ Public Class FrmTravelRequestDetail
                     .DeptID = txtDepartement.Text.Trim.ToUpper
                     .TravelType = txtTravelType.Text.Trim.ToUpper
                     .NIK = txtNIK.Text.Trim.ToUpper
-                    .Golongan = i
+                    .Golongan = txtGolongan.Text
                     .Purpose = txtPurpose.Text
-                    .Status = "PENDING"
-                    .Approved = status
+                    .Status = status
+                    .Approved = approved
+                    .Comment = ""
                 End With
 
             End If
@@ -256,10 +278,20 @@ Public Class FrmTravelRequestDetail
                 With ObjTravelRequestDetail
                     .NoRequest = txtNoRequest.Text
                     .Seq = seq
-                    .Destination = GridViewDetail.GetRowCellValue(i, "Destination").ToString().TrimEnd.ToUpper
-                    .Negara = GridViewDetail.GetRowCellValue(i, "Negara").ToString().TrimEnd
-                    .Visa = GridViewDetail.GetRowCellValue(i, "Visa").ToString().TrimEnd
+                    .Destination = IIf(GridViewDetail.GetRowCellValue(i, "Destination") Is DBNull.Value, "", GridViewDetail.GetRowCellValue(i, "Destination").ToString().ToUpper)
+                    If String.IsNullOrEmpty(GridViewDetail.GetRowCellValue(i, "Negara")) Then
+                        Err.Raise(ErrNumber, , "Negara tidak boleh kosong !")
+                    End If
+                    .Negara = GridViewDetail.GetRowCellValue(i, "Negara").ToString()
+                    .NoPaspor = GridViewDetail.GetRowCellValue(i, "NoPaspor").ToString()
+                    .Visa = GridViewDetail.GetRowCellValue(i, "Visa").ToString()
+                    If GridViewDetail.GetRowCellValue(i, "DepartureDate") Is DBNull.Value Then
+                        Err.Raise(ErrNumber, , "Departure Date tidak boleh kosong !")
+                    End If
                     .DepartureDate = IIf(GridViewDetail.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DepartureDate"))
+                    If GridViewDetail.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value Then
+                        Err.Raise(ErrNumber, , "Arrival Date Date tidak boleh kosong !")
+                    End If
                     .ArrivalDate = IIf(GridViewDetail.GetRowCellValue(i, "ArrivalDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "ArrivalDate"))
                 End With
                 ObjTravelRequest.ObjRequestDetails.Add(ObjTravelRequestDetail)
@@ -270,12 +302,23 @@ Public Class FrmTravelRequestDetail
                 ObjTravelRequestCost = New TravelRequestCostModel
                 With ObjTravelRequestCost
                     .NoRequest = txtNoRequest.Text
-                    .CostType = GridViewAdvance.GetRowCellValue(i, "CostType").ToString().TrimEnd.ToUpper
+                    Dim costType As String = GridViewAdvance.GetRowCellValue(i, "CostType").ToString().TrimEnd.ToUpper
+                    .CostType = costType
                     .Description = GridViewAdvance.GetRowCellValue(i, "Description").ToString().TrimEnd
                     .Days = Convert.ToInt16(GridViewAdvance.GetRowCellValue(i, "Days"))
                     .AdvanceIDR = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceIDR"))
                     .AdvanceUSD = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceUSD"))
+                    If Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceUSD")) Mod 5 <> 0 Then
+                        Err.Raise(ErrNumber, , "Amount USD Harus Kelipatan 5 !")
+                    End If
                     .AdvanceYEN = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceYEN"))
+                    If Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "AdvanceYEN")) Mod 1000 <> 0 Then
+                        Err.Raise(ErrNumber, , "Amount YEN Harus Kelipatan 1.000 !")
+                    End If
+                    .RateAdvanceIDR = Convert.ToDouble(GridViewAdvance.GetRowCellValue(i, "RateAdvanceIDR"))
+                    If costType = "C02" And GridViewAdvance.GetRowCellValue(i, "TotalAdvanceIDR") > GridViewAdvance.GetRowCellValue(i, "RateAdvanceIDR") Then
+                        Err.Raise(ErrNumber, , "Total Amount Melebihi Rate Pocket Allowance !")
+                    End If
                 End With
                 ObjTravelRequest.ObjRequestCost.Add(ObjTravelRequestCost)
             Next
@@ -286,7 +329,7 @@ Public Class FrmTravelRequestDetail
             Else
                 ObjTravelRequest.NoRequest = txtNoRequest.Text
                 ObjTravelRequest.UpdateData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
             End If
 
             If FrmParent.Name = "FrmTravelTicket" Then
@@ -305,19 +348,76 @@ Public Class FrmTravelRequestDetail
 
     Public Overrides Sub Proc_Approve()
         Try
-            ObjTravelRequest = New TravelRequestModel
-
-            ObjTravelRequest.Approved = "APPROVED"
-            ObjTravelRequest.Comment = ""
-            ObjTravelRequest.UpdateStatusHeader(fs_Code)
-            GridDtl.DataSource = ObjTravelRequest.GetTravelApproved()
-            MessageBox.Show("Data Approved.")
+            Dim status As String = "PENDING"
+            Dim comment As String = String.Empty
+            Dim message As String = "Data Approved"
+            If fs_Code2 = "TabPageRequest" Then
+                ObjTravelRequest.Status = status
+                ObjTravelRequest.Approved = ""
+                ObjTravelRequest.Comment = comment
+                ObjTravelRequest.UpdateStatusPending(fs_Code)
+                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
+            ElseIf fs_Code2 = "TabPageApproved" Then
+                If txtApproved.Text = "" Then
+                    Err.Raise(ErrNumber, , "Approved tidak boleh kosong !")
+                ElseIf txtApproved.Text = "REVISED" Then
+                    status = "CREATE"
+                    comment = inputComment()
+                    message = "Data Revised"
+                ElseIf txtApproved.Text = "CANCEL" Then
+                    status = "CLOSE"
+                    comment = inputComment()
+                    message = "Data Cancel"
+                End If
+                ObjTravelRequest.Status = status
+                ObjTravelRequest.Approved = txtApproved.Text
+                ObjTravelRequest.Comment = comment
+                ObjTravelRequest.UpdateStatusApprove(fs_Code)
+                GridDtl.DataSource = ObjTravelRequest.GetTravelApproved()
+            ElseIf fs_Code2 = "TabPageProgress" Then
+                If ObjTravelRequest.StatusTicket = "ISSUE" Then
+                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Pesan ticket !")
+                ElseIf ObjTravelRequest.StatusTicket = "INVOICE" Then
+                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Invoice ticket !")
+                Else
+                    If txtApproved.Text = "REVISED" Then
+                        status = "CREATE"
+                        comment = inputComment()
+                        message = "Data Revised"
+                    ElseIf txtApproved.Text = "CANCEL" Then
+                        status = "CLOSE"
+                        comment = inputComment()
+                        message = "Data Cancel"
+                    End If
+                    ObjTravelRequest.Status = status
+                    ObjTravelRequest.Approved = txtApproved.Text
+                    ObjTravelRequest.Comment = comment
+                    ObjTravelRequest.UpdateStatusApprove(fs_Code)
+                    GridDtl.DataSource = ObjTravelRequest.GetTravelProgress()
+                End If
+            End If
+            MessageBox.Show(message)
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            If Not String.IsNullOrEmpty(ex.Message) Then
+                ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End If
         End Try
+    End Sub
+
+    Private Function inputComment() As String
+        Dim comment As String = String.Empty
+        comment = InputBox("Silahkan Masukkan Comment !", "Comment", "")
+        If comment.Length = 0 Then
+            Throw New Exception("")
+        End If
+        Return comment
+    End Function
+
+    Public Overrides Sub Proc_Refresh()
+        'InitialSetForm()
     End Sub
 
     Private Sub GridViewDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewDetail.KeyDown
@@ -421,18 +521,28 @@ Public Class FrmTravelRequestDetail
                                 MessageBoxDefaultButton.Button1)
             Exit Sub
         End If
-        'If txtTravelType.Text = "LN" AndAlso GridViewDetail.RowCount = 0 Then
-        '    Dim frmOption As New FrmTravelOption()
-        '    frmOption.Text = "Pilih Currency Allowance"
-        '    frmOption.StartPosition = FormStartPosition.CenterScreen
-        '    frmOption.ShowDialog()
-        '    curryIDAllowance = IIf(frmOption.Values = Nothing, "USD", frmOption.Values)
-        'End If
+        AddNewRow(GridViewDetail)
+    End Sub
 
-        GridViewDetail.AddNewRow()
-        GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
-        GridViewDetail.RefreshData()
+    Private Sub AddNewRow(ByVal view As GridView)
+        view.AddNewRow()
+        view.OptionsNavigation.AutoFocusNewRow = True
+        Dim negara As String = String.Empty
+        If txtTravelType.Text = "DN" Then
+            negara = "INDONESIA"
+        End If
+        view.SetRowCellValue(view.FocusedRowHandle, "Destination", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "Negara", negara)
+        view.SetRowCellValue(view.FocusedRowHandle, "NoPaspor", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "Visa", "")
+        view.SetRowCellValue(view.FocusedRowHandle, "DepartureDate", Nothing)
+        view.SetRowCellValue(view.FocusedRowHandle, "ArrivalDate", Nothing)
 
+        If GridViewAdvance.RowCount = 0 Then
+            GetTravelDate()
+            CheckFirstTravel()
+            HitungTotalAmount()
+        End If
     End Sub
 
     Private Sub CDepartureDate_EditValueChanged(sender As Object, e As EventArgs) Handles CDepartureDate.EditValueChanged
@@ -526,6 +636,7 @@ Public Class FrmTravelRequestDetail
         dtCost.Columns.Add("AdvanceIDRUSD", GetType(Double))
         dtCost.Columns.Add("AdvanceYEN", GetType(Double))
         dtCost.Columns.Add("AdvanceIDRYEN", GetType(Double))
+        dtCost.Columns.Add("RateAdvanceIDR", GetType(Double))
         dtCost.Columns.Add("TotalAdvanceIDR", GetType(Double))
     End Sub
 
@@ -610,7 +721,7 @@ Public Class FrmTravelRequestDetail
         Dim advanceYEN As Double = IIf(String.IsNullOrEmpty(txtAdvanceYEN.Text), 0, txtAdvanceYEN.Text)
 
         dtCost.Clear()
-        If GridViewDetail.RowCount > 0 AndAlso departureDate_ <> Nothing Then
+        If GridViewDetail.RowCount > 0 Then
             amountIDR = amountIDR * days
             amountUSD = amountUSD * days
             amountYEN = amountYEN * days
@@ -620,10 +731,10 @@ Public Class FrmTravelRequestDetail
             rateAllowance = amountIDR + amountIDRUSD + amountIDRYEN
 
             If firstTravel Then
-                dtCost.Rows.Add(txtNoRequest.Text, "C01", descFirstTravel, days, amountFirstTravel, 0, 0, 0, 0, amountFirstTravel)
+                dtCost.Rows.Add(txtNoRequest.Text, "C01", descFirstTravel, days, amountFirstTravel, 0, 0, 0, 0, amountFirstTravel, amountFirstTravel)
             End If
-            dtCost.Rows.Add(txtNoRequest.Text, "C02", "POCKET ALLOWANCE", days, amountIDR, amountUSD, amountIDRUSD, amountYEN, amountIDRYEN, rateAllowance)
-            dtCost.Rows.Add(txtNoRequest.Text, "C03", "ADVANCE", days, advanceIDR, advanceUSD, advanceUSD * rateUSD, advanceYEN, advanceYEN * rateYEN, advanceIDR + (advanceUSD * rateUSD) + (advanceYEN * rateYEN))
+            dtCost.Rows.Add(txtNoRequest.Text, "C02", "POCKET ALLOWANCE", days, amountIDR, amountUSD, amountIDRUSD, amountYEN, amountIDRYEN, rateAllowance, rateAllowance)
+            dtCost.Rows.Add(txtNoRequest.Text, "C03", "ADVANCE", days, advanceIDR, advanceUSD, advanceUSD * rateUSD, advanceYEN, advanceYEN * rateYEN, advanceIDR + (advanceUSD * rateUSD) + (advanceYEN * rateYEN), advanceIDR + (advanceUSD * rateUSD) + (advanceYEN * rateYEN))
         End If
         GridAdvance.DataSource = dtCost
 
@@ -683,6 +794,7 @@ Public Class FrmTravelRequestDetail
 
     Private Sub ViewForm()
         GridViewDetail.OptionsBehavior.Editable = False
+        GridViewAdvance.OptionsBehavior.Editable = False
         txtNoRequest.Enabled = False
         txtDepartement.Enabled = False
         txtNIK.Enabled = False
@@ -698,27 +810,26 @@ Public Class FrmTravelRequestDetail
 
     Private Sub GridViewAdvance_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewAdvance.FocusedRowChanged
         Try
-            Dim CostType = String.Empty
-            Dim selectedRows() As Integer = GridViewAdvance.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    CostType = GridViewAdvance.GetRowCellValue(rowHandle, "CostType")
+            If fs_Code2 = "TabPageRequest" Or fs_Code = "" Then
+                Dim CostType = String.Empty
+                Dim selectedRows() As Integer = GridViewAdvance.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        CostType = GridViewAdvance.GetRowCellValue(rowHandle, "CostType")
+                    End If
+                Next rowHandle
+                GridViewAdvance.OptionsBehavior.Editable = True
+                If CostType = "C02" And txtTravelType.Text = "LN" Then
+                    GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = True
+                    GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = True
+                    GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = True
+                ElseIf CostType = "C02" And txtTravelType.Text = "DN" Then
+                    GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = False
+                    GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = False
+                    GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = True
+                Else
+                    GridViewAdvance.OptionsBehavior.Editable = False
                 End If
-            Next rowHandle
-            GridViewAdvance.OptionsBehavior.Editable = True
-            If CostType = "C02" And txtTravelType.Text = "LN" Then
-                GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = True
-                GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = True
-                GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = True
-            ElseIf CostType = "C02" And txtTravelType.Text = "DN" Then
-                GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = False
-                GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = False
-                GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = True
-            Else
-                GridViewAdvance.OptionsBehavior.Editable = False
-                'GridViewAdvance.Columns("AdvanceUSD").OptionsColumn.AllowEdit = False
-                'GridViewAdvance.Columns("AdvanceYEN").OptionsColumn.AllowEdit = False
-                'GridViewAdvance.Columns("AdvanceIDR").OptionsColumn.AllowEdit = False
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -727,66 +838,97 @@ Public Class FrmTravelRequestDetail
     End Sub
 
     Private Sub CAdvanceIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceIDR.EditValueChanged
-        Dim AmountIDRBefore As Double
-        Dim AmountIDRAfter As Double
-        'Dim amountIDR As Double
+        Dim amountIDRBefore As Double
+        Dim amountIDRAfter As Double
+        Dim amountUSD As Double = 0
+        Dim amountYEN As Double = 0
         Dim totalAmountIDR As Double
-        AmountIDRBefore = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
+        amountIDRBefore = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-        AmountIDRAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
+
+        amountIDRAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
+        amountUSD = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
         amountIDRUSD = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD")
+        amountYEN = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN")
         amountIDRYEN = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN")
-        totalAmountIDR = amountIDRUSD + amountIDRYEN + AmountIDRAfter
-        If rateAllowance < totalAmountIDR Then
+        Dim amountIDRUSD__ As Double
+        Dim amountUSD__ As Double
+        Dim totalAmountIDR__ As Double
+        amountIDRUSD__ = amountIDRUSD - amountIDRAfter - amountIDRBefore
+        If amountIDRUSD__ < 0 Then
+            amountIDRUSD__ = 0
+        End If
+        amountUSD__ = amountIDRUSD__ / rateUSD
+        totalAmountIDR = amountIDRUSD + amountIDRYEN + amountIDRBefore
+        totalAmountIDR__ = amountIDRUSD__ + amountIDRYEN + amountIDRAfter
+        If rateAllowance < totalAmountIDR__ Then
             MessageBox.Show("Total Amount Melebihi Rate Pocket Allowance !",
                                 "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", AmountIDRBefore)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDRBefore)
+            'GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR)
+        Else
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD", amountUSD__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDRAfter)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR__)
         End If
+
     End Sub
 
     Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged
-        Dim AmountUSDBefore As Double
-        Dim AmountUSDAfter As Double
+        Dim amountUSDBefore As Double
+        Dim amountUSDAfter As Double
         Dim amountIDR As Double
         Dim totalAmountIDR As Double
-        AmountUSDBefore = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
+        Dim totalAmountIDR__ As Double
+        amountUSDBefore = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
 
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
 
-        AmountUSDAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
+        amountUSDAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
+        amountIDRUSD = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD")
         amountIDRYEN = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN")
         amountIDR = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
-        amountIDRUSD = AmountUSDAfter * rateUSD
-        totalAmountIDR = amountIDRUSD + amountIDRYEN
-        If rateAllowance < totalAmountIDR Then
-            'MessageBox.Show("Total Amount Melebihi Rate Pocket Allowance !",
-            '                    "Warning",
-            '                    MessageBoxButtons.OK,
-            '                    MessageBoxIcon.Exclamation,
-            '                    MessageBoxDefaultButton.Button1)
-            'GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD", AmountUSDBefore)
+
+        Dim amountIDRUSD__ As Double
+        Dim amountIDR__ As Double
+        amountIDRUSD__ = amountUSDAfter * rateUSD
+        totalAmountIDR = amountIDRUSD + amountIDRYEN + amountIDR
+        totalAmountIDR__ = amountIDRUSD__ + amountIDRYEN
+        amountIDR__ = rateAllowance - totalAmountIDR__
+        If rateAllowance < totalAmountIDR__ Then
+            MessageBox.Show("Total Amount Melebihi Rate Pocket Allowance !",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD", amountUSDBefore)
             GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", 0)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDR)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR)
         Else
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", rateAllowance - totalAmountIDR)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDR__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR__ + amountIDR__)
         End If
     End Sub
 
     Private Sub CAdvanceYEN_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceYEN.EditValueChanged
-        Dim amountYENBefore As Double
-        Dim amountYENAfter As Double
-        Dim amountIDR As Double
-        Dim totalAmountIDR As Double
+        Dim amountYENBefore As Double = 0
+        Dim amountYENAfter As Double = 0
+        Dim amountUSD As Double = 0
+        Dim amountIDR As Double = 0
+        Dim totalAmountIDR As Double = 0
+        Dim totalAmountIDR__ As Double = 0
         amountYENBefore = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN")
 
         Dim baseEdit = TryCast(sender, BaseEdit)
@@ -794,24 +936,57 @@ Public Class FrmTravelRequestDetail
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
 
-        amountYENAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN")
+        amountUSD = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD")
         amountIDRUSD = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD")
+        amountYENAfter = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN")
+        amountIDRYEN = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN")
         amountIDR = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR")
-        amountIDRYEN = amountYENAfter * rateYEN
-        totalAmountIDR = amountIDRUSD + amountIDRYEN
-        If rateAllowance < totalAmountIDR Then
-            'MessageBox.Show("Total Amount Melebihi Rate Pocket Allowance !",
-            '                    "Warning",
-            '                    MessageBoxButtons.OK,
-            '                    MessageBoxIcon.Exclamation,
-            '                    MessageBoxDefaultButton.Button1)
+        totalAmountIDR = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR")
 
-            'GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN", amountYENBefore)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN", amountIDRYEN)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", 0)
+        Dim amountIDRYEN__ As Double = amountYENAfter * rateYEN
+        ''Mengurangi IDR oleh YEN
+        Dim amountIDR__ As Double = amountIDR - amountIDRYEN__ + amountIDRYEN
+
+        ''Mengurangi USD oleh YEN
+        Dim amountIDRUSD__ As Double
+        If amountIDR__ >= 0 Then
+            amountIDRUSD__ = amountIDRUSD
+            totalAmountIDR__ = amountIDRUSD__ + amountIDRYEN__
         Else
+            amountIDRUSD__ = amountIDRUSD + amountIDR__
+            If amountIDRUSD__ >= 0 Then
+                amountUSD = amountIDRUSD__ / rateUSD
+                Dim sisa As Double = amountUSD Mod 5
+                amountUSD = amountUSD - sisa
+                amountIDRUSD__ = amountUSD * rateUSD
+                amountIDR__ = sisa * rateUSD
+                totalAmountIDR__ = amountIDRUSD__ + amountIDRYEN__
+            Else
+                amountIDR__ = rateAllowance - amountIDRYEN__
+                totalAmountIDR__ = amountIDRYEN__
+                amountIDRUSD__ = amountIDRUSD
+            End If
+        End If
+
+        If rateAllowance < totalAmountIDR__ Then
+            MessageBox.Show("Total Amount Melebihi Rate Pocket Allowance !",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN", amountYENBefore)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD", amountUSD)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD)
             GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN", amountIDRYEN)
-            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", rateAllowance - totalAmountIDR)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDR)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR)
+        Else
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRUSD", amountIDRUSD__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD", amountUSD)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDRYEN", amountIDRYEN__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceIDR", amountIDR__)
+            GridViewAdvance.SetRowCellValue(GridViewAdvance.FocusedRowHandle, "TotalAdvanceIDR", totalAmountIDR__ + amountIDR__)
         End If
 
     End Sub
@@ -830,52 +1005,14 @@ Public Class FrmTravelRequestDetail
             eMail.From = New MailAddress("hamidi-mis@tsmu.co.id")
             eMail.To.Add("miftah-mis@tsmu.co.id")
             eMail.CC.Add("log@tsmu.co.id")
-            eMail.Subject = "dddd"
+            eMail.Subject = "Request Passport & Visa"
             eMail.IsBodyHtml = True
-            eMail.Body = "<p>Dear PGA,</p> <p>Sehubungan dengan adanya perjalanan travel a/n<strong> MIFTAH BOTAK</strong>, Mohon bantuannya untuk dibuatkan Visa atas nama yang bersangkutan.</p> <p>&nbsp;</p> <p>Thanks</p>"
+            eMail.Body = "<p>Dear PGA,</p> <p>&nbsp;</p> <p>Sehubungan dengan adanya perjalanan travel a/n<strong> NAMA</strong>,</p> <p>mohon bantuannya untuk dibuatkan Visa atas nama yang bersangkutan.</p> <p><em><br />Email dikirim oleh sistem, tidak perlu dibalas.</em></p> <p>&nbsp;</p> <p>Terima kasih</p>"
             smtpServer.Send(eMail)
 
         Catch error_t As Exception
             MsgBox(error_t.ToString)
         End Try
-    End Sub
-
-    Private Sub txtNIK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
-        'Try
-        '    Dim ls_Judul As String = ""
-        '    Dim dtSearch As New DataTable
-        '    Dim ls_OldKode As String = txtNIK.Text
-
-        '    dtSearch = ObjTravelRequest.GetListTraveler
-        '    ls_Judul = "Data Traveler"
-
-        '    Dim lF_SearchData As FrmSystem_LookupGrid
-        '    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-        '    lF_SearchData.Text = "Select Data " & ls_Judul
-        '    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-        '    lF_SearchData.ShowDialog()
-        '    'Dim nik As String = String.Empty
-        '    'Dim golongan As Integer = 0
-        '    'Dim nama As String = String.Empty
-
-        '    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-        '        txtNIK.Text = lF_SearchData.Values.Item("NIK").ToString
-        '        txtGolongan.Text = lF_SearchData.Values.Item("Golongan")
-        '        txtNama.Text = lF_SearchData.Values.Item("Nama").ToString
-        '    End If
-
-        '    lF_SearchData.Close()
-        'Catch ex As Exception
-        '    MsgBox(ex.Message)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-    End Sub
-
-    Private Sub hitungAmountAdvance()
-        Dim amountIDRUSD As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDRUSD")
-        Dim amountIDRYEN As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDRYEN")
-        Dim amountIDR As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDR")
-        GridViewAdvance.SetRowCellValue(GridViewAdvance.RowCount - 1, "TotalAdvanceIDR", amountIDRUSD + amountIDRYEN + amountIDR)
     End Sub
 
     Private Sub hitungAmountAllowance()
@@ -885,31 +1022,12 @@ Public Class FrmTravelRequestDetail
         GridViewAdvance.SetRowCellValue(GridViewAdvance.RowCount Mod 2, "TotalAdvanceIDR", amountIDRUSD + amountIDRYEN + amountIDR)
     End Sub
 
-    Private Sub CAdvanceUSD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CAdvanceUSD.KeyPress
-        'Dim length As Integer
-        'Dim tombol As Integer
-
-        'length = Len(GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceUSD").ToString())
-        'tombol = Asc(e.KeyChar)
-
-        'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
-        '    e.Handled = True
-        'End If
+    Private Sub hitungAmountAdvance()
+        Dim amountIDRUSD As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDRUSD")
+        Dim amountIDRYEN As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDRYEN")
+        Dim amountIDR As Double = GridViewAdvance.GetRowCellValue(GridViewAdvance.RowCount - 1, "AdvanceIDR")
+        GridViewAdvance.SetRowCellValue(GridViewAdvance.RowCount - 1, "TotalAdvanceIDR", amountIDRUSD + amountIDRYEN + amountIDR)
+        GridViewAdvance.SetRowCellValue(GridViewAdvance.RowCount - 1, "RateAdvanceIDR", amountIDRUSD + amountIDRYEN + amountIDR)
     End Sub
 
-    Private Sub CAdvanceYEN_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CAdvanceYEN.KeyPress
-        'Dim length As Integer
-        'Dim tombol As Integer
-
-        'length = Len(GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN").ToString)
-        'tombol = Asc(e.KeyChar)
-
-        'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
-        '    e.Handled = True
-        'End If
-    End Sub
-
-    Private Sub CAdvanceYEN_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles CAdvanceYEN.EditValueChanging
-        Dim a As Object = GridViewAdvance.GetRowCellValue(GridViewAdvance.FocusedRowHandle, "AdvanceYEN")
-    End Sub
 End Class

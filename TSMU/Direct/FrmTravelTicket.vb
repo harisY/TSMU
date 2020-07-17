@@ -115,6 +115,7 @@ Public Class FrmTravelTicket
                     Err.Raise(ErrNumber, , "No Voucher " & NoVoucher & " sudah proses settlement !")
                 Else
                     fc_Class.DeleteData()
+                    Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     tsBtn_refresh.PerformClick()
                 End If
             Next rowHandle
