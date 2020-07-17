@@ -1,4 +1,5 @@
 ﻿Imports System.Globalization
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class Frm_NPP_Header
 
@@ -6,13 +7,11 @@ Public Class Frm_NPP_Header
     Dim dtGrid As DataTable
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
-
     Dim FrmReport As ReportNPWO
+    Dim Active_Form As Integer = 0
 
 
     Private Sub Frm_Npwo_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
 
         dtGrid = New DataTable
         dtGrid.Columns.AddRange(New DataColumn(6) {New DataColumn("NPP", GetType(String)),
@@ -23,13 +22,11 @@ Public Class Frm_NPP_Header
                                                             New DataColumn("Approve", GetType(Boolean)),
                                                             New DataColumn("Rev", GetType(Int32))})
         Grid.DataSource = dtGrid
-
-
-
+        Grid2.DataSource = dtGrid
 
         bb_SetDisplayChangeConfirmation = False
         LoadGrid()
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
 
     End Sub
     Private Sub LoadGrid()
@@ -38,7 +35,12 @@ Public Class Frm_NPP_Header
 
             Dim dt As New DataTable
             dt = fc_Class.Get_NPP()
+
+            Dim dt2 As New DataTable
+            dt2 = fc_Class.Get_NPP2()
+
             Grid.DataSource = dt
+            Grid2.DataSource = dt2
             'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
@@ -57,7 +59,7 @@ Public Class Frm_NPP_Header
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -93,8 +95,6 @@ Public Class Frm_NPP_Header
     Public Overrides Sub Proc_DeleteData()
 
         Dim NP As String = ""
-
-
         Dim selectedRows() As Integer = GridView1.GetSelectedRows()
 
         If GridView1.RowCount > 0 Then
@@ -103,32 +103,55 @@ Public Class Frm_NPP_Header
                     NP = GridView1.GetRowCellValue(rowHandle, "NPP")
                 End If
             Next rowHandle
-
             DtDelete = New DataTable
             DtDelete = fc_Class.GetDelete(NP)
-
             If DtDelete.Rows.Count <= 0 Then
                 fc_Class.Delete(NP)
                 Call LoadGrid()
                 Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 MessageBox.Show("Data Cannot be Deleted
-                                 (Already in NPWO)",
+                                 (Already in NPP)",
                                 "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
             End If
-
-
-
         Else
-
         End If
-
-
     End Sub
 
+
+
+
+    Private Sub RepositoryItemButtonEdit1_Click(sender As Object, e As EventArgs)
+        FrmReport = New ReportNPWO()
+        FrmReport.StartPosition = FormStartPosition.CenterScreen
+        FrmReport.MaximizeBox = False
+        FrmReport.ShowDialog()
+    End Sub
+
+    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            Dim NoNpwo As String = ""
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoNpwo = GridView2.GetRowCellValue(rowHandle, "NPP")
+                End If
+            Next rowHandle
+
+            If GridView2.GetSelectedRows.Length > 0 Then
+                Call CallFrm(NoNpwo, "",
+                            GridView2.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
@@ -152,10 +175,27 @@ Public Class Frm_NPP_Header
         End Try
     End Sub
 
-    Private Sub RepositoryItemButtonEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemButtonEdit1.Click
-        FrmReport = New ReportNPWO()
-        FrmReport.StartPosition = FormStartPosition.CenterScreen
-        FrmReport.MaximizeBox = False
-        FrmReport.ShowDialog()
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            Dim category As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Status"))
+            If category = "Revise" Then
+                e.Appearance.BackColor = Color.Yellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            ElseIf category = "Submit" Then
+                e.Appearance.BackColor = Color.GreenYellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            ElseIf category = "Approve Dept Head" Then
+                e.Appearance.BackColor = Color.GreenYellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            ElseIf category = "Approve Div Head" Then
+                e.Appearance.BackColor = Color.Goldenrod
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            End If
+        End If
     End Sub
 End Class

@@ -2,13 +2,9 @@
 
 Public Class Frm_Input_NPPDetail
 
-
-
     Dim fc_Class As New Cls_NPP_Detail
     Dim fc_ClassNPWO As New Cls_Npwo_Detail
-
     Dim DtGridNPWO As DataTable
-
     Dim ID As String
     Dim Nama As String
     Dim Machine As String
@@ -30,11 +26,8 @@ Public Class Frm_Input_NPPDetail
     Dim DtTabale As DataTable
     Dim order As Double
     Dim NoNPP As String
-
-
     Dim dtB As DataTable
     Dim BS As New BindingSource
-
     Dim RowsAwal As Integer
 
 
@@ -93,8 +86,6 @@ Public Class Frm_Input_NPPDetail
 
     Private Sub Frm_Input_NpwoDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
-
         Me.TOrder.Properties.Mask.EditMask = "n0"
         Me.TOrder.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
 
@@ -135,7 +126,7 @@ Public Class Frm_Input_NPPDetail
             CAssy.DataBindings.Add(New Binding("Checked", BS, "Assy"))
             CUltrasonic.DataBindings.Add(New Binding("Checked", BS, "Ultrasonic"))
             CbVibration.DataBindings.Add(New Binding("Checked", BS, "Vibration"))
-            TID.DataBindings.Add(New Binding("text", BS, "ID"))
+            'TID.DataBindings.Add(New Binding("text", BS, "ID"))
 
 
             'TCt.DataBindings.Add(New Binding("text", BS, "Part Name"))
@@ -236,7 +227,13 @@ Public Class Frm_Input_NPPDetail
                     Exit Sub
 
                 End If
-                Dim GroupID As String = fc_Class.GetGroupIDAuto(DtTabale.Rows.Count, RowsAwal)
+
+                Dim Sequence As New DataTable
+                Sequence = fc_Class.Get_Sequence_NppDetail()
+                Dim Seq As Integer = Val(Sequence.Rows(0).Item(0)) + 1
+
+                'Dim GroupID As String = fc_Class.GetGroupIDAuto(DtTabale.Rows.Count, RowsAwal)
+                Dim GroupID As String = "G" & Seq
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
@@ -256,6 +253,8 @@ Public Class Frm_Input_NPPDetail
                     .Item("Status Mold") = TStatusMold.Text.Trim
                     .Item("Order Month") = TOrder.EditValue
                     .Item("Group ID") = GroupID
+                    .Item("Seq") = Seq
+                    .Item("Commit NPD") = False
 
                 End With
 
@@ -275,6 +274,8 @@ Public Class Frm_Input_NPPDetail
                 CAssy.Checked = False
                 CChrome.Checked = False
                 CInjection.Checked = False
+
+                fc_Class.Update_Seq_NPPDetail(Seq)
 
             End If
 

@@ -1630,10 +1630,28 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
+      <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Dept_Head.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Div_Head.Designer.vb">
+      <DependentUpon>Frm_Approve_Div_Head.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Div_Head.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Frm_Input_NPPDetail.Designer.vb">
       <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\NPP\Frm_Input_NPPDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPD_Acces.Designer.vb">
+      <DependentUpon>Frm_NPD_Acces.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPD_Acces.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_NPP_Detail.Designer.vb">
@@ -2309,6 +2327,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.Designer.vb">
+      <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\RptAR.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2810,8 +2834,17 @@
     <EmbeddedResource Include="Form\Common\FrmSales_ForecastPriceSync.resx">
       <DependentUpon>FrmSales_ForecastPriceSync.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
+      <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_Approve_Div_Head.resx">
+      <DependentUpon>Frm_Approve_Div_Head.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Input_NPPDetail.resx">
       <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPD_Acces.resx">
+      <DependentUpon>Frm_NPD_Acces.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Detail.resx">
       <DependentUpon>Frm_NPP_Detail.vb</DependentUpon>
@@ -3146,6 +3179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
+      <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\RptAR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

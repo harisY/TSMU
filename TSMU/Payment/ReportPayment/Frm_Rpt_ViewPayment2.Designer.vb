@@ -1,17 +1,14 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Frm_Rpt_ViewPayment
-    Inherits System.Windows.Forms.Form
+Partial Class Frm_Rpt_ViewPayment2
+    Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
     End Sub
 
     'Required by the Windows Form Designer
@@ -23,7 +20,7 @@ Partial Class Frm_Rpt_ViewPayment
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_ViewPayment))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_ViewPayment2))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
@@ -71,44 +68,9 @@ Partial Class Frm_Rpt_ViewPayment
         Me.DateEdit1_sup = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.btnLoad_sup = New System.Windows.Forms.ToolStripButton()
         Me.Progbar_sup = New System.Windows.Forms.ToolStripProgressBar()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.GridControl5 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.txtperpost = New DevExpress.XtraEditors.TextEdit()
-        Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
-        Me.btnLoad_sup2 = New System.Windows.Forms.ToolStripButton()
-        Me.Progbar_sup2 = New System.Windows.Forms.ToolStripProgressBar()
-        Me.cmb_supplier2 = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
-        Me.tsBtn_newData = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_save = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_delete = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_refresh = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_excel = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_filter = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_preview = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_print = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
-        Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
-        Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,16 +94,6 @@ Partial Class Frm_Rpt_ViewPayment
         CType(Me.DateEdit2_sup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1_sup.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1_sup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        CType(Me.GridControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtperpost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip4.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -152,12 +104,11 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(4, 27)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 30)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(803, 554)
-        Me.TabControl1.TabIndex = 5
+        Me.TabControl1.TabIndex = 6
         '
         'TabPage1
         '
@@ -464,7 +415,7 @@ Partial Class Frm_Rpt_ViewPayment
         Me.TabPage3.Controls.Add(Me.DateEdit1_sup)
         Me.TabPage3.Controls.Add(Me.Label3)
         Me.TabPage3.Controls.Add(Me.Label4)
-        Me.TabPage3.Controls.Add(Me.ToolStrip1)
+        Me.TabPage3.Controls.Add(Me.ToolStrip3)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -555,18 +506,18 @@ Partial Class Frm_Rpt_ViewPayment
         Me.Label4.TabIndex = 19
         Me.Label4.Text = "From :"
         '
-        'ToolStrip1
+        'ToolStrip3
         '
-        Me.ToolStrip1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.ToolStrip3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad_sup, Me.Progbar_sup})
-        Me.ToolStrip1.Location = New System.Drawing.Point(3, 34)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(194, 25)
-        Me.ToolStrip1.TabIndex = 25
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.ToolStrip3.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad_sup, Me.Progbar_sup})
+        Me.ToolStrip3.Location = New System.Drawing.Point(3, 34)
+        Me.ToolStrip3.Name = "ToolStrip3"
+        Me.ToolStrip3.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStrip3.TabIndex = 25
+        Me.ToolStrip3.Text = "ToolStrip3"
         '
         'btnLoad_sup
         '
@@ -581,321 +532,13 @@ Partial Class Frm_Rpt_ViewPayment
         Me.Progbar_sup.Name = "Progbar_sup"
         Me.Progbar_sup.Size = New System.Drawing.Size(100, 22)
         '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.GridControl5)
-        Me.TabPage2.Controls.Add(Me.txtperpost)
-        Me.TabPage2.Controls.Add(Me.GridControl4)
-        Me.TabPage2.Controls.Add(Me.ToolStrip4)
-        Me.TabPage2.Controls.Add(Me.cmb_supplier2)
-        Me.TabPage2.Controls.Add(Me.Label6)
-        Me.TabPage2.Controls.Add(Me.Label8)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(795, 528)
-        Me.TabPage2.TabIndex = 3
-        Me.TabPage2.Text = "Filter By Supplier - Detail"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'GridControl5
-        '
-        Me.GridControl5.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl5.DataMember = Nothing
-        Me.GridControl5.Location = New System.Drawing.Point(4, 355)
-        Me.GridControl5.MainView = Me.GridView9
-        Me.GridControl5.Name = "GridControl5"
-        Me.GridControl5.Size = New System.Drawing.Size(789, 162)
-        Me.GridControl5.TabIndex = 37
-        Me.GridControl5.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView9, Me.GridView10})
-        '
-        'GridView9
-        '
-        Me.GridView9.GridControl = Me.GridControl5
-        Me.GridView9.Name = "GridView9"
-        Me.GridView9.OptionsBehavior.Editable = False
-        Me.GridView9.OptionsView.ColumnAutoWidth = False
-        Me.GridView9.OptionsView.ShowGroupPanel = False
-        '
-        'GridView10
-        '
-        Me.GridView10.GridControl = Me.GridControl5
-        Me.GridView10.Name = "GridView10"
-        '
-        'txtperpost
-        '
-        Me.txtperpost.Location = New System.Drawing.Point(60, 6)
-        Me.txtperpost.Name = "txtperpost"
-        Me.txtperpost.Size = New System.Drawing.Size(100, 20)
-        Me.txtperpost.TabIndex = 36
-        '
-        'GridControl4
-        '
-        Me.GridControl4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl4.DataMember = Nothing
-        Me.GridControl4.Location = New System.Drawing.Point(4, 57)
-        Me.GridControl4.MainView = Me.GridView7
-        Me.GridControl4.Name = "GridControl4"
-        Me.GridControl4.Size = New System.Drawing.Size(789, 299)
-        Me.GridControl4.TabIndex = 35
-        Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7, Me.GridView8})
-        '
-        'GridView7
-        '
-        Me.GridView7.GridControl = Me.GridControl4
-        Me.GridView7.Name = "GridView7"
-        Me.GridView7.OptionsBehavior.Editable = False
-        Me.GridView7.OptionsView.ColumnAutoWidth = False
-        Me.GridView7.OptionsView.ShowGroupPanel = False
-        '
-        'GridView8
-        '
-        Me.GridView8.GridControl = Me.GridControl4
-        Me.GridView8.Name = "GridView8"
-        '
-        'ToolStrip4
-        '
-        Me.ToolStrip4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad_sup2, Me.Progbar_sup2})
-        Me.ToolStrip4.Location = New System.Drawing.Point(7, 29)
-        Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(194, 25)
-        Me.ToolStrip4.TabIndex = 34
-        Me.ToolStrip4.Text = "ToolStrip4"
-        '
-        'btnLoad_sup2
-        '
-        Me.btnLoad_sup2.Image = CType(resources.GetObject("btnLoad_sup2.Image"), System.Drawing.Image)
-        Me.btnLoad_sup2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnLoad_sup2.Name = "btnLoad_sup2"
-        Me.btnLoad_sup2.Size = New System.Drawing.Size(80, 22)
-        Me.btnLoad_sup2.Text = "Load Data"
-        '
-        'Progbar_sup2
-        '
-        Me.Progbar_sup2.Name = "Progbar_sup2"
-        Me.Progbar_sup2.Size = New System.Drawing.Size(100, 22)
-        '
-        'cmb_supplier2
-        '
-        Me.cmb_supplier2.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.cmb_supplier2.FormattingEnabled = True
-        Me.cmb_supplier2.Location = New System.Drawing.Point(222, 5)
-        Me.cmb_supplier2.Name = "cmb_supplier2"
-        Me.cmb_supplier2.Size = New System.Drawing.Size(233, 21)
-        Me.cmb_supplier2.TabIndex = 33
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(165, 8)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(51, 13)
-        Me.Label6.TabIndex = 32
-        Me.Label6.Text = "Supplier :"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(4, 9)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(50, 13)
-        Me.Label8.TabIndex = 28
-        Me.Label8.Text = "PerPost :"
-        '
-        'ToolStrip3
-        '
-        Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsBtn_newData, Me.ToolStripSeparator1, Me.tsBtn_save, Me.ToolStripSeparator2, Me.tsBtn_delete, Me.ToolStripSeparator3, Me.tsBtn_refresh, Me.ToolStripSeparator4, Me.tsBtn_excel, Me.ToolStripSeparator5, Me.tsBtn_filter, Me.ToolStripSeparator6, Me.tsBtn_preview, Me.ToolStripSeparator7, Me.tsBtn_print, Me.ToolStripSeparator8, Me.tsBtn_prev, Me.ToolStripSeparator9, Me.tsBtn_next})
-        Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(828, 25)
-        Me.ToolStrip3.TabIndex = 6
-        Me.ToolStrip3.Text = "ToolStrip3"
-        '
-        'tsBtn_newData
-        '
-        Me.tsBtn_newData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_newData.Enabled = False
-        Me.tsBtn_newData.Image = CType(resources.GetObject("tsBtn_newData.Image"), System.Drawing.Image)
-        Me.tsBtn_newData.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_newData.Name = "tsBtn_newData"
-        Me.tsBtn_newData.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_newData.Text = "New"
-        Me.tsBtn_newData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_save
-        '
-        Me.tsBtn_save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_save.Enabled = False
-        Me.tsBtn_save.Image = CType(resources.GetObject("tsBtn_save.Image"), System.Drawing.Image)
-        Me.tsBtn_save.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_save.Name = "tsBtn_save"
-        Me.tsBtn_save.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_save.Text = "Save"
-        Me.tsBtn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_delete
-        '
-        Me.tsBtn_delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_delete.Enabled = False
-        Me.tsBtn_delete.Image = CType(resources.GetObject("tsBtn_delete.Image"), System.Drawing.Image)
-        Me.tsBtn_delete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_delete.Name = "tsBtn_delete"
-        Me.tsBtn_delete.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_delete.Text = "Delete"
-        Me.tsBtn_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_refresh
-        '
-        Me.tsBtn_refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_refresh.Enabled = False
-        Me.tsBtn_refresh.Image = CType(resources.GetObject("tsBtn_refresh.Image"), System.Drawing.Image)
-        Me.tsBtn_refresh.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_refresh.Name = "tsBtn_refresh"
-        Me.tsBtn_refresh.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_refresh.Text = "Refresh"
-        Me.tsBtn_refresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_excel
-        '
-        Me.tsBtn_excel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_excel.Image = CType(resources.GetObject("tsBtn_excel.Image"), System.Drawing.Image)
-        Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_excel.Name = "tsBtn_excel"
-        Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_excel.Text = "Excel"
-        Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_filter
-        '
-        Me.tsBtn_filter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_filter.Enabled = False
-        Me.tsBtn_filter.Image = CType(resources.GetObject("tsBtn_filter.Image"), System.Drawing.Image)
-        Me.tsBtn_filter.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_filter.Name = "tsBtn_filter"
-        Me.tsBtn_filter.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_filter.Text = "Filter"
-        Me.tsBtn_filter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator6
-        '
-        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_preview
-        '
-        Me.tsBtn_preview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_preview.Enabled = False
-        Me.tsBtn_preview.Image = CType(resources.GetObject("tsBtn_preview.Image"), System.Drawing.Image)
-        Me.tsBtn_preview.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_preview.Name = "tsBtn_preview"
-        Me.tsBtn_preview.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_preview.Text = "Print Preview"
-        Me.tsBtn_preview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator7
-        '
-        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_print
-        '
-        Me.tsBtn_print.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_print.Enabled = False
-        Me.tsBtn_print.Image = CType(resources.GetObject("tsBtn_print.Image"), System.Drawing.Image)
-        Me.tsBtn_print.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_print.Name = "tsBtn_print"
-        Me.tsBtn_print.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_print.Text = "Print"
-        Me.tsBtn_print.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator8
-        '
-        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_prev
-        '
-        Me.tsBtn_prev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_prev.Enabled = False
-        Me.tsBtn_prev.Image = CType(resources.GetObject("tsBtn_prev.Image"), System.Drawing.Image)
-        Me.tsBtn_prev.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_prev.Name = "tsBtn_prev"
-        Me.tsBtn_prev.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_prev.Text = "Prev"
-        Me.tsBtn_prev.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'ToolStripSeparator9
-        '
-        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 25)
-        '
-        'tsBtn_next
-        '
-        Me.tsBtn_next.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_next.Enabled = False
-        Me.tsBtn_next.Image = CType(resources.GetObject("tsBtn_next.Image"), System.Drawing.Image)
-        Me.tsBtn_next.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsBtn_next.Name = "tsBtn_next"
-        Me.tsBtn_next.Size = New System.Drawing.Size(23, 22)
-        Me.tsBtn_next.Text = "Next"
-        Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'miniToolStrip
-        '
-        Me.miniToolStrip.AccessibleName = "New item selection"
-        Me.miniToolStrip.AccessibleRole = System.Windows.Forms.AccessibleRole.ButtonDropDown
-        Me.miniToolStrip.AutoSize = False
-        Me.miniToolStrip.CanOverflow = False
-        Me.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None
-        Me.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.miniToolStrip.Location = New System.Drawing.Point(183, 2)
-        Me.miniToolStrip.Name = "miniToolStrip"
-        Me.miniToolStrip.Size = New System.Drawing.Size(783, 25)
-        Me.miniToolStrip.TabIndex = 4
-        '
-        'Frm_Rpt_ViewPayment
+        'Frm_Rpt_ViewPayment2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.ToolStrip3)
-        Me.Controls.Add(Me.miniToolStrip)
-        Me.Name = "Frm_Rpt_ViewPayment"
-        Me.Text = "Report View Payment Transaction"
+        Me.Name = "Frm_Rpt_ViewPayment2"
+        Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -923,19 +566,6 @@ Partial Class Frm_Rpt_ViewPayment
         CType(Me.DateEdit2_sup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1_sup.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1_sup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        CType(Me.GridControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtperpost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStrip4.ResumeLayout(False)
-        Me.ToolStrip4.PerformLayout()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
         Me.ResumeLayout(False)
@@ -943,7 +573,6 @@ Partial Class Frm_Rpt_ViewPayment
 
     End Sub
 
-    Friend WithEvents coltgl1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
@@ -955,6 +584,7 @@ Partial Class Frm_Rpt_ViewPayment
     Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents colvrno1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltgl1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colvendorname1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltot_DPP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltot_PPN As DevExpress.XtraGrid.Columns.GridColumn
@@ -990,42 +620,7 @@ Partial Class Frm_Rpt_ViewPayment
     Friend WithEvents DateEdit1_sup As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStrip3 As ToolStrip
     Friend WithEvents btnLoad_sup As ToolStripButton
     Friend WithEvents Progbar_sup As ToolStripProgressBar
-    Friend WithEvents ToolStrip3 As ToolStrip
-    Friend WithEvents tsBtn_newData As ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents tsBtn_save As ToolStripButton
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents tsBtn_delete As ToolStripButton
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
-    Friend WithEvents tsBtn_refresh As ToolStripButton
-    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents tsBtn_excel As ToolStripButton
-    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
-    Friend WithEvents tsBtn_filter As ToolStripButton
-    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
-    Friend WithEvents tsBtn_preview As ToolStripButton
-    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
-    Friend WithEvents tsBtn_print As ToolStripButton
-    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
-    Friend WithEvents tsBtn_prev As ToolStripButton
-    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
-    Friend WithEvents tsBtn_next As ToolStripButton
-    Friend WithEvents miniToolStrip As ToolStrip
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents GridControl4 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents ToolStrip4 As ToolStrip
-    Friend WithEvents btnLoad_sup2 As ToolStripButton
-    Friend WithEvents Progbar_sup2 As ToolStripProgressBar
-    Friend WithEvents cmb_supplier2 As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents txtperpost As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents GridControl5 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
