@@ -248,6 +248,18 @@
     <Compile Include="Dashboard\Dashboard_kanbanSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dashboard\Dashboard_Travel.Designer.vb">
+      <DependentUpon>Dashboard_Travel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_Travel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_TravelSum.Designer.vb">
+      <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_TravelSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +336,7 @@
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelCreditCardModel.vb" />
+    <Compile Include="Direct\Class\TravelEntertainModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
     <Compile Include="Direct\Class\TravelRequestModel.vb" />
@@ -2446,6 +2459,12 @@
     <Compile Include="UserControl\DashboardAbsen.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControl\DashboardTravel.Designer.vb">
+      <DependentUpon>DashboardTravel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DashboardTravel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControl\DashboardPainting.Designer.vb">
       <DependentUpon>DashboardPainting.vb</DependentUpon>
     </Compile>
@@ -2462,6 +2481,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
       <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Dashboard_Travel.resx">
+      <DependentUpon>Dashboard_Travel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Dashboard_TravelSum.resx">
+      <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
@@ -3188,6 +3213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\DashboardAbsen.resx">
       <DependentUpon>DashboardAbsen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DashboardTravel.resx">
+      <DependentUpon>DashboardTravel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\DashboardPainting.resx">
       <DependentUpon>DashboardPainting.vb</DependentUpon>

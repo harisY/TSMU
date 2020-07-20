@@ -53,7 +53,6 @@ Partial Class FrmTravelSettleDetail
         Me.TxtArrDate = New DevExpress.XtraEditors.DateEdit()
         Me.TxtDepDate = New DevExpress.XtraEditors.DateEdit()
         Me.txtTravelSettID = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
         Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
         Me.GridTransport = New DevExpress.XtraGrid.GridControl()
         Me.GridViewTransport = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -247,10 +246,19 @@ Partial Class FrmTravelSettleDetail
         Me.Days = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.SettlementUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CSettlementUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.AdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.SettlementYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CSettlementYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.AdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.SettlementIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CSettlementIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotalAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
         Me.GridSumBalance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumBalance = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -274,6 +282,9 @@ Partial Class FrmTravelSettleDetail
         Me.AmountIDRBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtTravelType = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDep = New DevExpress.XtraEditors.TextEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtPRNo = New DevExpress.XtraEditors.TextEdit()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAccountTicket, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -314,7 +325,6 @@ Partial Class FrmTravelSettleDetail
         CType(Me.TxtDepDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDepDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelSettID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridTransport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewTransport, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,8 +408,11 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CSettlementUSD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CSettlementYEN, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CSettlementIDR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox16.SuspendLayout()
         CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -408,6 +421,8 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CReturnBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepDate
@@ -652,11 +667,11 @@ Partial Class FrmTravelSettleDetail
         Me.txtPurpose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Enabled = False
-        Me.txtPurpose.Location = New System.Drawing.Point(1434, 55)
+        Me.txtPurpose.Location = New System.Drawing.Point(1496, 55)
         Me.txtPurpose.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPurpose.MaximumSize = New System.Drawing.Size(587, 0)
+        Me.txtPurpose.MaximumSize = New System.Drawing.Size(525, 0)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(134, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(72, 22)
         Me.txtPurpose.TabIndex = 5
         '
         'TxtTgl
@@ -690,18 +705,18 @@ Partial Class FrmTravelSettleDetail
         'txtTotalDay
         '
         Me.txtTotalDay.Enabled = False
-        Me.txtTotalDay.Location = New System.Drawing.Point(778, 102)
+        Me.txtTotalDay.Location = New System.Drawing.Point(762, 102)
         Me.txtTotalDay.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTotalDay.Name = "txtTotalDay"
         Me.txtTotalDay.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtTotalDay.Size = New System.Drawing.Size(40, 22)
+        Me.txtTotalDay.Size = New System.Drawing.Size(56, 22)
         Me.txtTotalDay.TabIndex = 8
         '
         'TxtArrDate
         '
         Me.TxtArrDate.EditValue = Nothing
         Me.TxtArrDate.Enabled = False
-        Me.TxtArrDate.Location = New System.Drawing.Point(584, 102)
+        Me.TxtArrDate.Location = New System.Drawing.Point(557, 102)
         Me.TxtArrDate.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtArrDate.Name = "TxtArrDate"
         Me.TxtArrDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -742,24 +757,14 @@ Partial Class FrmTravelSettleDetail
         Me.txtTravelSettID.Size = New System.Drawing.Size(124, 22)
         Me.txtTravelSettID.TabIndex = 1
         '
-        'TxtDep
-        '
-        Me.TxtDep.Enabled = False
-        Me.TxtDep.Location = New System.Drawing.Point(584, 55)
-        Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtDep.Name = "TxtDep"
-        Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(110, 22)
-        Me.TxtDep.TabIndex = 3
-        '
         'TxtNama
         '
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Enabled = False
-        Me.TxtNama.Location = New System.Drawing.Point(778, 55)
+        Me.TxtNama.Location = New System.Drawing.Point(894, 55)
         Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(542, 22)
+        Me.TxtNama.Size = New System.Drawing.Size(508, 22)
         Me.TxtNama.TabIndex = 4
         '
         'GridTransport
@@ -1641,7 +1646,7 @@ Partial Class FrmTravelSettleDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(721, 57)
+        Me.Label3.Location = New System.Drawing.Point(834, 57)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 17)
         Me.Label3.TabIndex = 16
@@ -1650,34 +1655,34 @@ Partial Class FrmTravelSettleDetail
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(197, 103)
+        Me.Label7.Location = New System.Drawing.Point(244, 103)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(106, 17)
+        Me.Label7.Size = New System.Drawing.Size(68, 17)
         Me.Label7.TabIndex = 17
-        Me.Label7.Text = "Departure Date"
+        Me.Label7.Text = "Dep Date"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(502, 57)
+        Me.Label8.Location = New System.Drawing.Point(487, 57)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 17)
+        Me.Label8.Size = New System.Drawing.Size(49, 17)
         Me.Label8.TabIndex = 18
-        Me.Label8.Text = "Dept ID"
+        Me.Label8.Text = "PR No"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(475, 103)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(82, 17)
+        Me.Label9.Size = New System.Drawing.Size(61, 17)
         Me.Label9.TabIndex = 19
-        Me.Label9.Text = "Arrival Date"
+        Me.Label9.Text = "Arr Date"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(1347, 57)
+        Me.Label10.Location = New System.Drawing.Point(1421, 57)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 17)
         Me.Label10.TabIndex = 20
@@ -1686,7 +1691,7 @@ Partial Class FrmTravelSettleDetail
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(721, 103)
+        Me.Label11.Location = New System.Drawing.Point(702, 103)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(40, 17)
         Me.Label11.TabIndex = 21
@@ -2790,14 +2795,14 @@ Partial Class FrmTravelSettleDetail
         Me.GridPocketAllowance.Location = New System.Drawing.Point(6, 22)
         Me.GridPocketAllowance.MainView = Me.GridViewPocketAllowance
         Me.GridPocketAllowance.Name = "GridPocketAllowance"
-        Me.GridPocketAllowance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDepartureDate, Me.CArrivalDate, Me.CAdvanceUSD, Me.CAdvanceYEN, Me.CAdvanceIDR})
+        Me.GridPocketAllowance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDepartureDate, Me.CArrivalDate, Me.CAdvanceUSD, Me.CAdvanceYEN, Me.CAdvanceIDR, Me.CSettlementUSD, Me.CSettlementYEN, Me.CSettlementIDR})
         Me.GridPocketAllowance.Size = New System.Drawing.Size(1461, 76)
         Me.GridPocketAllowance.TabIndex = 0
         Me.GridPocketAllowance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPocketAllowance})
         '
         'GridViewPocketAllowance
         '
-        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.AdvanceYEN, Me.AdvanceIDR})
+        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR, Me.RateAllowanceUSD, Me.RateAllowanceIDR, Me.TotalAllowanceIDR})
         Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
         Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
         Me.GridViewPocketAllowance.OptionsView.ShowFooter = True
@@ -2813,7 +2818,7 @@ Partial Class FrmTravelSettleDetail
         Me.NoRequest.OptionsColumn.FixedWidth = True
         Me.NoRequest.Visible = True
         Me.NoRequest.VisibleIndex = 0
-        Me.NoRequest.Width = 180
+        Me.NoRequest.Width = 150
         '
         'Nama
         '
@@ -2824,7 +2829,7 @@ Partial Class FrmTravelSettleDetail
         Me.Nama.OptionsColumn.AllowEdit = False
         Me.Nama.Visible = True
         Me.Nama.VisibleIndex = 1
-        Me.Nama.Width = 139
+        Me.Nama.Width = 25
         '
         'DepartureDate
         '
@@ -2836,7 +2841,7 @@ Partial Class FrmTravelSettleDetail
         Me.DepartureDate.OptionsColumn.FixedWidth = True
         Me.DepartureDate.Visible = True
         Me.DepartureDate.VisibleIndex = 2
-        Me.DepartureDate.Width = 150
+        Me.DepartureDate.Width = 130
         '
         'CDepartureDate
         '
@@ -2860,7 +2865,7 @@ Partial Class FrmTravelSettleDetail
         Me.ArrivalDate.OptionsColumn.FixedWidth = True
         Me.ArrivalDate.Visible = True
         Me.ArrivalDate.VisibleIndex = 3
-        Me.ArrivalDate.Width = 150
+        Me.ArrivalDate.Width = 130
         '
         'CArrivalDate
         '
@@ -2884,7 +2889,7 @@ Partial Class FrmTravelSettleDetail
         Me.Days.OptionsColumn.FixedWidth = True
         Me.Days.Visible = True
         Me.Days.VisibleIndex = 4
-        Me.Days.Width = 70
+        Me.Days.Width = 60
         '
         'AdvanceUSD
         '
@@ -2893,11 +2898,12 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceUSD.FieldName = "AdvanceUSD"
         Me.AdvanceUSD.MinWidth = 25
         Me.AdvanceUSD.Name = "AdvanceUSD"
+        Me.AdvanceUSD.OptionsColumn.AllowEdit = False
         Me.AdvanceUSD.OptionsColumn.FixedWidth = True
         Me.AdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
         Me.AdvanceUSD.Visible = True
         Me.AdvanceUSD.VisibleIndex = 5
-        Me.AdvanceUSD.Width = 250
+        Me.AdvanceUSD.Width = 150
         '
         'CAdvanceUSD
         '
@@ -2911,6 +2917,31 @@ Partial Class FrmTravelSettleDetail
         Me.CAdvanceUSD.Mask.EditMask = "n2"
         Me.CAdvanceUSD.Name = "CAdvanceUSD"
         '
+        'SettlementUSD
+        '
+        Me.SettlementUSD.Caption = "Settlement USD"
+        Me.SettlementUSD.ColumnEdit = Me.CSettlementUSD
+        Me.SettlementUSD.FieldName = "SettlementUSD"
+        Me.SettlementUSD.MinWidth = 25
+        Me.SettlementUSD.Name = "SettlementUSD"
+        Me.SettlementUSD.OptionsColumn.FixedWidth = True
+        Me.SettlementUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementUSD", "{0:#,##0.#0}")})
+        Me.SettlementUSD.Visible = True
+        Me.SettlementUSD.VisibleIndex = 6
+        Me.SettlementUSD.Width = 150
+        '
+        'CSettlementUSD
+        '
+        Me.CSettlementUSD.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CSettlementUSD.AutoHeight = False
+        Me.CSettlementUSD.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CSettlementUSD.DisplayFormat.FormatString = "n2"
+        Me.CSettlementUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementUSD.EditFormat.FormatString = "n2"
+        Me.CSettlementUSD.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementUSD.Mask.EditMask = "n2"
+        Me.CSettlementUSD.Name = "CSettlementUSD"
+        '
         'AdvanceYEN
         '
         Me.AdvanceYEN.Caption = "Advance YEN"
@@ -2918,11 +2949,12 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceYEN.FieldName = "AdvanceYEN"
         Me.AdvanceYEN.MinWidth = 25
         Me.AdvanceYEN.Name = "AdvanceYEN"
+        Me.AdvanceYEN.OptionsColumn.AllowEdit = False
         Me.AdvanceYEN.OptionsColumn.FixedWidth = True
         Me.AdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
         Me.AdvanceYEN.Visible = True
-        Me.AdvanceYEN.VisibleIndex = 6
-        Me.AdvanceYEN.Width = 250
+        Me.AdvanceYEN.VisibleIndex = 7
+        Me.AdvanceYEN.Width = 150
         '
         'CAdvanceYEN
         '
@@ -2935,6 +2967,31 @@ Partial Class FrmTravelSettleDetail
         Me.CAdvanceYEN.Mask.EditMask = "n2"
         Me.CAdvanceYEN.Name = "CAdvanceYEN"
         '
+        'SettlementYEN
+        '
+        Me.SettlementYEN.Caption = "Settlement YEN"
+        Me.SettlementYEN.ColumnEdit = Me.CSettlementYEN
+        Me.SettlementYEN.FieldName = "SettlementYEN"
+        Me.SettlementYEN.MinWidth = 25
+        Me.SettlementYEN.Name = "SettlementYEN"
+        Me.SettlementYEN.OptionsColumn.FixedWidth = True
+        Me.SettlementYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementYEN", "{0:#,##0.#0}")})
+        Me.SettlementYEN.Visible = True
+        Me.SettlementYEN.VisibleIndex = 8
+        Me.SettlementYEN.Width = 150
+        '
+        'CSettlementYEN
+        '
+        Me.CSettlementYEN.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CSettlementYEN.AutoHeight = False
+        Me.CSettlementYEN.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CSettlementYEN.DisplayFormat.FormatString = "n2"
+        Me.CSettlementYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementYEN.EditFormat.FormatString = "n2"
+        Me.CSettlementYEN.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementYEN.Mask.EditMask = "n2"
+        Me.CSettlementYEN.Name = "CSettlementYEN"
+        '
         'AdvanceIDR
         '
         Me.AdvanceIDR.Caption = "Advance IDR"
@@ -2942,11 +2999,12 @@ Partial Class FrmTravelSettleDetail
         Me.AdvanceIDR.FieldName = "AdvanceIDR"
         Me.AdvanceIDR.MinWidth = 25
         Me.AdvanceIDR.Name = "AdvanceIDR"
+        Me.AdvanceIDR.OptionsColumn.AllowEdit = False
         Me.AdvanceIDR.OptionsColumn.FixedWidth = True
         Me.AdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
         Me.AdvanceIDR.Visible = True
-        Me.AdvanceIDR.VisibleIndex = 7
-        Me.AdvanceIDR.Width = 250
+        Me.AdvanceIDR.VisibleIndex = 9
+        Me.AdvanceIDR.Width = 150
         '
         'CAdvanceIDR
         '
@@ -2958,6 +3016,69 @@ Partial Class FrmTravelSettleDetail
         Me.CAdvanceIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CAdvanceIDR.Mask.EditMask = "n2"
         Me.CAdvanceIDR.Name = "CAdvanceIDR"
+        '
+        'SettlementIDR
+        '
+        Me.SettlementIDR.Caption = "Settlement IDR"
+        Me.SettlementIDR.ColumnEdit = Me.CSettlementIDR
+        Me.SettlementIDR.FieldName = "SettlementIDR"
+        Me.SettlementIDR.MinWidth = 25
+        Me.SettlementIDR.Name = "SettlementIDR"
+        Me.SettlementIDR.OptionsColumn.FixedWidth = True
+        Me.SettlementIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SettlementIDR", "{0:#,##0.#0}")})
+        Me.SettlementIDR.Visible = True
+        Me.SettlementIDR.VisibleIndex = 10
+        Me.SettlementIDR.Width = 150
+        '
+        'CSettlementIDR
+        '
+        Me.CSettlementIDR.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CSettlementIDR.AutoHeight = False
+        Me.CSettlementIDR.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CSettlementIDR.DisplayFormat.FormatString = "n2"
+        Me.CSettlementIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementIDR.EditFormat.FormatString = "n2"
+        Me.CSettlementIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CSettlementIDR.Mask.EditMask = "n2"
+        Me.CSettlementIDR.Name = "CSettlementIDR"
+        '
+        'RateAllowanceUSD
+        '
+        Me.RateAllowanceUSD.Caption = "Rate Allowance USD"
+        Me.RateAllowanceUSD.FieldName = "RateAllowanceUSD"
+        Me.RateAllowanceUSD.MinWidth = 25
+        Me.RateAllowanceUSD.Name = "RateAllowanceUSD"
+        Me.RateAllowanceUSD.Width = 150
+        '
+        'RateAllowanceIDR
+        '
+        Me.RateAllowanceIDR.Caption = "Rate Allowance IDR"
+        Me.RateAllowanceIDR.DisplayFormat.FormatString = "n2"
+        Me.RateAllowanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RateAllowanceIDR.FieldName = "RateAllowanceIDR"
+        Me.RateAllowanceIDR.MinWidth = 25
+        Me.RateAllowanceIDR.Name = "RateAllowanceIDR"
+        Me.RateAllowanceIDR.OptionsColumn.AllowEdit = False
+        Me.RateAllowanceIDR.OptionsColumn.FixedWidth = True
+        Me.RateAllowanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateAllowanceIDR", "{0:#,##0.#0}")})
+        Me.RateAllowanceIDR.Visible = True
+        Me.RateAllowanceIDR.VisibleIndex = 11
+        Me.RateAllowanceIDR.Width = 150
+        '
+        'TotalAllowanceIDR
+        '
+        Me.TotalAllowanceIDR.Caption = "Total Allowance IDR"
+        Me.TotalAllowanceIDR.DisplayFormat.FormatString = "n2"
+        Me.TotalAllowanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TotalAllowanceIDR.FieldName = "TotalAllowanceIDR"
+        Me.TotalAllowanceIDR.MinWidth = 25
+        Me.TotalAllowanceIDR.Name = "TotalAllowanceIDR"
+        Me.TotalAllowanceIDR.OptionsColumn.AllowEdit = False
+        Me.TotalAllowanceIDR.OptionsColumn.FixedWidth = True
+        Me.TotalAllowanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAllowanceIDR", "{0:#,##0.#0}")})
+        Me.TotalAllowanceIDR.Visible = True
+        Me.TotalAllowanceIDR.VisibleIndex = 12
+        Me.TotalAllowanceIDR.Width = 150
         '
         'GroupBox16
         '
@@ -3237,7 +3358,7 @@ Partial Class FrmTravelSettleDetail
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 104)
+        Me.Label4.Location = New System.Drawing.Point(10, 103)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 17)
         Me.Label4.TabIndex = 29
@@ -3250,13 +3371,41 @@ Partial Class FrmTravelSettleDetail
         Me.txtTravelType.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTravelType.Name = "txtTravelType"
         Me.txtTravelType.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtTravelType.Size = New System.Drawing.Size(44, 22)
+        Me.txtTravelType.Size = New System.Drawing.Size(69, 22)
         Me.txtTravelType.TabIndex = 28
+        '
+        'TxtDep
+        '
+        Me.TxtDep.Enabled = False
+        Me.TxtDep.Location = New System.Drawing.Point(762, 55)
+        Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtDep.Name = "TxtDep"
+        Me.TxtDep.Size = New System.Drawing.Size(56, 22)
+        Me.TxtDep.TabIndex = 3
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(687, 57)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 17)
+        Me.Label5.TabIndex = 31
+        Me.Label5.Text = "Dept ID"
+        '
+        'txtPRNo
+        '
+        Me.txtPRNo.Location = New System.Drawing.Point(557, 55)
+        Me.txtPRNo.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPRNo.Name = "txtPRNo"
+        Me.txtPRNo.Size = New System.Drawing.Size(110, 22)
+        Me.txtPRNo.TabIndex = 30
         '
         'FrmTravelSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1924, 700)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.txtPRNo)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTravelType)
         Me.Controls.Add(Me.XtraTabControl1)
@@ -3274,20 +3423,20 @@ Partial Class FrmTravelSettleDetail
         Me.Controls.Add(Me.txtTravelSettID)
         Me.Controls.Add(Me.TxtTgl)
         Me.Controls.Add(Me.TxtNama)
-        Me.Controls.Add(Me.TxtDep)
         Me.Controls.Add(Me.TxtTerm)
         Me.Controls.Add(Me.txtPurpose)
         Me.Controls.Add(Me.txtTotalDay)
         Me.Controls.Add(Me.TxtDepDate)
         Me.Controls.Add(Me.TxtArrDate)
+        Me.Controls.Add(Me.TxtDep)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTravelSettleDetail"
+        Me.Controls.SetChildIndex(Me.TxtDep, 0)
         Me.Controls.SetChildIndex(Me.TxtArrDate, 0)
         Me.Controls.SetChildIndex(Me.TxtDepDate, 0)
         Me.Controls.SetChildIndex(Me.txtTotalDay, 0)
         Me.Controls.SetChildIndex(Me.txtPurpose, 0)
         Me.Controls.SetChildIndex(Me.TxtTerm, 0)
-        Me.Controls.SetChildIndex(Me.TxtDep, 0)
         Me.Controls.SetChildIndex(Me.TxtNama, 0)
         Me.Controls.SetChildIndex(Me.TxtTgl, 0)
         Me.Controls.SetChildIndex(Me.txtTravelSettID, 0)
@@ -3305,6 +3454,8 @@ Partial Class FrmTravelSettleDetail
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         Me.Controls.SetChildIndex(Me.txtTravelType, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
+        Me.Controls.SetChildIndex(Me.txtPRNo, 0)
+        Me.Controls.SetChildIndex(Me.Label5, 0)
         CType(Me.RepDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAccountTicket, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3345,7 +3496,6 @@ Partial Class FrmTravelSettleDetail
         CType(Me.TxtDepDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDepDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelSettID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridTransport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewTransport, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3431,8 +3581,11 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CArrivalDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAdvanceUSD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CSettlementUSD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAdvanceYEN, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CSettlementYEN, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAdvanceIDR, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CSettlementIDR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox16.ResumeLayout(False)
         CType(Me.GridSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewSumBalance, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3441,6 +3594,8 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CReturnBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3450,7 +3605,6 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents TxtTotalAdvanceIDR As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtTotalAdvanceUSD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtTerm As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtDep As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents txtPurpose As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtTgl As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TxtDepDate As DevExpress.XtraEditors.DateEdit
@@ -3699,4 +3853,16 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RateAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtDep As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtPRNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SettlementUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SettlementYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SettlementIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CSettlementUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CSettlementYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CSettlementIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RateAllowanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotalAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

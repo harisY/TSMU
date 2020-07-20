@@ -47,7 +47,7 @@ Public Class FrmTravelerDetail
     End Sub
 
     Private Sub FrmTravelerDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
     End Sub
 

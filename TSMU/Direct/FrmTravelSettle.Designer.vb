@@ -35,6 +35,7 @@ Partial Class FrmTravelSettle
         Me.btnProses = New DevExpress.XtraEditors.SimpleButton()
         Me.GridRequest = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.NoVoucher = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Nama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,7 +47,6 @@ Partial Class FrmTravelSettle
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NoVoucher = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageSett.SuspendLayout()
@@ -131,7 +131,7 @@ Partial Class FrmTravelSettle
         '
         'TravelerName
         '
-        Me.TravelerName.Caption = "Nama"
+        Me.TravelerName.Caption = "Name"
         Me.TravelerName.FieldName = "Nama"
         Me.TravelerName.MinWidth = 27
         Me.TravelerName.Name = "TravelerName"
@@ -218,6 +218,17 @@ Partial Class FrmTravelSettle
         Me.GridViewRequest.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.GridViewRequest.OptionsView.ShowGroupPanel = False
         '
+        'NoVoucher
+        '
+        Me.NoVoucher.Caption = "No Voucher"
+        Me.NoVoucher.FieldName = "NoVoucher"
+        Me.NoVoucher.MinWidth = 25
+        Me.NoVoucher.Name = "NoVoucher"
+        Me.NoVoucher.OptionsColumn.FixedWidth = True
+        Me.NoVoucher.Visible = True
+        Me.NoVoucher.VisibleIndex = 1
+        Me.NoVoucher.Width = 130
+        '
         'NoRequest
         '
         Me.NoRequest.Caption = "No Request"
@@ -231,7 +242,7 @@ Partial Class FrmTravelSettle
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -275,6 +286,8 @@ Partial Class FrmTravelSettle
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Departure Date"
+        Me.GridColumn21.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn21.FieldName = "DepartureDate"
         Me.GridColumn21.MinWidth = 25
         Me.GridColumn21.Name = "GridColumn21"
@@ -286,6 +299,8 @@ Partial Class FrmTravelSettle
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Arrival Date"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn22.FieldName = "ArrivalDate"
         Me.GridColumn22.MinWidth = 25
         Me.GridColumn22.Name = "GridColumn22"
@@ -308,6 +323,8 @@ Partial Class FrmTravelSettle
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Advance IDR"
+        Me.GridColumn9.DisplayFormat.FormatString = "n2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "AdvanceIDR"
         Me.GridColumn9.MinWidth = 25
         Me.GridColumn9.Name = "GridColumn9"
@@ -319,6 +336,8 @@ Partial Class FrmTravelSettle
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Advance USD"
+        Me.GridColumn7.DisplayFormat.FormatString = "n2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "AdvanceUSD"
         Me.GridColumn7.MinWidth = 25
         Me.GridColumn7.Name = "GridColumn7"
@@ -330,6 +349,8 @@ Partial Class FrmTravelSettle
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Advance YEN"
+        Me.GridColumn8.DisplayFormat.FormatString = "n2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "AdvanceYEN"
         Me.GridColumn8.MinWidth = 25
         Me.GridColumn8.Name = "GridColumn8"
@@ -337,17 +358,6 @@ Partial Class FrmTravelSettle
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 130
-        '
-        'NoVoucher
-        '
-        Me.NoVoucher.Caption = "No Voucher"
-        Me.NoVoucher.FieldName = "NoVoucher"
-        Me.NoVoucher.MinWidth = 25
-        Me.NoVoucher.Name = "NoVoucher"
-        Me.NoVoucher.OptionsColumn.FixedWidth = True
-        Me.NoVoucher.Visible = True
-        Me.NoVoucher.VisibleIndex = 1
-        Me.NoVoucher.Width = 130
         '
         'FrmTravelSettle
         '

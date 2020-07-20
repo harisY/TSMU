@@ -46,9 +46,7 @@ Public Class FrmTravelCreditCardDetail
     End Sub
 
     Private Sub FrmTravelCreditCardDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
         Mati()
-        'Call InitialSetForm()
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
@@ -88,7 +86,7 @@ Public Class FrmTravelCreditCardDetail
         Hidup()
         Try
             If fs_Code <> "" Then
-                Call Proc_EnableButtons(True, True, True, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(True, True, True, True, False, False, False, True, False, False, False)
                 With cls_Creditcard
                     txtCreditCardID.Text = .CreditCardID
                     txtCreditCardNumber.Text = .CreditCardNumber
@@ -99,7 +97,7 @@ Public Class FrmTravelCreditCardDetail
                     txtCreditCardNumber.Focus()
                 End With
             Else
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
                 txtCreditCardID.Text = ""
                 txtCreditCardNumber.Text = ""
                 txtAccountName.Text = ""
@@ -117,7 +115,6 @@ Public Class FrmTravelCreditCardDetail
         Try
             dtGrid = cls_Creditcard.GetAllDataTable(bs_Filter)
             GridCreditCard.DataSource = dtGrid
-            'GridCellFormat(GridViewCreditCard)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -174,7 +171,7 @@ Public Class FrmTravelCreditCardDetail
             Else
                 cls_Creditcard.CreditCardID = txtCreditCardID.Text
                 cls_Creditcard.UpdateData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
             End If
             tsBtn_refresh.PerformClick()
         Catch ex As Exception
@@ -187,8 +184,8 @@ Public Class FrmTravelCreditCardDetail
         Try
             cls_Creditcard.CreditCardID = txtCreditCardID.Text
             cls_Creditcard.DeleteData()
-
             tsBtn_refresh.PerformClick()
+            Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -196,8 +193,8 @@ Public Class FrmTravelCreditCardDetail
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        Mati()
         Bersih()
+        Mati()
     End Sub
 
     Private Sub GridCreditCard_DoubleClick(sender As Object, e As EventArgs) Handles GridCreditCard.DoubleClick
@@ -212,9 +209,6 @@ Public Class FrmTravelCreditCardDetail
             Next rowHandle
 
             If GridViewCreditCard.GetSelectedRows.Length > 0 Then
-                'Dim objGrid As DataGridView = sender
-                'Call CallFrm(CreditCardID,
-                '         GridViewCreditCard.RowCount)
                 fs_Code = CreditCardID
                 InitialSetForm()
             End If
@@ -233,7 +227,7 @@ Public Class FrmTravelCreditCardDetail
     End Sub
 
     Private Sub Mati()
-        Call Proc_EnableButtons(True, False, False, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, False, True, False, False, False, False)
         Call LoadGrid()
         txtCreditCardNumber.Enabled = False
         txtAccountName.Enabled = False
@@ -248,8 +242,8 @@ Public Class FrmTravelCreditCardDetail
         txtCreditCardNumber.Text = ""
         txtAccountName.Text = ""
         txtBankName.Text = ""
-        txtType.Text = "VISA"
-        dtExpDate.EditValue = Date.Today
+        txtType.Text = ""
+        dtExpDate.EditValue = Nothing
     End Sub
 
 End Class

@@ -24,7 +24,7 @@ Public Class FrmTravelSettle
             cls_SettHeader = New TravelSettleHeaderModel
             dtGrid = cls_SettHeader.GetDataGridRequest()
             GridRequest.DataSource = dtGrid
-            GridCellFormat(GridViewRequest)
+            'GridCellFormat(GridViewRequest)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -107,7 +107,7 @@ Public Class FrmTravelSettle
                 End If
 
                 cls_SettHeader.DeleteDataTravelSettle()
-
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
             Next rowHandle
 
@@ -183,4 +183,5 @@ Public Class FrmTravelSettle
                                 MessageBoxDefaultButton.Button1)
         End If
     End Sub
+
 End Class
