@@ -15712,6 +15712,12 @@ Partial Public Class dsLaporan
         
         Private columnTotal As Global.System.Data.DataColumn
         
+        Private columnUserSubmitionDate As Global.System.Data.DataColumn
+        
+        Private columnDeptHead_Approve_Date As Global.System.Data.DataColumn
+        
+        Private columnDivHead_Approve_Date As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -15956,6 +15962,30 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property UserSubmitionDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUserSubmitionDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DeptHead_Approve_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeptHead_Approve_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHead_Approve_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHead_Approve_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16018,9 +16048,12 @@ Partial Public Class dsLaporan
                     ByVal NameItem As String,  _
                     ByVal PoType As Boolean,  _
                     ByVal H_Spesification As String,  _
-                    ByVal Total As Double) As CirculationHeadRow
+                    ByVal Total As Double,  _
+                    ByVal UserSubmitionDate As Date,  _
+                    ByVal DeptHead_Approve_Date As Date,  _
+                    ByVal DivHead_Approve_Date As Date) As CirculationHeadRow
             Dim rowCirculationHeadRow As CirculationHeadRow = CType(Me.NewRow,CirculationHeadRow)
-            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DeptHead_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total}
+            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DeptHead_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total, UserSubmitionDate, DeptHead_Approve_Date, DivHead_Approve_Date}
             rowCirculationHeadRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCirculationHeadRow)
             Return rowCirculationHeadRow
@@ -16069,6 +16102,9 @@ Partial Public Class dsLaporan
             Me.columnPoType = MyBase.Columns("PoType")
             Me.columnH_Spesification = MyBase.Columns("H_Spesification")
             Me.columnTotal = MyBase.Columns("Total")
+            Me.columnUserSubmitionDate = MyBase.Columns("UserSubmitionDate")
+            Me.columnDeptHead_Approve_Date = MyBase.Columns("DeptHead_Approve_Date")
+            Me.columnDivHead_Approve_Date = MyBase.Columns("DivHead_Approve_Date")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16126,6 +16162,12 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnH_Spesification)
             Me.columnTotal = New Global.System.Data.DataColumn("Total", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotal)
+            Me.columnUserSubmitionDate = New Global.System.Data.DataColumn("UserSubmitionDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUserSubmitionDate)
+            Me.columnDeptHead_Approve_Date = New Global.System.Data.DataColumn("DeptHead_Approve_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHead_Approve_Date)
+            Me.columnDivHead_Approve_Date = New Global.System.Data.DataColumn("DivHead_Approve_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHead_Approve_Date)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16848,7 +16890,11 @@ Partial Public Class dsLaporan
     Partial Public Class _CirculationTotalDOCDataTable
         Inherits Global.System.Data.TypedTableBase(Of _CirculationTotalDOCRow)
         
-        Private columnTotal As Global.System.Data.DataColumn
+        Private columnCurrency As Global.System.Data.DataColumn
+        
+        Private columnAmount As Global.System.Data.DataColumn
+        
+        Private columnRate As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -16887,9 +16933,25 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property TotalColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property CurrencyColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTotal
+                Return Me.columnCurrency
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AmountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAmount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property RateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRate
             End Get
         End Property
         
@@ -16930,9 +16992,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function Add_CirculationTotalDOCRow(ByVal Total As Double) As _CirculationTotalDOCRow
+        Public Overloads Function Add_CirculationTotalDOCRow(ByVal Currency As String, ByVal Amount As Decimal, ByVal Rate As Decimal) As _CirculationTotalDOCRow
             Dim row_CirculationTotalDOCRow As _CirculationTotalDOCRow = CType(Me.NewRow,_CirculationTotalDOCRow)
-            Dim columnValuesArray() As Object = New Object() {Total}
+            Dim columnValuesArray() As Object = New Object() {Currency, Amount, Rate}
             row_CirculationTotalDOCRow.ItemArray = columnValuesArray
             Me.Rows.Add(row_CirculationTotalDOCRow)
             Return row_CirculationTotalDOCRow
@@ -16955,14 +17017,20 @@ Partial Public Class dsLaporan
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnTotal = MyBase.Columns("Total")
+            Me.columnCurrency = MyBase.Columns("Currency")
+            Me.columnAmount = MyBase.Columns("Amount")
+            Me.columnRate = MyBase.Columns("Rate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnTotal = New Global.System.Data.DataColumn("Total", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTotal)
+            Me.columnCurrency = New Global.System.Data.DataColumn("Currency", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCurrency)
+            Me.columnAmount = New Global.System.Data.DataColumn("Amount", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAmount)
+            Me.columnRate = New Global.System.Data.DataColumn("Rate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRate)
             Me.ExtendedProperties.Add("Generator_RowClassName", "_CirculationTotalDOCRow")
             Me.ExtendedProperties.Add("Generator_RowEvArgName", "_CirculationTotalDOCRowChangeEvent")
             Me.ExtendedProperties.Add("Generator_RowEvHandlerName", "_CirculationTotalDOCRowChangeEventHandler")
@@ -33275,6 +33343,53 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property UserSubmitionDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationHead.UserSubmitionDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UserSubmitionDate' in table 'CirculationHead' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationHead.UserSubmitionDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DeptHead_Approve_Date() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHead_Approve_Date' in table 'CirculationHead' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHead_Approve_Date() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationHead.DivHead_Approve_DateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHead_Approve_Date' in table 'CirculationHead' is DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationHead.DivHead_Approve_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCirculationNoNull() As Boolean
             Return Me.IsNull(Me.tableCirculationHead.CirculationNoColumn)
         End Function
@@ -33584,6 +33699,42 @@ Partial Public Class dsLaporan
         Public Sub SetTotalNull()
             Me(Me.tableCirculationHead.TotalColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsUserSubmitionDateNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.UserSubmitionDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetUserSubmitionDateNull()
+            Me(Me.tableCirculationHead.UserSubmitionDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDeptHead_Approve_DateNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DeptHead_Approve_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDeptHead_Approve_DateNull()
+            Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHead_Approve_DateNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DivHead_Approve_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHead_Approve_DateNull()
+            Me(Me.tableCirculationHead.DivHead_Approve_DateColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -33851,29 +34002,83 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Total() As Double
+        Public Property Currency() As String
             Get
                 Try 
-                    Return CType(Me(Me._tableCirculationTotalDOC.TotalColumn),Double)
+                    Return CType(Me(Me._tableCirculationTotalDOC.CurrencyColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Total' in table 'CirculationTotalDOC' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Currency' in table 'CirculationTotalDOC' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me._tableCirculationTotalDOC.TotalColumn) = value
+                Me(Me._tableCirculationTotalDOC.CurrencyColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsTotalNull() As Boolean
-            Return Me.IsNull(Me._tableCirculationTotalDOC.TotalColumn)
+        Public Property Amount() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me._tableCirculationTotalDOC.AmountColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Amount' in table 'CirculationTotalDOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tableCirculationTotalDOC.AmountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Rate() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me._tableCirculationTotalDOC.RateColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Rate' in table 'CirculationTotalDOC' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tableCirculationTotalDOC.RateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCurrencyNull() As Boolean
+            Return Me.IsNull(Me._tableCirculationTotalDOC.CurrencyColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetTotalNull()
-            Me(Me._tableCirculationTotalDOC.TotalColumn) = Global.System.Convert.DBNull
+        Public Sub SetCurrencyNull()
+            Me(Me._tableCirculationTotalDOC.CurrencyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAmountNull() As Boolean
+            Return Me.IsNull(Me._tableCirculationTotalDOC.AmountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAmountNull()
+            Me(Me._tableCirculationTotalDOC.AmountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsRateNull() As Boolean
+            Return Me.IsNull(Me._tableCirculationTotalDOC.RateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetRateNull()
+            Me(Me._tableCirculationTotalDOC.RateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
