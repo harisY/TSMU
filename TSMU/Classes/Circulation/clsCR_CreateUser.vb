@@ -1247,6 +1247,9 @@ Public Class ClsCR_CreateUser
                   ,[CR_Request].[CreatedBy]
                   ,[CR_Request].[NameItem]
                   ,[CR_Request].[PoType]
+                  ,[CR_Request].[UserSubmitionDate]
+                  ,[CR_Request].[DeptHead_Approve_Date]
+                  ,[CR_Request].[DivHead_Approve_Date]
                   ,[CR_Request].[Spesification] as H_Spesification
                   ,[CR_Request].[RequirementDate]
                   ,[CR_Description_Of_Cost].[Name_Of_Goods]
@@ -1275,10 +1278,12 @@ Public Class ClsCR_CreateUser
 
     Public Function RptCirculationTotalDOC(No As String) As DataSet
         Dim query As String
-        query = "SELECT Sum ([CR_Description_Of_Cost].[Amount_IDR]) as Total                 
-                From [CR_Request] inner join CR_Description_Of_Cost 
-                on [CR_Request].[CirculationNo] = [CR_Description_Of_Cost].[CirculationNo]
-	            Where [CR_Request].[CirculationNo] = '" & No & "'"
+        query = "SELECT Currency, 
+                    SUM (Amount) as Amount
+                    ,Rate
+                 FROM CR_Description_Of_Cost 
+                    where CirculationNo='" & No & "'
+                 GROUP BY Currency,rate"
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "CirculationTotalDOC")

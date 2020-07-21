@@ -180,7 +180,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(26) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(27) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -206,6 +206,7 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Cek", GetType(String)),
                                                            New DataColumn("Note", GetType(String)),
                                                            New DataColumn("Seq", GetType(Integer)),
+                                                           New DataColumn("Commit NPD", GetType(Boolean)),
                                                            New DataColumn("Capability Date", GetType(Date))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
