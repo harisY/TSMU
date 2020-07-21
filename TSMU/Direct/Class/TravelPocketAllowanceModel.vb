@@ -1,6 +1,8 @@
 ﻿Public Class TravelPocketAllowanceModel
     Public Property TravelType As String
-    Public Property Golongan As String
+    Public Property Golongan As Integer
+    Public Property NamaNegara As String
+    Public Property DescGolongan As String
     Public Property CurryID As String
     Public Property AmountAllowance As String
     Public Property AmountFirstTravel As String
@@ -11,6 +13,8 @@
         Try
             strQuery = "SELECT  TravelType ,
                                 Golongan ,
+                                NamaNegara ,
+                                DescGolongan ,
                                 CuryID ,
                                 Amount ,
                                 FirstTravel
@@ -27,18 +31,23 @@
         Try
             strQuery = "SELECT  TravelType ,
                                 Golongan ,
+                                NamaNegara ,
+                                DescGolongan ,
                                 CuryID ,
                                 Amount ,
                                 FirstTravel
                         FROM    dbo.TravelPocketAllowance
                         WHERE   TravelType = " & QVal(TravelType) & "
                                 AND Golongan = " & Golongan & "
+                                AND NamaNegara = " & QVal(NamaNegara) & "
                                 AND CuryID = " & QVal(CurryID) & ""
             Dim dtTable As New DataTable
             dtTable = GetDataTable(strQuery)
             If dtTable.Rows.Count > 0 Then
                 TravelType = If(IsDBNull(dtTable.Rows(0).Item("TravelType")), "", dtTable.Rows(0).Item("TravelType").ToString())
                 Golongan = If(IsDBNull(dtTable.Rows(0).Item("Golongan")), "", dtTable.Rows(0).Item("Golongan"))
+                NamaNegara = If(IsDBNull(dtTable.Rows(0).Item("NamaNegara")), "", dtTable.Rows(0).Item("NamaNegara").ToString())
+                DescGolongan = If(IsDBNull(dtTable.Rows(0).Item("DescGolongan")), "", dtTable.Rows(0).Item("DescGolongan").ToString())
                 CurryID = If(IsDBNull(dtTable.Rows(0).Item("CuryID")), "", dtTable.Rows(0).Item("CuryID").ToString())
                 AmountAllowance = If(IsDBNull(dtTable.Rows(0).Item("Amount")), "", dtTable.Rows(0).Item("Amount"))
                 AmountFirstTravel = If(IsDBNull(dtTable.Rows(0).Item("FirstTravel")), "", dtTable.Rows(0).Item("FirstTravel"))
@@ -48,17 +57,18 @@
         End Try
     End Sub
 
-    Public Function CheckValidasi(ByVal travelType__ As String, ByVal golongan__ As Integer) As Boolean
+    Public Function CheckValidasi(ByVal travelType__ As String, ByVal golongan__ As Integer, ByVal negara__ As String) As Boolean
         Dim value As Boolean = True
         Try
             strQuery = "SELECT  *
                         FROM    dbo.TravelPocketAllowance
                         WHERE   TravelType = " & QVal(travelType__) & "
-                                AND Golongan = " & golongan__ & ""
+                                AND Golongan = " & golongan__ & "
+                                AND NamaNegara = " & QVal(negara__) & ""
             Dim dtTable As New DataTable
             dtTable = GetDataTable(strQuery)
             If dtTable.Rows.Count > 0 Then
-                Err.Raise(ErrNumber, , "Data Travel Type " & QVal(travelType__) & " & Golongan " & QVal(golongan__) & " sudah ada !")
+                Err.Raise(ErrNumber, , "Data Travel Type " & QVal(travelType__) & ", Golongan " & QVal(golongan__) & " & Negara " & QVal(negara__) & " sudah ada !")
                 value = False
             End If
         Catch ex As Exception
@@ -80,7 +90,9 @@
                         strQuery = "INSERT  INTO dbo.TravelPocketAllowance
                                             ( TravelType ,
                                               Golongan ,
+                                              NamaNegara ,
                                               CuryID ,
+                                              DescGolongan ,
                                               Amount ,
                                               FirstTravel ,
                                               CreatedBy ,
@@ -90,7 +102,9 @@
                                             )
                                     VALUES  ( " & QVal(TravelType) & " , -- TravelType - varchar(15)
                                               " & Golongan & " , -- Golongan - int
+                                              " & QVal(NamaNegara) & " , -- NamaNegara - varchar(20)
                                               " & QVal(CurryID) & " , -- CuryID - varchar(5)
+                                              " & QVal(DescGolongan) & " , -- DescGolongan - varchar(20)
                                               " & AmountAllowance & " , -- Amount - float
                                               " & AmountFirstTravel & " , -- FirstTravel - float
                                               " & QVal(gh_Common.Username) & " , -- CreatedBy - varchar(20)
@@ -131,7 +145,8 @@
                                             UpdatedBy = " & QVal(gh_Common.Username) & " ,
                                             UpdatedDate = GETDATE()
                                     WHERE   TravelType = " & QVal(TravelType) & "
-                                            AND Golongan = " & Golongan & ""
+                                            AND Golongan = " & Golongan & "
+                                            AND NamaNegara = " & QVal(NamaNegara) & ""
                         ExecQuery(strQuery)
 
                         Trans1.Commit()
@@ -159,7 +174,8 @@
                     Try
                         strQuery = "DELETE  FROM dbo.TravelPocketAllowance
                                     WHERE   TravelType = " & QVal(TravelType) & "
-                                            AND Golongan = " & Golongan & ""
+                                            AND Golongan = " & Golongan & "
+                                            AND NamaNegara = " & QVal(NamaNegara) & ""
                         ExecQuery(strQuery)
 
                         Trans1.Commit()
@@ -175,5 +191,29 @@
             Throw ex
         End Try
     End Sub
+
+    Public Function GetListNegara() As DataTable
+        Try
+            strQuery = "SELECT  NamaNegara
+                        FROM    dbo.TravelNegara"
+            Dim dtTable As New DataTable
+            dtTable = GetDataTable(strQuery)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetListGolongan() As DataTable
+        Try
+            strQuery = "SELECT  *
+                        FROM    dbo.TravelGolongan"
+            Dim dtTable As New DataTable
+            dtTable = GetDataTable(strQuery)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
 End Class

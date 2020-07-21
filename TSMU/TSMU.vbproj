@@ -2944,6 +2944,7 @@
     <EmbeddedResource Include="Form\System\SplashWait.resx">
       <DependentUpon>SplashWait.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="obj\Debug\TSMU.baseForm.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.CustomMsgBox.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.DXReport_UploadToSolomon.resources" />
@@ -3700,7 +3701,6 @@
     <EmbeddedResource Include="Form\System\MenuUtamaForm.resx">
       <DependentUpon>MenuUtamaForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

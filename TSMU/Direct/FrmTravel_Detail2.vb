@@ -222,7 +222,7 @@ Public Class FrmTravel_Detail2
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
             End If
 
-            Dim dt As DataTable
+            Dim dt As New DataTable
             'dt = ObjTravelSettHeader.GetTravelSettHeaderByTravelID(TxtNoTravel.Text)
             Dim ada As Integer
             ada = dt.Rows.Count()

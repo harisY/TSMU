@@ -15,7 +15,6 @@ Public Class FrmTravelEntertainDetail
 
     Dim cls_EntertainHeader As New TravelEntertainModel
     Dim cls_EntertainDetail As New TravelEntertainDetailModel
-    'Dim cls_EntertainRelasi As New EntertainDetailModel
     Dim DtScan As DataTable
     Dim DtScan1 As DataTable
     Dim _SettleID As String = ""

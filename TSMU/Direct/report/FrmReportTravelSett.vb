@@ -112,9 +112,7 @@
         dtExpenseSum.Clear()
         dtExpenseSum.Rows.Add("", "", ExpenseUSD, ExpenseYEN, ExpenseIDR)
 
-        If FilteredRows.Count > 0 Then
-            laporan.Subreports("CRTravelTotalSuspenseSettRight.rpt").SetDataSource(dtExpenseSum)
-        End If
+        laporan.Subreports("CRTravelTotalSuspenseSettRight.rpt").SetDataSource(dtExpenseSum)
 
         dtHeader = report.LoadReportSettleHeader()
         dtHeader.Rows(0)("TotalAdvanceUSD") = dtHeader.Rows(0)("TotalAdvanceUSD") + TicketUSD

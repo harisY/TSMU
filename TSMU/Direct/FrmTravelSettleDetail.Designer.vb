@@ -3315,6 +3315,7 @@ Partial Class FrmTravelSettleDetail
         '
         'CReturnBalance
         '
+        Me.CReturnBalance.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.CReturnBalance.AutoHeight = False
         Me.CReturnBalance.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CReturnBalance.DisplayFormat.FormatString = "n2"
@@ -3397,6 +3398,7 @@ Partial Class FrmTravelSettleDetail
         Me.txtPRNo.Location = New System.Drawing.Point(557, 55)
         Me.txtPRNo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPRNo.Name = "txtPRNo"
+        Me.txtPRNo.Properties.MaxLength = 15
         Me.txtPRNo.Size = New System.Drawing.Size(110, 22)
         Me.txtPRNo.TabIndex = 30
         '

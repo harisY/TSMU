@@ -138,21 +138,20 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub EntertainID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CEntertainIDEntertain.ButtonClick
-        Dim id As String = String.Empty
-        Dim id2 As String = String.Empty
+        Dim entertainID As String = String.Empty
 
         Dim selectedRows() As Integer = GridViewEntertain.GetSelectedRows()
         For Each rowHandle As Integer In selectedRows
             If rowHandle >= 0 Then
                 row = rowHandle
-                id = IIf(GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID"))
-                If id <> "" Then
-                    'id2 = ObjTravelSettDetail.GetSettleID(id)
-                End If
+                entertainID = IIf(GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(rowHandle, "EntertainID"))
+                'If entertainID <> "" Then
+                '    'id2 = ObjTravelSettDetail.GetSettleID(id)
+                'End If
             End If
         Next rowHandle
 
-        Call CallFrm(id2, id, row)
+        Call CallFrm(entertainID, entertainID, row)
         flag = 1
     End Sub
 
@@ -163,6 +162,7 @@ Public Class FrmTravelSettleDetail
                 With cls_TravelSett
                     txtTravelSettID.Text = .TravelSettleID
                     TxtTgl.EditValue = .DateHeader
+                    txtPRNo.Text = .NoPR
                     TxtDep.Text = .DeptID
                     TxtNama.Text = .Nama
                     txtPurpose.Text = .Purpose
@@ -352,6 +352,7 @@ Public Class FrmTravelSettleDetail
                 With cls_TravelSett
                     .TravelSettleID = txtTravelSettID.Text
                     .DateHeader = TxtTgl.EditValue
+                    .NoPR = txtPRNo.Text
                     .DeptID = TxtDep.Text
                     .Nama = TxtNama.Text
                     .Destination = ""
