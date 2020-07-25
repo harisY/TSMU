@@ -1287,6 +1287,18 @@
     <Compile Include="Form\Common\frmJogres.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmDRR.Designer.vb">
+      <DependentUpon>frmDRR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmDRR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmDRR_details.Designer.vb">
+      <DependentUpon>frmDRR_details.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmDRR_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -2013,6 +2025,7 @@
     <Compile Include="Form\System\SplashWait.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Helpers\DragDropHelper.vb" />
     <Compile Include="Menu\ActionType.vb" />
     <Compile Include="Menu\FormTypes.vb" />
     <Compile Include="Menu\IUserInterface.vb" />
@@ -2054,6 +2067,8 @@
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\DRRDetail.vb" />
+    <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
@@ -2386,6 +2401,7 @@
     <Compile Include="Report\Testing.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\DRRService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -2775,6 +2791,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmDRR.resx">
+      <DependentUpon>frmDRR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmDRR_details.resx">
+      <DependentUpon>frmDRR_details.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>

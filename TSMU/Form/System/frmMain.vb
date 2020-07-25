@@ -167,7 +167,7 @@ Partial Public Class FrmMain
     End Function
 
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        ribbon.Minimized = False
+        ribbon.Minimized = True
         'Me.MaximizeBox = False
         'HasLoad = True
         LblLogin.Caption = ""
