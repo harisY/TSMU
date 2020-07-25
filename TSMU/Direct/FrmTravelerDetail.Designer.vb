@@ -19,6 +19,7 @@ Partial Class FrmTravelerDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAddPaspor = New System.Windows.Forms.Button()
         Me.GridPaspor = New DevExpress.XtraGrid.GridControl()
@@ -42,7 +43,7 @@ Partial Class FrmTravelerDetail
         Me.GridViewVisa = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoVisa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNoVisa = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.VisaNegara = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.Entries = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CEntries = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
@@ -65,8 +66,8 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,6 +241,7 @@ Partial Class FrmTravelerDetail
         Me.CJenisKelamin.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CJenisKelamin.Items.AddRange(New Object() {"L", "P"})
         Me.CJenisKelamin.Name = "CJenisKelamin"
+        Me.CJenisKelamin.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'TanggalKeluar
         '
@@ -309,8 +311,9 @@ Partial Class FrmTravelerDetail
         '
         Me.txtGolongan.Location = New System.Drawing.Point(794, 12)
         Me.txtGolongan.Name = "txtGolongan"
-        Me.txtGolongan.Properties.Mask.EditMask = "n"
+        Me.txtGolongan.Properties.Mask.EditMask = "f0"
         Me.txtGolongan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtGolongan.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
         Me.txtGolongan.StyleController = Me.LayoutControl1
         Me.txtGolongan.TabIndex = 6
@@ -330,7 +333,7 @@ Partial Class FrmTravelerDetail
         '
         'GridViewVisa
         '
-        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.GridColumn9, Me.Entries, Me.DateIssued, Me.DateExpired})
+        Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.VisaNegara, Me.Entries, Me.DateIssued, Me.DateExpired})
         Me.GridViewVisa.GridControl = Me.GridVisa
         Me.GridViewVisa.Name = "GridViewVisa"
         Me.GridViewVisa.OptionsView.ShowGroupPanel = False
@@ -351,16 +354,16 @@ Partial Class FrmTravelerDetail
         Me.CNoVisa.AutoHeight = False
         Me.CNoVisa.Name = "CNoVisa"
         '
-        'GridColumn9
+        'VisaNegara
         '
-        Me.GridColumn9.Caption = "Negara"
-        Me.GridColumn9.ColumnEdit = Me.CNegara
-        Me.GridColumn9.FieldName = "Negara"
-        Me.GridColumn9.MinWidth = 25
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 94
+        Me.VisaNegara.Caption = "Negara"
+        Me.VisaNegara.ColumnEdit = Me.CNegara
+        Me.VisaNegara.FieldName = "Negara"
+        Me.VisaNegara.MinWidth = 25
+        Me.VisaNegara.Name = "VisaNegara"
+        Me.VisaNegara.Visible = True
+        Me.VisaNegara.VisibleIndex = 1
+        Me.VisaNegara.Width = 94
         '
         'CNegara
         '
@@ -387,6 +390,7 @@ Partial Class FrmTravelerDetail
         Me.CEntries.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CEntries.Items.AddRange(New Object() {"S", "M"})
         Me.CEntries.Name = "CEntries"
+        Me.CEntries.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'DateIssued
         '
@@ -449,6 +453,7 @@ Partial Class FrmTravelerDetail
         Me.TxtDeptID.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDeptID.Name = "TxtDeptID"
         Me.TxtDeptID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtDeptID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.TxtDeptID.Size = New System.Drawing.Size(62, 22)
         Me.TxtDeptID.StyleController = Me.LayoutControl1
         Me.TxtDeptID.TabIndex = 5
@@ -662,7 +667,7 @@ Partial Class FrmTravelerDetail
     Friend WithEvents TempatKeluar As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents VisaNegara As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents btnAddPaspor As Button
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents CJenisKelamin As DevExpress.XtraEditors.Repository.RepositoryItemComboBox

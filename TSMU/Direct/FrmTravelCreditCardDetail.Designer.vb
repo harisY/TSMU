@@ -19,6 +19,7 @@ Partial Class FrmTravelCreditCardDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.txtCreditCardID = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -30,7 +31,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.dtExpDate = New DevExpress.XtraEditors.DateEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.GridCreditCard = New DevExpress.XtraGrid.GridControl()
         Me.GridViewCreditCard = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CreditCardID = New DevExpress.XtraGrid.Columns.GridColumn()

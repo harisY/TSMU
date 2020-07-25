@@ -114,7 +114,7 @@ Public Class FrmTravel
                     ID = GridView1.GetRowCellValue(rowHandle, "TravelID")
                 End If
             Next rowHandle
-            Dim dt As DataTable
+            Dim dt As New DataTable
             'ObjTravelSett = New TravelSettlementHeaderModel
             'dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
             Dim ada As Integer

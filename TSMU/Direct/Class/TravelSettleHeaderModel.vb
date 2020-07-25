@@ -3,6 +3,7 @@
 Public Class TravelSettleHeaderModel
     Public Property TravelSettleID As String
     Public Property DateHeader As Date
+    Public Property NoPR As String
     Public Property DeptID As String
     Public Property Nama As String
     Public Property Destination As String
@@ -50,7 +51,7 @@ Public Class TravelSettleHeaderModel
                     "                                                               '0001') "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTable_Solomon(query)
+            dt = GetDataTable(query)
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
@@ -98,7 +99,7 @@ Public Class TravelSettleHeaderModel
                                 LEFT JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trh.NoRequest
                         WHERE   Status = 'OPEN'
                                 AND trc.CostType = 'C03' "
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -110,6 +111,7 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT  TravelSettleID ,
                                 Date ,
+                                NoPR ,
                                 DeptID ,
                                 Nama ,
                                 Destination ,
@@ -117,7 +119,7 @@ Public Class TravelSettleHeaderModel
                                 Term ,
                                 Pay
                         FROM    dbo.TravelSettleHeader "
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -128,6 +130,7 @@ Public Class TravelSettleHeaderModel
         Try
             strQuery = " SELECT  TravelSettleID ,
                                 Date ,
+                                NoPR ,
                                 DeptID ,
                                 Nama ,
                                 Purpose ,
@@ -151,9 +154,10 @@ Public Class TravelSettleHeaderModel
                         FROM    dbo.TravelSettleHeader
                         WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 DateHeader = If(IsDBNull(dt.Rows(0).Item("Date")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Date")))
+                NoPR = If(IsDBNull(dt.Rows(0).Item("NoPR")), "", Trim(dt.Rows(0).Item("NoPR").ToString()))
                 DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
                 Nama = If(IsDBNull(dt.Rows(0).Item("Nama")), "", Trim(dt.Rows(0).Item("Nama").ToString()))
                 Purpose = If(IsDBNull(dt.Rows(0).Item("Purpose")), "", dt.Rows(0).Item("Purpose").ToString())
@@ -182,7 +186,7 @@ Public Class TravelSettleHeaderModel
 
     Public Sub InsertDataTravelSettle()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -225,55 +229,57 @@ Public Class TravelSettleHeaderModel
 
             Dim SP_Name As String = "Travel_Insert_TravelSettleHeader"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
             pParam(1) = New SqlClient.SqlParameter("@DateHeader", SqlDbType.Date)
             pParam(1).Value = DateHeader
-            pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
-            pParam(2).Value = DeptID
-            pParam(3) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
-            pParam(3).Value = Nama
-            pParam(4) = New SqlClient.SqlParameter("@Destination", SqlDbType.VarChar)
-            pParam(4).Value = Destination
-            pParam(5) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
-            pParam(5).Value = Purpose
-            pParam(6) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
-            pParam(6).Value = TravelType
-            pParam(7) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
-            pParam(7).Value = DepartureDate
-            pParam(8) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
-            pParam(8).Value = ArrivalDate
-            pParam(9) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
-            pParam(9).Value = Term
-            pParam(10) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
-            pParam(10).Value = PickUp
-            pParam(11) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
-            pParam(11).Value = Visa
-            pParam(12) = New SqlClient.SqlParameter("@RateSalomonUSD", SqlDbType.Float)
-            pParam(12).Value = RateSalomonUSD
-            pParam(13) = New SqlClient.SqlParameter("@RateSalomonYEN", SqlDbType.Float)
-            pParam(13).Value = RateSalomonYEN
-            pParam(14) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
-            pParam(14).Value = RateUSD
-            pParam(15) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
-            pParam(15).Value = RateYEN
-            pParam(16) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
-            pParam(16).Value = TotalAdvanceIDR
-            pParam(17) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
-            pParam(17).Value = TotalAdvanceUSD
-            pParam(18) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
-            pParam(18).Value = TotalAdvanceYEN
-            pParam(19) = New SqlClient.SqlParameter("@TotalReturnIDR", SqlDbType.Float)
-            pParam(19).Value = TotalReturnIDR
-            pParam(20) = New SqlClient.SqlParameter("@TotalReturnUSD", SqlDbType.Float)
-            pParam(20).Value = TotalReturnUSD
-            pParam(21) = New SqlClient.SqlParameter("@TotalReturnYEN", SqlDbType.Float)
-            pParam(21).Value = TotalReturnYEN
-            pParam(22) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(22).Value = gh_Common.Username
+            pParam(2) = New SqlClient.SqlParameter("@NoPR", SqlDbType.VarChar)
+            pParam(2).Value = NoPR
+            pParam(3) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
+            pParam(3).Value = DeptID
+            pParam(4) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
+            pParam(4).Value = Nama
+            pParam(5) = New SqlClient.SqlParameter("@Destination", SqlDbType.VarChar)
+            pParam(5).Value = Destination
+            pParam(6) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
+            pParam(6).Value = Purpose
+            pParam(7) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
+            pParam(7).Value = TravelType
+            pParam(8) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
+            pParam(8).Value = DepartureDate
+            pParam(9) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
+            pParam(9).Value = ArrivalDate
+            pParam(10) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
+            pParam(10).Value = Term
+            pParam(11) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
+            pParam(11).Value = PickUp
+            pParam(12) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
+            pParam(12).Value = Visa
+            pParam(13) = New SqlClient.SqlParameter("@RateSalomonUSD", SqlDbType.Float)
+            pParam(13).Value = RateSalomonUSD
+            pParam(14) = New SqlClient.SqlParameter("@RateSalomonYEN", SqlDbType.Float)
+            pParam(14).Value = RateSalomonYEN
+            pParam(15) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
+            pParam(15).Value = RateUSD
+            pParam(16) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
+            pParam(16).Value = RateYEN
+            pParam(17) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
+            pParam(17).Value = TotalAdvanceIDR
+            pParam(18) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
+            pParam(18).Value = TotalAdvanceUSD
+            pParam(19) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
+            pParam(19).Value = TotalAdvanceYEN
+            pParam(20) = New SqlClient.SqlParameter("@TotalReturnIDR", SqlDbType.Float)
+            pParam(20).Value = TotalReturnIDR
+            pParam(21) = New SqlClient.SqlParameter("@TotalReturnUSD", SqlDbType.Float)
+            pParam(21).Value = TotalReturnUSD
+            pParam(22) = New SqlClient.SqlParameter("@TotalReturnYEN", SqlDbType.Float)
+            pParam(22).Value = TotalReturnYEN
+            pParam(23) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(23).Value = gh_Common.Username
 
-            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP(SP_Name, pParam)
 
         Catch ex As Exception
             Throw ex
@@ -282,7 +288,7 @@ Public Class TravelSettleHeaderModel
 
     Public Sub UpdateDataTravelSettle()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -325,7 +331,8 @@ Public Class TravelSettleHeaderModel
     Public Sub UpdateSettleHeader()
         Try
             strQuery = " UPDATE  dbo.TravelSettleHeader " & vbCrLf &
-                        " SET     RateUSD = " & QVal(RateUSD) & " , " & vbCrLf &
+                        " SET     NoPR = " & QVal(NoPR) & " , " & vbCrLf &
+                        "         RateUSD = " & QVal(RateUSD) & " , " & vbCrLf &
                         "         RateYEN = " & QVal(RateYEN) & " , " & vbCrLf &
                         "         TotalReturnUSD = " & QVal(TotalReturnUSD) & " , " & vbCrLf &
                         "         TotalReturnYEN = " & QVal(TotalReturnYEN) & " , " & vbCrLf &
@@ -333,7 +340,7 @@ Public Class TravelSettleHeaderModel
                         "         UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   TravelSettleID = '" & TravelSettleID & "' "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
@@ -341,7 +348,7 @@ Public Class TravelSettleHeaderModel
 
     Public Sub DeleteDataTravelSettle()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -381,7 +388,37 @@ Public Class TravelSettleHeaderModel
         Try
             strQuery = " DELETE  FROM dbo.TravelSettleHeader " & vbCrLf &
                        " WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateTravelSettleNoRefund()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For i As Integer = 0 To ObjSettleDetail.Count - 1
+                            With ObjSettleDetail(i)
+                                .UpdateRequest("CLOSE")
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw
         End Try
@@ -402,7 +439,7 @@ Public Class TravelSettleHeaderModel
             pParam(1) = New SqlClient.SqlParameter("@CuryID", SqlDbType.VarChar)
             pParam(1).Value = CuryID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
             If dt.Rows.Count > 0 Then
                 rate = Convert.ToDouble(dt.Rows(0).Item(1))
             End If
@@ -436,7 +473,7 @@ Public Class TravelSettleHeaderModel
                                 BankName
                         FROM    dbo.TravelCreditCard "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -450,9 +487,13 @@ Public Class TravelSettleHeaderModel
                                 trd.DepartureDate ,
                                 trd.ArrivalDate ,
                                 trc.Days ,
+                                tpa.Amount AS RateAllowanceUSD ,
                                 trc.AdvanceUSD ,
+                                trc.AdvanceUSD AS SettlementUSD ,
                                 trc.AdvanceYEN ,
-                                trc.AdvanceIDR
+                                trc.AdvanceYEN AS SettlementYEN ,
+                                trc.AdvanceIDR ,
+                                trc.AdvanceIDR AS SettlementIDR
                         FROM    dbo.TravelRequestHeader AS trh
                                 INNER JOIN ( SELECT NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
@@ -461,10 +502,28 @@ Public Class TravelSettleHeaderModel
                                              GROUP BY NoRequest
                                            ) AS trd ON trd.NoRequest = trh.NoRequest
                                 INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trd.NoRequest
+                                LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
+                                                                              AND tpa.Golongan = trh.Golongan
                         WHERE   trc.CostType = 'C02'
                                 AND trd.NoRequest IN ( " & _noRequest & " )"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetPocketAllowance(ByVal noRequest__ As String) As DataTable
+        Try
+            strQuery = "SELECT  trh.Golongan ,
+                                tpa.Amount
+                        FROM    dbo.TravelRequestHeader AS trh
+                                LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
+                                                                              AND tpa.Golongan = trh.Golongan
+                        WHERE   NoRequest = " & QVal(noRequest__) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -482,7 +541,7 @@ Public Class TravelSettleHeaderModel
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -500,7 +559,7 @@ Public Class TravelSettleHeaderModel
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -518,7 +577,7 @@ Public Class TravelSettleHeaderModel
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -536,7 +595,7 @@ Public Class TravelSettleHeaderModel
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -570,7 +629,7 @@ Public Class TravelSettleHeaderModel
                         WHERE   TravelSettleID IS NOT NULL
                         GROUP BY TravelSettleID ,
                                 PaymentType"
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -608,7 +667,7 @@ Public Class TravelSettleHeaderModel
                                 trc.AdvanceUSD ,
                                 trc.AdvanceYEN ,
                                 trc.AdvanceIDR "
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -620,14 +679,14 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT TravelSettleID ,
                                 CASE WHEN AllowanceUSD <> 0
-                                     THEN 'USD ' + CAST(AllowanceUSD / Days AS VARCHAR(100))
+                                     THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
                                      ELSE ''
                                 END + CASE WHEN AllowanceYEN <> 0
-                                           THEN ' | YEN ' + CAST(AllowanceYEN / Days AS VARCHAR(100))
+                                           THEN ' | YEN ' + CAST(0 AS VARCHAR(100))
                                            ELSE ''
                                       END + CASE WHEN AllowanceIDR <> 0
                                                  THEN ' | IDR '
-                                                      + CAST(AllowanceIDR / Days AS VARCHAR(100))
+                                                      + CAST(0 AS VARCHAR(100))
                                                  ELSE ''
                                             END AS Rate ,
                                 CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
@@ -639,10 +698,11 @@ Public Class TravelSettleHeaderModel
                          WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
                          GROUP BY TravelSettleID ,
                                 Days ,
+                                RateAllowanceUSD ,
                                 AllowanceUSD ,
                                 AllowanceYEN ,
                                 AllowanceIDR"
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -660,6 +720,7 @@ Public Class TravelSettleDetailModel
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
     Public Property Days As Integer
+    Public Property RateAllowanceUSD As Double
     Public Property AllowanceUSD As Double
     Public Property AllowanceYEN As Double
     Public Property AllowanceIDR As Double
@@ -668,18 +729,24 @@ Public Class TravelSettleDetailModel
 
     Public Function GetTravelSettDetailByID() As DataTable
         Try
-            strQuery = " SELECT NoRequest ,
-                                Nama ,
-                                DepartureDate ,
-                                ArrivalDate ,
-                                Days ,
-                                AllowanceUSD AS AdvanceUSD ,
-                                AllowanceYEN AS AdvanceYEN ,
-                                AllowanceIDR AS AdvanceIDR
-                         FROM   dbo.TravelSettleDetail
-                         WHERE  TravelSettleID = " & QVal(TravelSettleID) & ""
+            strQuery = " SELECT tsd.NoRequest ,
+                                tsd.Nama ,
+                                tsd.DepartureDate ,
+                                tsd.ArrivalDate ,
+                                tsd.Days ,
+                                tsd.RateAllowanceUSD ,
+                                trc.AdvanceUSD AS AdvanceUSD ,
+                                tsd.AllowanceUSD AS SettlementUSD ,
+                                trc.AdvanceYEN AS AdvanceYEN ,
+                                tsd.AllowanceYEN AS SettlementYEN ,
+                                trc.AdvanceIDR AS AdvanceIDR ,
+                                tsd.AllowanceIDR AS SettlementIDR
+                         FROM   dbo.TravelSettleDetail AS tsd
+                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
+                         WHERE  trc.CostType = 'C02'
+                                AND tsd.TravelSettleID = " & QVal(TravelSettleID) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -695,6 +762,7 @@ Public Class TravelSettleDetailModel
                                   DepartureDate ,
                                   ArrivalDate ,
                                   Days ,
+                                  RateAllowanceUSD ,
                                   AllowanceUSD ,
                                   AllowanceYEN ,
                                   AllowanceIDR
@@ -705,11 +773,12 @@ Public Class TravelSettleDetailModel
                                   " & QVal(DepartureDate) & " , -- DepartureDate - date
                                   " & QVal(ArrivalDate) & " , -- ArrivalDate - date
                                   " & QVal(Days) & " , -- Days - int
+                                  " & QVal(RateAllowanceUSD) & " , -- RateAllowanceUSD - float
                                   " & QVal(AllowanceUSD) & " , -- AllowanceUSD - float
                                   " & QVal(AllowanceYEN) & " , -- AllowanceYEN - float
                                   " & QVal(AllowanceIDR) & "  -- AllowanceIDR - float
                                 )"
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -720,7 +789,7 @@ Public Class TravelSettleDetailModel
             strQuery = "UPDATE  dbo.TravelRequestHeader
                         SET     Status = " & QVal(status) & "
                         WHERE   NoRequest = " & QVal(NoRequest) & ""
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -730,7 +799,7 @@ Public Class TravelSettleDetailModel
         Try
             strQuery = " DELETE  FROM dbo.TravelSettleDetail " & vbCrLf &
                        " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -769,7 +838,7 @@ Public Class TravelSettleCostModel
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
 
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception
@@ -819,7 +888,7 @@ Public Class TravelSettleCostModel
             pParam(16) = New SqlClient.SqlParameter("@AmountIDR", SqlDbType.Float)
             pParam(16).Value = AmountIDR
 
-            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP(SP_Name, pParam)
 
         Catch ex As Exception
             Throw ex
@@ -831,7 +900,7 @@ Public Class TravelSettleCostModel
             Dim ls_SP As String
             ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
                     " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

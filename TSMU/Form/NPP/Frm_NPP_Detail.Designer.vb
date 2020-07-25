@@ -33,14 +33,24 @@ Partial Class Frm_NPP_Detail
         Me.Chrome = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Assy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.StatusMold = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepStatusMold = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.OrderMonth = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Ultrasonic = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Vibration = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Revisi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepStatus = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.CapabilityDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Cek = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Check = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.Note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Seq = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Commit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Commit1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Runner = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
         Me.TTargetQuot = New DevExpress.XtraEditors.DateEdit()
@@ -77,10 +87,16 @@ Partial Class Frm_NPP_Detail
         Me.TRevisiInformasi = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.BSetGroup = New System.Windows.Forms.Button()
-        Me.BtnDrr = New System.Windows.Forms.Button()
+        Me.B_Submit = New System.Windows.Forms.Button()
         Me.BUpload = New System.Windows.Forms.Button()
+        Me.B_Reject = New System.Windows.Forms.Button()
+        Me.B_Approve = New System.Windows.Forms.Button()
+        Me.B_Revise = New System.Windows.Forms.Button()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepStatusMold, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Check, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TMassPro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,14 +128,14 @@ Partial Class Frm_NPP_Detail
         Me.Grid.Location = New System.Drawing.Point(12, 142)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck, Me.Check, Me.RepStatus, Me.RepStatusMold})
         Me.Grid.Size = New System.Drawing.Size(1235, 292)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -132,6 +148,7 @@ Partial Class Frm_NPP_Detail
         Me.PartNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.PartNo.Name = "PartNo"
         Me.PartNo.OptionsColumn.AllowEdit = False
+        Me.PartNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartNo.Visible = True
         Me.PartNo.VisibleIndex = 0
         Me.PartNo.Width = 167
@@ -140,6 +157,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.PartName.FieldName = "Part Name"
         Me.PartName.Name = "PartName"
+        Me.PartName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartName.Visible = True
         Me.PartName.VisibleIndex = 1
         Me.PartName.Width = 190
@@ -148,6 +166,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.Machine.FieldName = "Machine"
         Me.Machine.Name = "Machine"
+        Me.Machine.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Machine.Visible = True
         Me.Machine.VisibleIndex = 2
         Me.Machine.Width = 66
@@ -160,6 +179,7 @@ Partial Class Frm_NPP_Detail
         Me.CT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.CT.FieldName = "C/T"
         Me.CT.Name = "CT"
+        Me.CT.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.CT.Visible = True
         Me.CT.VisibleIndex = 3
         Me.CT.Width = 71
@@ -172,6 +192,7 @@ Partial Class Frm_NPP_Detail
         Me.Cav.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Cav.FieldName = "Cav"
         Me.Cav.Name = "Cav"
+        Me.Cav.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Cav.Visible = True
         Me.Cav.VisibleIndex = 4
         Me.Cav.Width = 65
@@ -184,6 +205,7 @@ Partial Class Frm_NPP_Detail
         Me.Weight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Weight.FieldName = "Weight"
         Me.Weight.Name = "Weight"
+        Me.Weight.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Weight.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Weight.Visible = True
         Me.Weight.VisibleIndex = 5
@@ -197,8 +219,9 @@ Partial Class Frm_NPP_Detail
         Me.Material.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Material.FieldName = "Material"
         Me.Material.Name = "Material"
+        Me.Material.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Material.Visible = True
-        Me.Material.VisibleIndex = 6
+        Me.Material.VisibleIndex = 7
         Me.Material.Width = 147
         '
         'Inj
@@ -209,8 +232,9 @@ Partial Class Frm_NPP_Detail
         Me.Inj.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Inj.FieldName = "Inj"
         Me.Inj.Name = "Inj"
+        Me.Inj.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Inj.Visible = True
-        Me.Inj.VisibleIndex = 7
+        Me.Inj.VisibleIndex = 8
         '
         'Painting
         '
@@ -220,8 +244,9 @@ Partial Class Frm_NPP_Detail
         Me.Painting.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Painting.FieldName = "Painting"
         Me.Painting.Name = "Painting"
+        Me.Painting.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 8
+        Me.Painting.VisibleIndex = 9
         '
         'Chrome
         '
@@ -231,8 +256,9 @@ Partial Class Frm_NPP_Detail
         Me.Chrome.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Chrome.FieldName = "Chrome"
         Me.Chrome.Name = "Chrome"
+        Me.Chrome.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Chrome.Visible = True
-        Me.Chrome.VisibleIndex = 9
+        Me.Chrome.VisibleIndex = 10
         Me.Chrome.Width = 81
         '
         'Assy
@@ -243,8 +269,9 @@ Partial Class Frm_NPP_Detail
         Me.Assy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Assy.FieldName = "Assy"
         Me.Assy.Name = "Assy"
+        Me.Assy.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Assy.Visible = True
-        Me.Assy.VisibleIndex = 10
+        Me.Assy.VisibleIndex = 11
         '
         'StatusMold
         '
@@ -252,11 +279,20 @@ Partial Class Frm_NPP_Detail
         Me.StatusMold.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.StatusMold.AppearanceHeader.Options.UseTextOptions = True
         Me.StatusMold.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.StatusMold.ColumnEdit = Me.RepStatusMold
         Me.StatusMold.FieldName = "Status Mold"
         Me.StatusMold.Name = "StatusMold"
+        Me.StatusMold.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.StatusMold.Visible = True
-        Me.StatusMold.VisibleIndex = 13
+        Me.StatusMold.VisibleIndex = 14
         Me.StatusMold.Width = 145
+        '
+        'RepStatusMold
+        '
+        Me.RepStatusMold.AutoHeight = False
+        Me.RepStatusMold.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepStatusMold.Items.AddRange(New Object() {"Depreciation", "Sales"})
+        Me.RepStatusMold.Name = "RepStatusMold"
         '
         'OrderMonth
         '
@@ -266,8 +302,9 @@ Partial Class Frm_NPP_Detail
         Me.OrderMonth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.OrderMonth.FieldName = "Order Month"
         Me.OrderMonth.Name = "OrderMonth"
+        Me.OrderMonth.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.OrderMonth.Visible = True
-        Me.OrderMonth.VisibleIndex = 14
+        Me.OrderMonth.VisibleIndex = 15
         Me.OrderMonth.Width = 130
         '
         'Ultrasonic
@@ -278,64 +315,143 @@ Partial Class Frm_NPP_Detail
         Me.Ultrasonic.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Ultrasonic.FieldName = "Ultrasonic"
         Me.Ultrasonic.Name = "Ultrasonic"
+        Me.Ultrasonic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Ultrasonic.Visible = True
-        Me.Ultrasonic.VisibleIndex = 11
+        Me.Ultrasonic.VisibleIndex = 12
         Me.Ultrasonic.Width = 82
         '
-        'GridColumn1
+        'Vibration
         '
-        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn1.FieldName = "Vibration"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 12
+        Me.Vibration.AppearanceHeader.Options.UseTextOptions = True
+        Me.Vibration.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Vibration.FieldName = "Vibration"
+        Me.Vibration.Name = "Vibration"
+        Me.Vibration.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Vibration.Visible = True
+        Me.Vibration.VisibleIndex = 13
         '
-        'GridColumn2
+        'GroupID
         '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.ColumnEdit = Me.SingleCheck
-        Me.GridColumn2.FieldName = "Single"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 15
-        '
-        'SingleCheck
-        '
-        Me.SingleCheck.AutoHeight = False
-        Me.SingleCheck.Name = "SingleCheck"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.FieldName = "Group ID"
-        Me.GridColumn3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 17
+        Me.GroupID.AppearanceCell.Options.UseTextOptions = True
+        Me.GroupID.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GroupID.AppearanceHeader.Options.UseTextOptions = True
+        Me.GroupID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GroupID.FieldName = "Group ID"
+        Me.GroupID.Name = "GroupID"
+        Me.GroupID.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GroupID.Visible = True
+        Me.GroupID.VisibleIndex = 18
+        Me.GroupID.Width = 84
         '
         'GridColumn4
         '
         Me.GridColumn4.FieldName = "ID"
         Me.GridColumn4.Name = "GridColumn4"
         '
-        'GridColumn5
+        'Revisi
         '
-        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.FieldName = "Revisi"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 16
+        Me.Revisi.AppearanceCell.Options.UseTextOptions = True
+        Me.Revisi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Revisi.AppearanceHeader.Options.UseTextOptions = True
+        Me.Revisi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Revisi.FieldName = "Revisi"
+        Me.Revisi.Name = "Revisi"
+        Me.Revisi.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Revisi.Visible = True
+        Me.Revisi.VisibleIndex = 20
+        Me.Revisi.Width = 51
+        '
+        'Status
+        '
+        Me.Status.AppearanceCell.Options.UseTextOptions = True
+        Me.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Status.AppearanceHeader.Options.UseTextOptions = True
+        Me.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Status.ColumnEdit = Me.RepStatus
+        Me.Status.FieldName = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Status.Visible = True
+        Me.Status.VisibleIndex = 16
+        '
+        'RepStatus
+        '
+        Me.RepStatus.AutoHeight = False
+        Me.RepStatus.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepStatus.Items.AddRange(New Object() {"P", "D"})
+        Me.RepStatus.Name = "RepStatus"
+        '
+        'CapabilityDate
+        '
+        Me.CapabilityDate.AppearanceCell.Options.UseTextOptions = True
+        Me.CapabilityDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.CapabilityDate.AppearanceHeader.Options.UseTextOptions = True
+        Me.CapabilityDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.CapabilityDate.FieldName = "Capability Date"
+        Me.CapabilityDate.Name = "CapabilityDate"
+        Me.CapabilityDate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.CapabilityDate.Visible = True
+        Me.CapabilityDate.VisibleIndex = 17
+        '
+        'Cek
+        '
+        Me.Cek.AppearanceCell.Options.UseTextOptions = True
+        Me.Cek.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Cek.AppearanceHeader.Options.UseTextOptions = True
+        Me.Cek.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Cek.ColumnEdit = Me.Check
+        Me.Cek.FieldName = "Cek"
+        Me.Cek.Name = "Cek"
+        Me.Cek.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'Check
+        '
+        Me.Check.AutoHeight = False
+        Me.Check.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Check.Items.AddRange(New Object() {"OK", "REVISE", "DELETE"})
+        Me.Check.Name = "Check"
+        '
+        'Note
+        '
+        Me.Note.FieldName = "Note"
+        Me.Note.Name = "Note"
+        Me.Note.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Note.Visible = True
+        Me.Note.VisibleIndex = 21
+        Me.Note.Width = 279
+        '
+        'Seq
+        '
+        Me.Seq.FieldName = "Seq"
+        Me.Seq.Name = "Seq"
+        '
+        'Commit
+        '
+        Me.Commit.FieldName = "Commit NPD"
+        Me.Commit.Name = "Commit"
+        Me.Commit.Visible = True
+        Me.Commit.VisibleIndex = 19
+        '
+        'Commit1
+        '
+        Me.Commit1.FieldName = "Commit1"
+        Me.Commit1.Name = "Commit1"
+        '
+        'Runner
+        '
+        Me.Runner.AppearanceCell.Options.UseTextOptions = True
+        Me.Runner.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Runner.AppearanceHeader.Options.UseTextOptions = True
+        Me.Runner.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Runner.FieldName = "Runner"
+        Me.Runner.Name = "Runner"
+        Me.Runner.Visible = True
+        Me.Runner.VisibleIndex = 6
+        '
+        'SingleCheck
+        '
+        Me.SingleCheck.AutoHeight = False
+        Me.SingleCheck.Name = "SingleCheck"
         '
         'GroupBox1
         '
@@ -427,12 +543,13 @@ Partial Class Frm_NPP_Detail
         'B_AddRows
         '
         Me.B_AddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_AddRows.Location = New System.Drawing.Point(1026, 443)
+        Me.B_AddRows.Location = New System.Drawing.Point(1113, 443)
         Me.B_AddRows.Name = "B_AddRows"
         Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
         Me.B_AddRows.TabIndex = 8
         Me.B_AddRows.Text = "Add Detail"
         Me.B_AddRows.UseVisualStyleBackColor = True
+        Me.B_AddRows.Visible = False
         '
         'GroupBox2
         '
@@ -722,39 +839,81 @@ Partial Class Frm_NPP_Detail
         'BSetGroup
         '
         Me.BSetGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BSetGroup.Location = New System.Drawing.Point(1166, 443)
+        Me.BSetGroup.Location = New System.Drawing.Point(916, 443)
         Me.BSetGroup.Name = "BSetGroup"
         Me.BSetGroup.Size = New System.Drawing.Size(75, 21)
         Me.BSetGroup.TabIndex = 34
         Me.BSetGroup.Text = "Set Group"
         Me.BSetGroup.UseVisualStyleBackColor = True
+        Me.BSetGroup.Visible = False
         '
-        'BtnDrr
+        'B_Submit
         '
-        Me.BtnDrr.Location = New System.Drawing.Point(340, 2)
-        Me.BtnDrr.Name = "BtnDrr"
-        Me.BtnDrr.Size = New System.Drawing.Size(104, 23)
-        Me.BtnDrr.TabIndex = 35
-        Me.BtnDrr.Text = "DRR Receive"
-        Me.BtnDrr.UseVisualStyleBackColor = True
+        Me.B_Submit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.B_Submit.Location = New System.Drawing.Point(1143, 443)
+        Me.B_Submit.Name = "B_Submit"
+        Me.B_Submit.Size = New System.Drawing.Size(104, 23)
+        Me.B_Submit.TabIndex = 35
+        Me.B_Submit.Text = "Submit To NPD"
+        Me.B_Submit.UseVisualStyleBackColor = True
+        Me.B_Submit.Visible = False
         '
         'BUpload
         '
         Me.BUpload.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BUpload.Location = New System.Drawing.Point(1096, 443)
+        Me.BUpload.Location = New System.Drawing.Point(1183, 443)
         Me.BUpload.Name = "BUpload"
         Me.BUpload.Size = New System.Drawing.Size(64, 21)
         Me.BUpload.TabIndex = 36
         Me.BUpload.Text = "Upload"
         Me.BUpload.UseVisualStyleBackColor = True
+        Me.BUpload.Visible = False
+        '
+        'B_Reject
+        '
+        Me.B_Reject.BackColor = System.Drawing.Color.Red
+        Me.B_Reject.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.B_Reject.Location = New System.Drawing.Point(365, 2)
+        Me.B_Reject.Name = "B_Reject"
+        Me.B_Reject.Size = New System.Drawing.Size(26, 23)
+        Me.B_Reject.TabIndex = 38
+        Me.B_Reject.Text = "R"
+        Me.B_Reject.UseVisualStyleBackColor = False
+        Me.B_Reject.Visible = False
+        '
+        'B_Approve
+        '
+        Me.B_Approve.BackColor = System.Drawing.Color.Lime
+        Me.B_Approve.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.B_Approve.Location = New System.Drawing.Point(336, 2)
+        Me.B_Approve.Name = "B_Approve"
+        Me.B_Approve.Size = New System.Drawing.Size(26, 23)
+        Me.B_Approve.TabIndex = 37
+        Me.B_Approve.Text = "A"
+        Me.B_Approve.UseVisualStyleBackColor = False
+        Me.B_Approve.Visible = False
+        '
+        'B_Revise
+        '
+        Me.B_Revise.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.B_Revise.Location = New System.Drawing.Point(1161, 443)
+        Me.B_Revise.Name = "B_Revise"
+        Me.B_Revise.Size = New System.Drawing.Size(73, 23)
+        Me.B_Revise.TabIndex = 39
+        Me.B_Revise.Text = "Revision"
+        Me.B_Revise.UseVisualStyleBackColor = True
+        Me.B_Revise.Visible = False
         '
         'Frm_NPP_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1253, 472)
+        Me.Controls.Add(Me.B_Revise)
+        Me.Controls.Add(Me.B_Reject)
+        Me.Controls.Add(Me.B_Approve)
         Me.Controls.Add(Me.BUpload)
-        Me.Controls.Add(Me.BtnDrr)
+        Me.Controls.Add(Me.B_Submit)
         Me.Controls.Add(Me.BSetGroup)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.TRevisiInformasi)
@@ -773,10 +932,16 @@ Partial Class Frm_NPP_Detail
         Me.Controls.SetChildIndex(Me.TRevisiInformasi, 0)
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.BSetGroup, 0)
-        Me.Controls.SetChildIndex(Me.BtnDrr, 0)
+        Me.Controls.SetChildIndex(Me.B_Submit, 0)
         Me.Controls.SetChildIndex(Me.BUpload, 0)
+        Me.Controls.SetChildIndex(Me.B_Approve, 0)
+        Me.Controls.SetChildIndex(Me.B_Reject, 0)
+        Me.Controls.SetChildIndex(Me.B_Revise, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepStatusMold, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Check, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -853,16 +1018,29 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents Ultrasonic As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label10 As Label
     Friend WithEvents TModelDesc As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Vibration As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SingleCheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BSetGroup As Button
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TMassPro As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents BtnDrr As Button
+    Friend WithEvents B_Submit As Button
     Friend WithEvents TIssue_Date As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label12 As Label
     Friend WithEvents BUpload As Button
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Revisi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CapabilityDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Cek As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Check As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents Note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Seq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepStatus As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents RepStatusMold As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents B_Reject As Button
+    Friend WithEvents B_Approve As Button
+    Friend WithEvents Commit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Commit1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents B_Revise As Button
+    Friend WithEvents Runner As DevExpress.XtraGrid.Columns.GridColumn
 End Class

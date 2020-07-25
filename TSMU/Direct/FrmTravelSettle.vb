@@ -24,7 +24,7 @@ Public Class FrmTravelSettle
             cls_SettHeader = New TravelSettleHeaderModel
             dtGrid = cls_SettHeader.GetDataGridRequest()
             GridRequest.DataSource = dtGrid
-            GridCellFormat(GridViewRequest)
+            'GridCellFormat(GridViewRequest)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -107,7 +107,7 @@ Public Class FrmTravelSettle
                 End If
 
                 cls_SettHeader.DeleteDataTravelSettle()
-
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
             Next rowHandle
 
@@ -168,13 +168,23 @@ Public Class FrmTravelSettle
             ElseIf result = System.Windows.Forms.DialogResult.No Then
                 Dim Refund As DialogResult = XtraMessageBox.Show("Ada Refund ?", "Confirmation", MessageBoxButtons.YesNoCancel)
                 If Refund = System.Windows.Forms.DialogResult.Yes Then
+                    MessageBox.Show("Kondisi settlement NO & refund tiket YES")
                 Else
-                    For i As Integer = 0 To GridViewRequest.SelectedRowsCount() - 1
-                        If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
-                            'Rows.Add(GridViewRequest.GetDataRow(GridViewRequest.GetSelectedRows()(i)))
-                        End If
-                    Next
+                    MessageBox.Show("Kondisi settlement NO & refund tiket NO")
                 End If
+                cls_SettHeader.ObjSettleDetail.Clear()
+                For i As Integer = 0 To GridViewRequest.SelectedRowsCount() - 1
+                    If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
+                        cls_SettDetail = New TravelSettleDetailModel
+                        With cls_SettDetail
+                            .NoRequest = GridViewRequest.GetRowCellValue(i, "NoRequest")
+                        End With
+                        cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
+                    End If
+                Next
+                cls_SettHeader.UpdateTravelSettleNoRefund()
+                Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
+                tsBtn_refresh.PerformClick()
             End If
         Else
             MessageBox.Show("Tidak ada request travel yang dipilih", "Warning",
@@ -183,4 +193,5 @@ Public Class FrmTravelSettle
                                 MessageBoxDefaultButton.Button1)
         End If
     End Sub
+
 End Class

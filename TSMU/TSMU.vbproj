@@ -248,6 +248,18 @@
     <Compile Include="Dashboard\Dashboard_kanbanSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dashboard\Dashboard_Travel.Designer.vb">
+      <DependentUpon>Dashboard_Travel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_Travel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_TravelSum.Designer.vb">
+      <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Dashboard_TravelSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +336,7 @@
     <Compile Include="Direct\Class\SuspendHeaderModel.vb" />
     <Compile Include="Direct\Class\TransferModel.vb" />
     <Compile Include="Direct\Class\TravelCreditCardModel.vb" />
+    <Compile Include="Direct\Class\TravelEntertainModel.vb" />
     <Compile Include="Direct\Class\TravelHeaderModel.vb" />
     <Compile Include="Direct\Class\TravelPocketAllowanceModel.vb" />
     <Compile Include="Direct\Class\TravelRequestModel.vb" />
@@ -1629,10 +1642,28 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
+      <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Dept_Head.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Div_Head.Designer.vb">
+      <DependentUpon>Frm_Approve_Div_Head.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_Approve_Div_Head.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Frm_Input_NPPDetail.Designer.vb">
       <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\NPP\Frm_Input_NPPDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPD_Acces.Designer.vb">
+      <DependentUpon>Frm_NPD_Acces.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Frm_NPD_Acces.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_NPP_Detail.Designer.vb">
@@ -2311,6 +2342,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.Designer.vb">
+      <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\RptAR.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2438,6 +2475,12 @@
     <Compile Include="UserControl\DashboardAbsen.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControl\DashboardTravel.Designer.vb">
+      <DependentUpon>DashboardTravel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\DashboardTravel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControl\DashboardPainting.Designer.vb">
       <DependentUpon>DashboardPainting.vb</DependentUpon>
     </Compile>
@@ -2454,6 +2497,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
       <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Dashboard_Travel.resx">
+      <DependentUpon>Dashboard_Travel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Dashboard_TravelSum.resx">
+      <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
@@ -2807,8 +2856,17 @@
     <EmbeddedResource Include="Form\Common\FrmSales_ForecastPriceSync.resx">
       <DependentUpon>FrmSales_ForecastPriceSync.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
+      <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_Approve_Div_Head.resx">
+      <DependentUpon>Frm_Approve_Div_Head.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Input_NPPDetail.resx">
       <DependentUpon>Frm_Input_NPPDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Frm_NPD_Acces.resx">
+      <DependentUpon>Frm_NPD_Acces.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Detail.resx">
       <DependentUpon>Frm_NPP_Detail.vb</DependentUpon>
@@ -2908,6 +2966,7 @@
     <EmbeddedResource Include="Form\System\SplashWait.resx">
       <DependentUpon>SplashWait.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="obj\Debug\TSMU.baseForm.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.CustomMsgBox.resources" />
     <EmbeddedResource Include="obj\Debug\TSMU.DXReport_UploadToSolomon.resources" />
@@ -3144,6 +3203,9 @@
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
+      <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\RptAR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptAR.vb</LastGenOutput>
@@ -3174,6 +3236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\DashboardAbsen.resx">
       <DependentUpon>DashboardAbsen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\DashboardTravel.resx">
+      <DependentUpon>DashboardTravel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\DashboardPainting.resx">
       <DependentUpon>DashboardPainting.vb</DependentUpon>
@@ -3658,7 +3723,6 @@
     <EmbeddedResource Include="Form\System\MenuUtamaForm.resx">
       <DependentUpon>MenuUtamaForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
