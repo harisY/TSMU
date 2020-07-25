@@ -84,7 +84,7 @@ Public Class frmDRR
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
-    Dim _path As String = "\\10.10.1.12\e$\BoM\DRR Sketch\"
+    Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()

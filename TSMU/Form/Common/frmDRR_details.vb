@@ -30,7 +30,7 @@ Public Class frmDRR_details
     Dim TxtQty As RepositoryItemSpinEdit = New RepositoryItemSpinEdit()
     Dim TxtCavity As RepositoryItemTextEdit = New RepositoryItemTextEdit()
     Dim TxtTonase As RepositoryItemSpinEdit = New RepositoryItemSpinEdit()
-    Dim _path As String = "\\10.10.1.12\e$\BoM\DRR Sketch\"
+    Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
     Dim images As New List(Of String)
     Private Initializing As Boolean = False
     Public Sub New()
