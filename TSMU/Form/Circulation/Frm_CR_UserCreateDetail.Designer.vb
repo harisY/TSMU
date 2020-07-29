@@ -58,6 +58,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PTotalRP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotalIdr = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Check = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.C_Check = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -108,6 +109,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RBNonPO = New System.Windows.Forms.RadioButton()
         Me.T_Spesification = New DevExpress.XtraEditors.TextEdit()
         Me.T_Reason = New DevExpress.XtraEditors.TextEdit()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +126,7 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CurrRepository, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TotalIdr, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Check, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Amount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -341,7 +344,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Grid.Location = New System.Drawing.Point(7, 95)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Qty, Me.C_Price, Me.C_Amount, Me.C_Amount_Barang, Me.CurrRepository, Me.BAccount, Me.C_Check})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Qty, Me.C_Price, Me.C_Amount, Me.C_Amount_Barang, Me.CurrRepository, Me.BAccount, Me.C_Check, Me.TotalIdr})
         Me.Grid.Size = New System.Drawing.Size(1235, 205)
         Me.Grid.TabIndex = 80
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -358,13 +361,14 @@ Partial Class Frm_CR_UserCreateDetail
         'NameOfGoods
         '
         Me.NameOfGoods.FieldName = "Name Of Goods"
+        Me.NameOfGoods.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.NameOfGoods.Name = "NameOfGoods"
         Me.NameOfGoods.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.NameOfGoods.OptionsFilter.AllowAutoFilter = False
         Me.NameOfGoods.OptionsFilter.AllowFilter = False
         Me.NameOfGoods.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name Of Goods", "{0:N0}")})
         Me.NameOfGoods.Visible = True
-        Me.NameOfGoods.VisibleIndex = 1
+        Me.NameOfGoods.VisibleIndex = 0
         Me.NameOfGoods.Width = 154
         '
         'Spesification
@@ -373,11 +377,10 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Spesification.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.Spesification.Name = "Spesification"
         Me.Spesification.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.Spesification.OptionsColumn.FixedWidth = True
         Me.Spesification.OptionsFilter.AllowAutoFilter = False
         Me.Spesification.OptionsFilter.AllowFilter = False
         Me.Spesification.Visible = True
-        Me.Spesification.VisibleIndex = 0
+        Me.Spesification.VisibleIndex = 1
         Me.Spesification.Width = 175
         '
         'Qty
@@ -550,6 +553,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.PTotalRP.AppearanceHeader.Options.UseTextOptions = True
         Me.PTotalRP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.PTotalRP.ColumnEdit = Me.TotalIdr
         Me.PTotalRP.DisplayFormat.FormatString = "{0:N2}"
         Me.PTotalRP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PTotalRP.FieldName = "Total IDR"
@@ -559,6 +563,11 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotalRP.Visible = True
         Me.PTotalRP.VisibleIndex = 9
         Me.PTotalRP.Width = 173
+        '
+        'TotalIdr
+        '
+        Me.TotalIdr.AutoHeight = False
+        Me.TotalIdr.Name = "TotalIdr"
         '
         'Check
         '
@@ -833,6 +842,7 @@ Partial Class Frm_CR_UserCreateDetail
         'C_Term
         '
         Me.C_Term.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.C_Term.Enabled = False
         Me.C_Term.Location = New System.Drawing.Point(0, 518)
         Me.C_Term.Name = "C_Term"
         Me.C_Term.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -987,11 +997,21 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Reason.Size = New System.Drawing.Size(230, 20)
         Me.T_Reason.TabIndex = 95
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(581, 5)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 96
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1254, 550)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.T_Reason)
         Me.Controls.Add(Me.T_Spesification)
         Me.Controls.Add(Me.GroupBox3)
@@ -1051,6 +1071,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.T_Spesification, 0)
         Me.Controls.SetChildIndex(Me.T_Reason, 0)
+        Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1068,6 +1089,7 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CurrRepository, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TotalIdr, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Check, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Amount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
@@ -1193,4 +1215,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents RBNonPO As RadioButton
     Friend WithEvents T_Spesification As DevExpress.XtraEditors.TextEdit
     Friend WithEvents T_Reason As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TotalIdr As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents Button1 As Button
 End Class

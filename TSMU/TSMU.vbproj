@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\Circulation\clsCR_Accounting.vb" />
     <Compile Include="Classes\Circulation\clsCR_ApproveDeptHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_ApproveDivHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
@@ -1206,6 +1207,12 @@
     <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Accounting.Designer.vb">
+      <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Accounting.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.Designer.vb">
       <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </Compile>
@@ -1228,6 +1235,12 @@
       <DependentUpon>Frm_CR_OtherDeptHead.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_OtherDeptHead.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Purchase.Designer.vb">
+      <DependentUpon>Frm_CR_Purchase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Purchase.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.Designer.vb">
@@ -2781,6 +2794,9 @@
     <EmbeddedResource Include="Form\Circulation\Dies Bom\Frm_CR_BOM.resx">
       <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_Accounting.resx">
+      <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </EmbeddedResource>
@@ -2792,6 +2808,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_OtherDeptHead.resx">
       <DependentUpon>Frm_CR_OtherDeptHead.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_Purchase.resx">
+      <DependentUpon>Frm_CR_Purchase.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateDetail.resx">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>

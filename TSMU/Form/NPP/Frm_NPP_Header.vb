@@ -14,12 +14,13 @@ Public Class Frm_NPP_Header
     Private Sub Frm_Npwo_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         dtGrid = New DataTable
-        dtGrid.Columns.AddRange(New DataColumn(6) {New DataColumn("NPP", GetType(String)),
+        dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
                                                             New DataColumn("Issue Date", GetType(String)),
                                                             New DataColumn("Model", GetType(String)),
                                                             New DataColumn("Customer", GetType(String)),
                                                             New DataColumn("Order Of Month", GetType(String)),
                                                             New DataColumn("Approve", GetType(Boolean)),
+                                                            New DataColumn("Note", GetType(String)),
                                                             New DataColumn("Rev", GetType(Int32))})
         Grid.DataSource = dtGrid
         Grid2.DataSource = dtGrid
@@ -33,13 +34,13 @@ Public Class Frm_NPP_Header
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            Dim dt As New DataTable
-            dt = fc_Class.Get_NPP()
+            'Dim dt As New DataTable
+            dtGrid = fc_Class.Get_NPP()
 
             Dim dt2 As New DataTable
             dt2 = fc_Class.Get_NPP2()
 
-            Grid.DataSource = dt
+            Grid.DataSource = dtGrid
             Grid2.DataSource = dt2
             'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default

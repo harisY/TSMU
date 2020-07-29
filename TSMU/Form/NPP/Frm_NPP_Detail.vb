@@ -180,7 +180,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(27) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(28) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -207,7 +207,8 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Note", GetType(String)),
                                                            New DataColumn("Seq", GetType(Integer)),
                                                            New DataColumn("Commit NPD", GetType(Boolean)),
-                                                           New DataColumn("Capability Date", GetType(Date))})
+                                                           New DataColumn("DRR", GetType(Boolean)),
+                                                           New DataColumn("Capability date", GetType(Date))})
         Grid.DataSource = DtGridNPWO
         GridView1.OptionsView.ShowAutoFilterRow = False
 
@@ -243,6 +244,8 @@ Public Class Frm_NPP_Detail
                         B_Submit.Visible = True
                         Me.CapabilityDate.OptionsColumn.AllowEdit = False
                         Me.Commit.OptionsColumn.AllowEdit = True
+                        B_AddRows.Visible = False
+                        BUpload.Visible = False
                     ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
                         Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
                         Call Colums_AllowEdit_True()
@@ -342,7 +345,7 @@ Public Class Frm_NPP_Detail
             If fs_Code <> "" Then
                 Cursor.Current = Cursors.WaitCursor
 
-                'Dim DtGridNPWO As New DataTable
+                'DtGridNPWO = New DataTable
                 DtGridNPWO = fc_Class.Get_Detail_NPP(NPP_)
                 Grid.DataSource = DtGridNPWO
                 Cursor.Current = Cursors.Default
@@ -628,7 +631,7 @@ Public Class Frm_NPP_Detail
                         .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
                         .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
                         .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
-                        .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                        .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
 
 
                         If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
@@ -722,7 +725,7 @@ Public Class Frm_NPP_Detail
                             '.Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
                             .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
                             .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
-                            .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                            .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
 
                             If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
                                 .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
@@ -827,7 +830,7 @@ Public Class Frm_NPP_Detail
                             '.Runner = Convert.ToDouble(GridView1.GetRowCellValue(i, "Runner"))
                             .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
                             .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
-                            .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                            .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
 
                             If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
                                 .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
@@ -996,11 +999,21 @@ Public Class Frm_NPP_Detail
     Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
 
         If e.KeyData = Keys.Delete Then
-            GridView1.DeleteRow(GridView1.FocusedRowHandle)
-            GridView1.RefreshData()
-            Grid.Refresh()
 
-            DtGridNPWO.AcceptChanges()
+            Dim DRR As Boolean = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DRR") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DRR"))
+
+            If DRR = False Then
+                GridView1.DeleteRow(GridView1.FocusedRowHandle)
+                GridView1.RefreshData()
+                Grid.Refresh()
+                DtGridNPWO.AcceptChanges()
+            Else
+                MessageBox.Show("Data Cannot Be Deleted Already DRR",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            End If
 
             'Dim baseEdit = TryCast(sender, BaseEdit)
             'Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -1169,7 +1182,7 @@ Public Class Frm_NPP_Detail
                     .Cek = Convert.ToString(GridView1.GetRowCellValue(i, "Cek"))
                     .Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
                     .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
-                    .Capability = IIf(GridView1.GetRowCellValue(i, "Capability Date") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Capability Date"))
+                    .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
                     .Commit = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Commit NPD"))
                 End With
                 fc_Class.Collection_Detail.Add(NPP_Detail)
@@ -1631,6 +1644,9 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_Reject_Click(sender As Object, e As EventArgs) Handles B_Reject.Click
+
+        Dim Note As String = InputBox("Enter Value", "Enter Value", "Please Enter Value")
+
         If Active_Form = 1 Then
             If fc_Class.H_Approve_Dept_Head = False Then
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
@@ -1643,6 +1659,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve_Dept_Head_Date = Date.Now
                             .H_Approve_Dept_Head_Name = gh_Common.Username
                             .H_Status = "Revise"
+                            .H_Note = Note
                         End With
 
 
@@ -1712,10 +1729,10 @@ Public Class Frm_NPP_Detail
                 Next rowHandle
                 If Comit = True Then
                     GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = False
-                    GridView1.Columns("Capability Date").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Due Date NPD").OptionsColumn.AllowEdit = False
                 Else
                     GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = True
-                    GridView1.Columns("Capability Date").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Due Date NPD").OptionsColumn.AllowEdit = True
                 End If
             Catch ex As Exception
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -1778,5 +1795,23 @@ Public Class Frm_NPP_Detail
             End If
 
         End If
+    End Sub
+
+    Private Sub RepoCapability_DateTimeChanged(sender As Object, e As EventArgs) Handles RepoCapability.DateTimeChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub RepoComit_CheckedChanged(sender As Object, e As EventArgs) Handles RepoComit.CheckedChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Dim myValue As String = InputBox("Enter Value", "Enter Value", "Please Enter Value")
     End Sub
 End Class

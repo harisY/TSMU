@@ -53,6 +53,7 @@ Public Class Cls_NPP_Detail
     Public Property H_Submit_NPD As Boolean
     Public Property H_RevStatus As Boolean
     Public Property H_Status As String
+    Public Property H_Note As String
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
@@ -245,8 +246,8 @@ Public Class Cls_NPP_Detail
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             For i As Integer = 0 To dt.Rows.Count - 1
-                Dim D As String = Convert.ToString(dt.Rows(i).Item("Capability Date"))
-                dt.Rows(i).Item("Capability Date") = IIf((dt.Rows(i).Item("Capability Date") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Capability Date"))
+                Dim D As String = Convert.ToString(dt.Rows(i).Item("Due Date NPD"))
+                dt.Rows(i).Item("Due Date NPD") = IIf((dt.Rows(i).Item("Due Date NPD") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Due Date NPD"))
             Next
             Return dt
         Catch ex As Exception
@@ -578,6 +579,7 @@ Public Class Cls_NPP_Detail
                                             ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
                                             ,[Approve_Dept_Head_Date] = '" & H_Approve_Dept_Head_Date & "'
                                             ,[Approve_Dept_Head_Name] = '" & H_Approve_Dept_Head_Name & "'
+                                            ,[Note] = '" & H_Note & "'
                                             ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
                             MainModul.ExecQuery(ls_SP)
                         Catch ex As Exception

@@ -27,6 +27,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DeptHead = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DivHead = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -45,7 +47,7 @@ Partial Class Frm_CR_UserCreateHeader
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.DeptHead, Me.DivHead})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -94,7 +96,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn4.FieldName = "Status"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 7
         Me.GridColumn4.Width = 99
         '
         'GridColumn5
@@ -106,7 +108,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn5.FieldName = "Submit"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 92
         '
         'GridColumn6
@@ -118,8 +120,30 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn6.FieldName = "Amount"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 141
+        '
+        'DeptHead
+        '
+        Me.DeptHead.AppearanceCell.Options.UseTextOptions = True
+        Me.DeptHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DeptHead.AppearanceHeader.Options.UseTextOptions = True
+        Me.DeptHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DeptHead.FieldName = "Dept Head"
+        Me.DeptHead.Name = "DeptHead"
+        Me.DeptHead.Visible = True
+        Me.DeptHead.VisibleIndex = 4
+        '
+        'DivHead
+        '
+        Me.DivHead.AppearanceCell.Options.UseTextOptions = True
+        Me.DivHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DivHead.AppearanceHeader.Options.UseTextOptions = True
+        Me.DivHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DivHead.FieldName = "Div Head"
+        Me.DivHead.Name = "DivHead"
+        Me.DivHead.Visible = True
+        Me.DivHead.VisibleIndex = 5
         '
         'Frm_CR_UserCreateHeader
         '
@@ -143,4 +167,6 @@ Partial Class Frm_CR_UserCreateHeader
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DeptHead As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DivHead As DevExpress.XtraGrid.Columns.GridColumn
 End Class
