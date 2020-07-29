@@ -3,6 +3,7 @@
 Public Class TravelSettleHeaderModel
     Public Property TravelSettleID As String
     Public Property DateHeader As Date
+    Public Property NoPR As String
     Public Property DeptID As String
     Public Property Nama As String
     Public Property Destination As String
@@ -110,6 +111,7 @@ Public Class TravelSettleHeaderModel
             Dim dt As New DataTable
             strQuery = " SELECT  TravelSettleID ,
                                 Date ,
+                                NoPR ,
                                 DeptID ,
                                 Nama ,
                                 Destination ,
@@ -128,6 +130,7 @@ Public Class TravelSettleHeaderModel
         Try
             strQuery = " SELECT  TravelSettleID ,
                                 Date ,
+                                NoPR ,
                                 DeptID ,
                                 Nama ,
                                 Purpose ,
@@ -154,6 +157,7 @@ Public Class TravelSettleHeaderModel
             dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 DateHeader = If(IsDBNull(dt.Rows(0).Item("Date")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Date")))
+                NoPR = If(IsDBNull(dt.Rows(0).Item("NoPR")), "", Trim(dt.Rows(0).Item("NoPR").ToString()))
                 DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
                 Nama = If(IsDBNull(dt.Rows(0).Item("Nama")), "", Trim(dt.Rows(0).Item("Nama").ToString()))
                 Purpose = If(IsDBNull(dt.Rows(0).Item("Purpose")), "", dt.Rows(0).Item("Purpose").ToString())
@@ -225,53 +229,55 @@ Public Class TravelSettleHeaderModel
 
             Dim SP_Name As String = "Travel_Insert_TravelSettleHeader"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
             pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
             pParam(0).Value = TravelSettleID
             pParam(1) = New SqlClient.SqlParameter("@DateHeader", SqlDbType.Date)
             pParam(1).Value = DateHeader
-            pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
-            pParam(2).Value = DeptID
-            pParam(3) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
-            pParam(3).Value = Nama
-            pParam(4) = New SqlClient.SqlParameter("@Destination", SqlDbType.VarChar)
-            pParam(4).Value = Destination
-            pParam(5) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
-            pParam(5).Value = Purpose
-            pParam(6) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
-            pParam(6).Value = TravelType
-            pParam(7) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
-            pParam(7).Value = DepartureDate
-            pParam(8) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
-            pParam(8).Value = ArrivalDate
-            pParam(9) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
-            pParam(9).Value = Term
-            pParam(10) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
-            pParam(10).Value = PickUp
-            pParam(11) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
-            pParam(11).Value = Visa
-            pParam(12) = New SqlClient.SqlParameter("@RateSalomonUSD", SqlDbType.Float)
-            pParam(12).Value = RateSalomonUSD
-            pParam(13) = New SqlClient.SqlParameter("@RateSalomonYEN", SqlDbType.Float)
-            pParam(13).Value = RateSalomonYEN
-            pParam(14) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
-            pParam(14).Value = RateUSD
-            pParam(15) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
-            pParam(15).Value = RateYEN
-            pParam(16) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
-            pParam(16).Value = TotalAdvanceIDR
-            pParam(17) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
-            pParam(17).Value = TotalAdvanceUSD
-            pParam(18) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
-            pParam(18).Value = TotalAdvanceYEN
-            pParam(19) = New SqlClient.SqlParameter("@TotalReturnIDR", SqlDbType.Float)
-            pParam(19).Value = TotalReturnIDR
-            pParam(20) = New SqlClient.SqlParameter("@TotalReturnUSD", SqlDbType.Float)
-            pParam(20).Value = TotalReturnUSD
-            pParam(21) = New SqlClient.SqlParameter("@TotalReturnYEN", SqlDbType.Float)
-            pParam(21).Value = TotalReturnYEN
-            pParam(22) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(22).Value = gh_Common.Username
+            pParam(2) = New SqlClient.SqlParameter("@NoPR", SqlDbType.VarChar)
+            pParam(2).Value = NoPR
+            pParam(3) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
+            pParam(3).Value = DeptID
+            pParam(4) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
+            pParam(4).Value = Nama
+            pParam(5) = New SqlClient.SqlParameter("@Destination", SqlDbType.VarChar)
+            pParam(5).Value = Destination
+            pParam(6) = New SqlClient.SqlParameter("@Purpose", SqlDbType.VarChar)
+            pParam(6).Value = Purpose
+            pParam(7) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
+            pParam(7).Value = TravelType
+            pParam(8) = New SqlClient.SqlParameter("@DepartureDate", SqlDbType.Date)
+            pParam(8).Value = DepartureDate
+            pParam(9) = New SqlClient.SqlParameter("@ArrivalDate", SqlDbType.Date)
+            pParam(9).Value = ArrivalDate
+            pParam(10) = New SqlClient.SqlParameter("@Term", SqlDbType.VarChar)
+            pParam(10).Value = Term
+            pParam(11) = New SqlClient.SqlParameter("@PickUp", SqlDbType.VarChar)
+            pParam(11).Value = PickUp
+            pParam(12) = New SqlClient.SqlParameter("@Visa", SqlDbType.VarChar)
+            pParam(12).Value = Visa
+            pParam(13) = New SqlClient.SqlParameter("@RateSalomonUSD", SqlDbType.Float)
+            pParam(13).Value = RateSalomonUSD
+            pParam(14) = New SqlClient.SqlParameter("@RateSalomonYEN", SqlDbType.Float)
+            pParam(14).Value = RateSalomonYEN
+            pParam(15) = New SqlClient.SqlParameter("@RateUSD", SqlDbType.Float)
+            pParam(15).Value = RateUSD
+            pParam(16) = New SqlClient.SqlParameter("@RateYEN", SqlDbType.Float)
+            pParam(16).Value = RateYEN
+            pParam(17) = New SqlClient.SqlParameter("@TotalAdvanceIDR", SqlDbType.Float)
+            pParam(17).Value = TotalAdvanceIDR
+            pParam(18) = New SqlClient.SqlParameter("@TotalAdvanceUSD", SqlDbType.Float)
+            pParam(18).Value = TotalAdvanceUSD
+            pParam(19) = New SqlClient.SqlParameter("@TotalAdvanceYEN", SqlDbType.Float)
+            pParam(19).Value = TotalAdvanceYEN
+            pParam(20) = New SqlClient.SqlParameter("@TotalReturnIDR", SqlDbType.Float)
+            pParam(20).Value = TotalReturnIDR
+            pParam(21) = New SqlClient.SqlParameter("@TotalReturnUSD", SqlDbType.Float)
+            pParam(21).Value = TotalReturnUSD
+            pParam(22) = New SqlClient.SqlParameter("@TotalReturnYEN", SqlDbType.Float)
+            pParam(22).Value = TotalReturnYEN
+            pParam(23) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(23).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(SP_Name, pParam)
 
@@ -325,7 +331,8 @@ Public Class TravelSettleHeaderModel
     Public Sub UpdateSettleHeader()
         Try
             strQuery = " UPDATE  dbo.TravelSettleHeader " & vbCrLf &
-                        " SET     RateUSD = " & QVal(RateUSD) & " , " & vbCrLf &
+                        " SET     NoPR = " & QVal(NoPR) & " , " & vbCrLf &
+                        "         RateUSD = " & QVal(RateUSD) & " , " & vbCrLf &
                         "         RateYEN = " & QVal(RateYEN) & " , " & vbCrLf &
                         "         TotalReturnUSD = " & QVal(TotalReturnUSD) & " , " & vbCrLf &
                         "         TotalReturnYEN = " & QVal(TotalReturnYEN) & " , " & vbCrLf &
@@ -382,6 +389,36 @@ Public Class TravelSettleHeaderModel
             strQuery = " DELETE  FROM dbo.TravelSettleHeader " & vbCrLf &
                        " WHERE   TravelSettleID = " & QVal(TravelSettleID) & " "
             ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateTravelSettleNoRefund()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For i As Integer = 0 To ObjSettleDetail.Count - 1
+                            With ObjSettleDetail(i)
+                                .UpdateRequest("CLOSE")
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw
         End Try

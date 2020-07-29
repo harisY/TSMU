@@ -4,7 +4,7 @@ Public Class ClsTraveller
     Public Property DeptID As String
     Public Property Nama As String
     Public Property NIK As String
-    Public Property Golongan As String
+    Public Property Golongan As Integer
 
     Public Property ObjVisa() As New Collection(Of ClsTravelerVisa)
     Public Property ObjPaspor() As New Collection(Of ClsTravelerPaspor)
@@ -81,9 +81,6 @@ Public Class ClsTraveller
     End Function
 
     Public Sub ValidateInsert()
-        If Me.Nama = "" OrElse Me.NIK = "" Then
-            Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-        End If
         Try
             strQuery = "SELECT  NIK ,
                                 Nama ,

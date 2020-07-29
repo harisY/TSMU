@@ -13,6 +13,7 @@ Public Class TravelRequestModel
     Public Property Status As String
     Public Property Approved As String
     Public Property Comment As String
+    Public Property Pay As Integer
 
     Public Property ObjRequestHeader() As New Collection(Of TravelRequestModel)
     Public Property ObjRequestDetails() As New Collection(Of TravelRequestDetailModel)
@@ -230,7 +231,8 @@ Public Class TravelRequestModel
                                 StatusTicket ,
                                 Status ,
 		                        Approved ,
-		                        Comment                                        
+		                        Comment ,
+                                Pay
                         FROM    dbo.TravelRequestHeader
                         WHERE   NoRequest = " & QVal(_NoReq) & ""
             Dim dt As New DataTable
@@ -249,6 +251,7 @@ Public Class TravelRequestModel
                     Me.Status = Trim(.Item("Status") & "")
                     Me.Approved = Trim(.Item("Approved") & "")
                     Me.Comment = Trim(.Item("Comment") & "")
+                    Me.Pay = Trim(.Item("Pay") & "")
                 End With
             End If
             Return dt
@@ -259,9 +262,8 @@ Public Class TravelRequestModel
 
     Public Function GetListGolongan() As DataTable
         Try
-            strQuery = "SELECT DISTINCT
-                                Golongan
-                        FROM    dbo.TravelPocketAllowance"
+            strQuery = "SELECT  *
+                        FROM    dbo.TravelGolongan"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -657,21 +659,12 @@ Public Class TravelRequestDetailModel
 
     Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As DataTable
         Try
-            strQuery = "SELECT  Ada.NIK ,
-                                ISNULL(Expired.NoPaspor, '') AS NoPaspor ,
-                                CASE WHEN Expired.NIK IS NULL THEN 'YES'
-                                     ELSE 'NO'
-                                END AS Expired
-                        FROM    dbo.TravelerPaspor AS Ada
-                                LEFT JOIN ( SELECT  NIK ,
-                                                    NoPaspor
-                                            FROM    dbo.TravelerPaspor
-                                            WHERE   NIK = " & QVal(nik) & "
-                                                    AND TanggalKeluar <= CAST(" & QVal(deptDate) & " AS DATE)
-                                                    AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE)
-                                          ) AS Expired ON Expired.NIK = Ada.NIK
-                                                          AND Expired.NoPaspor = Ada.NoPaspor
-                        WHERE   Ada.NIK = " & QVal(nik) & ""
+            strQuery = "SELECT  NIK ,
+                                NoPaspor
+                        FROM    dbo.TravelerPaspor
+                        WHERE   NIK = " & QVal(nik) & "
+                                AND TanggalKeluar <= CAST(" & QVal(deptDate) & " AS DATE)
+                                AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE)"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

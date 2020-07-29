@@ -274,27 +274,27 @@ Module MainModul
         Dim ll_MaxLogByte As Long = 10000000
 
         Try
-            If Not System.IO.Directory.Exists(ls_Path) Then
-                System.IO.Directory.CreateDirectory(ls_Path)
+            If Not IO.Directory.Exists(ls_Path) Then
+                IO.Directory.CreateDirectory(ls_Path)
                 lb_CheckSize = False
             End If
 
             'check the file
-            Dim fs As System.IO.FileStream = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
+            Dim fs As IO.FileStream = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.OpenOrCreate, IO.FileAccess.ReadWrite)
             If lb_CheckSize Then
                 If fs.Length > ll_MaxLogByte Then
                     fs.Close()
-                    My.Computer.FileSystem.RenameFile(ls_Path & ls_FileName, DateTime.Now.ToString("yyyyMMddHHmmss") & ls_FileName)
-                    fs = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
+                    My.Computer.FileSystem.RenameFile(ls_Path & ls_FileName, Date.Now.ToString("yyyyMMddHHmmss") & ls_FileName)
+                    fs = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.OpenOrCreate, IO.FileAccess.ReadWrite)
                 End If
             End If
-            Dim s As System.IO.StreamWriter = New System.IO.StreamWriter(fs)
+            Dim s As IO.StreamWriter = New IO.StreamWriter(fs)
             s.Close()
             fs.Close()
 
             'log it
-            Dim fs1 As System.IO.FileStream = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.Append, System.IO.FileAccess.Write)
-            Dim s1 As System.IO.StreamWriter = New System.IO.StreamWriter(fs1)
+            Dim fs1 As IO.FileStream = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.Append, IO.FileAccess.Write)
+            Dim s1 As IO.StreamWriter = New IO.StreamWriter(fs1)
             Dim ls_String = ""
             Dim sb_String As New System.Text.StringBuilder
 

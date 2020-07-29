@@ -145,16 +145,15 @@ Public Class FrmTravelerDetail
         Dim lb_Validated As Boolean = False
         Try
             Dim success As Boolean = True
-            'For Each c As Control In Me.Controls
-            '    If errProvider.GetError(c).Length > 0 Then
-            '        success = False
-            '    End If
 
-            'Next
             If DxValidationProvider1.Validate Then
                 lb_Validated = True
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+            End If
+
+            If TxtNIK.Text = "" OrElse TxtNama.Text = "" OrElse txtGolongan.Text = "" Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
             End If
 
             fc_Class.ObjVisa.Clear()
@@ -208,7 +207,7 @@ Public Class FrmTravelerDetail
                     .NIK = TxtNIK.Text.Trim.ToUpper
                     .Nama = TxtNama.Text.Trim.ToUpper
                     .DeptID = TxtDeptID.Text.Trim.ToUpper
-                    .Golongan = txtGolongan.Text.Trim.ToUpper
+                    .Golongan = txtGolongan.Text
                     If isUpdate = False Then
                         .ValidateInsert()
                     End If
@@ -356,6 +355,72 @@ Public Class FrmTravelerDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CJenisKelamin_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisKelamin.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CKodeNegara_EditValueChanged(sender As Object, e As EventArgs) Handles CKodeNegara.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub TanggalKeluarPaspor_EditValueChanged(sender As Object, e As EventArgs) Handles TanggalKeluarPaspor.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CTanggalLahirPaspor_EditValueChanged(sender As Object, e As EventArgs) Handles CTanggalLahirPaspor.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CNegara_EditValueChanged(sender As Object, e As EventArgs) Handles CNegara.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CNoVisa_EditValueChanged(sender As Object, e As EventArgs) Handles CNoVisa.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CEntries_EditValueChanged(sender As Object, e As EventArgs) Handles CEntries.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CDateIssued_EditValueChanged(sender As Object, e As EventArgs) Handles CDateIssued.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub txtGolongan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtGolongan.KeyPress
+        'Dim tombol As Integer
+
+        'tombol = Asc(e.KeyChar)
+
+        'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
+        '    e.Handled = True
+        'End If
     End Sub
 
 End Class
