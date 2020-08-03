@@ -123,6 +123,7 @@ Public Class clsBoM
     Public Property RefType() As String
     Public Property RefNo() As String
     Public Property Converted() As Boolean
+    Public Property BoMHeaderCollection As New Collection(Of clsBoM)
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -199,7 +200,7 @@ Public Class clsBoM
     Public Function getRevisi(ByVal bomid As String) As Integer
         Try
             Dim query As String = "" & vbCrLf &
-                                  "SELECT ISNULL(revisi,0) revisi " & vbCrLf &
+                                  "SELECT isnull(max(revisi),0) revisi " & vbCrLf &
                                   "FROM bom_header_history where bomid=" & QVal(bomid) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(query)
@@ -227,7 +228,14 @@ Public Class clsBoM
     Public Function getDetailBoM(ByVal BoMID As String) As DataTable
         Try
             'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,CAST(bom.qty AS decimal(11,4)) as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
-            Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,bom.qty as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
+            'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,bom.qty as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
+            Dim query As String = "SELECT 
+                                        ltrim(rtrim(bom.invtid)) as [Inventory ID],
+                                        i.Descr Description,bom.qty as Qty,bom.unit Unit 
+                                    FROM bomh inner join 
+                                        bom on bomh.bomid=bom.bomid inner join 
+                                        TSC16Application.dbo.Inventory i on bom.invtid = i.InvtID 
+                                    where bom.bomid = '" & BoMID & "'"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(query)
             Return dtTable
@@ -466,7 +474,7 @@ Public Class clsBoM
             Throw
         End Try
     End Sub
-    Public Sub UpdateHeader(ByVal rev As Int32)
+    Public Sub UpdateHeader(ByVal rev As Integer)
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "Update bomh " & vbCrLf &
@@ -509,12 +517,76 @@ Public Class clsBoM
                                     "               Inserted.updated_by, " & vbCrLf &
                                     "               Inserted.updated_date " & vbCrLf &
                                     "       Into bom_header_history " & vbCrLf &
-                                    "       where bomid = '" & Me._bomid & "'"
-            MainModul.ExecQuery(ls_SP)
+                                    "       where bomid = '" & _bomid & "'"
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
+    Public Sub UpdateHeaderExcel(ByVal rev As Integer, i As Integer)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "Update bomh " & vbCrLf &
+                                    "SET    tgl = " & QVal(Date.Today) & ", " & vbCrLf &
+                                    "       invtid = " & QVal(BoMHeaderCollection(i)._invtid) & ", " & vbCrLf &
+                                    "       descr = " & QVal(BoMHeaderCollection(i)._desc) & ", " & vbCrLf &
+                                    "       siteid = " & QVal(BoMHeaderCollection(i)._siteid) & ", " & vbCrLf &
+                                    "       runner = " & QVal(BoMHeaderCollection(i)._runner) & ", " & vbCrLf &
+                                    "       ct = " & QVal(BoMHeaderCollection(i)._ct) & ", " & vbCrLf &
+                                    "       mc = " & QVal(BoMHeaderCollection(i)._mc) & ", " & vbCrLf &
+                                    "       cavity = " & QVal(BoMHeaderCollection(i).cavity) & ", " & vbCrLf &
+                                    "       wc = " & QVal(BoMHeaderCollection(i).WC) & ", " & vbCrLf &
+                                    "       allowance = " & QVal(BoMHeaderCollection(i)._allowance) & ", " & vbCrLf &
+                                    "       mp = " & QVal(BoMHeaderCollection(i)._mp) & ", " & vbCrLf &
+                                    "       [status] = " & QVal(BoMHeaderCollection(i)._status) & ", " & vbCrLf &
+                                    "       RefTipe = " & QVal(BoMHeaderCollection(i).RefType) & ", " & vbCrLf &
+                                    "       RefNo = " & QVal(BoMHeaderCollection(i).RefNo) & ", " & vbCrLf &
+                                    "       [active] = " & QVal(BoMHeaderCollection(i)._active) & ", " & vbCrLf &
+                                    "       [updated_by] = " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "       updated_date = getdate() " & vbCrLf &
+                                    "       OUTPUT  '" & _bomid & "', " & vbCrLf &
+                                    "               Inserted.tgl, " & vbCrLf &
+                                    "               Inserted.invtid, " & vbCrLf &
+                                    "               Inserted.descr, " & vbCrLf &
+                                    "               Inserted.siteid, " & vbCrLf &
+                                    "               Inserted.runner, " & vbCrLf &
+                                    "               Inserted.ct, " & vbCrLf &
+                                    "               Inserted.mc, " & vbCrLf &
+                                    "               Inserted.cavity, " & vbCrLf &
+                                    "               Inserted.wc, " & vbCrLf &
+                                    "               Inserted.allowance, " & vbCrLf &
+                                    "               Inserted.mp, " & vbCrLf &
+                                    "               Inserted.[status], " & vbCrLf &
+                                    "               Inserted.RefTipe, " & vbCrLf &
+                                    "               Inserted.RefNo, " & vbCrLf &
+                                    "               Inserted.[active], " & vbCrLf &
+                                    "               " & QVal(rev) & " + 1, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               Inserted.updated_by, " & vbCrLf &
+                                    "               Inserted.updated_date " & vbCrLf &
+                                    "       Into bom_header_history " & vbCrLf &
+                                    "       where bomid = '" & BoMHeaderCollection(i)._bomid & "'"
+            ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Function GetLasRevisi(i As Integer) As Integer
+        Dim _result As Integer = 0
+        Try
+            Dim Sql As String = "select isnull(max(revisi),0) rev from bom_header_history where bomid =" & QVal(BoMHeaderCollection(i)._bomid) & ""
+            Dim dt As New DataTable
+
+            dt = GetDataTable(Sql)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub DeleteHeader(ByVal bomid As String)
         Try
             Dim ls_SP As String = "Delete from bomh where bomid =" & QVal(bomid) & ""
@@ -637,6 +709,59 @@ Public Class clsBoM
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.DataTidakKetemu) &
                 "[" & Me._bomid & "]")
             End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Function ValidateUpdateHeader(i As Integer) As Boolean
+        Dim _result As Boolean = False
+        Try
+            Dim Query As String =
+                "   
+                    SELECT BomId 
+                    FROM bomh 
+                    WHERE bomid = " & QVal(BoMHeaderCollection(i)._bomid) & "
+                "
+            Dim dt As DataTable = GetDataTable(Query)
+            If dt.Rows.Count > 0 Then
+                _result = True
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Sub UpdateBoMHeader()
+        Try
+            Using Conn1 As New SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Dim IsBomIdExist As Boolean
+                        Dim Rev As Integer
+
+                        For i As Integer = 0 To BoMHeaderCollection.Count - 1
+                            IsBomIdExist = ValidateUpdateHeader(i)
+                            Rev = GetLasRevisi(i)
+                            If IsBomIdExist Then
+                                UpdateHeaderExcel(Rev, i)
+                            End If
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw
         End Try

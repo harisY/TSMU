@@ -20,14 +20,14 @@ Partial Class frmDRR_details
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim GalleryItemGroup1 As DevExpress.XtraBars.Ribbon.GalleryItemGroup = New DevExpress.XtraBars.Ribbon.GalleryItemGroup()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me._TxtJanQty1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TxtQty1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TxtQty2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -37,12 +37,12 @@ Partial Class frmDRR_details
         Me.TxtHarga1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TxtHarga2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TxtHarga3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.TxtNoNpp = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtNoDokumen = New DevExpress.XtraEditors.TextEdit()
         Me.TxtForecast = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtPlace = New DevExpress.XtraEditors.TextEdit()
         Me.TxtProject = New DevExpress.XtraEditors.TextEdit()
         Me.TxtMaspro = New DevExpress.XtraEditors.DateEdit()
         Me.TxtDate = New DevExpress.XtraEditors.DateEdit()
@@ -52,7 +52,6 @@ Partial Class frmDRR_details
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -61,7 +60,7 @@ Partial Class frmDRR_details
         Me.GalleryControl1 = New DevExpress.XtraBars.Ribbon.GalleryControl()
         Me.GalleryControlClient1 = New DevExpress.XtraBars.Ribbon.GalleryControlClient()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,13 +70,13 @@ Partial Class frmDRR_details
         CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoDokumen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtForecast.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPlace.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +88,6 @@ Partial Class frmDRR_details
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,23 +101,27 @@ Partial Class frmDRR_details
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(0, 609)
-        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Location = New System.Drawing.Point(0, 595)
+        Me.Grid.MainView = Me.BandedGridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me._TxtJanQty1, Me.TxtQty1, Me.TxtQty2, Me.TxtQty3, Me.TxtPO1, Me.TxtPO2, Me.TxtHarga1, Me.TxtHarga2, Me.TxtHarga3})
-        Me.Grid.Size = New System.Drawing.Size(1104, 151)
+        Me.Grid.Size = New System.Drawing.Size(1104, 165)
         Me.Grid.TabIndex = 2
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1, Me.GridView1})
         '
-        'GridView1
+        'BandedGridView1
         '
-        Me.GridView1.DetailHeight = 458
-        Me.GridView1.FixedLineWidth = 3
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
+        Me.BandedGridView1.GridControl = Me.Grid
+        Me.BandedGridView1.Name = "BandedGridView1"
+        Me.BandedGridView1.OptionsView.ColumnAutoWidth = False
+        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
         '
         '_TxtJanQty1
         '
@@ -200,6 +202,11 @@ Partial Class frmDRR_details
         Me.TxtHarga3.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtHarga3.Name = "TxtHarga3"
         '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        '
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
@@ -210,20 +217,18 @@ Partial Class frmDRR_details
         Me.TxtNoNpp.Name = "TxtNoNpp"
         Me.TxtNoNpp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtNoNpp.Properties.NullText = ""
-        Me.TxtNoNpp.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.TxtNoNpp.Size = New System.Drawing.Size(148, 22)
         Me.TxtNoNpp.StyleController = Me.LayoutControl1
         Me.TxtNoNpp.TabIndex = 4
-        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule5.ErrorText = "Please select No NPP"
-        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoNpp, ConditionValidationRule5)
+        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule4.ErrorText = "Please select No NPP"
+        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoNpp, ConditionValidationRule4)
         '
         'LayoutControl1
         '
         Me.LayoutControl1.Controls.Add(Me.TxtNoDokumen)
         Me.LayoutControl1.Controls.Add(Me.TxtForecast)
-        Me.LayoutControl1.Controls.Add(Me.TxtPlace)
         Me.LayoutControl1.Controls.Add(Me.TxtProject)
         Me.LayoutControl1.Controls.Add(Me.TxtNoNpp)
         Me.LayoutControl1.Controls.Add(Me.TxtMaspro)
@@ -250,21 +255,9 @@ Partial Class frmDRR_details
         '
         Me.TxtForecast.Location = New System.Drawing.Point(816, 38)
         Me.TxtForecast.Name = "TxtForecast"
-        Me.TxtForecast.Size = New System.Drawing.Size(85, 22)
+        Me.TxtForecast.Size = New System.Drawing.Size(276, 22)
         Me.TxtForecast.StyleController = Me.LayoutControl1
         Me.TxtForecast.TabIndex = 11
-        '
-        'TxtPlace
-        '
-        Me.TxtPlace.Location = New System.Drawing.Point(1006, 38)
-        Me.TxtPlace.Name = "TxtPlace"
-        Me.TxtPlace.Size = New System.Drawing.Size(86, 22)
-        Me.TxtPlace.StyleController = Me.LayoutControl1
-        Me.TxtPlace.TabIndex = 10
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Place tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtPlace, ConditionValidationRule1)
         '
         'TxtProject
         '
@@ -282,19 +275,19 @@ Partial Class frmDRR_details
         Me.TxtMaspro.Name = "TxtMaspro"
         Me.TxtMaspro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtMaspro.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtMaspro.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtMaspro.Properties.DisplayFormat.FormatString = "MMM-yyyy"
         Me.TxtMaspro.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtMaspro.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtMaspro.Properties.EditFormat.FormatString = "MMM-yyyy"
         Me.TxtMaspro.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtMaspro.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.TxtMaspro.Properties.Mask.EditMask = "MMM-yyyy"
         Me.TxtMaspro.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.TxtMaspro.Size = New System.Drawing.Size(138, 22)
         Me.TxtMaspro.StyleController = Me.LayoutControl1
         Me.TxtMaspro.TabIndex = 7
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Tanggal Maspro tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtMaspro, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Tanggal Maspro tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtMaspro, ConditionValidationRule1)
         '
         'TxtDate
         '
@@ -312,10 +305,10 @@ Partial Class frmDRR_details
         Me.TxtDate.Size = New System.Drawing.Size(148, 22)
         Me.TxtDate.StyleController = Me.LayoutControl1
         Me.TxtDate.TabIndex = 8
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Tanggal tidak boleh kosong"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDate, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Tanggal tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDate, ConditionValidationRule2)
         '
         'TxtTime
         '
@@ -332,10 +325,10 @@ Partial Class frmDRR_details
         Me.TxtTime.Size = New System.Drawing.Size(102, 22)
         Me.TxtTime.StyleController = Me.LayoutControl1
         Me.TxtTime.TabIndex = 9
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Time tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtTime, ConditionValidationRule4)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Time tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtTime, ConditionValidationRule3)
         '
         'TxtCustomer
         '
@@ -350,7 +343,7 @@ Partial Class frmDRR_details
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem4, Me.LayoutControlItem6})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem4, Me.LayoutControlItem6})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1104, 121)
         Me.Root.TextVisible = False
@@ -382,15 +375,6 @@ Partial Class frmDRR_details
         Me.LayoutControlItem2.Text = "Customer"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(98, 16)
         '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.TxtPlace
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(893, 26)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(191, 26)
-        Me.LayoutControlItem7.Text = "Place"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(98, 16)
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtProject
@@ -405,7 +389,7 @@ Partial Class frmDRR_details
         Me.LayoutControlItem10.Control = Me.TxtForecast
         Me.LayoutControlItem10.Location = New System.Drawing.Point(703, 26)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(190, 26)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(381, 26)
         Me.LayoutControlItem10.Text = "Forecast Order"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(98, 16)
         '
@@ -443,17 +427,19 @@ Partial Class frmDRR_details
         '
         '
         '
+        Me.GalleryControl1.Gallery.AllowHoverImages = True
         Me.GalleryControl1.Gallery.CheckDrawMode = DevExpress.XtraBars.Ribbon.Gallery.CheckDrawMode.ImageAndText
         Me.GalleryControl1.Gallery.ColumnCount = 4
         Me.GalleryControl1.Gallery.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center
         GalleryItemGroup1.Caption = "Sketch"
         Me.GalleryControl1.Gallery.Groups.AddRange(New DevExpress.XtraBars.Ribbon.GalleryItemGroup() {GalleryItemGroup1})
+        Me.GalleryControl1.Gallery.HoverImageSize = New System.Drawing.Size(750, 500)
         Me.GalleryControl1.Gallery.ImageSize = New System.Drawing.Size(364, 400)
         Me.GalleryControl1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck
-        Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Stretch
+        Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside
         Me.GalleryControl1.Location = New System.Drawing.Point(0, 148)
         Me.GalleryControl1.Name = "GalleryControl1"
-        Me.GalleryControl1.Size = New System.Drawing.Size(1104, 461)
+        Me.GalleryControl1.Size = New System.Drawing.Size(1104, 447)
         Me.GalleryControl1.TabIndex = 4
         Me.GalleryControl1.Text = "GalleryControl1"
         '
@@ -461,7 +447,7 @@ Partial Class frmDRR_details
         '
         Me.GalleryControlClient1.GalleryControl = Me.GalleryControl1
         Me.GalleryControlClient1.Location = New System.Drawing.Point(2, 2)
-        Me.GalleryControlClient1.Size = New System.Drawing.Size(1079, 457)
+        Me.GalleryControlClient1.Size = New System.Drawing.Size(1079, 443)
         '
         'frmDRR_details
         '
@@ -477,7 +463,7 @@ Partial Class frmDRR_details
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.GalleryControl1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtQty1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtQty2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -487,13 +473,13 @@ Partial Class frmDRR_details
         CType(Me.TxtHarga1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtHarga2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.TxtNoDokumen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtForecast.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPlace.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -505,7 +491,6 @@ Partial Class frmDRR_details
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -518,7 +503,6 @@ Partial Class frmDRR_details
 
     End Sub
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents _TxtJanQty1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents TxtQty1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents TxtQty2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
@@ -532,7 +516,6 @@ Partial Class frmDRR_details
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents TextEdit9 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtPlace As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtProject As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
@@ -544,7 +527,6 @@ Partial Class frmDRR_details
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtNoNpp As DevExpress.XtraEditors.LookUpEdit
@@ -558,4 +540,7 @@ Partial Class frmDRR_details
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtNoDokumen As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

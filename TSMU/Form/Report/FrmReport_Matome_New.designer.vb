@@ -371,9 +371,11 @@ Partial Class FrmReport_Matome_New
         Me.AdvBandedGridView1.FixedLineWidth = 3
         Me.AdvBandedGridView1.GridControl = Me.Grid
         Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
-        Me.AdvBandedGridView1.OptionsBehavior.Editable = False
+        Me.AdvBandedGridView1.OptionsBehavior.ReadOnly = True
+        Me.AdvBandedGridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
         Me.AdvBandedGridView1.OptionsEditForm.EditFormColumnCount = 1
         Me.AdvBandedGridView1.OptionsPrint.UsePrintStyles = False
+        Me.AdvBandedGridView1.OptionsSelection.MultiSelect = True
         Me.AdvBandedGridView1.OptionsView.ShowAutoFilterRow = True
         Me.AdvBandedGridView1.OptionsView.ShowFooter = True
         Me.AdvBandedGridView1.OptionsView.ShowGroupPanel = False
