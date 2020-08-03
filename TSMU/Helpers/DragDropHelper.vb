@@ -49,6 +49,7 @@ Public Class DragDropHelper
     End Sub
 
     Private Sub OnGalleryControlMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
+
         If e.Button <> MouseButtons.Left OrElse Control.ModifierKeys <> Keys.None OrElse DragItemHitInfo Is Nothing Then
             Return
         End If
@@ -60,6 +61,7 @@ Public Class DragDropHelper
         If (Not New Rectangle(DragItemHitInfo.HitPoint.X - SystemInformation.DragSize.Width / 2, DragItemHitInfo.HitPoint.Y - SystemInformation.DragSize.Height / 2, SystemInformation.DragSize.Width, SystemInformation.DragSize.Height).Contains(e.Location)) Then
             gallery.DoDragDrop(checkedItems, DragDropEffects.All)
         End If
+
     End Sub
 
     Private Sub OnGalleryControlDragOver(ByVal sender As Object, ByVal e As DragEventArgs)
@@ -71,6 +73,7 @@ Public Class DragDropHelper
         Dim hitInfo As RibbonHitInfo = gallery.CalcHitInfo(gallery.PointToClient(New Point(e.X, e.Y)))
         targetHighlightItem = hitInfo.GalleryItem
         gallery.Invalidate()
+
     End Sub
 
     Private Sub OnGalleryControlDragDrop(ByVal sender As Object, ByVal e As DragEventArgs)
@@ -82,7 +85,7 @@ Public Class DragDropHelper
             Dim fileName = pathParts(pathParts.Count() - 1).Split("."c)
 
             Dim img As Image
-            Using bmpTemp As Bitmap = New Bitmap(file(0))
+            Using bmpTemp As Bitmap = New Bitmap(Image.FromFile(file(0))) 'file(0)
                 img = New Bitmap(bmpTemp)
                 If img IsNot Nothing Then
                     galleryControl1.Gallery.Groups(0).Items.Add(New GalleryItem(img, fileName(0), ""))

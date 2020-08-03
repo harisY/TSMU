@@ -34,7 +34,6 @@ Public Class DRRService
                     .DueDateMaspro = If(IsDBNull(dt.Rows(0)("DueDateMaspro")), Date.Today, Convert.ToDateTime(dt.Rows(0)("DueDateMaspro")))
                     .Tanggal = If(IsDBNull(dt.Rows(0)("Date")), Date.Today, Convert.ToDateTime(dt.Rows(0)("Date")))
                     .Time = If(IsDBNull(dt.Rows(0)("Time")), Date.Now, TimeSpan.Parse(dt.Rows(0)("Time").ToString))
-                    .Place = If(IsDBNull(dt.Rows(0)("Place")), Date.Today, Convert.ToString(dt.Rows(0)("Place")))
                     .NoDokumen = If(IsDBNull(dt.Rows(0)("NoDokumen")), 0, Convert.ToString(dt.Rows(0)("NoDokumen")))
                     .Gambar1 = If(IsDBNull(dt.Rows(0)("Gambar1")), "", Convert.ToString(dt.Rows(0)("Gambar1")))
                     .Gambar2 = If(IsDBNull(dt.Rows(0)("Gambar2")), "", Convert.ToString(dt.Rows(0)("Gambar2")))
@@ -71,7 +70,7 @@ Public Class DRRService
         Try
             Dim _result As Integer = 0
             Dim Sql As String = "DRRHeader_Insert"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(14) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(13) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(0).Value = Model.No_NPP
             pParam(1) = New SqlClient.SqlParameter("@Customer", SqlDbType.VarChar)
@@ -86,22 +85,20 @@ Public Class DRRService
             pParam(5).Value = Model.Tanggal
             pParam(6) = New SqlClient.SqlParameter("@Time", SqlDbType.Time)
             pParam(6).Value = Model.Time
-            pParam(7) = New SqlClient.SqlParameter("@Place", SqlDbType.VarChar)
-            pParam(7).Value = Model.Place
-            pParam(8) = New SqlClient.SqlParameter("@NoDokumen", SqlDbType.VarChar)
-            pParam(8).Value = Model.NoDokumen
-            pParam(9) = New SqlClient.SqlParameter("@Gambar1", SqlDbType.VarChar)
-            pParam(9).Value = Model.Gambar1
-            pParam(10) = New SqlClient.SqlParameter("@Gambar2", SqlDbType.VarChar)
-            pParam(10).Value = Model.Gambar2
-            pParam(11) = New SqlClient.SqlParameter("@Gambar3", SqlDbType.VarChar)
-            pParam(11).Value = Model.Gambar3
-            pParam(12) = New SqlClient.SqlParameter("@Gambar4", SqlDbType.VarChar)
-            pParam(12).Value = Model.Gambar4
-            pParam(13) = New SqlClient.SqlParameter("@Gambar5", SqlDbType.VarChar)
-            pParam(13).Value = Model.Gambar5
-            pParam(14) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
-            pParam(14).Value = gh_Common.Username
+            pParam(7) = New SqlClient.SqlParameter("@NoDokumen", SqlDbType.VarChar)
+            pParam(7).Value = Model.NoDokumen
+            pParam(8) = New SqlClient.SqlParameter("@Gambar1", SqlDbType.VarChar)
+            pParam(8).Value = Model.Gambar1
+            pParam(9) = New SqlClient.SqlParameter("@Gambar2", SqlDbType.VarChar)
+            pParam(9).Value = Model.Gambar2
+            pParam(10) = New SqlClient.SqlParameter("@Gambar3", SqlDbType.VarChar)
+            pParam(10).Value = Model.Gambar3
+            pParam(11) = New SqlClient.SqlParameter("@Gambar4", SqlDbType.VarChar)
+            pParam(11).Value = Model.Gambar4
+            pParam(12) = New SqlClient.SqlParameter("@Gambar5", SqlDbType.VarChar)
+            pParam(12).Value = Model.Gambar5
+            pParam(13) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
+            pParam(13).Value = gh_Common.Username
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(Sql, pParam)
             If dt.Rows.Count > 0 Then
@@ -116,7 +113,7 @@ Public Class DRRService
         Try
             Dim _result As Integer = 0
             Dim Sql As String = "DRRHeader_Update"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(12) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
             pParam(0) = New SqlClient.SqlParameter("@Id", SqlDbType.Int)
             pParam(0).Value = Model.IdDRR
             pParam(1) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
@@ -129,20 +126,20 @@ Public Class DRRService
             pParam(4).Value = Model.Tanggal
             pParam(5) = New SqlClient.SqlParameter("@Time", SqlDbType.Time)
             pParam(5).Value = Model.Time
-            pParam(6) = New SqlClient.SqlParameter("@Place", SqlDbType.VarChar)
-            pParam(6).Value = Model.Place
-            pParam(7) = New SqlClient.SqlParameter("@NoDokumen", SqlDbType.VarChar)
-            pParam(7).Value = Model.NoDokumen
-            pParam(8) = New SqlClient.SqlParameter("@Gambar1", SqlDbType.VarChar)
-            pParam(8).Value = Model.Gambar1
-            pParam(9) = New SqlClient.SqlParameter("@Gambar2", SqlDbType.VarChar)
-            pParam(9).Value = Model.Gambar2
-            pParam(10) = New SqlClient.SqlParameter("@Gambar3", SqlDbType.VarChar)
-            pParam(10).Value = Model.Gambar3
-            pParam(11) = New SqlClient.SqlParameter("@Gambar4", SqlDbType.VarChar)
-            pParam(11).Value = Model.Gambar4
-            pParam(12) = New SqlClient.SqlParameter("@Gambar5", SqlDbType.VarChar)
-            pParam(12).Value = Model.Gambar5
+            pParam(6) = New SqlClient.SqlParameter("@NoDokumen", SqlDbType.VarChar)
+            pParam(6).Value = Model.NoDokumen
+            pParam(7) = New SqlClient.SqlParameter("@Gambar1", SqlDbType.VarChar)
+            pParam(7).Value = Model.Gambar1
+            pParam(8) = New SqlClient.SqlParameter("@Gambar2", SqlDbType.VarChar)
+            pParam(8).Value = Model.Gambar2
+            pParam(9) = New SqlClient.SqlParameter("@Gambar3", SqlDbType.VarChar)
+            pParam(9).Value = Model.Gambar3
+            pParam(10) = New SqlClient.SqlParameter("@Gambar4", SqlDbType.VarChar)
+            pParam(10).Value = Model.Gambar4
+            pParam(11) = New SqlClient.SqlParameter("@Gambar5", SqlDbType.VarChar)
+            pParam(11).Value = Model.Gambar5
+            'pParam(12) = New SqlClient.SqlParameter("@CreatedBy", SqlDbType.VarChar)
+            'pParam(12).Value = gh_Common.Username
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
