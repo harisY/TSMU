@@ -48,10 +48,6 @@ Public Class Frm_NPP_Detail
         Call CreateTableBarang()
         Call FillComboCustomer()
         Call FillComboCategory()
-        'ChekHeader = New CheckBox
-        'ChekHeader.Size = New Size(15, 15)
-        'Grid.Controls.Add(ChekHeader)
-        'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
         Me.TOrderMonth.Properties.Mask.EditMask = "n0"
         Me.TOrderMonth.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric

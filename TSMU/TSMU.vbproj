@@ -1225,6 +1225,12 @@
     <Compile Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_BeritaAcara.Designer.vb">
+      <DependentUpon>Frm_CR_BeritaAcara.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_BeritaAcara.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Get_Mold.Designer.vb">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </Compile>
@@ -1241,6 +1247,12 @@
       <DependentUpon>Frm_CR_Purchase.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Purchase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Purchase_Monitor.Designer.vb">
+      <DependentUpon>Frm_CR_Purchase_Monitor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_Purchase_Monitor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateDetail.Designer.vb">
@@ -2819,6 +2831,9 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDivHead_Header.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_BeritaAcara.resx">
+      <DependentUpon>Frm_CR_BeritaAcara.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Get_Mold.resx">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </EmbeddedResource>
@@ -2827,6 +2842,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Purchase.resx">
       <DependentUpon>Frm_CR_Purchase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_Purchase_Monitor.resx">
+      <DependentUpon>Frm_CR_Purchase_Monitor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateDetail.resx">
       <DependentUpon>Frm_CR_UserCreateDetail.vb</DependentUpon>

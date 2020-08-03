@@ -806,11 +806,11 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Grid4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid4.Location = New System.Drawing.Point(0, 412)
+        Me.Grid4.Location = New System.Drawing.Point(7, 412)
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
         Me.Grid4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit6, Me.RepositoryItemSpinEdit5})
-        Me.Grid4.Size = New System.Drawing.Size(813, 129)
+        Me.Grid4.Size = New System.Drawing.Size(806, 129)
         Me.Grid4.TabIndex = 80
         Me.Grid4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -1005,6 +1005,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Button1.TabIndex = 96
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'Frm_CR_UserCreateDetail
         '
