@@ -27,9 +27,9 @@ Public Class Frm_CR_BeritaAcara
             dt = fc_Class.Get_BeritaAcara(_Dept)
             Grid.DataSource = dt
 
-            'Dim dt2 As New DataTable
-            'dt2 = fc_Class.Get_Purchase_Monitor_Approve()
-            'Grid2.DataSource = dt2
+            Dim dt2 As New DataTable
+            dt2 = fc_Class.Get_BeritaAcara_Finish(_Dept)
+            Grid2.DataSource = dt2
 
 
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)

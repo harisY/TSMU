@@ -176,7 +176,8 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(28) {New DataColumn("Part No", GetType(String)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(29) {New DataColumn("No Urut", GetType(Integer)),
+                                                           New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
                                                            New DataColumn("C/T", GetType(String)),
@@ -630,6 +631,16 @@ Public Class Frm_NPP_Detail
                         .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
 
 
+
+                        If IsNumeric(GridView1.GetRowCellValue(i, "No Urut")) = True Then
+                            .NoUrut = Convert.ToInt64(GridView1.GetRowCellValue(i, "No Urut"))
+                        Else
+                            .NoUrut = 0
+                        End If
+
+
+
+
                         If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
                             .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
                         Else
@@ -722,6 +733,13 @@ Public Class Frm_NPP_Detail
                             .Seq = Convert.ToInt64(GridView1.GetRowCellValue(i, "Seq"))
                             .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
                             .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
+
+                            If IsNumeric(GridView1.GetRowCellValue(i, "No Urut")) = True Then
+                                .NoUrut = Convert.ToInt64(GridView1.GetRowCellValue(i, "No Urut"))
+                            Else
+                                .NoUrut = 0
+                            End If
+
 
                             If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
                                 .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
@@ -828,6 +846,13 @@ Public Class Frm_NPP_Detail
                             .Commit = IIf(GridView1.GetRowCellValue(i, "Commit NPD") Is DBNull.Value, False, GridView1.GetRowCellValue(i, "Commit NPD"))
                             .Capability = IIf(GridView1.GetRowCellValue(i, "Due Date NPD") Is DBNull.Value, Nothing, GridView1.GetRowCellValue(i, "Due Date NPD"))
 
+                            If IsNumeric(GridView1.GetRowCellValue(i, "No Urut")) = True Then
+                                .NoUrut = Convert.ToInt64(GridView1.GetRowCellValue(i, "No Urut"))
+                            Else
+                                .NoUrut = 0
+                            End If
+
+
                             If IsNumeric(GridView1.GetRowCellValue(i, "C/T")) = True Then
                                 .Cycle_Time = Convert.ToString(GridView1.GetRowCellValue(i, "C/T"))
                             Else
@@ -876,57 +901,11 @@ Public Class Frm_NPP_Detail
 
 
 
-    Private Sub TModel_Leave(sender As Object, e As EventArgs) Handles TModel.Leave
-
-        'If TCustomer.EditValue = "" Then
-        '    MessageBox.Show("Please Select Customer",
-        '                        "Warning",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation,
-        '                        MessageBoxDefaultButton.Button1)
-        '    TModel.EditValue = ""
-        '    Exit Sub
-        'ElseIf TModel.EditValue = "" Then
-        '    TNPP_No.EditValue = ""
-        'Else
-
-        '    fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), Trim(TModel.EditValue))
-        '    TNPP_No.EditValue = fc_Class.H_No_NPP
-        'End If
 
 
-    End Sub
 
-    Private Sub TCustomer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TCustomer.KeyPress
-        'Dim tombol As Integer
-        'tombol = Asc(e.KeyChar)
 
-        'If Not ((tombol = 0)) Then
-        '    e.Handled = True
-        'End If
-    End Sub
 
-    Private Sub TCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles TCustomer.EditValueChanged
-
-        'If TModel.EditValue <> "" Then
-        '    fc_Class.GetNpwoNoAuto(Trim(TCustomer.EditValue), TModel.EditValue)
-        '    TNPP_No.EditValue = fc_Class.H_No_NPP
-        'End If
-
-    End Sub
-
-    Private Sub TNpwo_No_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TNPP_No.KeyPress
-        'Dim tombol As Integer
-        'tombol = Asc(e.KeyChar)
-
-        'If Not ((tombol = 0)) Then
-        '    e.Handled = True
-        'End If
-    End Sub
-
-    Private Sub Frm_Npwo_Detail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-
-    End Sub
 
     Private Sub Frm_Npwo_Detail_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         TNPP_No.EditValue = Test
@@ -1017,10 +996,6 @@ Public Class Frm_NPP_Detail
             'gridView.UpdateCurrentRow()
 
         End If
-        'If e.KeyData = Keys.Insert Then
-        '    GridView1.AddNewRow()
-        'End If
-
     End Sub
 
     Public Overrides Sub Proc_Approve()
@@ -1518,6 +1493,7 @@ Public Class Frm_NPP_Detail
                                 .Item("Status") = dtExcel.Rows(i).Item("Status")
                                 .Item("Revisi") = dtExcel.Rows(i).Item("Revisi")
                                 .Item("Seq") = Seq
+                                .Item("No Urut") = i + 1
                             End With
                             DtGridNPWO.Rows.Add(MyNewRow)
                             DtGridNPWO.AcceptChanges()
@@ -1746,8 +1722,8 @@ Public Class Frm_NPP_Detail
                     'Next rowHandle
                     'If Comit = True Then
                     Call Colums_AllowEdit_True()
-                    Me.PartNo.OptionsColumn.AllowEdit = False
-                        Me.PartName.OptionsColumn.AllowEdit = False
+                    'Me.PartNo.OptionsColumn.AllowEdit = False
+                    'Me.PartName.OptionsColumn.AllowEdit = False
                     Me.CapabilityDate.OptionsColumn.AllowEdit = False
                     'Else
                     '    Call Colums_AllowEdit_False()

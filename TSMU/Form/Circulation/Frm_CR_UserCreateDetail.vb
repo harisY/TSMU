@@ -11,9 +11,6 @@ Imports System.Globalization
 Imports System.IO
 Imports System.Net.Mail
 
-
-
-
 Public Class Frm_CR_UserCreateDetail
 
     Dim FrmReport As FrmReportCirculation
@@ -55,9 +52,7 @@ Public Class Frm_CR_UserCreateDetail
     Dim CR As Double = 0
     Dim Balance As Double = 0
 
-
     Dim NoSirkulasi As String = ""
-
 
     Dim CForm As Integer = 0
     Dim FGetMold As Frm_CR_Get_Mold
@@ -3028,5 +3023,17 @@ Public Class Frm_CR_UserCreateDetail
         Call Termin(1)
         Call Termin_Default(1)
 
+    End Sub
+
+    Private Sub BBeritaAcara_Click(sender As Object, e As EventArgs) Handles BBeritaAcara.Click
+        'If TOrderMonth.Text = "" Then
+        '    MessageBox.Show("Please Fill Order Month",
+        '                        "Warning",
+        '                        MessageBoxButtons.OK,
+        '                        MessageBoxIcon.Exclamation,
+        '                        MessageBoxDefaultButton.Button1)
+        'Else
+        CallForm()
+        'End If
     End Sub
 End Class

@@ -1231,6 +1231,12 @@
     <Compile Include="Form\Circulation\Frm_CR_BeritaAcara.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_BeritaAcara_Input.Designer.vb">
+      <DependentUpon>Frm_CR_BeritaAcara_Input.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_CR_BeritaAcara_Input.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Get_Mold.Designer.vb">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
     </Compile>
@@ -2833,6 +2839,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_BeritaAcara.resx">
       <DependentUpon>Frm_CR_BeritaAcara.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_BeritaAcara_Input.resx">
+      <DependentUpon>Frm_CR_BeritaAcara_Input.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Get_Mold.resx">
       <DependentUpon>Frm_CR_Get_Mold.vb</DependentUpon>
