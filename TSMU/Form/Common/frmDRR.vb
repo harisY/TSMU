@@ -95,6 +95,10 @@ Public Class frmDRR
             Next rowHandle
             _Service = New DRRService
 
+            Dim _isRelease As Boolean = _Service.IsRelease(ID)
+            If _isRelease Then
+                Throw New Exception("DRR sudah di release, tidak bisa di hapus !")
+            End If
             'Hapus Gambar di Folder
             Dim ObjHeader As New DRRModel
             ObjHeader = _Service.GetById(ID)

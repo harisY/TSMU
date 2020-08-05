@@ -34,10 +34,13 @@ Public Class frmDRR_details
     Dim TxtCavity As RepositoryItemTextEdit = New RepositoryItemTextEdit()
     Dim TxtTonase As RepositoryItemSpinEdit = New RepositoryItemSpinEdit()
     Dim TxtPartName As RepositoryItemTextEdit = New RepositoryItemTextEdit()
+    Dim BtnPartName As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim _inplaceEditors As RepositoryItem()
     Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
-    Dim images As New List(Of String)
+    Dim images As List(Of String)
     Private Initializing As Boolean = False
+    Dim ImgList As List(Of ImageModel)
+    Dim ImgToDelete As List(Of ImageModel)
     Public Sub New()
 
         ' This call is required by the designer.
@@ -72,6 +75,14 @@ Public Class frmDRR_details
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
+        AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler CmnProses.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler CmbReference.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler TxtPartName.EditValueChanged, AddressOf OnEditValueChanged
+        'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
+        'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler BtnPartName.ButtonClick, AddressOf BtnClick
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -121,6 +132,7 @@ Public Class frmDRR_details
                     TxtTime.EditValue = .Time
                     TxtNoDokumen.Text = .NoDokumen
                     TxtForecast.Text = .ForecastOrder
+                    images = New List(Of String)
                     images = New List(Of String)({ .Gambar1, .Gambar2, .Gambar3, .Gambar4, .Gambar5})
 
                     GenerateImageGallery()
@@ -144,14 +156,17 @@ Public Class frmDRR_details
         End Try
     End Sub
     Private Sub GenerateImageGallery()
-
+        Dim _NPP As String = String.Empty
         For Each gambar In images
             Dim pathParts = gambar.Split("_"c)
             Dim fileName = pathParts(pathParts.Count() - 1).Split("."c)
             Dim _index = pathParts(pathParts.Count() - 1).Split(","c)
+
+
             If fileName(0).ToString = "" Then
                 Exit For
             End If
+            _NPP = pathParts(0)
             Dim img As Image
             If Directory.Exists(_path) Then
                 img = New Bitmap(Image.FromFile(Path.Combine(_path, pathParts(0) & "_" & _index(0))))
@@ -162,6 +177,20 @@ Public Class frmDRR_details
                 'img = New Bitmap(Path.Combine(_path, pathParts(0) & "_" & _index(0)))
                 'GalleryControl1.Gallery.Groups(0).Items.Add(New GalleryItem(img, img, _index(0), "", CInt(_index(1)), CInt(_index(1)), Nothing, ""))
             End If
+        Next
+
+        images = New List(Of String)
+
+        Dim _files As String()
+        _files = Directory.GetFiles(_path, "*.png")
+        For Each file In _files
+            Dim separtor = file.Split("_"c)
+            If separtor.Length > 2 Then
+                If separtor(0) = Path.Combine(_path, _NPP) AndAlso separtor(2).Contains("Attach") Then
+                    images.Add(file)
+                End If
+            End If
+
         Next
     End Sub
     Private Sub LoadDetail()
@@ -178,6 +207,7 @@ Public Class frmDRR_details
             With BandedGridView1
                 .Columns(0).Visible = False
                 .Columns(1).Visible = False
+                .Columns(3).Visible = False
                 .BestFitColumns()
                 For Each col As GridColumn In .Columns
                     If col.Name.ToLower = "colseq" Then
@@ -245,30 +275,26 @@ Public Class frmDRR_details
         Try
             'Grid.MainView = GetBandedGridView()
             'GetBandedGridView()
-            AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
-            AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
-            AddHandler CmnProses.EditValueChanged, AddressOf OnEditValueChanged
-            AddHandler CmbReference.EditValueChanged, AddressOf OnEditValueChanged
-            AddHandler TxtPartName.EditValueChanged, AddressOf OnEditValueChanged
+
             'AddHandler TxtTonase.EditValueChanged, AddressOf OnEditValueChanged
             _inplaceEditors = New RepositoryItem() {LookPartName, TxtPartName}
             _service = New DRRService
 
-            Dim dtPart As New DataTable
-            dtPart = _service.GetPartName(TxtNoNpp.EditValue)
-            LookPartName.NullText = "Pilih Part"
-            LookPartName.PopupWidth = 500
-            LookPartName.DataSource = Nothing
-            LookPartName.DataSource = dtPart
-            LookPartName.ValueMember = "PartName"
-            LookPartName.DisplayMember = "PartName"
-            LookPartName.PopulateColumns()
+            'Dim dtPart As New DataTable
+            'dtPart = _service.GetPartName(TxtNoNpp.EditValue)
+            'LookPartName.NullText = "Pilih Part"
+            'LookPartName.PopupWidth = 500
+            'LookPartName.DataSource = Nothing
+            'LookPartName.DataSource = dtPart
+            'LookPartName.ValueMember = "Seq"
+            'LookPartName.DisplayMember = "Seq"
+            'LookPartName.PopulateColumns()
 
 
             CmbLevel.Items.Clear()
             CmbLevel.Items.AddRange(New String() {"1", "2", "3", "4"})
             CmnProses.Items.Clear()
-            CmnProses.Items.AddRange(New String() {"INJ", "PNT"})
+            CmnProses.Items.AddRange(New String() {"Inj", "Painting", "Chrome", "Assy", "Ultrasonic", "Vibration"})
             CmbReference.Items.Clear()
             CmbReference.Items.AddRange(New String() {"DRAWING", "CAD DATA", "SKETCH", "SAMPLE"})
 
@@ -276,7 +302,7 @@ Public Class frmDRR_details
             With BandedGridView1
 
                 .Columns("Level").ColumnEdit = CmbLevel
-                .Columns("PartName").ColumnEdit = LookPartName
+                .Columns("PartName").ColumnEdit = BtnPartName
                 '.Columns("Qty").ColumnEdit = TxtQty
                 '.Columns("Tonage").ColumnEdit = TxtTonase
                 .Columns("Proses").ColumnEdit = CmnProses
@@ -284,7 +310,7 @@ Public Class frmDRR_details
             End With
             With Grid.RepositoryItems
                 .Add(CmbLevel)
-                .Add(LookPartName)
+                .Add(BtnPartName)
                 '.Add(TxtQty)
                 '.Add(TxtTonase)
                 .Add(CmnProses)
@@ -304,39 +330,11 @@ Public Class frmDRR_details
     End Sub
     Private Sub SetGridValue(ByVal sender As Object)
         Try
-            'Dim view As BandedGridView = CType(sender, BandedGridView)
-
-            If BandedGridView1.FocusedColumn.Name = "colPartName" Then 'AndAlso BandedGridView1.FocusedColumn.RealColumnEdit.[GetType]() = GetType(RepositoryItemLookUpEdit) 
-                If BandedGridView1.FocusedColumn.RealColumnEdit.[GetType]() = GetType(RepositoryItemLookUpEdit) Then
-                    Dim lookUpEdit As LookUpEdit = CType(sender, LookUpEdit)
-                    Dim Seq As String = lookUpEdit.GetColumnValue("Seq").ToString
-                    Dim PartNo As String = lookUpEdit.GetColumnValue("PartNo").ToString
-                    With BandedGridView1
-                        .SetFocusedRowCellValue("Seq", Seq)
-                        .SetFocusedRowCellValue("PartNo", PartNo)
-                        .SetFocusedRowCellValue("Proses", "INJ")
-                        .SetFocusedRowCellValue("Qty", 0)
-                        .SetFocusedRowCellValue("Cavity", "")
-                        .SetFocusedRowCellValue("Tonage", "0")
-                        .SetFocusedRowCellValue("Material", "")
-                        .SetFocusedRowCellValue("Part", 0)
-                        .SetFocusedRowCellValue("Runner", 0)
-                        .SetFocusedRowCellValue("Long", 0)
-                        .SetFocusedRowCellValue("Width", 0)
-                        .SetFocusedRowCellValue("Height", 0)
-                        .SetFocusedRowCellValue("SurfaceTreatment", "")
-                        .SetFocusedRowCellValue("C/T", 0)
-                        .SetFocusedRowCellValue("Thickn", 0)
-                        .SetFocusedRowCellValue("Reference", "DRAWING")
-                        .SetFocusedRowCellValue("Remark", "")
-                        .FocusedColumn = .VisibleColumns(4)
-
-                    End With
-                End If
-
-            ElseIf BandedGridView1.FocusedColumn.Name.ToLower = "collevel" Then
+            If BandedGridView1.FocusedColumn.Name.ToLower = "collevel" Then
                 With BandedGridView1
+                    .SetFocusedRowCellValue("PartName", "")
                     .SetFocusedRowCellValue("Seq", 0)
+                    .SetFocusedRowCellValue("PartNo", "")
                     .SetFocusedRowCellValue("Proses", "INJ")
                     .SetFocusedRowCellValue("Qty", 0)
                     .SetFocusedRowCellValue("Cavity", "")
@@ -352,15 +350,54 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("Thickn", 0)
                     .SetFocusedRowCellValue("Reference", "DRAWING")
                     .SetFocusedRowCellValue("Remark", "")
-                    .FocusedColumn = .VisibleColumns(4)
+                    .FocusedColumn = .VisibleColumns(1)
 
                 End With
             End If
+
         Catch ex As Exception
-            ex = Nothing
+            Throw ex
         End Try
     End Sub
 
+    Private Sub BtnClick(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+            _service = New DRRService
+            dtSearch = _service.GetPartName(TxtNoNpp.EditValue)
+            ls_OldKode = If(String.IsNullOrEmpty(BandedGridView1.GetRowCellDisplayText(BandedGridView1.FocusedRowHandle, "PartName")), "", BandedGridView1.GetRowCellDisplayText(BandedGridView1.FocusedRowHandle, "PartName"))
+
+            ls_Judul = "Part Name"
+
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+            Dim Value3 As String = ""
+
+            'Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As BandedGridView = TryCast(Grid.FocusedView, BandedGridView)
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                view.SetRowCellValue(view.FocusedRowHandle, "PartName", Value1)
+                view.SetRowCellValue(view.FocusedRowHandle, "PartNo", Value2)
+                view.SetRowCellValue(view.FocusedRowHandle, "Seq", Value3)
+            End If
+            BandedGridView1.BestFitColumns()
+            FormatBandedGridView(BandedGridView1)
+            lF_SearchData.Close()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Private Sub OnEditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
         Try
             If BandedGridView1.FocusedRowHandle = GridControl.NewItemRowHandle Then
@@ -390,17 +427,6 @@ Public Class frmDRR_details
 
     End Sub
 
-    Private Sub ComboBox_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
-
-        Try
-
-            'GridView1.PostEditor()
-            'GridView1.UpdateCurrentRow()
-        Catch ex As Exception
-            'MsgBox(ex.Message)
-        End Try
-
-    End Sub
     Public Overrides Sub Proc_Refresh()
         Initializing = True
         GalleryControl1.Gallery.Groups(0).Items.Clear()
@@ -514,9 +540,9 @@ Public Class frmDRR_details
                 GridDtl.DataSource = _service.GetAll()
 
                 IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
-                Me.Hide()
+                Hide()
             End If
         Catch ex As Exception
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -539,6 +565,22 @@ Public Class frmDRR_details
                     'File.Delete(_File)
                 End If
             Next item
+
+            For Each imgTodeleted In ImgToDelete
+                Dim _fileToDelete As String = String.Empty
+                _fileToDelete = Path.Combine(_path, imgTodeleted.ImageTitle & ".png")
+                If File.Exists(_fileToDelete) Then
+                    File.Delete(_fileToDelete)
+                End If
+            Next
+            For Each ImgFile In ImgList
+                _File = Path.Combine(_path, Replace(ImgFile.ImageTitle, ".png", "") & ".png")
+
+                If Not File.Exists(_File) Then
+                    ImgFile.Img.Save(_File, Imaging.ImageFormat.Png)
+                End If
+
+            Next
         Catch ex As Exception
             Throw ex
         End Try
@@ -583,9 +625,7 @@ Public Class frmDRR_details
 
     Private Sub frmDRR_details_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Try
-
             If e.KeyCode = Keys.F1 Then
-
             Else
                 If e.KeyCode = Keys.Delete Then
                     Dim item As GalleryItem = GalleryControl1.Gallery.GetCheckedItem()
@@ -643,12 +683,10 @@ Public Class frmDRR_details
         Select Case e.Column.FieldName
             Case "PartName"
                 If e.RowHandle = 0 Then
-                    e.RepositoryItem = LookPartName
+                    e.RepositoryItem = BtnPartName
                 Else
                     e.RepositoryItem = TxtPartName
                 End If
-
-
         End Select
     End Sub
 
@@ -657,12 +695,80 @@ Public Class frmDRR_details
             Dim grid As GridControl = TryCast(sender, GridControl)
             Dim view As GridView = TryCast(grid.FocusedView, GridView)
             If e.KeyData = Keys.Delete Then
-                view.DeleteSelectedRows()
-                e.Handled = True
+                If view.FocusedRowHandle <> 0 Then
+                    view.DeleteSelectedRows()
+                    e.Handled = True
+                End If
+            End If
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
+        Try
+            If XtraMessageBox.Show("DRR yang sudah di Release tidak bisa di edit atau di hapus, Relase ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                _service = New DRRService
+                If fs_Code <> 0 Then
+                    _service.Release(fs_Code)
+                    ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                Else
+                    ShowMessage("DRR yang baru di buat tidak bisa di Release, Save dan buka lagi DRR ini untuk di Release !", MessageTypeEnum.NormalMessage)
+                End If
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
 
+    Private Sub AttachImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttachImageToolStripMenuItem.Click
+        Try
+            If TxtNoNpp.EditValue = "" Then
+                Throw New Exception("No NPP tidak boleh kosong !")
+            End If
+            Dim f As New frmDRRAttach(TxtNoNpp.EditValue, _path, If(fs_Code = "0", True, False), images)
+            f.StartPosition = FormStartPosition.CenterScreen
+            f.ShowDialog()
+            ImgList = New List(Of ImageModel)
+            ImgList = f.ImgList
+            ImgToDelete = New List(Of ImageModel)
+            ImgToDelete = f.ImagesToDelete
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub BandedGridView1_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles BandedGridView1.ValidatingEditor
+        Try
+            Dim view As BandedGridView = TryCast(sender, BandedGridView)
+            'If view.FocusedColumn.FieldName.ToLower = "qty" Then
+            '    Dim requiredDate? As Date = CType(e.Value, Date?)
+            '    Dim orderDate? As Date = CType(view.GetRowCellValue(view.FocusedRowHandle, colOrderDate), Date?)
+            '    If requiredDate < orderDate Then
+            '        e.Valid = False
+            '        e.ErrorText = "Required Date is earlier than the order date"
+            '    End If
+            'End If
+            If view.FocusedColumn.ColumnType = GetType(Integer) OrElse view.FocusedColumn.ColumnType = GetType(Double) Then
+                Dim ressult As Integer
+                If Not Integer.TryParse(e.Value.ToString(), ressult) Then
+                    e.Valid = False
+                    e.ErrorText = "Input hanya angka !"
+                Else
+                    If Integer.Parse(e.Value.ToString()) <= 0 Then
+                        e.Valid = False
+                        e.ErrorText = Replace(view.FocusedColumn.Name, "col", "").ToUpper & " harus lebih besar dari 0(Nol) !"
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub BandedGridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles BandedGridView1.ValidateRow
+
+    End Sub
 End Class

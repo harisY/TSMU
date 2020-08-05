@@ -221,7 +221,7 @@ Public Class BarcodeGenerate
 
             Dim sql2 As String = "SELECT ISNULL(No,0) No From BarcodePrintLog 
                                 WHERE Bulan = " & QVal(Bulan) & " 
-                                AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                                AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " and YEAR(PrintedDate) =YEAR(GETDATE())"
             Dim dt As DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(sql)

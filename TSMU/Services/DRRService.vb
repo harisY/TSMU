@@ -145,6 +145,40 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
+    Public Sub Release(IdDrr As Integer)
+        Try
+            Dim _result As Integer = 0
+            Dim Sql As String = "DRRHeader_Release"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@IdDrr", SqlDbType.Int)
+            pParam(0).Value = IdDrr
+            pParam(1) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(1).Value = gh_Common.Username
+
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function IsRelease(IdDrr As Integer) As Boolean
+        Dim _result As Boolean = False
+        Try
+            Dim Sql As String = "DRRHeader_IsRelease"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@IdDrr", SqlDbType.Int)
+            pParam(0).Value = IdDrr
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToBoolean(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub DeleteHeader(Id As Integer)
         Try
             Dim Sql As String = "DRRHeader_Delete"

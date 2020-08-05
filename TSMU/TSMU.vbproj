@@ -1643,6 +1643,12 @@
     <Compile Include="Form\Common\Frmtest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\CustomForm\frmDRRAttach.Designer.vb">
+      <DependentUpon>frmDRRAttach.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\CustomForm\frmDRRAttach.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\CustomForm\frmFPrice.Designer.vb">
       <DependentUpon>frmFPrice.vb</DependentUpon>
     </Compile>
@@ -2113,6 +2119,7 @@
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
+    <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
     <Compile Include="Models\BarcodeGenerate.vb" />
@@ -2874,6 +2881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmSales_ForecastPriceSync.resx">
       <DependentUpon>FrmSales_ForecastPriceSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\CustomForm\frmDRRAttach.resx">
+      <DependentUpon>frmDRRAttach.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
