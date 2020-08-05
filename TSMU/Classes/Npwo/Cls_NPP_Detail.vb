@@ -1139,14 +1139,14 @@ Public Class Col_Cls_NPP_Detail_NPP
     Public Property Factory As String
     Public Property Commit As Boolean
     Public Property Runner As Double
+    Public Property NoUrut As Integer
 
 
     Public Sub Insert_NPP_Detail(NPP_No As String)
 
         Try
-
             Dim query As String = "[NPP_Insert_NPP_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(25) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -1173,6 +1173,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(23) = New SqlClient.SqlParameter("@Commit", SqlDbType.Bit)
             pParam(24) = New SqlClient.SqlParameter("@Capability", SqlDbType.Date)
             pParam(25) = New SqlClient.SqlParameter("@Runner", SqlDbType.Float)
+            pParam(26) = New SqlClient.SqlParameter("@NoUrut", SqlDbType.Float)
 
 
             pParam(0).Value = NPP_No
@@ -1201,6 +1202,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(23).Value = Commit
             pParam(24).Value = Capability
             pParam(25).Value = Runner
+            pParam(26).Value = NoUrut
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)

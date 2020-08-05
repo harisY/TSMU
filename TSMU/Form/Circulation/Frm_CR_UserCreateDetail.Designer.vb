@@ -110,6 +110,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Spesification = New DevExpress.XtraEditors.TextEdit()
         Me.T_Reason = New DevExpress.XtraEditors.TextEdit()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.BBeritaAcara = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -806,11 +807,11 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Grid4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid4.Location = New System.Drawing.Point(0, 412)
+        Me.Grid4.Location = New System.Drawing.Point(7, 412)
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
         Me.Grid4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit6, Me.RepositoryItemSpinEdit5})
-        Me.Grid4.Size = New System.Drawing.Size(813, 129)
+        Me.Grid4.Size = New System.Drawing.Size(806, 129)
         Me.Grid4.TabIndex = 80
         Me.Grid4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -1005,12 +1006,24 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Button1.TabIndex = 96
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
+        '
+        'BBeritaAcara
+        '
+        Me.BBeritaAcara.Location = New System.Drawing.Point(1134, 59)
+        Me.BBeritaAcara.Name = "BBeritaAcara"
+        Me.BBeritaAcara.Size = New System.Drawing.Size(108, 23)
+        Me.BBeritaAcara.TabIndex = 97
+        Me.BBeritaAcara.Text = "Berita Acara"
+        Me.BBeritaAcara.UseVisualStyleBackColor = True
+        Me.BBeritaAcara.Visible = False
         '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1254, 550)
+        Me.Controls.Add(Me.BBeritaAcara)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.T_Reason)
         Me.Controls.Add(Me.T_Spesification)
@@ -1072,6 +1085,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.T_Spesification, 0)
         Me.Controls.SetChildIndex(Me.T_Reason, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
+        Me.Controls.SetChildIndex(Me.BBeritaAcara, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1217,4 +1231,5 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents T_Reason As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TotalIdr As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents Button1 As Button
+    Friend WithEvents BBeritaAcara As Button
 End Class

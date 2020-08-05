@@ -45,5 +45,21 @@
 
     End Function
 
+    Public Function Get_ApproveDeptHead2(DeptHeadID As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[CR_Request_Get_ApproveDeptHead2]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@DeptHead_ID", SqlDbType.VarChar)
+            pParam(0).Value = DeptHeadID
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
 
 End Class

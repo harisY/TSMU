@@ -33,7 +33,6 @@ Public Class Frm_CR_Accounting
             dt2 = fc_Class.Get_Approve_Accounting2()
             Grid2.DataSource = dt2
 
-
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             'Cursor.Current = Cursors.Default
         Catch ex As Exception
@@ -66,7 +65,6 @@ Public Class Frm_CR_Accounting
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-
 
 
     End Sub

@@ -88,6 +88,12 @@ Public Class ClsCR_CreateUser
             'pParam(0).Value = CirculationNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
+            For a As Integer = 0 To dt.Rows.Count - 1
+                If dt.Rows(a).Item("Date") Is Nothing Then
+                    dt.Rows(a).Item("Date") = Date.Now
+                End If
+            Next
+
             Return dt
         Catch ex As Exception
             Throw
@@ -113,15 +119,18 @@ Public Class ClsCR_CreateUser
 
     Public Function Get_Detail_Installment(CirculationNo As String) As DataTable
         Try
-
-
-
             Dim query As String = "[CR_Get_Detail_Installment]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(0).Value = CirculationNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
+
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim D As String = Convert.ToString(dt.Rows(i).Item("Date"))
+                dt.Rows(i).Item("Date") = IIf((dt.Rows(i).Item("Date") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Date"))
+            Next
+
             Return dt
         Catch ex As Exception
             Throw
@@ -141,7 +150,6 @@ Public Class ClsCR_CreateUser
         Catch ex As Exception
             Throw
         End Try
-
     End Function
 
     Public Function GetMold() As DataTable
