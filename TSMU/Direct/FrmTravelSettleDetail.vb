@@ -34,6 +34,7 @@ Public Class FrmTravelSettleDetail
     Dim flag As Integer
     Dim TabPage As String
 
+    Dim travelSettID As String
     Dim RateSalomonUSD As Double
     Dim RateSalomonYEN As Double
     Dim ReturnUSD As Double
@@ -345,9 +346,13 @@ Public Class FrmTravelSettleDetail
 
             If lb_Validated Then
                 If isUpdate = False Then
-                    txtTravelSettID.Text = cls_TravelSett.TravelSettAutoNo
+                    travelSettID = cls_TravelSett.TravelSettAutoNo
+                    DataTravelSettDetail()
+                    txtTravelSettID.Text = travelSettID
+                Else
+                    travelSettID = txtTravelSettID.Text
+                    DataTravelSettDetail()
                 End If
-                DataTravelSettDetail()
 
                 With cls_TravelSett
                     .TravelSettleID = txtTravelSettID.Text
@@ -427,6 +432,11 @@ Public Class FrmTravelSettleDetail
         If TabPage = "TabPageVoucher" Then
             HitungAmountBalance()
         End If
+        For Each row_ As DataRow In dtAllowance.Rows
+            Dim total As Double = (row_("SettlementUSD") * txtRateUSD.Text) + (row_("SettlementYEN") * txtRateYEN.Text) + row_("SettlementIDR")
+            row_("RateAllowanceIDR") = row_("RateAllowanceUSD") * txtRateUSD.Text * row_("Days")
+            row_("TotalAllowanceIDR") = total
+        Next
     End Sub
 
     Private Sub txtRateYEN_EditValueChanged(sender As Object, e As EventArgs) Handles txtRateYEN.EditValueChanged
@@ -438,6 +448,11 @@ Public Class FrmTravelSettleDetail
         If TabPage = "TabPageVoucher" Then
             HitungAmountBalance()
         End If
+        For Each row_ As DataRow In dtAllowance.Rows
+            Dim total As Double = (row_("SettlementUSD") * txtRateUSD.Text) + (row_("SettlementYEN") * txtRateYEN.Text) + row_("SettlementIDR")
+            row_("RateAllowanceIDR") = row_("RateAllowanceUSD") * txtRateUSD.Text * row_("Days")
+            row_("TotalAllowanceIDR") = total
+        Next
     End Sub
 
     Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CAccountTransport.ButtonClick, CAccountHotel.ButtonClick, CAccountEntertain.ButtonClick, CAccountOther.ButtonClick
@@ -581,7 +596,7 @@ Public Class FrmTravelSettleDetail
         For i As Integer = 0 To GridViewPocketAllowance.RowCount - 1
             cls_TravelSettDetail = New TravelSettleDetailModel
             With cls_TravelSettDetail
-                .TravelSettleID = txtTravelSettID.Text
+                .TravelSettleID = travelSettID
                 .NoRequest = GridViewPocketAllowance.GetRowCellValue(i, "NoRequest")
                 .Nama = GridViewPocketAllowance.GetRowCellValue(i, "Nama")
                 If String.IsNullOrEmpty(IIf(GridViewPocketAllowance.GetRowCellValue(i, "DepartureDate") Is DBNull.Value, "", GridViewPocketAllowance.GetRowCellValue(i, "DepartureDate"))) Then
@@ -608,7 +623,7 @@ Public Class FrmTravelSettleDetail
             cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
             With cls_TravelSettCost
-                .TravelSettleID = txtTravelSettID.Text
+                .TravelSettleID = travelSettID
                 .ID = GridViewTransport.GetRowCellValue(i, "ID")
                 .Seq = seq
                 .AccountID = IIf(GridViewTransport.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewTransport.GetRowCellValue(i, "AccountID"))
@@ -638,7 +653,7 @@ Public Class FrmTravelSettleDetail
             cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
             With cls_TravelSettCost
-                .TravelSettleID = txtTravelSettID.Text
+                .TravelSettleID = travelSettID
                 .ID = GridViewHotel.GetRowCellValue(i, "ID")
                 .Seq = seq
                 .AccountID = IIf(GridViewHotel.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewHotel.GetRowCellValue(i, "AccountID"))
@@ -668,7 +683,7 @@ Public Class FrmTravelSettleDetail
             cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
             With cls_TravelSettCost
-                .TravelSettleID = txtTravelSettID.Text
+                .TravelSettleID = travelSettID
                 .ID = GridViewEntertain.GetRowCellValue(i, "ID")
                 .Seq = seq
                 .AccountID = IIf(GridViewEntertain.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(i, "AccountID"))
@@ -1057,6 +1072,8 @@ Public Class FrmTravelSettleDetail
         GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", rateAllowanceUSD * Days)
         GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", 0)
         GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", 0)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceIDR", (rateAllowanceUSD * Days) * txtRateUSD.Text)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotalAllowanceIDR", (rateAllowanceUSD * Days) * txtRateUSD.Text)
     End Sub
 
     Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged

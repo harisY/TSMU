@@ -520,28 +520,22 @@ Public Class TravelRequestModel
         End Try
     End Sub
 
-    Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer) As DataTable
+    Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer, ByVal Negara__ As String) As DataTable
         Try
-            strQuery = " SELECT SUM(tbl.AllowanceUSD) AS AllowanceUSD ,
-                                SUM(tbl.AllowanceYEN) AS AllowanceYEN ,
-                                SUM(tbl.AllowanceIDR) AS AllowanceIDR ,
-                                SUM(DISTINCT tbl.FirstTravel) AS FirstTravel
-                         FROM   ( SELECT    CASE WHEN CuryID = 'IDR' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceIDR ,
-                                            CASE WHEN CuryID = 'USD' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceUSD ,
-                                            CASE WHEN CuryID = 'YEN' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceYEN ,
-                                            FirstTravel
-                                  FROM      dbo.TravelPocketAllowance
-                                  WHERE     TravelType = " & QVal(TravelType__) & "
-                                            AND Golongan = " & QVal(Golongan__) & "
-                                ) AS tbl "
             Dim dt As New DataTable
-            dt = GetDataTable(strQuery)
+
+            Dim SP_Name As String = "Travel_Get_TravelPocketAllowance"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
+            pParam(0).Value = TravelType__
+            pParam(1) = New SqlClient.SqlParameter("@Golongan", SqlDbType.Int)
+            pParam(1).Value = Golongan__
+            pParam(2) = New SqlClient.SqlParameter("@NamaNegara", SqlDbType.VarChar)
+            pParam(2).Value = Negara__
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -616,6 +610,11 @@ Public Class TravelRequestDetailModel
     Public Property Destination As String
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
+    Public Property Day As Integer
+    Public Property RateAllowanceUSD As Double
+    Public Property RateAllowanceYEN As Double
+    Public Property RateAllowanceIDR As Double
+
 
     Dim strQuery As String
 
@@ -626,7 +625,10 @@ Public Class TravelRequestDetailModel
                                 NoPaspor ,
                                 Visa ,
                                 DepartureDate ,
-                                ArrivalDate
+                                ArrivalDate ,
+                                Day ,
+                                RateAllowanceUSD ,
+                                RateAllowanceYEN
                          FROM   dbo.TravelRequestDetail
                          WHERE  NoRequest = " & QVal(NoRequest) & ""
             Dim dt As New DataTable
@@ -684,7 +686,10 @@ Public Class TravelRequestDetailModel
                     "            ,[NoPaspor] " & vbCrLf &
                     "            ,[Visa] " & vbCrLf &
                     "            ,[DepartureDate] " & vbCrLf &
-                    "            ,[ArrivalDate]) " & vbCrLf &
+                    "            ,[ArrivalDate] " & vbCrLf &
+                    "            ,[Day] " & vbCrLf &
+                    "            ,[RateAllowanceUSD] " & vbCrLf &
+                    "            ,[RateAllowanceYEN]) " & vbCrLf &
                     "      VALUES " & vbCrLf &
                     "            (" & QVal(NoRequest) & ", " & vbCrLf &
                     "            " & QVal(Seq) & ", " & vbCrLf &
@@ -693,8 +698,10 @@ Public Class TravelRequestDetailModel
                     "            " & QVal(NoPaspor) & ", " & vbCrLf &
                     "            " & QVal(Visa) & ", " & vbCrLf &
                     "            " & QVal(DepartureDate) & ", " & vbCrLf &
-                    "            " & QVal(ArrivalDate) & ")"
-
+                    "            " & QVal(ArrivalDate) & ", " & vbCrLf &
+                    "            " & QVal(Day) & ", " & vbCrLf &
+                    "            " & QVal(RateAllowanceUSD) & ", " & vbCrLf &
+                    "            " & QVal(RateAllowanceYEN) & ")"
             ExecQuery(ls_SP)
         Catch ex As Exception
             Throw

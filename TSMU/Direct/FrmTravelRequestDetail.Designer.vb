@@ -20,6 +20,8 @@ Partial Class FrmTravelRequestDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.CDepartureDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.CArrivalDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.btnAdd = New System.Windows.Forms.Button()
@@ -28,40 +30,41 @@ Partial Class FrmTravelRequestDetail
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.GridDetail = New DevExpress.XtraGrid.GridControl()
         Me.GridViewDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DestinationGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NegaraGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNegara = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.Paspor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NoVisa = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Visa = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoPasporGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoVisaGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.VisaGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DepartureDateGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ArrivalDateGrid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDetailDay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
+        Me.txtNama = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtNama = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.txtPurpose = New DevExpress.XtraEditors.TextEdit()
         Me.GridAdvance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewAdvance = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.CostType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Description = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Days_ = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.AdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceCostType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceAdvanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceUSD = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.AdvanceIDRUSD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.AdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceAdvanceIDRUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceAdvanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceYEN = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.AdvanceIDRYEN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.AdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceAdvanceIDRYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAdvanceIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.RateAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TotalAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceRateAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAdvanceTotalAdvanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtAdvanceIDR = New DevExpress.XtraEditors.TextEdit()
         Me.txtAdvanceUSD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -72,10 +75,11 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtDepartement = New DevExpress.XtraEditors.TextEdit()
-        Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.txtApproved = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.txtGolongan = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GRateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRateAllowanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +91,7 @@ Partial Class FrmTravelRequestDetail
         CType(Me.GridViewDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CNegara, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +105,6 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtApproved.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,6 +120,7 @@ Partial Class FrmTravelRequestDetail
         Me.CDepartureDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.CDepartureDate.Mask.EditMask = "dd-MM-yyyy"
         Me.CDepartureDate.Name = "CDepartureDate"
+        Me.CDepartureDate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'CArrivalDate
         '
@@ -128,6 +133,7 @@ Partial Class FrmTravelRequestDetail
         Me.CArrivalDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.CArrivalDate.Mask.EditMask = "dd-MM-yyyy"
         Me.CArrivalDate.Name = "CArrivalDate"
+        Me.CArrivalDate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'btnAdd
         '
@@ -182,32 +188,34 @@ Partial Class FrmTravelRequestDetail
         '
         'GridViewDetail
         '
-        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Destination, Me.Negara, Me.Paspor, Me.NoPaspor, Me.NoVisa, Me.Visa, Me.DepartureDate, Me.ArrivalDate})
+        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.DestinationGrid, Me.NegaraGrid, Me.NoPasporGrid, Me.NoVisaGrid, Me.VisaGrid, Me.DepartureDateGrid, Me.ArrivalDateGrid, Me.GDetailDay, Me.GRateAllowanceUSD, Me.GRateAllowanceYEN})
         Me.GridViewDetail.GridControl = Me.GridDetail
         Me.GridViewDetail.Name = "GridViewDetail"
+        Me.GridViewDetail.OptionsCustomization.AllowFilter = False
+        Me.GridViewDetail.OptionsCustomization.AllowSort = False
         Me.GridViewDetail.OptionsView.ShowGroupPanel = False
         '
-        'Destination
+        'DestinationGrid
         '
-        Me.Destination.Caption = "Destination"
-        Me.Destination.FieldName = "Destination"
-        Me.Destination.MinWidth = 25
-        Me.Destination.Name = "Destination"
-        Me.Destination.Visible = True
-        Me.Destination.VisibleIndex = 0
-        Me.Destination.Width = 863
+        Me.DestinationGrid.Caption = "Destination"
+        Me.DestinationGrid.FieldName = "Destination"
+        Me.DestinationGrid.MinWidth = 25
+        Me.DestinationGrid.Name = "DestinationGrid"
+        Me.DestinationGrid.Visible = True
+        Me.DestinationGrid.VisibleIndex = 0
+        Me.DestinationGrid.Width = 863
         '
-        'Negara
+        'NegaraGrid
         '
-        Me.Negara.Caption = "Negara"
-        Me.Negara.ColumnEdit = Me.CNegara
-        Me.Negara.FieldName = "Negara"
-        Me.Negara.MinWidth = 25
-        Me.Negara.Name = "Negara"
-        Me.Negara.OptionsColumn.FixedWidth = True
-        Me.Negara.Visible = True
-        Me.Negara.VisibleIndex = 1
-        Me.Negara.Width = 150
+        Me.NegaraGrid.Caption = "Negara"
+        Me.NegaraGrid.ColumnEdit = Me.CNegara
+        Me.NegaraGrid.FieldName = "Negara"
+        Me.NegaraGrid.MinWidth = 25
+        Me.NegaraGrid.Name = "NegaraGrid"
+        Me.NegaraGrid.OptionsColumn.FixedWidth = True
+        Me.NegaraGrid.Visible = True
+        Me.NegaraGrid.VisibleIndex = 1
+        Me.NegaraGrid.Width = 150
         '
         'CNegara
         '
@@ -216,71 +224,104 @@ Partial Class FrmTravelRequestDetail
         Me.CNegara.Name = "CNegara"
         Me.CNegara.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
-        'Paspor
+        'NoPasporGrid
         '
-        Me.Paspor.Caption = "Paspor"
-        Me.Paspor.FieldName = "Paspor"
-        Me.Paspor.MinWidth = 25
-        Me.Paspor.Name = "Paspor"
-        Me.Paspor.Width = 94
+        Me.NoPasporGrid.Caption = "No Paspor"
+        Me.NoPasporGrid.FieldName = "NoPaspor"
+        Me.NoPasporGrid.MinWidth = 25
+        Me.NoPasporGrid.Name = "NoPasporGrid"
+        Me.NoPasporGrid.OptionsColumn.AllowEdit = False
+        Me.NoPasporGrid.Visible = True
+        Me.NoPasporGrid.VisibleIndex = 2
+        Me.NoPasporGrid.Width = 94
         '
-        'NoPaspor
+        'NoVisaGrid
         '
-        Me.NoPaspor.Caption = "No Paspor"
-        Me.NoPaspor.FieldName = "NoPaspor"
-        Me.NoPaspor.MinWidth = 25
-        Me.NoPaspor.Name = "NoPaspor"
-        Me.NoPaspor.OptionsColumn.AllowEdit = False
-        Me.NoPaspor.Visible = True
-        Me.NoPaspor.VisibleIndex = 2
-        Me.NoPaspor.Width = 94
+        Me.NoVisaGrid.Caption = "No Visa"
+        Me.NoVisaGrid.FieldName = "NoVisa"
+        Me.NoVisaGrid.MinWidth = 25
+        Me.NoVisaGrid.Name = "NoVisaGrid"
+        Me.NoVisaGrid.Width = 94
         '
-        'NoVisa
+        'VisaGrid
         '
-        Me.NoVisa.Caption = "No Visa"
-        Me.NoVisa.FieldName = "NoVisa"
-        Me.NoVisa.MinWidth = 25
-        Me.NoVisa.Name = "NoVisa"
-        Me.NoVisa.Width = 94
+        Me.VisaGrid.Caption = "Visa"
+        Me.VisaGrid.FieldName = "Visa"
+        Me.VisaGrid.MinWidth = 25
+        Me.VisaGrid.Name = "VisaGrid"
+        Me.VisaGrid.OptionsColumn.AllowEdit = False
+        Me.VisaGrid.Visible = True
+        Me.VisaGrid.VisibleIndex = 3
+        Me.VisaGrid.Width = 94
         '
-        'Visa
+        'DepartureDateGrid
         '
-        Me.Visa.Caption = "Visa"
-        Me.Visa.FieldName = "Visa"
-        Me.Visa.MinWidth = 25
-        Me.Visa.Name = "Visa"
-        Me.Visa.OptionsColumn.AllowEdit = False
-        Me.Visa.Visible = True
-        Me.Visa.VisibleIndex = 3
-        Me.Visa.Width = 94
+        Me.DepartureDateGrid.Caption = "Departure Date"
+        Me.DepartureDateGrid.ColumnEdit = Me.CDepartureDate
+        Me.DepartureDateGrid.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.DepartureDateGrid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DepartureDateGrid.FieldName = "DepartureDate"
+        Me.DepartureDateGrid.MinWidth = 25
+        Me.DepartureDateGrid.Name = "DepartureDateGrid"
+        Me.DepartureDateGrid.OptionsColumn.FixedWidth = True
+        Me.DepartureDateGrid.Visible = True
+        Me.DepartureDateGrid.VisibleIndex = 4
+        Me.DepartureDateGrid.Width = 150
         '
-        'DepartureDate
+        'ArrivalDateGrid
         '
-        Me.DepartureDate.Caption = "Departure Date"
-        Me.DepartureDate.ColumnEdit = Me.CDepartureDate
-        Me.DepartureDate.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.DepartureDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DepartureDate.FieldName = "DepartureDate"
-        Me.DepartureDate.MinWidth = 25
-        Me.DepartureDate.Name = "DepartureDate"
-        Me.DepartureDate.OptionsColumn.FixedWidth = True
-        Me.DepartureDate.Visible = True
-        Me.DepartureDate.VisibleIndex = 4
-        Me.DepartureDate.Width = 150
+        Me.ArrivalDateGrid.Caption = "Arrival Date"
+        Me.ArrivalDateGrid.ColumnEdit = Me.CArrivalDate
+        Me.ArrivalDateGrid.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.ArrivalDateGrid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ArrivalDateGrid.FieldName = "ArrivalDate"
+        Me.ArrivalDateGrid.MinWidth = 25
+        Me.ArrivalDateGrid.Name = "ArrivalDateGrid"
+        Me.ArrivalDateGrid.OptionsColumn.FixedWidth = True
+        Me.ArrivalDateGrid.Visible = True
+        Me.ArrivalDateGrid.VisibleIndex = 5
+        Me.ArrivalDateGrid.Width = 150
         '
-        'ArrivalDate
+        'GDetailDay
         '
-        Me.ArrivalDate.Caption = "Arrival Date"
-        Me.ArrivalDate.ColumnEdit = Me.CArrivalDate
-        Me.ArrivalDate.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.ArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ArrivalDate.FieldName = "ArrivalDate"
-        Me.ArrivalDate.MinWidth = 25
-        Me.ArrivalDate.Name = "ArrivalDate"
-        Me.ArrivalDate.OptionsColumn.FixedWidth = True
-        Me.ArrivalDate.Visible = True
-        Me.ArrivalDate.VisibleIndex = 5
-        Me.ArrivalDate.Width = 150
+        Me.GDetailDay.Caption = "Day"
+        Me.GDetailDay.FieldName = "Day"
+        Me.GDetailDay.MinWidth = 25
+        Me.GDetailDay.Name = "GDetailDay"
+        Me.GDetailDay.Width = 94
+        '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
+        'txtNIK
+        '
+        Me.txtNIK.EditValue = ""
+        Me.txtNIK.Location = New System.Drawing.Point(477, 48)
+        Me.txtNIK.Name = "txtNIK"
+        Me.txtNIK.Properties.MaxLength = 9
+        Me.txtNIK.Size = New System.Drawing.Size(100, 22)
+        Me.txtNIK.TabIndex = 2
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "This value is not valid"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtNIK, ConditionValidationRule1)
+        '
+        'txtNama
+        '
+        Me.txtNama.EditValue = ""
+        Me.txtNama.Location = New System.Drawing.Point(120, 88)
+        Me.txtNama.Name = "txtNama"
+        Me.txtNama.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.txtNama.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtNama.Properties.EditFormat.FormatString = "dd/MM/yyyy"
+        Me.txtNama.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtNama.Size = New System.Drawing.Size(457, 22)
+        Me.txtNama.TabIndex = 5
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtNama, ConditionValidationRule2)
         '
         'LabelControl1
         '
@@ -322,18 +363,6 @@ Partial Class FrmTravelRequestDetail
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Golongan"
         '
-        'txtNama
-        '
-        Me.txtNama.EditValue = ""
-        Me.txtNama.Location = New System.Drawing.Point(120, 88)
-        Me.txtNama.Name = "txtNama"
-        Me.txtNama.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.txtNama.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtNama.Properties.EditFormat.FormatString = "dd/MM/yyyy"
-        Me.txtNama.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtNama.Size = New System.Drawing.Size(457, 22)
-        Me.txtNama.TabIndex = 5
-        '
         'LabelControl6
         '
         Me.LabelControl6.Location = New System.Drawing.Point(828, 51)
@@ -374,7 +403,7 @@ Partial Class FrmTravelRequestDetail
         'GridViewAdvance
         '
         Me.GridViewAdvance.ActiveFilterEnabled = False
-        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CostType, Me.Description, Me.Days_, Me.AdvanceUSD, Me.AdvanceIDRUSD, Me.AdvanceYEN, Me.AdvanceIDRYEN, Me.AdvanceIDR, Me.RateAdvanceIDR, Me.TotalAdvanceIDR})
+        Me.GridViewAdvance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GAdvanceCostType, Me.GAdvanceDescription, Me.GAdvanceDays, Me.GAdvanceAdvanceUSD, Me.GAdvanceAdvanceIDRUSD, Me.GAdvanceAdvanceYEN, Me.GAdvanceAdvanceIDRYEN, Me.GAdvanceAdvanceIDR, Me.GAdvanceRateAdvanceIDR, Me.GAdvanceTotalAdvanceIDR})
         Me.GridViewAdvance.GridControl = Me.GridAdvance
         Me.GridViewAdvance.Name = "GridViewAdvance"
         Me.GridViewAdvance.OptionsCustomization.AllowFilter = False
@@ -382,53 +411,53 @@ Partial Class FrmTravelRequestDetail
         Me.GridViewAdvance.OptionsView.ShowFooter = True
         Me.GridViewAdvance.OptionsView.ShowGroupPanel = False
         '
-        'CostType
+        'GAdvanceCostType
         '
-        Me.CostType.Caption = "Cost Type"
-        Me.CostType.FieldName = "CostType"
-        Me.CostType.MinWidth = 25
-        Me.CostType.Name = "CostType"
-        Me.CostType.OptionsColumn.AllowEdit = False
-        Me.CostType.Width = 94
+        Me.GAdvanceCostType.Caption = "Cost Type"
+        Me.GAdvanceCostType.FieldName = "CostType"
+        Me.GAdvanceCostType.MinWidth = 25
+        Me.GAdvanceCostType.Name = "GAdvanceCostType"
+        Me.GAdvanceCostType.OptionsColumn.AllowEdit = False
+        Me.GAdvanceCostType.Width = 94
         '
-        'Description
+        'GAdvanceDescription
         '
-        Me.Description.Caption = "Description"
-        Me.Description.FieldName = "Description"
-        Me.Description.MinWidth = 25
-        Me.Description.Name = "Description"
-        Me.Description.OptionsColumn.AllowEdit = False
-        Me.Description.Visible = True
-        Me.Description.VisibleIndex = 0
-        Me.Description.Width = 450
+        Me.GAdvanceDescription.Caption = "Description"
+        Me.GAdvanceDescription.FieldName = "Description"
+        Me.GAdvanceDescription.MinWidth = 25
+        Me.GAdvanceDescription.Name = "GAdvanceDescription"
+        Me.GAdvanceDescription.OptionsColumn.AllowEdit = False
+        Me.GAdvanceDescription.Visible = True
+        Me.GAdvanceDescription.VisibleIndex = 0
+        Me.GAdvanceDescription.Width = 450
         '
-        'Days_
+        'GAdvanceDays
         '
-        Me.Days_.Caption = "Days"
-        Me.Days_.FieldName = "Days"
-        Me.Days_.MinWidth = 25
-        Me.Days_.Name = "Days_"
-        Me.Days_.OptionsColumn.AllowEdit = False
-        Me.Days_.OptionsColumn.FixedWidth = True
-        Me.Days_.Visible = True
-        Me.Days_.VisibleIndex = 1
-        Me.Days_.Width = 100
+        Me.GAdvanceDays.Caption = "Days"
+        Me.GAdvanceDays.FieldName = "Days"
+        Me.GAdvanceDays.MinWidth = 25
+        Me.GAdvanceDays.Name = "GAdvanceDays"
+        Me.GAdvanceDays.OptionsColumn.AllowEdit = False
+        Me.GAdvanceDays.OptionsColumn.FixedWidth = True
+        Me.GAdvanceDays.Visible = True
+        Me.GAdvanceDays.VisibleIndex = 1
+        Me.GAdvanceDays.Width = 100
         '
-        'AdvanceUSD
+        'GAdvanceAdvanceUSD
         '
-        Me.AdvanceUSD.Caption = "Advance USD"
-        Me.AdvanceUSD.ColumnEdit = Me.CAdvanceUSD
-        Me.AdvanceUSD.DisplayFormat.FormatString = "n2"
-        Me.AdvanceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.AdvanceUSD.FieldName = "AdvanceUSD"
-        Me.AdvanceUSD.MinWidth = 25
-        Me.AdvanceUSD.Name = "AdvanceUSD"
-        Me.AdvanceUSD.OptionsColumn.AllowEdit = False
-        Me.AdvanceUSD.OptionsColumn.FixedWidth = True
-        Me.AdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
-        Me.AdvanceUSD.Visible = True
-        Me.AdvanceUSD.VisibleIndex = 2
-        Me.AdvanceUSD.Width = 200
+        Me.GAdvanceAdvanceUSD.Caption = "Advance USD"
+        Me.GAdvanceAdvanceUSD.ColumnEdit = Me.CAdvanceUSD
+        Me.GAdvanceAdvanceUSD.DisplayFormat.FormatString = "n2"
+        Me.GAdvanceAdvanceUSD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAdvanceAdvanceUSD.FieldName = "AdvanceUSD"
+        Me.GAdvanceAdvanceUSD.MinWidth = 25
+        Me.GAdvanceAdvanceUSD.Name = "GAdvanceAdvanceUSD"
+        Me.GAdvanceAdvanceUSD.OptionsColumn.AllowEdit = False
+        Me.GAdvanceAdvanceUSD.OptionsColumn.FixedWidth = True
+        Me.GAdvanceAdvanceUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceUSD", "{0:#,##0.#0}")})
+        Me.GAdvanceAdvanceUSD.Visible = True
+        Me.GAdvanceAdvanceUSD.VisibleIndex = 2
+        Me.GAdvanceAdvanceUSD.Width = 200
         '
         'CAdvanceUSD
         '
@@ -442,29 +471,29 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceUSD.Mask.EditMask = "n2"
         Me.CAdvanceUSD.Name = "CAdvanceUSD"
         '
-        'AdvanceIDRUSD
+        'GAdvanceAdvanceIDRUSD
         '
-        Me.AdvanceIDRUSD.Caption = "Advance IDR USD"
-        Me.AdvanceIDRUSD.FieldName = "AdvanceIDRUSD"
-        Me.AdvanceIDRUSD.MinWidth = 25
-        Me.AdvanceIDRUSD.Name = "AdvanceIDRUSD"
-        Me.AdvanceIDRUSD.Width = 94
+        Me.GAdvanceAdvanceIDRUSD.Caption = "Advance IDR USD"
+        Me.GAdvanceAdvanceIDRUSD.FieldName = "AdvanceIDRUSD"
+        Me.GAdvanceAdvanceIDRUSD.MinWidth = 25
+        Me.GAdvanceAdvanceIDRUSD.Name = "GAdvanceAdvanceIDRUSD"
+        Me.GAdvanceAdvanceIDRUSD.Width = 94
         '
-        'AdvanceYEN
+        'GAdvanceAdvanceYEN
         '
-        Me.AdvanceYEN.Caption = "Advance YEN"
-        Me.AdvanceYEN.ColumnEdit = Me.CAdvanceYEN
-        Me.AdvanceYEN.DisplayFormat.FormatString = "n2"
-        Me.AdvanceYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.AdvanceYEN.FieldName = "AdvanceYEN"
-        Me.AdvanceYEN.MinWidth = 25
-        Me.AdvanceYEN.Name = "AdvanceYEN"
-        Me.AdvanceYEN.OptionsColumn.AllowEdit = False
-        Me.AdvanceYEN.OptionsColumn.FixedWidth = True
-        Me.AdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
-        Me.AdvanceYEN.Visible = True
-        Me.AdvanceYEN.VisibleIndex = 3
-        Me.AdvanceYEN.Width = 200
+        Me.GAdvanceAdvanceYEN.Caption = "Advance YEN"
+        Me.GAdvanceAdvanceYEN.ColumnEdit = Me.CAdvanceYEN
+        Me.GAdvanceAdvanceYEN.DisplayFormat.FormatString = "n2"
+        Me.GAdvanceAdvanceYEN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAdvanceAdvanceYEN.FieldName = "AdvanceYEN"
+        Me.GAdvanceAdvanceYEN.MinWidth = 25
+        Me.GAdvanceAdvanceYEN.Name = "GAdvanceAdvanceYEN"
+        Me.GAdvanceAdvanceYEN.OptionsColumn.AllowEdit = False
+        Me.GAdvanceAdvanceYEN.OptionsColumn.FixedWidth = True
+        Me.GAdvanceAdvanceYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceYEN", "{0:#,##0.#0}")})
+        Me.GAdvanceAdvanceYEN.Visible = True
+        Me.GAdvanceAdvanceYEN.VisibleIndex = 3
+        Me.GAdvanceAdvanceYEN.Width = 200
         '
         'CAdvanceYEN
         '
@@ -480,29 +509,29 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceYEN.NullText = "0000"
         Me.CAdvanceYEN.NullValuePrompt = "0000"
         '
-        'AdvanceIDRYEN
+        'GAdvanceAdvanceIDRYEN
         '
-        Me.AdvanceIDRYEN.Caption = "Advance IDR YEN"
-        Me.AdvanceIDRYEN.FieldName = "AdvanceIDRYEN"
-        Me.AdvanceIDRYEN.MinWidth = 25
-        Me.AdvanceIDRYEN.Name = "AdvanceIDRYEN"
-        Me.AdvanceIDRYEN.Width = 94
+        Me.GAdvanceAdvanceIDRYEN.Caption = "Advance IDR YEN"
+        Me.GAdvanceAdvanceIDRYEN.FieldName = "AdvanceIDRYEN"
+        Me.GAdvanceAdvanceIDRYEN.MinWidth = 25
+        Me.GAdvanceAdvanceIDRYEN.Name = "GAdvanceAdvanceIDRYEN"
+        Me.GAdvanceAdvanceIDRYEN.Width = 94
         '
-        'AdvanceIDR
+        'GAdvanceAdvanceIDR
         '
-        Me.AdvanceIDR.Caption = "Advance IDR"
-        Me.AdvanceIDR.ColumnEdit = Me.CAdvanceIDR
-        Me.AdvanceIDR.DisplayFormat.FormatString = "n2"
-        Me.AdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.AdvanceIDR.FieldName = "AdvanceIDR"
-        Me.AdvanceIDR.MinWidth = 25
-        Me.AdvanceIDR.Name = "AdvanceIDR"
-        Me.AdvanceIDR.OptionsColumn.AllowEdit = False
-        Me.AdvanceIDR.OptionsColumn.FixedWidth = True
-        Me.AdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
-        Me.AdvanceIDR.Visible = True
-        Me.AdvanceIDR.VisibleIndex = 4
-        Me.AdvanceIDR.Width = 200
+        Me.GAdvanceAdvanceIDR.Caption = "Advance IDR"
+        Me.GAdvanceAdvanceIDR.ColumnEdit = Me.CAdvanceIDR
+        Me.GAdvanceAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.GAdvanceAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAdvanceAdvanceIDR.FieldName = "AdvanceIDR"
+        Me.GAdvanceAdvanceIDR.MinWidth = 25
+        Me.GAdvanceAdvanceIDR.Name = "GAdvanceAdvanceIDR"
+        Me.GAdvanceAdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.GAdvanceAdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.GAdvanceAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdvanceIDR", "{0:#,##0.#0}")})
+        Me.GAdvanceAdvanceIDR.Visible = True
+        Me.GAdvanceAdvanceIDR.VisibleIndex = 4
+        Me.GAdvanceAdvanceIDR.Width = 200
         '
         'CAdvanceIDR
         '
@@ -516,37 +545,37 @@ Partial Class FrmTravelRequestDetail
         Me.CAdvanceIDR.Mask.EditMask = "n2"
         Me.CAdvanceIDR.Name = "CAdvanceIDR"
         '
-        'RateAdvanceIDR
+        'GAdvanceRateAdvanceIDR
         '
-        Me.RateAdvanceIDR.Caption = "Rate Advance IDR"
-        Me.RateAdvanceIDR.DisplayFormat.FormatString = "n2"
-        Me.RateAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RateAdvanceIDR.FieldName = "RateAdvanceIDR"
-        Me.RateAdvanceIDR.MinWidth = 25
-        Me.RateAdvanceIDR.Name = "RateAdvanceIDR"
-        Me.RateAdvanceIDR.OptionsColumn.AllowEdit = False
-        Me.RateAdvanceIDR.OptionsColumn.FixedWidth = True
-        Me.RateAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateAdvanceIDR", "{0:#,##0.#0}")})
-        Me.RateAdvanceIDR.Visible = True
-        Me.RateAdvanceIDR.VisibleIndex = 5
-        Me.RateAdvanceIDR.Width = 200
+        Me.GAdvanceRateAdvanceIDR.Caption = "Rate Advance IDR"
+        Me.GAdvanceRateAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.GAdvanceRateAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAdvanceRateAdvanceIDR.FieldName = "RateAdvanceIDR"
+        Me.GAdvanceRateAdvanceIDR.MinWidth = 25
+        Me.GAdvanceRateAdvanceIDR.Name = "GAdvanceRateAdvanceIDR"
+        Me.GAdvanceRateAdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.GAdvanceRateAdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.GAdvanceRateAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateAdvanceIDR", "{0:#,##0.#0}")})
+        Me.GAdvanceRateAdvanceIDR.Visible = True
+        Me.GAdvanceRateAdvanceIDR.VisibleIndex = 5
+        Me.GAdvanceRateAdvanceIDR.Width = 200
         '
-        'TotalAdvanceIDR
+        'GAdvanceTotalAdvanceIDR
         '
-        Me.TotalAdvanceIDR.Caption = "Total Advance IDR"
-        Me.TotalAdvanceIDR.DisplayFormat.FormatString = "n2"
-        Me.TotalAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TotalAdvanceIDR.FieldName = "TotalAdvanceIDR"
-        Me.TotalAdvanceIDR.MinWidth = 25
-        Me.TotalAdvanceIDR.Name = "TotalAdvanceIDR"
-        Me.TotalAdvanceIDR.OptionsColumn.AllowEdit = False
-        Me.TotalAdvanceIDR.OptionsColumn.FixedWidth = True
-        Me.TotalAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAdvanceIDR", "{0:#,##0.#0}")})
-        Me.TotalAdvanceIDR.UnboundExpression = "[AdvanceIDRUSD] + [AdvanceIDRYEN] + [AdvanceIDR]"
-        Me.TotalAdvanceIDR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.TotalAdvanceIDR.Visible = True
-        Me.TotalAdvanceIDR.VisibleIndex = 6
-        Me.TotalAdvanceIDR.Width = 200
+        Me.GAdvanceTotalAdvanceIDR.Caption = "Total Advance IDR"
+        Me.GAdvanceTotalAdvanceIDR.DisplayFormat.FormatString = "n2"
+        Me.GAdvanceTotalAdvanceIDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAdvanceTotalAdvanceIDR.FieldName = "TotalAdvanceIDR"
+        Me.GAdvanceTotalAdvanceIDR.MinWidth = 25
+        Me.GAdvanceTotalAdvanceIDR.Name = "GAdvanceTotalAdvanceIDR"
+        Me.GAdvanceTotalAdvanceIDR.OptionsColumn.AllowEdit = False
+        Me.GAdvanceTotalAdvanceIDR.OptionsColumn.FixedWidth = True
+        Me.GAdvanceTotalAdvanceIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAdvanceIDR", "{0:#,##0.#0}")})
+        Me.GAdvanceTotalAdvanceIDR.UnboundExpression = "[AdvanceIDRUSD] + [AdvanceIDRYEN] + [AdvanceIDR]"
+        Me.GAdvanceTotalAdvanceIDR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GAdvanceTotalAdvanceIDR.Visible = True
+        Me.GAdvanceTotalAdvanceIDR.VisibleIndex = 6
+        Me.GAdvanceTotalAdvanceIDR.Width = 200
         '
         'txtAdvanceIDR
         '
@@ -664,15 +693,6 @@ Partial Class FrmTravelRequestDetail
         Me.txtDepartement.Size = New System.Drawing.Size(70, 22)
         Me.txtDepartement.TabIndex = 1
         '
-        'txtNIK
-        '
-        Me.txtNIK.EditValue = ""
-        Me.txtNIK.Location = New System.Drawing.Point(477, 48)
-        Me.txtNIK.Name = "txtNIK"
-        Me.txtNIK.Properties.MaxLength = 9
-        Me.txtNIK.Size = New System.Drawing.Size(100, 22)
-        Me.txtNIK.TabIndex = 2
-        '
         'txtApproved
         '
         Me.txtApproved.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -709,6 +729,22 @@ Partial Class FrmTravelRequestDetail
         Me.txtGolongan.Properties.ValueMember = "Golongan"
         Me.txtGolongan.Size = New System.Drawing.Size(104, 22)
         Me.txtGolongan.TabIndex = 3
+        '
+        'GRateAllowanceUSD
+        '
+        Me.GRateAllowanceUSD.Caption = "RateAllowanceUSD"
+        Me.GRateAllowanceUSD.FieldName = "RateAllowanceUSD"
+        Me.GRateAllowanceUSD.MinWidth = 25
+        Me.GRateAllowanceUSD.Name = "GRateAllowanceUSD"
+        Me.GRateAllowanceUSD.Width = 94
+        '
+        'GRateAllowanceYEN
+        '
+        Me.GRateAllowanceYEN.Caption = "RateAllowanceYEN"
+        Me.GRateAllowanceYEN.FieldName = "RateAllowanceYEN"
+        Me.GRateAllowanceYEN.MinWidth = 25
+        Me.GRateAllowanceYEN.Name = "GRateAllowanceYEN"
+        Me.GRateAllowanceYEN.Width = 94
         '
         'FrmTravelRequestDetail
         '
@@ -766,6 +802,7 @@ Partial Class FrmTravelRequestDetail
         CType(Me.GridViewDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CNegara, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridAdvance, System.ComponentModel.ISupportInitialize).EndInit()
@@ -780,7 +817,6 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.txtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtApproved.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -792,12 +828,12 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents GridDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewDetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents txtNoRequest As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DepartureDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Destination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DepartureDateGrid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ArrivalDateGrid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DestinationGrid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtTravelType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
-    Friend WithEvents Negara As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NegaraGrid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -809,38 +845,40 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents txtPurpose As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridAdvance As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewAdvance As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents Description As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents AdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents AdvanceUSD As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents AdvanceYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceDescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceAdvanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceAdvanceYEN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtAdvanceIDR As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtAdvanceUSD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtAdvanceYEN As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Days_ As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceDays As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Visa As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents VisaGrid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents CNegara As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CDepartureDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents CArrivalDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents Label1 As Label
-    Friend WithEvents CostType As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceCostType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoPasporGrid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtDepartement As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CAdvanceUSD As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceYEN As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents CAdvanceIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents Paspor As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents NoVisa As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TotalAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents AdvanceIDRUSD As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents AdvanceIDRYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoVisaGrid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceTotalAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceAdvanceIDRUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceAdvanceIDRYEN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtNIK As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents RateAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAdvanceRateAdvanceIDR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtApproved As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtGolongan As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GDetailDay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRateAllowanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRateAllowanceYEN As DevExpress.XtraGrid.Columns.GridColumn
 End Class
