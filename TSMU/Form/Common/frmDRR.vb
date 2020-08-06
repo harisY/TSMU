@@ -26,7 +26,7 @@ Public Class frmDRR
     Private Sub frmDRR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
 
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
 
     End Sub
     Private Sub SaveToExcel(_Grid As GridControl)
@@ -71,7 +71,22 @@ Public Class frmDRR
         bs_Filter = ""
         Call LoadGrid()
     End Sub
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
 
+                Dim dt As New DataTable
+                _Service = New DRRService
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then

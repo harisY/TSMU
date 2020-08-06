@@ -46,6 +46,21 @@ Public Class DRRService
             Throw ex
         End Try
     End Function
+    Public Function GetDataByDate(Dari As Date, Sampai As Date) As DataTable
+        Try
+            Dim Sql As String = "DRRHeader_GetDataByDate"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.Date)
+            pParam(0).Value = Dari
+            pParam(1) = New SqlClient.SqlParameter("@Sampai", SqlDbType.Date)
+            pParam(1).Value = Sampai
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetCustomer() As DataTable
         Try
             Dim Sql As String = "DRR_getCustomer"
