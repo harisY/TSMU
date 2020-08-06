@@ -47,7 +47,9 @@ Public Class ClsCR_CreateUser
     Public Property H_NameItem As String
     Public Property H_PO As Boolean
     Public Property H_Spesification As String
-
+    Public Property H_BOD_Approve As Boolean
+    Public Property H_BOD_Approve_Date As Date
+    Public Property H_BOD_User As String
 
     Public Property Collection_Description_Of_Cost() As New Collection(Of ClsCR_Description_of_Cost)
     Public Property Collection_Other_Dept() As New Collection(Of ClsCR_Other_Dept)
@@ -86,6 +88,12 @@ Public Class ClsCR_CreateUser
             'pParam(0).Value = CirculationNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
+            For a As Integer = 0 To dt.Rows.Count - 1
+                If dt.Rows(a).Item("Date") Is Nothing Then
+                    dt.Rows(a).Item("Date") = Date.Now
+                End If
+            Next
+
             Return dt
         Catch ex As Exception
             Throw
@@ -111,15 +119,18 @@ Public Class ClsCR_CreateUser
 
     Public Function Get_Detail_Installment(CirculationNo As String) As DataTable
         Try
-
-
-
             Dim query As String = "[CR_Get_Detail_Installment]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(0).Value = CirculationNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
+
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim D As String = Convert.ToString(dt.Rows(i).Item("Date"))
+                dt.Rows(i).Item("Date") = IIf((dt.Rows(i).Item("Date") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Date"))
+            Next
+
             Return dt
         Catch ex As Exception
             Throw
@@ -139,7 +150,6 @@ Public Class ClsCR_CreateUser
         Catch ex As Exception
             Throw
         End Try
-
     End Function
 
     Public Function GetMold() As DataTable
@@ -652,6 +662,22 @@ Public Class ClsCR_CreateUser
         End Try
     End Sub
 
+    Public Sub Delete_Installment(CirculationNo As String)
+        Try
+            Try
+
+                Dim query As String = "Delete From [CR_Installment] Where CirculationNo = '" & CirculationNo & "' "
+                MainModul.ExecQueryByCommand(query)
+
+            Catch ex As Exception
+                Throw
+            End Try
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 
 
 #Region "CRUD"
@@ -822,6 +848,40 @@ Public Class ClsCR_CreateUser
     End Sub
 
 
+    Public Sub UpdateInstallMent(NoSirkulasi As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Delete_Installment(NoSirkulasi)
+
+                        For i As Integer = 0 To Collection_Installment.Count - 1
+                            With Collection_Installment(i)
+                                .InsertCR_Installment(NoSirkulasi)
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
     Public Sub Insert(NoSirkualasi As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -957,6 +1017,14 @@ Public Class ClsCR_CreateUser
                 NameItem = DBNull.Value.ToString
             End If
 
+            If Spesification = "" Then
+                Spesification = DBNull.Value.ToString
+            End If
+
+            If Reason = "" Then
+                Reason = DBNull.Value.ToString
+            End If
+
 
             Dim query As String = "[CR_Insert_CrRequest]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
@@ -1060,6 +1128,26 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Sub
+    Public Sub Update_Approve_BOD(CirculationNo As String)
+
+
+        Try
+
+
+            Dim ls_SP As String = " " & vbCrLf &
+                                        "UPDATE CR_Request" & vbCrLf &
+                                        "SET [BOD_Approve] = '" & H_BOD_Approve & "'
+                                            ,[Status] = '" & H_Status & "'
+                                            ,[BOD_User] = '" & H_BOD_User & "'
+                                            ,[BOD_Date] = '" & H_BOD_Approve_Date & "' 
+                                        WHERE [CirculationNo] = '" & CirculationNo & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+
 
     Public Sub Update_Approve(CirculationNo As String,
                                 UserSubmit As Boolean,
@@ -1233,6 +1321,30 @@ Public Class ClsCR_CreateUser
 
 
 #Region "Laporan"
+
+    Public Function Cek_CR_Report(CirculationNo As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "select a.CirculationNo
+	                              ,a.DeptID
+	                              ,a.UserSubmition
+	                              ,a.DeptHead_Approve
+	                              ,a.DivHead_Approve
+	                              ,b.Approve
+	                              from CR_Request a inner join CR_Other_Dept b 
+	                              on a.CirculationNo = b.CirculationNo Where a.CirculationNo = '" & CirculationNo & "'"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+            'pParam(0).Value = CirculationNo
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function RptCirculation(No As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
@@ -1265,8 +1377,8 @@ Public Class ClsCR_CreateUser
                   ,[CR_Description_Of_Cost].[Amount_IDR]
                 From [CR_Request] inner join CR_Description_Of_Cost 
                 on [CR_Request].[CirculationNo] = [CR_Description_Of_Cost].[CirculationNo]
-	            Where [CR_Request].[CirculationNo] = '" & No & "'"
-
+	            Where [CR_Request].[CirculationNo] = '" & No & "'
+                order by Id Asc "
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "CirculationHead")

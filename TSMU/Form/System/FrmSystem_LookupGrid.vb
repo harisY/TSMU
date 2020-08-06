@@ -111,9 +111,9 @@ Public Class FrmSystem_LookupGrid
         With GridView1
             If selRows IsNot Nothing Then
                 'If .CurrentRow.Index >= 0 Then
-                Me.SelectedValue = selRow(0)
-                Me.SelectedDesc = selRow(1)
-                Me.SelectedRow = selRow
+                SelectedValue = selRow(0)
+                SelectedDesc = selRow(1)
+                SelectedRow = selRow
                 'Me.Close()
             End If
             Me.Close()

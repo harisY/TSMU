@@ -43,13 +43,16 @@ Partial Class Frm_NPP_Detail
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepStatus = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.CapabilityDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoCapability = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.Cek = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Check = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.Note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Seq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Commit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoComit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Commit1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Runner = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DRR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
@@ -92,11 +95,16 @@ Partial Class Frm_NPP_Detail
         Me.B_Reject = New System.Windows.Forms.Button()
         Me.B_Approve = New System.Windows.Forms.Button()
         Me.B_Revise = New System.Windows.Forms.Button()
+        Me.NoUrut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.No_Urut = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepStatusMold, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoCapability, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoCapability.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Check, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoComit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TMassPro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +126,7 @@ Partial Class Frm_NPP_Detail
         CType(Me.TNPP_No.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRevisiInformasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -128,14 +137,14 @@ Partial Class Frm_NPP_Detail
         Me.Grid.Location = New System.Drawing.Point(12, 142)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck, Me.Check, Me.RepStatus, Me.RepStatusMold})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck, Me.Check, Me.RepStatus, Me.RepStatusMold, Me.RepoCapability, Me.RepoComit, Me.No_Urut})
         Me.Grid.Size = New System.Drawing.Size(1235, 292)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner, Me.DRR, Me.NoUrut})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -150,7 +159,7 @@ Partial Class Frm_NPP_Detail
         Me.PartNo.OptionsColumn.AllowEdit = False
         Me.PartNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartNo.Visible = True
-        Me.PartNo.VisibleIndex = 0
+        Me.PartNo.VisibleIndex = 1
         Me.PartNo.Width = 167
         '
         'PartName
@@ -159,7 +168,7 @@ Partial Class Frm_NPP_Detail
         Me.PartName.Name = "PartName"
         Me.PartName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartName.Visible = True
-        Me.PartName.VisibleIndex = 1
+        Me.PartName.VisibleIndex = 2
         Me.PartName.Width = 190
         '
         'Machine
@@ -168,7 +177,7 @@ Partial Class Frm_NPP_Detail
         Me.Machine.Name = "Machine"
         Me.Machine.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Machine.Visible = True
-        Me.Machine.VisibleIndex = 2
+        Me.Machine.VisibleIndex = 3
         Me.Machine.Width = 66
         '
         'CT
@@ -181,7 +190,7 @@ Partial Class Frm_NPP_Detail
         Me.CT.Name = "CT"
         Me.CT.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.CT.Visible = True
-        Me.CT.VisibleIndex = 3
+        Me.CT.VisibleIndex = 4
         Me.CT.Width = 71
         '
         'Cav
@@ -194,7 +203,7 @@ Partial Class Frm_NPP_Detail
         Me.Cav.Name = "Cav"
         Me.Cav.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Cav.Visible = True
-        Me.Cav.VisibleIndex = 4
+        Me.Cav.VisibleIndex = 5
         Me.Cav.Width = 65
         '
         'Weight
@@ -208,7 +217,7 @@ Partial Class Frm_NPP_Detail
         Me.Weight.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Weight.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Weight.Visible = True
-        Me.Weight.VisibleIndex = 5
+        Me.Weight.VisibleIndex = 6
         Me.Weight.Width = 83
         '
         'Material
@@ -221,7 +230,7 @@ Partial Class Frm_NPP_Detail
         Me.Material.Name = "Material"
         Me.Material.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Material.Visible = True
-        Me.Material.VisibleIndex = 7
+        Me.Material.VisibleIndex = 8
         Me.Material.Width = 147
         '
         'Inj
@@ -234,7 +243,7 @@ Partial Class Frm_NPP_Detail
         Me.Inj.Name = "Inj"
         Me.Inj.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Inj.Visible = True
-        Me.Inj.VisibleIndex = 8
+        Me.Inj.VisibleIndex = 9
         '
         'Painting
         '
@@ -246,7 +255,7 @@ Partial Class Frm_NPP_Detail
         Me.Painting.Name = "Painting"
         Me.Painting.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 9
+        Me.Painting.VisibleIndex = 10
         '
         'Chrome
         '
@@ -258,7 +267,7 @@ Partial Class Frm_NPP_Detail
         Me.Chrome.Name = "Chrome"
         Me.Chrome.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Chrome.Visible = True
-        Me.Chrome.VisibleIndex = 10
+        Me.Chrome.VisibleIndex = 11
         Me.Chrome.Width = 81
         '
         'Assy
@@ -271,7 +280,7 @@ Partial Class Frm_NPP_Detail
         Me.Assy.Name = "Assy"
         Me.Assy.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Assy.Visible = True
-        Me.Assy.VisibleIndex = 11
+        Me.Assy.VisibleIndex = 12
         '
         'StatusMold
         '
@@ -284,7 +293,7 @@ Partial Class Frm_NPP_Detail
         Me.StatusMold.Name = "StatusMold"
         Me.StatusMold.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.StatusMold.Visible = True
-        Me.StatusMold.VisibleIndex = 14
+        Me.StatusMold.VisibleIndex = 15
         Me.StatusMold.Width = 145
         '
         'RepStatusMold
@@ -304,7 +313,7 @@ Partial Class Frm_NPP_Detail
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.OrderMonth.Visible = True
-        Me.OrderMonth.VisibleIndex = 15
+        Me.OrderMonth.VisibleIndex = 16
         Me.OrderMonth.Width = 130
         '
         'Ultrasonic
@@ -317,7 +326,7 @@ Partial Class Frm_NPP_Detail
         Me.Ultrasonic.Name = "Ultrasonic"
         Me.Ultrasonic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Ultrasonic.Visible = True
-        Me.Ultrasonic.VisibleIndex = 12
+        Me.Ultrasonic.VisibleIndex = 13
         Me.Ultrasonic.Width = 82
         '
         'Vibration
@@ -328,7 +337,7 @@ Partial Class Frm_NPP_Detail
         Me.Vibration.Name = "Vibration"
         Me.Vibration.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Vibration.Visible = True
-        Me.Vibration.VisibleIndex = 13
+        Me.Vibration.VisibleIndex = 14
         '
         'GroupID
         '
@@ -340,7 +349,7 @@ Partial Class Frm_NPP_Detail
         Me.GroupID.Name = "GroupID"
         Me.GroupID.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GroupID.Visible = True
-        Me.GroupID.VisibleIndex = 18
+        Me.GroupID.VisibleIndex = 19
         Me.GroupID.Width = 84
         '
         'GridColumn4
@@ -358,7 +367,7 @@ Partial Class Frm_NPP_Detail
         Me.Revisi.Name = "Revisi"
         Me.Revisi.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Revisi.Visible = True
-        Me.Revisi.VisibleIndex = 20
+        Me.Revisi.VisibleIndex = 21
         Me.Revisi.Width = 51
         '
         'Status
@@ -372,7 +381,7 @@ Partial Class Frm_NPP_Detail
         Me.Status.Name = "Status"
         Me.Status.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Status.Visible = True
-        Me.Status.VisibleIndex = 16
+        Me.Status.VisibleIndex = 17
         '
         'RepStatus
         '
@@ -387,11 +396,20 @@ Partial Class Frm_NPP_Detail
         Me.CapabilityDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.CapabilityDate.AppearanceHeader.Options.UseTextOptions = True
         Me.CapabilityDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.CapabilityDate.FieldName = "Capability Date"
+        Me.CapabilityDate.ColumnEdit = Me.RepoCapability
+        Me.CapabilityDate.FieldName = "Due Date NPD"
         Me.CapabilityDate.Name = "CapabilityDate"
         Me.CapabilityDate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.CapabilityDate.Visible = True
-        Me.CapabilityDate.VisibleIndex = 17
+        Me.CapabilityDate.VisibleIndex = 18
+        Me.CapabilityDate.Width = 109
+        '
+        'RepoCapability
+        '
+        Me.RepoCapability.AutoHeight = False
+        Me.RepoCapability.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoCapability.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoCapability.Name = "RepoCapability"
         '
         'Cek
         '
@@ -417,7 +435,7 @@ Partial Class Frm_NPP_Detail
         Me.Note.Name = "Note"
         Me.Note.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Note.Visible = True
-        Me.Note.VisibleIndex = 21
+        Me.Note.VisibleIndex = 22
         Me.Note.Width = 279
         '
         'Seq
@@ -427,10 +445,16 @@ Partial Class Frm_NPP_Detail
         '
         'Commit
         '
+        Me.Commit.ColumnEdit = Me.RepoComit
         Me.Commit.FieldName = "Commit NPD"
         Me.Commit.Name = "Commit"
         Me.Commit.Visible = True
-        Me.Commit.VisibleIndex = 19
+        Me.Commit.VisibleIndex = 20
+        '
+        'RepoComit
+        '
+        Me.RepoComit.AutoHeight = False
+        Me.RepoComit.Name = "RepoComit"
         '
         'Commit1
         '
@@ -446,7 +470,19 @@ Partial Class Frm_NPP_Detail
         Me.Runner.FieldName = "Runner"
         Me.Runner.Name = "Runner"
         Me.Runner.Visible = True
-        Me.Runner.VisibleIndex = 6
+        Me.Runner.VisibleIndex = 7
+        '
+        'DRR
+        '
+        Me.DRR.AppearanceCell.Options.UseTextOptions = True
+        Me.DRR.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DRR.AppearanceHeader.Options.UseTextOptions = True
+        Me.DRR.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.DRR.FieldName = "DRR"
+        Me.DRR.Name = "DRR"
+        Me.DRR.OptionsColumn.AllowEdit = False
+        Me.DRR.Visible = True
+        Me.DRR.VisibleIndex = 23
         '
         'SingleCheck
         '
@@ -543,7 +579,7 @@ Partial Class Frm_NPP_Detail
         'B_AddRows
         '
         Me.B_AddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_AddRows.Location = New System.Drawing.Point(1113, 443)
+        Me.B_AddRows.Location = New System.Drawing.Point(1119, 440)
         Me.B_AddRows.Name = "B_AddRows"
         Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
         Me.B_AddRows.TabIndex = 8
@@ -861,7 +897,7 @@ Partial Class Frm_NPP_Detail
         'BUpload
         '
         Me.BUpload.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BUpload.Location = New System.Drawing.Point(1183, 443)
+        Me.BUpload.Location = New System.Drawing.Point(1189, 439)
         Me.BUpload.Name = "BUpload"
         Me.BUpload.Size = New System.Drawing.Size(64, 21)
         Me.BUpload.TabIndex = 36
@@ -871,7 +907,7 @@ Partial Class Frm_NPP_Detail
         '
         'B_Reject
         '
-        Me.B_Reject.BackColor = System.Drawing.Color.Red
+        Me.B_Reject.BackColor = System.Drawing.Color.Yellow
         Me.B_Reject.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.B_Reject.Location = New System.Drawing.Point(365, 2)
         Me.B_Reject.Name = "B_Reject"
@@ -896,13 +932,35 @@ Partial Class Frm_NPP_Detail
         'B_Revise
         '
         Me.B_Revise.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Revise.Location = New System.Drawing.Point(1161, 443)
+        Me.B_Revise.Location = New System.Drawing.Point(1040, 438)
         Me.B_Revise.Name = "B_Revise"
         Me.B_Revise.Size = New System.Drawing.Size(73, 23)
         Me.B_Revise.TabIndex = 39
         Me.B_Revise.Text = "Revision"
         Me.B_Revise.UseVisualStyleBackColor = True
         Me.B_Revise.Visible = False
+        '
+        'NoUrut
+        '
+        Me.NoUrut.AppearanceCell.Options.UseTextOptions = True
+        Me.NoUrut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.NoUrut.AppearanceHeader.Options.UseTextOptions = True
+        Me.NoUrut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.NoUrut.ColumnEdit = Me.No_Urut
+        Me.NoUrut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.NoUrut.FieldName = "No Urut"
+        Me.NoUrut.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.NoUrut.Name = "NoUrut"
+        Me.NoUrut.OptionsFilter.AllowFilter = False
+        Me.NoUrut.Visible = True
+        Me.NoUrut.VisibleIndex = 0
+        Me.NoUrut.Width = 53
+        '
+        'No_Urut
+        '
+        Me.No_Urut.AutoHeight = False
+        Me.No_Urut.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.No_Urut.Name = "No_Urut"
         '
         'Frm_NPP_Detail
         '
@@ -941,7 +999,10 @@ Partial Class Frm_NPP_Detail
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepStatusMold, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoCapability.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoCapability, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Check, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoComit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -966,6 +1027,7 @@ Partial Class Frm_NPP_Detail
         CType(Me.TNPP_No.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRevisiInformasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1043,4 +1105,9 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents Commit1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents B_Revise As Button
     Friend WithEvents Runner As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DRR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoCapability As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepoComit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents NoUrut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents No_Urut As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

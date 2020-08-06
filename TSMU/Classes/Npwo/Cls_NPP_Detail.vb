@@ -53,6 +53,7 @@ Public Class Cls_NPP_Detail
     Public Property H_Submit_NPD As Boolean
     Public Property H_RevStatus As Boolean
     Public Property H_Status As String
+    Public Property H_Note As String
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
@@ -245,8 +246,8 @@ Public Class Cls_NPP_Detail
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             For i As Integer = 0 To dt.Rows.Count - 1
-                Dim D As String = Convert.ToString(dt.Rows(i).Item("Capability Date"))
-                dt.Rows(i).Item("Capability Date") = IIf((dt.Rows(i).Item("Capability Date") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Capability Date"))
+                Dim D As String = Convert.ToString(dt.Rows(i).Item("Due Date NPD"))
+                dt.Rows(i).Item("Due Date NPD") = IIf((dt.Rows(i).Item("Due Date NPD") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Due Date NPD"))
             Next
             Return dt
         Catch ex As Exception
@@ -578,6 +579,7 @@ Public Class Cls_NPP_Detail
                                             ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
                                             ,[Approve_Dept_Head_Date] = '" & H_Approve_Dept_Head_Date & "'
                                             ,[Approve_Dept_Head_Name] = '" & H_Approve_Dept_Head_Name & "'
+                                            ,[Note] = '" & H_Note & "'
                                             ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
                             MainModul.ExecQuery(ls_SP)
                         Catch ex As Exception
@@ -1137,14 +1139,14 @@ Public Class Col_Cls_NPP_Detail_NPP
     Public Property Factory As String
     Public Property Commit As Boolean
     Public Property Runner As Double
+    Public Property NoUrut As Integer
 
 
     Public Sub Insert_NPP_Detail(NPP_No As String)
 
         Try
-
             Dim query As String = "[NPP_Insert_NPP_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(25) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -1171,6 +1173,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(23) = New SqlClient.SqlParameter("@Commit", SqlDbType.Bit)
             pParam(24) = New SqlClient.SqlParameter("@Capability", SqlDbType.Date)
             pParam(25) = New SqlClient.SqlParameter("@Runner", SqlDbType.Float)
+            pParam(26) = New SqlClient.SqlParameter("@NoUrut", SqlDbType.Float)
 
 
             pParam(0).Value = NPP_No
@@ -1199,6 +1202,7 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(23).Value = Commit
             pParam(24).Value = Capability
             pParam(25).Value = Runner
+            pParam(26).Value = NoUrut
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)

@@ -93,14 +93,16 @@ Public Class forecast_price_models_header
                         'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
-                                Dim IsExist As Boolean = .IsDataADMExist
-                                If Not IsExist Then
-                                    .InsertData()
-                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
-                                Else
-                                    .UpdateData1()
-                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
-                                End If
+                                .InsertData()
+                                .UpdateDataByBulanNew(Bulan, BulanAngka)
+                                'Dim IsExist As Boolean = .IsDataADMExist
+                                'If Not IsExist Then
+                                '    .InsertData()
+                                '    .UpdateDataByBulanNew(Bulan, BulanAngka)
+                                'Else
+                                '    .UpdateData1()
+                                '    .UpdateDataByBulanNew(Bulan, BulanAngka)
+                                'End If
 
                             End With
                         Next
@@ -309,7 +311,272 @@ Public Class forecast_price_models
             Throw
         End Try
     End Function
+    Public Sub Insert(Bulan As String, BulanAngka As String)
+        Try
 
+            Dim Sql As String = "tForecastPrice_insert"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@columnName", SqlDbType.Float)
+            pParam(0).Value = Bulan
+            pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(1).Value = Tahun
+            pParam(2) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(2).Value = BulanAngka
+            pParam(3) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(3).Value = CustID
+            pParam(4) = New SqlClient.SqlParameter("@Customer", SqlDbType.VarChar)
+            pParam(4).Value = Customer
+            pParam(5) = New SqlClient.SqlParameter("@Description", SqlDbType.VarChar)
+            pParam(5).Value = Description
+            pParam(6) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(6).Value = PartNo
+            pParam(7) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            pParam(7).Value = Model
+            pParam(8) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            pParam(8).Value = OePe
+            pParam(9) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            pParam(9).Value = INSub
+            pParam(10) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(10).Value = Site
+            pParam(11) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(11).Value = Flag
+            pParam(12) = New SqlClient.SqlParameter("@JanQty1", SqlDbType.Float)
+            pParam(12).Value = JanQty1
+            pParam(13) = New SqlClient.SqlParameter("@JanQty2", SqlDbType.VarChar)
+            pParam(13).Value = JanQty2
+            pParam(14) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(14).Value = Tahun
+            pParam(15) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            pParam(15).Value = Bulan
+            pParam(16) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(16).Value = CustID
+            pParam(17) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(17).Value = InvtID
+            pParam(18) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(18).Value = PartNo
+            pParam(19) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(19).Value = salesPrice
+            'pParam(20) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(20).Value = PartNo
+            'pParam(21) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(21).Value = Model
+            'pParam(22) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(22).Value = OePe
+            'pParam(23) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(23).Value = INSub
+            'pParam(24) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(24).Value = Site
+            'pParam(25) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(25).Value = Flag
+            'pParam(26) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(26).Value = salesPrice
+            'pParam(27) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(27).Value = gh_Common.Username
+
+            'pParam(28) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(28).Value = Tahun
+            'pParam(29) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(29).Value = Bulan
+            'pParam(30) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(30).Value = CustID
+            'pParam(31) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(31).Value = InvtID
+            'pParam(32) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(32).Value = PartNo
+            'pParam(33) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(33).Value = salesPrice
+            'pParam(34) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(34).Value = PartNo
+            'pParam(35) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(35).Value = Model
+            'pParam(36) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(36).Value = OePe
+            'pParam(37) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(37).Value = INSub
+            'pParam(38) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(38).Value = Site
+            'pParam(39) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(39).Value = Flag
+            'pParam(40) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(40).Value = salesPrice
+            'pParam(41) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(41).Value = gh_Common.Username
+
+            'pParam(42) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(42).Value = Tahun
+            'pParam(43) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(43).Value = Bulan
+            'pParam(44) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(44).Value = CustID
+            'pParam(45) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(45).Value = InvtID
+            'pParam(46) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(46).Value = PartNo
+            'pParam(47) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(47).Value = salesPrice
+            'pParam(48) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(48).Value = PartNo
+            'pParam(49) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(49).Value = Model
+            'pParam(50) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(50).Value = OePe
+            'pParam(51) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(51).Value = INSub
+            'pParam(52) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(52).Value = Site
+            'pParam(53) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(53).Value = Flag
+            'pParam(54) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(54).Value = salesPrice
+            'pParam(55) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(55).Value = gh_Common.Username
+
+            'pParam(56) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(56).Value = Tahun
+            'pParam(57) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(57).Value = Bulan
+            'pParam(58) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(58).Value = CustID
+            'pParam(59) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(59).Value = InvtID
+            'pParam(60) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(60).Value = PartNo
+            'pParam(61) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(61).Value = salesPrice
+            'pParam(62) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(62).Value = PartNo
+            'pParam(63) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(63).Value = Model
+            'pParam(64) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(64).Value = OePe
+            'pParam(65) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(65).Value = INSub
+            'pParam(66) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(66).Value = Site
+            'pParam(67) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(67).Value = Flag
+            'pParam(68) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(68).Value = salesPrice
+            'pParam(69) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(69).Value = gh_Common.Username
+
+            'pParam(70) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(70).Value = Tahun
+            'pParam(71) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(71).Value = Bulan
+            'pParam(72) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(72).Value = CustID
+            'pParam(73) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(73).Value = InvtID
+            'pParam(74) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(74).Value = PartNo
+            'pParam(75) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(75).Value = salesPrice
+            'pParam(76) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(76).Value = PartNo
+            'pParam(77) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(77).Value = Model
+            'pParam(78) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(78).Value = OePe
+            'pParam(79) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(79).Value = INSub
+            'pParam(80) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(80).Value = Site
+            'pParam(81) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(81).Value = Flag
+            'pParam(82) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(82).Value = salesPrice
+            'pParam(83) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(83).Value = gh_Common.Username
+
+            'pParam(84) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(84).Value = Tahun
+            'pParam(85) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(85).Value = Bulan
+            'pParam(86) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(86).Value = CustID
+            'pParam(87) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(87).Value = InvtID
+            'pParam(88) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(88).Value = PartNo
+            'pParam(89) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(89).Value = salesPrice
+            'pParam(90) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(90).Value = PartNo
+            'pParam(91) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(91).Value = Model
+            'pParam(92) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(92).Value = OePe
+            'pParam(93) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(93).Value = INSub
+            'pParam(94) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(94).Value = Site
+            'pParam(95) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(95).Value = Flag
+            'pParam(96) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(96).Value = salesPrice
+            'pParam(97) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(97).Value = gh_Common.Username
+
+            'pParam(98) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(98).Value = Tahun
+            'pParam(99) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(99).Value = Bulan
+            'pParam(100) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(100).Value = CustID
+            'pParam(101) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(101).Value = InvtID
+            'pParam(102) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(102).Value = PartNo
+            'pParam(103) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(103).Value = salesPrice
+            'pParam(104) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(104).Value = PartNo
+            'pParam(105) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(105).Value = Model
+            'pParam(106) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(106).Value = OePe
+            'pParam(107) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(107).Value = INSub
+            'pParam(108) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(108).Value = Site
+            'pParam(109) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(109).Value = Flag
+            'pParam(110) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
+            'pParam(110).Value = salesPrice
+            'pParam(111) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
+            'pParam(111).Value = gh_Common.Username
+
+            'pParam(112) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            'pParam(112).Value = Tahun
+            'pParam(113) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
+            'pParam(113).Value = Bulan
+            'pParam(114) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            'pParam(114).Value = CustID
+            'pParam(115) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            'pParam(115).Value = InvtID
+            'pParam(116) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(116).Value = PartNo
+            'pParam(117) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.VarChar)
+            'pParam(117).Value = salesPrice
+            'pParam(118) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            'pParam(118).Value = PartNo
+            'pParam(119) = New SqlClient.SqlParameter("@Model", SqlDbType.VarChar)
+            'pParam(119).Value = Model
+            'pParam(120) = New SqlClient.SqlParameter("@Oe", SqlDbType.VarChar)
+            'pParam(120).Value = OePe
+            'pParam(121) = New SqlClient.SqlParameter("@IN", SqlDbType.VarChar)
+            'pParam(121).Value = INSub
+            'pParam(122) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            'pParam(122).Value = Site
+            'pParam(123) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            'pParam(123).Value = Flag
+
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub GetAllDataGridById(IsExist As Boolean)
         Try
 
@@ -506,7 +773,9 @@ Public Class forecast_price_models
         Dim salesPrice As Double = 0
 
         Try
-
+            If InvtID = "YIM-14D-CU20-AAPI" Then
+                Console.WriteLine("catch")
+            End If
             Dim Sql As String = "SO_getLastPrice"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
             pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)

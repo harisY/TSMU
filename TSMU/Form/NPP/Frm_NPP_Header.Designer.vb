@@ -65,6 +65,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.Note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +121,7 @@ Partial Class Frm_NPP_Header
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.ApproveDeptHead, Me.ApproveDivHead, Me.SubmitToNPD, Me.Status})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.ApproveDeptHead, Me.ApproveDivHead, Me.SubmitToNPD, Me.Status, Me.Note})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -570,6 +571,13 @@ Partial Class Frm_NPP_Header
         Me.RepositoryItemButtonEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemButtonEdit3.Name = "RepositoryItemButtonEdit3"
         '
+        'Note
+        '
+        Me.Note.FieldName = "Note"
+        Me.Note.Name = "Note"
+        Me.Note.Visible = True
+        Me.Note.VisibleIndex = 11
+        '
         'Frm_NPP_Header
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -640,4 +648,5 @@ Partial Class Frm_NPP_Header
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents Note As DevExpress.XtraGrid.Columns.GridColumn
 End Class

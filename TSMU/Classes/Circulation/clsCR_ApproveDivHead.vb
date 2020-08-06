@@ -46,7 +46,39 @@
 
     End Function
 
+    Public Function Get_ApproveDivHead2(DivHeadID As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[CR_Request_Get_ApproveDivHead2]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@DivHead_ID", SqlDbType.VarChar)
+            pParam(0).Value = DivHeadID
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function Get_Other_Dept(_Dept As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[CR_Request_Get_DeptComment]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(0).Value = _Dept
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function Get_Other_Dept2(_Dept As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
             Dim query As String = "[CR_Request_Get_DeptComment]"
