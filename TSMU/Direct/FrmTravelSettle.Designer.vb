@@ -25,6 +25,7 @@ Partial Class FrmTravelSettle
         Me.GridSettle = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSettle = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TravelSettleID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoPRGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DeptID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TravelerName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,7 +48,6 @@ Partial Class FrmTravelSettle
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NoPRGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageSett.SuspendLayout()
@@ -71,7 +71,7 @@ Partial Class FrmTravelSettle
         Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageSett
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1371, 590)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(955, 590)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageReq, Me.TabPageSett})
         '
@@ -80,7 +80,7 @@ Partial Class FrmTravelSettle
         Me.TabPageSett.Controls.Add(Me.GridSettle)
         Me.TabPageSett.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageSett.Name = "TabPageSett"
-        Me.TabPageSett.Size = New System.Drawing.Size(1364, 556)
+        Me.TabPageSett.Size = New System.Drawing.Size(948, 556)
         Me.TabPageSett.Text = "Settlement"
         '
         'GridSettle
@@ -93,7 +93,7 @@ Partial Class FrmTravelSettle
         Me.GridSettle.MainView = Me.GridViewSettle
         Me.GridSettle.Margin = New System.Windows.Forms.Padding(4)
         Me.GridSettle.Name = "GridSettle"
-        Me.GridSettle.Size = New System.Drawing.Size(1355, 544)
+        Me.GridSettle.Size = New System.Drawing.Size(939, 544)
         Me.GridSettle.TabIndex = 3
         Me.GridSettle.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSettle})
         '
@@ -118,6 +118,17 @@ Partial Class FrmTravelSettle
         Me.TravelSettleID.Visible = True
         Me.TravelSettleID.VisibleIndex = 0
         Me.TravelSettleID.Width = 130
+        '
+        'NoPRGrid
+        '
+        Me.NoPRGrid.Caption = "No PR"
+        Me.NoPRGrid.FieldName = "NoPR"
+        Me.NoPRGrid.MinWidth = 25
+        Me.NoPRGrid.Name = "NoPRGrid"
+        Me.NoPRGrid.OptionsColumn.FixedWidth = True
+        Me.NoPRGrid.Visible = True
+        Me.NoPRGrid.VisibleIndex = 1
+        Me.NoPRGrid.Width = 130
         '
         'DeptID
         '
@@ -360,21 +371,10 @@ Partial Class FrmTravelSettle
         Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 130
         '
-        'NoPRGrid
-        '
-        Me.NoPRGrid.Caption = "No PR"
-        Me.NoPRGrid.FieldName = "NoPR"
-        Me.NoPRGrid.MinWidth = 25
-        Me.NoPRGrid.Name = "NoPRGrid"
-        Me.NoPRGrid.OptionsColumn.FixedWidth = True
-        Me.NoPRGrid.Visible = True
-        Me.NoPRGrid.VisibleIndex = 1
-        Me.NoPRGrid.Width = 130
-        '
         'FrmTravelSettle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1387, 631)
+        Me.ClientSize = New System.Drawing.Size(971, 631)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTravelSettle"
