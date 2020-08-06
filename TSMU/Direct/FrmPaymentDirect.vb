@@ -18,6 +18,7 @@ Public Class FrmPaymentDirect
     Dim ff_Detail4 As FrmDetailPaymentSuspend
     Dim ff_Detail5 As FrmEditDirectPayment
     Dim ff_Detail6 As FrmBankPaid
+    Dim ff_Detail6z As FrmBankPaid
     Dim ff_Detail7 As frm_payment_aprrove_details
     Dim ff_Detail8 As FrmBankReceipt_Detail
     Dim ff_Detail9 As FrmDetailPaymentDirect1
@@ -241,6 +242,18 @@ Public Class FrmPaymentDirect
             GridCellFormat(GridView2)
         End If
     End Sub
+    Private Sub DataTravel()
+        Dim dtGrid7 As New DataTable
+
+        dtGrid7 = ObjCashBank.GetGridDetailTravelByAccountID
+        GridControl7.DataSource = dtGrid7
+
+        If dtGrid7.Rows.Count > 0 Then
+            GridCellFormat(GridView7)
+        Else
+            GridCellFormat(GridView7)
+        End If
+    End Sub
     Private Sub refresbank()
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
@@ -291,6 +304,14 @@ Public Class FrmPaymentDirect
         GridControl3.DataSource = dtGrid3
         If dtGrid3.Rows.Count > 0 Then
             GridCellFormat(GridView3)
+        End If
+    End Sub
+    Private Sub DataSettlementTravel()
+        Dim dtGrid4 As New DataTable
+        dtGrid4 = ObjCashBank.GetGridDetailSettleByAccountID4
+        GridControl4.DataSource = dtGrid4
+        If dtGrid4.Rows.Count > 0 Then
+            GridCellFormat(GridView4)
         End If
     End Sub
     Private Sub DataEntertaint()
@@ -395,6 +416,38 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
 
+    Private Sub btnaddx_Click(sender As Object, e As EventArgs) Handles btnaddx.Click
+
+        TempTable3()
+        For i As Integer = 0 To GridView7.RowCount - 1
+            If GridView7.GetRowCellValue(i, "Proses") = True Then
+                dtTemp3.Rows.Add()
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(0) = GridView7.GetRowCellValue(i, "Tgl")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(1) = GridView7.GetRowCellValue(i, "NoRequest")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(2) = GridView7.GetRowCellValue(i, "Description")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(3) = GridView7.GetRowCellValue(i, "Currency")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(4) = GridView7.GetRowCellValue(i, "Amount")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(5) = GridView7.GetRowCellValue(i, "AcctID")
+            End If
+        Next
+
+        ff_Detail6z = New FrmBankPaid(dtTemp3)
+        ff_Detail6z._transaksi.Text = "Travel"
+        ff_Detail6z.ShowDialog()
+
+        _txtperpost.Text = ff_Detail6z.Perpost
+        _txtaccount.Text = ff_Detail6z.Rekening
+        tempperpost = ff_Detail6z.Perpost
+        tempacct = ff_Detail6z.Rekening
+        tsBtn_refresh.PerformClick()
+
+    End Sub
+    Private Sub RepositoryItemCheckEdit7_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit7.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
     Private Sub FrmPaymentDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         _txtperpost.Text = tempperpost
@@ -403,6 +456,8 @@ Public Class FrmPaymentDirect
         DataSuspend()
         DataSettlement()
         DataEntertaint()
+        DataTravel()
+        DataSettlementTravel()
         level = ObjCashBank.GetUsernameLevel
         If level = 3 Then
             TabControl1.Visible = False
@@ -1021,6 +1076,7 @@ Public Class FrmPaymentDirect
         DataSuspend()
         DataSettlement()
         DataEntertaint()
+        DataTravel()
     End Sub
     Private Sub SaveFromSuspend()
         Try
@@ -1152,6 +1208,12 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
     Private Sub ReposPresesSettle_EditValueChanged(sender As Object, e As EventArgs) Handles ReposPresesSettle.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+    Private Sub RepositoryItemCheckEdit3_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit3.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -1419,7 +1481,31 @@ Public Class FrmPaymentDirect
                                                    New DataColumn("BankID", GetType(String))})
         dtTemp2.Clear()
     End Sub
+    Dim dtTemp2x As DataTable
+    Private Sub TempTable2x()
+        dtTemp2x = New DataTable
 
+
+        dtTemp2x.Columns.AddRange(New DataColumn(6) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("NoInvoice", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("SettleAmount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String)),
+                                                   New DataColumn("BankID", GetType(String))})
+        dtTemp2x.Clear()
+    End Sub
+    Dim dtTemp3 As DataTable
+    Private Sub TempTable3()
+        dtTemp3 = New DataTable
+        dtTemp3.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("NoRequest", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp3.Clear()
+    End Sub
     Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
         Try
             If e.Column.FieldName = "Proses" Then
@@ -1621,5 +1707,36 @@ Public Class FrmPaymentDirect
             End If
         Next
         Call DataSuspend()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles btnaddx.Click
+
+    End Sub
+
+    Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        TempTable2x()
+
+        For i As Integer = 0 To GridView4.RowCount - 1
+            If GridView4.GetRowCellValue(i, "Proses") = True Then
+                dtTemp2x.Rows.Add()
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(0) = GridView4.GetRowCellValue(i, "Tgl")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(1) = GridView4.GetRowCellValue(i, "NoVoucher")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(2) = GridView4.GetRowCellValue(i, "Description")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(3) = GridView4.GetRowCellValue(i, "CuryID")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(4) = GridView4.GetRowCellValue(i, "SettleAmount")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(5) = GridView4.GetRowCellValue(i, "AcctID")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(6) = GridView4.GetRowCellValue(i, "BankID")
+            End If
+        Next
+
+        ff_Detail6 = New FrmBankPaid(dtTemp2x)
+        ff_Detail6._transaksi.Text = "SettleTravel"
+        ff_Detail6.ShowDialog()
+        _txtperpost.Text = ff_Detail6.Perpost
+        _txtaccount.Text = ff_Detail6.Rekening
+        tempperpost = ff_Detail6.Perpost
+        tempacct = ff_Detail6.Rekening
+        tsBtn_refresh.PerformClick()
+
     End Sub
 End Class

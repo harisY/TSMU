@@ -64,13 +64,37 @@ Public Class FrmBankPaid
         'GridCellFormat(GridView1)
 
     End Sub
+    Dim dtTemp1z As DataTable
+    Private Sub TempTable1z()
+        dtTemp1z = New DataTable
+        dtTemp1z.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("NoRequest", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp1z.Clear()
+    End Sub
+
+
+    Dim dtTemp1q As DataTable
+    Private Sub TempTable1q()
+        dtTemp1q = New DataTable
+        dtTemp1q.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("SuspendID", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp1q.Clear()
+    End Sub
     Private Sub FrmBankPaid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         DataCashBank()
         'Call CreateTable()
 
         Dim totalamt As Double
-        If _transaksi.Text = "Suspend" Then
+        If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
             GridControl2.DataSource = _dt
             For i As Integer = 0 To GridView2.RowCount - 1
                 totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
@@ -98,7 +122,13 @@ Public Class FrmBankPaid
                 .NoBukti = bukti
                 .Transaksi = "Advance"
                 .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
-                .Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                If _transaksi.Text = "Travel" Then
+                    .Noref = GridView2.GetRowCellValue(i, "NoRequest").ToString().TrimEnd
+                Else
+
+                    .Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                End If
+
                 .SuspendAmount = GridView2.GetRowCellValue(i, "Amount")
                 .SettleAmount = 0
                 .Keluar = GridView2.GetRowCellValue(i, "Amount")
@@ -107,10 +137,18 @@ Public Class FrmBankPaid
                 '.Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
                 .Perpost = _txtperpost.Text
                 .AcctID = _txtaccount.Text
+                .curyid = _txtcuryid.Text
                 .Saldo_Awal = 0
-                .SuspendID = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
-                .InsertToTable()
-                .UpdateSuspend()
+                If _transaksi.Text = "Travel" Then
+                    .SuspendID = GridView2.GetRowCellValue(i, "NoRequest").ToString().TrimEnd
+                    .InsertToTable()
+                    .UpdateSuspendTravel()
+                Else
+                    .SuspendID = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
+                    .InsertToTable()
+                    .UpdateSuspend()
+                End If
+
                 '' .cek1 = True
             End With
 
@@ -211,7 +249,8 @@ Public Class FrmBankPaid
                     _txtcuryid.Text = Value3
                     ObjCashBank.curyid = Value3
                     'Call DataSuspend()
-                    'Call DataEntertaint()
+                    GridControl2.DataSource = Nothing
+                    Call berubah_curry()
                 End If
             End If
             lF_SearchData.Close()
@@ -224,7 +263,7 @@ Public Class FrmBankPaid
 
 
     Private Sub _TsbOk_Click(sender As Object, e As EventArgs) Handles _TsbOk.Click
-        If _transaksi.Text = "Suspend" Then
+        If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
             tabu1()
             tabu2()
         Else
@@ -249,21 +288,21 @@ Public Class FrmBankPaid
         For i As Integer = 0 To GridView2.RowCount - 1
 
             totsuspend = If(GridView2.GetRowCellValue(i, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(i, "Total")))
-                suspendamount = suspendamount + totsuspend
-                settleamount = settleamount + GridView2.GetRowCellValue(i, "SettleAmount")
-                If GridView2.GetRowCellValue(i, "SettleAmount") > totsuspend Then
-                    Keluar = GridView2.GetRowCellValue(i, "SettleAmount") - totsuspend
-                    Masuk = 0
-                ElseIf GridView2.GetRowCellValue(i, "SettleAmount") < totsuspend Then
-                    Keluar = 0
-                    Masuk = totsuspend - GridView2.GetRowCellValue(i, "SettleAmount")
-                Else
-                    Keluar = 0
-                    Masuk = 0
-                End If
+            suspendamount = suspendamount + totsuspend
+            settleamount = settleamount + GridView2.GetRowCellValue(i, "SettleAmount")
+            If GridView2.GetRowCellValue(i, "SettleAmount") > totsuspend Then
+                Keluar = GridView2.GetRowCellValue(i, "SettleAmount") - totsuspend
+                Masuk = 0
+            ElseIf GridView2.GetRowCellValue(i, "SettleAmount") < totsuspend Then
+                Keluar = 0
+                Masuk = totsuspend - GridView2.GetRowCellValue(i, "SettleAmount")
+            Else
+                Keluar = 0
+                Masuk = 0
+            End If
 
-                TKeluar = TKeluar + Keluar
-                TMasuk = TMasuk + Masuk
+            TKeluar = TKeluar + Keluar
+            TMasuk = TMasuk + Masuk
 
         Next
 
@@ -296,42 +335,111 @@ Public Class FrmBankPaid
         For f As Integer = 0 To GridView2.RowCount - 1
 
             Dim bukti As String = ObjCashBank.autononb
-                Dim totsuspend As Double = 0
+            Dim totsuspend As Double = 0
 
-                Dim ObjDetails As New cashbank_models
-                With ObjDetails
-                    .Tgl = DateTime.Parse(GridView2.GetRowCellValue(f, "Tgl").ToString())
-                    .NoBukti = bukti
-                    .Transaksi = "Settle"
-                    .Keterangan = GridView2.GetRowCellValue(f, "Description").ToString().TrimEnd
+            Dim ObjDetails As New cashbank_models
+            With ObjDetails
+                .Tgl = DateTime.Parse(GridView2.GetRowCellValue(f, "Tgl").ToString())
+                .NoBukti = bukti
+                .Transaksi = "Settle"
+                .Keterangan = GridView2.GetRowCellValue(f, "Description").ToString().TrimEnd
+                If _transaksi.Text = "Settle" Then
+
                     .Noref = GridView2.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
                     totsuspend = If(GridView2.GetRowCellValue(f, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(f, "Total")))
                     .SuspendAmount = totsuspend
-                    .SettleAmount = GridView2.GetRowCellValue(f, "SettleAmount")
-
-                    If GridView2.GetRowCellValue(f, "SettleAmount") > totsuspend Then
-                        .Keluar = GridView2.GetRowCellValue(f, "SettleAmount") - totsuspend
-                        .Masuk = 0
-                    ElseIf GridView2.GetRowCellValue(f, "SettleAmount") < totsuspend Then
-                        .Keluar = 0
-                        .Masuk = totsuspend - GridView2.GetRowCellValue(f, "SettleAmount")
-                    Else
-                        .Keluar = 0
-                        .Masuk = 0
-                    End If
-
-
-                    .Saldo = 0
-                    .Perpost = _txtperpost.Text
-                    .AcctID = _txtaccount.Text
-                    ' .Saldo_Awal = _txtsaldo.Text
                     .SettleID = GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
-                    .InsertToTable2()
-                    .UpdateSettle()
-                End With
+
+                Else
+                    .Noref = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
+                    totsuspend = 0
+                    .SuspendAmount = totsuspend
+                    .SettleID = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
+
+                End If
+
+                .SettleAmount = GridView2.GetRowCellValue(f, "SettleAmount")
+
+                If GridView2.GetRowCellValue(f, "SettleAmount") > totsuspend Then
+                    .Keluar = GridView2.GetRowCellValue(f, "SettleAmount") - totsuspend
+                    .Masuk = 0
+                ElseIf GridView2.GetRowCellValue(f, "SettleAmount") < totsuspend Then
+                    .Keluar = 0
+                    .Masuk = totsuspend - GridView2.GetRowCellValue(f, "SettleAmount")
+                Else
+                    .Keluar = 0
+                    .Masuk = 0
+                End If
+
+
+                .Saldo = 0
+                .Perpost = _txtperpost.Text
+                .AcctID = _txtaccount.Text
+                ' .Saldo_Awal = _txtsaldo.Text
+                ''  .SettleID = GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
+                .InsertToTable2()
+
+                If _transaksi.Text <> "Settle" Then
+                    .UpdateSettleTravel()
+                End If
+                .UpdateSettle()
+            End With
 
 
         Next
 
     End Sub
+
+    Private Sub berubah_curry()
+        'TempTable1z()
+        'For i As Integer = 0 To GridView2.RowCount - 1
+        '    If GridView2.GetRowCellValue(i, "CuryID") = _txtcuryid.Text Then
+        '        dtTemp1z.Rows.Add()
+        '        dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(0) = GridView2.GetRowCellValue(i, "Tgl")
+        '        If _transaksi.Text = "Travel" Then
+        '            dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(1) = GridView2.GetRowCellValue(i, "NoRequest")
+        '        Else
+        '            dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(1) = GridView2.GetRowCellValue(i, "SuspendID")
+        '        End If
+        '        dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(2) = GridView2.GetRowCellValue(i, "Description")
+        '        dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(3) = GridView2.GetRowCellValue(i, "CuryID")
+        '        dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(4) = GridView2.GetRowCellValue(i, "Amount")
+        '        dtTemp1z.Rows(dtTemp1z.Rows.Count - 1).Item(5) = GridView2.GetRowCellValue(i, "AcctID")
+        '    End If
+        'Next
+
+
+        'Dim totalamt As Double
+        'If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
+        '    GridControl2.DataSource = dtTemp1z
+        '    For i As Integer = 0 To GridView2.RowCount - 1
+        '        totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
+        '    Next
+        '    _txttot.Text = Format(totalamt, "#,#.##")
+        '    GridCellFormat(GridView2)
+        'Else
+        '    GridControl2.DataSource = dtTemp1z
+        '    For i As Integer = 0 To GridView2.RowCount - 1
+        '        totalamt = totalamt + GridView2.GetRowCellValue(i, "SettleAmount")
+        '    Next
+        '    _txttot.Text = Format(totalamt, "#,#.##")
+        '    GridCellFormat(GridView2)
+        'End If
+        Try
+            Dim dv As DataView = New DataView(_dt)
+            Dim dtFilter As New DataTable
+
+            If _txtcuryid.Text <> "" Then
+                dv.RowFilter = "CuryID = '" & _txtcuryid.Text & "' "
+                dtFilter = dv.ToTable
+            Else
+                dtFilter = dv.ToTable
+            End If
+            GridControl2.DataSource = dtFilter
+            GridCellFormat(GridView2)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 End Class

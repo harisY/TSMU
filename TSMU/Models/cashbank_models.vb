@@ -15,6 +15,7 @@ Public Class cashbank_models
     Public Property Tgl As DateTime
     Public Property Transaksi As String
     Public Property SuspendID As String
+    Public Property NoVoucher As String
     Public Property SettleID As String
     Public Property curyid As String
     Public Property account() As String
@@ -244,7 +245,24 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Sub UpdateSuspendTravel()
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "ProsesUSD"
+            Else
+                prs = "ProsesYEN"
+            End If
 
+            Dim Query = "update TravelRequestHeader set " & prs & " =1 where NoRequest=" & QVal(SuspendID) & ""
+            MainModul.ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
     Public Sub UpdateVoucher()
 
         Try
@@ -276,6 +294,17 @@ Public Class cashbank_models
 
             Dim Query = "update settle_header set pay=1 where settleid=" & QVal(SettleID) & ""
             MainModul.ExecQuery_Solomon(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+    Public Sub UpdateSettleTravel()
+
+        Try
+
+            Dim Query = "update TravelTicket set pay=1 where NoInvoice=" & QVal(SettleID) & ""
+            MainModul.ExecQuery(Query)
         Catch ex As Exception
             Throw ex
 
@@ -340,7 +369,7 @@ Public Class cashbank_models
     Public Function GetGridDetailCashBankByAccountID02() As DataTable
         Try
             '' Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek,recon  FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
-            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan FROM cashbank2 LEFT JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon,VendorName as Keterangan from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan FROM cashbank2 LEFT JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-cm_dm-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon,VendorName as Keterangan from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -420,7 +449,22 @@ Public Class cashbank_models
 
         End Try
     End Function
+    Public Function GetGridDetailTravelByAccountID() As DataTable
+        Try
 
+            ''            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses,suspend_header.Currency from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' AND suspend_header.Currency=" & QVal(curyid) & ""
+            Dim sql As String = "Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceIDR) as Amount,'IDR' as Currency,'' as AcctID,TravelRequestHeader.ProsesIDR as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesIDR=0 AND TravelRequestHeader.StatusTicket='INVOICE' group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesIDR
+                                UNION
+                                Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceUSD) as Amount,'USD' as Currency,'' as AcctID,TravelRequestHeader.ProsesUSD as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesUSD=0 AND TravelRequestHeader.StatusTicket='INVOICE'  group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesUSD
+                                UNION
+                                Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceYEN) as Amount,'JPY' as Currency,'' as AcctID,TravelRequestHeader.ProsesYEN as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesYEN=0 AND TravelRequestHeader.StatusTicket='INVOICE'  group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesYEN"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetGridDetailSuspendByAccountID() As DataTable
         Try
 
@@ -445,7 +489,16 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
-
+    Public Function GetGridDetailSettleByAccountID4() As DataTable
+        Try
+            Dim sql As String = "Select  TravelTicket.Tanggal as Tgl, TravelTicket.NoVoucher, TravelTicket.vendor As Description, TravelTicket.TotAmount As SettleAmount ,TravelTicket.CuryID, '' as AcctID,TravelTicket.BankID,TravelTicket.Proses from TravelTicket where TravelTicket.pay=0 "
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetGridDetailEntertaintByAccountID() As DataTable
         Try
             '  Dim sql As String = "select  suspend_header.Tgl, suspend_detail.SuspendID, suspend_detail.Nama, suspend_detail.DeptID, suspend_detail.Tempat, suspend_detail.ALamat, suspend_detail.Jenis, suspend_detail.Amount, suspend_detail.AcctID, suspend_detail.Proses from suspend_header inner join  suspend_detail on suspend_detail.suspendid=suspend_header.suspendid where suspend_header.pay=0 and suspend_header.tipe = 'E'"
