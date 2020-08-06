@@ -60,10 +60,10 @@ Partial Class FrmTravelPocketAllowance
         Me.GridPocketAllowance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridPocketAllowance.Location = New System.Drawing.Point(23, 91)
+        Me.GridPocketAllowance.Location = New System.Drawing.Point(14, 91)
         Me.GridPocketAllowance.MainView = Me.GridViewPocketAllowance
         Me.GridPocketAllowance.Name = "GridPocketAllowance"
-        Me.GridPocketAllowance.Size = New System.Drawing.Size(1542, 480)
+        Me.GridPocketAllowance.Size = New System.Drawing.Size(1501, 480)
         Me.GridPocketAllowance.TabIndex = 1
         Me.GridPocketAllowance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPocketAllowance})
         '
@@ -157,7 +157,7 @@ Partial Class FrmTravelPocketAllowance
         '
         'txtAmountAllowance
         '
-        Me.txtAmountAllowance.Location = New System.Drawing.Point(1096, 53)
+        Me.txtAmountAllowance.Location = New System.Drawing.Point(1152, 53)
         Me.txtAmountAllowance.Name = "txtAmountAllowance"
         Me.txtAmountAllowance.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.txtAmountAllowance.Properties.DisplayFormat.FormatString = "n2"
@@ -175,7 +175,7 @@ Partial Class FrmTravelPocketAllowance
         'txtAmountFirstTravel
         '
         Me.txtAmountFirstTravel.EditValue = "0"
-        Me.txtAmountFirstTravel.Location = New System.Drawing.Point(1426, 53)
+        Me.txtAmountFirstTravel.Location = New System.Drawing.Point(1482, 53)
         Me.txtAmountFirstTravel.Name = "txtAmountFirstTravel"
         Me.txtAmountFirstTravel.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.txtAmountFirstTravel.Properties.DisplayFormat.FormatString = "n2"
@@ -203,7 +203,7 @@ Partial Class FrmTravelPocketAllowance
         'txtCurryID
         '
         Me.txtCurryID.Enabled = False
-        Me.txtCurryID.Location = New System.Drawing.Point(829, 53)
+        Me.txtCurryID.Location = New System.Drawing.Point(885, 53)
         Me.txtCurryID.Name = "txtCurryID"
         Me.txtCurryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtCurryID.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
@@ -234,14 +234,14 @@ Partial Class FrmTravelPocketAllowance
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(478, 55)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(55, 17)
+        Me.Label3.Size = New System.Drawing.Size(108, 17)
         Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Negara"
+        Me.Label3.Text = "Negara / Benua"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(936, 55)
+        Me.Label4.Location = New System.Drawing.Point(992, 55)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(123, 17)
         Me.Label4.TabIndex = 10
@@ -250,7 +250,7 @@ Partial Class FrmTravelPocketAllowance
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(1271, 55)
+        Me.Label5.Location = New System.Drawing.Point(1327, 55)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(131, 17)
         Me.Label5.TabIndex = 11
@@ -259,7 +259,7 @@ Partial Class FrmTravelPocketAllowance
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(747, 55)
+        Me.Label6.Location = New System.Drawing.Point(803, 55)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(59, 17)
         Me.Label6.TabIndex = 13
@@ -267,7 +267,7 @@ Partial Class FrmTravelPocketAllowance
         '
         'txtNamaNegara
         '
-        Me.txtNamaNegara.Location = New System.Drawing.Point(561, 53)
+        Me.txtNamaNegara.Location = New System.Drawing.Point(617, 53)
         Me.txtNamaNegara.Name = "txtNamaNegara"
         Me.txtNamaNegara.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtNamaNegara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
@@ -295,7 +295,7 @@ Partial Class FrmTravelPocketAllowance
         'FrmTravelPocketAllowance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1577, 583)
+        Me.ClientSize = New System.Drawing.Size(1633, 583)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtNamaNegara)
         Me.Controls.Add(Me.Label5)

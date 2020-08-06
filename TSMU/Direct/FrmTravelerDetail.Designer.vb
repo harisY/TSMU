@@ -20,6 +20,9 @@ Partial Class FrmTravelerDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAddPaspor = New System.Windows.Forms.Button()
         Me.GridPaspor = New DevExpress.XtraGrid.GridControl()
@@ -317,6 +320,10 @@ Partial Class FrmTravelerDetail
         Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
         Me.txtGolongan.StyleController = Me.LayoutControl1
         Me.txtGolongan.TabIndex = 6
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "This value is not valid"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtGolongan, ConditionValidationRule1)
         '
         'GridVisa
         '
@@ -466,6 +473,10 @@ Partial Class FrmTravelerDetail
         Me.TxtNama.Size = New System.Drawing.Size(294, 22)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 3
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNama, ConditionValidationRule2)
         '
         'TxtNIK
         '
@@ -476,6 +487,9 @@ Partial Class FrmTravelerDetail
         Me.TxtNIK.Size = New System.Drawing.Size(62, 22)
         Me.TxtNIK.StyleController = Me.LayoutControl1
         Me.TxtNIK.TabIndex = 0
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "This value is not valid"
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNIK, ConditionValidationRule3)
         '
         'LayoutControlGroup1
         '

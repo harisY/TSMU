@@ -188,6 +188,7 @@ Public Class FrmTravelPocketAllowance
         txtTravelType.Enabled = True
         txtGolongan.Enabled = True
         txtNamaNegara.Enabled = True
+        txtCurryID.Enabled = True
         txtAmountAllowance.Enabled = True
         txtAmountFirstTravel.Enabled = True
     End Sub
@@ -206,6 +207,7 @@ Public Class FrmTravelPocketAllowance
         txtTravelType.Enabled = False
         txtGolongan.Enabled = False
         txtNamaNegara.Enabled = False
+        txtCurryID.Enabled = False
         txtAmountAllowance.Enabled = False
         txtAmountFirstTravel.Enabled = False
     End Sub
@@ -238,6 +240,7 @@ Public Class FrmTravelPocketAllowance
             txtNamaNegara.Text = "INDONESIA"
             txtAmountFirstTravel.Text = 0
             txtNamaNegara.Enabled = False
+            txtCurryID.Enabled = False
             txtAmountFirstTravel.Enabled = False
             txtCurryID.Text = "IDR"
         Else
@@ -247,6 +250,7 @@ Public Class FrmTravelPocketAllowance
             Else
                 txtNamaNegara.Enabled = True
             End If
+            txtCurryID.Enabled = True
             txtAmountFirstTravel.Enabled = True
             txtCurryID.Text = "USD"
         End If
@@ -261,12 +265,15 @@ Public Class FrmTravelPocketAllowance
     Private Sub ListItemsNegara()
         Dim dtNegara = New DataTable
         dtNegara = fc_Class.GetListNegara()
+        dtNegara.Rows.Add("EROPA")
+        dtNegara.Rows.Add("ASIA")
+        dtNegara.Rows.Add("AFRIKA")
         dtNegara.Rows.Add("OTHERS")
         Dim itemsCollection As ComboBoxItemCollection = txtNamaNegara.Properties.Items
         itemsCollection.BeginUpdate()
         itemsCollection.Clear()
         Try
-            For Each r As DataRow In dtNegara.Rows
+            For Each r As DataRow In dtNegara.Select("", "NamaNegara ASC").CopyToDataTable.Rows
                 itemsCollection.Add(r.Item(0))
             Next
         Finally

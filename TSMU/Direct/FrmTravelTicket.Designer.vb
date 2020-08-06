@@ -65,7 +65,7 @@ Partial Class FrmTravelTicket
         Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1433, 555)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(931, 555)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageTicket})
         '
@@ -73,7 +73,7 @@ Partial Class FrmTravelTicket
         '
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageRequest.Size = New System.Drawing.Size(924, 521)
         Me.TabPageRequest.Text = "Ticket"
         '
         'GridRequest
@@ -85,7 +85,7 @@ Partial Class FrmTravelTicket
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
         Me.GridRequest.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CStatusTicket})
-        Me.GridRequest.Size = New System.Drawing.Size(1420, 515)
+        Me.GridRequest.Size = New System.Drawing.Size(918, 515)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
@@ -259,7 +259,7 @@ Partial Class FrmTravelTicket
         '
         Me.TabPageTicket.Controls.Add(Me.GridTicket)
         Me.TabPageTicket.Name = "TabPageTicket"
-        Me.TabPageTicket.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageTicket.Size = New System.Drawing.Size(924, 521)
         Me.TabPageTicket.Text = "Invoice"
         '
         'GridTicket
@@ -270,7 +270,7 @@ Partial Class FrmTravelTicket
         Me.GridTicket.Location = New System.Drawing.Point(3, 3)
         Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
-        Me.GridTicket.Size = New System.Drawing.Size(1420, 515)
+        Me.GridTicket.Size = New System.Drawing.Size(918, 515)
         Me.GridTicket.TabIndex = 0
         Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
@@ -355,7 +355,7 @@ Partial Class FrmTravelTicket
         'FrmTravelTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1457, 602)
+        Me.ClientSize = New System.Drawing.Size(955, 602)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmTravelTicket"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
