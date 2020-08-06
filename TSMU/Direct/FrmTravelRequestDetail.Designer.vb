@@ -20,8 +20,8 @@ Partial Class FrmTravelRequestDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.CDepartureDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.CArrivalDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.btnAdd = New System.Windows.Forms.Button()
@@ -39,6 +39,8 @@ Partial Class FrmTravelRequestDetail
         Me.DepartureDateGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ArrivalDateGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDetailDay = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRateAllowanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.txtNama = New DevExpress.XtraEditors.TextEdit()
@@ -78,8 +80,6 @@ Partial Class FrmTravelRequestDetail
         Me.txtApproved = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.txtGolongan = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GRateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRateAllowanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +138,7 @@ Partial Class FrmTravelRequestDetail
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAdd.Location = New System.Drawing.Point(1403, 86)
+        Me.btnAdd.Location = New System.Drawing.Point(1400, 86)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(124, 37)
         Me.btnAdd.TabIndex = 10
@@ -182,7 +182,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNegara})
-        Me.GridDetail.Size = New System.Drawing.Size(1502, 520)
+        Me.GridDetail.Size = New System.Drawing.Size(1499, 520)
         Me.GridDetail.TabIndex = 2
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
@@ -290,6 +290,22 @@ Partial Class FrmTravelRequestDetail
         Me.GDetailDay.Name = "GDetailDay"
         Me.GDetailDay.Width = 94
         '
+        'GRateAllowanceUSD
+        '
+        Me.GRateAllowanceUSD.Caption = "RateAllowanceUSD"
+        Me.GRateAllowanceUSD.FieldName = "RateAllowanceUSD"
+        Me.GRateAllowanceUSD.MinWidth = 25
+        Me.GRateAllowanceUSD.Name = "GRateAllowanceUSD"
+        Me.GRateAllowanceUSD.Width = 94
+        '
+        'GRateAllowanceYEN
+        '
+        Me.GRateAllowanceYEN.Caption = "RateAllowanceYEN"
+        Me.GRateAllowanceYEN.FieldName = "RateAllowanceYEN"
+        Me.GRateAllowanceYEN.MinWidth = 25
+        Me.GRateAllowanceYEN.Name = "GRateAllowanceYEN"
+        Me.GRateAllowanceYEN.Width = 94
+        '
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
@@ -302,10 +318,10 @@ Partial Class FrmTravelRequestDetail
         Me.txtNIK.Properties.MaxLength = 9
         Me.txtNIK.Size = New System.Drawing.Size(100, 22)
         Me.txtNIK.TabIndex = 2
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "This value is not valid"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtNIK, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtNIK, ConditionValidationRule2)
         '
         'txtNama
         '
@@ -318,10 +334,10 @@ Partial Class FrmTravelRequestDetail
         Me.txtNama.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.txtNama.Size = New System.Drawing.Size(457, 22)
         Me.txtNama.TabIndex = 5
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "This value is not valid"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtNama, ConditionValidationRule2)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "This value is not valid"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtNama, ConditionValidationRule3)
         '
         'LabelControl1
         '
@@ -385,7 +401,7 @@ Partial Class FrmTravelRequestDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Location = New System.Drawing.Point(900, 48)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(395, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(392, 22)
         Me.txtPurpose.TabIndex = 4
         '
         'GridAdvance
@@ -396,7 +412,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridAdvance.MainView = Me.GridViewAdvance
         Me.GridAdvance.Name = "GridAdvance"
         Me.GridAdvance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAdvanceIDR, Me.CAdvanceUSD, Me.CAdvanceYEN})
-        Me.GridAdvance.Size = New System.Drawing.Size(1490, 156)
+        Me.GridAdvance.Size = New System.Drawing.Size(1487, 156)
         Me.GridAdvance.TabIndex = 23
         Me.GridAdvance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAdvance})
         '
@@ -582,14 +598,14 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceIDR.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAdvanceIDR.EditValue = "0"
-        Me.txtAdvanceIDR.Location = New System.Drawing.Point(532, 19)
+        Me.txtAdvanceIDR.Location = New System.Drawing.Point(465, 19)
         Me.txtAdvanceIDR.MaximumSize = New System.Drawing.Size(160, 0)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceIDR.Size = New System.Drawing.Size(6, 22)
+        Me.txtAdvanceIDR.Size = New System.Drawing.Size(143, 22)
         Me.txtAdvanceIDR.TabIndex = 7
         '
         'txtAdvanceUSD
@@ -605,7 +621,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceUSD.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceUSD.Size = New System.Drawing.Size(160, 22)
+        Me.txtAdvanceUSD.Size = New System.Drawing.Size(129, 22)
         Me.txtAdvanceUSD.TabIndex = 8
         '
         'LabelControl7
@@ -618,7 +634,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(256, 22)
+        Me.LabelControl9.Location = New System.Drawing.Point(228, 22)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(22, 16)
         Me.LabelControl9.TabIndex = 29
@@ -626,7 +642,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(491, 22)
+        Me.LabelControl10.Location = New System.Drawing.Point(426, 22)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(21, 16)
         Me.LabelControl10.TabIndex = 30
@@ -635,12 +651,12 @@ Partial Class FrmTravelRequestDetail
         'txtAdvanceYEN
         '
         Me.txtAdvanceYEN.EditValue = "0"
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(305, 19)
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(275, 19)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
         Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceYEN.Size = New System.Drawing.Size(160, 22)
+        Me.txtAdvanceYEN.Size = New System.Drawing.Size(128, 22)
         Me.txtAdvanceYEN.TabIndex = 9
         '
         'GroupBox1
@@ -650,7 +666,7 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox1.Controls.Add(Me.GridAdvance)
         Me.GroupBox1.Location = New System.Drawing.Point(25, 660)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1502, 184)
+        Me.GroupBox1.Size = New System.Drawing.Size(1499, 184)
         Me.GroupBox1.TabIndex = 31
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Advance dan Pocket Allowance"
@@ -668,21 +684,25 @@ Partial Class FrmTravelRequestDetail
         Me.GroupBox2.Controls.Add(Me.txtAdvanceUSD)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.6!)
         Me.GroupBox2.Location = New System.Drawing.Point(828, 75)
+        Me.GroupBox2.MaximumSize = New System.Drawing.Size(1000, 53)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(554, 53)
+        Me.GroupBox2.Size = New System.Drawing.Size(668, 53)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Advance"
         '
         'Label1
         '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.Location = New System.Drawing.Point(265, 22)
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Location = New System.Drawing.Point(634, 22)
         Me.Label1.Name = "Label1"
         Me.Label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Label1.Size = New System.Drawing.Size(270, 16)
-        Me.Label1.TabIndex = 31
-        Me.Label1.Text = "l"
+        Me.Label1.Size = New System.Drawing.Size(17, 16)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Tag = ""
+        Me.Label1.Text = "Rate"
         '
         'txtDepartement
         '
@@ -696,7 +716,7 @@ Partial Class FrmTravelRequestDetail
         'txtApproved
         '
         Me.txtApproved.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtApproved.Location = New System.Drawing.Point(1403, 48)
+        Me.txtApproved.Location = New System.Drawing.Point(1400, 48)
         Me.txtApproved.Name = "txtApproved"
         Me.txtApproved.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtApproved.Properties.Items.AddRange(New Object() {"APPROVED", "REVISED", "CANCEL"})
@@ -707,7 +727,7 @@ Partial Class FrmTravelRequestDetail
         'LabelControl11
         '
         Me.LabelControl11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl11.Location = New System.Drawing.Point(1312, 51)
+        Me.LabelControl11.Location = New System.Drawing.Point(1309, 51)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(54, 16)
         Me.LabelControl11.TabIndex = 34
@@ -730,26 +750,10 @@ Partial Class FrmTravelRequestDetail
         Me.txtGolongan.Size = New System.Drawing.Size(104, 22)
         Me.txtGolongan.TabIndex = 3
         '
-        'GRateAllowanceUSD
-        '
-        Me.GRateAllowanceUSD.Caption = "RateAllowanceUSD"
-        Me.GRateAllowanceUSD.FieldName = "RateAllowanceUSD"
-        Me.GRateAllowanceUSD.MinWidth = 25
-        Me.GRateAllowanceUSD.Name = "GRateAllowanceUSD"
-        Me.GRateAllowanceUSD.Width = 94
-        '
-        'GRateAllowanceYEN
-        '
-        Me.GRateAllowanceYEN.Caption = "RateAllowanceYEN"
-        Me.GRateAllowanceYEN.FieldName = "RateAllowanceYEN"
-        Me.GRateAllowanceYEN.MinWidth = 25
-        Me.GRateAllowanceYEN.Name = "GRateAllowanceYEN"
-        Me.GRateAllowanceYEN.Width = 94
-        '
         'FrmTravelRequestDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1552, 875)
+        Me.ClientSize = New System.Drawing.Size(1549, 875)
         Me.Controls.Add(Me.LabelControl11)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
