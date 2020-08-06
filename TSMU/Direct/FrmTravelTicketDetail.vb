@@ -56,7 +56,7 @@ Public Class FrmTravelTicketDetail
     End Sub
 
     Private Sub FrmTravelTicketDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
     End Sub
 
@@ -159,13 +159,13 @@ Public Class FrmTravelTicketDetail
 
         checkList = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "CheckList")
         noRequest = GridViewTicket.GetRowCellValue(GridViewTicket.FocusedRowHandle, "NoRequest")
-        If checkList Then
-            For i As Integer = 0 To GridViewTicket.RowCount - 1
-                If GridViewTicket.GetRowCellValue(i, "NoRequest") = noRequest Then
-                    GridViewTicket.SetRowCellValue(i, "CheckList", checkList)
-                End If
-            Next
-        End If
+        'If checkList Then
+        For i As Integer = 0 To GridViewTicket.RowCount - 1
+            If GridViewTicket.GetRowCellValue(i, "NoRequest") = noRequest Then
+                GridViewTicket.SetRowCellValue(i, "CheckList", checkList)
+            End If
+        Next
+        'End If 
         HitungTotal()
 
     End Sub

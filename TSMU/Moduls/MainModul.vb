@@ -5,6 +5,8 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.BandedGrid
 
 Module MainModul
 #Region "--Global Enumerations--"
@@ -255,11 +257,13 @@ Module MainModul
     Public Sub ShowMessage(ByVal message As String, Optional ByVal Flag As MessageTypeEnum = MessageTypeEnum.NormalMessage, Optional ByVal ls_StackTrace As String = "")
         If ls_StackTrace <> "" Then Call WriteToErrorLog(message, gh_Common.Username, ls_StackTrace)
         If Flag = MessageTypeEnum.NormalMessage Then
-            MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Information)
+            XtraMessageBox.Show(message, "TSMU", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Information)
             'frmMain.StatMsg.ForeColor = Color.Black
         ElseIf Flag = MessageTypeEnum.ErrorMessage Then
             '# Checkbox...
-            MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
+            'MsgBox(message, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
+            XtraMessageBox.Show(message, "TSMU", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'frmMain.StatMsg.ForeColor = Color.Red
         Else
             'frmMain.StatMsg.ForeColor = Color.Black
@@ -274,27 +278,27 @@ Module MainModul
         Dim ll_MaxLogByte As Long = 10000000
 
         Try
-            If Not System.IO.Directory.Exists(ls_Path) Then
-                System.IO.Directory.CreateDirectory(ls_Path)
+            If Not IO.Directory.Exists(ls_Path) Then
+                IO.Directory.CreateDirectory(ls_Path)
                 lb_CheckSize = False
             End If
 
             'check the file
-            Dim fs As System.IO.FileStream = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
+            Dim fs As IO.FileStream = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.OpenOrCreate, IO.FileAccess.ReadWrite)
             If lb_CheckSize Then
                 If fs.Length > ll_MaxLogByte Then
                     fs.Close()
-                    My.Computer.FileSystem.RenameFile(ls_Path & ls_FileName, DateTime.Now.ToString("yyyyMMddHHmmss") & ls_FileName)
-                    fs = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite)
+                    My.Computer.FileSystem.RenameFile(ls_Path & ls_FileName, Date.Now.ToString("yyyyMMddHHmmss") & ls_FileName)
+                    fs = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.OpenOrCreate, IO.FileAccess.ReadWrite)
                 End If
             End If
-            Dim s As System.IO.StreamWriter = New System.IO.StreamWriter(fs)
+            Dim s As IO.StreamWriter = New IO.StreamWriter(fs)
             s.Close()
             fs.Close()
 
             'log it
-            Dim fs1 As System.IO.FileStream = New System.IO.FileStream(ls_Path & ls_FileName, System.IO.FileMode.Append, System.IO.FileAccess.Write)
-            Dim s1 As System.IO.StreamWriter = New System.IO.StreamWriter(fs1)
+            Dim fs1 As IO.FileStream = New IO.FileStream(ls_Path & ls_FileName, IO.FileMode.Append, IO.FileAccess.Write)
+            Dim s1 As IO.StreamWriter = New IO.StreamWriter(fs1)
             Dim ls_String = ""
             Dim sb_String As New System.Text.StringBuilder
 
@@ -2178,44 +2182,97 @@ Module MainModul
 
         End With
     End Sub
-    Public Sub FormatGridBadgeView(ByVal View As Views.BandedGrid.AdvBandedGridView)
+    Public Sub FormatBandedGridView(ByVal View As BandedGridView, Optional ByVal IsIndonesianDate As Boolean = True)
+        'With View
+        '    For i As Integer = 0 To .Columns.Count - 1
+        '        If .Columns(i).ColumnType Is GetType(Date) Then
+        '            If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd-MM-yyyy"
+        '        ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+        '            Dim lb_Nothing As Boolean = True
+        '            .Columns(i).DisplayFormat.Format = GetType(String)
+        '            If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
+        '                Array.Sort(bia_FormatPecahan)
+        '                Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, .Columns(i).ColumnHandle)
+        '                If li_Found > -1 Then
+        '                    .Columns(i).DisplayFormat.FormatString = gs_FormatPecahan
+        '                    lb_Nothing = False
+        '                End If
+        '            End If
+        '            If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
+        '                Array.Sort(bia_FormatBulat)
+        '                Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, .Columns(i).ColumnHandle)
+        '                If li_Found > -1 Then
+        '                    .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+        '                    lb_Nothing = False
+        '                End If
+        '            End If
+        '            If lb_Nothing = True Then
+        '                .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
+        '            End If
+        '            .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        '        ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+        '            .Columns(i).DisplayFormat.FormatType = FormatType.Numeric
+        '            .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+        '            .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        '        End If
+
+        '    Next
+        '    .RefreshData()
+        '    'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
+
+        'End With
         With View
-            For i As Integer = 0 To .Columns.Count - 1
-                If .Columns(i).ColumnType Is GetType(Date) Then
-                    If .Columns(i).DisplayFormat.FormatString <> "dd MMM yyyy" AndAlso .Columns(i).DisplayFormat.FormatString <> "dd MMMM yyyy" Then .Columns(i).DisplayFormat.FormatString = "dd-MM-yyyy"
-                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
+            For Each col As Columns.GridColumn In .Columns
+                If col.ColumnType Is GetType(Date) Then
+                    If IsIndonesianDate Then
+                        If col.DisplayFormat.FormatString <> "dd MMM yyyy" OrElse col.DisplayFormat.FormatString <> "dd MMMM yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "dd-MM-yyyy"
+                        End If
+                    Else
+                        If col.DisplayFormat.FormatString <> "dd/MMM/yyyy" OrElse col.DisplayFormat.FormatString <> "dd/MMMM/yyyy" Then
+                            col.DisplayFormat.FormatType = FormatType.DateTime
+                            col.DisplayFormat.FormatString = "MM/dd/yyyy"
+                        End If
+                    End If
+
+                ElseIf col.ColumnType Is GetType(Decimal) OrElse col.ColumnType Is GetType(Double) Then
                     Dim lb_Nothing As Boolean = True
-                    .Columns(i).DisplayFormat.Format = GetType(String)
+                    col.DisplayFormat.FormatString = gs_FormatPecahan
                     If bia_FormatPecahan IsNot Nothing AndAlso bia_FormatPecahan.Length > 0 Then
                         Array.Sort(bia_FormatPecahan)
-                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, .Columns(i).ColumnHandle)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatPecahan, col.ColumnHandle)
                         If li_Found > -1 Then
-                            .Columns(i).DisplayFormat.FormatString = gs_FormatPecahan
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatPecahan
                             lb_Nothing = False
                         End If
                     End If
                     If lb_Nothing = True AndAlso bia_FormatBulat IsNot Nothing AndAlso bia_FormatBulat.Length > 0 Then
                         Array.Sort(bia_FormatBulat)
-                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, .Columns(i).ColumnHandle)
+                        Dim li_Found As Integer = Array.BinarySearch(bia_FormatBulat, col.ColumnHandle)
                         If li_Found > -1 Then
-                            .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
+                            col.DisplayFormat.FormatType = FormatType.Numeric
+                            col.DisplayFormat.FormatString = gs_FormatBulat
                             lb_Nothing = False
                         End If
                     End If
                     If lb_Nothing = True Then
-                        .Columns(i).DisplayFormat.FormatString = gs_FormatDecimal
+                        col.DisplayFormat.FormatType = FormatType.Numeric
+                        col.DisplayFormat.FormatString = gs_FormatPecahan
                     End If
-                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-                ElseIf .Columns(i).ColumnType Is GetType(Integer) Then
-                    .Columns(i).DisplayFormat.FormatType = FormatType.Numeric
-                    .Columns(i).DisplayFormat.FormatString = gs_FormatBulat
-                    .Columns(i).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
+                ElseIf col.ColumnType Is GetType(Integer) Then
+                    col.DisplayFormat.FormatType = FormatType.Numeric
+                    col.DisplayFormat.FormatString = gs_FormatBulat
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+
                 End If
 
             Next
             .RefreshData()
             'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
-
         End With
     End Sub
 

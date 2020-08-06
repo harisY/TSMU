@@ -14,6 +14,7 @@ Public Class frmBoM
     Dim path As String
     Dim table As DataTable
     Dim tableDetail As DataTable
+    Dim fc_ClassBoM As New clsBoMTrans
 
     Private Sub frmBoM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -175,12 +176,22 @@ Public Class frmBoM
                         Dim qty As String = Replace(table.Rows(i)("Qty").ToString, ",", ".")
                         Dim sQty As Single = Single.Parse(qty)
                         Dim sQty1 As Single = Convert.ToSingle(qty)
+                        If table.Rows(i)("Parent ID") Is DBNull.Value OrElse table.Rows(i)("Parent ID").ToString = "" Then
+                            .Parentid = ""
+                        Else
+                            .Parentid = Convert.ToString(table.Rows(i)("Parent ID").ToString())
+                        End If
+                        If table.Rows(i)("Invt ID Material") Is DBNull.Value OrElse table.Rows(i)("Invt ID Material").ToString = "" Then
+                            .inventId = 0
+                        Else
+                            .inventId = Convert.ToString(table.Rows(i)("Invt ID Material").ToString())
+                        End If
                         If table.Rows(i)("Qty") Is DBNull.Value OrElse table.Rows(i)("Qty").ToString = "" Then
                             .Qty = 0
                         Else
                             .Qty = sQty 'Convert.ToSingle(Replace(table.Rows(i)("Qty").ToString, ",", "."))
                         End If
-                        .UpdateQtyDetailsManual(table.Rows(i)("Parent ID"), table.Rows(i)("Invt ID Material"))
+                        '.UpdateQtyDetailsManual()
                     End With
                 Catch ex As Exception
                     WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -196,178 +207,152 @@ Public Class frmBoM
     End Sub
 
     Private Sub ImportBoMDetails()
-        Try
-            'Dim ls_Judul As String = "BoM"IMModels
 
-            'table.Columns.Add("bomid")
-            'table.Columns.Add("parentid")
-            'table.Columns.Add("invtid")
-            'table.Columns.Add("descr")
-            'table.Columns.Add("qty")
-            'table.Columns.Add("unit")
-            Cursor = Cursors.WaitCursor
-            For i As Integer = 0 To table.Rows.Count - 1
-                Try
-                    With BomDetails
+        BomDetails.Fc_classdetail.Clear()
+        Cursor = Cursors.WaitCursor
+        For i As Integer = 0 To table.Rows.Count - 1
+            Try
 
-                        If table.Rows(i)("BOM ID") Is DBNull.Value OrElse table.Rows(i)("BOM ID").ToString = "" Then
-                            .BoMID = ""
-                        Else
-                            .BoMID = table.Rows(i)("BOM ID").ToString
-                        End If
-                        If table.Rows(i)("Parent ID") Is DBNull.Value OrElse table.Rows(i)("Parent ID").ToString = "" Then
-                            .Parentid = ""
-                        Else
-                            .Parentid = table.Rows(i)("Parent ID").ToString
-                        End If
-                        If table.Rows(i)("Inventory ID") Is DBNull.Value OrElse table.Rows(i)("Inventory ID").ToString = "" Then
-                            .inventId = ""
-                        Else
-                            .inventId = table.Rows(i)("Inventory ID").ToString
-                        End If
-                        If table.Rows(i)("Description") Is DBNull.Value OrElse table.Rows(i)("Description").ToString = "" Then
-                            .Descr_detail = ""
-                        Else
-                            .Descr_detail = table.Rows(i)("Description").ToString
-                        End If
-                        If table.Rows(i)("Qty") Is DBNull.Value OrElse table.Rows(i)("Qty").ToString = "" Then
-                            .Qty = 0
-                        Else
-                            .Qty = Replace(table.Rows(i)("Qty"), ",", ".")
-                        End If
-                        If table.Rows(i)("Unit") Is DBNull.Value OrElse table.Rows(i)("Unit").ToString = "" Then
-                            .Unit = ""
-                        Else
-                            .Unit = table.Rows(i)("Unit").ToString
-                        End If
+                Dim fc_ClassBomDetails As New clsBoMdetails
+                With fc_ClassBomDetails
+                    If table.Rows(i)("BOM ID") Is DBNull.Value OrElse table.Rows(i)("BOM ID").ToString = "" Then
+                        .BoMID = ""
+                    Else
+                        .BoMID = table.Rows(i)("BOM ID").ToString
+                    End If
+                    If table.Rows(i)("Parent ID") Is DBNull.Value OrElse table.Rows(i)("Parent ID").ToString = "" Then
+                        .Parentid = ""
+                    Else
+                        .Parentid = table.Rows(i)("Parent ID").ToString
+                    End If
+                    If table.Rows(i)("Inventory ID") Is DBNull.Value OrElse table.Rows(i)("Inventory ID").ToString = "" Then
+                        .inventId = ""
+                    Else
+                        .inventId = table.Rows(i)("Inventory ID").ToString
+                    End If
+                    If table.Rows(i)("Description") Is DBNull.Value OrElse table.Rows(i)("Description").ToString = "" Then
+                        .Descr_detail = ""
+                    Else
+                        .Descr_detail = table.Rows(i)("Description").ToString
+                    End If
+                    If table.Rows(i)("Qty") Is DBNull.Value OrElse table.Rows(i)("Qty").ToString = "" Then
+                        .Qty = 0
+                    Else
+                        .Qty = Replace(table.Rows(i)("Qty"), ",", ".")
+                    End If
+                    If table.Rows(i)("Unit") Is DBNull.Value OrElse table.Rows(i)("Unit").ToString = "" Then
+                        .Unit = ""
+                    Else
+                        .Unit = table.Rows(i)("Unit").ToString
+                    End If
+                End With
+                BomDetails.Fc_classdetail.Add(fc_ClassBomDetails)
 
-                        '.DeleteDetailByParentAndInvt(.Parentid, .inventId)
-                        .InsertDetail()
+            Catch ex As Exception
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                WriteSalesToErrorLog("BoM", "Log", table, i, "Invt ID Material", gh_Common.Username)
+                Throw ex
+                'Continue For
+            End Try
+        Next
+        BomDetails.UpdateBoMDetail()
 
-                    End With
+        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        Cursor = Cursors.Default
+        LoadGrid()
 
-                Catch ex As Exception
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                    WriteSalesToErrorLog("BoM", "Log", table, i, "Invt ID Material", gh_Common.Username)
-                    Continue For
-                End Try
-            Next
-            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Cursor = Cursors.Default
-            LoadGrid()
-        Catch ex As Exception
-            Cursor = Cursors.Default
-            Throw
-        End Try
     End Sub
     Private Sub ImportBoMHeader()
-        Try
-            Cursor = Cursors.WaitCursor
-            'Dim ls_Judul As String = "BoM"
+        BomHeader.BoMHeaderCollection.Clear()
+        Cursor = Cursors.WaitCursor
 
-            'table.Columns.Add("bomid")
-            'table.Columns.Add("invtid")
-            'table.Columns.Add("descr")
-            'table.Columns.Add("siteid")
-            'table.Columns.Add("runner")
-            'table.Columns.Add("ct")
-            'table.Columns.Add("mc")
-            'table.Columns.Add("cavity")
-            'table.Columns.Add("wc")
-            'table.Columns.Add("allowance")
-            'table.Columns.Add("mp")
-            'table.Columns.Add("status")
-            For i As Integer = 0 To table.Rows.Count - 1
-                Try
-                    With BomHeader
+        For i As Integer = 0 To table.Rows.Count - 1
+            Try
+                Dim ObjHeader As New clsBoM
+                With ObjHeader
+                    If table.Rows(i)("BOM ID") Is DBNull.Value OrElse table.Rows(i)("BOM ID").ToString = "" Then
+                        .BoMID = ""
+                    Else
+                        .BoMID = table.Rows(i)("BOM ID").ToString
+                    End If
+                    .Tgl = DateTime.Today
+                    If table.Rows(i)("InvID") Is DBNull.Value OrElse table.Rows(i)("InvID").ToString = "" Then
+                        .InvtID = ""
+                    Else
+                        .InvtID = table.Rows(i)("InvID").ToString
+                    End If
+                    If table.Rows(i)("Description") Is DBNull.Value OrElse table.Rows(i)("Description").ToString = "" Then
+                        .Desc = ""
+                    Else
+                        .Desc = table.Rows(i)("Description").ToString
+                    End If
+                    If table.Rows(i)("Site") Is DBNull.Value OrElse table.Rows(i)("Site").ToString = "" Then
+                        .SiteID = ""
+                    Else
+                        .SiteID = table.Rows(i)("Site").ToString
+                    End If
+                    If table.Rows(i)("Runner") Is DBNull.Value OrElse table.Rows(i)("Runner").ToString = "" Then
+                        .Runner = ""
+                    Else
+                        .Runner = table.Rows(i)("Runner").ToString
+                    End If
+                    If table.Rows(i)("CT") Is DBNull.Value OrElse table.Rows(i)("CT").ToString = "" Then
+                        .CycleTime = "0"
+                    Else
+                        .CycleTime = table.Rows(i)("CT")
+                    End If
+                    If table.Rows(i)("MC") Is DBNull.Value OrElse table.Rows(i)("MC").ToString = "" Then
+                        .MC = ""
+                    Else
+                        .MC = table.Rows(i)("MC").ToString
+                    End If
 
-                        If table.Rows(i)("BOM ID") Is DBNull.Value OrElse table.Rows(i)("BOM ID").ToString = "" Then
-                            .BoMID = ""
-                        Else
-                            .BoMID = table.Rows(i)("BOM ID").ToString
-                        End If
-                        .Tgl = DateTime.Today
-                        If table.Rows(i)("InvID") Is DBNull.Value OrElse table.Rows(i)("InvID").ToString = "" Then
-                            .InvtID = ""
-                        Else
-                            .InvtID = table.Rows(i)("InvID").ToString
-                        End If
-                        If table.Rows(i)("Description") Is DBNull.Value OrElse table.Rows(i)("Description").ToString = "" Then
-                            .Desc = ""
-                        Else
-                            .Desc = table.Rows(i)("Description").ToString
-                        End If
-                        If table.Rows(i)("Site") Is DBNull.Value OrElse table.Rows(i)("Site").ToString = "" Then
-                            .SiteID = ""
-                        Else
-                            .SiteID = table.Rows(i)("Site").ToString
-                        End If
-                        If table.Rows(i)("Runner") Is DBNull.Value OrElse table.Rows(i)("Runner").ToString = "" Then
-                            .Runner = ""
-                        Else
-                            .Runner = table.Rows(i)("Runner").ToString
-                        End If
-                        If table.Rows(i)("CT") Is DBNull.Value OrElse table.Rows(i)("CT").ToString = "" Then
-                            .CycleTime = "0"
-                        Else
-                            .CycleTime = table.Rows(i)("CT")
-                        End If
-                        If table.Rows(i)("MC") Is DBNull.Value OrElse table.Rows(i)("MC").ToString = "" Then
-                            .MC = ""
-                        Else
-                            .MC = table.Rows(i)("MC").ToString
-                        End If
+                    If table.Rows(i)("Cavity") Is DBNull.Value OrElse table.Rows(i)("Cavity").ToString = "" Then
+                        .cavity = ""
+                    Else
+                        .cavity = table.Rows(i)("Cavity").ToString
+                    End If
+                    If table.Rows(i)("WC") Is DBNull.Value OrElse table.Rows(i)("WC").ToString = "" Then
+                        .WC = ""
+                    Else
+                        .WC = table.Rows(i)("WC").ToString
+                    End If
+                    If table.Rows(i)("Allow") Is DBNull.Value OrElse table.Rows(i)("Allow").ToString = "" Then
+                        .Allowance = 0
+                    Else
+                        .Allowance = table.Rows(i)("Allow")
+                    End If
+                    If table.Rows(i)("MP") Is DBNull.Value OrElse table.Rows(i)("MP").ToString = "" Then
+                        .MP = "0"
+                    Else
+                        .MP = table.Rows(i)("MP")
+                    End If
+                    If table.Rows(i)("Status") Is DBNull.Value OrElse table.Rows(i)("Status") = "" Then
+                        .Status = ""
+                    Else
+                        .Status = table.Rows(i)("Status")
+                    End If
+                    If table.Rows(i)("Active") Is DBNull.Value OrElse table.Rows(i)("Active").ToString = "" Then
+                        .Active = 1
+                    Else
+                        .Active = table.Rows(i)("Active")
+                    End If
+                End With
+                BomHeader.BoMHeaderCollection.Add(ObjHeader)
 
-                        If table.Rows(i)("Cavity") Is DBNull.Value OrElse table.Rows(i)("Cavity").ToString = "" Then
-                            .cavity = ""
-                        Else
-                            .cavity = table.Rows(i)("Cavity").ToString
-                        End If
-                        If table.Rows(i)("WC") Is DBNull.Value OrElse table.Rows(i)("WC").ToString = "" Then
-                            .WC = ""
-                        Else
-                            .WC = table.Rows(i)("WC").ToString
-                        End If
-                        If table.Rows(i)("Allow") Is DBNull.Value OrElse table.Rows(i)("Allow").ToString = "" Then
-                            .Allowance = 0
-                        Else
-                            .Allowance = table.Rows(i)("Allow")
-                        End If
-                        If table.Rows(i)("MP") Is DBNull.Value OrElse table.Rows(i)("MP").ToString = "" Then
-                            .MP = "0"
-                        Else
-                            .MP = table.Rows(i)("MP")
-                        End If
-                        If table.Rows(i)("Status") Is DBNull.Value OrElse table.Rows(i)("Status") = "" Then
-                            .Status = ""
-                        Else
-                            .Status = table.Rows(i)("Status")
-                        End If
-                        If table.Rows(i)("Active") Is DBNull.Value OrElse table.Rows(i)("Active").ToString = "" Then
-                            .Active = 1
-                        Else
-                            .Status = table.Rows(i)("Active")
-                        End If
-                        '.DeleteHeaderByInvtID(.InvtID)
-                        '.DeleteHeader(.BoMID)
-                        .InsertHeader(.Status)
 
-                    End With
-
-                Catch ex As Exception
-                    Console.WriteLine(ex.Message)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                    WriteSalesToErrorLog("BoM", "Log", table, i, "InvID", gh_Common.Username)
-                    Continue For
-                End Try
-            Next
-            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Cursor = Cursors.Default
-            LoadGrid()
-        Catch ex As Exception
-            Cursor = Cursors.Default
-            Throw
-        End Try
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                WriteSalesToErrorLog("BoM", "Log", table, i, "InvID", gh_Common.Username)
+                Throw ex
+                'Continue For
+            End Try
+        Next
+        BomHeader.UpdateBoMHeader()
+        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        Cursor = Cursors.Default
+        LoadGrid()
     End Sub
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""

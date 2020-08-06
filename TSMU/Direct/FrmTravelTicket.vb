@@ -108,22 +108,16 @@ Public Class FrmTravelTicket
                     NoVoucher = GridViewTicket.GetRowCellValue(rowHandle, "NoVoucher")
                 End If
 
-                'dt = ObjTravelSett.GetTravelSettHeaderByTravelID(ID)
-                'Dim ada As Integer
-                'ada = dt.Rows.Count()
-                'If ada > 0 Then
-                '    Err.Raise(ErrNumber, , "Travel ID " & ID & " dalam proses settlement !")
-                '    'MessageBox.Show("Data dalam proses settlement", "Warning",
-                '    '                MessageBoxButtons.OK,
-                '    '                MessageBoxIcon.Exclamation,
-                '    '                MessageBoxDefaultButton.Button1)
-                'Else
-
                 fc_Class.NoVoucher = NoVoucher
-                fc_Class.DeleteData()
-
-                tsBtn_refresh.PerformClick()
-                'End If
+                Dim dtCheckSettle As Boolean
+                dtCheckSettle = fc_Class.CheckRequestSettle()
+                If dtCheckSettle Then
+                    Err.Raise(ErrNumber, , "No Voucher " & NoVoucher & " sudah proses settlement !")
+                Else
+                    fc_Class.DeleteData()
+                    Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                    tsBtn_refresh.PerformClick()
+                End If
             Next rowHandle
 
         Catch ex As Exception
@@ -138,7 +132,7 @@ Public Class FrmTravelTicket
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
             LoadGridRequest()
         Else
-            Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
             LoadGridTicket()
         End If
     End Sub
@@ -174,6 +168,11 @@ Public Class FrmTravelTicket
         If statusTicket = "CLOSE" Or statusTicket = "CANCEL" Then
             status = "CLOSE"
         End If
+        For i As Integer = 0 To GridViewRequest.RowCount - 1
+            If GridViewRequest.GetRowCellValue(i, "NoRequest") = noRequest Then
+                GridViewRequest.SetRowCellValue(i, "StatusTicket", statusTicket)
+            End If
+        Next
 
         Dim myRow() As Data.DataRow
         myRow = dtTempStatus.Select("NoRequest = " & QVal(noRequest) & "")

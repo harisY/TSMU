@@ -402,6 +402,7 @@ Partial Class FrmTravelTicketInvoice
         '
         Me.txtTotAmount.Location = New System.Drawing.Point(1226, 15)
         Me.txtTotAmount.Name = "txtTotAmount"
+        Me.txtTotAmount.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.txtTotAmount.Properties.DisplayFormat.FormatString = "n2"
         Me.txtTotAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtTotAmount.Properties.EditFormat.FormatString = "n2"

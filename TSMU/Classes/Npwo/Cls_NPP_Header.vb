@@ -4,6 +4,30 @@
         Try
             'Dim query As String = "[Generate_Report_Matome]"
             Dim query As String = "[NPP_Get_NPP]"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_NPP2() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP2]"
+            Dim dt2 As New DataTable
+            dt2 = GetDataTableByCommand_SP(query)
+            Return dt2
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_NPP_DeptHead() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP_DeptHead]"
             'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
             'pParam(0).Value = Dept
@@ -15,6 +39,68 @@
         End Try
 
     End Function
+    Public Function Get_NPP_DeptHead2() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP_DeptHead2]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            'pParam(0).Value = Dept
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_NPP_DivHead() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP_DivHead]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            'pParam(0).Value = Dept
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_NPP_DivHead2() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP_DivHead2]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            'pParam(0).Value = Dept
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function Get_NPP_NPD() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[NPP_Get_NPP_NPD]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            'pParam(0).Value = Dept
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
 
     Public Function GetDelete(NP As String) As DataTable
         Try

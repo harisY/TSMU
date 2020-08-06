@@ -1,4 +1,7 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class _CirculationTotalDOCDataTable
+    End Class
+
     Partial Public Class CirculationHeadDataTable
 
 

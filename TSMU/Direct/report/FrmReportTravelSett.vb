@@ -112,14 +112,15 @@
         dtExpenseSum.Clear()
         dtExpenseSum.Rows.Add("", "", ExpenseUSD, ExpenseYEN, ExpenseIDR)
 
-        If FilteredRows.Count > 0 Then
-            laporan.Subreports("CRTravelTotalSuspenseSettRight.rpt").SetDataSource(dtExpenseSum)
-        End If
+        laporan.Subreports("CRTravelTotalSuspenseSettRight.rpt").SetDataSource(dtExpenseSum)
 
         dtHeader = report.LoadReportSettleHeader()
-        AdvanceUSD = dtHeader.Rows(0)("TotalAdvanceUSD") + TicketUSD + AllowanceUSDA
-        AdvanceYEN = dtHeader.Rows(0)("TotalAdvanceYEN") + TicketYEN + AllowanceYENA
-        AdvanceIDR = dtHeader.Rows(0)("TotalAdvanceIDR") + TicketIDR + AllowanceIDRA
+        dtHeader.Rows(0)("TotalAdvanceUSD") = dtHeader.Rows(0)("TotalAdvanceUSD") + TicketUSD
+        dtHeader.Rows(0)("TotalAdvanceYEN") = dtHeader.Rows(0)("TotalAdvanceYEN") + TicketYEN
+        dtHeader.Rows(0)("TotalAdvanceIDR") = dtHeader.Rows(0)("TotalAdvanceIDR") + TicketIDR
+        AdvanceUSD = dtHeader.Rows(0)("TotalAdvanceUSD") + AllowanceUSDA
+        AdvanceYEN = dtHeader.Rows(0)("TotalAdvanceYEN") + AllowanceYENA
+        AdvanceIDR = dtHeader.Rows(0)("TotalAdvanceIDR") + AllowanceIDRA
         dtHeader.Rows(0)("Penanggung") = txtPersonInCharge.Text
         dtHeader.Rows(0)("TotalUSD") = AdvanceUSD
         dtHeader.Rows(0)("TotalYEN") = AdvanceYEN

@@ -27,47 +27,18 @@ Public Class Frm_CR_ApproveDeptHead_Header
             Dim dt As New DataTable
             dt = fc_Class.Get_ApproveDeptHead(_DeptHeadID)
             Grid.DataSource = dt
+
+            Dim dt2 As New DataTable
+            dt2 = fc_Class.Get_ApproveDeptHead2(_DeptHeadID)
+            Grid2.DataSource = dt2
+
+
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
         End Try
     End Sub
-
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-
-
-        Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
-
-            'fc_ClassCRUD = New ClsCR_CreateUser
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
-                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
-                    ' Dim oDate As DateTime = DateTime.ParseExact(GridView1.GetRowCellValue(rowHandle, "Tanggal"), "dd-MM-yyyy", provider)
-                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
-                    'Tanggal = oDate
-                End If
-            Next rowHandle
-
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView1.RowCount)
-            End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
-
-
-    End Sub
-
-
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
 
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
@@ -82,5 +53,49 @@ Public Class Frm_CR_ApproveDeptHead_Header
         ff_Detail.Show()
 
 
+    End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
+                End If
+            Next rowHandle
+
+            If GridView1.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation No")
+                End If
+            Next rowHandle
+
+            If GridView2.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

@@ -19,6 +19,7 @@ Public Class Frm_CR_OtherDeptHead
         LoadGrid(Dept)
         Dim dtGrid As New DataTable
         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+
     End Sub
 
     Private Sub LoadGrid(_Dept As String)
@@ -28,6 +29,14 @@ Public Class Frm_CR_OtherDeptHead
             Dim dt As New DataTable
             dt = fc_Class.Get_Other_Dept(_Dept)
             Grid.DataSource = dt
+
+            Dim dt2 As New DataTable
+            dt2 = fc_Class.Get_Other_Dept(_Dept)
+            Grid2.DataSource = dt2
+
+
+
+
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
@@ -35,9 +44,23 @@ Public Class Frm_CR_OtherDeptHead
         End Try
     End Sub
 
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+
+        If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail.Close()
+        End If
+        ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail.MdiParent = FrmMain
+        ff_Detail.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail.Show()
+
+
+    End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-
         Try
             Dim provider As CultureInfo = CultureInfo.InvariantCulture
             IdTrans = String.Empty
@@ -60,25 +83,5 @@ Public Class Frm_CR_OtherDeptHead
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
 
-
-
     End Sub
-
-    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
-
-        If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
-            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
-                Exit Sub
-            End If
-            ff_Detail.Close()
-        End If
-        ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
-        ff_Detail.MdiParent = FrmMain
-        ff_Detail.StartPosition = FormStartPosition.CenterScreen
-        ff_Detail.Show()
-
-
-    End Sub
-
-
 End Class
