@@ -51,11 +51,16 @@ Public Class ClsCR_CreateUser
     Public Property H_BOD_Approve_Date As Date
     Public Property H_BOD_User As String
 
+    Public Property H_NoBeritaAcara As String
+    Public Property H_TanggalBeritaAcara As Date
+
     Public Property Collection_Description_Of_Cost() As New Collection(Of ClsCR_Description_of_Cost)
     Public Property Collection_Other_Dept() As New Collection(Of ClsCR_Other_Dept)
     Public Property Collection_Installment() As New Collection(Of ClsCR_Installment)
     Public Property Collection_BomT1() As New Collection(Of ClsCR_BomT1)
     Public Property Collection_Approve() As New Collection(Of ClsCR_Approve)
+
+
 
 
     Public Function Get_Mold(NPP_ As String) As DataTable
@@ -165,6 +170,22 @@ Public Class ClsCR_CreateUser
                                  from Npwo_Detail inner join Npwo_Head
 	                                  on Npwo_Detail.[No_Npwo] = Npwo_Head.[No_Npwo]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetBeritaAcara(NoSirkulasi As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "SELECT [CirculationNo]
+                                  ,[NoBeritaAcara]
+                                  ,[TanggalBeritaAcara]
+                              FROM [CR_BeritaAcara]
+                                   Where [CirculationNo] = '" & NoSirkulasi & "' "
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             Return dt
@@ -1130,7 +1151,6 @@ Public Class ClsCR_CreateUser
     End Sub
     Public Sub Update_Approve_BOD(CirculationNo As String)
 
-
         Try
 
 
@@ -1142,6 +1162,41 @@ Public Class ClsCR_CreateUser
                                             ,[BOD_Date] = '" & H_BOD_Approve_Date & "' 
                                         WHERE [CirculationNo] = '" & CirculationNo & "'"
             MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+
+    Public Sub Update_Berita_Acara(Act As Int16)
+
+        Try
+            If Act = 1 Then
+                Dim ls_SP As String = "INSERT INTO [CR_BeritaAcara]
+                                               ([CirculationNo]
+                                               ,[NoBeritaAcara]
+                                               ,[TanggalBeritaAcara])
+                                         VALUES
+                                               ('" & H_CirculationNo & "'
+                                               ,'" & H_NoBeritaAcara & "'
+                                               ,'" & H_TanggalBeritaAcara & "')"
+                MainModul.ExecQuery(ls_SP)
+
+            ElseIf Act = 2 Then
+                Dim ls_SP As String = "UPDATE [CR_BeritaAcara]
+                                       SET [NoBeritaAcara] = '" & H_NoBeritaAcara & "'
+                                          ,[TanggalBeritaAcara] = '" & H_TanggalBeritaAcara & "'
+                                     WHERE [CirculationNo] = '" & H_CirculationNo & "'"
+                MainModul.ExecQuery(ls_SP)
+
+            ElseIf Act = 3 Then
+
+                Dim ls_SP As String = "Delete From [CR_BeritaAcara]
+                                     WHERE [CirculationNo] = '" & H_CirculationNo & "'"
+                MainModul.ExecQuery(ls_SP)
+
+            End If
+
         Catch ex As Exception
             Throw
         End Try
