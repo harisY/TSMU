@@ -39,7 +39,7 @@ Partial Class FrmTraveler
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(867, 580)
+        Me.Grid.Size = New System.Drawing.Size(1156, 580)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -101,7 +101,7 @@ Partial Class FrmTraveler
         'FrmTraveler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(893, 633)
+        Me.ClientSize = New System.Drawing.Size(1182, 633)
         Me.Controls.Add(Me.Grid)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTraveler"
