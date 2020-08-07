@@ -177,7 +177,7 @@ Public Class BarcodeGenerate
                                         WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
 
                 Dim _udpateCKR As String = "Update BarcodePrintLog Set No =" & QVal(No) & "  
-                                        WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                                        WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " and Year(PrintedDate) = YEAR(GETDATE())"
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(_udpate)
                 Else
@@ -221,7 +221,7 @@ Public Class BarcodeGenerate
 
             Dim sql2 As String = "SELECT ISNULL(No,0) No From BarcodePrintLog 
                                 WHERE Bulan = " & QVal(Bulan) & " 
-                                AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                                AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " and YEAR(PrintedDate) =YEAR(GETDATE())"
             Dim dt As DataTable
             If gh_Common.Site.ToLower = "tng" Then
                 dt = GetDataTable(sql)
@@ -245,7 +245,7 @@ Public Class BarcodeGenerate
 
                 dt = GetDataTable(Sql)
             Else
-                Dim sql1 As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
+                Dim sql1 As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " AND Year(PrintedDate) = YEAR(GETDATE())"
                 dt = GetDataTableCKR(sql1)
             End If
             If dt.Rows.Count > 0 Then

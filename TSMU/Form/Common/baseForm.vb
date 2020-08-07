@@ -713,7 +713,7 @@ Public Class baseForm
 
     End Sub
     Private Sub Proc_CheckChange()
-        Dim enumerator As System.Collections.Generic.Dictionary(Of Control, String).Enumerator = InputFieldsChanged.GetEnumerator
+        Dim enumerator As Dictionary(Of Control, String).Enumerator = InputFieldsChanged.GetEnumerator
 
         ChangePerformed = False
         If bb_SetDisplayChangeConfirmation = True Then
@@ -764,7 +764,8 @@ Public Class baseForm
         , Optional ByVal Print As Boolean = True _
         , Optional ByVal BtnPrev As Boolean = False _
         , Optional ByVal BtnNext As Boolean = False _
-        , Optional ByVal BtnAprove As Boolean = False
+        , Optional ByVal BtnAprove As Boolean = False _
+        , Optional ByVal BtnSearch As Boolean = False
     )
         'frmMain.btnNew.Enabled = NewData
         'frmMain.btnSave.Enabled = Save
@@ -788,6 +789,7 @@ Public Class baseForm
         tsBtn_prev.Enabled = BtnPrev
         tsBtn_next.Enabled = BtnNext
         tsBtn_approve.Enabled = BtnAprove
+        tsBtn_search.Enabled = BtnSearch
     End Sub
 
     ''' <summary>
@@ -885,6 +887,12 @@ Public Class baseForm
     Public Overridable Sub Proc_Excel()
     End Sub
     ''' <summary>
+    ''' Prosedur untuk melakukan Pencarian data berdasarkan parameter tertentu
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Overridable Sub Proc_Search()
+    End Sub
+    ''' <summary>
     ''' Fungsi validasi untuk menyimpan data
     ''' </summary>
     ''' <returns></returns>
@@ -914,7 +922,7 @@ Public Class baseForm
     Private Sub tsBtn_newData_Click(sender As Object, e As EventArgs) Handles _
         tsBtn_save.Click, tsBtn_delete.Click, tsBtn_newData.Click,
         tsBtn_print.Click, tsBtn_preview.Click, tsBtn_filter.Click, tsBtn_refresh.Click,
-        tsBtn_excel.Click, tsBtn_prev.Click, tsBtn_next.Click, tsBtn_approve.Click
+        tsBtn_excel.Click, tsBtn_prev.Click, tsBtn_next.Click, tsBtn_approve.Click, tsBtn_search.Click
 
         Application.DoEvents()
         Me.Cursor = Cursors.WaitCursor
@@ -933,37 +941,39 @@ Public Class baseForm
             Case tsBtn_delete.Name
                 If MsgBox(bbs_KonfirmasiDelete, MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
                     If ValidateDelete() Then
-                        Call Proc_DeleteData()
+                        Proc_DeleteData()
                     End If
                 End If
             Case tsBtn_newData.Name
                 'TSBtn_Delete.Enabled = False
                 '# Reset input state...                
-                Call Proc_InputNewData()
+                Proc_InputNewData()
                 ChangePerformed = False
             Case tsBtn_print.Name
-                Call Proc_Print()
+                Proc_Print()
             Case tsBtn_preview.Name
-                Call Proc_PrintPreview()
+                Proc_PrintPreview()
             Case tsBtn_filter.Name
-                Call Proc_Filter()
+                Proc_Filter()
             Case tsBtn_refresh.Name
-                Call ShowMessage("", MessageTypeEnum.NotBoxMessage)
-                Call Proc_Refresh()
+                ShowMessage("", MessageTypeEnum.NotBoxMessage)
+                Proc_Refresh()
             Case tsBtn_excel.Name
-                Call Proc_Excel()
+                Proc_Excel()
             Case tsBtn_prev.Name
-                Call Proc_PrevItem()
+                Proc_PrevItem()
             Case tsBtn_next.Name
-                Call Proc_NextItem()
+                Proc_NextItem()
             Case tsBtn_approve.Name
-                Call Proc_Approve()
+                Proc_Approve()
+            Case tsBtn_search.Name
+                Proc_Search()
         End Select
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub baseForm_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
-        If Not Me.DesignMode Then
+        If Not DesignMode Then
             '===================================================================================
             '# VALIDASI HAK AKSES...
             '===================================================================================
@@ -978,6 +988,7 @@ Public Class baseForm
                 tsBtn_print.Enabled = False
                 tsBtn_save.Enabled = False
                 tsBtn_approve.Enabled = False
+                tsBtn_search.Enabled = False
             Else
                 '# Iterate to set inital state of input controls...
                 Call InputBeginState(Me)
@@ -990,7 +1001,7 @@ Public Class baseForm
             '# Check for input changes...
             Call Proc_CheckChange()
             If ChangePerformed Then
-                If Me.Name = "frmReport_Sales_Budget" OrElse Me.Name = "frmReport_BoM" _
+                If Name = "frmReport_Sales_Budget" OrElse Name = "frmReport_BoM" _
                        OrElse Me.Name = "frmReport_Sales_Forecast" OrElse Me.Name = "frmReport_Sales_Order" OrElse Me.Name = "frmReport_Sales_Price" Then
                 Else
                     If MsgBox("The data you changed has not been saved, close this form?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, Me.Text) = MsgBoxResult.No Then e.Cancel = True

@@ -59,6 +59,11 @@ Partial Class frmDRR_details
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GalleryControl1 = New DevExpress.XtraBars.Ribbon.GalleryControl()
         Me.GalleryControlClient1 = New DevExpress.XtraBars.Ribbon.GalleryControlClient()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnFunction = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AttachImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtJanQty1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,13 +100,16 @@ Partial Class frmDRR_details
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GalleryControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GalleryControl1.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(0, 595)
+        Me.Grid.Location = New System.Drawing.Point(0, 556)
         Me.Grid.MainView = Me.BandedGridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
@@ -439,7 +447,7 @@ Partial Class frmDRR_details
         Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside
         Me.GalleryControl1.Location = New System.Drawing.Point(0, 148)
         Me.GalleryControl1.Name = "GalleryControl1"
-        Me.GalleryControl1.Size = New System.Drawing.Size(1104, 447)
+        Me.GalleryControl1.Size = New System.Drawing.Size(1104, 408)
         Me.GalleryControl1.TabIndex = 4
         Me.GalleryControl1.Text = "GalleryControl1"
         '
@@ -447,7 +455,45 @@ Partial Class frmDRR_details
         '
         Me.GalleryControlClient1.GalleryControl = Me.GalleryControl1
         Me.GalleryControlClient1.Location = New System.Drawing.Point(2, 2)
-        Me.GalleryControlClient1.Size = New System.Drawing.Size(1079, 443)
+        Me.GalleryControlClient1.Size = New System.Drawing.Size(1079, 404)
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnFunction)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 721)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1104, 39)
+        Me.PanelControl1.TabIndex = 5
+        '
+        'BtnFunction
+        '
+        Me.BtnFunction.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnFunction.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.BtnFunction.Location = New System.Drawing.Point(979, 5)
+        Me.BtnFunction.Name = "BtnFunction"
+        Me.BtnFunction.Size = New System.Drawing.Size(113, 29)
+        Me.BtnFunction.TabIndex = 0
+        Me.BtnFunction.Text = "Function"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachImageToolStripMenuItem, Me.SuToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 80)
+        '
+        'AttachImageToolStripMenuItem
+        '
+        Me.AttachImageToolStripMenuItem.Name = "AttachImageToolStripMenuItem"
+        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.AttachImageToolStripMenuItem.Text = "Attach Image"
+        '
+        'SuToolStripMenuItem
+        '
+        Me.SuToolStripMenuItem.Name = "SuToolStripMenuItem"
+        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.SuToolStripMenuItem.Text = "Release"
         '
         'frmDRR_details
         '
@@ -456,9 +502,11 @@ Partial Class frmDRR_details
         Me.Controls.Add(Me.GalleryControl1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
+        Me.Controls.Add(Me.PanelControl1)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmDRR_details"
+        Me.Controls.SetChildIndex(Me.PanelControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.GalleryControl1, 0)
@@ -498,6 +546,9 @@ Partial Class frmDRR_details
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GalleryControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GalleryControl1.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -543,4 +594,9 @@ Partial Class frmDRR_details
     Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents BtnFunction As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents AttachImageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SuToolStripMenuItem As ToolStripMenuItem
 End Class

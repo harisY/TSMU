@@ -63,7 +63,8 @@ Public Class TravelSettleHeaderModel
     Public Function GetDataGridRequest() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  ttd.NoVoucher ,
+            strQuery = "SELECT  DISTINCT
+                                ttd.NoVoucher ,
                                 trh.NoRequest ,
                                 trh.Nama ,
                                 trh.DeptID ,
@@ -484,28 +485,43 @@ Public Class TravelSettleHeaderModel
         Try
             strQuery = "SELECT  trh.NoRequest ,
                                 trh.Nama ,
-                                trd.DepartureDate ,
-                                trd.ArrivalDate ,
+                                trdt.DepartureDate ,
+                                trdt.ArrivalDate ,
                                 trc.Days ,
-                                tpa.Amount AS RateAllowanceUSD ,
-                                trc.AdvanceUSD ,
-                                trc.AdvanceUSD AS SettlementUSD ,
-                                trc.AdvanceYEN ,
-                                trc.AdvanceYEN AS SettlementYEN ,
-                                trc.AdvanceIDR ,
-                                trc.AdvanceIDR AS SettlementIDR
+                                SUM(tpa.Amount) AS RateAllowanceUSD ,
+                                SUM(trc.AdvanceUSD) AS AdvanceUSD ,
+                                SUM(trc.AdvanceUSD) AS SettlementUSD ,
+                                SUM(trc.AdvanceYEN) AS AdvanceYEN ,
+                                SUM(trc.AdvanceYEN) AS SettlementYEN ,
+                                SUM(trc.AdvanceIDR) AS AdvanceIDR ,
+                                SUM(trc.AdvanceIDR) AS SettlementIDR
                         FROM    dbo.TravelRequestHeader AS trh
                                 INNER JOIN ( SELECT NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
                                                     MAX(ArrivalDate) AS ArrivalDate
                                              FROM   dbo.TravelRequestDetail
                                              GROUP BY NoRequest
+                                           ) AS trdt ON trdt.NoRequest = trh.NoRequest
+                                INNER JOIN ( SELECT DISTINCT
+                                                    a.NoRequest ,
+                                                    CASE WHEN b.NamaNegara IS NOT NULL
+                                                         THEN b.NamaNegara
+                                                         ELSE 'OTHERS'
+                                                    END AS Negara
+                                             FROM   dbo.TravelRequestDetail AS a
+                                                    LEFT JOIN dbo.TravelPocketAllowance AS b ON a.Negara = b.NamaNegara
                                            ) AS trd ON trd.NoRequest = trh.NoRequest
-                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trd.NoRequest
+                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trdt.NoRequest
                                 LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
                                                                               AND tpa.Golongan = trh.Golongan
+                                                                              AND tpa.NamaNegara = trd.Negara
                         WHERE   trc.CostType = 'C02'
-                                AND trd.NoRequest IN ( " & _noRequest & " )"
+                                AND trdt.NoRequest IN ( " & _noRequest & " )
+                        GROUP BY trh.NoRequest ,
+                                trh.Nama ,
+                                trdt.DepartureDate ,
+                                trdt.ArrivalDate ,
+                                trc.Days"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
