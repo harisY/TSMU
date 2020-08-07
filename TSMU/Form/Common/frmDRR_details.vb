@@ -73,7 +73,7 @@ Public Class frmDRR_details
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False, False)
         Call InitialSetForm()
         AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
@@ -434,6 +434,7 @@ Public Class frmDRR_details
         LoadDetail()
         Initializing = False
     End Sub
+
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
@@ -566,21 +567,27 @@ Public Class frmDRR_details
                 End If
             Next item
 
-            For Each imgTodeleted In ImgToDelete
-                Dim _fileToDelete As String = String.Empty
-                _fileToDelete = Path.Combine(_path, imgTodeleted.ImageTitle & ".png")
-                If File.Exists(_fileToDelete) Then
-                    File.Delete(_fileToDelete)
-                End If
-            Next
-            For Each ImgFile In ImgList
-                _File = Path.Combine(_path, Replace(ImgFile.ImageTitle, ".png", "") & ".png")
+            If ImgToDelete IsNot Nothing Then
+                For Each imgTodeleted In ImgToDelete
+                    Dim _fileToDelete As String = String.Empty
+                    _fileToDelete = Path.Combine(_path, imgTodeleted.ImageTitle & ".png")
+                    If File.Exists(_fileToDelete) Then
+                        File.Delete(_fileToDelete)
+                    End If
+                Next
+            End If
+            If ImgList IsNot Nothing Then
+                For Each ImgFile In ImgList
+                    _File = Path.Combine(_path, Replace(ImgFile.ImageTitle, ".png", "") & ".png")
 
-                If Not File.Exists(_File) Then
-                    ImgFile.Img.Save(_File, Imaging.ImageFormat.Png)
-                End If
+                    If Not File.Exists(_File) Then
+                        ImgFile.Img.Save(_File, Imaging.ImageFormat.Png)
+                    End If
 
-            Next
+                Next
+            End If
+
+
         Catch ex As Exception
             Throw ex
         End Try
