@@ -197,7 +197,7 @@ Public Class FrmTravelRequestDetail
             End If
             ketRateUSD = "1USD : " + Format(rateUSD, gs_FormatDecimal)
             ketRateYEN = "1YEN : " + Format(rateYEN, gs_FormatDecimal)
-            Label1.Text = "" & ketRateUSD & "   |   " & ketRateYEN & ""
+            LabelControl1.Text = "" & ketRateUSD & "   |   " & ketRateYEN & ""
             If fs_Code2 = "TabPageApproved" Or fs_Code2 = "TabPageProgress" Then
                 txtApproved.Enabled = True
             Else

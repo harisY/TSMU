@@ -152,10 +152,10 @@ Public Class FrmTravelSettle
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageReq" Then
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, False)
             LoadGridRequest()
         ElseIf TabPage = "TabPageSett" Then
-            Call Proc_EnableButtons(False, False, True, True, False, False, False, False)
+            Call Proc_EnableButtons(False, False, True, True, False, False, False, False, False, False, False, True)
             LoadGridSettle()
         End If
     End Sub
