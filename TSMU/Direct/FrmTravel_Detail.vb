@@ -258,7 +258,7 @@ Public Class FrmTravel_Detail
         LoadGridDetailPocket()
     End Sub
     Public Overrides Function ValidateSave() As Boolean
-        'Dim lb_Validated As Boolean = False
+        Dim lb_Validated As Boolean = False
         'Try
 
         '    If DxValidationProvider1.Validate Then
@@ -291,7 +291,7 @@ Public Class FrmTravel_Detail
         '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         'End Try
-        'Return lb_Validated
+        Return lb_Validated
     End Function
     Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
 

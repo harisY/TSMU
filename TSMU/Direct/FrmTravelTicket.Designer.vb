@@ -30,6 +30,7 @@ Partial Class FrmTravelTicket
         Me.TravelType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Destination = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Negara = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Visa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DepartureDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,7 +65,7 @@ Partial Class FrmTravelTicket
         Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1433, 555)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(931, 555)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageTicket})
         '
@@ -72,7 +73,7 @@ Partial Class FrmTravelTicket
         '
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageRequest.Size = New System.Drawing.Size(924, 521)
         Me.TabPageRequest.Text = "Ticket"
         '
         'GridRequest
@@ -84,13 +85,13 @@ Partial Class FrmTravelTicket
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
         Me.GridRequest.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CStatusTicket})
-        Me.GridRequest.Size = New System.Drawing.Size(1420, 515)
+        Me.GridRequest.Size = New System.Drawing.Size(918, 515)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
         'GridViewRequest
         '
-        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DeptID, Me.Purpose, Me.TravelType, Me.Destination, Me.Negara, Me.Visa, Me.DepartureDate, Me.ArrivalDate, Me.Status, Me.StatusTicket})
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DeptID, Me.Purpose, Me.TravelType, Me.Destination, Me.Negara, Me.NoPaspor, Me.Visa, Me.DepartureDate, Me.ArrivalDate, Me.Status, Me.StatusTicket})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsView.ShowGroupPanel = False
@@ -140,7 +141,7 @@ Partial Class FrmTravelTicket
         Me.Purpose.OptionsColumn.AllowEdit = False
         Me.Purpose.Visible = True
         Me.Purpose.VisibleIndex = 3
-        Me.Purpose.Width = 166
+        Me.Purpose.Width = 25
         '
         'TravelType
         '
@@ -157,7 +158,7 @@ Partial Class FrmTravelTicket
         'Destination
         '
         Me.Destination.Caption = "Destination"
-        Me.Destination.FieldName = "Negara"
+        Me.Destination.FieldName = "Destination"
         Me.Destination.MinWidth = 25
         Me.Destination.Name = "Destination"
         Me.Destination.OptionsColumn.AllowEdit = False
@@ -178,6 +179,18 @@ Partial Class FrmTravelTicket
         Me.Negara.VisibleIndex = 6
         Me.Negara.Width = 120
         '
+        'NoPaspor
+        '
+        Me.NoPaspor.Caption = "No Paspor"
+        Me.NoPaspor.FieldName = "NoPaspor"
+        Me.NoPaspor.MinWidth = 25
+        Me.NoPaspor.Name = "NoPaspor"
+        Me.NoPaspor.OptionsColumn.AllowEdit = False
+        Me.NoPaspor.OptionsColumn.FixedWidth = True
+        Me.NoPaspor.Visible = True
+        Me.NoPaspor.VisibleIndex = 7
+        Me.NoPaspor.Width = 130
+        '
         'Visa
         '
         Me.Visa.Caption = "Visa"
@@ -187,8 +200,8 @@ Partial Class FrmTravelTicket
         Me.Visa.OptionsColumn.AllowEdit = False
         Me.Visa.OptionsColumn.FixedWidth = True
         Me.Visa.Visible = True
-        Me.Visa.VisibleIndex = 7
-        Me.Visa.Width = 60
+        Me.Visa.VisibleIndex = 8
+        Me.Visa.Width = 130
         '
         'DepartureDate
         '
@@ -199,7 +212,7 @@ Partial Class FrmTravelTicket
         Me.DepartureDate.OptionsColumn.AllowEdit = False
         Me.DepartureDate.OptionsColumn.FixedWidth = True
         Me.DepartureDate.Visible = True
-        Me.DepartureDate.VisibleIndex = 8
+        Me.DepartureDate.VisibleIndex = 9
         Me.DepartureDate.Width = 120
         '
         'ArrivalDate
@@ -211,7 +224,7 @@ Partial Class FrmTravelTicket
         Me.ArrivalDate.OptionsColumn.AllowEdit = False
         Me.ArrivalDate.OptionsColumn.FixedWidth = True
         Me.ArrivalDate.Visible = True
-        Me.ArrivalDate.VisibleIndex = 9
+        Me.ArrivalDate.VisibleIndex = 10
         Me.ArrivalDate.Width = 120
         '
         'Status
@@ -231,7 +244,7 @@ Partial Class FrmTravelTicket
         Me.StatusTicket.Name = "StatusTicket"
         Me.StatusTicket.OptionsColumn.FixedWidth = True
         Me.StatusTicket.Visible = True
-        Me.StatusTicket.VisibleIndex = 10
+        Me.StatusTicket.VisibleIndex = 11
         Me.StatusTicket.Width = 100
         '
         'CStatusTicket
@@ -240,12 +253,13 @@ Partial Class FrmTravelTicket
         Me.CStatusTicket.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CStatusTicket.Items.AddRange(New Object() {"ISSUE", "CLOSE", "CANCEL"})
         Me.CStatusTicket.Name = "CStatusTicket"
+        Me.CStatusTicket.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
         'TabPageTicket
         '
         Me.TabPageTicket.Controls.Add(Me.GridTicket)
         Me.TabPageTicket.Name = "TabPageTicket"
-        Me.TabPageTicket.Size = New System.Drawing.Size(1426, 521)
+        Me.TabPageTicket.Size = New System.Drawing.Size(924, 521)
         Me.TabPageTicket.Text = "Invoice"
         '
         'GridTicket
@@ -256,7 +270,7 @@ Partial Class FrmTravelTicket
         Me.GridTicket.Location = New System.Drawing.Point(3, 3)
         Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
-        Me.GridTicket.Size = New System.Drawing.Size(1420, 515)
+        Me.GridTicket.Size = New System.Drawing.Size(918, 515)
         Me.GridTicket.TabIndex = 0
         Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
@@ -341,7 +355,7 @@ Partial Class FrmTravelTicket
         'FrmTravelTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1457, 602)
+        Me.ClientSize = New System.Drawing.Size(955, 602)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmTravelTicket"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
@@ -385,4 +399,5 @@ Partial Class FrmTravelTicket
     Friend WithEvents StatusTicket As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CStatusTicket As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

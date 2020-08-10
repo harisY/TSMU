@@ -673,6 +673,7 @@
               <xs:element name="TargetDRR" msprop:Generator_ColumnVarNameInTable="columnTargetDRR" msprop:Generator_ColumnPropNameInRow="TargetDRR" msprop:Generator_ColumnPropNameInTable="TargetDRRColumn" msprop:Generator_UserColumnName="TargetDRR" type="xs:dateTime" minOccurs="0" />
               <xs:element name="TargetQuot" msprop:Generator_ColumnVarNameInTable="columnTargetQuot" msprop:Generator_ColumnPropNameInRow="TargetQuot" msprop:Generator_ColumnPropNameInTable="TargetQuotColumn" msprop:Generator_UserColumnName="TargetQuot" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Revisi" msprop:Generator_ColumnVarNameInTable="columnRevisi" msprop:Generator_ColumnPropNameInRow="Revisi" msprop:Generator_ColumnPropNameInTable="RevisiColumn" msprop:Generator_UserColumnName="Revisi" type="xs:string" minOccurs="0" />
+              <xs:element name="GroupID" msprop:Generator_ColumnVarNameInTable="columnGroupID" msprop:Generator_ColumnPropNameInRow="GroupID" msprop:Generator_ColumnPropNameInTable="GroupIDColumn" msprop:Generator_UserColumnName="GroupID" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -826,6 +827,9 @@
               <xs:element name="PoType" msprop:Generator_ColumnVarNameInTable="columnPoType" msprop:Generator_ColumnPropNameInRow="PoType" msprop:Generator_ColumnPropNameInTable="PoTypeColumn" msprop:Generator_UserColumnName="PoType" type="xs:boolean" minOccurs="0" />
               <xs:element name="H_Spesification" msprop:Generator_ColumnVarNameInTable="columnH_Spesification" msprop:Generator_ColumnPropNameInRow="H_Spesification" msprop:Generator_ColumnPropNameInTable="H_SpesificationColumn" msprop:Generator_UserColumnName="H_Spesification" type="xs:string" minOccurs="0" />
               <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:double" minOccurs="0" />
+              <xs:element name="UserSubmitionDate" msprop:Generator_ColumnVarNameInTable="columnUserSubmitionDate" msprop:Generator_ColumnPropNameInRow="UserSubmitionDate" msprop:Generator_ColumnPropNameInTable="UserSubmitionDateColumn" msprop:Generator_UserColumnName="UserSubmitionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DeptHead_Approve_Date" msprop:Generator_ColumnVarNameInTable="columnDeptHead_Approve_Date" msprop:Generator_ColumnPropNameInRow="DeptHead_Approve_Date" msprop:Generator_ColumnPropNameInTable="DeptHead_Approve_DateColumn" msprop:Generator_UserColumnName="DeptHead_Approve_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DivHead_Approve_Date" msprop:Generator_ColumnVarNameInTable="columnDivHead_Approve_Date" msprop:Generator_ColumnPropNameInRow="DivHead_Approve_Date" msprop:Generator_ColumnPropNameInTable="DivHead_Approve_DateColumn" msprop:Generator_UserColumnName="DivHead_Approve_Date" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -852,7 +856,9 @@
         <xs:element name="CirculationTotalDOC" msprop:Generator_TableClassName="_CirculationTotalDOCDataTable" msprop:Generator_TableVarName="_tableCirculationTotalDOC" msprop:Generator_RowChangedName="_CirculationTotalDOCRowChanged" msprop:Generator_TablePropName="_CirculationTotalDOC" msprop:Generator_RowDeletingName="_CirculationTotalDOCRowDeleting" msprop:Generator_RowChangingName="_CirculationTotalDOCRowChanging" msprop:Generator_RowEvHandlerName="_CirculationTotalDOCRowChangeEventHandler" msprop:Generator_RowDeletedName="_CirculationTotalDOCRowDeleted" msprop:Generator_RowClassName="_CirculationTotalDOCRow" msprop:Generator_UserTableName="CirculationTotalDOC" msprop:Generator_RowEvArgName="_CirculationTotalDOCRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:double" minOccurs="0" />
+              <xs:element name="Currency" msprop:Generator_ColumnVarNameInTable="columnCurrency" msprop:Generator_ColumnPropNameInRow="Currency" msprop:Generator_ColumnPropNameInTable="CurrencyColumn" msprop:Generator_UserColumnName="Currency" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Rate" msprop:Generator_ColumnVarNameInTable="columnRate" msprop:Generator_ColumnPropNameInRow="Rate" msprop:Generator_ColumnPropNameInTable="RateColumn" msprop:Generator_UserColumnName="Rate" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

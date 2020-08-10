@@ -167,7 +167,7 @@ Partial Public Class FrmMain
     End Function
 
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-        ribbon.Minimized = False
+        ribbon.Minimized = True
         'Me.MaximizeBox = False
         'HasLoad = True
         LblLogin.Caption = ""
@@ -368,7 +368,6 @@ Partial Public Class FrmMain
             End If
         Next
     End Sub
-
     Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
             If MsgBox("Exit Application ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Exit ?") = MsgBoxResult.Yes Then
@@ -377,6 +376,7 @@ Partial Public Class FrmMain
                 Next
                 RemoveHandler FormClosing, AddressOf FrmMain_FormClosing
                 'Application.Exit()
+
                 End
             Else
                 e.Cancel = True
@@ -384,6 +384,5 @@ Partial Public Class FrmMain
         Catch ex As Exception
             ex = Nothing
         End Try
-
     End Sub
 End Class

@@ -39,8 +39,6 @@ Public Class Frm_CR_UserCreateHeader
             Else
                 DeptSub = (dt.Rows(0).Item("Sub"))
             End If
-
-
         Catch ex As Exception
             Throw
         End Try
@@ -53,6 +51,15 @@ Public Class Frm_CR_UserCreateHeader
             Dim dt As New DataTable
             dt = fc_Class.Get_CRRequest(Dept)
             Grid.DataSource = dt
+
+            Dim dt2 As New DataTable
+            dt2 = fc_Class.Get_CRRequest2(Dept)
+            Grid2.DataSource = dt2
+
+            Dim dt3 As New DataTable
+            dt3 = fc_Class.Get_CRRequest3(Dept)
+            Grid3.DataSource = dt3
+
             Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
@@ -139,14 +146,9 @@ Public Class Frm_CR_UserCreateHeader
                         Call LoadGrid(gh_Common.GroupID)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
-
-
                 Catch ex As Exception
                     Throw
                 End Try
-
-
-
             Else
                 MessageBox.Show("No Data Found")
             End If
@@ -156,39 +158,7 @@ Public Class Frm_CR_UserCreateHeader
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-
-        Try
-            'Active_Form = 1
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
-
-            'fc_ClassCRUD = New ClsCR_CreateUser
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
-                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
-                    ' Dim oDate As DateTime = DateTime.ParseExact(GridView1.GetRowCellValue(rowHandle, "Tanggal"), "dd-MM-yyyy", provider)
-                    'Tanggal = Convert.ToDateTime(GridView1.GetRowCellValue(rowHandle, "Tanggal"))
-                    'Tanggal = oDate
-                End If
-            Next rowHandle
-
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView1.RowCount)
-            End If
-
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub GridView1_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GridView1.RowStyle
+    Private Sub GridView1_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
 
         Dim View As GridView = sender
         If (e.RowHandle >= 0) Then
@@ -203,5 +173,83 @@ Public Class Frm_CR_UserCreateHeader
                 e.HighPriority = True
             End If
         End If
+    End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        Try
+            'Active_Form = 1
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation No")
+
+                End If
+            Next rowHandle
+
+            If GridView1.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
+        Try
+            'Active_Form = 1
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation No")
+
+                End If
+            Next rowHandle
+
+            If GridView2.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Grid3_DoubleClick(sender As Object, e As EventArgs) Handles Grid3.DoubleClick
+        Try
+            'Active_Form = 1
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView3.GetRowCellValue(rowHandle, "Circulation No")
+
+                End If
+            Next rowHandle
+
+            If GridView3.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

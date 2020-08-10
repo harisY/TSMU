@@ -546,7 +546,7 @@ Public Class frmSales_ForecastPrice
                 frm.StartPosition = FormStartPosition.CenterScreen
                 frm.ShowDialog()
             Else
-                XtraMessageBox.Show("Silahkan Filter data yang akan di sinkronisasi !")
+                Throw New Exception("Silahkan Filter data yang akan di sinkronisasi !")
             End If
             LoadGrid()
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -556,6 +556,18 @@ Public Class frmSales_ForecastPrice
         End Try
 
     End Sub
+
+    'Private Sub GridView1_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView1.CustomColumnDisplayText
+    '    Try
+    '        If (e.Column.FieldName = "JulHarga2") Then
+    '            Dim _value As Double = Math.Truncate(Convert.ToDouble(e.Value) * 100) / 100
+    '            e.DisplayText = _value.ToString("N")
+    '        End If
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
 
     'Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle
     '    Dim view As GridView = TryCast(sender, GridView)

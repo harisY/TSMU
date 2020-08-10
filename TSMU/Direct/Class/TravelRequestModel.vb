@@ -9,10 +9,13 @@ Public Class TravelRequestModel
     Public Property Nama As String
     Public Property Golongan As Integer
     Public Property Purpose As String
+    Public Property StatusTicket As String
     Public Property Status As String
     Public Property Approved As String
     Public Property Comment As String
+    Public Property Pay As Integer
 
+    Public Property ObjRequestHeader() As New Collection(Of TravelRequestModel)
     Public Property ObjRequestDetails() As New Collection(Of TravelRequestDetailModel)
     Public Property ObjRequestCost() As New Collection(Of TravelRequestCostModel)
 
@@ -20,22 +23,22 @@ Public Class TravelRequestModel
     Public Function TravelRequestAutoNo() As String
         Try
             strQuery = " DECLARE @bulan VARCHAR(4) " &
-                    " DECLARE @tahun VARCHAR(4) " &
-                    " DECLARE @seq VARCHAR(4) " &
-                    " SET @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                    " SET @tahun = DATEPART(YEAR, GETDATE()) " &
-                    " SET @seq = ( SELECT RIGHT('0000' " &
-                    "                           + CAST(RIGHT(RTRIM(MAX(NoRequest)), 4) + 1 AS VARCHAR), " &
-                    "                           4) " &
-                    "              From dbo.TravelRequestHeader " &
-                    "              WHERE  SUBSTRING(NoRequest, 1, 7) = 'TR' + '-' + RIGHT(@tahun, 4) " &
-                    "                     And SUBSTRING(NoRequest, 9, 2) = RIGHT(@bulan, 2) " &
-                    "            ) " &
-                    " SELECT 'TR' + '-' + RIGHT(@tahun, 4) + '-' + @bulan + '-' + COALESCE(@seq, " &
-                    "                                                               '0001') "
+                        " DECLARE @tahun VARCHAR(4) " &
+                        " DECLARE @seq VARCHAR(4) " &
+                        " SET @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+                        " SET @tahun = DATEPART(YEAR, GETDATE()) " &
+                        " SET @seq = ( SELECT RIGHT('0000' " &
+                        "                           + CAST(RIGHT(RTRIM(MAX(NoRequest)), 4) + 1 AS VARCHAR), " &
+                        "                           4) " &
+                        "              From dbo.TravelRequestHeader " &
+                        "              WHERE  SUBSTRING(NoRequest, 1, 7) = 'TR' + '-' + RIGHT(@tahun, 4) " &
+                        "                     And SUBSTRING(NoRequest, 9, 2) = RIGHT(@bulan, 2) " &
+                        "            ) " &
+                        " SELECT 'TR' + '-' + RIGHT(@tahun, 4) + '-' + @bulan + '-' + COALESCE(@seq, " &
+                        "                                                               '0001') "
 
             Dim dt As DataTable = New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
@@ -52,21 +55,25 @@ Public Class TravelRequestModel
             Dim nilai = String.Join(",", aksesView.ToArray)
 
             strQuery = "SELECT  NoRequest ,
-                                        NIK ,
-                                        Nama ,
-                                        Date ,
-                                        DeptID ,
-                                        TravelType ,
-                                        Golongan ,
-                                        Purpose ,
-                                        Status ,
-                                        Approved ,
-                                        Comment
-                                FROM    dbo.TravelRequestHeader
-                                WHERE   Status IN ('PENDING', 'OPEN')
-                                        AND DeptID IN (" & nilai & ") "
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Status ,
+                                Approved ,
+                                Comment
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   Status = 'CREATE'
+                                AND ( Approved = ''
+                                  OR Approved IS NULL
+                                  OR Approved <> 'APPROVED'
+                                )
+                                AND DeptID IN ( " & nilai & " )"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -89,6 +96,7 @@ Public Class TravelRequestModel
                                 TravelType ,
                                 Golongan ,
                                 Purpose ,
+                                Status ,
                                 Approved ,
                                 Comment
                          FROM   dbo.TravelRequestHeader
@@ -99,7 +107,41 @@ Public Class TravelRequestModel
                                 AND DeptID IN ( " & nilai & " ) "
 
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTravelProgress() As DataTable
+        Try
+            Dim aksesApproval As List(Of String)
+            aksesApproval = GetAksesApproval()
+            Dim nilai As String = "''"
+            If aksesApproval.Count > 0 Then
+                nilai = String.Join(",", aksesApproval.ToArray)
+            End If
+            strQuery = " SELECT NoRequest ,
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Status ,
+                                Approved ,
+                                Comment
+                         FROM   dbo.TravelRequestHeader
+                         WHERE  Status IN ( 'PENDING', 'OPEN' )
+                                AND ( Approved <> ''
+                                      OR Approved IS NOT NULL
+                                    )
+                                AND DeptID IN ( " & nilai & " ) "
+
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -127,7 +169,7 @@ Public Class TravelRequestModel
                         FROM    dbo.TravelRequestHeader
                         WHERE   DeptID IN (" & nilai & ")"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -186,13 +228,15 @@ Public Class TravelRequestModel
                                 TravelType ,
                                 Golongan ,
                                 Purpose ,
+                                StatusTicket ,
                                 Status ,
 		                        Approved ,
-		                        Comment                                        
+		                        Comment ,
+                                Pay
                         FROM    dbo.TravelRequestHeader
                         WHERE   NoRequest = " & QVal(_NoReq) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
                 With dt.Rows(0)
                     Me.NoRequest = Trim(.Item("NoRequest") & "")
@@ -203,9 +247,11 @@ Public Class TravelRequestModel
                     Me.TravelType = Trim(.Item("TravelType") & "")
                     Me.Golongan = Trim(.Item("Golongan") & "")
                     Me.Purpose = Trim(.Item("Purpose") & "")
+                    Me.StatusTicket = Trim(.Item("StatusTicket") & "")
                     Me.Status = Trim(.Item("Status") & "")
                     Me.Approved = Trim(.Item("Approved") & "")
                     Me.Comment = Trim(.Item("Comment") & "")
+                    Me.Pay = Trim(.Item("Pay") & "")
                 End With
             End If
             Return dt
@@ -216,11 +262,10 @@ Public Class TravelRequestModel
 
     Public Function GetListGolongan() As DataTable
         Try
-            strQuery = "SELECT DISTINCT
-                                Golongan
-                        FROM    dbo.TravelPocketAllowance"
+            strQuery = "SELECT  *
+                        FROM    dbo.TravelGolongan"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -233,7 +278,7 @@ Public Class TravelRequestModel
                         FROM    dbo.TravelNegara
                         WHERE   TravelType = " & QVal(_travelType) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -242,7 +287,7 @@ Public Class TravelRequestModel
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -306,7 +351,7 @@ Public Class TravelRequestModel
             pParam(9) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(9).Value = gh_Common.Username
 
-            MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            ExecQueryByCommand_SP(SP_Name, pParam)
 
         Catch ex As Exception
             Throw ex
@@ -315,7 +360,7 @@ Public Class TravelRequestModel
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -371,21 +416,69 @@ Public Class TravelRequestModel
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   NoRequest = " & QVal(_NoRequest) & ""
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Public Sub UpdateStatusHeader(ByVal _NoRequest As String)
+    Public Sub UpdateStatusApprovedMulti(ByVal dtApproved As DataTable)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For Each row As DataRow In dtApproved.Rows
+                            NoRequest = row("NoRequest")
+                            Status = row("Status")
+                            Approved = row("Approved")
+                            Comment = row("Comment")
+                            UpdateStatusApprove(NoRequest)
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateStatusApprove(ByVal _NoRequest As String)
         Try
             strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-                        " SET     Approved = " & QVal(Approved) & " , " & vbCrLf &
+                        " SET     Status = " & QVal(Status) & " , " & vbCrLf &
+                        "         Approved = " & QVal(Approved) & " , " & vbCrLf &
                         "         Comment = " & QVal(Comment) & " , " & vbCrLf &
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-            ExecQuery_Solomon(strQuery)
+            ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateStatusPending(ByVal _NoRequest As String)
+        Try
+            strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+                        " SET     Status = " & QVal(Status) & " , " & vbCrLf &
+                        "         Approved = " & QVal(Approved) & " , " & vbCrLf &
+                        "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+                        "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+                        "         UpdatedDate = GETDATE() " & vbCrLf &
+                        " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
@@ -393,7 +486,7 @@ Public Class TravelRequestModel
 
     Public Sub Delete()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -403,15 +496,15 @@ Public Class TravelRequestModel
                     Try
                         query = " DELETE  FROM dbo.TravelRequestHeader " & vbCrLf &
                                 " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
-                        MainModul.ExecQuery_Solomon(query)
+                        MainModul.ExecQuery(query)
 
                         query = " DELETE  FROM dbo.TravelRequestDetail " & vbCrLf &
                                 " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
-                        MainModul.ExecQuery_Solomon(query)
+                        MainModul.ExecQuery(query)
 
                         query = " DELETE  FROM dbo.TravelRequestCost " & vbCrLf &
                                 " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
-                        MainModul.ExecQuery_Solomon(query)
+                        MainModul.ExecQuery(query)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -427,28 +520,22 @@ Public Class TravelRequestModel
         End Try
     End Sub
 
-    Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer) As DataTable
+    Public Function GetPocketAllowance(ByVal TravelType__ As String, ByVal Golongan__ As Integer, ByVal Negara__ As String) As DataTable
         Try
-            strQuery = " SELECT SUM(tbl.AllowanceUSD) AS AllowanceUSD ,
-                                SUM(tbl.AllowanceYEN) AS AllowanceYEN ,
-                                SUM(tbl.AllowanceIDR) AS AllowanceIDR ,
-                                SUM(DISTINCT tbl.FirstTravel) AS FirstTravel
-                         FROM   ( SELECT    CASE WHEN CuryID = 'IDR' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceIDR ,
-                                            CASE WHEN CuryID = 'USD' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceUSD ,
-                                            CASE WHEN CuryID = 'YEN' THEN Amount
-                                                 ELSE 0
-                                            END AllowanceYEN ,
-                                            FirstTravel
-                                  FROM      dbo.TravelPocketAllowance
-                                  WHERE     TravelType = " & QVal(TravelType__) & "
-                                            AND Golongan = " & QVal(Golongan__) & "
-                                ) AS tbl "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+
+            Dim SP_Name As String = "Travel_Get_TravelPocketAllowance"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelType", SqlDbType.VarChar)
+            pParam(0).Value = TravelType__
+            pParam(1) = New SqlClient.SqlParameter("@Golongan", SqlDbType.Int)
+            pParam(1).Value = Golongan__
+            pParam(2) = New SqlClient.SqlParameter("@NamaNegara", SqlDbType.VarChar)
+            pParam(2).Value = Negara__
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -476,11 +563,37 @@ Public Class TravelRequestModel
                             END "
             Dim value As Boolean
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 value = dt.Rows(0).Item(0)
             End If
             Return value
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetRate(ByVal CuryID As String, Optional ByVal EffDate As Date = Nothing) As Double
+        Try
+            Dim dt As New DataTable
+            Dim rate As Double = 1
+            Dim now As Date = DateTime.Today
+            Dim _EffDate As Date = IIf(EffDate = Nothing, now, EffDate)
+
+            Dim SP_Name As String = "RateToRupiah"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@EffDate", SqlDbType.VarChar)
+            pParam(0).Value = _EffDate
+            pParam(1) = New SqlClient.SqlParameter("@CuryID", SqlDbType.VarChar)
+            pParam(1).Value = CuryID
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+            If dt.Rows.Count > 0 Then
+                rate = Convert.ToDouble(dt.Rows(0).Item(1))
+            End If
+
+            Return rate
         Catch ex As Exception
             Throw ex
         End Try
@@ -497,21 +610,29 @@ Public Class TravelRequestDetailModel
     Public Property Destination As String
     Public Property DepartureDate As Date
     Public Property ArrivalDate As Date
+    Public Property Day As Integer
+    Public Property RateAllowanceUSD As Double
+    Public Property RateAllowanceYEN As Double
+    Public Property RateAllowanceIDR As Double
+
 
     Dim strQuery As String
 
     Public Function GetDetailByID() As DataTable
         Try
-            Dim sql As String = " SELECT  Destination ,
-                                        Negara ,
-                                        DepartureDate ,
-                                        NoPaspor ,
-                                        Visa ,
-                                        ArrivalDate
-                                FROM    dbo.TravelRequestDetail
-                                WHERE   NoRequest = " & QVal(NoRequest) & ""
+            strQuery = " SELECT Destination ,
+                                Negara ,
+                                NoPaspor ,
+                                Visa ,
+                                DepartureDate ,
+                                ArrivalDate ,
+                                Day ,
+                                RateAllowanceUSD ,
+                                RateAllowanceYEN
+                         FROM   dbo.TravelRequestDetail
+                         WHERE  NoRequest = " & QVal(NoRequest) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -528,7 +649,7 @@ Public Class TravelRequestDetailModel
                                 AND DateIssued <= " & QVal(deptDate) & "
                                 AND DateExpired >= " & QVal(ArrivDate) & ""
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             If dt.Rows.Count > 0 Then
                 hasil = dt.Rows(0).Item(0).ToString()
             End If
@@ -540,23 +661,14 @@ Public Class TravelRequestDetailModel
 
     Public Function GetPaspor(ByVal nik As String, deptDate As Date, ArrivDate As Date) As DataTable
         Try
-            strQuery = "SELECT  Ada.NIK ,
-                                Ada.NoPaspor ,
-                                CASE WHEN Expired.NIK IS NULL THEN 'YES'
-                                     ELSE 'NO'
-                                END AS Expired
-                        FROM    dbo.TravelerPaspor AS Ada
-                                LEFT JOIN ( SELECT  NIK ,
-                                                    NoPaspor
-                                            FROM    dbo.TravelerPaspor
-                                            WHERE   NIK = " & QVal(nik) & "
-                                                    AND TanggalKeluar <= CAST(" & QVal(deptDate) & " AS DATE)
-                                                    AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE)
-                                          ) AS Expired ON Expired.NIK = Ada.NIK
-                                                          AND Expired.NoPaspor = Ada.NoPaspor
-                        WHERE   Ada.NIK = " & QVal(nik) & ""
+            strQuery = "SELECT  NIK ,
+                                NoPaspor
+                        FROM    dbo.TravelerPaspor
+                        WHERE   NIK = " & QVal(nik) & "
+                                AND TanggalKeluar <= CAST(" & QVal(deptDate) & " AS DATE)
+                                AND ExpiredDate >= CAST(" & QVal(ArrivDate) & " AS DATE)"
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(strQuery)
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -571,19 +683,26 @@ Public Class TravelRequestDetailModel
                     "            ,[Seq] " & vbCrLf &
                     "            ,[Destination] " & vbCrLf &
                     "            ,[Negara] " & vbCrLf &
+                    "            ,[NoPaspor] " & vbCrLf &
                     "            ,[Visa] " & vbCrLf &
                     "            ,[DepartureDate] " & vbCrLf &
-                    "            ,[ArrivalDate]) " & vbCrLf &
+                    "            ,[ArrivalDate] " & vbCrLf &
+                    "            ,[Day] " & vbCrLf &
+                    "            ,[RateAllowanceUSD] " & vbCrLf &
+                    "            ,[RateAllowanceYEN]) " & vbCrLf &
                     "      VALUES " & vbCrLf &
                     "            (" & QVal(NoRequest) & ", " & vbCrLf &
                     "            " & QVal(Seq) & ", " & vbCrLf &
                     "            " & QVal(Destination) & ", " & vbCrLf &
                     "            " & QVal(Negara) & ", " & vbCrLf &
+                    "            " & QVal(NoPaspor) & ", " & vbCrLf &
                     "            " & QVal(Visa) & ", " & vbCrLf &
                     "            " & QVal(DepartureDate) & ", " & vbCrLf &
-                    "            " & QVal(ArrivalDate) & ")"
-
-            ExecQuery_Solomon(ls_SP)
+                    "            " & QVal(ArrivalDate) & ", " & vbCrLf &
+                    "            " & QVal(Day) & ", " & vbCrLf &
+                    "            " & QVal(RateAllowanceUSD) & ", " & vbCrLf &
+                    "            " & QVal(RateAllowanceYEN) & ")"
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -593,7 +712,7 @@ Public Class TravelRequestDetailModel
         Try
             Dim ls_SP As String = " DELETE  FROM dbo.TravelRequestDetail
                                     WHERE   NoRequest = " & QVal(_NoRequest.TrimEnd) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -606,9 +725,10 @@ Public Class TravelRequestCostModel
     Public Property Description As String
     Public Property CostType As String
     Public Property Days As Integer
-    Public Property AdvanceIDR As String
+    Public Property AdvanceIDR As Double
     Public Property AdvanceUSD As Double
     Public Property AdvanceYEN As Double
+    Public Property RateAdvanceIDR As Double
 
     Public Function GetCostByID() As DataTable
         Try
@@ -618,11 +738,15 @@ Public Class TravelRequestCostModel
                                             Days ,
                                             AdvanceIDR ,
                                             AdvanceUSD ,
-                                            AdvanceYEN
+                                            0 AS AdvanceIDRUSD ,
+                                            AdvanceYEN ,
+                                            0 AS AdvanceIDRYEN ,
+                                            ISNULL(RateAdvanceIDR, 0) AS RateAdvanceIDR ,
+                                            0 AS TotalAdvanceIDR
                                     FROM    dbo.TravelRequestCost
                                     WHERE   NoRequest = " & QVal(NoRequest) & " "
             Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
+            dt = GetDataTable(sql)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -639,7 +763,8 @@ Public Class TravelRequestCostModel
                     "           Days , " & vbCrLf &
                     "           AdvanceIDR , " & vbCrLf &
                     "           AdvanceUSD , " & vbCrLf &
-                    "           AdvanceYEN " & vbCrLf &
+                    "           AdvanceYEN , " & vbCrLf &
+                    "           RateAdvanceIDR " & vbCrLf &
                     "         ) " & vbCrLf &
                     " VALUES( " & QVal(NoRequest) & " ,  " & vbCrLf &
                     "           " & QVal(CostType) & " ,  " & vbCrLf &
@@ -647,9 +772,10 @@ Public Class TravelRequestCostModel
                     "           " & QVal(Days) & " ,  " & vbCrLf &
                     "           " & QVal(AdvanceIDR) & " ,  " & vbCrLf &
                     "           " & QVal(AdvanceUSD) & " ,  " & vbCrLf &
-                    "           " & QVal(AdvanceYEN) & "   " & vbCrLf &
+                    "           " & QVal(AdvanceYEN) & " ,  " & vbCrLf &
+                    "           " & QVal(RateAdvanceIDR) & "   " & vbCrLf &
                     "         ) "
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -659,7 +785,7 @@ Public Class TravelRequestCostModel
         Try
             Dim ls_SP As String = " DELETE  FROM dbo.TravelRequestCost
                                     WHERE   NoRequest = " & QVal(_NoRequest.TrimEnd) & ""
-            ExecQuery_Solomon(ls_SP)
+            ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

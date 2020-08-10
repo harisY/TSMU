@@ -19,6 +19,9 @@ Partial Class FrmTravelCreditCardDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.txtCreditCardID = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -30,7 +33,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.dtExpDate = New DevExpress.XtraEditors.DateEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.GridCreditCard = New DevExpress.XtraGrid.GridControl()
         Me.GridViewCreditCard = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CreditCardID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -120,6 +123,10 @@ Partial Class FrmTravelCreditCardDetail
         Me.txtAccountName.Name = "txtAccountName"
         Me.txtAccountName.Size = New System.Drawing.Size(355, 22)
         Me.txtAccountName.TabIndex = 3
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "This value is not valid"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtAccountName, ConditionValidationRule1)
         '
         'Label6
         '
@@ -266,6 +273,10 @@ Partial Class FrmTravelCreditCardDetail
         Me.txtCreditCardNumber.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCreditCardNumber.Size = New System.Drawing.Size(165, 22)
         Me.txtCreditCardNumber.TabIndex = 14
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtCreditCardNumber, ConditionValidationRule2)
         '
         'FrmTravelCreditCardDetail
         '

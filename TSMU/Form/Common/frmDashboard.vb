@@ -32,6 +32,15 @@
 
                 End If
                 DashboardFinance.Instance.BringToFront()
+                '' Case login client
+                'Case Dept.Contains("PGA")
+                '    If Not Controls.Contains(DashboardTravel.Instance) Then
+                '        Controls.Add(DashboardTravel.Instance)
+                '        DashboardTravel.Instance.Dock = DockStyle.Fill
+                '        DashboardTravel.Instance.BringToFront()
+
+                '    End If
+                '    DashboardTravel.Instance.BringToFront()
         End Select
     End Sub
 

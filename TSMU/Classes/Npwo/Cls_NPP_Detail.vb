@@ -30,9 +30,15 @@ Public Class Cls_NPP_Detail
     Public Property H_UpdatedBy As String
     Public Property H_UpdatedDate As Date
     Public Property H_Approve As Boolean
+    Public Property H_Approve_Date As Date
+    Public Property H_Approve_Dept_Head_Name As String
+    Public Property H_Approve_Dept_Head_Date As Date
+    Public Property H_Approve_Dept_Head As Boolean
+    Public Property H_Approve_Div_Head_Name As String
+    Public Property H_Approve_Div_Head_Date As Date
+    Public Property H_Approve_Div_Head As Boolean
     Public Property H_Rev As Integer
     Public Property H_RevInformasi As String
-
     Public Property H_TargetDRR As Date
     Public Property H_TargetQuot As Date
     Public Property H_DRR As Boolean
@@ -43,6 +49,11 @@ Public Class Cls_NPP_Detail
     Public Property H_A3 As String
     Public Property H_A4 As String
 
+    Public Property H_Submit_NPD_Date As Date
+    Public Property H_Submit_NPD As Boolean
+    Public Property H_RevStatus As Boolean
+    Public Property H_Status As String
+    Public Property H_Note As String
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
@@ -136,7 +147,8 @@ Public Class Cls_NPP_Detail
                     inner join [NPP_Rev_Information] on
                     [NPP_Head].[No_NPP] = [NPP_Rev_Information].No_NPP
                     inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
-		            Where [NPP_Head].[No_NPP] = '" & No & "'"
+		            Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
+                    Order By [NPP_Detail].[NoUrut] asc "
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "NPP")
@@ -167,7 +179,19 @@ Public Class Cls_NPP_Detail
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE NPP_Head" & vbCrLf &
-                                    "SET [Approve] = '" & H_Approve & "' WHERE [No_NPP] = '" & _FsCode & "'"
+                                    "SET [Approve] = '" & H_Approve & "'
+                                    ,Approve_Date = '" & H_Approve_Date & "'
+                                    ,Note = '" & H_Note & "'
+                                    ,Status = '" & H_Status & "' WHERE [No_NPP] = '" & _FsCode & "'"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+    Public Sub Update_Seq_NPPDetail(ByVal _Seq As Integer)
+        Try
+            Dim ls_SP As String = "UPDATE NPP_Sequence SET [Seq_NPP_Detail] = '" & _Seq & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -223,6 +247,10 @@ Public Class Cls_NPP_Detail
             pParam(0).Value = NPP_
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim D As String = Convert.ToString(dt.Rows(i).Item("Due Date NPD"))
+                dt.Rows(i).Item("Due Date NPD") = IIf((dt.Rows(i).Item("Due Date NPD") Is Nothing) Or D = "01/01/0001 12:00:00 AM", DBNull.Value, dt.Rows(i).Item("Due Date NPD"))
+            Next
             Return dt
         Catch ex As Exception
             Throw
@@ -268,7 +296,8 @@ Public Class Cls_NPP_Detail
                                             H_A3,
                                             H_A4,
                                             gh_Common.Username,
-                                            Date.Now)
+                                            Date.Now,
+                                            H_Status)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -356,7 +385,8 @@ Public Class Cls_NPP_Detail
                                         _H_A3 As String,
                                         _H_A4 As String,
                                         _H_UpdateBy As String,
-                                        _H_UpdateDate As Date)
+                                        _H_UpdateDate As Date,
+                                        _H_Status As String)
 
         Dim result As Integer = 0
 
@@ -383,7 +413,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(27) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -411,6 +441,7 @@ Public Class Cls_NPP_Detail
             pParam(24) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
             pParam(25) = New SqlClient.SqlParameter("@UpdateBy", SqlDbType.VarChar)
             pParam(26) = New SqlClient.SqlParameter("@UpdateDate", SqlDbType.Date)
+            pParam(27) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
 
 
             pParam(0).Value = _H_No_Npwo
@@ -440,6 +471,7 @@ Public Class Cls_NPP_Detail
             pParam(24).Value = _H_A4
             pParam(25).Value = _H_UpdateBy
             pParam(26).Value = _H_UpdateDate
+            pParam(27).Value = _H_Status
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -449,7 +481,37 @@ Public Class Cls_NPP_Detail
 
     End Sub
 
+    Public Sub Update_NPD(NPP_ As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+
+
+                        For i As Integer = 0 To Collection_Detail.Count - 1
+                            With Collection_Detail(i)
+                                .Update_NPP_Detail(NPP_)
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub Update(NPP_ As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -479,7 +541,8 @@ Public Class Cls_NPP_Detail
                                             H_TargetDRR,
                                             H_TargetQuot,
                                             H_Rev,
-                                            H_Issue_Date)
+                                            H_Issue_Date,
+                                            H_RevStatus)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -487,8 +550,154 @@ Public Class Cls_NPP_Detail
                             End With
                         Next
 
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Update_DeptHead(NPP_ As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
 
+                        Try
+                            Dim ls_SP As String = " " & vbCrLf &
+                                        "UPDATE NPP_Head" & vbCrLf &
+                                        "SET [Approve] = '" & H_Approve & "'
+                                            ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
+                                            ,[Approve_Dept_Head_Date] = '" & H_Approve_Dept_Head_Date & "'
+                                            ,[Approve_Dept_Head_Name] = '" & H_Approve_Dept_Head_Name & "'
+                                            ,[Note] = '" & H_Note & "'
+                                            ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            MainModul.ExecQuery(ls_SP)
+                        Catch ex As Exception
+                            Throw ex
+                        End Try
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub Update_DeptHead_Revisi(NPP_ As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Try
+                            Dim ls_SP As String = " " & vbCrLf &
+                                        "UPDATE NPP_Head" & vbCrLf &
+                                        "SET [Approve] = '" & H_Approve & "'
+                                            ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
+                                            ,[Approve_Div_Head] = '" & H_Approve_Div_Head & "'
+                                            ,[Submit_NPD_Acces] = '" & H_Submit_NPD & "'
+                                            ,[RevStatus] = '" & H_RevStatus & "'
+                                            ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            MainModul.ExecQuery(ls_SP)
+                        Catch ex As Exception
+                            Throw ex
+                        End Try
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Update_DivHead(NPP_ As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Try
+                            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE NPP_Head" & vbCrLf &
+                                   "SET [Approve] = '" & H_Approve & "'
+                                    ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
+                                    ,[Approve_Div_Head] = '" & H_Approve_Div_Head & "'
+                                    ,[Approve_Div_Head_Date] = '" & H_Approve_Div_Head_Date & "'
+                                    ,[Approve_Div_Head_Name] = '" & H_Approve_Div_Head_Name & "'
+                                    ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            MainModul.ExecQuery(ls_SP)
+                        Catch ex As Exception
+                            Throw ex
+                        End Try
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub Update_Submit_To_NPD(NPP_ As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        Try
+                            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE NPP_Head" & vbCrLf &
+                                    "SET [Submit_NPD_Acces] = '" & H_Submit_NPD & "'
+                                    ,[Submit_NPD_Date] = '" & H_Submit_NPD_Date & "'
+                                    ,[Status] = 'Submit To NPD' WHERE [No_NPP] = '" & NPP_ & "'"
+                            MainModul.ExecQuery(ls_SP)
+                        Catch ex As Exception
+                            Throw ex
+                        End Try
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -515,8 +724,8 @@ Public Class Cls_NPP_Detail
 
                     Try
                         InsertRevisi()
-                        InsertHistory(NPP_)
-                        InsertHistoryDetail(NPP_)
+                        'InsertHistory(NPP_)
+                        'InsertHistoryDetail(NPP_)
 
                         Update_NPP(H_No_NPP,
                                           H_Model_Description,
@@ -535,7 +744,8 @@ Public Class Cls_NPP_Detail
                                             H_TargetDRR,
                                             H_TargetQuot,
                                             H_Rev,
-                                            H_Issue_Date)
+                                            H_Issue_Date,
+                                            H_RevStatus)
 
 
 
@@ -605,7 +815,8 @@ Public Class Cls_NPP_Detail
                                         _H_TargetDRR As Date,
                                         _H_TargetQuot As Date,
                                         _H_Revisi As Int32,
-                                        _H_Issue_Date As Date)
+                                        _H_Issue_Date As Date,
+                                        _H_RevStatus As Boolean)
         Dim result As Integer = 0
 
 
@@ -613,7 +824,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Update_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(18) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Order_Max_Month ", SqlDbType.Int)
@@ -632,6 +843,7 @@ Public Class Cls_NPP_Detail
             pParam(15) = New SqlClient.SqlParameter("@Revisi", SqlDbType.Int)
             pParam(16) = New SqlClient.SqlParameter("@ModelDesc", SqlDbType.VarChar)
             pParam(17) = New SqlClient.SqlParameter("@IssueDate", SqlDbType.Date)
+            pParam(18) = New SqlClient.SqlParameter("@RevStatus", SqlDbType.Bit)
 
 
             pParam(0).Value = _H_No_NPP
@@ -652,6 +864,7 @@ Public Class Cls_NPP_Detail
             pParam(15).Value = _H_Revisi
             pParam(16).Value = _H_Model_Description
             pParam(17).Value = _H_Issue_Date
+            pParam(18).Value = _H_RevStatus
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -708,11 +921,21 @@ Public Class Cls_NPP_Detail
                     H_Category_Class = Trim(.Item("Category_Class") & "")
                     H_Factory_Tsc_TNG = Trim(.Item("Factory_Tsc_TNG") & "")
                     H_Factory_Tsc_CKR = Trim(.Item("Factory_Tsc_CKR") & "")
-                    H_Approve = Trim(.Item("Approve") & "")
                     H_Rev = Trim(.Item("Rev") & "")
                     H_TargetDRR = Trim(.Item("TargetDRR") & "")
                     H_TargetQuot = Trim(.Item("TargetQuot") & "")
                     H_DRR = Trim(.Item("DRR") & "")
+                    H_Approve = Trim(.Item("Approve") & "")
+                    H_Approve_Date = IIf(.Item("Approve_Date") Is DBNull.Value, Nothing, .Item("Approve_Date"))
+                    H_Approve_Dept_Head = IIf(.Item("Approve_Dept_Head") Is DBNull.Value, Nothing, .Item("Approve_Dept_Head"))
+                    H_Approve_Dept_Head_Date = IIf(.Item("Approve_Dept_Head_Date") Is DBNull.Value, Nothing, .Item("Approve_Dept_Head_Date"))
+                    H_Approve_Dept_Head_Name = Trim(.Item("Approve_Dept_Head_Name") & "")
+                    H_Approve_Div_Head = Trim(.Item("Approve_Div_Head") & "")
+                    H_Approve_Div_Head_Date = IIf(.Item("Approve_Div_Head_Date") Is DBNull.Value, Nothing, .Item("Approve_Div_Head_Date"))
+                    H_Approve_Div_Head_Name = Trim(.Item("Approve_Div_Head_Name") & "")
+                    H_Submit_NPD = IIf(.Item("Submit_NPD_Acces") Is DBNull.Value, Nothing, .Item("Submit_NPD_Acces"))
+                    H_RevStatus = Trim(.Item("RevStatus") & "")
+                    H_Status = Trim(.Item("Status") & "")
 
                 End With
             Else
@@ -738,9 +961,6 @@ Public Class Cls_NPP_Detail
     Public Sub GetNpwoNoAuto(Customer_ As String, Model_ As String)
         Try
             'Dim Dept_ As String = gh_Common.GroupID
-
-
-
             Dim Tahun As String = Format(Now, "yyyy")
             Dim Bulan As String = Format(Now, "MM")
             Dim Tanggal As String = Format(Now, "dd")
@@ -754,8 +974,6 @@ Public Class Cls_NPP_Detail
                                           FROM NPP_Head order by RIGHT(No_NPP,3) desc"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
-
-
 
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 H_No_NPP = Head & Tahun & "/" & "001"
@@ -779,8 +997,6 @@ Public Class Cls_NPP_Detail
                 End If
 
             End If
-
-
 
         Catch ex As Exception
             Throw
@@ -821,7 +1037,6 @@ Public Class Cls_NPP_Detail
             Throw
         End Try
     End Function
-
     Public Function GetCustomer() As DataTable
         Try
             Dim query As String = "[NPWO_Get_Customer]"
@@ -849,6 +1064,26 @@ Public Class Cls_NPP_Detail
     Public Function GetApprove() As DataTable
         Try
             Dim query As String = "Select * From NPP_Approve"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function Get_Sequence_NppDetail() As DataTable
+        Try
+            Dim query As String = "Select Seq_NPP_Detail From NPP_Sequence"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function Get_Sequence_GroupID() As DataTable
+        Try
+            Dim query As String = "Select GroupID From NPP_Sequence"
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             Return dt
@@ -895,18 +1130,28 @@ Public Class Col_Cls_NPP_Detail_NPP
     Public Property Forecast As Integer
     Public Property OrderMonth As Integer
     Public Property MoldNumber As String
-
     Public Property Rev As Integer
     Public Property Revisi As String
+    Public Property Status As String
+    Public Property Capability As Date
+    Public Property Cek As String
+    Public Property Note As String
+    Public Property Seq As Integer
+    Public Property Id_NPP As Integer
     Public Property Factory As String
+    Public Property Commit As Boolean
+    Public Property Runner As Double
+    Public Property NoUrut As Integer
+    Public Property ChangeFrom As String
+    Public Property _Active As Boolean
+    Public Property DRR As Boolean
 
 
     Public Sub Insert_NPP_Detail(NPP_No As String)
 
         Try
-
             Dim query As String = "[NPP_Insert_NPP_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(18) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(29) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -926,6 +1171,17 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(16) = New SqlClient.SqlParameter("@CT", SqlDbType.Float)
             pParam(17) = New SqlClient.SqlParameter("@MoldNumber", SqlDbType.VarChar)
             pParam(18) = New SqlClient.SqlParameter("@Revisi", SqlDbType.VarChar)
+            pParam(19) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(20) = New SqlClient.SqlParameter("@Cek", SqlDbType.VarChar)
+            pParam(21) = New SqlClient.SqlParameter("@Note", SqlDbType.VarChar)
+            pParam(22) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(23) = New SqlClient.SqlParameter("@Commit", SqlDbType.Bit)
+            pParam(24) = New SqlClient.SqlParameter("@Capability", SqlDbType.Date)
+            pParam(25) = New SqlClient.SqlParameter("@Runner", SqlDbType.Float)
+            pParam(26) = New SqlClient.SqlParameter("@NoUrut", SqlDbType.Float)
+            pParam(27) = New SqlClient.SqlParameter("@ChangeFrom", SqlDbType.VarChar)
+            pParam(28) = New SqlClient.SqlParameter("@Active", SqlDbType.Bit)
+            pParam(29) = New SqlClient.SqlParameter("@DRR", SqlDbType.Bit)
 
 
             pParam(0).Value = NPP_No
@@ -947,9 +1203,17 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(16).Value = Cycle_Time
             pParam(17).Value = MoldNumber
             pParam(18).Value = Revisi
-
-
-
+            pParam(19).Value = Status
+            pParam(20).Value = Cek
+            pParam(21).Value = Note
+            pParam(22).Value = Seq
+            pParam(23).Value = Commit
+            pParam(24).Value = Capability
+            pParam(25).Value = Runner
+            pParam(26).Value = NoUrut
+            pParam(27).Value = ChangeFrom
+            pParam(28).Value = _Active
+            pParam(29).Value = DRR
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
@@ -959,6 +1223,30 @@ Public Class Col_Cls_NPP_Detail_NPP
 
     End Sub
 
+    Public Sub Update_NPP_Detail(NPP_No As String)
+
+        Try
+
+            Dim query As String = "[NPP_Update_NPP_Detail_Npd]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@Capability", SqlDbType.Date)
+            pParam(2) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(3) = New SqlClient.SqlParameter("@Commit", SqlDbType.Bit)
+
+
+            pParam(0).Value = NPP_No
+            pParam(1).Value = Capability
+            pParam(2).Value = Seq
+            pParam(3).Value = Commit
+
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
 
 
 End Class
