@@ -19,7 +19,6 @@ Partial Class FrmTravelPocketAllowance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.GridPocketAllowance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewPocketAllowance = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TravelTypeGrid = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,29 +29,42 @@ Partial Class FrmTravelPocketAllowance
         Me.AmountGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.FirstTravelGrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtAmountAllowance = New DevExpress.XtraEditors.TextEdit()
-        Me.txtAmountFirstTravel = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTravelType = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.txtCurryID = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.txtNamaNegara = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtTravelType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtAmountFirstTravel = New DevExpress.XtraEditors.TextEdit()
         Me.txtGolongan = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txtCurryID = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.GridPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAmountAllowance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtAmountFirstTravel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtNamaNegara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtAmountFirstTravel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCurryID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNamaNegara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridPocketAllowance
@@ -60,10 +72,10 @@ Partial Class FrmTravelPocketAllowance
         Me.GridPocketAllowance.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridPocketAllowance.Location = New System.Drawing.Point(14, 91)
+        Me.GridPocketAllowance.Location = New System.Drawing.Point(15, 105)
         Me.GridPocketAllowance.MainView = Me.GridViewPocketAllowance
         Me.GridPocketAllowance.Name = "GridPocketAllowance"
-        Me.GridPocketAllowance.Size = New System.Drawing.Size(1501, 480)
+        Me.GridPocketAllowance.Size = New System.Drawing.Size(1140, 465)
         Me.GridPocketAllowance.TabIndex = 1
         Me.GridPocketAllowance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPocketAllowance})
         '
@@ -144,7 +156,7 @@ Partial Class FrmTravelPocketAllowance
         '
         'FirstTravelGrid
         '
-        Me.FirstTravelGrid.Caption = "Amount First Travel"
+        Me.FirstTravelGrid.Caption = "Amount 1St Travel"
         Me.FirstTravelGrid.DisplayFormat.FormatString = "n2"
         Me.FirstTravelGrid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.FirstTravelGrid.FieldName = "FirstTravel"
@@ -157,7 +169,8 @@ Partial Class FrmTravelPocketAllowance
         '
         'txtAmountAllowance
         '
-        Me.txtAmountAllowance.Location = New System.Drawing.Point(1152, 53)
+        Me.txtAmountAllowance.Location = New System.Drawing.Point(872, 12)
+        Me.txtAmountAllowance.MaximumSize = New System.Drawing.Size(160, 22)
         Me.txtAmountAllowance.Name = "txtAmountAllowance"
         Me.txtAmountAllowance.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.txtAmountAllowance.Properties.DisplayFormat.FormatString = "n2"
@@ -169,13 +182,57 @@ Partial Class FrmTravelPocketAllowance
         Me.txtAmountAllowance.Properties.NullText = "0"
         Me.txtAmountAllowance.Properties.NullValuePrompt = "0"
         Me.txtAmountAllowance.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAmountAllowance.Size = New System.Drawing.Size(136, 22)
+        Me.txtAmountAllowance.Size = New System.Drawing.Size(62, 22)
+        Me.txtAmountAllowance.StyleController = Me.LayoutControl1
         Me.txtAmountAllowance.TabIndex = 3
+        '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.BackColor = System.Drawing.Color.Transparent
+        Me.LayoutControl1.Controls.Add(Me.txtNamaNegara)
+        Me.LayoutControl1.Controls.Add(Me.txtTravelType)
+        Me.LayoutControl1.Controls.Add(Me.txtAmountFirstTravel)
+        Me.LayoutControl1.Controls.Add(Me.txtAmountAllowance)
+        Me.LayoutControl1.Controls.Add(Me.txtGolongan)
+        Me.LayoutControl1.Controls.Add(Me.txtCurryID)
+        Me.LayoutControl1.Location = New System.Drawing.Point(15, 39)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(783, 472, 812, 500)
+        Me.LayoutControl1.Root = Me.Root
+        Me.LayoutControl1.Size = New System.Drawing.Size(1140, 59)
+        Me.LayoutControl1.TabIndex = 14
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'txtNamaNegara
+        '
+        Me.txtNamaNegara.Location = New System.Drawing.Point(498, 12)
+        Me.txtNamaNegara.MaximumSize = New System.Drawing.Size(200, 22)
+        Me.txtNamaNegara.Name = "txtNamaNegara"
+        Me.txtNamaNegara.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtNamaNegara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtNamaNegara.Size = New System.Drawing.Size(68, 22)
+        Me.txtNamaNegara.StyleController = Me.LayoutControl1
+        Me.txtNamaNegara.TabIndex = 12
+        '
+        'txtTravelType
+        '
+        Me.txtTravelType.Location = New System.Drawing.Point(130, 12)
+        Me.txtTravelType.MaximumSize = New System.Drawing.Size(80, 22)
+        Me.txtTravelType.Name = "txtTravelType"
+        Me.txtTravelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtTravelType.Properties.Items.AddRange(New Object() {"LN", "DN"})
+        Me.txtTravelType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtTravelType.Size = New System.Drawing.Size(62, 22)
+        Me.txtTravelType.StyleController = Me.LayoutControl1
+        Me.txtTravelType.TabIndex = 2
         '
         'txtAmountFirstTravel
         '
         Me.txtAmountFirstTravel.EditValue = "0"
-        Me.txtAmountFirstTravel.Location = New System.Drawing.Point(1482, 53)
+        Me.txtAmountFirstTravel.Location = New System.Drawing.Point(1056, 12)
+        Me.txtAmountFirstTravel.MaximumSize = New System.Drawing.Size(160, 22)
         Me.txtAmountFirstTravel.Name = "txtAmountFirstTravel"
         Me.txtAmountFirstTravel.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.txtAmountFirstTravel.Properties.DisplayFormat.FormatString = "n2"
@@ -187,96 +244,14 @@ Partial Class FrmTravelPocketAllowance
         Me.txtAmountFirstTravel.Properties.NullText = "0"
         Me.txtAmountFirstTravel.Properties.NullValuePrompt = "0"
         Me.txtAmountFirstTravel.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAmountFirstTravel.Size = New System.Drawing.Size(139, 22)
+        Me.txtAmountFirstTravel.Size = New System.Drawing.Size(62, 22)
+        Me.txtAmountFirstTravel.StyleController = Me.LayoutControl1
         Me.txtAmountFirstTravel.TabIndex = 6
-        '
-        'txtTravelType
-        '
-        Me.txtTravelType.Location = New System.Drawing.Point(126, 53)
-        Me.txtTravelType.Name = "txtTravelType"
-        Me.txtTravelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtTravelType.Properties.Items.AddRange(New Object() {"LN", "DN"})
-        Me.txtTravelType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtTravelType.Size = New System.Drawing.Size(78, 22)
-        Me.txtTravelType.TabIndex = 2
-        '
-        'txtCurryID
-        '
-        Me.txtCurryID.Enabled = False
-        Me.txtCurryID.Location = New System.Drawing.Point(885, 53)
-        Me.txtCurryID.Name = "txtCurryID"
-        Me.txtCurryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtCurryID.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
-        Me.txtCurryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCurryID.Size = New System.Drawing.Size(78, 22)
-        Me.txtCurryID.TabIndex = 5
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(20, 55)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(84, 17)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Travel Type"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(236, 55)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(70, 17)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Golongan"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(478, 55)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(108, 17)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Negara / Benua"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(992, 55)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(123, 17)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "Amount Allowance"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(1327, 55)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(131, 17)
-        Me.Label5.TabIndex = 11
-        Me.Label5.Text = "Amount First Travel"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(803, 55)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(59, 17)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Curry ID"
-        '
-        'txtNamaNegara
-        '
-        Me.txtNamaNegara.Location = New System.Drawing.Point(617, 53)
-        Me.txtNamaNegara.Name = "txtNamaNegara"
-        Me.txtNamaNegara.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtNamaNegara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtNamaNegara.Size = New System.Drawing.Size(158, 22)
-        Me.txtNamaNegara.TabIndex = 12
         '
         'txtGolongan
         '
-        Me.txtGolongan.Location = New System.Drawing.Point(339, 53)
+        Me.txtGolongan.Location = New System.Drawing.Point(314, 12)
+        Me.txtGolongan.MaximumSize = New System.Drawing.Size(120, 22)
         Me.txtGolongan.Name = "txtGolongan"
         Me.txtGolongan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.txtGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -289,50 +264,123 @@ Partial Class FrmTravelPocketAllowance
         Me.txtGolongan.Properties.ShowHeader = False
         Me.txtGolongan.Properties.ValueMember = "Golongan"
         Me.txtGolongan.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtGolongan.Size = New System.Drawing.Size(107, 22)
+        Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
+        Me.txtGolongan.StyleController = Me.LayoutControl1
         Me.txtGolongan.TabIndex = 4
+        '
+        'txtCurryID
+        '
+        Me.txtCurryID.Enabled = False
+        Me.txtCurryID.Location = New System.Drawing.Point(688, 12)
+        Me.txtCurryID.MaximumSize = New System.Drawing.Size(100, 22)
+        Me.txtCurryID.Name = "txtCurryID"
+        Me.txtCurryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtCurryID.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
+        Me.txtCurryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtCurryID.Size = New System.Drawing.Size(62, 22)
+        Me.txtCurryID.StyleController = Me.LayoutControl1
+        Me.txtCurryID.TabIndex = 5
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(1140, 59)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.txtTravelType
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(184, 39)
+        Me.LayoutControlItem1.Text = "Travel Type"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.txtAmountFirstTravel
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(926, 0)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(184, 39)
+        Me.LayoutControlItem2.Text = "Amount 1St Travel  "
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.txtAmountAllowance
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(742, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(184, 39)
+        Me.LayoutControlItem3.Text = "Amount Allowance"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.txtCurryID
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(558, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(184, 39)
+        Me.LayoutControlItem4.Text = "Curry ID"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.txtNamaNegara
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(368, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(190, 39)
+        Me.LayoutControlItem5.Text = "Negara/Benua"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.txtGolongan
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(184, 0)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(184, 39)
+        Me.LayoutControlItem6.Text = "Golongan"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(115, 16)
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(1110, 0)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 39)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'FrmTravelPocketAllowance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1633, 583)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.txtNamaNegara)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtAmountFirstTravel)
-        Me.Controls.Add(Me.txtAmountAllowance)
+        Me.ClientSize = New System.Drawing.Size(1182, 583)
+        Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.GridPocketAllowance)
-        Me.Controls.Add(Me.txtTravelType)
-        Me.Controls.Add(Me.txtCurryID)
-        Me.Controls.Add(Me.txtGolongan)
         Me.Name = "FrmTravelPocketAllowance"
-        Me.Controls.SetChildIndex(Me.txtGolongan, 0)
-        Me.Controls.SetChildIndex(Me.txtCurryID, 0)
-        Me.Controls.SetChildIndex(Me.txtTravelType, 0)
         Me.Controls.SetChildIndex(Me.GridPocketAllowance, 0)
-        Me.Controls.SetChildIndex(Me.txtAmountAllowance, 0)
-        Me.Controls.SetChildIndex(Me.txtAmountFirstTravel, 0)
-        Me.Controls.SetChildIndex(Me.Label1, 0)
-        Me.Controls.SetChildIndex(Me.Label2, 0)
-        Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.Controls.SetChildIndex(Me.Label4, 0)
-        Me.Controls.SetChildIndex(Me.Label5, 0)
-        Me.Controls.SetChildIndex(Me.txtNamaNegara, 0)
-        Me.Controls.SetChildIndex(Me.Label6, 0)
+        Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         CType(Me.GridPocketAllowance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewPocketAllowance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAmountAllowance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtAmountFirstTravel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtNamaNegara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtAmountFirstTravel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCurryID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNamaNegara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -350,15 +398,18 @@ Partial Class FrmTravelPocketAllowance
     Friend WithEvents txtTravelType As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txtCurryID As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
-    Friend WithEvents Label6 As Label
     Friend WithEvents txtNamaNegara As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents DescGolongan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents NamaNegara As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtGolongan As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

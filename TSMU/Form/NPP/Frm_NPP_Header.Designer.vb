@@ -34,6 +34,7 @@ Partial Class Frm_NPP_Header
         Me.ApproveDivHead = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SubmitToNPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Grid2 = New DevExpress.XtraGrid.GridControl()
@@ -65,7 +66,6 @@ Partial Class Frm_NPP_Header
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.Note = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,6 +250,14 @@ Partial Class Frm_NPP_Header
         Me.Status.Visible = True
         Me.Status.VisibleIndex = 10
         Me.Status.Width = 130
+        '
+        'Note
+        '
+        Me.Note.FieldName = "Note"
+        Me.Note.Name = "Note"
+        Me.Note.Visible = True
+        Me.Note.VisibleIndex = 11
+        Me.Note.Width = 248
         '
         'RepositoryItemButtonEdit1
         '
@@ -570,13 +578,6 @@ Partial Class Frm_NPP_Header
         Me.RepositoryItemButtonEdit3.AutoHeight = False
         Me.RepositoryItemButtonEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemButtonEdit3.Name = "RepositoryItemButtonEdit3"
-        '
-        'Note
-        '
-        Me.Note.FieldName = "Note"
-        Me.Note.Name = "Note"
-        Me.Note.Visible = True
-        Me.Note.VisibleIndex = 11
         '
         'Frm_NPP_Header
         '

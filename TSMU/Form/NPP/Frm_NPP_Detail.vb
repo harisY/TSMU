@@ -176,7 +176,7 @@ Public Class Frm_NPP_Detail
     Private Sub CreateTableBarang()
 
         DtGridNPWO = New DataTable
-        DtGridNPWO.Columns.AddRange(New DataColumn(29) {New DataColumn("No Urut", GetType(Integer)),
+        DtGridNPWO.Columns.AddRange(New DataColumn(31) {New DataColumn("No Urut", GetType(Integer)),
                                                            New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Part Name", GetType(String)),
                                                            New DataColumn("Machine", GetType(String)),
@@ -201,8 +201,10 @@ Public Class Frm_NPP_Detail
                                                            New DataColumn("Order Month", GetType(Int32)),
                                                            New DataColumn("Status", GetType(String)),
                                                            New DataColumn("Cek", GetType(String)),
+                                                           New DataColumn("Replace", GetType(String)),
                                                            New DataColumn("Note", GetType(String)),
                                                            New DataColumn("Seq", GetType(Integer)),
+                                                           New DataColumn("Active", GetType(Boolean)),
                                                            New DataColumn("Commit NPD", GetType(Boolean)),
                                                            New DataColumn("DRR", GetType(Boolean)),
                                                            New DataColumn("Capability date", GetType(Date))})
@@ -662,6 +664,11 @@ Public Class Frm_NPP_Detail
                             .OrderMonth = 0
                         End If
 
+                        .ChangeFrom = Convert.ToString(GridView1.GetRowCellValue(i, "Change From"))
+                        ._Active = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Active"))
+                        .DRR = IIf(GridView1.GetRowCellValue(i, "DRR") Is DBNull.Value, 0, GridView1.GetRowCellValue(i, "DRR"))
+
+
                     End With
                     fc_Class.Collection_Detail.Add(NPP_Detail)
                 Next
@@ -761,6 +768,10 @@ Public Class Frm_NPP_Detail
                             Else
                                 .OrderMonth = 0
                             End If
+
+                            .ChangeFrom = Convert.ToString(GridView1.GetRowCellValue(i, "Change From"))
+                            ._Active = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Active"))
+                            .DRR = IIf(GridView1.GetRowCellValue(i, "DRR") Is DBNull.Value, 0, GridView1.GetRowCellValue(i, "DRR"))
 
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
@@ -874,6 +885,10 @@ Public Class Frm_NPP_Detail
                                 .OrderMonth = 0
                             End If
 
+                            .ChangeFrom = Convert.ToString(GridView1.GetRowCellValue(i, "Change From"))
+                            ._Active = Convert.ToBoolean(GridView1.GetRowCellValue(i, "Active"))
+                            .DRR = IIf(GridView1.GetRowCellValue(i, "DRR") Is DBNull.Value, 0, GridView1.GetRowCellValue(i, "DRR"))
+
                         End With
                         fc_Class.Collection_Detail.Add(NPP_Detail)
 
@@ -898,13 +913,6 @@ Public Class Frm_NPP_Detail
         End Try
 
     End Sub
-
-
-
-
-
-
-
 
 
     Private Sub Frm_Npwo_Detail_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -1010,6 +1018,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve = 1
                             .H_Approve_Date = Date.Now
                             .H_Status = "Submit"
+                            .H_Note = ""
                         End With
                         fc_Class.UpdateApprove(fs_Code)
                         bs_Filter = gh_Common.Username()
@@ -1038,6 +1047,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve_Dept_Head = 1
                             .H_Approve_Dept_Head_Date = Date.Now
                             .H_Approve_Dept_Head_Name = gh_Common.Username
+                            .H_Note = ""
                         End With
 
 
@@ -1494,6 +1504,7 @@ Public Class Frm_NPP_Detail
                                 .Item("Revisi") = dtExcel.Rows(i).Item("Revisi")
                                 .Item("Seq") = Seq
                                 .Item("No Urut") = i + 1
+                                .Item("Active") = True
                             End With
                             DtGridNPWO.Rows.Add(MyNewRow)
                             DtGridNPWO.AcceptChanges()
@@ -1785,5 +1796,96 @@ Public Class Frm_NPP_Detail
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Dim myValue As String = InputBox("Enter Value", "Enter Value", "Please Enter Value")
+    End Sub
+
+
+
+    Private Sub B_Replace_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles B_ChangeFrom.ButtonClick
+        Try
+            Dim DRR As Boolean = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DRR") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DRR"))
+            Dim _Active As Boolean = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Active") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Active"))
+
+            If DRR = False Or _Active = False Then
+                MessageBox.Show("Data Canot be Revise",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+            Else
+
+                Dim Sequence As New DataTable
+                Sequence = fc_Class.Get_Sequence_NppDetail()
+                Dim Seq As Integer = Val(Sequence.Rows(0).Item(0)) + 1
+
+                Dim provider As CultureInfo = CultureInfo.InvariantCulture
+                Dim PN As String = ""
+                'fc_ClassCRUD = New ClsCR_CreateUser
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+
+                        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Active", False)
+
+                        Dim MyNewRow As DataRow
+                        MyNewRow = DtGridNPWO.NewRow
+                        With MyNewRow
+                            .Item("No Urut") = GridView1.GetRowCellValue(rowHandle, "No Urut")
+                            .Item("Part No") = GridView1.GetRowCellValue(rowHandle, "Part No")
+                            .Item("Part Name") = GridView1.GetRowCellValue(rowHandle, "Part Name")
+                            .Item("Machine") = GridView1.GetRowCellValue(rowHandle, "Machine")
+                            .Item("C/T") = GridView1.GetRowCellValue(rowHandle, "C/T")
+                            .Item("Cav") = GridView1.GetRowCellValue(rowHandle, "Cav")
+                            .Item("Runner") = GridView1.GetRowCellValue(rowHandle, "Runner")
+                            .Item("Weight") = GridView1.GetRowCellValue(rowHandle, "Weight")
+                            .Item("Qty Mold") = GridView1.GetRowCellValue(rowHandle, "Qty Mold")
+                            .Item("Material") = GridView1.GetRowCellValue(rowHandle, "Material")
+                            .Item("Inj") = GridView1.GetRowCellValue(rowHandle, "Inj")
+                            .Item("Painting") = GridView1.GetRowCellValue(rowHandle, "Painting")
+                            .Item("Chrome") = GridView1.GetRowCellValue(rowHandle, "Chrome")
+                            .Item("Assy") = GridView1.GetRowCellValue(rowHandle, "Assy")
+                            .Item("Status Mold") = GridView1.GetRowCellValue(rowHandle, "Status Mold")
+                            .Item("Vibration") = GridView1.GetRowCellValue(rowHandle, "Vibration")
+                            .Item("Ultrasonic") = GridView1.GetRowCellValue(rowHandle, "Ultrasonic")
+                            .Item("Group ID") = GridView1.GetRowCellValue(rowHandle, "Group ID")
+                            .Item("Order Month") = GridView1.GetRowCellValue(rowHandle, "Order Month")
+                            .Item("DRR") = False
+                            .Item("Due Date NPD") = GridView1.GetRowCellValue(rowHandle, "Due Date NPD")
+                            .Item("Commit NPD") = GridView1.GetRowCellValue(rowHandle, "Commit NPD")
+                            .Item("Seq") = Seq
+                            .Item("Revisi") = GridView1.GetRowCellValue(rowHandle, "Revisi")
+                            .Item("Note") = GridView1.GetRowCellValue(rowHandle, "Note")
+                            .Item("Change From") = GridView1.GetRowCellValue(rowHandle, "Part No") & "     " & GridView1.GetRowCellValue(rowHandle, "Part Name")
+                            .Item("Active") = True
+                            .Item("No Urut") = GridView1.RowCount + 1
+                        End With
+                        DtGridNPWO.Rows.Add(MyNewRow)
+                        DtGridNPWO.AcceptChanges()
+
+                    End If
+                Next rowHandle
+
+                fc_Class.Update_Seq_NPPDetail(Seq)
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            'Dim _Active As Boolean = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Active") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Active"))
+            Dim _Active As Boolean = IIf(GridView1.GetRowCellValue(e.RowHandle, View.Columns("Active")) Is DBNull.Value, 0, GridView1.GetRowCellValue(e.RowHandle, View.Columns("Active")))
+            If _Active = False Then
+                e.Appearance.BackColor = Color.OrangeRed
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+
+            End If
+        End If
     End Sub
 End Class

@@ -27,13 +27,13 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.T_BeritaAcara = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.T_Date = New DevExpress.XtraEditors.DateEdit()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.T_TanggalBeritaAcara = New DevExpress.XtraEditors.DateEdit()
+        Me.B_Save = New System.Windows.Forms.Button()
+        Me.B_Cancel = New System.Windows.Forms.Button()
         CType(Me.T_Circulation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_BeritaAcara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.T_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.T_Date.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_TanggalBeritaAcara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -47,6 +47,7 @@ Partial Class Frm_CR_BeritaAcara_Input
         '
         'T_Circulation
         '
+        Me.T_Circulation.Enabled = False
         Me.T_Circulation.Location = New System.Drawing.Point(107, 20)
         Me.T_Circulation.Name = "T_Circulation"
         Me.T_Circulation.Size = New System.Drawing.Size(206, 20)
@@ -77,57 +78,61 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Date"
         '
-        'T_Date
+        'T_TanggalBeritaAcara
         '
-        Me.T_Date.EditValue = Nothing
-        Me.T_Date.Location = New System.Drawing.Point(107, 72)
-        Me.T_Date.Name = "T_Date"
-        Me.T_Date.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_Date.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_Date.Properties.DisplayFormat.FormatString = ""
-        Me.T_Date.Properties.EditFormat.FormatString = ""
-        Me.T_Date.Properties.Mask.EditMask = ""
-        Me.T_Date.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.T_Date.Size = New System.Drawing.Size(206, 20)
-        Me.T_Date.TabIndex = 5
+        Me.T_TanggalBeritaAcara.EditValue = Nothing
+        Me.T_TanggalBeritaAcara.Location = New System.Drawing.Point(107, 72)
+        Me.T_TanggalBeritaAcara.Name = "T_TanggalBeritaAcara"
+        Me.T_TanggalBeritaAcara.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties.DisplayFormat.FormatString = "d"
+        Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.T_TanggalBeritaAcara.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.T_TanggalBeritaAcara.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.T_TanggalBeritaAcara.Properties.EditFormat.FormatString = ""
+        Me.T_TanggalBeritaAcara.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.T_TanggalBeritaAcara.Properties.Mask.EditMask = ""
+        Me.T_TanggalBeritaAcara.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.T_TanggalBeritaAcara.Size = New System.Drawing.Size(206, 20)
+        Me.T_TanggalBeritaAcara.TabIndex = 5
         '
-        'Button1
+        'B_Save
         '
-        Me.Button1.Location = New System.Drawing.Point(157, 108)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.B_Save.Location = New System.Drawing.Point(157, 108)
+        Me.B_Save.Name = "B_Save"
+        Me.B_Save.Size = New System.Drawing.Size(75, 23)
+        Me.B_Save.TabIndex = 6
+        Me.B_Save.Text = "Save"
+        Me.B_Save.UseVisualStyleBackColor = True
         '
-        'Button2
+        'B_Cancel
         '
-        Me.Button2.Location = New System.Drawing.Point(238, 108)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 7
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.B_Cancel.Location = New System.Drawing.Point(238, 108)
+        Me.B_Cancel.Name = "B_Cancel"
+        Me.B_Cancel.Size = New System.Drawing.Size(75, 23)
+        Me.B_Cancel.TabIndex = 7
+        Me.B_Cancel.Text = "Cancel"
+        Me.B_Cancel.UseVisualStyleBackColor = True
         '
         'Frm_CR_BeritaAcara_Input
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(355, 147)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.B_Cancel)
+        Me.Controls.Add(Me.B_Save)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.T_BeritaAcara)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.T_Circulation)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.T_Date)
+        Me.Controls.Add(Me.T_TanggalBeritaAcara)
         Me.Name = "Frm_CR_BeritaAcara_Input"
         Me.Text = "Berita Acara Input"
         CType(Me.T_Circulation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_BeritaAcara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.T_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.T_Date.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_TanggalBeritaAcara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -138,7 +143,7 @@ Partial Class Frm_CR_BeritaAcara_Input
     Friend WithEvents T_BeritaAcara As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents T_Date As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents T_TanggalBeritaAcara As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents B_Save As Button
+    Friend WithEvents B_Cancel As Button
 End Class
