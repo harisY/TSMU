@@ -10,6 +10,7 @@ Public Class Frm_CR_BeritaAcara
     Dim Tanggal As Date
     Dim Active_Form As Integer = 8
 
+
     Private Sub Frm_CR_BeritaAcara_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Dept = gh_Common.GroupID
@@ -79,4 +80,27 @@ Public Class Frm_CR_BeritaAcara
 
     End Sub
 
+    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation")
+                End If
+            Next rowHandle
+
+            If GridView2.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView2.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
 End Class

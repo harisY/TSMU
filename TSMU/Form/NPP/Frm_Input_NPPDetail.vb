@@ -176,7 +176,6 @@ Public Class Frm_Input_NPPDetail
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
 
-
         If IsNew = True Then
 
             If TPartNo.Text = "" Then
@@ -257,8 +256,6 @@ Public Class Frm_Input_NPPDetail
                     .Item("Commit NPD") = False
 
                 End With
-
-
                 DtTabale.Rows.Add(MyNewRow)
                 DtTabale.AcceptChanges()
                 TPartNo.EditValue = ""
@@ -274,7 +271,6 @@ Public Class Frm_Input_NPPDetail
                 CAssy.Checked = False
                 CChrome.Checked = False
                 CInjection.Checked = False
-
                 fc_Class.Update_Seq_NPPDetail(Seq)
 
             End If
@@ -304,7 +300,6 @@ Public Class Frm_Input_NPPDetail
 
                 End If
             Next
-
 
         End If
 

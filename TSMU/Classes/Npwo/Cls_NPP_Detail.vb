@@ -147,7 +147,8 @@ Public Class Cls_NPP_Detail
                     inner join [NPP_Rev_Information] on
                     [NPP_Head].[No_NPP] = [NPP_Rev_Information].No_NPP
                     inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
-		            Where [NPP_Head].[No_NPP] = '" & No & "'"
+		            Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
+                    Order By [NPP_Detail].[NoUrut] asc "
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "NPP")
@@ -180,6 +181,7 @@ Public Class Cls_NPP_Detail
                                     "UPDATE NPP_Head" & vbCrLf &
                                     "SET [Approve] = '" & H_Approve & "'
                                     ,Approve_Date = '" & H_Approve_Date & "'
+                                    ,Note = '" & H_Note & "'
                                     ,Status = '" & H_Status & "' WHERE [No_NPP] = '" & _FsCode & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception
@@ -1140,13 +1142,16 @@ Public Class Col_Cls_NPP_Detail_NPP
     Public Property Commit As Boolean
     Public Property Runner As Double
     Public Property NoUrut As Integer
+    Public Property ChangeFrom As String
+    Public Property _Active As Boolean
+    Public Property DRR As Boolean
 
 
     Public Sub Insert_NPP_Detail(NPP_No As String)
 
         Try
             Dim query As String = "[NPP_Insert_NPP_Detail]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(26) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(29) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Part_No", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Part_Name", SqlDbType.VarChar)
@@ -1174,6 +1179,9 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(24) = New SqlClient.SqlParameter("@Capability", SqlDbType.Date)
             pParam(25) = New SqlClient.SqlParameter("@Runner", SqlDbType.Float)
             pParam(26) = New SqlClient.SqlParameter("@NoUrut", SqlDbType.Float)
+            pParam(27) = New SqlClient.SqlParameter("@ChangeFrom", SqlDbType.VarChar)
+            pParam(28) = New SqlClient.SqlParameter("@Active", SqlDbType.Bit)
+            pParam(29) = New SqlClient.SqlParameter("@DRR", SqlDbType.Bit)
 
 
             pParam(0).Value = NPP_No
@@ -1203,6 +1211,9 @@ Public Class Col_Cls_NPP_Detail_NPP
             pParam(24).Value = Capability
             pParam(25).Value = Runner
             pParam(26).Value = NoUrut
+            pParam(27).Value = ChangeFrom
+            pParam(28).Value = _Active
+            pParam(29).Value = DRR
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)

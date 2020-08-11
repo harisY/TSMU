@@ -198,7 +198,11 @@ Public Class FrmTravelPocketAllowance
         txtGolongan.Enabled = False
         txtNamaNegara.Enabled = False
         txtAmountAllowance.Enabled = True
-        txtAmountFirstTravel.Enabled = True
+        If txtTravelType.Text = "DN" Then
+            txtAmountFirstTravel.Enabled = False
+        Else
+            txtAmountFirstTravel.Enabled = True
+        End If
     End Sub
 
     Private Sub Mati()

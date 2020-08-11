@@ -1937,6 +1937,12 @@
     <Compile Include="Form\System\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmSearch.Designer.vb">
+      <DependentUpon>frmSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\MenuNew.Designer.vb">
       <DependentUpon>MenuNew.vb</DependentUpon>
     </Compile>
@@ -3009,6 +3015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmSearch.resx">
+      <DependentUpon>frmSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\MenuNew.resx">
       <DependentUpon>MenuNew.vb</DependentUpon>
@@ -4185,6 +4194,8 @@
     <Content Include="Resources\folder.png" />
     <Content Include="Resources\map.png" />
     <Content Include="Resources\sales.png" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\Search1.png" />
     <Content Include="Resources\Square.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

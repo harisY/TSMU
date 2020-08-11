@@ -56,6 +56,7 @@ Public Class Frm_CR_UserCreateDetail
 
     Dim CForm As Integer = 0
     Dim FGetMold As Frm_CR_Get_Mold
+    Dim FGetBeritaAcara As Frm_CR_BeritaAcara_Input
     Dim BG As String = ""
 
 
@@ -334,6 +335,35 @@ Public Class Frm_CR_UserCreateDetail
                     GridView1.OptionsBehavior.Editable = False
                     BAddRows.Enabled = False
                     BMold.Enabled = False
+                    Call No_Edit_TextBox()
+
+                    With GridView1
+                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                        .Columns("Spesification").OptionsColumn.AllowEdit = False
+                        .Columns("Qty").OptionsColumn.AllowEdit = False
+                        .Columns("Price").OptionsColumn.AllowEdit = False
+                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                        .Columns("Curr").OptionsColumn.AllowEdit = False
+                        .Columns("Category").OptionsColumn.AllowEdit = False
+                        .Columns("Balance").OptionsColumn.AllowEdit = False
+                        .Columns("Rate").OptionsColumn.AllowEdit = False
+                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                        .Columns("Account").OptionsColumn.AllowEdit = False
+                        .Columns("Check").Visible = True
+                        .Columns("Note").Visible = True
+                    End With
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+
+                ElseIf Active_Form = 8 Then
+
+                    GridView3.OptionsBehavior.Editable = False
+                    GridView4.OptionsBehavior.Editable = False
+                    GridView5.OptionsBehavior.Editable = False
+                    GridView1.OptionsBehavior.Editable = False
+                    BAddRows.Enabled = False
+                    BMold.Enabled = False
+                    BBeritaAcara.Visible = True
                     Call No_Edit_TextBox()
 
                     With GridView1
@@ -1469,6 +1499,13 @@ Public Class Frm_CR_UserCreateDetail
             'T_ModelName.Text = Model
             T_ModelName.Text = FGetMold.Values_Model
             T_CustomerName.Text = FGetMold.Values_Customer
+
+        ElseIf CForm = 5 Then
+
+            FGetBeritaAcara = New Frm_CR_BeritaAcara_Input(fc_Class.H_CirculationNo, "")
+            FGetBeritaAcara.StartPosition = FormStartPosition.CenterScreen
+            FGetBeritaAcara.MaximizeBox = False
+            FGetBeritaAcara.ShowDialog()
 
         End If
 
@@ -2963,9 +3000,6 @@ Public Class Frm_CR_UserCreateDetail
 
     Public Overrides Sub Proc_Print()
 
-        'fc_Class.GetDataByID(fs_Code)
-        ' If fc_Class.H_Approve = True Then
-
         CForm = 3
         CallForm(fs_Code)
 
@@ -2978,62 +3012,20 @@ Public Class Frm_CR_UserCreateDetail
         FrmReport.MaximizeBox = False
         FrmReport.ShowDialog()
 
-        'Else
-
-        '    MessageBox.Show("NPP No " & TNPP_No.EditValue & " Must be Approved First",
-        '                        "Warning",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation,
-        '                        MessageBoxDefaultButton.Button1)
-        'End If
-
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
     End Sub
 
-    Private Sub TotalIdr_EditValueChanged(sender As Object, e As EventArgs) Handles TotalIdr.EditValueChanged
-        'Call RefreshRemaining()
-        'Call Termin_Default(1)
-    End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        'Try
-        '    DtTerm.Clear()
-        '    GridView4.FocusedRowHandle = True
-        '    For a As Integer = 0 To GridView4.RowCount - 1
-        '        For x As Integer = 0 To GridView3.RowCount - 1
-        '            Dim NamaCurr As String = Convert.ToString(GridView4.GetRowCellValue(x, "Curr"))
-        '            Dim dr As DataRow = DtTerm.NewRow
-        '            dr("Term") = GridView4.GetRowCellValue(a, "Term")
-        '            dr("Date") = GridView4.GetRowCellValue(a, "Date")
-        '            dr("%") = GridView4.GetRowCellValue(a, "%")
-        '            dr("Curr") = GridView3.GetRowCellValue(x, "Curr")
-        '            dr("Value") = GridView4.GetRowCellValue(a, GridView3.GetRowCellValue(x, "Curr"))
-        '            DtTerm.Rows.Add(dr)
-        '        Next
-        '    Next
 
-        'Catch ex As Exception
-        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-
-        Call Termin(1)
-        Call Termin_Default(1)
-
-    End Sub
 
     Private Sub BBeritaAcara_Click(sender As Object, e As EventArgs) Handles BBeritaAcara.Click
-        'If TOrderMonth.Text = "" Then
-        '    MessageBox.Show("Please Fill Order Month",
-        '                        "Warning",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation,
-        '                        MessageBoxDefaultButton.Button1)
-        'Else
+
+        CForm = 5
         CallForm()
+
         'End If
     End Sub
 End Class

@@ -42,7 +42,7 @@ Public Class FrmTravelTicket
 
     Private Sub FrmTravelTicket_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageRequest
         TabPage = XtraTabControl1.SelectedTabPage.Name
         Call LoadGridRequest()
@@ -126,13 +126,17 @@ Public Class FrmTravelTicket
         End Try
     End Sub
 
+    Public Overrides Sub Proc_Search()
+
+    End Sub
+
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageRequest" Then
-            Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
+            Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False, False)
             LoadGridRequest()
         Else
-            Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
             LoadGridTicket()
         End If
     End Sub

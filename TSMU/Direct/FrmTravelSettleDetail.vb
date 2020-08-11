@@ -1494,4 +1494,7 @@ Public Class FrmTravelSettleDetail
         End If
     End Sub
 
+    Private Sub txtPRNo_EditValueChanged(sender As Object, e As EventArgs) Handles txtPRNo.EditValueChanged
+
+    End Sub
 End Class

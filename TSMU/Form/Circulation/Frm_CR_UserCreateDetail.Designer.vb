@@ -109,7 +109,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RBNonPO = New System.Windows.Forms.RadioButton()
         Me.T_Spesification = New DevExpress.XtraEditors.TextEdit()
         Me.T_Reason = New DevExpress.XtraEditors.TextEdit()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.BBeritaAcara = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,7 +277,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_ParentAmount.Name = "T_ParentAmount"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.T_ParentAmount.Size = New System.Drawing.Size(150, 20)
+        Me.T_ParentAmount.Size = New System.Drawing.Size(135, 20)
         Me.T_ParentAmount.TabIndex = 66
         '
         'Label13
@@ -320,9 +319,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BAddRows
         '
         Me.BAddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BAddRows.Location = New System.Drawing.Point(1167, 63)
+        Me.BAddRows.Location = New System.Drawing.Point(1178, 64)
         Me.BAddRows.Name = "BAddRows"
-        Me.BAddRows.Size = New System.Drawing.Size(75, 23)
+        Me.BAddRows.Size = New System.Drawing.Size(64, 23)
         Me.BAddRows.TabIndex = 78
         Me.BAddRows.Text = "Add Rows"
         Me.BAddRows.UseVisualStyleBackColor = True
@@ -330,9 +329,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BMold
         '
         Me.BMold.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BMold.Location = New System.Drawing.Point(1088, 63)
+        Me.BMold.Location = New System.Drawing.Point(1118, 64)
         Me.BMold.Name = "BMold"
-        Me.BMold.Size = New System.Drawing.Size(75, 23)
+        Me.BMold.Size = New System.Drawing.Size(59, 23)
         Me.BMold.TabIndex = 79
         Me.BMold.Text = "Mold"
         Me.BMold.UseVisualStyleBackColor = True
@@ -954,9 +953,9 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox3.Controls.Add(Me.RBPO)
         Me.GroupBox3.Controls.Add(Me.RBNonPO)
         Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox3.Location = New System.Drawing.Point(911, 59)
+        Me.GroupBox3.Location = New System.Drawing.Point(897, 59)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(153, 30)
+        Me.GroupBox3.Size = New System.Drawing.Size(129, 30)
         Me.GroupBox3.TabIndex = 93
         Me.GroupBox3.TabStop = False
         '
@@ -974,7 +973,7 @@ Partial Class Frm_CR_UserCreateDetail
         'RBNonPO
         '
         Me.RBNonPO.AutoSize = True
-        Me.RBNonPO.Location = New System.Drawing.Point(67, 9)
+        Me.RBNonPO.Location = New System.Drawing.Point(52, 9)
         Me.RBNonPO.Name = "RBNonPO"
         Me.RBNonPO.Size = New System.Drawing.Size(63, 17)
         Me.RBNonPO.TabIndex = 3
@@ -998,21 +997,12 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Reason.Size = New System.Drawing.Size(230, 20)
         Me.T_Reason.TabIndex = 95
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(581, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 96
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
-        '
         'BBeritaAcara
         '
-        Me.BBeritaAcara.Location = New System.Drawing.Point(1134, 59)
+        Me.BBeritaAcara.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BBeritaAcara.Location = New System.Drawing.Point(1034, 64)
         Me.BBeritaAcara.Name = "BBeritaAcara"
-        Me.BBeritaAcara.Size = New System.Drawing.Size(108, 23)
+        Me.BBeritaAcara.Size = New System.Drawing.Size(80, 23)
         Me.BBeritaAcara.TabIndex = 97
         Me.BBeritaAcara.Text = "Berita Acara"
         Me.BBeritaAcara.UseVisualStyleBackColor = True
@@ -1024,7 +1014,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1254, 550)
         Me.Controls.Add(Me.BBeritaAcara)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.T_Reason)
         Me.Controls.Add(Me.T_Spesification)
         Me.Controls.Add(Me.GroupBox3)
@@ -1084,7 +1073,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.T_Spesification, 0)
         Me.Controls.SetChildIndex(Me.T_Reason, 0)
-        Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.Controls.SetChildIndex(Me.BBeritaAcara, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -1230,6 +1218,5 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents T_Spesification As DevExpress.XtraEditors.TextEdit
     Friend WithEvents T_Reason As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TotalIdr As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents Button1 As Button
     Friend WithEvents BBeritaAcara As Button
 End Class

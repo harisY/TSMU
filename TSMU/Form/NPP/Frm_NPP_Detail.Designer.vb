@@ -53,6 +53,11 @@ Partial Class Frm_NPP_Detail
         Me.Commit1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Runner = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DRR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.NoUrut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.No_Urut = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.ChangeFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.B_ChangeFrom = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.Active_ = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SingleCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TMassPro = New DevExpress.XtraEditors.DateEdit()
@@ -95,8 +100,6 @@ Partial Class Frm_NPP_Detail
         Me.B_Reject = New System.Windows.Forms.Button()
         Me.B_Approve = New System.Windows.Forms.Button()
         Me.B_Revise = New System.Windows.Forms.Button()
-        Me.NoUrut = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.No_Urut = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepStatusMold, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,6 +108,8 @@ Partial Class Frm_NPP_Detail
         CType(Me.RepoCapability.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Check, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoComit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.B_ChangeFrom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TMassPro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,7 +131,6 @@ Partial Class Frm_NPP_Detail
         CType(Me.TNPP_No.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRevisiInformasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -137,14 +141,14 @@ Partial Class Frm_NPP_Detail
         Me.Grid.Location = New System.Drawing.Point(12, 142)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck, Me.Check, Me.RepStatus, Me.RepStatusMold, Me.RepoCapability, Me.RepoComit, Me.No_Urut})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SingleCheck, Me.Check, Me.RepStatus, Me.RepStatusMold, Me.RepoCapability, Me.RepoComit, Me.No_Urut, Me.B_ChangeFrom})
         Me.Grid.Size = New System.Drawing.Size(1235, 292)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner, Me.DRR, Me.NoUrut})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PartNo, Me.PartName, Me.Machine, Me.CT, Me.Cav, Me.Weight, Me.Material, Me.Inj, Me.Painting, Me.Chrome, Me.Assy, Me.StatusMold, Me.OrderMonth, Me.Ultrasonic, Me.Vibration, Me.GroupID, Me.GridColumn4, Me.Revisi, Me.Status, Me.CapabilityDate, Me.Cek, Me.Note, Me.Seq, Me.Commit, Me.Commit1, Me.Runner, Me.DRR, Me.NoUrut, Me.ChangeFrom, Me.Active_})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -309,6 +313,8 @@ Partial Class Frm_NPP_Detail
         Me.OrderMonth.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.OrderMonth.AppearanceHeader.Options.UseTextOptions = True
         Me.OrderMonth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.OrderMonth.DisplayFormat.FormatString = "{0:N0}"
+        Me.OrderMonth.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.OrderMonth.FieldName = "Order Month"
         Me.OrderMonth.Name = "OrderMonth"
         Me.OrderMonth.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
@@ -483,6 +489,50 @@ Partial Class Frm_NPP_Detail
         Me.DRR.OptionsColumn.AllowEdit = False
         Me.DRR.Visible = True
         Me.DRR.VisibleIndex = 23
+        '
+        'NoUrut
+        '
+        Me.NoUrut.AppearanceCell.Options.UseTextOptions = True
+        Me.NoUrut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.NoUrut.AppearanceHeader.Options.UseTextOptions = True
+        Me.NoUrut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.NoUrut.ColumnEdit = Me.No_Urut
+        Me.NoUrut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.NoUrut.FieldName = "No Urut"
+        Me.NoUrut.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.NoUrut.Name = "NoUrut"
+        Me.NoUrut.OptionsFilter.AllowFilter = False
+        Me.NoUrut.Visible = True
+        Me.NoUrut.VisibleIndex = 0
+        Me.NoUrut.Width = 53
+        '
+        'No_Urut
+        '
+        Me.No_Urut.AutoHeight = False
+        Me.No_Urut.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.No_Urut.Name = "No_Urut"
+        '
+        'ChangeFrom
+        '
+        Me.ChangeFrom.ColumnEdit = Me.B_ChangeFrom
+        Me.ChangeFrom.FieldName = "Change From"
+        Me.ChangeFrom.Name = "ChangeFrom"
+        Me.ChangeFrom.Visible = True
+        Me.ChangeFrom.VisibleIndex = 24
+        Me.ChangeFrom.Width = 209
+        '
+        'B_ChangeFrom
+        '
+        Me.B_ChangeFrom.AutoHeight = False
+        Me.B_ChangeFrom.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.B_ChangeFrom.Name = "B_ChangeFrom"
+        '
+        'Active_
+        '
+        Me.Active_.FieldName = "Active"
+        Me.Active_.Name = "Active_"
+        Me.Active_.Visible = True
+        Me.Active_.VisibleIndex = 25
         '
         'SingleCheck
         '
@@ -940,28 +990,6 @@ Partial Class Frm_NPP_Detail
         Me.B_Revise.UseVisualStyleBackColor = True
         Me.B_Revise.Visible = False
         '
-        'NoUrut
-        '
-        Me.NoUrut.AppearanceCell.Options.UseTextOptions = True
-        Me.NoUrut.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.NoUrut.AppearanceHeader.Options.UseTextOptions = True
-        Me.NoUrut.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.NoUrut.ColumnEdit = Me.No_Urut
-        Me.NoUrut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.NoUrut.FieldName = "No Urut"
-        Me.NoUrut.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.NoUrut.Name = "NoUrut"
-        Me.NoUrut.OptionsFilter.AllowFilter = False
-        Me.NoUrut.Visible = True
-        Me.NoUrut.VisibleIndex = 0
-        Me.NoUrut.Width = 53
-        '
-        'No_Urut
-        '
-        Me.No_Urut.AutoHeight = False
-        Me.No_Urut.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.No_Urut.Name = "No_Urut"
-        '
         'Frm_NPP_Detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1003,6 +1031,8 @@ Partial Class Frm_NPP_Detail
         CType(Me.RepoCapability, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Check, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoComit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.B_ChangeFrom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SingleCheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -1027,7 +1057,6 @@ Partial Class Frm_NPP_Detail
         CType(Me.TNPP_No.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRevisiInformasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.No_Urut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1110,4 +1139,7 @@ Partial Class Frm_NPP_Detail
     Friend WithEvents RepoComit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents NoUrut As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents No_Urut As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents ChangeFrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents B_ChangeFrom As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents Active_ As DevExpress.XtraGrid.Columns.GridColumn
 End Class

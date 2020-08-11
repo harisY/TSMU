@@ -52,11 +52,11 @@ Public Class FrmTravelTicketInvoice
             dtTemp = filterRow.CopyToDataTable
         End If
         dtTicketCheck = dtInvoiceDetail.Select("CheckList = true").CopyToDataTable
+        Dim noRequest As String = String.Empty
         For Each row_ As DataRow In dtTemp.Rows
-            Dim noRequest As String = String.Empty
             Dim amount As Double
             Dim TicketNumber As String = String.Empty
-            If row_("NoRequest") <> noRequest And row_("Seq") > 1 Then
+            If row_("NoRequest") <> noRequest AndAlso row_("Seq") > 1 Then
                 If isUpdate Then
                     Dim dtTSC As New DataTable
                     dtTSC = ObjTravelTicket.GetTravelTicketTSC(fs_Code, row_("NoRequest"), row_("Seq") + 1)

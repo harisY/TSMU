@@ -20,7 +20,7 @@ Partial Class frm_payment_aprrove_details
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me._TxtTotal = New DevExpress.XtraEditors.TextEdit()
         Me._TxtPPN = New DevExpress.XtraEditors.TextEdit()
@@ -57,7 +57,6 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -119,7 +118,6 @@ Partial Class frm_payment_aprrove_details
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,10 +154,11 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControl1.Controls.Add(Me._TxtCM)
         Me.LayoutControl1.Controls.Add(Me._TxtCurrency)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2517, 0, 650, 400)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 174)
+        Me.LayoutControl1.Size = New System.Drawing.Size(828, 142)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -294,10 +293,10 @@ Partial Class frm_payment_aprrove_details
         Me._txtVoucher.Size = New System.Drawing.Size(126, 20)
         Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Voucher tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Voucher tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me._txtVoucher, ConditionValidationRule2)
         '
         '_TxtPPH
         '
@@ -383,9 +382,9 @@ Partial Class frm_payment_aprrove_details
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem7, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.EmptySpaceItem1, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem11, Me.LayoutControlItem3})
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 174)
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem7, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem11, Me.LayoutControlItem3})
+        Me.LayoutControlGroup1.Name = "Root"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 142)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem4
@@ -466,7 +465,7 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem20.Control = Me._TxtNoRek
         Me.LayoutControlItem20.Location = New System.Drawing.Point(337, 96)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(270, 58)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(270, 26)
         Me.LayoutControlItem20.Text = "Bank Acct No."
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(67, 13)
         '
@@ -512,7 +511,7 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem9.Control = Me._TxtToBank
         Me.LayoutControlItem9.Location = New System.Drawing.Point(607, 96)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(201, 58)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(201, 26)
         Me.LayoutControlItem9.Text = "To Bank"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(67, 13)
         '
@@ -521,17 +520,9 @@ Partial Class frm_payment_aprrove_details
         Me.LayoutControlItem10.Control = Me._TxtAttentionTo
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(337, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(337, 26)
         Me.LayoutControlItem10.Text = "Beneficiary"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(67, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(337, 34)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem8
         '
@@ -575,22 +566,23 @@ Partial Class frm_payment_aprrove_details
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.GridInvoice, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 199)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 169)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 382)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 412)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'GridInvoice
         '
-        Me.GridInvoice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridInvoice.Location = New System.Drawing.Point(3, 3)
         Me.GridInvoice.MainView = Me.GridView1
         Me.GridInvoice.Name = "GridInvoice"
         Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2, Me.BtnPPH1, Me.BtnScan1})
-        Me.GridInvoice.Size = New System.Drawing.Size(822, 376)
+        Me.GridInvoice.Size = New System.Drawing.Size(822, 406)
         Me.GridInvoice.TabIndex = 0
         Me.GridInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -786,7 +778,6 @@ Partial Class frm_payment_aprrove_details
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
@@ -864,5 +855,4 @@ Partial Class frm_payment_aprrove_details
     Friend WithEvents BtnScan1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
 End Class
