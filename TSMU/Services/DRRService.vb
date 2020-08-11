@@ -160,6 +160,20 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
+    Public Sub Unrelease(IdDrr As Integer)
+        Try
+            Dim _result As Integer = 0
+            Dim Sql As String = "DRRHeader_Unrelease"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@id", SqlDbType.Int)
+            pParam(0).Value = IdDrr
+            pParam(1) = New SqlClient.SqlParameter("@username", SqlDbType.VarChar)
+            pParam(1).Value = gh_Common.Username
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub Release(IdDrr As Integer)
         Try
             Dim _result As Integer = 0
