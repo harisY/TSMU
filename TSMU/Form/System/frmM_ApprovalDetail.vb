@@ -50,7 +50,7 @@ Public Class frmM_ApprovalDetail
                     isUpdate = True
                 End If
             End If
-            Text = "Approve Detail"
+            Text = "APPROVE DETAIL"
             'PopulateCustomer()
             'PopulateNPP()
             LoadTxtBox()
@@ -118,12 +118,16 @@ Public Class frmM_ApprovalDetail
             _service = New MApproveService
 
             If Not isUpdate Then
+                If _service.IsDataExist(ObjApprove) Then
+                    Throw New Exception("Data sudah ada !")
+                End If
                 _service.Add(ObjApprove)
+
                 GridDtl.DataSource = _service.GetAll()
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
-                Me.Hide()
+                Hide()
             Else
                 _service.Update(ObjApprove)
                 GridDtl.DataSource = _service.GetAll()

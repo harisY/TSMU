@@ -711,7 +711,7 @@ Public Class frmDRR_details
                 If fs_Code <> 0 Then
                     _service.Release(fs_Code)
                     SendEmail(TxtNoNpp.Text)
-                    'Await sendMessage("-441724240", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
+                    Await sendMessage("-441724240", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
                     'Await sendMessage("1261258538", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
                     ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
                 Else
@@ -725,7 +725,7 @@ Public Class frmDRR_details
     Private Sub SendEmail(NoNpp As String)
         Try
             Dim email As String = String.Empty
-            email = "miftah-mis@tsmu.co.id"
+            email = "haris@tsmu.co.id"
             Dim mail As MailMessage = New MailMessage()
             mail.IsBodyHtml = True
             mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
@@ -752,6 +752,8 @@ Public Class frmDRR_details
 
     Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As Task
         Try
+            ServicePointManager.Expect100Continue = True
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim bot = New Telegram.Bot.TelegramBotClient(_token)
             Await bot.SendTextMessageAsync(destID, text)
         Catch ex As Exception
