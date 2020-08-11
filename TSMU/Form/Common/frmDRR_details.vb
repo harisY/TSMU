@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Net
+Imports System.Net.Mail
 Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraBars.Ribbon.ViewInfo
 Imports DevExpress.XtraEditors
@@ -41,6 +43,8 @@ Public Class frmDRR_details
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
     Dim ImgToDelete As List(Of ImageModel)
+    ReadOnly _token As String = "1342738375:AAHvpALzfvSiB-OzihA9-cgtdQFiAqguXcY"
+    Dim bott As Telegram.Bot.TelegramBotClient
     Public Sub New()
 
         ' This call is required by the designer.
@@ -70,6 +74,7 @@ Public Class frmDRR_details
         dragDropHelper.EnableDragDrop()
         IsTrue = True
         Initializing = True
+
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -104,7 +109,7 @@ Public Class frmDRR_details
             End If
             Text = "DRR DETAIL"
             'PopulateCustomer()
-            PopulateNPP()
+            'PopulateNPP()
             LoadTxtBox()
             LoadDetail()
 
@@ -227,16 +232,16 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Sub PopulateNPP()
-        Dim dtNpp As New DataTable
-        _service = New DRRService
-        dtNpp = _service.GetNPP
-        TxtNoNpp.Properties.DataSource = Nothing
-        TxtNoNpp.Properties.DataSource = dtNpp
-        TxtNoNpp.Properties.ValueMember = "No_NPP"
-        TxtNoNpp.Properties.DisplayMember = "No_NPP"
-        TxtNoNpp.Properties.PopulateColumns()
-    End Sub
+    'Private Sub PopulateNPP()
+    '    Dim dtNpp As New DataTable
+    '    _service = New DRRService
+    '    dtNpp = _service.GetNPP
+    '    TxtNoNpp.Properties.DataSource = Nothing
+    '    TxtNoNpp.Properties.DataSource = dtNpp
+    '    TxtNoNpp.Properties.ValueMember = "No_NPP"
+    '    TxtNoNpp.Properties.DisplayMember = "No_NPP"
+    '    TxtNoNpp.Properties.PopulateColumns()
+    'End Sub
 
     Private Function GetBandedGridView() As BandedGridView
         Dim bandedView As BandedGridView = New BandedGridView()
@@ -592,17 +597,17 @@ Public Class frmDRR_details
             Throw ex
         End Try
     End Sub
-    Private Sub TxtNoNpp_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoNpp.EditValueChanged
-        If Initializing Then
-            Exit Sub
-        End If
-        TxtCustomer.EditValue = TxtNoNpp.GetColumnValue("Customer").ToString
-        TxtProject.Text = TxtNoNpp.GetColumnValue("Model_Name").ToString
-        TxtMaspro.EditValue = TxtNoNpp.GetColumnValue("MP")
-        LoadDetail()
-        SetEditColumnGrid()
-        Initializing = False
-    End Sub
+    'Private Sub TxtNoNpp_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoNpp.EditValueChanged
+    '    If Initializing Then
+    '        Exit Sub
+    '    End If
+    '    TxtCustomer.EditValue = TxtNoNpp.GetColumnValue("Customer").ToString
+    '    TxtProject.Text = TxtNoNpp.GetColumnValue("Model_Name").ToString
+    '    TxtMaspro.EditValue = TxtNoNpp.GetColumnValue("MP")
+    '    LoadDetail()
+    '    SetEditColumnGrid()
+    '    Initializing = False
+    'End Sub
 
     Private Sub GalleryControl1_DragEnter(sender As Object, e As DragEventArgs) Handles GalleryControl1.DragEnter
         Try
@@ -615,20 +620,6 @@ Public Class frmDRR_details
 
     End Sub
 
-    'Private Sub GalleryControl1_Gallery_ItemRightClick(sender As Object, e As DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs) Handles GalleryControl1.Gallery.ItemRightClick
-
-    '    Try
-    '        Dim _file = Path.Combine(_path, Replace(TxtNoNpp.Text, "/", "_") & "_" & e.Item.Caption & ".png")
-    '        If File.Exists(_file) Then
-    '            File.Delete(_file)
-    '        End If
-    '        e.Item.Image.Save(_file, Imaging.ImageFormat.Png)
-    '        MsgBox("Image Saved")
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message)
-    '    End Try
-
-    'End Sub
 
     Private Sub frmDRR_details_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Try
@@ -713,13 +704,16 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
+    Private Async Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
         Try
             If XtraMessageBox.Show("DRR yang sudah di Release tidak bisa di edit atau di hapus, Relase ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                 _service = New DRRService
                 If fs_Code <> 0 Then
                     _service.Release(fs_Code)
-                    ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                    SendEmail(TxtNoNpp.Text)
+                    'Await sendMessage("-441724240", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
+                    'Await sendMessage("1261258538", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
+                    ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
                 Else
                     ShowMessage("DRR yang baru di buat tidak bisa di Release, Save dan buka lagi DRR ini untuk di Release !", MessageTypeEnum.NormalMessage)
                 End If
@@ -728,7 +722,42 @@ Public Class frmDRR_details
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+    Private Sub SendEmail(NoNpp As String)
+        Try
+            Dim email As String = String.Empty
+            email = "miftah-mis@tsmu.co.id"
+            Dim mail As MailMessage = New MailMessage()
+            mail.IsBodyHtml = True
+            mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
+            mail.[To].Add(New MailAddress(email))
+            Dim smpt = New SmtpClient With {
+                .Host = "mail.tsmu.co.id",
+                .Port = 25,
+                .EnableSsl = False,
+                .DeliveryMethod = SmtpDeliveryMethod.Network,
+                .Credentials = New NetworkCredential("drr_info@tsmu.co.id", "Rg,Dvs?9]!r9"),
+                .Timeout = 20000
+            }
+            Dim emailSubject As String = "DRR"
+            mail.Subject = emailSubject
+            mail.Body =
+                "<p>DRR untuk Npp : " & NoNpp & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.</p>"
+            mail.IsBodyHtml = True
+            mail.CC.Add("log@tsmu.co.id")
+            smpt.Send(mail)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As Task
+        Try
+            Dim bot = New Telegram.Bot.TelegramBotClient(_token)
+            Await bot.SendTextMessageAsync(destID, text)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Private Sub AttachImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttachImageToolStripMenuItem.Click
         Try
             If TxtNoNpp.EditValue = "" Then
@@ -762,11 +791,11 @@ Public Class frmDRR_details
                 If Not Integer.TryParse(e.Value.ToString(), ressult) Then
                     e.Valid = False
                     e.ErrorText = "Input hanya angka !"
-                Else
-                    If Integer.Parse(e.Value.ToString()) <= 0 Then
-                        e.Valid = False
-                        e.ErrorText = Replace(view.FocusedColumn.Name, "col", "").ToUpper & " harus lebih besar dari 0(Nol) !"
-                    End If
+                    'Else
+                    '    If Integer.Parse(e.Value.ToString()) <= 0 Then
+                    '        e.Valid = False
+                    '        e.ErrorText = Replace(view.FocusedColumn.Name, "col", "").ToUpper & " harus lebih besar dari 0(Nol) !"
+                    '    End If
                 End If
             End If
 
@@ -775,7 +804,44 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Sub BandedGridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles BandedGridView1.ValidateRow
+    Private Sub TxtNoNpp_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoNpp.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+            _service = New DRRService
+            dtSearch = _service.GetNPP()
+            ls_OldKode = TxtNoNpp.Text
 
+            ls_Judul = "NPP"
+
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim _noNpp As String = ""
+            Dim _model As String = ""
+            Dim _customer As String = ""
+            Dim _masPro As String = ""
+
+            'Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As BandedGridView = TryCast(Grid.FocusedView, BandedGridView)
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" Then
+                _noNpp = lF_SearchData.Values.Item(0).ToString.Trim
+                _model = lF_SearchData.Values.Item(1).ToString.Trim
+                _customer = lF_SearchData.Values.Item(2).ToString.Trim
+                _masPro = lF_SearchData.Values.Item(3).ToString.Trim
+                TxtNoNpp.EditValue = _noNpp
+                TxtProject.Text = _model
+                TxtCustomer.Text = _customer
+                TxtMaspro.EditValue = _masPro
+
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 End Class

@@ -34,13 +34,10 @@ Partial Class FrmSystem_LookupGrid
         '
         'Grid
         '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 28)
+        Me.Grid.Location = New System.Drawing.Point(12, 42)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(592, 276)
+        Me.Grid.Size = New System.Drawing.Size(568, 262)
         Me.Grid.TabIndex = 0
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -48,27 +45,29 @@ Partial Class FrmSystem_LookupGrid
         '
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsBehavior.ReadOnly = True
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnOk})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(592, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(592, 39)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'BtnOk
         '
         Me.BtnOk.Image = CType(resources.GetObject("BtnOk.Image"), System.Drawing.Image)
+        Me.BtnOk.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BtnOk.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOk.Name = "BtnOk"
-        Me.BtnOk.Size = New System.Drawing.Size(42, 22)
-        Me.BtnOk.Text = "Ok"
+        Me.BtnOk.Size = New System.Drawing.Size(105, 36)
+        Me.BtnOk.Text = "Ok/Close"
         Me.BtnOk.ToolTipText = "OK"
         '
         'FrmSystem_LookupGrid

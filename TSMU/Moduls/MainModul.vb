@@ -32,6 +32,7 @@ Module MainModul
         ValidasiDeleteGagal = 4002
         UpdateBerhasil = 5000
         UpdateGagal = 50001
+        ReleaseBerhasil = 60001
     End Enum
 
     Public Enum MessageTypeEnum As Byte
@@ -249,6 +250,10 @@ Module MainModul
                 Return "Update validation is failed!"
             Case MessageEnum.ValidasiDeleteGagal
                 Return "Delete validation is failed!"
+            Case MessageEnum.ReleaseBerhasil
+                Return "Release Berhasil!"
+            Case MessageEnum.UpdateBerhasil
+                Return "Update Berhasil!"
             Case Else
                 Return ""
         End Select

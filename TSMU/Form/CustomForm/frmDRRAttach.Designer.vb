@@ -25,6 +25,7 @@ Partial Class frmDRRAttach
         Dim GalleryItemGroup1 As DevExpress.XtraBars.Ribbon.GalleryItemGroup = New DevExpress.XtraBars.Ribbon.GalleryItemGroup()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSubmit = New DevExpress.XtraEditors.SimpleButton()
         Me.GalleryControl1 = New DevExpress.XtraBars.Ribbon.GalleryControl()
         Me.GalleryControlClient1 = New DevExpress.XtraBars.Ribbon.GalleryControlClient()
@@ -53,12 +54,22 @@ Partial Class frmDRRAttach
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnBrowse)
         Me.PanelControl1.Controls.Add(Me.BtnSubmit)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(3, 502)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1033, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnBrowse
+        '
+        Me.BtnBrowse.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowse.Location = New System.Drawing.Point(816, 9)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(94, 29)
+        Me.BtnBrowse.TabIndex = 1
+        Me.BtnBrowse.Text = "Browse"
         '
         'BtnSubmit
         '
@@ -84,6 +95,7 @@ Partial Class frmDRRAttach
         Me.GalleryControl1.Gallery.ImageSize = New System.Drawing.Size(150, 100)
         Me.GalleryControl1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck
         Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside
+        Me.GalleryControl1.Gallery.ShowItemText = True
         Me.GalleryControl1.Location = New System.Drawing.Point(3, 3)
         Me.GalleryControl1.Name = "GalleryControl1"
         Me.GalleryControl1.Size = New System.Drawing.Size(1033, 493)
@@ -121,4 +133,5 @@ Partial Class frmDRRAttach
     Friend WithEvents GalleryControl1 As DevExpress.XtraBars.Ribbon.GalleryControl
     Friend WithEvents GalleryControlClient1 As DevExpress.XtraBars.Ribbon.GalleryControlClient
     Friend WithEvents BtnSubmit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnBrowse As DevExpress.XtraEditors.SimpleButton
 End Class

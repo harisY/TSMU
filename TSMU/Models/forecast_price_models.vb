@@ -103,7 +103,6 @@ Public Class forecast_price_models_header
                                 '    .UpdateData1()
                                 '    .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 'End If
-
                             End With
                         Next
 
