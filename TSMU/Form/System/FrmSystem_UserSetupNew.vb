@@ -406,10 +406,10 @@
 
                         For i As Integer = 0 To GridView1.RowCount - 1
                             _akses = False
-                            _akses = If(IsDBNull(GridView1.GetRowCellValue(i, "Access")), False, True)
+                            _akses = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Access") = False), False, True)
                             If _akses Then
-                                price = If(IsDBNull(GridView1.GetRowCellValue(i, "Price")), False, True)
-                                harga = If(IsDBNull(GridView1.GetRowCellValue(i, "Qty")), False, True)
+                                price = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Price") = False), False, True)
+                                harga = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Qty") = False), False, True)
 
 
                                 'ls_Privilege &=
@@ -428,11 +428,11 @@
                                     "   SELECT Username = " & QVal(txtUserName.Text.Trim) &
                                     "       ,APPID = " & QVal(1) &
                                     "       ,MenuCode = " & QVal(GridView1.GetRowCellValue(i, "MenuCode").ToString()) &
-                                    "       ,[Access] = " & If(IsDBNull(GridView1.GetRowCellValue(i, "Access")), 0, 1) &
-                                    "       ,[Insert] = " & If(IsDBNull(GridView1.GetRowCellValue(i, "Insert")), 0, 1) &
-                                    "       ,[Update] = " & If(IsDBNull(GridView1.GetRowCellValue(i, "Update")), 0, 1) &
-                                    "       ,[Delete] = " & If(IsDBNull(GridView1.GetRowCellValue(i, "Delete")), 0, 1) &
-                                    "       ,[Special] = " & If(IsDBNull(GridView1.GetRowCellValue(i, "Special")), 0, 1) &
+                                    "       ,[Access] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Access") = False), 0, 1) &
+                                    "       ,[Insert] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Insert") = False), 0, 1) &
+                                    "       ,[Update] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Update") = False), 0, 1) &
+                                    "       ,[Delete] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Delete") = False), 0, 1) &
+                                    "       ,[Special] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Special") = False), 0, 1) &
                                     "       ,[Price] = " & QVal(price) &
                                     "       ,[Qty] = " & QVal(harga) &
                                     "   UNION "
