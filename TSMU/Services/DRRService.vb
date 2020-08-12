@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class DRRService
+    Dim _globalService As GlobalService
     Public Property DetailModel() As New Collection(Of DRRDetail)
     'Public Property DetailModel() As New Collection(Of DRRModel)
     'Public Property _DrrModel As New DRRModel
