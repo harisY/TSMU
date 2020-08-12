@@ -99,4 +99,33 @@ Public Class frmDRRAttach
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Try
+            Dim _hasil As List(Of String) = New List(Of String)
+            Dim Dial As New OpenFileDialog
+            Dial.Filter = "Png Files|*.png"
+            Dial.Multiselect = True
+            Dim result As DialogResult = Dial.ShowDialog()
+            ' Test result.
+            If result = System.Windows.Forms.DialogResult.OK Then
+                Dim _folder = Path.GetDirectoryName(Dial.FileName) & "\"
+                _hasil.AddRange(Dial.FileNames.Select(Function(f) Path.GetFileName(f)).ToArray)
+                For Each _strImage In _hasil
+                    Dim _fileName = _strImage.Split("."c)
+                    Dim img As Image
+                    Using bmpTemp As Bitmap = New Bitmap(Image.FromFile(Path.Combine(_folder, _strImage)))
+                        img = New Bitmap(bmpTemp)
+                        If img IsNot Nothing Then
+                            GalleryControl1.Gallery.Groups(0).Items.Add(New GalleryItem(img, _fileName(0), ""))
+                        End If
+                    End Using
+                Next
+                '_path = String.Join(Environment.NewLine, Dial.FileNames) 'Dial.FileName
+
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
 End Class

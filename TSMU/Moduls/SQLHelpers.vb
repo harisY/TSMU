@@ -11,6 +11,7 @@ Namespace InstanceVariables
         Dim _groupId As String
         Dim _Site As String
         Dim _Level As String
+        Dim _Email As String
 
         Public Property Username() As String
             Get
@@ -66,6 +67,14 @@ Namespace InstanceVariables
             End Get
             Set(ByVal value As String)
                 _Level = value
+            End Set
+        End Property
+        Public Property Email() As String
+            Get
+                Return _Email
+            End Get
+            Set(ByVal value As String)
+                _Email = value
             End Set
         End Property
     End Class

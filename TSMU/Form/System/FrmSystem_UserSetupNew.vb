@@ -172,6 +172,7 @@
                 TxtRemark.Text = ""
                 _CmbSite.Text = ""
                 _TxtLevel.Text = ""
+                _txtEmail.Text = ""
                 'LblHakAkses.Text = ""
                 'cbGroupUser.SelectedIndex = cbGroupUser.Items.Count - 1
                 Call FillGridAkses("")
@@ -200,6 +201,7 @@
                     TxtRemark.Text = .Remark
                     _CmbSite.Text = .Site
                     _TxtLevel.Text = .Level
+                    _txtEmail.Text = .Email
                     'LblHakAkses.Text = "" & .Username
                     'cbGroupUser.SelectedValue = .UserGroupCode
                     cbGroupUser.Text = .UserGroupName
@@ -336,6 +338,7 @@
         fc_User.UserGroupCode = cbGroupUser.EditValue
         fc_User.Site = _CmbSite.Text
         fc_User.Level = _TxtLevel.Text
+        fc_User.Email = _txtEmail.Text
         '##
         Return True
     End Function
@@ -354,6 +357,8 @@
         ChActive.Checked = True
         TxtRemark.Text = ""
         _CmbSite.Text = ""
+        _TxtLevel.Text = ""
+        _txtEmail.Text = ""
         'LblHakAkses.Text = ""
         FillGridAkses("")
         txtUserName.Focus()
@@ -371,84 +376,97 @@
                     MainModul.gh_Trans = New InstanceVariables.TransactionHelper
                     MainModul.gh_Trans.Command.Connection = Conn1
                     MainModul.gh_Trans.Command.Transaction = Trans1
-
-                    If TxtUsername.ReadOnly = True Then
-                        fc_User.UpdateData()
-                        If TxtPassword.Text.Trim <> "" Then
-                            If TxtUsername.Text.Trim.ToLower <> "admin" Then
-                                fc_User.UpdatePassword()
-                                'If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
-                            ElseIf TxtUsername.Text.Trim = gh_Common.Username Then
-                                fc_User.UpdatePassword()
-                                'If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
+                    Try
+                        If txtUserName.ReadOnly = True Then
+                            fc_User.UpdateData()
+                            If txtPassword.Text.Trim <> "" Then
+                                If txtUserName.Text.Trim.ToLower <> "admin" Then
+                                    fc_User.UpdatePassword()
+                                    'If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
+                                ElseIf txtUserName.Text.Trim = gh_Common.Username Then
+                                    fc_User.UpdatePassword()
+                                    'If ls_Error <> "" Then Err.Raise(ErrNumber, , ls_Error)
+                                End If
                             End If
+                        Else
+                            fc_User.InsertData()
                         End If
-                    Else
-                        fc_User.InsertData()
-                    End If
 
-                    '# Hapus data hak kemudian isi kembali...
-                    ls_Delete =
-                    "DELETE S_UserPermission WHERE AppID = '1' And Username = " & QVal(TxtUsername.Text.Trim) & vbLf &
-                    ""
+                        '# Hapus data hak kemudian isi kembali...
+                        ls_Delete =
+                        "DELETE S_UserPermission WHERE AppID = '1' And Username = " & QVal(txtUserName.Text.Trim) & vbLf &
+                        ""
 
-                    MainModul.ExecQuery(ls_Delete)
-                    '# Simpan hak...
-                    Dim ls_Privilege As String = ""
-                    Dim price As Boolean = False
-                    Dim harga As Boolean = False
-                    For i As Integer = 0 To GridView1.RowCount - 1
-                        If CBool(GridView1.GetRowCellValue(i, "Access")) = True Then
-                            If GridView1.GetRowCellValue(i, "Price") Is DBNull.Value Then
-                                price = False
-                            Else
-                                price = CBool(GridView1.GetRowCellValue(i, "Price"))
+                        MainModul.ExecQuery(ls_Delete)
+                        '# Simpan hak...
+                        Dim ls_Privilege As String = ""
+                        Dim price As Boolean = False
+                        Dim harga As Boolean = False
+                        Dim _akses As Boolean
+
+                        For i As Integer = 0 To GridView1.RowCount - 1
+                            _akses = False
+                            _akses = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Access") = False), False, True)
+                            If _akses Then
+                                price = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Price") = False), False, True)
+                                harga = If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Qty") = False), False, True)
+
+
+                                'ls_Privilege &=
+                                '    "   SELECT Username = " & QVal(txtUserName.Text.Trim) &
+                                '    "       ,APPID = " & QVal(1) &
+                                '    "       ,MenuCode = " & QVal(GridView1.GetRowCellValue(i, "MenuCode").ToString()) &
+                                '    "       ,[Access] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Access"))) &
+                                '    "       ,[Insert] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Insert"))) &
+                                '    "       ,[Update] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Update"))) &
+                                '    "       ,[Delete] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Delete"))) &
+                                '    "       ,[Special] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Special"))) &
+                                '    "       ,[Price] = " & QVal(price) &
+                                '    "       ,[Qty] = " & QVal(harga) &
+                                '    "   UNION "
+                                ls_Privilege &=
+                                    "   SELECT Username = " & QVal(txtUserName.Text.Trim) &
+                                    "       ,APPID = " & QVal(1) &
+                                    "       ,MenuCode = " & QVal(GridView1.GetRowCellValue(i, "MenuCode").ToString()) &
+                                    "       ,[Access] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Access") = False), 0, 1) &
+                                    "       ,[Insert] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Insert") = False), 0, 1) &
+                                    "       ,[Update] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Update") = False), 0, 1) &
+                                    "       ,[Delete] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Delete") = False), 0, 1) &
+                                    "       ,[Special] = " & If(Convert.ToBoolean(GridView1.GetRowCellValue(i, "Special") = False), 0, 1) &
+                                    "       ,[Price] = " & QVal(price) &
+                                    "       ,[Qty] = " & QVal(harga) &
+                                    "   UNION "
                             End If
-                            If GridView1.GetRowCellValue(i, "Qty") Is DBNull.Value Then
-                                harga = False
-                            Else
-                                harga = CBool(GridView1.GetRowCellValue(i, "Qty"))
-                            End If
+                        Next
 
-                            ls_Privilege &=
-                                "   SELECT Username = " & QVal(txtUserName.Text.Trim) &
-                                "       ,APPID = " & QVal(1) &
-                                "       ,MenuCode = " & QVal(GridView1.GetRowCellValue(i, "MenuCode").ToString()) &
-                                "       ,[Access] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Access"))) &
-                                "       ,[Insert] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Insert"))) &
-                                "       ,[Update] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Update"))) &
-                                "       ,[Delete] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Delete"))) &
-                                "       ,[Special] = " & QVal(CBool(GridView1.GetRowCellValue(i, "Special"))) &
-                                "       ,[Price] = " & QVal(price) &
-                                "       ,[Qty] = " & QVal(harga) &
-                                "   UNION "
+                        If ls_Privilege.Trim <> "" Then
+                            ls_Privilege = ls_Privilege.Remove(ls_Privilege.LastIndexOf("UNION"))
+                            ls_Save =
+                            "INSERT S_UserPermission (" & vbLf &
+                            "  Username, AppID, MenuCode, [Access], [Insert], [Update], [Delete], [Special], [Price],[Qty] " & vbLf &
+                            ")" & vbLf &
+                            ls_Privilege
+                            ExecQuery(ls_Save)
                         End If
-                    Next
-
-                    If ls_Privilege.Trim <> "" Then
-                        ls_Privilege = ls_Privilege.Remove(ls_Privilege.LastIndexOf("UNION"))
-                        ls_Save =
-                        "INSERT S_UserPermission (" & vbLf &
-                        "  Username, AppID, MenuCode, [Access], [Insert], [Update], [Delete], [Special], [Price],[Qty] " & vbLf &
-                        ")" & vbLf &
-                        ls_Privilege
-                        ExecQuery(ls_Save)
-                    End If
 
 
-                    Trans1.Commit()
-                    gh_Trans.Command = Nothing
-                    'Sudah Berhasil Save
-                    Call FillGridUsers()
-                    Call ResetInputState()
-                    Call Proc_InputNewData()
-                    Me.Cursor = Cursors.Default
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil))
+                        Trans1.Commit()
+                        'Sudah Berhasil Save
+
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil))
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                    Finally
+                        gh_Trans = Nothing
+                        Call FillGridUsers()
+                        Call ResetInputState()
+                        Call Proc_InputNewData()
+                        Me.Cursor = Cursors.Default
+                    End Try
                 End Using
             End Using
         Catch ex As Exception
-            MainModul.gh_Trans.Command = Nothing
-            Me.Cursor = Cursors.Default
+            Cursor = Cursors.Default
             ShowMessage("Simpan data user gagal ! [" & ex.Message & "]", MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try

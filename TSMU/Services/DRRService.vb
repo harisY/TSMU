@@ -160,6 +160,20 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
+    Public Sub Unrelease(IdDrr As Integer)
+        Try
+            Dim _result As Integer = 0
+            Dim Sql As String = "DRRHeader_Unrelease"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@id", SqlDbType.Int)
+            pParam(0).Value = IdDrr
+            pParam(1) = New SqlClient.SqlParameter("@username", SqlDbType.VarChar)
+            pParam(1).Value = gh_Common.Username
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub Release(IdDrr As Integer)
         Try
             Dim _result As Integer = 0
@@ -188,6 +202,24 @@ Public Class DRRService
             dt = GetDataTableByCommand_SP(Sql, pParam)
             If dt.Rows.Count > 0 Then
                 _result = Convert.ToBoolean(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetEmailByNPP(NPP As String) As String
+        Dim _result As String = String.Empty
+        Try
+            Dim Sql As String = "NPP_Head_getCreatedBy"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@NoNPP", SqlDbType.VarChar)
+            pParam(0).Value = NPP
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = If(IsDBNull(dt.Rows(0)(0)), "", dt.Rows(0)(0).ToString())
             End If
             Return _result
         Catch ex As Exception
