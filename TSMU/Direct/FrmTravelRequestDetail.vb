@@ -461,7 +461,7 @@ Public Class FrmTravelRequestDetail
         End If
     End Sub
 
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs)
         If txtNIK.Text = "" Or txtGolongan.Text = "" Then
             MessageBox.Show("Harap lengkapi data header dulu",
                                 "Warning",
@@ -1084,7 +1084,7 @@ Public Class FrmTravelRequestDetail
         txtAdvanceIDR.Enabled = False
         txtAdvanceUSD.Enabled = False
         txtAdvanceYEN.Enabled = False
-        btnAdd.Enabled = False
+        btnAddDetail.Enabled = False
     End Sub
 
     Private Sub hitungAmountAllowance()
@@ -1102,4 +1102,22 @@ Public Class FrmTravelRequestDetail
         GridViewAdvance.SetRowCellValue(GridViewAdvance.RowCount - 1, "RateAdvanceIDR", amountIDRUSD + amountIDRYEN + amountIDR)
     End Sub
 
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
+        If txtNIK.Text = "" Or txtGolongan.Text = "" Then
+            MessageBox.Show("Harap lengkapi data header dulu",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            Exit Sub
+        ElseIf Len(txtNIK.Text) < 9 Then
+            MessageBox.Show("NIK kurang dari 9 digit",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
+        AddNewRow(GridViewDetail)
+    End Sub
 End Class
