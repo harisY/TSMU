@@ -20,10 +20,9 @@ Partial Class frmDRR_details
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim GalleryItemGroup1 As DevExpress.XtraBars.Ribbon.GalleryItemGroup = New DevExpress.XtraBars.Ribbon.GalleryItemGroup()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -39,15 +38,15 @@ Partial Class frmDRR_details
         Me.TxtHarga3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.TxtNoNpp = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TxtMaspro = New DevExpress.XtraEditors.DateEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtNoDokumen = New DevExpress.XtraEditors.TextEdit()
         Me.TxtForecast = New DevExpress.XtraEditors.TextEdit()
         Me.TxtProject = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtMaspro = New DevExpress.XtraEditors.DateEdit()
         Me.TxtDate = New DevExpress.XtraEditors.DateEdit()
         Me.TxtTime = New DevExpress.XtraEditors.TimeEdit()
         Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNoNpp = New DevExpress.XtraEditors.ButtonEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -77,18 +76,18 @@ Partial Class frmDRR_details
         CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoDokumen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtForecast.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,30 +218,37 @@ Partial Class frmDRR_details
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'TxtNoNpp
+        'TxtMaspro
         '
-        Me.TxtNoNpp.Location = New System.Drawing.Point(113, 12)
-        Me.TxtNoNpp.Name = "TxtNoNpp"
-        Me.TxtNoNpp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtNoNpp.Properties.NullText = ""
-        Me.TxtNoNpp.Size = New System.Drawing.Size(148, 22)
-        Me.TxtNoNpp.StyleController = Me.LayoutControl1
-        Me.TxtNoNpp.TabIndex = 4
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Please select No NPP"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoNpp, ConditionValidationRule4)
+        Me.TxtMaspro.EditValue = Nothing
+        Me.TxtMaspro.Location = New System.Drawing.Point(366, 38)
+        Me.TxtMaspro.Name = "TxtMaspro"
+        Me.TxtMaspro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtMaspro.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtMaspro.Properties.DisplayFormat.FormatString = "MMM-yyyy"
+        Me.TxtMaspro.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtMaspro.Properties.EditFormat.FormatString = "MMM-yyyy"
+        Me.TxtMaspro.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtMaspro.Properties.Mask.EditMask = "MMM-yyyy"
+        Me.TxtMaspro.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TxtMaspro.Size = New System.Drawing.Size(138, 22)
+        Me.TxtMaspro.StyleController = Me.LayoutControl1
+        Me.TxtMaspro.TabIndex = 7
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Tanggal Maspro tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtMaspro, ConditionValidationRule3)
         '
         'LayoutControl1
         '
         Me.LayoutControl1.Controls.Add(Me.TxtNoDokumen)
         Me.LayoutControl1.Controls.Add(Me.TxtForecast)
         Me.LayoutControl1.Controls.Add(Me.TxtProject)
-        Me.LayoutControl1.Controls.Add(Me.TxtNoNpp)
         Me.LayoutControl1.Controls.Add(Me.TxtMaspro)
         Me.LayoutControl1.Controls.Add(Me.TxtDate)
         Me.LayoutControl1.Controls.Add(Me.TxtTime)
         Me.LayoutControl1.Controls.Add(Me.TxtCustomer)
+        Me.LayoutControl1.Controls.Add(Me.TxtNoNpp)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -276,27 +282,6 @@ Partial Class frmDRR_details
         Me.TxtProject.StyleController = Me.LayoutControl1
         Me.TxtProject.TabIndex = 6
         '
-        'TxtMaspro
-        '
-        Me.TxtMaspro.EditValue = Nothing
-        Me.TxtMaspro.Location = New System.Drawing.Point(366, 38)
-        Me.TxtMaspro.Name = "TxtMaspro"
-        Me.TxtMaspro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtMaspro.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtMaspro.Properties.DisplayFormat.FormatString = "MMM-yyyy"
-        Me.TxtMaspro.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtMaspro.Properties.EditFormat.FormatString = "MMM-yyyy"
-        Me.TxtMaspro.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtMaspro.Properties.Mask.EditMask = "MMM-yyyy"
-        Me.TxtMaspro.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtMaspro.Size = New System.Drawing.Size(138, 22)
-        Me.TxtMaspro.StyleController = Me.LayoutControl1
-        Me.TxtMaspro.TabIndex = 7
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Tanggal Maspro tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtMaspro, ConditionValidationRule1)
-        '
         'TxtDate
         '
         Me.TxtDate.EditValue = Nothing
@@ -313,10 +298,10 @@ Partial Class frmDRR_details
         Me.TxtDate.Size = New System.Drawing.Size(148, 22)
         Me.TxtDate.StyleController = Me.LayoutControl1
         Me.TxtDate.TabIndex = 8
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Tanggal tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtDate, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Tanggal tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtDate, ConditionValidationRule1)
         '
         'TxtTime
         '
@@ -333,10 +318,10 @@ Partial Class frmDRR_details
         Me.TxtTime.Size = New System.Drawing.Size(102, 22)
         Me.TxtTime.StyleController = Me.LayoutControl1
         Me.TxtTime.TabIndex = 9
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "Time tidak boleh kosong"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtTime, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Time tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtTime, ConditionValidationRule2)
         '
         'TxtCustomer
         '
@@ -346,6 +331,16 @@ Partial Class frmDRR_details
         Me.TxtCustomer.Size = New System.Drawing.Size(345, 22)
         Me.TxtCustomer.StyleController = Me.LayoutControl1
         Me.TxtCustomer.TabIndex = 5
+        '
+        'TxtNoNpp
+        '
+        Me.TxtNoNpp.Location = New System.Drawing.Point(113, 12)
+        Me.TxtNoNpp.Name = "TxtNoNpp"
+        Me.TxtNoNpp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNoNpp.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.TxtNoNpp.Size = New System.Drawing.Size(148, 22)
+        Me.TxtNoNpp.StyleController = Me.LayoutControl1
+        Me.TxtNoNpp.TabIndex = 4
         '
         'Root
         '
@@ -445,6 +440,7 @@ Partial Class frmDRR_details
         Me.GalleryControl1.Gallery.ImageSize = New System.Drawing.Size(364, 400)
         Me.GalleryControl1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck
         Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside
+        Me.GalleryControl1.Gallery.ShowItemText = True
         Me.GalleryControl1.Location = New System.Drawing.Point(0, 148)
         Me.GalleryControl1.Name = "GalleryControl1"
         Me.GalleryControl1.Size = New System.Drawing.Size(1104, 408)
@@ -481,18 +477,18 @@ Partial Class frmDRR_details
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachImageToolStripMenuItem, Me.SuToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 80)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(168, 52)
         '
         'AttachImageToolStripMenuItem
         '
         Me.AttachImageToolStripMenuItem.Name = "AttachImageToolStripMenuItem"
-        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.AttachImageToolStripMenuItem.Text = "Attach Image"
         '
         'SuToolStripMenuItem
         '
         Me.SuToolStripMenuItem.Name = "SuToolStripMenuItem"
-        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.SuToolStripMenuItem.Text = "Release"
         '
         'frmDRR_details
@@ -523,18 +519,18 @@ Partial Class frmDRR_details
         CType(Me.TxtHarga3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.TxtNoDokumen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtForecast.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtMaspro.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtMaspro.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNoNpp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -580,7 +576,6 @@ Partial Class frmDRR_details
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents TxtNoNpp As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GalleryControl1 As DevExpress.XtraBars.Ribbon.GalleryControl
     Friend WithEvents GalleryControlClient1 As DevExpress.XtraBars.Ribbon.GalleryControlClient
     Friend WithEvents TxtMaspro As DevExpress.XtraEditors.DateEdit
@@ -599,4 +594,5 @@ Partial Class frmDRR_details
     Friend WithEvents BtnFunction As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents AttachImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SuToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TxtNoNpp As DevExpress.XtraEditors.ButtonEdit
 End Class
