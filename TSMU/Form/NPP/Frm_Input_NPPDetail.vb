@@ -254,6 +254,7 @@ Public Class Frm_Input_NPPDetail
                     .Item("Group ID") = GroupID
                     .Item("Seq") = Seq
                     .Item("Commit NPD") = False
+                    .Item("Active") = True
 
                 End With
                 DtTabale.Rows.Add(MyNewRow)

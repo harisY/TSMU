@@ -12160,6 +12160,18 @@ Partial Public Class dsLaporan
         
         Private columnGroupID As Global.System.Data.DataColumn
         
+        Private columnApprove_Dept_Head As Global.System.Data.DataColumn
+        
+        Private columnApprove_Dept_Head_Name As Global.System.Data.DataColumn
+        
+        Private columnApprove_Dept_Head_Date As Global.System.Data.DataColumn
+        
+        Private columnApprove_Div_Head As Global.System.Data.DataColumn
+        
+        Private columnApprove_Div_Head_Name As Global.System.Data.DataColumn
+        
+        Private columnApprove_Div_Head_Date As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -12628,6 +12640,54 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Dept_HeadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Dept_Head
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Dept_Head_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Dept_Head_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Dept_Head_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Dept_Head_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Div_HeadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Div_Head
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Div_Head_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Div_Head_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Approve_Div_Head_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApprove_Div_Head_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12718,9 +12778,15 @@ Partial Public Class dsLaporan
                     ByVal TargetDRR As Date,  _
                     ByVal TargetQuot As Date,  _
                     ByVal Revisi As String,  _
-                    ByVal GroupID As String) As NPPRow
+                    ByVal GroupID As String,  _
+                    ByVal Approve_Dept_Head As Boolean,  _
+                    ByVal Approve_Dept_Head_Name As String,  _
+                    ByVal Approve_Dept_Head_Date As Date,  _
+                    ByVal Approve_Div_Head As Boolean,  _
+                    ByVal Approve_Div_Head_Name As String,  _
+                    ByVal Approve_Div_Head_Date As Date) As NPPRow
             Dim rowNPPRow As NPPRow = CType(Me.NewRow,NPPRow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi, GroupID}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi, GroupID, Approve_Dept_Head, Approve_Dept_Head_Name, Approve_Dept_Head_Date, Approve_Div_Head, Approve_Div_Head_Name, Approve_Div_Head_Date}
             rowNPPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPPRow)
             Return rowNPPRow
@@ -12797,6 +12863,12 @@ Partial Public Class dsLaporan
             Me.columnTargetQuot = MyBase.Columns("TargetQuot")
             Me.columnRevisi = MyBase.Columns("Revisi")
             Me.columnGroupID = MyBase.Columns("GroupID")
+            Me.columnApprove_Dept_Head = MyBase.Columns("Approve_Dept_Head")
+            Me.columnApprove_Dept_Head_Name = MyBase.Columns("Approve_Dept_Head_Name")
+            Me.columnApprove_Dept_Head_Date = MyBase.Columns("Approve_Dept_Head_Date")
+            Me.columnApprove_Div_Head = MyBase.Columns("Approve_Div_Head")
+            Me.columnApprove_Div_Head_Name = MyBase.Columns("Approve_Div_Head_Name")
+            Me.columnApprove_Div_Head_Date = MyBase.Columns("Approve_Div_Head_Date")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12918,6 +12990,18 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnRevisi)
             Me.columnGroupID = New Global.System.Data.DataColumn("GroupID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGroupID)
+            Me.columnApprove_Dept_Head = New Global.System.Data.DataColumn("Approve_Dept_Head", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Dept_Head)
+            Me.columnApprove_Dept_Head_Name = New Global.System.Data.DataColumn("Approve_Dept_Head_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Dept_Head_Name)
+            Me.columnApprove_Dept_Head_Date = New Global.System.Data.DataColumn("Approve_Dept_Head_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Dept_Head_Date)
+            Me.columnApprove_Div_Head = New Global.System.Data.DataColumn("Approve_Div_Head", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Div_Head)
+            Me.columnApprove_Div_Head_Name = New Global.System.Data.DataColumn("Approve_Div_Head_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Div_Head_Name)
+            Me.columnApprove_Div_Head_Date = New Global.System.Data.DataColumn("Approve_Div_Head_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApprove_Div_Head_Date)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29897,6 +29981,96 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Dept_Head() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Dept_HeadColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Dept_Head' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Dept_HeadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Dept_Head_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Dept_Head_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Dept_Head_Name' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Dept_Head_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Dept_Head_Date() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Dept_Head_DateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Dept_Head_Date' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Dept_Head_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Div_Head() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Div_HeadColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Div_Head' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Div_HeadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Div_Head_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Div_Head_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Div_Head_Name' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Div_Head_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Approve_Div_Head_Date() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.Approve_Div_Head_DateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Approve_Div_Head_Date' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.Approve_Div_Head_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPP.No_NPPColumn)
         End Function
@@ -30541,6 +30715,78 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetGroupIDNull()
             Me(Me.tableNPP.GroupIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Dept_HeadNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Dept_HeadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Dept_HeadNull()
+            Me(Me.tableNPP.Approve_Dept_HeadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Dept_Head_NameNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Dept_Head_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Dept_Head_NameNull()
+            Me(Me.tableNPP.Approve_Dept_Head_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Dept_Head_DateNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Dept_Head_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Dept_Head_DateNull()
+            Me(Me.tableNPP.Approve_Dept_Head_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Div_HeadNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Div_HeadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Div_HeadNull()
+            Me(Me.tableNPP.Approve_Div_HeadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Div_Head_NameNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Div_Head_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Div_Head_NameNull()
+            Me(Me.tableNPP.Approve_Div_Head_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsApprove_Div_Head_DateNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.Approve_Div_Head_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetApprove_Div_Head_DateNull()
+            Me(Me.tableNPP.Approve_Div_Head_DateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

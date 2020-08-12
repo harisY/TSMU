@@ -11,42 +11,56 @@ Public Class Frm_NPP_Header
     Dim Active_Form As Integer = 0
 
 
-    Private Sub Frm_Npwo_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        dtGrid = New DataTable
-        dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
-                                                            New DataColumn("Issue Date", GetType(String)),
-                                                            New DataColumn("Model", GetType(String)),
-                                                            New DataColumn("Customer", GetType(String)),
-                                                            New DataColumn("Order Of Month", GetType(String)),
-                                                            New DataColumn("Approve", GetType(Boolean)),
-                                                            New DataColumn("Note", GetType(String)),
-                                                            New DataColumn("Rev", GetType(Int32))})
-        Grid.DataSource = dtGrid
-        Grid2.DataSource = dtGrid
+    Public Sub NPP_Head_LoadGrid(Active_Form_ As Integer)
 
-        bb_SetDisplayChangeConfirmation = False
-        LoadGrid()
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
 
-    End Sub
-    Private Sub LoadGrid()
         Try
+
+            Dim dt As New DataTable
+            Dim dt1 As New DataTable
+
+            If Active_Form_ = 1 Then
+                dtGrid = fc_Class.Get_NPP()
+                dt1 = fc_Class.Get_NPP2()
+                Grid.DataSource = dtGrid
+                Grid2.DataSource = dt1
+            ElseIf Active_Form_ = 2 Then
+                dt = fc_Class.Get_NPP_DeptHead()
+                dt1 = fc_Class.Get_NPP_DeptHead2()
+                Grid.DataSource = dt
+                Grid2.DataSource = dt1
+            ElseIf Active_Form_ = 3 Then
+                dt = fc_Class.Get_NPP_DivHead()
+                dt1 = fc_Class.Get_NPP_DivHead2()
+                Grid.DataSource = dt
+                Grid2.DataSource = dt1
+            End If
             Cursor.Current = Cursors.WaitCursor
-
-            'Dim dt As New DataTable
-            dtGrid = fc_Class.Get_NPP()
-
-            Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_NPP2()
-
-            Grid.DataSource = dtGrid
-            Grid2.DataSource = dt2
-            'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
         End Try
+
+
+        'Try
+        '    Cursor.Current = Cursors.WaitCursor
+
+        '    'Dim dt As New DataTable
+        '    dtGrid = fc_Class.Get_NPP()
+
+        '    Dim dt2 As New DataTable
+        '    dt2 = fc_Class.Get_NPP2()
+
+        '    Grid.DataSource = dtGrid
+        '    Grid2.DataSource = dt2
+        '    'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        '    Cursor.Current = Cursors.Default
+        'Catch ex As Exception
+        '    Cursor.Current = Cursors.Default
+        'End Try
+
+
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
@@ -60,7 +74,7 @@ Public Class Frm_NPP_Header
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form, Me.Name)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -69,7 +83,7 @@ Public Class Frm_NPP_Header
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
-        Call LoadGrid()
+        Call NPP_Head_LoadGrid(Active_Form)
     End Sub
 
     Public Overrides Sub Proc_Filter()
@@ -108,7 +122,7 @@ Public Class Frm_NPP_Header
             DtDelete = fc_Class.GetDelete(NP)
             If DtDelete.Rows.Count <= 0 Then
                 fc_Class.Delete(NP)
-                Call LoadGrid()
+                Call NPP_Head_LoadGrid(Active_Form)
                 Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 MessageBox.Show("Data Cannot be Deleted
@@ -198,5 +212,35 @@ Public Class Frm_NPP_Header
                 e.HighPriority = True
             End If
         End If
+    End Sub
+
+    Private Sub Frm_NPP_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim dtUser As New DataTable
+        dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
+        Active_Form = dtUser.Rows(0).Item("levelApprove")
+
+        dtGrid = New DataTable
+        dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
+                                                            New DataColumn("Issue Date", GetType(String)),
+                                                            New DataColumn("Model", GetType(String)),
+                                                            New DataColumn("Customer", GetType(String)),
+                                                            New DataColumn("Order Of Month", GetType(String)),
+                                                            New DataColumn("Approve", GetType(Boolean)),
+                                                            New DataColumn("Note", GetType(String)),
+                                                            New DataColumn("Rev", GetType(Int32))})
+        Grid.DataSource = dtGrid
+        Grid2.DataSource = dtGrid
+
+        bb_SetDisplayChangeConfirmation = False
+        Call NPP_Head_LoadGrid(Active_Form)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
+
+    End Sub
+
+    Private Sub Frm_NPP_Header_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+
+        Call NPP_Head_LoadGrid(Active_Form)
+
     End Sub
 End Class

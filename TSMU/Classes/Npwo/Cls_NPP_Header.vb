@@ -117,6 +117,23 @@
         End Try
     End Function
 
+    Public Function GetDataUSer(User As String, MenuCode As String) As DataTable
+        Try
+
+            'Dim ls_SP As String = "SELECT username,level from S_user
+            '                            where username = '" & User & "'"
+
+            Dim ls_SP As String = "SELECT M_Approve.username,M_Approve.levelApprove 
+                                    from S_user inner join M_Approve on S_user.UserName = M_Approve.UserName
+                                    where S_user.username = '" & User & "' and M_Approve.MenuCode = '" & MenuCode & "'"
+            Dim dtTable As New DataTable
+            dtTable = GetDataTableByCommand(ls_SP)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 
     Public Sub Delete(NPP_ As String)
         Try

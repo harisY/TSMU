@@ -189,7 +189,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.FieldName = "Approve"
+        Me.GridColumn6.FieldName = "Requester"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
@@ -213,7 +213,7 @@ Partial Class Frm_NPP_Header
         Me.ApproveDeptHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ApproveDeptHead.AppearanceHeader.Options.UseTextOptions = True
         Me.ApproveDeptHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ApproveDeptHead.FieldName = "Approve Dept Head"
+        Me.ApproveDeptHead.FieldName = "Dept Head"
         Me.ApproveDeptHead.Name = "ApproveDeptHead"
         Me.ApproveDeptHead.Visible = True
         Me.ApproveDeptHead.VisibleIndex = 6
@@ -225,7 +225,7 @@ Partial Class Frm_NPP_Header
         Me.ApproveDivHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ApproveDivHead.AppearanceHeader.Options.UseTextOptions = True
         Me.ApproveDivHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ApproveDivHead.FieldName = "Approve Div Head"
+        Me.ApproveDivHead.FieldName = "Div Head"
         Me.ApproveDivHead.Name = "ApproveDivHead"
         Me.ApproveDivHead.Visible = True
         Me.ApproveDivHead.VisibleIndex = 7
@@ -359,7 +359,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.FieldName = "Approve"
+        Me.GridColumn13.FieldName = "Requester"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
@@ -383,7 +383,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.FieldName = "Approve Dept Head"
+        Me.GridColumn15.FieldName = "Dept Head"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 6
@@ -395,7 +395,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn16.FieldName = "Approve Div Head"
+        Me.GridColumn16.FieldName = "Div Head"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 7

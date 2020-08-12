@@ -531,6 +531,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.Active_.FieldName = "Active"
         Me.Active_.Name = "Active_"
+        Me.Active_.OptionsColumn.AllowEdit = False
         Me.Active_.Visible = True
         Me.Active_.VisibleIndex = 25
         '

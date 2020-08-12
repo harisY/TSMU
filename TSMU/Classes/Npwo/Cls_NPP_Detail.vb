@@ -29,7 +29,7 @@ Public Class Cls_NPP_Detail
     Public Property H_CreatedDate As Date
     Public Property H_UpdatedBy As String
     Public Property H_UpdatedDate As Date
-    Public Property H_Approve As Boolean
+    Public Property H_Approve As Integer
     Public Property H_Approve_Date As Date
     Public Property H_Approve_Dept_Head_Name As String
     Public Property H_Approve_Dept_Head_Date As Date
@@ -53,6 +53,19 @@ Public Class Cls_NPP_Detail
     Public Property H_Submit_NPD As Boolean
     Public Property H_RevStatus As Boolean
     Public Property H_Status As String
+
+    Public Property TA_Username As String
+    Public Property TA_MenuCode As String
+    Public Property TA_DeptID As String
+    Public Property TA_NoTransaksi As String
+    Public Property TA_LevelApprove As Integer
+    Public Property TA_StatusApprove As String
+    Public Property TA_ApproveBy As String
+    Public Property TA_ApproveDAte As Date
+
+
+
+
     Public Property H_Note As String
 
 
@@ -118,6 +131,12 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[TargetDRR]
                   ,[NPP_Head].[TargetQuot]
                   ,[NPP_Head].[UpdatedBy] as [UpdateBy]
+                  ,[NPP_Head].[Approve_Dept_Head] 
+                  ,[NPP_Head].[Approve_Dept_Head_Name]
+                  ,[NPP_Head].[Approve_Dept_Head_Date]
+                  ,[NPP_Head].[Approve_Div_Head]
+                  ,[NPP_Head].[Approve_Div_Head_Name]
+                  ,[NPP_Head].[Approve_Div_Head_Date]
                   ,[NPP_Detail].[Part_No]
                   ,[NPP_Detail].[Part_Name]
                   ,[NPP_Detail].[Machine]
@@ -176,18 +195,58 @@ Public Class Cls_NPP_Detail
 
 
     Public Sub UpdateApprove(ByVal _FsCode As String)
+
+
         Try
-            Dim ls_SP As String = " " & vbCrLf &
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE NPP_Head" & vbCrLf &
                                     "SET [Approve] = '" & H_Approve & "'
-                                    ,Approve_Date = '" & H_Approve_Date & "'
                                     ,Note = '" & H_Note & "'
                                     ,Status = '" & H_Status & "' WHERE [No_NPP] = '" & _FsCode & "'"
-            MainModul.ExecQuery(ls_SP)
-        Catch ex As Exception
-            Throw ex
-        End Try
+                        MainModul.ExecQuery(ls_SP)
 
+                        Dim ls_SP1 As String = "INSERT INTO [T_ApproveHistory]
+                                               ([UserName]
+                                               ,[MenuCode]
+                                               ,[DeptID]
+                                               ,[NoTransaksi]
+                                               ,[LevelApproved]
+                                               ,[StatusApproved]
+                                               ,[ApprovedBy]
+                                               ,[ApprovedDate])
+                                         VALUES
+                                               ('" & TA_Username & "'
+                                               ,'" & TA_MenuCode & "'
+                                               ,'" & TA_DeptID & "'
+                                               ,'" & TA_NoTransaksi & "'
+                                               ,'" & TA_LevelApprove & "'
+                                               ,'" & TA_StatusApprove & "'
+                                               ,'" & TA_ApproveBy & "'
+                                               ,'" & Date.Now & "')"
+                        MainModul.ExecQuery(ls_SP1)
+
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
     Public Sub Update_Seq_NPPDetail(ByVal _Seq As Integer)
         Try
@@ -269,7 +328,7 @@ Public Class Cls_NPP_Detail
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        InsertRevisi()
+                        'InsertRevisi()
                         Insert_NPPHeader(H_No_NPP,
                                             H_Issue_Date,
                                             H_Model_Name,
@@ -297,7 +356,8 @@ Public Class Cls_NPP_Detail
                                             H_A4,
                                             gh_Common.Username,
                                             Date.Now,
-                                            H_Status)
+                                            H_Status,
+                                            H_Approve)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -386,7 +446,8 @@ Public Class Cls_NPP_Detail
                                         _H_A4 As String,
                                         _H_UpdateBy As String,
                                         _H_UpdateDate As Date,
-                                        _H_Status As String)
+                                        _H_Status As String,
+                                        _H_Approve As Integer)
 
         Dim result As Integer = 0
 
@@ -413,7 +474,7 @@ Public Class Cls_NPP_Detail
 
 
             Dim query As String = "[NPP_Insert_NPP_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(27) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(28) {}
             pParam(0) = New SqlClient.SqlParameter("@No_NPP", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -442,6 +503,7 @@ Public Class Cls_NPP_Detail
             pParam(25) = New SqlClient.SqlParameter("@UpdateBy", SqlDbType.VarChar)
             pParam(26) = New SqlClient.SqlParameter("@UpdateDate", SqlDbType.Date)
             pParam(27) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(28) = New SqlClient.SqlParameter("@Approve", SqlDbType.Int)
 
 
             pParam(0).Value = _H_No_Npwo
@@ -472,6 +534,7 @@ Public Class Cls_NPP_Detail
             pParam(25).Value = _H_UpdateBy
             pParam(26).Value = _H_UpdateDate
             pParam(27).Value = _H_Status
+            pParam(28).Value = _H_Approve
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -925,17 +988,10 @@ Public Class Cls_NPP_Detail
                     H_TargetDRR = Trim(.Item("TargetDRR") & "")
                     H_TargetQuot = Trim(.Item("TargetQuot") & "")
                     H_DRR = Trim(.Item("DRR") & "")
-                    H_Approve = Trim(.Item("Approve") & "")
-                    H_Approve_Date = IIf(.Item("Approve_Date") Is DBNull.Value, Nothing, .Item("Approve_Date"))
-                    H_Approve_Dept_Head = IIf(.Item("Approve_Dept_Head") Is DBNull.Value, Nothing, .Item("Approve_Dept_Head"))
-                    H_Approve_Dept_Head_Date = IIf(.Item("Approve_Dept_Head_Date") Is DBNull.Value, Nothing, .Item("Approve_Dept_Head_Date"))
-                    H_Approve_Dept_Head_Name = Trim(.Item("Approve_Dept_Head_Name") & "")
-                    H_Approve_Div_Head = Trim(.Item("Approve_Div_Head") & "")
-                    H_Approve_Div_Head_Date = IIf(.Item("Approve_Div_Head_Date") Is DBNull.Value, Nothing, .Item("Approve_Div_Head_Date"))
-                    H_Approve_Div_Head_Name = Trim(.Item("Approve_Div_Head_Name") & "")
                     H_Submit_NPD = IIf(.Item("Submit_NPD_Acces") Is DBNull.Value, Nothing, .Item("Submit_NPD_Acces"))
                     H_RevStatus = Trim(.Item("RevStatus") & "")
                     H_Status = Trim(.Item("Status") & "")
+                    H_Approve = Trim(.Item("Approve") & "")
 
                 End With
             Else
