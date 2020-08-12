@@ -45,6 +45,9 @@ Public Class frmDRR_details
     Dim ImgToDelete As List(Of ImageModel)
     ReadOnly _token As String = "1342738375:AAHvpALzfvSiB-OzihA9-cgtdQFiAqguXcY"
     Dim bott As Telegram.Bot.TelegramBotClient
+    Dim _Level As Integer
+    Dim ObjApprove As ApproveHistoryModel
+    Dim _serviceGlobal As GlobalService
     Public Sub New()
 
         ' This call is required by the designer.
@@ -57,7 +60,7 @@ Public Class frmDRR_details
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
+                   ByRef _Grid As GridControl, Level As Integer)
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
@@ -74,11 +77,11 @@ Public Class frmDRR_details
         dragDropHelper.EnableDragDrop()
         IsTrue = True
         Initializing = True
-
+        _Level = Level
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, If(_Level = 1, False, True), False)
         Call InitialSetForm()
         AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
@@ -416,7 +419,6 @@ Public Class frmDRR_details
                 edit.SelectionStart = 1
                 edit.SelectionLength = 0
 
-
             Else
                 SetGridValue(sender)
 
@@ -439,7 +441,34 @@ Public Class frmDRR_details
         LoadDetail()
         Initializing = False
     End Sub
+    Public Overrides Sub Proc_Approve()
+        Try
+            ObjApprove = New ApproveHistoryModel With {
+                .UserName = gh_Common.Username,
+                .MenuCode = Name,
+                .DeptID = gh_Common.GroupID,
+                .NoTransaksi = fs_Code,
+                .LevelApproved = _Level,
+                .ApprovedBy = gh_Common.Username
+                }
+            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            _serviceGlobal = New GlobalService
 
+            If result = DialogResult.OK Then
+                If ObjApprove IsNot Nothing Then
+                    _serviceGlobal.Approve(True, ObjApprove)
+                    ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+                End If
+            ElseIf result = DialogResult.No Then
+                If ObjApprove IsNot Nothing Then
+                    _serviceGlobal.Approve(False, ObjApprove)
+                    ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+                End If
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
@@ -536,9 +565,9 @@ Public Class frmDRR_details
                 GridDtl.DataSource = _service.GetAll()
 
                 IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
-                Me.Hide()
+                Hide()
             Else
                 _service.Update(ObjHeader)
                 SaveDeleteImage()

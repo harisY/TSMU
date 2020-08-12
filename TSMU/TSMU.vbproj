@@ -2134,6 +2134,7 @@
     <Compile Include="Menu\FormTypes.vb" />
     <Compile Include="Menu\IUserInterface.vb" />
     <Compile Include="Menu\MenuItem.vb" />
+    <Compile Include="Models\ApproveHistoryModel.vb" />
     <Compile Include="Models\ar2_detail_models.vb" />
     <Compile Include="Models\AR2_Header_Models.vb" />
     <Compile Include="Models\ARTaxHeaderModel.vb" />
@@ -2513,6 +2514,7 @@
     <Compile Include="Report\Testing.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
