@@ -1560,6 +1560,10 @@ Public Class Frm_NPP_Detail
 
     Private Sub B_Approve_Click(sender As Object, e As EventArgs) Handles B_Approve.Click
 
+        Dim dtAprovel As New DataTable
+
+
+
         If Active_Form = 2 Then
             If fc_Class.H_Approve = 1 Then
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
@@ -1675,7 +1679,6 @@ Public Class Frm_NPP_Detail
                             .TA_ApproveDAte = Date.Now
                         End With
 
-
                         fc_Class.UpdateApprove(fs_Code)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
@@ -1715,7 +1718,6 @@ Public Class Frm_NPP_Detail
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
                         End With
-
                         fc_Class.UpdateApprove(fs_Code)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()

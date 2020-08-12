@@ -1098,7 +1098,7 @@ Public Class Cls_NPP_Detail
             Dim query As String = "[NPWO_Get_Customer]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP_Solomon(query)
+            dt = GetDataTableByCommand_SP(query)
             Return dt
         Catch ex As Exception
             Throw
