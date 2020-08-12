@@ -208,6 +208,24 @@ Public Class DRRService
             Throw ex
         End Try
     End Function
+    Public Function GetEmailByNPP(NPP As String) As String
+        Dim _result As String = String.Empty
+        Try
+            Dim Sql As String = "NPP_Head_getCreatedBy"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@NoNPP", SqlDbType.VarChar)
+            pParam(0).Value = NPP
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = If(IsDBNull(dt.Rows(0)(0)), "", dt.Rows(0)(0).ToString())
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub DeleteHeader(Id As Integer)
         Try
             Dim Sql As String = "DRRHeader_Delete"

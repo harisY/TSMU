@@ -53,6 +53,8 @@ Partial Class FrmSystem_UserSetupNew
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me._txtEmail = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridUser, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,10 +89,13 @@ Partial Class FrmSystem_UserSetupNew
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._txtEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me._txtEmail)
         Me.LayoutControl1.Controls.Add(Me.LabelControl1)
         Me.LayoutControl1.Controls.Add(Me.GridUser)
         Me.LayoutControl1.Controls.Add(Me.GridAkses)
@@ -207,9 +212,9 @@ Partial Class FrmSystem_UserSetupNew
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(856, 38)
+        Me.TxtRemark.Location = New System.Drawing.Point(856, 64)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(236, 74)
+        Me.TxtRemark.Size = New System.Drawing.Size(236, 48)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 16
         '
@@ -271,7 +276,7 @@ Partial Class FrmSystem_UserSetupNew
         '
         '_CmbSite
         '
-        Me._CmbSite.Location = New System.Drawing.Point(507, 90)
+        Me._CmbSite.Location = New System.Drawing.Point(507, 88)
         Me._CmbSite.Name = "_CmbSite"
         Me._CmbSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._CmbSite.Properties.Items.AddRange(New Object() {"ALL", "CKR A", "CKR B", "TNG", "TSC3"})
@@ -283,7 +288,7 @@ Partial Class FrmSystem_UserSetupNew
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1104, 733)
         Me.Root.TextVisible = False
@@ -356,7 +361,7 @@ Partial Class FrmSystem_UserSetupNew
         Me.LayoutControlItem8.Control = Me.ChAdmin
         Me.LayoutControlItem8.Location = New System.Drawing.Point(498, 52)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(115, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(115, 24)
         Me.LayoutControlItem8.Text = "User Status"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
@@ -373,9 +378,9 @@ Partial Class FrmSystem_UserSetupNew
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me._CmbSite
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(384, 78)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(384, 76)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(349, 26)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(349, 28)
         Me.LayoutControlItem10.Text = "Site"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(108, 16)
         '
@@ -391,9 +396,9 @@ Partial Class FrmSystem_UserSetupNew
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.TxtRemark
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(733, 26)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(733, 52)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(351, 78)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(351, 52)
         Me.LayoutControlItem12.Text = "Remark"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(108, 16)
         '
@@ -411,7 +416,7 @@ Partial Class FrmSystem_UserSetupNew
         Me.LayoutControlItem14.Control = Me.ChActive
         Me.LayoutControlItem14.Location = New System.Drawing.Point(613, 52)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(120, 26)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(120, 24)
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
         '
@@ -420,9 +425,26 @@ Partial Class FrmSystem_UserSetupNew
         Me.LayoutControlItem15.Control = Me.LabelControl1
         Me.LayoutControlItem15.Location = New System.Drawing.Point(384, 52)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(114, 26)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(114, 24)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
+        '
+        '_txtEmail
+        '
+        Me._txtEmail.Location = New System.Drawing.Point(856, 38)
+        Me._txtEmail.Name = "_txtEmail"
+        Me._txtEmail.Size = New System.Drawing.Size(236, 22)
+        Me._txtEmail.StyleController = Me.LayoutControl1
+        Me._txtEmail.TabIndex = 20
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me._txtEmail
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(733, 26)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(351, 26)
+        Me.LayoutControlItem16.Text = "Email"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(108, 16)
         '
         'FrmSystem_UserSetupNew
         '
@@ -467,6 +489,8 @@ Partial Class FrmSystem_UserSetupNew
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._txtEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -506,4 +530,6 @@ Partial Class FrmSystem_UserSetupNew
     Friend WithEvents CboUsers As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cbGroupUser As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents _CmbSite As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents _txtEmail As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
 End Class

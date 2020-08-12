@@ -711,8 +711,7 @@ Public Class frmDRR_details
                 If fs_Code <> 0 Then
                     _service.Release(fs_Code)
                     SendEmail(TxtNoNpp.Text)
-                    Await sendMessage("-441724240", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
-                    'Await sendMessage("1261258538", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
+                    Await sendMessage("-441724240", "DRR untuk Npp : ''" & TxtNoNpp.EditValue & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.")
                     ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
                 Else
                     ShowMessage("DRR yang baru di buat tidak bisa di Release, Save dan buka lagi DRR ini untuk di Release !", MessageTypeEnum.NormalMessage)
@@ -724,8 +723,9 @@ Public Class frmDRR_details
     End Sub
     Private Sub SendEmail(NoNpp As String)
         Try
-            Dim email As String = String.Empty
-            email = "haris@tsmu.co.id"
+            _service = New DRRService
+            Dim email As String = _service.GetEmailByNPP(NoNpp)
+            'email = "haris@tsmu.co.id"
             Dim mail As MailMessage = New MailMessage()
             mail.IsBodyHtml = True
             mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
@@ -741,7 +741,7 @@ Public Class frmDRR_details
             Dim emailSubject As String = "DRR"
             mail.Subject = emailSubject
             mail.Body =
-                "<p>DRR untuk Npp : " & NoNpp & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.</p>"
+                "<p>DRR untuk Npp : ''" & NoNpp & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.</p>"
             mail.IsBodyHtml = True
             mail.CC.Add("log@tsmu.co.id")
             smpt.Send(mail)
