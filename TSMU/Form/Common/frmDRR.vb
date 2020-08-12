@@ -12,6 +12,7 @@ Public Class frmDRR
     Dim ff_Detail As frmDRR_details
     Dim dtGrid As DataTable
     Dim _Service As DRRService
+    Dim _ServiceGlobal As GlobalService
     Dim ObjHeader As DRRModel
     Dim ObjDetail As DRRDetail
 
@@ -110,6 +111,16 @@ Public Class frmDRR
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
+    Private Function GetLevel() As Integer
+        Dim _level As Integer = 0
+        Try
+            _ServiceGlobal = _ServiceGlobal
+            _level = _ServiceGlobal.GetLevel(Me)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Function
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
