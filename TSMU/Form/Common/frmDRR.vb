@@ -115,8 +115,9 @@ Public Class frmDRR
     Private Function GetLevel() As Integer
         Dim _level As Integer = 0
         Try
-            _ServiceGlobal = _ServiceGlobal
+            _ServiceGlobal = New GlobalService
             _level = _ServiceGlobal.GetLevel(Me)
+            Return _level
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -128,12 +129,13 @@ Public Class frmDRR
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, GetLevel)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
-    Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
+    'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
+    Dim _path As String = "D:\TOOLS\Sketch\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()

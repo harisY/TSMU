@@ -356,7 +356,7 @@ Public Class DRRService
                 End Using
             End Using
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
     Public Sub Update(Header As DRRModel)
@@ -384,7 +384,7 @@ Public Class DRRService
                 End Using
             End Using
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
     Public Sub Delete(Id As Integer)
@@ -408,7 +408,7 @@ Public Class DRRService
                 End Using
             End Using
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
 #End Region
