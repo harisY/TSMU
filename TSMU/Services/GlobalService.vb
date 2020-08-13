@@ -21,7 +21,7 @@
         End Try
     End Function
 
-    Public Sub Approve(isApprove As Boolean, Model As ApproveHistoryModel)
+    Public Sub Approve(Model As ApproveHistoryModel, Status As String)
         Try
 
             Dim Sql As String = "T_ApproveHistory_Insert"
@@ -37,14 +37,10 @@
             pParam(4) = New SqlClient.SqlParameter("@LevelApprove", SqlDbType.Int)
             pParam(4).Value = Model.LevelApproved
             pParam(5) = New SqlClient.SqlParameter("@StatusApproved", SqlDbType.VarChar)
-            If isApprove Then
-                pParam(5).Value = "Approved"
-            Else
-                pParam(5).Value = "Rejected"
-            End If
+            pParam(5).Value = Status
             pParam(6) = New SqlClient.SqlParameter("@ApprovedBy", SqlDbType.VarChar)
             pParam(6).Value = gh_Common.Username
-            Dim dt As New DataTable
+            ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try

@@ -38,7 +38,8 @@ Public Class frmDRR_details
     Dim TxtPartName As RepositoryItemTextEdit = New RepositoryItemTextEdit()
     Dim BtnPartName As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim _inplaceEditors As RepositoryItem()
-    Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
+    'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
+    Dim _path As String = "D:\TOOLS\Sketch\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
@@ -455,15 +456,20 @@ Public Class frmDRR_details
             _serviceGlobal = New GlobalService
 
             If result = DialogResult.OK Then
-                If ObjApprove IsNot Nothing Then
-                    _serviceGlobal.Approve(True, ObjApprove)
-                    ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
-                End If
+                _serviceGlobal.Approve(ObjApprove, "Approved")
+
+                'If _Level Then
+
+                'End If
+                '_service = New DRRService
+                '    _service.Release(fs_Code)
+                '    SendEmail(TxtNoNpp.Text)
+                '    Await sendMessage("-441724240", "DRR untuk Npp : ''" & TxtNoNpp.EditValue & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.")
+
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
             ElseIf result = DialogResult.No Then
-                If ObjApprove IsNot Nothing Then
-                    _serviceGlobal.Approve(False, ObjApprove)
-                    ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
-                End If
+                _serviceGlobal.Approve(ObjApprove, "Rejected")
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -733,18 +739,29 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Async Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
+    Private Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
         Try
-            If XtraMessageBox.Show("DRR yang sudah di Release tidak bisa di edit atau di hapus, Relase ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            If XtraMessageBox.Show("Release ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+
                 _service = New DRRService
-                If fs_Code <> 0 Then
-                    _service.Release(fs_Code)
-                    SendEmail(TxtNoNpp.Text)
-                    Await sendMessage("-441724240", "DRR untuk Npp : ''" & TxtNoNpp.EditValue & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.")
-                    ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
-                Else
-                    ShowMessage("DRR yang baru di buat tidak bisa di Release, Save dan buka lagi DRR ini untuk di Release !", MessageTypeEnum.NormalMessage)
+                _serviceGlobal = New GlobalService
+                Dim _isRelease As Boolean = _service.IsRelease(fs_Code)
+                If _isRelease Then
+                    Throw New Exception("DRR sudah di release !")
                 End If
+                ObjApprove = New ApproveHistoryModel With {
+                   .UserName = gh_Common.Username,
+                   .MenuCode = FrmParent.Name,
+                   .DeptID = gh_Common.GroupID,
+                   .NoTransaksi = fs_Code,
+                   .LevelApproved = _Level,
+                   .ApprovedBy = gh_Common.Username
+                }
+
+                If ObjApprove IsNot Nothing Then
+                    _serviceGlobal.Approve(ObjApprove, "Released")
+                End If
+                ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
