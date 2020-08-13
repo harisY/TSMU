@@ -38,13 +38,17 @@ Public Class frmDRR_details
     Dim TxtPartName As RepositoryItemTextEdit = New RepositoryItemTextEdit()
     Dim BtnPartName As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim _inplaceEditors As RepositoryItem()
-    Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
+    'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
+    Dim _path As String = "D:\TOOLS\Sketch\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
     Dim ImgToDelete As List(Of ImageModel)
     ReadOnly _token As String = "1342738375:AAHvpALzfvSiB-OzihA9-cgtdQFiAqguXcY"
     Dim bott As Telegram.Bot.TelegramBotClient
+    Dim _Level As Integer
+    Dim ObjApprove As ApproveHistoryModel
+    Dim _serviceGlobal As GlobalService
     Public Sub New()
 
         ' This call is required by the designer.
@@ -57,7 +61,7 @@ Public Class frmDRR_details
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
+                   ByRef _Grid As GridControl, Level As Integer)
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
@@ -74,11 +78,11 @@ Public Class frmDRR_details
         dragDropHelper.EnableDragDrop()
         IsTrue = True
         Initializing = True
-
+        _Level = Level
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, If(_Level = 1, False, True), False)
         Call InitialSetForm()
         AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
@@ -416,7 +420,6 @@ Public Class frmDRR_details
                 edit.SelectionStart = 1
                 edit.SelectionLength = 0
 
-
             Else
                 SetGridValue(sender)
 
@@ -439,7 +442,39 @@ Public Class frmDRR_details
         LoadDetail()
         Initializing = False
     End Sub
+    Public Overrides Sub Proc_Approve()
+        Try
+            ObjApprove = New ApproveHistoryModel With {
+                .UserName = gh_Common.Username,
+                .MenuCode = Name,
+                .DeptID = gh_Common.GroupID,
+                .NoTransaksi = fs_Code,
+                .LevelApproved = _Level,
+                .ApprovedBy = gh_Common.Username
+                }
+            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            _serviceGlobal = New GlobalService
 
+            If result = DialogResult.OK Then
+                _serviceGlobal.Approve(ObjApprove, "Approved")
+
+                'If _Level Then
+
+                'End If
+                '_service = New DRRService
+                '    _service.Release(fs_Code)
+                '    SendEmail(TxtNoNpp.Text)
+                '    Await sendMessage("-441724240", "DRR untuk Npp : ''" & TxtNoNpp.EditValue & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.")
+
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+            ElseIf result = DialogResult.No Then
+                _serviceGlobal.Approve(ObjApprove, "Rejected")
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
@@ -536,9 +571,9 @@ Public Class frmDRR_details
                 GridDtl.DataSource = _service.GetAll()
 
                 IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
-                Me.Hide()
+                Hide()
             Else
                 _service.Update(ObjHeader)
                 SaveDeleteImage()
@@ -704,19 +739,29 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Async Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
+    Private Sub SuToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SuToolStripMenuItem.Click
         Try
-            If XtraMessageBox.Show("DRR yang sudah di Release tidak bisa di edit atau di hapus, Relase ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            If XtraMessageBox.Show("Release ?", "Confirmation", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+
                 _service = New DRRService
-                If fs_Code <> 0 Then
-                    _service.Release(fs_Code)
-                    SendEmail(TxtNoNpp.Text)
-                    'Await sendMessage("-441724240", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
-                    'Await sendMessage("1261258538", "DRR untuk Npp : " & TxtNoNpp.EditValue & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.")
-                    ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
-                Else
-                    ShowMessage("DRR yang baru di buat tidak bisa di Release, Save dan buka lagi DRR ini untuk di Release !", MessageTypeEnum.NormalMessage)
+                _serviceGlobal = New GlobalService
+                Dim _isRelease As Boolean = _service.IsRelease(fs_Code)
+                If _isRelease Then
+                    Throw New Exception("DRR sudah di release !")
                 End If
+                ObjApprove = New ApproveHistoryModel With {
+                   .UserName = gh_Common.Username,
+                   .MenuCode = FrmParent.Name,
+                   .DeptID = gh_Common.GroupID,
+                   .NoTransaksi = fs_Code,
+                   .LevelApproved = _Level,
+                   .ApprovedBy = gh_Common.Username
+                }
+
+                If ObjApprove IsNot Nothing Then
+                    _serviceGlobal.Approve(ObjApprove, "Released")
+                End If
+                ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -724,8 +769,9 @@ Public Class frmDRR_details
     End Sub
     Private Sub SendEmail(NoNpp As String)
         Try
-            Dim email As String = String.Empty
-            email = "miftah-mis@tsmu.co.id"
+            _service = New DRRService
+            Dim email As String = _service.GetEmailByNPP(NoNpp)
+            'email = "haris@tsmu.co.id"
             Dim mail As MailMessage = New MailMessage()
             mail.IsBodyHtml = True
             mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
@@ -741,7 +787,7 @@ Public Class frmDRR_details
             Dim emailSubject As String = "DRR"
             mail.Subject = emailSubject
             mail.Body =
-                "<p>DRR untuk Npp : " & NoNpp & " dan Part Name : " & BandedGridView1.GetRowCellValue(0, "PartName") & " sudah di buat.</p>"
+                "<p>DRR untuk Npp : ''" & NoNpp & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.</p>"
             mail.IsBodyHtml = True
             mail.CC.Add("log@tsmu.co.id")
             smpt.Send(mail)
@@ -752,6 +798,8 @@ Public Class frmDRR_details
 
     Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As Task
         Try
+            ServicePointManager.Expect100Continue = True
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim bot = New Telegram.Bot.TelegramBotClient(_token)
             Await bot.SendTextMessageAsync(destID, text)
         Catch ex As Exception

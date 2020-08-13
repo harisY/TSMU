@@ -477,18 +477,18 @@ Partial Class frmDRR_details
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachImageToolStripMenuItem, Me.SuToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(168, 52)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 80)
         '
         'AttachImageToolStripMenuItem
         '
         Me.AttachImageToolStripMenuItem.Name = "AttachImageToolStripMenuItem"
-        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
         Me.AttachImageToolStripMenuItem.Text = "Attach Image"
         '
         'SuToolStripMenuItem
         '
         Me.SuToolStripMenuItem.Name = "SuToolStripMenuItem"
-        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
         Me.SuToolStripMenuItem.Text = "Release"
         '
         'frmDRR_details
