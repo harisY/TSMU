@@ -174,7 +174,7 @@ Public Class frmDRR
                     End If
                 End If
             Next
-            _Service.Delete(ID)
+            _Service.Delete(ID, Me)
 
             ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()

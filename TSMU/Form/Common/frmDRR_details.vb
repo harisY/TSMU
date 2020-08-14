@@ -30,6 +30,7 @@ Public Class frmDRR_details
 
     Dim CmbLevel As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim CmbReference As RepositoryItemComboBox = New RepositoryItemComboBox()
+    Dim CmbSurface As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim LookPartName As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit()
     Dim CmnProses As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim TxtQty As RepositoryItemSpinEdit = New RepositoryItemSpinEdit()
@@ -83,12 +84,13 @@ Public Class frmDRR_details
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, If(_Level = 1, False, True), False)
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True, False)
+        Call Proc_EnableButtons(False, If(_Level = 0, False, True), False, True, False, False, False, False, False, False, True, False)
         Call InitialSetForm()
         AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler CmnProses.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler CmbReference.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler CmbSurface.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler TxtPartName.EditValueChanged, AddressOf OnEditValueChanged
         'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
         'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
@@ -307,6 +309,8 @@ Public Class frmDRR_details
             CmnProses.Items.AddRange(New String() {"Inj", "Painting", "Chrome", "Assy", "Ultrasonic", "Vibration"})
             CmbReference.Items.Clear()
             CmbReference.Items.AddRange(New String() {"DRAWING", "CAD DATA", "SKETCH", "SAMPLE"})
+            CmbSurface.Items.Clear()
+            CmbSurface.Items.AddRange(New String() {"GRAIN", "PAINTING", "RAW MATERIAL", "CHROME/PLATING"})
 
 
             With BandedGridView1
@@ -317,12 +321,13 @@ Public Class frmDRR_details
                 '.Columns("Tonage").ColumnEdit = TxtTonase
                 .Columns("Proses").ColumnEdit = CmnProses
                 .Columns("Reference").ColumnEdit = CmbReference
+                .Columns("SurfaceTreatment").ColumnEdit = CmbSurface
             End With
             With Grid.RepositoryItems
                 .Add(CmbLevel)
                 .Add(BtnPartName)
                 '.Add(TxtQty)
-                '.Add(TxtTonase)
+                .Add(CmbSurface)
                 .Add(CmnProses)
                 .Add(CmbReference)
             End With
@@ -345,7 +350,7 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("PartName", "")
                     .SetFocusedRowCellValue("Seq", 0)
                     .SetFocusedRowCellValue("PartNo", "")
-                    .SetFocusedRowCellValue("Proses", "INJ")
+                    .SetFocusedRowCellValue("Proses", "Inj")
                     .SetFocusedRowCellValue("Qty", 0)
                     .SetFocusedRowCellValue("Cavity", "")
                     .SetFocusedRowCellValue("Tonage", "0")
@@ -355,7 +360,7 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("Long", 0)
                     .SetFocusedRowCellValue("Width", 0)
                     .SetFocusedRowCellValue("Height", 0)
-                    .SetFocusedRowCellValue("SurfaceTreatment", "")
+                    .SetFocusedRowCellValue("SurfaceTreatment", "GRAIN")
                     .SetFocusedRowCellValue("C/T", 0)
                     .SetFocusedRowCellValue("Thickn", 0)
                     .SetFocusedRowCellValue("Reference", "DRAWING")
@@ -467,7 +472,7 @@ Public Class frmDRR_details
                 Hide()
 
             ElseIf result = DialogResult.No Then
-                _serviceGlobal.Approve(ObjApprove, "Rejected")
+                _service.Reject(ObjApprove)
                 FrmParent.tsBtn_refresh.PerformClick()
 
                 IsClosed = True
@@ -763,10 +768,12 @@ Public Class frmDRR_details
                    .ApprovedBy = gh_Common.Username
                 }
 
-                If ObjApprove IsNot Nothing Then
-                    _serviceGlobal.Approve(ObjApprove, "Released")
-                End If
+                _serviceGlobal.Approve(ObjApprove, "Released")
+                FrmParent.tsBtn_refresh.PerformClick()
+                IsClosed = True
+
                 ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
+                Hide()
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

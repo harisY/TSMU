@@ -446,7 +446,7 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
-    Public Sub Delete(Id As Integer)
+    Public Sub Delete(Id As Integer, Frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -458,6 +458,9 @@ Public Class DRRService
                         DeleteHeader(Id)
                         DeleteDetail(Id)
 
+                        _globalService = New GlobalService
+
+                        _globalService.Delete(Id, Frm)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -489,6 +492,33 @@ Public Class DRRService
                             SendEmail(NoNPP, PartName)
                             Await sendMessage("-441724240", "DRR untuk Npp : ''" & NoNPP & "'' dan Part Name : ''" & PartName & "'' sudah di buat.")
                         End If
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Reject(AppModel As ApproveHistoryModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        _globalService = New GlobalService
+                        _globalService.Approve(AppModel, "Rejected")
+                        _globalService.UpdateFlag(AppModel)
+
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()

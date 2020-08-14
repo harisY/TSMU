@@ -62,4 +62,32 @@
             Throw ex
         End Try
     End Sub
+    Public Sub UpdateFlag(Model As ApproveHistoryModel)
+        Try
+
+            Dim Sql As String = "T_ApproveHistory_UpdateFlag"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@notransaksi", SqlDbType.VarChar)
+            pParam(0).Value = Model.NoTransaksi
+            pParam(1) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(1).Value = Model.MenuCode
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub Delete(Id As String, Frm As Form)
+        Try
+
+            Dim Sql As String = "T_ApproveHistory_Delete"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@notransaksi", SqlDbType.VarChar)
+            pParam(0).Value = Id
+            pParam(1) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(1).Value = Frm.Name
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
