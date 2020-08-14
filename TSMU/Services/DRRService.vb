@@ -1,8 +1,12 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Net
+Imports System.Net.Mail
 
 Public Class DRRService
     Dim _globalService As GlobalService
     Public Property DetailModel() As New Collection(Of DRRDetail)
+    ReadOnly _token As String = "1342738375:AAHvpALzfvSiB-OzihA9-cgtdQFiAqguXcY"
+
     'Public Property DetailModel() As New Collection(Of DRRModel)
     'Public Property _DrrModel As New DRRModel
 #Region "HEADER"
@@ -11,6 +15,23 @@ Public Class DRRService
             Dim Sql As String = "DRRHeader_GetAllData"
             Dim dt As New DataTable
             dt = GetDataTableSP(Sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetData(Frm As Form, Level As Integer) As DataTable
+        Try
+            Dim Sql As String = "DRRHeader_GetData"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(0).Value = Frm.Name
+            pParam(1) = New SqlClient.SqlParameter("@username", SqlDbType.VarChar)
+            pParam(1).Value = gh_Common.Username
+            pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            pParam(2).Value = Level
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -328,6 +349,44 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
+    Private Sub SendEmail(NoNpp As String, PartName As String)
+        Try
+            Dim email As String = GetEmailByNPP(NoNpp)
+            'email = "haris@tsmu.co.id"
+            Dim mail As MailMessage = New MailMessage()
+            mail.IsBodyHtml = True
+            mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
+            mail.[To].Add(New MailAddress(email))
+            Dim smpt = New SmtpClient With {
+                .Host = "mail.tsmu.co.id",
+                .Port = 25,
+                .EnableSsl = False,
+                .DeliveryMethod = SmtpDeliveryMethod.Network,
+                .Credentials = New NetworkCredential("drr_info@tsmu.co.id", "Rg,Dvs?9]!r9"),
+                .Timeout = 20000
+            }
+            Dim emailSubject As String = "DRR"
+            mail.Subject = emailSubject
+            mail.Body =
+                "<p>DRR untuk Npp : ''" & NoNpp & "'' dan Part Name : ''" & PartName & "'' sudah di buat.</p>"
+            mail.IsBodyHtml = True
+            mail.CC.Add("log@tsmu.co.id")
+            smpt.Send(mail)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As Task
+        Try
+            ServicePointManager.Expect100Continue = True
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            Dim bot = New Telegram.Bot.TelegramBotClient(_token)
+            Await bot.SendTextMessageAsync(destID, text)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 #Region "TRANSANTION"
@@ -387,7 +446,7 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
-    Public Sub Delete(Id As Integer)
+    Public Sub Delete(Id As Integer, Frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -399,9 +458,71 @@ Public Class DRRService
                         DeleteHeader(Id)
                         DeleteDetail(Id)
 
+                        _globalService = New GlobalService
+
+                        _globalService.Delete(Id, Frm)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Async Sub Approve(AppModel As ApproveHistoryModel, Frm As Form, Level As Integer, IDDrr As Integer, NoNPP As String, PartName As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        _globalService = New GlobalService
+                        _globalService.Approve(AppModel, "Approved")
+
+                        Dim MaxApprove As Integer = _globalService.GetMaxLevel(Frm)
+                        If MaxApprove = Level Then
+                            Release(IDDrr)
+                            SendEmail(NoNPP, PartName)
+                            Await sendMessage("-441724240", "DRR untuk Npp : ''" & NoNPP & "'' dan Part Name : ''" & PartName & "'' sudah di buat.")
+                        End If
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub Reject(AppModel As ApproveHistoryModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        _globalService = New GlobalService
+                        _globalService.Approve(AppModel, "Rejected")
+                        _globalService.UpdateFlag(AppModel)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
                     Finally
                         gh_Trans = Nothing
                     End Try
