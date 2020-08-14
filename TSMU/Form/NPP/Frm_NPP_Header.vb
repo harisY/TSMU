@@ -220,11 +220,12 @@ Public Class Frm_NPP_Header
         'Stop
         Dim TangalAkhir As DateTime = Date.Now
 
+        Dim GServis As New GlobalService
+        Active_Form = GServis.GetLevel(Me)
 
-
-        Dim dtUser As New DataTable
-        dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
-        Active_Form = dtUser.Rows(0).Item("levelApprove")
+        'Dim dtUser As New DataTable
+        ' dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
+        'Active_Form = dtUser.Rows(0).Item("levelApprove")
 
         dtGrid = New DataTable
         dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
@@ -274,6 +275,28 @@ Public Class Frm_NPP_Header
             End With
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub Grid3_DoubleClick(sender As Object, e As EventArgs) Handles Grid3.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            Dim NoNpwo As String = ""
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoNpwo = GridView3.GetRowCellValue(rowHandle, "NPP")
+                End If
+            Next rowHandle
+
+            If GridView3.GetSelectedRows.Length > 0 Then
+                Call CallFrm(NoNpwo, "",
+                            GridView3.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 End Class
