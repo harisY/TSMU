@@ -20,7 +20,24 @@
             Throw ex
         End Try
     End Function
+    Public Function GetMaxLevel(Frm As Form) As Integer
+        Dim _result As Integer = 0
+        Try
+            Dim Sql As String = "M_Approve_GetMaxApprove"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(0).Value = Frm.Name
+            Dim dt As New DataTable
 
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub Approve(Model As ApproveHistoryModel, Status As String)
         Try
 
