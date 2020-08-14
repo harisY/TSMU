@@ -44,16 +44,39 @@ Partial Class FrmTravelSettleDetail
         Me.CAmountPreTrip = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.CAmountIDRPreTrip = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TxtTotalAdvanceUSD = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtTotalAdvanceYEN = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtTotalAdvanceIDR = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTotalAdvanceYEN = New DevExpress.XtraEditors.TextEdit()
+        Me.txtRateYEN = New DevExpress.XtraEditors.TextEdit()
         Me.txtPurpose = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtTerm = New DevExpress.XtraEditors.TextEdit()
+        Me.txtRateUSD = New DevExpress.XtraEditors.TextEdit()
         Me.txtTotalDay = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtArrDate = New DevExpress.XtraEditors.DateEdit()
+        Me.txtTravelType = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTerm = New DevExpress.XtraEditors.TextEdit()
+        Me.txtPRNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDepDate = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtArrDate = New DevExpress.XtraEditors.DateEdit()
         Me.txtTravelSettID = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDep = New DevExpress.XtraEditors.TextEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GridTransport = New DevExpress.XtraGrid.GridControl()
         Me.GridViewTransport = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.IDTransport = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -138,8 +161,6 @@ Partial Class FrmTravelSettleDetail
         Me.CRateOther = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
-        Me.txtRateUSD = New DevExpress.XtraEditors.TextEdit()
-        Me.txtRateYEN = New DevExpress.XtraEditors.TextEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.TabPageTransport = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
@@ -264,29 +285,12 @@ Partial Class FrmTravelSettleDetail
         Me.CReturnBalance = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PaidBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AmountIDRBalance = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.txtTravelType = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtDep = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPRNo = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAccountTicket, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -315,19 +319,43 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CAmountPreTrip, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAmountIDRPreTrip, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotalAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTotalAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtTotalAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotalAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtRateYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtRateUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalDay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtArrDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtArrDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDepDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDepDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtArrDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtArrDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTravelSettID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridTransport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewTransport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAccountTransport, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,8 +391,6 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CRateOther, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtRateUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtRateYEN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageTransport.SuspendLayout()
@@ -420,30 +446,12 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CReturnBalance, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl1.SuspendLayout()
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepDate
@@ -651,27 +659,40 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtTotalAdvanceUSD.EditValue = "0"
         Me.TxtTotalAdvanceUSD.Enabled = False
-        Me.TxtTotalAdvanceUSD.Location = New System.Drawing.Point(718, 64)
+        Me.TxtTotalAdvanceUSD.Location = New System.Drawing.Point(951, 74)
         Me.TxtTotalAdvanceUSD.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotalAdvanceUSD.Name = "TxtTotalAdvanceUSD"
         Me.TxtTotalAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtTotalAdvanceUSD.Size = New System.Drawing.Size(102, 22)
+        Me.TxtTotalAdvanceUSD.Size = New System.Drawing.Size(62, 22)
         Me.TxtTotalAdvanceUSD.StyleController = Me.LayoutControl1
         Me.TxtTotalAdvanceUSD.TabIndex = 13
         '
-        'TxtTotalAdvanceYEN
+        'LayoutControl1
         '
-        Me.TxtTotalAdvanceYEN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtTotalAdvanceYEN.EditValue = "0"
-        Me.TxtTotalAdvanceYEN.Enabled = False
-        Me.TxtTotalAdvanceYEN.Location = New System.Drawing.Point(914, 64)
-        Me.TxtTotalAdvanceYEN.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtTotalAdvanceYEN.Name = "TxtTotalAdvanceYEN"
-        Me.TxtTotalAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtTotalAdvanceYEN.Size = New System.Drawing.Size(128, 22)
-        Me.TxtTotalAdvanceYEN.StyleController = Me.LayoutControl1
-        Me.TxtTotalAdvanceYEN.TabIndex = 14
+        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceIDR)
+        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceYEN)
+        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceUSD)
+        Me.LayoutControl1.Controls.Add(Me.txtRateYEN)
+        Me.LayoutControl1.Controls.Add(Me.txtPurpose)
+        Me.LayoutControl1.Controls.Add(Me.txtRateUSD)
+        Me.LayoutControl1.Controls.Add(Me.txtTotalDay)
+        Me.LayoutControl1.Controls.Add(Me.txtTravelType)
+        Me.LayoutControl1.Controls.Add(Me.TxtTerm)
+        Me.LayoutControl1.Controls.Add(Me.txtPRNo)
+        Me.LayoutControl1.Controls.Add(Me.TxtDepDate)
+        Me.LayoutControl1.Controls.Add(Me.TxtArrDate)
+        Me.LayoutControl1.Controls.Add(Me.txtTravelSettID)
+        Me.LayoutControl1.Controls.Add(Me.TxtTgl)
+        Me.LayoutControl1.Controls.Add(Me.TxtNama)
+        Me.LayoutControl1.Controls.Add(Me.TxtDep)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1052, 530, 812, 500)
+        Me.LayoutControl1.Root = Me.Root
+        Me.LayoutControl1.Size = New System.Drawing.Size(1276, 134)
+        Me.LayoutControl1.TabIndex = 32
+        Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtTotalAdvanceIDR
         '
@@ -679,33 +700,175 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtTotalAdvanceIDR.EditValue = "0"
         Me.TxtTotalAdvanceIDR.Enabled = False
-        Me.TxtTotalAdvanceIDR.Location = New System.Drawing.Point(1128, 64)
+        Me.TxtTotalAdvanceIDR.Location = New System.Drawing.Point(1189, 74)
         Me.TxtTotalAdvanceIDR.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotalAdvanceIDR.Name = "TxtTotalAdvanceIDR"
         Me.TxtTotalAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtTotalAdvanceIDR.Size = New System.Drawing.Size(120, 22)
+        Me.TxtTotalAdvanceIDR.Size = New System.Drawing.Size(62, 22)
         Me.TxtTotalAdvanceIDR.StyleController = Me.LayoutControl1
         Me.TxtTotalAdvanceIDR.TabIndex = 12
+        '
+        'TxtTotalAdvanceYEN
+        '
+        Me.TxtTotalAdvanceYEN.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtTotalAdvanceYEN.EditValue = "0"
+        Me.TxtTotalAdvanceYEN.Enabled = False
+        Me.TxtTotalAdvanceYEN.Location = New System.Drawing.Point(1070, 74)
+        Me.TxtTotalAdvanceYEN.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtTotalAdvanceYEN.Name = "TxtTotalAdvanceYEN"
+        Me.TxtTotalAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtTotalAdvanceYEN.Size = New System.Drawing.Size(62, 22)
+        Me.TxtTotalAdvanceYEN.StyleController = Me.LayoutControl1
+        Me.TxtTotalAdvanceYEN.TabIndex = 14
+        '
+        'txtRateYEN
+        '
+        Me.txtRateYEN.EditValue = "1"
+        Me.txtRateYEN.Location = New System.Drawing.Point(808, 74)
+        Me.txtRateYEN.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtRateYEN.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.txtRateYEN.Name = "txtRateYEN"
+        Me.txtRateYEN.Properties.Mask.EditMask = "n2"
+        Me.txtRateYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtRateYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtRateYEN.Size = New System.Drawing.Size(62, 22)
+        Me.txtRateYEN.StyleController = Me.LayoutControl1
+        Me.txtRateYEN.TabIndex = 11
         '
         'txtPurpose
         '
         Me.txtPurpose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Enabled = False
-        Me.txtPurpose.Location = New System.Drawing.Point(94, 38)
+        Me.txtPurpose.Location = New System.Drawing.Point(-172, 48)
         Me.txtPurpose.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(530, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(792, 22)
         Me.txtPurpose.StyleController = Me.LayoutControl1
         Me.txtPurpose.TabIndex = 5
+        '
+        'txtRateUSD
+        '
+        Me.txtRateUSD.EditValue = "1"
+        Me.txtRateUSD.Location = New System.Drawing.Point(689, 74)
+        Me.txtRateUSD.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtRateUSD.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.txtRateUSD.Name = "txtRateUSD"
+        Me.txtRateUSD.Properties.Mask.EditMask = "n2"
+        Me.txtRateUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtRateUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtRateUSD.Size = New System.Drawing.Size(62, 22)
+        Me.txtRateUSD.StyleController = Me.LayoutControl1
+        Me.txtRateUSD.TabIndex = 10
+        '
+        'txtTotalDay
+        '
+        Me.txtTotalDay.Enabled = False
+        Me.txtTotalDay.Location = New System.Drawing.Point(248, 74)
+        Me.txtTotalDay.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTotalDay.MaximumSize = New System.Drawing.Size(60, 0)
+        Me.txtTotalDay.Name = "txtTotalDay"
+        Me.txtTotalDay.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtTotalDay.Size = New System.Drawing.Size(60, 22)
+        Me.txtTotalDay.StyleController = Me.LayoutControl1
+        Me.txtTotalDay.TabIndex = 8
+        '
+        'txtTravelType
+        '
+        Me.txtTravelType.Enabled = False
+        Me.txtTravelType.Location = New System.Drawing.Point(248, 12)
+        Me.txtTravelType.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTravelType.MaximumSize = New System.Drawing.Size(60, 0)
+        Me.txtTravelType.Name = "txtTravelType"
+        Me.txtTravelType.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtTravelType.Size = New System.Drawing.Size(60, 22)
+        Me.txtTravelType.StyleController = Me.LayoutControl1
+        Me.txtTravelType.TabIndex = 28
+        '
+        'TxtTerm
+        '
+        Me.TxtTerm.Enabled = False
+        Me.TxtTerm.Location = New System.Drawing.Point(403, 74)
+        Me.TxtTerm.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtTerm.Name = "TxtTerm"
+        Me.TxtTerm.Size = New System.Drawing.Size(217, 22)
+        Me.TxtTerm.StyleController = Me.LayoutControl1
+        Me.TxtTerm.TabIndex = 9
+        '
+        'txtPRNo
+        '
+        Me.txtPRNo.Location = New System.Drawing.Point(403, 12)
+        Me.txtPRNo.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPRNo.MaximumSize = New System.Drawing.Size(140, 0)
+        Me.txtPRNo.Name = "txtPRNo"
+        Me.txtPRNo.Properties.MaxLength = 15
+        Me.txtPRNo.Size = New System.Drawing.Size(62, 22)
+        Me.txtPRNo.StyleController = Me.LayoutControl1
+        Me.txtPRNo.TabIndex = 30
+        '
+        'TxtDepDate
+        '
+        Me.TxtDepDate.EditValue = ""
+        Me.TxtDepDate.Enabled = False
+        Me.TxtDepDate.Location = New System.Drawing.Point(-172, 74)
+        Me.TxtDepDate.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtDepDate.MaximumSize = New System.Drawing.Size(130, 0)
+        Me.TxtDepDate.MinimumSize = New System.Drawing.Size(130, 0)
+        Me.TxtDepDate.Name = "TxtDepDate"
+        Me.TxtDepDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtDepDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtDepDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtDepDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtDepDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtDepDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtDepDate.Properties.Mask.EditMask = ""
+        Me.TxtDepDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TxtDepDate.Size = New System.Drawing.Size(130, 22)
+        Me.TxtDepDate.StyleController = Me.LayoutControl1
+        Me.TxtDepDate.TabIndex = 6
+        '
+        'TxtArrDate
+        '
+        Me.TxtArrDate.EditValue = Nothing
+        Me.TxtArrDate.Enabled = False
+        Me.TxtArrDate.Location = New System.Drawing.Point(35, 74)
+        Me.TxtArrDate.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtArrDate.MaximumSize = New System.Drawing.Size(120, 0)
+        Me.TxtArrDate.MinimumSize = New System.Drawing.Size(120, 0)
+        Me.TxtArrDate.Name = "TxtArrDate"
+        Me.TxtArrDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtArrDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtArrDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtArrDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtArrDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.TxtArrDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TxtArrDate.Properties.Mask.EditMask = ""
+        Me.TxtArrDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.TxtArrDate.Size = New System.Drawing.Size(120, 22)
+        Me.TxtArrDate.StyleController = Me.LayoutControl1
+        Me.TxtArrDate.TabIndex = 7
+        '
+        'txtTravelSettID
+        '
+        Me.txtTravelSettID.EditValue = ""
+        Me.txtTravelSettID.Enabled = False
+        Me.txtTravelSettID.Location = New System.Drawing.Point(-172, 12)
+        Me.txtTravelSettID.MaximumSize = New System.Drawing.Size(130, 22)
+        Me.txtTravelSettID.MinimumSize = New System.Drawing.Size(130, 0)
+        Me.txtTravelSettID.Name = "txtTravelSettID"
+        Me.txtTravelSettID.Size = New System.Drawing.Size(130, 22)
+        Me.txtTravelSettID.StyleController = Me.LayoutControl1
+        Me.txtTravelSettID.TabIndex = 1
         '
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
         Me.TxtTgl.Enabled = False
-        Me.TxtTgl.Location = New System.Drawing.Point(250, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(35, 12)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.MaximumSize = New System.Drawing.Size(120, 0)
+        Me.TxtTgl.MinimumSize = New System.Drawing.Size(120, 0)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtTgl.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -716,93 +879,211 @@ Partial Class FrmTravelSettleDetail
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.TxtTgl.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TxtTgl.Size = New System.Drawing.Size(62, 22)
+        Me.TxtTgl.Size = New System.Drawing.Size(120, 22)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 2
-        '
-        'TxtTerm
-        '
-        Me.TxtTerm.Enabled = False
-        Me.TxtTerm.Location = New System.Drawing.Point(1186, 38)
-        Me.TxtTerm.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtTerm.Name = "TxtTerm"
-        Me.TxtTerm.Size = New System.Drawing.Size(62, 22)
-        Me.TxtTerm.StyleController = Me.LayoutControl1
-        Me.TxtTerm.TabIndex = 9
-        '
-        'txtTotalDay
-        '
-        Me.txtTotalDay.Enabled = False
-        Me.txtTotalDay.Location = New System.Drawing.Point(1030, 38)
-        Me.txtTotalDay.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtTotalDay.MaximumSize = New System.Drawing.Size(80, 0)
-        Me.txtTotalDay.Name = "txtTotalDay"
-        Me.txtTotalDay.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtTotalDay.Size = New System.Drawing.Size(62, 22)
-        Me.txtTotalDay.StyleController = Me.LayoutControl1
-        Me.txtTotalDay.TabIndex = 8
-        '
-        'TxtArrDate
-        '
-        Me.TxtArrDate.EditValue = Nothing
-        Me.TxtArrDate.Enabled = False
-        Me.TxtArrDate.Location = New System.Drawing.Point(874, 38)
-        Me.TxtArrDate.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtArrDate.MaximumSize = New System.Drawing.Size(120, 0)
-        Me.TxtArrDate.Name = "TxtArrDate"
-        Me.TxtArrDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtArrDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtArrDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtArrDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtArrDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtArrDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtArrDate.Properties.Mask.EditMask = ""
-        Me.TxtArrDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtArrDate.Size = New System.Drawing.Size(62, 22)
-        Me.TxtArrDate.StyleController = Me.LayoutControl1
-        Me.TxtArrDate.TabIndex = 7
-        '
-        'TxtDepDate
-        '
-        Me.TxtDepDate.EditValue = ""
-        Me.TxtDepDate.Enabled = False
-        Me.TxtDepDate.Location = New System.Drawing.Point(718, 38)
-        Me.TxtDepDate.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtDepDate.MaximumSize = New System.Drawing.Size(120, 0)
-        Me.TxtDepDate.Name = "TxtDepDate"
-        Me.TxtDepDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtDepDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtDepDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtDepDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtDepDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.TxtDepDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TxtDepDate.Properties.Mask.EditMask = ""
-        Me.TxtDepDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtDepDate.Size = New System.Drawing.Size(62, 22)
-        Me.TxtDepDate.StyleController = Me.LayoutControl1
-        Me.TxtDepDate.TabIndex = 6
-        '
-        'txtTravelSettID
-        '
-        Me.txtTravelSettID.EditValue = ""
-        Me.txtTravelSettID.Enabled = False
-        Me.txtTravelSettID.Location = New System.Drawing.Point(94, 12)
-        Me.txtTravelSettID.MaximumSize = New System.Drawing.Size(140, 22)
-        Me.txtTravelSettID.Name = "txtTravelSettID"
-        Me.txtTravelSettID.Size = New System.Drawing.Size(62, 22)
-        Me.txtTravelSettID.StyleController = Me.LayoutControl1
-        Me.txtTravelSettID.TabIndex = 1
         '
         'TxtNama
         '
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Enabled = False
-        Me.TxtNama.Location = New System.Drawing.Point(718, 12)
+        Me.TxtNama.Location = New System.Drawing.Point(713, 12)
         Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(530, 22)
+        Me.TxtNama.Size = New System.Drawing.Size(550, 22)
         Me.TxtNama.StyleController = Me.LayoutControl1
         Me.TxtNama.TabIndex = 4
+        '
+        'TxtDep
+        '
+        Me.TxtDep.Enabled = False
+        Me.TxtDep.Location = New System.Drawing.Point(558, 12)
+        Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
+        Me.TxtDep.Name = "TxtDep"
+        Me.TxtDep.Size = New System.Drawing.Size(62, 22)
+        Me.TxtDep.StyleController = Me.LayoutControl1
+        Me.TxtDep.TabIndex = 3
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.EmptySpaceItem3, Me.LayoutControlItem11, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.EmptySpaceItem1, Me.EmptySpaceItem2})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(1540, 120)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.txtTravelSettID
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(215, 26)
+        Me.LayoutControlItem1.Text = "Settlement ID"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.TxtTgl
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(215, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(197, 26)
+        Me.LayoutControlItem3.Text = "Date"
+        Me.LayoutControlItem3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(60, 16)
+        Me.LayoutControlItem3.TextToControlDistance = 5
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.TxtDep
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(722, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(155, 26)
+        Me.LayoutControlItem7.Text = "Dept ID"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.TxtNama
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(887, 0)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(633, 26)
+        Me.LayoutControlItem10.Text = "Nama"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.txtTravelType
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(412, 0)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(155, 26)
+        Me.LayoutControlItem2.Text = "Travel Type"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.txtPurpose
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 36)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(877, 26)
+        Me.LayoutControlItem11.Text = "Purpose"
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.TxtDepDate
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 62)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(215, 38)
+        Me.LayoutControlItem4.Text = "Dep Date"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.TxtArrDate
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(215, 62)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(197, 38)
+        Me.LayoutControlItem5.Text = "Arr Date"
+        Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(60, 16)
+        Me.LayoutControlItem5.TextToControlDistance = 5
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.txtTotalDay
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(412, 62)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(155, 38)
+        Me.LayoutControlItem6.Text = "Days"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.TxtTerm
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(567, 62)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(310, 38)
+        Me.LayoutControlItem8.Text = "Term"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.txtPRNo
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(567, 0)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(155, 26)
+        Me.LayoutControlItem9.Text = "No PR"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(78, 16)
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.txtRateUSD
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(109, 26)
+        Me.LayoutControlItem12.Text = "USD"
+        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(40, 16)
+        Me.LayoutControlItem12.TextToControlDistance = 5
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.txtRateYEN
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(109, 0)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(119, 26)
+        Me.LayoutControlItem13.Text = "YEN"
+        Me.LayoutControlItem13.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(40, 16)
+        Me.LayoutControlItem13.TextToControlDistance = 5
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.TxtTotalAdvanceUSD
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(109, 26)
+        Me.LayoutControlItem14.Text = "USD"
+        Me.LayoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(40, 16)
+        Me.LayoutControlItem14.TextToControlDistance = 5
+        '
+        'LayoutControlItem15
+        '
+        Me.LayoutControlItem15.Control = Me.TxtTotalAdvanceYEN
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(109, 0)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(119, 26)
+        Me.LayoutControlItem15.Text = "YEN"
+        Me.LayoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(40, 16)
+        Me.LayoutControlItem15.TextToControlDistance = 5
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.TxtTotalAdvanceIDR
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(228, 0)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(119, 26)
+        Me.LayoutControlItem17.Text = "IDR"
+        Me.LayoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(40, 16)
+        Me.LayoutControlItem17.TextToControlDistance = 5
         '
         'GridTransport
         '
@@ -815,7 +1096,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridTransport.Margin = New System.Windows.Forms.Padding(4)
         Me.GridTransport.Name = "GridTransport"
         Me.GridTransport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountTransport, Me.GSubAccountTransport, Me.CAccountTransport, Me.CCurryTransport, Me.CAmountIDRTranspsort, Me.CDateTransport, Me.CPayTypeTransport})
-        Me.GridTransport.Size = New System.Drawing.Size(1195, 143)
+        Me.GridTransport.Size = New System.Drawing.Size(1221, 218)
         Me.GridTransport.TabIndex = 7
         Me.GridTransport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTransport})
         '
@@ -1060,7 +1341,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridHotel.Margin = New System.Windows.Forms.Padding(4)
         Me.GridHotel.Name = "GridHotel"
         Me.GridHotel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPayTypeHotel})
-        Me.GridHotel.Size = New System.Drawing.Size(1195, 143)
+        Me.GridHotel.Size = New System.Drawing.Size(1221, 218)
         Me.GridHotel.TabIndex = 7
         Me.GridHotel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewHotel})
         '
@@ -1223,7 +1504,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridEntertain.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEntertain.Name = "GridEntertain"
         Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountEntertain, Me.GSubAccountEntertain, Me.CAccountEntertain, Me.CCurryEntertain, Me.CAmountIDREntertain, Me.CDateEntertain, Me.CEntertainIDEntertain, Me.CPayTypeEntertain})
-        Me.GridEntertain.Size = New System.Drawing.Size(1195, 143)
+        Me.GridEntertain.Size = New System.Drawing.Size(1221, 218)
         Me.GridEntertain.TabIndex = 7
         Me.GridEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEntertain})
         '
@@ -1458,7 +1739,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridOther.Margin = New System.Windows.Forms.Padding(4)
         Me.GridOther.Name = "GridOther"
         Me.GridOther.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPayTypeOther})
-        Me.GridOther.Size = New System.Drawing.Size(1195, 143)
+        Me.GridOther.Size = New System.Drawing.Size(1221, 226)
         Me.GridOther.TabIndex = 8
         Me.GridOther.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewOther})
         '
@@ -1662,42 +1943,16 @@ Partial Class FrmTravelSettleDetail
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'txtRateUSD
-        '
-        Me.txtRateUSD.EditValue = "1"
-        Me.txtRateUSD.Location = New System.Drawing.Point(250, 64)
-        Me.txtRateUSD.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtRateUSD.Name = "txtRateUSD"
-        Me.txtRateUSD.Properties.Mask.EditMask = "n2"
-        Me.txtRateUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtRateUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtRateUSD.Size = New System.Drawing.Size(152, 22)
-        Me.txtRateUSD.StyleController = Me.LayoutControl1
-        Me.txtRateUSD.TabIndex = 10
-        '
-        'txtRateYEN
-        '
-        Me.txtRateYEN.EditValue = "1"
-        Me.txtRateYEN.Location = New System.Drawing.Point(496, 64)
-        Me.txtRateYEN.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtRateYEN.Name = "txtRateYEN"
-        Me.txtRateYEN.Properties.Mask.EditMask = "n2"
-        Me.txtRateYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtRateYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtRateYEN.Size = New System.Drawing.Size(128, 22)
-        Me.txtRateYEN.StyleController = Me.LayoutControl1
-        Me.txtRateYEN.TabIndex = 11
-        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-        Me.XtraTabControl1.Location = New System.Drawing.Point(15, 175)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(3, 180)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageTransport
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1250, 498)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1276, 581)
         Me.XtraTabControl1.TabIndex = 27
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageTransport, Me.TabPageHotel, Me.TabPageEntertain, Me.TabPageOthers, Me.TabPageVoucher})
         '
@@ -1707,7 +1962,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageTransport.Controls.Add(Me.GroupBox7)
         Me.TabPageTransport.Controls.Add(Me.GroupBox6)
         Me.TabPageTransport.Name = "TabPageTransport"
-        Me.TabPageTransport.Size = New System.Drawing.Size(1216, 491)
+        Me.TabPageTransport.Size = New System.Drawing.Size(1242, 566)
         Me.TabPageTransport.Text = "Transport"
         '
         'GroupBox8
@@ -1719,7 +1974,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox8.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox8.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(1207, 173)
+        Me.GroupBox8.Size = New System.Drawing.Size(1233, 248)
         Me.GroupBox8.TabIndex = 13
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Detail"
@@ -1730,9 +1985,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox7.Controls.Add(Me.GridBalanceTransport)
         Me.GroupBox7.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox7.Location = New System.Drawing.Point(4, 388)
+        Me.GroupBox7.Location = New System.Drawing.Point(4, 463)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1207, 100)
+        Me.GroupBox7.Size = New System.Drawing.Size(1233, 100)
         Me.GroupBox7.TabIndex = 12
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Balance"
@@ -1812,9 +2067,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox6.Controls.Add(Me.GridSumTransport)
         Me.GroupBox6.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox6.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox6.Location = New System.Drawing.Point(4, 257)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(1207, 200)
+        Me.GroupBox6.Size = New System.Drawing.Size(1233, 200)
         Me.GroupBox6.TabIndex = 11
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Summary"
@@ -1826,7 +2081,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridSumTransport.Location = New System.Drawing.Point(6, 21)
         Me.GridSumTransport.MainView = Me.GridViewSumTransport
         Me.GridSumTransport.Name = "GridSumTransport"
-        Me.GridSumTransport.Size = New System.Drawing.Size(1195, 173)
+        Me.GridSumTransport.Size = New System.Drawing.Size(1221, 173)
         Me.GridSumTransport.TabIndex = 9
         Me.GridSumTransport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumTransport})
         '
@@ -1945,7 +2200,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageHotel.Controls.Add(Me.GroupBox4)
         Me.TabPageHotel.Controls.Add(Me.GroupBox3)
         Me.TabPageHotel.Name = "TabPageHotel"
-        Me.TabPageHotel.Size = New System.Drawing.Size(1216, 491)
+        Me.TabPageHotel.Size = New System.Drawing.Size(1242, 566)
         Me.TabPageHotel.Text = "Hotel"
         '
         'GroupBox5
@@ -1957,7 +2212,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox5.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(1207, 173)
+        Me.GroupBox5.Size = New System.Drawing.Size(1233, 248)
         Me.GroupBox5.TabIndex = 13
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Detail"
@@ -1968,9 +2223,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox4.Controls.Add(Me.GridBalanceHotel)
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox4.Location = New System.Drawing.Point(4, 388)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 463)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(1207, 100)
+        Me.GroupBox4.Size = New System.Drawing.Size(1233, 100)
         Me.GroupBox4.TabIndex = 12
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Balance"
@@ -2049,9 +2304,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.Controls.Add(Me.GridSumHotel)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox3.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox3.Location = New System.Drawing.Point(4, 257)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1207, 200)
+        Me.GroupBox3.Size = New System.Drawing.Size(1233, 200)
         Me.GroupBox3.TabIndex = 11
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Summary"
@@ -2063,7 +2318,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridSumHotel.Location = New System.Drawing.Point(6, 21)
         Me.GridSumHotel.MainView = Me.GridViewSumHotel
         Me.GridSumHotel.Name = "GridSumHotel"
-        Me.GridSumHotel.Size = New System.Drawing.Size(1195, 173)
+        Me.GridSumHotel.Size = New System.Drawing.Size(1221, 173)
         Me.GridSumHotel.TabIndex = 10
         Me.GridSumHotel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumHotel})
         '
@@ -2183,7 +2438,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageEntertain.Controls.Add(Me.GroupBox10)
         Me.TabPageEntertain.Controls.Add(Me.GroupBox9)
         Me.TabPageEntertain.Name = "TabPageEntertain"
-        Me.TabPageEntertain.Size = New System.Drawing.Size(1216, 491)
+        Me.TabPageEntertain.Size = New System.Drawing.Size(1242, 566)
         Me.TabPageEntertain.Text = "Entertainment"
         '
         'GroupBox11
@@ -2195,7 +2450,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox11.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox11.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(1207, 173)
+        Me.GroupBox11.Size = New System.Drawing.Size(1233, 248)
         Me.GroupBox11.TabIndex = 15
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "Detail"
@@ -2206,9 +2461,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox10.Controls.Add(Me.GridSumEntertain)
         Me.GroupBox10.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox10.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox10.Location = New System.Drawing.Point(4, 257)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(1207, 200)
+        Me.GroupBox10.Size = New System.Drawing.Size(1233, 200)
         Me.GroupBox10.TabIndex = 14
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Summary"
@@ -2220,7 +2475,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridSumEntertain.Location = New System.Drawing.Point(6, 21)
         Me.GridSumEntertain.MainView = Me.GridViewSumEntertain
         Me.GridSumEntertain.Name = "GridSumEntertain"
-        Me.GridSumEntertain.Size = New System.Drawing.Size(1195, 173)
+        Me.GridSumEntertain.Size = New System.Drawing.Size(1221, 173)
         Me.GridSumEntertain.TabIndex = 10
         Me.GridSumEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumEntertain})
         '
@@ -2337,9 +2592,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox9.Controls.Add(Me.GridBalanceEntertain)
         Me.GroupBox9.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox9.Location = New System.Drawing.Point(4, 388)
+        Me.GroupBox9.Location = New System.Drawing.Point(4, 463)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(1207, 100)
+        Me.GroupBox9.Size = New System.Drawing.Size(1233, 100)
         Me.GroupBox9.TabIndex = 13
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Balance"
@@ -2418,7 +2673,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageOthers.Controls.Add(Me.GroupBox13)
         Me.TabPageOthers.Controls.Add(Me.GroupBox12)
         Me.TabPageOthers.Name = "TabPageOthers"
-        Me.TabPageOthers.Size = New System.Drawing.Size(1216, 491)
+        Me.TabPageOthers.Size = New System.Drawing.Size(1242, 574)
         Me.TabPageOthers.Text = "Others"
         '
         'GroupBox14
@@ -2430,7 +2685,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox14.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox14.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox14.Name = "GroupBox14"
-        Me.GroupBox14.Size = New System.Drawing.Size(1207, 173)
+        Me.GroupBox14.Size = New System.Drawing.Size(1233, 256)
         Me.GroupBox14.TabIndex = 16
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "Detail"
@@ -2441,9 +2696,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox13.Controls.Add(Me.GridSumOthers)
         Me.GroupBox13.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox13.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox13.Location = New System.Drawing.Point(4, 265)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(1207, 200)
+        Me.GroupBox13.Size = New System.Drawing.Size(1233, 200)
         Me.GroupBox13.TabIndex = 15
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Summary"
@@ -2455,7 +2710,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridSumOthers.Location = New System.Drawing.Point(6, 21)
         Me.GridSumOthers.MainView = Me.GridViewSumOthers
         Me.GridSumOthers.Name = "GridSumOthers"
-        Me.GridSumOthers.Size = New System.Drawing.Size(1195, 173)
+        Me.GridSumOthers.Size = New System.Drawing.Size(1221, 173)
         Me.GridSumOthers.TabIndex = 10
         Me.GridSumOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumOthers})
         '
@@ -2572,9 +2827,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox12.Controls.Add(Me.GridBalanceOther)
         Me.GroupBox12.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox12.Location = New System.Drawing.Point(4, 388)
+        Me.GroupBox12.Location = New System.Drawing.Point(4, 471)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(1207, 100)
+        Me.GroupBox12.Size = New System.Drawing.Size(1233, 100)
         Me.GroupBox12.TabIndex = 14
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Balance"
@@ -2653,7 +2908,7 @@ Partial Class FrmTravelSettleDetail
         Me.TabPageVoucher.Controls.Add(Me.GroupBox16)
         Me.TabPageVoucher.Controls.Add(Me.GroupBox15)
         Me.TabPageVoucher.Name = "TabPageVoucher"
-        Me.TabPageVoucher.Size = New System.Drawing.Size(1216, 491)
+        Me.TabPageVoucher.Size = New System.Drawing.Size(1242, 566)
         Me.TabPageVoucher.Text = "Voucher"
         '
         'GroupBox17
@@ -2665,7 +2920,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox17.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox17.Location = New System.Drawing.Point(4, 223)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(1207, 61)
+        Me.GroupBox17.Size = New System.Drawing.Size(1233, 136)
         Me.GroupBox17.TabIndex = 19
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "Pocket Allowance"
@@ -2679,7 +2934,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridPocketAllowance.MainView = Me.GridViewPocketAllowance
         Me.GridPocketAllowance.Name = "GridPocketAllowance"
         Me.GridPocketAllowance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDepartureDate, Me.CArrivalDate, Me.CAdvanceUSD, Me.CAdvanceYEN, Me.CAdvanceIDR, Me.CSettlementUSD, Me.CSettlementYEN, Me.CSettlementIDR})
-        Me.GridPocketAllowance.Size = New System.Drawing.Size(1195, 33)
+        Me.GridPocketAllowance.Size = New System.Drawing.Size(1221, 114)
         Me.GridPocketAllowance.TabIndex = 0
         Me.GridPocketAllowance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPocketAllowance})
         '
@@ -2971,7 +3226,7 @@ Partial Class FrmTravelSettleDetail
         Me.GroupBox16.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.GroupBox16.Location = New System.Drawing.Point(4, 3)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(1207, 214)
+        Me.GroupBox16.Size = New System.Drawing.Size(1233, 214)
         Me.GroupBox16.TabIndex = 18
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "Summary"
@@ -2983,7 +3238,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridSumBalance.Location = New System.Drawing.Point(6, 22)
         Me.GridSumBalance.MainView = Me.GridViewSumBalance
         Me.GridSumBalance.Name = "GridSumBalance"
-        Me.GridSumBalance.Size = New System.Drawing.Size(1195, 186)
+        Me.GridSumBalance.Size = New System.Drawing.Size(1221, 186)
         Me.GridSumBalance.TabIndex = 10
         Me.GridSumBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumBalance})
         '
@@ -3100,9 +3355,9 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox15.Controls.Add(Me.GridBalance)
         Me.GroupBox15.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox15.Location = New System.Drawing.Point(4, 290)
+        Me.GroupBox15.Location = New System.Drawing.Point(4, 365)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(1207, 198)
+        Me.GroupBox15.Size = New System.Drawing.Size(1233, 198)
         Me.GroupBox15.TabIndex = 17
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "Voucher"
@@ -3116,7 +3371,7 @@ Partial Class FrmTravelSettleDetail
         Me.GridBalance.MainView = Me.GridViewBalance
         Me.GridBalance.Name = "GridBalance"
         Me.GridBalance.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CReturnBalance})
-        Me.GridBalance.Size = New System.Drawing.Size(1195, 170)
+        Me.GridBalance.Size = New System.Drawing.Size(1221, 170)
         Me.GridBalance.TabIndex = 0
         Me.GridBalance.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewBalance})
         '
@@ -3239,262 +3494,78 @@ Partial Class FrmTravelSettleDetail
         Me.AmountIDRBalance.VisibleIndex = 6
         Me.AmountIDRBalance.Width = 250
         '
-        'txtTravelType
+        'LayoutControlGroup1
         '
-        Me.txtTravelType.Enabled = False
-        Me.txtTravelType.Location = New System.Drawing.Point(406, 12)
-        Me.txtTravelType.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtTravelType.MaximumSize = New System.Drawing.Size(80, 0)
-        Me.txtTravelType.Name = "txtTravelType"
-        Me.txtTravelType.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtTravelType.Size = New System.Drawing.Size(62, 22)
-        Me.txtTravelType.StyleController = Me.LayoutControl1
-        Me.txtTravelType.TabIndex = 28
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem17})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(1149, 26)
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(371, 74)
+        Me.LayoutControlGroup1.Text = "Advance"
         '
-        'TxtDep
+        'LayoutControlGroup2
         '
-        Me.TxtDep.Enabled = False
-        Me.TxtDep.Location = New System.Drawing.Point(562, 12)
-        Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
-        Me.TxtDep.Name = "TxtDep"
-        Me.TxtDep.Size = New System.Drawing.Size(62, 22)
-        Me.TxtDep.StyleController = Me.LayoutControl1
-        Me.TxtDep.TabIndex = 3
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem12, Me.LayoutControlItem13})
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(887, 26)
+        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(252, 74)
+        Me.LayoutControlGroup2.Text = "Exchange Rate"
         '
-        'txtPRNo
+        'EmptySpaceItem3
         '
-        Me.txtPRNo.Location = New System.Drawing.Point(94, 64)
-        Me.txtPRNo.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPRNo.MaximumSize = New System.Drawing.Size(140, 0)
-        Me.txtPRNo.Name = "txtPRNo"
-        Me.txtPRNo.Properties.MaxLength = 15
-        Me.txtPRNo.Size = New System.Drawing.Size(62, 22)
-        Me.txtPRNo.StyleController = Me.LayoutControl1
-        Me.txtPRNo.TabIndex = 30
-        '
-        'LayoutControl1
-        '
-        Me.LayoutControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceIDR)
-        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceYEN)
-        Me.LayoutControl1.Controls.Add(Me.TxtTotalAdvanceUSD)
-        Me.LayoutControl1.Controls.Add(Me.txtRateYEN)
-        Me.LayoutControl1.Controls.Add(Me.txtPurpose)
-        Me.LayoutControl1.Controls.Add(Me.txtRateUSD)
-        Me.LayoutControl1.Controls.Add(Me.txtTotalDay)
-        Me.LayoutControl1.Controls.Add(Me.txtTravelType)
-        Me.LayoutControl1.Controls.Add(Me.TxtTerm)
-        Me.LayoutControl1.Controls.Add(Me.txtPRNo)
-        Me.LayoutControl1.Controls.Add(Me.TxtDepDate)
-        Me.LayoutControl1.Controls.Add(Me.TxtArrDate)
-        Me.LayoutControl1.Controls.Add(Me.txtTravelSettID)
-        Me.LayoutControl1.Controls.Add(Me.TxtTgl)
-        Me.LayoutControl1.Controls.Add(Me.TxtNama)
-        Me.LayoutControl1.Controls.Add(Me.TxtDep)
-        Me.LayoutControl1.Location = New System.Drawing.Point(10, 40)
-        Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1052, 530, 812, 500)
-        Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1260, 128)
-        Me.LayoutControl1.TabIndex = 32
-        Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        'Root
-        '
-        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem10, Me.LayoutControlItem2, Me.LayoutControlItem11, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.EmptySpaceItem2, Me.LayoutControlItem17, Me.EmptySpaceItem1})
-        Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1260, 128)
-        Me.Root.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.txtTravelSettID
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(148, 26)
-        Me.LayoutControlItem1.Text = "Settlement ID"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.TxtTgl
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(148, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem3.Text = "Date"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.TxtDep
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(460, 0)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem7.Text = "Dept ID"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.TxtNama
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(626, 0)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(614, 26)
-        Me.LayoutControlItem10.Text = "Nama"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.txtTravelType
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(304, 0)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem2.Text = "Travel Type"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.txtPurpose
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 26)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(616, 26)
-        Me.LayoutControlItem11.Text = "Purpose"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.TxtDepDate
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(626, 26)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(146, 26)
-        Me.LayoutControlItem4.Text = "Dep Date"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.TxtArrDate
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(772, 26)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem5.Text = "Arr Date"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.txtTotalDay
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(928, 26)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem6.Text = "Days"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.TxtTerm
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(1084, 26)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(156, 26)
-        Me.LayoutControlItem8.Text = "Term"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(616, 0)
-        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(10, 0)
-        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(10, 10)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(10, 78)
-        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.txtPRNo
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 52)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(148, 26)
-        Me.LayoutControlItem9.Text = "No PR"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.txtRateUSD
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(148, 52)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(246, 26)
-        Me.LayoutControlItem12.Text = "Rate USD"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.txtRateYEN
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(394, 52)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(222, 26)
-        Me.LayoutControlItem13.Text = "Rate YEN"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.TxtTotalAdvanceUSD
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(626, 52)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(186, 26)
-        Me.LayoutControlItem14.Text = "Advance USD"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem15
-        '
-        Me.LayoutControlItem15.Control = Me.TxtTotalAdvanceYEN
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(812, 52)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(222, 26)
-        Me.LayoutControlItem15.Text = "Advance YEN"
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(78, 16)
-        '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.TxtTotalAdvanceIDR
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(1034, 52)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(206, 26)
-        Me.LayoutControlItem17.Text = "Advance IDR"
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(78, 16)
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(1139, 26)
+        Me.EmptySpaceItem3.MaxSize = New System.Drawing.Size(10, 0)
+        Me.EmptySpaceItem3.MinSize = New System.Drawing.Size(10, 10)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 74)
+        Me.EmptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 78)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(877, 0)
+        Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(10, 0)
+        Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1240, 30)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 100)
+        Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1282, 140)
+        Me.TableLayoutPanel1.TabIndex = 33
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 26)
+        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(0, 10)
+        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(10, 10)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(877, 10)
+        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'FrmTravelSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1282, 685)
-        Me.Controls.Add(Me.LayoutControl1)
+        Me.ClientSize = New System.Drawing.Size(1282, 766)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTravelSettleDetail"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
-        Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.RepDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAccountTicket, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3523,19 +3594,43 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CAmountPreTrip, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAmountIDRPreTrip, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotalAdvanceUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTotalAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
         CType(Me.TxtTotalAdvanceIDR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotalAdvanceYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtRateYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtRateUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalDay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtArrDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtArrDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDepDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDepDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtArrDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtArrDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTravelSettID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTgl.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridTransport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewTransport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAccountTransport, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3571,8 +3666,6 @@ Partial Class FrmTravelSettleDetail
         CType(Me.CRateOther, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtRateUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtRateYEN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.TabPageTransport.ResumeLayout(False)
@@ -3628,30 +3721,12 @@ Partial Class FrmTravelSettleDetail
         CType(Me.GridBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewBalance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CReturnBalance, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTravelType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPRNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3915,12 +3990,16 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
 End Class
