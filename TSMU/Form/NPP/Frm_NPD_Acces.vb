@@ -7,7 +7,7 @@ Public Class Frm_NPD_Acces
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
 
-    Dim Active_Form As Integer = 3
+    Dim Active_Form As Integer = 4
 
     Private Sub Frm_NPD_Acces_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtGrid = New DataTable

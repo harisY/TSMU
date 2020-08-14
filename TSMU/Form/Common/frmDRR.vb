@@ -120,6 +120,7 @@ Public Class frmDRR
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+        Return _level
     End Function
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
@@ -128,7 +129,7 @@ Public Class frmDRR
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, GetLevel)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()

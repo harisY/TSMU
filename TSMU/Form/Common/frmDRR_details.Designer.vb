@@ -107,19 +107,18 @@ Partial Class frmDRR_details
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(0, 556)
+        Me.Grid.Location = New System.Drawing.Point(0, 417)
         Me.Grid.MainView = Me.BandedGridView1
-        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me._TxtJanQty1, Me.TxtQty1, Me.TxtQty2, Me.TxtQty3, Me.TxtPO1, Me.TxtPO2, Me.TxtHarga1, Me.TxtHarga2, Me.TxtHarga3})
-        Me.Grid.Size = New System.Drawing.Size(1104, 165)
+        Me.Grid.Size = New System.Drawing.Size(828, 126)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1, Me.GridView1})
         '
         'BandedGridView1
         '
         Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
+        Me.BandedGridView1.DetailHeight = 268
         Me.BandedGridView1.GridControl = Me.Grid
         Me.BandedGridView1.Name = "BandedGridView1"
         Me.BandedGridView1.OptionsView.ColumnAutoWidth = False
@@ -127,8 +126,10 @@ Partial Class frmDRR_details
         '
         'GridBand1
         '
+        Me.GridBand1.MinWidth = 7
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 52
         '
         '_TxtJanQty1
         '
@@ -211,6 +212,7 @@ Partial Class frmDRR_details
         '
         'GridView1
         '
+        Me.GridView1.DetailHeight = 268
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         '
@@ -221,7 +223,8 @@ Partial Class frmDRR_details
         'TxtMaspro
         '
         Me.TxtMaspro.EditValue = Nothing
-        Me.TxtMaspro.Location = New System.Drawing.Point(366, 38)
+        Me.TxtMaspro.Location = New System.Drawing.Point(283, 34)
+        Me.TxtMaspro.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtMaspro.Name = "TxtMaspro"
         Me.TxtMaspro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtMaspro.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -231,7 +234,7 @@ Partial Class frmDRR_details
         Me.TxtMaspro.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtMaspro.Properties.Mask.EditMask = "MMM-yyyy"
         Me.TxtMaspro.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtMaspro.Size = New System.Drawing.Size(138, 22)
+        Me.TxtMaspro.Size = New System.Drawing.Size(96, 20)
         Me.TxtMaspro.StyleController = Me.LayoutControl1
         Me.TxtMaspro.TabIndex = 7
         ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -251,41 +254,46 @@ Partial Class frmDRR_details
         Me.LayoutControl1.Controls.Add(Me.TxtNoNpp)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1104, 121)
+        Me.LayoutControl1.Size = New System.Drawing.Size(828, 93)
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtNoDokumen
         '
-        Me.TxtNoDokumen.Location = New System.Drawing.Point(113, 64)
+        Me.TxtNoDokumen.Location = New System.Drawing.Point(93, 58)
+        Me.TxtNoDokumen.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtNoDokumen.Name = "TxtNoDokumen"
-        Me.TxtNoDokumen.Size = New System.Drawing.Size(979, 22)
+        Me.TxtNoDokumen.Size = New System.Drawing.Size(727, 20)
         Me.TxtNoDokumen.StyleController = Me.LayoutControl1
         Me.TxtNoDokumen.TabIndex = 12
         '
         'TxtForecast
         '
-        Me.TxtForecast.Location = New System.Drawing.Point(816, 38)
+        Me.TxtForecast.Location = New System.Drawing.Point(621, 34)
+        Me.TxtForecast.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtForecast.Name = "TxtForecast"
-        Me.TxtForecast.Size = New System.Drawing.Size(276, 22)
+        Me.TxtForecast.Size = New System.Drawing.Size(199, 20)
         Me.TxtForecast.StyleController = Me.LayoutControl1
         Me.TxtForecast.TabIndex = 11
         '
         'TxtProject
         '
-        Me.TxtProject.Location = New System.Drawing.Point(816, 12)
+        Me.TxtProject.Location = New System.Drawing.Point(621, 10)
+        Me.TxtProject.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtProject.Name = "TxtProject"
         Me.TxtProject.Properties.ReadOnly = True
-        Me.TxtProject.Size = New System.Drawing.Size(276, 22)
+        Me.TxtProject.Size = New System.Drawing.Size(199, 20)
         Me.TxtProject.StyleController = Me.LayoutControl1
         Me.TxtProject.TabIndex = 6
         '
         'TxtDate
         '
         Me.TxtDate.EditValue = Nothing
-        Me.TxtDate.Location = New System.Drawing.Point(113, 38)
+        Me.TxtDate.Location = New System.Drawing.Point(93, 34)
+        Me.TxtDate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtDate.Name = "TxtDate"
         Me.TxtDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -295,7 +303,7 @@ Partial Class frmDRR_details
         Me.TxtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtDate.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.TxtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtDate.Size = New System.Drawing.Size(148, 22)
+        Me.TxtDate.Size = New System.Drawing.Size(103, 20)
         Me.TxtDate.StyleController = Me.LayoutControl1
         Me.TxtDate.TabIndex = 8
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -306,7 +314,8 @@ Partial Class frmDRR_details
         'TxtTime
         '
         Me.TxtTime.EditValue = Nothing
-        Me.TxtTime.Location = New System.Drawing.Point(609, 38)
+        Me.TxtTime.Location = New System.Drawing.Point(466, 34)
+        Me.TxtTime.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtTime.Name = "TxtTime"
         Me.TxtTime.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtTime.Properties.DisplayFormat.FormatString = "HH:mm"
@@ -315,7 +324,7 @@ Partial Class frmDRR_details
         Me.TxtTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
         Me.TxtTime.Properties.Mask.EditMask = "HH:mm"
-        Me.TxtTime.Size = New System.Drawing.Size(102, 22)
+        Me.TxtTime.Size = New System.Drawing.Size(68, 20)
         Me.TxtTime.StyleController = Me.LayoutControl1
         Me.TxtTime.TabIndex = 9
         ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -325,20 +334,22 @@ Partial Class frmDRR_details
         '
         'TxtCustomer
         '
-        Me.TxtCustomer.Location = New System.Drawing.Point(366, 12)
+        Me.TxtCustomer.Location = New System.Drawing.Point(283, 10)
+        Me.TxtCustomer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtCustomer.Name = "TxtCustomer"
         Me.TxtCustomer.Properties.ReadOnly = True
-        Me.TxtCustomer.Size = New System.Drawing.Size(345, 22)
+        Me.TxtCustomer.Size = New System.Drawing.Size(251, 20)
         Me.TxtCustomer.StyleController = Me.LayoutControl1
         Me.TxtCustomer.TabIndex = 5
         '
         'TxtNoNpp
         '
-        Me.TxtNoNpp.Location = New System.Drawing.Point(113, 12)
+        Me.TxtNoNpp.Location = New System.Drawing.Point(93, 10)
+        Me.TxtNoNpp.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TxtNoNpp.Name = "TxtNoNpp"
         Me.TxtNoNpp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TxtNoNpp.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TxtNoNpp.Size = New System.Drawing.Size(148, 22)
+        Me.TxtNoNpp.Size = New System.Drawing.Size(103, 20)
         Me.TxtNoNpp.StyleController = Me.LayoutControl1
         Me.TxtNoNpp.TabIndex = 4
         '
@@ -348,7 +359,7 @@ Partial Class frmDRR_details
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem4, Me.LayoutControlItem6})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1104, 121)
+        Me.Root.Size = New System.Drawing.Size(828, 93)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -356,72 +367,72 @@ Partial Class frmDRR_details
         Me.LayoutControlItem1.Control = Me.TxtNoNpp
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(253, 26)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(190, 24)
         Me.LayoutControlItem1.Text = "No. NPP"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtDate
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 26)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(253, 26)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(190, 24)
         Me.LayoutControlItem5.Text = "Date"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.TxtCustomer
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(253, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(190, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(450, 26)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(338, 24)
         Me.LayoutControlItem2.Text = "Customer"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtProject
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(703, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(528, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(381, 26)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(286, 24)
         Me.LayoutControlItem3.Text = "Project/Model"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.TxtForecast
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(703, 26)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(528, 24)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(381, 26)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(286, 24)
         Me.LayoutControlItem10.Text = "Forecast Order"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.TxtNoDokumen
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 52)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(1084, 49)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(814, 29)
         Me.LayoutControlItem11.Text = "No Dokumen"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtMaspro
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(253, 26)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(190, 24)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(243, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(183, 24)
         Me.LayoutControlItem4.Text = "Due Date Maspro"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(83, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtTime
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(496, 26)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(373, 24)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(207, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(155, 24)
         Me.LayoutControlItem6.Text = "Time"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(98, 16)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(83, 13)
         '
         'GalleryControl1
         '
@@ -441,9 +452,10 @@ Partial Class frmDRR_details
         Me.GalleryControl1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck
         Me.GalleryControl1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.ZoomInside
         Me.GalleryControl1.Gallery.ShowItemText = True
-        Me.GalleryControl1.Location = New System.Drawing.Point(0, 148)
+        Me.GalleryControl1.Location = New System.Drawing.Point(0, 120)
+        Me.GalleryControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.GalleryControl1.Name = "GalleryControl1"
-        Me.GalleryControl1.Size = New System.Drawing.Size(1104, 408)
+        Me.GalleryControl1.Size = New System.Drawing.Size(828, 297)
         Me.GalleryControl1.TabIndex = 4
         Me.GalleryControl1.Text = "GalleryControl1"
         '
@@ -451,24 +463,27 @@ Partial Class frmDRR_details
         '
         Me.GalleryControlClient1.GalleryControl = Me.GalleryControl1
         Me.GalleryControlClient1.Location = New System.Drawing.Point(2, 2)
-        Me.GalleryControlClient1.Size = New System.Drawing.Size(1079, 404)
+        Me.GalleryControlClient1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GalleryControlClient1.Size = New System.Drawing.Size(807, 293)
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnFunction)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 721)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 543)
+        Me.PanelControl1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1104, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(828, 30)
         Me.PanelControl1.TabIndex = 5
         '
         'BtnFunction
         '
         Me.BtnFunction.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnFunction.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.BtnFunction.Location = New System.Drawing.Point(979, 5)
+        Me.BtnFunction.Location = New System.Drawing.Point(734, 4)
+        Me.BtnFunction.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.BtnFunction.Name = "BtnFunction"
-        Me.BtnFunction.Size = New System.Drawing.Size(113, 29)
+        Me.BtnFunction.Size = New System.Drawing.Size(85, 22)
         Me.BtnFunction.TabIndex = 0
         Me.BtnFunction.Text = "Function"
         '
@@ -477,30 +492,30 @@ Partial Class frmDRR_details
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachImageToolStripMenuItem, Me.SuToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(168, 52)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(146, 48)
         '
         'AttachImageToolStripMenuItem
         '
         Me.AttachImageToolStripMenuItem.Name = "AttachImageToolStripMenuItem"
-        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.AttachImageToolStripMenuItem.Text = "Attach Image"
         '
         'SuToolStripMenuItem
         '
         Me.SuToolStripMenuItem.Name = "SuToolStripMenuItem"
-        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
+        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.SuToolStripMenuItem.Text = "Release"
         '
         'frmDRR_details
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1104, 760)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(828, 573)
         Me.Controls.Add(Me.GalleryControl1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.PanelControl1)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.Name = "frmDRR_details"
         Me.Controls.SetChildIndex(Me.PanelControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)

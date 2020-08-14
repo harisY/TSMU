@@ -10,15 +10,29 @@ Public Class Frm_NPP_Header
     Dim FrmReport As ReportNPWO
     Dim Active_Form As Integer = 0
 
+    Dim dt As New DataTable
+    Dim dt1 As New DataTable
+    Dim dtAll As New DataTable
 
+    Public Sub NPP_Head_LoadGrid_Search(_tgawal As Date, _tgakhir As Date)
+
+        Try
+            dtAll = fc_Class.Get_NPP_Search(_tgawal, _tgakhir)
+
+            Grid3.DataSource = dtAll
+
+            Cursor.Current = Cursors.WaitCursor
+            Cursor.Current = Cursors.Default
+        Catch ex As Exception
+            Cursor.Current = Cursors.Default
+        End Try
+
+
+    End Sub
 
     Public Sub NPP_Head_LoadGrid(Active_Form_ As Integer)
 
-
         Try
-
-            Dim dt As New DataTable
-            Dim dt1 As New DataTable
 
             If Active_Form_ = 1 Then
                 dtGrid = fc_Class.Get_NPP()
@@ -42,25 +56,6 @@ Public Class Frm_NPP_Header
             Cursor.Current = Cursors.Default
         End Try
 
-
-        'Try
-        '    Cursor.Current = Cursors.WaitCursor
-
-        '    'Dim dt As New DataTable
-        '    dtGrid = fc_Class.Get_NPP()
-
-        '    Dim dt2 As New DataTable
-        '    dt2 = fc_Class.Get_NPP2()
-
-        '    Grid.DataSource = dtGrid
-        '    Grid2.DataSource = dt2
-        '    'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
-        '    Cursor.Current = Cursors.Default
-        'Catch ex As Exception
-        '    Cursor.Current = Cursors.Default
-        'End Try
-
-
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
@@ -82,8 +77,19 @@ Public Class Frm_NPP_Header
 
 
     Public Overrides Sub Proc_Refresh()
+
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+        'Stop
+
         bs_Filter = ""
         Call NPP_Head_LoadGrid(Active_Form)
+        Call NPP_Head_LoadGrid_Search(TangalAwal, TangalAkhir)
+
     End Sub
 
     Public Overrides Sub Proc_Filter()
@@ -198,14 +204,6 @@ Public Class Frm_NPP_Header
                 e.Appearance.BackColor = Color.Yellow
                 'e.Appearance.BackColor2 = Color.Yellow
                 e.HighPriority = True
-            ElseIf category = "Submit" Then
-                e.Appearance.BackColor = Color.GreenYellow
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
-            ElseIf category = "Approve Dept Head" Then
-                e.Appearance.BackColor = Color.GreenYellow
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
             ElseIf category = "Approve Div Head" Then
                 e.Appearance.BackColor = Color.Goldenrod
                 'e.Appearance.BackColor2 = Color.Yellow
@@ -215,6 +213,14 @@ Public Class Frm_NPP_Header
     End Sub
 
     Private Sub Frm_NPP_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+
+
 
         Dim dtUser As New DataTable
         dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
@@ -234,7 +240,14 @@ Public Class Frm_NPP_Header
 
         bb_SetDisplayChangeConfirmation = False
         Call NPP_Head_LoadGrid(Active_Form)
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
+        Call NPP_Head_LoadGrid_Search(TangalAwal, TangalAkhir)
+        If Active_Form = 1 Then
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 2 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 3 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        End If
 
     End Sub
 
@@ -242,5 +255,25 @@ Public Class Frm_NPP_Header
 
         Call NPP_Head_LoadGrid(Active_Form)
 
+    End Sub
+
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+
+                Dim dt As New DataTable
+                '               Call LoadGrid(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                Call NPP_Head_LoadGrid_Search(.TglDari, .TglSampai)
+
+                'fc_Class = New clsCR_Accounting
+                'dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                'Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 End Class

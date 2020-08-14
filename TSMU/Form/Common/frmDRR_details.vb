@@ -875,4 +875,8 @@ Public Class frmDRR_details
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
+    Private Sub BtnFunction_Click(sender As Object, e As EventArgs) Handles BtnFunction.Click
+
+    End Sub
 End Class

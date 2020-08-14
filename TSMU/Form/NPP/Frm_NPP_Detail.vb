@@ -134,6 +134,7 @@ Public Class Frm_NPP_Detail
         Me.Cek.OptionsColumn.AllowEdit = False
         Me.Commit.OptionsColumn.AllowEdit = False
         Me.Runner.OptionsColumn.AllowEdit = False
+        Me.ChangeFrom.OptionsColumn.AllowEdit = False
 
     End Sub
 
@@ -162,6 +163,7 @@ Public Class Frm_NPP_Detail
         Me.Cek.OptionsColumn.AllowEdit = True
         Me.Commit.OptionsColumn.AllowEdit = True
         Me.Runner.OptionsColumn.AllowEdit = True
+        Me.ChangeFrom.OptionsColumn.AllowEdit = True
 
     End Sub
 
@@ -221,7 +223,7 @@ Public Class Frm_NPP_Detail
                     TModel.Enabled = False
                     TNPP_No.Enabled = False
                     Me.Text = "NPP FORM "
-                    If fc_Class.H_Approve_Dept_Head = False Then
+                    If fc_Class.H_Approve <= 1 Then
                         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
@@ -229,7 +231,7 @@ Public Class Frm_NPP_Detail
                         BUpload.Visible = True
                         B_AddRows.Visible = True
                         B_Submit.Visible = False
-                    ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = False Then
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = False Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                         Call Colums_AllowEdit_False()
                         B_Submit.Visible = True
@@ -237,7 +239,7 @@ Public Class Frm_NPP_Detail
                         Me.Commit.OptionsColumn.AllowEdit = True
                         B_AddRows.Visible = False
                         BUpload.Visible = False
-                    ElseIf fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = True Then
                         Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
                         Call Colums_AllowEdit_True()
                         Me.PartNo.OptionsColumn.AllowEdit = False
@@ -558,7 +560,6 @@ Public Class Frm_NPP_Detail
 
                     End If
                 Next
-
 
             End If
 
@@ -1017,7 +1018,7 @@ Public Class Frm_NPP_Detail
                             .TA_DeptID = gh_Common.GroupID
                             .TA_NoTransaksi = TNPP_No.EditValue
                             .TA_LevelApprove = Active_Form
-                            .TA_StatusApprove = "Approved"
+                            .TA_StatusApprove = "Submit"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
 
@@ -1286,9 +1287,6 @@ Public Class Frm_NPP_Detail
 
     End Sub
 
-    Private Sub TModel_EditValueChanged(sender As Object, e As EventArgs) Handles TModel.EditValueChanged
-
-    End Sub
 
     Private Sub TModelDesc_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TModelDesc.KeyPress
         e.KeyChar = Char.ToUpper(e.KeyChar)
@@ -1342,20 +1340,11 @@ Public Class Frm_NPP_Detail
 
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
-
-    End Sub
-
     Private Sub BSetGroup_Click(sender As Object, e As EventArgs) Handles BSetGroup.Click
 
         CForm = 1
 
         CallForm()
-
-    End Sub
-
-
-    Private Sub DateEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles TIssue_Date.EditValueChanged
 
     End Sub
 
@@ -1521,8 +1510,6 @@ Public Class Frm_NPP_Detail
             End Try
         End If
 
-
-
     End Sub
 
     Private Sub Check_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Check.KeyPress
@@ -1561,8 +1548,6 @@ Public Class Frm_NPP_Detail
     Private Sub B_Approve_Click(sender As Object, e As EventArgs) Handles B_Approve.Click
 
         Dim dtAprovel As New DataTable
-
-
 
         If Active_Form = 2 Then
             If fc_Class.H_Approve = 1 Then
@@ -1697,7 +1682,6 @@ Public Class Frm_NPP_Detail
             End If
 
         ElseIf Active_Form = 3 Then
-
             If fc_Class.H_Approve = 2 Or fc_Class.H_Approve = 3 Then
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
                 If result = System.Windows.Forms.DialogResult.Yes Then
@@ -1739,16 +1723,18 @@ Public Class Frm_NPP_Detail
 
     Private Sub GridView1_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridView1.FocusedRowChanged
 
-        If Active_Form = 3 Then
+        If Active_Form = 4 Then
             Try
                 Dim Comit As Boolean
+                Dim _Active As Boolean
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
+                        _Active = GridView1.GetRowCellValue(rowHandle, "Active")
                     End If
                 Next rowHandle
-                If Comit = True Then
+                If Comit = True Or _Active = False Then
                     GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = False
                     GridView1.Columns("Due Date NPD").OptionsColumn.AllowEdit = False
                 Else
@@ -1759,34 +1745,106 @@ Public Class Frm_NPP_Detail
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             End Try
-        ElseIf Active_Form = 0 Then
-            If fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
-                Try
-                    'Dim Comit As Boolean
-                    'Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                    'For Each rowHandle As Integer In selectedRows
-                    '    If rowHandle >= 0 Then
-                    '        Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
-                    '    End If
-                    'Next rowHandle
-                    'If Comit = True Then
-                    Call Colums_AllowEdit_True()
-                    'Me.PartNo.OptionsColumn.AllowEdit = False
-                    'Me.PartName.OptionsColumn.AllowEdit = False
-                    Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                    'Else
-                    '    Call Colums_AllowEdit_False()
-                    'End If
-                Catch ex As Exception
-                    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                End Try
-            End If
+        ElseIf Active_Form = 1 Then
+            Try
+                Dim _Active As Boolean
+                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        _Active = GridView1.GetRowCellValue(rowHandle, "Active")
+                    End If
+                Next rowHandle
+
+                If _Active = False Then
+                    GridView1.Columns("Part No").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Part Name").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Machine").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("C/T").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Cav").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Weight").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Material").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Inj").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Painting").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Chrome").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Assy").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Ultrasonic").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Vibration").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Status Mold").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Order Month").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Group ID").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Revisi").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Status").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Due Date NPD").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Note").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Active").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Change From").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("No Urut").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("DRR").OptionsColumn.AllowEdit = False
+                    GridView1.Columns("Runner").OptionsColumn.AllowEdit = False
+                Else _Active = True
+                    GridView1.Columns("Part No").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Part Name").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Machine").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("C/T").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Cav").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Weight").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Material").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Inj").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Painting").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Chrome").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Assy").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Ultrasonic").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Vibration").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Status Mold").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Order Month").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Group ID").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Revisi").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Status").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Due Date NPD").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Commit NPD").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Note").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Active").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Change From").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("No Urut").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("DRR").OptionsColumn.AllowEdit = True
+                    GridView1.Columns("Runner").OptionsColumn.AllowEdit = True
+
+                End If
+
+
+
+            Catch ex As Exception
+
+            End Try
+
+            'If fc_Class.H_Approve_Div_Head = True And fc_Class.H_Submit_NPD = True Then
+            '    Try
+            '        'Dim Comit As Boolean
+            '        'Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            '        'For Each rowHandle As Integer In selectedRows
+            '        '    If rowHandle >= 0 Then
+            '        '        Comit = GridView1.GetRowCellValue(rowHandle, "Commit1")
+            '        '    End If
+            '        'Next rowHandle
+            '        'If Comit = True Then
+            '        Call Colums_AllowEdit_True()
+            '        'Me.PartNo.OptionsColumn.AllowEdit = False
+            '        'Me.PartName.OptionsColumn.AllowEdit = False
+            '        Me.CapabilityDate.OptionsColumn.AllowEdit = False
+            '        'Else
+            '        '    Call Colums_AllowEdit_False()
+            '        'End If
+            '    Catch ex As Exception
+            '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            '    End Try
+            'End If
         End If
     End Sub
 
     Private Sub B_Revise_Click(sender As Object, e As EventArgs) Handles B_Revise.Click
-        If Active_Form = 1 Then
+        If Active_Form = 2 Then
 
             Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Revise " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
             If result = System.Windows.Forms.DialogResult.Yes Then
@@ -1835,8 +1893,6 @@ Public Class Frm_NPP_Detail
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Dim myValue As String = InputBox("Enter Value", "Enter Value", "Please Enter Value")
     End Sub
-
-
 
     Private Sub B_Replace_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles B_ChangeFrom.ButtonClick
         Try
