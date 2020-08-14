@@ -27,7 +27,7 @@ Public Class frmDRR
     Private Sub frmDRR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
 
-        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, True, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, True, False, False, False, False, False, False, False)
 
     End Sub
     Private Sub SaveToExcel(_Grid As GridControl)
@@ -44,7 +44,7 @@ Public Class frmDRR
             SplashScreenManager.ShowForm(GetType(FrmWait))
             _Service = New DRRService
             dtGrid = New DataTable
-            dtGrid = _Service.GetAll()
+            dtGrid = _Service.GetData(Me, GetLevel)
             Grid.DataSource = dtGrid
 
             If GridView1.RowCount > 0 Then
@@ -121,6 +121,7 @@ Public Class frmDRR
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+        Return _level
     End Function
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
@@ -135,7 +136,8 @@ Public Class frmDRR
         ff_Detail.Show()
     End Sub
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
-    Dim _path As String = "D:\TOOLS\Sketch\"
+    'Dim _path As String = "D:\TOOLS\Sketch\"
+    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
@@ -172,7 +174,7 @@ Public Class frmDRR
                     End If
                 End If
             Next
-            _Service.Delete(ID)
+            _Service.Delete(ID, Me)
 
             ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()

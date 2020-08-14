@@ -7,7 +7,7 @@ Public Class Frm_NPD_Acces
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
 
-    Dim Active_Form As Integer = 3
+    Dim Active_Form As Integer = 4
 
     Private Sub Frm_NPD_Acces_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtGrid = New DataTable
@@ -72,7 +72,7 @@ Public Class Frm_NPD_Acces
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form, Me.Name)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()

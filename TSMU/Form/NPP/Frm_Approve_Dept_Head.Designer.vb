@@ -28,7 +28,9 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Requester = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ApproveDepHead = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ApproveDivHead = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -41,6 +43,8 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ApproveDeptHead = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ApproveDivHead_ = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -94,7 +98,7 @@ Partial Class Frm_Approve_Dept_Head
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.Status})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.Requester, Me.ApproveDepHead, Me.ApproveDivHead, Me.GridColumn7, Me.Status})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -154,17 +158,39 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 132
         '
-        'GridColumn6
+        'Requester
         '
-        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.FieldName = "Approve"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 91
+        Me.Requester.AppearanceCell.Options.UseTextOptions = True
+        Me.Requester.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Requester.AppearanceHeader.Options.UseTextOptions = True
+        Me.Requester.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Requester.FieldName = "Requester"
+        Me.Requester.Name = "Requester"
+        Me.Requester.Visible = True
+        Me.Requester.VisibleIndex = 5
+        Me.Requester.Width = 91
+        '
+        'ApproveDepHead
+        '
+        Me.ApproveDepHead.AppearanceCell.Options.UseTextOptions = True
+        Me.ApproveDepHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDepHead.AppearanceHeader.Options.UseTextOptions = True
+        Me.ApproveDepHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDepHead.FieldName = "Dept Head"
+        Me.ApproveDepHead.Name = "ApproveDepHead"
+        Me.ApproveDepHead.Visible = True
+        Me.ApproveDepHead.VisibleIndex = 6
+        '
+        'ApproveDivHead
+        '
+        Me.ApproveDivHead.AppearanceCell.Options.UseTextOptions = True
+        Me.ApproveDivHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDivHead.AppearanceHeader.Options.UseTextOptions = True
+        Me.ApproveDivHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDivHead.FieldName = "Div Head"
+        Me.ApproveDivHead.Name = "ApproveDivHead"
+        Me.ApproveDivHead.Visible = True
+        Me.ApproveDivHead.VisibleIndex = 7
         '
         'GridColumn7
         '
@@ -175,14 +201,19 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn7.FieldName = "Rev"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.VisibleIndex = 8
         '
         'Status
         '
+        Me.Status.AppearanceCell.Options.UseTextOptions = True
+        Me.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Status.AppearanceHeader.Options.UseTextOptions = True
+        Me.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Status.FieldName = "Status"
         Me.Status.Name = "Status"
         Me.Status.Visible = True
-        Me.Status.VisibleIndex = 7
+        Me.Status.VisibleIndex = 9
+        Me.Status.Width = 112
         '
         'RepositoryItemButtonEdit1
         '
@@ -216,7 +247,7 @@ Partial Class Frm_Approve_Dept_Head
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.ApproveDeptHead, Me.ApproveDivHead_, Me.GridColumn14, Me.GridColumn15})
         Me.GridView2.GridControl = Me.Grid1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -282,11 +313,33 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.FieldName = "Approve"
+        Me.GridColumn13.FieldName = "Requester"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
         Me.GridColumn13.Width = 91
+        '
+        'ApproveDeptHead
+        '
+        Me.ApproveDeptHead.AppearanceCell.Options.UseTextOptions = True
+        Me.ApproveDeptHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDeptHead.AppearanceHeader.Options.UseTextOptions = True
+        Me.ApproveDeptHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDeptHead.FieldName = "Dept Head"
+        Me.ApproveDeptHead.Name = "ApproveDeptHead"
+        Me.ApproveDeptHead.Visible = True
+        Me.ApproveDeptHead.VisibleIndex = 6
+        '
+        'ApproveDivHead_
+        '
+        Me.ApproveDivHead_.AppearanceCell.Options.UseTextOptions = True
+        Me.ApproveDivHead_.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDivHead_.AppearanceHeader.Options.UseTextOptions = True
+        Me.ApproveDivHead_.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ApproveDivHead_.FieldName = "Div Head"
+        Me.ApproveDivHead_.Name = "ApproveDivHead_"
+        Me.ApproveDivHead_.Visible = True
+        Me.ApproveDivHead_.VisibleIndex = 7
         '
         'GridColumn14
         '
@@ -297,14 +350,18 @@ Partial Class Frm_Approve_Dept_Head
         Me.GridColumn14.FieldName = "Rev"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 6
+        Me.GridColumn14.VisibleIndex = 8
         '
         'GridColumn15
         '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.FieldName = "Status"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 7
+        Me.GridColumn15.VisibleIndex = 9
         '
         'RepositoryItemButtonEdit2
         '
@@ -342,7 +399,7 @@ Partial Class Frm_Approve_Dept_Head
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Requester As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
@@ -358,4 +415,8 @@ Partial Class Frm_Approve_Dept_Head
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents ApproveDepHead As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ApproveDivHead As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ApproveDeptHead As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ApproveDivHead_ As DevExpress.XtraGrid.Columns.GridColumn
 End Class
