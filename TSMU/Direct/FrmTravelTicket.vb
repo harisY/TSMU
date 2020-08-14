@@ -34,7 +34,7 @@ Public Class FrmTravelTicket
             End If
             ff_RequestDetail.Close()
         End If
-        ff_RequestDetail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, GridRequest)
+        ff_RequestDetail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, GridRequest, 0)
         ff_RequestDetail.MdiParent = FrmMain
         ff_RequestDetail.StartPosition = FormStartPosition.CenterScreen
         ff_RequestDetail.Show()

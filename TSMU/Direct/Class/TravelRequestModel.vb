@@ -14,6 +14,7 @@ Public Class TravelRequestModel
     Public Property Approved As String
     Public Property Comment As String
     Public Property Pay As Integer
+    Public Property CurrentLvlApprove As Integer
 
     Public Property ObjRequestHeader() As New Collection(Of TravelRequestModel)
     Public Property ObjRequestDetails() As New Collection(Of TravelRequestDetailModel)
@@ -47,6 +48,30 @@ Public Class TravelRequestModel
         End Try
     End Function
 
+    Public Function GetTravelTask(ByVal levelApprove As Integer) As DataTable
+        Try
+            strQuery = "SELECT  NoRequest ,
+                                NIK ,
+                                Nama ,
+                                Date ,
+                                DeptID ,
+                                TravelType ,
+                                Golongan ,
+                                Purpose ,
+                                Status ,
+                                Approved ,
+                                Comment
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   CurrentLevelApprove = " & levelApprove & " - 1
+                                AND DeptID IN ( " & QVal(gh_Common.GroupID) & " )"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetTravelRequest() As DataTable
         Try
             Dim aksesView As List(Of String)
@@ -71,7 +96,7 @@ Public Class TravelRequestModel
                                   OR Approved IS NULL
                                   OR Approved <> 'APPROVED'
                                 )
-                                AND DeptID IN ( " & nilai & " )"
+                                AND DeptID IN ( " & QVal(gh_Common.GroupID) & " )"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -104,7 +129,7 @@ Public Class TravelRequestModel
                                 AND ( Approved = ''
                                       OR Approved IS NULL
                                     )
-                                AND DeptID IN ( " & nilai & " ) "
+                                AND DeptID IN ( " & QVal(gh_Common.GroupID) & " ) "
 
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
@@ -114,15 +139,15 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetTravelProgress() As DataTable
+    Public Function GetTravelProgress(ByVal levelApprove As Integer) As DataTable
         Try
-            Dim aksesApproval As List(Of String)
-            aksesApproval = GetAksesApproval()
-            Dim nilai As String = "''"
-            If aksesApproval.Count > 0 Then
-                nilai = String.Join(",", aksesApproval.ToArray)
-            End If
-            strQuery = " SELECT NoRequest ,
+            'Dim aksesApproval As List(Of String)
+            'aksesApproval = GetAksesApproval()
+            'Dim nilai As String = "''"
+            'If aksesApproval.Count > 0 Then
+            '    nilai = String.Join(",", aksesApproval.ToArray)
+            'End If
+            strQuery = "SELECT  NoRequest ,
                                 NIK ,
                                 Nama ,
                                 Date ,
@@ -132,14 +157,13 @@ Public Class TravelRequestModel
                                 Purpose ,
                                 Status ,
                                 Approved ,
-                                Comment
-                         FROM   dbo.TravelRequestHeader
-                         WHERE  Status IN ( 'PENDING', 'OPEN' )
-                                AND ( Approved <> ''
-                                      OR Approved IS NOT NULL
-                                    )
-                                AND DeptID IN ( " & nilai & " ) "
-
+                                Comment ,
+                                CurrentLevelApprove
+                        FROM    dbo.TravelRequestHeader
+                        WHERE   Status <> 'CLOSE'
+                                AND 0 <> " & levelApprove & "
+                                AND CurrentLevelApprove >= " & levelApprove & "
+                                AND DeptID IN ( " & QVal(gh_Common.GroupID) & " )"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -167,7 +191,7 @@ Public Class TravelRequestModel
                                 Approved ,
                                 Comment
                         FROM    dbo.TravelRequestHeader
-                        WHERE   DeptID IN (" & nilai & ")"
+                        WHERE   DeptID IN (" & QVal(gh_Common.GroupID) & ")"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -460,6 +484,7 @@ Public Class TravelRequestModel
                         " SET     Status = " & QVal(Status) & " , " & vbCrLf &
                         "         Approved = " & QVal(Approved) & " , " & vbCrLf &
                         "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+                        "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   NoRequest = " & QVal(_NoRequest) & " "
@@ -475,6 +500,7 @@ Public Class TravelRequestModel
                         " SET     Status = " & QVal(Status) & " , " & vbCrLf &
                         "         Approved = " & QVal(Approved) & " , " & vbCrLf &
                         "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+                        "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
                         " WHERE   NoRequest = " & QVal(_NoRequest) & " "
@@ -738,11 +764,11 @@ Public Class TravelRequestCostModel
                                             Days ,
                                             AdvanceIDR ,
                                             AdvanceUSD ,
-                                            0 AS AdvanceIDRUSD ,
+                                            CONVERT(FLOAT, 0) AS AdvanceIDRUSD ,
                                             AdvanceYEN ,
-                                            0 AS AdvanceIDRYEN ,
+                                            CONVERT(FLOAT, 0) AS AdvanceIDRYEN ,
                                             ISNULL(RateAdvanceIDR, 0) AS RateAdvanceIDR ,
-                                            0 AS TotalAdvanceIDR
+                                            CONVERT(FLOAT, 0) AS TotalAdvanceIDR
                                     FROM    dbo.TravelRequestCost
                                     WHERE   NoRequest = " & QVal(NoRequest) & " "
             Dim dt As New DataTable

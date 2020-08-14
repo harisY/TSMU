@@ -113,7 +113,7 @@ Partial Class FrmTravelRequest
         Me.GridApprovedReq.MainView = Me.GridViewApproved
         Me.GridApprovedReq.Name = "GridApprovedReq"
         Me.GridApprovedReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CApproved, Me.CComment})
-        Me.GridApprovedReq.Size = New System.Drawing.Size(1147, 480)
+        Me.GridApprovedReq.Size = New System.Drawing.Size(1145, 480)
         Me.GridApprovedReq.TabIndex = 1
         Me.GridApprovedReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewApproved})
         '
@@ -270,10 +270,10 @@ Partial Class FrmTravelRequest
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 32)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(957, 520)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1158, 520)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageApproved, Me.TabPageProgress, Me.TabPageRequestAll})
         '
@@ -281,8 +281,8 @@ Partial Class FrmTravelRequest
         '
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(950, 486)
-        Me.TabPageRequest.Text = "Request"
+        Me.TabPageRequest.Size = New System.Drawing.Size(1151, 486)
+        Me.TabPageRequest.Text = "Task"
         '
         'GridRequest
         '
@@ -292,7 +292,7 @@ Partial Class FrmTravelRequest
         Me.GridRequest.Location = New System.Drawing.Point(3, 3)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
-        Me.GridRequest.Size = New System.Drawing.Size(944, 480)
+        Me.GridRequest.Size = New System.Drawing.Size(1145, 480)
         Me.GridRequest.TabIndex = 2
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
@@ -427,14 +427,15 @@ Partial Class FrmTravelRequest
         '
         Me.TabPageApproved.Controls.Add(Me.GridApprovedReq)
         Me.TabPageApproved.Name = "TabPageApproved"
-        Me.TabPageApproved.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageApproved.PageVisible = False
+        Me.TabPageApproved.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageApproved.Text = "Approved"
         '
         'TabPageProgress
         '
         Me.TabPageProgress.Controls.Add(Me.GridProgress)
         Me.TabPageProgress.Name = "TabPageProgress"
-        Me.TabPageProgress.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageProgress.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageProgress.Text = "Progress"
         '
         'GridProgress
@@ -446,7 +447,7 @@ Partial Class FrmTravelRequest
         Me.GridProgress.MainView = Me.GridViewProgress
         Me.GridProgress.Name = "GridProgress"
         Me.GridProgress.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1})
-        Me.GridProgress.Size = New System.Drawing.Size(1147, 480)
+        Me.GridProgress.Size = New System.Drawing.Size(1145, 480)
         Me.GridProgress.TabIndex = 2
         Me.GridProgress.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewProgress})
         '
@@ -601,7 +602,7 @@ Partial Class FrmTravelRequest
         Me.TabPageRequestAll.Controls.Add(Me.txtColumnName)
         Me.TabPageRequestAll.Controls.Add(Me.txtValue)
         Me.TabPageRequestAll.Name = "TabPageRequestAll"
-        Me.TabPageRequestAll.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageRequestAll.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageRequestAll.Text = "Search"
         '
         'btnSearch
@@ -629,7 +630,7 @@ Partial Class FrmTravelRequest
         Me.GridRequestAll.Location = New System.Drawing.Point(3, 42)
         Me.GridRequestAll.MainView = Me.GridViewRequestAll
         Me.GridRequestAll.Name = "GridRequestAll"
-        Me.GridRequestAll.Size = New System.Drawing.Size(1150, 441)
+        Me.GridRequestAll.Size = New System.Drawing.Size(1145, 441)
         Me.GridRequestAll.TabIndex = 3
         Me.GridRequestAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequestAll})
         '
@@ -781,7 +782,7 @@ Partial Class FrmTravelRequest
         'FrmTravelRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(981, 564)
+        Me.ClientSize = New System.Drawing.Size(1182, 564)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmTravelRequest"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
