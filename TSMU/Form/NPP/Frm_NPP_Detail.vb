@@ -311,7 +311,7 @@ Public Class Frm_NPP_Detail
                     Me.Note.OptionsColumn.AllowEdit = True
                     Me.CapabilityDate.OptionsColumn.AllowEdit = True
                     Me.Commit.OptionsColumn.AllowEdit = True
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, True, True)
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                     B_AddRows.Enabled = False
                     BUpload.Enabled = False
                 End If
@@ -322,6 +322,7 @@ Public Class Frm_NPP_Detail
                 Me.Text = "NPP FORM "
                 B_AddRows.Visible = True
                 BUpload.Visible = True
+                TIssue_Date.EditValue = Date.Now
             End If
             Call LoadTxtBox()
             Call LoadGrid(fc_Class.H_No_NPP)
