@@ -38,20 +38,21 @@
             Throw ex
         End Try
     End Function
-    Public Function GetNoDRR(Seq As Integer) As Integer
+    Public Function GetNoDRR(Seq As Integer, NoNPP As String) As DataTable
         Dim _result As Integer = 0
         Try
             Dim Sql As String = "NPP_GetNoDRR"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
             pParam(0).Value = Seq
+
             Dim dt As New DataTable
 
             dt = GetDataTableByCommand_SP(Sql, pParam)
-            If dt.Rows.Count > 0 Then
-                _result = Convert.ToInt32(dt.Rows(0)(0))
-            End If
-            Return _result
+            'If dt.Rows.Count > 0 Then
+            '    _result = Convert.ToInt32(dt.Rows(0)(0))
+            'End If
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

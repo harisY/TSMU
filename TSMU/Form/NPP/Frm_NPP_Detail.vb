@@ -1248,12 +1248,39 @@ Public Class Frm_NPP_Detail
             Next rowHandle
 
             Dim GServis As New GlobalService
-            Dim NoDRR As Integer = GServis.GetNoDRR(NoSeq)
             Dim NoNPP As String = TNPP_No.EditValue
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallFrm(NoDRR, NoNPP,
-                            GridView1.RowCount)
+            Dim dtDrr As New DataTable
+            Dim NoDRR As String = ""
+            dtDrr = GServis.GetNoDRR(NoSeq, NoNPP)
+
+            If dtDrr.Rows.Count <= 0 Then
+
+                MessageBox.Show("Data Not Found",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+                Exit Sub
+
+            Else
+                If dtDrr.Rows(0).Item("Release") <> 3 Then
+                    MessageBox.Show("DRR is Still Process",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+                    Exit Sub
+                Else
+                    NoDRR = dtDrr.Rows(0).Item("IdDRR")
+
+                    If GridView1.GetSelectedRows.Length > 0 Then
+                        Call CallFrm(NoDRR, NoNPP,
+                                    GridView1.RowCount)
+                    End If
+                End If
+
             End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
