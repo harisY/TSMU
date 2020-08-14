@@ -56,7 +56,7 @@ Public Class Frm_Approve_Div_Head
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form, Me.Name)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()

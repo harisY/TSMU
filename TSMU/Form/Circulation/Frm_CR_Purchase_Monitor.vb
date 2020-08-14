@@ -11,30 +11,58 @@ Public Class Frm_CR_Purchase_Monitor
     Dim Active_Form As Integer = 7
 
     Private Sub Frm_CR_Purchase_Monitor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+        'Stop
+
+
         bb_SetDisplayChangeConfirmation = False
         Dept = gh_Common.GroupID
         DeptHeadID = gh_Common.Username
-        LoadGrid()
+        LoadGrid(TangalAwal, TangalAkhir)
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
         'Call Grid_Properties()
     End Sub
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
 
+                Dim dt As New DataTable
+                '               Call LoadGrid(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                Call LoadGrid(.TglDari, .TglSampai)
 
-    Public Sub LoadGrid()
+                'fc_Class = New clsCR_Accounting
+                'dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                'Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Public Sub LoadGrid(pAwal As Date, pAkhir As Date)
         Try
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class.Get_Purchase_Monitor_Proses()
+            dt = fc_Class.Get_Purchase_Monitor_Proses(pAwal, pAkhir)
             Grid.DataSource = dt
 
             Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_Purchase_Monitor_Approve()
+            dt2 = fc_Class.Get_Purchase_Monitor_Approve(pAwal, pAkhir)
             Grid2.DataSource = dt2
 
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
 
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
+            ' Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             'Cursor.Current = Cursors.Default
         Catch ex As Exception
             ' Cursor.Current = Cursors.Default
@@ -106,6 +134,40 @@ Public Class Frm_CR_Purchase_Monitor
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+
+    End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+        'Stop
+        Call LoadGrid(TangalAwal, TangalAkhir)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+
+        Stop
+        Dim TangalAkhir As DateTime = Date.Now
+        Stop
+
+
+        'Dim d As DateTime = #3/4/2008#
+        'Dim ldom As DateTime = d.AddDays(-d.Day)
+        'Dim fdom As DateTime = ldom.AddDays(-(ldom.Day - 1))
+        'Stop
+        'd = #2/2/2008#
+        'ldom = d.AddDays(-d.Day)
+        'fdom = ldom.AddDays(-(ldom.Day - 1))
+        'Stop
+
 
     End Sub
 End Class

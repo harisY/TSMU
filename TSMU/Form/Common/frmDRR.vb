@@ -121,6 +121,7 @@ Public Class frmDRR
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+        Return _level
     End Function
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then

@@ -7,9 +7,13 @@ Public Class Frm_Approve_Dept_Head
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
 
-    Dim Active_Form As Integer = 1
+    Dim Active_Form As Integer = 0
 
     Private Sub Frm_Approve_Dept_Head_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim dtUser As New DataTable
+        dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
+        Active_Form = dtUser.Rows(0).Item("levelApprove")
 
         dtGrid = New DataTable
         dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
@@ -22,26 +26,31 @@ Public Class Frm_Approve_Dept_Head
                                                             New DataColumn("Rev", GetType(Int32))})
         Grid.DataSource = dtGrid
 
-
-
-
         bb_SetDisplayChangeConfirmation = False
-        LoadGrid()
+        NPP_Approve_LoadGrid()
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
 
     End Sub
 
-    Private Sub LoadGrid()
+    Public Sub NPP_Approve_LoadGrid()
         Try
-            Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
             Dim dt1 As New DataTable
-            dt = fc_Class.Get_NPP_DeptHead()
-            dt1 = fc_Class.Get_NPP_DeptHead2()
+            If Active_Form = 2 Then
+                dt = fc_Class.Get_NPP_DeptHead()
+                dt1 = fc_Class.Get_NPP_DeptHead2()
+                Grid.DataSource = dt
+                Grid1.DataSource = dt1
+            ElseIf Active_Form = 3 Then
+                dt = fc_Class.Get_NPP_DivHead()
+                dt1 = fc_Class.Get_NPP_DivHead2()
+                Grid.DataSource = dt
+                Grid1.DataSource = dt1
+            End If
 
-            Grid.DataSource = dt
-            Grid1.DataSource = dt1
+            Cursor.Current = Cursors.WaitCursor
+
             'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
@@ -58,7 +67,7 @@ Public Class Frm_Approve_Dept_Head
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form, Me.Name)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -110,7 +119,7 @@ Public Class Frm_Approve_Dept_Head
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
-        Call LoadGrid()
+        Call NPP_Approve_LoadGrid()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)

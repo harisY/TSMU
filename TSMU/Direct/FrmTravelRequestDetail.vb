@@ -461,7 +461,7 @@ Public Class FrmTravelRequestDetail
         End If
     End Sub
 
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
         If txtNIK.Text = "" Or txtGolongan.Text = "" Then
             MessageBox.Show("Harap lengkapi data header dulu",
                                 "Warning",
@@ -1084,7 +1084,7 @@ Public Class FrmTravelRequestDetail
         txtAdvanceIDR.Enabled = False
         txtAdvanceUSD.Enabled = False
         txtAdvanceYEN.Enabled = False
-        btnAdd.Enabled = False
+        btnAddDetail.Enabled = False
     End Sub
 
     Private Sub hitungAmountAllowance()

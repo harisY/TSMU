@@ -20,7 +20,7 @@
     Private Sub BtnOk_Click(sender As Object, e As EventArgs) Handles BtnOk.Click
         Try
             TglDari = TxtTglDari.EditValue
-            TglSampai = TxtTglDari.EditValue
+            TglSampai = TxtTglSampai.EditValue
             Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -45,7 +45,7 @@ Public Class Frm_Npwo_Detail1
     Private Sub Frm_Npw_Detail1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call CreateTableBarang()
-        Call FillComboNPP()
+        'Call FillComboNPP()
         Call FillComboCategory()
 
         Call InitialSetForm()
