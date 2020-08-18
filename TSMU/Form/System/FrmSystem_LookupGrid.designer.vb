@@ -45,7 +45,7 @@ Partial Class FrmSystem_LookupGrid
         '
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False

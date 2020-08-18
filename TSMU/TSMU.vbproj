@@ -1967,6 +1967,12 @@
     <Compile Include="Form\System\frmM_ApprovalDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmAdvanceSearch.Designer.vb">
+      <DependentUpon>frmAdvanceSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmAdvanceSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmSearch.Designer.vb">
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
@@ -3058,6 +3064,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmM_ApprovalDetail.resx">
       <DependentUpon>frmM_ApprovalDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmAdvanceSearch.resx">
+      <DependentUpon>frmAdvanceSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>

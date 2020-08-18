@@ -40,8 +40,8 @@ Public Class frmDRR_details
     Dim BtnPartName As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim _inplaceEditors As RepositoryItem()
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
-    'Dim _path As String = "D:\TOOLS\Sketch\"
-    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
+    Dim _path As String = "D:\TOOLS\Sketch\"
+    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
@@ -50,6 +50,7 @@ Public Class frmDRR_details
     Dim _Level As Integer
     Dim ObjApprove As ApproveHistoryModel
     Dim _serviceGlobal As GlobalService
+    Dim _Status As String
     Public Sub New()
 
         ' This call is required by the designer.
@@ -62,13 +63,14 @@ Public Class frmDRR_details
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl, Level As Integer)
+                   ByRef _Grid As GridControl, Level As Integer, Optional Status As String = "Submited")
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
+            _Status = Status
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
@@ -458,12 +460,32 @@ Public Class frmDRR_details
                 .LevelApproved = _Level,
                 .ApprovedBy = gh_Common.Username
                 }
-            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+
             _serviceGlobal = New GlobalService
             _service = New DRRService
 
-            If result = DialogResult.Yes Then
+            If _Level = 2 Then
+                Select Case _Status.ToLower
+                    Case "created"
+                        Throw New Exception("DRR belum di submit !")
+                    Case "checked"
+                        Throw New Exception("DRR sudah di cek !")
+                    Case "completed"
+                        Throw New Exception("DRR sudah di approve !")
+                End Select
+            ElseIf _Level = _serviceGlobal.GetMaxLevel(FrmParent) Then
+                Select Case _Status.ToLower
+                    Case "created"
+                        Throw New Exception("DRR belum di submit !")
+                    Case "submited"
+                        Throw New Exception("DRR belum di cek !")
+                    Case "completed"
+                        Throw New Exception("DRR sudah di approve !")
+                End Select
+            End If
 
+            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
                 _service.Approve(ObjApprove, FrmParent, _Level, fs_Code, TxtNoNpp.EditValue, BandedGridView1.GetRowCellValue(0, "PartName"))
                 FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
@@ -488,6 +510,21 @@ Public Class frmDRR_details
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
+
+            If _Level = 1 Then
+                If _Status.ToLower <> "created" OrElse _Status <> "submited" Then
+                    If _Status.ToLower = "checked" Then
+                        Throw New Exception("DRR sudah di cek gak bisa di ubah !")
+                    ElseIf _Status.ToLower = "completed" Then
+                        Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                    End If
+                End If
+            ElseIf _Level = 2 Then
+                If _Status.ToLower = "completed" Then
+                    Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                End If
+            End If
+
             If DxValidationProvider1.Validate Then
                 lb_Validated = True
             Else
@@ -755,10 +792,7 @@ Public Class frmDRR_details
 
                 _service = New DRRService
                 _serviceGlobal = New GlobalService
-                Dim _isRelease As Boolean = _service.IsRelease(fs_Code)
-                If _isRelease Then
-                    Throw New Exception("DRR sudah di release !")
-                End If
+
                 ObjApprove = New ApproveHistoryModel With {
                    .UserName = gh_Common.Username,
                    .MenuCode = FrmParent.Name,
@@ -768,7 +802,12 @@ Public Class frmDRR_details
                    .ApprovedBy = gh_Common.Username
                 }
 
-                _serviceGlobal.Approve(ObjApprove, "Released")
+                Dim _isRelease As Integer = _service.IsRelease(fs_Code)
+                If _isRelease > 0 Then
+                    Throw New Exception("DRR sudah di release !")
+                End If
+                _service.Release(fs_Code, 1)
+                _serviceGlobal.Approve(ObjApprove, "Submited")
                 FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
 
