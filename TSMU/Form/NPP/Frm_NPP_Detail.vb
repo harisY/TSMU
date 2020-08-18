@@ -46,6 +46,8 @@ Public Class Frm_NPP_Detail
 
     Public Property Test As String = "t"
 
+    Dim ff_Detail As frmDRR_details
+
 
 
 
@@ -309,7 +311,7 @@ Public Class Frm_NPP_Detail
                     Me.Note.OptionsColumn.AllowEdit = True
                     Me.CapabilityDate.OptionsColumn.AllowEdit = True
                     Me.Commit.OptionsColumn.AllowEdit = True
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, True, True)
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                     B_AddRows.Enabled = False
                     BUpload.Enabled = False
                 End If
@@ -320,6 +322,7 @@ Public Class Frm_NPP_Detail
                 Me.Text = "NPP FORM "
                 B_AddRows.Visible = True
                 BUpload.Visible = True
+                TIssue_Date.EditValue = Date.Now
             End If
             Call LoadTxtBox()
             Call LoadGrid(fc_Class.H_No_NPP)
@@ -1233,57 +1236,55 @@ Public Class Frm_NPP_Detail
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
-        ''frmInput = New Frm_Input_NPPDetail
-        'fc_Class.H_No_NPP = TNPP_No.EditValue
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            Dim NoSeq As Integer
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoSeq = GridView1.GetRowCellValue(rowHandle, "Seq")
+                End If
+            Next rowHandle
 
-        'Try
-        '    Dim provider As CultureInfo = CultureInfo.InvariantCulture
-        '    Dim PartNo As String = ""
-        '    Dim PartName As String = ""
-        '    Dim Machine As String = ""
-        '    Dim CT As String = ""
-        '    Dim Cav As String = ""
-        '    Dim Weight As String = ""
-        '    Dim Material As String = ""
-        '    Dim StatusMold As String = ""
-        '    Dim Order As String = ""
-        '    Dim Inj As Boolean = True
-        '    Dim Painting As Boolean = True
-        '    Dim Chrome As Boolean = True
-        '    Dim Assy As Boolean = True
-        '    Dim Ultrasonic As Boolean = True
-        '    Dim Vibration As Boolean = True
-        '    'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim GServis As New GlobalService
+            Dim NoNPP As String = TNPP_No.EditValue
+            Dim dtDrr As New DataTable
+            Dim NoDRR As String = ""
+            dtDrr = GServis.GetNoDRR(NoSeq, NoNPP)
 
-        '    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-        '    For Each rowHandle As Integer In selectedRows
-        '        If rowHandle >= 0 Then
-        '            PartNo = GridView1.GetRowCellValue(rowHandle, "Part No")
-        '            PartName = GridView1.GetRowCellValue(rowHandle, "Part Name")
-        '            Machine = IIf(GridView1.GetRowCellValue(rowHandle, "Machine") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Machine"))
-        '            CT = IIf(GridView1.GetRowCellValue(rowHandle, "C/T") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "C/T"))
-        '            Cav = IIf(GridView1.GetRowCellValue(rowHandle, "Cav") Is DBNull.Value, "", GridView1.GetRowCellValue(rowHandle, "Cav"))
-        '            Weight = GridView1.GetRowCellValue(rowHandle, "Weight")
-        '            Material = GridView1.GetRowCellValue(rowHandle, "Material")
-        '            StatusMold = GridView1.GetRowCellValue(rowHandle, "Status Mold")
-        '            Order = GridView1.GetRowCellValue(rowHandle, "Order Month")
-        '            Inj = GridView1.GetRowCellValue(rowHandle, "Inj")
-        '            Painting = GridView1.GetRowCellValue(rowHandle, "Painting")
-        '            Chrome = GridView1.GetRowCellValue(rowHandle, "Chrome")
-        '            Assy = GridView1.GetRowCellValue(rowHandle, "Assy")
-        '            Ultrasonic = GridView1.GetRowCellValue(rowHandle, "Ultrasonic")
-        '            Vibration = GridView1.GetRowCellValue(rowHandle, "Vibration")
+            If dtDrr.Rows.Count <= 0 Then
 
-        '        End If
-        '    Next rowHandle
+                MessageBox.Show("Data Not Found",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+                Exit Sub
 
-        '    If GridView1.GetSelectedRows.Length > 0 Then
-        '        Call CallForm(PartNo, PartName, Machine, CT, Cav, Weight, Material, Inj, Painting, Chrome, Assy, Ultrasonic, Vibration, StatusMold, Order, False)
-        '    End If
-        'Catch ex As Exception
-        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
+            Else
+                If dtDrr.Rows(0).Item("Release") <> 3 Then
+                    MessageBox.Show("DRR is Still Process",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+                    Exit Sub
+                Else
+                    NoDRR = dtDrr.Rows(0).Item("IdDRR")
+
+                    If GridView1.GetSelectedRows.Length > 0 Then
+                        Call CallFrm(NoDRR, NoNPP,
+                                    GridView1.RowCount)
+                    End If
+                End If
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
     End Sub
 
@@ -1996,4 +1997,30 @@ Public Class Frm_NPP_Detail
         RowsAwal = DtGridNPWO.Rows.Count
 
     End Sub
+
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail.Close()
+        End If
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, 0)
+        ff_Detail.MdiParent = FrmMain
+        ff_Detail.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail.Show()
+    End Sub
+
+    Private Function GetLevel() As Integer
+        Dim _ServiceGlobal As GlobalService
+        Dim _level As Integer = 0
+        Try
+            _ServiceGlobal = New GlobalService
+            _level = _ServiceGlobal.GetLevel(Me)
+            Return _level
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+        Return _level
+    End Function
 End Class
