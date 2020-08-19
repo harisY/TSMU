@@ -278,11 +278,4 @@ Public Class Frm_Rpt_ViewPayment
         End Try
     End Sub
 
-    Private Sub cmb_supplier2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_supplier2.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub cmb_supplier_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_supplier.SelectedIndexChanged
-
-    End Sub
 End Class

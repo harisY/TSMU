@@ -45,7 +45,7 @@ Partial Class FrmSystem_LookupGrid
         '
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -66,7 +66,7 @@ Partial Class FrmSystem_LookupGrid
         Me.BtnOk.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BtnOk.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOk.Name = "BtnOk"
-        Me.BtnOk.Size = New System.Drawing.Size(105, 36)
+        Me.BtnOk.Size = New System.Drawing.Size(92, 36)
         Me.BtnOk.Text = "Ok/Close"
         Me.BtnOk.ToolTipText = "OK"
         '

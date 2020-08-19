@@ -22,7 +22,7 @@ Public Class DRRService
     End Function
     Public Function GetData(Frm As Form, Level As Integer) As DataTable
         Try
-            Dim Sql As String = "DRRHeader_GetData"
+            Dim Sql As String = "DrrHeader_GetDataGrid"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
             pParam(0).Value = Frm.Name
@@ -68,14 +68,18 @@ Public Class DRRService
             Throw ex
         End Try
     End Function
-    Public Function GetDataByDate(Dari As Date, Sampai As Date) As DataTable
+    Public Function GetDataByDate(Dari As Date, Sampai As Date, Status As String, Frm As Form) As DataTable
         Try
-            Dim Sql As String = "DRRHeader_GetDataByDate"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.Date)
-            pParam(0).Value = Dari
-            pParam(1) = New SqlClient.SqlParameter("@Sampai", SqlDbType.Date)
-            pParam(1).Value = Sampai
+            Dim Sql As String = "DrrHeader_GetDataGrid_filtered"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(0).Value = Status
+            pParam(1) = New SqlClient.SqlParameter("@tgl1", SqlDbType.Date)
+            pParam(1).Value = Dari
+            pParam(2) = New SqlClient.SqlParameter("@tgl2", SqlDbType.Date)
+            pParam(2).Value = Sampai
+            pParam(3) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(3).Value = Frm.Name
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(Sql, pParam)
             Return dt
@@ -196,24 +200,25 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
-    Public Sub Release(IdDrr As Integer)
+    Public Sub Release(IdDrr As Integer, Nilai As Integer)
         Try
             Dim _result As Integer = 0
             Dim Sql As String = "DRRHeader_Release"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@IdDrr", SqlDbType.Int)
             pParam(0).Value = IdDrr
             pParam(1) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
             pParam(1).Value = gh_Common.Username
-
+            pParam(2) = New SqlClient.SqlParameter("@Nilai", SqlDbType.Int)
+            pParam(2).Value = Nilai
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Public Function IsRelease(IdDrr As Integer) As Boolean
-        Dim _result As Boolean = False
+    Public Function IsRelease(IdDrr As Integer) As Integer
+        Dim _result As Integer = 0
         Try
             Dim Sql As String = "DRRHeader_IsRelease"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
@@ -223,7 +228,7 @@ Public Class DRRService
 
             dt = GetDataTableByCommand_SP(Sql, pParam)
             If dt.Rows.Count > 0 Then
-                _result = Convert.ToBoolean(dt.Rows(0)(0))
+                _result = Convert.ToInt32(dt.Rows(0)(0))
             End If
             Return _result
         Catch ex As Exception
@@ -368,7 +373,7 @@ Public Class DRRService
             Dim emailSubject As String = "DRR"
             mail.Subject = emailSubject
             mail.Body =
-                "<p>DRR untuk Npp : ''" & NoNpp & "'' dan Part Name : ''" & PartName & "'' sudah di buat.</p>"
+                "<p>DRR untuk NPP : ''" & NoNpp & "'' dan Part Name : ''" & PartName & "'' sudah di buat.</p>"
             mail.IsBodyHtml = True
             mail.CC.Add("log@tsmu.co.id")
             smpt.Send(mail)
@@ -461,6 +466,7 @@ Public Class DRRService
                         _globalService = New GlobalService
 
                         _globalService.Delete(Id, Frm)
+                        'Release(Id, 0)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -474,7 +480,7 @@ Public Class DRRService
         End Try
     End Sub
 
-    Public Async Sub Approve(AppModel As ApproveHistoryModel, Frm As Form, Level As Integer, IDDrr As Integer, NoNPP As String, PartName As String)
+    Public Sub Approve(AppModel As ApproveHistoryModel, Frm As Form, Level As Integer, IDDrr As Integer, NoNPP As String, PartName As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -484,14 +490,34 @@ Public Class DRRService
                     gh_Trans.Command.Transaction = Trans1
                     Try
                         _globalService = New GlobalService
-                        _globalService.Approve(AppModel, "Approved")
 
-                        Dim MaxApprove As Integer = _globalService.GetMaxLevel(Frm)
-                        If MaxApprove = Level Then
-                            Release(IDDrr)
-                            SendEmail(NoNPP, PartName)
-                            Await sendMessage("-441724240", "DRR untuk Npp : ''" & NoNPP & "'' dan Part Name : ''" & PartName & "'' sudah di buat.")
+                        Dim ApprovedBy As String = _globalService.AprrovedBy(Frm, IDDrr, Level)
+                        If ApprovedBy <> "" Then
+                            If Level = 2 Then
+                                Throw New Exception("Data sudah di Cek oleh '[" & ApprovedBy & "]'")
+                            Else
+                                Throw New Exception("Data sudah di Approve oleh '[" & ApprovedBy & "]'")
+                            End If
                         End If
+                        Dim MaxApprove As Integer = _globalService.GetMaxLevel(Frm)
+
+                        If Level = 2 Then
+                            _globalService.Approve(AppModel, "Checked")
+                            Release(IDDrr, 2)
+                        ElseIf Level = MaxApprove Then
+                            _globalService.Approve(AppModel, "Approved")
+                            Release(IDDrr, 3)
+                            'SendEmail(NoNPP, PartName)
+                            'Await sendMessage("-441724240", "DRR untuk Npp : ''" & NoNPP & "'' dan Part Name : ''" & PartName & "'' sudah di buat.")
+                        End If
+
+                        'If MaxApprove = Level Then
+                        '    Release(IDDrr, 3)
+                        '    'SendEmail(NoNPP, PartName)
+                        '    'Await sendMessage("-441724240", "DRR untuk Npp : ''" & NoNPP & "'' dan Part Name : ''" & PartName & "'' sudah di buat.")
+                        'ElseIf MaxApprove - Level = 1 Then
+                        '    Release(IDDrr, 2)
+                        'End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -518,7 +544,7 @@ Public Class DRRService
                         _globalService = New GlobalService
                         _globalService.Approve(AppModel, "Rejected")
                         _globalService.UpdateFlag(AppModel)
-
+                        Release(AppModel.NoTransaksi, 0)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()

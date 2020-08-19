@@ -4,7 +4,7 @@ Public Class ClsSettlement
     Public Property ID() As String
     Public Property settleID() As String
     Public Sub New()
-        Me._Query = "select settleID,suspendid,Tgl,total,remark from settle_header order by settleID "
+        Me._Query = "select settleID,suspendid,Tgl,total,remark from settle_header WHERE YEAR(Tgl)=YEAR(getdate()) AND MONTH(Tgl)=MONTH(getdate())  order by settleID "
     End Sub
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -18,6 +18,26 @@ Public Class ClsSettlement
             Return dtTable
         Catch ex As Exception
             Throw
+        End Try
+    End Function
+
+
+    Public Function GetDataByDate(Dari As String, Sampai As String) As DataTable
+        Try
+            Dim Sql As String = "SETHeader_GetDataByDateY"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.VarChar)
+            pParam(0).Value = Dari
+            pParam(1) = New SqlClient.SqlParameter("@Sampai", SqlDbType.VarChar)
+            pParam(1).Value = Sampai
+            pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
+            pParam(2).Value = gh_Common.GroupID
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(Sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
         End Try
     End Function
     Public Function GetAllData() As DataTable

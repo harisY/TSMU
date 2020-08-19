@@ -223,10 +223,6 @@ Public Class Frm_NPP_Header
         Dim GServis As New GlobalService
         Active_Form = GServis.GetLevel(Me)
 
-        'Dim dtUser As New DataTable
-        ' dtUser = fc_Class.GetDataUSer(gh_Common.Username, Me.Name)
-        'Active_Form = dtUser.Rows(0).Item("levelApprove")
-
         dtGrid = New DataTable
         dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
                                                             New DataColumn("Issue Date", GetType(String)),

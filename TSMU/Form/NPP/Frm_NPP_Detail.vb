@@ -311,7 +311,7 @@ Public Class Frm_NPP_Detail
                     Me.Note.OptionsColumn.AllowEdit = True
                     Me.CapabilityDate.OptionsColumn.AllowEdit = True
                     Me.Commit.OptionsColumn.AllowEdit = True
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, True, True)
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                     B_AddRows.Enabled = False
                     BUpload.Enabled = False
                 End If
@@ -322,6 +322,7 @@ Public Class Frm_NPP_Detail
                 Me.Text = "NPP FORM "
                 B_AddRows.Visible = True
                 BUpload.Visible = True
+                TIssue_Date.EditValue = Date.Now
             End If
             Call LoadTxtBox()
             Call LoadGrid(fc_Class.H_No_NPP)
@@ -1247,12 +1248,39 @@ Public Class Frm_NPP_Detail
             Next rowHandle
 
             Dim GServis As New GlobalService
-            Dim NoDRR As Integer = GServis.GetNoDRR(NoSeq)
             Dim NoNPP As String = TNPP_No.EditValue
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallFrm(NoDRR, NoNPP,
-                            GridView1.RowCount)
+            Dim dtDrr As New DataTable
+            Dim NoDRR As String = ""
+            dtDrr = GServis.GetNoDRR(NoSeq, NoNPP)
+
+            If dtDrr.Rows.Count <= 0 Then
+
+                MessageBox.Show("Data Not Found",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+                Exit Sub
+
+            Else
+                If dtDrr.Rows(0).Item("Release") <> 3 Then
+                    MessageBox.Show("DRR is Still Process",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+                    Exit Sub
+                Else
+                    NoDRR = dtDrr.Rows(0).Item("IdDRR")
+
+                    If GridView1.GetSelectedRows.Length > 0 Then
+                        Call CallFrm(NoDRR, NoNPP,
+                                    GridView1.RowCount)
+                    End If
+                End If
+
             End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

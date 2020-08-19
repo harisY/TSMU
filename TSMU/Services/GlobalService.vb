@@ -38,25 +38,48 @@
             Throw ex
         End Try
     End Function
-    Public Function GetNoDRR(Seq As Integer) As Integer
+    Public Function GetNoDRR(Seq As Integer, NoNPP As String) As DataTable
         Dim _result As Integer = 0
         Try
             Dim Sql As String = "NPP_GetNoDRR"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
             pParam(0).Value = Seq
+
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            'If dt.Rows.Count > 0 Then
+            '    _result = Convert.ToInt32(dt.Rows(0)(0))
+            'End If
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function AprrovedBy(Frm As Form, NoTran As String, Level As Integer) As String
+        Dim _result As String = String.Empty
+        Try
+            Dim Sql As String = "T_Approve_History_IsDataExist"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(0).Value = Frm.Name
+            pParam(1) = New SqlClient.SqlParameter("@notran", SqlDbType.VarChar)
+            pParam(1).Value = Frm.Name
+            pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            pParam(2).Value = Level
             Dim dt As New DataTable
 
             dt = GetDataTableByCommand_SP(Sql, pParam)
             If dt.Rows.Count > 0 Then
-                _result = Convert.ToInt32(dt.Rows(0)(0))
+                _result = Convert.ToString(dt(0)(0))
             End If
             Return _result
         Catch ex As Exception
             Throw ex
         End Try
     End Function
-
     Public Sub Approve(Model As ApproveHistoryModel, Status As String)
         Try
 

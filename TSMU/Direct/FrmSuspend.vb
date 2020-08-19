@@ -9,12 +9,19 @@ Public Class FrmSuspend
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim ObjSuspend As SuspendHeaderModel
+    Dim _Service As SuspendHeaderModel
+    Public Sub New()
 
+        ' This call is required by the designer.
+        InitializeComponent()
+        _Service = New SuspendHeaderModel
+
+    End Sub
     Private Sub FrmSuspend_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call LoadGrid2()
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
     End Sub
     Private Sub LoadGrid()
         Try
@@ -32,7 +39,22 @@ Public Class FrmSuspend
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
 
+                Dim dt As New DataTable
+                _Service = New SuspendHeaderModel
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Private Sub LoadGrid2()
         Try
             ObjSuspend = New SuspendHeaderModel
