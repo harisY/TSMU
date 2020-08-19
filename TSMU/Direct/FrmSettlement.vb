@@ -2,14 +2,37 @@
     Dim ff_Detail As FrmSettlement_Detail
     Dim dtGrid As DataTable
     Dim fc_Class As New ClsSettlement
+    Dim _Service As ClsSettlement
+    Public Sub New()
 
+        ' This call is required by the designer.
+        InitializeComponent()
+        _Service = New ClsSettlement
+
+    End Sub
     Private Sub FrmSettlement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
         dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, True)
+    End Sub
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+
+                Dim dt As New DataTable
+                _Service = New ClsSettlement
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
     Private Sub LoadGrid()
         Try

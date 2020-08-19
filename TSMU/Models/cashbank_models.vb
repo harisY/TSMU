@@ -357,7 +357,7 @@ Public Class cashbank_models
     End Function
     Public Function GetGridDetailCashBankByAccountID03(_NoBukti As String) As DataTable
         Try
-            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Noref,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  NoBukti=" & QVal(_NoBukti) & " "
+            Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Noref,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,Masuk+Keluar as Amount FROM cashbank WHERE  NoBukti=" & QVal(_NoBukti) & " "
 
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
