@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraSplashScreen
 
@@ -44,7 +45,7 @@ Public Class frmDRR
             SplashScreenManager.ShowForm(GetType(FrmWait))
             _Service = New DRRService
             dtGrid = New DataTable
-            dtGrid = _Service.GetAll()
+            dtGrid = _Service.GetData(Me, GetLevel)
             Grid.DataSource = dtGrid
 
             If GridView1.RowCount > 0 Then
@@ -52,10 +53,10 @@ Public Class frmDRR
                 With GridView1
                     .BestFitColumns()
                     .Columns(0).Visible = False
-                    .FixedLineWidth = 2
-                    .Columns(1).Fixed = Columns.FixedStyle.Left
-                    .Columns(2).Fixed = Columns.FixedStyle.Left
-                    .Columns(3).Fixed = Columns.FixedStyle.Left
+                    '.FixedLineWidth = 2
+                    '.Columns(1).Fixed = Columns.FixedStyle.Left
+                    '.Columns(2).Fixed = Columns.FixedStyle.Left
+                    '.Columns(3).Fixed = Columns.FixedStyle.Left
                 End With
                 GridCellFormat(GridView1)
             End If
@@ -97,15 +98,20 @@ Public Class frmDRR
     End Sub
     Public Overrides Sub Proc_Search()
         Try
-            Dim fSearch As New frmSearch
+            Dim fSearch As New frmAdvanceSearch
             With fSearch
                 .StartPosition = FormStartPosition.CenterScreen
                 .ShowDialog()
 
                 Dim dt As New DataTable
                 _Service = New DRRService
-                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), .Status, Me)
                 Grid.DataSource = dt
+                With GridView1
+                    .BestFitColumns()
+                    .Columns(0).Visible = False
+                End With
+                GridCellFormat(GridView1)
             End With
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -121,21 +127,23 @@ Public Class frmDRR
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+        Return _level
     End Function
-    Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal Status As String = "Submited")
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
                 Exit Sub
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, GetLevel)
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, GetLevel, Status)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
     Dim _path As String = "D:\TOOLS\Sketch\"
+    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
@@ -172,7 +180,7 @@ Public Class frmDRR
                     End If
                 End If
             Next
-            _Service.Delete(ID)
+            _Service.Delete(ID, Me)
 
             ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()
@@ -182,6 +190,7 @@ Public Class frmDRR
         End Try
     End Sub
     Dim NoNPP As String
+    Dim Status As String
     Dim ID As String
     Private Sub frmDRR_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
@@ -193,6 +202,7 @@ Public Class frmDRR
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "Id")
                         NoNPP = GridView1.GetRowCellValue(rowHandle, "NoNPP")
+                        Status = GridView1.GetRowCellValue(rowHandle, "Status")
                     End If
                 Next rowHandle
 
@@ -200,7 +210,7 @@ Public Class frmDRR
                     'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
                              NoNPP,
-                             GridView1.RowCount)
+                             GridView1.RowCount, Status)
                 End If
             End If
         Catch ex As Exception
@@ -225,10 +235,12 @@ Public Class frmDRR
 
                 ID = "0"
                 NoNPP = String.Empty
+                Status = String.Empty
                 For Each rowHandle As Integer In GridView1.GetSelectedRows()
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "Id")
                         NoNPP = GridView1.GetRowCellValue(rowHandle, "NoNPP")
+                        Status = GridView1.GetRowCellValue(rowHandle, "Status")
                     End If
                 Next rowHandle
 
@@ -236,7 +248,7 @@ Public Class frmDRR
                     'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
                              NoNPP,
-                             GridView1.RowCount)
+                             GridView1.RowCount, Status)
                 End If
             End If
         Catch ex As Exception
@@ -249,4 +261,47 @@ Public Class frmDRR
         Call LoadGrid()
     End Sub
 
+    Private Sub GridView1_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles GridView1.CustomDrawCell
+        Dim view As GridView = sender
+        If view Is Nothing Then
+            Return
+        End If
+        If view.IsFilterRow(e.RowHandle) Then
+            Return
+        End If
+        If e.Column.FieldName.ToLower = "samsul" OrElse
+            e.Column.FieldName.ToLower = "shandy" OrElse
+            e.Column.FieldName.ToLower = "nata" OrElse
+            e.Column.FieldName.ToLower = "joko" OrElse
+            e.Column.FieldName.ToLower = "tommy" OrElse
+            e.Column.FieldName.ToLower = "filo" OrElse
+            e.Column.FieldName.ToLower = "suryono" OrElse
+            e.Column.FieldName.ToLower = "siswoyo" Then
+            If Convert.ToInt32(e.CellValue) = 1 Then
+                e.Appearance.BackColor = Color.GreenYellow
+
+            End If
+        ElseIf e.Column.FieldName.ToLower = "status" Then
+            If Convert.ToString(e.CellValue).ToLower = "completed" Then
+                e.Appearance.BackColor = Color.GreenYellow
+            Else
+                e.Appearance.BackColor = Color.Salmon
+            End If
+        End If
+
+    End Sub
+
+    'Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+    '    Dim view As GridView = TryCast(sender, GridView)
+    '    If view.FocusedRowHandle >= 0 Then
+    '        Dim _Status As String = view.GetRowCellDisplayText(e.RowHandle, "Status")
+
+    '        If _Status.ToLower = "completed" Then
+
+    '            e.Appearance.BackColor = Color.GreenYellow
+    '            e.HighPriority = True
+    '            'End If
+    '        End If
+    '    End If
+    'End Sub
 End Class

@@ -8,8 +8,8 @@
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
-    Public Property TglDari() As String
-    Public Property TglSampai() As String
+    Public Property TglDari() As Date
+    Public Property TglSampai() As Date
 
 
     Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,8 +19,8 @@
 
     Private Sub BtnOk_Click(sender As Object, e As EventArgs) Handles BtnOk.Click
         Try
-            TglDari = Format(TxtTglDari.EditValue, gs_FormatSQLDate)
-            TglSampai = Format(TxtTglSampai.EditValue, gs_FormatSQLDate)
+            TglDari = TxtTglDari.EditValue
+            TglSampai = TxtTglSampai.EditValue
             Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -52,7 +52,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.Grid3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,7 +76,7 @@ Partial Class Frm_NPP_Header
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -103,7 +103,7 @@ Partial Class Frm_NPP_Header
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(813, 261)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Approvel"
+        Me.TabPage1.Text = "Task"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Grid
@@ -189,7 +189,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.FieldName = "Approve"
+        Me.GridColumn6.FieldName = "Requester"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
@@ -213,7 +213,7 @@ Partial Class Frm_NPP_Header
         Me.ApproveDeptHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ApproveDeptHead.AppearanceHeader.Options.UseTextOptions = True
         Me.ApproveDeptHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ApproveDeptHead.FieldName = "Approve Dept Head"
+        Me.ApproveDeptHead.FieldName = "Dept Head"
         Me.ApproveDeptHead.Name = "ApproveDeptHead"
         Me.ApproveDeptHead.Visible = True
         Me.ApproveDeptHead.VisibleIndex = 6
@@ -225,7 +225,7 @@ Partial Class Frm_NPP_Header
         Me.ApproveDivHead.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ApproveDivHead.AppearanceHeader.Options.UseTextOptions = True
         Me.ApproveDivHead.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ApproveDivHead.FieldName = "Approve Div Head"
+        Me.ApproveDivHead.FieldName = "Div Head"
         Me.ApproveDivHead.Name = "ApproveDivHead"
         Me.ApproveDivHead.Visible = True
         Me.ApproveDivHead.VisibleIndex = 7
@@ -273,7 +273,7 @@ Partial Class Frm_NPP_Header
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(813, 261)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Submit NPD"
+        Me.TabPage2.Text = "On Progress"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'Grid2
@@ -359,7 +359,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.FieldName = "Approve"
+        Me.GridColumn13.FieldName = "Requester"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
@@ -383,7 +383,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.FieldName = "Approve Dept Head"
+        Me.GridColumn15.FieldName = "Dept Head"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 6
@@ -395,7 +395,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn16.FieldName = "Approve Div Head"
+        Me.GridColumn16.FieldName = "Div Head"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 7
@@ -425,7 +425,7 @@ Partial Class Frm_NPP_Header
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.GridControl1)
+        Me.TabPage3.Controls.Add(Me.Grid3)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -434,23 +434,23 @@ Partial Class Frm_NPP_Header
         Me.TabPage3.Text = "Seach"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'GridControl1
+        'Grid3
         '
-        Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.Grid3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(8, 31)
-        Me.GridControl1.MainView = Me.GridView3
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit3})
-        Me.GridControl1.Size = New System.Drawing.Size(797, 224)
-        Me.GridControl1.TabIndex = 10
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        Me.Grid3.Location = New System.Drawing.Point(8, 6)
+        Me.Grid3.MainView = Me.GridView3
+        Me.Grid3.Name = "Grid3"
+        Me.Grid3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit3})
+        Me.Grid3.Size = New System.Drawing.Size(797, 249)
+        Me.Grid3.TabIndex = 10
+        Me.Grid3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
         Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
-        Me.GridView3.GridControl = Me.GridControl1
+        Me.GridView3.GridControl = Me.Grid3
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
         Me.GridView3.OptionsView.ColumnAutoWidth = False
@@ -471,7 +471,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 1
-        Me.GridColumn20.Width = 120
+        Me.GridColumn20.Width = 135
         '
         'GridColumn21
         '
@@ -483,7 +483,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 2
-        Me.GridColumn21.Width = 125
+        Me.GridColumn21.Width = 110
         '
         'GridColumn22
         '
@@ -517,7 +517,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn24.FieldName = "Approve"
+        Me.GridColumn24.FieldName = "Requester"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 5
@@ -533,6 +533,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 9
+        Me.GridColumn25.Width = 44
         '
         'GridColumn26
         '
@@ -540,11 +541,11 @@ Partial Class Frm_NPP_Header
         Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn26.FieldName = "Approve Dept Head"
+        Me.GridColumn26.FieldName = "Dept Head"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 6
-        Me.GridColumn26.Width = 115
+        Me.GridColumn26.Width = 130
         '
         'GridColumn27
         '
@@ -552,11 +553,11 @@ Partial Class Frm_NPP_Header
         Me.GridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn27.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn27.FieldName = "Approve Div Head"
+        Me.GridColumn27.FieldName = "Div Head"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 7
-        Me.GridColumn27.Width = 99
+        Me.GridColumn27.Width = 130
         '
         'GridColumn28
         '
@@ -564,7 +565,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 8
-        Me.GridColumn28.Width = 90
+        Me.GridColumn28.Width = 92
         '
         'GridColumn29
         '
@@ -572,6 +573,7 @@ Partial Class Frm_NPP_Header
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 10
+        Me.GridColumn29.Width = 130
         '
         'RepositoryItemButtonEdit3
         '
@@ -596,7 +598,7 @@ Partial Class Frm_NPP_Header
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -635,7 +637,8 @@ Partial Class Frm_NPP_Header
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents Note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Grid3 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
@@ -649,5 +652,4 @@ Partial Class Frm_NPP_Header
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemButtonEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents Note As DevExpress.XtraGrid.Columns.GridColumn
 End Class

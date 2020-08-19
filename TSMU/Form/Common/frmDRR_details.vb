@@ -30,6 +30,7 @@ Public Class frmDRR_details
 
     Dim CmbLevel As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim CmbReference As RepositoryItemComboBox = New RepositoryItemComboBox()
+    Dim CmbSurface As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim LookPartName As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit()
     Dim CmnProses As RepositoryItemComboBox = New RepositoryItemComboBox()
     Dim TxtQty As RepositoryItemSpinEdit = New RepositoryItemSpinEdit()
@@ -40,15 +41,16 @@ Public Class frmDRR_details
     Dim _inplaceEditors As RepositoryItem()
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
     Dim _path As String = "D:\TOOLS\Sketch\"
+    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
     Dim ImgToDelete As List(Of ImageModel)
-    ReadOnly _token As String = "1342738375:AAHvpALzfvSiB-OzihA9-cgtdQFiAqguXcY"
     Dim bott As Telegram.Bot.TelegramBotClient
     Dim _Level As Integer
     Dim ObjApprove As ApproveHistoryModel
     Dim _serviceGlobal As GlobalService
+    Dim _Status As String
     Public Sub New()
 
         ' This call is required by the designer.
@@ -61,13 +63,14 @@ Public Class frmDRR_details
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
                    ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl, Level As Integer)
+                   ByRef _Grid As GridControl, Level As Integer, Optional Status As String = "Submited")
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
+            _Status = Status
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
@@ -82,12 +85,14 @@ Public Class frmDRR_details
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, If(_Level = 1, False, True), False)
+        'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, If(_Level = 1, False, True), False)
+        Call Proc_EnableButtons(False, If(_Level = 0, False, True), False, True, False, False, False, False, False, False, True, False)
         Call InitialSetForm()
         AddHandler CmbLevel.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler LookPartName.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler CmnProses.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler CmbReference.EditValueChanged, AddressOf OnEditValueChanged
+        AddHandler CmbSurface.EditValueChanged, AddressOf OnEditValueChanged
         AddHandler TxtPartName.EditValueChanged, AddressOf OnEditValueChanged
         'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
         'AddHandler BtnPartName.EditValueChanged, AddressOf OnEditValueChanged
@@ -306,6 +311,8 @@ Public Class frmDRR_details
             CmnProses.Items.AddRange(New String() {"Inj", "Painting", "Chrome", "Assy", "Ultrasonic", "Vibration"})
             CmbReference.Items.Clear()
             CmbReference.Items.AddRange(New String() {"DRAWING", "CAD DATA", "SKETCH", "SAMPLE"})
+            CmbSurface.Items.Clear()
+            CmbSurface.Items.AddRange(New String() {"GRAIN", "PAINTING", "RAW MATERIAL", "CHROME/PLATING"})
 
 
             With BandedGridView1
@@ -316,12 +323,13 @@ Public Class frmDRR_details
                 '.Columns("Tonage").ColumnEdit = TxtTonase
                 .Columns("Proses").ColumnEdit = CmnProses
                 .Columns("Reference").ColumnEdit = CmbReference
+                .Columns("SurfaceTreatment").ColumnEdit = CmbSurface
             End With
             With Grid.RepositoryItems
                 .Add(CmbLevel)
                 .Add(BtnPartName)
                 '.Add(TxtQty)
-                '.Add(TxtTonase)
+                .Add(CmbSurface)
                 .Add(CmnProses)
                 .Add(CmbReference)
             End With
@@ -344,7 +352,7 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("PartName", "")
                     .SetFocusedRowCellValue("Seq", 0)
                     .SetFocusedRowCellValue("PartNo", "")
-                    .SetFocusedRowCellValue("Proses", "INJ")
+                    .SetFocusedRowCellValue("Proses", "Inj")
                     .SetFocusedRowCellValue("Qty", 0)
                     .SetFocusedRowCellValue("Cavity", "")
                     .SetFocusedRowCellValue("Tonage", "0")
@@ -354,7 +362,7 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("Long", 0)
                     .SetFocusedRowCellValue("Width", 0)
                     .SetFocusedRowCellValue("Height", 0)
-                    .SetFocusedRowCellValue("SurfaceTreatment", "")
+                    .SetFocusedRowCellValue("SurfaceTreatment", "GRAIN")
                     .SetFocusedRowCellValue("C/T", 0)
                     .SetFocusedRowCellValue("Thickn", 0)
                     .SetFocusedRowCellValue("Reference", "DRAWING")
@@ -446,31 +454,55 @@ Public Class frmDRR_details
         Try
             ObjApprove = New ApproveHistoryModel With {
                 .UserName = gh_Common.Username,
-                .MenuCode = Name,
+                .MenuCode = FrmParent.Name,
                 .DeptID = gh_Common.GroupID,
                 .NoTransaksi = fs_Code,
                 .LevelApproved = _Level,
                 .ApprovedBy = gh_Common.Username
                 }
-            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+
             _serviceGlobal = New GlobalService
+            _service = New DRRService
 
-            If result = DialogResult.OK Then
-                _serviceGlobal.Approve(ObjApprove, "Approved")
-
-                'If _Level Then
-
-                'End If
-                '_service = New DRRService
-                '    _service.Release(fs_Code)
-                '    SendEmail(TxtNoNpp.Text)
-                '    Await sendMessage("-441724240", "DRR untuk Npp : ''" & TxtNoNpp.EditValue & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.")
-
-                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
-            ElseIf result = DialogResult.No Then
-                _serviceGlobal.Approve(ObjApprove, "Rejected")
-                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+            If _Level = 2 Then
+                Select Case _Status.ToLower
+                    Case "created"
+                        Throw New Exception("DRR belum di submit !")
+                    Case "checked"
+                        Throw New Exception("DRR sudah di cek !")
+                    Case "completed"
+                        Throw New Exception("DRR sudah di approve !")
+                End Select
+            ElseIf _Level = _serviceGlobal.GetMaxLevel(FrmParent) Then
+                Select Case _Status.ToLower
+                    Case "created"
+                        Throw New Exception("DRR belum di submit !")
+                    Case "submited"
+                        Throw New Exception("DRR belum di cek !")
+                    Case "completed"
+                        Throw New Exception("DRR sudah di approve !")
+                End Select
             End If
+
+            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                _service.Approve(ObjApprove, FrmParent, _Level, fs_Code, TxtNoNpp.EditValue, BandedGridView1.GetRowCellValue(0, "PartName"))
+                FrmParent.tsBtn_refresh.PerformClick()
+                IsClosed = True
+
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+                Hide()
+
+            ElseIf result = DialogResult.No Then
+                _service.Reject(ObjApprove)
+                FrmParent.tsBtn_refresh.PerformClick()
+
+                IsClosed = True
+                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+                Hide()
+
+            End If
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -478,6 +510,21 @@ Public Class frmDRR_details
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
+
+            If _Level = 1 Then
+                If _Status.ToLower <> "created" OrElse _Status <> "submited" Then
+                    If _Status.ToLower = "checked" Then
+                        Throw New Exception("DRR sudah di cek gak bisa di ubah !")
+                    ElseIf _Status.ToLower = "completed" Then
+                        Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                    End If
+                End If
+            ElseIf _Level = 2 Then
+                If _Status.ToLower = "completed" Then
+                    Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                End If
+            End If
+
             If DxValidationProvider1.Validate Then
                 lb_Validated = True
             Else
@@ -568,8 +615,8 @@ Public Class frmDRR_details
             If Not isUpdate Then
                 _service.Insert(ObjHeader)
                 SaveDeleteImage()
-                GridDtl.DataSource = _service.GetAll()
-
+                'GridDtl.DataSource = _service.GetAll()
+                FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
                 ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
@@ -578,10 +625,10 @@ Public Class frmDRR_details
                 _service.Update(ObjHeader)
                 SaveDeleteImage()
 
-                GridDtl.DataSource = _service.GetAll()
-
+                'GridDtl.DataSource = _service.GetAll()
+                FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
-                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
 
                 Hide()
             End If
@@ -745,10 +792,7 @@ Public Class frmDRR_details
 
                 _service = New DRRService
                 _serviceGlobal = New GlobalService
-                Dim _isRelease As Boolean = _service.IsRelease(fs_Code)
-                If _isRelease Then
-                    Throw New Exception("DRR sudah di release !")
-                End If
+
                 ObjApprove = New ApproveHistoryModel With {
                    .UserName = gh_Common.Username,
                    .MenuCode = FrmParent.Name,
@@ -758,54 +802,24 @@ Public Class frmDRR_details
                    .ApprovedBy = gh_Common.Username
                 }
 
-                If ObjApprove IsNot Nothing Then
-                    _serviceGlobal.Approve(ObjApprove, "Released")
+                Dim _isRelease As Integer = _service.IsRelease(fs_Code)
+                If _isRelease > 0 Then
+                    Throw New Exception("DRR sudah di release !")
                 End If
+                _service.Release(fs_Code, 1)
+                _serviceGlobal.Approve(ObjApprove, "Submited")
+                FrmParent.tsBtn_refresh.PerformClick()
+                IsClosed = True
+
                 ShowMessage(GetMessage(MessageEnum.ReleaseBerhasil), MessageTypeEnum.NormalMessage)
+                Hide()
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Private Sub SendEmail(NoNpp As String)
-        Try
-            _service = New DRRService
-            Dim email As String = _service.GetEmailByNPP(NoNpp)
-            'email = "haris@tsmu.co.id"
-            Dim mail As MailMessage = New MailMessage()
-            mail.IsBodyHtml = True
-            mail.From = New MailAddress("drr_info@tsmu.co.id", "TSMU")
-            mail.[To].Add(New MailAddress(email))
-            Dim smpt = New SmtpClient With {
-                .Host = "mail.tsmu.co.id",
-                .Port = 25,
-                .EnableSsl = False,
-                .DeliveryMethod = SmtpDeliveryMethod.Network,
-                .Credentials = New NetworkCredential("drr_info@tsmu.co.id", "Rg,Dvs?9]!r9"),
-                .Timeout = 20000
-            }
-            Dim emailSubject As String = "DRR"
-            mail.Subject = emailSubject
-            mail.Body =
-                "<p>DRR untuk Npp : ''" & NoNpp & "'' dan Part Name : ''" & BandedGridView1.GetRowCellValue(0, "PartName") & "'' sudah di buat.</p>"
-            mail.IsBodyHtml = True
-            mail.CC.Add("log@tsmu.co.id")
-            smpt.Send(mail)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
-    Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As Task
-        Try
-            ServicePointManager.Expect100Continue = True
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-            Dim bot = New Telegram.Bot.TelegramBotClient(_token)
-            Await bot.SendTextMessageAsync(destID, text)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+
     Private Sub AttachImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AttachImageToolStripMenuItem.Click
         Try
             If TxtNoNpp.EditValue = "" Then
@@ -891,5 +905,9 @@ Public Class frmDRR_details
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Private Sub BtnFunction_Click(sender As Object, e As EventArgs) Handles BtnFunction.Click
+
     End Sub
 End Class

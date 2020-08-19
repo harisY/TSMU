@@ -531,6 +531,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.Active_.FieldName = "Active"
         Me.Active_.Name = "Active_"
+        Me.Active_.OptionsColumn.AllowEdit = False
         Me.Active_.Visible = True
         Me.Active_.VisibleIndex = 25
         '
@@ -925,7 +926,7 @@ Partial Class Frm_NPP_Detail
         'BSetGroup
         '
         Me.BSetGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BSetGroup.Location = New System.Drawing.Point(916, 443)
+        Me.BSetGroup.Location = New System.Drawing.Point(959, 439)
         Me.BSetGroup.Name = "BSetGroup"
         Me.BSetGroup.Size = New System.Drawing.Size(75, 21)
         Me.BSetGroup.TabIndex = 34
@@ -936,7 +937,7 @@ Partial Class Frm_NPP_Detail
         'B_Submit
         '
         Me.B_Submit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Submit.Location = New System.Drawing.Point(1143, 443)
+        Me.B_Submit.Location = New System.Drawing.Point(1143, 439)
         Me.B_Submit.Name = "B_Submit"
         Me.B_Submit.Size = New System.Drawing.Size(104, 23)
         Me.B_Submit.TabIndex = 35

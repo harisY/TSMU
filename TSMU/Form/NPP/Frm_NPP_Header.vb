@@ -10,43 +10,52 @@ Public Class Frm_NPP_Header
     Dim FrmReport As ReportNPWO
     Dim Active_Form As Integer = 0
 
+    Dim dt As New DataTable
+    Dim dt1 As New DataTable
+    Dim dtAll As New DataTable
 
-    Private Sub Frm_Npwo_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Sub NPP_Head_LoadGrid_Search(_tgawal As Date, _tgakhir As Date)
 
-        dtGrid = New DataTable
-        dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
-                                                            New DataColumn("Issue Date", GetType(String)),
-                                                            New DataColumn("Model", GetType(String)),
-                                                            New DataColumn("Customer", GetType(String)),
-                                                            New DataColumn("Order Of Month", GetType(String)),
-                                                            New DataColumn("Approve", GetType(Boolean)),
-                                                            New DataColumn("Note", GetType(String)),
-                                                            New DataColumn("Rev", GetType(Int32))})
-        Grid.DataSource = dtGrid
-        Grid2.DataSource = dtGrid
-
-        bb_SetDisplayChangeConfirmation = False
-        LoadGrid()
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
-
-    End Sub
-    Private Sub LoadGrid()
         Try
+            dtAll = fc_Class.Get_NPP_Search(_tgawal, _tgakhir)
+
+            Grid3.DataSource = dtAll
+
             Cursor.Current = Cursors.WaitCursor
-
-            'Dim dt As New DataTable
-            dtGrid = fc_Class.Get_NPP()
-
-            Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_NPP2()
-
-            Grid.DataSource = dtGrid
-            Grid2.DataSource = dt2
-            'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
         End Try
+
+
+    End Sub
+
+    Public Sub NPP_Head_LoadGrid(Active_Form_ As Integer)
+
+        Try
+
+            If Active_Form_ = 1 Then
+                dtGrid = fc_Class.Get_NPP()
+                dt1 = fc_Class.Get_NPP2()
+                Grid.DataSource = dtGrid
+                Grid2.DataSource = dt1
+            ElseIf Active_Form_ = 2 Then
+                dt = fc_Class.Get_NPP_DeptHead()
+                dt1 = fc_Class.Get_NPP_DeptHead2()
+                Grid.DataSource = dt
+                Grid2.DataSource = dt1
+            ElseIf Active_Form_ = 3 Then
+                dt = fc_Class.Get_NPP_DivHead()
+                dt1 = fc_Class.Get_NPP_DivHead2()
+                Grid.DataSource = dt
+                Grid2.DataSource = dt1
+            End If
+            Cursor.Current = Cursors.WaitCursor
+            Cursor.Current = Cursors.Default
+        Catch ex As Exception
+            Cursor.Current = Cursors.Default
+        End Try
+
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
@@ -60,7 +69,7 @@ Public Class Frm_NPP_Header
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
+        ff_Detail = New Frm_NPP_Detail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form, Me.Name)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -68,8 +77,19 @@ Public Class Frm_NPP_Header
 
 
     Public Overrides Sub Proc_Refresh()
+
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+        'Stop
+
         bs_Filter = ""
-        Call LoadGrid()
+        Call NPP_Head_LoadGrid(Active_Form)
+        Call NPP_Head_LoadGrid_Search(TangalAwal, TangalAkhir)
+
     End Sub
 
     Public Overrides Sub Proc_Filter()
@@ -108,7 +128,7 @@ Public Class Frm_NPP_Header
             DtDelete = fc_Class.GetDelete(NP)
             If DtDelete.Rows.Count <= 0 Then
                 fc_Class.Delete(NP)
-                Call LoadGrid()
+                Call NPP_Head_LoadGrid(Active_Form)
                 Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 MessageBox.Show("Data Cannot be Deleted
@@ -184,19 +204,95 @@ Public Class Frm_NPP_Header
                 e.Appearance.BackColor = Color.Yellow
                 'e.Appearance.BackColor2 = Color.Yellow
                 e.HighPriority = True
-            ElseIf category = "Submit" Then
-                e.Appearance.BackColor = Color.GreenYellow
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
-            ElseIf category = "Approve Dept Head" Then
-                e.Appearance.BackColor = Color.GreenYellow
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
             ElseIf category = "Approve Div Head" Then
                 e.Appearance.BackColor = Color.Goldenrod
                 'e.Appearance.BackColor2 = Color.Yellow
                 e.HighPriority = True
             End If
         End If
+    End Sub
+
+    Private Sub Frm_NPP_Header_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim d As DateTime = Date.Today
+        Dim TA As DateTime = d.AddDays(-d.Day)
+        Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+        'Stop
+        Dim TangalAkhir As DateTime = Date.Now
+
+        Dim GServis As New GlobalService
+        Active_Form = GServis.GetLevel(Me)
+
+        dtGrid = New DataTable
+        dtGrid.Columns.AddRange(New DataColumn(7) {New DataColumn("NPP", GetType(String)),
+                                                            New DataColumn("Issue Date", GetType(String)),
+                                                            New DataColumn("Model", GetType(String)),
+                                                            New DataColumn("Customer", GetType(String)),
+                                                            New DataColumn("Order Of Month", GetType(String)),
+                                                            New DataColumn("Approve", GetType(Boolean)),
+                                                            New DataColumn("Note", GetType(String)),
+                                                            New DataColumn("Rev", GetType(Int32))})
+        Grid.DataSource = dtGrid
+        Grid2.DataSource = dtGrid
+
+        bb_SetDisplayChangeConfirmation = False
+        Call NPP_Head_LoadGrid(Active_Form)
+        Call NPP_Head_LoadGrid_Search(TangalAwal, TangalAkhir)
+        If Active_Form = 1 Then
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 2 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 3 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        End If
+
+    End Sub
+
+    Private Sub Frm_NPP_Header_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+
+        Call NPP_Head_LoadGrid(Active_Form)
+
+    End Sub
+
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+
+                Dim dt As New DataTable
+                '               Call LoadGrid(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                Call NPP_Head_LoadGrid_Search(.TglDari, .TglSampai)
+
+                'fc_Class = New clsCR_Accounting
+                'dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Date.Today, .TglDari), If(IsDBNull(.TglSampai), Date.Today, .TglSampai))
+                'Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub Grid3_DoubleClick(sender As Object, e As EventArgs) Handles Grid3.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            Dim NoNpwo As String = ""
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    NoNpwo = GridView3.GetRowCellValue(rowHandle, "NPP")
+                End If
+            Next rowHandle
+
+            If GridView3.GetSelectedRows.Length > 0 Then
+                Call CallFrm(NoNpwo, "",
+                            GridView3.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

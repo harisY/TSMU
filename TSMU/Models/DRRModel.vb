@@ -14,7 +14,7 @@
     Public Property No_NPP As String
     Public Property NoDokumen As String
     Public Property Project As String
-    Public Property Release As Boolean
+    Public Property Release As Integer
     Public Property Time As TimeSpan
     Public Property UpdatedBy As String
     Public Property UpdatedDate As DateTime

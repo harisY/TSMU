@@ -26,9 +26,7 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Grid2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Grid3 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -36,9 +34,6 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.TabPage2.SuspendLayout()
         CType(Me.Grid2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -48,7 +43,6 @@ Partial Class Frm_CR_Purchase_Monitor
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(0, 30)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -63,7 +57,7 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(613, 386)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Process"
+        Me.TabPage1.Text = "In Process"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Grid
@@ -95,7 +89,7 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(613, 386)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Approved BOD"
+        Me.TabPage2.Text = "History"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'Grid2
@@ -119,44 +113,24 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'TabPage3
+        'Button1
         '
-        Me.TabPage3.Controls.Add(Me.Grid3)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(613, 386)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Browse"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Grid3
-        '
-        Me.Grid3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid3.Location = New System.Drawing.Point(5, 6)
-        Me.Grid3.MainView = Me.GridView3
-        Me.Grid3.Name = "Grid3"
-        Me.Grid3.Size = New System.Drawing.Size(602, 374)
-        Me.Grid3.TabIndex = 10
-        Me.Grid3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-        '
-        'GridView3
-        '
-        Me.GridView3.GridControl = Me.Grid3
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsView.ColumnAutoWidth = False
-        Me.GridView3.OptionsView.ShowAutoFilterRow = True
-        Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.Button1.Location = New System.Drawing.Point(376, 1)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Frm_CR_Purchase_Monitor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(621, 444)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Frm_CR_Purchase_Monitor"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
+        Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
@@ -164,9 +138,6 @@ Partial Class Frm_CR_Purchase_Monitor
         Me.TabPage2.ResumeLayout(False)
         CType(Me.Grid2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage3.ResumeLayout(False)
-        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -175,11 +146,9 @@ Partial Class Frm_CR_Purchase_Monitor
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Grid2 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents Grid3 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Button1 As Button
 End Class
