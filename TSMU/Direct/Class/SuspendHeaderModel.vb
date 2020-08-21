@@ -42,13 +42,34 @@ Public Class SuspendHeaderModel
             Dim dt As New DataTable
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Currency, DeptID, PRNo, Remark, Tgl, Total, Status 
-            FROM suspend_header WHERE DeptID='" & gh_Common.GroupID & "' AND  Tipe = 'S' and status<>'Close' Order by SuspendID"
+            FROM suspend_header WHERE YEAR(Tgl)=YEAR(getdate()) AND MONTH(Tgl)=MONTH(getdate()) AND DeptID='" & gh_Common.GroupID & "' AND  Tipe = 'S' and status<>'Close' Order by SuspendID"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataByDate(Dari As String, Sampai As String) As DataTable
+        Try
+            Dim Sql As String = "ADVHeader_GetDataByDateY"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.VarChar)
+            pParam(0).Value = Dari
+            pParam(1) = New SqlClient.SqlParameter("@Sampai", SqlDbType.VarChar)
+            pParam(1).Value = Sampai
+            pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
+            pParam(2).Value = gh_Common.GroupID
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(Sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
     Public Function loadreport2() As DataSet
         Dim query As String
         query = "SELECT suspend_header.SuspendHeaderID

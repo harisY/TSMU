@@ -66,7 +66,7 @@ Partial Class FrmSystem_LookupGrid
         Me.BtnOk.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BtnOk.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOk.Name = "BtnOk"
-        Me.BtnOk.Size = New System.Drawing.Size(105, 36)
+        Me.BtnOk.Size = New System.Drawing.Size(92, 36)
         Me.BtnOk.Text = "Ok/Close"
         Me.BtnOk.ToolTipText = "OK"
         '
