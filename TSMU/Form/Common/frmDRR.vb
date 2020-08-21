@@ -98,14 +98,28 @@ Public Class frmDRR
     End Sub
     Public Overrides Sub Proc_Search()
         Try
-            Dim fSearch As New frmAdvanceSearch
+            Dim Status As List(Of String) = New List(Of String)({"ALL", "Created", "Submited", "Checked", "Completed"})
+
+            Dim fSearch As New frmAdvanceSearch(Status)
             With fSearch
                 .StartPosition = FormStartPosition.CenterScreen
                 .ShowDialog()
-
+                Dim _Status As String = String.Empty
+                Select Case .Status.ToLower
+                    Case "all"
+                        _Status = "ALL"
+                    Case "created"
+                        _Status = "0"
+                    Case "submited"
+                        _Status = "1"
+                    Case "checked"
+                        _Status = "2"
+                    Case "completed"
+                        _Status = "3"
+                End Select
                 Dim dt As New DataTable
                 _Service = New DRRService
-                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), .Status, Me)
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), _Status, Me)
                 Grid.DataSource = dt
                 With GridView1
                     .BestFitColumns()
@@ -154,9 +168,9 @@ Public Class frmDRR
             Next rowHandle
             _Service = New DRRService
 
-            Dim _isRelease As Boolean = _Service.IsRelease(ID)
-            If _isRelease Then
-                Throw New Exception("DRR sudah di release, tidak bisa di hapus !")
+            Dim _isRelease As Integer = _Service.IsRelease(ID)
+            If _isRelease <> 0 OrElse _isRelease <> 1 Then
+                Throw New Exception("DRR sudah di completed, tidak bisa di hapus !")
             End If
             'Hapus Gambar di Folder
             Dim ObjHeader As New DRRModel
@@ -269,19 +283,7 @@ Public Class frmDRR
         If view.IsFilterRow(e.RowHandle) Then
             Return
         End If
-        If e.Column.FieldName.ToLower = "samsul" OrElse
-            e.Column.FieldName.ToLower = "shandy" OrElse
-            e.Column.FieldName.ToLower = "nata" OrElse
-            e.Column.FieldName.ToLower = "joko" OrElse
-            e.Column.FieldName.ToLower = "tommy" OrElse
-            e.Column.FieldName.ToLower = "filo" OrElse
-            e.Column.FieldName.ToLower = "suryono" OrElse
-            e.Column.FieldName.ToLower = "siswoyo" Then
-            If Convert.ToInt32(e.CellValue) = 1 Then
-                e.Appearance.BackColor = Color.GreenYellow
-
-            End If
-        ElseIf e.Column.FieldName.ToLower = "status" Then
+        If e.Column.FieldName.ToLower = "status" Then
             If Convert.ToString(e.CellValue).ToLower = "completed" Then
                 e.Appearance.BackColor = Color.GreenYellow
             Else

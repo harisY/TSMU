@@ -452,40 +452,39 @@ Public Class frmDRR_details
     End Sub
     Public Overrides Sub Proc_Approve()
         Try
-            ObjApprove = New ApproveHistoryModel With {
+            _serviceGlobal = New GlobalService
+            _service = New DRRService
+
+            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                ObjApprove = New ApproveHistoryModel With {
                 .UserName = gh_Common.Username,
                 .MenuCode = FrmParent.Name,
                 .DeptID = gh_Common.GroupID,
                 .NoTransaksi = fs_Code,
                 .LevelApproved = _Level,
-                .ApprovedBy = gh_Common.Username
+                .ApprovedBy = gh_Common.Username,
+                .IsActive = 1
                 }
-
-            _serviceGlobal = New GlobalService
-            _service = New DRRService
-
-            If _Level = 2 Then
-                Select Case _Status.ToLower
-                    Case "created"
-                        Throw New Exception("DRR belum di submit !")
-                    Case "checked"
-                        Throw New Exception("DRR sudah di cek !")
-                    Case "completed"
-                        Throw New Exception("DRR sudah di approve !")
-                End Select
-            ElseIf _Level = _serviceGlobal.GetMaxLevel(FrmParent) Then
-                Select Case _Status.ToLower
-                    Case "created"
-                        Throw New Exception("DRR belum di submit !")
-                    Case "submited"
-                        Throw New Exception("DRR belum di cek !")
-                    Case "completed"
-                        Throw New Exception("DRR sudah di approve !")
-                End Select
-            End If
-
-            Dim result As DialogResult = XtraMessageBox.Show("Approve DRR untuk NPP " & "'" & TxtNoNpp.EditValue & "'" & " ?", "Confirmation", MessageBoxButtons.YesNoCancel)
-            If result = DialogResult.Yes Then
+                If _Level = 2 Then
+                    Select Case _Status.ToLower
+                        Case "created"
+                            Throw New Exception("DRR belum di submit oleh pembuat DRR!")
+                        Case "checked"
+                            Throw New Exception("DRR sudah pernah di cek !")
+                        Case "completed"
+                            Throw New Exception("DRR sudah di approve/completed!")
+                    End Select
+                ElseIf _Level = _serviceGlobal.GetMaxLevel(FrmParent) Then
+                    Select Case _Status.ToLower
+                        Case "created"
+                            Throw New Exception("DRR belum di submit oleh pembuat DRR!")
+                        Case "submited"
+                            Throw New Exception("DRR sudah pernah di cek !")
+                        Case "completed"
+                            Throw New Exception("DRR sudah di approve/completed! !")
+                    End Select
+                End If
                 _service.Approve(ObjApprove, FrmParent, _Level, fs_Code, TxtNoNpp.EditValue, BandedGridView1.GetRowCellValue(0, "PartName"))
                 FrmParent.tsBtn_refresh.PerformClick()
                 IsClosed = True
@@ -494,11 +493,25 @@ Public Class frmDRR_details
                 Hide()
 
             ElseIf result = DialogResult.No Then
-                _service.Reject(ObjApprove)
+                ObjApprove = New ApproveHistoryModel With {
+                .UserName = gh_Common.Username,
+                .MenuCode = FrmParent.Name,
+                .DeptID = gh_Common.GroupID,
+                .NoTransaksi = fs_Code,
+                .LevelApproved = _Level,
+                .ApprovedBy = gh_Common.Username,
+                .IsActive = 0
+                }
+                If _Level = 2 Then
+                    If _Status.ToLower = "completed" Then
+                        Throw New Exception("DRR sudah di approve, hanya bisa di reject oleh level paling atas !")
+                    End If
+                End If
+                _service.Reject(ObjApprove, _Level)
                 FrmParent.tsBtn_refresh.PerformClick()
 
                 IsClosed = True
-                ShowMessage(GetMessage(MessageEnum.ApproveBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.RejectBerhasil), MessageTypeEnum.NormalMessage)
                 Hide()
 
             End If
@@ -528,7 +541,7 @@ Public Class frmDRR_details
             If DxValidationProvider1.Validate Then
                 lb_Validated = True
             Else
-                Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+                Err.Raise(ErrNumber, , "Data yang anda input tidak valid, lengkapi data !")
             End If
 
             If lb_Validated Then
@@ -799,7 +812,8 @@ Public Class frmDRR_details
                    .DeptID = gh_Common.GroupID,
                    .NoTransaksi = fs_Code,
                    .LevelApproved = _Level,
-                   .ApprovedBy = gh_Common.Username
+                   .ApprovedBy = gh_Common.Username,
+                   .IsActive = 1
                 }
 
                 Dim _isRelease As Integer = _service.IsRelease(fs_Code)
@@ -899,8 +913,9 @@ Public Class frmDRR_details
                 TxtProject.Text = _model
                 TxtCustomer.Text = _customer
                 TxtMaspro.EditValue = _masPro
-
             End If
+            TxtNoDokumen.Text = _service.GenerateDocNo(FrmParent, TxtProject.Text, TxtCustomer.Text)
+
             lF_SearchData.Close()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

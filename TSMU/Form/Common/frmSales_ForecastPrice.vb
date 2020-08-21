@@ -58,8 +58,10 @@ Public Class frmSales_ForecastPrice
                 .Columns(1).Fixed = FixedStyle.Left
                 .Columns(2).Fixed = FixedStyle.Left
                 .Columns(3).Fixed = FixedStyle.Left
+                .Columns(4).Fixed = FixedStyle.Left
                 .Columns(5).Fixed = FixedStyle.Left
                 .Columns(6).Fixed = FixedStyle.Left
+                .Columns(7).Fixed = FixedStyle.Left
                 .OptionsView.ShowFooter = True
                 '.OptionsBehavior.Editable = False
                 For Each col As GridColumn In .Columns
@@ -159,7 +161,9 @@ Public Class frmSales_ForecastPrice
             strCustomer = frmExcel.Customer
             Bulan = frmExcel.Bulan
             BulanAngka = frmExcel.BulanAngka
-
+            If table.Rows.Count = 0 Then
+                Return
+            End If
             Try
                 Dim dv As DataView = New DataView(table)
                 Dim dtFilter As New DataTable

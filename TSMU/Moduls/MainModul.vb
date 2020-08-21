@@ -34,6 +34,9 @@ Module MainModul
         UpdateGagal = 50001
         ReleaseBerhasil = 60001
         ApproveBerhasil = 60002
+        ApproveGagal = 60002
+        RejectBerhasil = 60003
+        RejectGagal = 60004
     End Enum
 
     Public Enum MessageTypeEnum As Byte
@@ -256,7 +259,13 @@ Module MainModul
             Case MessageEnum.UpdateBerhasil
                 Return "Update Berhasil !"
             Case MessageEnum.ApproveBerhasil
-                Return "Data Approved !"
+                Return "Approve Berhasil !"
+            Case MessageEnum.ApproveGagal
+                Return "Approve Gagal !"
+            Case MessageEnum.RejectBerhasil
+                Return "Reject Berhasil !"
+            Case MessageEnum.RejectGagal
+                Return "Reject Gagal !"
             Case Else
                 Return ""
         End Select

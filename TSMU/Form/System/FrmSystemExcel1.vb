@@ -48,7 +48,13 @@ Public Class FrmSystemExcel1
     ReadOnly Property Bulan As String
         Get
             If _cmbBulan.EditValue <> "" Then
-                Return Microsoft.VisualBasic.Left(_cmbBulan.Text.Trim, 3)
+                If _cmbBulan.Text.ToLower.Trim = "agustus" Then
+                    Dim _bulan As String = ""
+                    _bulan = Replace(Microsoft.VisualBasic.Left(_cmbBulan.Text.Trim, 3), "u", "t")
+                    Return _bulan
+                Else
+                    Return Microsoft.VisualBasic.Left(_cmbBulan.Text.Trim, 3)
+                End If
             Else
                 Return ""
             End If

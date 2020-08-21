@@ -66,7 +66,7 @@
             pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
             pParam(0).Value = Frm.Name
             pParam(1) = New SqlClient.SqlParameter("@notran", SqlDbType.VarChar)
-            pParam(1).Value = Frm.Name
+            pParam(1).Value = NoTran
             pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
             pParam(2).Value = Level
             Dim dt As New DataTable
@@ -84,7 +84,7 @@
         Try
 
             Dim Sql As String = "T_ApproveHistory_Insert"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(6) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(7) {}
             pParam(0) = New SqlClient.SqlParameter("@UserName", SqlDbType.VarChar)
             pParam(0).Value = Model.UserName
             pParam(1) = New SqlClient.SqlParameter("@MenuCode", SqlDbType.VarChar)
@@ -99,20 +99,24 @@
             pParam(5).Value = Status
             pParam(6) = New SqlClient.SqlParameter("@ApprovedBy", SqlDbType.VarChar)
             pParam(6).Value = gh_Common.Username
+            pParam(7) = New SqlClient.SqlParameter("@IsActive", SqlDbType.Int)
+            pParam(7).Value = Model.IsActive
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-    Public Sub UpdateFlag(Model As ApproveHistoryModel)
+    Public Sub UpdateFlag(Model As ApproveHistoryModel, Level As Integer)
         Try
 
             Dim Sql As String = "T_ApproveHistory_UpdateFlag"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@notransaksi", SqlDbType.VarChar)
             pParam(0).Value = Model.NoTransaksi
             pParam(1) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
             pParam(1).Value = Model.MenuCode
+            pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            pParam(2).Value = Level
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex

@@ -1,10 +1,10 @@
 ﻿Public Class frmAdvanceSearch
-
-    Public Sub New()
+    Dim _Stat As New List(Of String)
+    Public Sub New(Status As List(Of String))
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        _Stat = Status
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
@@ -16,6 +16,8 @@
     Private Sub frmAdvanceSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TxtTglDari.EditValue = Date.Today
         TxtTglSampai.EditValue = Date.Today
+        CmbStatus.Properties.Items.Clear()
+        CmbStatus.Properties.Items.AddRange(_Stat)
         CmbStatus.SelectedIndex = 0
     End Sub
 
@@ -23,18 +25,8 @@
         Try
             TglDari = Format(TxtTglDari.EditValue, gs_FormatSQLDate)
             TglSampai = Format(TxtTglSampai.EditValue, gs_FormatSQLDate)
-            Select Case CmbStatus.Text.ToLower
-                Case "all"
-                    Status = "ALL"
-                Case "created"
-                    Status = "0"
-                Case "submited"
-                    Status = "1"
-                Case "checked"
-                    Status = "2"
-                Case "completed"
-                    Status = "3"
-            End Select
+            Status = CmbStatus.Text
+
             Hide()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
