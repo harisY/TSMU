@@ -626,7 +626,7 @@ Public Class frmDRR_details
             End If
 
             If Not isUpdate Then
-                _service.Insert(ObjHeader)
+                _service.Insert(ObjHeader, FrmParent)
                 SaveDeleteImage()
                 'GridDtl.DataSource = _service.GetAll()
                 FrmParent.tsBtn_refresh.PerformClick()

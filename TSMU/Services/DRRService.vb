@@ -419,7 +419,7 @@ Public Class DRRService
 #End Region
 
 #Region "TRANSANTION"
-    Public Sub Insert(Header As DRRModel)
+    Public Sub Insert(Header As DRRModel, Frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -428,8 +428,10 @@ Public Class DRRService
                     gh_Trans.Command.Connection = Conn1
                     gh_Trans.Command.Transaction = Trans1
                     Try
+                        _globalService = New GlobalService
                         Dim idDrr As Integer = 0
                         idDrr = AddHeader(Header)
+                        _globalService.UpdateAutoNo(Frm)
 
                         For i As Integer = 0 To DetailModel.Count - 1
                             AddDetail(DetailModel(i), idDrr)

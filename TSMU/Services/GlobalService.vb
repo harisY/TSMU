@@ -136,4 +136,16 @@
             Throw ex
         End Try
     End Sub
+    Public Sub UpdateAutoNo(frm As Form)
+        Try
+
+            Dim Sql As String = "s_numbering_update_lastno"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@frm", SqlDbType.VarChar)
+            pParam(0).Value = frm.Name
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
