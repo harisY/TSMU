@@ -261,6 +261,7 @@ Partial Class frmDRR_details
         '
         Me.TxtNoDokumen.Location = New System.Drawing.Point(113, 64)
         Me.TxtNoDokumen.Name = "TxtNoDokumen"
+        Me.TxtNoDokumen.Properties.ReadOnly = True
         Me.TxtNoDokumen.Size = New System.Drawing.Size(979, 22)
         Me.TxtNoDokumen.StyleController = Me.LayoutControl1
         Me.TxtNoDokumen.TabIndex = 12
@@ -477,18 +478,18 @@ Partial Class frmDRR_details
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachImageToolStripMenuItem, Me.SuToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 80)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(168, 52)
         '
         'AttachImageToolStripMenuItem
         '
         Me.AttachImageToolStripMenuItem.Name = "AttachImageToolStripMenuItem"
-        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.AttachImageToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.AttachImageToolStripMenuItem.Text = "Attach Image"
         '
         'SuToolStripMenuItem
         '
         Me.SuToolStripMenuItem.Name = "SuToolStripMenuItem"
-        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.SuToolStripMenuItem.Size = New System.Drawing.Size(167, 24)
         Me.SuToolStripMenuItem.Text = "Release"
         '
         'frmDRR_details

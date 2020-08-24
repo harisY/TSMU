@@ -103,7 +103,6 @@ Partial Class frmAdvanceSearch
         Me.CmbStatus.Location = New System.Drawing.Point(108, 64)
         Me.CmbStatus.Name = "CmbStatus"
         Me.CmbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbStatus.Properties.Items.AddRange(New Object() {"ALL", "Created", "Submited", "Checked", "Completed/Approved"})
         Me.CmbStatus.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.CmbStatus.Size = New System.Drawing.Size(295, 22)
         Me.CmbStatus.StyleController = Me.LayoutControl1

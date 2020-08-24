@@ -22,14 +22,14 @@ Public Class DRRService
     End Function
     Public Function GetData(Frm As Form, Level As Integer) As DataTable
         Try
-            Dim Sql As String = "DrrHeader_GetDataGrid"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim Sql As String = "DrrHeader_GetDataGrid1"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
             pParam(0).Value = Frm.Name
-            pParam(1) = New SqlClient.SqlParameter("@username", SqlDbType.VarChar)
-            pParam(1).Value = gh_Common.Username
-            pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
-            pParam(2).Value = Level
+            pParam(1) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            pParam(1).Value = Level
+            'pParam(2) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            'pParam(2).Value = Level
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(Sql, pParam)
             Return dt
@@ -70,7 +70,7 @@ Public Class DRRService
     End Function
     Public Function GetDataByDate(Dari As Date, Sampai As Date, Status As String, Frm As Form) As DataTable
         Try
-            Dim Sql As String = "DrrHeader_GetDataGrid_filtered"
+            Dim Sql As String = "DrrHeader_GetDataGrid_filtered1"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
             pParam(0).Value = Status
@@ -264,6 +264,30 @@ Public Class DRRService
             Throw ex
         End Try
     End Sub
+    Public Function GenerateDocNo(Frm As Form, Project As String, Customer As String) As String
+        Dim _result As String = String.Empty
+        Try
+            Dim Sql As String = "DRRHeader_getDocNo"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@Form", SqlDbType.VarChar)
+            pParam(0).Value = Frm.Name
+            pParam(1) = New SqlClient.SqlParameter("@Project", SqlDbType.VarChar)
+            pParam(1).Value = Project
+            pParam(2) = New SqlClient.SqlParameter("@Customer", SqlDbType.VarChar)
+            pParam(2).Value = Customer
+            pParam(3) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(3).Value = gh_Common.Site
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToString(dt(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 
@@ -395,7 +419,7 @@ Public Class DRRService
 #End Region
 
 #Region "TRANSANTION"
-    Public Sub Insert(Header As DRRModel)
+    Public Sub Insert(Header As DRRModel, Frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -404,8 +428,10 @@ Public Class DRRService
                     gh_Trans.Command.Connection = Conn1
                     gh_Trans.Command.Transaction = Trans1
                     Try
+                        _globalService = New GlobalService
                         Dim idDrr As Integer = 0
                         idDrr = AddHeader(Header)
+                        _globalService.UpdateAutoNo(Frm)
 
                         For i As Integer = 0 To DetailModel.Count - 1
                             AddDetail(DetailModel(i), idDrr)
@@ -532,7 +558,7 @@ Public Class DRRService
         End Try
     End Sub
 
-    Public Sub Reject(AppModel As ApproveHistoryModel)
+    Public Sub Reject(AppModel As ApproveHistoryModel, Level As Integer)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -543,8 +569,12 @@ Public Class DRRService
                     Try
                         _globalService = New GlobalService
                         _globalService.Approve(AppModel, "Rejected")
-                        _globalService.UpdateFlag(AppModel)
-                        Release(AppModel.NoTransaksi, 0)
+                        _globalService.UpdateFlag(AppModel, Level)
+                        If Level = 2 Then
+                            Release(AppModel.NoTransaksi, 0)
+                        ElseIf Level = 3 Then
+                            Release(AppModel.NoTransaksi, 1)
+                        End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()

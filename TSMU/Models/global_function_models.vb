@@ -7,7 +7,7 @@
             dtTable = GetDataTable_Solomon(query)
             Return dtTable
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
 
@@ -18,7 +18,9 @@
             dtTable = GetDataTable_Solomon(query)
             Return dtTable
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
+
+
 End Class

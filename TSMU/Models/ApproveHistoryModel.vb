@@ -8,4 +8,5 @@
     Public Property NoTransaksi() As String
     Public Property StatusApproved() As String
     Public Property UserName() As String
+    Public Property IsActive() As Integer
 End Class

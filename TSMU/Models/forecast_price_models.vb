@@ -93,16 +93,16 @@ Public Class forecast_price_models_header
                         'End If
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
-                                .InsertData()
-                                .UpdateDataByBulanNew(Bulan, BulanAngka)
-                                'Dim IsExist As Boolean = .IsDataADMExist
-                                'If Not IsExist Then
-                                '    .InsertData()
-                                '    .UpdateDataByBulanNew(Bulan, BulanAngka)
-                                'Else
-                                '    .UpdateData1()
-                                '    .UpdateDataByBulanNew(Bulan, BulanAngka)
-                                'End If
+                                '.InsertData()
+                                '.UpdateDataByBulanNew(Bulan, BulanAngka)
+                                Dim IsExist As Boolean = .IsDataADMExist
+                                If Not IsExist Then
+                                    .InsertData()
+                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
+                                Else
+                                    .UpdateData1()
+                                    .UpdateDataByBulanNew(Bulan, BulanAngka)
+                                End If
                             End With
                         Next
 
@@ -772,9 +772,9 @@ Public Class forecast_price_models
         Dim salesPrice As Double = 0
 
         Try
-            If InvtID = "YIM-14D-CU20-AAPI" Then
-                Console.WriteLine("catch")
-            End If
+            'If InvtID = "YIM-14D-CU20-AAPI" Then
+            '    Console.WriteLine("catch")
+            'End If
             Dim Sql As String = "SO_getLastPrice"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
             pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)
@@ -1995,7 +1995,7 @@ Public Class forecast_price_models
         Dim hasil As Boolean = False
         Try
             Dim query As String =
-                "SELECT InvtID FROM [tForecastPrice] WHERE 
+                "SELECT InvtID FROM [tForecastPrice] WITH(NOLOCK) WHERE 
                 Tahun =  " & QVal(Tahun) & " AND 
                 PartNo = " & QVal(PartNo) & " AND 
                 InvtID = " & QVal(InvtID) & " AND 
