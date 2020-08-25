@@ -9,8 +9,10 @@ Public Class FrmTravelRequest
     Dim dtGrid As DataTable
     Dim dtRequestAll As DataTable
     Dim fc_Class As New TravelRequestModel
+    Dim _ServiceGlobal As GlobalService
     Dim grid__ As GridControl
     Dim TabPage As String
+    Dim _level As Integer = 0
 
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
@@ -32,7 +34,7 @@ Public Class FrmTravelRequest
         Else
             grid__ = GridRequest
         End If
-        ff_Detail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, grid__)
+        ff_Detail = New FrmTravelRequestDetail(ls_Code, ls_Code2, Me, li_Row, grid__, _level)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -40,15 +42,45 @@ Public Class FrmTravelRequest
 
     Private Sub FrmTravelRequest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False)
-        XtraTabControl1.SelectedTabPage = TabPageRequest
-        TabPage = XtraTabControl1.SelectedTabPage.Name
-        LoadGridRequest()
+        levelApprove()
+        TabPage = XtraTabControl1.SelectedTabPage.Name()
+        aksesData()
+        'LoadGridRequest()
+    End Sub
+
+    Private Sub levelApprove()
+        Try
+            _ServiceGlobal = New GlobalService
+            _level = _ServiceGlobal.GetLevel(Me)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub aksesData()
+        If TabPage = "TabPageRequest" Then
+            If _level = 1 Then
+                Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, False)
+            ElseIf _level > 1 Then
+                Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, False)
+            Else
+                Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+            End If
+            LoadGridRequest()
+        ElseIf TabPage = "TabPageProgress" Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, False)
+            LoadGridProgressReq()
+        Else
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            'LoadGridRequestAll()
+        End If
+
     End Sub
 
     Private Sub LoadGridRequest()
         Try
-            dtGrid = fc_Class.GetTravelRequest()
+            dtGrid = New DataTable
+            dtGrid = fc_Class.GetTravelRequest(Me.Name, _level)
             GridRequest.DataSource = dtGrid
             GridCellFormat(GridViewRequest)
         Catch ex As Exception
@@ -70,7 +102,7 @@ Public Class FrmTravelRequest
 
     Private Sub LoadGridProgressReq()
         Try
-            dtGrid = fc_Class.GetTravelProgress()
+            dtGrid = fc_Class.GetTravelProgress(_level)
             GridProgress.DataSource = dtGrid
             GridCellFormat(GridViewProgress)
         Catch ex As Exception
@@ -81,7 +113,7 @@ Public Class FrmTravelRequest
 
     Private Sub LoadGridRequestAll()
         Try
-            dtRequestAll = fc_Class.GetTravelRequestAll()
+            'dtRequestAll = fc_Class.GetTravelRequestAll()
             'GridRequestAll.DataSource = dtGrid
             'GridCellFormat(GridViewRequestAll)
         Catch ex As Exception
@@ -171,8 +203,26 @@ Public Class FrmTravelRequest
         ElseIf TabPage = "TabPageProgress" Then
             LoadGridProgressReq()
         Else
-            LoadGridRequestAll()
+            'LoadGridRequestAll()
         End If
+    End Sub
+
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+
+                Dim filterParam As String
+                filterParam = "AND ( Date >= " & QVal(If(IsDBNull(.TglDari), Date.Today, .TglDari)) & " AND Date <= " & QVal(If(IsDBNull(.TglSampai), Date.Today, .TglSampai)) & " )"
+                dtRequestAll = fc_Class.GetTravelRequestAll(filterParam)
+                GridRequestAll.DataSource = dtRequestAll
+                GridCellFormat(GridViewRequestAll)
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 
     Private Sub GridRequest_DoubleClick(sender As Object, e As EventArgs) Handles GridRequest.DoubleClick
@@ -261,19 +311,7 @@ Public Class FrmTravelRequest
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
-        If TabPage = "TabPageRequest" Then
-            Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
-            LoadGridRequest()
-        ElseIf TabPage = "TabPageApproved" Then
-            Call Proc_EnableButtons(False, True, False, True, False, False, False, False)
-            LoadGridApprovedReq()
-        ElseIf TabPage = "TabPageProgress" Then
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
-            LoadGridProgressReq()
-        Else
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False)
-            LoadGridRequestAll()
-        End If
+        aksesData()
     End Sub
 
     Private Sub CApproved_EditValueChanged(sender As Object, e As EventArgs) Handles CApproved.EditValueChanged
@@ -291,23 +329,16 @@ Public Class FrmTravelRequest
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Dim filterParam As String
-        Dim filteredRows As DataRow()
-
-        If txtValue.Text = "*" Then
-            filterParam = ""
-        Else
-            filterParam = Replace(txtColumnName.Text, " ", "") + " = " + QVal(txtValue.Text)
-        End If
-
-        If Not String.IsNullOrEmpty(txtColumnName.Text) Then
-            filteredRows = dtRequestAll.[Select](filterParam)
-            If filteredRows.Count > 0 Then
-                GridRequestAll.DataSource = filteredRows.CopyToDataTable
-                GridCellFormat(GridViewRequestAll)
+        If Not String.IsNullOrEmpty(txtValue.Text) Then
+            Dim filterParam As String
+            If txtValue.Text = "*" Then
+                filterParam = ""
             Else
-                GridRequestAll.DataSource = Nothing
+                filterParam = "AND " + Replace(txtColumnName.Text, " ", "") + " = " + QVal(txtValue.Text)
             End If
+            dtRequestAll = fc_Class.GetTravelRequestAll(filterParam)
+            GridRequestAll.DataSource = dtRequestAll
+            GridCellFormat(GridViewRequestAll)
         Else
             GridRequestAll.DataSource = Nothing
         End If
