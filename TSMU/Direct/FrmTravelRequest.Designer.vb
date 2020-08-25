@@ -38,17 +38,6 @@ Partial Class FrmTravelRequest
         Me.TabPageRequest = New DevExpress.XtraTab.XtraTabPage()
         Me.GridRequest = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRequest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.NoRequestRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NIKRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.NamaRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TanggalRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DeptIDRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TravelTypeRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GolonganRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PurposeRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.StatusRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ApprovedRequest = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CommentRequest = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPageApproved = New DevExpress.XtraTab.XtraTabPage()
         Me.TabPageProgress = New DevExpress.XtraTab.XtraTabPage()
         Me.GridProgress = New DevExpress.XtraGrid.GridControl()
@@ -113,7 +102,7 @@ Partial Class FrmTravelRequest
         Me.GridApprovedReq.MainView = Me.GridViewApproved
         Me.GridApprovedReq.Name = "GridApprovedReq"
         Me.GridApprovedReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CApproved, Me.CComment})
-        Me.GridApprovedReq.Size = New System.Drawing.Size(1147, 480)
+        Me.GridApprovedReq.Size = New System.Drawing.Size(1145, 480)
         Me.GridApprovedReq.TabIndex = 1
         Me.GridApprovedReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewApproved})
         '
@@ -270,10 +259,10 @@ Partial Class FrmTravelRequest
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 32)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(957, 520)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1158, 520)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageApproved, Me.TabPageProgress, Me.TabPageRequestAll})
         '
@@ -281,8 +270,8 @@ Partial Class FrmTravelRequest
         '
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(950, 486)
-        Me.TabPageRequest.Text = "Request"
+        Me.TabPageRequest.Size = New System.Drawing.Size(1151, 486)
+        Me.TabPageRequest.Text = "Task"
         '
         'GridRequest
         '
@@ -292,149 +281,32 @@ Partial Class FrmTravelRequest
         Me.GridRequest.Location = New System.Drawing.Point(3, 3)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
-        Me.GridRequest.Size = New System.Drawing.Size(944, 480)
+        Me.GridRequest.Size = New System.Drawing.Size(1145, 480)
         Me.GridRequest.TabIndex = 2
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
         'GridViewRequest
         '
-        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequestRequest, Me.NIKRequest, Me.NamaRequest, Me.TanggalRequest, Me.DeptIDRequest, Me.TravelTypeRequest, Me.GolonganRequest, Me.PurposeRequest, Me.StatusRequest, Me.ApprovedRequest, Me.CommentRequest})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsBehavior.Editable = False
+        Me.GridViewRequest.OptionsView.ColumnAutoWidth = False
+        Me.GridViewRequest.OptionsView.ShowAutoFilterRow = True
         Me.GridViewRequest.OptionsView.ShowGroupPanel = False
-        '
-        'NoRequestRequest
-        '
-        Me.NoRequestRequest.Caption = "No Request"
-        Me.NoRequestRequest.FieldName = "NoRequest"
-        Me.NoRequestRequest.MinWidth = 25
-        Me.NoRequestRequest.Name = "NoRequestRequest"
-        Me.NoRequestRequest.OptionsColumn.FixedWidth = True
-        Me.NoRequestRequest.Visible = True
-        Me.NoRequestRequest.VisibleIndex = 0
-        Me.NoRequestRequest.Width = 130
-        '
-        'NIKRequest
-        '
-        Me.NIKRequest.Caption = "NIK"
-        Me.NIKRequest.FieldName = "NIK"
-        Me.NIKRequest.MinWidth = 25
-        Me.NIKRequest.Name = "NIKRequest"
-        Me.NIKRequest.OptionsColumn.FixedWidth = True
-        Me.NIKRequest.Visible = True
-        Me.NIKRequest.VisibleIndex = 1
-        Me.NIKRequest.Width = 100
-        '
-        'NamaRequest
-        '
-        Me.NamaRequest.Caption = "Nama"
-        Me.NamaRequest.FieldName = "Nama"
-        Me.NamaRequest.MinWidth = 25
-        Me.NamaRequest.Name = "NamaRequest"
-        Me.NamaRequest.OptionsColumn.FixedWidth = True
-        Me.NamaRequest.Visible = True
-        Me.NamaRequest.VisibleIndex = 2
-        Me.NamaRequest.Width = 200
-        '
-        'TanggalRequest
-        '
-        Me.TanggalRequest.Caption = "Tanggal"
-        Me.TanggalRequest.FieldName = "Date"
-        Me.TanggalRequest.MinWidth = 25
-        Me.TanggalRequest.Name = "TanggalRequest"
-        Me.TanggalRequest.OptionsColumn.FixedWidth = True
-        Me.TanggalRequest.Visible = True
-        Me.TanggalRequest.VisibleIndex = 3
-        Me.TanggalRequest.Width = 110
-        '
-        'DeptIDRequest
-        '
-        Me.DeptIDRequest.Caption = "Dept ID"
-        Me.DeptIDRequest.FieldName = "DeptID"
-        Me.DeptIDRequest.MinWidth = 25
-        Me.DeptIDRequest.Name = "DeptIDRequest"
-        Me.DeptIDRequest.OptionsColumn.FixedWidth = True
-        Me.DeptIDRequest.Visible = True
-        Me.DeptIDRequest.VisibleIndex = 4
-        Me.DeptIDRequest.Width = 70
-        '
-        'TravelTypeRequest
-        '
-        Me.TravelTypeRequest.Caption = "Travel Type"
-        Me.TravelTypeRequest.FieldName = "TravelType"
-        Me.TravelTypeRequest.MinWidth = 25
-        Me.TravelTypeRequest.Name = "TravelTypeRequest"
-        Me.TravelTypeRequest.OptionsColumn.FixedWidth = True
-        Me.TravelTypeRequest.Visible = True
-        Me.TravelTypeRequest.VisibleIndex = 5
-        Me.TravelTypeRequest.Width = 90
-        '
-        'GolonganRequest
-        '
-        Me.GolonganRequest.Caption = "Golongan"
-        Me.GolonganRequest.FieldName = "Golongan"
-        Me.GolonganRequest.MinWidth = 25
-        Me.GolonganRequest.Name = "GolonganRequest"
-        Me.GolonganRequest.OptionsColumn.FixedWidth = True
-        Me.GolonganRequest.Visible = True
-        Me.GolonganRequest.VisibleIndex = 6
-        Me.GolonganRequest.Width = 80
-        '
-        'PurposeRequest
-        '
-        Me.PurposeRequest.Caption = "Purpose"
-        Me.PurposeRequest.FieldName = "Purpose"
-        Me.PurposeRequest.MinWidth = 25
-        Me.PurposeRequest.Name = "PurposeRequest"
-        Me.PurposeRequest.Visible = True
-        Me.PurposeRequest.VisibleIndex = 7
-        Me.PurposeRequest.Width = 94
-        '
-        'StatusRequest
-        '
-        Me.StatusRequest.Caption = "Status"
-        Me.StatusRequest.FieldName = "Status"
-        Me.StatusRequest.MinWidth = 25
-        Me.StatusRequest.Name = "StatusRequest"
-        Me.StatusRequest.OptionsColumn.FixedWidth = True
-        Me.StatusRequest.Visible = True
-        Me.StatusRequest.VisibleIndex = 8
-        Me.StatusRequest.Width = 80
-        '
-        'ApprovedRequest
-        '
-        Me.ApprovedRequest.Caption = "Approved"
-        Me.ApprovedRequest.FieldName = "Approved"
-        Me.ApprovedRequest.MinWidth = 25
-        Me.ApprovedRequest.Name = "ApprovedRequest"
-        Me.ApprovedRequest.OptionsColumn.FixedWidth = True
-        Me.ApprovedRequest.Visible = True
-        Me.ApprovedRequest.VisibleIndex = 9
-        Me.ApprovedRequest.Width = 90
-        '
-        'CommentRequest
-        '
-        Me.CommentRequest.Caption = "Comment"
-        Me.CommentRequest.FieldName = "Comment"
-        Me.CommentRequest.MinWidth = 25
-        Me.CommentRequest.Name = "CommentRequest"
-        Me.CommentRequest.Visible = True
-        Me.CommentRequest.VisibleIndex = 10
-        Me.CommentRequest.Width = 94
         '
         'TabPageApproved
         '
         Me.TabPageApproved.Controls.Add(Me.GridApprovedReq)
         Me.TabPageApproved.Name = "TabPageApproved"
-        Me.TabPageApproved.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageApproved.PageVisible = False
+        Me.TabPageApproved.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageApproved.Text = "Approved"
         '
         'TabPageProgress
         '
         Me.TabPageProgress.Controls.Add(Me.GridProgress)
         Me.TabPageProgress.Name = "TabPageProgress"
-        Me.TabPageProgress.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageProgress.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageProgress.Text = "Progress"
         '
         'GridProgress
@@ -446,7 +318,7 @@ Partial Class FrmTravelRequest
         Me.GridProgress.MainView = Me.GridViewProgress
         Me.GridProgress.Name = "GridProgress"
         Me.GridProgress.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1})
-        Me.GridProgress.Size = New System.Drawing.Size(1147, 480)
+        Me.GridProgress.Size = New System.Drawing.Size(1145, 480)
         Me.GridProgress.TabIndex = 2
         Me.GridProgress.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewProgress})
         '
@@ -601,7 +473,7 @@ Partial Class FrmTravelRequest
         Me.TabPageRequestAll.Controls.Add(Me.txtColumnName)
         Me.TabPageRequestAll.Controls.Add(Me.txtValue)
         Me.TabPageRequestAll.Name = "TabPageRequestAll"
-        Me.TabPageRequestAll.Size = New System.Drawing.Size(1153, 486)
+        Me.TabPageRequestAll.Size = New System.Drawing.Size(1151, 486)
         Me.TabPageRequestAll.Text = "Search"
         '
         'btnSearch
@@ -629,7 +501,7 @@ Partial Class FrmTravelRequest
         Me.GridRequestAll.Location = New System.Drawing.Point(3, 42)
         Me.GridRequestAll.MainView = Me.GridViewRequestAll
         Me.GridRequestAll.Name = "GridRequestAll"
-        Me.GridRequestAll.Size = New System.Drawing.Size(1150, 441)
+        Me.GridRequestAll.Size = New System.Drawing.Size(1145, 441)
         Me.GridRequestAll.TabIndex = 3
         Me.GridRequestAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequestAll})
         '
@@ -781,7 +653,7 @@ Partial Class FrmTravelRequest
         'FrmTravelRequest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(981, 564)
+        Me.ClientSize = New System.Drawing.Size(1182, 564)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmTravelRequest"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
@@ -826,19 +698,8 @@ Partial Class FrmTravelRequest
     Friend WithEvents TabPageRequest As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridRequest As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewRequest As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents NoRequestRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents NIKRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents NamaRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TanggalRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DeptIDRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TravelTypeRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GolonganRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PurposeRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents StatusRequest As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TabPageApproved As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents CApproved As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
-    Friend WithEvents ApprovedRequest As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CommentRequest As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CComment As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents TabPageRequestAll As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridRequestAll As DevExpress.XtraGrid.GridControl
