@@ -2,10 +2,24 @@
 
     Public Function Get_NPP() As DataTable
         Try
+            Dim d As DateTime = Date.Today
+            Dim TA As DateTime = d.AddDays(-d.Day)
+            Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+            Dim TangalAkhir As DateTime = Date.Now
+
             'Dim query As String = "[Generate_Report_Matome]"
             Dim query As String = "[NPP_Get_NPP]"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@TgAwal", SqlDbType.Date)
+            pParam(1) = New SqlClient.SqlParameter("@TgAkhir", SqlDbType.Date)
+
+            pParam(0).Value = TangalAwal
+            pParam(1).Value = TangalAkhir
+
+
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(query)
+            dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
         Catch ex As Exception
             Throw
@@ -24,22 +38,22 @@
         End Try
 
     End Function
-    Public Function Get_NPP_Search(tgawal As Date, tgakhir As Date) As DataTable
+    Public Function Get_NPP_Search(tgawal As Date, tgakhir As Date, Status As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
             Dim query As String = "[NPP_Get_NPP_Search]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@TgAwal", SqlDbType.Date)
             pParam(1) = New SqlClient.SqlParameter("@TgAkhir", SqlDbType.Date)
-
+            pParam(2) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
 
             pParam(0).Value = tgawal
             pParam(1).Value = tgakhir
+            pParam(2).Value = Status
 
-
-            Dim dt2 As New DataTable
-            dt2 = GetDataTableByCommand_SP(query, pParam)
-            Return dt2
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
         Catch ex As Exception
             Throw
         End Try
