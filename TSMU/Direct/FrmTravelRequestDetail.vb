@@ -38,6 +38,7 @@ Public Class FrmTravelRequestDetail
     Dim ObjTravelRequestDetail As New TravelRequestDetailModel
     Dim ObjTravelRequestCost As New TravelRequestCostModel
     Dim fc_Class As New TravelTicketModel
+    Dim ObjApprove As New ApproveHistoryModel
 
     Public Sub New()
         ' This call is required by the designer.
@@ -251,7 +252,7 @@ Public Class FrmTravelRequestDetail
                 Dim status As String = "CREATE"
                 Dim approved As String = String.Empty
                 If isUpdate = False Then
-                    noRequest = ObjTravelRequest.TravelRequestAutoNo
+                    noRequest = ObjTravelRequest.GetAutoNumber(FrmParent)
                     getDataDetail()
                     txtNoRequest.Text = noRequest
                 Else
@@ -287,7 +288,7 @@ Public Class FrmTravelRequestDetail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                ObjTravelRequest.InsertData()
+                ObjTravelRequest.InsertData(FrmParent)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjTravelRequest.NoRequest = txtNoRequest.Text
@@ -298,7 +299,7 @@ Public Class FrmTravelRequestDetail
             If FrmParent.Name = "FrmTravelTicket" Then
                 GridDtl.DataSource = fc_Class.GetTravelRequest()
             Else
-                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
+                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest(FrmParent.Name, _levelApprove)
             End If
             IsClosed = True
             Me.Hide()
@@ -311,43 +312,53 @@ Public Class FrmTravelRequestDetail
 
     Public Overrides Sub Proc_Approve()
         Try
+            ObjApprove = New ApproveHistoryModel With {
+                .UserName = gh_Common.Username,
+                .MenuCode = FrmParent.Name,
+                .DeptID = gh_Common.GroupID,
+                .NoTransaksi = fs_Code,
+                .LevelApproved = _levelApprove,
+                .ApprovedBy = gh_Common.Username,
+                .IsActive = 1
+                }
             Dim status As String = "PENDING"
             Dim comment As String = String.Empty
+            Dim approved As String = txtApproved.Text
             Dim lvlApprove As Integer = _levelApprove
             Dim message As String = "Data Approved"
+            ObjTravelRequest.NoRequest = fs_Code
             If fs_Code2 = "TabPageRequest" Then
                 If _levelApprove = 1 Then
-                    ObjTravelRequest.Status = status
-                    ObjTravelRequest.Approved = ""
-                    ObjTravelRequest.Comment = comment
-                    ObjTravelRequest.CurrentLvlApprove = lvlApprove
-                    ObjTravelRequest.UpdateStatusPending(fs_Code)
-                    GridDtl.DataSource = ObjTravelRequest.GetTravelRequest()
+                    approved = "SUBMITED"
                 ElseIf _levelApprove = 2 Then
-                    If txtApproved.Text = "" Then
-                        Err.Raise(ErrNumber, , "Approved tidak boleh kosong !")
+                    If txtApproved.Text = "" OrElse txtApproved.Text = "SUBMITED" Then
+                        Err.Raise(ErrNumber, , "Pilih action approvednya !")
                     ElseIf txtApproved.Text = "REVISED" Then
                         status = "CREATE"
+                        approved = txtApproved.Text
                         comment = inputComment()
                         lvlApprove = 0
                         message = "Data Revised"
                     ElseIf txtApproved.Text = "CANCEL" Then
                         status = "CLOSE"
+                        approved = txtApproved.Text
                         comment = inputComment()
                         message = "Data Cancel"
                     End If
-                    ObjTravelRequest.Status = status
-                    ObjTravelRequest.Approved = txtApproved.Text
-                    ObjTravelRequest.Comment = comment
-                    ObjTravelRequest.CurrentLvlApprove = lvlApprove
-                    ObjTravelRequest.UpdateStatusApprove(fs_Code)
-                    GridDtl.DataSource = ObjTravelRequest.GetTravelApproved()
                 End If
+                ObjTravelRequest.Status = status
+                ObjTravelRequest.Approved = approved
+                ObjTravelRequest.Comment = comment
+                ObjTravelRequest.CurrentLvlApprove = lvlApprove
+                ObjTravelRequest.UpdateStatusApproved(ObjApprove)
+                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest(FrmParent.Name, _levelApprove)
             ElseIf fs_Code2 = "TabPageProgress" Then
                 If ObjTravelRequest.StatusTicket = "ISSUE" Then
                     Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Pesan ticket !")
                 ElseIf ObjTravelRequest.StatusTicket = "INVOICE" Then
                     Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Invoice ticket !")
+                ElseIf ObjTravelRequest.Approved = txtApproved.Text Then
+                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Approved !")
                 Else
                     If txtApproved.Text = "REVISED" Then
                         status = "CREATE"
@@ -362,7 +373,8 @@ Public Class FrmTravelRequestDetail
                     ObjTravelRequest.Status = status
                     ObjTravelRequest.Approved = txtApproved.Text
                     ObjTravelRequest.Comment = comment
-                    ObjTravelRequest.UpdateStatusApprove(fs_Code)
+                    ObjTravelRequest.CurrentLvlApprove = lvlApprove
+                    ObjTravelRequest.UpdateStatusApproved(ObjApprove)
                     GridDtl.DataSource = ObjTravelRequest.GetTravelProgress(_levelApprove)
                 End If
             End If

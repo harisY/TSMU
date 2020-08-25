@@ -122,6 +122,21 @@
             Throw ex
         End Try
     End Sub
+    'Add by Midi for update all flag 0
+    Public Sub UpdateFlagAll(Model As ApproveHistoryModel)
+        Try
+
+            Dim Sql As String = "T_ApproveHistory_UpdateFlagAll"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@notransaksi", SqlDbType.VarChar)
+            pParam(0).Value = Model.NoTransaksi
+            pParam(1) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(1).Value = Model.MenuCode
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub Delete(Id As String, Frm As Form)
         Try
 

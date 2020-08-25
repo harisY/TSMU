@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class TravelRequestModel
+    Dim _globalService As GlobalService
     Public Property NoRequest As String
     Public Property Tanggal As Date
     Public Property DeptID As String
@@ -21,7 +22,7 @@ Public Class TravelRequestModel
     Public Property ObjRequestCost() As New Collection(Of TravelRequestCostModel)
 
     Dim strQuery As String
-    Public Function TravelRequestAutoNo() As String
+    Public Function TravelRequestAutoNo(frm As Form) As String
         Try
             strQuery = " DECLARE @bulan VARCHAR(4) " &
                         " DECLARE @tahun VARCHAR(4) " &
@@ -40,6 +41,7 @@ Public Class TravelRequestModel
 
             Dim dt As DataTable = New DataTable
             dt = GetDataTable(strQuery)
+
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
@@ -47,6 +49,41 @@ Public Class TravelRequestModel
 
         End Try
     End Function
+
+    Public Function GetAutoNumber(frm As Form) As String
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "S_GetAutoNumber"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
+            pParam(0).Value = frm.Name
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
+    Public Sub UpdateAutoNumber(frm As Form)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "S_UpdateAutoNumber"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
+            pParam(0).Value = frm.Name
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
     Public Function GetTravelTask(ByVal levelApprove As Integer) As DataTable
         Try
@@ -72,33 +109,22 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetTravelRequest() As DataTable
+    Public Function GetTravelRequest(ByVal frm As String, ByVal levelApprove As Integer) As DataTable
         Try
-            Dim aksesView As List(Of String)
-            aksesView = GetAksesView()
-            aksesView.Add("" & QVal(gh_Common.GroupID) & "")
-            Dim nilai = String.Join(",", aksesView.ToArray)
-
-            strQuery = "SELECT  NoRequest ,
-                                NIK ,
-                                Nama ,
-                                Date ,
-                                DeptID ,
-                                TravelType ,
-                                Golongan ,
-                                Purpose ,
-                                Status ,
-                                Approved ,
-                                Comment
-                        FROM    dbo.TravelRequestHeader
-                        WHERE   Status = 'CREATE'
-                                AND ( Approved = ''
-                                  OR Approved IS NULL
-                                  OR Approved <> 'APPROVED'
-                                )
-                                AND DeptID IN ( " & QVal(gh_Common.GroupID) & " )"
             Dim dt As New DataTable
-            dt = GetDataTable(strQuery)
+
+            Dim SP_Name As String = "Travel_Get_TravelRequestAll"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@frm", SqlDbType.VarChar)
+            pParam(0).Value = frm
+            pParam(1) = New SqlClient.SqlParameter("@level", SqlDbType.Int)
+            pParam(1).Value = levelApprove
+            pParam(2) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            pParam(2).Value = gh_Common.GroupID
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -172,12 +198,12 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetTravelRequestAll() As DataTable
+    Public Function GetTravelRequestAll(ByVal where As String) As DataTable
         Try
-            Dim aksesApproval As List(Of String)
-            aksesApproval = GetAksesView()
-            aksesApproval.Add("" & QVal(gh_Common.GroupID) & "")
-            Dim nilai = String.Join(",", aksesApproval.ToArray)
+            'Dim aksesApproval As List(Of String)
+            'aksesApproval = GetAksesView()
+            'aksesApproval.Add("" & QVal(gh_Common.GroupID) & "")
+            'Dim nilai = String.Join(",", aksesApproval.ToArray)
 
             strQuery = "SELECT  NoRequest ,
                                 NIK ,
@@ -191,7 +217,7 @@ Public Class TravelRequestModel
                                 Approved ,
                                 Comment
                         FROM    dbo.TravelRequestHeader
-                        WHERE   DeptID IN (" & QVal(gh_Common.GroupID) & ")"
+                        WHERE   DeptID IN (" & QVal(gh_Common.GroupID) & ") " & where & ""
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -309,7 +335,7 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Sub InsertData()
+    Public Sub InsertData(frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -332,6 +358,8 @@ Public Class TravelRequestModel
                                 .InsertCost()
                             End With
                         Next
+
+                        UpdateAutoNumber(frm)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -461,7 +489,7 @@ Public Class TravelRequestModel
                             Status = row("Status")
                             Approved = row("Approved")
                             Comment = row("Comment")
-                            UpdateStatusApprove(NoRequest)
+                            'UpdateStatusApprove(NoRequest)
                         Next
 
                         Trans1.Commit()
@@ -478,7 +506,37 @@ Public Class TravelRequestModel
         End Try
     End Sub
 
-    Public Sub UpdateStatusApprove(ByVal _NoRequest As String)
+    Public Sub UpdateStatusApproved(AppModel As ApproveHistoryModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        UpdateApproved()
+                        _globalService = New GlobalService
+                        _globalService.Approve(AppModel, Approved)
+                        If Approved = "REVISED" Then
+                            _globalService.UpdateFlagAll(AppModel)
+                        End If
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateApproved()
         Try
             strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
                         " SET     Status = " & QVal(Status) & " , " & vbCrLf &
@@ -487,28 +545,44 @@ Public Class TravelRequestModel
                         "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
                         "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                         "         UpdatedDate = GETDATE() " & vbCrLf &
-                        " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+                        " WHERE   NoRequest = " & QVal(NoRequest) & " "
             ExecQuery(strQuery)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Public Sub UpdateStatusPending(ByVal _NoRequest As String)
-        Try
-            strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-                        " SET     Status = " & QVal(Status) & " , " & vbCrLf &
-                        "         Approved = " & QVal(Approved) & " , " & vbCrLf &
-                        "         Comment = " & QVal(Comment) & " , " & vbCrLf &
-                        "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
-                        "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
-                        "         UpdatedDate = GETDATE() " & vbCrLf &
-                        " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-            ExecQuery(strQuery)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Public Sub UpdateApproved(ByVal _NoRequest As String)
+    '    Try
+    '        strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+    '                    " SET     Status = " & QVal(Status) & " , " & vbCrLf &
+    '                    "         Approved = " & QVal(Approved) & " , " & vbCrLf &
+    '                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+    '                    "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
+    '                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+    '                    "         UpdatedDate = GETDATE() " & vbCrLf &
+    '                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+    '        ExecQuery(strQuery)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
+
+    'Public Sub UpdateStatusPending(ByVal _NoRequest As String)
+    '    Try
+    '        strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
+    '                    " SET     Status = " & QVal(Status) & " , " & vbCrLf &
+    '                    "         Approved = " & QVal(Approved) & " , " & vbCrLf &
+    '                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
+    '                    "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
+    '                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
+    '                    "         UpdatedDate = GETDATE() " & vbCrLf &
+    '                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
+    '        ExecQuery(strQuery)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Public Sub Delete()
         Try
