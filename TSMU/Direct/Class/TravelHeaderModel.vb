@@ -80,7 +80,7 @@ Public Class TravelHeaderModel
             pParam(1).Value = ""
             pParam(2) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
             pParam(2).Value = IIf(Status = Nothing, "", Status)
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(SP_Name, pParam)
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
 
             Return dt
         Catch ex As Exception

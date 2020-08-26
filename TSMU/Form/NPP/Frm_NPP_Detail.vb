@@ -340,7 +340,6 @@ Public Class Frm_NPP_Detail
         Try
             If fs_Code <> "" Then
                 Cursor.Current = Cursors.WaitCursor
-
                 'DtGridNPWO = New DataTable
                 DtGridNPWO = fc_Class.Get_Detail_NPP(NPP_)
                 Grid.DataSource = DtGridNPWO
@@ -1024,6 +1023,7 @@ Public Class Frm_NPP_Detail
                             .TA_StatusApprove = "Submit"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
 
                         End With
 
@@ -1204,7 +1204,7 @@ Public Class Frm_NPP_Detail
     Public Overrides Sub Proc_Print()
 
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve = True Then
+        If fc_Class.H_Approve >= 1 Then
 
             'CForm = 3
             'CallForm(fs_Code)
@@ -1398,8 +1398,6 @@ Public Class Frm_NPP_Detail
                             cn.Close()
                         End If
 
-
-
                         For i As Integer = 0 To dtExcel.Rows.Count - 1
 
                             Dim Sequence As New DataTable
@@ -1524,7 +1522,6 @@ Public Class Frm_NPP_Detail
 
     Private Sub B_Submit_Click(sender As Object, e As EventArgs) Handles B_Submit.Click
 
-
         Dim result As DialogResult = XtraMessageBox.Show("Are You Want Submit To NPD " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
         If result = System.Windows.Forms.DialogResult.Yes Then
             fc_Class = New Cls_NPP_Detail
@@ -1532,7 +1529,6 @@ Public Class Frm_NPP_Detail
                 .H_Submit_NPD = 1
                 .H_Submit_NPD_Date = Date.Now
             End With
-
 
             fc_Class.Update_Submit_To_NPD(fs_Code)
             bs_Filter = gh_Common.Username()
@@ -1542,7 +1538,6 @@ Public Class Frm_NPP_Detail
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Me.Hide()
         End If
-
 
     End Sub
 
@@ -1561,6 +1556,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve = Active_Form
                             .H_Status = "Approve Dept Head"
                             .H_Note = ""
+                            .H_Prepare = gh_Common.Username
 
                             .TA_Username = gh_Common.Username
                             .TA_MenuCode = MenuCode
@@ -1570,6 +1566,7 @@ Public Class Frm_NPP_Detail
                             .TA_StatusApprove = "Approved"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
 
                             '.H_Approve = 1
                             '.H_Approve_Dept_Head = 1
@@ -1584,6 +1581,7 @@ Public Class Frm_NPP_Detail
                         _frmNPPHeader = New Frm_NPP_Header
                         _frmNPPHeader.NPP_Head_LoadGrid(Active_Form)
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
+                        '_frmNPPHeader.NPP_Head_LoadGrid()
 
                         IsClosed = True
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -1609,6 +1607,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve = Active_Form
                             .H_Status = "Approve Div Head"
                             .H_Note = ""
+                            .H_Prepare = gh_Common.Username
 
                             .TA_Username = gh_Common.Username
                             .TA_MenuCode = MenuCode
@@ -1618,6 +1617,8 @@ Public Class Frm_NPP_Detail
                             .TA_StatusApprove = "Approved"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
+
                         End With
 
 
@@ -1654,6 +1655,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve = 0
                             .H_Status = "Revise"
                             .H_Note = Note
+                            .H_Prepare = ""
 
                             .TA_Username = gh_Common.Username
                             .TA_MenuCode = MenuCode
@@ -1663,9 +1665,11 @@ Public Class Frm_NPP_Detail
                             .TA_StatusApprove = "Reject"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 0
                         End With
 
                         fc_Class.UpdateApprove(fs_Code)
+                        fc_Class.UpdateTb_Approve_History(fs_Code, FrmParent.Name.ToString)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
 
@@ -1693,6 +1697,7 @@ Public Class Frm_NPP_Detail
                             .H_Approve = 0
                             .H_Status = "Revise"
                             .H_Note = Note
+                            .H_Prepare = ""
 
                             .TA_Username = gh_Common.Username
                             .TA_MenuCode = MenuCode
@@ -1702,8 +1707,11 @@ Public Class Frm_NPP_Detail
                             .TA_StatusApprove = "Reject"
                             .TA_ApproveBy = gh_Common.Username
                             .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 0
                         End With
                         fc_Class.UpdateApprove(fs_Code)
+                        fc_Class.UpdateTb_Approve_History(fs_Code, FrmParent.ToString)
+                        ' Call LoadGrid(fs_Code)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()
 

@@ -50,17 +50,18 @@ Public Class SuspendHeaderModel
         End Try
     End Function
 
-    Public Function GetDataByDate(Dari As String, Sampai As String) As DataTable
+    Public Function GetDataByDate(Dari As String, Sampai As String, Status As String) As DataTable
         Try
             Dim Sql As String = "ADVHeader_GetDataByDateY"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.VarChar)
             pParam(0).Value = Dari
             pParam(1) = New SqlClient.SqlParameter("@Sampai", SqlDbType.VarChar)
             pParam(1).Value = Sampai
             pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
             pParam(2).Value = gh_Common.GroupID
-
+            pParam(3) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(3).Value = Status
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_SP_Solomon(Sql, pParam)
             Return dt
@@ -482,7 +483,12 @@ Public Class SuspendDetailModel
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
                                     RTRIM([Amount]) Amount,
-                                    convert(numeric(18,2),0) ActualAmount 
+                                    convert(numeric(18,2),0) ActualAmount, 
+                                    '' as PaymentType,
+                                    '' as CreditCardID,
+                                    '' as CreditCardNumber,
+                                    '' as BankName,
+                                    '' as AccountName
                                 FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
