@@ -431,7 +431,7 @@ Public Class DRRService
                         _globalService = New GlobalService
                         Dim idDrr As Integer = 0
                         idDrr = AddHeader(Header)
-                        _globalService.UpdateAutoNo(Frm)
+                        _globalService.SNumneringInsert(Frm.Name, Header.Customer, Header.Project)
 
                         For i As Integer = 0 To DetailModel.Count - 1
                             AddDetail(DetailModel(i), idDrr)
