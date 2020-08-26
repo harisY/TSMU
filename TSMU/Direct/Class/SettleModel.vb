@@ -20,7 +20,21 @@ Public Class SettleHeader
     Public Property Date1 As Date
     Public Property Date2 As Date
     Public Property ObjDetails() As New Collection(Of SettleDetail)
-
+    Dim strQuery As String
+    Public Function GetCreditCard() As DataTable
+        Try
+            strQuery = " SELECT  CreditCardID ,
+                                CreditCardNumber ,
+                                AccountName ,
+                                BankName
+                        FROM    dbo.TravelCreditCard "
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function GetDataByDate(Dari As String, Sampai As String, Status As String) As DataTable
         Try
@@ -824,18 +838,21 @@ Public Class SettleDetail
     Public Property SubAcct As String
     Public Property Tempat As String
     Public Property Tgl As DateTime
-
+    Public Property CreditCardID As String
+    Public Property PaymentType As String
     Public Sub InsertDetails()
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID, SubAcct) " & vbCrLf &
+            (SettleID, Description, Tgl, SuspendAmount, SettleAmount, AcctID,CreditCardID,PaymentType, SubAcct) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SuspendAmount) & ", " & vbCrLf &
             "       " & QVal(SettleAmount) & ", " & vbCrLf &
             "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -924,7 +941,7 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount ) " & vbCrLf &
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,CreditCardID,PaymentType,SettleAmount ) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
@@ -934,6 +951,8 @@ Public Class SettleDetail
             "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SettleAmount) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -996,7 +1015,12 @@ Public Class SettleDetail
 	            SubAcct SubAccount,
 	            AcctID Account,
 	            Description,
-                SettleAmount ActualAmount
+                SettleAmount ActualAmount,
+                PaymentType,
+                CreditCardID,
+                CreditCardNumber,
+                '' as BankName,
+               '' as AccountName
             FROM settle_detail WHERE SettleID = " & QVal(_SettleID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)

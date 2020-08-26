@@ -543,7 +543,7 @@ Public Class EntertainDetailModel
                                     RTRIM(Alamat) Alamat,
                                     RTRIM(Jenis) Jenis,
                                     RTRIM(NoKwitansi) NoKwitansi,
-                                    [Amount] Amount
+                                    [Amount] Amount,'' as PaymentType 
                                 FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
 
             Dim dt As New DataTable

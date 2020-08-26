@@ -483,7 +483,12 @@ Public Class SuspendDetailModel
                                     RTRIM([AcctID]) Account,
 	                                RTRIM(Description) Description,
                                     RTRIM([Amount]) Amount,
-                                    convert(numeric(18,2),0) ActualAmount 
+                                    convert(numeric(18,2),0) ActualAmount, 
+                                    '' as PaymentType,
+                                    '' as CreditCardID,
+                                    '' as CreditCardNumber,
+                                    '' as BankName,
+                                    '' as AccountName
                                 FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
