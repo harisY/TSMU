@@ -356,7 +356,7 @@ Public Class Cls_NPP_Detail
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        'InsertRevisi()
+                        InsertRevisi()
                         Insert_NPPHeader(H_No_NPP,
                                             H_Issue_Date,
                                             H_Model_Name,
