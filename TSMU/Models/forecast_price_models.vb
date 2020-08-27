@@ -1664,12 +1664,20 @@ Public Class forecast_price_models
             Dim salesPrice As Double = 0
             salesPrice = getSalesPrice(BulanAngka, Tahun)
 
+            Dim _Bulan As String = String.Empty
+
+            If Bulan.ToLower = "agu" Then
+                _Bulan = Replace(Bulan, "u", "t")
+            Else
+                _Bulan = Bulan
+            End If
+
             Dim Sql As String = "tForecastPrice_SinkornisasiHarga"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(6) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Tahun
             pParam(1) = New SqlClient.SqlParameter("@columnName", SqlDbType.VarChar)
-            pParam(1).Value = Bulan
+            pParam(1).Value = _Bulan
             pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(2).Value = CustID
             pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
@@ -1678,6 +1686,8 @@ Public Class forecast_price_models
             pParam(4).Value = PartNo
             pParam(5) = New SqlClient.SqlParameter("@salesPrice", SqlDbType.Float)
             pParam(5).Value = salesPrice
+            pParam(6) = New SqlClient.SqlParameter("@flag", SqlDbType.VarChar)
+            pParam(6).Value = Flag
             'pParam(6) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
             'pParam(6).Value = gh_Common.Username
 

@@ -530,6 +530,7 @@ Public Class frmSales_ForecastPrice
         dtTemp.Columns.Add("CustID", GetType(String))
         dtTemp.Columns.Add("InvtID", GetType(String))
         dtTemp.Columns.Add("PartNo", GetType(String))
+        dtTemp.Columns.Add("Flag", GetType(String))
         dtTemp.Clear()
     End Sub
     Private Sub SinkronasiDataTsm_Click(sender As Object, e As EventArgs) Handles SinkronasiDataTsm.Click
@@ -542,6 +543,7 @@ Public Class frmSales_ForecastPrice
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(1) = Trim(GridView1.GetRowCellValue(i, "CustID") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(2) = Trim(GridView1.GetRowCellValue(i, "InvtID") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(3) = Trim(GridView1.GetRowCellValue(i, "PartNo") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(4) = Trim(GridView1.GetRowCellValue(i, "Flag") & "")
             Next
             If dtTemp.Rows.Count > 0 Then
                 Dim frm As FrmSales_ForecastPriceSync

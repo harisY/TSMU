@@ -76,12 +76,14 @@ Public Class FrmSales_ForecastPriceSync
                 Dim CustID As String = row("CustId")
                 Dim InvtID As String = row("InvtID")
                 Dim PartNo As String = row("PartNo")
+                Dim Flag As String = row("Flag")
                 ObjForecast = New forecast_price_models
                 With ObjForecast
                     .Tahun = Tahun
                     .CustID = CustID
                     .InvtID = InvtID
                     .PartNo = PartNo
+                    .Flag = Flag
                     .created_date = Date.Today
                     .created_by = gh_Common.Username
                 End With
