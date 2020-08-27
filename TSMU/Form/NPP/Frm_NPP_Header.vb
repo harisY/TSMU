@@ -4,6 +4,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class Frm_NPP_Header
 
     Dim ff_Detail As Frm_NPP_Detail
+    Dim ff_Search1 As frmSearch1
     Dim dtGrid As DataTable
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
@@ -223,6 +224,46 @@ Public Class Frm_NPP_Header
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
 
+
+        'Try
+        '    'Dim Status As List(Of String) = New List(Of String)({"ALL", "Create", "Submit", "Revise", "Approve Dept Head", "Approve Div Head", "Submit To NPD"})
+
+        '    ff_Search1 = New frmSearch1("Customer Customer Customer ")
+        '    With ff_Search1
+        '        .StartPosition = FormStartPosition.CenterScreen
+        '        .ShowDialog()
+        '        'Dim _Status As String = String.Empty
+        '        'Select Case .Status.ToLower
+        '        '    Case "all"
+        '        '        _Status = "ALL"
+        '        '    Case "Create"
+        '        '        _Status = "Create"
+        '        '    Case "Submit"
+        '        '        _Status = "Submit"
+        '        '    Case "Revise"
+        '        '        _Status = "Revise"
+        '        '    Case "Approve Dept Head"
+        '        '        _Status = "Approve Dept Head"
+        '        '    Case "Approve Div Head"
+        '        '        _Status = "Approve Div Head"
+        '        '    Case "Submit To NPD"
+        '        '        _Status = "Submit To NPD"
+        '        'End Select
+
+        '        'dtGrid = fc_Class.Get_NPP_Search(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), .Status)
+        '        'Grid.DataSource = dtGrid
+
+        '    End With
+        'Catch ex As Exception
+        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        'End Try
+
+
+
+        'ff_Search1 = New frmSearch1("Customer")
+        'ff_Search1.MdiParent = FrmMain
+        'ff_Search1.StartPosition = FormStartPosition.CenterScreen
+        'ff_Search1.Show()
 
 
     End Sub

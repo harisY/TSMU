@@ -5,6 +5,7 @@
             Dim d As DateTime = Date.Today
             Dim TA As DateTime = d.AddDays(-d.Day)
             Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+            TangalAwal = TangalAwal.AddMonths(-5)
             Dim TangalAkhir As DateTime = Date.Now
 
             'Dim query As String = "[Generate_Report_Matome]"
