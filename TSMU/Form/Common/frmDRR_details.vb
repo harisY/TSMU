@@ -40,8 +40,8 @@ Public Class frmDRR_details
     Dim BtnPartName As RepositoryItemButtonEdit = New RepositoryItemButtonEdit()
     Dim _inplaceEditors As RepositoryItem()
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
-    Dim _path As String = "D:\TOOLS\Sketch\"
-    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
+    'Dim _path As String = "D:\TOOLS\Sketch\"
+    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
@@ -562,7 +562,7 @@ Public Class frmDRR_details
 
                 'Next
                 For Each item As GalleryItem In GalleryControl1.Gallery.Groups(0).Items
-                    _File = Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(item.Caption, ".png", "") & ".png"
+                    _File = Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(Replace(item.Caption, ".png", ""), "_", " ") & ".png"
                     With ObjHeader
                         If _Index = -1 Then
                             .Gambar1 = _File & "," & CStr(_Index)
@@ -660,7 +660,7 @@ Public Class frmDRR_details
             End If
             files = Directory.GetFiles(_path, "*.png")
             For Each item As GalleryItem In GalleryControl1.Gallery.Groups(0).Items
-                _File = Path.Combine(_path, Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(item.Caption, ".png", "") & ".png")
+                _File = Path.Combine(_path, Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(Replace(item.Caption, ".png", ""), "_", " ") & ".png")
                 If Not File.Exists(_File) Then
                     item.Image.Save(_File, Imaging.ImageFormat.Png)
                     'File.Delete(_File)
@@ -678,7 +678,7 @@ Public Class frmDRR_details
             End If
             If ImgList IsNot Nothing Then
                 For Each ImgFile In ImgList
-                    _File = Path.Combine(_path, Replace(ImgFile.ImageTitle, ".png", "") & ".png")
+                    _File = Path.Combine(_path, Replace(Replace(ImgFile.ImageTitle, ".png", ""), "_", " ") & ".png")
 
                     If Not File.Exists(_File) Then
                         ImgFile.Img.Save(_File, Imaging.ImageFormat.Png)
@@ -900,7 +900,7 @@ Public Class frmDRR_details
             Dim _noNpp As String = ""
             Dim _model As String = ""
             Dim _customer As String = ""
-            Dim _masPro As String = ""
+            Dim _masPro As Date
 
             'Dim grid As GridControl = TryCast(sender, GridControl)
             Dim view As BandedGridView = TryCast(Grid.FocusedView, BandedGridView)
@@ -908,7 +908,7 @@ Public Class frmDRR_details
                 _noNpp = lF_SearchData.Values.Item(0).ToString.Trim
                 _model = lF_SearchData.Values.Item(1).ToString.Trim
                 _customer = lF_SearchData.Values.Item(2).ToString.Trim
-                _masPro = lF_SearchData.Values.Item(3).ToString.Trim
+                _masPro = lF_SearchData.Values.Item(3)
                 TxtNoNpp.EditValue = _noNpp
                 TxtProject.Text = _model
                 TxtCustomer.Text = _customer

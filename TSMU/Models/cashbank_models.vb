@@ -283,6 +283,8 @@ Public Class cashbank_models
         Try
             Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
             MainModul.ExecQuery_Solomon(Query)
+            Dim Query2 = "update TravelRequestHeader set ProsesIDR=0,ProsesUSD=0,ProsesYEN=0 from TravelRequestHeader inner join cashbank on TravelRequestHeader.NoRequest = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
+            MainModul.ExecQuery(Query2)
         Catch ex As Exception
             Throw ex
 
@@ -453,11 +455,7 @@ Public Class cashbank_models
         Try
 
             ''            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses,suspend_header.Currency from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' AND suspend_header.Currency=" & QVal(curyid) & ""
-            Dim sql As String = "Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceIDR) as Amount,'IDR' as Currency,'' as AcctID,TravelRequestHeader.ProsesIDR as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesIDR=0 AND TravelRequestHeader.StatusTicket='INVOICE' group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesIDR
-                                UNION
-                                Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceUSD) as Amount,'USD' as Currency,'' as AcctID,TravelRequestHeader.ProsesUSD as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesUSD=0 AND TravelRequestHeader.StatusTicket='INVOICE'  group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesUSD
-                                UNION
-                                Select TravelRequestHeader.Date as Tgl,TravelRequestHeader.NoRequest, 'TRAVEL '+TravelRequestHeader.Nama  As Description, sum(TravelRequestCost.AdvanceYEN) as Amount,'JPY' as Currency,'' as AcctID,TravelRequestHeader.ProsesYEN as Proses from TravelRequestCost inner join TravelRequestHeader on TravelRequestCost.NoRequest=TravelRequestHeader.NoRequest where TravelRequestHeader.ProsesYEN=0 AND TravelRequestHeader.StatusTicket='INVOICE'  group by TravelRequestHeader.Date,TravelRequestHeader.NoRequest,TravelRequestHeader.Nama,TravelRequestHeader.ProsesYEN"
+            Dim sql As String = "SELECT * FROM View_AdvTravel WHERE Amount>0"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(sql)
             Return dt

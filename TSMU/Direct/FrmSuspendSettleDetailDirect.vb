@@ -65,6 +65,64 @@ Public Class FrmSuspendSettleDetailDirect
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
     End Sub
+    Private Sub CPayType_EditValueChanged(sender As Object, e As EventArgs) Handles CPayTypeTransport.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim PayType As String
+        Dim CreditCardID As String = ""
+        Dim CreditCardNumber As String = ""
+        Dim AccountNameNBank As String = ""
+        Dim PaymentType As String = ""
+        Dim BankName As String = ""
+        Dim editor As ComboBoxEdit = CType(sender, ComboBoxEdit)
+
+
+        '    PayType = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType"))
+        '     PayType = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType")
+        ''GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType")
+        '' If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") = "CREDIT CARD" Then
+        PayType = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType"))
+
+
+        If PayType = "CREDIT CARD" Then
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+
+            dtSearch = ObjSettle.GetCreditCard
+            ls_Judul = "CREDIT CARD"
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+
+            If lF_SearchData.Values IsNot Nothing Then
+                CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
+                CreditCardNumber = lF_SearchData.Values.Item(1).ToString.Trim
+                AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                PaymentType = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
+            Else
+                PaymentType = "CASH"
+            End If
+
+            lF_SearchData.Close()
+        Else
+            PaymentType = PayType
+        End If
+
+
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "CreditCardID", CreditCardID)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "AccountName", AccountNameNBank)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "PaymentType", PaymentType)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "BankName", BankName)
+        '  GridBalanceEntertain.DataSource = dtBalance
+
+    End Sub
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
@@ -206,6 +264,9 @@ Public Class FrmSuspendSettleDetailDirect
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            .CreditCardID = GridView1.GetRowCellValue(i, "CreditCardID")
+                            .PaymentType = GridView1.GetRowCellValue(i, "PaymentType")
+
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
@@ -225,6 +286,9 @@ Public Class FrmSuspendSettleDetailDirect
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                             .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+                            .CreditCardID = GridView1.GetRowCellValue(i, "CreditCardID")
+                            .PaymentType = GridView1.GetRowCellValue(i, "PaymentType")
+
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If

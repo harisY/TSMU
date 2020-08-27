@@ -156,8 +156,8 @@ Public Class frmDRR
         ff_Detail.Show()
     End Sub
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
-    Dim _path As String = "D:\TOOLS\Sketch\"
-    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
+    'Dim _path As String = "D:\TOOLS\Sketch\"
+    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
