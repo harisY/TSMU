@@ -1973,10 +1973,6 @@
     <Compile Include="Form\System\frmAdvanceSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\System\frmSearch1.Designer.vb">
-      <DependentUpon>frmSearch1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\System\frmSearch1.vb" />
     <Compile Include="Form\System\frmSearch.Designer.vb">
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
@@ -3071,9 +3067,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceSearch.resx">
       <DependentUpon>frmAdvanceSearch.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\System\frmSearch1.resx">
-      <DependentUpon>frmSearch1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>

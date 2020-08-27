@@ -4,7 +4,6 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class Frm_NPP_Header
 
     Dim ff_Detail As Frm_NPP_Detail
-    Dim ff_Search1 As frmSearch1
     Dim dtGrid As DataTable
     Dim DtDelete As DataTable
     Dim fc_Class As New Cls_NPP_Header
