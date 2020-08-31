@@ -1,6 +1,14 @@
-﻿Public Class FrmCCAccrued
+﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
+Imports TSMU
+
+Public Class FrmCCAccrued
     Dim cls_Accrued As ClsCCAccrued
     Dim dtGrid As New DataTable
+    Dim dtGridAccrued As New DataTable
     Dim TabPage As String
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -12,22 +20,23 @@
     End Sub
 
     Public Overrides Sub Proc_Refresh()
+        txtCCNumber.Text = ""
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageProses" Then
             LoadGridAccrued()
         ElseIf TabPage = "TabPageCancel" Then
             LoadGridAccruedAll()
+        ElseIf TabPage = "TabPagePaid" Then
+            LoadGridAccruedPaid()
         End If
     End Sub
 
     Private Sub LoadGridAccrued()
         Try
             cls_Accrued = New ClsCCAccrued
-            dtGrid = cls_Accrued.GetDataCostCC()
-            GridAccrued.DataSource = dtGrid
-            GridViewAccrued.Columns("Seq").Visible = False
-            GridViewAccrued.BestFitColumns()
-            GridCellFormat(GridViewAccrued)
+            cls_Accrued.CreditCardNumber = txtCCNumber.Text
+            dtGridAccrued = cls_Accrued.GetDataCostCC()
+            GridAccrued.DataSource = dtGridAccrued
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -37,7 +46,7 @@
     Private Sub LoadGridAccruedAll()
         Try
             cls_Accrued = New ClsCCAccrued
-            dtGrid = cls_Accrued.GetDataCostCCAll()
+            dtGrid = cls_Accrued.GetDataCostCCAll(0)
             GridAccruedAll.DataSource = dtGrid
             GridViewAccruedAll.Columns("ID").Visible = False
             GridViewAccruedAll.Columns("Seq").Visible = False
@@ -50,12 +59,30 @@
         End Try
     End Sub
 
+    Private Sub LoadGridAccruedPaid()
+        Try
+            cls_Accrued = New ClsCCAccrued
+            dtGrid = cls_Accrued.GetDataCostCCAll(1)
+            GridAccruedPaid.DataSource = dtGrid
+            GridViewAccruedPaid.Columns("ID").Visible = False
+            GridViewAccruedPaid.Columns("Seq").Visible = False
+            GridViewAccruedPaid.Columns("Pay").Visible = False
+            GridViewAccruedPaid.BestFitColumns()
+            GridCellFormat(GridViewAccruedPaid)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageProses" Then
             LoadGridAccrued()
         ElseIf TabPage = "TabPageCancel" Then
             LoadGridAccruedAll()
+        ElseIf TabPage = "TabPagePaid" Then
+            LoadGridAccruedPaid()
         End If
     End Sub
 
@@ -113,6 +140,59 @@
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub txtCCNumber_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txtCCNumber.ButtonClick
+        Dim ls_Judul As String = ""
+        Dim dtSearch As New DataTable
+
+        dtSearch = cls_Accrued.GetCreditCard
+        ls_Judul = "CREDIT CARD"
+
+        Dim lF_SearchData As FrmSystem_LookupGrid
+        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+        lF_SearchData.Text = "Select Data " & ls_Judul
+        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+        lF_SearchData.ShowDialog()
+
+        If lF_SearchData.Values IsNot Nothing Then
+            txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
+        End If
+
+        lF_SearchData.Close()
+        LoadGridAccrued()
+    End Sub
+
+    Private Sub CAmountIDR_EditValueChanged(sender As Object, e As EventArgs) Handles CAmountIDR.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+
+        Dim amount As Double
+        Dim rate As Double
+        Dim amountIDR As Double
+        amount = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "Amount")
+        amountIDR = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "AmountIDR")
+        rate = amountIDR / amount
+
+        GridViewAccrued.SetRowCellValue(GridViewAccrued.FocusedRowHandle, "Rate", rate)
+    End Sub
+
+    Private Sub GridViewAccrued_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewAccrued.FocusedRowChanged
+        Try
+            Dim curryID = String.Empty
+            Dim selectedRows As Integer = GridViewAccrued.FocusedRowHandle
+            curryID = GridViewAccrued.GetRowCellValue(selectedRows, "CurryID")
+            If curryID = "IDR" Then
+                GridViewAccrued.OptionsBehavior.Editable = False
+            Else
+                GridViewAccrued.OptionsBehavior.Editable = True
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
