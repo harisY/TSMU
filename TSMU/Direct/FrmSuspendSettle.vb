@@ -20,14 +20,26 @@ Public Class FrmSuspendSettle
     End Sub
     Public Overrides Sub Proc_Search()
         Try
-            Dim fSearch As New frmSearch
+            Dim Status As List(Of String) = New List(Of String)({"ALL", "Open", "Approved", "Close"})
+
+            Dim fSearch As New frmAdvanceSearch(Status)
             With fSearch
                 .StartPosition = FormStartPosition.CenterScreen
                 .ShowDialog()
-
+                Dim _Status As String = String.Empty
+                Select Case .Status.ToLower
+                    Case "all"
+                        _Status = "ALL"
+                    Case "Open"
+                        _Status = "Open"
+                    Case "Approved"
+                        _Status = "Approved"
+                    Case "Close"
+                        _Status = "Close"
+                End Select
                 Dim dt As New DataTable
                 _Service = New SettleHeader
-                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), _Status)
                 Grid.DataSource = dt
             End With
         Catch ex As Exception

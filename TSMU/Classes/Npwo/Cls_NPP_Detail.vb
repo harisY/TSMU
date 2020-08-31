@@ -62,11 +62,13 @@ Public Class Cls_NPP_Detail
     Public Property TA_StatusApprove As String
     Public Property TA_ApproveBy As String
     Public Property TA_ApproveDAte As Date
+    Public Property TA_IsActive As Integer
 
 
 
 
     Public Property H_Note As String
+    Public Property H_Prepare As String
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_NPP_Detail_NPP)
@@ -114,8 +116,6 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[Category_Class]
                   ,[NPP_Head].[Factory_Tsc_TNG]
                   ,[NPP_Head].[Factory_Tsc_CKR]
-                  ,[NPP_Head].[Factory_Tsc_0]
-                  ,[NPP_Head].[Factory_Tsc_1]
                   ,[NPP_Head].[CreatedBy]
                   ,[NPP_Head].[CreatedDate]
                   ,[NPP_Head].[UpdatedBy]
@@ -131,12 +131,6 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Head].[TargetDRR]
                   ,[NPP_Head].[TargetQuot]
                   ,[NPP_Head].[UpdatedBy] as [UpdateBy]
-                  ,[NPP_Head].[Approve_Dept_Head] 
-                  ,[NPP_Head].[Approve_Dept_Head_Name]
-                  ,[NPP_Head].[Approve_Dept_Head_Date]
-                  ,[NPP_Head].[Approve_Div_Head]
-                  ,[NPP_Head].[Approve_Div_Head_Name]
-                  ,[NPP_Head].[Approve_Div_Head_Date]
                   ,[NPP_Detail].[Part_No]
                   ,[NPP_Detail].[Part_Name]
                   ,[NPP_Detail].[Machine]
@@ -193,7 +187,38 @@ Public Class Cls_NPP_Detail
     End Function
 
 
+    Public Sub UpdateTb_Approve_History(ByVal _FsCode As String, _Form As String)
 
+
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE T_ApproveHistory" & vbCrLf &
+                                    "SET [IsActive] = 0
+                                     WHERE [NoTransaksi] = '" & _FsCode & "' and [MenuCode] = '" & _Form & "'"
+                        MainModul.ExecQuery(ls_SP)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub UpdateApprove(ByVal _FsCode As String)
 
 
@@ -211,6 +236,7 @@ Public Class Cls_NPP_Detail
                                     "UPDATE NPP_Head" & vbCrLf &
                                     "SET [Approve] = '" & H_Approve & "'
                                     ,Note = '" & H_Note & "'
+                                    ,Prepare = '" & H_Prepare & "'
                                     ,Status = '" & H_Status & "' WHERE [No_NPP] = '" & _FsCode & "'"
                         MainModul.ExecQuery(ls_SP)
 
@@ -222,7 +248,8 @@ Public Class Cls_NPP_Detail
                                                ,[LevelApproved]
                                                ,[StatusApproved]
                                                ,[ApprovedBy]
-                                               ,[ApprovedDate])
+                                               ,[ApprovedDate]
+                                               ,[IsActive])
                                          VALUES
                                                ('" & TA_Username & "'
                                                ,'" & TA_MenuCode & "'
@@ -231,7 +258,8 @@ Public Class Cls_NPP_Detail
                                                ,'" & TA_LevelApprove & "'
                                                ,'" & TA_StatusApprove & "'
                                                ,'" & TA_ApproveBy & "'
-                                               ,'" & Date.Now & "')"
+                                               ,'" & Date.Now & "'
+                                               ,'" & TA_IsActive & "')"
                         MainModul.ExecQuery(ls_SP1)
 
 
@@ -328,7 +356,7 @@ Public Class Cls_NPP_Detail
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        'InsertRevisi()
+                        InsertRevisi()
                         Insert_NPPHeader(H_No_NPP,
                                             H_Issue_Date,
                                             H_Model_Name,

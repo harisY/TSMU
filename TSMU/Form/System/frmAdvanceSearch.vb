@@ -14,7 +14,8 @@
 
 
     Private Sub frmAdvanceSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TxtTglDari.EditValue = Date.Today
+        Dim year As New DateTime(DateTime.Now.Year, 1, 1)
+        TxtTglDari.EditValue = year
         TxtTglSampai.EditValue = Date.Today
         CmbStatus.Properties.Items.Clear()
         CmbStatus.Properties.Items.AddRange(_Stat)

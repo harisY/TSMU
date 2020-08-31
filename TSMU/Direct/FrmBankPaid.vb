@@ -437,6 +437,14 @@ Public Class FrmBankPaid
             End If
             GridControl2.DataSource = dtFilter
             GridCellFormat(GridView2)
+
+            Dim totalamt As Double
+            For i As Integer = 0 To GridView2.RowCount - 1
+                totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
+            Next
+            _txttot.Text = Format(totalamt, "#,#.##")
+            GridCellFormat(GridView2)
+
         Catch ex As Exception
 
         End Try

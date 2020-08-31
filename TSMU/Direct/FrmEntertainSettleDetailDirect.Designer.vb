@@ -52,6 +52,12 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CPayTypeTransport = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -92,6 +98,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,7 +122,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
         Me.LayoutControl1.Controls.Add(Me.TxtPrNo)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(796, 89)
@@ -296,7 +303,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn15, Me.GridColumn16})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -398,6 +405,46 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridColumn2.VisibleIndex = 8
         Me.GridColumn2.Width = 100
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "PaymentType"
+        Me.GridColumn8.ColumnEdit = Me.CPayTypeTransport
+        Me.GridColumn8.FieldName = "PaymentType"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 9
+        '
+        'CPayTypeTransport
+        '
+        Me.CPayTypeTransport.AutoHeight = False
+        Me.CPayTypeTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CPayTypeTransport.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeTransport.Name = "CPayTypeTransport"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "CreditCardID"
+        Me.GridColumn9.FieldName = "CreditCardID"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "CreditCardNumber"
+        Me.GridColumn10.FieldName = "CreditCardNumber"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "AccountName"
+        Me.GridColumn15.FieldName = "AccountName"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "BankName"
+        Me.GridColumn16.FieldName = "BankName"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -406,7 +453,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.Grid.Location = New System.Drawing.Point(12, 120)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
         Me.Grid.Size = New System.Drawing.Size(772, 246)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -555,6 +602,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -620,4 +668,10 @@ Partial Class FrmEntertainSettleDetailDirect
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents RepostNR As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CPayTypeTransport As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -163,4 +163,27 @@
             Throw ex
         End Try
     End Sub
+
+    Public Sub SNumneringInsert(FrmName As String, Customer As String, ProjectName As String)
+        Try
+
+            Dim Sql As String = "S_Numbering_insert"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@MenuCode", SqlDbType.VarChar)
+            pParam(0).Value = FrmName
+            pParam(1) = New SqlClient.SqlParameter("@Prefix", SqlDbType.VarChar)
+            pParam(1).Value = "DRR"
+            pParam(2) = New SqlClient.SqlParameter("@Suffix", SqlDbType.VarChar)
+            pParam(2).Value = "NPP"
+            pParam(3) = New SqlClient.SqlParameter("@Param1", SqlDbType.VarChar)
+            pParam(3).Value = Customer
+            pParam(4) = New SqlClient.SqlParameter("@Param2", SqlDbType.VarChar)
+            pParam(4).Value = ProjectName
+            pParam(5) = New SqlClient.SqlParameter("@Separator", SqlDbType.VarChar)
+            pParam(5).Value = "/"
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
