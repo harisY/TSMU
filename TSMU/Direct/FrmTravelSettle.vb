@@ -177,7 +177,7 @@ Public Class FrmTravelSettle
                     If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
                         cls_SettDetail = New TravelSettleDetailModel
                         With cls_SettDetail
-                            .NoRequest = GridViewRequest.GetRowCellValue(i, "NoRequest")
+                            .NoRequest = GridViewRequest.GetRowCellValue(GridViewRequest.GetSelectedRows()(i), "NoRequest")
                         End With
                         cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
                     End If

@@ -113,7 +113,7 @@ Public Class TravelRequestModel
         Try
             Dim dt As New DataTable
 
-            Dim SP_Name As String = "Travel_Get_TravelRequestAll"
+            Dim SP_Name As String = "Travel_Get_TravelRequest"
 
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@frm", SqlDbType.VarChar)
@@ -198,28 +198,26 @@ Public Class TravelRequestModel
         End Try
     End Function
 
-    Public Function GetTravelRequestAll(ByVal where As String) As DataTable
+    Public Function GetTravelRequestAll(Frm As String, Dari As Date, Sampai As Date, Status As String) As DataTable
         Try
-            'Dim aksesApproval As List(Of String)
-            'aksesApproval = GetAksesView()
-            'aksesApproval.Add("" & QVal(gh_Common.GroupID) & "")
-            'Dim nilai = String.Join(",", aksesApproval.ToArray)
-
-            strQuery = "SELECT  NoRequest ,
-                                NIK ,
-                                Nama ,
-                                Date ,
-                                DeptID ,
-                                TravelType ,
-                                Golongan ,
-                                Purpose ,
-                                Status ,
-                                Approved ,
-                                Comment
-                        FROM    dbo.TravelRequestHeader
-                        WHERE   DeptID IN (" & QVal(gh_Common.GroupID) & ") " & where & ""
             Dim dt As New DataTable
-            dt = GetDataTable(strQuery)
+
+            Dim SP_Name As String = "Travel_Get_TravelRequestAll"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
+            pParam(0) = New SqlClient.SqlParameter("@frm", SqlDbType.VarChar)
+            pParam(0).Value = Frm
+            pParam(1) = New SqlClient.SqlParameter("@dari", SqlDbType.Date)
+            pParam(1).Value = Dari
+            pParam(2) = New SqlClient.SqlParameter("@sampai", SqlDbType.Date)
+            pParam(2).Value = Sampai
+            pParam(3) = New SqlClient.SqlParameter("@status", SqlDbType.VarChar)
+            pParam(3).Value = Status
+            pParam(4) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            pParam(4).Value = gh_Common.GroupID
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -381,7 +379,7 @@ Public Class TravelRequestModel
 
             Dim SP_Name As String = "Travel_Insert_TravelRequestHeader"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(9) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
             pParam(0) = New SqlClient.SqlParameter("@NoRequest", SqlDbType.VarChar)
             pParam(0).Value = NoRequest
             pParam(1) = New SqlClient.SqlParameter("@NIK", SqlDbType.VarChar)
@@ -400,8 +398,10 @@ Public Class TravelRequestModel
             pParam(7).Value = Purpose
             pParam(8) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
             pParam(8).Value = Status
-            pParam(9) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(9).Value = gh_Common.Username
+            pParam(9) = New SqlClient.SqlParameter("@Approved", SqlDbType.VarChar)
+            pParam(9).Value = Approved
+            pParam(10) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(10).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(SP_Name, pParam)
 
@@ -584,7 +584,7 @@ Public Class TravelRequestModel
     '    End Try
     'End Sub
 
-    Public Sub Delete()
+    Public Sub Delete(AppModel As ApproveHistoryModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -605,6 +605,9 @@ Public Class TravelRequestModel
                         query = " DELETE  FROM dbo.TravelRequestCost " & vbCrLf &
                                 " WHERE   NoRequest = " & QVal(Me.NoRequest) & " "
                         MainModul.ExecQuery(query)
+
+                        _globalService = New GlobalService
+                        _globalService.UpdateFlagAll(AppModel)
 
                         Trans1.Commit()
                     Catch ex As Exception

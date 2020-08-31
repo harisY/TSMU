@@ -64,7 +64,7 @@ Public Class TravelTicketModel
                                 LEFT JOIN dbo.TravelTicketDetail AS ttd ON ttd.NoRequest = trd.NoRequest
                                                                             AND ttd.Seq = trd.Seq
                         WHERE   ttd.NoRequest IS NULL
-                                AND trh.Status = 'PENDING'
+                                AND trh.Status = 'PROGRESS'
                                 AND trh.Approved = 'APPROVED' "
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)

@@ -72,25 +72,20 @@ Public Class FrmTravelRequestDetail
         If FrmParent.Name = "FrmTravelTicket" Then
             Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Else
-            If fs_Code2 = "TabPageRequestAll" Then
-                Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False)
-                ViewForm()
-            ElseIf fs_Code2 = "TabPageProgress" Then
-                If _levelApprove = 1 Then
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+            If _levelApprove = 1 Then
+                If String.IsNullOrEmpty(ObjTravelRequest.Approved) OrElse ObjTravelRequest.Approved = "REVISED" Then
+                    Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+                ElseIf ObjTravelRequest.Approved = "CREATE" Then
+                    Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
                 Else
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                    ViewForm()
                 End If
-
-                ViewForm()
-            Else
-                If _levelApprove = 1 Then
-                    If isUpdate AndAlso String.IsNullOrEmpty(ObjTravelRequest.Approved) Then
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
-                    Else
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
-                    End If
-                ElseIf _levelApprove = 2 Then
+            ElseIf _levelApprove > 1 Then
+                If fs_Code2 = "OPEN" OrElse fs_Code2 = "CLOSE" OrElse fs_Code2 = "CREATE" Then
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                    ViewForm()
+                Else
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
                     ViewForm()
                 End If
@@ -189,7 +184,6 @@ Public Class FrmTravelRequestDetail
                     txtTravelType.Text = .TravelType
                     txtGolongan.EditValue = .Golongan
                     txtPurpose.Text = .Purpose
-                    txtApproved.Text = .Approved
                 End With
                 rateUSD = ObjTravelRequest.GetRate("USD", ObjTravelRequest.Tanggal)
                 rateYEN = ObjTravelRequest.GetRate("JPY", ObjTravelRequest.Tanggal)
@@ -200,7 +194,6 @@ Public Class FrmTravelRequestDetail
                 txtNama.Text = ""
                 txtGolongan.EditValue = Nothing
                 txtPurpose.Text = ""
-                txtApproved.Text = ""
                 txtTravelType.Text = "LN"
                 rateUSD = ObjTravelRequest.GetRate("USD", DateTime.Today)
                 rateYEN = ObjTravelRequest.GetRate("JPY", DateTime.Today)
@@ -209,11 +202,6 @@ Public Class FrmTravelRequestDetail
             ketRateUSD = "1USD : " + Format(rateUSD, gs_FormatDecimal)
             ketRateYEN = "1YEN : " + Format(rateYEN, gs_FormatDecimal)
             LabelControl1.Text = "" & ketRateUSD & "   |   " & ketRateYEN & ""
-            If _levelApprove = 2 Then
-                txtApproved.Enabled = True
-            Else
-                txtApproved.Enabled = False
-            End If
         Catch ex As Exception
             Throw
         End Try
@@ -250,7 +238,7 @@ Public Class FrmTravelRequestDetail
 
             If lb_Validated Then
                 Dim status As String = "CREATE"
-                Dim approved As String = String.Empty
+                Dim approved As String = "CREATE"
                 If isUpdate = False Then
                     noRequest = ObjTravelRequest.GetAutoNumber(FrmParent)
                     getDataDetail()
@@ -293,7 +281,7 @@ Public Class FrmTravelRequestDetail
             Else
                 ObjTravelRequest.NoRequest = txtNoRequest.Text
                 ObjTravelRequest.UpdateData()
-                Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
+                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
             If FrmParent.Name = "FrmTravelTicket" Then
@@ -321,63 +309,43 @@ Public Class FrmTravelRequestDetail
                 .ApprovedBy = gh_Common.Username,
                 .IsActive = 1
                 }
-            Dim status As String = "PENDING"
+            Dim status As String = "PROGRESS"
             Dim comment As String = String.Empty
-            Dim approved As String = txtApproved.Text
+            Dim approved As String = String.Empty
             Dim lvlApprove As Integer = _levelApprove
             Dim message As String = "Data Approved"
             ObjTravelRequest.NoRequest = fs_Code
-            If fs_Code2 = "TabPageRequest" Then
-                If _levelApprove = 1 Then
-                    approved = "SUBMITED"
-                ElseIf _levelApprove = 2 Then
-                    If txtApproved.Text = "" OrElse txtApproved.Text = "SUBMITED" Then
-                        Err.Raise(ErrNumber, , "Pilih action approvednya !")
-                    ElseIf txtApproved.Text = "REVISED" Then
-                        status = "CREATE"
-                        approved = txtApproved.Text
-                        comment = inputComment()
-                        lvlApprove = 0
-                        message = "Data Revised"
-                    ElseIf txtApproved.Text = "CANCEL" Then
-                        status = "CLOSE"
-                        approved = txtApproved.Text
-                        comment = inputComment()
-                        message = "Data Cancel"
-                    End If
-                End If
-                ObjTravelRequest.Status = status
-                ObjTravelRequest.Approved = approved
-                ObjTravelRequest.Comment = comment
-                ObjTravelRequest.CurrentLvlApprove = lvlApprove
-                ObjTravelRequest.UpdateStatusApproved(ObjApprove)
-                GridDtl.DataSource = ObjTravelRequest.GetTravelRequest(FrmParent.Name, _levelApprove)
-            ElseIf fs_Code2 = "TabPageProgress" Then
-                If ObjTravelRequest.StatusTicket = "ISSUE" Then
-                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Pesan ticket !")
-                ElseIf ObjTravelRequest.StatusTicket = "INVOICE" Then
-                    Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Invoice ticket !")
-                ElseIf ObjTravelRequest.Approved = txtApproved.Text Then
+            If _levelApprove = 1 Then
+                approved = "SUBMITED"
+            ElseIf _levelApprove = 2 Then
+                Dim approved__ As List(Of String) = New List(Of String)({"APPROVED", "REVISED", "CANCEL"})
+                Dim fApprove As New frmAdvanceApprove(approved__)
+                With fApprove
+                    .StartPosition = FormStartPosition.CenterScreen
+                    .ShowDialog()
+                End With
+
+                If fApprove.Approve = "" Then
+                    Throw New Exception("")
+                ElseIf ObjTravelRequest.Approved = fApprove.Approve Then
                     Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Approved !")
-                Else
-                    If txtApproved.Text = "REVISED" Then
-                        status = "CREATE"
-                        comment = inputComment()
-                        lvlApprove = 0
-                        message = "Data Revised"
-                    ElseIf txtApproved.Text = "CANCEL" Then
-                        status = "CLOSE"
-                        comment = inputComment()
-                        message = "Data Cancel"
-                    End If
-                    ObjTravelRequest.Status = status
-                    ObjTravelRequest.Approved = txtApproved.Text
-                    ObjTravelRequest.Comment = comment
-                    ObjTravelRequest.CurrentLvlApprove = lvlApprove
-                    ObjTravelRequest.UpdateStatusApproved(ObjApprove)
-                    GridDtl.DataSource = ObjTravelRequest.GetTravelProgress(_levelApprove)
+                ElseIf fApprove.Approve = "REVISED" Then
+                    status = "CREATE"
+                    lvlApprove = 0
+                    message = "Data Revised"
+                ElseIf fApprove.Approve = "CANCEL" Then
+                    status = "CLOSE"
+                    message = "Data Cancel"
                 End If
+                approved = fApprove.Approve
+                comment = fApprove.Comment
             End If
+            ObjTravelRequest.Status = status
+            ObjTravelRequest.Approved = approved
+            ObjTravelRequest.Comment = comment
+            ObjTravelRequest.CurrentLvlApprove = lvlApprove
+            ObjTravelRequest.UpdateStatusApproved(ObjApprove)
+            GridDtl.DataSource = ObjTravelRequest.GetTravelRequest(FrmParent.Name, _levelApprove)
             MessageBox.Show(message)
             IsClosed = True
             Me.Hide()
@@ -633,7 +601,7 @@ Public Class FrmTravelRequestDetail
 
     Private Sub GridViewAdvance_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewAdvance.FocusedRowChanged
         Try
-            If (fs_Code2 = "TabPageRequest" Or fs_Code = "") And _levelApprove <> 2 Then
+            If _levelApprove = 1 AndAlso (fs_Code2 = "Create" Or fs_Code2 = "") Then
                 Dim CostType = String.Empty
                 Dim selectedRows() As Integer = GridViewAdvance.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
