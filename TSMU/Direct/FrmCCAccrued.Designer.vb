@@ -124,7 +124,7 @@ Partial Class FrmCCAccrued
         Me.GridViewAccrued.Name = "GridViewAccrued"
         Me.GridViewAccrued.OptionsSelection.MultiSelect = True
         Me.GridViewAccrued.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
-        Me.GridViewAccrued.OptionsView.ShowGroupPanel = False
+        Me.GridViewAccrued.OptionsView.ShowFooter = True
         '
         'GTanggalTransaksi
         '
@@ -235,6 +235,7 @@ Partial Class FrmCCAccrued
         Me.GAmountIDR.MinWidth = 25
         Me.GAmountIDR.Name = "GAmountIDR"
         Me.GAmountIDR.OptionsColumn.FixedWidth = True
+        Me.GAmountIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDR", "{0:#,##0.#0}")})
         Me.GAmountIDR.Visible = True
         Me.GAmountIDR.VisibleIndex = 8
         Me.GAmountIDR.Width = 140
@@ -316,6 +317,7 @@ Partial Class FrmCCAccrued
         Me.txtCCNumber.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtCCNumber.Name = "txtCCNumber"
         Me.txtCCNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.txtCCNumber.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtCCNumber.Size = New System.Drawing.Size(189, 22)
         Me.txtCCNumber.StyleController = Me.LayoutControl1
         Me.txtCCNumber.TabIndex = 6

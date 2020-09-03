@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class ClsCCAccrued
+    Dim clsGlobal As GlobalService
     Public Property ID As Integer
     Public Property NoAccrued As String
     Public Property Tanggal As Date
@@ -21,41 +22,6 @@ Public Class ClsCCAccrued
     Public Property ObjCCAccrued() As New Collection(Of ClsCCAccrued)
 
     Dim strQuery As String
-
-    Public Function GetAutoNumber(frm As Form) As String
-        Try
-            Dim dt As New DataTable
-            Dim SP_Name As String = "S_GetAutoNumber"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
-            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
-            pParam(0).Value = frm.Name
-
-            dt = GetDataTableByCommand_SP(SP_Name, pParam)
-
-            Return dt.Rows(0).Item(0).ToString
-
-        Catch ex As Exception
-            Throw
-
-        End Try
-    End Function
-
-    Public Sub UpdateAutoNumber(frm As Form)
-        Try
-            Dim dt As New DataTable
-            Dim SP_Name As String = "S_UpdateAutoNumber"
-
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
-            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
-            pParam(0).Value = frm.Name
-
-            ExecQueryByCommand_SP(SP_Name, pParam)
-
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
 
     Public Function GetDataCostCC() As DataTable
         Try
@@ -87,6 +53,8 @@ Public Class ClsCCAccrued
                                 Description ,
                                 CurryID ,
                                 Amount ,
+                                Rate ,
+                                AmountIDR ,
                                 CreditCardNumber ,
                                 AccountName ,
                                 BankName ,
@@ -129,7 +97,7 @@ Public Class ClsCCAccrued
                             InsertDataAccrued()
                         Next
 
-                        UpdateAutoNumber(frm)
+                        clsGlobal.UpdateAutoNumber(frm)
 
                         Trans1.Commit()
                     Catch ex As Exception

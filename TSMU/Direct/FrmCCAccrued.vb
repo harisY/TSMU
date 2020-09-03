@@ -1,6 +1,8 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Data
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
@@ -10,6 +12,8 @@ Public Class FrmCCAccrued
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
     Dim TabPage As String
+
+    Dim clsGlobal As GlobalService
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -31,12 +35,52 @@ Public Class FrmCCAccrued
         End If
     End Sub
 
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+            End With
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub GroupingGrid(view As GridView)
+        Dim colTanggalTrans As GridColumn = view.Columns("TanggalTransaksi")
+        Dim colCCNumber As GridColumn = view.Columns("CreditCardNumber")
+        Dim colAmountIDR As GridColumn = view.Columns("AmountIDR")
+        Dim colAccountName As GridColumn = view.Columns("AccountName")
+        Dim colBankName As GridColumn = view.Columns("BankName")
+        view.OptionsCustomization.AllowMergedGrouping = True
+        view.SortInfo.ClearAndAddRange({New GridMergedColumnSortInfo({colCCNumber, colAccountName, colBankName}, {}),
+                                        New GridColumnSortInfo(colCCNumber, ColumnSortOrder.Ascending)
+                                        }, 2)
+        view.ExpandAllGroups()
+
+        Dim item As GridGroupSummaryItem = New GridGroupSummaryItem()
+        item.FieldName = colCCNumber.FieldName
+        item.SummaryType = SummaryItemType.Count
+        view.GroupSummary.Clear()
+        view.GroupSummary.Add(item)
+
+        Dim item1 As GridGroupSummaryItem = New GridGroupSummaryItem()
+        item1.FieldName = colAmountIDR.FieldName
+        item1.SummaryType = SummaryItemType.Sum
+        item1.DisplayFormat = "{0:#,##0.#0}"
+        item1.ShowInGroupColumnFooter = colAmountIDR
+        view.GroupSummary.Add(item1)
+    End Sub
+
     Private Sub LoadGridAccrued()
         Try
             cls_Accrued = New ClsCCAccrued
             cls_Accrued.CreditCardNumber = txtCCNumber.Text
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
+            GroupingGrid(GridViewAccrued)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -90,11 +134,15 @@ Public Class FrmCCAccrued
         Try
             If GridViewAccrued.SelectedRowsCount > 0 Then
                 Dim noAccrued As String
-                noAccrued = cls_Accrued.GetAutoNumber(Me)
+                noAccrued = clsGlobal.GetAutoNumber(Me)
                 Dim Rows As New ArrayList()
                 For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
                     If (GridViewAccrued.GetSelectedRows()(i) >= 0) Then
                         Rows.Add(GridViewAccrued.GetDataRow(GridViewAccrued.GetSelectedRows()(i)))
+                    End If
+                    Dim Row As DataRow = CType(Rows(i), DataRow)
+                    If Row("CurryID") <> "IDR" AndAlso Row("AmountIDR") = 0 Then
+                        Throw New Exception("Amount IDR tidak boleh 0!")
                     End If
                 Next
                 cls_Accrued.InsertData(Me, noAccrued, Rows)

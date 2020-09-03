@@ -39,6 +39,7 @@ Public Class FrmTravelRequestDetail
     Dim ObjTravelRequestCost As New TravelRequestCostModel
     Dim fc_Class As New TravelTicketModel
     Dim ObjApprove As New ApproveHistoryModel
+    Dim clsGlobal As GlobalService
 
     Public Sub New()
         ' This call is required by the designer.
@@ -240,7 +241,7 @@ Public Class FrmTravelRequestDetail
                 Dim status As String = "CREATE"
                 Dim approved As String = "CREATE"
                 If isUpdate = False Then
-                    noRequest = ObjTravelRequest.GetAutoNumber(FrmParent)
+                    noRequest = clsGlobal.GetAutoNumber(FrmParent)
                     getDataDetail()
                     txtNoRequest.Text = noRequest
                 Else

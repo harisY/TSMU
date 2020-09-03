@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class TravelTicketModel
+    Dim clsGlobal As GlobalService
     Public Property NoRequest As String
     Public Property NoVoucher As String
     Public Property Tanggal As Date
@@ -160,7 +161,7 @@ Public Class TravelTicketModel
         End Try
     End Sub
 
-    Public Sub InsertData()
+    Public Sub InsertData(frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -177,6 +178,8 @@ Public Class TravelTicketModel
                                 .InsertDetail()
                             End With
                         Next
+
+                        clsGlobal.UpdateAutoNumber(frm)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -457,7 +460,7 @@ Public Class TravelTicketDetailModel
     Public Sub UpdateRequest(ByVal _NoVoucher As String)
         Try
             strQuery = " UPDATE dbo.TravelRequestHeader
-                         SET    Status = 'PENDING' ,
+                         SET    Status = 'PROGRESS' ,
                                 StatusTicket = 'ISSUE'
                          WHERE  NoRequest IN ( SELECT   NoRequest
                                                FROM     dbo.TravelTicketDetail WITH ( NOLOCK )
