@@ -9,11 +9,10 @@ Imports TSMU
 
 Public Class FrmCCAccrued
     Dim cls_Accrued As ClsCCAccrued
+    Dim clsGlobal As GlobalService
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
     Dim TabPage As String
-
-    Dim clsGlobal As GlobalService
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -57,7 +56,7 @@ Public Class FrmCCAccrued
         view.OptionsCustomization.AllowMergedGrouping = True
         view.SortInfo.ClearAndAddRange({New GridMergedColumnSortInfo({colCCNumber, colAccountName, colBankName}, {}),
                                         New GridColumnSortInfo(colCCNumber, ColumnSortOrder.Ascending)
-                                        }, 2)
+                                        }, 3)
         view.ExpandAllGroups()
 
         Dim item As GridGroupSummaryItem = New GridGroupSummaryItem()
@@ -97,6 +96,7 @@ Public Class FrmCCAccrued
             GridViewAccruedAll.Columns("Pay").Visible = False
             GridViewAccruedAll.BestFitColumns()
             GridCellFormat(GridViewAccruedAll)
+            GroupingGrid(GridViewAccruedAll)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -134,15 +134,16 @@ Public Class FrmCCAccrued
         Try
             If GridViewAccrued.SelectedRowsCount > 0 Then
                 Dim noAccrued As String
+                clsGlobal = New GlobalService
                 noAccrued = clsGlobal.GetAutoNumber(Me)
                 Dim Rows As New ArrayList()
                 For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
-                    If (GridViewAccrued.GetSelectedRows()(i) >= 0) Then
-                        Rows.Add(GridViewAccrued.GetDataRow(GridViewAccrued.GetSelectedRows()(i)))
-                    End If
-                    Dim Row As DataRow = CType(Rows(i), DataRow)
-                    If Row("CurryID") <> "IDR" AndAlso Row("AmountIDR") = 0 Then
-                        Throw New Exception("Amount IDR tidak boleh 0!")
+                    Dim rowIndex As Integer = GridViewAccrued.GetSelectedRows()(i)
+                    If rowIndex >= 0 Then
+                        Rows.Add(GridViewAccrued.GetDataRow(rowIndex))
+                        If GridViewAccrued.GetRowCellValue(rowIndex, "CurryID") <> "IDR" AndAlso GridViewAccrued.GetRowCellValue(rowIndex, "AmountIDR") = 0 Then
+                            Throw New Exception("Amount IDR tidak boleh 0!")
+                        End If
                     End If
                 Next
                 cls_Accrued.InsertData(Me, noAccrued, Rows)

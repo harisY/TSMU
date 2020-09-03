@@ -97,6 +97,7 @@ Public Class ClsCCAccrued
                             InsertDataAccrued()
                         Next
 
+                        clsGlobal = New GlobalService
                         clsGlobal.UpdateAutoNumber(frm)
 
                         Trans1.Commit()

@@ -223,6 +223,7 @@ Public Class FrmTravelTicketInvoice
 
             If validasi Then
                 If isUpdate = False Then
+                    clsGlobal = New GlobalService
                     NoVoucher = clsGlobal.GetAutoNumber(FrmParent)
                 End If
 

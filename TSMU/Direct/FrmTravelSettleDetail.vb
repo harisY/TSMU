@@ -354,6 +354,7 @@ Public Class FrmTravelSettleDetail
 
             If lb_Validated Then
                 If isUpdate = False Then
+                    clsGlobal = New GlobalService
                     travelSettID = clsGlobal.GetAutoNumber(FrmParent)
                     DataTravelSettDetail()
                     txtTravelSettID.Text = travelSettID

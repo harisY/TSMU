@@ -241,6 +241,7 @@ Public Class FrmTravelRequestDetail
                 Dim status As String = "CREATE"
                 Dim approved As String = "CREATE"
                 If isUpdate = False Then
+                    clsGlobal = New GlobalService
                     noRequest = clsGlobal.GetAutoNumber(FrmParent)
                     getDataDetail()
                     txtNoRequest.Text = noRequest

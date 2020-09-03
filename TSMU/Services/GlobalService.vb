@@ -202,8 +202,7 @@
             Return dt.Rows(0).Item(0).ToString
 
         Catch ex As Exception
-            Throw
-
+            Throw ex
         End Try
     End Function
 
@@ -219,7 +218,7 @@
             ExecQueryByCommand_SP(SP_Name, pParam)
 
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
 

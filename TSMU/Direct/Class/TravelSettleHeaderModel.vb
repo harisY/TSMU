@@ -228,6 +228,7 @@ Public Class TravelSettleHeaderModel
                             End With
                         Next
 
+                        clsGlobal = New GlobalService
                         clsGlobal.UpdateAutoNumber(frm)
 
                         Trans1.Commit()

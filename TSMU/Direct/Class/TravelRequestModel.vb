@@ -322,6 +322,7 @@ Public Class TravelRequestModel
                             End With
                         Next
 
+                        _globalService = New GlobalService
                         _globalService.UpdateAutoNumber(frm)
 
                         Trans1.Commit()
