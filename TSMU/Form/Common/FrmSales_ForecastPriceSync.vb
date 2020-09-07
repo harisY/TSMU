@@ -7,8 +7,9 @@ Imports DevExpress.XtraSplashScreen
 
 Public Class FrmSales_ForecastPriceSync
     Dim GridData As DataTable = Nothing
-    Dim ObjHeader As New forecast_price_models_header
-    Dim ObjForecast As New forecast_price_models
+    'Dim ObjHeader As New forecast_price_models_header
+    Dim ObjHeader As New forecast_po_model
+    Dim ObjForecast As New forecast_po_model_detail 'forecast_price_models
     Public Sub New()
 
         ' This call is required by the designer.
@@ -77,7 +78,7 @@ Public Class FrmSales_ForecastPriceSync
                 Dim InvtID As String = row("InvtID")
                 Dim PartNo As String = row("PartNo")
                 Dim Flag As String = row("Flag")
-                ObjForecast = New forecast_price_models
+                ObjForecast = New forecast_po_model_detail
                 With ObjForecast
                     .Tahun = Tahun
                     .CustID = CustID

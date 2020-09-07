@@ -1,10 +1,10 @@
 ﻿Imports System.Collections.ObjectModel
-Public Class forecast_price_models_header
+Public Class forecast_po_model
     Public Property Tahun As String
     Public Property CustID As String
     Public Property Bulan As String
     Public Property BulanAngka As String
-    Public Property ObjForecastCollection() As New Collection(Of forecast_price_models)
+    Public Property ObjForecastCollection() As New Collection(Of forecast_po_model_detail)
     Public Sub DeleteByTahun(Tahun As String)
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE Tahun = " & QVal(Tahun) & ""
@@ -103,6 +103,9 @@ Public Class forecast_price_models_header
                                     .UpdateData1()
                                     .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 End If
+
+
+                                .MatomeInsert(Bulan, BulanAngka)
                             End With
                         Next
 
@@ -136,7 +139,7 @@ Public Class forecast_price_models_header
                             With ObjForecastCollection(i)
                                 .SinkronisasiHarga(Bulan, BulanAngka)
 
-
+                                .MatomeInsert(Bulan, BulanAngka)
                             End With
                         Next
 
@@ -188,7 +191,7 @@ Public Class forecast_price_models_header
         End Try
     End Sub
 End Class
-Public Class forecast_price_models
+Public Class forecast_po_model_detail
     Public Property Agt_PO1 As Integer
     Public Property Agt_PO2 As Integer
     Public Property AgtHarga1 As Double
@@ -800,8 +803,6 @@ Public Class forecast_price_models
             Throw ex
         End Try
     End Function
-
-
     Public Sub InsertData()
         Try
 
@@ -1621,6 +1622,7 @@ Public Class forecast_price_models
         End Try
     End Sub
 
+
     Public Sub UpdateDataByBulanNew(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
@@ -1658,6 +1660,253 @@ Public Class forecast_price_models
             'pParam(13) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
             'pParam(13).Value = gh_Common.Username
 
+            ExecQueryByCommand_SP(Sql, pParam)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Function GetQty(bulan As String, _Tahun As String) As Double
+        Dim Qty As Double = 0
+
+        Try
+            Dim Sql As String = "tForecastPrice_getQty"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = _Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                Qty = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return Qty
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetHarga(bulan As String) As Double
+        Dim Harga As Double = 0
+
+        Try
+            Dim Sql As String = "tForecastPrice_getHarga"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                Harga = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return Harga
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetPO(bulan As String) As Double
+        Dim PO As Double = 0
+
+        Try
+            Dim Sql As String = "tForecastPrice_getPO"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                PO = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return PO
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetPORev(bulan As String) As Double
+        Dim PORev As Double = 0
+
+        Try
+            Dim Sql As String = "tForecastPrice_getPORev"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                PORev = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return PORev
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetHargaPrev(bulan As String) As Double
+        Dim Harga As Double = 0
+
+        Try
+            Dim Sql As String = "tForecastPrice_getHarga_PO"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                Harga = Convert.ToDouble(dt.Rows(0)(0))
+            End If
+            Return Harga
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Sub MatomeInsert(Bulan As String, bulanAngka As String)
+        Try
+            'Dim Qty As Integer = GetQty(Bulan)
+            Dim Harga As Double = GetHarga(Bulan)
+            Dim HargaSebelumnya As Double = GetHargaPrev(Bulan)
+            Dim PO As Integer = GetPO(Bulan)
+            Dim PORev As Integer = GetPORev(Bulan)
+            Dim Qty3 As Integer = 0
+            Dim Qty2 As Integer = 0
+            Dim Qty1 As Integer = 0
+
+
+            Dim _PO As Double = 0
+            Dim _PORev As Double = 0
+            Dim _Forecast As Double = 0
+            Dim _Forecast1 As Double = 0
+            Dim _Forecast2 As Double = 0
+
+            _PO = If(Harga = 0, PO * HargaSebelumnya, PO * Harga)
+            _PORev = PORev * Harga
+
+            Select Case Bulan.ToLower
+                Case "jan"
+                    Qty3 = GetQty("FebQty3", Tahun)
+                    Qty2 = GetQty("MarQty2", Tahun)
+                    Qty1 = GetQty("AprQty1", Tahun)
+                Case "feb"
+                    Qty3 = GetQty("MarQty3", Tahun)
+                    Qty2 = GetQty("AprQty2", Tahun)
+                    Qty1 = GetQty("MeiQty1", Tahun)
+                Case "mar"
+                    Qty3 = GetQty("AprQty3", Tahun)
+                    Qty2 = GetQty("MeiQty2", Tahun)
+                    Qty1 = GetQty("JunQty1", Tahun)
+                Case "apr"
+                    Qty3 = GetQty("MeiQty3", Tahun)
+                    Qty2 = GetQty("JunQty2", Tahun)
+                    Qty1 = GetQty("JulQty1", Tahun)
+                Case "mei"
+                    Qty3 = GetQty("JunQty3", Tahun)
+                    Qty2 = GetQty("JulQty2", Tahun)
+                    Qty1 = GetQty("AgtQty1", Tahun)
+                Case "jun"
+                    Qty3 = GetQty("JulQty3", Tahun)
+                    Qty2 = GetQty("AgtQty2", Tahun)
+                    Qty1 = GetQty("SepQty1", Tahun)
+                Case "jul"
+                    Qty3 = GetQty("AgtQty3", Tahun)
+                    Qty2 = GetQty("SepQty2", Tahun)
+                    Qty1 = GetQty("OktQty1", Tahun)
+                Case "agt"
+                    Qty3 = GetQty("SepQty3", Tahun)
+                    Qty2 = GetQty("OktQty2", Tahun)
+                    Qty1 = GetQty("NovQty1", Tahun)
+                Case "sep"
+                    Qty3 = GetQty("OktQty3", Tahun)
+                    Qty2 = GetQty("NovQty2", Tahun)
+                    Qty1 = GetQty("DesQty1", Tahun)
+                Case "okt"
+                    Qty3 = GetQty("NovQty3", Tahun)
+                    Qty2 = GetQty("DesQty2", Tahun)
+                    Qty1 = GetQty("JanQty1", Convert.ToInt32(Tahun) + 1)
+                Case "nov"
+                    Qty3 = GetQty("DesQty3", Tahun)
+                    Qty2 = GetQty("JanQty2", Convert.ToInt32(Tahun) + 1)
+                    Qty1 = GetQty("FebQty1", Convert.ToInt32(Tahun) + 1)
+                Case "des"
+                    Qty3 = GetQty("JanQty3", Convert.ToInt32(Tahun) + 1)
+                    Qty2 = GetQty("FebQty2", Convert.ToInt32(Tahun) + 1)
+                    Qty1 = GetQty("MarQty1", Convert.ToInt32(Tahun) + 1)
+            End Select
+
+            _Forecast = Qty3 * Harga
+            _Forecast1 = Qty2 * Harga
+            _Forecast2 = Qty1 * Harga
+
+            Dim Sql As String = "T_Matome_Insert"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = bulanAngka
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = CustID
+            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3).Value = InvtID
+            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4).Value = PartNo
+            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5).Value = Flag
+            pParam(6) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(6).Value = Site
+            pParam(7) = New SqlClient.SqlParameter("@PO", SqlDbType.Float)
+            pParam(7).Value = _PO
+            pParam(8) = New SqlClient.SqlParameter("@PORev", SqlDbType.Float)
+            pParam(8).Value = _PORev
+            pParam(9) = New SqlClient.SqlParameter("@Forecast", SqlDbType.Float)
+            pParam(9).Value = _Forecast
+            pParam(10) = New SqlClient.SqlParameter("@Forecast1", SqlDbType.Float)
+            pParam(10).Value = _Forecast1
+            pParam(11) = New SqlClient.SqlParameter("@Forecast2", SqlDbType.Float)
+            pParam(11).Value = _Forecast2
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
