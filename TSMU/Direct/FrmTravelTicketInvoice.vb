@@ -8,9 +8,11 @@ Imports DevExpress.XtraGrid.Columns
 Public Class FrmTravelTicketInvoice
     Dim isUpdate As Boolean
     Dim fs_Code As String
+    Dim FrmParent As Form
     Dim Value As Boolean = False
     Dim ObjTravelTicket As New TravelTicketModel
     Dim ObjTravelTicketDetail As New TravelTicketDetailModel
+    Dim clsGlobal As GlobalService
 
     Dim dtInvoiceHeader As New DataTable
     Dim dtInvoiceDetail As New DataTable
@@ -24,12 +26,13 @@ Public Class FrmTravelTicketInvoice
         InitializeComponent()
     End Sub
 
-    Public Sub New(ByRef strCode As String, ByRef dtHeader As DataTable, ByVal dtDetail As DataTable)
+    Public Sub New(ByRef strCode As String, ByRef dtHeader As DataTable, ByVal dtDetail As DataTable, ByVal lf_FormParent As Form)
         Me.New()
         If strCode <> "" Then
             fs_Code = strCode
             isUpdate = True
         End If
+        FrmParent = lf_FormParent
         dtInvoiceHeader = dtHeader
         dtInvoiceDetail = dtDetail
     End Sub
@@ -184,7 +187,7 @@ Public Class FrmTravelTicketInvoice
         If CekValidasi() Then
             Try
                 If isUpdate = False Then
-                    ObjTravelTicket.InsertData()
+                    ObjTravelTicket.InsertData(FrmParent)
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 Else
                     ObjTravelTicket.NoVoucher = NoVoucher
@@ -220,7 +223,8 @@ Public Class FrmTravelTicketInvoice
 
             If validasi Then
                 If isUpdate = False Then
-                    NoVoucher = ObjTravelTicket.TravelAutoNoVoucher
+                    clsGlobal = New GlobalService
+                    NoVoucher = clsGlobal.GetAutoNumber(FrmParent)
                 End If
 
                 With ObjTravelTicket

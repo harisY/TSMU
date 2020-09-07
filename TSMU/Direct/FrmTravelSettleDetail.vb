@@ -16,6 +16,7 @@ Public Class FrmTravelSettleDetail
     Dim cls_TravelSett As New TravelSettleHeaderModel
     Dim cls_TravelSettDetail As New TravelSettleDetailModel
     Dim cls_TravelSettCost As New TravelSettleCostModel
+    Dim clsGlobal As GlobalService
 
     Dim GridDtl As GridControl
     Dim gv_Request As New GridView
@@ -344,9 +345,17 @@ Public Class FrmTravelSettleDetail
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
 
+            If isUpdate Then
+                cls_TravelSett.TravelSettleID = txtTravelSettID.Text
+                If cls_TravelSett.CheckSettleAccrued Then
+                    Err.Raise(ErrNumber, , "No Settlement " & txtTravelSettID.Text & " sudah dilakukan proses Accrued !")
+                End If
+            End If
+
             If lb_Validated Then
                 If isUpdate = False Then
-                    travelSettID = cls_TravelSett.TravelSettAutoNo
+                    clsGlobal = New GlobalService
+                    travelSettID = clsGlobal.GetAutoNumber(FrmParent)
                     DataTravelSettDetail()
                     txtTravelSettID.Text = travelSettID
                 Else
@@ -379,7 +388,6 @@ Public Class FrmTravelSettleDetail
                     .TotalReturnUSD = ReturnUSD
                     .TotalReturnYEN = ReturnYEN
                 End With
-
             End If
 
         Catch ex As Exception
@@ -393,7 +401,7 @@ Public Class FrmTravelSettleDetail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                cls_TravelSett.InsertDataTravelSettle()
+                cls_TravelSett.InsertDataTravelSettle(FrmParent)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 cls_TravelSett.UpdateDataTravelSettle()
@@ -691,6 +699,9 @@ Public Class FrmTravelSettleDetail
                     Err.Raise(ErrNumber, , "Tanggal Entertain tidak boleh kosong !")
                 End If
                 .DateCost = GridViewEntertain.GetRowCellValue(i, "Date")
+                If String.IsNullOrEmpty(GridViewEntertain.GetRowCellValue(i, "EntertainID").ToString()) Then
+                    Err.Raise(ErrNumber, , "Entertain ID tidak boleh kosong !")
+                End If
                 .EntertainID = GridViewEntertain.GetRowCellValue(i, "EntertainID").ToString()
                 .TFrom = ""
                 .TTo = ""
@@ -924,16 +935,28 @@ Public Class FrmTravelSettleDetail
     End Sub
 
     Private Sub GridViewEntertain_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewEntertain.KeyDown
-        If e.KeyData = Keys.Delete Then
-            GridViewEntertain.DeleteRow(GridViewEntertain.FocusedRowHandle)
-            GridViewEntertain.RefreshData()
-            HitungSummaryAll(GridSumEntertain, GridViewSumEntertain)
-            GridBalanceEntertain.DataSource = dtBalance
-            'GridCellFormat(GridViewBalanceEntertain)
-        End If
-        If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
-            AddNewRow(GridViewEntertain, 4)
-        End If
+        Try
+            If e.KeyData = Keys.Delete Then
+                Dim entertainID As String = GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID")
+                GridViewEntertain.DeleteRow(GridViewEntertain.FocusedRowHandle)
+                If Not String.IsNullOrEmpty(entertainID) Then
+                    'Delete data from tabel entertain
+                    cls_TravelSettCost.EntertainID = entertainID
+                    cls_TravelSettCost.DeleteSettleEntertain()
+                End If
+                GridViewEntertain.RefreshData()
+                HitungSummaryAll(GridSumEntertain, GridViewSumEntertain)
+                GridBalanceEntertain.DataSource = dtBalance
+                'GridCellFormat(GridViewBalanceEntertain)
+            End If
+            If e.KeyData = Keys.Insert Or e.KeyData = Keys.F1 Then
+                AddNewRow(GridViewEntertain, 4)
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
     End Sub
 
 #End Region
@@ -1260,22 +1283,30 @@ Public Class FrmTravelSettleDetail
 
     Private Sub FrmTravelSettleDetail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         If flag = 1 Then
-            Dim EntertainID As String
-            Dim IDSettle As String = String.Empty
+            'Dim EntertainID As String
+            'Dim IDSettle As String = String.Empty
             Dim jumlah As Double
-            Dim vrate As Double
+            Dim rate As Double = 1
+            Dim curryID As String
 
-            EntertainID = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID"))
+            'EntertainID = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "EntertainID"))
 
-            If EntertainID <> "" Then
-                'IDSettle = ObjTravelSettDetail.GetSettleID(EntertainID)
-                GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "IDSettle", IDSettle)
+            'If EntertainID <> "" Then
+            '    IDSettle = ObjTravelSettDetail.GetSettleID(EntertainID)
+            '    GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "IDSettle", IDSettle)
+            'End If
+
+            jumlah = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount") Is DBNull.Value, 0, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount"))
+            curryID = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "CurryID") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "CurryID"))
+            'vrate = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett") Is DBNull.Value, 1, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett"))
+            If curryID = "USD" Then
+                rate = txtRateUSD.Text
+            ElseIf curryID = "YEN" Then
+                rate = txtRateYEN.Text
             End If
-
-            jumlah = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett") Is DBNull.Value, 0, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountSett"))
-            vrate = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett") Is DBNull.Value, 1, GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "RateSett"))
-
-            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDRSett", jumlah * vrate)
+            GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "AmountIDR", jumlah * rate)
+            HitungSummaryAll(GridSumEntertain, GridViewSumEntertain)
+            GridBalanceEntertain.DataSource = dtBalance
             flag = 0
         End If
     End Sub
@@ -1494,7 +1525,4 @@ Public Class FrmTravelSettleDetail
         End If
     End Sub
 
-    Private Sub txtPRNo_EditValueChanged(sender As Object, e As EventArgs) Handles txtPRNo.EditValueChanged
-
-    End Sub
 End Class

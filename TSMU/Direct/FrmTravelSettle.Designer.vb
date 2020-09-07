@@ -197,7 +197,7 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.Controls.Add(Me.btnProses)
         Me.TabPageReq.Controls.Add(Me.GridRequest)
         Me.TabPageReq.Name = "TabPageReq"
-        Me.TabPageReq.Size = New System.Drawing.Size(1364, 556)
+        Me.TabPageReq.Size = New System.Drawing.Size(948, 556)
         Me.TabPageReq.Text = "Request"
         '
         'btnProses
@@ -216,7 +216,7 @@ Partial Class FrmTravelSettle
         Me.GridRequest.Location = New System.Drawing.Point(4, 41)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
-        Me.GridRequest.Size = New System.Drawing.Size(1355, 508)
+        Me.GridRequest.Size = New System.Drawing.Size(930, 508)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '

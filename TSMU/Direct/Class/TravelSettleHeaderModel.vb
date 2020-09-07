@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
 Public Class TravelSettleHeaderModel
+    Dim clsGlobal As GlobalService
     Public Property TravelSettleID As String
     Public Property DateHeader As Date
     Public Property NoPR As String
@@ -127,6 +128,23 @@ Public Class TravelSettleHeaderModel
         End Try
     End Function
 
+    Public Function CheckSettleAccrued() As Boolean
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  CAST(COUNT(NoAccrued) AS BIT)
+                        FROM    dbo.T_CCAccrued
+                        WHERE   NoTransaksi = " & QVal(TravelSettleID) & ""
+            dt = GetDataTable(strQuery)
+
+            Dim validasi As Boolean
+            validasi = dt.Rows(0).Item(0)
+
+            Return validasi
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub GetTravelSettHeaderByID()
         Try
             strQuery = " SELECT  TravelSettleID ,
@@ -185,7 +203,7 @@ Public Class TravelSettleHeaderModel
         End Try
     End Sub
 
-    Public Sub InsertDataTravelSettle()
+    Public Sub InsertDataTravelSettle(frm As Form)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -209,6 +227,9 @@ Public Class TravelSettleHeaderModel
                                 .InsertSettleCost()
                             End With
                         Next
+
+                        clsGlobal = New GlobalService
+                        clsGlobal.UpdateAutoNumber(frm)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -370,6 +391,12 @@ Public Class TravelSettleHeaderModel
 
                         Dim cls_SettleCost As New TravelSettleCostModel
                         cls_SettleCost.DeleteSettleCost(TravelSettleID)
+
+                        For i As Integer = 0 To ObjSettleCost.Count - 1
+                            With ObjSettleCost(i)
+                                .DeleteSettleEntertain()
+                            End With
+                        Next
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -917,6 +944,17 @@ Public Class TravelSettleCostModel
             ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
                     " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
             ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteSettleEntertain()
+        Try
+            'Dim ls_SP As String
+            'ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
+            '        " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
+            'ExecQuery(ls_SP)
         Catch ex As Exception
             Throw
         End Try

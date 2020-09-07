@@ -338,6 +338,7 @@
     <Compile Include="Delvi\frmDelvi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\Class\ClsCCAccrued.vb" />
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\ClsTraveller.vb" />
@@ -395,6 +396,12 @@
       <DependentUpon>FrmBankTransfer_Detail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmBankTransfer_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmCCAccrued.Designer.vb">
+      <DependentUpon>FrmCCAccrued.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmDetailPaymentDirect.Designer.vb">
@@ -1955,6 +1962,12 @@
     <Compile Include="Form\Report\frmSales.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmAdvanceApprove.Designer.vb">
+      <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmAdvanceApprove.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -2598,6 +2611,9 @@
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmCCAccrued.resx">
+      <DependentUpon>FrmCCAccrued.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>
@@ -3065,6 +3081,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
+      <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

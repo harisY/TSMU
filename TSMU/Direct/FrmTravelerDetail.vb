@@ -289,11 +289,6 @@ Public Class FrmTravelerDetail
         End Try
     End Sub
 
-    Private Sub btnAddVisa_Click(sender As Object, e As EventArgs) Handles btnAddVisa.Click
-        GridViewVisa.AddNewRow()
-        GridViewVisa.OptionsNavigation.AutoFocusNewRow = True
-    End Sub
-
     Private Sub GridViewPaspor_KeyDown(sender As Object, e As KeyEventArgs) Handles GridViewPaspor.KeyDown
         If e.KeyData = Keys.Delete Then
             GridViewPaspor.DeleteRow(GridViewPaspor.FocusedRowHandle)
@@ -322,12 +317,6 @@ Public Class FrmTravelerDetail
         'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
         '    e.Handled = True
         'End If
-    End Sub
-
-    Private Sub btnAddPaspor_Click(sender As Object, e As EventArgs) Handles btnAddPaspor.Click
-        GridViewPaspor.AddNewRow()
-        GridViewPaspor.OptionsNavigation.AutoFocusNewRow = True
-        GridViewPaspor.SetRowCellValue(GridViewPaspor.FocusedRowHandle, "Nama", TxtNama.Text)
     End Sub
 
     Private Sub GridViewPaspor_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridViewPaspor.CellValueChanged
@@ -421,6 +410,17 @@ Public Class FrmTravelerDetail
         'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
         '    e.Handled = True
         'End If
+    End Sub
+
+    Private Sub btnPaspor_Click(sender As Object, e As EventArgs) Handles btnPaspor.Click
+        GridViewPaspor.AddNewRow()
+        GridViewPaspor.OptionsNavigation.AutoFocusNewRow = True
+        GridViewPaspor.SetRowCellValue(GridViewPaspor.FocusedRowHandle, "Nama", TxtNama.Text)
+    End Sub
+
+    Private Sub btnVisa_Click(sender As Object, e As EventArgs) Handles btnVisa.Click
+        GridViewVisa.AddNewRow()
+        GridViewVisa.OptionsNavigation.AutoFocusNewRow = True
     End Sub
 
 End Class

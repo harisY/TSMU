@@ -19,11 +19,10 @@ Partial Class FrmTravelerDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.btnAddPaspor = New System.Windows.Forms.Button()
         Me.GridPaspor = New DevExpress.XtraGrid.GridControl()
         Me.GridViewPaspor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,6 +40,21 @@ Partial Class FrmTravelerDetail
         Me.TempatKeluar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CTempatKeluar = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtGolongan = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnVisa = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnPaspor = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDeptID = New DevExpress.XtraEditors.ButtonEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.GridVisa = New DevExpress.XtraGrid.GridControl()
         Me.GridViewVisa = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoVisa = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -53,25 +67,17 @@ Partial Class FrmTravelerDetail
         Me.CDateIssued = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.DateExpired = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CDateExpired = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.btnAddVisa = New System.Windows.Forms.Button()
-        Me.TxtDeptID = New DevExpress.XtraEditors.ButtonEdit()
-        Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl1.SuspendLayout()
+        Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPaspor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +90,20 @@ Partial Class FrmTravelerDetail
         CType(Me.CExpiredDatePaspor.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CTempatKeluar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridVisa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewVisa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CNoVisa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,62 +113,30 @@ Partial Class FrmTravelerDetail
         CType(Me.CDateIssued.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDateExpired, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDateExpired.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl3.SuspendLayout()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl4.SuspendLayout()
+        CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LayoutControl1
-        '
-        Me.LayoutControl1.Controls.Add(Me.btnAddPaspor)
-        Me.LayoutControl1.Controls.Add(Me.GridPaspor)
-        Me.LayoutControl1.Controls.Add(Me.txtGolongan)
-        Me.LayoutControl1.Controls.Add(Me.GridVisa)
-        Me.LayoutControl1.Controls.Add(Me.btnAddVisa)
-        Me.LayoutControl1.Controls.Add(Me.TxtDeptID)
-        Me.LayoutControl1.Controls.Add(Me.TxtNama)
-        Me.LayoutControl1.Controls.Add(Me.TxtNIK)
-        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
-        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
-        Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 0, 812, 500)
-        Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1068, 614)
-        Me.LayoutControl1.TabIndex = 2
-        Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        'btnAddPaspor
-        '
-        Me.btnAddPaspor.Location = New System.Drawing.Point(860, 12)
-        Me.btnAddPaspor.Name = "btnAddPaspor"
-        Me.btnAddPaspor.Size = New System.Drawing.Size(101, 25)
-        Me.btnAddPaspor.TabIndex = 8
-        Me.btnAddPaspor.Text = "Add Paspor"
-        Me.btnAddPaspor.UseVisualStyleBackColor = True
         '
         'GridPaspor
         '
         Me.GridPaspor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridPaspor.Location = New System.Drawing.Point(12, 62)
+        Me.GridPaspor.Location = New System.Drawing.Point(24, 48)
         Me.GridPaspor.MainView = Me.GridViewPaspor
         Me.GridPaspor.Name = "GridPaspor"
         Me.GridPaspor.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CJenisKelamin, Me.CKodeNegara, Me.CTanggalLahirPaspor, Me.TanggalKeluarPaspor, Me.CExpiredDatePaspor, Me.CTempatKeluar})
-        Me.GridPaspor.Size = New System.Drawing.Size(1044, 246)
+        Me.GridPaspor.Size = New System.Drawing.Size(1014, 169)
         Me.GridPaspor.TabIndex = 7
         Me.GridPaspor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPaspor})
         '
@@ -311,30 +299,194 @@ Partial Class FrmTravelerDetail
         '
         'txtGolongan
         '
-        Me.txtGolongan.Location = New System.Drawing.Point(794, 12)
+        Me.txtGolongan.Location = New System.Drawing.Point(700, 12)
         Me.txtGolongan.MaximumSize = New System.Drawing.Size(120, 22)
         Me.txtGolongan.Name = "txtGolongan"
         Me.txtGolongan.Properties.Mask.EditMask = "f0"
         Me.txtGolongan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtGolongan.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
-        Me.txtGolongan.StyleController = Me.LayoutControl1
+        Me.txtGolongan.StyleController = Me.LayoutControl2
         Me.txtGolongan.TabIndex = 6
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "This value is not valid"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtGolongan, ConditionValidationRule3)
+        '
+        'LayoutControl2
+        '
+        Me.LayoutControl2.Controls.Add(Me.btnVisa)
+        Me.LayoutControl2.Controls.Add(Me.btnPaspor)
+        Me.LayoutControl2.Controls.Add(Me.TxtNIK)
+        Me.LayoutControl2.Controls.Add(Me.TxtNama)
+        Me.LayoutControl2.Controls.Add(Me.txtGolongan)
+        Me.LayoutControl2.Controls.Add(Me.TxtDeptID)
+        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 0, 812, 500)
+        Me.LayoutControl2.Root = Me.Root
+        Me.LayoutControl2.Size = New System.Drawing.Size(1062, 54)
+        Me.LayoutControl2.TabIndex = 0
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'btnVisa
+        '
+        Me.btnVisa.Location = New System.Drawing.Point(920, 12)
+        Me.btnVisa.MaximumSize = New System.Drawing.Size(130, 0)
+        Me.btnVisa.MinimumSize = New System.Drawing.Size(130, 0)
+        Me.btnVisa.Name = "btnVisa"
+        Me.btnVisa.Size = New System.Drawing.Size(130, 27)
+        Me.btnVisa.StyleController = Me.LayoutControl2
+        Me.btnVisa.TabIndex = 10
+        Me.btnVisa.Text = "Add Visa ++"
+        '
+        'btnPaspor
+        '
+        Me.btnPaspor.Location = New System.Drawing.Point(776, 12)
+        Me.btnPaspor.MaximumSize = New System.Drawing.Size(130, 0)
+        Me.btnPaspor.MinimumSize = New System.Drawing.Size(130, 0)
+        Me.btnPaspor.Name = "btnPaspor"
+        Me.btnPaspor.Size = New System.Drawing.Size(130, 27)
+        Me.btnPaspor.StyleController = Me.LayoutControl2
+        Me.btnPaspor.TabIndex = 9
+        Me.btnPaspor.Text = "Add Paspor ++"
+        '
+        'TxtNIK
+        '
+        Me.TxtNIK.Location = New System.Drawing.Point(68, 12)
+        Me.TxtNIK.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtNIK.Name = "TxtNIK"
+        Me.TxtNIK.Properties.MaxLength = 9
+        Me.TxtNIK.Size = New System.Drawing.Size(62, 22)
+        Me.TxtNIK.StyleController = Me.LayoutControl2
+        Me.TxtNIK.TabIndex = 0
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
         ConditionValidationRule1.ErrorText = "This value is not valid"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtGolongan, ConditionValidationRule1)
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNIK, ConditionValidationRule1)
+        '
+        'TxtNama
+        '
+        Me.TxtNama.Location = New System.Drawing.Point(198, 12)
+        Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtNama.Name = "TxtNama"
+        Me.TxtNama.Size = New System.Drawing.Size(304, 22)
+        Me.TxtNama.StyleController = Me.LayoutControl2
+        Me.TxtNama.TabIndex = 3
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNama, ConditionValidationRule2)
+        '
+        'TxtDeptID
+        '
+        Me.TxtDeptID.Location = New System.Drawing.Point(570, 12)
+        Me.TxtDeptID.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtDeptID.Name = "TxtDeptID"
+        Me.TxtDeptID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtDeptID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.TxtDeptID.Size = New System.Drawing.Size(62, 22)
+        Me.TxtDeptID.StyleController = Me.LayoutControl2
+        Me.TxtDeptID.TabIndex = 5
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.EmptySpaceItem1, Me.EmptySpaceItem2})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(1062, 54)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.TxtNIK
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(122, 34)
+        Me.LayoutControlItem1.Text = "NIK"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(53, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.TxtNama
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(122, 0)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(372, 34)
+        Me.LayoutControlItem2.Text = "Nama"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(53, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.TxtDeptID
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(494, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(130, 34)
+        Me.LayoutControlItem3.Text = "Dept ID"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(53, 16)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.txtGolongan
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(624, 0)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(130, 34)
+        Me.LayoutControlItem6.Text = "Golongan"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(53, 16)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.btnPaspor
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(764, 0)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(134, 34)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem9.TextVisible = False
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.btnVisa
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(908, 0)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(134, 34)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(898, 0)
+        Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(20, 0)
+        Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(10, 10)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 34)
+        Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(754, 0)
+        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(10, 0)
+        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(10, 10)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(10, 34)
+        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'GridVisa
         '
         Me.GridVisa.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridVisa.Location = New System.Drawing.Point(12, 325)
+        Me.GridVisa.Location = New System.Drawing.Point(24, 48)
         Me.GridVisa.MainView = Me.GridViewVisa
         Me.GridVisa.Name = "GridVisa"
         Me.GridVisa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CDateExpired, Me.CDateIssued, Me.CEntries, Me.CNoVisa, Me.CNegara})
-        Me.GridVisa.Size = New System.Drawing.Size(1044, 277)
+        Me.GridVisa.Size = New System.Drawing.Size(1014, 170)
         Me.GridVisa.TabIndex = 4
         Me.GridVisa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewVisa})
         '
@@ -445,163 +597,111 @@ Partial Class FrmTravelerDetail
         Me.CDateExpired.Mask.EditMask = "dd-MM-yyyy"
         Me.CDateExpired.Name = "CDateExpired"
         '
-        'btnAddVisa
-        '
-        Me.btnAddVisa.Location = New System.Drawing.Point(965, 12)
-        Me.btnAddVisa.Name = "btnAddVisa"
-        Me.btnAddVisa.Size = New System.Drawing.Size(91, 25)
-        Me.btnAddVisa.TabIndex = 2
-        Me.btnAddVisa.Text = "Add Visa"
-        Me.btnAddVisa.UseVisualStyleBackColor = True
-        '
-        'TxtDeptID
-        '
-        Me.TxtDeptID.Location = New System.Drawing.Point(640, 12)
-        Me.TxtDeptID.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtDeptID.Name = "TxtDeptID"
-        Me.TxtDeptID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDeptID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TxtDeptID.Size = New System.Drawing.Size(62, 22)
-        Me.TxtDeptID.StyleController = Me.LayoutControl1
-        Me.TxtDeptID.TabIndex = 5
-        '
-        'TxtNama
-        '
-        Me.TxtNama.Location = New System.Drawing.Point(254, 12)
-        Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtNama.Name = "TxtNama"
-        Me.TxtNama.Size = New System.Drawing.Size(294, 22)
-        Me.TxtNama.StyleController = Me.LayoutControl1
-        Me.TxtNama.TabIndex = 3
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "This value is not valid"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNama, ConditionValidationRule2)
-        '
-        'TxtNIK
-        '
-        Me.TxtNIK.Location = New System.Drawing.Point(100, 12)
-        Me.TxtNIK.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtNIK.Name = "TxtNIK"
-        Me.TxtNIK.Properties.MaxLength = 9
-        Me.TxtNIK.Size = New System.Drawing.Size(62, 22)
-        Me.TxtNIK.StyleController = Me.LayoutControl1
-        Me.TxtNIK.TabIndex = 0
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "This value is not valid"
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNIK, ConditionValidationRule3)
-        '
-        'LayoutControlGroup1
-        '
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.EmptySpaceItem2, Me.LayoutControlItem8})
-        Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1068, 614)
-        Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.TxtNIK
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(154, 29)
-        Me.LayoutControlItem1.Text = "NIK"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(85, 16)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.TxtNama
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(154, 0)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(386, 29)
-        Me.LayoutControlItem2.Text = "Traveler Name"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(85, 16)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.TxtDeptID
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(540, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(154, 29)
-        Me.LayoutControlItem3.Text = "Dept ID"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 16)
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.btnAddVisa
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(953, 0)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(95, 29)
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.GridVisa
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 313)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(1048, 281)
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem5.TextVisible = False
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.txtGolongan
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(694, 0)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(154, 29)
-        Me.LayoutControlItem6.Text = "Golongan"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(85, 16)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 300)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1048, 13)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.GridPaspor
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 50)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(1048, 250)
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem7.TextVisible = False
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 29)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(1048, 21)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.btnAddPaspor
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(848, 0)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(105, 29)
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem8.TextVisible = False
-        '
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl2, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl3, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl4, 0, 2)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 3
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1068, 555)
+        Me.TableLayoutPanel1.TabIndex = 3
+        '
+        'LayoutControl3
+        '
+        Me.LayoutControl3.Controls.Add(Me.GridPaspor)
+        Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 63)
+        Me.LayoutControl3.Name = "LayoutControl3"
+        Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 0, 812, 500)
+        Me.LayoutControl3.Root = Me.LayoutControlGroup2
+        Me.LayoutControl3.Size = New System.Drawing.Size(1062, 241)
+        Me.LayoutControl3.TabIndex = 1
+        Me.LayoutControl3.Text = "LayoutControl3"
+        '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1})
+        Me.LayoutControlGroup2.Name = "Root"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1062, 241)
+        Me.LayoutControlGroup2.TextVisible = False
+        '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1042, 221)
+        Me.LayoutControlGroup1.Text = "Paspor"
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.GridPaspor
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(1018, 173)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
+        '
+        'LayoutControl4
+        '
+        Me.LayoutControl4.Controls.Add(Me.GridVisa)
+        Me.LayoutControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl4.Location = New System.Drawing.Point(3, 310)
+        Me.LayoutControl4.Name = "LayoutControl4"
+        Me.LayoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 269, 812, 500)
+        Me.LayoutControl4.Root = Me.LayoutControlGroup3
+        Me.LayoutControl4.Size = New System.Drawing.Size(1062, 242)
+        Me.LayoutControl4.TabIndex = 2
+        Me.LayoutControl4.Text = "LayoutControl4"
+        '
+        'LayoutControlGroup3
+        '
+        Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup3.GroupBordersVisible = False
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup4})
+        Me.LayoutControlGroup3.Name = "Root"
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1062, 242)
+        Me.LayoutControlGroup3.TextVisible = False
+        '
+        'LayoutControlGroup4
+        '
+        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5})
+        Me.LayoutControlGroup4.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1042, 222)
+        Me.LayoutControlGroup4.Text = "Visa"
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.GridVisa
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(1018, 174)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
+        '
         'FrmTravelerDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1068, 637)
-        Me.Controls.Add(Me.LayoutControl1)
+        Me.ClientSize = New System.Drawing.Size(1068, 582)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTravelerDetail"
-        Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.GridPaspor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewPaspor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CKodeNegara, System.ComponentModel.ISupportInitialize).EndInit()
@@ -614,6 +714,20 @@ Partial Class FrmTravelerDetail
         CType(Me.CExpiredDatePaspor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CTempatKeluar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridVisa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewVisa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CNoVisa, System.ComponentModel.ISupportInitialize).EndInit()
@@ -623,34 +737,27 @@ Partial Class FrmTravelerDetail
         CType(Me.CDateIssued, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDateExpired.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CDateExpired, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl3.ResumeLayout(False)
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl4.ResumeLayout(False)
+        CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents TxtNIK As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents TxtNama As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents TxtDeptID As DevExpress.XtraEditors.ButtonEdit
-    Friend WithEvents btnAddVisa As Button
     Friend WithEvents GridVisa As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewVisa As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents NoVisa As DevExpress.XtraGrid.Columns.GridColumn
@@ -658,16 +765,9 @@ Partial Class FrmTravelerDetail
     Friend WithEvents DateIssued As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DateExpired As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CDateExpired As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents CEntries As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CDateIssued As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents txtGolongan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents CNoVisa As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridPaspor As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewPaspor As DevExpress.XtraGrid.Views.Grid.GridView
@@ -679,11 +779,7 @@ Partial Class FrmTravelerDetail
     Friend WithEvents TanggalKeluar As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ExpiredDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TempatKeluar As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents VisaNegara As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents btnAddPaspor As Button
-    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents CJenisKelamin As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CKodeNegara As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CNegara As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
@@ -692,4 +788,25 @@ Partial Class FrmTravelerDetail
     Friend WithEvents TanggalKeluarPaspor As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents CExpiredDatePaspor As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents CTempatKeluar As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents btnVisa As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnPaspor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents LayoutControl3 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControl4 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents LayoutControlGroup3 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlGroup4 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

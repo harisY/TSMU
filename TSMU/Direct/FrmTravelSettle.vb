@@ -9,6 +9,7 @@ Public Class FrmTravelSettle
     Dim ff_Detail1 As FrmSuspendSettleDetailDirect
     Dim cls_SettHeader As TravelSettleHeaderModel
     Dim cls_SettDetail As New TravelSettleDetailModel
+    Dim cls_SettCost As New TravelSettleCostModel
 
     Dim dtGrid As DataTable
     Dim TabPage As String
@@ -89,6 +90,11 @@ Public Class FrmTravelSettle
                     cls_SettHeader.TravelSettleID = TravelSettleID
                 End If
 
+                cls_SettHeader.TravelSettleID = TravelSettleID
+                If cls_SettHeader.CheckSettleAccrued Then
+                    Err.Raise(ErrNumber, , "No Settlement " & TravelSettleID & " sudah dilakukan proses Accrued !")
+                End If
+
                 Dim dtSettleDetail As New DataTable
                 cls_SettDetail.TravelSettleID = TravelSettleID
                 dtSettleDetail = cls_SettDetail.GetTravelSettDetailByID
@@ -103,6 +109,29 @@ Public Class FrmTravelSettle
                             .Nama = dtSettleDetail.Rows(i).Item(1)
                         End With
                         cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
+                    Next
+                End If
+
+                Dim dtSettleCost As New DataTable
+                cls_SettCost.TravelSettleID = TravelSettleID
+                Dim filterRows As DataRow()
+                filterRows = cls_SettCost.GetTravelSettleCostByID.Select("ID = 4")
+                If filterRows.Count > 0 Then
+                    dtSettleCost = filterRows.CopyToDataTable
+                End If
+
+                cls_SettHeader.ObjSettleCost.Clear()
+                If dtSettleCost.Rows.Count > 0 Then
+                    For i As Integer = 0 To dtSettleCost.Rows.Count - 1
+                        cls_SettHeader.TravelSettleID = dtSettleCost.Rows(i).Item(5)
+                        If cls_SettHeader.CheckSettleAccrued Then
+                            Err.Raise(ErrNumber, , "No Entertain ID " & dtSettleCost.Rows(i).Item(5) & " sudah dilakukan proses Accrued !")
+                        End If
+                        cls_SettCost = New TravelSettleCostModel
+                        With cls_SettCost
+                            .EntertainID = dtSettleCost.Rows(i).Item(5)
+                        End With
+                        cls_SettHeader.ObjSettleCost.Add(cls_SettCost)
                     Next
                 End If
 
@@ -177,7 +206,7 @@ Public Class FrmTravelSettle
                     If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
                         cls_SettDetail = New TravelSettleDetailModel
                         With cls_SettDetail
-                            .NoRequest = GridViewRequest.GetRowCellValue(i, "NoRequest")
+                            .NoRequest = GridViewRequest.GetRowCellValue(GridViewRequest.GetSelectedRows()(i), "NoRequest")
                         End With
                         cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
                     End If
