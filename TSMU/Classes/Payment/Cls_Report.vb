@@ -131,6 +131,21 @@ Public Class Cls_report
             Throw
         End Try
     End Function
+
+    Public Function DataGridViewAPPaymentSolomon(ByVal perpost As String) As DataTable
+        Try
+            Dim query As String = "ReportAPPaymentSolomon"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function DataGridViewAR(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
             Dim query As String = "ViewAR"
