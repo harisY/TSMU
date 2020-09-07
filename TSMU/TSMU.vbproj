@@ -1361,6 +1361,12 @@
     <Compile Include="Form\Common\frmDRR_details.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecast_PO.Designer.vb">
+      <DependentUpon>frmForecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -2180,6 +2186,7 @@
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
+    <Compile Include="Models\forecast_po_model.vb" />
     <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -2948,6 +2955,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmDRR_details.resx">
       <DependentUpon>frmDRR_details.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecast_PO.resx">
+      <DependentUpon>frmForecast_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
