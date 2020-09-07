@@ -1807,14 +1807,20 @@ Public Class forecast_po_model_detail
     End Function
     Public Sub MatomeInsert(Bulan As String, bulanAngka As String)
         Try
+            Dim _Bulan As String = String.Empty
+            If Bulan.ToLower = "agu" Then
+                _Bulan = Replace(Bulan, "u", "t")
+            Else
+                _Bulan = Bulan
+            End If
             'Dim Qty As Integer = GetQty(Bulan)
-            Dim Harga As Double = GetHarga(Bulan)
-            Dim HargaSebelumnya As Double = GetHargaPrev(Bulan)
-            Dim PO As Integer = GetPO(Bulan)
-            Dim PORev As Integer = GetPORev(Bulan)
-            Dim Qty3 As Integer = 0
-            Dim Qty2 As Integer = 0
-            Dim Qty1 As Integer = 0
+            Dim Harga As Double = GetHarga(_Bulan)
+            Dim HargaSebelumnya As Double = GetHargaPrev(_Bulan)
+            Dim PO As Integer = GetPO(_Bulan)
+            Dim PORev As Integer = GetPORev(_Bulan)
+            Dim Qty3 As Double = 0
+            Dim Qty2 As Double = 0
+            Dim Qty1 As Double = 0
 
 
             Dim _PO As Double = 0
@@ -1826,7 +1832,7 @@ Public Class forecast_po_model_detail
             _PO = If(Harga = 0, PO * HargaSebelumnya, PO * Harga)
             _PORev = PORev * Harga
 
-            Select Case Bulan.ToLower
+            Select Case _Bulan.ToLower
                 Case "jan"
                     Qty3 = GetQty("FebQty3", Tahun)
                     Qty2 = GetQty("MarQty2", Tahun)
