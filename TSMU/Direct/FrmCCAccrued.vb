@@ -79,7 +79,7 @@ Public Class FrmCCAccrued
             cls_Accrued.CreditCardNumber = txtCCNumber.Text
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
-            GroupingGrid(GridViewAccrued)
+            'GroupingGrid(GridViewAccrued)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -96,7 +96,7 @@ Public Class FrmCCAccrued
             GridViewAccruedAll.Columns("Pay").Visible = False
             GridViewAccruedAll.BestFitColumns()
             GridCellFormat(GridViewAccruedAll)
-            GroupingGrid(GridViewAccruedAll)
+            'GroupingGrid(GridViewAccruedAll)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -207,7 +207,7 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
+            txtCCNumber.Text = lF_SearchData.Values.Item(0).ToString.Trim
         End If
 
         lF_SearchData.Close()
