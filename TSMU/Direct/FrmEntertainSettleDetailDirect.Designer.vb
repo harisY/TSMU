@@ -29,6 +29,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
         Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TxtPrNo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPaymentType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -37,6 +38,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TxtPaymentTypexx = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -52,12 +54,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CPayTypeTransport = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -83,6 +80,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPaymentType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +89,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,32 +120,33 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControl1.Controls.Add(Me.TxtDep)
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
         Me.LayoutControl1.Controls.Add(Me.TxtPrNo)
+        Me.LayoutControl1.Controls.Add(Me.TxtPaymentType)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(796, 89)
+        Me.LayoutControl1.Size = New System.Drawing.Size(931, 109)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(216, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(217, 12)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
-        Me.TxtNoSettlement.Size = New System.Drawing.Size(50, 20)
+        Me.TxtNoSettlement.Size = New System.Drawing.Size(51, 20)
         Me.TxtNoSettlement.StyleController = Me.LayoutControl1
         Me.TxtNoSettlement.TabIndex = 14
         '
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(732, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(737, 12)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotExpense.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotExpense.Properties.ReadOnly = True
-        Me.TxtTotExpense.Size = New System.Drawing.Size(52, 20)
+        Me.TxtTotExpense.Size = New System.Drawing.Size(51, 20)
         Me.TxtTotExpense.StyleController = Me.LayoutControl1
         Me.TxtTotExpense.TabIndex = 13
         '
@@ -154,7 +154,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         Me.TxtRemark.Location = New System.Drawing.Point(87, 36)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(697, 41)
+        Me.TxtRemark.Size = New System.Drawing.Size(832, 61)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
         '
@@ -171,26 +171,26 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(50, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(51, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(474, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(477, 12)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtDep.Size = New System.Drawing.Size(50, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(51, 20)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(603, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(607, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
-        Me.TxtCurrency.Size = New System.Drawing.Size(50, 20)
+        Me.TxtCurrency.Size = New System.Drawing.Size(51, 20)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -200,27 +200,38 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(345, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(347, 12)
         Me.TxtPrNo.Name = "TxtPrNo"
-        Me.TxtPrNo.Size = New System.Drawing.Size(50, 20)
+        Me.TxtPrNo.Size = New System.Drawing.Size(51, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
         Me.TxtPrNo.TabIndex = 5
+        '
+        'TxtPaymentType
+        '
+        Me.TxtPaymentType.EditValue = "CASH"
+        Me.TxtPaymentType.Location = New System.Drawing.Point(867, 12)
+        Me.TxtPaymentType.Name = "TxtPaymentType"
+        Me.TxtPaymentType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtPaymentType.Properties.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.TxtPaymentType.Size = New System.Drawing.Size(52, 20)
+        Me.TxtPaymentType.StyleController = Me.LayoutControl1
+        Me.TxtPaymentType.TabIndex = 15
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem2})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem2, Me.TxtPaymentTypexx})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 89)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(931, 109)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(516, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(520, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(129, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem5.Text = "Currency"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -229,16 +240,16 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem4.Control = Me.TxtTgl
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(129, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem4.Text = "Date"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.TxtNoSettlement
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(129, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(130, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(129, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem8.Text = "Settlement No."
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -247,25 +258,25 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem3.Control = Me.TxtRemark
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 45)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(911, 65)
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(645, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(650, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(131, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem7.Text = "Total Expense"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
         '
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(387, 0)
+        Me.Label9.Location = New System.Drawing.Point(390, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(129, 24)
+        Me.Label9.Size = New System.Drawing.Size(130, 24)
         Me.Label9.Text = "Dept"
         Me.Label9.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -273,11 +284,20 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         Me.LayoutControlItem2.Control = Me.TxtPrNo
         Me.LayoutControlItem2.CustomizationFormText = "PRNo"
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(258, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(260, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(129, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(130, 24)
         Me.LayoutControlItem2.Text = "PRNo"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'TxtPaymentTypexx
+        '
+        Me.TxtPaymentTypexx.Control = Me.TxtPaymentType
+        Me.TxtPaymentTypexx.Location = New System.Drawing.Point(780, 0)
+        Me.TxtPaymentTypexx.Name = "TxtPaymentTypexx"
+        Me.TxtPaymentTypexx.Size = New System.Drawing.Size(131, 24)
+        Me.TxtPaymentTypexx.Text = "PaymentType"
+        Me.TxtPaymentTypexx.TextSize = New System.Drawing.Size(72, 13)
         '
         'DxValidationProvider1
         '
@@ -303,7 +323,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn15, Me.GridColumn16})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -405,15 +425,6 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridColumn2.VisibleIndex = 8
         Me.GridColumn2.Width = 100
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "PaymentType"
-        Me.GridColumn8.ColumnEdit = Me.CPayTypeTransport
-        Me.GridColumn8.FieldName = "PaymentType"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 9
-        '
         'CPayTypeTransport
         '
         Me.CPayTypeTransport.AutoHeight = False
@@ -421,40 +432,16 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.CPayTypeTransport.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
         Me.CPayTypeTransport.Name = "CPayTypeTransport"
         '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "CreditCardID"
-        Me.GridColumn9.FieldName = "CreditCardID"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "CreditCardNumber"
-        Me.GridColumn10.FieldName = "CreditCardNumber"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "AccountName"
-        Me.GridColumn15.FieldName = "AccountName"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "BankName"
-        Me.GridColumn16.FieldName = "BankName"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 120)
+        Me.Grid.Location = New System.Drawing.Point(12, 142)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
-        Me.Grid.Size = New System.Drawing.Size(772, 246)
+        Me.Grid.Size = New System.Drawing.Size(907, 224)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -473,7 +460,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.GridControl1.MainView = Me.GridView2
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemDateEdit1, Me.RepositoryItemSpinEdit1, Me.RepostNR})
-        Me.GridControl1.Size = New System.Drawing.Size(772, 197)
+        Me.GridControl1.Size = New System.Drawing.Size(907, 197)
         Me.GridControl1.TabIndex = 4
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -568,7 +555,7 @@ Partial Class FrmEntertainSettleDetailDirect
         'FrmEntertainSettleDetailDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(796, 581)
+        Me.ClientSize = New System.Drawing.Size(931, 581)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
@@ -587,6 +574,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPaymentType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -595,6 +583,7 @@ Partial Class FrmEntertainSettleDetailDirect
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -668,10 +657,7 @@ Partial Class FrmEntertainSettleDetailDirect
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents RepostNR As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CPayTypeTransport As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtPaymentTypexx As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TxtPaymentType As DevExpress.XtraEditors.ComboBoxEdit
 End Class

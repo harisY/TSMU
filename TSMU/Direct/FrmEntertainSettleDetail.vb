@@ -104,7 +104,7 @@ Public Class FrmEntertainSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Entertainment " & fs_Code
+                Me.Text = "Entertainment " & fs_Code2
             Else
                 Me.Text = "Entertainment"
             End If
@@ -120,7 +120,7 @@ Public Class FrmEntertainSettleDetail
     End Sub
     Public Sub LoadGridDetail()
         Try
-            If fs_Code = "" Then
+            If fs_Code2 = "" Then
                 Dim dtGrid As New DataTable
                 ObjEntertainDetail.SuspendID = ""
                 dtGrid = ObjEntertainDetail.GetDataDetailByIDEnt()
@@ -129,6 +129,7 @@ Public Class FrmEntertainSettleDetail
                 '    GridCellFormat(GridView1)
                 'End If
             Else
+                ObjSettle.SettleID = fs_Code2
                 Dim dtGrid As New DataTable
                 dtGrid = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 Grid.DataSource = dtGrid
