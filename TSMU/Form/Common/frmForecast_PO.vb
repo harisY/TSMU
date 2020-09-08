@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmForecast_PO
-    Dim ff_Detail As frmSales_Forecast_detail
+    Dim ff_Detail As frmSales_ForecastPrice_details
     Dim dtGrid As DataTable
     Dim ObjForecast As New forecast_po_model_detail
     Dim ObjHeader As New forecast_po_model
@@ -339,7 +339,7 @@ Public Class frmForecast_PO
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmSales_Forecast_detail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New frmSales_ForecastPrice_details(ls_Code, ls_Code2, Me, li_Row, Grid)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
