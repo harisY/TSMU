@@ -64,7 +64,64 @@ Public Class FrmEntertainSettleDetailDirect
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
         Tag = _Tag
     End Sub
+    Private Sub CPayType_EditValueChanged(sender As Object, e As EventArgs) Handles CPayTypeTransport.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
 
+        Dim PayType As String
+        Dim CreditCardID As String = ""
+        Dim CreditCardNumber As String = ""
+        Dim AccountNameNBank As String = ""
+        Dim PaymentType As String = ""
+        Dim BankName As String = ""
+        Dim editor As ComboBoxEdit = CType(sender, ComboBoxEdit)
+
+
+        '    PayType = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType"))
+        '     PayType = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType")
+        ''GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType")
+        '' If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") = "CREDIT CARD" Then
+        PayType = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PaymentType"))
+
+
+        If PayType = "CREDIT CARD" Then
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+
+            dtSearch = ObjSettle.GetCreditCard
+            ls_Judul = "CREDIT CARD"
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+
+            If lF_SearchData.Values IsNot Nothing Then
+                CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
+                CreditCardNumber = lF_SearchData.Values.Item(1).ToString.Trim
+                AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                PaymentType = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
+            Else
+                PaymentType = "CASH"
+            End If
+
+            lF_SearchData.Close()
+        Else
+            PaymentType = PayType
+        End If
+
+
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "CreditCardID", CreditCardID)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "CreditCardNumber", CreditCardNumber)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "AccountName", AccountNameNBank)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "PaymentType", PaymentType)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "BankName", BankName)
+        '  GridBalanceEntertain.DataSource = dtBalance
+
+    End Sub
     Private Sub FrmEntertainSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
@@ -84,7 +141,7 @@ Public Class FrmEntertainSettleDetailDirect
 
     Private Sub CreateTable()
         DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(8) {New DataColumn("Tgl", GetType(String)),
+        DtScan.Columns.AddRange(New DataColumn(13) {New DataColumn("Tgl", GetType(String)),
                                                             New DataColumn("SubAccount", GetType(String)),
                                                             New DataColumn("Account", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
@@ -92,6 +149,11 @@ Public Class FrmEntertainSettleDetailDirect
                                                             New DataColumn("Tempat", GetType(String)),
                                                             New DataColumn("Alamat", GetType(String)),
                                                             New DataColumn("Jenis", GetType(String)),
+                                                            New DataColumn("PaymentType", GetType(String)),
+                                                            New DataColumn("CreditCardID", GetType(String)),
+                                                            New DataColumn("CreditCardNumber", GetType(String)),
+                                                            New DataColumn("BankName", GetType(String)),
+                                                            New DataColumn("AccountName", GetType(String)),
                                                             New DataColumn("Amount", GetType(Double))})
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
@@ -136,7 +198,7 @@ Public Class FrmEntertainSettleDetailDirect
     End Sub
     Public Sub LoadGridDetail()
         Try
-            If fs_Code2 = "" Then
+            If fs_Code = "" Then
                 Dim dtGrid As New DataTable
                 ObjEntertainDetail.SuspendID = ""
                 dtGrid = ObjEntertainDetail.GetDataDetailByID()
@@ -156,8 +218,7 @@ Public Class FrmEntertainSettleDetailDirect
                 dtGrid = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 Grid.DataSource = dtGrid
                 Dim dtGrid2 As New DataTable
-                dtGrid2 = ObjSettleDetail.GetDataDetailRelasiByID(fs_Code2)
-                'dtGrid2 = ObjSettleDetail.SubReport()
+                dtGrid2 = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 GridControl1.DataSource = dtGrid2
             End If
 
@@ -177,14 +238,12 @@ Public Class FrmEntertainSettleDetailDirect
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
                     TxtPrNo.Text = .PRNo
-                    TxtPaymentType.Text = .PaymentType
                 End With
             Else
                 TxtCurrency.Text = "IDR"
                 TxtDep.Text = ""
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
-                TxtPaymentType.Text = ""
             End If
         Catch ex As Exception
             Throw
@@ -210,7 +269,6 @@ Public Class FrmEntertainSettleDetailDirect
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .Remark = TxtRemark.Text
-                    .PaymentType = TxtPaymentType.Text
                     ''.Status = TxtStatus.Text
                     .SettleID = .SettleAutoNoEnt
                     _SettleID = ObjSettle.SettleAutoNoEnt
@@ -237,6 +295,106 @@ Public Class FrmEntertainSettleDetailDirect
     Public Overrides Sub Proc_SaveData()
         getdataview1()
         getdataview2()
+
+        'Try
+        '    Dim IsEmpty As Boolean = False
+        '    For i As Integer = 0 To GridView1.RowCount - 1
+        '        GridView1.MoveFirst()
+        '        If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+        '           GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+        '           GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
+        '            IsEmpty = True
+        '            GridView1.DeleteRow(i)
+        '        End If
+        '    Next
+        '    'If IsEmpty Then
+        '    '    Throw New Exception("Silahkan Hapus dulu baris yang kosong !")
+        '    'End If
+
+        '    If isUpdate = False Then
+        '        ObjSettle.ObjDetails.Clear()
+        '        For i As Integer = 0 To GridView1.RowCount - 1
+        '            If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .SettleID = _SettleID
+        '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+        '                    .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+        '                    .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+        '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+        '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+        '                    .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+        '                    .Nama = GridView1.GetRowCellValue(i, "Nama")
+        '                    .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+        '                    .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+        '                    .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
+
+        '        For i As Integer = 0 To GridView2.RowCount - 1
+        '            If GridView2.GetRowCellValue(i, "NamaRelasi").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+        '                    .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+        '                    .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+        '                    .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+        '                    .Nota = GridView2.GetRowCellValue(i, "Nota")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
+
+        '        ObjSettle.InsertDataEntSettle()
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    Else
+        '        ObjSettle.ObjDetails.Clear()
+        '        For i As Integer = 0 To GridView1.RowCount - 1
+        '            If GridView1.GetRowCellValue(i, "Amount").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .SettleID = TxtNoSettlement.Text
+        '                    .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+        '                    .SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
+        '                    .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+        '                    .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+        '                    .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+        '                    .Tgl = CDate(GridView1.GetRowCellValue(i, "Tgl"))
+        '                    .Nama = GridView1.GetRowCellValue(i, "Nama")
+        '                    .Tempat = GridView1.GetRowCellValue(i, "Tempat")
+        '                    .Alamat = GridView1.GetRowCellValue(i, "Alamat")
+        '                    .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
+
+        '        For i As Integer = 0 To GridView2.RowCount - 1
+        '            If GridView2.GetRowCellValue(i, "NameRelasi").ToString <> "" Then
+        '                ObjSettleDetail = New SettleDetail
+        '                With ObjSettleDetail
+        '                    .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+        '                    .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+        '                    .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+        '                    .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+        '                    .Nota = GridView2.GetRowCellValue(i, "Nota")
+        '                End With
+        '                ObjSettle.ObjDetails.Add(ObjSettleDetail)
+        '            End If
+        '        Next
+        '        ObjSettle.UpdateData(TxtNoSettlement.Text)
+        '        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+        '    End If
+        '    GridDtl.DataSource = ObjSettle.GetDataGrid()
+        '    IsClosed = True
+        '    Me.Hide()
+        'Catch ex As Exception
+        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
+
     End Sub
 
     Private Sub getdataview1()
@@ -272,11 +430,26 @@ Public Class FrmEntertainSettleDetailDirect
                             .Jenis = GridView1.GetRowCellValue(i, "Jenis")
                             ''.SuspendAmount = If(GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount")))
                             .SettleAmount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            ' .CreditCardID = GridView1.GetRowCellValue(i, "CreditCardID")
+                            .CreditCardID = GridView1.GetRowCellValue(i, "CreditCardID")
+                            .PaymentType = GridView1.GetRowCellValue(i, "PaymentType")
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
+
+                'For i As Integer = 0 To GridView2.RowCount - 1
+                '    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
+                '        ObjSettleDetail = New SettleDetail
+                '        With ObjSettleDetail
+                '            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                '            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                '            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                '            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                '            .Nota = GridView2.GetRowCellValue(i, "Nota")
+                '        End With
+                '        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                '    End If
+                'Next
 
                 ObjSettle.InsertDataEntSettleDirect()
                 'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -297,12 +470,28 @@ Public Class FrmEntertainSettleDetailDirect
                             .Tempat = GridView1.GetRowCellValue(i, "Tempat")
                             .Alamat = GridView1.GetRowCellValue(i, "Alamat")
                             .Jenis = GridView1.GetRowCellValue(i, "Jenis")
+                            .CreditCardID = GridView1.GetRowCellValue(i, "CreditCardID")
+                            .PaymentType = GridView1.GetRowCellValue(i, "PaymentType")
                         End With
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
 
+                'For i As Integer = 0 To GridView2.RowCount - 1
+                '    If GridView2.GetRowCellValue(i, "Amount").ToString <> "" Then
+                '        ObjSettleDetail = New SettleDetail
+                '        With ObjSettleDetail
+                '            .NamaRelasi = GridView2.GetRowCellValue(i, "NamaRelasi")
+                '            .Posisi = GridView2.GetRowCellValue(i, "Posisi")
+                '            .Relasi = GridView2.GetRowCellValue(i, "Relasi")
+                '            .JenisRelasi = GridView2.GetRowCellValue(i, "JenisRelasi")
+                '            .Nota = GridView2.GetRowCellValue(i, "Nota")
+                '        End With
+                '        ObjSettle.ObjDetails.Add(ObjSettleDetail)
+                '    End If
+                'Next
                 ObjSettle.UpdateData(TxtNoSettlement.Text)
+                'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
             If GridDtl.Name <> "GridEntertain" Then
@@ -332,7 +521,6 @@ Public Class FrmEntertainSettleDetailDirect
                     GridView2.GetRowCellValue(i, GridView2.Columns("Perusahaan")).ToString = "" OrElse
                     GridView2.GetRowCellValue(i, GridView2.Columns("JenisUsaha")).ToString = "" OrElse
                     GridView2.GetRowCellValue(i, GridView2.Columns("Remark")).ToString = "" Then
-
                     IsEmpty = True
                     GridView2.DeleteRow(i)
                 End If
@@ -627,49 +815,10 @@ Public Class FrmEntertainSettleDetailDirect
         GridView2.UpdateCurrentRow()
     End Sub
 
-    Private Sub TxtPaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TxtPaymentType.SelectedIndexChanged
-        Try
-
-            Dim PayType As String
-            Dim CreditCardID As String = ""
-            Dim CreditCardNumber As String = ""
-            Dim AccountNameNBank As String = ""
-            Dim PaymentType As String = ""
-            Dim BankName As String = ""
-
-
-            Dim ls_OldKode As String = ""
-            PayType = TxtPaymentType.Text
-            If PayType = "CREDIT CARD" Then
-                Dim ls_Judul As String = ""
-                Dim dtSearch As New DataTable
-
-                dtSearch = ObjSettle.GetCreditCard
-                ls_Judul = "CREDIT CARD"
-
-                Dim lF_SearchData As FrmSystem_LookupGrid
-                lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-                lF_SearchData.Text = "Select Data " & ls_Judul
-                lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-                lF_SearchData.ShowDialog()
-
-                If lF_SearchData.Values IsNot Nothing Then
-                    CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                    CreditCardNumber = lF_SearchData.Values.Item(1).ToString.Trim
-                    AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
-                    TxtPaymentType.Text = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
-                Else
-                    TxtPaymentType.Text = "CASH"
-                End If
-
-                lF_SearchData.Close()
-            Else
-                TxtPaymentType.Text = PayType
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
+    'Private Sub RepostNR_EditValueChanged(sender As Object, e As EventArgs) Handles RepostNR.EditValueChanged
+    '    Dim baseEdit = TryCast(sender, BaseEdit)
+    '    Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+    '    gridView.PostEditor()
+    '    gridView.UpdateCurrentRow()
+    'End Sub
 End Class

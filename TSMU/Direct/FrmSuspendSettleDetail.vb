@@ -79,7 +79,7 @@ Public Class FrmSuspendSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Settlement " & fs_Code2
+                Me.Text = "Settlement " & fs_Code
             Else
                 Me.Text = "Settlement"
             End If
@@ -104,7 +104,6 @@ Public Class FrmSuspendSettleDetail
                 '    GridCellFormat(GridView1)
                 'End If
             Else
-
                 Dim dtGrid As New DataTable
                 dtGrid = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 Grid.DataSource = dtGrid

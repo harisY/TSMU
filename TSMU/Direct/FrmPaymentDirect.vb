@@ -158,11 +158,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
         Call DataSuspend()
     End Sub
     Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
@@ -178,7 +173,6 @@ Public Class FrmPaymentDirect
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
         Dim saldo As Double
-
         saldo = ObjCashBank.saldo2
         If saldo = 0 Then
             _txtsaldo.Text = saldo
@@ -234,13 +228,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
-
         Call DataSuspend()
     End Sub
     Private Sub DataSuspend()
@@ -310,11 +297,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
     End Sub
     Private Sub DataSettlement()
         Dim dtGrid3 As New DataTable
@@ -591,11 +573,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
     End Sub
 
     Dim dtTemp As DataTable
@@ -743,11 +720,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
     End Sub
     Private Sub tab_adv_ent()
         For n As Integer = 0 To GridView5.RowCount - 1
@@ -847,11 +819,6 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
     End Sub
     Public Overrides Sub Proc_SaveData()
         Try
@@ -864,62 +831,15 @@ Public Class FrmPaymentDirect
                     .NoBukti = CStr(GridView1.GetRowCellValue(i, "NoBukti"))
                     .UpdateCek()
                     .UpdateRecon()
-
                 End With
                 ''       End If
             Next
-            updatessaldo()
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-    End Sub
-    Private Sub updatessaldo()
-        With ObjCashBank
-
-            Dim panjang As Integer = CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 2) + 1)
-            If panjang > 9 Then
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 6) + (CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 1) + 1))
-            Else
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 5) + (CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 2) + 1))
-
-            End If
-            .account = _txtaccount.Text
-            .saldo3 = _txtendsaldo.Text
-            Microsoft.VisualBasic.Right(_txtperpost.Text, 1)
-
-            ''    .Updatesaldo()
-        End With
-
-    End Sub
-
-    Public Overrides Sub Proc_Excel()
-
-        Try
-
-            If GridView1.RowCount > 0 Then
-
-                SaveToExcel(GridControl1)
-                MsgBox("Data Berhasil di Export!")
-            Else
-                MsgBox("Grid Kosong!")
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
-    End Sub
-    Private Sub SaveToExcel(_Grid As GridControl)
-        Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xls"
-        save.Title = "Save an Excel File"
-        If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXls(save.FileName)
-        End If
     End Sub
     Private Sub simpan()
 
@@ -980,11 +900,7 @@ Public Class FrmPaymentDirect
                         End If
                     End If
                 Next
-                Dim saldoakhir As Double = 0
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-                Next
-                _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
+
             End If
 
         Catch ex As Exception
@@ -1072,11 +988,13 @@ Public Class FrmPaymentDirect
                     End If
                 Next
 
-                Dim saldoakhir As Double = 0
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-                Next
-                _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
+                'For b As Integer = 0 To GridView1.RowCount - 1
+                '    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                '    Else
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                '    End If
+                'Next
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -1114,7 +1032,13 @@ Public Class FrmPaymentDirect
                 Call DataEntertaint()
                 Call DataCashBank()
 
-
+                'For b As Integer = 0 To GridView1.RowCount - 1
+                '    If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) + Convert.ToDouble(GridView1.GetRowCellValue(b, "Masuk")))
+                '    ElseIf GridView1.GetRowCellValue(b, "Masuk").ToString = "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString <> "0" Then
+                '        GridView1.SetRowCellValue(b, "Saldo", CDbl(_txtsaldo.Text) - Convert.ToDouble(GridView1.GetRowCellValue(b, "Keluar")))
+                '    End If
+                'Next
                 For b As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(b, "Masuk").ToString <> "0" AndAlso GridView1.GetRowCellValue(b, "Keluar").ToString = "0" Then
                         If b = 0 Then
@@ -1137,11 +1061,6 @@ Public Class FrmPaymentDirect
                         End If
                     End If
                 Next
-                Dim saldoakhir As Double = 0
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-                Next
-                _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
             End If
 
         Catch ex As Exception
@@ -1324,6 +1243,23 @@ Public Class FrmPaymentDirect
         Next
 
 
+        'Try
+        'tabu1()
+        '    tabu2()
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
+        '' Me.Close()
+        'Dim id6 As String = String.Empty
+        'Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+        'For Each rowHandle As Integer In selectedRows
+        '    If rowHandle >= 0 Then
+        '        id6 = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+        '    End If
+        'Next rowHandle
+
+
         ff_Detail6 = New FrmBankPaid(dtTemp1)
         ff_Detail6._transaksi.Text = "Suspend"
         ff_Detail6.ShowDialog()
@@ -1424,6 +1360,14 @@ Public Class FrmPaymentDirect
         ff_Detail4.Show()
     End Sub
     Private Sub btnpaid_Click(sender As Object, e As EventArgs) Handles btnpaid.Click
+        'Try
+        ' tab_settle()
+        ' tab_settle02()
+        'Catch ex As Exception
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
+
 
         TempTable2()
 
@@ -1762,12 +1706,11 @@ Public Class FrmPaymentDirect
                 End If
             End If
         Next
-        Dim saldoakhir As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
-        Next
-        _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
         Call DataSuspend()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles btnaddx.Click
+
     End Sub
 
     Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
