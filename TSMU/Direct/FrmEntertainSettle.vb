@@ -214,7 +214,7 @@ Public Class FrmEntertainSettle
                 Else
                     'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
-                              SuspendID,
+                              SettleID,
                              GridView1.RowCount)
                 End If
             End If
@@ -226,4 +226,7 @@ Public Class FrmEntertainSettle
 
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class
