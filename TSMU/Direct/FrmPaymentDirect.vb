@@ -862,7 +862,14 @@ Public Class FrmPaymentDirect
                     .cek = CBool(GridView1.GetRowCellValue(i, "cek"))
                     .recon = CBool(GridView1.GetRowCellValue(i, "recon"))
                     .NoBukti = CStr(GridView1.GetRowCellValue(i, "NoBukti"))
-                    .UpdateCek()
+                    .Transaksi = CStr(GridView1.GetRowCellValue(i, "Transaksi"))
+                    .Noref = CStr(GridView1.GetRowCellValue(i, "Noref"))
+                    If Trim(.Transaksi) = "Transfer" Then
+                        .UpdateCek2()
+                    Else
+                        .UpdateCek()
+                    End If
+
                     .UpdateRecon()
 
                 End With
@@ -879,18 +886,20 @@ Public Class FrmPaymentDirect
     Private Sub updatessaldo()
         With ObjCashBank
 
-            Dim panjang As Integer = CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 2) + 1)
+            Dim panjang As Integer = Microsoft.VisualBasic.Right(_txtperpost.Text, 2)
+            panjang = Convert.ToInt32(panjang) + 1
+            Dim bulanp As String = CStr(panjang)
             If panjang > 9 Then
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 6) + (CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 1) + 1))
+                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 5) + bulanp
             Else
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 5) + (CInt(Microsoft.VisualBasic.Right(_txtperpost.Text, 2) + 1))
+                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 6) + bulanp
 
             End If
             .account = _txtaccount.Text
             .saldo3 = _txtendsaldo.Text
-            Microsoft.VisualBasic.Right(_txtperpost.Text, 1)
 
-            ''    .Updatesaldo()
+
+            .Updatesaldo()
         End With
 
     End Sub

@@ -566,7 +566,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1149, 304)
+        Me.TabPage2.Size = New System.Drawing.Size(1228, 304)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Settlement"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -578,7 +578,7 @@ Partial Class FrmPaymentDirect
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1143, 298)
+        Me.Panel2.Size = New System.Drawing.Size(1222, 298)
         Me.Panel2.TabIndex = 0
         '
         'GridControl3
@@ -588,7 +588,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl3.MainView = Me.GridView3
         Me.GridControl3.Name = "GridControl3"
         Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ReposPresesSettle, Me.RepositoryItemButtonEdit5, Me.RepositoryItemButtonEdit6})
-        Me.GridControl3.Size = New System.Drawing.Size(1143, 273)
+        Me.GridControl3.Size = New System.Drawing.Size(1222, 273)
         Me.GridControl3.TabIndex = 2
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -705,7 +705,7 @@ Partial Class FrmPaymentDirect
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnpaid, Me.LblTotAmount2, Me.ToolStripLabel3})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(1143, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(1222, 25)
         Me.ToolStrip3.TabIndex = 0
         Me.ToolStrip3.Text = "ToolStrip3"
         '
@@ -745,7 +745,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(1149, 304)
+        Me.TabPage4.Size = New System.Drawing.Size(1228, 304)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Advance Entertainment "
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -757,7 +757,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl5.MainView = Me.GridView5
         Me.GridControl5.Name = "GridControl5"
         Me.GridControl5.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemCheckEdit2})
-        Me.GridControl5.Size = New System.Drawing.Size(1143, 271)
+        Me.GridControl5.Size = New System.Drawing.Size(1222, 271)
         Me.GridControl5.TabIndex = 2
         Me.GridControl5.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5})
         '
@@ -864,7 +864,7 @@ Partial Class FrmPaymentDirect
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnadd_e})
         Me.ToolStrip4.Location = New System.Drawing.Point(3, 3)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(1143, 27)
+        Me.ToolStrip4.Size = New System.Drawing.Size(1222, 27)
         Me.ToolStrip4.TabIndex = 0
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -887,7 +887,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1149, 304)
+        Me.TabPage5.Size = New System.Drawing.Size(1228, 304)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Settlement Travel"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -899,7 +899,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl4.MainView = Me.GridView4
         Me.GridControl4.Name = "GridControl4"
         Me.GridControl4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemButtonEdit10, Me.RepositoryItemButtonEdit11})
-        Me.GridControl4.Size = New System.Drawing.Size(1143, 273)
+        Me.GridControl4.Size = New System.Drawing.Size(1222, 273)
         Me.GridControl4.TabIndex = 4
         Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -999,7 +999,7 @@ Partial Class FrmPaymentDirect
         Me.ToolStrip8.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripLabel5, Me.ToolStripLabel6})
         Me.ToolStrip8.Location = New System.Drawing.Point(3, 3)
         Me.ToolStrip8.Name = "ToolStrip8"
-        Me.ToolStrip8.Size = New System.Drawing.Size(1143, 25)
+        Me.ToolStrip8.Size = New System.Drawing.Size(1222, 25)
         Me.ToolStrip8.TabIndex = 3
         Me.ToolStrip8.Text = "ToolStrip8"
         '
@@ -1039,7 +1039,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1149, 304)
+        Me.TabPage3.Size = New System.Drawing.Size(1228, 304)
         Me.TabPage3.TabIndex = 5
         Me.TabPage3.Text = "AP"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1051,7 +1051,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl6.MainView = Me.GridView6
         Me.GridControl6.Name = "GridControl6"
         Me.GridControl6.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit7, Me.RepositoryItemCheckEdit4})
-        Me.GridControl6.Size = New System.Drawing.Size(1143, 273)
+        Me.GridControl6.Size = New System.Drawing.Size(1222, 273)
         Me.GridControl6.TabIndex = 3
         Me.GridControl6.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView6})
         '
@@ -1157,7 +1157,7 @@ Partial Class FrmPaymentDirect
         '
         Me.ToolStrip5.Location = New System.Drawing.Point(3, 3)
         Me.ToolStrip5.Name = "ToolStrip5"
-        Me.ToolStrip5.Size = New System.Drawing.Size(1143, 25)
+        Me.ToolStrip5.Size = New System.Drawing.Size(1222, 25)
         Me.ToolStrip5.TabIndex = 0
         Me.ToolStrip5.Text = "ToolStrip5"
         '
@@ -1168,7 +1168,7 @@ Partial Class FrmPaymentDirect
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(1149, 304)
+        Me.TabPage6.Size = New System.Drawing.Size(1228, 304)
         Me.TabPage6.TabIndex = 6
         Me.TabPage6.Text = "Advance Travel"
         Me.TabPage6.UseVisualStyleBackColor = True
@@ -1180,7 +1180,7 @@ Partial Class FrmPaymentDirect
         Me.GridControl7.MainView = Me.GridView7
         Me.GridControl7.Name = "GridControl7"
         Me.GridControl7.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit7, Me.RepositoryItemButtonEdit9, Me.RepositoryItemButtonEdit8})
-        Me.GridControl7.Size = New System.Drawing.Size(1143, 273)
+        Me.GridControl7.Size = New System.Drawing.Size(1222, 273)
         Me.GridControl7.TabIndex = 3
         Me.GridControl7.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7})
         '
@@ -1276,7 +1276,7 @@ Partial Class FrmPaymentDirect
         Me.ToolStrip7.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnaddx, Me.ToolStripLabel1, Me.ToolStripLabel4})
         Me.ToolStrip7.Location = New System.Drawing.Point(3, 3)
         Me.ToolStrip7.Name = "ToolStrip7"
-        Me.ToolStrip7.Size = New System.Drawing.Size(1143, 25)
+        Me.ToolStrip7.Size = New System.Drawing.Size(1222, 25)
         Me.ToolStrip7.TabIndex = 2
         Me.ToolStrip7.Text = "ToolStrip7"
         '
@@ -1366,6 +1366,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn43.Caption = "Ref No"
         Me.GridColumn43.FieldName = "Noref"
         Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 10
         '
         'GridColumn41
         '
