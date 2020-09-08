@@ -1715,7 +1715,7 @@ Public Class FrmPaymentDirect
 
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 
