@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports DevExpress.Data
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
@@ -34,7 +35,32 @@ Public Class frmForecast_PO
         'ProgressBar1.Location = New Point(500, 500)
         'CenterControl()
         'ProgressBar1.Visible = False
+
+        'Dim siAverage As New GridColumnSummaryItem()
+        'siAverage.SummaryType = SummaryItemType.Average
+        'siAverage.FieldName = "SepHarga1"
+        'siAverage.DisplayFormat = "Average: {0:#.#}"
+        'GridView1.Columns("SepHarga1").Summary.Add(siAverage)
+        'Sum.DisplayFormat = "{0:#,##0.#0}"
+        'GridView1.Columns("SepHarga1").SummaryItem.SummaryType = SummaryItemType.Sum
+        'GridView1.Columns("SepHarga1").SummaryItem.DisplayFormat = "{0:#,##0.#0}"
+        'GridView1.Columns("SepHarga1").Summary.Add(Sum)
+        'GridView1.Columns("SepHarga2").Summary.Add(SummaryColumn("SepHarga1"))
+        'GridView1.Columns("SepHarga3").Summary.Add(SummaryColumn("SepHarga1"))
+        'GridView1.OptionsView.ShowFooter = True
     End Sub
+
+    Private Function SummaryColumn(ColumName As String) As GridColumnSummaryItem
+        Try
+            Dim siAverage As New GridColumnSummaryItem()
+            siAverage.SummaryType = SummaryItemType.Sum
+            siAverage.FieldName = ColumName
+            siAverage.DisplayFormat = "{0:#,##0.#0}"
+            Return siAverage
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
         save.Filter = "Excel File|*.xlsx"
@@ -51,6 +77,108 @@ Public Class frmForecast_PO
             dtGrid = New DataTable
             dtGrid = ObjForecast.GetAllDataGrid(bs_Filter)
             Grid.DataSource = dtGrid
+
+            '================================ PO ==========================
+            GridView1.Columns("Jan PO1").Summary.Add(SummaryColumn("Jan PO1"))
+            GridView1.Columns("Jan PO2").Summary.Add(SummaryColumn("Jan PO2"))
+            GridView1.Columns("Feb PO1").Summary.Add(SummaryColumn("Feb PO1"))
+            GridView1.Columns("Feb PO2").Summary.Add(SummaryColumn("Feb PO2"))
+            GridView1.Columns("Mar PO1").Summary.Add(SummaryColumn("Mar PO1"))
+            GridView1.Columns("Mar PO2").Summary.Add(SummaryColumn("Mar PO2"))
+            GridView1.Columns("Apr PO1").Summary.Add(SummaryColumn("Apr PO1"))
+            GridView1.Columns("Apr PO2").Summary.Add(SummaryColumn("Apr PO2"))
+            GridView1.Columns("Mei PO1").Summary.Add(SummaryColumn("Mei PO1"))
+            GridView1.Columns("Mei PO2").Summary.Add(SummaryColumn("Mei PO2"))
+            GridView1.Columns("Jun PO1").Summary.Add(SummaryColumn("Jun PO1"))
+            GridView1.Columns("Jun PO2").Summary.Add(SummaryColumn("Jun PO2"))
+            GridView1.Columns("Jul PO1").Summary.Add(SummaryColumn("Jul PO1"))
+            GridView1.Columns("Jul PO2").Summary.Add(SummaryColumn("Jul PO2"))
+            GridView1.Columns("Agt PO1").Summary.Add(SummaryColumn("Agt PO1"))
+            GridView1.Columns("Agt PO2").Summary.Add(SummaryColumn("Agt PO2"))
+            GridView1.Columns("Sep PO1").Summary.Add(SummaryColumn("Sep PO1"))
+            GridView1.Columns("Sep PO2").Summary.Add(SummaryColumn("Sep PO2"))
+            GridView1.Columns("Okt PO1").Summary.Add(SummaryColumn("Okt PO1"))
+            GridView1.Columns("Okt PO2").Summary.Add(SummaryColumn("Okt PO2"))
+            GridView1.Columns("Nov PO1").Summary.Add(SummaryColumn("Nov PO1"))
+            GridView1.Columns("Nov PO2").Summary.Add(SummaryColumn("Nov PO2"))
+            GridView1.Columns("Des PO1").Summary.Add(SummaryColumn("Des PO1"))
+            GridView1.Columns("Des PO2").Summary.Add(SummaryColumn("Des PO2"))
+            '========================== QTY ================================
+            GridView1.Columns("JanQty1").Summary.Add(SummaryColumn("JanQty1"))
+            GridView1.Columns("JanQty2").Summary.Add(SummaryColumn("JanQty2"))
+            GridView1.Columns("JanQty3").Summary.Add(SummaryColumn("JanQty3"))
+            GridView1.Columns("FebQty1").Summary.Add(SummaryColumn("FebQty1"))
+            GridView1.Columns("FebQty2").Summary.Add(SummaryColumn("FebQty2"))
+            GridView1.Columns("FebQty3").Summary.Add(SummaryColumn("FebQty3"))
+            GridView1.Columns("MarQty1").Summary.Add(SummaryColumn("MarQty1"))
+            GridView1.Columns("MarQty2").Summary.Add(SummaryColumn("MarQty2"))
+            GridView1.Columns("MarQty3").Summary.Add(SummaryColumn("MarQty3"))
+            GridView1.Columns("AprQty1").Summary.Add(SummaryColumn("AprQty1"))
+            GridView1.Columns("AprQty2").Summary.Add(SummaryColumn("AprQty2"))
+            GridView1.Columns("AprQty3").Summary.Add(SummaryColumn("AprQty3"))
+            GridView1.Columns("MeiQty1").Summary.Add(SummaryColumn("MeiQty1"))
+            GridView1.Columns("MeiQty2").Summary.Add(SummaryColumn("MeiQty2"))
+            GridView1.Columns("MeiQty3").Summary.Add(SummaryColumn("MeiQty3"))
+            GridView1.Columns("JunQty1").Summary.Add(SummaryColumn("JunQty1"))
+            GridView1.Columns("JunQty2").Summary.Add(SummaryColumn("JunQty2"))
+            GridView1.Columns("JunQty3").Summary.Add(SummaryColumn("JunQty3"))
+            GridView1.Columns("JulQty1").Summary.Add(SummaryColumn("JulQty1"))
+            GridView1.Columns("JulQty2").Summary.Add(SummaryColumn("JulQty2"))
+            GridView1.Columns("JulQty3").Summary.Add(SummaryColumn("JulQty3"))
+            GridView1.Columns("AgtQty1").Summary.Add(SummaryColumn("AgtQty1"))
+            GridView1.Columns("AgtQty2").Summary.Add(SummaryColumn("AgtQty2"))
+            GridView1.Columns("AgtQty3").Summary.Add(SummaryColumn("AgtQty3"))
+            GridView1.Columns("SepQty1").Summary.Add(SummaryColumn("SepQty1"))
+            GridView1.Columns("SepQty2").Summary.Add(SummaryColumn("SepQty2"))
+            GridView1.Columns("SepQty3").Summary.Add(SummaryColumn("SepQty3"))
+            GridView1.Columns("OktQty1").Summary.Add(SummaryColumn("OktQty1"))
+            GridView1.Columns("OktQty2").Summary.Add(SummaryColumn("OktQty2"))
+            GridView1.Columns("OktQty3").Summary.Add(SummaryColumn("OktQty3"))
+            GridView1.Columns("NovQty1").Summary.Add(SummaryColumn("NovQty1"))
+            GridView1.Columns("NovQty2").Summary.Add(SummaryColumn("NovQty2"))
+            GridView1.Columns("NovQty3").Summary.Add(SummaryColumn("NovQty3"))
+            GridView1.Columns("DesQty1").Summary.Add(SummaryColumn("DesQty1"))
+            GridView1.Columns("DesQty2").Summary.Add(SummaryColumn("DesQty2"))
+            GridView1.Columns("DesQty3").Summary.Add(SummaryColumn("DesQty3"))
+            '=================== HARGA =========================
+
+            GridView1.Columns("JanHarga1").Summary.Add(SummaryColumn("JanHarga1"))
+            GridView1.Columns("JanHarga2").Summary.Add(SummaryColumn("JanHarga2"))
+            GridView1.Columns("JanHarga3").Summary.Add(SummaryColumn("JanHarga3"))
+            GridView1.Columns("FebHarga1").Summary.Add(SummaryColumn("FebHarga1"))
+            GridView1.Columns("FebHarga2").Summary.Add(SummaryColumn("FebHarga2"))
+            GridView1.Columns("FebHarga3").Summary.Add(SummaryColumn("FebHarga3"))
+            GridView1.Columns("MarHarga1").Summary.Add(SummaryColumn("MarHarga1"))
+            GridView1.Columns("MarHarga2").Summary.Add(SummaryColumn("MarHarga2"))
+            GridView1.Columns("MarHarga3").Summary.Add(SummaryColumn("MarHarga3"))
+            GridView1.Columns("AprHarga1").Summary.Add(SummaryColumn("AprHarga1"))
+            GridView1.Columns("AprHarga2").Summary.Add(SummaryColumn("AprHarga2"))
+            GridView1.Columns("AprHarga3").Summary.Add(SummaryColumn("AprHarga3"))
+            GridView1.Columns("MeiHarga1").Summary.Add(SummaryColumn("MeiHarga1"))
+            GridView1.Columns("MeiHarga2").Summary.Add(SummaryColumn("MeiHarga2"))
+            GridView1.Columns("MeiHarga3").Summary.Add(SummaryColumn("MeiHarga3"))
+            GridView1.Columns("JunHarga1").Summary.Add(SummaryColumn("JunHarga1"))
+            GridView1.Columns("JunHarga2").Summary.Add(SummaryColumn("JunHarga2"))
+            GridView1.Columns("JunHarga3").Summary.Add(SummaryColumn("JunHarga3"))
+            GridView1.Columns("JulHarga1").Summary.Add(SummaryColumn("JulHarga1"))
+            GridView1.Columns("JulHarga2").Summary.Add(SummaryColumn("JulHarga2"))
+            GridView1.Columns("JulHarga3").Summary.Add(SummaryColumn("JulHarga3"))
+            GridView1.Columns("AgtHarga1").Summary.Add(SummaryColumn("AgtHarga1"))
+            GridView1.Columns("AgtHarga2").Summary.Add(SummaryColumn("AgtHarga2"))
+            GridView1.Columns("AgtHarga3").Summary.Add(SummaryColumn("AgtHarga3"))
+            GridView1.Columns("SepHarga1").Summary.Add(SummaryColumn("SepHarga1"))
+            GridView1.Columns("SepHarga2").Summary.Add(SummaryColumn("SepHarga2"))
+            GridView1.Columns("SepHarga3").Summary.Add(SummaryColumn("SepHarga3"))
+            GridView1.Columns("OktHarga1").Summary.Add(SummaryColumn("OktHarga1"))
+            GridView1.Columns("OktHarga2").Summary.Add(SummaryColumn("OktHarga2"))
+            GridView1.Columns("OktHarga3").Summary.Add(SummaryColumn("OktHarga3"))
+            GridView1.Columns("NovHarga1").Summary.Add(SummaryColumn("NovHarga1"))
+            GridView1.Columns("NovHarga2").Summary.Add(SummaryColumn("NovHarga2"))
+            GridView1.Columns("NovHarga3").Summary.Add(SummaryColumn("NovHarga3"))
+            GridView1.Columns("DesHarga1").Summary.Add(SummaryColumn("DesHarga1"))
+            GridView1.Columns("DesHarga2").Summary.Add(SummaryColumn("DesHarga2"))
+            GridView1.Columns("DesHarga3").Summary.Add(SummaryColumn("DesHarga3"))
+
             With GridView1
                 .BestFitColumns()
                 .Columns(0).Visible = False
@@ -81,6 +209,7 @@ Public Class frmForecast_PO
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
             End If
+
             SplashScreenManager.CloseForm()
         Catch ex As Exception
             SplashScreenManager.CloseForm()

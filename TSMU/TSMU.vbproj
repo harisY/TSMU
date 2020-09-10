@@ -2540,6 +2540,12 @@
     <Compile Include="Report\Passcard.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\ReportDrr.Designer.vb">
+      <DependentUpon>ReportDrr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportDrr.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\Testing.Designer.vb">
       <DependentUpon>Testing.vb</DependentUpon>
     </Compile>
@@ -3385,6 +3391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Passcard.resx">
       <DependentUpon>Passcard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportDrr.resx">
+      <DependentUpon>ReportDrr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
