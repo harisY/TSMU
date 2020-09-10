@@ -29,6 +29,7 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
         Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
         Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TxtPaymentType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -37,6 +38,7 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TxtPaymentTypexx = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -70,6 +72,7 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPaymentType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +81,7 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,17 +103,18 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.LayoutControl1.Controls.Add(Me.TxtTgl)
         Me.LayoutControl1.Controls.Add(Me.TxtDep)
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
+        Me.LayoutControl1.Controls.Add(Me.TxtPaymentType)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(796, 89)
+        Me.LayoutControl1.Size = New System.Drawing.Size(812, 89)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(347, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(345, 12)
         Me.TxtPrNo.Name = "TxtPrNo"
         Me.TxtPrNo.Size = New System.Drawing.Size(50, 20)
         Me.TxtPrNo.StyleController = Me.LayoutControl1
@@ -117,7 +122,7 @@ Partial Class FrmSuspendSettleDetailDirect
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(218, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(216, 12)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
         Me.TxtNoSettlement.Size = New System.Drawing.Size(50, 20)
@@ -127,7 +132,7 @@ Partial Class FrmSuspendSettleDetailDirect
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(734, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(732, 12)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotExpense.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -140,7 +145,7 @@ Partial Class FrmSuspendSettleDetailDirect
         '
         Me.TxtRemark.Location = New System.Drawing.Point(87, 36)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(697, 41)
+        Me.TxtRemark.Size = New System.Drawing.Size(824, 24)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
         '
@@ -157,13 +162,13 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.TxtTgl.Size = New System.Drawing.Size(52, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(50, 20)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(476, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(474, 12)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TxtDep.Size = New System.Drawing.Size(50, 20)
@@ -176,7 +181,7 @@ Partial Class FrmSuspendSettleDetailDirect
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(605, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(603, 12)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
@@ -184,19 +189,30 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         '
+        'TxtPaymentType
+        '
+        Me.TxtPaymentType.EditValue = "CASH"
+        Me.TxtPaymentType.Location = New System.Drawing.Point(861, 12)
+        Me.TxtPaymentType.Name = "TxtPaymentType"
+        Me.TxtPaymentType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtPaymentType.Properties.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.TxtPaymentType.Size = New System.Drawing.Size(50, 20)
+        Me.TxtPaymentType.StyleController = Me.LayoutControl1
+        Me.TxtPaymentType.TabIndex = 15
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem1})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem1, Me.TxtPaymentTypexx})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 89)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(923, 72)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(518, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(516, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(129, 24)
         Me.LayoutControlItem5.Text = "Currency"
@@ -207,14 +223,14 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.LayoutControlItem4.Control = Me.TxtTgl
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(131, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(129, 24)
         Me.LayoutControlItem4.Text = "Date"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.TxtNoSettlement
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(131, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(129, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(129, 24)
         Me.LayoutControlItem8.Text = "Settlement No."
@@ -225,14 +241,14 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.LayoutControlItem3.Control = Me.TxtRemark
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(776, 45)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(903, 28)
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(647, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(645, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(129, 24)
         Me.LayoutControlItem7.Text = "Total Expense"
@@ -241,7 +257,7 @@ Partial Class FrmSuspendSettleDetailDirect
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(389, 0)
+        Me.Label9.Location = New System.Drawing.Point(387, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(129, 24)
         Me.Label9.Text = "Dept"
@@ -250,11 +266,21 @@ Partial Class FrmSuspendSettleDetailDirect
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.TxtPrNo
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(260, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(258, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(129, 24)
         Me.LayoutControlItem1.Text = "PRNo"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'TxtPaymentTypexx
+        '
+        Me.TxtPaymentTypexx.Control = Me.TxtPaymentType
+        Me.TxtPaymentTypexx.CustomizationFormText = "PaymentType"
+        Me.TxtPaymentTypexx.Location = New System.Drawing.Point(774, 0)
+        Me.TxtPaymentTypexx.Name = "TxtPaymentTypexx"
+        Me.TxtPaymentTypexx.Size = New System.Drawing.Size(129, 24)
+        Me.TxtPaymentTypexx.Text = "PaymentType"
+        Me.TxtPaymentTypexx.TextSize = New System.Drawing.Size(72, 13)
         '
         'DxValidationProvider1
         '
@@ -382,8 +408,6 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.GridColumn7.ColumnEdit = Me.CPayTypeTransport
         Me.GridColumn7.FieldName = "PaymentType"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
         '
         'CPayTypeTransport
         '
@@ -425,14 +449,14 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
-        Me.Grid.Size = New System.Drawing.Size(772, 449)
+        Me.Grid.Size = New System.Drawing.Size(788, 449)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'FrmSuspendSettleDetailDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(796, 581)
+        Me.ClientSize = New System.Drawing.Size(812, 581)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
         Me.KeyPreview = True
@@ -449,6 +473,7 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.TxtTgl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPaymentType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -457,6 +482,7 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
@@ -514,4 +540,6 @@ Partial Class FrmSuspendSettleDetailDirect
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtPaymentType As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents TxtPaymentTypexx As DevExpress.XtraLayout.LayoutControlItem
 End Class

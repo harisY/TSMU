@@ -66,6 +66,44 @@ Public Class Frm_Rpt_APPaymentSolomon
         End Try
     End Sub
 
+    'Private Sub Proc_PrintPreview()
+    '    Try
+    '        If TabControl1.TabIndex = 1 Then
+    '            If GridView4.RowCount = 0 Then
+    '                Throw New Exception("Tidak ada data yang di akan print.")
+    '            End If
+
+    '        Else
+    '            Dim ds As DataSet = New DataSet
+    '            Dim dt As DataTable = New DataTable
+    '            Dim perpost As String = ""
+    '            Invoke(Sub()
+    '                       perpost = txt_perpost.Text
+    '                   End Sub)
+
+    '            ds = pay_class.Mizuho(Format(DateEdit1.EditValue, gs_FormatSQLDate), Format(DateEdit2.EditValue, gs_FormatSQLDate))
+    '            dt = ds.Tables("mizuho")
+
+    '            Dim Laporan As XtraReport4 = New XtraReport4
+    '            With Laporan
+    '                ''.param1 = date1
+    '                ''.param2 = date2
+    '                .DataSource = dt
+    '            End With
+
+    '            Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
+    '                PrintTool.ShowPreviewDialog()
+    '                PrintTool.ShowPreview(UserLookAndFeel.Default)
+    '            End Using
+
+    '        End If
+    '        LoadData()
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
+
+
     Dim path As String
     Private Sub getPath()
         Try

@@ -175,6 +175,7 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     .PRNo = TxtPrNo.Text
+                    .PaymentType = TxtPaymentType.Text
                     ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
@@ -184,6 +185,7 @@ Public Class FrmSuspendSettleDetailDirect
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
+                TxtPaymentType.Text = "CASH"
             End If
         Catch ex As Exception
             Throw
@@ -212,6 +214,7 @@ Public Class FrmSuspendSettleDetailDirect
                     .Remark = TxtRemark.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
+                    .PaymentType = TxtPaymentType.Text
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
