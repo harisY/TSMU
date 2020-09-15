@@ -309,7 +309,7 @@ Public Class forecast_price_models
             dtTable = GetDataTableByCommand_SP(ls_SP)
             Return dtTable
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
     Public Sub Insert(Bulan As String, BulanAngka As String)
