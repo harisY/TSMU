@@ -3,307 +3,288 @@
 Public Class TravelEntertainModel
     Public Property CuryID As String
     Public Property DeptID As String
-    Public Property ID As Integer
-    Public Property pay As Short
     Public Property Remark As String
     Public Property SettleID As String
-    Public Property Status As String
-    Public Property PRNo As String
-    Public Property SuspendID As String
     Public Property Tgl As Date
     Public Property Total As Double
-    Public Property TotalSuspend As Double
-    Public Property Tgl1 As Date
-    Public Property Tgl2 As Date
-    Public Property Jenis As String
-    Public Property noPR As String
-    Public Property Date1 As Date
-    Public Property Date2 As Date
-    'Public Property ObjDetails() As New Collection(Of SettleDetail)
+    Public Property PaymentType As String
+    Public Property CreditCardID As String
+    Public Property CreditCardNumber As String
+
     Dim strQuery As String
-    Public Sub GetSettleById()
+
+    Public Function EntertainAutoNo() As String
+
         Try
-            strQuery = "SELECT  t.ID ,
-                                t.SettleID ,
-                                t.SuspendID ,
-                                t.DeptID ,
-                                t.Remark ,
-                                t.Tgl ,
-                                t.CuryID ,
-                                t.Status ,
-                                t.Total ,
-                                t.pay ,
-                                s.Total TotSuspend ,
-                                t.PRNo
-                        FROM    settle_header t
-                                LEFT JOIN suspend_header s ON t.SuspendID = s.SuspendID
-                        WHERE   t.SettleID = " & QVal(SettleID) & ""
-            Dim dt As New DataTable
+            strQuery = "DECLARE @bulan VARCHAR(4); 
+                        DECLARE @tahun VARCHAR(4); 
+                        DECLARE @seq_ VARCHAR(4);
+                        SET @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2);
+                        SET @tahun = DATEPART(YEAR, GETDATE());
+                        SET @seq_ = ( SELECT RIGHT('0000'
+                                                  + CAST(RIGHT(RTRIM(MAX(SettleID)), 4) + 1 AS VARCHAR),
+                                                  4)
+                                     FROM   TSC16Application.dbo.settle_header WITH ( NOLOCK )
+                                     WHERE  SUBSTRING(SettleID, 1, 2) = 'ET'
+                                            AND SUBSTRING(SettleID, 4, 4) = RIGHT(@tahun, 4)
+                                            AND SUBSTRING(SettleID, 9, 2) = RIGHT(@bulan, 2)
+                                   );
+                        SELECT  'ET' + '-' + RIGHT(@tahun, 4) + '-' + @bulan + '-' + COALESCE(@seq_,
+                                                                                      '0001');"
+
+            Dim dt As DataTable = New DataTable
             dt = GetDataTable_Solomon(strQuery)
-            If dt.Rows.Count > 0 Then
-                ID = If(IsDBNull(dt.Rows(0).Item("ID")), "", Trim(dt.Rows(0).Item("ID").ToString()))
-                SettleID = If(IsDBNull(dt.Rows(0).Item("SettleID")), "", Trim(dt.Rows(0).Item("SettleID").ToString()))
-                SuspendID = If(IsDBNull(dt.Rows(0).Item("SuspendID")), "", Trim(dt.Rows(0).Item("SuspendID").ToString()))
-                DeptID = If(IsDBNull(dt.Rows(0).Item("DeptID")), "", Trim(dt.Rows(0).Item("DeptID").ToString()))
-                Remark = If(IsDBNull(dt.Rows(0).Item("Remark")), "", Trim(dt.Rows(0).Item("Remark").ToString()))
-                Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
-                Status = If(IsDBNull(dt.Rows(0).Item("Status")), "", Trim(dt.Rows(0).Item("Status").ToString()))
-                Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
-                TotalSuspend = If(IsDBNull(dt.Rows(0).Item("TotSuspend")), 0, Convert.ToDouble(dt.Rows(0).Item("TotSuspend")))
-                CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Convert.ToString(dt.Rows(0).Item("CuryID")))
-                PRNo = If(IsDBNull(dt.Rows(0).Item("PRNo")), "", Convert.ToString(dt.Rows(0).Item("PRNo")))
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+
+    Public Function InsertEntertainData(dtHeader As DataTable, dtDetail As DataTable, dtRelasi As DataTable, entertainIDTemp As String) As String
+        Try
+            Dim entertainID As String = String.Empty
+
+            entertainID = EntertainAutoNo()
+
+            Dim RowsTOSave As DataRow()
+            RowsTOSave = dtHeader.Select("SettleID = '" & entertainIDTemp & "'")
+            For Each dr As DataRow In RowsTOSave
+                SettleID = entertainID
+                DeptID = dr("DeptID")
+                Remark = dr("Remark")
+                Tgl = dr("Tgl")
+                CuryID = dr("CuryID")
+                PaymentType = dr("PaymentType")
+                CreditCardID = dr("CreditCardID")
+                CreditCardNumber = dr("CreditCardNumber")
+                Total = dr("Total")
+                InsertEntertainHeader()
+            Next
+
+            RowsTOSave = dtDetail.Select("SettleID = '" & entertainIDTemp & "'")
+            For Each dr As DataRow In RowsTOSave
+                Dim clsEntertainDetail As New TravelEntertainDetailModel
+                With clsEntertainDetail
+                    .SettleID = entertainID
+                    .Tgl = dr("Tgl")
+                    .SubAcct = dr("SubAccount")
+                    .AcctID = dr("Account")
+                    .Description = dr("Description")
+                    .Nama = dr("Nama")
+                    .Tempat = dr("Tempat")
+                    .Alamat = dr("Alamat")
+                    .Jenis = dr("Jenis")
+                    .SettleAmount = dr("Amount")
+                    .InsertEntertainDetail()
+                End With
+            Next
+
+            RowsTOSave = dtRelasi.Select("SettleID = '" & entertainIDTemp & "'")
+            For Each dr As DataRow In RowsTOSave
+                Dim clsEntertainRelasi As New TravelEntertainRelasiModel
+                With clsEntertainRelasi
+                    .SettleID = entertainID
+                    .NamaRelasi = dr("Nama")
+                    .Posisi = dr("Posisi")
+                    .Relasi = dr("Perusahaan")
+                    .JenisRelasi = dr("JenisUsaha")
+                    .Nota = dr("Remark")
+                    .InsertEntertainRelasi()
+                End With
+            Next
+            Return entertainID
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function UpdateEntertainData(dtHeader As DataTable, dtDetail As DataTable, dtRelasi As DataTable, entertainID_ As String, entertainIDTemp As String) As String
+        Try
+            Dim entertainID As String = String.Empty
+            Dim filterParam As String
+
+            If entertainID_ <> "" Then
+                filterParam = entertainID_
+                entertainID = entertainID_
+            Else
+                filterParam = entertainIDTemp
+                entertainID = EntertainAutoNo()
             End If
+
+            Dim RowsTOSave As DataRow()
+            RowsTOSave = dtHeader.Select("SettleID = '" & filterParam & "'")
+            DeleteEntertainHeader(entertainID)
+            For Each dr As DataRow In RowsTOSave
+                SettleID = entertainID
+                DeptID = dr("DeptID")
+                Remark = dr("Remark")
+                Tgl = dr("Tgl")
+                CuryID = dr("CuryID")
+                PaymentType = dr("PaymentType")
+                CreditCardID = dr("CreditCardID")
+                CreditCardNumber = dr("CreditCardNumber")
+                Total = dr("Total")
+                InsertEntertainHeader()
+            Next
+
+            RowsTOSave = dtDetail.Select("SettleID = '" & filterParam & "'")
+            Dim clsEntertainDetail As New TravelEntertainDetailModel
+            clsEntertainDetail.DeleteEntertainDetail(entertainID)
+            For Each dr As DataRow In RowsTOSave
+                clsEntertainDetail = New TravelEntertainDetailModel
+                With clsEntertainDetail
+                    .SettleID = entertainID
+                    .Tgl = dr("Tgl")
+                    .SubAcct = dr("SubAccount")
+                    .AcctID = dr("Account")
+                    .Description = dr("Description")
+                    .Nama = dr("Nama")
+                    .Tempat = dr("Tempat")
+                    .Alamat = dr("Alamat")
+                    .Jenis = dr("Jenis")
+                    .SettleAmount = dr("Amount")
+                    .InsertEntertainDetail()
+                End With
+            Next
+
+            RowsTOSave = dtRelasi.Select("SettleID = '" & filterParam & "'")
+            Dim clsEntertainRelasi As New TravelEntertainRelasiModel
+            clsEntertainRelasi.DeleteEntertainRelasi(entertainID)
+            For Each dr As DataRow In RowsTOSave
+                clsEntertainRelasi = New TravelEntertainRelasiModel
+                With clsEntertainRelasi
+                    .SettleID = entertainID
+                    .NamaRelasi = dr("Nama")
+                    .Posisi = dr("Posisi")
+                    .Relasi = dr("Perusahaan")
+                    .JenisRelasi = dr("JenisUsaha")
+                    .Nota = dr("Remark")
+                    .InsertEntertainRelasi()
+                End With
+            Next
+            Return entertainID
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Sub InsertEntertainHeader()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = " INSERT INTO TSC16Application.dbo.settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, Total ) " & vbCrLf &
+                    " Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(Tgl) & ", " & vbCrLf &
+                    "        " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+                    "        'Close', " & vbCrLf &
+                    "        " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    'Public Sub InsertRelasiSettleEnt()
-    '    Try
-    '        Dim ls_SP As String = " " & vbCrLf &
-    '        "INSERT INTO Settle_Relasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-    '        "Values(" & QVal(SettleID) & ", " & vbCrLf &
-    '        "       " & QVal(Nama) & ", " & vbCrLf &
-    '        "       " & QVal(Posisi) & ", " & vbCrLf &
-    '        "       " & QVal(Perusahaan) & ", " & vbCrLf &
-    '        "       " & QVal(JenisUSaha) & ", " & vbCrLf &
-    '        "       " & QVal(Remark) & ")"
-    '        ExecQuery_Solomon(ls_SP)
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Sub
-
-    'Public Sub InsertDetails()
-    '    Try
-    '        Dim ls_SP As String = " " & vbCrLf &
-    '        "INSERT INTO suspend_detail (SuspendID,AcctID,SubAcct,Description,Tgl,DeptID,Nama,Tempat,Alamat,Jenis,NoKwitansi,Amount ) " & vbCrLf &
-    '        "Values(" & QVal(SuspendID) & ", " & vbCrLf &
-    '        "       " & QVal(AcctID) & ", " & vbCrLf &
-    '        "       " & QVal(SubAcct) & ", " & vbCrLf &
-    '        "       " & QVal(Description) & ", " & vbCrLf &
-    '        "       " & QVal(Tgl) & ", " & vbCrLf &
-    '        "       " & QVal(DeptID) & ", " & vbCrLf &
-    '        "       " & QVal(Nama) & ", " & vbCrLf &
-    '        "       " & QVal(Tempat) & ", " & vbCrLf &
-    '        "       " & QVal(Alamat) & ", " & vbCrLf &
-    '        "       " & QVal(Jenis) & ", " & vbCrLf &
-    '        "       " & QVal(NoKwitansi) & ", " & vbCrLf &
-    '        "       " & QVal(Amount) & ")"
-    '        ExecQuery_Solomon(ls_SP)
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Sub
-
-    'Public Sub InsertRelasi()
-    '    Try
-    '        Dim ls_SP As String = " " & vbCrLf &
-    '        "INSERT INTO SuspendRelasi (SuspendID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-    '        "Values(" & QVal(SuspendID) & ", " & vbCrLf &
-    '        "       " & QVal(Nama) & ", " & vbCrLf &
-    '        "       " & QVal(Posisi) & ", " & vbCrLf &
-    '        "       " & QVal(Perusahaan) & ", " & vbCrLf &
-    '        "       " & QVal(JenisUSaha) & ", " & vbCrLf &
-    '        "       " & QVal(Remark) & ")"
-    '        ExecQuery_Solomon(ls_SP)
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Sub
-
-    'Public Sub InsertRelasiSettle()
-    '    Try
-    '        Dim ls_SP As String = " " & vbCrLf &
-    '        "INSERT INTO settlerelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
-    '        "Values(" & QVal(SettleID) & ", " & vbCrLf &
-    '        "       " & QVal(NamaRelasi) & ", " & vbCrLf &
-    '        "       " & QVal(Posisi) & ", " & vbCrLf &
-    '        "       " & QVal(Relasi) & ", " & vbCrLf &
-    '        "       " & QVal(JenisRelasi) & ", " & vbCrLf &
-    '        "       " & QVal(Nota) & ")"
-    '        ExecQuery_Solomon(ls_SP)
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Sub
-
-    'Public Sub DeleteDetail(_suspendID)
-    '    Try
-    '        Dim ls_SP As String = "DELETE FROM suspend_detail WHERE rtrim(SuspendID)=" & QVal(_suspendID.TrimEnd) & ""
-    '        ExecQuery_Solomon(ls_SP)
-    '    Catch ex As Exception
-    '        Throw
-    '    End Try
-    'End Sub
-
-    'Public Function GetSubAccountbyid() As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT 
-    '                              RTRIM(Consolsub) [SubAccount],
-    '                             RTRIM(Descr) Descritiption
-    '                            FROM dbo.SubAcct WHERE Consolsub = " & QVal(SubAcct) & ""
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-
-    'Public Function GetDataDetailByID() As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT 
-    '                              RTRIM([SubAcct]) SubAccount,
-    '                                RTRIM([AcctID]) Account,
-    '                             RTRIM(Description) Description,
-    '                                Tgl,
-    '                                RTRIM(DeptID) DeptID,
-    '                                RTRIM(Nama) Nama,
-    '                                RTRIM(Tempat) Tempat,
-    '                                RTRIM(Alamat) Alamat,
-    '                                RTRIM(Jenis) Jenis,
-    '                                RTRIM(NoKwitansi) NoKwitansi,
-    '                                [Amount] Amount
-    '                            FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
-
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-
-    'Public Function GetDataDetailByIDSettleENt() As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT 
-    '                              RTRIM([SubAcct]) SubAccount,
-    '                                RTRIM([AcctID]) Account,
-    '                             RTRIM(Description) Description,
-    '                                Tgl,
-    '                                RTRIM(DeptID) DeptID,
-    '                                RTRIM(Nama) Nama,
-    '                                RTRIM(Tempat) Tempat,
-    '                                RTRIM(Alamat) Alamat,
-    '                                RTRIM(Jenis) Jenis,
-    '                                RTRIM(NoKwitansi) NoKwitansi,
-    '                                [Amount] Amount
-    '                            FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
-
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-
-    'Public Function GetDataDetailByIDEnt() As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT 
-    '                              RTRIM([SubAcct]) SubAccount,
-    '                                RTRIM([AcctID]) Account,
-    '                             RTRIM(Description) Description,
-    '                                Tgl,
-    '                                RTRIM(DeptID) DeptID,
-    '                                RTRIM(Nama) Nama,
-    '                                RTRIM(Tempat) Tempat,
-    '                                RTRIM(Alamat) Alamat,
-    '                                RTRIM(Jenis) Jenis,
-    '                                RTRIM(NoKwitansi) NoKwitansi,
-    '                                Amount
-    '                            FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
-
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-
-    'Public Function GetDataDetailByID1Ent(_SuspendID As String) As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT GETDATE() as Tgl,
-    '                              RTRIM([SubAcct]) SubAccount,
-    '                                RTRIM([AcctID]) Account,
-    '                             RTRIM(Description) Description,
-    '                                Amount,
-    '                                0 ActualAmount 
-    '                            FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-
-    'Public Function GetDataDetailByIDtrial() As DataTable
-    '    Try
-    '        Dim sql As String = "SELECT 
-    '                              RTRIM([SubAcct]) SubAccount,
-    '                                RTRIM([AcctID]) Account,
-    '                             RTRIM(Description) Description,
-    '                                [Amount] Amount
-    '                            FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
-    '        Dim dt As New DataTable
-    '        dt = GetDataTable_Solomon(sql)
-    '        Return dt
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
+    Public Sub DeleteEntertainHeader(settleID_ As String)
+        Try
+            strQuery = "DELETE  FROM TSC16Application.dbo.settle_header
+                        WHERE   SettleID = " & QVal(settleID_) & ""
+            ExecQuery_Solomon(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
 End Class
 
 Public Class TravelEntertainDetailModel
     Public Property AcctID As String
     Public Property Alamat As String
-    Public Property Amount As Double
-    Public Property DeptID As String
+    Public Property SettleAmount As Long
     Public Property Description As String
     Public Property Jenis As String
     Public Property Nama As String
-    Public Property NoKwitansi As String
-    Public Property SubAcct As String
-    Public Property SuspendDetailID As Integer
-    Public Property SuspendID As String
-    Public Property Tempat As String
-    Public Property Tgl As Date
-    Public Property Posisi As String
-    Public Property Perusahaan As String
-    Public Property JenisUSaha As String
-    Public Property Remark As String
     Public Property SettleID As String
-    Public Property Relasi As String
-    Public Property JenisRelasi As String
-    Public Property Nota As String
-    Public Property NamaRelasi As String
+    Public Property SubAcct As String
+    Public Property Tempat As String
+    Public Property Tgl As DateTime
 
-    Public Function GetDataDetailByID() As DataTable
+    Dim strQuery As String
+
+    Public Sub InsertEntertainDetail()
         Try
-            Dim sql As String = "SELECT 
- 	                                RTRIM([SubAcct]) SubAccount,
-                                    RTRIM([AcctID]) Account,
-	                                RTRIM(Description) Description,
-                                    Tgl,
-                                    RTRIM(DeptID) DeptID,
-                                    RTRIM(Nama) Nama,
-                                    RTRIM(Tempat) Tempat,
-                                    RTRIM(Alamat) Alamat,
-                                    RTRIM(Jenis) Jenis,
-                                    RTRIM(NoKwitansi) NoKwitansi,
-                                    [Amount] Amount
-                                FROM suspend_detail WHERE SuspendID = " & QVal(SuspendID) & ""
-
-            Dim dt As New DataTable
-            dt = GetDataTable_Solomon(sql)
-            Return dt
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO TSC16Application.dbo.settle_detail
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount ) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AcctID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Description.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Nama.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(SettleAmount) & ")"
+            ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
-    End Function
+    End Sub
+
+    Public Sub DeleteEntertainDetail(SettleID_ As String)
+        Try
+            strQuery = "DELETE  FROM TSC16Application.dbo.settle_detail
+                        WHERE   SettleID = " & QVal(SettleID_) & ""
+            ExecQuery_Solomon(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+End Class
+
+Public Class TravelEntertainRelasiModel
+    Public Property SettleID As String
+    Public Property NamaRelasi As String
+    Public Property Posisi As String
+    Public Property Relasi As String
+    Public Property JenisRelasi As String
+    Public Property Nota As String
+
+    Dim strQuery As String
+
+    Public Sub InsertEntertainRelasi()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO TSC16Application.dbo.settlerelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Relasi) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi) & ", " & vbCrLf &
+            "       " & QVal(Nota) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub DeleteEntertainRelasi(SettleID_ As String)
+        Try
+            strQuery = "DELETE  FROM TSC16Application.dbo.SettleRelasi
+                        WHERE   SettleID = " & QVal(SettleID_) & ""
+            ExecQuery_Solomon(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
 End Class

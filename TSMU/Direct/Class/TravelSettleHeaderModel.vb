@@ -2,6 +2,7 @@
 
 Public Class TravelSettleHeaderModel
     Dim clsGlobal As GlobalService
+    Dim clsTravelEntertain As TravelEntertainModel
     Public Property TravelSettleID As String
     Public Property DateHeader As Date
     Public Property NoPR As String
@@ -128,12 +129,12 @@ Public Class TravelSettleHeaderModel
         End Try
     End Function
 
-    Public Function CheckSettleAccrued() As Boolean
+    Public Function CheckSettleAccrued(ByVal NoTransaksi As String) As Boolean
         Try
             Dim dt As New DataTable
             strQuery = "SELECT  CAST(COUNT(NoAccrued) AS BIT)
                         FROM    dbo.T_CCAccrued
-                        WHERE   NoTransaksi = " & QVal(TravelSettleID) & ""
+                        WHERE   NoTransaksi = " & QVal(NoTransaksi) & ""
             dt = GetDataTable(strQuery)
 
             Dim validasi As Boolean
@@ -203,7 +204,7 @@ Public Class TravelSettleHeaderModel
         End Try
     End Sub
 
-    Public Sub InsertDataTravelSettle(frm As Form)
+    Public Sub InsertDataTravelSettle(frm As Form, dtHeader As DataTable, dtDetail As DataTable, dtRelasi As DataTable)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -223,6 +224,12 @@ Public Class TravelSettleHeaderModel
                         Next
 
                         For i As Integer = 0 To ObjSettleCost.Count - 1
+                            If ObjSettleCost(i).ID = 4 Then
+                                Dim entertainID As String
+                                clsTravelEntertain = New TravelEntertainModel
+                                entertainID = clsTravelEntertain.InsertEntertainData(dtHeader, dtDetail, dtRelasi, ObjSettleCost(i).EntertainIDTemp)
+                                ObjSettleCost(i).EntertainID = entertainID
+                            End If
                             With ObjSettleCost(i)
                                 .InsertSettleCost()
                             End With
@@ -308,7 +315,7 @@ Public Class TravelSettleHeaderModel
         End Try
     End Sub
 
-    Public Sub UpdateDataTravelSettle()
+    Public Sub UpdateDataTravelSettle(dtHeader As DataTable, dtDetail As DataTable, dtRelasi As DataTable, listDelete As List(Of String))
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -330,10 +337,25 @@ Public Class TravelSettleHeaderModel
 
                         Dim cls_SettleCost As New TravelSettleCostModel
                         cls_SettleCost.DeleteSettleCost(TravelSettleID)
+
                         For i As Integer = 0 To ObjSettleCost.Count - 1
+                            If ObjSettleCost(i).ID = 4 Then
+                                Dim entertainID As String
+                                clsTravelEntertain = New TravelEntertainModel
+                                entertainID = clsTravelEntertain.UpdateEntertainData(dtHeader, dtDetail, dtRelasi, ObjSettleCost(i).EntertainID, ObjSettleCost(i).EntertainIDTemp)
+                                ObjSettleCost(i).EntertainID = entertainID
+                            End If
                             With ObjSettleCost(i)
                                 .InsertSettleCost()
                             End With
+                        Next
+                        For i As Integer = 0 To listDelete.Count - 1
+                            If CheckSettleAccrued(listDelete(i)) Then
+                                Err.Raise(ErrNumber, , "No Entertain " & listDelete(i) & " sudah dilakukan proses Accrued !")
+                            Else
+                                cls_SettleCost.EntertainID = listDelete(i)
+                                cls_SettleCost.DeleteSettleEntertain()
+                            End If
                         Next
 
                         Trans1.Commit()
@@ -857,6 +879,7 @@ Public Class TravelSettleCostModel
     Public Property AccountID As String
     Public Property DateCost As Date
     Public Property EntertainID As String
+    Public Property EntertainIDTemp As String
     Public Property TFrom As String
     Public Property TTo As String
     Public Property Transport As String
@@ -882,6 +905,121 @@ Public Class TravelSettleCostModel
             pParam(0).Value = TravelSettleID
 
             dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetEntertainID() As List(Of String)
+        Try
+            Dim result As New List(Of String)
+            Dim dt As New DataTable
+
+            strQuery = "SELECT  '''' + EntertainID + '''' AS EntertainID
+                        FROM    dbo.TravelSettleCost
+                        WHERE   TravelSettleID = " & QVal(TravelSettleID) & "
+                                AND ID = 4"
+
+            dt = GetDataTable(strQuery)
+            For Each row As DataRow In dt.Rows
+                result.Add(row("EntertainID"))
+            Next
+            Return result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetEntertainHeader() As DataTable
+        Try
+            Dim entertainID As List(Of String)
+            entertainID = GetEntertainID()
+            Dim nilai As String = "''"
+            If entertainID.Count > 0 Then
+                nilai = String.Join(",", entertainID.ToArray)
+            End If
+
+            Dim dt As New DataTable
+
+            strQuery = "SELECT  Tgl ,
+                                RTRIM(SettleID) AS SettleID ,
+                                RTRIM(PRNo) AS PRNo ,
+                                RTRIM(DeptID) AS DeptID ,
+                                RTRIM(CuryID) AS CuryID ,
+                                Total ,
+                                RTRIM(PaymentType) AS PaymentType ,
+                                RTRIM(CreditCardID) AS CreditCardID ,
+                                RTRIM(CreditCardNumber) AS CreditCardNumber ,
+                                '' AS AccountName ,
+                                RTRIM(Remark) AS Remark
+                        FROM    dbo.settle_header
+                        WHERE   SettleID IN ( " & nilai & " )"
+
+            dt = GetDataTable_Solomon(strQuery)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetEntertainDetail() As DataTable
+        Try
+            Dim entertainID As List(Of String)
+            entertainID = GetEntertainID()
+            Dim nilai As String = "''"
+            If entertainID.Count > 0 Then
+                nilai = String.Join(",", entertainID.ToArray)
+            End If
+
+            Dim dt As New DataTable
+
+            strQuery = "SELECT  RTRIM(SettleID) AS SettleID ,
+                                Tgl ,
+                                RTRIM(SubAcct) AS SubAccount ,
+                                RTRIM(AcctID) AS Account ,
+                                RTRIM([Description]) AS [Description] ,
+                                RTRIM(Nama) AS Nama ,
+                                RTRIM(Tempat) AS Tempat ,
+                                RTRIM(Alamat) AS Alamat ,
+                                RTRIM(Jenis) AS Jenis ,
+                                SettleAmount AS Amount ,
+                                HeaderSeq
+                        FROM    dbo.settle_detail
+                        WHERE   SettleID IN ( " & nilai & " )"
+
+            dt = GetDataTable_Solomon(strQuery)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetEntertainRelasi() As DataTable
+        Try
+            Dim entertainID As List(Of String)
+            entertainID = GetEntertainID()
+            Dim nilai As String = "''"
+            If entertainID.Count > 0 Then
+                nilai = String.Join(",", entertainID.ToArray)
+            End If
+
+            Dim dt As New DataTable
+
+            strQuery = "SELECT  RTRIM(SettleID) AS SettleID ,
+                                RTRIM(Nama) AS Nama ,
+                                RTRIM(Posisi) AS Posisi ,
+                                RTRIM(Perusahaan) AS Perusahaan ,
+                                RTRIM(JenisUsaha) AS JenisUsaha ,
+                                RTRIM(Remark) AS Remark ,
+                                HeaderSeq
+                        FROM    dbo.SettleRelasi
+                        WHERE   SettleID IN ( " & nilai & " )"
+
+            dt = GetDataTable_Solomon(strQuery)
 
             Return dt
         Catch ex As Exception
@@ -940,10 +1078,9 @@ Public Class TravelSettleCostModel
 
     Public Sub DeleteSettleCost(ByVal _TravelSettID As String)
         Try
-            Dim ls_SP As String
-            ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
-                    " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            ExecQuery(ls_SP)
+            strQuery = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
+                       " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
+            ExecQuery(strQuery)
         Catch ex As Exception
             Throw
         End Try
@@ -951,10 +1088,17 @@ Public Class TravelSettleCostModel
 
     Public Sub DeleteSettleEntertain()
         Try
-            'Dim ls_SP As String
-            'ls_SP = " DELETE  FROM dbo.TravelSettleCost " & vbCrLf &
-            '        " WHERE   TravelSettleID = " & QVal(_TravelSettID) & " "
-            'ExecQuery(ls_SP)
+            strQuery = "DELETE  FROM TSC16Application.dbo.settle_header
+                        WHERE   SettleID = " & QVal(EntertainID) & ""
+            ExecQuery_Solomon(strQuery)
+
+            strQuery = "DELETE  FROM TSC16Application.dbo.settle_detail
+                        WHERE   SettleID = " & QVal(EntertainID) & ""
+            ExecQuery_Solomon(strQuery)
+
+            strQuery = "DELETE  FROM TSC16Application.dbo.SettleRelasi
+                        WHERE   SettleID = " & QVal(EntertainID) & ""
+            ExecQuery_Solomon(strQuery)
         Catch ex As Exception
             Throw
         End Try
