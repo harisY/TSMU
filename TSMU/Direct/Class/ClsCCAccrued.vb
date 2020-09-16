@@ -91,9 +91,9 @@ Public Class ClsCCAccrued
                             Amount = Row("Amount")
                             Rate = Row("Rate")
                             AmountIDR = Row("AmountIDR")
-                            CreditCardNumber = Row("CreditCardNumber")
-                            AccountName = Row("AccountName")
-                            BankName = Row("BankName")
+                            CreditCardNumber = IIf(Row("CreditCardNumber") Is DBNull.Value, "", Row("CreditCardNumber"))
+                            AccountName = IIf(Row("AccountName") Is DBNull.Value, "", Row("AccountName"))
+                            BankName = IIf(Row("BankName") Is DBNull.Value, "", Row("BankName"))
                             InsertDataAccrued()
                         Next
 
@@ -214,11 +214,10 @@ Public Class ClsCCAccrued
 
     Public Function GetCreditCard() As DataTable
         Try
-            strQuery = " SELECT  CreditCardID ,
-                                CreditCardNumber ,
+            strQuery = "SELECT  CreditCardNumber ,
                                 AccountName ,
                                 BankName
-                        FROM    dbo.TravelCreditCard "
+                        FROM    dbo.TravelCreditCard"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

@@ -20,8 +20,8 @@ Partial Class FrmTravelCreditCardDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.txtCreditCardID = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.txtCreditCardNumber = New DevExpress.XtraEditors.TextEdit()
@@ -106,10 +106,10 @@ Partial Class FrmTravelCreditCardDetail
         Me.txtCreditCardNumber.Size = New System.Drawing.Size(62, 22)
         Me.txtCreditCardNumber.StyleController = Me.LayoutControl1
         Me.txtCreditCardNumber.TabIndex = 14
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "This value is not valid"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtCreditCardNumber, ConditionValidationRule3)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "This value is not valid"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtCreditCardNumber, ConditionValidationRule1)
         '
         'txtAccountName
         '
@@ -118,10 +118,10 @@ Partial Class FrmTravelCreditCardDetail
         Me.txtAccountName.Size = New System.Drawing.Size(84, 22)
         Me.txtAccountName.StyleController = Me.LayoutControl1
         Me.txtAccountName.TabIndex = 3
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "This value is not valid"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtAccountName, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.txtAccountName, ConditionValidationRule2)
         '
         'dtExpDate
         '
@@ -251,8 +251,6 @@ Partial Class FrmTravelCreditCardDetail
         Me.CreditCardID.MinWidth = 25
         Me.CreditCardID.Name = "CreditCardID"
         Me.CreditCardID.OptionsColumn.FixedWidth = True
-        Me.CreditCardID.Visible = True
-        Me.CreditCardID.VisibleIndex = 0
         Me.CreditCardID.Width = 120
         '
         'CreditCardNumber
@@ -266,7 +264,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.CreditCardNumber.Name = "CreditCardNumber"
         Me.CreditCardNumber.OptionsColumn.FixedWidth = True
         Me.CreditCardNumber.Visible = True
-        Me.CreditCardNumber.VisibleIndex = 1
+        Me.CreditCardNumber.VisibleIndex = 0
         Me.CreditCardNumber.Width = 180
         '
         'CCreditCardNumber
@@ -286,7 +284,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.AccountName.Name = "AccountName"
         Me.AccountName.OptionsColumn.FixedWidth = True
         Me.AccountName.Visible = True
-        Me.AccountName.VisibleIndex = 2
+        Me.AccountName.VisibleIndex = 1
         Me.AccountName.Width = 400
         '
         'BankName
@@ -297,7 +295,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.BankName.Name = "BankName"
         Me.BankName.OptionsColumn.FixedWidth = True
         Me.BankName.Visible = True
-        Me.BankName.VisibleIndex = 3
+        Me.BankName.VisibleIndex = 2
         Me.BankName.Width = 250
         '
         'Type
@@ -308,7 +306,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.Type.Name = "Type"
         Me.Type.OptionsColumn.FixedWidth = True
         Me.Type.Visible = True
-        Me.Type.VisibleIndex = 4
+        Me.Type.VisibleIndex = 3
         Me.Type.Width = 150
         '
         'ExpiredDate
@@ -321,7 +319,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.ExpiredDate.Name = "ExpiredDate"
         Me.ExpiredDate.OptionsColumn.FixedWidth = True
         Me.ExpiredDate.Visible = True
-        Me.ExpiredDate.VisibleIndex = 5
+        Me.ExpiredDate.VisibleIndex = 4
         Me.ExpiredDate.Width = 150
         '
         'FrmTravelCreditCardDetail

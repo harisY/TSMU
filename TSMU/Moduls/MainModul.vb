@@ -1399,6 +1399,49 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Async Function GetDataTableByCommand_SP_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As Task(Of DataTable)
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+
+                'da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da = Await Task.Run(Function() New SqlDataAdapter(gh_Trans.Command))
+                da.Fill(dta)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnString()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    'da = New SqlDataAdapter(cmd)
+                    da = Await Task.Run(Function() New SqlDataAdapter(cmd))
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDataTableByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1440,6 +1483,47 @@ Module MainModul
             Throw
         End Try
     End Function
+    Public Async Function GetDataTableByCommand_SP_Solomon_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As Task(Of DataTable)
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            Using conn As New SqlClient.SqlConnection
+                conn.ConnectionString = GetConnStringSolomon()
+                Dim cmd As New SqlCommand
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = pQuery
+                cmd.CommandTimeout = 200
+                cmd.Connection = conn
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        cmd.Parameters.Add(pParam(i))
+                    Next
+                End If
+                conn.Open()
+                da = Await Task.Run(Function() New SqlDataAdapter(cmd))
+                da.Fill(dta)
+            End Using
+            'If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+            '    gh_Trans.Command.CommandType = CommandType.StoredProcedure
+            '    gh_Trans.Command.CommandText = pQuery
+            '    gh_Trans.Command.CommandTimeout = pTimeOut
+            '    gh_Trans.Command.Parameters.Clear()
+            '    If pParam IsNot Nothing Then
+            '        For i As Integer = 0 To pParam.Length - 1
+            '            gh_Trans.Command.Parameters.Add(pParam(i))
+            '        Next
+            '    End If
+            '    da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+            '    da.Fill(dta)
+            'Else
+
+            'End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1455,6 +1539,28 @@ Module MainModul
                     cmd.CommandTimeout = pTimeOut
                     Conn1.Open()
                     pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Async Function ExecQuery_async(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Task(Of Integer)
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.Text
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    Conn1.ConnectionString = GetConnString()
+                    Dim cmd As New SqlClient.SqlCommand(pQuery, Conn1)
+                    cmd.CommandTimeout = pTimeOut
+                    Conn1.Open()
+                    pRowAff = Await Task.Run(Function() cmd.ExecuteNonQuery())
                 End Using
             End If
             Return pRowAff
@@ -1639,6 +1745,46 @@ Module MainModul
                     End If
                     Conn1.Open()
                     pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Async Function ExecQueryByCommand_SP_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Task(Of Integer)
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                pRowAff = Await Task.Run(Function() gh_Trans.Command.ExecuteNonQuery())
+            Else
+                Using Conn1 As New SqlClient.SqlConnection
+                    If pConnStr <> "" Then
+                        Conn1.ConnectionString = pConnStr
+                    Else
+                        Conn1.ConnectionString = GetConnString()
+                    End If
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = Await Task.Run(Function() cmd.ExecuteNonQuery())
                 End Using
             End If
             Return pRowAff

@@ -21,6 +21,9 @@ Partial Class FrmCCAccrued
     Private Sub InitializeComponent()
         Me.GridAccrued = New DevExpress.XtraGrid.GridControl()
         Me.GridViewAccrued = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCreditCardNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAccountName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBankName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTanggalTransaksi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNoTransaksi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSeq = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -31,9 +34,6 @@ Partial Class FrmCCAccrued
         Me.GRate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmountIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAmountIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GCreditCardNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAccountName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBankName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnProses = New DevExpress.XtraEditors.SimpleButton()
         Me.txtCCNumber = New DevExpress.XtraEditors.ButtonEdit()
@@ -65,6 +65,8 @@ Partial Class FrmCCAccrued
         Me.GridViewAccruedPaid = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.CCreditCardNumber = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GAccountID = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAmountIDR, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +105,7 @@ Partial Class FrmCCAccrued
         CType(Me.GridViewAccruedPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCreditCardNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridAccrued
@@ -112,19 +115,59 @@ Partial Class FrmCCAccrued
         Me.GridAccrued.Location = New System.Drawing.Point(12, 12)
         Me.GridAccrued.MainView = Me.GridViewAccrued
         Me.GridAccrued.Name = "GridAccrued"
-        Me.GridAccrued.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountIDR})
+        Me.GridAccrued.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountIDR, Me.CCreditCardNumber})
         Me.GridAccrued.Size = New System.Drawing.Size(858, 379)
         Me.GridAccrued.TabIndex = 1
         Me.GridAccrued.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAccrued})
         '
         'GridViewAccrued
         '
-        Me.GridViewAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTanggalTransaksi, Me.GNoTransaksi, Me.GSeq, Me.GJenisTransaksi, Me.GDescription, Me.GCurryID, Me.GAmount, Me.GRate, Me.GAmountIDR, Me.GCreditCardNumber, Me.GAccountName, Me.GBankName})
+        Me.GridViewAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCreditCardNumber, Me.GAccountName, Me.GBankName, Me.GTanggalTransaksi, Me.GNoTransaksi, Me.GSeq, Me.GAccountID, Me.GJenisTransaksi, Me.GDescription, Me.GCurryID, Me.GAmount, Me.GRate, Me.GAmountIDR})
         Me.GridViewAccrued.GridControl = Me.GridAccrued
         Me.GridViewAccrued.Name = "GridViewAccrued"
+        Me.GridViewAccrued.OptionsBehavior.Editable = False
         Me.GridViewAccrued.OptionsSelection.MultiSelect = True
         Me.GridViewAccrued.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.GridViewAccrued.OptionsView.ShowFooter = True
+        '
+        'GCreditCardNumber
+        '
+        Me.GCreditCardNumber.Caption = "Credit Card Number"
+        Me.GCreditCardNumber.ColumnEdit = Me.CCreditCardNumber
+        Me.GCreditCardNumber.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.GCreditCardNumber.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.GCreditCardNumber.FieldName = "CreditCardNumber"
+        Me.GCreditCardNumber.MinWidth = 25
+        Me.GCreditCardNumber.Name = "GCreditCardNumber"
+        Me.GCreditCardNumber.OptionsColumn.AllowEdit = False
+        Me.GCreditCardNumber.OptionsColumn.FixedWidth = True
+        Me.GCreditCardNumber.Visible = True
+        Me.GCreditCardNumber.VisibleIndex = 1
+        Me.GCreditCardNumber.Width = 180
+        '
+        'GAccountName
+        '
+        Me.GAccountName.Caption = "Account Name"
+        Me.GAccountName.FieldName = "AccountName"
+        Me.GAccountName.MinWidth = 25
+        Me.GAccountName.Name = "GAccountName"
+        Me.GAccountName.OptionsColumn.AllowEdit = False
+        Me.GAccountName.OptionsColumn.FixedWidth = True
+        Me.GAccountName.Visible = True
+        Me.GAccountName.VisibleIndex = 2
+        Me.GAccountName.Width = 210
+        '
+        'GBankName
+        '
+        Me.GBankName.Caption = "Bank Name"
+        Me.GBankName.FieldName = "BankName"
+        Me.GBankName.MinWidth = 25
+        Me.GBankName.Name = "GBankName"
+        Me.GBankName.OptionsColumn.AllowEdit = False
+        Me.GBankName.OptionsColumn.FixedWidth = True
+        Me.GBankName.Visible = True
+        Me.GBankName.VisibleIndex = 3
+        Me.GBankName.Width = 130
         '
         'GTanggalTransaksi
         '
@@ -137,7 +180,7 @@ Partial Class FrmCCAccrued
         Me.GTanggalTransaksi.OptionsColumn.AllowEdit = False
         Me.GTanggalTransaksi.OptionsColumn.FixedWidth = True
         Me.GTanggalTransaksi.Visible = True
-        Me.GTanggalTransaksi.VisibleIndex = 1
+        Me.GTanggalTransaksi.VisibleIndex = 4
         Me.GTanggalTransaksi.Width = 140
         '
         'GNoTransaksi
@@ -149,7 +192,7 @@ Partial Class FrmCCAccrued
         Me.GNoTransaksi.OptionsColumn.AllowEdit = False
         Me.GNoTransaksi.OptionsColumn.FixedWidth = True
         Me.GNoTransaksi.Visible = True
-        Me.GNoTransaksi.VisibleIndex = 2
+        Me.GNoTransaksi.VisibleIndex = 5
         Me.GNoTransaksi.Width = 140
         '
         'GSeq
@@ -171,7 +214,7 @@ Partial Class FrmCCAccrued
         Me.GJenisTransaksi.OptionsColumn.AllowEdit = False
         Me.GJenisTransaksi.OptionsColumn.FixedWidth = True
         Me.GJenisTransaksi.Visible = True
-        Me.GJenisTransaksi.VisibleIndex = 3
+        Me.GJenisTransaksi.VisibleIndex = 7
         Me.GJenisTransaksi.Width = 120
         '
         'GDescription
@@ -182,7 +225,7 @@ Partial Class FrmCCAccrued
         Me.GDescription.Name = "GDescription"
         Me.GDescription.OptionsColumn.AllowEdit = False
         Me.GDescription.Visible = True
-        Me.GDescription.VisibleIndex = 4
+        Me.GDescription.VisibleIndex = 8
         Me.GDescription.Width = 25
         '
         'GCurryID
@@ -194,12 +237,12 @@ Partial Class FrmCCAccrued
         Me.GCurryID.OptionsColumn.AllowEdit = False
         Me.GCurryID.OptionsColumn.FixedWidth = True
         Me.GCurryID.Visible = True
-        Me.GCurryID.VisibleIndex = 5
+        Me.GCurryID.VisibleIndex = 9
         Me.GCurryID.Width = 70
         '
         'GAmount
         '
-        Me.GAmount.Caption = "Amount"
+        Me.GAmount.Caption = "Amount Original"
         Me.GAmount.DisplayFormat.FormatString = "n2"
         Me.GAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAmount.FieldName = "Amount"
@@ -208,12 +251,12 @@ Partial Class FrmCCAccrued
         Me.GAmount.OptionsColumn.AllowEdit = False
         Me.GAmount.OptionsColumn.FixedWidth = True
         Me.GAmount.Visible = True
-        Me.GAmount.VisibleIndex = 6
+        Me.GAmount.VisibleIndex = 10
         Me.GAmount.Width = 140
         '
         'GRate
         '
-        Me.GRate.Caption = "Rate"
+        Me.GRate.Caption = "Exchange Rate"
         Me.GRate.DisplayFormat.FormatString = "n2"
         Me.GRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GRate.FieldName = "Rate"
@@ -222,7 +265,7 @@ Partial Class FrmCCAccrued
         Me.GRate.OptionsColumn.AllowEdit = False
         Me.GRate.OptionsColumn.FixedWidth = True
         Me.GRate.Visible = True
-        Me.GRate.VisibleIndex = 7
+        Me.GRate.VisibleIndex = 11
         Me.GRate.Width = 120
         '
         'GAmountIDR
@@ -237,7 +280,7 @@ Partial Class FrmCCAccrued
         Me.GAmountIDR.OptionsColumn.FixedWidth = True
         Me.GAmountIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountIDR", "{0:#,##0.#0}")})
         Me.GAmountIDR.Visible = True
-        Me.GAmountIDR.VisibleIndex = 8
+        Me.GAmountIDR.VisibleIndex = 12
         Me.GAmountIDR.Width = 140
         '
         'CAmountIDR
@@ -251,42 +294,6 @@ Partial Class FrmCCAccrued
         Me.CAmountIDR.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.CAmountIDR.Mask.EditMask = "n2"
         Me.CAmountIDR.Name = "CAmountIDR"
-        '
-        'GCreditCardNumber
-        '
-        Me.GCreditCardNumber.Caption = "Credit Card Number"
-        Me.GCreditCardNumber.FieldName = "CreditCardNumber"
-        Me.GCreditCardNumber.MinWidth = 25
-        Me.GCreditCardNumber.Name = "GCreditCardNumber"
-        Me.GCreditCardNumber.OptionsColumn.AllowEdit = False
-        Me.GCreditCardNumber.OptionsColumn.FixedWidth = True
-        Me.GCreditCardNumber.Visible = True
-        Me.GCreditCardNumber.VisibleIndex = 9
-        Me.GCreditCardNumber.Width = 160
-        '
-        'GAccountName
-        '
-        Me.GAccountName.Caption = "Account Name"
-        Me.GAccountName.FieldName = "AccountName"
-        Me.GAccountName.MinWidth = 25
-        Me.GAccountName.Name = "GAccountName"
-        Me.GAccountName.OptionsColumn.AllowEdit = False
-        Me.GAccountName.OptionsColumn.FixedWidth = True
-        Me.GAccountName.Visible = True
-        Me.GAccountName.VisibleIndex = 10
-        Me.GAccountName.Width = 210
-        '
-        'GBankName
-        '
-        Me.GBankName.Caption = "Bank Name"
-        Me.GBankName.FieldName = "BankName"
-        Me.GBankName.MinWidth = 25
-        Me.GBankName.Name = "GBankName"
-        Me.GBankName.OptionsColumn.AllowEdit = False
-        Me.GBankName.OptionsColumn.FixedWidth = True
-        Me.GBankName.Visible = True
-        Me.GBankName.VisibleIndex = 11
-        Me.GBankName.Width = 130
         '
         'LayoutControl1
         '
@@ -591,6 +598,25 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
+        'CCreditCardNumber
+        '
+        Me.CCreditCardNumber.AutoHeight = False
+        Me.CCreditCardNumber.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCreditCardNumber.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCreditCardNumber.Mask.UseMaskAsDisplayFormat = True
+        Me.CCreditCardNumber.Name = "CCreditCardNumber"
+        '
+        'GAccountID
+        '
+        Me.GAccountID.Caption = "Account"
+        Me.GAccountID.FieldName = "Account"
+        Me.GAccountID.MinWidth = 25
+        Me.GAccountID.Name = "GAccountID"
+        Me.GAccountID.OptionsColumn.FixedWidth = True
+        Me.GAccountID.Visible = True
+        Me.GAccountID.VisibleIndex = 6
+        Me.GAccountID.Width = 80
+        '
         'FrmCCAccrued
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -636,6 +662,7 @@ Partial Class FrmCCAccrued
         CType(Me.GridViewAccruedPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCreditCardNumber, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -687,4 +714,6 @@ Partial Class FrmCCAccrued
     Friend WithEvents GAccountName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBankName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CAmountIDR As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents CCreditCardNumber As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GAccountID As DevExpress.XtraGrid.Columns.GridColumn
 End Class
