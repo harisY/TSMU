@@ -93,6 +93,7 @@ Public Class FrmEntertainSettleDetailDirect
                                                             New DataColumn("Alamat", GetType(String)),
                                                             New DataColumn("Jenis", GetType(String)),
                                                             New DataColumn("Amount", GetType(Double))})
+
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
 

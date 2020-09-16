@@ -803,7 +803,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
-    Public Sub InsertData()
+    Public Async Sub InsertData()
         Try
 
             Dim Query As String = String.Empty
@@ -835,7 +835,7 @@ Public Class forecast_po_model_detail
                            ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "
                            ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                            ," & QVal(created_date) & "," & QVal(created_by) & ")"
-            ExecQuery(Query)
+            Await ExecQuery_async(Query)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1918,7 +1918,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
-    Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
+    Public Async Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
             salesPrice = getSalesPrice(BulanAngka, Tahun)
@@ -1950,7 +1950,7 @@ Public Class forecast_po_model_detail
             'pParam(6) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
             'pParam(6).Value = gh_Common.Username
 
-            ExecQueryByCommand_SP(Sql, pParam)
+            Await ExecQueryByCommand_SP_async(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try

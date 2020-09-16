@@ -534,7 +534,7 @@ group by settle_header.ID
     Public Sub InsertHeaderDirectSettle()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
@@ -542,6 +542,7 @@ group by settle_header.ID
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -905,12 +906,7 @@ Public Class SettleDetail
 	            SubAcct SubAccount,
 	            AcctID Account,
 	            Description,Nama, Tempat, Alamat,Jenis,
-                SettleAmount Amount,
-                PaymentType,
-                CreditCardID,
-                CreditCardNumber,
-                '' as BankName,
-               '' as AccountName
+                SettleAmount ActualAmount
             FROM settle_detail WHERE SettleID = " & QVal(SettleID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
