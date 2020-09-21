@@ -19,6 +19,7 @@ Partial Class FrmTravelPocketAllowance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GridPocketAllowance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewPocketAllowance = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TravelTypeGrid = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,9 +43,9 @@ Partial Class FrmTravelPocketAllowance
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.GridPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPocketAllowance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAmountAllowance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,9 +63,9 @@ Partial Class FrmTravelPocketAllowance
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridPocketAllowance
@@ -275,7 +276,7 @@ Partial Class FrmTravelPocketAllowance
         Me.txtCurryID.MaximumSize = New System.Drawing.Size(100, 22)
         Me.txtCurryID.Name = "txtCurryID"
         Me.txtCurryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtCurryID.Properties.Items.AddRange(New Object() {"USD", "YEN", "IDR"})
+        Me.txtCurryID.Properties.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.txtCurryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtCurryID.Size = New System.Drawing.Size(62, 22)
         Me.txtCurryID.StyleController = Me.LayoutControl1
@@ -378,9 +379,9 @@ Partial Class FrmTravelPocketAllowance
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

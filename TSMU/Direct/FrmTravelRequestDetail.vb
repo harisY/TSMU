@@ -302,6 +302,11 @@ Public Class FrmTravelRequestDetail
 
     Public Overrides Sub Proc_Approve()
         Try
+            If ObjTravelRequest.StatusTicket = "INVOICE" Then
+                Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Invoice ticket !")
+            ElseIf ObjTravelRequest.StatusTicket = "ISSUE" Then
+                Err.Raise(ErrNumber, , "No Request " & fs_Code & " sudah dilakukan Pesan ticket !")
+            End If
             ObjApprove = New ApproveHistoryModel With {
                 .UserName = gh_Common.Username,
                 .MenuCode = FrmParent.Name,

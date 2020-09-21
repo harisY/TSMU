@@ -582,7 +582,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryHotel.AutoHeight = False
         Me.CCurryHotel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryHotel.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryHotel.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryHotel.Name = "CCurryHotel"
         Me.CCurryHotel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1290,7 +1290,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryTransport.AutoHeight = False
         Me.CCurryTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryTransport.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryTransport.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryTransport.Name = "CCurryTransport"
         Me.CCurryTransport.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1698,7 +1698,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryEntertain.AutoHeight = False
         Me.CCurryEntertain.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryEntertain.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryEntertain.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryEntertain.Name = "CCurryEntertain"
         Me.CCurryEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1907,7 +1907,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryOther.AutoHeight = False
         Me.CCurryOther.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryOther.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryOther.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryOther.Name = "CCurryOther"
         Me.CCurryOther.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -2151,7 +2151,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridSumTransport.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridSumTransport.Location = New System.Drawing.Point(6, 21)
+        Me.GridSumTransport.Location = New System.Drawing.Point(12, 21)
         Me.GridSumTransport.MainView = Me.GridViewSumTransport
         Me.GridSumTransport.Name = "GridSumTransport"
         Me.GridSumTransport.Size = New System.Drawing.Size(1221, 173)

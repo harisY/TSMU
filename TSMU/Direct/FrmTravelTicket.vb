@@ -169,8 +169,10 @@ Public Class FrmTravelTicket
         Dim noRequest As String = GridViewRequest.GetRowCellValue(GridViewRequest.FocusedRowHandle, "NoRequest")
         Dim status As String = GridViewRequest.GetRowCellValue(GridViewRequest.FocusedRowHandle, "Status")
         Dim statusTicket As String = GridViewRequest.GetRowCellValue(GridViewRequest.FocusedRowHandle, "StatusTicket")
-        If statusTicket = "CLOSE" Or statusTicket = "CANCEL" Then
+        If statusTicket = "CLOSE" Then
             status = "CLOSE"
+        ElseIf statusTicket = "CANCEL" Then
+            statusTicket = String.Empty
         End If
         For i As Integer = 0 To GridViewRequest.RowCount - 1
             If GridViewRequest.GetRowCellValue(i, "NoRequest") = noRequest Then

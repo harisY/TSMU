@@ -13,10 +13,11 @@ Public Class FrmCCAccrued
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
     Dim TabPage As String
+    Dim frmCCAccrued As New FrmReportCCAccrued
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, True)
         XtraTabControl1.SelectedTabPage = TabPageProses
         TabPage = XtraTabControl1.SelectedTabPage.Name
         LoadGridAccrued()
@@ -45,6 +46,13 @@ Public Class FrmCCAccrued
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_Print()
+        frmCCAccrued = New FrmReportCCAccrued
+        frmCCAccrued.txtTabAccrued.Text = TabPage
+        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
+        frmCCAccrued.Show()
     End Sub
 
     Private Sub GroupingGrid(view As GridView)

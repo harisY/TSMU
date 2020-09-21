@@ -227,3 +227,40 @@ Public Class ClsCCAccrued
     End Function
 
 End Class
+
+Public Class ClsReportCCAccrued
+    Public Function LoadReportAccrued() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Rpt_GetAccrued"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
+            pParam(0).Value = Today.Date
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportAccruedAndSettle() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Rpt_GetAccruedAndSettle"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
+            pParam(0).Value = Today.Date
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+End Class
