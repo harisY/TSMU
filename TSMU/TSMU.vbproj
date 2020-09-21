@@ -11,7 +11,7 @@
     <AssemblyName>TSMU</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -76,6 +76,9 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -2181,6 +2184,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\ParameterInfo.vb" />
+    <Compile Include="Helpers\SqlHelper.vb" />
     <Compile Include="Menu\ActionType.vb" />
     <Compile Include="Menu\FormTypes.vb" />
     <Compile Include="Menu\IUserInterface.vb" />
@@ -2219,6 +2224,7 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\BudgetModel.vb" />
     <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
@@ -2578,6 +2584,7 @@
     <Compile Include="Report\Testing.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\BudgetSerivce.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
