@@ -1,5 +1,6 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.IO
+Imports DevExpress.LookAndFeel
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid
@@ -7,6 +8,8 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmDRR
@@ -28,7 +31,7 @@ Public Class frmDRR
     Private Sub frmDRR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
 
-        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, True, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, True, False, False, True, False, False, False, True)
 
     End Sub
     Private Sub SaveToExcel(_Grid As GridControl)
@@ -41,7 +44,6 @@ Public Class frmDRR
     End Sub
     Private Sub LoadGrid()
         Try
-
             SplashScreenManager.ShowForm(GetType(FrmWait))
             _Service = New DRRService
             dtGrid = New DataTable
@@ -67,7 +69,26 @@ Public Class frmDRR
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Dim PrintTool As ReportPrintTool
+    Public Overrides Sub Proc_Print()
+        Try
+            _Service = New DRRService
+            Dim ds As DataSet = New DataSet
+            ds = _Service.PrintReport(ID)
 
+            Dim Laporan As New ReportDrr()
+            With Laporan
+                .DataSource = ds.Tables("DtDrr")
+            End With
+
+            PrintTool = New ReportPrintTool(Laporan)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            'PrintTool.ShowPreviewDialog()
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
@@ -291,6 +312,37 @@ Public Class frmDRR
             End If
         End If
 
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+                'Dim colCaption As String = If(info.Column Is Nothing, "N/A", info.Column.GetCaption())
+                'MessageBox.Show(String.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption))
+
+                ID = "0"
+                NoNPP = String.Empty
+                Status = String.Empty
+                For Each rowHandle As Integer In GridView1.GetSelectedRows()
+                    If rowHandle >= 0 Then
+                        ID = GridView1.GetRowCellValue(rowHandle, "Id")
+                        NoNPP = GridView1.GetRowCellValue(rowHandle, "NoNPP")
+                        Status = GridView1.GetRowCellValue(rowHandle, "Status")
+                    End If
+                Next rowHandle
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
     'Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle

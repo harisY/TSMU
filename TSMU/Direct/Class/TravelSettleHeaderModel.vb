@@ -747,11 +747,11 @@ Public Class TravelSettleHeaderModel
                                      THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
                                      ELSE ''
                                 END + CASE WHEN AllowanceYEN <> 0
-                                           THEN ' | YEN ' + CAST(0 AS VARCHAR(100))
+                                           THEN ' | YEN ' + CAST(RateAllowanceUSD AS VARCHAR(100))
                                            ELSE ''
                                       END + CASE WHEN AllowanceIDR <> 0
                                                  THEN ' | IDR '
-                                                      + CAST(0 AS VARCHAR(100))
+                                                      + CAST(RateAllowanceUSD AS VARCHAR(100))
                                                  ELSE ''
                                             END AS Rate ,
                                 CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
