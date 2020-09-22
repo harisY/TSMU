@@ -49,6 +49,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridViewEntertain = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GHeaderSeqDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHeaderSeqDetail = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -63,6 +65,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridEntertain = New DevExpress.XtraGrid.GridControl()
         Me.GridRelasi = New DevExpress.XtraGrid.GridControl()
         Me.GridViewRelasi = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GHeaderSeqRelasi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,8 +79,6 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GHeaderSeqDetail = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GHeaderSeqRelasi = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
@@ -107,6 +108,7 @@ Partial Class FrmTravelEntertainDetail
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewEntertain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CHeaderSeqDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridEntertain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,7 +211,7 @@ Partial Class FrmTravelEntertainDetail
         Me.TxtCurrency.MaximumSize = New System.Drawing.Size(70, 0)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.TxtCurrency.Properties.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.TxtCurrency.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.TxtCurrency.Size = New System.Drawing.Size(70, 22)
         Me.TxtCurrency.StyleController = Me.LayoutControl2
@@ -432,12 +434,34 @@ Partial Class FrmTravelEntertainDetail
         '
         'GridViewEntertain
         '
-        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8, Me.GHeaderSeqDetail})
+        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqDetail, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
         Me.GridViewEntertain.GridControl = Me.GridEntertain
         Me.GridViewEntertain.Name = "GridViewEntertain"
         Me.GridViewEntertain.OptionsView.ShowGroupPanel = False
+        '
+        'GHeaderSeqDetail
+        '
+        Me.GHeaderSeqDetail.AppearanceCell.Options.UseTextOptions = True
+        Me.GHeaderSeqDetail.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GHeaderSeqDetail.AppearanceHeader.Options.UseTextOptions = True
+        Me.GHeaderSeqDetail.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GHeaderSeqDetail.Caption = "No"
+        Me.GHeaderSeqDetail.ColumnEdit = Me.CHeaderSeqDetail
+        Me.GHeaderSeqDetail.FieldName = "HeaderSeq"
+        Me.GHeaderSeqDetail.MinWidth = 25
+        Me.GHeaderSeqDetail.Name = "GHeaderSeqDetail"
+        Me.GHeaderSeqDetail.OptionsColumn.AllowEdit = False
+        Me.GHeaderSeqDetail.OptionsColumn.FixedWidth = True
+        Me.GHeaderSeqDetail.Visible = True
+        Me.GHeaderSeqDetail.VisibleIndex = 0
+        Me.GHeaderSeqDetail.Width = 40
+        '
+        'CHeaderSeqDetail
+        '
+        Me.CHeaderSeqDetail.AutoHeight = False
+        Me.CHeaderSeqDetail.Name = "CHeaderSeqDetail"
         '
         'GridColumn1
         '
@@ -450,7 +474,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 133
         '
         'ReposDate
@@ -475,7 +499,7 @@ Partial Class FrmTravelEntertainDetail
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.VisibleIndex = 2
         Me._subaccount.Width = 100
         '
         '_account
@@ -487,7 +511,7 @@ Partial Class FrmTravelEntertainDetail
         Me._account.Name = "_account"
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
-        Me._account.VisibleIndex = 2
+        Me._account.VisibleIndex = 3
         Me._account.Width = 100
         '
         '_description
@@ -497,8 +521,8 @@ Partial Class FrmTravelEntertainDetail
         Me._description.MinWidth = 27
         Me._description.Name = "_description"
         Me._description.Visible = True
-        Me._description.VisibleIndex = 3
-        Me._description.Width = 333
+        Me._description.VisibleIndex = 4
+        Me._description.Width = 341
         '
         'GridColumn5
         '
@@ -507,8 +531,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn5.MinWidth = 27
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 100
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 102
         '
         'GridColumn4
         '
@@ -517,8 +541,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn4.MinWidth = 27
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 100
+        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.Width = 102
         '
         'GridColumn3
         '
@@ -527,8 +551,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn3.MinWidth = 27
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
-        Me.GridColumn3.Width = 100
+        Me.GridColumn3.VisibleIndex = 7
+        Me.GridColumn3.Width = 102
         '
         'GridColumn6
         '
@@ -537,8 +561,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn6.MinWidth = 27
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 100
+        Me.GridColumn6.VisibleIndex = 8
+        Me.GridColumn6.Width = 106
         '
         'GridColumn2
         '
@@ -549,7 +573,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
+        Me.GridColumn2.VisibleIndex = 9
         Me.GridColumn2.Width = 133
         '
         'GridColumn8
@@ -570,8 +594,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridEntertain.MainView = Me.GridViewEntertain
         Me.GridEntertain.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEntertain.Name = "GridEntertain"
-        Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate})
-        Me.GridEntertain.Size = New System.Drawing.Size(1269, 237)
+        Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CHeaderSeqDetail})
+        Me.GridEntertain.Size = New System.Drawing.Size(1269, 268)
         Me.GridEntertain.TabIndex = 3
         Me.GridEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEntertain})
         '
@@ -585,18 +609,35 @@ Partial Class FrmTravelEntertainDetail
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
-        Me.GridRelasi.Size = New System.Drawing.Size(1269, 237)
+        Me.GridRelasi.Size = New System.Drawing.Size(1269, 269)
         Me.GridRelasi.TabIndex = 4
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
         '
         'GridViewRelasi
         '
-        Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7, Me.GridColumn9, Me.GHeaderSeqRelasi})
+        Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqRelasi, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7, Me.GridColumn9})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3
         Me.GridViewRelasi.GridControl = Me.GridRelasi
         Me.GridViewRelasi.Name = "GridViewRelasi"
+        Me.GridViewRelasi.OptionsCustomization.AllowFilter = False
         Me.GridViewRelasi.OptionsView.ShowGroupPanel = False
+        '
+        'GHeaderSeqRelasi
+        '
+        Me.GHeaderSeqRelasi.AppearanceCell.Options.UseTextOptions = True
+        Me.GHeaderSeqRelasi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GHeaderSeqRelasi.AppearanceHeader.Options.UseTextOptions = True
+        Me.GHeaderSeqRelasi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GHeaderSeqRelasi.Caption = "No"
+        Me.GHeaderSeqRelasi.FieldName = "HeaderSeq"
+        Me.GHeaderSeqRelasi.MinWidth = 25
+        Me.GHeaderSeqRelasi.Name = "GHeaderSeqRelasi"
+        Me.GHeaderSeqRelasi.OptionsColumn.AllowEdit = False
+        Me.GHeaderSeqRelasi.OptionsColumn.FixedWidth = True
+        Me.GHeaderSeqRelasi.Visible = True
+        Me.GHeaderSeqRelasi.VisibleIndex = 0
+        Me.GHeaderSeqRelasi.Width = 40
         '
         'GridColumn11
         '
@@ -605,8 +646,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn11.MinWidth = 27
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 100
+        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 242
         '
         'GridColumn12
         '
@@ -615,8 +656,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn12.MinWidth = 27
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 100
+        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.Width = 242
         '
         'GridColumn13
         '
@@ -625,8 +666,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn13.MinWidth = 27
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 100
+        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.Width = 242
         '
         'GridColumn14
         '
@@ -635,8 +676,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 100
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 242
         '
         'GridColumn7
         '
@@ -645,8 +686,8 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
-        Me.GridColumn7.Width = 100
+        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.Width = 251
         '
         'GridColumn9
         '
@@ -670,7 +711,7 @@ Partial Class FrmTravelEntertainDetail
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1299, 624)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1299, 687)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'LayoutControl3
@@ -680,7 +721,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControl3.Location = New System.Drawing.Point(3, 93)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1293, 261)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1293, 292)
         Me.LayoutControl3.TabIndex = 1
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -690,7 +731,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1293, 261)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1293, 292)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem9
@@ -698,7 +739,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem9.Control = Me.GridEntertain
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(1273, 241)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1273, 272)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
@@ -706,10 +747,10 @@ Partial Class FrmTravelEntertainDetail
         '
         Me.LayoutControl1.Controls.Add(Me.GridRelasi)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(3, 360)
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, 391)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1293, 261)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1293, 293)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -719,7 +760,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1293, 261)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1293, 293)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem10
@@ -727,33 +768,13 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem10.Control = Me.GridRelasi
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1273, 241)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1273, 273)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
-        'GHeaderSeqDetail
-        '
-        Me.GHeaderSeqDetail.Caption = "HeaderSeq"
-        Me.GHeaderSeqDetail.FieldName = "HeaderSeq"
-        Me.GHeaderSeqDetail.MinWidth = 25
-        Me.GHeaderSeqDetail.Name = "GHeaderSeqDetail"
-        Me.GHeaderSeqDetail.Visible = True
-        Me.GHeaderSeqDetail.VisibleIndex = 9
-        Me.GHeaderSeqDetail.Width = 94
-        '
-        'GHeaderSeqRelasi
-        '
-        Me.GHeaderSeqRelasi.Caption = "HeaderSeq"
-        Me.GHeaderSeqRelasi.FieldName = "HeaderSeq"
-        Me.GHeaderSeqRelasi.MinWidth = 25
-        Me.GHeaderSeqRelasi.Name = "GHeaderSeqRelasi"
-        Me.GHeaderSeqRelasi.Visible = True
-        Me.GHeaderSeqRelasi.VisibleIndex = 5
-        Me.GHeaderSeqRelasi.Width = 94
-        '
         'FrmTravelEntertainDetail
         '
-        Me.ClientSize = New System.Drawing.Size(1299, 624)
+        Me.ClientSize = New System.Drawing.Size(1299, 687)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -789,6 +810,7 @@ Partial Class FrmTravelEntertainDetail
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewEntertain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CHeaderSeqDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridEntertain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -866,4 +888,5 @@ Partial Class FrmTravelEntertainDetail
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHeaderSeqDetail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHeaderSeqRelasi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHeaderSeqDetail As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

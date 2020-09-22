@@ -667,6 +667,18 @@
     <Compile Include="Direct\FrmTravelSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRCCAccrued.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCAccrued.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRCCAccruedAndSettle.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCAccruedAndSettle.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -833,6 +845,12 @@
       <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportBankTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportCCAccrued.Designer.vb">
+      <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\FrmReportEntertain.Designer.vb">
@@ -2677,6 +2695,14 @@
     <EmbeddedResource Include="Direct\FrmTravelTicketInvoice.resx">
       <DependentUpon>FrmTravelTicketInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCAccruedAndSettle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCAccruedAndSettle.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravel.vb</LastGenOutput>
@@ -2780,6 +2806,9 @@
     <EmbeddedResource Include="Direct\report\CRTravelTotalSuspenseSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
+      <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravel.resx">
       <DependentUpon>FrmReportTravel.vb</DependentUpon>

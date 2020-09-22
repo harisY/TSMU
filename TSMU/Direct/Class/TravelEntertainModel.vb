@@ -77,6 +77,7 @@ Public Class TravelEntertainModel
                     .Alamat = dr("Alamat")
                     .Jenis = dr("Jenis")
                     .SettleAmount = dr("Amount")
+                    .HeaderSeq = dr("HeaderSeq")
                     .InsertEntertainDetail()
                 End With
             Next
@@ -91,6 +92,7 @@ Public Class TravelEntertainModel
                     .Relasi = dr("Perusahaan")
                     .JenisRelasi = dr("JenisUsaha")
                     .Nota = dr("Remark")
+                    .HeaderSeq = dr("HeaderSeq")
                     .InsertEntertainRelasi()
                 End With
             Next
@@ -146,6 +148,7 @@ Public Class TravelEntertainModel
                     .Alamat = dr("Alamat")
                     .Jenis = dr("Jenis")
                     .SettleAmount = dr("Amount")
+                    .HeaderSeq = dr("HeaderSeq")
                     .InsertEntertainDetail()
                 End With
             Next
@@ -162,6 +165,7 @@ Public Class TravelEntertainModel
                     .Relasi = dr("Perusahaan")
                     .JenisRelasi = dr("JenisUsaha")
                     .Nota = dr("Remark")
+                    .HeaderSeq = dr("HeaderSeq")
                     .InsertEntertainRelasi()
                 End With
             Next
@@ -215,6 +219,7 @@ Public Class TravelEntertainDetailModel
     Public Property SubAcct As String
     Public Property Tempat As String
     Public Property Tgl As DateTime
+    Public Property HeaderSeq As Integer
 
     Dim strQuery As String
 
@@ -222,7 +227,7 @@ Public Class TravelEntertainDetailModel
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO TSC16Application.dbo.settle_detail
-            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount ) " & vbCrLf &
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama, Tempat, Alamat, Jenis, SettleAmount, HeaderSeq ) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
@@ -232,7 +237,8 @@ Public Class TravelEntertainDetailModel
             "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(SettleAmount) & ")"
+            "       " & QVal(SettleAmount) & ", " & vbCrLf &
+            "       " & QVal(HeaderSeq) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -258,19 +264,21 @@ Public Class TravelEntertainRelasiModel
     Public Property Relasi As String
     Public Property JenisRelasi As String
     Public Property Nota As String
+    Public Property HeaderSeq As Integer
 
     Dim strQuery As String
 
     Public Sub InsertEntertainRelasi()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO TSC16Application.dbo.settlerelasi (SettleID,Nama,Posisi,Perusahaan,JenisUsaha,Remark ) " & vbCrLf &
+            "INSERT INTO TSC16Application.dbo.settlerelasi (SettleID, Nama, Posisi, Perusahaan, JenisUsaha, Remark, HeaderSeq ) " & vbCrLf &
             "Values(" & QVal(SettleID) & ", " & vbCrLf &
             "       " & QVal(NamaRelasi) & ", " & vbCrLf &
             "       " & QVal(Posisi) & ", " & vbCrLf &
             "       " & QVal(Relasi) & ", " & vbCrLf &
             "       " & QVal(JenisRelasi) & ", " & vbCrLf &
-            "       " & QVal(Nota) & ")"
+            "       " & QVal(Nota) & ", " & vbCrLf &
+            "       " & QVal(HeaderSeq) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex

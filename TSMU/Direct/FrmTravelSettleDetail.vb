@@ -288,7 +288,7 @@ Public Class FrmTravelSettleDetail
             GridBalanceTransport.DataSource = dtBalance
 
             dtVoucher.Rows.Add("USD", 0, 0, 0, ReturnUSD, 0, 0)
-            dtVoucher.Rows.Add("YEN", 0, 0, 0, ReturnYEN, 0, 0)
+            dtVoucher.Rows.Add("JPY", 0, 0, 0, ReturnYEN, 0, 0)
             dtVoucher.Rows.Add("IDR", 0, 0, 0, ReturnIDR, 0, 0)
             GridBalance.DataSource = dtVoucher
 
@@ -687,6 +687,9 @@ Public Class FrmTravelSettleDetail
                 .CreditCardNumber = GridViewEntertain.GetRowCellValue(i, "CreditCardNumber").ToString()
                 .AccountName = GridViewEntertain.GetRowCellValue(i, "AccountName").ToString()
                 .CurryID = GridViewEntertain.GetRowCellValue(i, "CurryID").ToString()
+                If GridViewEntertain.GetRowCellValue(i, "Amount") = 0 Then
+                    Err.Raise(ErrNumber, , "Amount Entertainment tidak boleh 0!")
+                End If
                 .Amount = IIf(GridViewEntertain.GetRowCellValue(i, "Amount") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "Amount")))
                 .AmountIDR = IIf(GridViewEntertain.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, Nothing, Convert.ToDouble(GridViewEntertain.GetRowCellValue(i, "AmountIDR")))
             End With
@@ -699,7 +702,7 @@ Public Class FrmTravelSettleDetail
             cls_TravelSettCost = New TravelSettleCostModel
             seq = seq + 1
             With cls_TravelSettCost
-                .TravelSettleID = txtTravelSettID.Text
+                .TravelSettleID = travelSettID
                 .ID = GridViewOther.GetRowCellValue(i, "ID")
                 .Seq = seq
                 .AccountID = IIf(GridViewOther.GetRowCellValue(i, "AccountID") Is DBNull.Value, "", GridViewOther.GetRowCellValue(i, "AccountID"))
@@ -751,7 +754,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
         GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDR", Amount * Rate)
@@ -774,7 +777,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
         GridViewTransport.SetRowCellValue(GridViewTransport.FocusedRowHandle, "AmountIDR", Amount * Rate)
@@ -825,7 +828,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
@@ -850,7 +853,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
@@ -1023,7 +1026,7 @@ Public Class FrmTravelSettleDetail
                 GridViewEntertain.SetRowCellValue(li_Row, "Description", rows("Remark"))
                 GridViewEntertain.SetRowCellValue(li_Row, "CurryID", rows("CuryID"))
                 GridViewEntertain.SetRowCellValue(li_Row, "Amount", rows("Total"))
-                GridViewEntertain.SetRowCellValue(li_Row, "PaymentType", rows("PaymentType"))
+                GridViewEntertain.SetRowCellValue(li_Row, "PaymentType", IIf(rows("PaymentType").ToString().Contains("CREDIT CARD"), "CC-" + rows("CreditCardNumber"), rows("PaymentType")))
                 GridViewEntertain.SetRowCellValue(li_Row, "CreditCardID", rows("CreditCardID"))
                 GridViewEntertain.SetRowCellValue(li_Row, "CreditCardNumber", rows("CreditCardNumber"))
                 GridViewEntertain.SetRowCellValue(li_Row, "AccountName", rows("AccountName"))
@@ -1038,7 +1041,7 @@ Public Class FrmTravelSettleDetail
 
             If CurryID = "USD" Then
                 Rate = Convert.ToDouble(txtRateUSD.Text)
-            ElseIf CurryID = "YEN" Then
+            ElseIf CurryID = "JPY" Then
                 Rate = Convert.ToDouble(txtRateYEN.Text)
             End If
 
@@ -1098,7 +1101,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
@@ -1123,7 +1126,7 @@ Public Class FrmTravelSettleDetail
 
         If CurryID = "USD" Then
             Rate = Convert.ToDouble(txtRateUSD.Text)
-        ElseIf CurryID = "YEN" Then
+        ElseIf CurryID = "JPY" Then
             Rate = Convert.ToDouble(txtRateYEN.Text)
         End If
 
@@ -1344,7 +1347,7 @@ Public Class FrmTravelSettleDetail
         If txtTravelType.Text = "DN" Then
             defaultCurryID = "IDR"
         Else
-            defaultCurryID = "YEN"
+            defaultCurryID = "JPY"
         End If
 
         view.SetRowCellValue(view.FocusedRowHandle, "ID", ID)
@@ -1466,13 +1469,13 @@ Public Class FrmTravelSettleDetail
                     CashIDR = CashIDR + amount
                 ElseIf payType = "CASH" And curryID = "USD" Then
                     CashUSD = CashUSD + amount
-                ElseIf payType = "CASH" And curryID = "YEN" Then
+                ElseIf payType = "CASH" And curryID = "JPY" Then
                     CashYEN = CashYEN + amount
                 ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "IDR" Then
                     CreditIDR = CreditIDR + amount
                 ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "USD" Then
                     CreditUSD = CreditUSD + amount
-                ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "YEN" Then
+                ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "JPY" Then
                     CreditYEN = CreditYEN + amount
                 End If
             Next
@@ -1494,7 +1497,7 @@ Public Class FrmTravelSettleDetail
 
                 If curryID = "USD" Then
                     Rate = Convert.ToDouble(txtRateUSD.Text)
-                ElseIf curryID = "YEN" Then
+                ElseIf curryID = "JPY" Then
                     Rate = Convert.ToDouble(txtRateYEN.Text)
                 End If
                 GridViewTransport.SetRowCellValue(i, "AmountIDR", amount * Rate)
@@ -1506,7 +1509,7 @@ Public Class FrmTravelSettleDetail
 
                 If curryID = "USD" Then
                     Rate = Convert.ToDouble(txtRateUSD.Text)
-                ElseIf curryID = "YEN" Then
+                ElseIf curryID = "JPY" Then
                     Rate = Convert.ToDouble(txtRateYEN.Text)
                 End If
                 GridViewHotel.SetRowCellValue(i, "AmountIDR", amount * Rate)
@@ -1518,7 +1521,7 @@ Public Class FrmTravelSettleDetail
 
                 If curryID = "USD" Then
                     Rate = Convert.ToDouble(txtRateUSD.Text)
-                ElseIf curryID = "YEN" Then
+                ElseIf curryID = "JPY" Then
                     Rate = Convert.ToDouble(txtRateYEN.Text)
                 End If
                 GridViewEntertain.SetRowCellValue(i, "AmountIDR", amount * Rate)
@@ -1530,7 +1533,7 @@ Public Class FrmTravelSettleDetail
 
                 If curryID = "USD" Then
                     Rate = Convert.ToDouble(txtRateUSD.Text)
-                ElseIf curryID = "YEN" Then
+                ElseIf curryID = "JPY" Then
                     Rate = Convert.ToDouble(txtRateYEN.Text)
                 End If
                 GridViewOther.SetRowCellValue(i, "AmountIDR", amount * Rate)
@@ -1561,7 +1564,7 @@ Public Class FrmTravelSettleDetail
                 Dim curryID As String = GridViewBalance.GetRowCellValue(i, "CurryID")
                 If curryID = "USD" Then
                     ReturnUSD = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
-                ElseIf curryID = "YEN" Then
+                ElseIf curryID = "JPY" Then
                     ReturnYEN = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
                 ElseIf curryID = "IDR" Then
                     ReturnIDR = GridViewBalance.GetRowCellValue(i, "ReturnBalance")
@@ -1574,7 +1577,7 @@ Public Class FrmTravelSettleDetail
 
         dtVoucher.Clear()
         dtVoucher.Rows.Add("USD", Convert.ToDouble(TxtTotalAdvanceUSD.Text), GridViewSumTransport.Columns("CashUSD").SummaryItem.SummaryValue, BalanceUSD, ReturnUSD, PaidUSD, PaidUSD * Convert.ToDouble(txtRateUSD.Text))
-        dtVoucher.Rows.Add("YEN", Convert.ToDouble(TxtTotalAdvanceYEN.Text), GridViewSumTransport.Columns("CashYEN").SummaryItem.SummaryValue, BalanceYEN, ReturnYEN, PaidYEN, PaidYEN * Convert.ToDouble(txtRateYEN.Text))
+        dtVoucher.Rows.Add("JPY", Convert.ToDouble(TxtTotalAdvanceYEN.Text), GridViewSumTransport.Columns("CashYEN").SummaryItem.SummaryValue, BalanceYEN, ReturnYEN, PaidYEN, PaidYEN * Convert.ToDouble(txtRateYEN.Text))
         dtVoucher.Rows.Add("IDR", Convert.ToDouble(TxtTotalAdvanceIDR.Text), GridViewSumTransport.Columns("CashIDR").SummaryItem.SummaryValue, BalanceIDR, ReturnIDR, PaidIDR, PaidIDR)
         GridBalance.DataSource = dtVoucher
         'GridCellFormat(GridViewBalance)
@@ -1596,7 +1599,7 @@ Public Class FrmTravelSettleDetail
         If curryID = "USD" Then
             ReturnUSD = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateUSD.Text))
-        ElseIf curryID = "YEN" Then
+        ElseIf curryID = "JPY" Then
             ReturnYEN = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", (balance - return_) * Convert.ToDouble(txtRateYEN.Text))
         ElseIf curryID = "IDR" Then
