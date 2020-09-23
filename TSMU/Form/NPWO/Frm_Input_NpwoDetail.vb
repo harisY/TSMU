@@ -2,6 +2,7 @@
 Public Class Frm_Input_NpwoDetail
 
     Dim fc_Class As New Cls_Npwo_Detail
+    Dim fc_ClassNpp As New Cls_NPP_Detail
 
     Dim DtGridNPWO As DataTable
 
@@ -131,8 +132,10 @@ Public Class Frm_Input_NpwoDetail
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If IsNew = True Then
 
-            Dim GroupID As String = fc_Class.GetGroupIDAuto(DtTabale.Rows.Count)
-
+            Dim Sequence As New DataTable
+            Sequence = fc_ClassNpp.Get_Sequence_NppDetail()
+            Dim Seq As Integer = Val(Sequence.Rows(0).Item(0)) + 1
+            Dim GroupID As String = "G" & Seq
             If TPartNo.Text = "" Then
                 MessageBox.Show("Please Fill Part No",
                                       "Warning",
@@ -180,7 +183,6 @@ Public Class Frm_Input_NpwoDetail
                     Exit Sub
 
                 End If
-
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
@@ -205,46 +207,41 @@ Public Class Frm_Input_NpwoDetail
                     .Item("Type") = TType.Text.Trim
 
                 End With
-
-
                 DtTabale.Rows.Add(MyNewRow)
                 DtTabale.AcceptChanges()
 
-                Dim MyNewRowDetail As DataRow
-                MyNewRowDetail = DtDetail.NewRow
-                With MyNewRowDetail
-                    .Item("Part No") = TPartNo.Text.Trim
-                    .Item("Part Name") = TPartName.Text.Trim
-                    .Item("Machine") = TMachine.Text.Trim
-                    .Item("C/T") = TCT.Text.Trim
-                    .Item("Cav") = TCav.Text.Trim
-                    .Item("Weight") = TWeight.Text.Trim
-                    .Item("Qty Mold") = TQtyMold.Text.Trim
-                    .Item("Material") = TMaterial.Text.Trim
-                    .Item("Inj") = CInjection.CheckState
-                    .Item("Painting") = CPainting.CheckState
-                    .Item("Chrome") = CChrome.CheckState
-                    .Item("Assy") = CAssy.CheckState
-                    .Item("Ultrasonic") = CAssy.CheckState
-                    .Item("Vibration") = CbVibration.CheckState
-                    .Item("Status Mold") = TStatusMold.Text.Trim
-                    .Item("Order Month") = TOrder.Text.Trim
-                    .Item("LOI") = TLOI.Text.Trim
-                    .Item("Group ID") = GroupID
-                    If TType.EditValue = "MOLD" Then
-                        .Item("Type") = "PROCESS"
-                        .Item("Type1") = "MOLD"
-                    ElseIf TType.EditValue = "PROCESS" Then
-                        .Item("Type") = "PROCESS"
-                        .Item("Type1") = "PROCESS"
-                    End If
+                'Dim MyNewRowDetail As DataRow
+                'MyNewRowDetail = DtDetail.NewRow
+                'With MyNewRowDetail
+                '    .Item("Part No") = TPartNo.Text.Trim
+                '    .Item("Part Name") = TPartName.Text.Trim
+                '    .Item("Machine") = TMachine.Text.Trim
+                '    .Item("C/T") = TCT.Text.Trim
+                '    .Item("Cav") = TCav.Text.Trim
+                '    .Item("Weight") = TWeight.Text.Trim
+                '    .Item("Qty Mold") = TQtyMold.Text.Trim
+                '    .Item("Material") = TMaterial.Text.Trim
+                '    .Item("Inj") = CInjection.CheckState
+                '    .Item("Painting") = CPainting.CheckState
+                '    .Item("Chrome") = CChrome.CheckState
+                '    .Item("Assy") = CAssy.CheckState
+                '    .Item("Ultrasonic") = CAssy.CheckState
+                '    .Item("Vibration") = CbVibration.CheckState
+                '    .Item("Status Mold") = TStatusMold.Text.Trim
+                '    .Item("Order Month") = TOrder.Text.Trim
+                '    .Item("LOI") = TLOI.Text.Trim
+                '    .Item("Group ID") = GroupID
+                '    If TType.EditValue = "MOLD" Then
+                '        .Item("Type") = "PROCESS"
+                '        .Item("Type1") = "MOLD"
+                '    ElseIf TType.EditValue = "PROCESS" Then
+                '        .Item("Type") = "PROCESS"
+                '        .Item("Type1") = "PROCESS"
+                '    End If
+                'End With
+                'DtDetail.Rows.Add(MyNewRowDetail)
+                'DtDetail.AcceptChanges()
 
-
-                End With
-
-
-                DtDetail.Rows.Add(MyNewRowDetail)
-                DtDetail.AcceptChanges()
 
                 TPartNo.EditValue = ""
                 TPartName.EditValue = ""
@@ -265,8 +262,6 @@ Public Class Frm_Input_NpwoDetail
                 TType.EditValue = ""
 
             End If
-
-
         Else
 
             For i As Integer = 0 To DtTabale.Rows.Count - 1
@@ -293,8 +288,6 @@ Public Class Frm_Input_NpwoDetail
 
                 End If
             Next
-
-
         End If
 
     End Sub

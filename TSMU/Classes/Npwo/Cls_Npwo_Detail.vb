@@ -30,7 +30,7 @@ Public Class Cls_Npwo_Detail
     Public Property H_CreatedDate As Date
     Public Property H_UpdatedBy As String
     Public Property H_UpdatedDate As Date
-    Public Property H_Approve As Boolean
+    Public Property H_Approve As Integer
     Public Property H_Rev As Integer
     Public Property H_Checked As String
     Public Property H_A1 As String
@@ -38,6 +38,17 @@ Public Class Cls_Npwo_Detail
     Public Property H_A3 As String
     Public Property H_A4 As String
     Public Property H_Rev_Info As String
+    Public Property H_Status As String
+
+    Public Property TA_Username As String
+    Public Property TA_MenuCode As String
+    Public Property TA_DeptID As String
+    Public Property TA_NoTransaksi As String
+    Public Property TA_LevelApprove As Integer
+    Public Property TA_StatusApprove As String
+    Public Property TA_ApproveBy As String
+    Public Property TA_ApproveDAte As Date
+    Public Property TA_IsActive As Integer
 
 
     Public Property Collection_Detail() As New Collection(Of Col_Cls_Npwo_Detail_NPWO)
@@ -57,69 +68,74 @@ Public Class Cls_Npwo_Detail
     End Function
 
     Public Function NpwoReport(No As String, Rev As String) As DataSet
-        Dim query As String
-        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "SELECT Distinct [NPWO_Head].[No_NPP]
-                  ,[Npwo_Head].[No_Npwo]
-                  ,[Npwo_Head].[Issue_Date]
-                  ,[Npwo_Head].[Model_Name]
-                  ,[Customer].[BillName] as [Customer_Name]
-                  ,[Npwo_Head].[Order_Month]
-                  ,[Npwo_Head].[Order_Max_Month]
-                  ,convert(varchar, [Npwo_Head].[T0], 110) as [T0]
-                  ,convert(varchar, [Npwo_Head].[T1], 110) as [T1]
-                  ,convert(varchar, [Npwo_Head].[T2], 110) as [T2]
-                  ,convert(varchar, [Npwo_Head].[MP], 110) as [MP]
-                  ,[Npwo_Head].[Drawing]
-                  ,[Npwo_Head].[CAD_Data]
-                  ,[Npwo_Head].[Sample]
-                  ,[Npwo_Head].[Special_Technical_Requires]
-                  ,[Npwo_Head].[Category_Class]
-                  ,[Npwo_Head].[Factory_Tsc_TNG]
-                  ,[Npwo_Head].[Factory_Tsc_CKR]
-                  ,[Npwo_Head].[Factory_Tsc_0]
-                  ,[Npwo_Head].[Factory_Tsc_1]
-                  ,[Npwo_Head].[CreatedBy]
-                  ,[Npwo_Head].[CreatedDate]
-                  ,[Npwo_Head].[UpdatedBy]
-                  ,[Npwo_Head].[UpdatedDate]
-                  ,[Npwo_Head].[Approve]
-                  ,[Npwo_Head].[Checked]
-                  ,[Npwo_Head].[A1]
-                  ,[Npwo_Head].[A2]
-                  ,[Npwo_Head].[A3]
-                  ,[Npwo_Head].[A4]
-                  ,[Npwo_Head].[Prepare]
-                  ,[Npwo_Head].[CreatedBy]
-                  ,[NpwoDetail1].[Part_No]
-                  ,[NpwoDetail1].[Part_Name]
-                  ,[NpwoDetail1].[Machine]
-                  ,[NpwoDetail1].[Cycle_Time]
-                  ,[NpwoDetail1].[Cavity]
-                  ,[NpwoDetail1].[Weight]
-                  ,[NpwoDetail1].[Qty_Mold]
-                  ,[NpwoDetail1].[Material_Resin]
-                  ,[NpwoDetail1].[Injection]
-                  ,[NpwoDetail1].[Painting]
-                  ,[NpwoDetail1].[Chrome]
-                  ,[NpwoDetail1].[Assy]
-                  ,[NpwoDetail1].[Ultrasonic]
-                  ,[NpwoDetail1].[Vibration]
-                  ,[NpwoDetail1].[StatusMold]
-                  ,[NpwoDetail1].[Order_Month]
-                  ,[NpwoDetail1].[LOI_Number]
-                  ,[NpwoDetail1].[Forecast]
-                  ,[NpwoDetail1].[GroupID]
-                  ,[NpwoDetail1].[Type]
-                  ,[NpwoDetail1].[Type1]
-                  ,[NpwoDetail1].[Rev]
-        From [NPWO_Head] inner Join [NpwoDetail1] On
-        [NPWO_Head].[No_Npwo] = [NpwoDetail1].No_Npwo
-        inner join Customer on Customer.CustId =  [NPWO_Head].[Customer_Name]
-		Where [NPWO_Head].[No_Npwo] = '" & No & "'"
+        '      Dim query As String
+        '      query = "SELECT Distinct [NPWO_Head].[No_NPP]
+        '                ,[Npwo_Head].[No_Npwo]
+        '                ,[Npwo_Head].[Issue_Date]
+        '                ,[Npwo_Head].[Model_Name]
+        '                ,[Customer].[BillName] as [Customer_Name]
+        '                ,[Npwo_Head].[Order_Month]
+        '                ,[Npwo_Head].[Order_Max_Month]
+        '                ,convert(varchar, [Npwo_Head].[T0], 110) as [T0]
+        '                ,convert(varchar, [Npwo_Head].[T1], 110) as [T1]
+        '                ,convert(varchar, [Npwo_Head].[T2], 110) as [T2]
+        '                ,convert(varchar, [Npwo_Head].[MP], 110) as [MP]
+        '                ,[Npwo_Head].[Drawing]
+        '                ,[Npwo_Head].[CAD_Data]
+        '                ,[Npwo_Head].[Sample]
+        '                ,[Npwo_Head].[Special_Technical_Requires]
+        '                ,[Npwo_Head].[Category_Class]
+        '                ,[Npwo_Head].[Factory_Tsc_TNG]
+        '                ,[Npwo_Head].[Factory_Tsc_CKR]
+        '                ,[Npwo_Head].[Factory_Tsc_0]
+        '                ,[Npwo_Head].[Factory_Tsc_1]
+        '                ,[Npwo_Head].[CreatedBy]
+        '                ,[Npwo_Head].[CreatedDate]
+        '                ,[Npwo_Head].[UpdatedBy]
+        '                ,[Npwo_Head].[UpdatedDate]
+        '                ,[Npwo_Head].[Approve]
+        '                ,[Npwo_Head].[Checked]
+        '                ,[Npwo_Head].[A1]
+        '                ,[Npwo_Head].[A2]
+        '                ,[Npwo_Head].[A3]
+        '                ,[Npwo_Head].[A4]
+        '                ,[Npwo_Head].[Prepare]
+        '                ,[Npwo_Head].[CreatedBy]
+        '                ,[NpwoDetail1].[Part_No]
+        '                ,[NpwoDetail1].[Part_Name]
+        '                ,[NpwoDetail1].[Machine]
+        '                ,[NpwoDetail1].[Cycle_Time]
+        '                ,[NpwoDetail1].[Cavity]
+        '                ,[NpwoDetail1].[Weight]
+        '                ,[NpwoDetail1].[Qty_Mold]
+        '                ,[NpwoDetail1].[Material_Resin]
+        '                ,[NpwoDetail1].[Injection]
+        '                ,[NpwoDetail1].[Painting]
+        '                ,[NpwoDetail1].[Chrome]
+        '                ,[NpwoDetail1].[Assy]
+        '                ,[NpwoDetail1].[Ultrasonic]
+        '                ,[NpwoDetail1].[Vibration]
+        '                ,[NpwoDetail1].[StatusMold]
+        '                ,[NpwoDetail1].[Order_Month]
+        '                ,[NpwoDetail1].[LOI_Number]
+        '                ,[NpwoDetail1].[Forecast]
+        '                ,[NpwoDetail1].[GroupID]
+        '                ,[NpwoDetail1].[Type]
+        '                ,[NpwoDetail1].[Type1]
+        '                ,[NpwoDetail1].[Rev]
+        '      From [NPWO_Head] inner Join [NpwoDetail1] On
+        '      [NPWO_Head].[No_Npwo] = [NpwoDetail1].No_Npwo
+        '      inner join Customer on Customer.CustId =  [NPWO_Head].[Customer_Name]
+        'Where [NPWO_Head].[No_Npwo] = '" & No & "'"
+
+        Dim query As String = "[Npwo_Report]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@NPWONO", SqlDbType.VarChar)
+
+        pParam(0).Value = No
 
         Dim ds As New dsLaporan
-        ds = GetDsReport(query, "NPWO")
+        ds = GetDataSetByCommand_SP(query, "NPWO", pParam)
         Return ds
 
     End Function
@@ -196,12 +212,62 @@ Public Class Cls_Npwo_Detail
             Throw
         End Try
     End Sub
-    Public Sub UpdateApprove(ByVal _FsCode As String)
+    Public Sub UpdateApprove(ByVal _FsCode As String, Act As Integer)
         Try
-            Dim ls_SP As String = " " & vbCrLf &
-                                    "UPDATE Npwo_Head" & vbCrLf &
-                                    "SET [Approve] = '" & H_Approve & "' WHERE [No_Npwo] = '" & _FsCode & "'"
-            MainModul.ExecQuery(ls_SP)
+            Using conn1 As New SqlClient.SqlConnection(GetConnString)
+                conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        Dim ls_SP As String = " " & vbCrLf &
+                                   "UPDATE Npwo_Head" & vbCrLf &
+                                   "SET [Approve] = '" & H_Approve & "'
+                                    , [Status] = '" & H_Status & "' WHERE [No_Npwo] = '" & _FsCode & "'"
+                        MainModul.ExecQuery(ls_SP)
+
+                        If Act = 1 Then
+                            Dim ls_SP_History As String = " " & vbCrLf &
+                                 "UPDATE T_ApproveHistory" & vbCrLf &
+                                 "SET [IsActive] = 0 WHERE [MenuCode] = 'NPWO' and [NoTransaksi] = '" & _FsCode & "'"
+                            MainModul.ExecQuery(ls_SP_History)
+                        End If
+
+                        Dim ls_SP1 As String = "INSERT INTO [T_ApproveHistory]
+                                               ([UserName]
+                                               ,[MenuCode]
+                                               ,[DeptID]
+                                               ,[NoTransaksi]
+                                               ,[LevelApproved]
+                                               ,[StatusApproved]
+                                               ,[ApprovedBy]
+                                               ,[ApprovedDate]
+                                               ,[IsActive])
+                                         VALUES
+                                               ('" & TA_Username & "'
+                                               ,'" & TA_MenuCode & "'
+                                               ,'" & TA_DeptID & "'
+                                               ,'" & TA_NoTransaksi & "'
+                                               ,'" & TA_LevelApprove & "'
+                                               ,'" & TA_StatusApprove & "'
+                                               ,'" & TA_ApproveBy & "'
+                                               ,'" & Date.Now & "'
+                                               ,'" & TA_IsActive & "')"
+                        MainModul.ExecQuery(ls_SP1)
+
+
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw ex
         End Try
@@ -326,7 +392,8 @@ Public Class Cls_Npwo_Detail
                                             H_A3,
                                             H_A4,
                                             gh_Common.Username,
-                                            Date.Now)
+                                            Date.Now,
+                                            H_Status)
 
 
                         Dim AutoIncrement As Integer
@@ -414,27 +481,16 @@ Public Class Cls_Npwo_Detail
                                         _H_A3 As String,
                                         _H_A4 As String,
                                         _H_UpdateBy As String,
-                                        _H_UpdateDate As Date)
+                                        _H_UpdateDate As Date,
+                                        _Status As String)
         Dim result As Integer = 0
 
 
         Try
 
-            'If _H_T0 = "" Then
-            '    _H_T0 = DBNull.Value.ToString
-            'End If
-
-            'If _H_T1 = "" Then
-            '    _H_T1 = DBNull.Value.ToString
-            'End If
-
-            'If _H_T2 = "" Then
-            '    _H_T2 = DBNull.Value.ToString
-            'End If
-
 
             Dim query As String = "[NPWO_Insert_Npwo_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(28) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(29) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Issue_Date", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@Model_Name", SqlDbType.VarChar)
@@ -464,6 +520,7 @@ Public Class Cls_Npwo_Detail
             pParam(26) = New SqlClient.SqlParameter("@A4", SqlDbType.VarChar)
             pParam(27) = New SqlClient.SqlParameter("@UpdatedBy", SqlDbType.VarChar)
             pParam(28) = New SqlClient.SqlParameter("@UpdatedDate", SqlDbType.Date)
+            pParam(29) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
 
 
 
@@ -496,6 +553,7 @@ Public Class Cls_Npwo_Detail
             pParam(26).Value = _H_A4
             pParam(27).Value = _H_UpdateBy
             pParam(28).Value = _H_UpdateDate
+            pParam(29).Value = _Status
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -805,6 +863,7 @@ Public Class Cls_Npwo_Detail
                     H_Factory_Tsc_CKR = Trim(.Item("Factory_Tsc_CKR") & "")
                     H_Approve = Trim(.Item("Approve") & "")
                     H_Rev = Trim(.Item("Rev") & "")
+                    H_Status = Trim(.Item("Status") & "")
 
                 End With
             Else
@@ -886,7 +945,7 @@ Public Class Cls_Npwo_Detail
             Dim ls_SP As String = "SELECT A.[No_NPP] as Value
                                         FROM [NPP_Head] A Left join [NPWO_HEAD] B 
                                         ON A.[No_NPP] = B.[No_NPP]
-                                        where B.No_Npwo IS NULL and A.Approve ='True'
+                                        where B.No_Npwo IS NULL 
                                         order by RIGHT(A.No_NPP,3) asc"
 
             Dim dtTable As New DataTable

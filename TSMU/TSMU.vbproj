@@ -1225,10 +1225,10 @@
     <Compile Include="Form\Circulation\Frm_CR_Accounting.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.Designer.vb">
-      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
+    <Compile Include="Form\Circulation\Frm_CR_Approve.Designer.vb">
+      <DependentUpon>Frm_CR_Approve.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.vb">
+    <Compile Include="Form\Circulation\Frm_CR_Approve.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.Designer.vb">
@@ -2174,6 +2174,7 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\Circulation\level_Model.vb" />
     <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
@@ -2884,8 +2885,8 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Accounting.resx">
       <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
-      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_Approve.resx">
+      <DependentUpon>Frm_CR_Approve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDivHead_Header.vb</DependentUpon>

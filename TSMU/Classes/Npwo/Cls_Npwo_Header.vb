@@ -14,11 +14,28 @@
 
     End Function
 
-    Public Function Get_NPWO() As DataTable
+    Public Function Get_NPWO(_ActiveForm As Integer) As DataTable
         Try
+            Dim d As DateTime = Date.Today
+            Dim TA As DateTime = d.AddDays(-d.Day)
+            Dim TangalAwal As DateTime = TA.AddDays(-(TA.Day - 1))
+            TangalAwal = TangalAwal.AddMonths(-5)
+            Dim TangalAkhir As DateTime = Date.Now
+
             Dim query As String = "[NPWO_Get_NPWO]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@TgAwal", SqlDbType.Date)
+            pParam(1) = New SqlClient.SqlParameter("@TgAkhir", SqlDbType.Date)
+            pParam(2) = New SqlClient.SqlParameter("@ActiveForm", SqlDbType.Int)
+
+            pParam(0).Value = TangalAwal
+            pParam(1).Value = TangalAkhir
+            pParam(2).Value = _ActiveForm
+
+
+
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(query)
+            dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
         Catch ex As Exception
             Throw

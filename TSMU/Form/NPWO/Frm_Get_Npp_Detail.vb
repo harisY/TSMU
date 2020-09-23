@@ -240,8 +240,6 @@ Public Class Frm_Get_Npp_Detail
                             Group2 = Convert.ToString(GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")))
                             If chkSelect2 = True Then
                                 If Group2 = Group Then
-
-
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail
                                         .Item("Group ID") = GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")).ToString
