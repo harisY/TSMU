@@ -135,6 +135,8 @@ Public Class forecast_price_models_header
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 .SinkronisasiHarga(Bulan, BulanAngka)
+
+
                             End With
                         Next
 
@@ -307,7 +309,7 @@ Public Class forecast_price_models
             dtTable = GetDataTableByCommand_SP(ls_SP)
             Return dtTable
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
     Public Sub Insert(Bulan As String, BulanAngka As String)
@@ -798,6 +800,8 @@ Public Class forecast_price_models
             Throw ex
         End Try
     End Function
+
+
     Public Sub InsertData()
         Try
 

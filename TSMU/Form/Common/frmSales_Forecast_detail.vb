@@ -69,7 +69,7 @@ Public Class frmSales_Forecast_detail
             Call InputBeginState(Me)
             Call FillComboTahun()
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "frmSales_Forecast"
+            bs_MainFormName = FrmParent.Name
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

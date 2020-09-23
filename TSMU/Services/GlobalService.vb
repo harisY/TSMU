@@ -207,4 +207,40 @@
             Throw ex
         End Try
     End Sub
+
+    'Get auto number format "prefix-tahun-bulan-number"/"TR-2020-12-0001"
+    Public Function GetAutoNumber(frm As Form) As String
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "S_GetAutoNumber"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
+            pParam(0).Value = frm.Name
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub UpdateAutoNumber(frm As Form)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "S_UpdateAutoNumber"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@menuCode", SqlDbType.VarChar)
+            pParam(0).Value = frm.Name
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class

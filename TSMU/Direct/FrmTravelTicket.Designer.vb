@@ -249,9 +249,10 @@ Partial Class FrmTravelTicket
         '
         'CStatusTicket
         '
+        Me.CStatusTicket.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.CStatusTicket.AutoHeight = False
         Me.CStatusTicket.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CStatusTicket.Items.AddRange(New Object() {"ISSUE", "CLOSE", "CANCEL"})
+        Me.CStatusTicket.Items.AddRange(New Object() {"ISSUE", "CANCEL", "CLOSE"})
         Me.CStatusTicket.Name = "CStatusTicket"
         Me.CStatusTicket.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '

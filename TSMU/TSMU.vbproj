@@ -11,7 +11,7 @@
     <AssemblyName>TSMU</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -41,7 +41,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
@@ -62,14 +62,23 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>tsmu.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -160,6 +169,7 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
@@ -170,6 +180,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -338,6 +349,7 @@
     <Compile Include="Delvi\frmDelvi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\Class\ClsCCAccrued.vb" />
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\ClsTraveller.vb" />
@@ -395,6 +407,12 @@
       <DependentUpon>FrmBankTransfer_Detail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmBankTransfer_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmCCAccrued.Designer.vb">
+      <DependentUpon>FrmCCAccrued.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmDetailPaymentDirect.Designer.vb">
@@ -649,6 +667,18 @@
     <Compile Include="Direct\FrmTravelSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRCCAccrued.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCAccrued.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRCCAccruedAndSettle.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCAccruedAndSettle.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -815,6 +845,12 @@
       <DependentUpon>FrmReportBankTransfer.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportBankTransfer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportCCAccrued.Designer.vb">
+      <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\FrmReportEntertain.Designer.vb">
@@ -1225,10 +1261,10 @@
     <Compile Include="Form\Circulation\Frm_CR_Accounting.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Circulation\Frm_CR_Approve.Designer.vb">
-      <DependentUpon>Frm_CR_Approve.vb</DependentUpon>
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.Designer.vb">
+      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Circulation\Frm_CR_Approve.vb">
+    <Compile Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.Designer.vb">
@@ -1359,6 +1395,12 @@
       <DependentUpon>frmDRR_details.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmDRR_details.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmForecast_PO.Designer.vb">
+      <DependentUpon>frmForecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecast_PO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
@@ -1949,6 +1991,12 @@
     <Compile Include="Form\Report\frmSales.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmAdvanceApprove.Designer.vb">
+      <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\frmAdvanceApprove.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -2136,6 +2184,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\ParameterInfo.vb" />
+    <Compile Include="Helpers\SqlHelper.vb" />
     <Compile Include="Menu\ActionType.vb" />
     <Compile Include="Menu\FormTypes.vb" />
     <Compile Include="Menu\IUserInterface.vb" />
@@ -2174,13 +2224,14 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
-    <Compile Include="Models\Circulation\level_Model.vb" />
+    <Compile Include="Models\BudgetModel.vb" />
     <Compile Include="Models\Class ar2_detail_models.vb" />
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
+    <Compile Include="Models\forecast_po_model.vb" />
     <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -2419,6 +2470,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_UploadToSolomon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.Designer.vb">
+      <DependentUpon>Frm_Rpt_APPaymentSolomon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.Designer.vb">
       <DependentUpon>Frm_Rpt_ViewPayment.vb</DependentUpon>
     </Compile>
@@ -2515,12 +2572,19 @@
     <Compile Include="Report\Passcard.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\ReportDrr.Designer.vb">
+      <DependentUpon>ReportDrr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportDrr.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\Testing.Designer.vb">
       <DependentUpon>Testing.vb</DependentUpon>
     </Compile>
     <Compile Include="Report\Testing.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\BudgetSerivce.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
@@ -2592,6 +2656,9 @@
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmCCAccrued.resx">
+      <DependentUpon>FrmCCAccrued.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>
@@ -2627,6 +2694,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelTicketInvoice.resx">
       <DependentUpon>FrmTravelTicketInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCAccruedAndSettle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCAccruedAndSettle.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2731,6 +2806,9 @@
     <EmbeddedResource Include="Direct\report\CRTravelTotalSuspenseSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
+      <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravel.resx">
       <DependentUpon>FrmReportTravel.vb</DependentUpon>
@@ -2885,8 +2963,8 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Accounting.resx">
       <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Circulation\Frm_CR_Approve.resx">
-      <DependentUpon>Frm_CR_Approve.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDeptHead_Header.resx">
+      <DependentUpon>Frm_CR_ApproveDeptHead_Header.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_ApproveDivHead_Header.resx">
       <DependentUpon>Frm_CR_ApproveDivHead_Header.vb</DependentUpon>
@@ -2949,6 +3027,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmDRR_details.resx">
       <DependentUpon>frmDRR_details.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecast_PO.resx">
+      <DependentUpon>frmForecast_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
@@ -3056,6 +3137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
+      <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -3321,6 +3405,9 @@
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.resx">
+      <DependentUpon>Frm_Rpt_APPaymentSolomon.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
     </EmbeddedResource>
@@ -3348,6 +3435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Passcard.resx">
       <DependentUpon>Passcard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportDrr.resx">
+      <DependentUpon>ReportDrr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.vb</DependentUpon>
@@ -4241,6 +4331,8 @@
     <Content Include="obj\Debug\TSMU.vbproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="tsmu.ico" />
+    <None Include="Resources\tsmu.ico" />
     <None Include="Resources\download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816_980.png" />
     <Content Include="Resources\budget.png" />
     <Content Include="Resources\circle.png" />

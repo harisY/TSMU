@@ -22,6 +22,7 @@ Public Class cashbank_models
     Public Property _id As String
     Public Property cek As Boolean
     Public Property recon As Boolean
+    Public Property saldo3 As Double
     Public Property ID() As String
         Get
             Return _id
@@ -326,7 +327,6 @@ Public Class cashbank_models
     Public Sub UpdateSettle_hapus()
 
         Try
-
             Dim Query = "update settle_header set pay=0 from settle_header inner join cashbank on settle_header.settleID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
             MainModul.ExecQuery_Solomon(Query)
         Catch ex As Exception
@@ -371,7 +371,7 @@ Public Class cashbank_models
     Public Function GetGridDetailCashBankByAccountID02() As DataTable
         Try
             '' Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek,recon  FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
-            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan FROM cashbank2 cross apply (select top 1 cashbank.* from cashbank  where cashbank.NoBukti=cashbank2.NoBukti) as cashbank WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-cm_dm-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon,VendorName as Keterangan from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan,cashbank.Noref FROM cashbank2 cross apply (select top 1 cashbank.* from cashbank  where cashbank.NoBukti=cashbank2.NoBukti) as cashbank WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-cm_dm-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'1' as recon,VendorName as Keterangan,'' as Noref from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -429,10 +429,9 @@ Public Class cashbank_models
 
         End Try
     End Function
-
     Public Function saldo2() As Double
         Try
-            Dim saldo As Single
+            Dim saldo As Double
 
             Dim sql As String = "Select isnull(saldo,0) as saldo from saldo_awal where acctid=" & QVal(account) & " and perpost=" & QVal(Perpost) & ""
             Dim dt As New DataTable
@@ -444,7 +443,6 @@ Public Class cashbank_models
             End If
 
             Return saldo
-
 
         Catch ex As Exception
             Throw
@@ -529,6 +527,28 @@ Public Class cashbank_models
             Dim ls_SP As String = String.Empty
             ls_SP = "UPDATE cashbank2 SET cek= " & QVal(cek) & " WHERE NoBukti=" & QVal(NoBukti.TrimEnd) & ""
 
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateCek2()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "UPDATE cashbank2 SET cek= " & QVal(cek) & " WHERE Noref=" & QVal(Noref.TrimEnd) & ""
+
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Updatesaldo()
+        Try
+            '' Dim saldo2 As Double
+
+            Dim ls_SP As String = String.Empty
+            ls_SP = "UPDATE Saldo_Awal SET saldo= " & QVal(saldo3) & " WHERE acctid=" & QVal(account) & " and perpost=" & QVal(Perpost) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

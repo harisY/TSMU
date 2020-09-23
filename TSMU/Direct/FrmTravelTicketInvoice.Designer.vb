@@ -116,7 +116,7 @@ Partial Class FrmTravelTicketInvoice
         Me.txtVendor.Name = "txtVendor"
         Me.txtVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.txtVendor.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtVendor.Size = New System.Drawing.Size(209, 22)
+        Me.txtVendor.Size = New System.Drawing.Size(236, 22)
         Me.txtVendor.StyleController = Me.LayoutControl1
         Me.txtVendor.TabIndex = 14
         '
@@ -133,13 +133,13 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1376, 54)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1432, 54)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'txtNoInvoice
         '
-        Me.txtNoInvoice.Location = New System.Drawing.Point(363, 12)
+        Me.txtNoInvoice.Location = New System.Drawing.Point(390, 12)
         Me.txtNoInvoice.MaximumSize = New System.Drawing.Size(130, 0)
         Me.txtNoInvoice.MinimumSize = New System.Drawing.Size(130, 0)
         Me.txtNoInvoice.Name = "txtNoInvoice"
@@ -149,7 +149,7 @@ Partial Class FrmTravelTicketInvoice
         '
         'txtTotAmount
         '
-        Me.txtTotAmount.Location = New System.Drawing.Point(1141, 12)
+        Me.txtTotAmount.Location = New System.Drawing.Point(1178, 12)
         Me.txtTotAmount.MaximumSize = New System.Drawing.Size(130, 0)
         Me.txtTotAmount.MinimumSize = New System.Drawing.Size(130, 0)
         Me.txtTotAmount.Name = "txtTotAmount"
@@ -168,7 +168,7 @@ Partial Class FrmTravelTicketInvoice
         'dtDate
         '
         Me.dtDate.EditValue = Nothing
-        Me.dtDate.Location = New System.Drawing.Point(560, 12)
+        Me.dtDate.Location = New System.Drawing.Point(587, 12)
         Me.dtDate.MaximumSize = New System.Drawing.Size(120, 0)
         Me.dtDate.MinimumSize = New System.Drawing.Size(120, 0)
         Me.dtDate.Name = "dtDate"
@@ -186,12 +186,12 @@ Partial Class FrmTravelTicketInvoice
         'txtCuryID
         '
         Me.txtCuryID.EditValue = "IDR"
-        Me.txtCuryID.Location = New System.Drawing.Point(974, 12)
+        Me.txtCuryID.Location = New System.Drawing.Point(1001, 12)
         Me.txtCuryID.MaximumSize = New System.Drawing.Size(70, 0)
         Me.txtCuryID.MinimumSize = New System.Drawing.Size(70, 0)
         Me.txtCuryID.Name = "txtCuryID"
         Me.txtCuryID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtCuryID.Properties.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.txtCuryID.Properties.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.txtCuryID.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtCuryID.Size = New System.Drawing.Size(70, 22)
         Me.txtCuryID.StyleController = Me.LayoutControl1
@@ -199,10 +199,11 @@ Partial Class FrmTravelTicketInvoice
         '
         'btnSaveInvoice
         '
-        Me.btnSaveInvoice.Location = New System.Drawing.Point(1283, 12)
-        Me.btnSaveInvoice.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnSaveInvoice.Location = New System.Drawing.Point(1320, 12)
+        Me.btnSaveInvoice.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.btnSaveInvoice.MinimumSize = New System.Drawing.Size(100, 0)
         Me.btnSaveInvoice.Name = "btnSaveInvoice"
-        Me.btnSaveInvoice.Size = New System.Drawing.Size(81, 27)
+        Me.btnSaveInvoice.Size = New System.Drawing.Size(100, 27)
         Me.btnSaveInvoice.StyleController = Me.LayoutControl1
         Me.btnSaveInvoice.TabIndex = 19
         Me.btnSaveInvoice.Text = "Save Invoice"
@@ -210,7 +211,7 @@ Partial Class FrmTravelTicketInvoice
         'dtDueDate
         '
         Me.dtDueDate.EditValue = Nothing
-        Me.dtDueDate.Location = New System.Drawing.Point(767, 12)
+        Me.dtDueDate.Location = New System.Drawing.Point(794, 12)
         Me.dtDueDate.MaximumSize = New System.Drawing.Size(120, 0)
         Me.dtDueDate.MinimumSize = New System.Drawing.Size(120, 0)
         Me.dtDueDate.Name = "dtDueDate"
@@ -231,7 +232,7 @@ Partial Class FrmTravelTicketInvoice
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1376, 54)
+        Me.Root.Size = New System.Drawing.Size(1432, 54)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -239,7 +240,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControlItem1.Control = Me.txtVendor
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(278, 34)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(305, 34)
         Me.LayoutControlItem1.Text = "Vendor"
         Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(60, 16)
@@ -248,7 +249,7 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtNoInvoice
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(278, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(305, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem2.Size = New System.Drawing.Size(207, 34)
@@ -260,7 +261,7 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.dtDate
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(485, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(512, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem3.Size = New System.Drawing.Size(187, 34)
@@ -272,7 +273,7 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.dtDueDate
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(672, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(699, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem4.Size = New System.Drawing.Size(207, 34)
@@ -284,7 +285,7 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.txtCuryID
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(879, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(906, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem5.Size = New System.Drawing.Size(157, 34)
@@ -296,22 +297,22 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.txtTotAmount
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(1036, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(1063, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(227, 34)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(237, 34)
         Me.LayoutControlItem6.Text = "Total Amount"
         Me.LayoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 16)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(90, 16)
         Me.LayoutControlItem6.TextToControlDistance = 5
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.btnSaveInvoice
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(1263, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(1300, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(93, 34)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(112, 34)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
@@ -324,7 +325,7 @@ Partial Class FrmTravelTicketInvoice
         Me.GridInvoice.MainView = Me.GridViewInvoice
         Me.GridInvoice.Name = "GridInvoice"
         Me.GridInvoice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmount, Me.CCheck, Me.CStatus})
-        Me.GridInvoice.Size = New System.Drawing.Size(1352, 428)
+        Me.GridInvoice.Size = New System.Drawing.Size(1408, 428)
         Me.GridInvoice.TabIndex = 20
         Me.GridInvoice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewInvoice})
         '
@@ -532,7 +533,7 @@ Partial Class FrmTravelTicketInvoice
         '
         Me.chkBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkBalance.EditValue = True
-        Me.chkBalance.Location = New System.Drawing.Point(1140, 12)
+        Me.chkBalance.Location = New System.Drawing.Point(1196, 12)
         Me.chkBalance.MaximumSize = New System.Drawing.Size(50, 0)
         Me.chkBalance.Name = "chkBalance"
         Me.chkBalance.Properties.Caption = ""
@@ -550,7 +551,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 96, 812, 500)
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1376, 49)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1432, 49)
         Me.LayoutControl3.TabIndex = 2
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -558,9 +559,9 @@ Partial Class FrmTravelTicketInvoice
         '
         Me.Label8.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label8.Location = New System.Drawing.Point(1027, 12)
+        Me.Label8.Location = New System.Drawing.Point(1069, 12)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(109, 25)
+        Me.Label8.Size = New System.Drawing.Size(123, 25)
         Me.Label8.TabIndex = 30
         Me.Label8.Text = "Selisih"
         '
@@ -568,7 +569,7 @@ Partial Class FrmTravelTicketInvoice
         '
         Me.txtBalance.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtBalance.Enabled = False
-        Me.txtBalance.Location = New System.Drawing.Point(1194, 12)
+        Me.txtBalance.Location = New System.Drawing.Point(1250, 12)
         Me.txtBalance.MaximumSize = New System.Drawing.Size(170, 0)
         Me.txtBalance.MinimumSize = New System.Drawing.Size(170, 0)
         Me.txtBalance.Name = "txtBalance"
@@ -589,13 +590,13 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.EmptySpaceItem2})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1376, 49)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1432, 49)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.txtBalance
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(1182, 0)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(1238, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(174, 29)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
@@ -604,7 +605,7 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.chkBalance
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(1128, 0)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(1184, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(54, 29)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
@@ -613,9 +614,9 @@ Partial Class FrmTravelTicketInvoice
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.Label8
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(1015, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(1057, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(113, 29)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(127, 29)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -624,7 +625,7 @@ Partial Class FrmTravelTicketInvoice
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(1015, 29)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(1057, 29)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'TableLayoutPanel1
@@ -641,7 +642,7 @@ Partial Class FrmTravelTicketInvoice
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1382, 573)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1438, 573)
         Me.TableLayoutPanel1.TabIndex = 32
         '
         'LayoutControl2
@@ -651,7 +652,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControl2.Location = New System.Drawing.Point(3, 63)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1376, 452)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1432, 452)
         Me.LayoutControl2.TabIndex = 1
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -661,7 +662,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem8})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1376, 452)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1432, 452)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem8
@@ -669,7 +670,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControlItem8.Control = Me.GridInvoice
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(1356, 432)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1412, 432)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -677,7 +678,7 @@ Partial Class FrmTravelTicketInvoice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1382, 573)
+        Me.ClientSize = New System.Drawing.Size(1438, 573)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False

@@ -90,6 +90,7 @@ Public Class FrmBankPaid
     End Sub
     Private Sub FrmBankPaid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
+        TxtTgl.EditValue = DateTime.Today
         DataCashBank()
         'Call CreateTable()
 
@@ -116,9 +117,12 @@ Public Class FrmBankPaid
 
             Dim bukti As String = ObjCashBank.autononb
             ' suspen.SuspendID = suspendID
+            Dim tgl As DateTime = TxtTgl.EditValue
             Dim ObjDetails As New cashbank_models
             With ObjDetails
-                .Tgl = DateTime.Parse(GridView2.GetRowCellValue(i, "Tgl").ToString())
+                ''                .Tgl = DateTime.Parse(GridView2.GetRowCellValue(i, "Tgl").ToString())
+                .Tgl = tgl
+
                 .NoBukti = bukti
                 .Transaksi = "Advance"
                 .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
@@ -159,7 +163,8 @@ Public Class FrmBankPaid
 
     Private Sub tabu2()
         Dim bukti As String = ObjCashBank.autononb
-        Dim tgl As DateTime = DateTime.Now
+        '   Dim tgl As DateTime = DateTime.Now
+        Dim tgl As DateTime = TxtTgl.EditValue
         Dim transaksi As String = "Advance"
         Dim suspendamount As Double = 0
         Dim ObjDetails As New cashbank_models
@@ -275,7 +280,8 @@ Public Class FrmBankPaid
     End Sub
     Private Sub tab_settle02()
         Dim bukti As String = ObjCashBank.autononb
-        Dim tgl As DateTime = DateTime.Now
+        '        Dim tgl As DateTime = DateTime.Now
+        Dim tgl As DateTime = TxtTgl.EditValue
         Dim transaksi As String = "Settle"
         Dim suspendamount As Double = 0
         Dim totsuspend As Double = 0
@@ -336,10 +342,11 @@ Public Class FrmBankPaid
 
             Dim bukti As String = ObjCashBank.autononb
             Dim totsuspend As Double = 0
-
+            Dim tgl As DateTime = TxtTgl.EditValue
             Dim ObjDetails As New cashbank_models
             With ObjDetails
-                .Tgl = DateTime.Parse(GridView2.GetRowCellValue(f, "Tgl").ToString())
+                '.Tgl = DateTime.Parse(GridView2.GetRowCellValue(f, "Tgl").ToString())
+                .Tgl = tgl
                 .NoBukti = bukti
                 .Transaksi = "Settle"
                 .Keterangan = GridView2.GetRowCellValue(f, "Description").ToString().TrimEnd

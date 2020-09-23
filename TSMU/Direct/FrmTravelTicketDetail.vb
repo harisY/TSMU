@@ -215,7 +215,7 @@ Public Class FrmTravelTicketDetail
         End If
 
         Dim frm_TicketInvoice As FrmTravelTicketInvoice
-        frm_TicketInvoice = New FrmTravelTicketInvoice(fs_Code, dtInvoiceHeader, dtInvoiceDetail)
+        frm_TicketInvoice = New FrmTravelTicketInvoice(fs_Code, dtInvoiceHeader, dtInvoiceDetail, FrmParent)
         frm_TicketInvoice.Text = "Input Invoice"
         frm_TicketInvoice.StartPosition = FormStartPosition.CenterScreen
         frm_TicketInvoice.ShowDialog()
