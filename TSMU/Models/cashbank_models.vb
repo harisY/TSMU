@@ -282,10 +282,15 @@ Public Class cashbank_models
     Public Sub UpdateSuspend_hapus()
 
         Try
-            Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
-            MainModul.ExecQuery_Solomon(Query)
-            Dim Query2 = "update TravelRequestHeader set ProsesIDR=0,ProsesUSD=0,ProsesYEN=0 from TravelRequestHeader inner join cashbank on TravelRequestHeader.NoRequest = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
-            MainModul.ExecQuery(Query2)
+            'Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
+            'MainModul.ExecQuery_Solomon(Query)
+            ''Dim Query2 = "update TravelRequestHeader set ProsesIDR=0,ProsesUSD=0,ProsesYEN=0 from TravelRequestHeader inner join cashbank on TravelRequestHeader.NoRequest = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
+            ''MainModul.ExecQuery(Query2)
+            'Dim Query2 = "[New_BOM].[dbo].[TravelRequestHeader] set [New_BOM].[dbo].[TravelRequestHeader].[ProsesIDR]=0,[New_BOM].[dbo].[TravelRequestHeader].[ProsesUSD]=0,
+            '              [New_BOM].[dbo].[TravelRequestHeader].[ProsesYEN]=0 from [New_BOM].[dbo].[TravelRequestHeader]
+            '              inner join [TSC16Application].[dbo].[cashbank] on [New_BOM].[dbo].[TravelRequestHeader].[NoRequest] = right(replace([TSC16Application].[dbo].[cashbank].[noref],' ',''),15) 
+            '              where [TSC16Application].[dbo].[cashbank].[NoBukti]" & QVal(Me._id) & ""
+            'MainModul.ExecQuery(Query2)
         Catch ex As Exception
             Throw ex
 
