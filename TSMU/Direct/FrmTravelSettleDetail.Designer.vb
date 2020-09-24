@@ -144,6 +144,7 @@ Partial Class FrmTravelSettleDetail
         Me.CreditCardIDEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CreditCardNumberEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AccountNameEntertain = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridOther = New DevExpress.XtraGrid.GridControl()
         Me.GridViewOther = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.IDOther = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -581,7 +582,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryHotel.AutoHeight = False
         Me.CCurryHotel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryHotel.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryHotel.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryHotel.Name = "CCurryHotel"
         Me.CCurryHotel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1289,7 +1290,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryTransport.AutoHeight = False
         Me.CCurryTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryTransport.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryTransport.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryTransport.Name = "CCurryTransport"
         Me.CCurryTransport.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1572,7 +1573,7 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewEntertain
         '
-        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDEntertain, Me.AccountIDEntertain, Me.SubAccountEntertain, Me.DateEntertain, Me.EntertainIDEntertain, Me.DescriptionEntertain, Me.CurryIDEntertain, Me.AmountEntertain, Me.AmountIDREntertain, Me.PayTypeEntertain, Me.CreditCardIDEntertain, Me.CreditCardNumberEntertain, Me.AccountNameEntertain})
+        Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDEntertain, Me.AccountIDEntertain, Me.SubAccountEntertain, Me.DateEntertain, Me.EntertainIDEntertain, Me.DescriptionEntertain, Me.CurryIDEntertain, Me.AmountEntertain, Me.AmountIDREntertain, Me.PayTypeEntertain, Me.CreditCardIDEntertain, Me.CreditCardNumberEntertain, Me.AccountNameEntertain, Me.GridColumn22})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
         Me.GridViewEntertain.GridControl = Me.GridEntertain
@@ -1675,6 +1676,7 @@ Partial Class FrmTravelSettleDetail
         Me.DescriptionEntertain.FieldName = "Description"
         Me.DescriptionEntertain.MinWidth = 27
         Me.DescriptionEntertain.Name = "DescriptionEntertain"
+        Me.DescriptionEntertain.OptionsColumn.AllowEdit = False
         Me.DescriptionEntertain.Visible = True
         Me.DescriptionEntertain.VisibleIndex = 3
         Me.DescriptionEntertain.Width = 471
@@ -1696,7 +1698,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryEntertain.AutoHeight = False
         Me.CCurryEntertain.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryEntertain.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryEntertain.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryEntertain.Name = "CCurryEntertain"
         Me.CCurryEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1750,6 +1752,7 @@ Partial Class FrmTravelSettleDetail
         Me.PayTypeEntertain.FieldName = "PaymentType"
         Me.PayTypeEntertain.MinWidth = 25
         Me.PayTypeEntertain.Name = "PayTypeEntertain"
+        Me.PayTypeEntertain.OptionsColumn.AllowEdit = False
         Me.PayTypeEntertain.OptionsColumn.FixedWidth = True
         Me.PayTypeEntertain.Visible = True
         Me.PayTypeEntertain.VisibleIndex = 7
@@ -1789,6 +1792,14 @@ Partial Class FrmTravelSettleDetail
         Me.AccountNameEntertain.OptionsColumn.AllowEdit = False
         Me.AccountNameEntertain.OptionsColumn.FixedWidth = True
         Me.AccountNameEntertain.Width = 220
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Entertain No Temp"
+        Me.GridColumn22.FieldName = "EntertainIDTemp"
+        Me.GridColumn22.MinWidth = 25
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Width = 94
         '
         'GridOther
         '
@@ -1896,7 +1907,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.CCurryOther.AutoHeight = False
         Me.CCurryOther.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CCurryOther.Items.AddRange(New Object() {"IDR", "USD", "YEN"})
+        Me.CCurryOther.Items.AddRange(New Object() {"USD", "JPY", "IDR"})
         Me.CCurryOther.Name = "CCurryOther"
         Me.CCurryOther.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -2140,7 +2151,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridSumTransport.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridSumTransport.Location = New System.Drawing.Point(6, 21)
+        Me.GridSumTransport.Location = New System.Drawing.Point(12, 21)
         Me.GridSumTransport.MainView = Me.GridViewSumTransport
         Me.GridSumTransport.Name = "GridSumTransport"
         Me.GridSumTransport.Size = New System.Drawing.Size(1221, 173)
@@ -4017,4 +4028,5 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

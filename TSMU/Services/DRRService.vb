@@ -288,6 +288,20 @@ Public Class DRRService
             Throw ex
         End Try
     End Function
+
+    Public Function PrintReport(Id As Integer) As DataSet
+        Try
+            Dim ds As dsLaporan
+            Dim Sql As String = "Drr_PrintReport"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Id", SqlDbType.Int)
+            pParam(0).Value = Id
+            ds = GetDataSetByCommand_SP(Sql, "DtDRR", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 #End Region
 
 

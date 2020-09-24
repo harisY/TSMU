@@ -551,7 +551,7 @@ Public Class TravelHeaderModel
                 "                             AmountSett " &
                 "                     FROM    dbo.TravelSettleDetail " &
                 "                   ) AS t PIVOT ( SUM(AmountSett) FOR CuryIDSett IN ( [IDR], " &
-                "                                                               [USD], [YEN] ) ) AS pivot_table ON pivot_table.TravelID = tv_detail.TravelID " &
+                "                                                               [USD], [JPY] ) ) AS pivot_table ON pivot_table.TravelID = tv_detail.TravelID " &
                 "                                                               AND pivot_table.ID = tv_detail.ID " &
                 "  WHERE  tv_detail.TravelID = " & QVal(TravelID) & ""
 

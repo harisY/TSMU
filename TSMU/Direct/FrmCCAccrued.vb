@@ -13,10 +13,11 @@ Public Class FrmCCAccrued
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
     Dim TabPage As String
+    Dim frmCCAccrued As New FrmReportCCAccrued
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, True)
         XtraTabControl1.SelectedTabPage = TabPageProses
         TabPage = XtraTabControl1.SelectedTabPage.Name
         LoadGridAccrued()
@@ -45,6 +46,13 @@ Public Class FrmCCAccrued
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_Print()
+        frmCCAccrued = New FrmReportCCAccrued
+        frmCCAccrued.txtTabAccrued.Text = TabPage
+        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
+        frmCCAccrued.Show()
     End Sub
 
     Private Sub GroupingGrid(view As GridView)
@@ -79,7 +87,7 @@ Public Class FrmCCAccrued
             cls_Accrued.CreditCardNumber = txtCCNumber.Text
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
-            GroupingGrid(GridViewAccrued)
+            'GroupingGrid(GridViewAccrued)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -96,7 +104,7 @@ Public Class FrmCCAccrued
             GridViewAccruedAll.Columns("Pay").Visible = False
             GridViewAccruedAll.BestFitColumns()
             GridCellFormat(GridViewAccruedAll)
-            GroupingGrid(GridViewAccruedAll)
+            'GroupingGrid(GridViewAccruedAll)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -207,7 +215,7 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
+            txtCCNumber.Text = lF_SearchData.Values.Item(0).ToString.Trim
         End If
 
         lF_SearchData.Close()

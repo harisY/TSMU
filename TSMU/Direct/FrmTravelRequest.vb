@@ -72,6 +72,7 @@ Public Class FrmTravelRequest
         Dim noRequest As String = String.Empty
         Dim status As String = String.Empty
         Dim approved As String = String.Empty
+        Dim statusTicket As String = String.Empty
         Try
             Dim selectedRows() As Integer = GridViewRequest.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
@@ -79,15 +80,21 @@ Public Class FrmTravelRequest
                     noRequest = GridViewRequest.GetRowCellValue(rowHandle, "NoRequest")
                     status = GridViewRequest.GetRowCellValue(rowHandle, "Status")
                     approved = GridViewRequest.GetRowCellValue(rowHandle, "Approved")
+                    statusTicket = GridViewRequest.GetRowCellValue(rowHandle, "StatusTicket")
                 End If
             Next rowHandle
 
-            If status = "OPEN" Then
+            If statusTicket = "ISSUE" Then
+                MessageBox.Show("No Request " & noRequest & " sudah dilakukan Pesan Ticket !", "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            ElseIf status = "OPEN" Then
                 MessageBox.Show("No Request " & noRequest & " sudah dilakukan Invoice Ticket !", "Warning",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
-            ElseIf status = "CLOSE" AndAlso approved <> "CANCEL" Then
+            ElseIf status = "CLOSE" AndAlso approved <> "CANCEL" AndAlso statusTicket = "INVOICE" Then
                 MessageBox.Show("No Request " & noRequest & " sudah dilakukan proses Settlement !", "Warning",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Exclamation,

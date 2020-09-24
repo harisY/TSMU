@@ -8,9 +8,13 @@ Public Class Frm_NPWO_Head
     Dim FrmReport As ReportNPWO
 
     Dim DtDelete As DataTable
+    Dim Active_Form As Integer
 
 
     Private Sub Frm_NPWO_Head_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim GServis As New GlobalService
+        Active_Form = GServis.GetLevel_str("NPWO")
 
         dtGrid = New DataTable
         dtGrid.Columns.AddRange(New DataColumn(6) {New DataColumn("NPWO", GetType(String)),
@@ -26,19 +30,29 @@ Public Class Frm_NPWO_Head
 
 
         bb_SetDisplayChangeConfirmation = False
-        LoadGrid()
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        LoadGrid(Active_Form)
+
+        If Active_Form = 1 Or Active_Form = 0 Then
+            Call Proc_EnableButtons(True, False, False, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 2 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        ElseIf Active_Form = 3 Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        End If
+
 
     End Sub
-    Private Sub LoadGrid()
+    Private Sub LoadGrid(_AcriveForm As Integer)
         Try
-            Cursor.Current = Cursors.WaitCursor
 
+            Cursor.Current = Cursors.WaitCursor
             Dim dt As New DataTable
-            dt = fc_Class.Get_NPWO()
-            Grid.DataSource = dt
-            'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
-            Cursor.Current = Cursors.Default
+
+            dt = fc_Class.Get_NPWO(Active_Form)
+                Grid.DataSource = dt
+
+
+                Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
         End Try
@@ -55,7 +69,7 @@ Public Class Frm_NPWO_Head
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New Frm_Npwo_Detail1(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New Frm_Npwo_Detail1(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -63,7 +77,7 @@ Public Class Frm_NPWO_Head
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
-        Call LoadGrid()
+        Call LoadGrid(Active_Form)
     End Sub
 
     Public Overrides Sub Proc_Filter()
@@ -106,7 +120,7 @@ Public Class Frm_NPWO_Head
 
 
             fc_Class.Delete(NP)
-            Call LoadGrid()
+            Call LoadGrid(Active_Form)
             Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
         Else
 
@@ -139,6 +153,10 @@ Public Class Frm_NPWO_Head
     End Sub
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
+
+    Private Sub Frm_NPWO_Head_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
 
     End Sub
 End Class
