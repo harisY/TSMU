@@ -746,7 +746,7 @@ Public Class Cls_FP
                     ,Tot_Dpp_Invoice
                     ,Tot_Ppn,Tot_Voucher
                     ,Tot_Pph,Status
-                    ,nama_vendor FROM Fp_Header ORDER BY FPNo Desc"
+                    ,nama_vendor,PO,Keterangan FROM Fp_Header ORDER BY FPNo Desc"
 
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)

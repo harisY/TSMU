@@ -13,6 +13,9 @@ Public Class Frm_CR_UserCreateHeader
     Dim DeptSub As String = ""
     Dim Active_Form As Integer = 1
 
+    Dim pDate2 As Date
+    Dim pDate1 As Date
+
     Private Sub Frm_CR_UserCreateHeader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         bb_SetDisplayChangeConfirmation = False
@@ -20,7 +23,7 @@ Public Class Frm_CR_UserCreateHeader
         LoadGrid(Dept)
         'Call Sub_Dept(gh_Common.GroupID)
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
     End Sub
     Private Sub Sub_Dept(Dept_Sub As String)
         Try
@@ -48,19 +51,17 @@ Public Class Frm_CR_UserCreateHeader
         Try
             Cursor.Current = Cursors.WaitCursor
 
+            pDate2 = Date.Now
+            pDate1 = pDate2.AddMonths(-2)
+
             Dim dt As New DataTable
-            dt = fc_Class.Get_CRRequest(Dept)
+
+            dt = fc_Class.Get_CRRequest(Dept, pDate1, pDate2)
             Grid.DataSource = dt
 
-            Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_CRRequest2(Dept)
-            Grid2.DataSource = dt2
 
-            Dim dt3 As New DataTable
-            dt3 = fc_Class.Get_CRRequest3(Dept)
-            Grid3.DataSource = dt3
 
-            Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+            'Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
@@ -158,22 +159,7 @@ Public Class Frm_CR_UserCreateHeader
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-    Private Sub GridView1_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
 
-        Dim View As GridView = sender
-        If (e.RowHandle >= 0) Then
-            Dim category As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Status"))
-            If category = "Revise" Then
-                e.Appearance.BackColor = Color.Yellow
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
-            ElseIf category = "Create" Then
-                e.Appearance.BackColor = Color.Green
-                'e.Appearance.BackColor2 = Color.Yellow
-                e.HighPriority = True
-            End If
-        End If
-    End Sub
 
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
@@ -201,55 +187,49 @@ Public Class Frm_CR_UserCreateHeader
         End Try
     End Sub
 
-    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
-        Try
-            'Active_Form = 1
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
-
-            'fc_ClassCRUD = New ClsCR_CreateUser
-            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation No")
-
-                End If
-            Next rowHandle
-
-            If GridView2.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView1.RowCount)
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            Dim category As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Status"))
+            If category = "Revise" Then
+                e.Appearance.BackColor = Color.Yellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            ElseIf category = "Create" Then
+                e.Appearance.BackColor = Color.Green
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
             End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+        End If
     End Sub
 
-    Private Sub Grid3_DoubleClick(sender As Object, e As EventArgs) Handles Grid3.DoubleClick
+    Public Overrides Sub Proc_Search()
+
         Try
-            'Active_Form = 1
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
+            Dim Status As List(Of String) = New List(Of String)({"ALL", "Create", "Submit", "Revise", "Approve Dept Head", "Approve Div Head", "Submit To NPD"})
 
-            'fc_ClassCRUD = New ClsCR_CreateUser
-            Dim selectedRows() As Integer = GridView3.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView3.GetRowCellValue(rowHandle, "Circulation No")
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
 
-                End If
-            Next rowHandle
+                dtGrid = fc_Class.Get_CRRequest(Dept, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                Grid.DataSource = dtGrid
 
-            If GridView3.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView1.RowCount)
-            End If
+
+                'dt = fc_Class.Get_CRRequest(Dept, pDate1, pDate2)
+                'Grid.DataSource = dt
+
+
+            End With
         Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+
+
+
+
+
     End Sub
+
 End Class

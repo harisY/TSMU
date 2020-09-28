@@ -38,6 +38,7 @@ Public Class Frm_Npwo_Detail1
 
     Dim FrmReport As New Frm_Rpt_NPWO
     Dim _Tag As TagModel
+    Dim Active_Form As Integer
 
 
     'Dim DtGridNPWO As DataTable
@@ -45,9 +46,9 @@ Public Class Frm_Npwo_Detail1
     Private Sub Frm_Npw_Detail1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call CreateTableBarang()
-        'Call FillComboNPP()
+        Call FillComboNPP()
         Call FillComboCategory()
-
+        Call FillComboCustomer()
         Call InitialSetForm()
 
     End Sub
@@ -155,9 +156,35 @@ Public Class Frm_Npwo_Detail1
                     isUpdate = True
                 End If
 
-                Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
-                Me.Text = "NPWO FORM -> " & fs_Code
-            Else
+                If Active_Form = 1 Then
+                    If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Revise" Then
+                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, True, False)
+                    ElseIf fc_Class.H_Status = "Submit" Then
+                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False, False)
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
+                    Me.Text = "NPWO FORM "
+                ElseIf Active_Form = 2 Then
+                    If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve Dept Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True, False)
+                        B_Reject.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
+                    Me.Text = "NPWO FORM "
+
+                ElseIf Active_Form = 3 Then
+                    If fc_Class.H_Status = "Approve Dept Head" Or fc_Class.H_Status = "Approve Div Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True, False)
+                        B_Reject.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
+                    Me.Text = "NPWO FORM "
+                End If
+
+                Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
 
                 Me.Text = "NPWO FORM "
@@ -179,7 +206,8 @@ Public Class Frm_Npwo_Detail1
                   ByVal strCode2 As String,
                   ByRef lf_FormParent As Form,
                   ByVal li_GridRow As Integer,
-                  ByRef _Grid As GridControl)
+                  ByRef _Grid As GridControl,
+                   _activeForm As Integer)
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
@@ -192,6 +220,8 @@ Public Class Frm_Npwo_Detail1
         _Tag = New TagModel
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
         Tag = _Tag
+        Active_Form = _activeForm
+
     End Sub
 
     Public Sub New()
@@ -291,13 +321,13 @@ Public Class Frm_Npwo_Detail1
 
     Private Sub TNoNpp_EditValueChanged(sender As Object, e As EventArgs) Handles TNoNpp.EditValueChanged
         Try
-
             Cursor.Current = Cursors.WaitCursor
-
             'Dim DtGridNPWO As New DataTable
             dtHeader = fc_Class.GetNppByID(TNoNpp.EditValue)
             If dtHeader.Rows.Count > 0 Then
-                TCustomer.EditValue = dtHeader.Rows(0).Item("Customer_Name")
+                TCustomer.Text = dtHeader.Rows(0).Item("Customer_Name")
+                'TCustomer.Properties.ValueMember = dtHeader.Rows(0).Item("Customer_Name")
+                'TCustomer.Properties.DisplayMember = dtHeader.Rows(0).Item("Customer_Name")
                 TModel.EditValue = dtHeader.Rows(0).Item("Model_Name")
                 TModelDesc.EditValue = dtHeader.Rows(0).Item("Model_Desc")
                 TOrderMonth.EditValue = dtHeader.Rows(0).Item("Order_Month")
@@ -505,6 +535,7 @@ Public Class Frm_Npwo_Detail1
                     .H_A2 = dtApprove.Rows(0).Item("A2")
                     .H_A3 = dtApprove.Rows(0).Item("A3")
                     .H_A4 = dtApprove.Rows(0).Item("A4")
+                    .H_Status = "Create"
 
                 End With
                 'Colletion Detail
@@ -580,7 +611,7 @@ Public Class Frm_Npwo_Detail1
 
                 fc_Class.Insert(TNpwo_No.EditValue)
                 bs_Filter = gh_Common.GroupID
-                GridDtl.DataSource = fc_Class_Head.Get_NPWO()
+                GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 Me.Hide()
@@ -858,11 +889,10 @@ Public Class Frm_Npwo_Detail1
     Public Overrides Sub Proc_Print()
 
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve = True Then
-
+        If fc_Class.H_Approve <> 0 Then
 
             FormDetail = 3
-            CallForm(fs_Code)
+            'CallForm(fs_Code)
 
             FrmReport = New Frm_Rpt_NPWO
             FrmReport.NPWO_No = TNpwo_No.EditValue
@@ -897,30 +927,170 @@ Public Class Frm_Npwo_Detail1
 
 
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve = False Then
-            Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
-            If result = System.Windows.Forms.DialogResult.Yes Then
-                Try
-                    With fc_Class
-                        .H_Approve = 1
-                    End With
-                    fc_Class.UpdateApprove(fs_Code)
-                    bs_Filter = gh_Common.Username()
-                    GridDtl.DataSource = fc_Class_Head.Get_NPWO()
+        If Active_Form = 1 Then
+            If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Revise" Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    Try
+                        With fc_Class
+                            .H_Approve = 1
+                            .H_Status = "Submit"
+                            .TA_Username = gh_Common.Username
+                            .TA_MenuCode = "NPWO"
+                            .TA_DeptID = gh_Common.GroupID
+                            .TA_NoTransaksi = fs_Code
+                            .TA_LevelApprove = Active_Form
+                            .TA_StatusApprove = "Submit"
+                            .TA_ApproveBy = gh_Common.Username
+                            .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
+                        End With
+                        fc_Class.UpdateApprove(fs_Code, 0)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
 
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
+                End If
+            Else
+                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+            End If
+
+        ElseIf Active_Form = 2 Then
+
+            If fc_Class.H_Approve = 1 Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    With fc_Class
+                        .H_Approve = 2
+                        .H_Status = "Approve Dept Head"
+                        .TA_Username = gh_Common.Username
+                        .TA_MenuCode = "NPWO"
+                        .TA_DeptID = gh_Common.GroupID
+                        .TA_NoTransaksi = fs_Code
+                        .TA_LevelApprove = Active_Form
+                        .TA_StatusApprove = "Approve"
+                        .TA_ApproveBy = gh_Common.Username
+                        .TA_ApproveDAte = Date.Now
+                        .TA_IsActive = 1
+                    End With
+                    fc_Class.UpdateApprove(fs_Code, 0)
+                    bs_Filter = gh_Common.Username()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
                     IsClosed = True
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     Me.Hide()
-                Catch ex As Exception
-                    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                End Try
-
+                Else
+                End If
             End If
-        Else
-            XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+        ElseIf Active_Form = 3 Then
+            If fc_Class.H_Approve = 2 Then
+                Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                If result = System.Windows.Forms.DialogResult.Yes Then
+                    With fc_Class
+                        .H_Approve = 3
+                        .H_Status = "Approve Div Head"
+                        .TA_Username = gh_Common.Username
+                        .TA_MenuCode = "NPWO"
+                        .TA_DeptID = gh_Common.GroupID
+                        .TA_NoTransaksi = fs_Code
+                        .TA_LevelApprove = Active_Form
+                        .TA_StatusApprove = "Approve"
+                        .TA_ApproveBy = gh_Common.Username
+                        .TA_ApproveDAte = Date.Now
+                        .TA_IsActive = 1
+                    End With
+                    fc_Class.UpdateApprove(fs_Code, 0)
+                    bs_Filter = gh_Common.Username()
+                    GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
+                    IsClosed = True
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Me.Hide()
+                Else
+                End If
+            End If
         End If
-
-
     End Sub
+
+    Private Sub B_Reject_Click(sender As Object, e As EventArgs) Handles B_Reject.Click
+        ' Dim Note As String = InputBox("Enter Value", "Enter Value", "Please Enter Value")
+        Try
+            If Active_Form = 2 Then
+
+                If fc_Class.H_Approve = 1 Or fc_Class.H_Approve = 2 Then
+                    Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                    If result = System.Windows.Forms.DialogResult.Yes Then
+                        With fc_Class
+                            .H_Approve = 0
+                            .H_Status = "Revise"
+                            .TA_Username = gh_Common.Username
+                            .TA_MenuCode = "NPWO"
+                            .TA_DeptID = gh_Common.GroupID
+                            .TA_NoTransaksi = fs_Code
+                            .TA_LevelApprove = 0
+                            .TA_StatusApprove = "Reject"
+                            .TA_ApproveBy = gh_Common.Username
+                            .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
+                        End With
+                        fc_Class.UpdateApprove(fs_Code, 1)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Else
+                    End If
+                End If
+            ElseIf Active_Form = 3 Then
+                If fc_Class.H_Approve = 2 Or fc_Class.H_Approve = 3 Then
+                    Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Reject " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
+                    If result = System.Windows.Forms.DialogResult.Yes Then
+                        With fc_Class
+                            .H_Approve = 0
+                            .H_Status = "Revise"
+                            .TA_Username = gh_Common.Username
+                            .TA_MenuCode = "NPWO"
+                            .TA_DeptID = gh_Common.GroupID
+                            .TA_NoTransaksi = fs_Code
+                            .TA_LevelApprove = 0
+                            .TA_StatusApprove = "Reject"
+                            .TA_ApproveBy = gh_Common.Username
+                            .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
+                        End With
+                        fc_Class.UpdateApprove(fs_Code, 1)
+                        bs_Filter = gh_Common.Username()
+                        GridDtl.DataSource = fc_Class_Head.Get_NPWO(Active_Form)
+                        IsClosed = True
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        Me.Hide()
+                    Else
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub FillComboCustomer()
+        Try
+            Dim dt As New DataTable
+            dt = fc_Class.GetCustomer
+            TCustomer.Properties.DataSource = Nothing
+            TCustomer.Properties.DataSource = dt
+            TCustomer.Properties.ValueMember = "Value"
+            TCustomer.Properties.DisplayMember = "Value"
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 End Class
