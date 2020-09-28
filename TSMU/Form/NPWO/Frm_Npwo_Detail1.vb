@@ -48,7 +48,7 @@ Public Class Frm_Npwo_Detail1
         Call CreateTableBarang()
         Call FillComboNPP()
         Call FillComboCategory()
-
+        Call FillComboCustomer()
         Call InitialSetForm()
 
     End Sub
@@ -157,19 +157,34 @@ Public Class Frm_Npwo_Detail1
                 End If
 
                 If Active_Form = 1 Then
-                    Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                    If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Revise" Then
+                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, True, False)
+                    ElseIf fc_Class.H_Status = "Submit" Then
+                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False, False)
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
                     Me.Text = "NPWO FORM "
                 ElseIf Active_Form = 2 Then
-                    Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                    If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve Dept Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True, False)
+                        B_Reject.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
                     Me.Text = "NPWO FORM "
-                    B_Reject.Visible = True
+
                 ElseIf Active_Form = 3 Then
-                    Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                    If fc_Class.H_Status = "Approve Dept Head" Or fc_Class.H_Status = "Approve Div Head" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True, False)
+                        B_Reject.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
+                    End If
                     Me.Text = "NPWO FORM "
-                    B_Reject.Visible = True
                 End If
 
-            Else
+                Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
 
                 Me.Text = "NPWO FORM "
@@ -306,13 +321,13 @@ Public Class Frm_Npwo_Detail1
 
     Private Sub TNoNpp_EditValueChanged(sender As Object, e As EventArgs) Handles TNoNpp.EditValueChanged
         Try
-
             Cursor.Current = Cursors.WaitCursor
-
             'Dim DtGridNPWO As New DataTable
             dtHeader = fc_Class.GetNppByID(TNoNpp.EditValue)
             If dtHeader.Rows.Count > 0 Then
-                TCustomer.EditValue = dtHeader.Rows(0).Item("Customer_Name")
+                TCustomer.Text = dtHeader.Rows(0).Item("Customer_Name")
+                'TCustomer.Properties.ValueMember = dtHeader.Rows(0).Item("Customer_Name")
+                'TCustomer.Properties.DisplayMember = dtHeader.Rows(0).Item("Customer_Name")
                 TModel.EditValue = dtHeader.Rows(0).Item("Model_Name")
                 TModelDesc.EditValue = dtHeader.Rows(0).Item("Model_Desc")
                 TOrderMonth.EditValue = dtHeader.Rows(0).Item("Order_Month")
@@ -876,9 +891,8 @@ Public Class Frm_Npwo_Detail1
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve <> 0 Then
 
-
             FormDetail = 3
-            CallForm(fs_Code)
+            'CallForm(fs_Code)
 
             FrmReport = New Frm_Rpt_NPWO
             FrmReport.NPWO_No = TNpwo_No.EditValue
@@ -1065,4 +1079,18 @@ Public Class Frm_Npwo_Detail1
 
         End Try
     End Sub
+
+    Private Sub FillComboCustomer()
+        Try
+            Dim dt As New DataTable
+            dt = fc_Class.GetCustomer
+            TCustomer.Properties.DataSource = Nothing
+            TCustomer.Properties.DataSource = dt
+            TCustomer.Properties.ValueMember = "Value"
+            TCustomer.Properties.DisplayMember = "Value"
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 End Class

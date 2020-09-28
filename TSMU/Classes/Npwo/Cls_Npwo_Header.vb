@@ -43,6 +43,30 @@
 
     End Function
 
+    Public Function Get_NPWO_Search(_ActiveForm As Integer, Tg1 As Date, Tg2 As Date) As DataTable
+        Try
+
+            Dim query As String = "[NPWO_Get_NPWO]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@TgAwal", SqlDbType.Date)
+            pParam(1) = New SqlClient.SqlParameter("@TgAkhir", SqlDbType.Date)
+            pParam(2) = New SqlClient.SqlParameter("@ActiveForm", SqlDbType.Int)
+
+            pParam(0).Value = Tg1
+            pParam(1).Value = Tg2
+            pParam(2).Value = _ActiveForm
+
+
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
 
     Public Sub Delete(NPWO_ As String)
         Try

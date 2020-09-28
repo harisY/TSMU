@@ -59,7 +59,6 @@ Partial Class Frm_Npwo_Detail1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TNpwo_No = New DevExpress.XtraEditors.TextEdit()
-        Me.TCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TRevInfo = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -82,6 +81,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TMp = New DevExpress.XtraEditors.DateEdit()
         Me.B_Reject = New System.Windows.Forms.Button()
+        Me.TCustomer = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,7 +94,6 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TOrderMonth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TModel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TNpwo_No.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +106,7 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
@@ -512,14 +512,6 @@ Partial Class Frm_Npwo_Detail1
         Me.TNpwo_No.Size = New System.Drawing.Size(287, 20)
         Me.TNpwo_No.TabIndex = 21
         '
-        'TCustomer
-        '
-        Me.TCustomer.Enabled = False
-        Me.TCustomer.Location = New System.Drawing.Point(68, 71)
-        Me.TCustomer.Name = "TCustomer"
-        Me.TCustomer.Size = New System.Drawing.Size(93, 20)
-        Me.TCustomer.TabIndex = 23
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.TRevInfo)
@@ -774,6 +766,15 @@ Partial Class Frm_Npwo_Detail1
         Me.B_Reject.UseVisualStyleBackColor = False
         Me.B_Reject.Visible = False
         '
+        'TCustomer
+        '
+        Me.TCustomer.Location = New System.Drawing.Point(68, 71)
+        Me.TCustomer.Name = "TCustomer"
+        Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TCustomer.Properties.NullText = ""
+        Me.TCustomer.Size = New System.Drawing.Size(93, 20)
+        Me.TCustomer.TabIndex = 23
+        '
         'Frm_Npwo_Detail1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -803,7 +804,6 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TOrderMonth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TModel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TNpwo_No.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -818,6 +818,7 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -864,7 +865,6 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents Label10 As Label
     Friend WithEvents TNoNpp As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BDetail As Button
-    Friend WithEvents TCustomer As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LOI As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label4 As Label
     Friend WithEvents TModelDesc As DevExpress.XtraEditors.TextEdit
@@ -885,4 +885,5 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents TMp As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents B_Reject As Button
+    Friend WithEvents TCustomer As DevExpress.XtraEditors.LookUpEdit
 End Class
