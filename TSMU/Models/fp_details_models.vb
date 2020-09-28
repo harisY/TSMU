@@ -11,6 +11,8 @@
     Public Property Ppn As Double
     Public Property Tgl_Invoice As DateTime
     Public Property No_Bukti_Potong As String
+    Public Property PO As String
+    Public Property Keterangan As String
     Public Property Check_PPN As String
 
     Public Sub InsertDetails()
