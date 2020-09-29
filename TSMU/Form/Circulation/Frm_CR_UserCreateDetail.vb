@@ -22,7 +22,10 @@ Public Class Frm_CR_UserCreateDetail
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
+    Dim Model_Level As level_Model
     Dim fc_Class As New ClsCR_CreateUser
+    Dim fc_Model As New CR_UserCreateModel
+    Dim fc_Model_ApproveHistoryModel As New ApproveHistoryModel
     Dim fc_Class_ApproveDeptHead As New clsCR_ApproveDeptHead
     Dim fc_Class_ApproveDivHead As New clsCR_ApproveDivHead
     Dim fc_Class_OtherDept As New ClsCR_Other_Dept
@@ -68,6 +71,12 @@ Public Class Frm_CR_UserCreateDetail
     Dim _Tag As TagModel
 
     Dim dtApprove As DataTable
+
+    Dim Division As Integer
+    Dim Director As Integer
+
+    Dim pDate2 As Date
+    Dim pDate1 As Date
 
 
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
@@ -137,20 +146,24 @@ Public Class Frm_CR_UserCreateDetail
                         GroupBox2.Enabled = False
                     End If
                     C_Term.Visible = False
-                    If fc_Class.H_UserSubmition = True Then
+                    If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Revise" Then
 
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
-                        'Call No_Edit_Grid()
-                        Call No_Edit_TextBox()
-                        BAddRows.Enabled = False
-                        BMold.Enabled = False
-                    Else
                         GridView1.OptionsBehavior.Editable = True
                         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
                         T_CRNo.Enabled = False
+                    ElseIf fc_Class.H_Status = "Set Installment" Then
+                        GridView1.OptionsBehavior.Editable = True
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        BBeritaAcara.Visible = True
+                        T_CRNo.Enabled = False
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        Call No_Edit_TextBox()
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
                     End If
                     'Active_Form 2 = DeptHead
-                ElseIf Active_Form = 2 Then
+                ElseIf Active_Form = 2 Or Active_Form = 3 Then
 
                     GridView3.OptionsBehavior.Editable = False
                     GridView4.OptionsBehavior.Editable = False
@@ -179,53 +192,17 @@ Public Class Frm_CR_UserCreateDetail
 
                     End With
 
-                    If fc_Class.H_DeptHead_Approve = False Then
+                    If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Approve 2" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    ElseIf fc_Class.H_Status = "Other Dept" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True)
                     Else
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         GridView1.OptionsBehavior.Editable = False
                     End If
 
-                    'Active_Form 3 = DivHead
-                ElseIf Active_Form = 3 Then
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView1.OptionsBehavior.Editable = True
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
 
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        .Columns("Check").Visible = True
-                        .Columns("Note").Visible = True
-
-                    End With
-
-
-                    If fc_Class.H_DivHead_Approve = True Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        GridView1.Columns("Check").OptionsColumn.AllowEdit = False
-                        GridView1.Columns("Check").OptionsColumn.AllowEdit = False
-                    Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-                        GridView1.OptionsBehavior.Editable = True
-                        GridView1.Columns("Check").OptionsColumn.AllowEdit = True
-                        GridView1.Columns("Note").OptionsColumn.AllowEdit = True
-                    End If
-                    'Active_Form 4 = Other Dept
-                ElseIf Active_Form = 4 Then
+                ElseIf Active_Form = 4 Then   'Other Dept
                     GridView3.OptionsBehavior.Editable = False
                     GridView4.OptionsBehavior.Editable = False
                     GridView5.OptionsBehavior.Editable = True
@@ -263,8 +240,8 @@ Public Class Frm_CR_UserCreateDetail
                     'End If
 
 
-                    'Active_Form 5 = Accounting
-                ElseIf Active_Form = 5 Then
+
+                ElseIf Active_Form = 5 Then  'Active_Form 5 = Accounting
 
                     GridView3.OptionsBehavior.Editable = False
                     GridView4.OptionsBehavior.Editable = False
@@ -291,13 +268,17 @@ Public Class Frm_CR_UserCreateDetail
                         .Columns("Note").Visible = True
                     End With
 
-                    If fc_Class.H_BOD_Approve = True Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                    Else
+                    If fc_Class.H_Status = "Other Dept" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                    ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                        BBeritaAcara.Visible = True
+                        BBeritaAcara.Text = "No Berita Acara"
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                     End If
-                    'Active_Form 5 = Purchase Termin
-                ElseIf Active_Form = 6 Then
+
+                ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase
 
                     Call LoadGridInstallment(fc_Class.H_CirculationNo)
                     GridView3.OptionsBehavior.Editable = False
@@ -385,6 +366,9 @@ Public Class Frm_CR_UserCreateDetail
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                 End If
             Else
+
+
+
                 Call No_Edit_TextBox()
                 BAddRows.Enabled = False
                 BMold.Enabled = False
@@ -766,9 +750,22 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Dim dtRoot As DataTable
+        dtRoot = fc_Class_ApproveDeptHead.Get_Root_Approve_ByDept(gh_Common.GroupID)
+
+        If dtRoot.Rows.Count > 0 Then
+            Division = dtRoot.Rows(0).Item("div_Id")
+            Director = dtRoot.Rows(0).Item("director_Id")
+        End If
+
+
+        pDate2 = Date.Now
+        pDate1 = pDate2.AddMonths(-2)
+
         Call CreateTableBarang()
         'Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
         Call InitialSetForm()
+
 
     End Sub
 
@@ -923,12 +920,6 @@ Public Class Frm_CR_UserCreateDetail
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1)
                 Exit Sub
-                'ElseIf GridView4.RowCount = 0 Then
-                '    MessageBox.Show("Please Fill Term of Paymen / Installment", "Warning",
-                '                MessageBoxButtons.OK,
-                '                MessageBoxIcon.Exclamation,
-                '                MessageBoxDefaultButton.Button1)
-                '    Exit Sub
             Else
 
                 For i As Integer = 0 To GridView1.RowCount - 1
@@ -946,25 +937,10 @@ Public Class Frm_CR_UserCreateDetail
                 Next
 
 
-                'For j As Integer = 0 To GridView4.RowCount - 1
-                '    GridView4.MoveFirst()
-                '    If GridView4.GetRowCellValue(j, GridView4.Columns(0)).ToString = "" Then
-                '        IsEmpty = True
-                '        MessageBox.Show("Ensure that nothing is empty of Term Of Payment", "Warning",
-                '            MessageBoxButtons.OK,
-                '            MessageBoxIcon.Exclamation,
-                '            MessageBoxDefaultButton.Button1)
-                '        Exit Sub
-                '    Else
-
-                '    End If
-                'Next
-
-
             End If
 
             If isUpdate = False Then
-                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' Insert
+                ''''''''''''''''''''''''' Insert''''''''''''''''''''''''''
                 fc_Class.GetCirculationNoAuto()
                 Dim BudgetType As Integer
                 If RB_Budget.Checked = True Then
@@ -981,28 +957,43 @@ Public Class Frm_CR_UserCreateDetail
 
                 NoSirkulasi = fc_Class.H_CirculationNo
                 With fc_Class
-
-                    .H_Budget = BudgetType
+                    .H_Div_id = Division
+                    .H_Director_id = Director
                     .H_CR_Type = T_CRType.EditValue
-                    .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
-                    .H_Status = "Create"
-                    .H_Parent_Circulation = T_Parent.EditValue
-                    .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
-                    .H_Dies_Sales_Type = T_DS.EditValue
-                    .H_Dies_Customer_Name = T_CustomerName.EditValue
-                    .H_Dies_Model = T_ModelName.EditValue
-                    .H_NameItem = T_NameItem.EditValue
+                    .H_Budget = BudgetType
+                    .H_Reason = T_Reason.Text
                     .H_Spesification = T_Spesification.EditValue
-                    If T_Charged.EditValue = "YES" Then
-                        .H_ChargedOf = 1
-                    Else
-                        .H_ChargedOf = 0
-                    End If
-                    .H_Dies_Remark = T_Remark.EditValue
+                    .H_NameItem = T_NameItem.EditValue
+                    .H_Status = "Create"
+                    .H_Parent_Circulation = IIf(IsNothing(T_Parent.EditValue), "", T_Parent.EditValue)
+                    .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
+
+                    '.H_Dies_Sales_Type = T_DS.EditValue
+                    '.H_Dies_Customer_Name = T_CustomerName.EditValue
+                    '.H_Dies_Model = T_ModelName.EditValue
+                    'If T_Charged.EditValue = "YES" Then
+                    '    .H_ChargedOf = 1
+                    'Else
+                    '    .H_ChargedOf = 0
+                    'End If
+                    '.H_Dies_Remark = T_Remark.EditValue
+
                     .H_InvoiceNo = ""
                     .H_InvoiceStatus = 0
                     .H_Dies = 1
+
+                    .TA_Username = gh_Common.Username
+                    .TA_MenuCode = "CIRCULATION"
+                    .TA_DeptID = gh_Common.GroupID
+                    .TA_NoTransaksi = fs_Code
+                    .TA_LevelApprove = 0
+                    .TA_StatusApprove = "Create"
+                    .TA_ApproveBy = gh_Common.Username
+                    .TA_ApproveDAte = Date.Now
+                    .TA_IsActive = 1
+
+
 
                 End With
 
@@ -1091,8 +1082,8 @@ Public Class Frm_CR_UserCreateDetail
                         Dim a As Object = DtTerm.Rows(j).Item("Date")
                         If DtTerm.Rows(j).Item("Date") Is DBNull.Value Then
                             .D_Date = Nothing
-                        'ElseIf DtTerm.Rows(j).Item("Date") = "" Then
-                        '    .D_Date = Nothing
+                            'ElseIf DtTerm.Rows(j).Item("Date") = "" Then
+                            '    .D_Date = Nothing
                         Else
                             .D_Date = DtTerm.Rows(j).Item("Date")
                         End If
@@ -1107,16 +1098,44 @@ Public Class Frm_CR_UserCreateDetail
                     fc_Class.Collection_Installment.Add(Installment)
 
                 Next
+
+
+                fc_Class.Collection_Approve.Clear()
+                dtApprove = New DataTable
+                Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
+                If Total > 10000000 And Total <= 50000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                ElseIf Total >= 50000000 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
+                ElseIf Total >= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                End If
+
+                For A As Integer = 0 To dtApprove.Rows.Count - 1
+
+                    Approvel = New ClsCR_Approve
+                    With Approvel
+
+                        .D_Circulation = NoSirkulasi
+                        .D_No = Convert.ToInt16(dtApprove.Rows(A).Item("No"))
+                        .D_ApproveBy = IIf(dtApprove.Rows(A).Item("ApproveBy") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveBy"))
+                        .D_ApproveName = IIf(dtApprove.Rows(A).Item("ApproveName") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveName"))
+
+                    End With
+                    fc_Class.Collection_Approve.Add(Approvel)
+
+                Next
+
 #End Region
 
                 fc_Class.Insert(NoSirkulasi)
                 bs_Filter = gh_Common.GroupID
-                GridDtl.DataSource = fc_Class.Get_CRRequest(bs_Filter)
+                GridDtl.DataSource = fc_Model.Get_CRRequest(gh_Common.GroupID, pDate1, pDate2)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 IsClosed = True
-                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' End Insert
+                '''''''''''''''''''''''''''''''''''''''''''''''''''''' End Insert
             Else
-                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' Update
+                '''''''''''''''''''''''''''''''''''''''''''''''''''''' Update
 
                 Dim BudgetType As Integer
                 If RB_Budget.Checked = True Then
@@ -1139,7 +1158,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_Reason = T_Reason.Text
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
                     .H_Status = "Submit"
-                    .H_Parent_Circulation = T_Parent.EditValue
+                    .H_Parent_Circulation = IIf(IsNothing(T_Parent.EditValue), "", T_Parent.EditValue)
                     .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
                     .H_Dies_Sales_Type = T_DS.EditValue
                     .H_Dies_Customer_Name = T_CustomerName.EditValue
@@ -1259,13 +1278,39 @@ Public Class Frm_CR_UserCreateDetail
                     fc_Class.Collection_Installment.Add(Installment)
 
                 Next
+
+                fc_Class.Collection_Approve.Clear()
+                dtApprove = New DataTable
+                Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
+                If Total > 10000000 And Total <= 50000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                ElseIf Total >= 50000000 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
+                ElseIf Total >= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                End If
+
+                For A As Integer = 0 To dtApprove.Rows.Count - 1
+
+                    Approvel = New ClsCR_Approve
+                    With Approvel
+
+                        .D_Circulation = NoSirkulasi
+                        .D_No = Convert.ToInt16(dtApprove.Rows(A).Item("No"))
+                        .D_ApproveBy = IIf(dtApprove.Rows(A).Item("ApproveBy") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveBy"))
+                        .D_ApproveName = IIf(dtApprove.Rows(A).Item("ApproveName") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveName"))
+
+                    End With
+                    fc_Class.Collection_Approve.Add(Approvel)
+
+                Next
 #End Region
 
 
 
                 fc_Class.Update(NoSirkulasi)
                 bs_Filter = gh_Common.GroupID
-                GridDtl.DataSource = fc_Class.Get_CRRequest(bs_Filter)
+                GridDtl.DataSource = fc_Model.Get_CRRequest(gh_Common.GroupID, pDate1, pDate2)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 IsClosed = True
 
@@ -2461,7 +2506,7 @@ Public Class Frm_CR_UserCreateDetail
         'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
         If Active_Form = 1 Then
             fc_Class.GetDataByID(fs_Code)
-            If fc_Class.H_UserSubmition = False Then
+            If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Revise" Or fc_Class.H_Status = "Submit" Then
                 Dim result As DialogResult = MessageBox.Show("Are You Want to Submit '" & fs_Code & "'?",
                                                         "CIRCULATION",
                                                         MessageBoxButtons.OKCancel,
@@ -2472,13 +2517,23 @@ Public Class Frm_CR_UserCreateDetail
                         fc_Class = New ClsCR_CreateUser
                         With fc_Class
                             .H_UserSubmition = 1
+                            .H_Status = "Submit"
+                            .TA_Username = gh_Common.Username
+                            .TA_MenuCode = "CIRCULATION"
+                            .TA_DeptID = gh_Common.GroupID
+                            .TA_NoTransaksi = fs_Code
+                            .TA_LevelApprove = Active_Form
+                            .TA_StatusApprove = "Submit"
+                            .TA_ApproveBy = gh_Common.Username
+                            .TA_ApproveDAte = Date.Now
+                            .TA_IsActive = 1
                         End With
-                        fc_Class.UpdateUserSubmit(fs_Code)
+                        fc_Class.UpdateAprove_Requester(fs_Code, Active_Form)
                         bs_Filter = gh_Common.Username()
 
                         IsClosed = True
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                        GridDtl.DataSource = fc_Class.Get_CRRequest(gh_Common.GroupID)
+                        GridDtl.DataSource = fc_Model.Get_CRRequest(gh_Common.GroupID, pDate1, pDate2)
                         Me.Hide()
                     Catch ex As Exception
                         ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -2487,228 +2542,156 @@ Public Class Frm_CR_UserCreateDetail
 
                 End If
             Else
-                XtraMessageBox.Show("NPP '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+                XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
             End If
 
+        ElseIf Active_Form = 2 Or Active_Form = 3 Then
 
-        ElseIf Active_Form = 2 Then
+            fc_Class.GetDataByID(fs_Code)
+            If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Approve 2" Then
+                Dim _Check1 As Boolean = True
+                Dim _Check2 As Boolean = True
+                For i As Integer = 0 To GridView1.RowCount - 1
+                    Dim _Check As String = GridView1.GetRowCellValue(i, "Check")
+                    If _Check = "OK" Then
+                        _Check2 = True
+                    Else
+                        _Check2 = False
+                    End If
 
-            Dim _Check1 As Boolean = True
-            Dim _Check2 As Boolean = True
-            For i As Integer = 0 To GridView1.RowCount - 1
-                Dim _Check As String = GridView1.GetRowCellValue(i, "Check")
-                If _Check = "OK" Then
-                    _Check2 = True
+                    _Check1 = _Check1 And _Check2
+
+                Next
+                Dim _Msg As String = ""
+                If _Check1 = True Then
+                    _Msg = "Approve"
                 Else
-                    _Check2 = False
+                    _Msg = "Reject"
                 End If
+                Dim result As DialogResult = MessageBox.Show("Are You Want to  '" & _Msg & "'  '" & fs_Code & "'?",
+                                                        "CIRCULATION",
+                                                        MessageBoxButtons.OKCancel,
+                                                        MessageBoxIcon.Question,
+                                                        MessageBoxDefaultButton.Button2)
+                If result = System.Windows.Forms.DialogResult.OK Then
+                    Try
+                        If _Check1 = True Then
 
-                _Check1 = _Check1 And _Check2
+                            With fc_Class
+                                .H_CirculationNo = T_CRNo.EditValue
+                                If Active_Form = 2 Then
+                                    .H_Status = "Approve 1"
+                                ElseIf Active_Form = 3 Then
+                                    .H_Status = "Approve 2"
+                                End If
 
-            Next
+                            End With
 
-            If _Check1 = True Then
+                            'ApproveHistoryModel
+                            fc_Model_ApproveHistoryModel = New ApproveHistoryModel
+                            With fc_Model_ApproveHistoryModel
 
-                With fc_Class
-                    .H_CirculationNo = T_CRNo.EditValue
-                    .H_Status = "Approve 1"
-                    .H_UserSubmition = True
-                    .H_DeptHead_Approve = True
-                    .H_DivHead_Approve = False
-                    .H_DeptHead_Approve_Date = Date.Now
-                    .H_DivHead_Approve_Date = Date.Now
+                                .UserName = gh_Common.Username
+                                .MenuCode = "CIRCULATION"
+                                .DeptID = gh_Common.GroupID
+                                .NoTransaksi = fs_Code
+                                .LevelApproved = Active_Form
+                                .StatusApproved = "Approve"
+                                .ApprovedBy = gh_Common.Username
+                                .ApprovedDate = Date.Now
+                                .IsActive = 1
 
-                End With
+                            End With
+
+                            'Insert To ObjDetailMaterial
+                            fc_Class.Collection_Description_Of_Cost.Clear()
+                            For i As Integer = 0 To GridView1.RowCount - 1
+
+                                Description_Of_Cost = New ClsCR_Description_of_Cost
+                                With Description_Of_Cost
+
+                                    .D_CirculationNo = NoSirkulasi
+                                    .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
+                                    .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
+                                    .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
 
 
-                'Insert To ObjDetailMaterial
-                fc_Class.Collection_Description_Of_Cost.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-
-                    Description_Of_Cost = New ClsCR_Description_of_Cost
-                    With Description_Of_Cost
-
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
-                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
-                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
+                                End With
+                                fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
+                            Next
 
 
-                    End With
-                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
 
-                Next
+                            fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form, gh_Common.Username, fc_Model_ApproveHistoryModel)
+                            bs_Filter = gh_Common.Username()
+                            IsClosed = True
+                            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                            GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_Approve(gh_Common.GroupID.ToString, Active_Form, Division, Director)
+                            Me.Hide()
 
-                ' fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
+                        Else
 
-                fc_Class.Collection_Approve.Clear()
+                            With fc_Class
+                                .H_CirculationNo = T_CRNo.EditValue
+                                .H_Status = "Revise"
+                            End With
 
-                dtApprove = New DataTable
-                Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
-                If Total > 10000000 And Total <= 50000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000000 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
-                ElseIf Total >= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                            fc_Class.Collection_Description_Of_Cost.Clear()
+                            For i As Integer = 0 To GridView1.RowCount - 1
+
+                                Description_Of_Cost = New ClsCR_Description_of_Cost
+                                With Description_Of_Cost
+
+                                    .D_CirculationNo = NoSirkulasi
+                                    .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
+                                    .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
+                                    .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
+
+
+                                End With
+                                fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
+
+                            Next
+
+                            fc_Model_ApproveHistoryModel = New ApproveHistoryModel
+                            With fc_Model_ApproveHistoryModel
+
+                                .UserName = gh_Common.Username
+                                .MenuCode = "CIRCULATION"
+                                .DeptID = gh_Common.GroupID
+                                .NoTransaksi = fs_Code
+                                .LevelApproved = 0
+                                .StatusApproved = "Reject"
+                                .ApprovedBy = gh_Common.Username
+                                .ApprovedDate = Date.Now
+                                .IsActive = 1
+
+                            End With
+
+
+                            fc_Class.Reject_Approve(T_CRNo.EditValue, Active_Form, fc_Model_ApproveHistoryModel)
+                            IsClosed = True
+                            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                            GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
+                            Me.Hide()
+
+                        End If
+
+                        'IsClosed = True
+                        'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                        'GridDtl.DataSource = fc_Model.Get_CRRequest(gh_Common.GroupID, pDate1, pDate2)
+                        'Me.Hide()
+                    Catch ex As Exception
+                        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                    End Try
+
                 End If
-
-                For A As Integer = 0 To dtApprove.Rows.Count - 1
-
-                    Approvel = New ClsCR_Approve
-                    With Approvel
-
-                        .D_Circulation = NoSirkulasi
-                        .D_No = Convert.ToInt16(dtApprove.Rows(A).Item("No"))
-                        .D_ApproveBy = IIf(dtApprove.Rows(A).Item("ApproveBy") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveBy"))
-                        .D_ApproveName = IIf(dtApprove.Rows(A).Item("ApproveName") Is DBNull.Value, "", dtApprove.Rows(A).Item("ApproveName"))
-
-                    End With
-                    fc_Class.Collection_Approve.Add(Approvel)
-
-                Next
-
-                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
-
-                IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
-                Me.Hide()
             Else
-                With fc_Class
-                    .H_CirculationNo = T_CRNo.EditValue
-                    .H_Status = "Revise"
-                    .H_UserSubmition = False
-                    .H_DeptHead_Approve = False
-                    .H_DivHead_Approve = False
-                    .H_DeptHead_Approve_Date = Date.Now
-                    .H_DivHead_Approve_Date = Date.Now
-
-                End With
-
-                fc_Class.Collection_Description_Of_Cost.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-
-                    Description_Of_Cost = New ClsCR_Description_of_Cost
-                    With Description_Of_Cost
-
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
-                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
-                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
-
-
-                    End With
-                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
-
-                Next
-
-
-                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
-
-
-
-                IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
-                Me.Hide()
-
-
-
+                XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
             End If
 
-        ElseIf Active_Form = 3 Then
-
-            Dim _Check1 As Boolean = True
-            Dim _Check2 As Boolean = True
-            For i As Integer = 0 To GridView1.RowCount - 1
-                Dim _Check As String = GridView1.GetRowCellValue(i, "Check")
-                If _Check = "OK" Then
-                    _Check2 = True
-                Else
-                    _Check2 = False
-                End If
-
-                _Check1 = _Check1 And _Check2
-
-            Next
-
-            If _Check1 = True Then
-
-                With fc_Class
-                    .H_CirculationNo = T_CRNo.EditValue
-                    .H_Status = "Approve 2"
-                    .H_UserSubmition = True
-                    .H_DeptHead_Approve = True
-                    .H_DivHead_Approve = True
-                    .H_DeptHead_Approve_Date = Date.Now
-                    .H_DivHead_Approve_Date = Date.Now
-
-                End With
-
-                'Insert To ObjDetailMaterial
-                fc_Class.Collection_Description_Of_Cost.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-
-                    Description_Of_Cost = New ClsCR_Description_of_Cost
-                    With Description_Of_Cost
-
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
-                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
-                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
-
-
-                    End With
-                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
-
-                Next
-
-                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
-
-                Call Send_Email_OtherDept(T_CRNo.EditValue)
-
-                IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = fc_Class_ApproveDivHead.Get_ApproveDivHead(gh_Common.Username)
-                Me.Hide()
-            Else
-                With fc_Class
-                    .H_CirculationNo = T_CRNo.EditValue
-                    .H_Status = "Revise"
-                    .H_UserSubmition = False
-                    .H_DeptHead_Approve = False
-                    .H_DivHead_Approve = False
-                    .H_DeptHead_Approve_Date = Date.Now
-                    .H_DivHead_Approve_Date = Date.Now
-
-                End With
-
-                fc_Class.Collection_Description_Of_Cost.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-
-                    Description_Of_Cost = New ClsCR_Description_of_Cost
-                    With Description_Of_Cost
-
-                        .D_CirculationNo = NoSirkulasi
-                        .D_Id = Convert.ToString(GridView1.GetRowCellValue(i, "Id"))
-                        .D_Check = IIf(GridView1.GetRowCellValue(i, "Check") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Check"))
-                        .D_Note = IIf(GridView1.GetRowCellValue(i, "Note") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Note"))
-
-
-                    End With
-                    fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
-
-                Next
-
-                fc_Class.UpdateAprove(T_CRNo.EditValue, Active_Form)
-                IsClosed = True
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                GridDtl.DataSource = fc_Class_ApproveDeptHead.Get_ApproveDeptHead(gh_Common.Username)
-                Me.Hide()
-
-            End If
-        ElseIf Active_Form = 4 Then
+        ElseIf Active_Form = 4 Then   ' (Other Dept)
             Dim a As New DataTable
             a = fc_Class_ApproveDivHead.Get_Other_Dept_Cek(gh_Common.GroupID, fs_Code)
             Dim Dept_Approve As Boolean = IIf(a.Rows(0).Item("Dept Approve") Is DBNull.Value, False, a.Rows(0).Item("Dept Approve"))
@@ -2734,14 +2717,29 @@ Public Class Frm_CR_UserCreateDetail
                             If Cek = GridView5.GetRowCellValue(i, "Dept") Then
                                 fc_Class_OtherDept = New ClsCR_Other_Dept
                                 With fc_Class_OtherDept
-                                    .D_Date = GridView5.GetRowCellValue(i, "Date")
                                     .D_Opinion = GridView5.GetRowCellValue(i, "Opinion")
                                     .D_Approve = 1
                                 End With
                             End If
                         Next
 
-                        fc_Class_OtherDept.UpdateOtherDept(fs_Code, gh_Common.GroupID)
+                        fc_Model_ApproveHistoryModel = New ApproveHistoryModel
+                        With fc_Model_ApproveHistoryModel
+
+                            .UserName = gh_Common.Username
+                            .MenuCode = "CIRCULATION"
+                            .DeptID = gh_Common.GroupID
+                            .NoTransaksi = fs_Code
+                            .LevelApproved = Active_Form
+                            .StatusApproved = "Approve"
+                            .ApprovedBy = gh_Common.Username
+                            .ApprovedDate = Date.Now
+                            .IsActive = 1
+
+                        End With
+
+
+                        fc_Class_OtherDept.UpdateOtherDept(fs_Code, gh_Common.GroupID, fc_Model_ApproveHistoryModel)
                         bs_Filter = gh_Common.Username()
 
                         IsClosed = True
@@ -2756,19 +2754,46 @@ Public Class Frm_CR_UserCreateDetail
                 End If
 
             End If
-        ElseIf Active_Form = 5 Then
-            If fc_Class.H_BOD_Approve <> True Then
+        ElseIf Active_Form = 5 Then   '(Accounting)
+            If fc_Class.H_Status = "Other Dept" Or fc_Class.H_Status = "Set Installment" Then
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
                 If result = System.Windows.Forms.DialogResult.Yes Then
                     Try
 
                         With fc_Class
-                            .H_BOD_Approve = True
-                            .H_BOD_User = gh_Common.Username
-                            .H_BOD_Approve_Date = Date.Now
-                            .H_Status = "Approve BOD"
+
+                            If fc_Class.H_Status = "Other Dept" Then
+                                .H_Status = "Approve BOD"
+                            ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                                .H_Status = "Close"
+                                Active_Form = 7
+                            End If
+
                         End With
-                        fc_Class.Update_Approve_BOD(fs_Code)
+
+                        fc_Model_ApproveHistoryModel = New ApproveHistoryModel
+                        With fc_Model_ApproveHistoryModel
+
+                            .UserName = gh_Common.Username
+                            .MenuCode = "CIRCULATION"
+                            .DeptID = gh_Common.GroupID
+                            .NoTransaksi = fs_Code
+                            .LevelApproved = Active_Form
+
+                            .ApprovedBy = gh_Common.Username
+                            .ApprovedDate = Date.Now
+                            .IsActive = 1
+
+                            If fc_Class.H_Status = "Other Dept" Then
+                                .StatusApproved = "Approve"
+                            ElseIf fc_Class.H_Status = "Set Installment" Then
+                                .StatusApproved = "Close"
+                            End If
+
+                        End With
+
+
+                        fc_Class.Update_Approve_BOD(fs_Code, fc_Model_ApproveHistoryModel)
                         bs_Filter = gh_Common.Username()
                         GridDtl.DataSource = fc_Class_Accounting.Get_Approve_Accounting()
                         FrmAccounting = New Frm_CR_Accounting
@@ -2783,10 +2808,8 @@ Public Class Frm_CR_UserCreateDetail
                     End Try
 
                 End If
-
-
             End If
-        ElseIf Active_Form = 6 Then
+        ElseIf Active_Form = 6 Then  '(Purchase)
 
 #Region "Term Data Table Payment"
             Try
@@ -2804,6 +2827,21 @@ Public Class Frm_CR_UserCreateDetail
                         DtTerm.Rows.Add(dr)
                     Next
                 Next
+
+                fc_Model_ApproveHistoryModel = New ApproveHistoryModel
+                With fc_Model_ApproveHistoryModel
+
+                    .UserName = gh_Common.Username
+                    .MenuCode = "CIRCULATION"
+                    .DeptID = gh_Common.GroupID
+                    .NoTransaksi = fs_Code
+                    .LevelApproved = Active_Form
+                    .StatusApproved = "Approve"
+                    .ApprovedBy = gh_Common.Username
+                    .ApprovedDate = Date.Now
+                    .IsActive = 1
+
+                End With
 
             Catch ex As Exception
                 ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -2840,7 +2878,7 @@ Public Class Frm_CR_UserCreateDetail
             Next
 #End Region
 
-            fc_Class.UpdateInstallMent(fc_Class.H_CirculationNo)
+            fc_Class.UpdateInstallMent(fc_Class.H_CirculationNo, fc_Model_ApproveHistoryModel)
             IsClosed = True
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             GridDtl.DataSource = fc_Class_Accounting.Get_Cek_Purchase
@@ -2949,7 +2987,7 @@ Public Class Frm_CR_UserCreateDetail
             If Dept_ = gh_Common.GroupID Then
                 GridView5.Columns("Dept").OptionsColumn.AllowEdit = False
                 GridView5.Columns("Name").OptionsColumn.AllowEdit = False
-                GridView5.Columns("Date").OptionsColumn.AllowEdit = True
+                GridView5.Columns("Date").OptionsColumn.AllowEdit = False
                 GridView5.Columns("Opinion").OptionsColumn.AllowEdit = True
             Else
                 GridView5.Columns("Dept").OptionsColumn.AllowEdit = False
@@ -3027,5 +3065,12 @@ Public Class Frm_CR_UserCreateDetail
         CallForm()
 
         'End If
+    End Sub
+
+    Private Sub Opinion_EditValueChanged(sender As Object, e As EventArgs) Handles Opinion.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
     End Sub
 End Class

@@ -10,6 +10,7 @@ Public Class TravelEntertainModel
     Public Property PaymentType As String
     Public Property CreditCardID As String
     Public Property CreditCardNumber As String
+    Public Property AccountName As String
 
     Dim strQuery As String
 
@@ -59,6 +60,7 @@ Public Class TravelEntertainModel
                 PaymentType = dr("PaymentType")
                 CreditCardID = dr("CreditCardID")
                 CreditCardNumber = dr("CreditCardNumber")
+                AccountName = dr("AccountName")
                 Total = dr("Total")
                 InsertEntertainHeader()
             Next
@@ -128,6 +130,7 @@ Public Class TravelEntertainModel
                 PaymentType = dr("PaymentType")
                 CreditCardID = dr("CreditCardID")
                 CreditCardNumber = dr("CreditCardNumber")
+                AccountName = dr("AccountName")
                 Total = dr("Total")
                 InsertEntertainHeader()
             Next
@@ -179,7 +182,7 @@ Public Class TravelEntertainModel
     Public Sub InsertEntertainHeader()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = " INSERT INTO TSC16Application.dbo.settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, Total ) " & vbCrLf &
+            ls_SP = " INSERT INTO TSC16Application.dbo.settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total ) " & vbCrLf &
                     " Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
                     "        " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
                     "        " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
@@ -189,6 +192,7 @@ Public Class TravelEntertainModel
                     "        " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
                     "        " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
                     "        " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+                    "        " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
                     "        " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

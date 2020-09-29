@@ -952,7 +952,7 @@ Public Class TravelSettleCostModel
                                 RTRIM(PaymentType) AS PaymentType ,
                                 RTRIM(CreditCardID) AS CreditCardID ,
                                 RTRIM(CreditCardNumber) AS CreditCardNumber ,
-                                '' AS AccountName ,
+                                RTRIM(AccountName) AS AccountName ,
                                 RTRIM(Remark) AS Remark
                         FROM    dbo.settle_header
                         WHERE   SettleID IN ( " & nilai & " )"

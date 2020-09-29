@@ -187,6 +187,8 @@ Public Class frm_fp_details
                     .Tot_Voucher = _TxtTotal.Text
                     .Tot_Pph = _TxtPPH.Text
                     .Status = "1"
+                    .PO = txt_PO.Text
+                    .Keterangan = txt_keterangan.Text
                 End With
             End If
         Catch ex As Exception
@@ -215,6 +217,8 @@ Public Class frm_fp_details
                         .link_barcode = "1"
                         .Pph = GridView1.GetRowCellValue(i, "Pph")
                         .No_Bukti_Potong = GridView1.GetRowCellValue(i, "NBP").ToString().TrimEnd
+                        .PO = GridView1.GetRowCellValue(i, "PO").ToString().TrimEnd
+                        .Keterangan = GridView1.GetRowCellValue(i, "Keterangan").ToString().TrimEnd
                     End With
                     ObjFPTransaction.ObjFPDetails.Add(ObjFPDetails)
                 End If

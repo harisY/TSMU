@@ -20,6 +20,8 @@
     Public Property Tot_Voucher As Double
     Public Property Vend_Name As String
     Public Property VendID As String
+    Public Property PO As String
+    Public Property Keterangan As String
 
     Public Sub GetFakturPajakById()
         Try
@@ -105,7 +107,7 @@
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO Fp_Header (FPNo,Tgl_fp,VendID,Vend_Name,Jenis_Jasa,npwp,CuryID,Tot_Dpp_Invoice,Tot_Ppn,Tot_Voucher,Tot_Pph,Status) " & vbCrLf &
+                                    "INSERT INTO Fp_Header (FPNo,Tgl_fp,VendID,Vend_Name,Jenis_Jasa,npwp,CuryID,Tot_Dpp_Invoice,Tot_Ppn,Tot_Voucher,Tot_Pph,Status,PO,Keterangan) " & vbCrLf &
                                     "Values(" & QVal(Me.FPNo) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_fp) & ", " & vbCrLf &
                                     "       " & QVal(Me.VendID) & ", " & vbCrLf &
@@ -117,7 +119,9 @@
                                     "       " & QVal(Me.Tot_Ppn) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tot_Voucher) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
-                                    "       " & QVal(Me.Status) & ")"
+                                    "       " & QVal(Me.Status) & ", " & vbCrLf &
+                                    "       " & QVal(Me.PO) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Keterangan) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -158,6 +162,8 @@
                                     "       Tot_Voucher = " & QVal(Me.Tot_Voucher) & ", " & vbCrLf &
                                     "       Tot_Pph = " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
                                     "       Status = " & QVal(Me.Status) & " " & vbCrLf &
+                                    "       PO = " & QVal(Me.PO) & " " & vbCrLf &
+                                    "       Keterangan = " & QVal(Me.Keterangan) & " " & vbCrLf &
                                     "where FPNo = '" & Me.FPNo & "'"
             MainModul.ExecQuery(ls_SP)
         Catch ex As Exception

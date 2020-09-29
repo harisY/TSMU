@@ -30,12 +30,6 @@ Public Class Frm_CR_OtherDeptHead
             dt = fc_Class.Get_Other_Dept(_Dept)
             Grid.DataSource = dt
 
-            Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_Other_Dept(_Dept)
-            Grid2.DataSource = dt2
-
-
-
 
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Cursor.Current = Cursors.Default
@@ -82,6 +76,5 @@ Public Class Frm_CR_OtherDeptHead
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-
     End Sub
 End Class

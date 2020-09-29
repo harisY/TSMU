@@ -1,5 +1,26 @@
 ﻿Public Class GlobalService
     Dim ObjApprove As ApproveHistoryModel
+
+    Public Function GetLevel_str(Menu As String) As Integer
+        Dim _result As Integer = 0
+        Try
+            Dim Sql As String = "M_Approve_GetUserLevel"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@form", SqlDbType.VarChar)
+            pParam(0).Value = Menu
+            pParam(1) = New SqlClient.SqlParameter("@username", SqlDbType.VarChar)
+            pParam(1).Value = gh_Common.Username
+            Dim dt As New DataTable
+
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetLevel(Frm As Form) As Integer
         Dim _result As Integer = 0
         Try

@@ -12242,6 +12242,14 @@ Partial Public Class dsLaporan
         
         Private columnApprove_Div_Head_Date As Global.System.Data.DataColumn
         
+        Private columnDeptHeadName As Global.System.Data.DataColumn
+        
+        Private columnDeptHeadNameDate As Global.System.Data.DataColumn
+        
+        Private columnDivHeadName As Global.System.Data.DataColumn
+        
+        Private columnDivHeadNameDate As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -12758,6 +12766,38 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DeptHeadNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeptHeadName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DeptHeadNameDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeptHeadNameDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadNameDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12854,9 +12894,13 @@ Partial Public Class dsLaporan
                     ByVal Approve_Dept_Head_Date As Date,  _
                     ByVal Approve_Div_Head As Boolean,  _
                     ByVal Approve_Div_Head_Name As String,  _
-                    ByVal Approve_Div_Head_Date As Date) As NPPRow
+                    ByVal Approve_Div_Head_Date As Date,  _
+                    ByVal DeptHeadName As String,  _
+                    ByVal DeptHeadNameDate As Date,  _
+                    ByVal DivHeadName As String,  _
+                    ByVal DivHeadNameDate As Date) As NPPRow
             Dim rowNPPRow As NPPRow = CType(Me.NewRow,NPPRow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi, GroupID, Approve_Dept_Head, Approve_Dept_Head_Name, Approve_Dept_Head_Date, Approve_Div_Head, Approve_Div_Head_Name, Approve_Div_Head_Date}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, Checked, A1, A2, A3, A4, CreatedBy, UpdateBy, Prepare, TargetDRR, TargetQuot, Revisi, GroupID, Approve_Dept_Head, Approve_Dept_Head_Name, Approve_Dept_Head_Date, Approve_Div_Head, Approve_Div_Head_Name, Approve_Div_Head_Date, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
             rowNPPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPPRow)
             Return rowNPPRow
@@ -12939,6 +12983,10 @@ Partial Public Class dsLaporan
             Me.columnApprove_Div_Head = MyBase.Columns("Approve_Div_Head")
             Me.columnApprove_Div_Head_Name = MyBase.Columns("Approve_Div_Head_Name")
             Me.columnApprove_Div_Head_Date = MyBase.Columns("Approve_Div_Head_Date")
+            Me.columnDeptHeadName = MyBase.Columns("DeptHeadName")
+            Me.columnDeptHeadNameDate = MyBase.Columns("DeptHeadNameDate")
+            Me.columnDivHeadName = MyBase.Columns("DivHeadName")
+            Me.columnDivHeadNameDate = MyBase.Columns("DivHeadNameDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13072,6 +13120,14 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnApprove_Div_Head_Name)
             Me.columnApprove_Div_Head_Date = New Global.System.Data.DataColumn("Approve_Div_Head_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnApprove_Div_Head_Date)
+            Me.columnDeptHeadName = New Global.System.Data.DataColumn("DeptHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadName)
+            Me.columnDeptHeadNameDate = New Global.System.Data.DataColumn("DeptHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadNameDate)
+            Me.columnDivHeadName = New Global.System.Data.DataColumn("DivHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadName)
+            Me.columnDivHeadNameDate = New Global.System.Data.DataColumn("DivHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadNameDate)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13316,6 +13372,14 @@ Partial Public Class dsLaporan
         Private columnCreatedBy As Global.System.Data.DataColumn
         
         Private columnPrepare As Global.System.Data.DataColumn
+        
+        Private columnDeptHeadName As Global.System.Data.DataColumn
+        
+        Private columnDeptHeadNameDate As Global.System.Data.DataColumn
+        
+        Private columnDivHeadName As Global.System.Data.DataColumn
+        
+        Private columnDivHeadNameDate As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -13785,6 +13849,38 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DeptHeadNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeptHeadName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DeptHeadNameDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeptHeadNameDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadNameDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -13875,9 +13971,13 @@ Partial Public Class dsLaporan
                     ByVal A3 As String,  _
                     ByVal A4 As String,  _
                     ByVal CreatedBy As String,  _
-                    ByVal Prepare As String) As NPWORow
+                    ByVal Prepare As String,  _
+                    ByVal DeptHeadName As String,  _
+                    ByVal DeptHeadNameDate As Date,  _
+                    ByVal DivHeadName As String,  _
+                    ByVal DivHeadNameDate As Date) As NPWORow
             Dim rowNPWORow As NPWORow = CType(Me.NewRow,NPWORow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy, Prepare}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy, Prepare, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
             rowNPWORow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPWORow)
             Return rowNPWORow
@@ -13954,6 +14054,10 @@ Partial Public Class dsLaporan
             Me.columnA4 = MyBase.Columns("A4")
             Me.columnCreatedBy = MyBase.Columns("CreatedBy")
             Me.columnPrepare = MyBase.Columns("Prepare")
+            Me.columnDeptHeadName = MyBase.Columns("DeptHeadName")
+            Me.columnDeptHeadNameDate = MyBase.Columns("DeptHeadNameDate")
+            Me.columnDivHeadName = MyBase.Columns("DivHeadName")
+            Me.columnDivHeadNameDate = MyBase.Columns("DivHeadNameDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14075,6 +14179,14 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnCreatedBy)
             Me.columnPrepare = New Global.System.Data.DataColumn("Prepare", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrepare)
+            Me.columnDeptHeadName = New Global.System.Data.DataColumn("DeptHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadName)
+            Me.columnDeptHeadNameDate = New Global.System.Data.DataColumn("DeptHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadNameDate)
+            Me.columnDivHeadName = New Global.System.Data.DataColumn("DivHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadName)
+            Me.columnDivHeadNameDate = New Global.System.Data.DataColumn("DivHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadNameDate)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15868,9 +15980,13 @@ Partial Public Class dsLaporan
         
         Private columnUserSubmitionDate As Global.System.Data.DataColumn
         
-        Private columnDeptHead_Approve_Date As Global.System.Data.DataColumn
+        Private columnDeptHeadName As Global.System.Data.DataColumn
         
-        Private columnDivHead_Approve_Date As Global.System.Data.DataColumn
+        Private columnDeptHeadNameDate As Global.System.Data.DataColumn
+        
+        Private columnDivHeadName As Global.System.Data.DataColumn
+        
+        Private columnDivHeadNameDate As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -16125,17 +16241,33 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DeptHead_Approve_DateColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property DeptHeadNameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDeptHead_Approve_Date
+                Return Me.columnDeptHeadName
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DivHead_Approve_DateColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property DeptHeadNameDateColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDivHead_Approve_Date
+                Return Me.columnDeptHeadNameDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivHeadNameDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivHeadNameDate
             End Get
         End Property
         
@@ -16204,10 +16336,12 @@ Partial Public Class dsLaporan
                     ByVal H_Spesification As String,  _
                     ByVal Total As Double,  _
                     ByVal UserSubmitionDate As Date,  _
-                    ByVal DeptHead_Approve_Date As Date,  _
-                    ByVal DivHead_Approve_Date As Date) As CirculationHeadRow
+                    ByVal DeptHeadName As Char,  _
+                    ByVal DeptHeadNameDate As Date,  _
+                    ByVal DivHeadName As String,  _
+                    ByVal DivHeadNameDate As Date) As CirculationHeadRow
             Dim rowCirculationHeadRow As CirculationHeadRow = CType(Me.NewRow,CirculationHeadRow)
-            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DeptHead_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total, UserSubmitionDate, DeptHead_Approve_Date, DivHead_Approve_Date}
+            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DeptHead_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total, UserSubmitionDate, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
             rowCirculationHeadRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCirculationHeadRow)
             Return rowCirculationHeadRow
@@ -16257,8 +16391,10 @@ Partial Public Class dsLaporan
             Me.columnH_Spesification = MyBase.Columns("H_Spesification")
             Me.columnTotal = MyBase.Columns("Total")
             Me.columnUserSubmitionDate = MyBase.Columns("UserSubmitionDate")
-            Me.columnDeptHead_Approve_Date = MyBase.Columns("DeptHead_Approve_Date")
-            Me.columnDivHead_Approve_Date = MyBase.Columns("DivHead_Approve_Date")
+            Me.columnDeptHeadName = MyBase.Columns("DeptHeadName")
+            Me.columnDeptHeadNameDate = MyBase.Columns("DeptHeadNameDate")
+            Me.columnDivHeadName = MyBase.Columns("DivHeadName")
+            Me.columnDivHeadNameDate = MyBase.Columns("DivHeadNameDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16318,10 +16454,14 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnTotal)
             Me.columnUserSubmitionDate = New Global.System.Data.DataColumn("UserSubmitionDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUserSubmitionDate)
-            Me.columnDeptHead_Approve_Date = New Global.System.Data.DataColumn("DeptHead_Approve_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDeptHead_Approve_Date)
-            Me.columnDivHead_Approve_Date = New Global.System.Data.DataColumn("DivHead_Approve_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDivHead_Approve_Date)
+            Me.columnDeptHeadName = New Global.System.Data.DataColumn("DeptHeadName", GetType(Char), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadName)
+            Me.columnDeptHeadNameDate = New Global.System.Data.DataColumn("DeptHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeptHeadNameDate)
+            Me.columnDivHeadName = New Global.System.Data.DataColumn("DivHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadName)
+            Me.columnDivHeadNameDate = New Global.System.Data.DataColumn("DivHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivHeadNameDate)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -31319,6 +31459,66 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DeptHeadName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.DeptHeadNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadName' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.DeptHeadNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DeptHeadNameDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.DeptHeadNameDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadNameDate' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.DeptHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.DivHeadNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadName' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.DivHeadNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadNameDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPP.DivHeadNameDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadNameDate' in table 'NPP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPP.DivHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPP.No_NPPColumn)
         End Function
@@ -32035,6 +32235,54 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetApprove_Div_Head_DateNull()
             Me(Me.tableNPP.Approve_Div_Head_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDeptHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.DeptHeadNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDeptHeadNameNull()
+            Me(Me.tableNPP.DeptHeadNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDeptHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.DeptHeadNameDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDeptHeadNameDateNull()
+            Me(Me.tableNPP.DeptHeadNameDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.DivHeadNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameNull()
+            Me(Me.tableNPP.DivHeadNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableNPP.DivHeadNameDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameDateNull()
+            Me(Me.tableNPP.DivHeadNameDateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -32865,6 +33113,66 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DeptHeadName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.DeptHeadNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadName' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.DeptHeadNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DeptHeadNameDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.DeptHeadNameDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadNameDate' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.DeptHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.DivHeadNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadName' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.DivHeadNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadNameDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.DivHeadNameDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadNameDate' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.DivHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNo_NPPNull() As Boolean
             Return Me.IsNull(Me.tableNPWO.No_NPPColumn)
         End Function
@@ -33509,6 +33817,54 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPrepareNull()
             Me(Me.tableNPWO.PrepareColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDeptHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.DeptHeadNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDeptHeadNameNull()
+            Me(Me.tableNPWO.DeptHeadNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDeptHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.DeptHeadNameDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDeptHeadNameDateNull()
+            Me(Me.tableNPWO.DeptHeadNameDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.DivHeadNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameNull()
+            Me(Me.tableNPWO.DivHeadNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.DivHeadNameDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameDateNull()
+            Me(Me.tableNPWO.DivHeadNameDateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -34852,33 +35208,61 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DeptHead_Approve_Date() As Date
+        Public Property DeptHeadName() As Char
             Get
                 Try 
-                    Return CType(Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn),Date)
+                    Return CType(Me(Me.tableCirculationHead.DeptHeadNameColumn),Char)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHead_Approve_Date' in table 'CirculationHead' is DBNull"& _ 
-                            ".", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadName' in table 'CirculationHead' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn) = value
+                Me(Me.tableCirculationHead.DeptHeadNameColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DivHead_Approve_Date() As Date
+        Public Property DeptHeadNameDate() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableCirculationHead.DivHead_Approve_DateColumn),Date)
+                    Return CType(Me(Me.tableCirculationHead.DeptHeadNameDateColumn),Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHead_Approve_Date' in table 'CirculationHead' is DBNull."& _ 
-                            "", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadNameDate' in table 'CirculationHead' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableCirculationHead.DivHead_Approve_DateColumn) = value
+                Me(Me.tableCirculationHead.DeptHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationHead.DivHeadNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadName' in table 'CirculationHead' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationHead.DivHeadNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DivHeadNameDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationHead.DivHeadNameDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DivHeadNameDate' in table 'CirculationHead' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationHead.DivHeadNameDateColumn) = value
             End Set
         End Property
         
@@ -35208,26 +35592,50 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDeptHead_Approve_DateNull() As Boolean
-            Return Me.IsNull(Me.tableCirculationHead.DeptHead_Approve_DateColumn)
+        Public Function IsDeptHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DeptHeadNameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDeptHead_Approve_DateNull()
-            Me(Me.tableCirculationHead.DeptHead_Approve_DateColumn) = Global.System.Convert.DBNull
+        Public Sub SetDeptHeadNameNull()
+            Me(Me.tableCirculationHead.DeptHeadNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDivHead_Approve_DateNull() As Boolean
-            Return Me.IsNull(Me.tableCirculationHead.DivHead_Approve_DateColumn)
+        Public Function IsDeptHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DeptHeadNameDateColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDivHead_Approve_DateNull()
-            Me(Me.tableCirculationHead.DivHead_Approve_DateColumn) = Global.System.Convert.DBNull
+        Public Sub SetDeptHeadNameDateNull()
+            Me(Me.tableCirculationHead.DeptHeadNameDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DivHeadNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameNull()
+            Me(Me.tableCirculationHead.DivHeadNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivHeadNameDateNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationHead.DivHeadNameDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivHeadNameDateNull()
+            Me(Me.tableCirculationHead.DivHeadNameDateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

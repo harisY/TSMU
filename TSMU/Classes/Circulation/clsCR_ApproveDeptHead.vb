@@ -29,6 +29,116 @@
     Public Property H_Parent_Circulation As String
     Public Property H_Parent_Circulation_Amount As Double
 
+    Public Property H_div_Id As Int32
+    Public Property H_director_Id As Int32
+
+
+
+    Public Function Get_Approve_Search(Dept_ As String, Level As Int32, division As Int32, director As Int32, pDate1 As Date, pDate2 As Date) As DataTable
+        Try
+
+
+            Dim query As String = "[CR_Get_Approve_Search]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+
+            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@pDate1", SqlDbType.Date)
+            pParam(2) = New SqlClient.SqlParameter("@pDate2", SqlDbType.Date)
+            pParam(3) = New SqlClient.SqlParameter("@Level", SqlDbType.Int)
+            pParam(4) = New SqlClient.SqlParameter("@div_id", SqlDbType.Int)
+            pParam(5) = New SqlClient.SqlParameter("@director_id", SqlDbType.Int)
+
+            pParam(0).Value = Dept_
+            pParam(1).Value = pDate1
+            pParam(2).Value = pDate2
+            pParam(3).Value = Level
+            pParam(4).Value = division
+            pParam(5).Value = director
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+
+    Public Function Get_Approve(Dept_ As String, Level As Int32, division As Int32, director As Int32) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+
+            Dim pField As String = ""
+
+            'If Level = 2 Or Level = 3 Then
+            '    P1 = "Submit"
+            '    P2 = "Approve 1"
+            '    P3 = "Approve 2"
+            'End If
+
+            Dim P1 As String = "Submit"
+            Dim P2 As String = "Approve 1"
+            Dim P3 As String = "Approve 2"
+            Dim P4 As String = "Other Dept"
+
+            Dim query As String = "[CR_Get_Approve]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(7) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@P1", SqlDbType.VarChar)
+            pParam(2) = New SqlClient.SqlParameter("@P2", SqlDbType.VarChar)
+            pParam(3) = New SqlClient.SqlParameter("@Level", SqlDbType.Int)
+            pParam(4) = New SqlClient.SqlParameter("@div_id", SqlDbType.VarChar)
+            pParam(5) = New SqlClient.SqlParameter("@director_id", SqlDbType.VarChar)
+            pParam(6) = New SqlClient.SqlParameter("@P3", SqlDbType.VarChar)
+            pParam(7) = New SqlClient.SqlParameter("@P4", SqlDbType.VarChar)
+
+            pParam(0).Value = Dept_
+            pParam(1).Value = P1
+            pParam(2).Value = P2
+            pParam(3).Value = Level
+            pParam(4).Value = division.ToString
+            pParam(5).Value = director.ToString
+            pParam(6).Value = P3
+            pParam(7).Value = P4
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function Get_Root_Approve(User_ As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[Get_Root_Approve]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@User_", SqlDbType.VarChar)
+            pParam(0).Value = User_
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_Root_Approve_ByDept(Dept_ As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[Get_Root_Approve_ByDept]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dept_", SqlDbType.VarChar)
+            pParam(0).Value = Dept_
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
     Public Function Get_ApproveDeptHead(DeptHeadID As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"

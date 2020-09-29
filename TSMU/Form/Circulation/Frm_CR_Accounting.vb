@@ -29,9 +29,9 @@ Public Class Frm_CR_Accounting
             dt = fc_Class.Get_Approve_Accounting()
             Grid.DataSource = dt
 
-            Dim dt2 As New DataTable
-            dt2 = fc_Class.Get_Approve_Accounting2()
-            Grid2.DataSource = dt2
+            'Dim dt2 As New DataTable
+            'dt2 = fc_Class.Get_Approve_Accounting2()
+            'Grid2.DataSource = dt2
 
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             'Cursor.Current = Cursors.Default
@@ -42,32 +42,7 @@ Public Class Frm_CR_Accounting
         End Try
     End Sub
 
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
-        Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
-
-            'fc_ClassCRUD = New ClsCR_CreateUser
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation")
-                End If
-            Next rowHandle
-
-            If GridView1.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView1.RowCount)
-            End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-
-
-    End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
 
@@ -158,11 +133,11 @@ Public Class Frm_CR_Accounting
         Call LoadGrid()
     End Sub
 
-    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
+    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs)
         Call LoadGrid()
     End Sub
 
-    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
+    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs)
 
         Try
             Dim provider As CultureInfo = CultureInfo.InvariantCulture
@@ -186,6 +161,31 @@ Public Class Frm_CR_Accounting
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
 
+
+    End Sub
+
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+
+            'fc_ClassCRUD = New ClsCR_CreateUser
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridView1.GetRowCellValue(rowHandle, "Circulation")
+                End If
+            Next rowHandle
+
+            If GridView1.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridView1.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
     End Sub
 End Class
