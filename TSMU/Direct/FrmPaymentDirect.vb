@@ -919,7 +919,6 @@ Public Class FrmPaymentDirect
             .account = _txtaccount.Text
             .saldo3 = _txtendsaldo.Text
 
-
             .Updatesaldo()
         End With
 
