@@ -127,11 +127,11 @@ Public Class FrmTravelerDetail
             Dim dtGridPaspor = New DataTable
             ObjTravelerVisa.NIK = TxtNIK.Text
             dtGridVisa = ObjTravelerVisa.GetTravelerVisa()
-                GridVisa.DataSource = dtGridVisa
+            GridVisa.DataSource = dtGridVisa
 
-                ObjTravelerPaspor.NIK = TxtNIK.Text
-                dtGridPaspor = ObjTravelerPaspor.GetTravelerPaspor()
-                GridPaspor.DataSource = dtGridPaspor
+            ObjTravelerPaspor.NIK = TxtNIK.Text
+            dtGridPaspor = ObjTravelerPaspor.GetTravelerPaspor()
+            GridPaspor.DataSource = dtGridPaspor
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try

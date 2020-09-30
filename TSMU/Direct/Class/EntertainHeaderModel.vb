@@ -16,7 +16,6 @@ Public Class EntertainHeaderModel
     Public Property Nama As String
     Public Property NamaRelasi As String
     Public Property perusahaanrelasi As String
-
     Public Property Tempat As String
     Public Property Alamat As String
     Public Property Jenis As String
@@ -59,6 +58,7 @@ Public Class EntertainHeaderModel
             Throw ex
         End Try
     End Function
+
     Public Function GetDataGrid2() As DataTable
         Try
             Dim dt2 As New DataTable
@@ -182,6 +182,7 @@ Public Class EntertainHeaderModel
             Throw
         End Try
     End Sub
+
     Public Sub UpdateHeader(ByVal _SuspendID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -200,6 +201,7 @@ Public Class EntertainHeaderModel
             Throw ex
         End Try
     End Sub
+
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -264,8 +266,6 @@ Public Class EntertainHeaderModel
         End Try
     End Sub
 
-
-
     Public Sub InsertDataRelasiSettle()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -297,8 +297,6 @@ Public Class EntertainHeaderModel
             Throw
         End Try
     End Sub
-
-
 
     Public Sub UpdateData()
         Try
@@ -409,6 +407,7 @@ Public Class EntertainHeaderModel
     'End Sub
 
 End Class
+
 Public Class EntertainDetailModel
     Public Property AcctID As String
     Public Property Alamat As String
@@ -432,7 +431,6 @@ Public Class EntertainDetailModel
     Public Property JenisRelasi As String
     Public Property Nota As String
     Public Property NamaRelasi As String
-
 
     Public Sub InsertRelasiSettleEnt()
         Try
@@ -488,9 +486,6 @@ Public Class EntertainDetailModel
         End Try
     End Sub
 
-
-
-
     Public Sub InsertRelasiSettle()
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -507,7 +502,6 @@ Public Class EntertainDetailModel
         End Try
     End Sub
 
-
     Public Sub DeleteDetail(_suspendID)
         Try
             Dim ls_SP As String = "DELETE FROM suspend_detail WHERE rtrim(SuspendID)=" & QVal(_suspendID.TrimEnd) & ""
@@ -516,6 +510,7 @@ Public Class EntertainDetailModel
             Throw
         End Try
     End Sub
+
     Public Function GetSubAccountbyid() As DataTable
         Try
             Dim sql As String = "SELECT 
@@ -578,7 +573,6 @@ Public Class EntertainDetailModel
         End Try
     End Function
 
-
     Public Function GetDataDetailByIDEnt() As DataTable
         Try
             Dim sql As String = "SELECT 
@@ -605,13 +599,39 @@ Public Class EntertainDetailModel
 
     Public Function GetDataDetailByID1Ent(_SuspendID As String) As DataTable
         Try
-            Dim sql As String = "SELECT GETDATE() as Tgl,
- 	                                RTRIM([SubAcct]) SubAccount,
-                                    RTRIM([AcctID]) Account,
-	                                RTRIM(Description) Description,
-                                    Amount,
-                                    0 ActualAmount 
-                                FROM suspend_detail WHERE SuspendID = " & QVal(_SuspendID) & ""
+            Dim sql As String
+            sql = " SELECT  0 AS HeaderSeq ,
+                            GETDATE() AS Tgl ,
+                            RTRIM([SubAcct]) SubAccount ,
+                            RTRIM([AcctID]) Account ,
+                            RTRIM([Description]) AS [Description] ,
+                            RTRIM(Nama) AS Nama ,
+                            RTRIM(Tempat) AS Tempat ,
+                            RTRIM(Alamat) AS Alamat ,
+                            RTRIM(Jenis) AS Jenis ,
+                            Amount AS SuspendAmount ,
+                            0 ActualAmount
+                    FROM    suspend_detail
+                    WHERE   SuspendID = " & QVal(_SuspendID) & " "
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataRelasiByID(_SuspendID As String) As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  0 AS [HeaderSeq] ,
+                            [Nama] ,
+                            [Posisi] ,
+                            [Perusahaan] ,
+                            [JenisUsaha] ,
+                            [Remark]
+                    FROM    dbo.SuspendRelasi
+                    WHERE   SuspendID = " & QVal(_SuspendID) & " "
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -636,12 +656,8 @@ Public Class EntertainDetailModel
         End Try
     End Function
 
-
 End Class
 
-Public Class EntertainSetteleHeader
-
-End Class
 
 
 

@@ -21,8 +21,14 @@ Public Class SettleHeader
     Public Property Date2 As Date
     Public Property perpost As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
-    Dim strQuery As String
+    Public Property ObjRelasi() As New Collection(Of SettleRelasi)
     Public Property PaymentType As String
+    Public Property CreditCardID As String
+    Public Property CreditCardNumber As String
+    Public Property AccountName As String
+
+    Dim strQuery As String
+
 
     Public Function GetDataReportPaymentSolomon() As DataSet
         Dim query As String
@@ -76,6 +82,7 @@ Public Class SettleHeader
             Throw ex
         End Try
     End Function
+
     Public Function SubReport() As DataSet
         Dim query As String
         query = "SELECT [SettleRelasiID]
@@ -91,35 +98,45 @@ Public Class SettleHeader
         Return ds
 
     End Function
+
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
-            Dim sql As String =
-            "SELECT settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,
-            sum(settle_detail.suspendAmount)suspendAmount
-            ,sum(settle_detail.SettleAmount)SettleAmount
-            , settle_header.pay
-FROM settle_header left join settle_detail on settle_header.settleID=settle_detail.settleID 
-where settle_header.DeptID='" & gh_Common.GroupID & "' AND  pay=0 and (settle_header.SuspendID not like '%EN%'  OR settle_header.SuspendID Is Null) group by settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,settle_header.pay
-"
+            Dim sql As String
+            sql = " SELECT  settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            SUM(settle_detail.SuspendAmount) suspendAmount ,
+                            SUM(settle_detail.SettleAmount) SettleAmount ,
+                            settle_header.pay
+                    FROM    settle_header
+                            LEFT JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE   settle_header.DeptID = '" & gh_Common.GroupID & "'
+                            AND pay = 0
+                            AND ( settle_header.SuspendID NOT LIKE '%EN%'
+                                  OR settle_header.SuspendID IS NULL
+                                )
+                    GROUP BY settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            settle_header.pay "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+
     Public Function GetDataGridRpt() As DataTable
 
         Try
@@ -201,6 +218,7 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
         Return ds
 
     End Function
+
     Public Function loadreport2a() As DataSet
         Dim query As String
         query = "SELECT settle_detail.SettleID
@@ -234,6 +252,7 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
         Return ds
 
     End Function
+
     Public Function GetDataGrid2() As DataTable
         Try
             Dim dt As New DataTable
@@ -267,28 +286,79 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Function GetDataGridEnt() As DataTable
         Try
             Dim dt As New DataTable
-            Dim sql As String =
-"SELECT settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,
-            sum(settle_detail.suspendAmount)suspendAmount
-            ,sum(settle_detail.SettleAmount)SettleAmount
-            , settle_header.pay
-FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where DeptID='" & gh_Common.GroupID & "' and settle_header.settleid like '%ET%' 
-group by settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,settle_header.pay
-"
+            Dim sql As String
+            sql = " DECLARE @firstDate DATE;
+                    DECLARE @lastDate DATE;
+                    SET @lastDate = DATEADD(MONTH, 1 + DATEDIFF(MONTH, 0, GETDATE()), -1);
+                    SET @firstDate = DATEADD(mm, DATEDIFF(mm, 0, GETDATE()), 0); 
+                    
+                    SELECT settle_header.ID ,
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        SUM(settle_detail.SuspendAmount) suspendAmount ,
+                        SUM(settle_detail.SettleAmount) SettleAmount ,
+                        settle_header.pay
+                    FROM   settle_header
+                        INNER JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE  DeptID = '" & gh_Common.GroupID & "'
+                        AND settle_header.SettleID LIKE '%ET%'
+                        AND pay = 0
+                        AND ( settle_header.Tgl >= @firstDate
+                                AND settle_header.Tgl <= @lastDate
+                            )
+                    GROUP BY settle_header.ID ,
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        settle_header.pay;  "
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
+    Public Function GetDataGridEntSearch(ByVal dateFrom As Date, ByVal dateTo As Date) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String
+            sql = " SELECT settle_header.ID ,
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        SUM(settle_detail.SuspendAmount) suspendAmount ,
+                        SUM(settle_detail.SettleAmount) SettleAmount ,
+                        settle_header.pay
+                    FROM   settle_header
+                        INNER JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE  DeptID = '" & gh_Common.GroupID & "'
+                        AND settle_header.SettleID LIKE '%ET%'
+                        AND pay = 0
+                        AND ( settle_header.Tgl >= '" & dateFrom & "'
+                                AND settle_header.Tgl <= '" & dateTo & "'
+                            )
+                    GROUP BY settle_header.ID ,
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        settle_header.pay;  "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -299,28 +369,44 @@ group by settle_header.ID
     Public Function GetDataGridEntPaid() As DataTable
         Try
             Dim dt As New DataTable
-            Dim sql As String =
-"SELECT settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,
-            sum(settle_detail.suspendAmount)suspendAmount
-            ,sum(settle_detail.SettleAmount)SettleAmount
-            , settle_header.pay
-FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where DeptID='" & gh_Common.GroupID & "' and (settle_header.SuspendID like '%EN%' AND settle_header.SuspendID is null)  OR settle_header.SuspendID like '%EN%'
- and status='Close' and pay='1'
-group by settle_header.ID
-	, settle_header.SettleID
-	, settle_header.SuspendID, 
-            settle_header.DeptID
-            , Remark, settle_header.Tgl
-            , settle_header.CuryID
-            , settle_header.Total,settle_header.pay
-"
+            Dim sql As String
+            sql = " DECLARE @firstDate DATE;
+                    DECLARE @lastDate DATE;
+                    SET @lastDate = DATEADD(MONTH, 1 + DATEDIFF(MONTH, 0, GETDATE()), -1);
+                    SET @firstDate = DATEADD(mm, DATEDIFF(mm, 0, GETDATE()), 0);
+
+                    SELECT  settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            SUM(settle_detail.SuspendAmount) suspendAmount ,
+                            SUM(settle_detail.SettleAmount) SettleAmount ,
+                            settle_header.pay
+                    FROM    settle_header
+                            INNER JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE   DeptID = '" & gh_Common.GroupID & "'
+                            --AND ( settle_header.SuspendID LIKE '%EN%'
+                            --      AND settle_header.SuspendID IS NULL
+                            --    )
+                            AND settle_header.SettleID LIKE '%ET%'
+                            AND Status = 'Close'
+                            AND pay = '1'
+                            AND ( settle_header.Tgl >= @firstDate
+                                  AND settle_header.Tgl <= @lastDate
+                                )
+                    GROUP BY settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            settle_header.pay; "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -328,11 +414,53 @@ group by settle_header.ID
         End Try
     End Function
 
+    Public Function GetDataGridEntPaidSearch(ByVal dateFrom As Date, ByVal dateTo As Date) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String
+            sql = " SELECT  settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            SUM(settle_detail.SuspendAmount) suspendAmount ,
+                            SUM(settle_detail.SettleAmount) SettleAmount ,
+                            settle_header.pay
+                    FROM    settle_header
+                            INNER JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE   DeptID = '" & gh_Common.GroupID & "'
+                            --AND ( settle_header.SuspendID LIKE '%EN%'
+                            --      AND settle_header.SuspendID IS NULL
+                            --    )
+                            AND settle_header.SettleID LIKE '%ET%'
+                            AND Status = 'Close'
+                            AND pay = '1'
+                            AND ( settle_header.Tgl >= '" & dateFrom & "'
+                                  AND settle_header.Tgl <= '" & dateTo & "'
+                                )
+                    GROUP BY settle_header.ID ,
+                            settle_header.SettleID ,
+                            settle_header.SuspendID ,
+                            settle_header.DeptID ,
+                            Remark ,
+                            settle_header.Tgl ,
+                            settle_header.CuryID ,
+                            settle_header.Total ,
+                            settle_header.pay; "
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Sub GetSettleById()
         Try
             Dim sql As String =
-            "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend,t.PRNo,t.PaymentType
+            "SELECT t.ID, t.SettleID, t.SuspendID, t.DeptID, t.Remark, t.Tgl, t.CuryID, t.Status, t.Total, t.pay, s.Total TotSuspend,t.PRNo,ISNULL(t.PaymentType, 'CASH') AS	PaymentType,t.CreditCardID,t.CreditCardNumber,t.AccountName
             FROM settle_header t left join suspend_header s on t.SuspendID = s.SuspendID 
             where t.SettleID=" & QVal(SettleID) & ""
             Dim dt As New DataTable
@@ -346,10 +474,14 @@ group by settle_header.ID
                 Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
                 Status = If(IsDBNull(dt.Rows(0).Item("Status")), "", Trim(dt.Rows(0).Item("Status").ToString()))
                 Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
+                pay = If(IsDBNull(dt.Rows(0).Item("Pay")), 0, dt.Rows(0).Item("Pay"))
                 TotalSuspend = If(IsDBNull(dt.Rows(0).Item("TotSuspend")), 0, Convert.ToDouble(dt.Rows(0).Item("TotSuspend")))
                 CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Convert.ToString(dt.Rows(0).Item("CuryID")))
                 PRNo = If(IsDBNull(dt.Rows(0).Item("PRNo")), "", Convert.ToString(dt.Rows(0).Item("PRNo")))
                 PaymentType = If(IsDBNull(dt.Rows(0).Item("PaymentType")), "", Convert.ToString(dt.Rows(0).Item("PaymentType")))
+                CreditCardID = If(IsDBNull(dt.Rows(0).Item("CreditCardID")), "", Convert.ToString(dt.Rows(0).Item("CreditCardID")))
+                CreditCardNumber = If(IsDBNull(dt.Rows(0).Item("CreditCardNumber")), "", Convert.ToString(dt.Rows(0).Item("CreditCardNumber")))
+                AccountName = If(IsDBNull(dt.Rows(0).Item("AccountName")), "", Convert.ToString(dt.Rows(0).Item("AccountName")))
             End If
         Catch ex As Exception
             Throw ex
@@ -373,6 +505,7 @@ group by settle_header.ID
                 Tgl = If(IsDBNull(dt.Rows(0).Item("Tgl")), DateTime.Today, Convert.ToDateTime(dt.Rows(0).Item("Tgl")))
                 Status = If(IsDBNull(dt.Rows(0).Item("Status")), "", Trim(dt.Rows(0).Item("Status").ToString()))
                 Total = If(IsDBNull(dt.Rows(0).Item("Total")), 0, Convert.ToDouble(dt.Rows(0).Item("Total")))
+                pay = If(IsDBNull(dt.Rows(0).Item("Pay")), 0, dt.Rows(0).Item("Pay"))
                 TotalSuspend = If(IsDBNull(dt.Rows(0).Item("TotSuspend")), 0, Convert.ToDouble(dt.Rows(0).Item("TotSuspend")))
                 CuryID = If(IsDBNull(dt.Rows(0).Item("CuryID")), "", Convert.ToString(dt.Rows(0).Item("CuryID")))
             End If
@@ -397,9 +530,19 @@ group by settle_header.ID
     Public Function GetListSettleEnt() As DataTable
         Try
             Dim dt As New DataTable
-            Dim sql As String =
-            "SELECT SuspendHeaderID ID, SuspendID, PRNo, Remark, Tgl, Total
-            FROM suspend_header WHERE Tipe = 'E' AND Pay=1 AND Status='Approved' Order by SuspendID"
+            Dim sql As String
+            sql = " SELECT  SuspendHeaderID ID ,
+                            SuspendID ,
+                            PRNo ,
+                            Remark ,
+                            Tgl ,
+                            Total
+                    FROM    suspend_header
+                    WHERE   Tipe = 'E'
+                            AND pay = 1
+                            AND Status = 'Approved'
+                            AND DeptID = " & QVal(gh_Common.GroupID) & "
+                    ORDER BY SuspendID; "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -453,7 +596,6 @@ group by settle_header.ID
         End Try
     End Function
 
-
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
@@ -496,13 +638,12 @@ group by settle_header.ID
         Catch ex As Exception
             Throw
         End Try
-
-
     End Sub
+
     Public Sub InsertHeaderEntSettleDirect()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
@@ -510,43 +651,14 @@ group by settle_header.ID
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
             "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
-
-
-
-    End Sub
-
-
-
-    Public Sub InsertHeader2()
-        Try
-            Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PRNo, Total) " & vbCrLf &
-            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Tgl) & ", " & vbCrLf &
-            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
-            "       'Close', " & vbCrLf &
-            "       " & QVal(noPR.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Total) & ")"
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Try
-            Dim ls_SP As String = "update suspend_header set status='Close' WHERE rtrim(SuspendID)=" & QVal(_SuspendID.TrimEnd) & ""
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-
     End Sub
 
     Public Sub InsertHeaderDirectSettle()
@@ -569,26 +681,6 @@ group by settle_header.ID
 
     End Sub
 
-
-    Public Sub InsertHeaderEntDirectSettle()
-        Try
-            Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
-            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(Tgl) & ", " & vbCrLf &
-            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
-            "       'Close', " & vbCrLf &
-            "       " & QVal(Total) & ")"
-            ExecQuery_Solomon(ls_SP)
-        Catch ex As Exception
-            Throw
-        End Try
-
-    End Sub
-
     Public Sub UpdateHeader(ByVal _SettleID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -600,12 +692,67 @@ group by settle_header.ID
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
                                     "       Status = 'Close', " & vbCrLf &
+                                    "       PaymentType = " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+                                    "       CreditCardID = " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+                                    "       CreditCardNumber = " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+                                    "       AccountName = " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
                                     "       Total = " & QVal(Total) & " WHERE SettleID = '" & _SettleID & "'"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+    Public Sub UpdateHeaderEntSettleDetail(ByVal _SettleID As String)
+        Try
+            Dim ls_SP As String
+            ls_SP = "UPDATE  dbo.settle_header
+                    SET     SuspendID = " & QVal(SuspendID.TrimEnd) & " ,
+                            DeptID = " & QVal(DeptID.TrimEnd) & " ,
+                            PRNo = " & QVal(PRNo.TrimEnd) & " ,
+                            Remark = " & QVal(Remark.TrimEnd) & " ,
+                            Tgl = " & QVal(Tgl) & " ,
+                            CuryID = " & QVal(CuryID.TrimEnd) & " ,
+                            Status = 'Close' ,
+                            Total = " & Total & "
+                    WHERE   SettleID = '" & _SettleID & "'"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateSettleTravelCost(ByVal EntertainID As String)
+        Try
+            Dim dt As New DataTable
+
+            Dim SP_Name As String = "Entertain_Update_TravelSettleCost"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(7) {}
+            pParam(0) = New SqlClient.SqlParameter("@EntertainID", SqlDbType.VarChar)
+            pParam(0).Value = SettleID
+            pParam(1) = New SqlClient.SqlParameter("@Description", SqlDbType.VarChar)
+            pParam(1).Value = Remark
+            pParam(2) = New SqlClient.SqlParameter("@PaymentType", SqlDbType.VarChar)
+            pParam(2).Value = PaymentType
+            pParam(3) = New SqlClient.SqlParameter("@CreditCardID", SqlDbType.VarChar)
+            pParam(3).Value = CreditCardID
+            pParam(4) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(4).Value = CreditCardNumber
+            pParam(5) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
+            pParam(5).Value = AccountName
+            pParam(6) = New SqlClient.SqlParameter("@CurryID", SqlDbType.VarChar)
+            pParam(6).Value = CuryID
+            pParam(7) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
+            pParam(7).Value = Total
+
+            ExecQueryByCommand_SP_Solomon(SP_Name, pParam)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub InsertData1()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -637,6 +784,7 @@ group by settle_header.ID
             Throw
         End Try
     End Sub
+
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -687,6 +835,14 @@ group by settle_header.ID
                             End With
                         Next
 
+                        For i As Integer = 0 To ObjRelasi.Count - 1
+                            With ObjRelasi(i)
+                                .InsertRelasi()
+                            End With
+                        Next
+
+                        UpdateStatusSuspend("Close")
+
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -719,6 +875,12 @@ group by settle_header.ID
                             End With
                         Next
 
+                        For i As Integer = 0 To ObjRelasi.Count - 1
+                            With ObjRelasi(i)
+                                .InsertRelasi()
+                            End With
+                        Next
+
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -733,8 +895,7 @@ group by settle_header.ID
         End Try
     End Sub
 
-
-    Public Sub UpdateData(_SettleID As String)
+    Public Sub UpdateDataEntSettleDetail(_SettleID As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
                 Conn1.Open()
@@ -744,15 +905,23 @@ group by settle_header.ID
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-
-                        UpdateHeader(_SettleID)
+                        UpdateHeaderEntSettleDetail(_SettleID)
 
                         Dim ObjSettleDetail As New SettleDetail
                         ObjSettleDetail.DeleteDetail(_SettleID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
-                                .InsertDetails()
+                                .InsertDetailsEntSettle1()
+                            End With
+                        Next
+
+                        Dim clsEntertainRelasi As New SettleRelasi
+                        clsEntertainRelasi.DeleteRelasi(_SettleID)
+
+                        For i As Integer = 0 To ObjRelasi.Count - 1
+                            With ObjRelasi(i)
+                                .InsertRelasi()
                             End With
                         Next
 
@@ -769,7 +938,177 @@ group by settle_header.ID
             Throw ex
         End Try
     End Sub
+
+    Public Sub UpdateData(_SettleID As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        UpdateHeader(_SettleID)
+
+                        UpdateSettleTravelCost(_SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(_SettleID)
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetailsEntSettleDirect()
+                            End With
+                        Next
+
+                        Dim clsEntertainRelasi As New SettleRelasi
+                        clsEntertainRelasi.DeleteRelasi(_SettleID)
+
+                        For i As Integer = 0 To ObjRelasi.Count - 1
+                            With ObjRelasi(i)
+                                .InsertRelasi()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function CheckSettleAccrued(ByVal NoTransaksi As String) As Boolean
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  CAST(COUNT(NoAccrued) AS BIT)
+                        FROM    dbo.T_CCAccrued
+                        WHERE   NoTransaksi = " & QVal(NoTransaksi) & ""
+            dt = GetDataTable(strQuery)
+
+            Dim validasi As Boolean
+            validasi = dt.Rows(0).Item(0)
+
+            Return validasi
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub DeleteData()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleteHeader(SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(SettleID)
+
+                        Dim clsEntertainRelasi As New SettleRelasi
+                        clsEntertainRelasi.DeleteRelasi(SettleID)
+
+                        DeleteTravelCost(SettleID)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteDataWithSuspend()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleteHeader(SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(SettleID)
+
+                        Dim clsEntertainRelasi As New SettleRelasi
+                        clsEntertainRelasi.DeleteRelasi(SettleID)
+
+                        UpdateStatusSuspend("Approved")
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteHeader(_SettleID As String)
+        Try
+            Dim ls_SP As String
+            ls_SP = "DELETE
+                     FROM    dbo.settle_header
+                     WHERE   RTRIM(SettleID) = " & QVal(_SettleID) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteTravelCost(_SettleID As String)
+        Try
+            Dim ls_SP As String
+            ls_SP = "DELETE
+                     FROM    New_BOM.dbo.TravelSettleCost
+                     WHERE   EntertainID = " & QVal(_SettleID) & ""
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateStatusSuspend(ByVal _status As String)
+        Try
+            Dim sql As String
+            sql = " UPDATE  dbo.suspend_header
+                    SET     Status = '" & _status & "'
+                    WHERE   SuspendID = '" & SuspendID & "' "
+            ExecQuery_Solomon(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
+
 Public Class SettleDetail
     Public Property AcctID As String
     Public Property Alamat As String
@@ -789,6 +1128,7 @@ Public Class SettleDetail
     Public Property SubAcct As String
     Public Property Tempat As String
     Public Property Tgl As DateTime
+    Public Property HeaderSeq As Integer
 
     Public Sub InsertDetails()
         Try
@@ -835,7 +1175,6 @@ Public Class SettleDetail
         End Try
     End Sub
 
-
     Public Sub InsertDetailsEntSettle()
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -866,7 +1205,7 @@ Public Class SettleDetail
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SuspendAmount,SettleAmount ) " & vbCrLf &
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SuspendAmount,SettleAmount,HeaderSeq ) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
@@ -877,19 +1216,19 @@ Public Class SettleDetail
             "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendAmount) & ", " & vbCrLf &
-            "       " & QVal(SettleAmount) & ")"
+            "       " & SettleAmount & ", " & vbCrLf &
+            "       " & HeaderSeq & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
 
-
     Public Sub InsertDetailsEntSettleDirect()
         Try
             Dim ls_SP As String = " " & vbCrLf &
             "INSERT INTO settle_detail
-            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount ) " & vbCrLf &
+            (SettleID, Tgl, SubAcct, AcctID,  Description, Nama,Tempat,Alamat,Jenis,SettleAmount,HeaderSeq ) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(SubAcct.TrimEnd) & ", " & vbCrLf &
@@ -899,13 +1238,13 @@ Public Class SettleDetail
             "       " & QVal(Tempat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Alamat.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Jenis.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(SettleAmount) & ")"
+            "       " & QVal(SettleAmount) & ", " & vbCrLf &
+            "       " & QVal(HeaderSeq) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
         End Try
     End Sub
-
 
     Public Sub DeleteDetail(_SettleID As String)
         Try
@@ -918,14 +1257,20 @@ Public Class SettleDetail
 
     Public Function GetDataDetailByID(SettleID As String) As DataTable
         Try
-            Dim sql As String = "
-            SELECT 
-	            Tgl,
-	            SubAcct SubAccount,
-	            AcctID Account,
-	            Description,Nama, Tempat, Alamat,Jenis,
-                SettleAmount ActualAmount
-            FROM settle_detail WHERE SettleID = " & QVal(SettleID) & ""
+            Dim sql As String
+            sql = " SELECT  ISNULL(HeaderSeq, 0) AS HeaderSeq ,
+                            Tgl ,
+                            RTRIM(SubAcct) AS SubAccount ,
+                            RTRIM(AcctID) AS Account ,
+                            RTRIM(Description) AS [Description] ,
+                            RTRIM(Nama) AS Nama ,
+                            RTRIM(Tempat) AS Tempat ,
+                            RTRIM(Alamat) AS Alamat ,
+                            RTRIM(Jenis) AS Jenis ,
+                            SuspendAmount ,
+                            SettleAmount AS ActualAmount
+                    FROM    settle_detail
+                    WHERE   SettleID = " & QVal(SettleID) & " "
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
@@ -937,7 +1282,8 @@ Public Class SettleDetail
     Public Function GetDataDetailRelasiByID(_SettleID As String) As DataTable
         Try
 
-            Dim sql = "SELECT [SettleRelasiID]
+            Dim sql = "SELECT ISNULL([HeaderSeq], 0) AS [HeaderSeq]
+                      ,[SettleRelasiID]
                       ,[SettleID]
                       ,[Nama]
                       ,[Posisi]
@@ -953,4 +1299,47 @@ Public Class SettleDetail
             Throw ex
         End Try
     End Function
+
 End Class
+
+'Add Midi For Insert & Delete Relasi Entertainment Direct
+Public Class SettleRelasi
+    Public Property SettleID As String
+    Public Property NamaRelasi As String
+    Public Property Posisi As String
+    Public Property Relasi As String
+    Public Property JenisRelasi As String
+    Public Property Nota As String
+    Public Property HeaderSeq As Integer
+
+    Dim strQuery As String
+
+    Public Sub InsertRelasi()
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+            "INSERT INTO dbo.settlerelasi (SettleID, Nama, Posisi, Perusahaan, JenisUsaha, Remark, HeaderSeq ) " & vbCrLf &
+            "Values(" & QVal(SettleID) & ", " & vbCrLf &
+            "       " & QVal(NamaRelasi) & ", " & vbCrLf &
+            "       " & QVal(Posisi) & ", " & vbCrLf &
+            "       " & QVal(Relasi) & ", " & vbCrLf &
+            "       " & QVal(JenisRelasi) & ", " & vbCrLf &
+            "       " & QVal(Nota) & ", " & vbCrLf &
+            "       " & QVal(HeaderSeq) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub DeleteRelasi(SettleID_ As String)
+        Try
+            strQuery = "DELETE  FROM dbo.SettleRelasi
+                        WHERE   SettleID = " & QVal(SettleID_) & ""
+            ExecQuery_Solomon(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+End Class
+

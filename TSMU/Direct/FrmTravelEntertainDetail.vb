@@ -441,6 +441,8 @@ Public Class FrmTravelEntertainDetail
         Try
             If String.IsNullOrEmpty(TxtRemark.Text) Then
                 Err.Raise(ErrNumber, , "Remark header tidak boleh kosong !")
+            ElseIf GridViewEntertain.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Detail tidak boleh kosong ! !")
             End If
 
             For i As Integer = 0 To GridViewEntertain.RowCount - 1
@@ -493,7 +495,6 @@ Public Class FrmTravelEntertainDetail
         'view.CloseEditor()
         If view.UpdateCurrentRow() Then
         End If
-        'hitungTotal()
     End Sub
 
     Private Sub GridViewRelasi_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridViewRelasi.CellValueChanged

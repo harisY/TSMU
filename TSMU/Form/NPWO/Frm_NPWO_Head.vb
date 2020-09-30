@@ -159,4 +159,30 @@ Public Class Frm_NPWO_Head
     Private Sub Frm_NPWO_Head_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
 
     End Sub
+
+    Public Overrides Sub Proc_Search()
+
+        Try
+
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+
+                'Call LoadGrid()
+                Dim dt As New DataTable
+                dt = fc_Class.Get_NPWO_Search(0, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                'fc_Class.(Dept, _level, division, director, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                Grid.DataSource = dt
+
+
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+
+    End Sub
+
+
+
 End Class
