@@ -4,8 +4,8 @@ Imports DevExpress.XtraGrid
 Public Class Frm_Rpt_APPaymentSolomon
     Dim pay_class As New Cls_report
     Dim pay_Config As DataTable = Nothing
-    Private Sub Frm_Rpt_ViewPayment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call baseForm.Proc_EnableButtons(False, False, False, True, True, False, False, False)
+    Private Sub Frm_Rpt_APPaymentSolomon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Call baseForm.Proc_EnableButtons(False, False, False, True, False, True, False, False)
         Init()
         ProgBar.Visible = False
         ''Progbar_sup.Visible = False
@@ -52,13 +52,13 @@ Public Class Frm_Rpt_APPaymentSolomon
                 '    Else
                 '        MsgBox("Grid Kosong!")
                 '    End If
-            ElseIf TabControl1.SelectedTab Is TabPage2 Then
-                If GridView7.RowCount > 0 Then
-                    SaveToExcel(GridControl4)
-                    MsgBox("Data Sudah Berhasil Di Export.")
-                Else
-                    MsgBox("Grid Kosong!")
-                End If
+                'ElseIf TabControl1.SelectedTab Is TabPage2 Then
+                '    If GridView7.RowCount > 0 Then
+                '        SaveToExcel(GridControl4)
+                '        MsgBox("Data Sudah Berhasil Di Export.")
+                '    Else
+                '        MsgBox("Grid Kosong!")
+                '    End If
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -281,6 +281,7 @@ Public Class Frm_Rpt_APPaymentSolomon
 
     Private Sub tsBtn_excel_Click(sender As Object, e As EventArgs) Handles tsBtn_excel.Click
         Proc_Excel()
+        ''proc_PrintPreview()
     End Sub
 
     Private Async Sub btnLoad_sup2_Click(sender As Object, e As EventArgs)
@@ -316,5 +317,25 @@ Public Class Frm_Rpt_APPaymentSolomon
 
     Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
+    End Sub
+
+    Private Sub tsBtn_preview_Click(sender As Object, e As EventArgs) Handles tsBtn_preview.Click
+        Try
+            Dim newform As New Frm_Rpt_APPaySolomon(txt_perpost.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub proc_PrintPreview()
+        Try
+            Dim newform As New Frm_Rpt_APPaySolomon(txt_perpost.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

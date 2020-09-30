@@ -17,10 +17,10 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        AutoUpdater.RunUpdateAsAdmin = False
-        AutoUpdater.Mandatory = True
-        AutoUpdater.UpdateMode = Mode.ForcedDownload
-        AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        'AutoUpdater.RunUpdateAsAdmin = False
+        'AutoUpdater.Mandatory = True
+        'AutoUpdater.UpdateMode = Mode.ForcedDownload
+        'AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
         DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
     End Sub
