@@ -381,12 +381,20 @@ Public Class FrmTravelEntertainDetail
         If maxValue >= headerSeq Then
             headerSeq = maxValue + 1
         End If
+        Dim defaultName As String = String.Empty
+        If AccountNameNBank.Contains("-") Then
+            Dim lastFind As Integer = AccountNameNBank.IndexOf("-")
+            defaultName = AccountNameNBank.Substring(0, lastFind)
+        End If
 
         GridViewEntertain.AddNewRow()
         GridViewEntertain.OptionsNavigation.AutoFocusNewRow = True
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SettleID", __EntertainID)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount", 0)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount", "11690")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", "62300")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Nama", defaultName)
         GridViewEntertain.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()

@@ -87,6 +87,7 @@
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.Win.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -110,6 +111,7 @@
     <Reference Include="DevExpress.XtraCharts.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.2.Wizard, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Presets, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -443,6 +445,18 @@
       <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEditDirectPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.Designer.vb">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
@@ -2662,6 +2676,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
