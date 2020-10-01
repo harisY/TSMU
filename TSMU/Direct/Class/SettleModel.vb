@@ -19,6 +19,7 @@ Public Class SettleHeader
     Public Property noPR As String
     Public Property Date1 As Date
     Public Property Date2 As Date
+    Public Property perpost As String
     Public Property ObjDetails() As New Collection(Of SettleDetail)
     Public Property ObjRelasi() As New Collection(Of SettleRelasi)
     Public Property PaymentType As String
@@ -28,6 +29,21 @@ Public Class SettleHeader
 
     Dim strQuery As String
 
+
+    Public Function GetDataReportPaymentSolomon() As DataSet
+        Dim query As String
+
+        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5 as 'No Vocher', A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
+                 FROM          dbo.APDoc AS A INNER JOIN dbo.Batch AS B ON A.BatNbr = B.BatNbr AND B.Module = 'AP' 
+                                              INNER JOIN dbo.Vendor AS C ON A.VendId = C.VendId
+                 WHERE        (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
+                 ORDER BY C.Name"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "PaymentSolomon")
+        Return ds
+
+    End Function
     Public Function GetCreditCard() As DataTable
         Try
             strQuery = " SELECT  CreditCardID ,

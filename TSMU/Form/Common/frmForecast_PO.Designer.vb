@@ -50,7 +50,7 @@ Partial Class frmForecast_PO
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 100)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 128)
         '
         'ExportToExcelTSM
         '

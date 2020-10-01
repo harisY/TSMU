@@ -7,6 +7,7 @@ Public Class frm_lookup_pph
     Dim _Voucher As String
     Dim _invcNbr As String
     Dim _DPP As String
+    Dim _JenisDokumen As String
     Dim ObjFP As Cls_FP = New Cls_FP()
     Dim tes As Boolean = True
     Dim total_dpp As Double = 0
@@ -90,6 +91,7 @@ Public Class frm_lookup_pph
                 _TxtBulan.Text = DateTime.Now.Month.ToString
                 _TxtPPh.Enabled = True
                 _TsbOk.Enabled = True
+                txt_jenisdokumen.Text = _JenisDokumen
                 If _TxtInvcNbr.Text = _TxtCekInv.Text Then
                     loadGrid1()
                 Else
@@ -111,6 +113,7 @@ Public Class frm_lookup_pph
                     _TxtLokasi.Text = dt.Rows(0).Item("Lokasi").ToString().TrimEnd
                     _TxtNilaiPPh.Text = dt.Rows(0).Item("Tot_Pph")
                     _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
+                    txt_jenisdokumen.Text = dt.Rows(0).Item("JenisDokumen").ToString()
                     '_TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
 
                 End If
@@ -207,6 +210,7 @@ Public Class frm_lookup_pph
                     .Tarif = _TxtTarif.Text
                     .Tot_Dpp_Invoice = _TxtDPP.Text
                     .Tot_Pph = _TxtNilaiPPh.Text
+                    .JenisDokumen = txt_jenisdokumen.Text
                 End With
                 ObjPPHTransaction.ObjPPHDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1

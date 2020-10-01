@@ -63,6 +63,21 @@ Public Class Cls_report
         End Set
     End Property
 
+
+    'Public Property perpost() As String
+    '    Get
+    '        Return perpost
+    '    End Get
+    '    Set(ByVal value As String)
+    '        perpost = value
+    '    End Set
+    'End Property
+
+    Public Property perpost As String
+
+
+
+
     Public Function cmbsupplier() As DataTable
         Try
             query = "Select VendID, Name FROM Vendor where status='A' order by name"
@@ -420,6 +435,46 @@ Public Class Cls_report
             Throw ex
         End Try
     End Sub
+
+    Public Sub ReportPaymentSolomon()
+        Try
+            Dim sql As String = "ReportAPPaymentSolomon"
+            MainModul.ExecQuery_Solomon(sql)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    'Public Function GetDataReportPaymentSolomon(ByVal perpost As String) As DataTable
+    '    Try
+    '        Dim sql As String = "ReportAPPaymentSolomon"
+    '        Dim dt As New DataTable
+    '        dt = MainModul.GetDataTable(sql)
+    '        'dt = MainModul.GetDataTable_solomon(sql)
+    '        'CultureInfo.CurrentCulture = New CultureInfo("id-ID")
+    '        Return dt
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Function
+
+    Public Function GetDataReportPaymentSolomon() As DataSet
+        Dim query As String
+        Frm_Rpt_APPaymentSolomon.txt_perpost.Text = perpost
+        perpost = Frm_Rpt_APPaymentSolomon.txt_perpost.Text
+
+        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5 as 'No Vocher', A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
+                 FROM          dbo.APDoc AS A INNER JOIN dbo.Batch AS B ON A.BatNbr = B.BatNbr AND B.Module = 'AP' 
+                                              INNER JOIN dbo.Vendor AS C ON A.VendId = C.VendId
+                 WHERE        (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
+                 ORDER BY C.Name"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "PaymentSolomon")
+        Return ds
+
+    End Function
+
 
     Public Function DataGridReportUploadSolomon(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
