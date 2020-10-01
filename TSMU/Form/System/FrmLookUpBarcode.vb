@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraReports.UI
 
 Public Class FrmLookUpBarcode
@@ -251,6 +252,10 @@ Public Class FrmLookUpBarcode
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Private Sub PrintingSystem_StartPrint(sender As Object, e As PrintDocumentEventArgs)
+        ' Set the number of document copies to print.
+        e.PrintDocument.PrinterSettings.Copies = 3
     End Sub
 
     Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged
