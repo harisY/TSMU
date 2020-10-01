@@ -231,7 +231,6 @@ Public Class Cls_NPP_Detail
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE NPP_Head" & vbCrLf &
                                     "SET [Approve] = '" & H_Approve & "'
@@ -261,8 +260,6 @@ Public Class Cls_NPP_Detail
                                                ,'" & Date.Now & "'
                                                ,'" & TA_IsActive & "')"
                         MainModul.ExecQuery(ls_SP1)
-
-
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()

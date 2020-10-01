@@ -44,20 +44,6 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    'Public Overrides Sub Proc_InputNewData()
-    '    If TabPage = "TabPageReq" Then
-    '        If GridViewRequest.SelectedRowsCount > 0 Then
-    '            CallFrm()
-    '        Else
-    '            MessageBox.Show("Harap pilih dulu travelnya", "Warning",
-    '                                MessageBoxButtons.OK,
-    '                                MessageBoxIcon.Exclamation,
-    '                                MessageBoxDefaultButton.Button1)
-    '        End If
-    '    End If
-
-    'End Sub
-
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
         If TabPage = "TabPageReq" Then

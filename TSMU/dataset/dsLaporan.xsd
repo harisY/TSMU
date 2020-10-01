@@ -680,6 +680,10 @@
               <xs:element name="Approve_Div_Head" msprop:Generator_ColumnVarNameInTable="columnApprove_Div_Head" msprop:Generator_ColumnPropNameInRow="Approve_Div_Head" msprop:Generator_ColumnPropNameInTable="Approve_Div_HeadColumn" msprop:Generator_UserColumnName="Approve_Div_Head" type="xs:boolean" minOccurs="0" />
               <xs:element name="Approve_Div_Head_Name" msprop:Generator_ColumnVarNameInTable="columnApprove_Div_Head_Name" msprop:Generator_ColumnPropNameInRow="Approve_Div_Head_Name" msprop:Generator_ColumnPropNameInTable="Approve_Div_Head_NameColumn" msprop:Generator_UserColumnName="Approve_Div_Head_Name" type="xs:string" minOccurs="0" />
               <xs:element name="Approve_Div_Head_Date" msprop:Generator_ColumnVarNameInTable="columnApprove_Div_Head_Date" msprop:Generator_ColumnPropNameInRow="Approve_Div_Head_Date" msprop:Generator_ColumnPropNameInTable="Approve_Div_Head_DateColumn" msprop:Generator_UserColumnName="Approve_Div_Head_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DeptHeadName" msprop:Generator_ColumnVarNameInTable="columnDeptHeadName" msprop:Generator_ColumnPropNameInRow="DeptHeadName" msprop:Generator_ColumnPropNameInTable="DeptHeadNameColumn" msprop:Generator_UserColumnName="DeptHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDeptHeadNameDate" msprop:Generator_ColumnPropNameInRow="DeptHeadNameDate" msprop:Generator_ColumnPropNameInTable="DeptHeadNameDateColumn" msprop:Generator_UserColumnName="DeptHeadNameDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DivHeadName" msprop:Generator_ColumnVarNameInTable="columnDivHeadName" msprop:Generator_ColumnPropNameInRow="DivHeadName" msprop:Generator_ColumnPropNameInTable="DivHeadNameColumn" msprop:Generator_UserColumnName="DivHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="DivHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDivHeadNameDate" msprop:Generator_ColumnPropNameInRow="DivHeadNameDate" msprop:Generator_ColumnPropNameInTable="DivHeadNameDateColumn" msprop:Generator_UserColumnName="DivHeadNameDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -740,6 +744,10 @@
               <xs:element name="A4" msprop:Generator_ColumnVarNameInTable="columnA4" msprop:Generator_ColumnPropNameInRow="A4" msprop:Generator_ColumnPropNameInTable="A4Column" msprop:Generator_UserColumnName="A4" type="xs:string" minOccurs="0" />
               <xs:element name="CreatedBy" msprop:Generator_ColumnVarNameInTable="columnCreatedBy" msprop:Generator_ColumnPropNameInRow="CreatedBy" msprop:Generator_ColumnPropNameInTable="CreatedByColumn" msprop:Generator_UserColumnName="CreatedBy" type="xs:string" minOccurs="0" />
               <xs:element name="Prepare" msprop:Generator_ColumnVarNameInTable="columnPrepare" msprop:Generator_ColumnPropNameInRow="Prepare" msprop:Generator_ColumnPropNameInTable="PrepareColumn" msprop:Generator_UserColumnName="Prepare" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptHeadName" msprop:Generator_ColumnVarNameInTable="columnDeptHeadName" msprop:Generator_ColumnPropNameInRow="DeptHeadName" msprop:Generator_ColumnPropNameInTable="DeptHeadNameColumn" msprop:Generator_UserColumnName="DeptHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDeptHeadNameDate" msprop:Generator_ColumnPropNameInRow="DeptHeadNameDate" msprop:Generator_ColumnPropNameInTable="DeptHeadNameDateColumn" msprop:Generator_UserColumnName="DeptHeadNameDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DivHeadName" msprop:Generator_ColumnVarNameInTable="columnDivHeadName" msprop:Generator_ColumnPropNameInRow="DivHeadName" msprop:Generator_ColumnPropNameInTable="DivHeadNameColumn" msprop:Generator_UserColumnName="DivHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="DivHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDivHeadNameDate" msprop:Generator_ColumnPropNameInRow="DivHeadNameDate" msprop:Generator_ColumnPropNameInTable="DivHeadNameDateColumn" msprop:Generator_UserColumnName="DivHeadNameDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -834,8 +842,16 @@
               <xs:element name="H_Spesification" msprop:Generator_ColumnVarNameInTable="columnH_Spesification" msprop:Generator_ColumnPropNameInRow="H_Spesification" msprop:Generator_ColumnPropNameInTable="H_SpesificationColumn" msprop:Generator_UserColumnName="H_Spesification" type="xs:string" minOccurs="0" />
               <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:double" minOccurs="0" />
               <xs:element name="UserSubmitionDate" msprop:Generator_ColumnVarNameInTable="columnUserSubmitionDate" msprop:Generator_ColumnPropNameInRow="UserSubmitionDate" msprop:Generator_ColumnPropNameInTable="UserSubmitionDateColumn" msprop:Generator_UserColumnName="UserSubmitionDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="DeptHead_Approve_Date" msprop:Generator_ColumnVarNameInTable="columnDeptHead_Approve_Date" msprop:Generator_ColumnPropNameInRow="DeptHead_Approve_Date" msprop:Generator_ColumnPropNameInTable="DeptHead_Approve_DateColumn" msprop:Generator_UserColumnName="DeptHead_Approve_Date" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="DivHead_Approve_Date" msprop:Generator_ColumnVarNameInTable="columnDivHead_Approve_Date" msprop:Generator_ColumnPropNameInRow="DivHead_Approve_Date" msprop:Generator_ColumnPropNameInTable="DivHead_Approve_DateColumn" msprop:Generator_UserColumnName="DivHead_Approve_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DeptHeadName" msprop:Generator_ColumnVarNameInTable="columnDeptHeadName" msprop:Generator_ColumnPropNameInRow="DeptHeadName" msprop:Generator_ColumnPropNameInTable="DeptHeadNameColumn" msprop:Generator_UserColumnName="DeptHeadName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeptHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDeptHeadNameDate" msprop:Generator_ColumnPropNameInRow="DeptHeadNameDate" msprop:Generator_ColumnPropNameInTable="DeptHeadNameDateColumn" msprop:Generator_UserColumnName="DeptHeadNameDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DivHeadName" msprop:Generator_ColumnVarNameInTable="columnDivHeadName" msprop:Generator_ColumnPropNameInRow="DivHeadName" msprop:Generator_ColumnPropNameInTable="DivHeadNameColumn" msprop:Generator_UserColumnName="DivHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="DivHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDivHeadNameDate" msprop:Generator_ColumnPropNameInRow="DivHeadNameDate" msprop:Generator_ColumnPropNameInTable="DivHeadNameDateColumn" msprop:Generator_UserColumnName="DivHeadNameDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

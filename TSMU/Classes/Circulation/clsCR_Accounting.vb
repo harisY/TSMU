@@ -5,15 +5,11 @@
         Try
             'Dim query As String = "[Generate_Report_Matome]"
 
-
             Dim query As String = "[CR_Request_Get_ApproveAccounting]"
 
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query)
             Return dt
-
-
-
 
         Catch ex As Exception
             Throw

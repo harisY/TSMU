@@ -21,6 +21,8 @@ Public Class fp_transaction_models
     Public Property Tot_Voucher As Double
     Public Property Vend_Name As String
     Public Property VendID As String
+    Public Property PO As String
+    Public Property Keterangan As String
 
     Public Property ObjFPDetails() As New Collection(Of fp_details_models)
     Private ObjFPHeader As New fp_header_models
@@ -50,6 +52,9 @@ Public Class fp_transaction_models
                             .Tot_Voucher = Tot_Voucher
                             .Tot_Pph = Tot_Pph
                             .Status = Status
+                            .PO = PO
+                            .Keterangan = Keterangan
+
                         End With
 
                         ObjFPHeader.InsertHeader()
@@ -128,6 +133,8 @@ Public Class fp_transaction_models
                             .Tot_Voucher = Tot_Voucher
                             .Tot_Pph = Tot_Pph
                             .Status = Status
+                            .PO = PO
+                            .Keterangan = Keterangan
                         End With
                         ObjFPHeader.UpdateHeader(FPNo)
 

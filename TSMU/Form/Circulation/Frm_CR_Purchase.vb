@@ -115,6 +115,5 @@ Public Class Frm_CR_Purchase
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
-
     End Sub
 End Class

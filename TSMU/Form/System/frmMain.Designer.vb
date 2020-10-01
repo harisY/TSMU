@@ -124,35 +124,35 @@ Partial Class FrmMain
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.barManager1
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlTop.Size = New System.Drawing.Size(885, 48)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.barDockControlTop.Size = New System.Drawing.Size(759, 47)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 409)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 333)
         Me.barDockControlBottom.Manager = Me.barManager1
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(885, 34)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(759, 27)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 48)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 47)
         Me.barDockControlLeft.Manager = Me.barManager1
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 361)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 286)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(885, 48)
+        Me.barDockControlRight.Location = New System.Drawing.Point(759, 47)
         Me.barDockControlRight.Manager = Me.barManager1
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 361)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 286)
         '
         'RepositoryItemTextEdit1
         '
@@ -244,13 +244,13 @@ Partial Class FrmMain
         '
         Me.ribbon.ExpandCollapseItem.Id = 0
         Me.ribbon.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.ribbon.ExpandCollapseItem, Me.LoginBar, Me.ExitBar, Me.SkinRibbonGalleryBarItem1, Me.ChngePasBar, Me.CloseAllBar, Me.SkinRibbonGalleryBarItem2})
-        Me.ribbon.Location = New System.Drawing.Point(0, 48)
-        Me.ribbon.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.ribbon.Location = New System.Drawing.Point(0, 47)
+        Me.ribbon.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ribbon.MaxItemId = 12
         Me.ribbon.Name = "ribbon"
         Me.ribbon.PageCategories.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageCategory() {Me.RibbonPageCategory1})
         Me.ribbon.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.Filemenu})
-        Me.ribbon.Size = New System.Drawing.Size(885, 142)
+        Me.ribbon.Size = New System.Drawing.Size(759, 114)
         Me.ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden
         '
         'RibbonPageCategory1
@@ -260,15 +260,16 @@ Partial Class FrmMain
         '
         'FrmMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(885, 443)
+        Me.ClientSize = New System.Drawing.Size(759, 360)
         Me.Controls.Add(Me.ribbon)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.IsMdiContainer = True
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "FrmMain"
         Me.ribbon = Me.ribbon
         Me.Text = "TSMU"

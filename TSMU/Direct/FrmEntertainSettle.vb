@@ -6,43 +6,45 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class FrmEntertainSettle
     Dim ff_Detail As FrmEntertainSettleDetail
-    Dim dtGrid As DataTable
-    Dim ObjSettle As SettleHeader
     Dim ff_Detail1 As FrmEntertainSettleDetailDirect
+    Dim ObjSettle As SettleHeader
+
+    Dim dtGridSettle As New DataTable
+    Dim dtGridPaid As New DataTable
 
     Private Sub FrmEntertainSettle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call LoadGrid()
-        Call LoadGrid2()
         bb_SetDisplayChangeConfirmation = False
         bs_Filter = ""
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
+        Call LoadGridSettle()
     End Sub
-    Private Sub LoadGrid()
+
+    Private Sub LoadGridSettle()
         Try
             ObjSettle = New SettleHeader
-            dtGrid = ObjSettle.GetDataGridEnt()
-            Grid.DataSource = dtGrid
-            With GridView1
+            dtGridSettle = ObjSettle.GetDataGridEnt()
+            GridSettle.DataSource = dtGridSettle
+            With GridViewSettle
                 .Columns(0).Visible = False
                 .BestFitColumns()
             End With
-            GridCellFormat(GridView1)
+            GridCellFormat(GridViewSettle)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 
-    Private Sub LoadGrid2()
+    Private Sub LoadGridPaid()
         Try
             ObjSettle = New SettleHeader
-            dtGrid = ObjSettle.GetDataGridEntPaid()
-            Grid.DataSource = dtGrid
-            With GridView1
+            dtGridPaid = ObjSettle.GetDataGridEntPaid()
+            GridPaid.DataSource = dtGridPaid
+            With GridViewPaid
                 .Columns(0).Visible = False
                 .BestFitColumns()
             End With
-            GridCellFormat(GridView1)
+            GridCellFormat(GridViewPaid)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -50,14 +52,11 @@ Public Class FrmEntertainSettle
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
-        ''CallFrm()
-
         Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
         If result = System.Windows.Forms.DialogResult.Yes Then
             CallFrmDirect()
-        Else
+        ElseIf result = System.Windows.Forms.DialogResult.No Then
             CallFrm()
-
         End If
     End Sub
 
@@ -68,7 +67,7 @@ Public Class FrmEntertainSettle
             End If
             ff_Detail1.Close()
         End If
-        ff_Detail1 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail1 = New FrmEntertainSettleDetailDirect(ls_Code, ls_Code2, Me, li_Row, GridSettle)
         ff_Detail1.MdiParent = FrmMain
         ff_Detail1.StartPosition = FormStartPosition.CenterScreen
         ff_Detail1.Show()
@@ -76,7 +75,42 @@ Public Class FrmEntertainSettle
 
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
-        Call LoadGrid()
+        If TabEntertainment.SelectedTabPage.Name = TabPageSettle.Name Then
+            LoadGridSettle()
+        Else
+            LoadGridPaid()
+        End If
+    End Sub
+
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+            End With
+            If TabEntertainment.SelectedTabPage.Name = TabPageSettle.Name Then
+                dtGridSettle = ObjSettle.GetDataGridEntSearch(fSearch.TglDari, fSearch.TglSampai)
+                GridSettle.DataSource = dtGridSettle
+                With GridViewSettle
+                    .Columns(0).Visible = False
+                    .BestFitColumns()
+                End With
+                GridCellFormat(GridViewSettle)
+            Else
+                dtGridPaid = ObjSettle.GetDataGridEntPaidSearch(fSearch.TglDari, fSearch.TglSampai)
+                GridPaid.DataSource = dtGridPaid
+                With GridViewPaid
+                    .Columns(0).Visible = False
+                    .BestFitColumns()
+                End With
+                GridCellFormat(GridViewPaid)
+            End If
+
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
@@ -86,25 +120,40 @@ Public Class FrmEntertainSettle
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmEntertainSettleDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
+        ff_Detail = New FrmEntertainSettleDetail(ls_Code, ls_Code2, Me, li_Row, GridSettle)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
 
     Public Overrides Sub Proc_DeleteData()
-        Dim ID As String = String.Empty
-
         Try
-            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            Dim ID As String = String.Empty
+            Dim settleID As String = String.Empty
+            Dim SuspendID As String = String.Empty
+            Dim selectedRows() As Integer = GridViewSettle.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
-                    ID = GridView1.GetRowCellValue(rowHandle, "ID")
+                    ID = GridViewSettle.GetRowCellValue(rowHandle, "ID")
+                    settleID = GridViewSettle.GetRowCellValue(rowHandle, "SettleID")
+                    SuspendID = IIf(GridViewSettle.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridViewSettle.GetRowCellValue(rowHandle, "SuspendID")))
                 End If
             Next rowHandle
 
-            ' fc_Class.Delete(ID)
-
+            If ObjSettle.CheckSettleAccrued(settleID) Then
+                Err.Raise(ErrNumber, , "No Settlement " & settleID & " sudah dilakukan proses Accrued !")
+            Else
+                ObjSettle = New SettleHeader
+                ObjSettle.ID = ID
+                ObjSettle.SettleID = settleID
+                ObjSettle.SuspendID = SuspendID
+                If String.IsNullOrEmpty(SuspendID) Then
+                    ObjSettle.DeleteData()
+                Else
+                    ObjSettle.DeleteDataWithSuspend()
+                End If
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            End If
             tsBtn_refresh.PerformClick()
 
         Catch ex As Exception
@@ -112,81 +161,12 @@ Public Class FrmEntertainSettle
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-    Dim ID As String
-    ''Dim suspendid As String
-    Private Sub FrmEntertainSettle_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+
+    Private Sub GridSettle_DoubleClick(sender As Object, e As EventArgs) Handles GridSettle.DoubleClick
         Try
-            If e.KeyCode = Keys.F1 Then
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-                For Each rowHandle As Integer In selectedRows
-                    If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        suspendid = GridView1.GetRowCellValue(rowHandle, "SettleID")
-                    End If
-                Next rowHandle
-
-                If GridView1.GetSelectedRows.Length > 0 Then
-                    Call CallFrm(ID,
-                             suspendid,
-                             GridView1.RowCount)
-                End If
-            End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Dim SuspendID As String
-    Dim SettleID As String
-    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-        ''Try
-
-        '    Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
-        '        'Dim view As GridView = TryCast(sender, GridView)
-        '        Dim view As BaseView = Grid.GetViewAt(ea.Location)
-        '        If view Is Nothing Then
-        '            Return
-        '        End If
-        '        Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
-        '    Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
-
-        '    If info.InRow OrElse info.InRowCell Then
-        '        ID = String.Empty
-        '        suspendid = String.Empty
-        '        Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-        '        For Each rowHandle As Integer In selectedRows
-        '            If rowHandle >= 0 Then
-        '                ID = GridView1.GetRowCellValue(rowHandle, "ID")
-        '                suspendid = GridView1.GetRowCellValue(rowHandle, "SuspendID")
-        '            End If
-        '        Next rowHandle
-
-        '        If suspendid = "" Then
-        '            ''Dim objGrid As DataGridView = sender
-        '            Call CallFrmDirect(ID,
-        '                 suspendid,
-        '             GridView1.RowCount)
-        '        Else
-        '            ''Dim objGrid As DataGridView = sender
-        '            Call CallFrm(ID,
-        '                 suspendid,
-        '             GridView1.RowCount)
-
-        '        End If
-
-        '    End If
-
-        'Catch ex As Exception
-        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        'End Try
-
-        Try
-
             Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
             'Dim view As GridView = TryCast(sender, GridView)
-            Dim view As BaseView = Grid.GetViewAt(ea.Location)
+            Dim view As BaseView = GridSettle.GetViewAt(ea.Location)
             If view Is Nothing Then
                 Return
             End If
@@ -194,28 +174,25 @@ Public Class FrmEntertainSettle
             Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
             If info.InRow OrElse info.InRowCell Then
 
-                ID = String.Empty
-                SettleID = String.Empty
-                SuspendID = String.Empty
-                Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+                Dim ID As String = String.Empty
+                Dim SettleID As String = String.Empty
+                Dim SuspendID As String = String.Empty
+                Dim selectedRows() As Integer = GridViewSettle.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
-                        ID = GridView1.GetRowCellValue(rowHandle, "ID")
-                        SettleID = GridView1.GetRowCellValue(rowHandle, "SettleID")
-                        ''SuspendID = GridView1.GetRowCellValue(rowHandle, "SuspendID")
-                        SuspendID = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
+                        ID = GridViewSettle.GetRowCellValue(rowHandle, "ID")
+                        SettleID = GridViewSettle.GetRowCellValue(rowHandle, "SettleID")
+                        SuspendID = IIf(GridViewSettle.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridViewSettle.GetRowCellValue(rowHandle, "SuspendID")))
                     End If
                 Next rowHandle
 
                 If SuspendID = "" Then
-                    'Dim objGrid As DataGridView = sender
                     Call CallFrmDirect(ID, SettleID,
-                         GridView1.RowCount)
+                         GridViewSettle.RowCount)
                 Else
-                    'Dim objGrid As DataGridView = sender
                     Call CallFrm(ID,
                               SettleID,
-                             GridView1.RowCount)
+                             GridViewSettle.RowCount)
                 End If
             End If
 
@@ -226,7 +203,55 @@ Public Class FrmEntertainSettle
 
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+    Private Sub GridPaid_DoubleClick(sender As Object, e As EventArgs) Handles GridPaid.DoubleClick
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = GridPaid.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                Dim ID As String = String.Empty
+                Dim SettleID As String = String.Empty
+                Dim SuspendID As String = String.Empty
+                Dim selectedRows() As Integer = GridViewPaid.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridViewPaid.GetRowCellValue(rowHandle, "ID")
+                        SettleID = GridViewPaid.GetRowCellValue(rowHandle, "SettleID")
+                        SuspendID = IIf(GridViewPaid.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridViewPaid.GetRowCellValue(rowHandle, "SuspendID")))
+                    End If
+                Next rowHandle
+
+                If SuspendID = "" Then
+                    Call CallFrmDirect(ID, SettleID,
+                         GridViewSettle.RowCount)
+                Else
+                    Call CallFrm(ID,
+                              SettleID,
+                             GridViewSettle.RowCount)
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
 
     End Sub
+
+    Private Sub TabEntertainment_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles TabEntertainment.SelectedPageChanged
+        If TabEntertainment.SelectedTabPage.Name = TabPageSettle.Name Then
+            Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
+            LoadGridSettle()
+        Else
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            LoadGridPaid()
+        End If
+    End Sub
+
 End Class

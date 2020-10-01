@@ -14,7 +14,7 @@
     Public Property Tot_Dpp_Invoice As Double
     Public Property Tot_Pph As Double
     Public Property No_Invoice As String
-
+    Public Property JenisDokumen As String
     Public Function GetFPByNo(ByVal NoFP As String) As DataTable
         Try
             Dim sql As String = "SELECT [id]
@@ -31,6 +31,7 @@
                     ,[No_Faktur]
                     ,[Tot_Pph]
                     ,[ket_dpp]
+                    ,[JenisDokumen]
                 FROM [Fp_pph_header] WHERE RTRIM(FPNo) = " & QVal(NoFP) & ""
 
             Dim dt As New DataTable
@@ -78,7 +79,7 @@
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO Fp_pph_header (FPNo,No_Bukti_Potong,Pphid,Ket_Pph,Tarif,Tahun,Bulan,Lokasi,CuryID,Tot_Dpp_Invoice,No_Faktur,ket_dpp,Tot_Pph) " & vbCrLf &
+                                    "INSERT INTO Fp_pph_header (FPNo,No_Bukti_Potong,Pphid,Ket_Pph,Tarif,Tahun,Bulan,Lokasi,CuryID,Tot_Dpp_Invoice,No_Faktur,ket_dpp,Tot_Pph,JenisDokumen) " & vbCrLf &
                                     "Values(" & QVal(Me.FPNo) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Bukti_Potong) & ", " & vbCrLf &
                                     "       " & QVal(Me.Pphid) & ", " & vbCrLf &
@@ -91,7 +92,8 @@
                                     "       " & QVal(Me.Tot_Dpp_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
                                     "       " & QVal(Me.ket_dpp) & ", " & vbCrLf &
-                                    "       " & QVal(Me.Tot_Pph) & ")"
+                                    "       " & QVal(Me.Tot_Pph) & ", " & vbCrLf &
+                                    "       " & QVal(Me.JenisDokumen) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw

@@ -23,7 +23,17 @@ Public Class frm_payment_approve
     Dim FApproveDetail As FrmApprovalDetail
     Dim FrmApproveEntertain As FrmApprovalEntertain
     Dim ObjSuspend As New SuspendApprovalHeaderModel
-
+    Dim TotLevel1 As Double
+    Dim TotLevel2 As Double
+    Dim TotCheckDetail As Double
+    Dim TotDirektur As Double
+    Dim TotLevel1b As Double
+    Dim TotLevel2b As Double
+    Dim TotCheckDetailb As Double
+    Dim TotDirekturb As Double
+    Dim TotApproved As Double
+    Dim TotApPaid As Double
+    Dim TotBPaid As Double
     Private Sub frm_payment_approve_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Dim dtGrid As New DataTable
@@ -123,6 +133,126 @@ Public Class frm_payment_approve
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+        Try
+            'If e.Column.FieldName = "Level1" Then
+            '    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Level1") = True Then
+            '        GetTot()
+            '    End If
+            'End If
+            'If e.Column.FieldName = "Level2" Then
+            '    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Level2") = True Then
+            '        GetTot()
+            '    End If
+            'End If
+            'If e.Column.FieldName = "CheckDetail" Then
+            '    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "CheckDetail") = True Then
+            '        GetTot()
+            '    End If
+            'End If
+            'If e.Column.FieldName = "Direktur" Then
+            '    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Direktur") = True Then
+            '        GetTot()
+            '    End If
+            'End If
+
+
+            GetTot()
+            _txtapapproved.Text = Format(TotApproved, "#,#.##")
+            _txtapbpaid.Text = Format(TotApPaid, "#,#.##")
+            _txtamountbpaid.Text = Format(TotBPaid, "#,#.##")
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GetTot()
+        TotLevel1 = 0
+        TotLevel2 = 0
+        TotCheckDetail = 0
+        TotDirektur = 0
+        TotLevel1b = 0
+        TotLevel2b = 0
+        TotCheckDetailb = 0
+        TotDirekturb = 0
+        'Dim TotApproved = 0
+        'Dim TotApPaid = 0
+        'Dim TotBPaid = 0
+        ''GrandTotal = 0
+        Dim cek As Boolean
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If GridView1.GetRowCellValue(i, "Level1") = True Then
+                    TotLevel1 = TotLevel1 + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+
+                End If
+                If GridView1.GetRowCellValue(i, "Level2") = True Then
+                    TotLevel2 = TotLevel2 + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                End If
+                If GridView1.GetRowCellValue(i, "CheckDetail") = True Then
+                    TotCheckDetail = TotCheckDetail + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                End If
+                If GridView1.GetRowCellValue(i, "Direktur") = True Then
+                    TotDirektur = TotDirektur + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                End If
+                TotLevel1b = TotLevel1b + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                TotLevel2b = TotLevel2b + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                TotCheckDetailb = TotCheckDetailb + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+                TotDirekturb = TotDirekturb + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
+            Next
+            If gh_Common.Level = 1 Then
+                '_txtapapproved.Text = TotLevel1
+                '_txtapbpaid.Text = TotLevel1b
+                TotApproved = TotLevel1
+                TotApPaid = TotLevel1b
+            ElseIf gh_Common.Level = 2 Then
+                '_txtapapproved.Text = TotLevel2
+                '_txtapbpaid.Text = TotLevel2b
+                TotApproved = TotLevel2
+                TotApPaid = TotLevel2b
+            ElseIf gh_Common.Level = 3 Then
+                '_txtapapproved.Text = TotCheckDetail
+                '_txtapbpaid.Text = TotCheckDetailb
+                TotApproved = TotCheckDetail
+                TotApPaid = TotCheckDetailb
+            Else
+                '_txtapapproved.Text = TotDirektur
+                '_txtapbpaid.Text = TotDirekturb
+                TotApproved = TotDirektur
+                TotApPaid = TotDirekturb
+            End If
+            '  _txtamountbpaid.Text = _txtsaldo.Text - _txtapapproved.Text
+            TotBPaid = _txtsaldo.Text - TotApproved
+            'If TotPPn = 0 Then
+            '    _TxtPPN.Text = "0"
+            'Else
+            '    _TxtPPN.Text = Format(TotPPn, gs_FormatBulat)
+            'End If
+
+            'If TotDpp = 0 Then
+            '    _TxtDpp.Text = "0"
+            'Else
+            '    _TxtDpp.Text = Format(TotDpp, gs_FormatBulat)
+            'End If
+
+            'If TotAmount = 0 Then
+            '    _TxtTotal.Text = "0"
+            'Else
+
+            '    _TxtTotal.Text = Format(TotAmount, gs_FormatBulat)
+            'End If
+            'If TotPPH = 0 Then
+            '    _TxtPPH.Text = "0"
+            'Else
+
+            '    _TxtPPH.Text = Format(TotPPH, gs_FormatBulat)
+            'End If
+            'Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
+            '_TxtDebit.Text = Format(debit, gs_FormatBulat)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
     Private Sub LoadGridSuspend()
@@ -515,7 +645,7 @@ Public Class frm_payment_approve
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
-
+            Dim perpost As String = ""
             dtSearch = ObjPaymentDetail.GetBank
             ls_OldKode = _txtBankId.Text.Trim
             ls_Judul = "Bank"
@@ -534,6 +664,30 @@ Public Class frm_payment_approve
                 _txtBankId.Text = Value2
 
                 LoadGrid(Value1)
+
+                Dim ObjCashBank As New cashbank_models
+                Dim pppost As String
+                pppost = Format(DateTime.Today, "yyyy-MM")
+
+                Dim panjang As Integer = Microsoft.VisualBasic.Right(pppost, 2)
+                panjang = Convert.ToInt32(panjang) + 1
+                Dim bulanp As String = CStr(panjang)
+                If panjang > 9 Then
+                    ObjCashBank.Perpost = Microsoft.VisualBasic.Left(pppost, 5) + bulanp
+                Else
+                    ObjCashBank.Perpost = Microsoft.VisualBasic.Left(pppost, 6) + bulanp
+
+                End If
+
+                Dim saldo As Double
+                ObjCashBank.account = Value1
+                saldo = ObjCashBank.saldo2
+
+                If saldo = 0 Then
+                    _txtsaldo.Text = saldo
+                Else
+                    _txtsaldo.Text = Format(saldo, "#,#.##")
+                End If
             End If
             lF_SearchData.Close()
         Catch ex As Exception
@@ -645,9 +799,7 @@ Public Class frm_payment_approve
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Call LoadGrid("")
@@ -655,14 +807,6 @@ Public Class frm_payment_approve
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
         LoadGridApproved()
-    End Sub
-
-    Private Sub btnLoad_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub TabPage2_Click(sender As Object, e As EventArgs) Handles TabPage2.Click
-
     End Sub
 
     Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
@@ -707,13 +851,11 @@ Public Class frm_payment_approve
                End Sub)
     End Sub
 
-
-
-
     Private Sub ChekDir_EditValueChanged(sender As Object, e As EventArgs) Handles ChekDir.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
+
 End Class
