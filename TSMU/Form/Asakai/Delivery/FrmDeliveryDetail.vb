@@ -143,41 +143,6 @@ Public Class FrmDeliveryDetail
                         cb.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
                         Dim cn As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cb.ConnectionString}
                         cn.Open()
-                        'Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
-                        '                                                 ,F3 as [Item Number]
-                        '                                               ,F1 as Customer
-                        '                                                ,F4 as [Delivery Due Date]
-                        '                                                ,F5 as [Qty Order]
-                        '                                                ,F6 as Delivery
-                        '                                                ,F7 as Jumlah
-                        '                                                ,F8 as [Stock TNG 08 DEL]
-                        '                                                ,F9 as [Stock TNG 05 WHJ]
-                        '                                                ,F10 as [StockTNG06SFG]
-                        '                                                ,F11 as [Stock 2nd]
-                        '                                                ,F12 as [Stock Paint]
-                        '                                                ,F13 as [Stock Inject Presisi]
-                        '                                                ,F14 as WHP
-                        '                                                ,F15 as [Stock TNG 04-02 PNT]
-                        '                                                ,F16 as [Total Stock]
-                        '                                                ,F17 as Balance
-                        '                                                ,F18 as Keterangan
-                        '                                                 FROM [ASAKAI$A4:R200] where F2 <>''", cn)
-
-                        'Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
-                        '                                                 ,F3 as [Item Number]
-                        '                                               ,F1 as Customer
-                        '                                                ,F4 as [Delivery Due Date]
-                        '                                                ,F5 as [Qty Order]
-                        '                                                ,F6 as Delivery
-                        '                                                ,F7 as Jumlah
-                        '                                                ,F8 as [TNG 08]
-                        '                                                ,F9 as [TNG 05 06]
-                        '                                                ,F10 as [Painting]
-                        '                                                ,F11 as [Whp]
-                        '                                                ,F12 as [Total Stock]
-                        '                                                ,F13 as [Balance]
-                        '                                                ,F14 as Keterangan
-                        '                                                 FROM [ASAKAI$A4:R200] where F2 <>''", cn)
 
                         Dim cmd As OleDbCommand = New OleDbCommand("SELECT F2 as InvtId
                                                                          ,F3 as [Item Number]
@@ -187,10 +152,14 @@ Public Class FrmDeliveryDetail
                                                                         ,F6 as Delivery
                                                                         ,F7 as Jumlah
                                                                         ,F8 as [TNG 08]
-                                                                        ,F9 as [TNG 05 06]
-                                                                        ,F10 as [Painting]
-                                                                        ,F11 as [Whp]
-                                                                        ,F14 as Keterangan
+                                                                        ,F9 as [TNG 05]
+                                                                        ,F10 as [TNG 06]
+                                                                        ,F11 as [Stock 2ND]
+                                                                        ,F12 as [Painting]
+                                                                        ,F13 as [SIP]
+                                                                        ,F14 as [Whp]
+                                                                        ,F15 as [TNG 04-02]
+                                                                        ,F18 as Keterangan
                                                                          FROM [ASAKAI$A4:R200] where F2 <>''", cn)
 
                         'Dim dt As New DataTable
@@ -205,9 +174,6 @@ Public Class FrmDeliveryDetail
                         Dim cmdHeader As OleDbCommand = New OleDbCommand("SELECT F1 as A FROM [ASAKAI$A1:R1]", cnHeader)
                         Dim dtHeader As New DataTable
                         dtHeader.Load(cmdHeader.ExecuteReader)
-
-
-
 
                         cnHeader.Close()
 
@@ -285,17 +251,21 @@ Public Class FrmDeliveryDetail
                     With ObjDeliveryDetail
 
                         .IDTrans = IdTransaksi
+                        .Customer = GridView1.GetRowCellValue(i, "Customer")
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtId"))
                         .invtName = Convert.ToString(GridView1.GetRowCellValue(i, "Item Number"))
-                        .Customer = GridView1.GetRowCellValue(i, "Customer")
                         .Delivery_Due_Date = GridView1.GetRowCellValue(i, "Delivery Due Date")
                         .Qty_Order = GridView1.GetRowCellValue(i, "Qty Order")
                         .Delivery = GridView1.GetRowCellValue(i, "Delivery")
                         .Jumlah = GridView1.GetRowCellValue(i, "Jumlah")
                         .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "TNG 08")
-                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05 06")
+                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05")
+                        .Stock_TNG_06_SFG = GridView1.GetRowCellValue(i, "TNG 06")
+                        .Stock_2nd = GridView1.GetRowCellValue(i, "Stock 2ND")
                         .Stock_Paint = GridView1.GetRowCellValue(i, "Painting")
+                        .Stock_Inject_Presisi = GridView1.GetRowCellValue(i, "SIP")
                         .WHP = GridView1.GetRowCellValue(i, "Whp")
+                        .Stock_TNG_04_02_PNT = GridView1.GetRowCellValue(i, "TNG 04-02")
                         .Total_Stock = GridView1.GetRowCellValue(i, "Total Stock")
                         .Balance = GridView1.GetRowCellValue(i, "Balance")
                         .Keterangan = Convert.ToString(GridView1.GetRowCellValue(i, "Keterangan"))
@@ -320,17 +290,21 @@ Public Class FrmDeliveryDetail
                     ObjDeliveryDetail = New DeliveryDetailModel
                     With ObjDeliveryDetail
                         .IDTrans = IdTransaksi
+                        .Customer = GridView1.GetRowCellValue(i, "Customer")
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtId"))
                         .invtName = Convert.ToString(GridView1.GetRowCellValue(i, "Item Number"))
-                        .Customer = GridView1.GetRowCellValue(i, "Customer")
                         .Delivery_Due_Date = GridView1.GetRowCellValue(i, "Delivery Due Date")
                         .Qty_Order = GridView1.GetRowCellValue(i, "Qty Order")
                         .Delivery = GridView1.GetRowCellValue(i, "Delivery")
                         .Jumlah = GridView1.GetRowCellValue(i, "Jumlah")
                         .Stock_TNG_08_DEL = GridView1.GetRowCellValue(i, "TNG 08")
-                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05 06")
+                        .Stock_TNG_05_WHJ = GridView1.GetRowCellValue(i, "TNG 05")
+                        .Stock_TNG_06_SFG = GridView1.GetRowCellValue(i, "TNG 06")
+                        .Stock_2nd = GridView1.GetRowCellValue(i, "Stock 2ND")
                         .Stock_Paint = GridView1.GetRowCellValue(i, "Painting")
+                        .Stock_Inject_Presisi = GridView1.GetRowCellValue(i, "SIP")
                         .WHP = GridView1.GetRowCellValue(i, "Whp")
+                        .Stock_TNG_04_02_PNT = GridView1.GetRowCellValue(i, "TNG 04-02")
                         .Total_Stock = GridView1.GetRowCellValue(i, "Total Stock")
                         .Balance = GridView1.GetRowCellValue(i, "Balance")
                         .Keterangan = Convert.ToString(GridView1.GetRowCellValue(i, "Keterangan"))

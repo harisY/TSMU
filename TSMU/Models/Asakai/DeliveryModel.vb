@@ -111,10 +111,15 @@ Public Class DeliveryModel
               ,[Delivery]
               ,[Jumlah]
               ,[Stock TNG 08 DEL] as [TNG 08]
-              ,[Stock TNG 05 WHJ] as [TNG 05 06]
+              ,[Stock TNG 05 WHJ] as [TNG 05]
+              ,[Stock TNG 06 SFG] as [TNG 06]
+              ,[Stock 2nd] as [Stock 2ND]
               ,[Stock Paint] as [Painting]
+              ,[SIP] 
+              ,[Stock TNG 04-02] as [TNG 04-02]
               ,[WHP] as Whp
               ,[Keterangan]
+   
           FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
@@ -342,20 +347,24 @@ Public Class DeliveryDetailModel
             Dim ls_SP As String = " " & vbCrLf &
                     "INSERT INTO [AsakaiDeliveryDetail]
                    ([IDTrans]
-                   ,[Customer]
-                   ,[invtId]
-                   ,[InvtName]
-                   ,[Delivery Due Date]
-                   ,[Qty Order]
-                   ,[Delivery]
-                   ,[Jumlah]
-                   ,[Stock TNG 08 DEL]
-                   ,[Stock TNG 05 WHJ]
-                   ,[Stock Paint]
-                   ,[WHP]
-                   ,[Total Stock]
-                   ,[Balance]
-                   ,[Keterangan]) " & vbCrLf &
+                    ,[Customer]
+                    ,[invtId]
+                    ,[InvtName]
+                    ,[Delivery Due Date]
+                    ,[Qty Order]
+                    ,[Delivery]
+                    ,[Jumlah]
+                    ,[Stock TNG 08 DEL]
+                    ,[Stock TNG 05 WHJ]
+                    ,[Stock TNG 06 SFG]
+                    ,[Stock 2nd]
+                    ,[Stock Paint]
+                    ,[SIP]
+                    ,[Stock TNG 04-02]
+                    ,[WHP]
+                    ,[Total Stock]
+                    ,[Balance]
+                    ,[Keterangan]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(Customer) & ", " & vbCrLf &
             "       " & QVal(invtId) & ", " & vbCrLf &
@@ -366,7 +375,11 @@ Public Class DeliveryDetailModel
             "       " & QVal(Jumlah) & ", " & vbCrLf &
             "       " & QVal(Stock_TNG_08_DEL) & ", " & vbCrLf &
             "       " & QVal(Stock_TNG_05_WHJ) & ", " & vbCrLf &
+            "       " & QVal(Stock_TNG_06_SFG) & ", " & vbCrLf &
+            "       " & QVal(Stock_2nd) & ", " & vbCrLf &
             "       " & QVal(Stock_Paint) & ", " & vbCrLf &
+            "       " & QVal(Stock_Inject_Presisi) & ", " & vbCrLf &
+            "       " & QVal(Stock_TNG_04_02_PNT) & ", " & vbCrLf &
             "       " & QVal(WHP) & ", " & vbCrLf &
             "       " & QVal(Total_Stock) & ", " & vbCrLf &
             "       " & QVal(Balance) & ", " & vbCrLf &

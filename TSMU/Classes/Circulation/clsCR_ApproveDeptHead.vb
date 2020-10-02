@@ -83,7 +83,7 @@
 
             Dim query As String = "[CR_Get_Approve]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(7) {}
-            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(0) = New SqlClient.SqlParameter("@User", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@P1", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@P2", SqlDbType.VarChar)
             pParam(3) = New SqlClient.SqlParameter("@Level", SqlDbType.Int)
@@ -92,7 +92,7 @@
             pParam(6) = New SqlClient.SqlParameter("@P3", SqlDbType.VarChar)
             pParam(7) = New SqlClient.SqlParameter("@P4", SqlDbType.VarChar)
 
-            pParam(0).Value = Dept_
+            pParam(0).Value = gh_Common.Username
             pParam(1).Value = P1
             pParam(2).Value = P2
             pParam(3).Value = Level
