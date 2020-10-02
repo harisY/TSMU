@@ -31,25 +31,8 @@ Public Class FrmBankReceipt_Detail
     Dim fs_kode4 As String
     Dim sts_screen2 As Byte
     Dim _Tag As TagModel
-    Public Sub New(ByVal strCode As String,
-                   ByVal strCode2 As String,
-                   ByRef lf_FormParent As Form,
-                   ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
-        ' this call is required by the windows form designer
-        Me.New()
-        If strCode <> "" Then
-            fs_Code = strCode
-            fs_Code2 = strCode2
-            bi_GridParentRow = li_GridRow
 
-        End If
-        GridDtl = _Grid
-        FrmParent = lf_FormParent
-        _Tag = New TagModel
-        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
-        Tag = _Tag
-    End Sub
+
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByVal strCode3 As String,
@@ -65,11 +48,39 @@ Public Class FrmBankReceipt_Detail
             fs_Code2 = strCode2
             fs_kode3 = strCode3
             fs_kode4 = strCode4
-            sts_screen2 = stsscreen
+
+            ''     sts_screen2 = 2
+            If fs_Code2 = "bank" Then
+                sts_screen2 = 2
+            Else
+                sts_screen2 = stsscreen
+            End If
             bi_GridParentRow = li_GridRow
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
+    End Sub
+    Public Sub New(ByVal strCode As String,
+                   ByVal strCode2 As String,
+                   ByRef lf_FormParent As Form,
+                   ByVal li_GridRow As Integer,
+                   ByRef _Grid As GridControl)
+        ' this call is required by the windows form designer
+        Me.New()
+        If strCode <> "" Then
+            fs_Code = strCode
+            fs_Code2 = strCode2
+            bi_GridParentRow = li_GridRow
+            sts_screen2 = 2
+        End If
+        GridDtl = _Grid
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Public Overrides Sub InitialSetForm()
         Try

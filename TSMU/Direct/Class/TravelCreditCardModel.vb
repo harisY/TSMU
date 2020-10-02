@@ -3,10 +3,13 @@
     Public Property CreditCardNumber As String
     Public Property AccountName As String
     Public Property BankName As String
-    Public Property Type As String
+    Public Property Provider As String
     Public Property ExpDate As Date
+    Public Property Type As String
+    Public Property CCNumberMaster As String
 
     Dim strQuery As String
+
     Public Function TravelAutoCreditCardID() As String
         Try
             strQuery = " DECLARE @seq VARCHAR(4) " &
@@ -28,13 +31,15 @@
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
-            strQuery = " SELECT  CreditCardID ,
+            strQuery = "SELECT  CreditCardID ,
                                 CreditCardNumber ,
                                 AccountName ,
                                 BankName ,
-                                Type ,
-                                ExpDate
-                        FROM    dbo.TravelCreditCard "
+                                Provider ,
+                                ExpDate ,
+                                [Type] ,
+                                CCNumberMaster
+                        FROM    dbo.TravelCreditCard"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable(strQuery)
             Return dtTable
@@ -49,8 +54,10 @@
                                 CreditCardNumber ,
                                 AccountName ,
                                 BankName ,
-                                Type ,
-                                ExpDate
+                                Provider ,
+                                ExpDate ,
+                                [Type] ,
+                                CCNumberMaster
                         FROM    dbo.TravelCreditCard
                         WHERE CreditCardID = " & QVal(CreditCardID) & " "
             Dim dt As New DataTable
@@ -60,8 +67,10 @@
                 CreditCardNumber = If(IsDBNull(dt.Rows(0).Item("CreditCardNumber")), "", Trim(dt.Rows(0).Item("CreditCardNumber").ToString()))
                 AccountName = If(IsDBNull(dt.Rows(0).Item("AccountName")), "", Trim(dt.Rows(0).Item("AccountName").ToString()))
                 BankName = If(IsDBNull(dt.Rows(0).Item("BankName")), "", Trim(dt.Rows(0).Item("BankName").ToString()))
-                Type = If(IsDBNull(dt.Rows(0).Item("Type")), "", Trim(dt.Rows(0).Item("Type").ToString()))
+                Provider = If(IsDBNull(dt.Rows(0).Item("Provider")), "", Trim(dt.Rows(0).Item("Provider").ToString()))
                 ExpDate = If(IsDBNull(dt.Rows(0).Item("ExpDate")), "", Convert.ToDateTime(dt.Rows(0).Item("ExpDate")))
+                Type = If(IsDBNull(dt.Rows(0).Item("Type")), "", Trim(dt.Rows(0).Item("Type").ToString()))
+                CCNumberMaster = If(IsDBNull(dt.Rows(0).Item("CCNumberMaster")), "", Trim(dt.Rows(0).Item("CCNumberMaster").ToString()))
             End If
         Catch ex As Exception
             Throw ex
@@ -110,8 +119,10 @@
                                     "           CreditCardNumber , " & vbCrLf &
                                     "           AccountName , " & vbCrLf &
                                     "           BankName , " & vbCrLf &
-                                    "           Type , " & vbCrLf &
+                                    "           Provider , " & vbCrLf &
                                     "           ExpDate , " & vbCrLf &
+                                    "           Type , " & vbCrLf &
+                                    "           CCNumberMaster , " & vbCrLf &
                                     "           CreatedBy , " & vbCrLf &
                                     "           CreatedDate , " & vbCrLf &
                                     "           UpdatedBy , " & vbCrLf &
@@ -121,8 +132,10 @@
                                     "           " & QVal(CreditCardNumber) & " , " & vbCrLf &
                                     "           " & QVal(AccountName) & " , " & vbCrLf &
                                     "           " & QVal(BankName) & " , " & vbCrLf &
-                                    "           " & QVal(Type) & " , " & vbCrLf &
+                                    "           " & QVal(Provider) & " , " & vbCrLf &
                                     "           " & QVal(ExpDate) & " , " & vbCrLf &
+                                    "           " & QVal(Type) & " , " & vbCrLf &
+                                    "           " & QVal(CCNumberMaster) & " , " & vbCrLf &
                                     "           " & QVal(gh_Common.Username) & " , " & vbCrLf &
                                     "           GETDATE() , " & vbCrLf &
                                     "           " & QVal(gh_Common.Username) & " , " & vbCrLf &
@@ -158,8 +171,10 @@
                                     " SET     CreditCardNumber =  " & QVal(CreditCardNumber) & " , " & vbCrLf &
                                     "         AccountName =  " & QVal(AccountName) & " , " & vbCrLf &
                                     "         BankName =  " & QVal(BankName) & " , " & vbCrLf &
-                                    "         Type =  " & QVal(Type) & " , " & vbCrLf &
+                                    "         Provider =  " & QVal(Provider) & " , " & vbCrLf &
                                     "         ExpDate =  " & QVal(ExpDate) & " , " & vbCrLf &
+                                    "         Type =  " & QVal(Type) & " , " & vbCrLf &
+                                    "         CCNumberMaster =  " & QVal(CCNumberMaster) & " , " & vbCrLf &
                                     "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
                                     "         UpdatedDate = GETDATE() " & vbCrLf &
                                     " WHERE   CreditCardID = " & QVal(CreditCardID) & " "
@@ -178,5 +193,39 @@
             Throw
         End Try
     End Sub
+
+    Public Function GetCreditCardMaster(ByVal _CCNumber As String) As DataTable
+        Try
+            strQuery = "SELECT  CreditCardID ,
+                                CreditCardNumber ,
+                                AccountName ,
+                                BankName
+                        FROM    dbo.TravelCreditCard
+                        WHERE   [Type] = 'M'
+                                AND CreditCardNumber <> '" & _CCNumber & "'"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTable(strQuery)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function CheckCCNumber(ByVal _CCNumber As String) As Boolean
+        Try
+            Dim result As Boolean = False
+            strQuery = "SELECT  CreditCardNumber
+                        FROM    dbo.TravelCreditCard
+                        WHERE   CreditCardNumber = '" & _CCNumber & "'"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTable(strQuery)
+            If dtTable.Rows.Count > 0 Then
+                result = True
+            End If
+            Return result
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
 End Class

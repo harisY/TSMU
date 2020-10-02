@@ -87,6 +87,7 @@
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.Win.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -110,6 +111,7 @@
     <Reference Include="DevExpress.XtraCharts.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.2.Wizard, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Presets, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -333,6 +335,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mizuho.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\PaymentSolomon.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentSolomon.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\suspend.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -443,6 +450,18 @@
       <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEditDirectPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.Designer.vb">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
@@ -2441,6 +2460,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.Designer.vb">
+      <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomon.Designer.vb">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </Compile>
@@ -2488,6 +2513,12 @@
     </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_PaymentSolomon.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_PaymentSolomon.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\RptAR.vb">
       <AutoGen>True</AutoGen>
@@ -2662,6 +2693,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
@@ -3403,6 +3440,9 @@
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.resx">
+      <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomon.resx">
       <DependentUpon>Frm_Rpt_APSolomon.vb</DependentUpon>
     </EmbeddedResource>
@@ -3411,6 +3451,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_PaymentSolomon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_PaymentSolomon.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\RptAR.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3476,6 +3520,17 @@
     </None>
     <None Include="dataset\dsLaporan2.xss">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\PaymentSolomon.xsc">
+      <DependentUpon>PaymentSolomon.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\PaymentSolomon.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PaymentSolomon.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\PaymentSolomon.xss">
+      <DependentUpon>PaymentSolomon.xsd</DependentUpon>
     </None>
     <None Include="dbml\BoM.dbml.layout">
       <DependentUpon>BoM.dbml</DependentUpon>

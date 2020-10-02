@@ -217,8 +217,8 @@ Public Class frm_fp_details
                         .link_barcode = "1"
                         .Pph = GridView1.GetRowCellValue(i, "Pph")
                         .No_Bukti_Potong = GridView1.GetRowCellValue(i, "NBP").ToString().TrimEnd
-                        .PO = GridView1.GetRowCellValue(i, "PO").ToString().TrimEnd
-                        .Keterangan = GridView1.GetRowCellValue(i, "Keterangan").ToString().TrimEnd
+                        ''.PO = GridView1.GetRowCellValue(i, "PO").ToString().TrimEnd
+                        ''.Keterangan = GridView1.GetRowCellValue(i, "Keterangan").ToString().TrimEnd
                     End With
                     ObjFPTransaction.ObjFPDetails.Add(ObjFPDetails)
                 End If

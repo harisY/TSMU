@@ -14,6 +14,7 @@ Public Class ClsCCAccrued
     Public Property Amount As Double
     Public Property Rate As Double
     Public Property AmountIDR As Double
+    Public Property CCNumberMaster As String
     Public Property CreditCardNumber As String
     Public Property AccountName As String
     Public Property BankName As String
@@ -40,27 +41,29 @@ Public Class ClsCCAccrued
         End Try
     End Function
 
-    Public Function GetDataCostCCAll(_Pay As Integer) As DataTable
+    Public Function GetDataAccruedSettle() As DataTable
         Try
             Dim dt As New DataTable
             strQuery = "SELECT  ID ,
                                 NoAccrued ,
                                 Tanggal ,
-                                TanggalTrans AS TanggalTransaksi ,
+                                TanggalTrans ,
                                 NoTransaksi ,
                                 Seq ,
                                 JenisTransaksi ,
                                 Description ,
                                 CurryID ,
                                 Amount ,
+                                ISNULL(dbo.ConvertToIDR(TanggalTrans, CurryID), 1) * Amount AS AccrualEstimate ,
                                 Rate ,
                                 AmountIDR ,
-                                CreditCardNumber ,
+                                CCNumberMaster ,
+                                CreditCardNumber ,                            
                                 AccountName ,
                                 BankName ,
                                 Pay
                         FROM    dbo.T_CCAccrued
-                        WHERE   Pay = " & _Pay & " "
+                        WHERE   Pay = 0 "
             dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
@@ -68,7 +71,40 @@ Public Class ClsCCAccrued
         End Try
     End Function
 
-    Public Sub InsertData(frm As Form, noAccrued_ As String, rows As ArrayList)
+    Public Function GetDataAccruedPaid(dateFrom As Date, dateTo As Date) As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  ID ,
+                                NoAccrued ,
+                                Tanggal ,
+                                TanggalTrans ,
+                                NoTransaksi ,
+                                Seq ,
+                                JenisTransaksi ,
+                                Description ,
+                                CurryID ,
+                                Amount ,
+                                ISNULL(dbo.ConvertToIDR(TanggalTrans, CurryID), 1) * Amount AS AccrualEstimate ,
+                                Rate ,
+                                AmountIDR ,
+                                CCNumberMaster ,
+                                CreditCardNumber ,                            
+                                AccountName ,
+                                BankName ,
+                                Pay
+                        FROM    dbo.T_CCAccrued
+                        WHERE   Pay = 1
+                                AND ( TanggalTrans >= " & QVal(dateFrom) & "
+                                    AND TanggalTrans <= " & QVal(dateTo) & "
+                                )"
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub InsertData(frm As Form, noAccrued_ As String, _ccNumberMaster As String, rows As ArrayList)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -91,6 +127,7 @@ Public Class ClsCCAccrued
                             Amount = Row("Amount")
                             Rate = Row("Rate")
                             AmountIDR = Row("AmountIDR")
+                            CCNumberMaster = _ccNumberMaster
                             CreditCardNumber = IIf(Row("CreditCardNumber") Is DBNull.Value, "", Row("CreditCardNumber"))
                             AccountName = IIf(Row("AccountName") Is DBNull.Value, "", Row("AccountName"))
                             BankName = IIf(Row("BankName") Is DBNull.Value, "", Row("BankName"))
@@ -152,7 +189,7 @@ Public Class ClsCCAccrued
 
             Dim SP_Name As String = "Accrued_Insert_CCAccrued"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(14) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(15) {}
             pParam(0) = New SqlClient.SqlParameter("@NoAccrued", SqlDbType.VarChar)
             pParam(0).Value = NoAccrued
             pParam(1) = New SqlClient.SqlParameter("@Tanggal", SqlDbType.Date)
@@ -175,14 +212,16 @@ Public Class ClsCCAccrued
             pParam(9).Value = Rate
             pParam(10) = New SqlClient.SqlParameter("@AmountIDR", SqlDbType.Float)
             pParam(10).Value = AmountIDR
-            pParam(11) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
-            pParam(11).Value = CreditCardNumber
-            pParam(12) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
-            pParam(12).Value = AccountName
-            pParam(13) = New SqlClient.SqlParameter("@BankName", SqlDbType.VarChar)
-            pParam(13).Value = BankName
-            pParam(14) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(14).Value = gh_Common.Username
+            pParam(11) = New SqlClient.SqlParameter("@CCNumberMaster", SqlDbType.VarChar)
+            pParam(11).Value = CCNumberMaster
+            pParam(12) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(12).Value = CreditCardNumber
+            pParam(13) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
+            pParam(13).Value = AccountName
+            pParam(14) = New SqlClient.SqlParameter("@BankName", SqlDbType.VarChar)
+            pParam(14).Value = BankName
+            pParam(15) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(15).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(SP_Name, pParam)
 
@@ -217,7 +256,8 @@ Public Class ClsCCAccrued
             strQuery = "SELECT  CreditCardNumber ,
                                 AccountName ,
                                 BankName
-                        FROM    dbo.TravelCreditCard"
+                        FROM    dbo.TravelCreditCard
+                        WHERE   Type = 'M'"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

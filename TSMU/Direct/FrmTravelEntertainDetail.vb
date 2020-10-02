@@ -381,12 +381,20 @@ Public Class FrmTravelEntertainDetail
         If maxValue >= headerSeq Then
             headerSeq = maxValue + 1
         End If
+        Dim defaultName As String = String.Empty
+        If AccountNameNBank.Contains("-") Then
+            Dim lastFind As Integer = AccountNameNBank.IndexOf("-")
+            defaultName = AccountNameNBank.Substring(0, lastFind)
+        End If
 
         GridViewEntertain.AddNewRow()
         GridViewEntertain.OptionsNavigation.AutoFocusNewRow = True
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SettleID", __EntertainID)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount", 0)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount", "11690")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", "62300")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Nama", defaultName)
         GridViewEntertain.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()
@@ -441,6 +449,8 @@ Public Class FrmTravelEntertainDetail
         Try
             If String.IsNullOrEmpty(TxtRemark.Text) Then
                 Err.Raise(ErrNumber, , "Remark header tidak boleh kosong !")
+            ElseIf GridViewEntertain.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Detail tidak boleh kosong ! !")
             End If
 
             For i As Integer = 0 To GridViewEntertain.RowCount - 1
@@ -493,7 +503,6 @@ Public Class FrmTravelEntertainDetail
         'view.CloseEditor()
         If view.UpdateCurrentRow() Then
         End If
-        'hitungTotal()
     End Sub
 
     Private Sub GridViewRelasi_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridViewRelasi.CellValueChanged

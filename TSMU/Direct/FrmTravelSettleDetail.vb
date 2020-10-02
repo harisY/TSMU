@@ -51,7 +51,7 @@ Public Class FrmTravelSettleDetail
     Dim CreditYEN As Double
 
     Dim frm_Entertain As FrmTravelEntertainDetail
-    Dim frm_Entertainment As FrmEntertainSettleDetailDirect
+    'Dim frm_Entertainment As FrmEntertainSettleDetailDirect
 
     Public Sub New()
 

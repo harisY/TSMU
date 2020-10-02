@@ -282,15 +282,10 @@ Public Class cashbank_models
     Public Sub UpdateSuspend_hapus()
 
         Try
-            'Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
-            'MainModul.ExecQuery_Solomon(Query)
-            ''Dim Query2 = "update TravelRequestHeader set ProsesIDR=0,ProsesUSD=0,ProsesYEN=0 from TravelRequestHeader inner join cashbank on TravelRequestHeader.NoRequest = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
-            ''MainModul.ExecQuery(Query2)
-            'Dim Query2 = "[New_BOM].[dbo].[TravelRequestHeader] set [New_BOM].[dbo].[TravelRequestHeader].[ProsesIDR]=0,[New_BOM].[dbo].[TravelRequestHeader].[ProsesUSD]=0,
-            '              [New_BOM].[dbo].[TravelRequestHeader].[ProsesYEN]=0 from [New_BOM].[dbo].[TravelRequestHeader]
-            '              inner join [TSC16Application].[dbo].[cashbank] on [New_BOM].[dbo].[TravelRequestHeader].[NoRequest] = right(replace([TSC16Application].[dbo].[cashbank].[noref],' ',''),15) 
-            '              where [TSC16Application].[dbo].[cashbank].[NoBukti]" & QVal(Me._id) & ""
-            'MainModul.ExecQuery(Query2)
+            Dim Query = "update suspend_header set pay=0 from suspend_header inner join cashbank on suspend_header.SuspendID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
+            MainModul.ExecQuery_Solomon(Query)
+            Dim Query2 = "update TravelRequestHeader set ProsesIDR=0,ProsesUSD=0,ProsesYEN=0 from TravelRequestHeader inner join  TSC16Application.dbo.cashbank on TravelRequestHeader.NoRequest = right(replace( TSC16Application.dbo.cashbank.noref,' ',''),15) where  TSC16Application.dbo.cashbank.NoBukti=" & QVal(Me._id) & ""
+            MainModul.ExecQuery(Query2)
         Catch ex As Exception
             Throw ex
 
@@ -339,6 +334,44 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Sub UpdateTransfer_hapus()
+
+        Try
+            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
+            "WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row = MainModul.ExecQuery_Solomon(query)
+
+            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
+            "WHERE Noref=" & QVal(Noref.TrimEnd) & ""
+            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
+
+            Dim query2 As String = "DELETE FROM banktransfer " & vbCrLf &
+            "WHERE NoBukti=" & QVal(Noref.TrimEnd) & ""
+            Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub UpdateReceipt_hapus()
+
+        Try
+            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
+            "WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row = MainModul.ExecQuery_Solomon(query)
+
+            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
+            "WHERE Noref=" & QVal(Noref.TrimEnd) & ""
+            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
+
+            Dim query2 As String = "DELETE FROM bankreceipt " & vbCrLf &
+            "WHERE NoBukti=" & QVal(Noref.TrimEnd) & ""
+            Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Function GetGridDetailCashBankByAccountID() As DataTable
         Try
             Dim sql As String = "Select Tgl,NoBukti,Transaksi,Keterangan,Noref,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo FROM cashbank WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " order by nobukti"
@@ -376,7 +409,7 @@ Public Class cashbank_models
     Public Function GetGridDetailCashBankByAccountID02() As DataTable
         Try
             '' Dim sql As String = "Select 0 as ID,Tgl,NoBukti,Transaksi,SuspendAmount,SettleAmount,Masuk,Keluar,Saldo,AcctID,cek as cek,recon  FROM cashbank2 WHERE  perpost=" & QVal(Perpost) & " And acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, VendorName as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'' as recon from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
-            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan,cashbank.Noref FROM cashbank2 cross apply (select top 1 cashbank.* from cashbank  where cashbank.NoBukti=cashbank2.NoBukti) as cashbank WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-cm_dm-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,cek5 as cek,'1' as recon,VendorName as Keterangan,'' as Noref from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
+            Dim sql As String = "Select 0 as ID,cashbank2.Tgl,cashbank2.NoBukti,cashbank2.Transaksi,cashbank2.SuspendAmount,cashbank2.SettleAmount,cashbank2.Masuk,cashbank2.Keluar,cashbank2.Saldo,cashbank2.AcctID,cashbank2.cek as cek,cashbank2.recon,cashbank.Keterangan,cashbank.Noref FROM cashbank2 cross apply (select top 1 cashbank.* from cashbank  where cashbank.NoBukti=cashbank2.NoBukti) as cashbank WHERE  cashbank2.perpost=" & QVal(Perpost) & " And cashbank2.acctid=" & QVal(AcctID) & " union select ID, Tgl,vrno as NoBukti, 'AP' as Transaksi,0 as SuspendAmount,0 as SettleAmount, 0 as Masuk,(total_dpp_ppn)-cm_dm-pph-Biaya_Transfer as Keluar, 0 as Saldo,bankid as AcctID,'1' as cek,'1' as recon,VendorName as Keterangan,'' as Noref from Payment_Header1 where cek4=1 and substring(vrno,4,7)=" & QVal(Perpost) & " And bankid=" & QVal(AcctID) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -482,7 +515,18 @@ Public Class cashbank_models
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
             ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
-            Dim sql As String = "Select  settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark As Description,suspend_header.Total, sum(settle_detail.SettleAmount) As SettleAmount , '' as AcctID,suspend_header.BankID,settle_header.Proses, settle_header.CuryID from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0 group by settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark,suspend_header.Total,suspend_header.BankID,settle_header.Proses, settle_header.CuryID"
+            Dim sql As String = "Select  settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark As Description,suspend_header.Total, sum(settle_detail.SettleAmount) As SettleAmount , '' as AcctID,suspend_header.BankID,settle_header.Proses, settle_header.CuryID from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0 AND settle_header.PaymentType='CASH' group by settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark,suspend_header.Total,suspend_header.BankID,settle_header.Proses, settle_header.CuryID"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGridDetailSettleByAccountIDCC() As DataTable
+        Try
+            ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            Dim sql As String = "Select  settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark As Description,suspend_header.Total, sum(settle_detail.SettleAmount) As SettleAmount , '' as AcctID,suspend_header.BankID,settle_header.Proses, settle_header.CuryID from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0 AND settle_header.PaymentType!='CASH' group by settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark,suspend_header.Total,suspend_header.BankID,settle_header.Proses, settle_header.CuryID"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt

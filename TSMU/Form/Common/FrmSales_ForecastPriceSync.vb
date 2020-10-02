@@ -66,7 +66,8 @@ Public Class FrmSales_ForecastPriceSync
 
     Private Sub _btnOk_Click(sender As Object, e As EventArgs) Handles _btnOk.Click
         Try
-            SplashScreenManager.ShowForm(GetType(FrmWait))
+            SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
+            SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             If _CmbBulan.Text = "" Then
                 _CmbBulan.Focus()
                 Throw New Exception("Pilih Bulan !")
@@ -101,6 +102,7 @@ Public Class FrmSales_ForecastPriceSync
             SplashScreenManager.CloseForm()
             Close()
         Catch ex As Exception
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             SplashScreenManager.CloseForm()
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
