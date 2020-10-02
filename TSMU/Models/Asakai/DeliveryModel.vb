@@ -105,7 +105,7 @@ Public Class DeliveryModel
             Dim query As String = "SELECT [IDTrans]
               ,[Customer]
               ,AsakaiDeliveryDetail.[invtId] as InvtId
-              ,AsakaiDeliveryDetail.[invtId] as [Item Number]
+              ,AsakaiDeliveryDetail.[InvtName] as [Item Number]
               ,[Delivery Due Date]
               ,[Qty Order]
               ,[Delivery]
