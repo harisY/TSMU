@@ -50,7 +50,7 @@ Partial Class frmForecast_PO
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(249, 128)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(303, 100)
         '
         'ExportToExcelTSM
         '
@@ -61,9 +61,8 @@ Partial Class frmForecast_PO
         'CekHargaADMTSM
         '
         Me.CekHargaADMTSM.Name = "CekHargaADMTSM"
-        Me.CekHargaADMTSM.Size = New System.Drawing.Size(248, 24)
-        Me.CekHargaADMTSM.Text = "Cek Harga SAP-KAP ADM"
-        Me.CekHargaADMTSM.Visible = False
+        Me.CekHargaADMTSM.Size = New System.Drawing.Size(302, 24)
+        Me.CekHargaADMTSM.Text = "Compare Solomon - Data Upload"
         '
         'CekInventory1ToolStripMenuItem
         '

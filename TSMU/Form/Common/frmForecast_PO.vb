@@ -561,21 +561,55 @@ Public Class frmForecast_PO
 
     Private Sub CekHargaADMTSM_Click(sender As Object, e As EventArgs) Handles CekHargaADMTSM.Click
         Try
-            ObjForecast = New forecast_po_model_detail
             Dim dt As New DataTable
-            dt = ObjForecast.GetHargaSAPKAP_ADM
+            dt.Columns.Add("Id", GetType(Integer))
+            dt.Columns.Add("OrderNo", GetType(String))
+            dt.Columns.Add("CustID", GetType(String))
+            dt.Columns.Add("InvtID", GetType(String))
+            dt.Columns.Add("AlternateID Solomon", GetType(String))
+            dt.Columns.Add("AlternateID Upload", GetType(String))
+            dt.Columns.Add("ReqDate", GetType(Date))
+            dt.Columns.Add("Sales Price", GetType(Decimal))
+            dt.Columns(0).AutoIncrement = True
 
-            If Not isOpen("frmListHargaADM") Then
-                Dim f = frmListHargaADM
-                f = New frmListHargaADM(dt, "LIST HARGA INVENTORY SAMA TAPI HARGA BEDA", 0)
-                f.WindowState = FormWindowState.Normal
-                f.StartPosition = FormStartPosition.CenterScreen
-                f.Show()
+            ObjForecast = New forecast_po_model_detail
+            SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
+            SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+            For i As Integer = 0 To GridView1.RowCount - 1
+                Dim InvtID As String = GridView1.GetRowCellValue(i, "InvtID")
+                Dim Tahun As String = GridView1.GetRowCellValue(i, "Tahun")
+                Dim Bulan As String = "10"
+                Dim CustID As String = GridView1.GetRowCellValue(i, "CustID")
+
+                Dim dt1 As New DataTable
+                dt1 = ObjForecast.GetListForecast_Log(InvtID, Tahun, Bulan, CustID)
+
+                If dt1.Rows.Count > 0 Then
+                    Dim R As DataRow = dt.NewRow
+                    R("OrderNo") = dt1.Rows(0)("OrdNbr").ToString()
+                    R("CustID") = dt1.Rows(0)("CustID").ToString()
+                    R("InvtID") = dt1.Rows(0)("InvtID").ToString()
+                    R("AlternateID Solomon") = dt1.Rows(0)("AlternateId Solomonon").ToString()
+                    R("AlternateID Upload") = dt1.Rows(0)("AlternateId Upload").ToString()
+                    R("ReqDate") = dt1.Rows(0)("ReqDate")
+                    R("Sales Price") = Convert.ToDecimal(dt1.Rows(0)("SlsPrice"))
+                    dt.Rows.Add(R)
+                End If
+            Next
+            SplashScreenManager.CloseForm()
+            If Not isOpen("frmForecast_PO_Log") Then
+                Dim f = frmForecast_PO_Log
+                f = New frmForecast_PO_Log(dt, "Perbandingan AlternateID Solomon dengan Data Upload", 0) With {
+                    .WindowState = FormWindowState.Normal,
+                    .StartPosition = FormStartPosition.CenterScreen
+                }
+                f.ShowDialog()
             Else
                 XtraMessageBox.Show("Form sudah terbuka !")
             End If
 
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
