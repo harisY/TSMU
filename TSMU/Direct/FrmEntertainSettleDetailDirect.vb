@@ -401,6 +401,7 @@ Public Class FrmEntertainSettleDetailDirect
 
                     Dim lF_SearchData As FrmSystem_LookupGrid
                     lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+                    lF_SearchData.HiddenCols = 0
                     lF_SearchData.Text = "Select Data " & ls_Judul
                     lF_SearchData.StartPosition = FormStartPosition.CenterScreen
                     lF_SearchData.ShowDialog()
@@ -566,11 +567,20 @@ Public Class FrmEntertainSettleDetailDirect
             headerSeq = maxValue + 1
         End If
 
+        Dim defaultName As String = String.Empty
+        If accountName.Contains("-") Then
+            Dim lastFind As Integer = accountName.IndexOf("-")
+            defaultName = accountName.Substring(0, lastFind)
+        End If
+
         GridViewDetail.AddNewRow()
         GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ActualAmount", 0)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SubAccount", "11690")
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Account", "62300")
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Nama", defaultName)
         GridViewDetail.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()

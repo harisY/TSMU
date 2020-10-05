@@ -974,8 +974,6 @@ Public Class ClsCR_CreateUser
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-
-
                         Insert_CrRequest(H_CirculationNo,
                                          H_RequirementDate,
                                          gh_Common.GroupID,
@@ -997,7 +995,6 @@ Public Class ClsCR_CreateUser
                                          H_PO,
                                          H_Div_id,
                                          H_Director_id)
-
 
                         For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
                             With Collection_Description_Of_Cost(i)
@@ -1541,35 +1538,6 @@ Public Class ClsCR_CreateUser
     End Function
 
     Public Function RptCirculation(No As String) As DataSet
-        'Dim query As String
-        ''Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        'query = "SELECT [CR_Request].[CirculationNo]
-        '          ,[CR_Request].[DeptID]
-        '          ,[CR_Request].[CR_Type]
-        '          ,[CR_Request].[Budget]
-        '          ,[CR_Request].[Reason]
-        '          ,[CR_Request].[CreatedBy]
-        '          ,[CR_Request].[NameItem]
-        '          ,[CR_Request].[PoType]
-        '          ,[CR_Request].[UserSubmitionDate]
-        '          ,[CR_Request].[Spesification] as H_Spesification
-        '          ,[CR_Request].[RequirementDate]
-        '          ,[CR_Description_Of_Cost].[Name_Of_Goods]
-        '          ,[CR_Description_Of_Cost].[Spesification]
-        '          ,[CR_Description_Of_Cost].[Account] 
-        '          ,[CR_Description_Of_Cost].[RemainingBudget]
-        '          ,[CR_Description_Of_Cost].[Qty]
-        '          ,[CR_Description_Of_Cost].[Price]
-        '          ,[CR_Description_Of_Cost].[Currency]
-        '          ,[CR_Description_Of_Cost].[Rate]
-        '          ,[CR_Description_Of_Cost].[Amount]
-        '          ,[CR_Description_Of_Cost].[Category]
-        '          ,[CR_Description_Of_Cost].[Amount_IDR]
-        '        From [CR_Request] inner join CR_Description_Of_Cost 
-        '        on [CR_Request].[CirculationNo] = [CR_Description_Of_Cost].[CirculationNo]
-        '     Where [CR_Request].[CirculationNo] = '" & No & "'
-        '        order by Id Asc "
-
 
         Dim query As String = "[CR_Repot_Header]"
         Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
@@ -1607,14 +1575,13 @@ Public Class ClsCR_CreateUser
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
         query = "SELECT [CirculationNo]
-                      ,[DeptID]
-                      ,[DeptHead_ID]
-                      ,[DeptHead_Name]
-                      ,[DeptHead_Email]
-                      ,[Date]
-                      ,[Opinion]
-                      ,[Approve]
-                  FROM [CR_Other_Dept]
+	            ,A.[DeptID]
+	            ,A.[Date]
+	            ,A.[Opinion]
+	            ,A.[Approve]
+	            ,B.[Name]
+            FROM [CR_Other_Dept] A inner join S_User B
+	            on A.DeptHead_ID = B.Username 
 	            Where[CirculationNo] = '" & No & "'"
 
         Dim ds1 As New dsLaporan
@@ -1821,6 +1788,7 @@ Public Class ClsCR_Other_Dept
                                                     "UPDATE CR_Other_Dept" & vbCrLf &
                                                     "SET [Date] = '" & Date.Now & "'
                                                         ,[Opinion] = '" & D_Opinion & "' 
+                                                        ,[DeptHead_ID] = '" & gh_Common.Username & "' 
                                                         ,[Approve] = '" & D_Approve & "'
                                                         WHERE [CirculationNo] = '" & _FsCode & "' and [DeptID] = '" & _Dept & "' "
                         MainModul.ExecQuery(ls_SP)

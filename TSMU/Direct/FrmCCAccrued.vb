@@ -8,23 +8,27 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
 Public Class FrmCCAccrued
-    Dim cls_Accrued As ClsCCAccrued
-    Dim clsGlobal As GlobalService
+    Dim cls_Accrued As New ClsCCAccrued
+    Dim clsGlobal As New GlobalService
+    Dim frmCCAccrued As New FrmReportCCAccrued
+
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
     Dim TabPage As String
-    Dim frmCCAccrued As New FrmReportCCAccrued
+    Dim dtSummaryProses As New DataTable
+    Dim dtSummarySettle As New DataTable
+    Dim dtSummaryPaid As New DataTable
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, True)
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
         XtraTabControl1.SelectedTabPage = TabPageProses
         TabPage = XtraTabControl1.SelectedTabPage.Name
-        LoadGridAccrued()
+        CreateTable()
+        'LoadGridAccrued()
     End Sub
 
     Public Overrides Sub Proc_Refresh()
-        txtCCNumber.Text = ""
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageProses" Then
             LoadGridAccrued()
@@ -43,16 +47,170 @@ Public Class FrmCCAccrued
                 .ShowDialog()
             End With
 
+            Dim _now As Date = Date.Today
+            Dim firstDay As Date = If(IsDBNull(fSearch.TglDari), New Date(_now.Year, _now.Month, 1), fSearch.TglDari)
+            Dim lastDay As Date = If(IsDBNull(fSearch.TglSampai), _now.AddMonths(1).AddDays(-1), fSearch.TglSampai)
+
+            cls_Accrued = New ClsCCAccrued
+            dtGrid = cls_Accrued.GetDataAccruedPaid(firstDay, lastDay)
+            GridAccruedPaid.DataSource = dtGrid
+            GridViewAccruedPaid.BestFitColumns()
+            hitungSummaryPaid()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
 
     Public Overrides Sub Proc_Print()
-        frmCCAccrued = New FrmReportCCAccrued
-        frmCCAccrued.txtTabAccrued.Text = TabPage
-        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
-        frmCCAccrued.Show()
+        FrmCCAccrued = New FrmReportCCAccrued
+        FrmCCAccrued.txtTabAccrued.Text = TabPage
+        FrmCCAccrued.StartPosition = FormStartPosition.CenterScreen
+        FrmCCAccrued.Show()
+    End Sub
+
+    Private Sub CreateTable()
+        dtSummaryProses = New DataTable
+        dtSummaryProses.Columns.AddRange(New DataColumn(4) {New DataColumn("SumAmountOriUSD", GetType(Double)),
+                                                            New DataColumn("SumAmountOriYEN", GetType(Double)),
+                                                            New DataColumn("SumAmountOriIDR", GetType(Double)),
+                                                            New DataColumn("SumAccrualEstimate", GetType(Double)),
+                                                            New DataColumn("SumAmountIDR", GetType(Double))})
+        dtSummarySettle = New DataTable
+        dtSummarySettle.Columns.AddRange(New DataColumn(4) {New DataColumn("SumAmountOriUSD", GetType(Double)),
+                                                            New DataColumn("SumAmountOriYEN", GetType(Double)),
+                                                            New DataColumn("SumAmountOriIDR", GetType(Double)),
+                                                            New DataColumn("SumAccrualEstimate", GetType(Double)),
+                                                            New DataColumn("SumAmountIDR", GetType(Double))})
+
+        dtSummaryPaid = New DataTable
+        dtSummaryPaid.Columns.AddRange(New DataColumn(4) {New DataColumn("SumAmountOriUSD", GetType(Double)),
+                                                            New DataColumn("SumAmountOriYEN", GetType(Double)),
+                                                            New DataColumn("SumAmountOriIDR", GetType(Double)),
+                                                            New DataColumn("SumAccrualEstimate", GetType(Double)),
+                                                            New DataColumn("SumAmountIDR", GetType(Double))})
+    End Sub
+
+    Private Sub hitungSummaryProses()
+        dtSummaryProses.Clear()
+        If GridViewAccrued.RowCount > 0 Then
+            If GridViewAccrued.SelectedRowsCount > 0 Then
+                Dim sumAmountOriUSD As Double = 0
+                Dim sumAmountOriYEN As Double = 0
+                Dim sumAmountOriIDR As Double = 0
+                Dim sumAccrualEstimate As Double = 0
+                Dim sumAmountIDR As Double = 0
+                Dim curryID As String
+                Dim amountOri As Double = 0
+
+                For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
+                    Dim rowIndex As Integer = GridViewAccrued.GetSelectedRows()(i)
+                    If rowIndex >= 0 Then
+                        curryID = IIf(GridViewAccrued.GetRowCellValue(rowIndex, "CurryID") Is DBNull.Value, "", GridViewAccrued.GetRowCellValue(rowIndex, "CurryID"))
+                        amountOri = IIf(GridViewAccrued.GetRowCellValue(rowIndex, "Amount") Is DBNull.Value, 0, GridViewAccrued.GetRowCellValue(rowIndex, "Amount"))
+                        sumAmountIDR = sumAmountIDR + IIf(GridViewAccrued.GetRowCellValue(rowIndex, "AmountIDR") Is DBNull.Value, 0, GridViewAccrued.GetRowCellValue(rowIndex, "AmountIDR"))
+                        sumAccrualEstimate = sumAmountIDR + IIf(GridViewAccrued.GetRowCellValue(i, "AccrualEstimate") Is DBNull.Value, 0, GridViewAccrued.GetRowCellValue(i, "AccrualEstimate"))
+                        If curryID = "USD" Then
+                            sumAmountOriUSD = sumAmountOriUSD + amountOri
+                        ElseIf curryID = "JPY" Then
+                            sumAmountOriYEN = sumAmountOriYEN + amountOri
+                        ElseIf curryID = "IDR" Then
+                            sumAmountOriIDR = sumAmountOriIDR + amountOri
+                        End If
+                    End If
+                Next
+                Dim newRow As DataRow
+                newRow = dtSummaryProses.NewRow
+                newRow("SumAmountOriUSD") = sumAmountOriUSD
+                newRow("SumAmountOriYEN") = sumAmountOriYEN
+                newRow("SumAmountOriIDR") = sumAmountOriIDR
+                newRow("SumAccrualEstimate") = sumAccrualEstimate
+                newRow("SumAmountIDR") = sumAmountIDR
+                dtSummaryProses.Rows.Add(newRow)
+                GridSumAccrued.DataSource = dtSummaryProses
+            Else
+                Dim newRow As DataRow
+                newRow = dtSummaryProses.NewRow
+                newRow("SumAmountOriUSD") = 0
+                newRow("SumAmountOriYEN") = 0
+                newRow("SumAmountOriIDR") = 0
+                newRow("SumAccrualEstimate") = 0
+                newRow("SumAmountIDR") = 0
+                dtSummaryProses.Rows.Add(newRow)
+                GridSumAccrued.DataSource = dtSummaryProses
+            End If
+        End If
+    End Sub
+
+    Private Sub hitungSummarySettle()
+        dtSummarySettle.Clear()
+        If GridViewAccruedAll.RowCount > 0 Then
+            Dim sumAmountOriUSD As Double = 0
+            Dim sumAmountOriYEN As Double = 0
+            Dim sumAmountOriIDR As Double = 0
+            Dim sumAmountIDR As Double = 0
+            Dim sumAccrualEstimate As Double = 0
+            Dim curryID As String
+            Dim amountOri As Double = 0
+
+            For i As Integer = 0 To GridViewAccruedAll.RowCount - 1
+                curryID = IIf(GridViewAccruedAll.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewAccruedAll.GetRowCellValue(i, "CurryID"))
+                amountOri = IIf(GridViewAccruedAll.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, GridViewAccruedAll.GetRowCellValue(i, "Amount"))
+                sumAmountIDR = sumAmountIDR + IIf(GridViewAccruedAll.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, 0, GridViewAccruedAll.GetRowCellValue(i, "AmountIDR"))
+                sumAccrualEstimate = sumAmountIDR + IIf(GridViewAccruedAll.GetRowCellValue(i, "AccrualEstimate") Is DBNull.Value, 0, GridViewAccruedAll.GetRowCellValue(i, "AccrualEstimate"))
+                If curryID = "USD" Then
+                    sumAmountOriUSD = sumAmountOriUSD + amountOri
+                ElseIf curryID = "JPY" Then
+                    sumAmountOriYEN = sumAmountOriYEN + amountOri
+                ElseIf curryID = "IDR" Then
+                    sumAmountOriIDR = sumAmountOriIDR + amountOri
+                End If
+            Next
+            Dim newRow As DataRow
+            newRow = dtSummarySettle.NewRow
+            newRow("SumAmountOriUSD") = sumAmountOriUSD
+            newRow("SumAmountOriYEN") = sumAmountOriYEN
+            newRow("SumAmountOriIDR") = sumAmountOriIDR
+            newRow("SumAccrualEstimate") = sumAccrualEstimate
+            newRow("SumAmountIDR") = sumAmountIDR
+            dtSummarySettle.Rows.Add(newRow)
+            GridSumSettle.DataSource = dtSummarySettle
+        End If
+    End Sub
+
+    Private Sub hitungSummaryPaid()
+        dtSummaryPaid.Clear()
+        If GridViewAccruedPaid.RowCount > 0 Then
+            Dim sumAmountOriUSD As Double = 0
+            Dim sumAmountOriYEN As Double = 0
+            Dim sumAmountOriIDR As Double = 0
+            Dim sumAmountIDR As Double = 0
+            Dim sumAccrualEstimate As Double = 0
+            Dim curryID As String
+            Dim amountOri As Double = 0
+
+            For i As Integer = 0 To GridViewAccruedPaid.RowCount - 1
+                curryID = IIf(GridViewAccruedPaid.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", GridViewAccruedPaid.GetRowCellValue(i, "CurryID"))
+                amountOri = IIf(GridViewAccruedPaid.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, GridViewAccruedPaid.GetRowCellValue(i, "Amount"))
+                sumAmountIDR = sumAmountIDR + IIf(GridViewAccruedPaid.GetRowCellValue(i, "AmountIDR") Is DBNull.Value, 0, GridViewAccruedPaid.GetRowCellValue(i, "AmountIDR"))
+                sumAccrualEstimate = sumAmountIDR + IIf(GridViewAccruedPaid.GetRowCellValue(i, "AccrualEstimate") Is DBNull.Value, 0, GridViewAccruedPaid.GetRowCellValue(i, "AccrualEstimate"))
+                If curryID = "USD" Then
+                    sumAmountOriUSD = sumAmountOriUSD + amountOri
+                ElseIf curryID = "JPY" Then
+                    sumAmountOriYEN = sumAmountOriYEN + amountOri
+                ElseIf curryID = "IDR" Then
+                    sumAmountOriIDR = sumAmountOriIDR + amountOri
+                End If
+            Next
+            Dim newRow As DataRow
+            newRow = dtSummaryPaid.NewRow
+            newRow("SumAmountOriUSD") = sumAmountOriUSD
+            newRow("SumAmountOriYEN") = sumAmountOriYEN
+            newRow("SumAmountOriIDR") = sumAmountOriIDR
+            newRow("SumAccrualEstimate") = sumAccrualEstimate
+            newRow("SumAmountIDR") = sumAmountIDR
+            dtSummaryPaid.Rows.Add(newRow)
+            GridSumPaid.DataSource = dtSummaryPaid
+        End If
     End Sub
 
     Private Sub GroupingGrid(view As GridView)
@@ -84,10 +242,10 @@ Public Class FrmCCAccrued
     Private Sub LoadGridAccrued()
         Try
             cls_Accrued = New ClsCCAccrued
-            cls_Accrued.CreditCardNumber = txtCCNumber.Text
+            cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
-            'GroupingGrid(GridViewAccrued)
+            hitungSummaryProses()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -97,14 +255,11 @@ Public Class FrmCCAccrued
     Private Sub LoadGridAccruedAll()
         Try
             cls_Accrued = New ClsCCAccrued
-            dtGrid = cls_Accrued.GetDataCostCCAll(0)
+            dtGrid = cls_Accrued.GetDataAccruedSettle()
             GridAccruedAll.DataSource = dtGrid
-            GridViewAccruedAll.Columns("ID").Visible = False
-            GridViewAccruedAll.Columns("Seq").Visible = False
-            GridViewAccruedAll.Columns("Pay").Visible = False
             GridViewAccruedAll.BestFitColumns()
-            GridCellFormat(GridViewAccruedAll)
-            'GroupingGrid(GridViewAccruedAll)
+            'GridCellFormat(GridViewAccruedAll)
+            hitungSummarySettle()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -113,14 +268,16 @@ Public Class FrmCCAccrued
 
     Private Sub LoadGridAccruedPaid()
         Try
+            Dim _now As Date = Date.Today
+            Dim firstDay As Date = New Date(_now.Year, _now.Month, 1)
+            Dim lastDay As Date = _now.AddMonths(1).AddDays(-1)
+
             cls_Accrued = New ClsCCAccrued
-            dtGrid = cls_Accrued.GetDataCostCCAll(1)
+            dtGrid = cls_Accrued.GetDataAccruedPaid(firstDay, lastDay)
             GridAccruedPaid.DataSource = dtGrid
-            GridViewAccruedPaid.Columns("ID").Visible = False
-            GridViewAccruedPaid.Columns("Seq").Visible = False
-            GridViewAccruedPaid.Columns("Pay").Visible = False
             GridViewAccruedPaid.BestFitColumns()
-            GridCellFormat(GridViewAccruedPaid)
+            'GridCellFormat(GridViewAccruedPaid)
+            hitungSummaryPaid()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -130,10 +287,13 @@ Public Class FrmCCAccrued
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
         TabPage = XtraTabControl1.SelectedTabPage.Name()
         If TabPage = "TabPageProses" Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
             LoadGridAccrued()
         ElseIf TabPage = "TabPageCancel" Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
             LoadGridAccruedAll()
         ElseIf TabPage = "TabPagePaid" Then
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
             LoadGridAccruedPaid()
         End If
     End Sub
@@ -154,7 +314,7 @@ Public Class FrmCCAccrued
                         End If
                     End If
                 Next
-                cls_Accrued.InsertData(Me, noAccrued, Rows)
+                cls_Accrued.InsertData(Me, noAccrued, txtCCNumber.EditValue, Rows)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
             Else
@@ -205,6 +365,7 @@ Public Class FrmCCAccrued
         Dim ls_Judul As String = ""
         Dim dtSearch As New DataTable
 
+        cls_Accrued = New ClsCCAccrued
         dtSearch = cls_Accrued.GetCreditCard
         ls_Judul = "CREDIT CARD"
 
@@ -215,7 +376,7 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.Text = lF_SearchData.Values.Item(0).ToString.Trim
+            txtCCNumber.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
         End If
 
         lF_SearchData.Close()
@@ -236,6 +397,7 @@ Public Class FrmCCAccrued
         rate = amountIDR / amount
 
         GridViewAccrued.SetRowCellValue(GridViewAccrued.FocusedRowHandle, "Rate", rate)
+        hitungSummaryProses()
     End Sub
 
     Private Sub GridViewAccrued_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewAccrued.FocusedRowChanged
@@ -252,6 +414,10 @@ Public Class FrmCCAccrued
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub GridViewAccrued_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles GridViewAccrued.SelectionChanged
+        hitungSummaryProses()
     End Sub
 
 End Class
