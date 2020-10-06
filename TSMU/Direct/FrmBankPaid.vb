@@ -271,12 +271,74 @@ Public Class FrmBankPaid
         If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
             tabu1()
             tabu2()
+        ElseIf _transaksi.Text = "SettleCC" Then
+            tab_settleCC()
+            tab_settle02CC()
         Else
+
             tab_settle()
             tab_settle02()
         End If
 
         Me.Close()
+    End Sub
+    Private Sub tab_settle02CC()
+        Dim bukti As String = ObjCashBank.autononb
+        '        Dim tgl As DateTime = DateTime.Now
+        Dim tgl As DateTime = TxtTgl.EditValue
+        Dim transaksi As String = "SettleCC"
+        Dim suspendamount As Double = 0
+        Dim totsuspend As Double = 0
+        Dim settleamount As Double = 0
+        Dim Keluar As Double = 0
+        Dim Masuk As Double = 0
+        Dim TKeluar As Double = 0
+        Dim TMasuk As Double = 0
+        Dim ObjDetails As New cashbank_models
+        For i As Integer = 0 To GridView2.RowCount - 1
+
+            totsuspend = 0
+            suspendamount = suspendamount + totsuspend
+            settleamount = settleamount + GridView2.GetRowCellValue(i, "AmountIDR")
+            If GridView2.GetRowCellValue(i, "AmountIDR") > totsuspend Then
+                Keluar = GridView2.GetRowCellValue(i, "AmountIDR") - totsuspend
+                Masuk = 0
+            ElseIf GridView2.GetRowCellValue(i, "AmountIDR") < totsuspend Then
+                Keluar = 0
+                Masuk = totsuspend - GridView2.GetRowCellValue(i, "AmountIDR")
+            Else
+                Keluar = 0
+                Masuk = 0
+            End If
+
+            TKeluar = TKeluar + Keluar
+            TMasuk = TMasuk + Masuk
+
+        Next
+
+        TempTable3()
+        dtTemp3.Rows.Add()
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(0) = tgl
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(1) = bukti
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(2) = transaksi
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(3) = suspendamount
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(4) = settleamount
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(5) = TMasuk
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(6) = TKeluar
+        dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(7) = 0
+
+        ObjDetails.Tgl = tgl
+        ObjDetails.NoBukti = bukti
+        ObjDetails.Transaksi = transaksi
+        ObjDetails.SuspendAmount = suspendamount
+        ObjDetails.SettleAmount = settleamount
+        ObjDetails.Masuk = TMasuk
+        ObjDetails.Keluar = TKeluar
+        ObjDetails.Saldo = 0
+        ObjDetails.Perpost = _txtperpost.Text
+        ObjDetails.AcctID = _txtaccount.Text
+        ObjDetails.InsertToTable02()
+
     End Sub
     Private Sub tab_settle02()
         Dim bukti As String = ObjCashBank.autononb
@@ -390,6 +452,64 @@ Public Class FrmBankPaid
                     .UpdateSettleTravel()
                 End If
                 .UpdateSettle()
+            End With
+
+
+        Next
+
+    End Sub
+    Private Sub tab_settleCC()
+        For f As Integer = 0 To GridView2.RowCount - 1
+
+            Dim bukti As String = ObjCashBank.autononb
+            Dim totsuspend As Double = 0
+            Dim tgl As DateTime = TxtTgl.EditValue
+            Dim ObjDetails As New cashbank_models
+            With ObjDetails
+                .Tgl = tgl
+                .NoBukti = bukti
+                .Transaksi = "SettleCC"
+                .Keterangan = "Pembayaran CC " + GridView2.GetRowCellValue(f, "CreditCardNumber").ToString().TrimEnd
+                If _transaksi.Text = "SettleCC" Then
+
+                    .Noref = GridView2.GetRowCellValue(f, "NoAccrued").ToString().TrimEnd
+                    totsuspend = If(GridView2.GetRowCellValue(f, "AmountIDR") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(f, "AmountIDR")))
+                    .SuspendAmount = 0
+                    .SettleID = GridView2.GetRowCellValue(f, "NoAccrued").ToString().TrimEnd
+
+                Else
+                    .Noref = GridView2.GetRowCellValue(f, "NoAccrued").ToString().TrimEnd
+                    totsuspend = 0
+                    .SuspendAmount = totsuspend
+                    .SettleID = GridView2.GetRowCellValue(f, "NoAccrued").ToString().TrimEnd
+
+                End If
+
+                .SettleAmount = GridView2.GetRowCellValue(f, "AmountIDR")
+
+                If GridView2.GetRowCellValue(f, "AmountIDR") > totsuspend Then
+                    .Keluar = GridView2.GetRowCellValue(f, "AmountIDR") - totsuspend
+                    .Masuk = 0
+                ElseIf GridView2.GetRowCellValue(f, "AmountIDR") < totsuspend Then
+                    .Keluar = 0
+                    .Masuk = totsuspend - GridView2.GetRowCellValue(f, "AmountIDR")
+                Else
+                    .Keluar = 0
+                    .Masuk = 0
+                End If
+
+
+                .Saldo = 0
+                .Perpost = _txtperpost.Text
+                .AcctID = _txtaccount.Text
+                ' .Saldo_Awal = _txtsaldo.Text
+                ''  .SettleID = GridView2.GetRowCellValue(f, "NoAccrued").ToString().TrimEnd
+                .InsertToTable2()
+
+                ''If _transaksi.Text <> "Settle" Then
+                ''  .UpdateSettleTravel()
+                '' End If
+                .UpdateSettleCC()
             End With
 
 
