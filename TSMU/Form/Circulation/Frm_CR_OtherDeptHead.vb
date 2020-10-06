@@ -18,7 +18,7 @@ Public Class Frm_CR_OtherDeptHead
         DeptHeadID = gh_Common.Username
         LoadGrid(Dept)
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
 
     End Sub
 
@@ -77,4 +77,12 @@ Public Class Frm_CR_OtherDeptHead
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        LoadGrid(gh_Common.GroupID)
+    End Sub
+
+
+
+
 End Class

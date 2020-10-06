@@ -15975,8 +15975,6 @@ Partial Public Class dsLaporan
         
         Private columnDies_Model_Name As Global.System.Data.DataColumn
         
-        Private columnDeptHead_Name As Global.System.Data.DataColumn
-        
         Private columnDataColumn9 As Global.System.Data.DataColumn
         
         Private columnName_Of_Goods As Global.System.Data.DataColumn
@@ -16111,14 +16109,6 @@ Partial Public Class dsLaporan
         Public ReadOnly Property Dies_Model_NameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnDies_Model_Name
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DeptHead_NameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDeptHead_Name
             End Get
         End Property
         
@@ -16351,7 +16341,6 @@ Partial Public Class dsLaporan
                     ByVal Budget As String,  _
                     ByVal Reason As String,  _
                     ByVal Dies_Model_Name As String,  _
-                    ByVal DeptHead_Name As String,  _
                     ByVal DataColumn9 As String,  _
                     ByVal Name_Of_Goods As String,  _
                     ByVal Spesification As String,  _
@@ -16371,12 +16360,12 @@ Partial Public Class dsLaporan
                     ByVal H_Spesification As String,  _
                     ByVal Total As Double,  _
                     ByVal UserSubmitionDate As Date,  _
-                    ByVal DeptHeadName As Char,  _
+                    ByVal DeptHeadName As String,  _
                     ByVal DeptHeadNameDate As Date,  _
                     ByVal DivHeadName As String,  _
                     ByVal DivHeadNameDate As Date) As CirculationHeadRow
             Dim rowCirculationHeadRow As CirculationHeadRow = CType(Me.NewRow,CirculationHeadRow)
-            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DeptHead_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total, UserSubmitionDate, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
+            Dim columnValuesArray() As Object = New Object() {CirculationNo, RequirementDate, DeptID, CR_Type, Budget, Reason, Dies_Model_Name, DataColumn9, Name_Of_Goods, Spesification, Account, RemainingBudget, Qty, Price, Currency, Rate, Amount, Category, Amount_IDR, DivHead_Name, CreatedBy, NameItem, PoType, H_Spesification, Total, UserSubmitionDate, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
             rowCirculationHeadRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCirculationHeadRow)
             Return rowCirculationHeadRow
@@ -16406,7 +16395,6 @@ Partial Public Class dsLaporan
             Me.columnBudget = MyBase.Columns("Budget")
             Me.columnReason = MyBase.Columns("Reason")
             Me.columnDies_Model_Name = MyBase.Columns("Dies_Model_Name")
-            Me.columnDeptHead_Name = MyBase.Columns("DeptHead_Name")
             Me.columnDataColumn9 = MyBase.Columns("DataColumn9")
             Me.columnName_Of_Goods = MyBase.Columns("Name_Of_Goods")
             Me.columnSpesification = MyBase.Columns("Spesification")
@@ -16449,8 +16437,6 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnReason)
             Me.columnDies_Model_Name = New Global.System.Data.DataColumn("Dies_Model_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDies_Model_Name)
-            Me.columnDeptHead_Name = New Global.System.Data.DataColumn("DeptHead_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDeptHead_Name)
             Me.columnDataColumn9 = New Global.System.Data.DataColumn("DataColumn9", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDataColumn9)
             Me.columnName_Of_Goods = New Global.System.Data.DataColumn("Name_Of_Goods", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -16489,7 +16475,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnTotal)
             Me.columnUserSubmitionDate = New Global.System.Data.DataColumn("UserSubmitionDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUserSubmitionDate)
-            Me.columnDeptHeadName = New Global.System.Data.DataColumn("DeptHeadName", GetType(Char), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnDeptHeadName = New Global.System.Data.DataColumn("DeptHeadName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDeptHeadName)
             Me.columnDeptHeadNameDate = New Global.System.Data.DataColumn("DeptHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDeptHeadNameDate)
@@ -16644,6 +16630,8 @@ Partial Public Class dsLaporan
         
         Private columnApprove As Global.System.Data.DataColumn
         
+        Private columnName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -16720,6 +16708,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -16756,9 +16752,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddCirculationOtherDeptRow(ByVal CirculationNo As String, ByVal DeptID As String, ByVal _Date As Date, ByVal Opinion As String, ByVal Approve As Byte) As CirculationOtherDeptRow
+        Public Overloads Function AddCirculationOtherDeptRow(ByVal CirculationNo As String, ByVal DeptID As String, ByVal _Date As Date, ByVal Opinion As String, ByVal Approve As Byte, ByVal Name As String) As CirculationOtherDeptRow
             Dim rowCirculationOtherDeptRow As CirculationOtherDeptRow = CType(Me.NewRow,CirculationOtherDeptRow)
-            Dim columnValuesArray() As Object = New Object() {CirculationNo, DeptID, _Date, Opinion, Approve}
+            Dim columnValuesArray() As Object = New Object() {CirculationNo, DeptID, _Date, Opinion, Approve, Name}
             rowCirculationOtherDeptRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCirculationOtherDeptRow)
             Return rowCirculationOtherDeptRow
@@ -16786,6 +16782,7 @@ Partial Public Class dsLaporan
             Me.columnDate = MyBase.Columns("Date")
             Me.columnOpinion = MyBase.Columns("Opinion")
             Me.columnApprove = MyBase.Columns("Approve")
+            Me.columnName = MyBase.Columns("Name")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16804,6 +16801,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnOpinion)
             Me.columnApprove = New Global.System.Data.DataColumn("Approve", GetType(Byte), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnApprove)
+            Me.columnName = New Global.System.Data.DataColumn("Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnName)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -35406,21 +35405,6 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DeptHead_Name() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableCirculationHead.DeptHead_NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHead_Name' in table 'CirculationHead' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableCirculationHead.DeptHead_NameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property DataColumn9() As String
             Get
                 Try 
@@ -35706,10 +35690,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DeptHeadName() As Char
+        Public Property DeptHeadName() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableCirculationHead.DeptHeadNameColumn),Char)
+                    Return CType(Me(Me.tableCirculationHead.DeptHeadNameColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'DeptHeadName' in table 'CirculationHead' is DBNull.", e)
                 End Try
@@ -35846,18 +35830,6 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDies_Model_NameNull()
             Me(Me.tableCirculationHead.Dies_Model_NameColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDeptHead_NameNull() As Boolean
-            Return Me.IsNull(Me.tableCirculationHead.DeptHead_NameColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDeptHead_NameNull()
-            Me(Me.tableCirculationHead.DeptHead_NameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -36229,6 +36201,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationOtherDept.NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name' in table 'CirculationOtherDept' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationOtherDept.NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCirculationNoNull() As Boolean
             Return Me.IsNull(Me.tableCirculationOtherDept.CirculationNoColumn)
         End Function
@@ -36285,6 +36272,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetApproveNull()
             Me(Me.tableCirculationOtherDept.ApproveColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsNameNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationOtherDept.NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetNameNull()
+            Me(Me.tableCirculationOtherDept.NameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

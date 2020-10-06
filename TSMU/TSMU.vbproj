@@ -1428,6 +1428,18 @@
     <Compile Include="Form\Common\frmForecast_PO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecast_PO_Log.Designer.vb">
+      <DependentUpon>frmForecast_PO_Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecast_PO_Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmBulan.designer.vb">
+      <DependentUpon>FrmBulan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmBulan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -3078,6 +3090,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecast_PO.resx">
       <DependentUpon>frmForecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecast_PO_Log.resx">
+      <DependentUpon>frmForecast_PO_Log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmBulan.resx">
+      <DependentUpon>FrmBulan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
