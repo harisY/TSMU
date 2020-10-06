@@ -16,6 +16,7 @@ Public Class fp_pph_transaction_models
     Public Property Tarif As Double
     Public Property Tot_Dpp_Invoice As Double
     Public Property Tot_Pph As Double
+    Public Property JenisDokumen As Double
 
     Private ObjPPHHeader As New fp_pph_header_models
     Private ObjPPHDetail As New fp_pph_detail_models
@@ -44,6 +45,7 @@ Public Class fp_pph_transaction_models
                             .No_Faktur = Me.No_Faktur
                             .ket_dpp = Me.ket_dpp
                             .Tot_Pph = Me.Tot_Pph
+                            .JenisDokumen = Me.JenisDokumen
                         End With
 
                         ObjPPHHeader.DeleteHeader(FPNo)

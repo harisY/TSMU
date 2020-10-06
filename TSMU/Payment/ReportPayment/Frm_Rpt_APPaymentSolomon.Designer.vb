@@ -487,7 +487,6 @@ Partial Class Frm_Rpt_APPaymentSolomon
         'tsBtn_preview
         '
         Me.tsBtn_preview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsBtn_preview.Enabled = False
         Me.tsBtn_preview.Image = CType(resources.GetObject("tsBtn_preview.Image"), System.Drawing.Image)
         Me.tsBtn_preview.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_preview.Name = "tsBtn_preview"

@@ -161,7 +161,7 @@ Public Class FrmEntertainSettleDetail
                 TxtDep.Text = ""
                 TxtRemark.Text = ""
                 TxtStatus.Text = ""
-                TxtTgl.Text = Date.Today
+                TxtTgl.EditValue = Date.Today
                 TxtTotal.EditValue = 0
                 TxtTotExpense.EditValue = 0
                 txtNoPR.Text = ""
