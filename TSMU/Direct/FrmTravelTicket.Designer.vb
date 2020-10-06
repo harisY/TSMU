@@ -46,6 +46,7 @@ Partial Class FrmTravelTicket
         Me.NoInvoice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CuryID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TotAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PayInvoice = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageRequest.SuspendLayout()
@@ -277,7 +278,7 @@ Partial Class FrmTravelTicket
         '
         'GridViewTicket
         '
-        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.Tanggal, Me.Vendor, Me.NoInvoice, Me.CuryID, Me.TotAmount})
+        Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.Tanggal, Me.Vendor, Me.NoInvoice, Me.CuryID, Me.TotAmount, Me.PayInvoice})
         Me.GridViewTicket.GridControl = Me.GridTicket
         Me.GridViewTicket.Name = "GridViewTicket"
         Me.GridViewTicket.OptionsBehavior.Editable = False
@@ -353,6 +354,14 @@ Partial Class FrmTravelTicket
         Me.TotAmount.VisibleIndex = 5
         Me.TotAmount.Width = 150
         '
+        'PayInvoice
+        '
+        Me.PayInvoice.Caption = "Pay"
+        Me.PayInvoice.FieldName = "Pay"
+        Me.PayInvoice.MinWidth = 25
+        Me.PayInvoice.Name = "PayInvoice"
+        Me.PayInvoice.Width = 94
+        '
         'FrmTravelTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -401,4 +410,5 @@ Partial Class FrmTravelTicket
     Friend WithEvents CStatusTicket As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PayInvoice As DevExpress.XtraGrid.Columns.GridColumn
 End Class

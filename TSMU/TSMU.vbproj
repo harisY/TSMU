@@ -698,6 +698,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CRCCAccruedAndSettle.rpt</DependentUpon>
     </Compile>
+    <Compile Include="Direct\report\CRCCSettlement.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCSettlement.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2740,6 +2746,10 @@
     <EmbeddedResource Include="Direct\report\CRCCAccruedAndSettle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccruedAndSettle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCSettlement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCSettlement.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

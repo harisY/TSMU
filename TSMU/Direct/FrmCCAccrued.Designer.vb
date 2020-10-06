@@ -37,6 +37,7 @@ Partial Class FrmCCAccrued
         Me.GRate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmountIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAmountIDR = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.TypeProses = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnProses = New DevExpress.XtraEditors.SimpleButton()
         Me.txtCCNumber = New DevExpress.XtraEditors.ButtonEdit()
@@ -51,10 +52,13 @@ Partial Class FrmCCAccrued
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControl7 = New DevExpress.XtraLayout.LayoutControl()
+        Me.lcSumProses = New DevExpress.XtraLayout.LayoutControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GridSumAccrued = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumAccrued = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SumCCMasterProses = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CSumCCMasterProses = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.SumAccountNameProses = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriYEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriIDR = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,7 +80,9 @@ Partial Class FrmCCAccrued
         Me.NoAccruedSetle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TanggalSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CCNumberMasterSettle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCCNumberMaster = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.CreditCardNumberSettle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCCNumber = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.AccountNameSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BankNameSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TanggalTransSette = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,12 +97,16 @@ Partial Class FrmCCAccrued
         Me.SeqSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DescriptionSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PaySettle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TypeSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.lcSumSettle = New DevExpress.XtraLayout.LayoutControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GridSumSettle = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumSettle = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SumCCMasterSettle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCCMasterSettle = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.SumAccountNameSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriUSDSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriYENSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SumAmountOriIDRSettle = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,7 +123,9 @@ Partial Class FrmCCAccrued
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCNumberMasterPaid = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCCNumberPaid = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -128,12 +140,16 @@ Partial Class FrmCCAccrued
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TypePaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControl8 = New DevExpress.XtraLayout.LayoutControl()
+        Me.lcSumPaid = New DevExpress.XtraLayout.LayoutControl()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
         Me.GridSumPaid = New DevExpress.XtraGrid.GridControl()
         Me.GridViewSumPaid = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.SumCCMasterPaid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CCCMasterPaid = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.SumAccountNamePaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -141,10 +157,6 @@ Partial Class FrmCCAccrued
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup7 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.CCCNumberMaster = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.CCCNumber = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.CCNumberMasterPaid = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.CCCNumberPaid = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GridAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCreditCardNumber, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,12 +178,13 @@ Partial Class FrmCCAccrued
         Me.GroupControl2.SuspendLayout()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl7.SuspendLayout()
+        CType(Me.lcSumProses, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lcSumProses.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GridSumAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewSumAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CSumCCMasterProses, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageCancel.SuspendLayout()
@@ -187,14 +200,17 @@ Partial Class FrmCCAccrued
         Me.GroupControl6.SuspendLayout()
         CType(Me.GridAccruedAll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccruedAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCCNumberMaster, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCCNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl2.SuspendLayout()
+        CType(Me.lcSumSettle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lcSumSettle.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GridSumSettle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewSumSettle, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCCMasterSettle, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPagePaid.SuspendLayout()
@@ -205,20 +221,19 @@ Partial Class FrmCCAccrued
         Me.GroupControl4.SuspendLayout()
         CType(Me.GridAccruedPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccruedPaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCNumberMasterPaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCCNumberPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl8.SuspendLayout()
+        CType(Me.lcSumPaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lcSumPaid.SuspendLayout()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
         CType(Me.GridSumPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewSumPaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCCNumberMaster, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCCNumber, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCNumberMasterPaid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCCNumberPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridAccrued
@@ -228,16 +243,15 @@ Partial Class FrmCCAccrued
         Me.GridAccrued.MainView = Me.GridViewAccrued
         Me.GridAccrued.Name = "GridAccrued"
         Me.GridAccrued.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmountIDR, Me.CCreditCardNumber})
-        Me.GridAccrued.Size = New System.Drawing.Size(1012, 296)
+        Me.GridAccrued.Size = New System.Drawing.Size(1185, 280)
         Me.GridAccrued.TabIndex = 1
         Me.GridAccrued.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAccrued})
         '
         'GridViewAccrued
         '
-        Me.GridViewAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCreditCardNumber, Me.GAccountName, Me.GBankName, Me.GTanggalTransaksi, Me.GNoTransaksi, Me.GSeq, Me.GAccountID, Me.GJenisTransaksi, Me.GDescription, Me.GCurryID, Me.GAmount, Me.AccrualEstimate, Me.GRate, Me.GAmountIDR})
+        Me.GridViewAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCreditCardNumber, Me.GAccountName, Me.GBankName, Me.GTanggalTransaksi, Me.GNoTransaksi, Me.GSeq, Me.GAccountID, Me.GJenisTransaksi, Me.GDescription, Me.GCurryID, Me.GAmount, Me.AccrualEstimate, Me.GRate, Me.GAmountIDR, Me.TypeProses})
         Me.GridViewAccrued.GridControl = Me.GridAccrued
         Me.GridViewAccrued.Name = "GridViewAccrued"
-        Me.GridViewAccrued.OptionsBehavior.Editable = False
         Me.GridViewAccrued.OptionsSelection.MultiSelect = True
         Me.GridViewAccrued.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.GridViewAccrued.OptionsView.ShowGroupPanel = False
@@ -255,7 +269,7 @@ Partial Class FrmCCAccrued
         Me.GCreditCardNumber.OptionsColumn.FixedWidth = True
         Me.GCreditCardNumber.Visible = True
         Me.GCreditCardNumber.VisibleIndex = 1
-        Me.GCreditCardNumber.Width = 180
+        Me.GCreditCardNumber.Width = 170
         '
         'CCreditCardNumber
         '
@@ -331,6 +345,7 @@ Partial Class FrmCCAccrued
         Me.GAccountID.FieldName = "Account"
         Me.GAccountID.MinWidth = 25
         Me.GAccountID.Name = "GAccountID"
+        Me.GAccountID.OptionsColumn.AllowEdit = False
         Me.GAccountID.OptionsColumn.FixedWidth = True
         Me.GAccountID.Visible = True
         Me.GAccountID.VisibleIndex = 6
@@ -440,6 +455,14 @@ Partial Class FrmCCAccrued
         Me.CAmountIDR.Mask.EditMask = "n2"
         Me.CAmountIDR.Name = "CAmountIDR"
         '
+        'TypeProses
+        '
+        Me.TypeProses.Caption = "Type"
+        Me.TypeProses.FieldName = "Type"
+        Me.TypeProses.MinWidth = 25
+        Me.TypeProses.Name = "TypeProses"
+        Me.TypeProses.Width = 94
+        '
         'LayoutControl1
         '
         Me.LayoutControl1.Controls.Add(Me.btnProses)
@@ -449,7 +472,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(955, 0, 812, 500)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1040, 54)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1213, 54)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -485,7 +508,7 @@ Partial Class FrmCCAccrued
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.LayoutControlItem6})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1040, 54)
+        Me.Root.Size = New System.Drawing.Size(1213, 54)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem3
@@ -502,7 +525,7 @@ Partial Class FrmCCAccrued
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.Location = New System.Drawing.Point(404, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(616, 34)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(789, 34)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
@@ -523,7 +546,7 @@ Partial Class FrmCCAccrued
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 27)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageProses
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1053, 578)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1226, 578)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageProses, Me.TabPageCancel, Me.TabPagePaid})
         '
@@ -531,8 +554,8 @@ Partial Class FrmCCAccrued
         '
         Me.TabPageProses.Controls.Add(Me.TableLayoutPanel2)
         Me.TabPageProses.Name = "TabPageProses"
-        Me.TabPageProses.Size = New System.Drawing.Size(1046, 544)
-        Me.TabPageProses.Text = "Proses"
+        Me.TabPageProses.Size = New System.Drawing.Size(1219, 544)
+        Me.TabPageProses.Text = "List"
         '
         'TableLayoutPanel2
         '
@@ -540,15 +563,15 @@ Partial Class FrmCCAccrued
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.LayoutControl1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.LayoutControl6, 0, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.LayoutControl7, 0, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.lcSumProses, 0, 2)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 3
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1046, 544)
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1219, 544)
         Me.TableLayoutPanel2.TabIndex = 0
         '
         'LayoutControl6
@@ -558,7 +581,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControl6.Location = New System.Drawing.Point(3, 63)
         Me.LayoutControl6.Name = "LayoutControl6"
         Me.LayoutControl6.Root = Me.LayoutControlGroup5
-        Me.LayoutControl6.Size = New System.Drawing.Size(1040, 348)
+        Me.LayoutControl6.Size = New System.Drawing.Size(1213, 332)
         Me.LayoutControl6.TabIndex = 4
         Me.LayoutControl6.Text = "LayoutControl6"
         '
@@ -568,7 +591,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl2.GroupStyle = DevExpress.Utils.GroupStyle.Card
         Me.GroupControl2.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1016, 324)
+        Me.GroupControl2.Size = New System.Drawing.Size(1189, 308)
         Me.GroupControl2.TabIndex = 4
         Me.GroupControl2.Text = "Detail"
         '
@@ -578,7 +601,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlGroup5.GroupBordersVisible = False
         Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7})
         Me.LayoutControlGroup5.Name = "LayoutControlGroup5"
-        Me.LayoutControlGroup5.Size = New System.Drawing.Size(1040, 348)
+        Me.LayoutControlGroup5.Size = New System.Drawing.Size(1213, 332)
         Me.LayoutControlGroup5.TextVisible = False
         '
         'LayoutControlItem7
@@ -586,20 +609,20 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem7.Control = Me.GroupControl2
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(1020, 328)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(1193, 312)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
-        'LayoutControl7
+        'lcSumProses
         '
-        Me.LayoutControl7.Controls.Add(Me.GroupControl1)
-        Me.LayoutControl7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LayoutControl7.Location = New System.Drawing.Point(3, 417)
-        Me.LayoutControl7.Name = "LayoutControl7"
-        Me.LayoutControl7.Root = Me.LayoutControlGroup6
-        Me.LayoutControl7.Size = New System.Drawing.Size(900, 124)
-        Me.LayoutControl7.TabIndex = 5
-        Me.LayoutControl7.Text = "LayoutControl7"
+        Me.lcSumProses.Controls.Add(Me.GroupControl1)
+        Me.lcSumProses.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lcSumProses.Location = New System.Drawing.Point(16, 401)
+        Me.lcSumProses.Name = "lcSumProses"
+        Me.lcSumProses.Root = Me.LayoutControlGroup6
+        Me.lcSumProses.Size = New System.Drawing.Size(1200, 140)
+        Me.lcSumProses.TabIndex = 5
+        Me.lcSumProses.Text = "LayoutControl7"
         '
         'GroupControl1
         '
@@ -607,7 +630,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Card
         Me.GroupControl1.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(876, 100)
+        Me.GroupControl1.Size = New System.Drawing.Size(1176, 116)
         Me.GroupControl1.TabIndex = 4
         Me.GroupControl1.Text = "Summary"
         '
@@ -617,17 +640,51 @@ Partial Class FrmCCAccrued
         Me.GridSumAccrued.Location = New System.Drawing.Point(2, 26)
         Me.GridSumAccrued.MainView = Me.GridViewSumAccrued
         Me.GridSumAccrued.Name = "GridSumAccrued"
-        Me.GridSumAccrued.Size = New System.Drawing.Size(872, 72)
+        Me.GridSumAccrued.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CSumCCMasterProses})
+        Me.GridSumAccrued.Size = New System.Drawing.Size(1172, 88)
         Me.GridSumAccrued.TabIndex = 4
         Me.GridSumAccrued.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumAccrued})
         '
         'GridViewSumAccrued
         '
-        Me.GridViewSumAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SumAmountOriUSD, Me.SumAmountOriYEN, Me.SumAmountOriIDR, Me.SumAccrualEstimateProses, Me.SumAmountIDR})
+        Me.GridViewSumAccrued.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SumCCMasterProses, Me.SumAccountNameProses, Me.SumAmountOriUSD, Me.SumAmountOriYEN, Me.SumAmountOriIDR, Me.SumAccrualEstimateProses, Me.SumAmountIDR})
         Me.GridViewSumAccrued.GridControl = Me.GridSumAccrued
         Me.GridViewSumAccrued.Name = "GridViewSumAccrued"
         Me.GridViewSumAccrued.OptionsBehavior.Editable = False
+        Me.GridViewSumAccrued.OptionsView.ShowFooter = True
         Me.GridViewSumAccrued.OptionsView.ShowGroupPanel = False
+        '
+        'SumCCMasterProses
+        '
+        Me.SumCCMasterProses.Caption = "CC Number"
+        Me.SumCCMasterProses.ColumnEdit = Me.CSumCCMasterProses
+        Me.SumCCMasterProses.FieldName = "SumCCMaster"
+        Me.SumCCMasterProses.MinWidth = 25
+        Me.SumCCMasterProses.Name = "SumCCMasterProses"
+        Me.SumCCMasterProses.OptionsColumn.FixedWidth = True
+        Me.SumCCMasterProses.Visible = True
+        Me.SumCCMasterProses.VisibleIndex = 0
+        Me.SumCCMasterProses.Width = 170
+        '
+        'CSumCCMasterProses
+        '
+        Me.CSumCCMasterProses.AutoHeight = False
+        Me.CSumCCMasterProses.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CSumCCMasterProses.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CSumCCMasterProses.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CSumCCMasterProses.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CSumCCMasterProses.Mask.UseMaskAsDisplayFormat = True
+        Me.CSumCCMasterProses.Name = "CSumCCMasterProses"
+        '
+        'SumAccountNameProses
+        '
+        Me.SumAccountNameProses.Caption = "Account Name"
+        Me.SumAccountNameProses.FieldName = "SumAccountName"
+        Me.SumAccountNameProses.MinWidth = 25
+        Me.SumAccountNameProses.Name = "SumAccountNameProses"
+        Me.SumAccountNameProses.Visible = True
+        Me.SumAccountNameProses.VisibleIndex = 1
+        Me.SumAccountNameProses.Width = 297
         '
         'SumAmountOriUSD
         '
@@ -637,9 +694,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriUSD.FieldName = "SumAmountOriUSD"
         Me.SumAmountOriUSD.MinWidth = 25
         Me.SumAmountOriUSD.Name = "SumAmountOriUSD"
+        Me.SumAmountOriUSD.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriUSD.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriUSD", "{0:#,##0.#0}")})
         Me.SumAmountOriUSD.Visible = True
-        Me.SumAmountOriUSD.VisibleIndex = 0
-        Me.SumAmountOriUSD.Width = 94
+        Me.SumAmountOriUSD.VisibleIndex = 2
+        Me.SumAmountOriUSD.Width = 140
         '
         'SumAmountOriYEN
         '
@@ -649,9 +708,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriYEN.FieldName = "SumAmountOriYEN"
         Me.SumAmountOriYEN.MinWidth = 25
         Me.SumAmountOriYEN.Name = "SumAmountOriYEN"
+        Me.SumAmountOriYEN.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriYEN.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriYEN", "{0:#,##0.#0}")})
         Me.SumAmountOriYEN.Visible = True
-        Me.SumAmountOriYEN.VisibleIndex = 1
-        Me.SumAmountOriYEN.Width = 94
+        Me.SumAmountOriYEN.VisibleIndex = 3
+        Me.SumAmountOriYEN.Width = 140
         '
         'SumAmountOriIDR
         '
@@ -661,9 +722,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriIDR.FieldName = "SumAmountOriIDR"
         Me.SumAmountOriIDR.MinWidth = 25
         Me.SumAmountOriIDR.Name = "SumAmountOriIDR"
+        Me.SumAmountOriIDR.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriIDR", "{0:#,##0.#0}")})
         Me.SumAmountOriIDR.Visible = True
-        Me.SumAmountOriIDR.VisibleIndex = 2
-        Me.SumAmountOriIDR.Width = 94
+        Me.SumAmountOriIDR.VisibleIndex = 4
+        Me.SumAmountOriIDR.Width = 140
         '
         'SumAccrualEstimateProses
         '
@@ -673,9 +736,11 @@ Partial Class FrmCCAccrued
         Me.SumAccrualEstimateProses.FieldName = "SumAccrualEstimate"
         Me.SumAccrualEstimateProses.MinWidth = 25
         Me.SumAccrualEstimateProses.Name = "SumAccrualEstimateProses"
+        Me.SumAccrualEstimateProses.OptionsColumn.FixedWidth = True
+        Me.SumAccrualEstimateProses.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAccrualEstimate", "{0:#,##0.#0}")})
         Me.SumAccrualEstimateProses.Visible = True
-        Me.SumAccrualEstimateProses.VisibleIndex = 3
-        Me.SumAccrualEstimateProses.Width = 94
+        Me.SumAccrualEstimateProses.VisibleIndex = 5
+        Me.SumAccrualEstimateProses.Width = 140
         '
         'SumAmountIDR
         '
@@ -685,9 +750,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountIDR.FieldName = "SumAmountIDR"
         Me.SumAmountIDR.MinWidth = 25
         Me.SumAmountIDR.Name = "SumAmountIDR"
+        Me.SumAmountIDR.OptionsColumn.FixedWidth = True
+        Me.SumAmountIDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountIDR", "{0:#,##0.#0}")})
         Me.SumAmountIDR.Visible = True
-        Me.SumAmountIDR.VisibleIndex = 4
-        Me.SumAmountIDR.Width = 94
+        Me.SumAmountIDR.VisibleIndex = 6
+        Me.SumAmountIDR.Width = 140
         '
         'LayoutControlGroup6
         '
@@ -695,7 +762,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlGroup6.GroupBordersVisible = False
         Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem8})
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
-        Me.LayoutControlGroup6.Size = New System.Drawing.Size(900, 124)
+        Me.LayoutControlGroup6.Size = New System.Drawing.Size(1200, 140)
         Me.LayoutControlGroup6.TextVisible = False
         '
         'LayoutControlItem8
@@ -703,7 +770,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem8.Control = Me.GroupControl1
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(880, 104)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1180, 120)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -711,7 +778,7 @@ Partial Class FrmCCAccrued
         '
         Me.TabPageCancel.Controls.Add(Me.TableLayoutPanel1)
         Me.TabPageCancel.Name = "TabPageCancel"
-        Me.TabPageCancel.Size = New System.Drawing.Size(1046, 544)
+        Me.TabPageCancel.Size = New System.Drawing.Size(1219, 544)
         Me.TabPageCancel.Text = "Settlement"
         '
         'TableLayoutPanel1
@@ -720,16 +787,15 @@ Partial Class FrmCCAccrued
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl3, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl4, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl2, 0, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.lcSumSettle, 0, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1046, 544)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1219, 544)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'LayoutControl3
@@ -739,7 +805,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControl3.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1040, 54)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1213, 54)
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -759,7 +825,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1040, 54)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1213, 54)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem1
@@ -776,7 +842,7 @@ Partial Class FrmCCAccrued
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(94, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(926, 34)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1099, 34)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControl4
@@ -786,7 +852,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControl4.Location = New System.Drawing.Point(3, 63)
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.Root = Me.LayoutControlGroup3
-        Me.LayoutControl4.Size = New System.Drawing.Size(1040, 348)
+        Me.LayoutControl4.Size = New System.Drawing.Size(1213, 332)
         Me.LayoutControl4.TabIndex = 1
         Me.LayoutControl4.Text = "LayoutControl4"
         '
@@ -795,7 +861,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl6.Controls.Add(Me.GridAccruedAll)
         Me.GroupControl6.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(1016, 324)
+        Me.GroupControl6.Size = New System.Drawing.Size(1189, 308)
         Me.GroupControl6.TabIndex = 4
         Me.GroupControl6.Text = "Detail"
         '
@@ -806,13 +872,13 @@ Partial Class FrmCCAccrued
         Me.GridAccruedAll.MainView = Me.GridViewAccruedAll
         Me.GridAccruedAll.Name = "GridAccruedAll"
         Me.GridAccruedAll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CCCNumberMaster, Me.CCCNumber})
-        Me.GridAccruedAll.Size = New System.Drawing.Size(1012, 296)
+        Me.GridAccruedAll.Size = New System.Drawing.Size(1185, 280)
         Me.GridAccruedAll.TabIndex = 4
         Me.GridAccruedAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAccruedAll})
         '
         'GridViewAccruedAll
         '
-        Me.GridViewAccruedAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoAccruedSetle, Me.TanggalSettle, Me.CCNumberMasterSettle, Me.CreditCardNumberSettle, Me.AccountNameSettle, Me.BankNameSettle, Me.TanggalTransSette, Me.NoTransaksiSettle, Me.JenisTransaksiSettle, Me.CurryIDSettle, Me.Amount, Me.AccrualEstimateSettle, Me.RateSettle, Me.AmountIDRSettle, Me.IDSettle, Me.SeqSettle, Me.DescriptionSettle, Me.PaySettle})
+        Me.GridViewAccruedAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoAccruedSetle, Me.TanggalSettle, Me.CCNumberMasterSettle, Me.CreditCardNumberSettle, Me.AccountNameSettle, Me.BankNameSettle, Me.TanggalTransSette, Me.NoTransaksiSettle, Me.JenisTransaksiSettle, Me.CurryIDSettle, Me.Amount, Me.AccrualEstimateSettle, Me.RateSettle, Me.AmountIDRSettle, Me.IDSettle, Me.SeqSettle, Me.DescriptionSettle, Me.PaySettle, Me.TypeSettle})
         Me.GridViewAccruedAll.GridControl = Me.GridAccruedAll
         Me.GridViewAccruedAll.Name = "GridViewAccruedAll"
         Me.GridViewAccruedAll.OptionsBehavior.Editable = False
@@ -856,6 +922,16 @@ Partial Class FrmCCAccrued
         Me.CCNumberMasterSettle.VisibleIndex = 3
         Me.CCNumberMasterSettle.Width = 94
         '
+        'CCCNumberMaster
+        '
+        Me.CCCNumberMaster.AutoHeight = False
+        Me.CCCNumberMaster.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCCNumberMaster.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCCNumberMaster.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCNumberMaster.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCCNumberMaster.Mask.UseMaskAsDisplayFormat = True
+        Me.CCCNumberMaster.Name = "CCCNumberMaster"
+        '
         'CreditCardNumberSettle
         '
         Me.CreditCardNumberSettle.Caption = "CC Number"
@@ -868,6 +944,16 @@ Partial Class FrmCCAccrued
         Me.CreditCardNumberSettle.Visible = True
         Me.CreditCardNumberSettle.VisibleIndex = 4
         Me.CreditCardNumberSettle.Width = 94
+        '
+        'CCCNumber
+        '
+        Me.CCCNumber.AutoHeight = False
+        Me.CCCNumber.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCCNumber.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCCNumber.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCNumber.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCCNumber.Mask.UseMaskAsDisplayFormat = True
+        Me.CCCNumber.Name = "CCCNumber"
         '
         'AccountNameSettle
         '
@@ -939,9 +1025,10 @@ Partial Class FrmCCAccrued
         Me.Amount.FieldName = "Amount"
         Me.Amount.MinWidth = 25
         Me.Amount.Name = "Amount"
+        Me.Amount.OptionsColumn.FixedWidth = True
         Me.Amount.Visible = True
         Me.Amount.VisibleIndex = 11
-        Me.Amount.Width = 94
+        Me.Amount.Width = 140
         '
         'AccrualEstimateSettle
         '
@@ -951,9 +1038,10 @@ Partial Class FrmCCAccrued
         Me.AccrualEstimateSettle.FieldName = "AccrualEstimate"
         Me.AccrualEstimateSettle.MinWidth = 25
         Me.AccrualEstimateSettle.Name = "AccrualEstimateSettle"
+        Me.AccrualEstimateSettle.OptionsColumn.FixedWidth = True
         Me.AccrualEstimateSettle.Visible = True
         Me.AccrualEstimateSettle.VisibleIndex = 12
-        Me.AccrualEstimateSettle.Width = 94
+        Me.AccrualEstimateSettle.Width = 140
         '
         'RateSettle
         '
@@ -975,9 +1063,10 @@ Partial Class FrmCCAccrued
         Me.AmountIDRSettle.FieldName = "AmountIDR"
         Me.AmountIDRSettle.MinWidth = 25
         Me.AmountIDRSettle.Name = "AmountIDRSettle"
+        Me.AmountIDRSettle.OptionsColumn.FixedWidth = True
         Me.AmountIDRSettle.Visible = True
         Me.AmountIDRSettle.VisibleIndex = 14
-        Me.AmountIDRSettle.Width = 94
+        Me.AmountIDRSettle.Width = 140
         '
         'IDSettle
         '
@@ -1011,13 +1100,21 @@ Partial Class FrmCCAccrued
         Me.PaySettle.Name = "PaySettle"
         Me.PaySettle.Width = 94
         '
+        'TypeSettle
+        '
+        Me.TypeSettle.Caption = "Type"
+        Me.TypeSettle.FieldName = "Type"
+        Me.TypeSettle.MinWidth = 25
+        Me.TypeSettle.Name = "TypeSettle"
+        Me.TypeSettle.Width = 94
+        '
         'LayoutControlGroup3
         '
         Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup3.GroupBordersVisible = False
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4})
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
-        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1040, 348)
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1213, 332)
         Me.LayoutControlGroup3.TextVisible = False
         '
         'LayoutControlItem4
@@ -1025,20 +1122,20 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem4.Control = Me.GroupControl6
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(1020, 328)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(1193, 312)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
-        'LayoutControl2
+        'lcSumSettle
         '
-        Me.LayoutControl2.Controls.Add(Me.GroupControl3)
-        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 417)
-        Me.LayoutControl2.Name = "LayoutControl2"
-        Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(900, 124)
-        Me.LayoutControl2.TabIndex = 2
-        Me.LayoutControl2.Text = "LayoutControl2"
+        Me.lcSumSettle.Controls.Add(Me.GroupControl3)
+        Me.lcSumSettle.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lcSumSettle.Location = New System.Drawing.Point(16, 401)
+        Me.lcSumSettle.Name = "lcSumSettle"
+        Me.lcSumSettle.Root = Me.LayoutControlGroup1
+        Me.lcSumSettle.Size = New System.Drawing.Size(1200, 140)
+        Me.lcSumSettle.TabIndex = 2
+        Me.lcSumSettle.Text = "LayoutControl2"
         '
         'GroupControl3
         '
@@ -1046,7 +1143,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl3.GroupStyle = DevExpress.Utils.GroupStyle.Card
         Me.GroupControl3.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(876, 100)
+        Me.GroupControl3.Size = New System.Drawing.Size(1176, 116)
         Me.GroupControl3.TabIndex = 5
         Me.GroupControl3.Text = "Summary"
         '
@@ -1056,17 +1153,51 @@ Partial Class FrmCCAccrued
         Me.GridSumSettle.Location = New System.Drawing.Point(2, 26)
         Me.GridSumSettle.MainView = Me.GridViewSumSettle
         Me.GridSumSettle.Name = "GridSumSettle"
-        Me.GridSumSettle.Size = New System.Drawing.Size(872, 72)
+        Me.GridSumSettle.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CCCMasterSettle})
+        Me.GridSumSettle.Size = New System.Drawing.Size(1172, 88)
         Me.GridSumSettle.TabIndex = 4
         Me.GridSumSettle.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumSettle})
         '
         'GridViewSumSettle
         '
-        Me.GridViewSumSettle.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SumAmountOriUSDSettle, Me.SumAmountOriYENSettle, Me.SumAmountOriIDRSettle, Me.SumAccrualEstimateSettle, Me.SumAmountIDRSettle})
+        Me.GridViewSumSettle.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SumCCMasterSettle, Me.SumAccountNameSettle, Me.SumAmountOriUSDSettle, Me.SumAmountOriYENSettle, Me.SumAmountOriIDRSettle, Me.SumAccrualEstimateSettle, Me.SumAmountIDRSettle})
         Me.GridViewSumSettle.GridControl = Me.GridSumSettle
         Me.GridViewSumSettle.Name = "GridViewSumSettle"
         Me.GridViewSumSettle.OptionsBehavior.Editable = False
+        Me.GridViewSumSettle.OptionsView.ShowFooter = True
         Me.GridViewSumSettle.OptionsView.ShowGroupPanel = False
+        '
+        'SumCCMasterSettle
+        '
+        Me.SumCCMasterSettle.Caption = "CC Number"
+        Me.SumCCMasterSettle.ColumnEdit = Me.CCCMasterSettle
+        Me.SumCCMasterSettle.FieldName = "SumCCMaster"
+        Me.SumCCMasterSettle.MinWidth = 25
+        Me.SumCCMasterSettle.Name = "SumCCMasterSettle"
+        Me.SumCCMasterSettle.OptionsColumn.FixedWidth = True
+        Me.SumCCMasterSettle.Visible = True
+        Me.SumCCMasterSettle.VisibleIndex = 0
+        Me.SumCCMasterSettle.Width = 170
+        '
+        'CCCMasterSettle
+        '
+        Me.CCCMasterSettle.AutoHeight = False
+        Me.CCCMasterSettle.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCCMasterSettle.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCCMasterSettle.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCMasterSettle.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCCMasterSettle.Mask.UseMaskAsDisplayFormat = True
+        Me.CCCMasterSettle.Name = "CCCMasterSettle"
+        '
+        'SumAccountNameSettle
+        '
+        Me.SumAccountNameSettle.Caption = "Account Name"
+        Me.SumAccountNameSettle.FieldName = "SumAccountName"
+        Me.SumAccountNameSettle.MinWidth = 25
+        Me.SumAccountNameSettle.Name = "SumAccountNameSettle"
+        Me.SumAccountNameSettle.Visible = True
+        Me.SumAccountNameSettle.VisibleIndex = 1
+        Me.SumAccountNameSettle.Width = 25
         '
         'SumAmountOriUSDSettle
         '
@@ -1076,9 +1207,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriUSDSettle.FieldName = "SumAmountOriUSD"
         Me.SumAmountOriUSDSettle.MinWidth = 25
         Me.SumAmountOriUSDSettle.Name = "SumAmountOriUSDSettle"
+        Me.SumAmountOriUSDSettle.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriUSDSettle.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriUSD", "{0:#,##0.#0}")})
         Me.SumAmountOriUSDSettle.Visible = True
-        Me.SumAmountOriUSDSettle.VisibleIndex = 0
-        Me.SumAmountOriUSDSettle.Width = 94
+        Me.SumAmountOriUSDSettle.VisibleIndex = 2
+        Me.SumAmountOriUSDSettle.Width = 140
         '
         'SumAmountOriYENSettle
         '
@@ -1088,9 +1221,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriYENSettle.FieldName = "SumAmountOriYEN"
         Me.SumAmountOriYENSettle.MinWidth = 25
         Me.SumAmountOriYENSettle.Name = "SumAmountOriYENSettle"
+        Me.SumAmountOriYENSettle.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriYENSettle.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriYEN", "{0:#,##0.#0}")})
         Me.SumAmountOriYENSettle.Visible = True
-        Me.SumAmountOriYENSettle.VisibleIndex = 1
-        Me.SumAmountOriYENSettle.Width = 94
+        Me.SumAmountOriYENSettle.VisibleIndex = 3
+        Me.SumAmountOriYENSettle.Width = 140
         '
         'SumAmountOriIDRSettle
         '
@@ -1100,9 +1235,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountOriIDRSettle.FieldName = "SumAmountOriIDR"
         Me.SumAmountOriIDRSettle.MinWidth = 25
         Me.SumAmountOriIDRSettle.Name = "SumAmountOriIDRSettle"
+        Me.SumAmountOriIDRSettle.OptionsColumn.FixedWidth = True
+        Me.SumAmountOriIDRSettle.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriIDR", "{0:#,##0.#0}")})
         Me.SumAmountOriIDRSettle.Visible = True
-        Me.SumAmountOriIDRSettle.VisibleIndex = 2
-        Me.SumAmountOriIDRSettle.Width = 94
+        Me.SumAmountOriIDRSettle.VisibleIndex = 4
+        Me.SumAmountOriIDRSettle.Width = 140
         '
         'SumAccrualEstimateSettle
         '
@@ -1112,9 +1249,11 @@ Partial Class FrmCCAccrued
         Me.SumAccrualEstimateSettle.FieldName = "SumAccrualEstimate"
         Me.SumAccrualEstimateSettle.MinWidth = 25
         Me.SumAccrualEstimateSettle.Name = "SumAccrualEstimateSettle"
+        Me.SumAccrualEstimateSettle.OptionsColumn.FixedWidth = True
+        Me.SumAccrualEstimateSettle.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAccrualEstimate", "{0:#,##0.#0}")})
         Me.SumAccrualEstimateSettle.Visible = True
-        Me.SumAccrualEstimateSettle.VisibleIndex = 3
-        Me.SumAccrualEstimateSettle.Width = 94
+        Me.SumAccrualEstimateSettle.VisibleIndex = 5
+        Me.SumAccrualEstimateSettle.Width = 140
         '
         'SumAmountIDRSettle
         '
@@ -1124,9 +1263,11 @@ Partial Class FrmCCAccrued
         Me.SumAmountIDRSettle.FieldName = "SumAmountIDR"
         Me.SumAmountIDRSettle.MinWidth = 25
         Me.SumAmountIDRSettle.Name = "SumAmountIDRSettle"
+        Me.SumAmountIDRSettle.OptionsColumn.FixedWidth = True
+        Me.SumAmountIDRSettle.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountIDR", "{0:#,##0.#0}")})
         Me.SumAmountIDRSettle.Visible = True
-        Me.SumAmountIDRSettle.VisibleIndex = 4
-        Me.SumAmountIDRSettle.Width = 94
+        Me.SumAmountIDRSettle.VisibleIndex = 6
+        Me.SumAmountIDRSettle.Width = 140
         '
         'LayoutControlGroup1
         '
@@ -1134,7 +1275,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(900, 124)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1200, 140)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem2
@@ -1142,7 +1283,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem2.Control = Me.GroupControl3
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(880, 104)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(1180, 120)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -1150,7 +1291,7 @@ Partial Class FrmCCAccrued
         '
         Me.TabPagePaid.Controls.Add(Me.TableLayoutPanel3)
         Me.TabPagePaid.Name = "TabPagePaid"
-        Me.TabPagePaid.Size = New System.Drawing.Size(1046, 544)
+        Me.TabPagePaid.Size = New System.Drawing.Size(1219, 544)
         Me.TabPagePaid.Text = "Paid"
         '
         'TableLayoutPanel3
@@ -1158,14 +1299,14 @@ Partial Class FrmCCAccrued
         Me.TableLayoutPanel3.ColumnCount = 1
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.LayoutControl5, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.LayoutControl8, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.lcSumPaid, 0, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 2
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1046, 544)
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1219, 544)
         Me.TableLayoutPanel3.TabIndex = 1
         '
         'LayoutControl5
@@ -1175,7 +1316,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControl5.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl5.Name = "LayoutControl5"
         Me.LayoutControl5.Root = Me.LayoutControlGroup4
-        Me.LayoutControl5.Size = New System.Drawing.Size(1040, 408)
+        Me.LayoutControl5.Size = New System.Drawing.Size(1213, 374)
         Me.LayoutControl5.TabIndex = 0
         Me.LayoutControl5.Text = "LayoutControl5"
         '
@@ -1184,7 +1325,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl4.Controls.Add(Me.GridAccruedPaid)
         Me.GroupControl4.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1016, 384)
+        Me.GroupControl4.Size = New System.Drawing.Size(1189, 350)
         Me.GroupControl4.TabIndex = 4
         Me.GroupControl4.Text = "Detail"
         '
@@ -1195,13 +1336,13 @@ Partial Class FrmCCAccrued
         Me.GridAccruedPaid.MainView = Me.GridViewAccruedPaid
         Me.GridAccruedPaid.Name = "GridAccruedPaid"
         Me.GridAccruedPaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CCNumberMasterPaid, Me.CCCNumberPaid})
-        Me.GridAccruedPaid.Size = New System.Drawing.Size(1012, 356)
+        Me.GridAccruedPaid.Size = New System.Drawing.Size(1185, 322)
         Me.GridAccruedPaid.TabIndex = 5
         Me.GridAccruedPaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewAccruedPaid})
         '
         'GridViewAccruedPaid
         '
-        Me.GridViewAccruedPaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.GridViewAccruedPaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.TypePaid})
         Me.GridViewAccruedPaid.GridControl = Me.GridAccruedPaid
         Me.GridViewAccruedPaid.Name = "GridViewAccruedPaid"
         Me.GridViewAccruedPaid.OptionsBehavior.Editable = False
@@ -1243,6 +1384,16 @@ Partial Class FrmCCAccrued
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 94
         '
+        'CCNumberMasterPaid
+        '
+        Me.CCNumberMasterPaid.AutoHeight = False
+        Me.CCNumberMasterPaid.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCNumberMasterPaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCNumberMasterPaid.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCNumberMasterPaid.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCNumberMasterPaid.Mask.UseMaskAsDisplayFormat = True
+        Me.CCNumberMasterPaid.Name = "CCNumberMasterPaid"
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "CC Number"
@@ -1255,6 +1406,16 @@ Partial Class FrmCCAccrued
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 94
+        '
+        'CCCNumberPaid
+        '
+        Me.CCCNumberPaid.AutoHeight = False
+        Me.CCCNumberPaid.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCCNumberPaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCCNumberPaid.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCNumberPaid.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCCNumberPaid.Mask.UseMaskAsDisplayFormat = True
+        Me.CCCNumberPaid.Name = "CCCNumberPaid"
         '
         'GridColumn5
         '
@@ -1326,9 +1487,10 @@ Partial Class FrmCCAccrued
         Me.GridColumn11.FieldName = "Amount"
         Me.GridColumn11.MinWidth = 25
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.FixedWidth = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 10
-        Me.GridColumn11.Width = 94
+        Me.GridColumn11.Width = 140
         '
         'GridColumn12
         '
@@ -1338,9 +1500,10 @@ Partial Class FrmCCAccrued
         Me.GridColumn12.FieldName = "AccrualEstimate"
         Me.GridColumn12.MinWidth = 25
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.FixedWidth = True
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 11
-        Me.GridColumn12.Width = 94
+        Me.GridColumn12.Width = 140
         '
         'GridColumn13
         '
@@ -1362,9 +1525,10 @@ Partial Class FrmCCAccrued
         Me.GridColumn14.FieldName = "AmountIDR"
         Me.GridColumn14.MinWidth = 25
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.FixedWidth = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 13
-        Me.GridColumn14.Width = 94
+        Me.GridColumn14.Width = 140
         '
         'GridColumn15
         '
@@ -1398,13 +1562,21 @@ Partial Class FrmCCAccrued
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Width = 94
         '
+        'TypePaid
+        '
+        Me.TypePaid.Caption = "Type"
+        Me.TypePaid.FieldName = "Type"
+        Me.TypePaid.MinWidth = 25
+        Me.TypePaid.Name = "TypePaid"
+        Me.TypePaid.Width = 94
+        '
         'LayoutControlGroup4
         '
         Me.LayoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup4.GroupBordersVisible = False
         Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5})
         Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
-        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1040, 408)
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1213, 374)
         Me.LayoutControlGroup4.TextVisible = False
         '
         'LayoutControlItem5
@@ -1412,20 +1584,20 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem5.Control = Me.GroupControl4
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(1020, 388)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(1193, 354)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
-        'LayoutControl8
+        'lcSumPaid
         '
-        Me.LayoutControl8.Controls.Add(Me.GroupControl5)
-        Me.LayoutControl8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.LayoutControl8.Location = New System.Drawing.Point(3, 417)
-        Me.LayoutControl8.Name = "LayoutControl8"
-        Me.LayoutControl8.Root = Me.LayoutControlGroup7
-        Me.LayoutControl8.Size = New System.Drawing.Size(900, 124)
-        Me.LayoutControl8.TabIndex = 1
-        Me.LayoutControl8.Text = "LayoutControl8"
+        Me.lcSumPaid.Controls.Add(Me.GroupControl5)
+        Me.lcSumPaid.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lcSumPaid.Location = New System.Drawing.Point(16, 383)
+        Me.lcSumPaid.Name = "lcSumPaid"
+        Me.lcSumPaid.Root = Me.LayoutControlGroup7
+        Me.lcSumPaid.Size = New System.Drawing.Size(1200, 158)
+        Me.lcSumPaid.TabIndex = 1
+        Me.lcSumPaid.Text = "LayoutControl8"
         '
         'GroupControl5
         '
@@ -1433,7 +1605,7 @@ Partial Class FrmCCAccrued
         Me.GroupControl5.GroupStyle = DevExpress.Utils.GroupStyle.Card
         Me.GroupControl5.Location = New System.Drawing.Point(12, 12)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(876, 100)
+        Me.GroupControl5.Size = New System.Drawing.Size(1176, 134)
         Me.GroupControl5.TabIndex = 6
         Me.GroupControl5.Text = "Summary"
         '
@@ -1443,17 +1615,51 @@ Partial Class FrmCCAccrued
         Me.GridSumPaid.Location = New System.Drawing.Point(2, 26)
         Me.GridSumPaid.MainView = Me.GridViewSumPaid
         Me.GridSumPaid.Name = "GridSumPaid"
-        Me.GridSumPaid.Size = New System.Drawing.Size(872, 72)
+        Me.GridSumPaid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CCCMasterPaid})
+        Me.GridSumPaid.Size = New System.Drawing.Size(1172, 106)
         Me.GridSumPaid.TabIndex = 4
         Me.GridSumPaid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSumPaid})
         '
         'GridViewSumPaid
         '
-        Me.GridViewSumPaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
+        Me.GridViewSumPaid.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.SumCCMasterPaid, Me.SumAccountNamePaid, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
         Me.GridViewSumPaid.GridControl = Me.GridSumPaid
         Me.GridViewSumPaid.Name = "GridViewSumPaid"
         Me.GridViewSumPaid.OptionsBehavior.Editable = False
+        Me.GridViewSumPaid.OptionsView.ShowFooter = True
         Me.GridViewSumPaid.OptionsView.ShowGroupPanel = False
+        '
+        'SumCCMasterPaid
+        '
+        Me.SumCCMasterPaid.Caption = "CC Master"
+        Me.SumCCMasterPaid.ColumnEdit = Me.CCCMasterPaid
+        Me.SumCCMasterPaid.FieldName = "SumCCMaster"
+        Me.SumCCMasterPaid.MinWidth = 25
+        Me.SumCCMasterPaid.Name = "SumCCMasterPaid"
+        Me.SumCCMasterPaid.OptionsColumn.FixedWidth = True
+        Me.SumCCMasterPaid.Visible = True
+        Me.SumCCMasterPaid.VisibleIndex = 0
+        Me.SumCCMasterPaid.Width = 180
+        '
+        'CCCMasterPaid
+        '
+        Me.CCCMasterPaid.AutoHeight = False
+        Me.CCCMasterPaid.DisplayFormat.FormatString = "0000-0000-0000-9999"
+        Me.CCCMasterPaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.CCCMasterPaid.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCMasterPaid.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
+        Me.CCCMasterPaid.Mask.UseMaskAsDisplayFormat = True
+        Me.CCCMasterPaid.Name = "CCCMasterPaid"
+        '
+        'SumAccountNamePaid
+        '
+        Me.SumAccountNamePaid.Caption = "Account Name"
+        Me.SumAccountNamePaid.FieldName = "SumAccountName"
+        Me.SumAccountNamePaid.MinWidth = 25
+        Me.SumAccountNamePaid.Name = "SumAccountNamePaid"
+        Me.SumAccountNamePaid.Visible = True
+        Me.SumAccountNamePaid.VisibleIndex = 1
+        Me.SumAccountNamePaid.Width = 339
         '
         'GridColumn19
         '
@@ -1463,9 +1669,11 @@ Partial Class FrmCCAccrued
         Me.GridColumn19.FieldName = "SumAmountOriUSD"
         Me.GridColumn19.MinWidth = 25
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.FixedWidth = True
+        Me.GridColumn19.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriUSD", "{0:#,##0.#0}")})
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 0
-        Me.GridColumn19.Width = 94
+        Me.GridColumn19.VisibleIndex = 2
+        Me.GridColumn19.Width = 140
         '
         'GridColumn20
         '
@@ -1475,9 +1683,11 @@ Partial Class FrmCCAccrued
         Me.GridColumn20.FieldName = "SumAmountOriYEN"
         Me.GridColumn20.MinWidth = 25
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.FixedWidth = True
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriYEN", "{0:#,##0.#0}")})
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 1
-        Me.GridColumn20.Width = 94
+        Me.GridColumn20.VisibleIndex = 3
+        Me.GridColumn20.Width = 140
         '
         'GridColumn21
         '
@@ -1487,9 +1697,11 @@ Partial Class FrmCCAccrued
         Me.GridColumn21.FieldName = "SumAmountOriIDR"
         Me.GridColumn21.MinWidth = 25
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.FixedWidth = True
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountOriIDR", "{0:#,##0.#0}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 2
-        Me.GridColumn21.Width = 94
+        Me.GridColumn21.VisibleIndex = 4
+        Me.GridColumn21.Width = 140
         '
         'GridColumn22
         '
@@ -1499,9 +1711,11 @@ Partial Class FrmCCAccrued
         Me.GridColumn22.FieldName = "SumAccrualEstimate"
         Me.GridColumn22.MinWidth = 25
         Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.FixedWidth = True
+        Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAccrualEstimate", "{0:#,##0.#0}")})
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 3
-        Me.GridColumn22.Width = 94
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 140
         '
         'GridColumn23
         '
@@ -1511,9 +1725,11 @@ Partial Class FrmCCAccrued
         Me.GridColumn23.FieldName = "SumAmountIDR"
         Me.GridColumn23.MinWidth = 25
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.FixedWidth = True
+        Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumAmountIDR", "{0:#,##0.#0}")})
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
-        Me.GridColumn23.Width = 94
+        Me.GridColumn23.VisibleIndex = 6
+        Me.GridColumn23.Width = 140
         '
         'LayoutControlGroup7
         '
@@ -1521,7 +1737,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlGroup7.GroupBordersVisible = False
         Me.LayoutControlGroup7.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9})
         Me.LayoutControlGroup7.Name = "LayoutControlGroup7"
-        Me.LayoutControlGroup7.Size = New System.Drawing.Size(900, 124)
+        Me.LayoutControlGroup7.Size = New System.Drawing.Size(1200, 158)
         Me.LayoutControlGroup7.TextVisible = False
         '
         'LayoutControlItem9
@@ -1529,54 +1745,14 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem9.Control = Me.GroupControl5
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(880, 104)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1180, 138)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
-        '
-        'CCCNumberMaster
-        '
-        Me.CCCNumberMaster.AutoHeight = False
-        Me.CCCNumberMaster.DisplayFormat.FormatString = "0000-0000-0000-9999"
-        Me.CCCNumberMaster.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.CCCNumberMaster.Mask.EditMask = "0000-0000-0000-9999"
-        Me.CCCNumberMaster.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
-        Me.CCCNumberMaster.Mask.UseMaskAsDisplayFormat = True
-        Me.CCCNumberMaster.Name = "CCCNumberMaster"
-        '
-        'CCCNumber
-        '
-        Me.CCCNumber.AutoHeight = False
-        Me.CCCNumber.DisplayFormat.FormatString = "0000-0000-0000-9999"
-        Me.CCCNumber.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.CCCNumber.Mask.EditMask = "0000-0000-0000-9999"
-        Me.CCCNumber.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
-        Me.CCCNumber.Mask.UseMaskAsDisplayFormat = True
-        Me.CCCNumber.Name = "CCCNumber"
-        '
-        'CCNumberMasterPaid
-        '
-        Me.CCNumberMasterPaid.AutoHeight = False
-        Me.CCNumberMasterPaid.DisplayFormat.FormatString = "0000-0000-0000-9999"
-        Me.CCNumberMasterPaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.CCNumberMasterPaid.Mask.EditMask = "0000-0000-0000-9999"
-        Me.CCNumberMasterPaid.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
-        Me.CCNumberMasterPaid.Mask.UseMaskAsDisplayFormat = True
-        Me.CCNumberMasterPaid.Name = "CCNumberMasterPaid"
-        '
-        'CCCNumberPaid
-        '
-        Me.CCCNumberPaid.AutoHeight = False
-        Me.CCCNumberPaid.DisplayFormat.FormatString = "0000-0000-0000-9999"
-        Me.CCCNumberPaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.CCCNumberPaid.Mask.EditMask = "0000-0000-0000-9999"
-        Me.CCCNumberPaid.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
-        Me.CCCNumberPaid.Mask.UseMaskAsDisplayFormat = True
-        Me.CCCNumberPaid.Name = "CCCNumberPaid"
         '
         'FrmCCAccrued
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1053, 605)
+        Me.ClientSize = New System.Drawing.Size(1226, 605)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Name = "FrmCCAccrued"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
@@ -1601,12 +1777,13 @@ Partial Class FrmCCAccrued
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl7.ResumeLayout(False)
+        CType(Me.lcSumProses, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.lcSumProses.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GridSumAccrued, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewSumAccrued, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CSumCCMasterProses, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageCancel.ResumeLayout(False)
@@ -1622,14 +1799,17 @@ Partial Class FrmCCAccrued
         Me.GroupControl6.ResumeLayout(False)
         CType(Me.GridAccruedAll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewAccruedAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCCNumberMaster, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCCNumber, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.lcSumSettle, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.lcSumSettle.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GridSumSettle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewSumSettle, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCCMasterSettle, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPagePaid.ResumeLayout(False)
@@ -1640,20 +1820,19 @@ Partial Class FrmCCAccrued
         Me.GroupControl4.ResumeLayout(False)
         CType(Me.GridAccruedPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewAccruedPaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCNumberMasterPaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCCNumberPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl8.ResumeLayout(False)
+        CType(Me.lcSumPaid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.lcSumPaid.ResumeLayout(False)
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         CType(Me.GridSumPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewSumPaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCCNumberMaster, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCCNumber, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCNumberMasterPaid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCCNumberPaid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1710,11 +1889,11 @@ Partial Class FrmCCAccrued
     Friend WithEvents LayoutControlGroup5 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControl7 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents lcSumProses As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LayoutControlGroup6 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents lcSumSettle As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GridSumSettle As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewSumSettle As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1768,7 +1947,7 @@ Partial Class FrmCCAccrued
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControl8 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents lcSumPaid As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup7 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
@@ -1785,4 +1964,16 @@ Partial Class FrmCCAccrued
     Friend WithEvents CCCNumber As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CCNumberMasterPaid As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CCCNumberPaid As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SumCCMasterProses As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CSumCCMasterProses As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SumAccountNameProses As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TypeProses As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SumCCMasterSettle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SumAccountNameSettle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CCCMasterSettle As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SumCCMasterPaid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CCCMasterPaid As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents SumAccountNamePaid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TypeSettle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TypePaid As DevExpress.XtraGrid.Columns.GridColumn
 End Class
