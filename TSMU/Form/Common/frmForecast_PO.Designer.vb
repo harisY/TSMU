@@ -19,9 +19,8 @@ Partial Class frmForecast_PO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -50,12 +49,12 @@ Partial Class frmForecast_PO
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(303, 100)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(303, 128)
         '
         'ExportToExcelTSM
         '
         Me.ExportToExcelTSM.Name = "ExportToExcelTSM"
-        Me.ExportToExcelTSM.Size = New System.Drawing.Size(248, 24)
+        Me.ExportToExcelTSM.Size = New System.Drawing.Size(302, 24)
         Me.ExportToExcelTSM.Text = "Export To Excel"
         '
         'CekHargaADMTSM
@@ -67,14 +66,14 @@ Partial Class frmForecast_PO
         'CekInventory1ToolStripMenuItem
         '
         Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
-        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(248, 24)
+        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(302, 24)
         Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
         Me.CekInventory1ToolStripMenuItem.Visible = False
         '
         'SinkronasiDataTsm
         '
         Me.SinkronasiDataTsm.Name = "SinkronasiDataTsm"
-        Me.SinkronasiDataTsm.Size = New System.Drawing.Size(248, 24)
+        Me.SinkronasiDataTsm.Size = New System.Drawing.Size(302, 24)
         Me.SinkronasiDataTsm.Text = "Sinkronasi Data"
         '
         'GridView1

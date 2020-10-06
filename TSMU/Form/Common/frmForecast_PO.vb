@@ -561,6 +561,12 @@ Public Class frmForecast_PO
 
     Private Sub CekHargaADMTSM_Click(sender As Object, e As EventArgs) Handles CekHargaADMTSM.Click
         Try
+            Dim frmB As FrmBulan
+            frmB = New FrmBulan
+            frmB.ShowDialog()
+            If frmB.Bulan = "" Then
+                Exit Sub
+            End If
             Dim dt As New DataTable
             dt.Columns.Add("Id", GetType(Integer))
             dt.Columns.Add("OrderNo", GetType(String))
@@ -578,7 +584,7 @@ Public Class frmForecast_PO
             For i As Integer = 0 To GridView1.RowCount - 1
                 Dim InvtID As String = GridView1.GetRowCellValue(i, "InvtID")
                 Dim Tahun As String = GridView1.GetRowCellValue(i, "Tahun")
-                Dim Bulan As String = "10"
+                Dim Bulan As String = frmB.Bulan
                 Dim CustID As String = GridView1.GetRowCellValue(i, "CustID")
 
                 Dim dt1 As New DataTable
@@ -603,7 +609,7 @@ Public Class frmForecast_PO
                     .WindowState = FormWindowState.Normal,
                     .StartPosition = FormStartPosition.CenterScreen
                 }
-                f.ShowDialog()
+                f.Show()
             Else
                 XtraMessageBox.Show("Form sudah terbuka !")
             End If

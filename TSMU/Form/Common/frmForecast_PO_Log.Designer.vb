@@ -59,6 +59,8 @@ Partial Class frmForecast_PO_Log
         '
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsPrint.PrintHorzLines = False
+        Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
