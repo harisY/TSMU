@@ -96,9 +96,11 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Opinion = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemSpinEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.T_NameItem = New DevExpress.XtraEditors.TextEdit()
@@ -109,8 +111,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Spesification = New DevExpress.XtraEditors.TextEdit()
         Me.T_Reason = New DevExpress.XtraEditors.TextEdit()
         Me.BBeritaAcara = New System.Windows.Forms.Button()
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.Opinion = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,15 +151,15 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.C_Term.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Opinion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_NameItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Reason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Opinion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RB_Budget
@@ -895,11 +895,17 @@ Partial Class Frm_CR_UserCreateDetail
         'GridColumn9
         '
         Me.GridColumn9.ColumnEdit = Me.Opinion
+        Me.GridColumn9.FieldName = "Opinion"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 779
+        '
+        'Opinion
+        '
+        Me.Opinion.AutoHeight = False
+        Me.Opinion.Name = "Opinion"
         '
         'RepositoryItemSpinEdit7
         '
@@ -918,6 +924,11 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemSpinEdit9.AutoHeight = False
         Me.RepositoryItemSpinEdit9.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemSpinEdit9.Name = "RepositoryItemSpinEdit9"
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
         'Label4
         '
@@ -1002,16 +1013,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.BBeritaAcara.Text = "Berita Acara"
         Me.BBeritaAcara.UseVisualStyleBackColor = True
         Me.BBeritaAcara.Visible = False
-        '
-        'RepositoryItemTextEdit2
-        '
-        Me.RepositoryItemTextEdit2.AutoHeight = False
-        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
-        '
-        'Opinion
-        '
-        Me.Opinion.AutoHeight = False
-        Me.Opinion.Name = "Opinion"
         '
         'Frm_CR_UserCreateDetail
         '
@@ -1119,16 +1120,16 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.C_Term.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Opinion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_NameItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_Reason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Opinion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

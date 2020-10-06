@@ -29,7 +29,7 @@ Public Class Frm_CR_Approve
 
 
 
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
+            'Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default
@@ -114,6 +114,11 @@ Public Class Frm_CR_Approve
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
 
+    End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        bs_Filter = ""
+        LoadGrid(_level, division, director)
     End Sub
 
 

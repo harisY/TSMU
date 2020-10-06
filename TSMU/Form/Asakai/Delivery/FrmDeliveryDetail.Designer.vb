@@ -36,6 +36,10 @@ Partial Class FrmDeliveryDetail
         Me.Balance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Ket = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.CmbLaporan = New System.Windows.Forms.ComboBox()
         Me.LblTanggal = New System.Windows.Forms.Label()
@@ -55,13 +59,13 @@ Partial Class FrmDeliveryDetail
         Me.Grid.Location = New System.Drawing.Point(3, 84)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(920, 431)
+        Me.Grid.Size = New System.Drawing.Size(1154, 431)
         Me.Grid.TabIndex = 22
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.InvtId, Me.DeliveryDueDate, Me.QtyOrder, Me.Delivery, Me.Jumlah, Me.TNG08, Me.TNG0506, Me.Painting, Me.Whp, Me.TotalStock, Me.Balance, Me.Ket, Me.ItemNumber})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.InvtId, Me.DeliveryDueDate, Me.QtyOrder, Me.Delivery, Me.Jumlah, Me.TNG08, Me.TNG0506, Me.Painting, Me.Whp, Me.TotalStock, Me.Balance, Me.Ket, Me.ItemNumber, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GridView1.CustomizationFormBounds = New System.Drawing.Rectangle(687, 284, 260, 232)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
@@ -111,6 +115,8 @@ Partial Class FrmDeliveryDetail
         '
         Me.Delivery.AppearanceCell.Options.UseTextOptions = True
         Me.Delivery.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Delivery.AppearanceHeader.Options.UseTextOptions = True
+        Me.Delivery.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Delivery.FieldName = "Delivery"
         Me.Delivery.Name = "Delivery"
         Me.Delivery.OptionsColumn.AllowEdit = False
@@ -122,9 +128,12 @@ Partial Class FrmDeliveryDetail
         '
         Me.Jumlah.AppearanceCell.Options.UseTextOptions = True
         Me.Jumlah.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Jumlah.AppearanceHeader.Options.UseTextOptions = True
+        Me.Jumlah.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Jumlah.FieldName = "Jumlah"
         Me.Jumlah.Name = "Jumlah"
         Me.Jumlah.OptionsColumn.AllowEdit = False
+        Me.Jumlah.UnboundExpression = "[Qty Order] - [Delivery]"
         Me.Jumlah.Visible = True
         Me.Jumlah.VisibleIndex = 6
         Me.Jumlah.Width = 48
@@ -133,6 +142,8 @@ Partial Class FrmDeliveryDetail
         '
         Me.TNG08.AppearanceCell.Options.UseTextOptions = True
         Me.TNG08.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TNG08.AppearanceHeader.Options.UseTextOptions = True
+        Me.TNG08.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TNG08.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TNG08.FieldName = "TNG 08"
         Me.TNG08.Name = "TNG08"
@@ -145,8 +156,10 @@ Partial Class FrmDeliveryDetail
         '
         Me.TNG0506.AppearanceCell.Options.UseTextOptions = True
         Me.TNG0506.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TNG0506.AppearanceHeader.Options.UseTextOptions = True
+        Me.TNG0506.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TNG0506.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TNG0506.FieldName = "TNG 05 06"
+        Me.TNG0506.FieldName = "TNG 05"
         Me.TNG0506.Name = "TNG0506"
         Me.TNG0506.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.TNG0506.Visible = True
@@ -155,43 +168,55 @@ Partial Class FrmDeliveryDetail
         '
         'Painting
         '
+        Me.Painting.AppearanceCell.Options.UseTextOptions = True
+        Me.Painting.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Painting.AppearanceHeader.Options.UseTextOptions = True
+        Me.Painting.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Painting.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Painting.FieldName = "Painting"
         Me.Painting.Name = "Painting"
         Me.Painting.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.Painting.Visible = True
-        Me.Painting.VisibleIndex = 9
+        Me.Painting.VisibleIndex = 11
         Me.Painting.Width = 52
         '
         'Whp
         '
         Me.Whp.AppearanceCell.Options.UseTextOptions = True
         Me.Whp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Whp.AppearanceHeader.Options.UseTextOptions = True
+        Me.Whp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Whp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Whp.FieldName = "Whp"
         Me.Whp.Name = "Whp"
         Me.Whp.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.Whp.Visible = True
-        Me.Whp.VisibleIndex = 10
+        Me.Whp.VisibleIndex = 13
         Me.Whp.Width = 48
         '
         'TotalStock
         '
         Me.TotalStock.AppearanceCell.Options.UseTextOptions = True
         Me.TotalStock.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.TotalStock.AppearanceHeader.Options.UseTextOptions = True
+        Me.TotalStock.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.TotalStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TotalStock.FieldName = "Total Stock"
         Me.TotalStock.Name = "TotalStock"
         Me.TotalStock.OptionsColumn.AllowEdit = False
-        Me.TotalStock.UnboundExpression = "[Painting] + [TNG 05 06] + [TNG 08] + [Whp]"
+        Me.TotalStock.UnboundExpression = "[TNG 08] + [TNG 05] + [Painting] + [Whp] + [TNG 06] + [Stock 2ND] + [SIP] + [TNG " &
+    "04-02]"
         Me.TotalStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.TotalStock.Visible = True
-        Me.TotalStock.VisibleIndex = 11
+        Me.TotalStock.VisibleIndex = 15
         Me.TotalStock.Width = 74
         '
         'Balance
         '
         Me.Balance.AppearanceCell.Options.UseTextOptions = True
         Me.Balance.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Balance.AppearanceHeader.Options.UseTextOptions = True
+        Me.Balance.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Balance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Balance.FieldName = "Balance"
         Me.Balance.Name = "Balance"
@@ -199,7 +224,7 @@ Partial Class FrmDeliveryDetail
         Me.Balance.UnboundExpression = "[Total Stock] - [Jumlah]"
         Me.Balance.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.Balance.Visible = True
-        Me.Balance.VisibleIndex = 12
+        Me.Balance.VisibleIndex = 16
         Me.Balance.Width = 61
         '
         'Ket
@@ -207,7 +232,7 @@ Partial Class FrmDeliveryDetail
         Me.Ket.FieldName = "Keterangan"
         Me.Ket.Name = "Ket"
         Me.Ket.Visible = True
-        Me.Ket.VisibleIndex = 13
+        Me.Ket.VisibleIndex = 17
         Me.Ket.Width = 158
         '
         'ItemNumber
@@ -217,6 +242,54 @@ Partial Class FrmDeliveryDetail
         Me.ItemNumber.Visible = True
         Me.ItemNumber.VisibleIndex = 2
         Me.ItemNumber.Width = 148
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "TNG 06"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 9
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "Stock 2ND"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 10
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "SIP"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 12
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "TNG 04-02"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 14
         '
         'Panel1
         '
@@ -228,14 +301,14 @@ Partial Class FrmDeliveryDetail
         Me.Panel1.Controls.Add(Me.BSearch)
         Me.Panel1.Location = New System.Drawing.Point(3, 28)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(920, 50)
+        Me.Panel1.Size = New System.Drawing.Size(1154, 50)
         Me.Panel1.TabIndex = 23
         '
         'CmbLaporan
         '
         Me.CmbLaporan.FormattingEnabled = True
         Me.CmbLaporan.Items.AddRange(New Object() {"-", "ASAKAI", "YUKAI"})
-        Me.CmbLaporan.Location = New System.Drawing.Point(0, 13)
+        Me.CmbLaporan.Location = New System.Drawing.Point(8, 13)
         Me.CmbLaporan.Name = "CmbLaporan"
         Me.CmbLaporan.Size = New System.Drawing.Size(135, 21)
         Me.CmbLaporan.TabIndex = 2
@@ -244,7 +317,7 @@ Partial Class FrmDeliveryDetail
         '
         Me.LblTanggal.AutoSize = True
         Me.LblTanggal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblTanggal.Location = New System.Drawing.Point(222, 14)
+        Me.LblTanggal.Location = New System.Drawing.Point(230, 14)
         Me.LblTanggal.Name = "LblTanggal"
         Me.LblTanggal.Size = New System.Drawing.Size(73, 20)
         Me.LblTanggal.TabIndex = 1
@@ -252,7 +325,7 @@ Partial Class FrmDeliveryDetail
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(141, 11)
+        Me.BSearch.Location = New System.Drawing.Point(149, 11)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(75, 23)
         Me.BSearch.TabIndex = 0
@@ -266,7 +339,7 @@ Partial Class FrmDeliveryDetail
         'FrmDeliveryDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(935, 527)
+        Me.ClientSize = New System.Drawing.Size(1169, 527)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmDeliveryDetail"
@@ -303,4 +376,8 @@ Partial Class FrmDeliveryDetail
     Friend WithEvents LblTanggal As Label
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents CmbLaporan As ComboBox
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
