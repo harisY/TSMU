@@ -1,6 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class cashbank_models
-
     Public Property AcctID As String
     Public Property Keluar As Double
     Public Property Keterangan As String
@@ -45,7 +44,6 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
-
     Public Sub GetDirekPaymentById(_NoBukti As String)
         Try
             Dim sql As String =
@@ -566,7 +564,6 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
-
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
             ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"

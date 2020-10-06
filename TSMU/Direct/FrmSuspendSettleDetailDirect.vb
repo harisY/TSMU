@@ -34,8 +34,6 @@ Public Class FrmSuspendSettleDetailDirect
     Dim _Tag As TagModel
     Dim creditCardID As String = String.Empty
     Dim accountName As String = String.Empty
-
-
     Public Sub New()
 
         ' This call is required by the designer.
