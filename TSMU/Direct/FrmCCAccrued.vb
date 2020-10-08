@@ -102,7 +102,7 @@ Public Class FrmCCAccrued
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
-            GroupingGrid(GridViewAccrued)
+            'GroupingGrid(GridViewAccrued)
 
             dtSummaryProses = New DataTable
             cls_Accrued = New ClsCCAccrued
@@ -123,7 +123,7 @@ Public Class FrmCCAccrued
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
-            GroupingGrid(GridViewAccrued)
+            'GroupingGrid(GridViewAccrued)
             hitungSummaryProses()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

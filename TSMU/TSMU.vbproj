@@ -458,6 +458,18 @@
     <Compile Include="Direct\FrmEditDirectPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
       <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
     </Compile>
@@ -2040,6 +2052,12 @@
     <Compile Include="Form\System\frmAdvanceApprove.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmCustomization.Designer.vb">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmCustomization.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -2273,6 +2291,7 @@
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\CustomizationModels.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
@@ -2720,6 +2739,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
       <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
@@ -3215,6 +3237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmCustomization.resx">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

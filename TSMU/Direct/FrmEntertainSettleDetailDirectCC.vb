@@ -7,7 +7,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
-Public Class FrmEntertainSettleDetail
+Public Class FrmEntertainSettleDetailDirectCC
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Dim isUpdate As Boolean = False
@@ -15,14 +15,18 @@ Public Class FrmEntertainSettleDetail
 
     Dim ObjEntertainHeader As New EntertainHeaderModel
     Dim ObjEntertainDetail As New EntertainDetailModel
-    Dim ObjSettle As New SettleHeader
+    Dim ObjSettleHeader As New SettleHeader
     Dim ObjSettleDetail As New SettleDetail
     Dim clsSettleRelasi As New SettleRelasi
 
     Dim GridDtl As GridControl
-    Dim dtDetail As DataTable
-    Dim dtRelasi As DataTable
+    Dim dtDetail As New DataTable
+    Dim dtRelasi As New DataTable
+    Dim creditCardID As String = String.Empty
+    Dim accountName As String = String.Empty
+    Dim isLoad As Boolean = False
     Dim _SettleID As String = ""
+    Dim row As Integer
     Dim _Tag As TagModel
 
     Public Sub New()
@@ -46,6 +50,7 @@ Public Class FrmEntertainSettleDetail
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
         End If
+        row = li_GridRow
         GridDtl = _Grid
         FrmParent = lf_FormParent
         _Tag = New TagModel
@@ -53,16 +58,55 @@ Public Class FrmEntertainSettleDetail
         Tag = _Tag
     End Sub
 
-    Private Sub FrmEntertainSettleDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmEntertainSettleDetailDirectCC_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        isLoad = True
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         Call InitialSetForm()
+        isLoad = False
+    End Sub
+
+    Public Overrides Sub Proc_print()
+        Try
+            Dim newform As New FrmReportSettleEntertain(TxtNoSettlement.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub CreateTable()
+        dtDetail = New DataTable
+        dtDetail.Columns.AddRange(New DataColumn(9) {New DataColumn("HeaderSeq", GetType(Integer)),
+                                                        New DataColumn("Tgl", GetType(Date)),
+                                                        New DataColumn("SubAccount", GetType(String)),
+                                                        New DataColumn("Account", GetType(String)),
+                                                        New DataColumn("Description", GetType(String)),
+                                                        New DataColumn("Nama", GetType(String)),
+                                                        New DataColumn("Tempat", GetType(String)),
+                                                        New DataColumn("Alamat", GetType(String)),
+                                                        New DataColumn("Jenis", GetType(String)),
+                                                        New DataColumn("ActualAmount", GetType(Double))})
+
+        GridDetail.DataSource = dtDetail
+
+        dtRelasi = New DataTable
+        dtRelasi.Columns.AddRange(New DataColumn(5) {New DataColumn("HeaderSeq", GetType(Integer)),
+                                                        New DataColumn("Nama", GetType(String)),
+                                                        New DataColumn("Posisi", GetType(String)),
+                                                        New DataColumn("Perusahaan", GetType(String)),
+                                                        New DataColumn("JenisUsaha", GetType(String)),
+                                                        New DataColumn("Remark", GetType(String))})
+        GridRelasi.DataSource = dtRelasi
+        GridViewRelasi.ClearColumnsFilter()
+
     End Sub
 
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSettle.ID = fs_Code
-                ObjSettle.GetSettleByIdEnt()
+                ObjSettleHeader.SettleID = fs_Code2
+                ObjSettleHeader.GetSettleById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -71,52 +115,24 @@ Public Class FrmEntertainSettleDetail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Entertainment " & fs_Code2
+                Me.Text = "ENTERTAINMENT"
             Else
-                Me.Text = "Entertainment"
+                Me.Text = "ENTERTAINMENT NEW"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmEntertainSettle" ''FrmParent.Name.ToString
+            bs_MainFormName = FrmParent.Name.ToString
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 
-    Private Sub CreateTable()
-        dtDetail = New DataTable
-        dtDetail.Columns.AddRange(New DataColumn(10) {New DataColumn("HeaderSeq", GetType(Integer)),
-                                                    New DataColumn("Tgl", GetType(String)),
-                                                    New DataColumn("SubAccount", GetType(String)),
-                                                    New DataColumn("Account", GetType(String)),
-                                                    New DataColumn("Description", GetType(String)),
-                                                    New DataColumn("Nama", GetType(String)),
-                                                    New DataColumn("Tempat", GetType(String)),
-                                                    New DataColumn("Alamat", GetType(String)),
-                                                    New DataColumn("Jenis", GetType(String)),
-                                                    New DataColumn("SuspendAmount", GetType(String)),
-                                                    New DataColumn("ActualAmount", GetType(Double))})
-        GridDetail.DataSource = dtDetail
-        GridViewDetail.OptionsView.ShowAutoFilterRow = False
-
-        dtRelasi = New DataTable
-        dtRelasi.Columns.AddRange(New DataColumn(5) {New DataColumn("HeaderSeq", GetType(Integer)),
-                                                    New DataColumn("Nama", GetType(String)),
-                                                    New DataColumn("Posisi", GetType(String)),
-                                                    New DataColumn("Perusahaan", GetType(String)),
-                                                    New DataColumn("JenisUsaha", GetType(String)),
-                                                    New DataColumn("Remark", GetType(String))})
-        GridRelasi.DataSource = dtRelasi
-        GridViewRelasi.OptionsView.ShowAutoFilterRow = False
-    End Sub
-
     Public Sub LoadGridDetail()
         Try
             If fs_Code2 <> "" Then
-                ObjSettle.SettleID = fs_Code2
                 dtDetail = ObjSettleDetail.GetDataDetailByID(fs_Code2)
                 GridDetail.DataSource = dtDetail
 
@@ -135,42 +151,34 @@ Public Class FrmEntertainSettleDetail
         End Try
     End Sub
 
-    Public Overrides Sub Proc_print()
-        Try
-            Dim newform As New FrmReportSettleEntertain(TxtNoSettlement.Text)
-            newform.StartPosition = FormStartPosition.CenterScreen
-            newform.Show()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
-
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
-                With ObjSettle
-                    TxtNoSuspend.Text = .SuspendID
-                    TxtCurrency.Text = .CuryID
-                    TxtNoSettlement.Text = .SettleID
-                    TxtDep.Text = .DeptID
-                    TxtRemark.Text = .Remark
-                    TxtStatus.Text = .Status
+                With ObjSettleHeader
+                    TxtCurrency.Text = .CuryID.TrimEnd
+                    TxtNoSettlement.Text = .SettleID.TrimEnd
+                    TxtDep.Text = gh_Common.GroupID.TrimEnd
+                    TxtRemark.Text = .Remark.TrimEnd
                     TxtTgl.EditValue = .Tgl
-                    TxtTotal.EditValue = .TotalSuspend
                     TxtTotExpense.EditValue = .Total
-                    txtNoPR.Text = .noPR
+                    TxtPrNo.Text = .PRNo.TrimEnd
+                    TxtPaymentType.Text = .PaymentType.TrimEnd
+                    creditCardID = .CreditCardID.TrimEnd
+                    txtCCNumber.EditValue = .CreditCardNumber.TrimEnd
+                    accountName = .AccountName
                 End With
             Else
-                TxtNoSuspend.Text = ""
-                TxtCurrency.Text = ""
-                TxtDep.Text = ""
+                TxtCurrency.Text = "IDR"
+                TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
-                TxtStatus.Text = ""
-                TxtTgl.EditValue = Date.Today
-                TxtTotal.EditValue = 0
+                TxtTgl.EditValue = DateTime.Today
+                TxtNoSettlement.Text = ""
+                TxtPrNo.Text = ""
+                TxtPaymentType.Text = "PAID BY FINANCE"
+                creditCardID = ""
+                txtCCNumber.EditValue = ""
+                accountName = ""
                 TxtTotExpense.EditValue = 0
-                txtNoPR.Text = ""
-                TxtNoSuspend.Focus()
             End If
         Catch ex As Exception
             Throw
@@ -193,48 +201,87 @@ Public Class FrmEntertainSettleDetail
             End If
 
             If isUpdate Then
-                If ObjSettle.pay = 1 Then
+                If ObjSettleHeader.pay = 1 Then
                     Err.Raise(ErrNumber, , "No Entertainment " & TxtNoSettlement.Text & " sudah dilakukan proses Payment !")
-                ElseIf ObjSettle.CheckSettleAccrued(TxtNoSettlement.Text) Then
+                ElseIf ObjSettleHeader.CheckSettleAccrued(TxtNoSettlement.Text) Then
                     Err.Raise(ErrNumber, , "No Entertainment " & TxtNoSettlement.Text & " sudah dilakukan proses Accrued !")
                 End If
             End If
 
-            If GridViewDetail.RowCount = 0 Then
+            If String.IsNullOrEmpty(TxtRemark.Text) Then
+                Err.Raise(ErrNumber, , "Remark header tidak boleh kosong ! !")
+            ElseIf GridViewDetail.RowCount = 0 Then
                 Err.Raise(ErrNumber, , "Detail tidak boleh kosong ! !")
             End If
 
             If lb_Validated Then
                 If isUpdate = False Then
-                    _SettleID = ObjSettle.SettleAutoNoEnt
+                    _SettleID = ObjSettleHeader.SettleAutoNoEnt
                     getDataGrid()
                     TxtNoSettlement.Text = _SettleID
                 Else
                     _SettleID = TxtNoSettlement.Text
                     getDataGrid()
                 End If
-                With ObjSettle
-                    .SettleID = TxtNoSettlement.Text
+
+                With ObjSettleHeader
                     .CuryID = TxtCurrency.Text
                     .DeptID = TxtDep.Text
-                    .PRNo = txtNoPR.Text
                     .Remark = TxtRemark.Text
-                    .Status = TxtStatus.Text
-                    .SuspendID = TxtNoSuspend.Text
+                    .SettleID = TxtNoSettlement.Text
                     .Tgl = TxtTgl.EditValue
-                    .Total = TxtTotExpense.EditValue
+                    .Total = TxtTotExpense.Text
+                    .PRNo = TxtPrNo.Text
+                    .PaymentType = TxtPaymentType.Text
+                    .CreditCardID = creditCardID
+                    .CreditCardNumber = txtCCNumber.EditValue
+                    .AccountName = accountName
                 End With
             End If
         Catch ex As Exception
             lb_Validated = False
+            Dim headerSeq As Integer = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq"))
+            filterRelasi(headerSeq)
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
         Return lb_Validated
     End Function
 
+    Public Overrides Sub Proc_SaveData()
+        Try
+            If isUpdate = False Then
+                ObjSettleHeader.InsertDataEntSettleDirect()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                ObjSettleHeader.UpdateData(TxtNoSettlement.Text)
+                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+            End If
+            GridDtl.DataSource = ObjSettleHeader.GetDataGridEnt()
+            IsClosed = True
+            Me.Hide()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+        Dim ignoreCancel As Boolean = False
+        TxtCurrency.DoValidate()
+
+        If DxValidationProvider1.GetInvalidControls().Contains(TxtCurrency) Then
+            ignoreCancel = True
+        Else
+            ignoreCancel = True
+        End If
+
+        MyBase.OnFormClosing(e)
+        e.Cancel = Not ignoreCancel
+    End Sub
+
     Private Sub getDataGrid()
-        ObjSettle.ObjDetails.Clear()
+        ObjSettleHeader.ObjDetails.Clear()
         For i As Integer = 0 To GridViewDetail.RowCount - 1
             ObjSettleDetail = New SettleDetail
             With ObjSettleDetail
@@ -272,17 +319,16 @@ Public Class FrmEntertainSettleDetail
                 If String.IsNullOrEmpty(.Jenis) Then
                     Err.Raise(ErrNumber, , "Jenis detail tidak boleh kosong !")
                 End If
-                .SuspendAmount = IIf(GridViewDetail.GetRowCellValue(i, "SuspendAmount") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(i, "SuspendAmount"))
                 .SettleAmount = IIf(GridViewDetail.GetRowCellValue(i, "ActualAmount") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(i, "ActualAmount"))
                 If .SettleAmount = 0 Then
-                    Err.Raise(ErrNumber, , "Actual Amount detail tidak boleh 0 !")
+                    Err.Raise(ErrNumber, , "Amount detail tidak boleh 0 !")
                 End If
             End With
-            ObjSettle.ObjDetails.Add(ObjSettleDetail)
+            ObjSettleHeader.ObjDetails.Add(ObjSettleDetail)
         Next
 
         GridViewRelasi.ClearColumnsFilter()
-        ObjSettle.ObjRelasi.Clear()
+        ObjSettleHeader.ObjRelasi.Clear()
         For i As Integer = 0 To GridViewRelasi.RowCount - 1
             clsSettleRelasi = New SettleRelasi
             With clsSettleRelasi
@@ -309,52 +355,21 @@ Public Class FrmEntertainSettleDetail
                     Err.Raise(ErrNumber, , "Remark Relasi tidak boleh kosong !")
                 End If
             End With
-            ObjSettle.ObjRelasi.Add(clsSettleRelasi)
+            ObjSettleHeader.ObjRelasi.Add(clsSettleRelasi)
         Next
     End Sub
 
-    Public Overrides Sub Proc_SaveData()
+    Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
         Try
-            If isUpdate = False Then
-                ObjSettle.InsertDataEntSettle()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Else
-                ObjSettle.UpdateDataEntSettleDetail(TxtNoSettlement.Text)
-                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
-            End If
-            GridDtl.DataSource = ObjSettle.GetDataGridEnt()
-            IsClosed = True
-            Me.Hide()
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
-    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
-        Dim ignoreCancel As Boolean = False
-        TxtDep.DoValidate()
-
-        If DxValidationProvider1.GetInvalidControls().Contains(TxtNoSuspend) Then
-            ignoreCancel = True
-        Else
-            ignoreCancel = True
-        End If
-
-        MyBase.OnFormClosing(e)
-        e.Cancel = Not ignoreCancel
-    End Sub
-
-    Private Sub TxtNoSuspend_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtNoSuspend.ButtonClick
-        Try
-            ObjSettle = New SettleHeader
+            ObjEntertainHeader = New EntertainHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjSettle.GetListSettleEnt
-            ls_OldKode = TxtNoSuspend.Text
-            ls_Judul = "Suspend"
+            dtSearch = ObjEntertainHeader.GetDept
+            ls_OldKode = TxtDep.Text
+            ls_Judul = "Departement"
+
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -364,37 +379,87 @@ Public Class FrmEntertainSettleDetail
             Dim Value1 As String = ""
             Dim Value2 As String = ""
 
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(1).ToString.Trim <> ls_OldKode Then
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                 Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                TxtNoSuspend.Text = Value2
-
-                Dim dt As New DataTable
-                ObjEntertainHeader = New EntertainHeaderModel
-                ObjEntertainHeader.SuspendHeaderID = Value1
-                ObjEntertainHeader.GetSuspenById()
-                With ObjEntertainHeader
-                    TxtNoSuspend.Text = .SuspendID
-                    TxtCurrency.Text = .Currency
-                    txtNoPR.Text = .PRNo
-                    TxtDep.Text = .DeptID
-                    TxtRemark.Text = .Remark
-                    TxtStatus.Text = .Status
-                    TxtTotal.EditValue = .Total
-                    TxtTotExpense.EditValue = 0
-                End With
-
-                dtDetail = ObjEntertainDetail.GetDataDetailByID1Ent(Value2)
-                GridDetail.DataSource = dtDetail
-                GridViewDetail.MoveFirst()
-
-                dtRelasi = ObjEntertainDetail.GetDataRelasiByID(Value2)
-                GridRelasi.DataSource = dtRelasi
+                TxtDep.Text = Value1
             End If
             lF_SearchData.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub TxtPaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TxtPaymentType.SelectedIndexChanged
+        Try
+            If isLoad = False Then
+                Dim ls_OldKode As String = ""
+
+                If TxtPaymentType.Text = "CREDIT CARD" Then
+                    Dim ls_Judul As String = ""
+                    Dim dtSearch As New DataTable
+
+                    dtSearch = ObjSettleHeader.GetCreditCard
+                    ls_Judul = "CREDIT CARD"
+                    ls_OldKode = creditCardID
+
+                    Dim lF_SearchData As FrmSystem_LookupGrid
+                    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+                    lF_SearchData.HiddenCols = 0
+                    lF_SearchData.Text = "Select Data " & ls_Judul
+                    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+                    lF_SearchData.ShowDialog()
+
+                    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                        creditCardID = lF_SearchData.Values.Item(0).ToString.Trim
+                        txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
+                        accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                    Else
+                        TxtPaymentType.Text = "PAID BY FINANCE"
+                        txtCCNumber.Text = ""
+                        creditCardID = ""
+                        accountName = ""
+                    End If
+
+                    lF_SearchData.Close()
+                Else
+                    txtCCNumber.Text = ""
+                    creditCardID = ""
+                    accountName = ""
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub GridDetail_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GridDetail.ProcessGridKey
+        Try
+            Dim grid As GridControl = TryCast(sender, GridControl)
+            Dim view As GridView = TryCast(grid.FocusedView, GridView)
+
+            If e.KeyData = Keys.Enter OrElse e.KeyData = Keys.Tab Then
+
+                ObjEntertainDetail = New EntertainDetailModel
+                If GridViewDetail.FocusedColumn.FieldName = "SubAccount" Then
+                    ObjEntertainDetail.SubAcct = GridViewDetail.GetFocusedRowCellValue("SubAccount").ToString()
+                    Dim dt As New DataTable
+                    dt = ObjEntertainDetail.GetSubAccountbyid
+                    If dt.Rows.Count > 0 Then
+                        GridViewDetail.FocusedColumn = GridViewDetail.VisibleColumns(1)
+                        GridViewDetail.ShowEditor()
+                        GridViewDetail.UpdateCurrentRow()
+                    Else
+                        MessageBox.Show("Data Tidak ditemukan !")
+                        GridViewDetail.FocusedColumn = GridViewDetail.VisibleColumns(0)
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
         End Try
     End Sub
 
@@ -481,104 +546,6 @@ Public Class FrmEntertainSettleDetail
     End Sub
 
 #Region "Event grid detail"
-    Private Sub Grid_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GridDetail.ProcessGridKey
-        Try
-            Dim grid As GridControl = TryCast(sender, GridControl)
-            Dim view As GridView = TryCast(grid.FocusedView, GridView)
-
-            If e.KeyData = Keys.Enter OrElse e.KeyData = Keys.Tab Then
-                ObjEntertainDetail = New EntertainDetailModel
-                If GridViewDetail.FocusedColumn.FieldName = "SubAccount" Then
-                    ObjEntertainDetail.SubAcct = GridViewDetail.GetFocusedRowCellValue("SubAccount").ToString()
-                    Dim dt As New DataTable
-                    dt = ObjEntertainDetail.GetSubAccountbyid
-                    If dt.Rows.Count > 0 Then
-                        GridViewDetail.FocusedColumn = GridViewDetail.VisibleColumns(1)
-                        GridViewDetail.ShowEditor()
-                        GridViewDetail.UpdateCurrentRow()
-                    Else
-                        MessageBox.Show("Data Tidak ditemukan !")
-                        GridViewDetail.FocusedColumn = GridViewDetail.VisibleColumns(0)
-                    End If
-                ElseIf GridViewDetail.FocusedColumn.FieldName = "ActualAmount" Then
-                    GridViewDetail.MoveNext()
-                End If
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub GridViewDetail_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridViewDetail.CellValueChanged
-        Dim view As ColumnView = TryCast(sender, ColumnView)
-        If view.UpdateCurrentRow() Then
-        End If
-    End Sub
-
-    Private Sub GridDetail_DoubleClick(sender As Object, e As EventArgs) Handles GridDetail.DoubleClick
-        Dim headerSeq As Integer = 1
-        Dim maxValue As Integer
-        maxValue = IIf(dtDetail.Compute("Max(HeaderSeq)", "") Is DBNull.Value, 0, dtDetail.Compute("Max(HeaderSeq)", ""))
-        If maxValue >= headerSeq Then
-            headerSeq = maxValue + 1
-        End If
-
-        GridViewDetail.AddNewRow()
-        GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
-        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
-        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SuspendAmount", 0)
-        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ActualAmount", 0)
-        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
-        GridViewDetail.RefreshData()
-        GridViewRelasi.ClearColumnsFilter()
-        GridViewRelasi.AddNewRow()
-        GridViewRelasi.OptionsNavigation.AutoFocusNewRow = True
-        GridViewRelasi.SetRowCellValue(GridViewRelasi.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
-        GridViewRelasi.SetRowCellValue(GridViewRelasi.FocusedRowHandle, "HeaderSeq", headerSeq)
-        GridViewRelasi.RefreshData()
-        filterRelasi(headerSeq)
-    End Sub
-
-    Private Sub GridDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles GridDetail.KeyDown
-        Try
-            If e.KeyCode = Keys.F1 AndAlso Not String.IsNullOrEmpty(TxtNoSuspend.Text) Then
-                GridDetail_DoubleClick(sender, e)
-            ElseIf e.KeyCode = Keys.Delete Then
-                Dim indexRemove As Integer = GridViewDetail.FocusedRowHandle
-                Dim headerSeqRemove As Integer = IIf(GridViewDetail.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(indexRemove, "HeaderSeq"))
-                GridViewDetail.DeleteRow(indexRemove)
-                GridViewDetail.RefreshData()
-                hitungTotal()
-
-                Dim RowsTOdelete As DataRow()
-                RowsTOdelete = dtRelasi.Select("HeaderSeq=" & headerSeqRemove & "")
-                For Each dr As DataRow In RowsTOdelete
-                    dtRelasi.Rows.Remove(dr)
-                Next
-                GridViewRelasi.RefreshData()
-
-                Dim headerSeq As Integer = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq"))
-                filterRelasi(headerSeq)
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
-    End Sub
-
-    Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs) Handles ReposDate.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-    End Sub
-
-    Private Sub GridViewDetail_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewDetail.FocusedRowChanged
-        Dim headerSeq As Integer
-        headerSeq = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq"))
-        filterRelasi(headerSeq)
-    End Sub
-
     Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick
         Try
             ObjEntertainHeader = New EntertainHeaderModel
@@ -641,7 +608,7 @@ Public Class FrmEntertainSettleDetail
         End Try
     End Sub
 
-    Private Sub ReposActual_EditValueChanged(sender As Object, e As EventArgs) Handles ReposActual.EditValueChanged
+    Private Sub GAmount_EditValueChanged(sender As Object, e As EventArgs) Handles GAmount.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -649,7 +616,86 @@ Public Class FrmEntertainSettleDetail
         hitungTotal()
     End Sub
 
-    Private Sub CDescription_EditValueChanged(sender As Object, e As EventArgs) Handles CDescription.EditValueChanged
+    Private Sub GridViewDetail_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridViewDetail.CellValueChanged
+        Dim view As ColumnView = TryCast(sender, ColumnView)
+        If view.UpdateCurrentRow() Then
+        End If
+    End Sub
+
+    Private Sub GridViewDetail_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridViewDetail.FocusedRowChanged
+        Dim headerSeq As Integer
+        headerSeq = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq"))
+        filterRelasi(headerSeq)
+    End Sub
+
+    Private Sub GridDetail_DoubleClick(sender As Object, e As EventArgs) Handles GridDetail.DoubleClick
+        Dim headerSeq As Integer = 1
+        Dim maxValue As Integer
+        maxValue = IIf(dtDetail.Compute("Max(HeaderSeq)", "") Is DBNull.Value, 0, dtDetail.Compute("Max(HeaderSeq)", ""))
+        If maxValue >= headerSeq Then
+            headerSeq = maxValue + 1
+        End If
+
+        Dim defaultName As String = String.Empty
+        If accountName.Contains("-") Then
+            Dim lastFind As Integer = accountName.IndexOf("-")
+            defaultName = accountName.Substring(0, lastFind)
+        End If
+
+        GridViewDetail.AddNewRow()
+        GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ActualAmount", 0)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SubAccount", "11690")
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Account", "62300")
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Description", TxtRemark.Text)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Nama", defaultName)
+        GridViewDetail.RefreshData()
+        GridViewRelasi.ClearColumnsFilter()
+        GridViewRelasi.AddNewRow()
+        GridViewRelasi.OptionsNavigation.AutoFocusNewRow = True
+        GridViewRelasi.SetRowCellValue(GridViewRelasi.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
+        GridViewRelasi.SetRowCellValue(GridViewRelasi.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewRelasi.RefreshData()
+        filterRelasi(headerSeq)
+    End Sub
+
+    Private Sub GridDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles GridDetail.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                GridDetail_DoubleClick(sender, e)
+            ElseIf e.KeyCode = Keys.Delete Then
+                Dim indexRemove As Integer = GridViewDetail.FocusedRowHandle
+                Dim headerSeqRemove As Integer = IIf(GridViewDetail.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(indexRemove, "HeaderSeq"))
+                GridViewDetail.DeleteRow(indexRemove)
+                GridViewDetail.RefreshData()
+                hitungTotal()
+
+                Dim RowsTOdelete As DataRow()
+                RowsTOdelete = dtRelasi.Select("HeaderSeq=" & headerSeqRemove & "")
+                For Each dr As DataRow In RowsTOdelete
+                    dtRelasi.Rows.Remove(dr)
+                Next
+                GridViewRelasi.RefreshData()
+
+                Dim headerSeq As Integer = IIf(GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridViewDetail.GetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq"))
+                filterRelasi(headerSeq)
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            'Throw ex
+        End Try
+    End Sub
+
+    Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs) Handles ReposDate.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub CDescriptionDetail_EditValueChanged(sender As Object, e As EventArgs) Handles CDescriptionDetail.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -663,14 +709,14 @@ Public Class FrmEntertainSettleDetail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CTempat_EditValueChanged(sender As Object, e As EventArgs) Handles CTempat.EditValueChanged
+    Private Sub CTempatDetail_EditValueChanged(sender As Object, e As EventArgs) Handles CTempatDetail.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CAlamat_EditValueChanged(sender As Object, e As EventArgs) Handles CAlamat.EditValueChanged
+    Private Sub CAlamatDetail_EditValueChanged(sender As Object, e As EventArgs) Handles CAlamatDetail.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -683,7 +729,6 @@ Public Class FrmEntertainSettleDetail
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
-
 #End Region
 
 #Region "Event grid relasi"
@@ -719,11 +764,9 @@ Public Class FrmEntertainSettleDetail
                 GridRelasi_DoubleClick(sender, e)
             ElseIf e.KeyCode = Keys.Delete Then
                 Dim headerSeq As Integer = GridViewRelasi.GetRowCellValue(GridViewRelasi.FocusedRowHandle, "HeaderSeq")
-                Dim rowDetail As Integer
                 Dim rowRelasi As Integer
-                rowDetail = dtDetail.Select("HeaderSeq = '" & headerSeq & "'").Count
                 rowRelasi = dtRelasi.Select("HeaderSeq = '" & headerSeq & "'").Count
-                If rowRelasi <= 1 AndAlso rowDetail <> 0 Then
+                If rowRelasi <= 1 Then
                     Err.Raise(ErrNumber, , "Data relasi tidak boleh kosong !")
                 End If
                 GridViewRelasi.DeleteRow(GridViewRelasi.FocusedRowHandle)
@@ -749,7 +792,7 @@ Public Class FrmEntertainSettleDetail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CPerusahaan_EditValueChanged(sender As Object, e As EventArgs) Handles CPerusahaan.EditValueChanged
+    Private Sub CPerusahaanRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CPerusahaanRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -769,7 +812,6 @@ Public Class FrmEntertainSettleDetail
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
-
 #End Region
 
 End Class

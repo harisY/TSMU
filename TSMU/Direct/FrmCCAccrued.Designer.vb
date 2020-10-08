@@ -479,16 +479,16 @@ Partial Class FrmCCAccrued
         'btnProses
         '
         Me.btnProses.Location = New System.Drawing.Point(12, 12)
-        Me.btnProses.MaximumSize = New System.Drawing.Size(68, 0)
+        Me.btnProses.MaximumSize = New System.Drawing.Size(90, 0)
         Me.btnProses.Name = "btnProses"
-        Me.btnProses.Size = New System.Drawing.Size(68, 27)
+        Me.btnProses.Size = New System.Drawing.Size(86, 27)
         Me.btnProses.StyleController = Me.LayoutControl1
         Me.btnProses.TabIndex = 4
-        Me.btnProses.Text = "PROSES"
+        Me.btnProses.Text = "SETTLEMENT"
         '
         'txtCCNumber
         '
-        Me.txtCCNumber.Location = New System.Drawing.Point(222, 12)
+        Me.txtCCNumber.Location = New System.Drawing.Point(240, 12)
         Me.txtCCNumber.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtCCNumber.Name = "txtCCNumber"
         Me.txtCCNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -498,7 +498,7 @@ Partial Class FrmCCAccrued
         Me.txtCCNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
         Me.txtCCNumber.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCCNumber.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCCNumber.Size = New System.Drawing.Size(190, 22)
+        Me.txtCCNumber.Size = New System.Drawing.Size(185, 22)
         Me.txtCCNumber.StyleController = Me.LayoutControl1
         Me.txtCCNumber.TabIndex = 6
         '
@@ -516,25 +516,25 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem3.Control = Me.btnProses
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(72, 34)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(90, 34)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(404, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(417, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(789, 34)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(776, 34)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.txtCCNumber
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(72, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(90, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(332, 34)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(327, 34)
         Me.LayoutControlItem6.Text = "Credit Card Number"
         Me.LayoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(125, 20)

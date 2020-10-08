@@ -198,7 +198,7 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.Controls.Add(Me.GridRequest)
         Me.TabPageReq.Name = "TabPageReq"
         Me.TabPageReq.Size = New System.Drawing.Size(948, 556)
-        Me.TabPageReq.Text = "Request"
+        Me.TabPageReq.Text = "List Request"
         '
         'btnProses
         '

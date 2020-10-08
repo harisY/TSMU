@@ -710,7 +710,7 @@ Public Class TravelSettleHeaderModel
                                 TravelSettleID CHAR(15) ,
                                 ID CHAR(2) ,
                                 CostType VARCHAR(20) ,
-                                PaymentType VARCHAR(11) ,
+                                PaymentType VARCHAR(20) ,
                                 USD FLOAT ,
                                 YEN FLOAT ,
                                 IDR FLOAT
