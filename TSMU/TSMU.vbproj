@@ -87,6 +87,7 @@
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.Win.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -110,6 +111,7 @@
     <Reference Include="DevExpress.XtraCharts.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.2.Wizard, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v18.2.Presets, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -260,10 +262,23 @@
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
+    <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
     <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
       <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
     </Compile>
     <Compile Include="Compare_Invoice\frmCompare_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.Designer.vb">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dashboard\Dashboard_kanbanSum.Designer.vb">
@@ -420,6 +435,12 @@
     <Compile Include="Direct\FrmCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmCCSettlement.Designer.vb">
+      <DependentUpon>FrmCCSettlement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmCCSettlement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmDetailPaymentDirect.Designer.vb">
       <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -448,6 +469,30 @@
       <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEditDirectPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktExcelPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.Designer.vb">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
@@ -683,6 +728,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRCCAccruedAndSettle.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\CRCCSettlement.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCSettlement.rpt</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
@@ -1408,6 +1459,18 @@
     <Compile Include="Form\Common\frmForecast_PO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecast_PO_Log.Designer.vb">
+      <DependentUpon>frmForecast_PO_Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecast_PO_Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmBulan.designer.vb">
+      <DependentUpon>FrmBulan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmBulan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -2002,6 +2065,12 @@
     <Compile Include="Form\System\frmAdvanceApprove.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmCustomization.Designer.vb">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmCustomization.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -2235,6 +2304,7 @@
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\CustomizationModels.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
@@ -2668,6 +2738,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
       <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -2683,8 +2759,20 @@
     <EmbeddedResource Include="Direct\FrmCCAccrued.resx">
       <DependentUpon>FrmCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmCCSettlement.resx">
+      <DependentUpon>FrmCCSettlement.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
+      <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
+      <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
@@ -2726,6 +2814,10 @@
     <EmbeddedResource Include="Direct\report\CRCCAccruedAndSettle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccruedAndSettle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCSettlement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCSettlement.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3055,6 +3147,12 @@
     <EmbeddedResource Include="Form\Common\frmForecast_PO.resx">
       <DependentUpon>frmForecast_PO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecast_PO_Log.resx">
+      <DependentUpon>frmForecast_PO_Log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmBulan.resx">
+      <DependentUpon>FrmBulan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </EmbeddedResource>
@@ -3164,6 +3262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmCustomization.resx">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

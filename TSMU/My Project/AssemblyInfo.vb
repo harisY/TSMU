@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("TSMU")> 
+<Assembly: AssemblyTitle("TSMU")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("TSMU")>
-<Assembly: AssemblyProduct("TSMU")> 
-<Assembly: AssemblyCopyright("Copyright ©  2018")> 
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyProduct("TSMU")>
+<Assembly: AssemblyCopyright("Copyright ©  2018")>
+<Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.10")>
-<Assembly: AssemblyFileVersion("1.10")>
+<Assembly: AssemblyVersion("1.14")>
+<Assembly: AssemblyFileVersion("1.14")>

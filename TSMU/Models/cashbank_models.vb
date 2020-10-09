@@ -1,6 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
 Public Class cashbank_models
-
     Public Property AcctID As String
     Public Property Keluar As Double
     Public Property Keterangan As String
@@ -45,7 +44,6 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
-
     Public Sub GetDirekPaymentById(_NoBukti As String)
         Try
             Dim sql As String =
@@ -302,6 +300,19 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Sub UpdateSettleCC()
+
+        Try
+
+            Dim Query = "update TSC16Application.dbo.settle_header set TSC16Application.dbo.settle_header.pay=1 FROM T_CCAccrued inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where T_CCAccrued.NoAccrued=" & QVal(SettleID) & ""
+            MainModul.ExecQuery(Query)
+            Dim Query2 = "update T_CCAccrued set pay=1 where NoAccrued=" & QVal(SettleID) & ""
+            MainModul.ExecQuery(Query2)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
     Public Sub UpdateSettleTravel()
 
         Try
@@ -324,11 +335,53 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
+    Public Function GetGridDetailSettleByAccountID03CC(_NoBukti As String) As DataTable
+        Try
+            Dim sql As String = "SELECT  ID ,
+                                NoAccrued ,
+                                Tanggal ,
+                                TanggalTrans AS TanggalTransaksi ,
+                                NoTransaksi ,
+                                Seq ,
+                                JenisTransaksi ,
+                                Description ,
+                                CurryID ,
+                                Amount ,
+                                Rate ,
+                                AmountIDR ,
+                                CreditCardNumber ,
+                                AccountName ,
+                                BankName ,
+                                Pay
+                        FROM    dbo.T_CCAccrued
+                        WHERE   NoAccrued=" & QVal(_NoBukti) & " "
+
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub UpdateSettle_hapus()
 
         Try
             Dim Query = "update settle_header set pay=0 from settle_header inner join cashbank on settle_header.settleID = right(replace(cashbank.noref,' ',''),15) where cashbank.NoBukti=" & QVal(Me._id) & ""
             MainModul.ExecQuery_Solomon(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+
+    Public Sub UpdateSettleCC_hapus()
+
+        Try
+            Dim Query = "update TSC16Application.dbo.settle_header set TSC16Application.dbo.settle_header.pay=0 FROM T_CCAccrued inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where T_CCAccrued.NoAccrued=" & QVal(Noref) & ""
+            MainModul.ExecQuery(Query)
+            Dim Query2 = "update T_CCAccrued set pay=0 where NoAccrued=" & QVal(Noref) & ""
+            MainModul.ExecQuery(Query2)
         Catch ex As Exception
             Throw ex
 
@@ -511,7 +564,6 @@ Public Class cashbank_models
             Throw ex
         End Try
     End Function
-
     Public Function GetGridDetailSettleByAccountID() As DataTable
         Try
             ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
@@ -529,6 +581,18 @@ Public Class cashbank_models
             Dim sql As String = "Select  settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark As Description,suspend_header.Total, sum(settle_detail.SettleAmount) As SettleAmount , '' as AcctID,suspend_header.BankID,settle_header.Proses, settle_header.CuryID from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0 AND settle_header.PaymentType!='CASH' group by settle_header.Tgl, settle_header.SettleID, settle_header.SuspendID, settle_header.remark,suspend_header.Total,suspend_header.BankID,settle_header.Proses, settle_header.CuryID"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGridDetailSettleByAccountIDCC2() As DataTable
+        Try
+            ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
+            '  Dim sql As String = "select NoAccrued , Tanggal, CreditCardNumber ,SUM(AmountIDR) as AmountIDR,'IDR' AS CuryID  from T_CCAccrued group by NoAccrued , Tanggal, CreditCardNumber"
+            Dim sql As String = "select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CreditCardNumber,SUM(T_CCAccrued.AmountIDR) as AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CreditCardNumber, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable(sql)
             Return dt
         Catch ex As Exception
             Throw ex

@@ -61,7 +61,6 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAlamat = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CJenis = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -72,18 +71,10 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNamaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CPosisi = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CPerusahaan = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CJenisUsaha = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CRemark = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -91,6 +82,10 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.CJenisDetail = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.CPosisiRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.CJenisUsahaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.CRemarkRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,22 +119,12 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.CNamaDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CTempat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAlamat, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CJenis, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CNamaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CPosisi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CPerusahaan, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CJenisUsaha, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CRemark, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
@@ -149,6 +134,10 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3.SuspendLayout()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -548,18 +537,13 @@ Partial Class FrmEntertainSettleDetail
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Jenis"
-        Me.GridColumn6.ColumnEdit = Me.CJenis
+        Me.GridColumn6.ColumnEdit = Me.CJenisDetail
         Me.GridColumn6.FieldName = "Jenis"
         Me.GridColumn6.MinWidth = 27
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 63
-        '
-        'CJenis
-        '
-        Me.CJenis.AutoHeight = False
-        Me.CJenis.Name = "CJenis"
         '
         '_subtotal
         '
@@ -612,7 +596,7 @@ Partial Class FrmEntertainSettleDetail
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridDetail.Name = "GridDetail"
-        Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CDescription, Me.CNamaDetail, Me.CTempat, Me.CAlamat, Me.CJenis})
+        Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CDescription, Me.CNamaDetail, Me.CTempat, Me.CAlamat, Me.CJenisDetail})
         Me.GridDetail.Size = New System.Drawing.Size(1087, 274)
         Me.GridDetail.TabIndex = 3
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
@@ -627,7 +611,7 @@ Partial Class FrmEntertainSettleDetail
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
-        Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemDateEdit1, Me.RepositoryItemSpinEdit1, Me.CNamaRelasi, Me.CPosisi, Me.CPerusahaan, Me.CJenisUsaha, Me.CRemark})
+        Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNamaRelasi, Me.CPerusahaan, Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
         Me.GridRelasi.Size = New System.Drawing.Size(1087, 274)
         Me.GridRelasi.TabIndex = 5
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
@@ -678,18 +662,13 @@ Partial Class FrmEntertainSettleDetail
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Posisi"
-        Me.GridColumn12.ColumnEdit = Me.CPosisi
+        Me.GridColumn12.ColumnEdit = Me.CPosisiRelasi
         Me.GridColumn12.FieldName = "Posisi"
         Me.GridColumn12.MinWidth = 27
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 200
-        '
-        'CPosisi
-        '
-        Me.CPosisi.AutoHeight = False
-        Me.CPosisi.Name = "CPosisi"
         '
         'GridColumn13
         '
@@ -710,7 +689,7 @@ Partial Class FrmEntertainSettleDetail
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Jenis Usaha"
-        Me.GridColumn14.ColumnEdit = Me.CJenisUsaha
+        Me.GridColumn14.ColumnEdit = Me.CJenisUsahaRelasi
         Me.GridColumn14.FieldName = "JenisUsaha"
         Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
@@ -718,62 +697,16 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn14.VisibleIndex = 4
         Me.GridColumn14.Width = 200
         '
-        'CJenisUsaha
-        '
-        Me.CJenisUsaha.AutoHeight = False
-        Me.CJenisUsaha.Name = "CJenisUsaha"
-        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Remark"
-        Me.GridColumn7.ColumnEdit = Me.CRemark
+        Me.GridColumn7.ColumnEdit = Me.CRemarkRelasi
         Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 217
-        '
-        'CRemark
-        '
-        Me.CRemark.AutoHeight = False
-        Me.CRemark.Name = "CRemark"
-        '
-        'RepositoryItemSpinEdit2
-        '
-        Me.RepositoryItemSpinEdit2.AutoHeight = False
-        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
-        '
-        'RepositoryItemButtonEdit1
-        '
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
-        '
-        'RepositoryItemButtonEdit2
-        '
-        Me.RepositoryItemButtonEdit2.AutoHeight = False
-        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
-        '
-        'RepositoryItemDateEdit1
-        '
-        Me.RepositoryItemDateEdit1.AutoHeight = False
-        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemDateEdit1.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.RepositoryItemDateEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RepositoryItemDateEdit1.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.RepositoryItemDateEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RepositoryItemDateEdit1.Mask.EditMask = "dd-MM-yyyy"
-        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'TableLayoutPanel1
         '
@@ -850,6 +783,30 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
+        'CJenisDetail
+        '
+        Me.CJenisDetail.AutoHeight = False
+        Me.CJenisDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisDetail.Name = "CJenisDetail"
+        '
+        'CPosisiRelasi
+        '
+        Me.CPosisiRelasi.AutoHeight = False
+        Me.CPosisiRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CPosisiRelasi.Name = "CPosisiRelasi"
+        '
+        'CJenisUsahaRelasi
+        '
+        Me.CJenisUsahaRelasi.AutoHeight = False
+        Me.CJenisUsahaRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisUsahaRelasi.Name = "CJenisUsahaRelasi"
+        '
+        'CRemarkRelasi
+        '
+        Me.CRemarkRelasi.AutoHeight = False
+        Me.CRemarkRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CRemarkRelasi.Name = "CRemarkRelasi"
+        '
         'FrmEntertainSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -892,22 +849,12 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.CNamaDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CTempat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAlamat, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CJenis, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CNamaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CPosisi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CPerusahaan, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CJenisUsaha, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CRemark, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
@@ -917,6 +864,10 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3.ResumeLayout(False)
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -964,11 +915,6 @@ Partial Class FrmEntertainSettleDetail
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -986,10 +932,10 @@ Partial Class FrmEntertainSettleDetail
     Friend WithEvents CNamaDetail As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CTempat As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CAlamat As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents CJenis As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CNamaRelasi As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents CPosisi As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents CPerusahaan As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents CJenisUsaha As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents CRemark As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents CJenisDetail As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CPosisiRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CJenisUsahaRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CRemarkRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
 End Class

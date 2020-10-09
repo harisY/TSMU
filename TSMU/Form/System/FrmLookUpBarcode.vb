@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraReports.UI
 
 Public Class FrmLookUpBarcode
@@ -178,6 +179,7 @@ Public Class FrmLookUpBarcode
                     .param4 = TxtTgl.Text
                     .DataSource = dtTemp
                     AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+                    AddHandler .PrintingSystem.StartPrint, AddressOf PrintingSystem_StartPrint
                 End With
 
                 PrintTool = New ReportPrintTool(Laporan1)
@@ -251,6 +253,10 @@ Public Class FrmLookUpBarcode
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+    Private Sub PrintingSystem_StartPrint(sender As Object, e As PrintDocumentEventArgs)
+        ' Set the number of document copies to print.
+        e.PrintDocument.PrinterSettings.Copies = 1
     End Sub
 
     Private Sub TxtKodePart_EditValueChanged(sender As Object, e As EventArgs) Handles TxtKodePart.EditValueChanged

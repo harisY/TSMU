@@ -160,6 +160,58 @@ Public Class EntertainHeaderModel
         End Try
     End Function
 
+    Public Function GetListJenis() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_JenisEntDetail "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListPosisi() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_PosisiEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListJenisUsaha() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_JenisUsahaEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListRemark() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_RemarkEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &

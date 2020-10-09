@@ -125,6 +125,11 @@ Public Class FrmEntertainSettleDetail
             Else
                 CreateTable()
             End If
+
+            ListItemsJenis()
+            ListItemsPosisi()
+            ListItemsJenisUsaha()
+            ListItemsRemark()
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -161,7 +166,7 @@ Public Class FrmEntertainSettleDetail
                 TxtDep.Text = ""
                 TxtRemark.Text = ""
                 TxtStatus.Text = ""
-                TxtTgl.Text = Date.Today
+                TxtTgl.EditValue = Date.Today
                 TxtTotal.EditValue = 0
                 TxtTotExpense.EditValue = 0
                 txtNoPR.Text = ""
@@ -407,6 +412,70 @@ Public Class FrmEntertainSettleDetail
         End Try
     End Sub
 
+    Private Sub ListItemsJenis()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListJenis()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisDetail.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsPosisi()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListPosisi()
+        Dim itemsCollection As ComboBoxItemCollection = CPosisiRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsJenisUsaha()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListJenisUsaha()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisUsahaRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsRemark()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListRemark()
+        Dim itemsCollection As ComboBoxItemCollection = CRemarkRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
     Private Sub filterRelasi(ByVal _HeaderSeq As Integer)
         GridViewRelasi.Columns("HeaderSeq").FilterInfo = New ColumnFilterInfo("[HeaderSeq] = " & _HeaderSeq & "")
     End Sub
@@ -608,7 +677,7 @@ Public Class FrmEntertainSettleDetail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CJenis_EditValueChanged(sender As Object, e As EventArgs) Handles CJenis.EditValueChanged
+    Private Sub CJenisDetail_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisDetail.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -673,7 +742,7 @@ Public Class FrmEntertainSettleDetail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CPosisi_EditValueChanged(sender As Object, e As EventArgs) Handles CPosisi.EditValueChanged
+    Private Sub CPosisiRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CPosisiRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
@@ -687,14 +756,14 @@ Public Class FrmEntertainSettleDetail
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CJenisUsaha_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisUsaha.EditValueChanged
+    Private Sub CJenisUsahaRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisUsahaRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CCRemark_EditValueChanged(sender As Object, e As EventArgs) Handles CRemark.EditValueChanged
+    Private Sub CRemarkRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CRemarkRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

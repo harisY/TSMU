@@ -146,7 +146,7 @@ Public Class forecast_po_model
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
-                        Throw ex
+                        'Throw ex
                     Finally
                         gh_Trans = Nothing
                     End Try
@@ -803,7 +803,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
-    Public Async Sub InsertData()
+    Public Sub InsertData()
         Try
 
             Dim Query As String = String.Empty
@@ -835,7 +835,7 @@ Public Class forecast_po_model_detail
                            ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "
                            ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                            ," & QVal(created_date) & "," & QVal(created_by) & ")"
-            Await ExecQuery_async(Query)
+            ExecQuery(Query)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1918,7 +1918,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
-    Public Async Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
+    Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
             salesPrice = getSalesPrice(BulanAngka, Tahun)
@@ -1950,7 +1950,7 @@ Public Class forecast_po_model_detail
             'pParam(6) = New SqlClient.SqlParameter("@created_by", SqlDbType.VarChar)
             'pParam(6).Value = gh_Common.Username
 
-            Await ExecQueryByCommand_SP_async(Sql, pParam)
+            ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
             Throw ex
         End Try
@@ -2345,7 +2345,27 @@ Public Class forecast_po_model_detail
             pParam(0) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
             pParam(0).Value = InvtID
             Dim dt As New DataTable
-            dt = MainModul.GetDataTableByCommand_SP(sql, pParam)
+            dt = GetDataTableByCommand_SP(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListForecast_Log(InvtID As String, Tahun As String, Bulan As String, CustId As String) As DataTable
+        Try
+            Dim sql As String = "tForecastPriceLoging"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(0).Value = InvtID
+            pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(1).Value = Tahun
+            pParam(2) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(2).Value = Bulan
+            pParam(3) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(3).Value = CustId
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(sql, pParam)
             Return dt
         Catch ex As Exception
             Throw ex

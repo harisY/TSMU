@@ -644,7 +644,7 @@ Public Class TravelDetailModel
                                             CuryID ,
                                             Rate ,
                                             AmountIDR ,
-                                            'CASH' AS PaymentType ,
+                                            'PAID BY FINANCE' AS PaymentType ,
                                             '' AS NoRekening ,
                                             'IDR' AS CuryIDSett ,
                                             CONVERT(FLOAT, 1) AS RateSett ,

@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 Public Class Cls_report
     Dim query As String = String.Empty
-
+    ''  Public Property suppliername As String
     Private tglawal As Date
     Public Property TanggalAwal() As Date
         Get
@@ -591,7 +591,13 @@ Public Class Cls_report
     End Function
     Public Function DataGridViewPaymentSup2(ByVal perpost As String, ByVal suppliername As String) As DataTable
         Try
-            Dim query As String = "ViewPaymentSup2"
+            Dim query As String
+            If suppliername = "" Then
+                query = "ViewPaymentSup2a"
+            Else
+                query = "ViewPaymentSup2"
+            End If
+            '' Dim query As String = "ViewPaymentSup2"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
             pParam(0).Value = perpost
@@ -606,7 +612,13 @@ Public Class Cls_report
     End Function
     Public Function DataGridViewPaymentSup3(ByVal perpost As String, ByVal suppliername As String) As DataTable
         Try
-            Dim query As String = "ViewPaymentSup3"
+            '' Dim query As String = "ViewPaymentSup3"
+            Dim query As String
+            If suppliername = "" Then
+                query = "ViewPaymentSup3a"
+            Else
+                query = "ViewPaymentSup3"
+            End If
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
             pParam(0).Value = perpost

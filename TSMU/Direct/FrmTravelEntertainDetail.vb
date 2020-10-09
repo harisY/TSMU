@@ -19,6 +19,7 @@ Public Class FrmTravelEntertainDetail
 
     Dim ObjEntertainHeader = New EntertainHeaderModel
     Dim cls_TravelSett As New TravelSettleHeaderModel
+    Dim cls_TravelEnt As New TravelEntertainModel
 
     Dim CreditCardID As String = ""
     Dim AccountNameNBank As String = ""
@@ -119,7 +120,7 @@ Public Class FrmTravelEntertainDetail
             Else
                 TxtCurrency.Text = "IDR"
                 TxtDep.Text = gh_Common.GroupID
-                txtPayType.Text = "CASH"
+                txtPayType.Text = "PAID BY FINANCE"
                 CreditCardID = ""
                 txtCCNumber.EditValue = ""
                 AccountNameNBank = ""
@@ -136,6 +137,10 @@ Public Class FrmTravelEntertainDetail
         Try
             GridEntertain.DataSource = entertain
             GridRelasi.DataSource = relasi
+            ListItemsJenis()
+            ListItemsPosisi()
+            ListItemsJenisUsaha()
+            ListItemsRemark()
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -233,6 +238,70 @@ Public Class FrmTravelEntertainDetail
         End Try
     End Sub
 
+    Private Sub ListItemsJenis()
+        cls_TravelEnt = New TravelEntertainModel
+        Dim dt = New DataTable
+        dt = cls_TravelEnt.GetListJenis()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisDetail.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsPosisi()
+        cls_TravelEnt = New TravelEntertainModel
+        Dim dt = New DataTable
+        dt = cls_TravelEnt.GetListPosisi()
+        Dim itemsCollection As ComboBoxItemCollection = CPosisiRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsJenisUsaha()
+        cls_TravelEnt = New TravelEntertainModel
+        Dim dt = New DataTable
+        dt = cls_TravelEnt.GetListJenisUsaha()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisUsahaRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsRemark()
+        cls_TravelEnt = New TravelEntertainModel
+        Dim dt = New DataTable
+        dt = cls_TravelEnt.GetListRemark()
+        Dim itemsCollection As ComboBoxItemCollection = CRemarkRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
     Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GSubAccount.ButtonClick
         Try
             ObjEntertainHeader = New EntertainHeaderModel
@@ -240,11 +309,9 @@ Public Class FrmTravelEntertainDetail
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-
             dtSearch = ObjEntertainHeader.GetSubAccount
             ls_OldKode = IIf(GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount") Is DBNull.Value, "", GridViewEntertain.GetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount"))
             ls_Judul = "Sub Account"
-
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -332,7 +399,7 @@ Public Class FrmTravelEntertainDetail
                         txtCCNumber.EditValue = lF_SearchData.Values.Item(1).ToString.Trim
                         AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
                     Else
-                        txtPayType.Text = "CASH"
+                        txtPayType.Text = "PAID BY FINANCE"
                     End If
 
                     lF_SearchData.Close()
@@ -381,12 +448,20 @@ Public Class FrmTravelEntertainDetail
         If maxValue >= headerSeq Then
             headerSeq = maxValue + 1
         End If
+        Dim defaultName As String = String.Empty
+        If AccountNameNBank.Contains("-") Then
+            Dim lastFind As Integer = AccountNameNBank.IndexOf("-")
+            defaultName = AccountNameNBank.Substring(0, lastFind)
+        End If
 
         GridViewEntertain.AddNewRow()
         GridViewEntertain.OptionsNavigation.AutoFocusNewRow = True
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SettleID", __EntertainID)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount", 0)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount", "11690")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", "62300")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Nama", defaultName)
         GridViewEntertain.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()

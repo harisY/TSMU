@@ -1363,7 +1363,7 @@ Partial Class FrmTravelSettleDetail
         Me.CPayTypeTransport.AccessibleName = "CPayTypeTransport"
         Me.CPayTypeTransport.AutoHeight = False
         Me.CPayTypeTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPayTypeTransport.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeTransport.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
         Me.CPayTypeTransport.Name = "CPayTypeTransport"
         Me.CPayTypeTransport.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1526,7 +1526,7 @@ Partial Class FrmTravelSettleDetail
         Me.CPayTypeHotel.AccessibleName = "CPayTypeHotel"
         Me.CPayTypeHotel.AutoHeight = False
         Me.CPayTypeHotel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPayTypeHotel.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeHotel.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
         Me.CPayTypeHotel.Name = "CPayTypeHotel"
         Me.CPayTypeHotel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1763,7 +1763,7 @@ Partial Class FrmTravelSettleDetail
         Me.CPayTypeEntertain.AccessibleName = "CPayTypeEntertain"
         Me.CPayTypeEntertain.AutoHeight = False
         Me.CPayTypeEntertain.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPayTypeEntertain.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeEntertain.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
         Me.CPayTypeEntertain.Name = "CPayTypeEntertain"
         Me.CPayTypeEntertain.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
@@ -1975,7 +1975,7 @@ Partial Class FrmTravelSettleDetail
         Me.CPayTypeOther.AccessibleName = "CPayTypeOther"
         Me.CPayTypeOther.AutoHeight = False
         Me.CPayTypeOther.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPayTypeOther.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeOther.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
         Me.CPayTypeOther.Name = "CPayTypeOther"
         Me.CPayTypeOther.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '

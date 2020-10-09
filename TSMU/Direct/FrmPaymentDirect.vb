@@ -23,6 +23,7 @@ Public Class FrmPaymentDirect
     Dim ff_Detail8 As FrmBankReceipt_Detail
     Dim ff_Detail81 As FrmBankTransfer_Detail
     Dim ff_Detail9 As FrmDetailPaymentDirect1
+    Dim ff_Detail31 As FrmCCSettlement
     Dim ObjCashBank As New cashbank_models
     Dim ObjSaldoAwal As New saldo_awal_models
     Dim GridDtl As GridControl
@@ -166,6 +167,7 @@ Public Class FrmPaymentDirect
         _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
         Call DataSuspend()
     End Sub
+
     Private Sub TextEdit2_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
         If _txtaccount.Text = "" Then
         Else
@@ -325,12 +327,21 @@ Public Class FrmPaymentDirect
             GridCellFormat(GridView3)
         End If
     End Sub
+
     Private Sub DataSettlementCC()
         Dim dtGrid6 As New DataTable
         dtGrid6 = ObjCashBank.GetGridDetailSettleByAccountIDCC
         GridControl6.DataSource = dtGrid6
         If dtGrid6.Rows.Count > 0 Then
             GridCellFormat(GridView3)
+        End If
+    End Sub
+    Private Sub DataSettlementCC2()
+        Dim dtGrid6 As New DataTable
+        dtGrid6 = ObjCashBank.GetGridDetailSettleByAccountIDCC2
+        GridControl6.DataSource = dtGrid6
+        If dtGrid6.Rows.Count > 0 Then
+            GridCellFormat(GridView6)
         End If
     End Sub
     Private Sub DataSettlementTravel()
@@ -386,6 +397,18 @@ Public Class FrmPaymentDirect
         ff_Detail81.MdiParent = FrmMain
         ff_Detail81.StartPosition = FormStartPosition.CenterScreen
         ff_Detail81.Show()
+    End Sub
+    Private Sub CallFrm5(Optional ByVal ls_Code As String = "")
+        If ff_Detail31 IsNot Nothing AndAlso ff_Detail31.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            ff_Detail31.Close()
+        End If
+        ff_Detail31 = New FrmCCSettlement(ls_Code, Me)
+        ff_Detail31.MdiParent = FrmMain
+        ff_Detail31.StartPosition = FormStartPosition.CenterScreen
+        ff_Detail31.Show()
     End Sub
     Private Sub CallFrm3(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0, Optional ByVal IsNew As Boolean = True)
         If ff_Detail9 IsNot Nothing AndAlso ff_Detail9.Visible Then
@@ -496,6 +519,7 @@ Public Class FrmPaymentDirect
         DataSettlement()
         DataEntertaint()
         DataTravel()
+        DataSettlementCC2()
         DataSettlementTravel()
         level = ObjCashBank.GetUsernameLevel
         If level = 3 Then
@@ -1185,6 +1209,7 @@ Public Class FrmPaymentDirect
 
         DataSuspend()
         DataSettlement()
+        DataSettlementCC2()
         DataEntertaint()
         DataTravel()
     End Sub
@@ -1323,6 +1348,12 @@ Public Class FrmPaymentDirect
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
+    Private Sub ReposPresesSettle2_EditValueChanged(sender As Object, e As EventArgs) Handles ReposPresesSettle2.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+    End Sub
     Private Sub RepositoryItemCheckEdit3_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit3.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -1441,6 +1472,17 @@ Public Class FrmPaymentDirect
         ff_Detail3 = New FrmDetailPaymentSettle(id)
         ff_Detail3.Show()
     End Sub
+    Private Sub RepositoryItemButtonEdit7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit7.ButtonClick
+        Dim id As String = String.Empty
+        Dim selectedRows() As Integer = GridView6.GetSelectedRows()
+        For Each rowHandle As Integer In selectedRows
+            If rowHandle >= 0 Then
+                id = GridView6.GetRowCellValue(rowHandle, "NoAccrued")
+            End If
+        Next rowHandle
+        ff_Detail31 = New FrmCCSettlement(id)
+        ff_Detail31.Show()
+    End Sub
     Private Sub RepositoryItemButtonEdit6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit6.ButtonClick
         Dim id2 As String = String.Empty
         Dim selectedRows() As Integer = GridView3.GetSelectedRows()
@@ -1485,12 +1527,14 @@ Public Class FrmPaymentDirect
     Public Overrides Sub Proc_DeleteData()
         Dim ID As String = String.Empty
         Dim transaksi As String = String.Empty
+        Dim Noref As String = String.Empty
         Dim ObjDetails As New cashbank_models
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     ID = GridView1.GetRowCellValue(rowHandle, "NoBukti")
+                    Noref = GridView1.GetRowCellValue(rowHandle, "Noref")
                     transaksi = Trim(GridView1.GetRowCellValue(rowHandle, "Transaksi"))
                 End If
             Next rowHandle
@@ -1504,10 +1548,14 @@ Public Class FrmPaymentDirect
                 ObjDetails.UpdateTransfer_hapus()
             ElseIf transaksi = "Receipt" Then
                 ObjDetails.UpdateReceipt_hapus()
+            ElseIf transaksi = "SettleCC" Then
+                ObjDetails.Noref = Noref
+                ObjDetails.UpdateSettleCC_hapus()
             End If
             ObjDetails.Delete()
             Call DataSuspend()
             Call DataSettlement()
+            Call DataSettlementCC2()
             Call DataEntertaint()
             Call DataCashBank()
             Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
@@ -1553,6 +1601,18 @@ Public Class FrmPaymentDirect
                                                    New DataColumn("Amount", GetType(Decimal)),
                                                    New DataColumn("AcctID", GetType(String))})
         dtTemp1.Clear()
+    End Sub
+    Dim dtTemp2cc As DataTable
+    Private Sub TempTable2cc()
+        dtTemp2cc = New DataTable
+
+
+        dtTemp2cc.Columns.AddRange(New DataColumn(4) {New DataColumn("Tanggal", GetType(DateTime)),
+                                                   New DataColumn("NoAccrued", GetType(String)),
+                                                   New DataColumn("CreditCardNumber", GetType(String)),
+                                                   New DataColumn("AmountIDR", GetType(Decimal)),
+                                                    New DataColumn("CuryID", GetType(String))})
+        dtTemp2cc.Clear()
     End Sub
     Dim dtTemp2 As DataTable
     Private Sub TempTable2()
@@ -1611,7 +1671,21 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
 
+    Private Sub GridView6_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView6.CellValueChanged
+        Try
+            If e.Column.FieldName = "Proses" Then
+                If GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Proses") = True Then
+                    GetTotcc()
+                Else
+                    GetTotcc()
 
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
 
     Private Sub GetTot()
         Dim TotAmount As Double = 0
@@ -1719,7 +1793,10 @@ Public Class FrmPaymentDirect
                     ''  ff_Detail.Show()
                     Call CallFrm4(id3, "bank",
                     GridView1.RowCount)
-
+                ElseIf transaksi = "SettleCC" Then
+                    ''  ff_Detail = New FrmDetailPaymentDirect1(id)
+                    ''  ff_Detail.Show()
+                    Call CallFrm5(id3)
                 End If
 
             End If
@@ -1842,35 +1919,53 @@ Public Class FrmPaymentDirect
 
     End Sub
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
-
-    End Sub
-
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-        TempTable2()
+        TempTable2cc()
 
         For i As Integer = 0 To GridView6.RowCount - 1
             If GridView6.GetRowCellValue(i, "Proses") = True Then
-                dtTemp2.Rows.Add()
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(0) = GridView6.GetRowCellValue(i, "Tgl")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(1) = GridView6.GetRowCellValue(i, "SettleID")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(2) = GridView6.GetRowCellValue(i, "SuspendID")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(3) = GridView6.GetRowCellValue(i, "Description")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(4) = GridView6.GetRowCellValue(i, "CuryID")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(5) = GridView6.GetRowCellValue(i, "Total")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(6) = GridView6.GetRowCellValue(i, "SettleAmount")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(7) = GridView6.GetRowCellValue(i, "AcctID")
-                dtTemp2.Rows(dtTemp2.Rows.Count - 1).Item(8) = GridView6.GetRowCellValue(i, "BankID")
+                dtTemp2cc.Rows.Add()
+                dtTemp2cc.Rows(dtTemp2cc.Rows.Count - 1).Item(0) = GridView6.GetRowCellValue(i, "Tanggal")
+                dtTemp2cc.Rows(dtTemp2cc.Rows.Count - 1).Item(1) = GridView6.GetRowCellValue(i, "NoAccrued")
+                dtTemp2cc.Rows(dtTemp2cc.Rows.Count - 1).Item(2) = GridView6.GetRowCellValue(i, "CreditCardNumber")
+                dtTemp2cc.Rows(dtTemp2cc.Rows.Count - 1).Item(3) = GridView6.GetRowCellValue(i, "AmountIDR")
+                dtTemp2cc.Rows(dtTemp2cc.Rows.Count - 1).Item(4) = GridView6.GetRowCellValue(i, "CuryID")
             End If
         Next
 
-        ff_Detail6 = New FrmBankPaid(dtTemp2)
-        ff_Detail6._transaksi.Text = "Settle"
+        ff_Detail6 = New FrmBankPaid(dtTemp2cc)
+        ff_Detail6._transaksi.Text = "SettleCC"
         ff_Detail6.ShowDialog()
         _txtperpost.Text = ff_Detail6.Perpost
         _txtaccount.Text = ff_Detail6.Rekening
         tempperpost = ff_Detail6.Perpost
         tempacct = ff_Detail6.Rekening
         tsBtn_refresh.PerformClick()
+    End Sub
+    Private Sub GetTotcc()
+        Dim TotAmountcc As Double = 0
+
+        Dim cekcc As Boolean
+        Try
+            For i As Integer = 0 To GridView6.RowCount - 1
+                If GridView6.GetRowCellValue(i, "Proses") = True Then
+                    TotAmountcc = TotAmountcc + CDbl(GridView6.GetRowCellValue(i, "AmountIDR"))
+                End If
+            Next
+
+            If TotAmountcc = 0 Then
+                LblTotAmountcc.Text = "0"
+            Else
+                LblTotAmountcc.Text = Format(TotAmountcc, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
     End Sub
 End Class

@@ -1013,7 +1013,10 @@ Public Class baseForm
 
     Private Sub baseForm_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         Try
-            FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
+            If Name = "frmForecast_PO_Log" Then
+            Else
+                FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
