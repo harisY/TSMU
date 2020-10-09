@@ -109,10 +109,10 @@ Public Class TravelSettleHeaderModel
         End Try
     End Function
 
-    Public Function GetTravelSettHeader() As DataTable
+    Public Function GetTravelSettHeader(dateFrom As Date, dateTo As Date) As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  TravelSettleID ,
+            strQuery = "SELECT  TravelSettleID ,
                                 Date ,
                                 NoPR ,
                                 DeptID ,
@@ -121,7 +121,10 @@ Public Class TravelSettleHeaderModel
                                 Purpose ,
                                 Term ,
                                 Pay
-                        FROM    dbo.TravelSettleHeader "
+                        FROM    dbo.TravelSettleHeader
+                        WHERE   ( [Date] >= " & QVal(dateFrom) & "
+                                  AND [Date] <= " & QVal(dateTo) & "
+                                )"
             dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
@@ -474,6 +477,37 @@ Public Class TravelSettleHeaderModel
         End Try
     End Sub
 
+    Public Sub UpdateTravelSettleYesRefund()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For i As Integer = 0 To ObjSettleDetail.Count - 1
+                            With ObjSettleDetail(i)
+                                .UpdateRequest("CLOSE")
+                                .UpdateTicketRefund()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetRate(ByVal CuryID As String, Optional ByVal EffDate As Date = Nothing) As Double
         Try
             Dim dt As New DataTable
@@ -676,7 +710,7 @@ Public Class TravelSettleHeaderModel
                                 TravelSettleID CHAR(15) ,
                                 ID CHAR(2) ,
                                 CostType VARCHAR(20) ,
-                                PaymentType VARCHAR(11) ,
+                                PaymentType VARCHAR(20) ,
                                 USD FLOAT ,
                                 YEN FLOAT ,
                                 IDR FLOAT
@@ -789,6 +823,7 @@ Public Class TravelSettleDetailModel
     Public Property AllowanceUSD As Double
     Public Property AllowanceYEN As Double
     Public Property AllowanceIDR As Double
+    Public Property NoVoucher As String
 
     Dim strQuery As String
 
@@ -854,6 +889,18 @@ Public Class TravelSettleDetailModel
             strQuery = "UPDATE  dbo.TravelRequestHeader
                         SET     Status = " & QVal(status) & "
                         WHERE   NoRequest = " & QVal(NoRequest) & ""
+            ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateTicketRefund()
+        Try
+            strQuery = "UPDATE  dbo.TravelTicketDetail
+                        SET     Refund = 1
+                        WHERE   NoVoucher = " & QVal(NoVoucher) & "
+                                AND NoRequest = " & QVal(NoRequest) & ""
             ExecQuery(strQuery)
         Catch ex As Exception
             Throw
