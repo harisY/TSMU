@@ -147,6 +147,22 @@ Public Class Cls_report
         End Try
     End Function
 
+    Public Function DataGridViewPPhNew(ByVal date1 As String, ByVal date2 As String) As DataTable
+        Try
+            Dim query As String = "RptPPhNew"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
+            pParam(0).Value = date1
+            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
+            pParam(1).Value = date2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function DataGridViewAPPaymentSolomon(ByVal perpost As String) As DataTable
         Try
             Dim query As String = "ReportAPPaymentSolomon"

@@ -2488,6 +2488,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.Designer.vb">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.Designer.vb">
       <DependentUpon>Frm_Rpt_ViewPayment.vb</DependentUpon>
     </Compile>
@@ -3428,6 +3434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.resx">
       <DependentUpon>Frm_Rpt_APPaymentSolomon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.resx">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>

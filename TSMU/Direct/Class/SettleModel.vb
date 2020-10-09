@@ -33,11 +33,11 @@ Public Class SettleHeader
     Public Function GetDataReportPaymentSolomon() As DataSet
         Dim query As String
 
-        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5 as 'No Vocher', A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
+        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5, A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
                  FROM          dbo.APDoc AS A INNER JOIN dbo.Batch AS B ON A.BatNbr = B.BatNbr AND B.Module = 'AP' 
                                               INNER JOIN dbo.Vendor AS C ON A.VendId = C.VendId
-                 WHERE        (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
-                 ORDER BY C.Name"
+                 WHERE        A.CuryId='IDR' and (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
+                 ORDER BY C.Name,A.CuryId"
 
         Dim ds As New dsLaporan
         ds = GetDsReport_Solomon(query, "PaymentSolomon")
