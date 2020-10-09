@@ -189,6 +189,17 @@ Public Class clscompare
             Throw
         End Try
     End Sub
+    Public Sub Insert2()
+        Try
+            '   cmbperpost = "201811"
+            ' cmbperpost = frmCompare_Invoice1._cmbperpost.Text
+            Dim ls_SP As String = "INSERT INTO POADM (DN	,Plant	,GRNo	,GRScanDate	,PONo	,VendID	,Vendor_Name	,AlternateID	,Descr	,Price	,Qty	,Amount	) " &
+                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g5 & "','" & g6 & "','" & g7 & "','" & g8 & "','" & g9 & "','" & g10 & "','" & g11 & "')"
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Function autoperpost() As String
         Try
             Dim auto As String
