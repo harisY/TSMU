@@ -357,6 +357,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\Class\ClsCCAccrued.vb" />
+    <Compile Include="Direct\Class\ClsMktUploadPrice.vb" />
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\ClsTraveller.vb" />

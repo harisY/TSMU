@@ -220,6 +220,7 @@ Public Class FrmEntertainSettleDetail
                     .PRNo = txtNoPR.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
+                    .PaymentType = "FINANCE"
                     .SuspendID = TxtNoSuspend.Text
                     .Tgl = TxtTgl.EditValue
                     .Total = TxtTotExpense.EditValue
