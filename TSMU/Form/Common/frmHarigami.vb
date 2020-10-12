@@ -35,31 +35,20 @@ Public Class frmHarigami
         Call LoadGrid()
     End Sub
     Public Overrides Sub Proc_Excel()
-        Dim table As New DataTable
-        Dim ls_Judul As String = "Harigami"
-        Dim Bulan As String = ""
-        Dim strTahun As String = ""
-        Dim strCustomer As String = ""
-
-        Dim frmExcel As FrmSystemExcelBarcode
-        frmExcel = New FrmSystemExcelBarcode(table, 69)
-        frmExcel.Text = "Import " & ls_Judul
-        frmExcel.StartPosition = FormStartPosition.CenterScreen
-        frmExcel.ShowDialog()
-
+        Dim _Table As New DataTable
+        Dim Filename As String = String.Empty
+        Dim Dial As New OpenFileDialog
+        Dial.Filter = "Excel Files|*.xls;*.xlsx"
+        Dim result As DialogResult = Dial.ShowDialog()
+        If result = System.Windows.Forms.DialogResult.OK Then
+            _Table = ExcelToDatatable(Dial.FileName, "Sheet1")
+        End If
         Try
-            Dim dv As DataView = New DataView(table)
-            Dim dtFilter As New DataTable
-
-            dtFilter = dv.ToTable
-            'Exit Sub
-            If dtFilter.Rows.Count > 0 Then
-
+            If _Table.Rows.Count > 0 Then
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
-
                 Obj.ObjDetails.Clear()
-                For Each row As DataRow In dtFilter.Rows
+                For Each row As DataRow In _Table.Rows
                     ObjDet = New HarigamiDetailsModels
                     With ObjDet
                         .FileNo = If(row("File No") Is DBNull.Value, "", row("File No").ToString())
@@ -75,9 +64,9 @@ Public Class frmHarigami
                 LoadGrid()
             End If
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-            SplashScreenManager.CloseForm()
         End Try
     End Sub
 

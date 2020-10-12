@@ -19,8 +19,9 @@ Partial Class frmForecast_PO
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportToExcelTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
