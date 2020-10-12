@@ -13,6 +13,7 @@ Public Class FrmSuspendSettleDetailDirect
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
     Dim fc_Class As New ClsSuspend
+
     Dim ObjSuspendHeader As New SuspendHeaderModel
     Dim ObjSuspendDetail As New SuspendDetailModel
     Dim ObjSettle As New SettleHeader
@@ -25,13 +26,14 @@ Public Class FrmSuspendSettleDetailDirect
     Dim boomId As String = String.Empty
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
-
+    Dim isLoad As Boolean = False
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SettleID As String = ""
     Dim _Tag As TagModel
-
+    Dim creditCardID As String = String.Empty
+    Dim accountName As String = String.Empty
     Public Sub New()
 
         ' This call is required by the designer.
@@ -61,9 +63,13 @@ Public Class FrmSuspendSettleDetailDirect
     End Sub
 
     Private Sub FrmSuspendSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        isLoad = True
+        'TxtPaymentType.Visible = False
+        'txtCCNumber.Visible = False
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
+        isLoad = False
     End Sub
     'Private Sub CPayType_EditValueChanged(sender As Object, e As EventArgs) Handles CPayTypeTransport.EditValueChanged
     '    Dim baseEdit = TryCast(sender, BaseEdit)
@@ -146,6 +152,7 @@ Public Class FrmSuspendSettleDetailDirect
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Sub LoadGridDetail()
         Try
             If fs_Code = "" Then
@@ -175,8 +182,10 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     .PRNo = TxtPrNo.Text
-                    .PaymentType = TxtPaymentType.Text
-                    ''TxtStatus.Text = .Status
+
+                    creditCardID = .CreditCardID.TrimEnd
+
+                    accountName = .AccountName                    ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
                 End With
@@ -185,7 +194,10 @@ Public Class FrmSuspendSettleDetailDirect
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
-                TxtPaymentType.Text = "CASH"
+
+                creditCardID = ""
+
+                accountName = ""
             End If
         Catch ex As Exception
             Throw
@@ -214,11 +226,18 @@ Public Class FrmSuspendSettleDetailDirect
                     .Remark = TxtRemark.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
-                    .PaymentType = TxtPaymentType.Text
+
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
+                    '.CreditCardID = creditCardID
+                    '.AccountName = accountName
 
+
+                    .CreditCardID = creditCardID
+                    .CreditCardNumber = ""
+                    .AccountName = accountName
+                    .PaymentType = ""
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else

@@ -28,8 +28,7 @@ Partial Class FrmMktExcelPrice
         Me.btnUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.txtFileName = New DevExpress.XtraEditors.TextEdit()
-        Me.txtCustomer = New DevExpress.XtraEditors.GridLookUpEdit()
-        Me.GridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.txtTemplate = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -46,8 +45,7 @@ Partial Class FrmMktExcelPrice
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +81,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl1.Controls.Add(Me.btnUpload)
         Me.LayoutControl1.Controls.Add(Me.btnBrowse)
         Me.LayoutControl1.Controls.Add(Me.txtFileName)
-        Me.LayoutControl1.Controls.Add(Me.txtCustomer)
+        Me.LayoutControl1.Controls.Add(Me.txtTemplate)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -133,25 +131,21 @@ Partial Class FrmMktExcelPrice
         Me.txtFileName.StyleController = Me.LayoutControl1
         Me.txtFileName.TabIndex = 5
         '
-        'txtCustomer
+        'txtTemplate
         '
-        Me.txtCustomer.Location = New System.Drawing.Point(72, 12)
-        Me.txtCustomer.Name = "txtCustomer"
-        Me.txtCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtCustomer.Properties.NullText = ""
-        Me.txtCustomer.Properties.PopupSizeable = False
-        Me.txtCustomer.Properties.PopupView = Me.GridLookUpEdit1View
-        Me.txtCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.txtCustomer.Size = New System.Drawing.Size(203, 22)
-        Me.txtCustomer.StyleController = Me.LayoutControl1
-        Me.txtCustomer.TabIndex = 4
-        '
-        'GridLookUpEdit1View
-        '
-        Me.GridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridLookUpEdit1View.Name = "GridLookUpEdit1View"
-        Me.GridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.txtTemplate.Location = New System.Drawing.Point(72, 12)
+        Me.txtTemplate.Name = "txtTemplate"
+        Me.txtTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtTemplate.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TemplateID", "Template ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Desc", "")})
+        Me.txtTemplate.Properties.DisplayMember = "Desc"
+        Me.txtTemplate.Properties.NullText = ""
+        Me.txtTemplate.Properties.PopupSizeable = False
+        Me.txtTemplate.Properties.ShowFooter = False
+        Me.txtTemplate.Properties.ShowHeader = False
+        Me.txtTemplate.Properties.ValueMember = "TemplateID"
+        Me.txtTemplate.Size = New System.Drawing.Size(203, 22)
+        Me.txtTemplate.StyleController = Me.LayoutControl1
+        Me.txtTemplate.TabIndex = 4
         '
         'Root
         '
@@ -164,12 +158,12 @@ Partial Class FrmMktExcelPrice
         '
         'LayoutControlItem2
         '
-        Me.LayoutControlItem2.Control = Me.txtCustomer
+        Me.LayoutControlItem2.Control = Me.txtTemplate
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
         Me.LayoutControlItem2.Size = New System.Drawing.Size(275, 34)
-        Me.LayoutControlItem2.Text = "Customer"
+        Me.LayoutControlItem2.Text = "Template"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(57, 16)
         '
         'LayoutControlItem3
@@ -273,8 +267,7 @@ Partial Class FrmMktExcelPrice
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -296,8 +289,6 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents btnUpload As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txtFileName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtCustomer As DevExpress.XtraEditors.GridLookUpEdit
-    Friend WithEvents GridLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
@@ -311,4 +302,5 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents btnSimulate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents txtTemplate As DevExpress.XtraEditors.LookUpEdit
 End Class

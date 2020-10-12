@@ -60,6 +60,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CJenisDetail = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridEntertain = New DevExpress.XtraGrid.GridControl()
@@ -68,9 +69,12 @@ Partial Class FrmTravelEntertainDetail
         Me.GHeaderSeqRelasi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CPosisiRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CJenisUsahaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CRemarkRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
@@ -111,9 +115,13 @@ Partial Class FrmTravelEntertainDetail
         CType(Me.CHeaderSeqDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridEntertain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
@@ -127,7 +135,7 @@ Partial Class FrmTravelEntertainDetail
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(300, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(330, 12)
         Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSettlement.MaximumSize = New System.Drawing.Size(120, 0)
         Me.TxtNoSettlement.MinimumSize = New System.Drawing.Size(120, 0)
@@ -161,7 +169,7 @@ Partial Class FrmTravelEntertainDetail
         'txtCCNumber
         '
         Me.txtCCNumber.Enabled = False
-        Me.txtCCNumber.Location = New System.Drawing.Point(300, 44)
+        Me.txtCCNumber.Location = New System.Drawing.Point(330, 44)
         Me.txtCCNumber.MaximumSize = New System.Drawing.Size(120, 0)
         Me.txtCCNumber.MinimumSize = New System.Drawing.Size(120, 0)
         Me.txtCCNumber.Name = "txtCCNumber"
@@ -188,7 +196,7 @@ Partial Class FrmTravelEntertainDetail
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(1105, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(1135, 12)
         Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -200,13 +208,13 @@ Partial Class FrmTravelEntertainDetail
         Me.TxtTotExpense.Properties.Mask.EditMask = "n2"
         Me.TxtTotExpense.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtTotExpense.Properties.ReadOnly = True
-        Me.TxtTotExpense.Size = New System.Drawing.Size(155, 22)
+        Me.TxtTotExpense.Size = New System.Drawing.Size(125, 22)
         Me.TxtTotExpense.StyleController = Me.LayoutControl2
         Me.TxtTotExpense.TabIndex = 13
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(943, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(973, 12)
         Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtCurrency.MaximumSize = New System.Drawing.Size(70, 0)
         Me.TxtCurrency.Name = "TxtCurrency"
@@ -223,7 +231,7 @@ Partial Class FrmTravelEntertainDetail
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(763, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(793, 12)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtDep.Name = "TxtDep"
@@ -238,7 +246,7 @@ Partial Class FrmTravelEntertainDetail
         Me.TxtTgl.EditValue = Nothing
         Me.TxtTgl.Location = New System.Drawing.Point(100, 12)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtTgl.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.TxtTgl.MaximumSize = New System.Drawing.Size(130, 0)
         Me.TxtTgl.MinimumSize = New System.Drawing.Size(100, 0)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -250,13 +258,13 @@ Partial Class FrmTravelEntertainDetail
         Me.TxtTgl.Properties.Mask.EditMask = ""
         Me.TxtTgl.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.TxtTgl.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TxtTgl.Size = New System.Drawing.Size(100, 22)
+        Me.TxtTgl.Size = New System.Drawing.Size(130, 22)
         Me.TxtTgl.StyleController = Me.LayoutControl2
         Me.TxtTgl.TabIndex = 7
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(520, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(550, 12)
         Me.TxtPrNo.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPrNo.Name = "TxtPrNo"
         Me.TxtPrNo.Size = New System.Drawing.Size(143, 22)
@@ -265,23 +273,23 @@ Partial Class FrmTravelEntertainDetail
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(520, 38)
+        Me.TxtRemark.Location = New System.Drawing.Point(550, 38)
         Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(598, 35)
+        Me.TxtRemark.Size = New System.Drawing.Size(568, 35)
         Me.TxtRemark.StyleController = Me.LayoutControl2
         Me.TxtRemark.TabIndex = 6
         '
         'txtPayType
         '
         Me.txtPayType.Location = New System.Drawing.Point(100, 44)
-        Me.txtPayType.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.txtPayType.MaximumSize = New System.Drawing.Size(130, 0)
         Me.txtPayType.MinimumSize = New System.Drawing.Size(100, 0)
         Me.txtPayType.Name = "txtPayType"
         Me.txtPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtPayType.Properties.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.txtPayType.Properties.Items.AddRange(New Object() {"FINANCE", "CREDIT CARD"})
         Me.txtPayType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtPayType.Size = New System.Drawing.Size(100, 22)
+        Me.txtPayType.Size = New System.Drawing.Size(130, 22)
         Me.txtPayType.StyleController = Me.LayoutControl2
         Me.txtPayType.TabIndex = 16
         '
@@ -297,10 +305,10 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.TxtRemark
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(412, 26)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(442, 26)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(698, 39)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(668, 39)
         Me.LayoutControlItem1.Text = "Remark"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(85, 16)
         '
@@ -309,14 +317,14 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem3.Control = Me.TxtTgl
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(192, 26)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(222, 26)
         Me.LayoutControlItem3.Text = "Date"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtNoSettlement
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(192, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(222, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem4.Size = New System.Drawing.Size(220, 26)
@@ -326,7 +334,7 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.TxtPrNo
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(412, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(442, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem2.Size = New System.Drawing.Size(243, 26)
@@ -336,7 +344,7 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtDep
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(655, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(685, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem6.Size = New System.Drawing.Size(180, 26)
@@ -346,7 +354,7 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(835, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(865, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem5.Size = New System.Drawing.Size(170, 26)
@@ -356,9 +364,9 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(1005, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(1035, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(247, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(217, 26)
         Me.LayoutControlItem7.Text = "Total Expense"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(85, 16)
         '
@@ -375,7 +383,7 @@ Partial Class FrmTravelEntertainDetail
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.txtCCNumber
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(192, 32)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(222, 32)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem12.Size = New System.Drawing.Size(220, 33)
@@ -387,8 +395,8 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem11.Control = Me.txtPayType
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 32)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(192, 33)
-        Me.LayoutControlItem11.Text = "Payment Type"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(222, 33)
+        Me.LayoutControlItem11.Text = "Paid By"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(85, 16)
         '
         'EmptySpaceItem2
@@ -398,7 +406,7 @@ Partial Class FrmTravelEntertainDetail
         Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(0, 6)
         Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(10, 6)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(412, 6)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(442, 6)
         Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -557,12 +565,19 @@ Partial Class FrmTravelEntertainDetail
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Jenis"
+        Me.GridColumn6.ColumnEdit = Me.CJenisDetail
         Me.GridColumn6.FieldName = "Jenis"
         Me.GridColumn6.MinWidth = 27
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 106
+        '
+        'CJenisDetail
+        '
+        Me.CJenisDetail.AutoHeight = False
+        Me.CJenisDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisDetail.Name = "CJenisDetail"
         '
         'GridColumn2
         '
@@ -594,7 +609,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridEntertain.MainView = Me.GridViewEntertain
         Me.GridEntertain.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEntertain.Name = "GridEntertain"
-        Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CHeaderSeqDetail})
+        Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CHeaderSeqDetail, Me.CJenisDetail})
         Me.GridEntertain.Size = New System.Drawing.Size(1269, 268)
         Me.GridEntertain.TabIndex = 3
         Me.GridEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEntertain})
@@ -609,6 +624,7 @@ Partial Class FrmTravelEntertainDetail
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
+        Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
         Me.GridRelasi.Size = New System.Drawing.Size(1269, 269)
         Me.GridRelasi.TabIndex = 4
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
@@ -652,12 +668,19 @@ Partial Class FrmTravelEntertainDetail
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Posisi"
+        Me.GridColumn12.ColumnEdit = Me.CPosisiRelasi
         Me.GridColumn12.FieldName = "Posisi"
         Me.GridColumn12.MinWidth = 27
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 242
+        '
+        'CPosisiRelasi
+        '
+        Me.CPosisiRelasi.AutoHeight = False
+        Me.CPosisiRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CPosisiRelasi.Name = "CPosisiRelasi"
         '
         'GridColumn13
         '
@@ -672,6 +695,7 @@ Partial Class FrmTravelEntertainDetail
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Jenis Usaha"
+        Me.GridColumn14.ColumnEdit = Me.CJenisUsahaRelasi
         Me.GridColumn14.FieldName = "JenisUsaha"
         Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
@@ -679,15 +703,28 @@ Partial Class FrmTravelEntertainDetail
         Me.GridColumn14.VisibleIndex = 4
         Me.GridColumn14.Width = 242
         '
+        'CJenisUsahaRelasi
+        '
+        Me.CJenisUsahaRelasi.AutoHeight = False
+        Me.CJenisUsahaRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisUsahaRelasi.Name = "CJenisUsahaRelasi"
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Remark"
+        Me.GridColumn7.ColumnEdit = Me.CRemarkRelasi
         Me.GridColumn7.FieldName = "Remark"
         Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 251
+        '
+        'CRemarkRelasi
+        '
+        Me.CRemarkRelasi.AutoHeight = False
+        Me.CRemarkRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CRemarkRelasi.Name = "CRemarkRelasi"
         '
         'GridColumn9
         '
@@ -813,9 +850,13 @@ Partial Class FrmTravelEntertainDetail
         CType(Me.CHeaderSeqDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridEntertain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
@@ -889,4 +930,8 @@ Partial Class FrmTravelEntertainDetail
     Friend WithEvents GHeaderSeqDetail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHeaderSeqRelasi As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHeaderSeqDetail As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents CJenisDetail As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CPosisiRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CJenisUsahaRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents CRemarkRelasi As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
 End Class

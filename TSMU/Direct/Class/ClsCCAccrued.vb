@@ -12,6 +12,7 @@ Public Class ClsCCAccrued
     Public Property Description As String
     Public Property CurryID As String
     Public Property Amount As Double
+    Public Property AccrualEstimate As Double
     Public Property Rate As Double
     Public Property AmountIDR As Double
     Public Property CCNumberMaster As String
@@ -41,7 +42,24 @@ Public Class ClsCCAccrued
         End Try
     End Function
 
-    Public Function GetDataAccruedSettle() As DataTable
+    Public Function GetDataCostCCSum() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Get_CostCCSum"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(0).Value = CreditCardNumber
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCCSettle() As DataTable
         Try
             Dim dt As New DataTable
             strQuery = "SELECT  ID ,
@@ -57,13 +75,18 @@ Public Class ClsCCAccrued
                                 ISNULL(dbo.ConvertToIDR(TanggalTrans, CurryID), 1) * Amount AS AccrualEstimate ,
                                 Rate ,
                                 AmountIDR ,
-                                CCNumberMaster ,
-                                CreditCardNumber ,                            
-                                AccountName ,
-                                BankName ,
+                                tcc.Type ,
+                                tc.CCNumberMaster ,
+                                tc.CreditCardNumber ,
+                                tcc.AccountName ,
+                                tcc.BankName ,
                                 Pay
-                        FROM    dbo.T_CCAccrued
-                        WHERE   Pay = 0 "
+                        FROM    dbo.T_CCAccrued AS tc
+                                LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
+                        WHERE   Pay = 0
+                        ORDER BY tcc.Type ASC ,
+                                tc.CreditCardNumber ASC ,
+                                tc.TanggalTrans ASC"
             dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
@@ -71,7 +94,22 @@ Public Class ClsCCAccrued
         End Try
     End Function
 
-    Public Function GetDataAccruedPaid(dateFrom As Date, dateTo As Date) As DataTable
+    Public Function GetDataCCSettleSum() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Get_CCSettleSum"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCCPaid(dateFrom As Date, dateTo As Date) As DataTable
         Try
             Dim dt As New DataTable
             strQuery = "SELECT  ID ,
@@ -87,17 +125,41 @@ Public Class ClsCCAccrued
                                 ISNULL(dbo.ConvertToIDR(TanggalTrans, CurryID), 1) * Amount AS AccrualEstimate ,
                                 Rate ,
                                 AmountIDR ,
-                                CCNumberMaster ,
-                                CreditCardNumber ,                            
-                                AccountName ,
-                                BankName ,
+                                tcc.Type ,
+                                tc.CCNumberMaster ,
+                                tc.CreditCardNumber ,
+                                tc.AccountName ,
+                                tc.BankName ,
                                 Pay
-                        FROM    dbo.T_CCAccrued
+                        FROM    dbo.T_CCAccrued AS tc
+                                LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
                         WHERE   Pay = 1
                                 AND ( TanggalTrans >= " & QVal(dateFrom) & "
-                                    AND TanggalTrans <= " & QVal(dateTo) & "
-                                )"
+                                      AND TanggalTrans <= " & QVal(dateTo) & "
+                                    )
+                        ORDER BY tcc.Type ASC ,
+                                tc.CreditCardNumber ASC ,
+                                tc.TanggalTrans ASC"
             dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCCPaidSum(dateFrom As Date, dateTo As Date) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Get_CCPaidSum"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@DateFrom", SqlDbType.VarChar)
+            pParam(0).Value = dateFrom
+            pParam(1) = New SqlClient.SqlParameter("@DateTo", SqlDbType.VarChar)
+            pParam(1).Value = dateTo
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -125,6 +187,7 @@ Public Class ClsCCAccrued
                             Description = Row("Description")
                             CurryID = Row("CurryID")
                             Amount = Row("Amount")
+                            AccrualEstimate = Row("AccrualEstimate")
                             Rate = Row("Rate")
                             AmountIDR = Row("AmountIDR")
                             CCNumberMaster = _ccNumberMaster
@@ -189,7 +252,7 @@ Public Class ClsCCAccrued
 
             Dim SP_Name As String = "Accrued_Insert_CCAccrued"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(15) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
             pParam(0) = New SqlClient.SqlParameter("@NoAccrued", SqlDbType.VarChar)
             pParam(0).Value = NoAccrued
             pParam(1) = New SqlClient.SqlParameter("@Tanggal", SqlDbType.Date)
@@ -208,20 +271,22 @@ Public Class ClsCCAccrued
             pParam(7).Value = CurryID
             pParam(8) = New SqlClient.SqlParameter("@Amount", SqlDbType.Float)
             pParam(8).Value = Amount
-            pParam(9) = New SqlClient.SqlParameter("@Rate", SqlDbType.Float)
-            pParam(9).Value = Rate
-            pParam(10) = New SqlClient.SqlParameter("@AmountIDR", SqlDbType.Float)
-            pParam(10).Value = AmountIDR
-            pParam(11) = New SqlClient.SqlParameter("@CCNumberMaster", SqlDbType.VarChar)
-            pParam(11).Value = CCNumberMaster
-            pParam(12) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
-            pParam(12).Value = CreditCardNumber
-            pParam(13) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
-            pParam(13).Value = AccountName
-            pParam(14) = New SqlClient.SqlParameter("@BankName", SqlDbType.VarChar)
-            pParam(14).Value = BankName
-            pParam(15) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(15).Value = gh_Common.Username
+            pParam(9) = New SqlClient.SqlParameter("@AccrualEstimate", SqlDbType.Float)
+            pParam(9).Value = AccrualEstimate
+            pParam(10) = New SqlClient.SqlParameter("@Rate", SqlDbType.Float)
+            pParam(10).Value = Rate
+            pParam(11) = New SqlClient.SqlParameter("@AmountIDR", SqlDbType.Float)
+            pParam(11).Value = AmountIDR
+            pParam(12) = New SqlClient.SqlParameter("@CCNumberMaster", SqlDbType.VarChar)
+            pParam(12).Value = CCNumberMaster
+            pParam(13) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(13).Value = CreditCardNumber
+            pParam(14) = New SqlClient.SqlParameter("@AccountName", SqlDbType.VarChar)
+            pParam(14).Value = AccountName
+            pParam(15) = New SqlClient.SqlParameter("@BankName", SqlDbType.VarChar)
+            pParam(15).Value = BankName
+            pParam(16) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(16).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(SP_Name, pParam)
 
@@ -294,6 +359,23 @@ Public Class ClsReportCCAccrued
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
             pParam(0).Value = Today.Date
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportCCSettle(_param As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Rpt_GetCCSettlement"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Param", SqlDbType.VarChar)
+            pParam(0).Value = _param
 
             dt = GetDataTableByCommand_SP(SP_Name, pParam)
 

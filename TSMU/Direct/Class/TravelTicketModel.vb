@@ -75,15 +75,19 @@ Public Class TravelTicketModel
         End Try
     End Function
 
-    Public Function GetTravelTicket() As DataTable
+    Public Function GetTravelTicket(dateFrom As Date, dateTo As Date) As DataTable
         Try
-            strQuery = " SELECT  NoVoucher ,
+            strQuery = "SELECT  NoVoucher ,
                                 Tanggal ,
                                 Vendor ,
                                 NoInvoice ,
                                 CuryID ,
-                                TotAmount
-                        FROM    dbo.TravelTicket "
+                                TotAmount ,
+                                Pay
+                        FROM    dbo.TravelTicket
+                        WHERE   ( Tanggal >= " & QVal(dateFrom) & "
+                                  AND Tanggal <= " & QVal(dateTo) & "
+                                )"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

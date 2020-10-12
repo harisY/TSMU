@@ -623,7 +623,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeaderEntSettle()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
@@ -631,6 +631,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -662,15 +663,28 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeaderDirectSettle()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
+            'ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
+            '"Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Tgl) & ", " & vbCrLf &
+            '"       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            '"       'Close', " & vbCrLf &
+            '"       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Total) & ")"
+
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
-            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
             "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

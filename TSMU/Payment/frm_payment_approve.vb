@@ -177,10 +177,7 @@ Public Class frm_payment_approve
         TotLevel2b = 0
         TotCheckDetailb = 0
         TotDirekturb = 0
-        'Dim TotApproved = 0
-        'Dim TotApPaid = 0
-        'Dim TotBPaid = 0
-        ''GrandTotal = 0
+
         Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
@@ -203,54 +200,36 @@ Public Class frm_payment_approve
                 TotDirekturb = TotDirekturb + CDbl(GridView1.GetRowCellValue(i, "PaidAmount"))
             Next
             If gh_Common.Level = 1 Then
-                '_txtapapproved.Text = TotLevel1
-                '_txtapbpaid.Text = TotLevel1b
+
                 TotApproved = TotLevel1
                 TotApPaid = TotLevel1b
             ElseIf gh_Common.Level = 2 Then
-                '_txtapapproved.Text = TotLevel2
-                '_txtapbpaid.Text = TotLevel2b
+
                 TotApproved = TotLevel2
                 TotApPaid = TotLevel2b
+
             ElseIf gh_Common.Level = 3 Then
-                '_txtapapproved.Text = TotCheckDetail
-                '_txtapbpaid.Text = TotCheckDetailb
+
                 TotApproved = TotCheckDetail
                 TotApPaid = TotCheckDetailb
             Else
-                '_txtapapproved.Text = TotDirektur
-                '_txtapbpaid.Text = TotDirekturb
+
+
+                'TotApproved = TotDirektur
+                'TotApPaid = TotDirekturb
+
+
                 TotApproved = TotDirektur
-                TotApPaid = TotDirekturb
+                'TotApPaid = TotDirekturb
+                TotApPaid = TotLevel2
             End If
-            '  _txtamountbpaid.Text = _txtsaldo.Text - _txtapapproved.Text
-            TotBPaid = _txtsaldo.Text - TotApproved
-            'If TotPPn = 0 Then
-            '    _TxtPPN.Text = "0"
-            'Else
-            '    _TxtPPN.Text = Format(TotPPn, gs_FormatBulat)
-            'End If
+            If gh_Common.Level > 3 Then
+                TotBPaid = TotLevel1
+            Else
+                TotBPaid = _txtsaldo.Text - TotApproved
+            End If
 
-            'If TotDpp = 0 Then
-            '    _TxtDpp.Text = "0"
-            'Else
-            '    _TxtDpp.Text = Format(TotDpp, gs_FormatBulat)
-            'End If
 
-            'If TotAmount = 0 Then
-            '    _TxtTotal.Text = "0"
-            'Else
-
-            '    _TxtTotal.Text = Format(TotAmount, gs_FormatBulat)
-            'End If
-            'If TotPPH = 0 Then
-            '    _TxtPPH.Text = "0"
-            'Else
-
-            '    _TxtPPH.Text = Format(TotPPH, gs_FormatBulat)
-            'End If
-            'Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
-            '_TxtDebit.Text = Format(debit, gs_FormatBulat)
         Catch ex As Exception
             Throw ex
         End Try

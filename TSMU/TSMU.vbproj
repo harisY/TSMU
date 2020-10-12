@@ -275,10 +275,23 @@
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
+    <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
     <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
       <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
     </Compile>
     <Compile Include="Compare_Invoice\frmCompare_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.Designer.vb">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dashboard\Dashboard_kanbanSum.Designer.vb">
@@ -370,6 +383,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\Class\ClsCCAccrued.vb" />
+    <Compile Include="Direct\Class\ClsMktUploadPrice.vb" />
     <Compile Include="Direct\Class\ClsSettlement.vb" />
     <Compile Include="Direct\Class\ClsSuspend.vb" />
     <Compile Include="Direct\Class\ClsTraveller.vb" />
@@ -435,6 +449,12 @@
     <Compile Include="Direct\FrmCCAccrued.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmCCSettlement.Designer.vb">
+      <DependentUpon>FrmCCSettlement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmCCSettlement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmDetailPaymentDirect.Designer.vb">
       <DependentUpon>FrmDetailPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -463,6 +483,18 @@
       <DependentUpon>FrmEditDirectPayment.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEditDirectPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.designer.vb">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
@@ -561,6 +593,12 @@
     <Compile Include="Direct\FrmEntertainSettleDetailDirect.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmSuspendSettleCC.Designer.vb">
+      <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetailDirect.Designer.vb">
       <DependentUpon>FrmSuspendSettleDetailDirect.vb</DependentUpon>
     </Compile>
@@ -571,6 +609,12 @@
       <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirectCC.Designer.vb">
+      <DependentUpon>FrmSuspendSettleDetailDirectCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirectCC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -710,6 +754,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRCCAccruedAndSettle.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\CRCCSettlement.vb">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRCCSettlement.rpt</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
@@ -2047,6 +2097,12 @@
     <Compile Include="Form\System\frmAdvanceApprove.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\FrmCustomization.Designer.vb">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmCustomization.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -2280,6 +2336,7 @@
     <Compile Include="Models\Circulation\CR_UserCreateModel.vb" />
     <Compile Include="Models\CommonModel.vb" />
     <Compile Include="Models\Asakai\HancuranStokModel.vb" />
+    <Compile Include="Models\CustomizationModels.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
@@ -2708,6 +2765,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
       <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
     </EmbeddedResource>
@@ -2723,14 +2786,26 @@
     <EmbeddedResource Include="Direct\FrmCCAccrued.resx">
       <DependentUpon>FrmCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmCCSettlement.resx">
+      <DependentUpon>FrmCCSettlement.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
+      <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
       <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
       <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
+      <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleDetailDirectCC.resx">
+      <DependentUpon>FrmSuspendSettleDetailDirectCC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
@@ -2772,6 +2847,10 @@
     <EmbeddedResource Include="Direct\report\CRCCAccruedAndSettle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccruedAndSettle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRCCSettlement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRCCSettlement.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3219,6 +3298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmCustomization.resx">
+      <DependentUpon>FrmCustomization.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

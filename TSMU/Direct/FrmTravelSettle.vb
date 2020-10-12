@@ -32,10 +32,19 @@ Public Class FrmTravelSettle
         End Try
     End Sub
 
-    Private Sub LoadGridSettle()
+    Private Sub LoadGridSettle(Optional dateFrom As Date = Nothing, Optional dateTo As Date = Nothing)
         Try
+            Dim firstDay As Date = dateFrom
+            Dim lastDay As Date = dateTo
+
+            If dateFrom = Nothing OrElse dateTo = Nothing Then
+                Dim _now As Date = Date.Today
+                firstDay = New Date(_now.Year, _now.Month, 1)
+                lastDay = New Date(_now.Year, _now.Month, Date.DaysInMonth(_now.Year, _now.Month))
+            End If
+
             cls_SettHeader = New TravelSettleHeaderModel
-            dtGrid = cls_SettHeader.GetTravelSettHeader()
+            dtGrid = cls_SettHeader.GetTravelSettHeader(firstDay, lastDay)
             GridSettle.DataSource = dtGrid
             GridCellFormat(GridViewSettle)
         Catch ex As Exception
@@ -51,6 +60,24 @@ Public Class FrmTravelSettle
         ElseIf TabPage = "TabPageSett" Then
             LoadGridSettle()
         End If
+    End Sub
+
+    Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+            End With
+
+            Dim _now As Date = Date.Today
+            Dim firstDay As Date = If(IsDBNull(fSearch.TglDari), New Date(_now.Year, _now.Month, 1), fSearch.TglDari)
+            Dim lastDay As Date = If(IsDBNull(fSearch.TglSampai), _now.AddMonths(1).AddDays(-1), fSearch.TglSampai)
+
+            LoadGridSettle(firstDay, lastDay)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
@@ -69,15 +96,19 @@ Public Class FrmTravelSettle
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim TravelSettleID As String = String.Empty
+            Dim pay As Integer
             Dim selectedRows() As Integer = GridViewSettle.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     TravelSettleID = GridViewSettle.GetRowCellValue(rowHandle, "TravelSettleID").ToString()
+                    pay = GridViewSettle.GetRowCellValue(rowHandle, "Pay")
                     cls_SettHeader.TravelSettleID = TravelSettleID
                 End If
 
                 If cls_SettHeader.CheckSettleAccrued(TravelSettleID) Then
                     Err.Raise(ErrNumber, , "No Settlement " & TravelSettleID & " sudah dilakukan proses Accrued !")
+                ElseIf pay = 1 Then
+                    Err.Raise(ErrNumber, , "No Settlement " & TravelSettleID & " sudah dilakukan proses payment !")
                 End If
 
                 Dim dtSettleDetail As New DataTable
@@ -181,22 +212,21 @@ Public Class FrmTravelSettle
             ElseIf result = System.Windows.Forms.DialogResult.No Then
                 Dim Refund As DialogResult = XtraMessageBox.Show("Ada Refund ?", "Confirmation", MessageBoxButtons.YesNoCancel)
                 If Refund = System.Windows.Forms.DialogResult.Yes Then
-                    MessageBox.Show("Kondisi settlement NO & refund tiket YES")
                     cls_SettHeader.ObjSettleDetail.Clear()
                     For i As Integer = 0 To GridViewRequest.SelectedRowsCount() - 1
                         If (GridViewRequest.GetSelectedRows()(i) >= 0) Then
                             cls_SettDetail = New TravelSettleDetailModel
                             With cls_SettDetail
+                                .NoVoucher = GridViewRequest.GetRowCellValue(GridViewRequest.GetSelectedRows()(i), "NoVoucher")
                                 .NoRequest = GridViewRequest.GetRowCellValue(GridViewRequest.GetSelectedRows()(i), "NoRequest")
                             End With
                             cls_SettHeader.ObjSettleDetail.Add(cls_SettDetail)
                         End If
                     Next
-                    cls_SettHeader.UpdateTravelSettleNoRefund()
+                    cls_SettHeader.UpdateTravelSettleYesRefund()
                     Call ShowMessage("Data Updated", MessageTypeEnum.NormalMessage)
                     tsBtn_refresh.PerformClick()
                 ElseIf Refund = System.Windows.Forms.DialogResult.No Then
-                    MessageBox.Show("Kondisi settlement NO & refund tiket NO")
                     cls_SettHeader.ObjSettleDetail.Clear()
                     For i As Integer = 0 To GridViewRequest.SelectedRowsCount() - 1
                         If (GridViewRequest.GetSelectedRows()(i) >= 0) Then

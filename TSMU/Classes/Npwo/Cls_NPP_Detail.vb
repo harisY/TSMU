@@ -93,7 +93,27 @@ Public Class Cls_NPP_Detail
         End Try
     End Sub
 
+    Public Function NPPReport_Revisi(No As String, Rev As String) As DataSet
+        Dim query As String
+        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        query = "SELECT Distinct [NPP_Rev_Information].[Rev] as Revisi
+                        ,[NPP_Rev_Information].[Information] as Informasi 
+                        ,[NPP_Rev_Information].[ReviceDate] as Date
+        From [NPP_Head] inner Join [NPP_Detail] On
+                    [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
+                    inner join [NPP_Rev_Information] on
+                    [NPP_Head].[No_NPP] = [NPP_Rev_Information].No_NPP
+                    inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
+		            Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
+                    Order By [NPP_Rev_Information].[Rev] asc "
 
+        Dim ds As New dsLaporan
+        ds = GetDsReport(query, "NPPRevisi")
+        Return ds
+
+        'Mold_Number
+
+    End Function
     Public Function NPPReport(No As String, Rev As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
@@ -153,12 +173,8 @@ Public Class Cls_NPP_Detail
                   ,[NPP_Detail].[Rev]
                   ,[NPP_Detail].[Revisi]
                   ,[NPP_Detail].[Mold_Number]
-                  ,[NPP_Rev_Information].[Rev] as RevI
-                  ,[NPP_Rev_Information].[Information] 
         From [NPP_Head] inner Join [NPP_Detail] On
                     [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
-                    inner join [NPP_Rev_Information] on
-                    [NPP_Head].[No_NPP] = [NPP_Rev_Information].No_NPP
                     inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
 		            Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
                     Order By [NPP_Detail].[NoUrut] asc "
@@ -690,7 +706,7 @@ Public Class Cls_NPP_Detail
         End Try
     End Sub
 
-    Public Sub Update_DeptHead_Revisi(NPP_ As String)
+    Public Sub Update_DeptHead_Revisi(NPP_ As String, _Form As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -702,15 +718,54 @@ Public Class Cls_NPP_Detail
                     Try
 
                         Try
+                            'Dim ls_SP As String = " " & vbCrLf &
+                            '            "UPDATE NPP_Head" & vbCrLf &
+                            '            "SET [Approve] = '" & H_Approve & "'
+                            '                ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
+                            '                ,[Approve_Div_Head] = '" & H_Approve_Div_Head & "'
+                            '                ,[Submit_NPD_Acces] = '" & H_Submit_NPD & "'
+                            '                ,[RevStatus] = '" & H_RevStatus & "'
+                            '                ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            'MainModul.ExecQuery(ls_SP)
+
+                            Dim ls_UpdateHistory As String = " " & vbCrLf &
+                                    "UPDATE T_ApproveHistory" & vbCrLf &
+                                    "SET [IsActive] = 0
+                                     WHERE [NoTransaksi] = '" & NPP_ & "' and [MenuCode] = '" & _Form & "'"
+                            MainModul.ExecQuery(ls_UpdateHistory)
+
+
                             Dim ls_SP As String = " " & vbCrLf &
                                         "UPDATE NPP_Head" & vbCrLf &
                                         "SET [Approve] = '" & H_Approve & "'
-                                            ,[Approve_Dept_Head] = '" & H_Approve_Dept_Head & "'
-                                            ,[Approve_Div_Head] = '" & H_Approve_Div_Head & "'
                                             ,[Submit_NPD_Acces] = '" & H_Submit_NPD & "'
                                             ,[RevStatus] = '" & H_RevStatus & "'
                                             ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
                             MainModul.ExecQuery(ls_SP)
+
+                            Dim ls_Approve As String = "INSERT INTO [T_ApproveHistory]
+                                               ([UserName]
+                                               ,[MenuCode]
+                                               ,[DeptID]
+                                               ,[NoTransaksi]
+                                               ,[LevelApproved]
+                                               ,[StatusApproved]
+                                               ,[ApprovedBy]
+                                               ,[ApprovedDate]
+                                               ,[IsActive])
+                                         VALUES
+                                               ('" & TA_Username & "'
+                                               ,'" & TA_MenuCode & "'
+                                               ,'" & TA_DeptID & "'
+                                               ,'" & TA_NoTransaksi & "'
+                                               ,'" & TA_LevelApprove & "'
+                                               ,'" & TA_StatusApprove & "'
+                                               ,'" & TA_ApproveBy & "'
+                                               ,'" & Date.Now & "'
+                                               ,'" & TA_IsActive & "')"
+                            MainModul.ExecQuery(ls_Approve)
+
+
                         Catch ex As Exception
                             Throw ex
                         End Try

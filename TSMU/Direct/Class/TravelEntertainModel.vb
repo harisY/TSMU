@@ -128,9 +128,9 @@ Public Class TravelEntertainModel
                 Tgl = dr("Tgl")
                 CuryID = dr("CuryID")
                 PaymentType = dr("PaymentType")
-                CreditCardID = dr("CreditCardID")
-                CreditCardNumber = dr("CreditCardNumber")
-                AccountName = dr("AccountName")
+                CreditCardID = IIf(dr("CreditCardID") Is DBNull.Value, "", dr("CreditCardID"))
+                CreditCardNumber = IIf(dr("CreditCardNumber") Is DBNull.Value, "", dr("CreditCardNumber"))
+                AccountName = IIf(dr("AccountName") Is DBNull.Value, "", dr("AccountName"))
                 Total = dr("Total")
                 InsertEntertainHeader()
             Next
@@ -209,6 +209,58 @@ Public Class TravelEntertainModel
             Throw
         End Try
     End Sub
+
+    Public Function GetListJenis() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_JenisEntDetail "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListPosisi() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_PosisiEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListJenisUsaha() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_JenisUsahaEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListRemark() As DataTable
+        Try
+            Dim sql As String
+            sql = " SELECT  *
+                    FROM    dbo.S_RemarkEntRelasi "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class
 

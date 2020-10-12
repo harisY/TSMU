@@ -22,8 +22,6 @@ Public Class FrmEntertainSettleDetailDirect
     Dim GridDtl As GridControl
     Dim dtDetail As New DataTable
     Dim dtRelasi As New DataTable
-    Dim creditCardID As String = String.Empty
-    Dim accountName As String = String.Empty
     Dim isLoad As Boolean = False
     Dim _SettleID As String = ""
     Dim row As Integer
@@ -141,6 +139,11 @@ Public Class FrmEntertainSettleDetailDirect
             Else
                 CreateTable()
             End If
+
+            ListItemsJenis()
+            ListItemsPosisi()
+            ListItemsJenisUsaha()
+            ListItemsRemark()
         Catch ex As Exception
             XtraMessageBox.Show(ex.Message)
         End Try
@@ -157,10 +160,6 @@ Public Class FrmEntertainSettleDetailDirect
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.EditValue = .Total
                     TxtPrNo.Text = .PRNo.TrimEnd
-                    TxtPaymentType.Text = .PaymentType.TrimEnd
-                    creditCardID = .CreditCardID.TrimEnd
-                    txtCCNumber.EditValue = .CreditCardNumber.TrimEnd
-                    accountName = .AccountName
                 End With
             Else
                 TxtCurrency.Text = "IDR"
@@ -169,10 +168,6 @@ Public Class FrmEntertainSettleDetailDirect
                 TxtTgl.EditValue = DateTime.Today
                 TxtNoSettlement.Text = ""
                 TxtPrNo.Text = ""
-                TxtPaymentType.Text = "CASH"
-                creditCardID = ""
-                txtCCNumber.EditValue = ""
-                accountName = ""
                 TxtTotExpense.EditValue = 0
             End If
         Catch ex As Exception
@@ -227,10 +222,10 @@ Public Class FrmEntertainSettleDetailDirect
                     .Tgl = TxtTgl.EditValue
                     .Total = TxtTotExpense.Text
                     .PRNo = TxtPrNo.Text
-                    .PaymentType = TxtPaymentType.Text
-                    .CreditCardID = creditCardID
-                    .CreditCardNumber = txtCCNumber.EditValue
-                    .AccountName = accountName
+                    .PaymentType = "FINANCE"
+                    .CreditCardID = ""
+                    .CreditCardNumber = ""
+                    .AccountName = ""
                 End With
             End If
         Catch ex As Exception
@@ -386,50 +381,6 @@ Public Class FrmEntertainSettleDetailDirect
         End Try
     End Sub
 
-    Private Sub TxtPaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TxtPaymentType.SelectedIndexChanged
-        Try
-            If isLoad = False Then
-                Dim ls_OldKode As String = ""
-
-                If TxtPaymentType.Text = "CREDIT CARD" Then
-                    Dim ls_Judul As String = ""
-                    Dim dtSearch As New DataTable
-
-                    dtSearch = ObjSettleHeader.GetCreditCard
-                    ls_Judul = "CREDIT CARD"
-                    ls_OldKode = creditCardID
-
-                    Dim lF_SearchData As FrmSystem_LookupGrid
-                    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-                    lF_SearchData.HiddenCols = 0
-                    lF_SearchData.Text = "Select Data " & ls_Judul
-                    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-                    lF_SearchData.ShowDialog()
-
-                    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                        creditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                        txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
-                        accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
-                    Else
-                        TxtPaymentType.Text = "CASH"
-                        txtCCNumber.Text = ""
-                        creditCardID = ""
-                        accountName = ""
-                    End If
-
-                    lF_SearchData.Close()
-                Else
-                    txtCCNumber.Text = ""
-                    creditCardID = ""
-                    accountName = ""
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
-
     Private Sub GridDetail_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GridDetail.ProcessGridKey
         Try
             Dim grid As GridControl = TryCast(sender, GridControl)
@@ -469,6 +420,70 @@ Public Class FrmEntertainSettleDetailDirect
             TxtTotExpense.EditValue = _total
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub ListItemsJenis()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListJenis()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisDetail.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsPosisi()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListPosisi()
+        Dim itemsCollection As ComboBoxItemCollection = CPosisiRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsJenisUsaha()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListJenisUsaha()
+        Dim itemsCollection As ComboBoxItemCollection = CJenisUsahaRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub ListItemsRemark()
+        ObjEntertainHeader = New EntertainHeaderModel
+        Dim dt = New DataTable
+        dt = ObjEntertainHeader.GetListRemark()
+        Dim itemsCollection As ComboBoxItemCollection = CRemarkRelasi.Items
+        itemsCollection.BeginUpdate()
+        itemsCollection.Clear()
+        Try
+            For Each r As DataRow In dt.Rows
+                itemsCollection.Add(r.Item(1))
+            Next
+        Finally
+            itemsCollection.EndUpdate()
         End Try
     End Sub
 
@@ -567,12 +582,6 @@ Public Class FrmEntertainSettleDetailDirect
             headerSeq = maxValue + 1
         End If
 
-        Dim defaultName As String = String.Empty
-        If accountName.Contains("-") Then
-            Dim lastFind As Integer = accountName.IndexOf("-")
-            defaultName = accountName.Substring(0, lastFind)
-        End If
-
         GridViewDetail.AddNewRow()
         GridViewDetail.OptionsNavigation.AutoFocusNewRow = True
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
@@ -580,7 +589,7 @@ Public Class FrmEntertainSettleDetailDirect
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SubAccount", "11690")
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Account", "62300")
-        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Nama", defaultName)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Description", TxtRemark.Text)
         GridViewDetail.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()
@@ -729,14 +738,14 @@ Public Class FrmEntertainSettleDetailDirect
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CJenisUsaha_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisUsaha.EditValueChanged
+    Private Sub CJenisUsahaRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CJenisUsahaRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub CCRemarkRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CRemarkRelasi.EditValueChanged
+    Private Sub CRemarkRelasi_EditValueChanged(sender As Object, e As EventArgs) Handles CRemarkRelasi.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

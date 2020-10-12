@@ -63,11 +63,19 @@ Public Class FrmTravelTicket
         End Try
     End Sub
 
-    Private Sub LoadGridTicket()
+    Private Sub LoadGridTicket(Optional dateFrom As Date = Nothing, Optional dateTo As Date = Nothing)
         Try
-            dtGrid = fc_Class.GetTravelTicket()
+            Dim firstDay As Date = dateFrom
+            Dim lastDay As Date = dateTo
+
+            If dateFrom = Nothing OrElse dateTo = Nothing Then
+                Dim _now As Date = Date.Today
+                firstDay = New Date(_now.Year, _now.Month, 1)
+                lastDay = New Date(_now.Year, _now.Month, Date.DaysInMonth(_now.Year, _now.Month))
+            End If
+
+            dtGrid = fc_Class.GetTravelTicket(firstDay, lastDay)
             GridTicket.DataSource = dtGrid
-            'GridCellFormat(GridViewTicket)
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -101,11 +109,13 @@ Public Class FrmTravelTicket
 
     Public Overrides Sub Proc_DeleteData()
         Dim NoVoucher As String = String.Empty
+        Dim pay As Integer
         Try
             Dim selectedRows() As Integer = GridViewTicket.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     NoVoucher = GridViewTicket.GetRowCellValue(rowHandle, "NoVoucher")
+                    pay = IIf(GridViewTicket.GetRowCellValue(rowHandle, "Pay") Is DBNull.Value, 0, GridViewTicket.GetRowCellValue(rowHandle, "Pay"))
                 End If
 
                 fc_Class.NoVoucher = NoVoucher
@@ -113,6 +123,8 @@ Public Class FrmTravelTicket
                 dtCheckSettle = fc_Class.CheckRequestSettle()
                 If dtCheckSettle Then
                     Err.Raise(ErrNumber, , "No Voucher " & NoVoucher & " sudah proses settlement !")
+                ElseIf pay = 1 Then
+                    Err.Raise(ErrNumber, , "No Voucher " & NoVoucher & " sudah proses payment !")
                 Else
                     fc_Class.DeleteData()
                     Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
@@ -127,7 +139,21 @@ Public Class FrmTravelTicket
     End Sub
 
     Public Overrides Sub Proc_Search()
+        Try
+            Dim fSearch As New frmSearch()
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+            End With
 
+            Dim _now As Date = Date.Today
+            Dim firstDay As Date = If(IsDBNull(fSearch.TglDari), New Date(_now.Year, _now.Month, 1), fSearch.TglDari)
+            Dim lastDay As Date = If(IsDBNull(fSearch.TglSampai), _now.AddMonths(1).AddDays(-1), fSearch.TglSampai)
+
+            LoadGridTicket(firstDay, lastDay)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
