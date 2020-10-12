@@ -579,6 +579,12 @@
     <Compile Include="Direct\FrmEntertainSettleDetailDirect.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmSuspendSettleCC.Designer.vb">
+      <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetailDirect.Designer.vb">
       <DependentUpon>FrmSuspendSettleDetailDirect.vb</DependentUpon>
     </Compile>
@@ -589,6 +595,12 @@
       <DependentUpon>FrmSuspendSettleDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmSuspendSettleDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirectCC.Designer.vb">
+      <DependentUpon>FrmSuspendSettleDetailDirectCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmSuspendSettleDetailDirectCC.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmSuspend_Detail.Designer.vb">
@@ -2767,6 +2779,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
       <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
+      <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmSuspendSettleDetailDirectCC.resx">
+      <DependentUpon>FrmSuspendSettleDetailDirectCC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelCreditCard.resx">
       <DependentUpon>FrmTravelCreditCard.vb</DependentUpon>
