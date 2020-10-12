@@ -39,7 +39,7 @@
 
 
             Dim query As String = "[CR_Get_Approve_Search]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(6) {}
 
             pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@pDate1", SqlDbType.Date)
@@ -47,6 +47,7 @@
             pParam(3) = New SqlClient.SqlParameter("@Level", SqlDbType.Int)
             pParam(4) = New SqlClient.SqlParameter("@div_id", SqlDbType.Int)
             pParam(5) = New SqlClient.SqlParameter("@director_id", SqlDbType.Int)
+            pParam(6) = New SqlClient.SqlParameter("@User", SqlDbType.VarChar)
 
             pParam(0).Value = Dept_
             pParam(1).Value = pDate1
@@ -54,6 +55,7 @@
             pParam(3).Value = Level
             pParam(4).Value = division
             pParam(5).Value = director
+            pParam(6).Value = gh_Common.Username
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
@@ -66,15 +68,8 @@
 
     Public Function Get_Approve(Dept_ As String, Level As Int32, division As Int32, director As Int32) As DataTable
         Try
-            'Dim query As String = "[Generate_Report_Matome]"
 
             Dim pField As String = ""
-
-            'If Level = 2 Or Level = 3 Then
-            '    P1 = "Submit"
-            '    P2 = "Approve 1"
-            '    P3 = "Approve 2"
-            'End If
 
             Dim P1 As String = "Submit"
             Dim P2 As String = "Approve 1"

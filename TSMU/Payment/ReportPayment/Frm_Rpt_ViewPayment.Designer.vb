@@ -153,10 +153,11 @@ Partial Class Frm_Rpt_ViewPayment
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(4, 27)
+        Me.TabControl1.Location = New System.Drawing.Point(5, 33)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(803, 554)
+        Me.TabControl1.Size = New System.Drawing.Size(1071, 682)
         Me.TabControl1.TabIndex = 5
         '
         'TabPage1
@@ -166,10 +167,11 @@ Partial Class Frm_Rpt_ViewPayment
         Me.TabPage1.Controls.Add(Me.Panel1)
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(795, 528)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabPage1.Size = New System.Drawing.Size(1063, 653)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Filter By Tgl"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -177,21 +179,23 @@ Partial Class Frm_Rpt_ViewPayment
         'DateEdit2
         '
         Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(251, 7)
+        Me.DateEdit2.Location = New System.Drawing.Point(335, 9)
+        Me.DateEdit2.Margin = New System.Windows.Forms.Padding(4)
         Me.DateEdit2.Name = "DateEdit2"
         Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit2.Size = New System.Drawing.Size(191, 22)
         Me.DateEdit2.TabIndex = 18
         '
         'DateEdit1
         '
         Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(48, 7)
+        Me.DateEdit1.Location = New System.Drawing.Point(64, 9)
+        Me.DateEdit1.Margin = New System.Windows.Forms.Padding(4)
         Me.DateEdit1.Name = "DateEdit1"
         Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit1.Size = New System.Drawing.Size(191, 22)
         Me.DateEdit1.TabIndex = 17
         '
         'Panel1
@@ -203,24 +207,28 @@ Partial Class Frm_Rpt_ViewPayment
         Me.Panel1.Controls.Add(Me.GridControl2)
         Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(3, 33)
+        Me.Panel1.Location = New System.Drawing.Point(4, 41)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(789, 489)
+        Me.Panel1.Size = New System.Drawing.Size(1052, 602)
         Me.Panel1.TabIndex = 16
         '
         'GridControl3
         '
         Me.GridControl3.DataMember = Nothing
         Me.GridControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl3.Location = New System.Drawing.Point(0, 25)
+        Me.GridControl3.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridControl3.Location = New System.Drawing.Point(0, 33)
         Me.GridControl3.MainView = Me.GridView4
+        Me.GridControl3.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl3.Name = "GridControl3"
-        Me.GridControl3.Size = New System.Drawing.Size(789, 464)
+        Me.GridControl3.Size = New System.Drawing.Size(1052, 569)
         Me.GridControl3.TabIndex = 5
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4, Me.GridView5})
         '
         'GridView4
         '
+        Me.GridView4.DetailHeight = 431
         Me.GridView4.GridControl = Me.GridControl3
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.Editable = False
@@ -229,6 +237,7 @@ Partial Class Frm_Rpt_ViewPayment
         '
         'GridView5
         '
+        Me.GridView5.DetailHeight = 431
         Me.GridView5.GridControl = Me.GridControl3
         Me.GridView5.Name = "GridView5"
         '
@@ -236,16 +245,19 @@ Partial Class Frm_Rpt_ViewPayment
         '
         Me.GridControl2.DataMember = "Query"
         Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 25)
+        Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridControl2.Location = New System.Drawing.Point(0, 33)
         Me.GridControl2.MainView = Me.GridView3
+        Me.GridControl2.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(789, 464)
+        Me.GridControl2.Size = New System.Drawing.Size(1052, 569)
         Me.GridControl2.TabIndex = 4
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
         Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno1, Me.coltgl1, Me.colvendorname1, Me.coltot_DPP, Me.coltot_PPN, Me.colTotal1, Me.colpph1, Me.colGrand_Total1, Me.colbiaya_transfer1, Me.colTotal_Bayar1})
+        Me.GridView3.DetailHeight = 431
         Me.GridView3.GridControl = Me.GridControl2
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
@@ -255,87 +267,110 @@ Partial Class Frm_Rpt_ViewPayment
         'colvrno1
         '
         Me.colvrno1.FieldName = "vrno"
+        Me.colvrno1.MinWidth = 27
         Me.colvrno1.Name = "colvrno1"
         Me.colvrno1.Visible = True
         Me.colvrno1.VisibleIndex = 0
+        Me.colvrno1.Width = 100
         '
         'coltgl1
         '
         Me.coltgl1.FieldName = "tgl"
+        Me.coltgl1.MinWidth = 27
         Me.coltgl1.Name = "coltgl1"
         Me.coltgl1.Visible = True
         Me.coltgl1.VisibleIndex = 1
+        Me.coltgl1.Width = 100
         '
         'colvendorname1
         '
         Me.colvendorname1.FieldName = "vendorname"
+        Me.colvendorname1.MinWidth = 27
         Me.colvendorname1.Name = "colvendorname1"
         Me.colvendorname1.Visible = True
         Me.colvendorname1.VisibleIndex = 2
+        Me.colvendorname1.Width = 100
         '
         'coltot_DPP
         '
         Me.coltot_DPP.FieldName = "tot_DPP"
+        Me.coltot_DPP.MinWidth = 27
         Me.coltot_DPP.Name = "coltot_DPP"
         Me.coltot_DPP.Visible = True
         Me.coltot_DPP.VisibleIndex = 3
+        Me.coltot_DPP.Width = 100
         '
         'coltot_PPN
         '
         Me.coltot_PPN.FieldName = "tot_PPN"
+        Me.coltot_PPN.MinWidth = 27
         Me.coltot_PPN.Name = "coltot_PPN"
         Me.coltot_PPN.Visible = True
         Me.coltot_PPN.VisibleIndex = 4
+        Me.coltot_PPN.Width = 100
         '
         'colTotal1
         '
         Me.colTotal1.FieldName = "Total"
+        Me.colTotal1.MinWidth = 27
         Me.colTotal1.Name = "colTotal1"
         Me.colTotal1.Visible = True
         Me.colTotal1.VisibleIndex = 5
+        Me.colTotal1.Width = 100
         '
         'colpph1
         '
         Me.colpph1.FieldName = "pph"
+        Me.colpph1.MinWidth = 27
         Me.colpph1.Name = "colpph1"
         Me.colpph1.Visible = True
         Me.colpph1.VisibleIndex = 6
+        Me.colpph1.Width = 100
         '
         'colGrand_Total1
         '
         Me.colGrand_Total1.FieldName = "Grand_Total"
+        Me.colGrand_Total1.MinWidth = 27
         Me.colGrand_Total1.Name = "colGrand_Total1"
         Me.colGrand_Total1.Visible = True
         Me.colGrand_Total1.VisibleIndex = 7
+        Me.colGrand_Total1.Width = 100
         '
         'colbiaya_transfer1
         '
         Me.colbiaya_transfer1.FieldName = "biaya_transfer"
+        Me.colbiaya_transfer1.MinWidth = 27
         Me.colbiaya_transfer1.Name = "colbiaya_transfer1"
         Me.colbiaya_transfer1.Visible = True
         Me.colbiaya_transfer1.VisibleIndex = 8
+        Me.colbiaya_transfer1.Width = 100
         '
         'colTotal_Bayar1
         '
         Me.colTotal_Bayar1.FieldName = "Total_Bayar"
+        Me.colTotal_Bayar1.MinWidth = 27
         Me.colTotal_Bayar1.Name = "colTotal_Bayar1"
         Me.colTotal_Bayar1.Visible = True
         Me.colTotal_Bayar1.VisibleIndex = 9
+        Me.colTotal_Bayar1.Width = 100
         '
         'Grid
         '
         Me.Grid.DataMember = "ViewPayment"
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(0, 33)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(789, 464)
+        Me.Grid.Size = New System.Drawing.Size(1052, 569)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
+        Me.GridView1.DetailHeight = 431
         GridFormatRule1.Name = "Format0"
         GridFormatRule1.Rule = Nothing
         Me.GridView1.FormatRules.Add(GridFormatRule1)
@@ -348,79 +383,100 @@ Partial Class Frm_Rpt_ViewPayment
         'colvrno
         '
         Me.colvrno.FieldName = "vrno"
+        Me.colvrno.MinWidth = 27
         Me.colvrno.Name = "colvrno"
         Me.colvrno.Visible = True
         Me.colvrno.VisibleIndex = 0
+        Me.colvrno.Width = 100
         '
         'coltgl
         '
         Me.coltgl.FieldName = "tgl"
+        Me.coltgl.MinWidth = 27
         Me.coltgl.Name = "coltgl"
         Me.coltgl.Visible = True
         Me.coltgl.VisibleIndex = 1
+        Me.coltgl.Width = 100
         '
         'colvendorname
         '
         Me.colvendorname.FieldName = "vendorname"
+        Me.colvendorname.MinWidth = 27
         Me.colvendorname.Name = "colvendorname"
         Me.colvendorname.Visible = True
         Me.colvendorname.VisibleIndex = 2
+        Me.colvendorname.Width = 100
         '
         'coldpp
         '
         Me.coldpp.FieldName = "dpp"
+        Me.coldpp.MinWidth = 27
         Me.coldpp.Name = "coldpp"
         Me.coldpp.Visible = True
         Me.coldpp.VisibleIndex = 3
+        Me.coldpp.Width = 100
         '
         'colppn
         '
         Me.colppn.FieldName = "ppn"
+        Me.colppn.MinWidth = 27
         Me.colppn.Name = "colppn"
         Me.colppn.Visible = True
         Me.colppn.VisibleIndex = 4
+        Me.colppn.Width = 100
         '
         'coltotal
         '
         Me.coltotal.FieldName = "total"
+        Me.coltotal.MinWidth = 27
         Me.coltotal.Name = "coltotal"
         Me.coltotal.Visible = True
         Me.coltotal.VisibleIndex = 5
+        Me.coltotal.Width = 100
         '
         'colpph
         '
         Me.colpph.FieldName = "pph"
+        Me.colpph.MinWidth = 27
         Me.colpph.Name = "colpph"
         Me.colpph.Visible = True
         Me.colpph.VisibleIndex = 6
+        Me.colpph.Width = 100
         '
         'colgrand_total
         '
         Me.colgrand_total.FieldName = "grand_total"
+        Me.colgrand_total.MinWidth = 27
         Me.colgrand_total.Name = "colgrand_total"
         Me.colgrand_total.Visible = True
         Me.colgrand_total.VisibleIndex = 7
+        Me.colgrand_total.Width = 100
         '
         'colbiaya_transfer
         '
         Me.colbiaya_transfer.FieldName = "biaya_transfer"
+        Me.colbiaya_transfer.MinWidth = 27
         Me.colbiaya_transfer.Name = "colbiaya_transfer"
         Me.colbiaya_transfer.Visible = True
         Me.colbiaya_transfer.VisibleIndex = 8
+        Me.colbiaya_transfer.Width = 100
         '
         'coltotal_bayar
         '
         Me.coltotal_bayar.FieldName = "total_bayar"
+        Me.coltotal_bayar.MinWidth = 27
         Me.coltotal_bayar.Name = "coltotal_bayar"
         Me.coltotal_bayar.Visible = True
         Me.coltotal_bayar.VisibleIndex = 9
+        Me.coltotal_bayar.Width = 100
         '
         'ToolStrip2
         '
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(789, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1052, 33)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -429,29 +485,31 @@ Partial Class Frm_Rpt_ViewPayment
         Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
         Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad.Size = New System.Drawing.Size(102, 30)
         Me.btnLoad.Text = "Load Data"
         '
         'ProgBar
         '
         Me.ProgBar.Name = "ProgBar"
-        Me.ProgBar.Size = New System.Drawing.Size(100, 22)
+        Me.ProgBar.Size = New System.Drawing.Size(133, 30)
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(211, 10)
+        Me.Label2.Location = New System.Drawing.Point(281, 12)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(34, 13)
+        Me.Label2.Size = New System.Drawing.Size(44, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Until :"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 10)
+        Me.Label1.Location = New System.Drawing.Point(8, 12)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(36, 13)
+        Me.Label1.Size = New System.Drawing.Size(48, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "From :"
         '
@@ -465,10 +523,11 @@ Partial Class Frm_Rpt_ViewPayment
         Me.TabPage3.Controls.Add(Me.Label3)
         Me.TabPage3.Controls.Add(Me.Label4)
         Me.TabPage3.Controls.Add(Me.ToolStrip1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(795, 528)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabPage3.Size = New System.Drawing.Size(1063, 653)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Filter By Supplier"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -477,9 +536,10 @@ Partial Class Frm_Rpt_ViewPayment
         '
         Me.cmb_supplier.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmb_supplier.FormattingEnabled = True
-        Me.cmb_supplier.Location = New System.Drawing.Point(467, 6)
+        Me.cmb_supplier.Location = New System.Drawing.Point(623, 7)
+        Me.cmb_supplier.Margin = New System.Windows.Forms.Padding(4)
         Me.cmb_supplier.Name = "cmb_supplier"
-        Me.cmb_supplier.Size = New System.Drawing.Size(233, 21)
+        Me.cmb_supplier.Size = New System.Drawing.Size(309, 24)
         Me.cmb_supplier.TabIndex = 27
         '
         'GridControl1
@@ -488,15 +548,18 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl1.DataMember = Nothing
-        Me.GridControl1.Location = New System.Drawing.Point(0, 62)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridControl1.Location = New System.Drawing.Point(0, 76)
         Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(789, 462)
+        Me.GridControl1.Size = New System.Drawing.Size(1052, 569)
         Me.GridControl1.TabIndex = 26
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView6})
         '
         'GridView2
         '
+        Me.GridView2.DetailHeight = 431
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -505,53 +568,59 @@ Partial Class Frm_Rpt_ViewPayment
         '
         'GridView6
         '
+        Me.GridView6.DetailHeight = 431
         Me.GridView6.GridControl = Me.GridControl1
         Me.GridView6.Name = "GridView6"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(410, 9)
+        Me.Label5.Location = New System.Drawing.Point(547, 11)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(51, 13)
+        Me.Label5.Size = New System.Drawing.Size(68, 17)
         Me.Label5.TabIndex = 23
         Me.Label5.Text = "Supplier :"
         '
         'DateEdit2_sup
         '
         Me.DateEdit2_sup.EditValue = Nothing
-        Me.DateEdit2_sup.Location = New System.Drawing.Point(251, 6)
+        Me.DateEdit2_sup.Location = New System.Drawing.Point(335, 7)
+        Me.DateEdit2_sup.Margin = New System.Windows.Forms.Padding(4)
         Me.DateEdit2_sup.Name = "DateEdit2_sup"
         Me.DateEdit2_sup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DateEdit2_sup.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2_sup.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit2_sup.Size = New System.Drawing.Size(191, 22)
         Me.DateEdit2_sup.TabIndex = 22
         '
         'DateEdit1_sup
         '
         Me.DateEdit1_sup.EditValue = Nothing
-        Me.DateEdit1_sup.Location = New System.Drawing.Point(48, 6)
+        Me.DateEdit1_sup.Location = New System.Drawing.Point(64, 7)
+        Me.DateEdit1_sup.Margin = New System.Windows.Forms.Padding(4)
         Me.DateEdit1_sup.Name = "DateEdit1_sup"
         Me.DateEdit1_sup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DateEdit1_sup.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1_sup.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit1_sup.Size = New System.Drawing.Size(191, 22)
         Me.DateEdit1_sup.TabIndex = 21
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(211, 9)
+        Me.Label3.Location = New System.Drawing.Point(281, 11)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.Size = New System.Drawing.Size(44, 17)
         Me.Label3.TabIndex = 20
         Me.Label3.Text = "Until :"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 9)
+        Me.Label4.Location = New System.Drawing.Point(8, 11)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(36, 13)
+        Me.Label4.Size = New System.Drawing.Size(48, 17)
         Me.Label4.TabIndex = 19
         Me.Label4.Text = "From :"
         '
@@ -561,10 +630,11 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad_sup, Me.Progbar_sup})
-        Me.ToolStrip1.Location = New System.Drawing.Point(3, 34)
+        Me.ToolStrip1.Location = New System.Drawing.Point(4, 42)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(216, 27)
         Me.ToolStrip1.TabIndex = 25
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -573,13 +643,13 @@ Partial Class Frm_Rpt_ViewPayment
         Me.btnLoad_sup.Image = CType(resources.GetObject("btnLoad_sup.Image"), System.Drawing.Image)
         Me.btnLoad_sup.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoad_sup.Name = "btnLoad_sup"
-        Me.btnLoad_sup.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad_sup.Size = New System.Drawing.Size(102, 24)
         Me.btnLoad_sup.Text = "Load Data"
         '
         'Progbar_sup
         '
         Me.Progbar_sup.Name = "Progbar_sup"
-        Me.Progbar_sup.Size = New System.Drawing.Size(100, 22)
+        Me.Progbar_sup.Size = New System.Drawing.Size(100, 24)
         '
         'TabPage2
         '
@@ -590,10 +660,11 @@ Partial Class Frm_Rpt_ViewPayment
         Me.TabPage2.Controls.Add(Me.cmb_supplier2)
         Me.TabPage2.Controls.Add(Me.Label6)
         Me.TabPage2.Controls.Add(Me.Label8)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(795, 528)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4)
+        Me.TabPage2.Size = New System.Drawing.Size(1063, 653)
         Me.TabPage2.TabIndex = 3
         Me.TabPage2.Text = "Filter By Supplier - Detail"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -604,15 +675,18 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl5.DataMember = Nothing
-        Me.GridControl5.Location = New System.Drawing.Point(4, 355)
+        Me.GridControl5.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridControl5.Location = New System.Drawing.Point(5, 437)
         Me.GridControl5.MainView = Me.GridView9
+        Me.GridControl5.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl5.Name = "GridControl5"
-        Me.GridControl5.Size = New System.Drawing.Size(789, 162)
+        Me.GridControl5.Size = New System.Drawing.Size(1052, 199)
         Me.GridControl5.TabIndex = 37
         Me.GridControl5.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView9, Me.GridView10})
         '
         'GridView9
         '
+        Me.GridView9.DetailHeight = 431
         Me.GridView9.GridControl = Me.GridControl5
         Me.GridView9.Name = "GridView9"
         Me.GridView9.OptionsBehavior.Editable = False
@@ -621,14 +695,16 @@ Partial Class Frm_Rpt_ViewPayment
         '
         'GridView10
         '
+        Me.GridView10.DetailHeight = 431
         Me.GridView10.GridControl = Me.GridControl5
         Me.GridView10.Name = "GridView10"
         '
         'txtperpost
         '
-        Me.txtperpost.Location = New System.Drawing.Point(60, 6)
+        Me.txtperpost.Location = New System.Drawing.Point(80, 7)
+        Me.txtperpost.Margin = New System.Windows.Forms.Padding(4)
         Me.txtperpost.Name = "txtperpost"
-        Me.txtperpost.Size = New System.Drawing.Size(100, 20)
+        Me.txtperpost.Size = New System.Drawing.Size(133, 22)
         Me.txtperpost.TabIndex = 36
         '
         'GridControl4
@@ -637,15 +713,18 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl4.DataMember = Nothing
-        Me.GridControl4.Location = New System.Drawing.Point(4, 57)
+        Me.GridControl4.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridControl4.Location = New System.Drawing.Point(5, 70)
         Me.GridControl4.MainView = Me.GridView7
+        Me.GridControl4.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl4.Name = "GridControl4"
-        Me.GridControl4.Size = New System.Drawing.Size(789, 299)
+        Me.GridControl4.Size = New System.Drawing.Size(1052, 368)
         Me.GridControl4.TabIndex = 35
         Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7, Me.GridView8})
         '
         'GridView7
         '
+        Me.GridView7.DetailHeight = 431
         Me.GridView7.GridControl = Me.GridControl4
         Me.GridView7.Name = "GridView7"
         Me.GridView7.OptionsBehavior.Editable = False
@@ -654,6 +733,7 @@ Partial Class Frm_Rpt_ViewPayment
         '
         'GridView8
         '
+        Me.GridView8.DetailHeight = 431
         Me.GridView8.GridControl = Me.GridControl4
         Me.GridView8.Name = "GridView8"
         '
@@ -663,10 +743,11 @@ Partial Class Frm_Rpt_ViewPayment
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ToolStrip4.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad_sup2, Me.Progbar_sup2})
-        Me.ToolStrip4.Location = New System.Drawing.Point(7, 29)
+        Me.ToolStrip4.Location = New System.Drawing.Point(9, 36)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStrip4.Size = New System.Drawing.Size(216, 27)
         Me.ToolStrip4.TabIndex = 34
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -675,47 +756,51 @@ Partial Class Frm_Rpt_ViewPayment
         Me.btnLoad_sup2.Image = CType(resources.GetObject("btnLoad_sup2.Image"), System.Drawing.Image)
         Me.btnLoad_sup2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoad_sup2.Name = "btnLoad_sup2"
-        Me.btnLoad_sup2.Size = New System.Drawing.Size(80, 22)
+        Me.btnLoad_sup2.Size = New System.Drawing.Size(102, 24)
         Me.btnLoad_sup2.Text = "Load Data"
         '
         'Progbar_sup2
         '
         Me.Progbar_sup2.Name = "Progbar_sup2"
-        Me.Progbar_sup2.Size = New System.Drawing.Size(100, 22)
+        Me.Progbar_sup2.Size = New System.Drawing.Size(100, 24)
         '
         'cmb_supplier2
         '
         Me.cmb_supplier2.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmb_supplier2.FormattingEnabled = True
-        Me.cmb_supplier2.Location = New System.Drawing.Point(222, 5)
+        Me.cmb_supplier2.Location = New System.Drawing.Point(296, 6)
+        Me.cmb_supplier2.Margin = New System.Windows.Forms.Padding(4)
         Me.cmb_supplier2.Name = "cmb_supplier2"
-        Me.cmb_supplier2.Size = New System.Drawing.Size(233, 21)
+        Me.cmb_supplier2.Size = New System.Drawing.Size(309, 24)
         Me.cmb_supplier2.TabIndex = 33
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(165, 8)
+        Me.Label6.Location = New System.Drawing.Point(220, 10)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(51, 13)
+        Me.Label6.Size = New System.Drawing.Size(68, 17)
         Me.Label6.TabIndex = 32
         Me.Label6.Text = "Supplier :"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(4, 9)
+        Me.Label8.Location = New System.Drawing.Point(5, 11)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(50, 13)
+        Me.Label8.Size = New System.Drawing.Size(66, 17)
         Me.Label8.TabIndex = 28
         Me.Label8.Text = "PerPost :"
         '
         'ToolStrip3
         '
+        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsBtn_newData, Me.ToolStripSeparator1, Me.tsBtn_save, Me.ToolStripSeparator2, Me.tsBtn_delete, Me.ToolStripSeparator3, Me.tsBtn_refresh, Me.ToolStripSeparator4, Me.tsBtn_excel, Me.ToolStripSeparator5, Me.tsBtn_filter, Me.ToolStripSeparator6, Me.tsBtn_preview, Me.ToolStripSeparator7, Me.tsBtn_print, Me.ToolStripSeparator8, Me.tsBtn_prev, Me.ToolStripSeparator9, Me.tsBtn_next})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(828, 25)
+        Me.ToolStrip3.Size = New System.Drawing.Size(1104, 27)
         Me.ToolStrip3.TabIndex = 6
         Me.ToolStrip3.Text = "ToolStrip3"
         '
@@ -726,14 +811,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_newData.Image = CType(resources.GetObject("tsBtn_newData.Image"), System.Drawing.Image)
         Me.tsBtn_newData.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_newData.Name = "tsBtn_newData"
-        Me.tsBtn_newData.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_newData.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_newData.Text = "New"
         Me.tsBtn_newData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_save
         '
@@ -742,14 +827,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_save.Image = CType(resources.GetObject("tsBtn_save.Image"), System.Drawing.Image)
         Me.tsBtn_save.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_save.Name = "tsBtn_save"
-        Me.tsBtn_save.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_save.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_save.Text = "Save"
         Me.tsBtn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_delete
         '
@@ -758,14 +843,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_delete.Image = CType(resources.GetObject("tsBtn_delete.Image"), System.Drawing.Image)
         Me.tsBtn_delete.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_delete.Name = "tsBtn_delete"
-        Me.tsBtn_delete.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_delete.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_delete.Text = "Delete"
         Me.tsBtn_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_refresh
         '
@@ -774,14 +859,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_refresh.Image = CType(resources.GetObject("tsBtn_refresh.Image"), System.Drawing.Image)
         Me.tsBtn_refresh.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_refresh.Name = "tsBtn_refresh"
-        Me.tsBtn_refresh.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_refresh.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_refresh.Text = "Refresh"
         Me.tsBtn_refresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_excel
         '
@@ -789,14 +874,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_excel.Image = CType(resources.GetObject("tsBtn_excel.Image"), System.Drawing.Image)
         Me.tsBtn_excel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_excel.Name = "tsBtn_excel"
-        Me.tsBtn_excel.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_excel.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_excel.Text = "Excel"
         Me.tsBtn_excel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_filter
         '
@@ -805,14 +890,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_filter.Image = CType(resources.GetObject("tsBtn_filter.Image"), System.Drawing.Image)
         Me.tsBtn_filter.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_filter.Name = "tsBtn_filter"
-        Me.tsBtn_filter.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_filter.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_filter.Text = "Filter"
         Me.tsBtn_filter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_preview
         '
@@ -821,14 +906,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_preview.Image = CType(resources.GetObject("tsBtn_preview.Image"), System.Drawing.Image)
         Me.tsBtn_preview.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_preview.Name = "tsBtn_preview"
-        Me.tsBtn_preview.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_preview.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_preview.Text = "Print Preview"
         Me.tsBtn_preview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_print
         '
@@ -837,14 +922,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_print.Image = CType(resources.GetObject("tsBtn_print.Image"), System.Drawing.Image)
         Me.tsBtn_print.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_print.Name = "tsBtn_print"
-        Me.tsBtn_print.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_print.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_print.Text = "Print"
         Me.tsBtn_print.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_prev
         '
@@ -853,14 +938,14 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_prev.Image = CType(resources.GetObject("tsBtn_prev.Image"), System.Drawing.Image)
         Me.tsBtn_prev.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_prev.Name = "tsBtn_prev"
-        Me.tsBtn_prev.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_prev.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_prev.Text = "Prev"
         Me.tsBtn_prev.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 27)
         '
         'tsBtn_next
         '
@@ -869,7 +954,7 @@ Partial Class Frm_Rpt_ViewPayment
         Me.tsBtn_next.Image = CType(resources.GetObject("tsBtn_next.Image"), System.Drawing.Image)
         Me.tsBtn_next.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsBtn_next.Name = "tsBtn_next"
-        Me.tsBtn_next.Size = New System.Drawing.Size(23, 22)
+        Me.tsBtn_next.Size = New System.Drawing.Size(24, 24)
         Me.tsBtn_next.Text = "Next"
         Me.tsBtn_next.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -881,19 +966,21 @@ Partial Class Frm_Rpt_ViewPayment
         Me.miniToolStrip.CanOverflow = False
         Me.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None
         Me.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.miniToolStrip.Location = New System.Drawing.Point(183, 2)
+        Me.miniToolStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.miniToolStrip.Location = New System.Drawing.Point(244, 2)
         Me.miniToolStrip.Name = "miniToolStrip"
-        Me.miniToolStrip.Size = New System.Drawing.Size(783, 25)
+        Me.miniToolStrip.Size = New System.Drawing.Size(1044, 31)
         Me.miniToolStrip.TabIndex = 4
         '
         'Frm_Rpt_ViewPayment
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.ClientSize = New System.Drawing.Size(1104, 715)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.ToolStrip3)
         Me.Controls.Add(Me.miniToolStrip)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Frm_Rpt_ViewPayment"
         Me.Text = "Report View Payment Transaction"
         Me.TabControl1.ResumeLayout(False)

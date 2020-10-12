@@ -14,6 +14,7 @@
 
         'report.H_No_Npwo = "001"
         Dim ds As New DataSet
+        Dim dsRevisi As New DataSet
         ds = report.NPPReport(NPP_No, REV)
 
         'Dim dsRev As New DataSet
@@ -23,6 +24,9 @@
         'laporan.PrintToPrinter(1, False, 0, 0)
 
         laporan.SetDataSource(ds)
+
+        dsRevisi = report.NPPReport_Revisi(NPP_No, REV)
+        laporan.Subreports("NPP_RevInformasi.rpt").SetDataSource(dsRevisi)
 
 
         With CrystalReportViewer1

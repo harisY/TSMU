@@ -262,10 +262,23 @@
     <Compile Include="Classes\user_form.vb" />
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
+    <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
     <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
       <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
     </Compile>
     <Compile Include="Compare_Invoice\frmCompare_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.Designer.vb">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dashboard\Dashboard_kanbanSum.Designer.vb">
@@ -2720,6 +2733,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
+      <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
+      <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Dashboard_kanbanSum.resx">
       <DependentUpon>Dashboard_kanbanSum.vb</DependentUpon>
     </EmbeddedResource>
