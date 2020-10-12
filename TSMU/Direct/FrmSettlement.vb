@@ -3,6 +3,7 @@
     Dim dtGrid As DataTable
     Dim fc_Class As New ClsSettlement
     Dim _Service As ClsSettlement
+    Dim ObjSettle As SettleHeader
     Public Sub New()
 
         ' This call is required by the designer.
@@ -101,20 +102,54 @@
         ff_Detail.Show()
     End Sub
 
-    Public Overrides Sub Proc_DeleteData()
-        Dim ID As String = String.Empty
 
+    'Dim ID As String = String.Empty
+
+    'Try
+    '    Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+    '    For Each rowHandle As Integer In selectedRows
+    '        If rowHandle >= 0 Then
+    '            ID = GridView1.GetRowCellValue(rowHandle, "ID")
+
+    '        End If
+    '    Next rowHandle
+
+    '    ' fc_Class.Delete(ID)
+
+    '    tsBtn_refresh.PerformClick()
+
+    'Catch ex As Exception
+    '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+    'End Try
+    Public Overrides Sub Proc_DeleteData()
         Try
+            Dim ID As String = String.Empty
+            Dim settleID As String = String.Empty
+            Dim SuspendID As String = String.Empty
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     ID = GridView1.GetRowCellValue(rowHandle, "ID")
-
+                    settleID = GridView1.GetRowCellValue(rowHandle, "SettleID")
+                    SuspendID = IIf(GridView1.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView1.GetRowCellValue(rowHandle, "SuspendID")))
                 End If
             Next rowHandle
 
-            ' fc_Class.Delete(ID)
-
+            If ObjSettle.CheckSettleAccrued(settleID) Then
+                Err.Raise(ErrNumber, , "No Settlement " & settleID & " sudah dilakukan proses Accrued !")
+            Else
+                ObjSettle = New SettleHeader
+                ObjSettle.ID = ID
+                ObjSettle.SettleID = settleID
+                ObjSettle.SuspendID = SuspendID
+                If String.IsNullOrEmpty(SuspendID) Then
+                    ObjSettle.DeleteData()
+                Else
+                    ObjSettle.DeleteDataWithSuspend()
+                End If
+                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            End If
             tsBtn_refresh.PerformClick()
 
         Catch ex As Exception
@@ -122,6 +157,7 @@
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Dim ID As String
     Dim Settlementid As String
     Private Sub frmWorkCenter_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown

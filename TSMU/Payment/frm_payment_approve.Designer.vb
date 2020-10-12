@@ -650,9 +650,9 @@ Partial Class frm_payment_approve
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(698, 50)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(118, 17)
+        Me.Label3.Size = New System.Drawing.Size(101, 17)
         Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Fund Before Paid"
+        Me.Label3.Text = "Fund Available"
         '
         'Label4
         '
@@ -678,9 +678,9 @@ Partial Class frm_payment_approve
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(447, 51)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(101, 17)
+        Me.Label5.Size = New System.Drawing.Size(59, 17)
         Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Fund Available"
+        Me.Label5.Text = "Balance"
         '
         'Label6
         '

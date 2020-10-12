@@ -2345,7 +2345,27 @@ Public Class forecast_po_model_detail
             pParam(0) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
             pParam(0).Value = InvtID
             Dim dt As New DataTable
-            dt = MainModul.GetDataTableByCommand_SP(sql, pParam)
+            dt = GetDataTableByCommand_SP(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListForecast_Log(InvtID As String, Tahun As String, Bulan As String, CustId As String) As DataTable
+        Try
+            Dim sql As String = "tForecastPriceLoging"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(0).Value = InvtID
+            pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(1).Value = Tahun
+            pParam(2) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(2).Value = Bulan
+            pParam(3) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(3).Value = CustId
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(sql, pParam)
             Return dt
         Catch ex As Exception
             Throw ex

@@ -89,7 +89,7 @@
         laporan.Subreports("CRTravelDetailAllowanceSett.rpt").SetDataSource(dtAllowanceAdvance)
         laporan.Subreports("CRTravelDetailAllowanceSettRight.rpt").SetDataSource(dtAllowanceSettle)
 
-        FilteredRows = dtExpenseSum.[Select]("SumDesc like '%CASH%'")
+        FilteredRows = dtExpenseSum.[Select]("SumDesc like '%PAID%'")
         If FilteredRows.Count > 0 Then
             ExpenseUSD = Convert.ToDouble(FilteredRows(0).Item("USD"))
             ExpenseYEN = Convert.ToDouble(FilteredRows(0).Item("YEN"))

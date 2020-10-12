@@ -221,7 +221,10 @@ Public Class FrmTravelTicketDetail
         frm_TicketInvoice.ShowDialog()
 
         If frm_TicketInvoice.Proses Then
-            GridDtl.DataSource = ObjTravelTicket.GetTravelTicket()
+            Dim _now As Date = Date.Today
+            Dim firstDay As Date = New Date(_now.Year, _now.Month, 1)
+            Dim lastDay As Date = New Date(_now.Year, _now.Month, Date.DaysInMonth(_now.Year, _now.Month))
+            GridDtl.DataSource = ObjTravelTicket.GetTravelTicket(firstDay, lastDay)
             IsClosed = True
             Me.Hide()
         End If
