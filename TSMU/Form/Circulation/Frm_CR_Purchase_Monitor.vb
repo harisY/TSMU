@@ -53,7 +53,7 @@ Public Class Frm_CR_Purchase_Monitor
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class.Get_Purchase_Monitor_Proses(pAwal, pAkhir)
+            'dt = fc_Class.Get_Purchase_Monitor_Proses(pAwal, pAkhir)
             Grid.DataSource = dt
 
             Dim dt2 As New DataTable

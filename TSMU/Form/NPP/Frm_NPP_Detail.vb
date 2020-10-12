@@ -264,10 +264,10 @@ Public Class Frm_NPP_Detail
                     Call TextBox_False()
                     Me.Cek.OptionsColumn.AllowEdit = True
                     Me.Note.OptionsColumn.AllowEdit = True
-                    If fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Approve Div Head" Then
+                    If fc_Class.H_Status = "Approve Div Head" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         Call Colums_AllowEdit_False()
-                    ElseIf fc_Class.H_Approve_Dept_Head = True And fc_Class.H_Status = "Submit To NPD" Then
+                    ElseIf fc_Class.H_Status = "Submit To NPD" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         Call Colums_AllowEdit_False()
                         B_AddRows.Enabled = False
@@ -1668,8 +1668,9 @@ Public Class Frm_NPP_Detail
                             .TA_IsActive = 0
                         End With
 
-                        fc_Class.UpdateApprove(fs_Code)
+
                         fc_Class.UpdateTb_Approve_History(fs_Code, FrmParent.Name.ToString)
+                        fc_Class.UpdateApprove(fs_Code)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
 
@@ -1709,8 +1710,9 @@ Public Class Frm_NPP_Detail
                             .TA_ApproveDAte = Date.Now
                             .TA_IsActive = 0
                         End With
-                        fc_Class.UpdateApprove(fs_Code)
+
                         fc_Class.UpdateTb_Approve_History(fs_Code, FrmParent.ToString)
+                        fc_Class.UpdateApprove(fs_Code)
                         ' Call LoadGrid(fs_Code)
                         bs_Filter = gh_Common.Username()
                         'GridDtl.DataSource = fc_Class_Head.Get_NPP_DivHead()
@@ -1853,11 +1855,15 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub B_Revise_Click(sender As Object, e As EventArgs) Handles B_Revise.Click
+
         If Active_Form = 2 Then
 
             Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Revise " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
             If result = System.Windows.Forms.DialogResult.Yes Then
                 Try
+
+
+
                     fc_Class = New Cls_NPP_Detail
                     With fc_Class
                         .H_Approve = 0
@@ -1866,10 +1872,26 @@ Public Class Frm_NPP_Detail
                         .H_Submit_NPD = 0
                         .H_RevStatus = 1
                         .H_Status = "Revise"
+
+                        .H_Approve = 0
+                        .H_Status = "Revise"
+                        .H_Note = ""
+                        .H_Prepare = ""
+
+                        .TA_Username = gh_Common.Username
+                        .TA_MenuCode = MenuCode
+                        .TA_DeptID = gh_Common.GroupID
+                        .TA_NoTransaksi = TNPP_No.EditValue
+                        .TA_LevelApprove = Active_Form
+                        .TA_StatusApprove = "Reject"
+                        .TA_ApproveBy = gh_Common.Username
+                        .TA_ApproveDAte = Date.Now
+                        .TA_IsActive = 0
                     End With
 
 
-                    fc_Class.Update_DeptHead_Revisi(fs_Code)
+
+                    fc_Class.Update_DeptHead_Revisi(fs_Code, FrmParent.Name.ToString)
                     bs_Filter = gh_Common.Username()
                     GridDtl.DataSource = fc_Class_Head.Get_NPP_DeptHead()
 

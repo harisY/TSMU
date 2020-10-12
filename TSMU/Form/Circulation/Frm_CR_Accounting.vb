@@ -28,15 +28,8 @@ Public Class Frm_CR_Accounting
             Dim dt As New DataTable
             dt = fc_Class.Get_Approve_Accounting()
             Grid.DataSource = dt
-
-            'Dim dt2 As New DataTable
-            'dt2 = fc_Class.Get_Approve_Accounting2()
-            'Grid2.DataSource = dt2
-
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
-            'Cursor.Current = Cursors.Default
         Catch ex As Exception
-            ' Cursor.Current = Cursors.Default
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try

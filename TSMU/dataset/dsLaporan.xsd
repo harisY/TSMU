@@ -844,6 +844,7 @@
               <xs:element name="DeptHeadName" msprop:Generator_ColumnVarNameInTable="columnDeptHeadName" msprop:Generator_ColumnPropNameInRow="DeptHeadName" msprop:Generator_ColumnPropNameInTable="DeptHeadNameColumn" msprop:Generator_UserColumnName="DeptHeadName" type="xs:string" minOccurs="0" />
               <xs:element name="DeptHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDeptHeadNameDate" msprop:Generator_ColumnPropNameInRow="DeptHeadNameDate" msprop:Generator_ColumnPropNameInTable="DeptHeadNameDateColumn" msprop:Generator_UserColumnName="DeptHeadNameDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="DivHeadName" msprop:Generator_ColumnVarNameInTable="columnDivHeadName" msprop:Generator_ColumnPropNameInRow="DivHeadName" msprop:Generator_ColumnPropNameInTable="DivHeadNameColumn" msprop:Generator_UserColumnName="DivHeadName" type="xs:string" minOccurs="0" />
+              <xs:element name="Descr_Acct" msprop:Generator_ColumnVarNameInTable="columnDescr_Acct" msprop:Generator_ColumnPropNameInRow="Descr_Acct" msprop:Generator_ColumnPropNameInTable="Descr_AcctColumn" msprop:Generator_UserColumnName="Descr_Acct" type="xs:string" minOccurs="0" />
               <xs:element name="DivHeadNameDate" msprop:Generator_ColumnVarNameInTable="columnDivHeadNameDate" msprop:Generator_ColumnPropNameInRow="DivHeadNameDate" msprop:Generator_ColumnPropNameInTable="DivHeadNameDateColumn" msprop:Generator_UserColumnName="DivHeadNameDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -936,6 +937,15 @@
               <xs:element name="Nama1" msprop:Generator_ColumnVarNameInTable="columnNama1" msprop:Generator_ColumnPropNameInRow="Nama1" msprop:Generator_ColumnPropNameInTable="Nama1Column" msprop:Generator_UserColumnName="Nama1" type="xs:string" minOccurs="0" />
               <xs:element name="Posisi2" msprop:Generator_ColumnVarNameInTable="columnPosisi2" msprop:Generator_ColumnPropNameInRow="Posisi2" msprop:Generator_ColumnPropNameInTable="Posisi2Column" msprop:Generator_UserColumnName="Posisi2" type="xs:string" minOccurs="0" />
               <xs:element name="Nama2" msprop:Generator_ColumnVarNameInTable="columnNama2" msprop:Generator_ColumnPropNameInRow="Nama2" msprop:Generator_ColumnPropNameInTable="Nama2Column" msprop:Generator_UserColumnName="Nama2" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NPPRevisi" msprop:Generator_TableClassName="NPPRevisiDataTable" msprop:Generator_TableVarName="tableNPPRevisi" msprop:Generator_TablePropName="NPPRevisi" msprop:Generator_RowDeletingName="NPPRevisiRowDeleting" msprop:Generator_RowChangingName="NPPRevisiRowChanging" msprop:Generator_RowEvHandlerName="NPPRevisiRowChangeEventHandler" msprop:Generator_RowDeletedName="NPPRevisiRowDeleted" msprop:Generator_UserTableName="NPPRevisi" msprop:Generator_RowChangedName="NPPRevisiRowChanged" msprop:Generator_RowEvArgName="NPPRevisiRowChangeEvent" msprop:Generator_RowClassName="NPPRevisiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Revisi" msprop:Generator_ColumnVarNameInTable="columnRevisi" msprop:Generator_ColumnPropNameInRow="Revisi" msprop:Generator_ColumnPropNameInTable="RevisiColumn" msprop:Generator_UserColumnName="Revisi" type="xs:string" minOccurs="0" />
+              <xs:element name="Informasi" msprop:Generator_ColumnVarNameInTable="columnInformasi" msprop:Generator_ColumnPropNameInRow="Informasi" msprop:Generator_ColumnPropNameInTable="InformasiColumn" msprop:Generator_UserColumnName="Informasi" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="_Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
