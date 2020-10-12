@@ -91,4 +91,12 @@
         End Try
 
     End Sub
+
+    Private Sub ChekSalesTsm_Click(sender As Object, e As EventArgs) Handles ChekSalesTsm.Click
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class
