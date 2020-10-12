@@ -39,8 +39,8 @@ Public Class FrmMktUploadPrice
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
 
-        Dim frmExcelPrice As FrmSystemExcelBarcode
-        frmExcelPrice = New FrmSystemExcelBarcode(table, 69)
+        Dim frmExcelPrice As FrmMktExcelPrice
+        frmExcelPrice = New FrmMktExcelPrice(table, 69)
         frmExcelPrice.StartPosition = FormStartPosition.CenterScreen
         frmExcelPrice.ShowDialog()
 

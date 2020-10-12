@@ -128,9 +128,9 @@ Public Class TravelEntertainModel
                 Tgl = dr("Tgl")
                 CuryID = dr("CuryID")
                 PaymentType = dr("PaymentType")
-                CreditCardID = dr("CreditCardID")
-                CreditCardNumber = dr("CreditCardNumber")
-                AccountName = dr("AccountName")
+                CreditCardID = IIf(dr("CreditCardID") Is DBNull.Value, "", dr("CreditCardID"))
+                CreditCardNumber = IIf(dr("CreditCardNumber") Is DBNull.Value, "", dr("CreditCardNumber"))
+                AccountName = IIf(dr("AccountName") Is DBNull.Value, "", dr("AccountName"))
                 Total = dr("Total")
                 InsertEntertainHeader()
             Next

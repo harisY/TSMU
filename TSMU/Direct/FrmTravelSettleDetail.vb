@@ -521,7 +521,7 @@ Public Class FrmTravelSettleDetail
                 AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
                 PaymentType = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
             Else
-                PaymentType = "PAID BY FINANCE"
+                PaymentType = "FINANCE"
             End If
 
             lF_SearchData.Close()
@@ -1359,7 +1359,7 @@ Public Class FrmTravelSettleDetail
         view.SetRowCellValue(view.FocusedRowHandle, "Transport", "")
         view.SetRowCellValue(view.FocusedRowHandle, "EntertainID", "")
         view.SetRowCellValue(view.FocusedRowHandle, "Description", "")
-        view.SetRowCellValue(view.FocusedRowHandle, "PaymentType", "PAID BY FINANCE")
+        view.SetRowCellValue(view.FocusedRowHandle, "PaymentType", "FINANCE")
         view.SetRowCellValue(view.FocusedRowHandle, "CreditCardID", "")
         view.SetRowCellValue(view.FocusedRowHandle, "CreditCardNumber", "")
         view.SetRowCellValue(view.FocusedRowHandle, "AccountName", "")
@@ -1465,11 +1465,11 @@ Public Class FrmTravelSettleDetail
                 Dim curryID As String = IIf(view.GetRowCellValue(i, "CurryID") Is DBNull.Value, "", view.GetRowCellValue(i, "CurryID"))
                 Dim amount As Double = IIf(view.GetRowCellValue(i, "Amount") Is DBNull.Value, 0, Convert.ToDouble(view.GetRowCellValue(i, "Amount")))
 
-                If payType = "PAID BY FINANCE" And curryID = "IDR" Then
+                If payType = "FINANCE" And curryID = "IDR" Then
                     CashIDR = CashIDR + amount
-                ElseIf payType = "PAID BY FINANCE" And curryID = "USD" Then
+                ElseIf payType = "FINANCE" And curryID = "USD" Then
                     CashUSD = CashUSD + amount
-                ElseIf payType = "PAID BY FINANCE" And curryID = "JPY" Then
+                ElseIf payType = "FINANCE" And curryID = "JPY" Then
                     CashYEN = CashYEN + amount
                 ElseIf (payType = "CREDIT CARD" Or payType.Substring(0, 2) = "CC") And curryID = "IDR" Then
                     CreditIDR = CreditIDR + amount
