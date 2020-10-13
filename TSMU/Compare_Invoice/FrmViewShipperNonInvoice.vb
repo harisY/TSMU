@@ -5,6 +5,8 @@ Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Columns
+
 Public Class FrmViewShipperNonInvoice
     Dim dtGrid As DataTable
     Dim _Service As ClsShippernotinvoice
@@ -27,6 +29,14 @@ Public Class FrmViewShipperNonInvoice
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView1)
+            GridView1.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
+            'Dim colSalesDate As GridColumn = GridView1.Columns("TglSuratJalan")
+            'colSalesDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            'colSalesDate.DisplayFormat.FormatString = "D"
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

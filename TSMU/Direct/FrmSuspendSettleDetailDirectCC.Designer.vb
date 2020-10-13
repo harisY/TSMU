@@ -324,7 +324,7 @@ Partial Class FrmSuspendSettleDetailDirectCC
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
-        Me.Grid.Size = New System.Drawing.Size(1588, 766)
+        Me.Grid.Size = New System.Drawing.Size(1192, 587)
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '

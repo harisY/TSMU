@@ -2085,6 +2085,12 @@
     <Compile Include="Form\Report\frmReport_BoM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmSalesCheck.Designer.vb">
+      <DependentUpon>frmSalesCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmSalesCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmSales.Designer.vb">
       <DependentUpon>frmSales.vb</DependentUpon>
     </Compile>
@@ -2131,6 +2137,12 @@
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\System\frmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemCommonGrid.Designer.vb">
+      <DependentUpon>FrmSystemCommonGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemCommonGrid.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\MenuNew.Designer.vb">
@@ -3296,6 +3308,9 @@
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmSalesCheck.resx">
+      <DependentUpon>frmSalesCheck.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
     </EmbeddedResource>
@@ -3316,6 +3331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystemCommonGrid.resx">
+      <DependentUpon>FrmSystemCommonGrid.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\MenuNew.resx">
       <DependentUpon>MenuNew.vb</DependentUpon>

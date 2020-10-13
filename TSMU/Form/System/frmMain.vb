@@ -9,6 +9,7 @@ Imports DevExpress.XtraBars.Helpers
 Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraTabbedMdi
 Imports AutoUpdaterDotNET
+
 Partial Public Class FrmMain
     Inherits RibbonForm
 
@@ -389,4 +390,5 @@ Partial Public Class FrmMain
             ex = Nothing
         End Try
     End Sub
+
 End Class
