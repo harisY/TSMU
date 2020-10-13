@@ -41,6 +41,12 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.lblResult = New DevExpress.XtraEditors.LabelControl()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -58,6 +64,11 @@ Partial Class FrmMktExcelPrice
         CType(Me.GridViewResult, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl3.SuspendLayout()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -66,12 +77,14 @@ Partial Class FrmMktExcelPrice
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl2, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl3, 0, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1084, 659)
         Me.TableLayoutPanel1.TabIndex = 0
         '
@@ -212,16 +225,16 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl2.Location = New System.Drawing.Point(3, 63)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1078, 593)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1078, 548)
         Me.LayoutControl2.TabIndex = 1
         Me.LayoutControl2.Text = "LayoutControl2"
         '
         'GridResult
         '
-        Me.GridResult.Location = New System.Drawing.Point(12, 12)
+        Me.GridResult.Location = New System.Drawing.Point(12, 4)
         Me.GridResult.MainView = Me.GridViewResult
         Me.GridResult.Name = "GridResult"
-        Me.GridResult.Size = New System.Drawing.Size(1054, 569)
+        Me.GridResult.Size = New System.Drawing.Size(1054, 540)
         Me.GridResult.TabIndex = 4
         Me.GridResult.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewResult})
         '
@@ -229,6 +242,8 @@ Partial Class FrmMktExcelPrice
         '
         Me.GridViewResult.GridControl = Me.GridResult
         Me.GridViewResult.Name = "GridViewResult"
+        Me.GridViewResult.OptionsBehavior.Editable = False
+        Me.GridViewResult.OptionsView.ColumnAutoWidth = False
         Me.GridViewResult.OptionsView.ShowGroupPanel = False
         '
         'LayoutControlGroup1
@@ -237,7 +252,8 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1078, 593)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1078, 548)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -245,13 +261,78 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem1.Control = Me.GridResult
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1058, 573)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1058, 544)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'LayoutControl3
+        '
+        Me.LayoutControl3.Controls.Add(Me.lblResult)
+        Me.LayoutControl3.Controls.Add(Me.btnExport)
+        Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 617)
+        Me.LayoutControl3.Name = "LayoutControl3"
+        Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 345, 812, 500)
+        Me.LayoutControl3.Root = Me.LayoutControlGroup2
+        Me.LayoutControl3.Size = New System.Drawing.Size(1078, 39)
+        Me.LayoutControl3.TabIndex = 2
+        Me.LayoutControl3.Text = "LayoutControl3"
+        '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7, Me.LayoutControlItem8})
+        Me.LayoutControlGroup2.Name = "Root"
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1078, 39)
+        Me.LayoutControlGroup2.TextVisible = False
+        '
+        'btnExport
+        '
+        Me.btnExport.Location = New System.Drawing.Point(976, 4)
+        Me.btnExport.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnExport.MinimumSize = New System.Drawing.Size(90, 0)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(90, 27)
+        Me.btnExport.StyleController = Me.LayoutControl3
+        Me.btnExport.TabIndex = 4
+        Me.btnExport.Text = "Export"
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.btnExport
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(956, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(102, 35)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
+        '
+        'lblResult
+        '
+        Me.lblResult.Location = New System.Drawing.Point(12, 4)
+        Me.lblResult.Name = "lblResult"
+        Me.lblResult.Size = New System.Drawing.Size(952, 16)
+        Me.lblResult.StyleController = Me.LayoutControl3
+        Me.lblResult.TabIndex = 5
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.lblResult
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(0, 20)
+        Me.LayoutControlItem8.MinSize = New System.Drawing.Size(39, 20)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(956, 35)
+        Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextVisible = False
         '
         'FrmMktExcelPrice
         '
@@ -280,6 +361,11 @@ Partial Class FrmMktExcelPrice
         CType(Me.GridViewResult, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl3.ResumeLayout(False)
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,4 +389,10 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents txtTemplate As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControl3 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents btnExport As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents lblResult As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
 End Class
