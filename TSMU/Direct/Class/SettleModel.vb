@@ -1292,7 +1292,6 @@ Public Class SettleDetail
 
     Public Function GetDataDetailRelasiByID(_SettleID As String) As DataTable
         Try
-
             Dim sql = "SELECT ISNULL([HeaderSeq], 0) AS [HeaderSeq]
                       ,[SettleRelasiID]
                       ,[SettleID]
@@ -1302,7 +1301,6 @@ Public Class SettleDetail
                       ,[JenisUsaha]
                       ,[Remark]
                   FROM [SettleRelasi] Where [SettleID] = " & QVal(_SettleID) & ""
-
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt
