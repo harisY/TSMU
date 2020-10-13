@@ -19,7 +19,7 @@
             pParam(0).Value = Perpost
 
             Dim dt As New DataTable
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(query, pParam)
+            dt = GetDataTableByCommand_SP_Solomon(query, pParam)
 
             Return dt
         Catch ex As Exception

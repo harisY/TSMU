@@ -124,6 +124,7 @@ Public Class clsBoM
     Public Property RefNo() As String
     Public Property Converted() As Boolean
     Public Property BoMHeaderCollection As New Collection(Of clsBoM)
+    Public Property BoMTempCollection As New Collection(Of BoM_Temp)
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
@@ -474,6 +475,54 @@ Public Class clsBoM
             Throw
         End Try
     End Sub
+    Public Sub InsertHeaderExcel(i As Integer)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "Insert into bomh(bomid,tgl,invtid,descr,siteid,runner,ct,mc,cavity,wc,allowance, mp, [status],active,converted,created_by,created_date) " & vbCrLf &
+                                    "       OUTPUT  Inserted.bomid, " & vbCrLf &
+                                    "               Inserted.tgl, " & vbCrLf &
+                                    "               Inserted.invtid, " & vbCrLf &
+                                    "               Inserted.descr, " & vbCrLf &
+                                    "               Inserted.siteid, " & vbCrLf &
+                                    "               Inserted.runner, " & vbCrLf &
+                                    "               Inserted.ct, " & vbCrLf &
+                                    "               Inserted.mc, " & vbCrLf &
+                                    "               Inserted.cavity, " & vbCrLf &
+                                    "               Inserted.wc, " & vbCrLf &
+                                    "               Inserted.allowance, " & vbCrLf &
+                                    "               Inserted.mp, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               Inserted.[status], " & vbCrLf &
+                                    "               Inserted.[active], " & vbCrLf &
+                                    "               0, " & vbCrLf &
+                                    "               Inserted.created_by, " & vbCrLf &
+                                    "               Inserted.created_date, " & vbCrLf &
+                                    "               NULL, " & vbCrLf &
+                                    "               NULL " & vbCrLf &
+                                    "       Into bom_header_history " & vbCrLf &
+                                    "Values(" & QVal(BoMHeaderCollection(i)._bomid) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._tgl) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._invtid) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._desc) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._siteid) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._runner) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._ct) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._mc) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i).cavity) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i).WC) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._allowance) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._mp) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._status) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i)._active) & ", " & vbCrLf &
+                                    "       " & QVal(BoMHeaderCollection(i).Converted) & ", " & vbCrLf &
+                                    "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
+                                    "       getdate())"
+            MainModul.ExecQuery(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub UpdateHeader(ByVal rev As Integer)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -731,6 +780,34 @@ Public Class clsBoM
             Throw ex
         End Try
     End Function
+    Public Sub InsertBoMHeader()
+        Try
+            Using Conn1 As New SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For i As Integer = 0 To BoMHeaderCollection.Count - 1
+                            InsertHeaderExcel(i)
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Sub UpdateBoMHeader()
         Try
             Using Conn1 As New SqlConnection(GetConnString)
@@ -758,7 +835,7 @@ Public Class clsBoM
                         Trans1.Rollback()
                         Throw
                     Finally
-                        MainModul.gh_Trans = Nothing
+                        gh_Trans = Nothing
                     End Try
                 End Using
             End Using
@@ -766,6 +843,61 @@ Public Class clsBoM
             Throw
         End Try
     End Sub
+
+    Public Sub DeleteBoMOnUpload()
+        Try
+            Using Conn1 As New SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        For i As Integer = 0 To BoMTempCollection.Count - 1
+                            With BoMTempCollection(i)
+                                .DeleteByExcel()
+                            End With
+                        Next
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 #End Region
+End Class
+
+Public Class BoM_Temp
+    Public Property InvtID() As String
+
+    Public Sub DeleteByExcel()
+        Try
+            Dim BomID As String = String.Empty
+            Dim Sql As String = "BoMH_DeleteByInvtId"
+            Dim pParam() As SqlParameter = New SqlParameter(0) {}
+            pParam(0) = New SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(0).Value = InvtID
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(Sql, pParam)
+            If dt.Rows.Count > 0 Then
+                BomID = dt.Rows(0)(0).ToString()
+                Dim Sql1 As String = "BoM_DeleteByBomIDOnUploadExcel"
+                Dim pParam1() As SqlParameter = New SqlParameter(0) {}
+                pParam1(0) = New SqlParameter("@bomid", SqlDbType.VarChar)
+                pParam1(0).Value = BomID
+                ExecQueryByCommand_SP(Sql1, pParam1)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

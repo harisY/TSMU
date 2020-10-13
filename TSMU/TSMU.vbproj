@@ -156,10 +156,22 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Grid.Windows, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Shared.Base, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Shared.Windows, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -175,6 +187,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -1484,6 +1497,12 @@
     <Compile Include="Form\Common\FrmBulan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmKanbanInternalTng.Designer.vb">
+      <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmKanbanInternalTng.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </Compile>
@@ -2338,6 +2357,7 @@
     <Compile Include="Models\global_function_models.vb" />
     <Compile Include="Models\Harigami\HarigamiModels.vb" />
     <Compile Include="Models\KanbanAdmModel.vb" />
+    <Compile Include="Models\KanbanInternalTng.vb" />
     <Compile Include="Models\KanbanYIMModel.vb" />
     <Compile Include="Models\KaryawanModel.vb" />
     <Compile Include="Models\MApproveModel.vb" />
@@ -3165,6 +3185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmBulan.resx">
       <DependentUpon>FrmBulan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmKanbanInternalTng.resx">
+      <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
