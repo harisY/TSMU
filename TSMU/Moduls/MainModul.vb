@@ -2932,4 +2932,15 @@ Module MainModul
         table = ExcelDt.ToDataTable
         Return table
     End Function
+    Public Sub PerformBulkCopy(ByVal dt As DataTable, TableName As String)
+        Using Conn As SqlConnection = New SqlConnection(GetConnString)
+            Conn.Open()
+            Using s As SqlBulkCopy = New SqlBulkCopy(Conn)
+                s.DestinationTableName = TableName
+                s.WriteToServer(dt)
+                s.Close()
+            End Using
+            Conn.Close()
+        End Using
+    End Sub
 End Module
