@@ -44,7 +44,7 @@ Partial Class Frm_CR_OtherDeptHead
         Me.Grid.Location = New System.Drawing.Point(12, 30)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(762, 361)
+        Me.Grid.Size = New System.Drawing.Size(978, 313)
         Me.Grid.TabIndex = 9
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -186,7 +186,7 @@ Partial Class Frm_CR_OtherDeptHead
         'Frm_CR_OtherDeptHead
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(786, 393)
+        Me.ClientSize = New System.Drawing.Size(1002, 345)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_CR_OtherDeptHead"
         Me.Controls.SetChildIndex(Me.Grid, 0)

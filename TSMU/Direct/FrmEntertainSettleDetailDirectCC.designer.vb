@@ -380,7 +380,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'txtCCNumber
         '
-        Me.txtCCNumber.Location = New System.Drawing.Point(1202, 12)
+        Me.txtCCNumber.Location = New System.Drawing.Point(1194, 12)
         Me.txtCCNumber.Name = "txtCCNumber"
         Me.txtCCNumber.Properties.DisplayFormat.FormatString = "0000-0000-0000-9999"
         Me.txtCCNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
@@ -413,17 +413,17 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(96, 38)
+        Me.TxtRemark.Location = New System.Drawing.Point(95, 38)
         Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(1168, 23)
+        Me.TxtRemark.Size = New System.Drawing.Size(1161, 23)
         Me.TxtRemark.StyleController = Me.LayoutControl2
         Me.TxtRemark.TabIndex = 6
         '
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(96, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -442,7 +442,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(886, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(880, 12)
         Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
@@ -456,19 +456,19 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtPaymentType
         '
-        Me.TxtPaymentType.EditValue = "PAID BY FINANCE"
-        Me.TxtPaymentType.Location = New System.Drawing.Point(1044, 12)
+        Me.TxtPaymentType.EditValue = "FINANCE"
+        Me.TxtPaymentType.Location = New System.Drawing.Point(1037, 12)
         Me.TxtPaymentType.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPaymentType.Name = "TxtPaymentType"
         Me.TxtPaymentType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtPaymentType.Properties.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
+        Me.TxtPaymentType.Properties.Items.AddRange(New Object() {"FINANCE", "CREDIT CARD"})
         Me.TxtPaymentType.Size = New System.Drawing.Size(62, 22)
         Me.TxtPaymentType.StyleController = Me.LayoutControl2
         Me.TxtPaymentType.TabIndex = 15
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(254, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(252, 12)
         Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
@@ -478,7 +478,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(412, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(409, 12)
         Me.TxtPrNo.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPrNo.Name = "TxtPrNo"
         Me.TxtPrNo.Size = New System.Drawing.Size(62, 22)
@@ -487,7 +487,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(728, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(723, 12)
         Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtCurrency.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtCurrency.Name = "TxtCurrency"
@@ -504,7 +504,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(570, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(566, 12)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtDep.Name = "TxtDep"
@@ -520,7 +520,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.LayoutControlItem8, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem1, Me.LayoutControlItem3})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1276, 73)
+        Me.Root.Size = New System.Drawing.Size(1268, 73)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -528,88 +528,88 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlItem4.Control = Me.TxtTgl
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(150, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(149, 26)
         Me.LayoutControlItem4.Text = "Date"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtNoSettlement
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(150, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(149, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem6.Text = "Settlement"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.TxtPrNo
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(308, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(306, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem2.Text = "PR No"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.TxtDep
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(466, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(463, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem8.Text = "Dept ID"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(624, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(620, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem5.Text = "Currency"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(782, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(777, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem7.Text = "Total Expense"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.TxtPaymentType
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(940, 0)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(934, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(158, 26)
-        Me.LayoutControlItem9.Text = "Payment Type"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(157, 26)
+        Me.LayoutControlItem9.Text = "Paid By"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.txtCCNumber
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(1098, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(1091, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(158, 26)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(157, 26)
         Me.LayoutControlItem1.Text = "CC Number"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(80, 16)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtRemark
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(1256, 27)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(1248, 27)
         Me.LayoutControlItem3.Text = "Remark"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(81, 16)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 16)
         '
         'DxValidationProvider1
         '

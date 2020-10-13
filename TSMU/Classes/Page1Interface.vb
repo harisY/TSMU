@@ -72,11 +72,11 @@ Public Class Page1Interface
         Try
             If Level = 1 Then
                 Dim sql As String = "GetMenuLevel"
-                Dim param() As SqlParameter = New SqlParameter(0) {}
+                Dim param() As SqlParameter = New SqlParameter(1) {}
                 param(0) = New SqlParameter("@parentNode", SqlDbType.Int)
                 param(0).Value = NodeId
-                'param(1) = New SqlParameter("@childMenu", SqlDbType.VarChar)
-                'param(1).Value = ChildMenu
+                param(1) = New SqlParameter("@Username", SqlDbType.VarChar)
+                param(1).Value = gh_Common.Username
                 Dim dt As New DataTable
                 dt = GetDataTableByCommand_SP(sql, param)
                 For Each row In dt.Rows

@@ -287,7 +287,7 @@ Partial Class FrmTravelEntertainDetail
         Me.txtPayType.MinimumSize = New System.Drawing.Size(100, 0)
         Me.txtPayType.Name = "txtPayType"
         Me.txtPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtPayType.Properties.Items.AddRange(New Object() {"PAID BY FINANCE", "CREDIT CARD"})
+        Me.txtPayType.Properties.Items.AddRange(New Object() {"FINANCE", "CREDIT CARD"})
         Me.txtPayType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtPayType.Size = New System.Drawing.Size(130, 22)
         Me.txtPayType.StyleController = Me.LayoutControl2
@@ -396,7 +396,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 32)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(222, 33)
-        Me.LayoutControlItem11.Text = "Payment Type"
+        Me.LayoutControlItem11.Text = "Paid By"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(85, 16)
         '
         'EmptySpaceItem2

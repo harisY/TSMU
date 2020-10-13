@@ -120,7 +120,7 @@ Public Class FrmTravelEntertainDetail
             Else
                 TxtCurrency.Text = "IDR"
                 TxtDep.Text = gh_Common.GroupID
-                txtPayType.Text = "PAID BY FINANCE"
+                txtPayType.Text = "FINANCE"
                 CreditCardID = ""
                 txtCCNumber.EditValue = ""
                 AccountNameNBank = ""
@@ -399,7 +399,7 @@ Public Class FrmTravelEntertainDetail
                         txtCCNumber.EditValue = lF_SearchData.Values.Item(1).ToString.Trim
                         AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
                     Else
-                        txtPayType.Text = "PAID BY FINANCE"
+                        txtPayType.Text = "FINANCE"
                     End If
 
                     lF_SearchData.Close()
@@ -461,6 +461,7 @@ Public Class FrmTravelEntertainDetail
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "HeaderSeq", headerSeq)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount", "11690")
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", "62300")
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Description", TxtRemark.Text)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Nama", defaultName)
         GridViewEntertain.RefreshData()
         GridViewRelasi.ClearColumnsFilter()

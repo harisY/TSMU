@@ -222,7 +222,7 @@ Public Class FrmEntertainSettleDetailDirect
                     .Tgl = TxtTgl.EditValue
                     .Total = TxtTotExpense.Text
                     .PRNo = TxtPrNo.Text
-                    .PaymentType = "PAID BY FINANCE"
+                    .PaymentType = "FINANCE"
                     .CreditCardID = ""
                     .CreditCardNumber = ""
                     .AccountName = ""

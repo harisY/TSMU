@@ -4,6 +4,7 @@ Imports System.Configuration
 Imports System.IO
 
 Public Class FrmMktExcelPrice
+    Dim cls_UploadPrice As New ClsMktUploadPrice
     Dim proses As String = String.Empty
     Dim path As String = String.Empty
     Dim GridData As New DataTable
@@ -65,7 +66,7 @@ Public Class FrmMktExcelPrice
             Using excel_con As New OleDbConnection(connString)
                 excel_con.Open()
                 Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
+                Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "] ", excel_con)
                     oda.Fill(GridData)
                 End Using
                 excel_con.Close()
@@ -82,7 +83,18 @@ Public Class FrmMktExcelPrice
     End Sub
 
     Private Sub FrmMktExcelPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ListItemsTemplate()
+    End Sub
 
+    Private Sub ListItemsTemplate()
+        cls_UploadPrice = New ClsMktUploadPrice
+        Dim dt As New DataTable
+        dt = cls_UploadPrice.GetListTemplate()
+        txtTemplate.Properties.DataSource = dt
+        txtTemplate.Size = txtTemplate.CalcBestSize()
+        txtTemplate.Properties.PopupFormMinSize = txtTemplate.Size
+        txtTemplate.Properties.PopupWidth = txtTemplate.Size.Width
+        txtTemplate.EditValue = "001"
     End Sub
 
 End Class

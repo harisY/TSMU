@@ -4,7 +4,6 @@ Imports System.Globalization
 Public Class ClsCR_CreateUser
 
     Dim _Query As String
-
     Public Property H_CirculationNo As String
     Public Property H_RequirementDate As DateTime
     Public Property H_DeptID As String
@@ -50,12 +49,14 @@ Public Class ClsCR_CreateUser
     Public Property H_BOD_Approve As Boolean
     Public Property H_BOD_Approve_Date As Date
     Public Property H_BOD_User As String
+    Public Property H_No_PO As String
 
     Public Property H_NoBeritaAcara As String
     Public Property H_TanggalBeritaAcara As Date
 
     Public Property H_Div_id As Integer
     Public Property H_Director_id As Integer
+    Public Property H_Current_Level As Integer
 
 
     Public Property TA_Username As String
@@ -67,9 +68,6 @@ Public Class ClsCR_CreateUser
     Public Property TA_ApproveBy As String
     Public Property TA_ApproveDAte As Date
     Public Property TA_IsActive As Integer
-
-
-
 
     Public Property Collection_Description_Of_Cost() As New Collection(Of ClsCR_Description_of_Cost)
     Public Property Collection_Other_Dept() As New Collection(Of ClsCR_Other_Dept)
@@ -105,9 +103,6 @@ Public Class ClsCR_CreateUser
                                     ,[Date] 
                                     ,[Opinion]  
                                   from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'"
-            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
-            'pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
-            'pParam(0).Value = CirculationNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             For a As Integer = 0 To dt.Rows.Count - 1
@@ -608,6 +603,7 @@ Public Class ClsCR_CreateUser
                     H_NameItem = Trim(.Item("NameItem") & "")
                     H_Spesification = Trim(.Item("Spesification") & "")
                     H_PO = Trim(.Item("PoType") & "")
+                    H_No_PO = Trim(.Item("PO_No") & "")
                     'If Trim(.Item("ChargedOfCustomer") & "") = "0" Then
                     '    H_ChargedOf = 0
                     'Else
@@ -664,9 +660,6 @@ Public Class ClsCR_CreateUser
 
                 Dim query As String = "Delete From [CR_Approve] Where CirculationNo = '" & CirculationNo & "' "
 
-                'Dim dtTable As New DataTable
-                'dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
-                'MainModul.ExecQueryByCommand_SP(query, pParam)
                 MainModul.ExecQueryByCommand(query)
             Catch ex As Exception
                 Throw
@@ -766,7 +759,8 @@ Public Class ClsCR_CreateUser
                         'If Active_Form = 2 Then
 
                         Update_Approve(H_CirculationNo,
-                                         H_Status)
+                                         H_Status,
+                                         H_Current_Level)
 
 
 
@@ -813,17 +807,18 @@ Public Class ClsCR_CreateUser
                     Try
 
                         Update_Approve(H_CirculationNo,
-                                         H_Status)
+                                         H_Status,
+                                         H_Current_Level)
 
 
 
                         For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
-                                With Collection_Description_Of_Cost(i)
-                                    .Update_DOC_Approve(NoSirkulasi)
-                                End With
-                            Next
+                            With Collection_Description_Of_Cost(i)
+                                .Update_DOC_Approve(NoSirkulasi)
+                            End With
+                        Next
 
-                            Delete_Approve(H_CirculationNo)
+                        'Delete_Approve(H_CirculationNo)
 
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE T_ApproveHistory" & vbCrLf &
@@ -941,13 +936,12 @@ Public Class ClsCR_CreateUser
 
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE CR_Request" & vbCrLf &
-                                     "SET [Status] = 'Set Installment' WHERE [CirculationNo] = '" & NoSirkulasi & "'"
+                                     "SET [Status] = '" & H_Status & "'
+                                     ,[PO_No] = '" & H_No_PO & "'  WHERE [CirculationNo] = '" & NoSirkulasi & "'"
                         MainModul.ExecQuery(ls_SP)
 
                         Dim GS As New GlobalService
                         GS.Approve(Model, "Approve")
-
-
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -1222,7 +1216,7 @@ Public Class ClsCR_CreateUser
                         'Try
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE CR_Request" & vbCrLf &
-                                                        "SET [Status] = '" & H_Status & "'
+                                                        "SET [Status] = '" & H_Status & "',[Current_Level] = '" & H_Current_Level & "'
                                                         WHERE [CirculationNo] = '" & CirculationNo & "'"
                         MainModul.ExecQuery(ls_SP)
 
@@ -1285,7 +1279,8 @@ Public Class ClsCR_CreateUser
 
 
     Public Sub Update_Approve(CirculationNo As String,
-                                Status As String)
+                                Status As String,
+                                CurrentLevel As Integer)
 
         Dim result As Integer = 0
         Try
@@ -1294,13 +1289,15 @@ Public Class ClsCR_CreateUser
             End If
 
             Dim query As String = "[CR_Update_Approve]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo ", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(2) = New SqlClient.SqlParameter("@Level", SqlDbType.Int)
 
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = Status
+            pParam(2).Value = CurrentLevel
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
@@ -1476,7 +1473,7 @@ Public Class ClsCR_CreateUser
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE CR_Request" & vbCrLf &
                                      "SET [Status] = '" & H_Status & "'
-                                     ,Current_Level = '" & Level & "' WHERE [CirculationNo] = '" & _FsCode & "'"
+                                     ,Current_Level = '" & H_Current_Level & "' WHERE [CirculationNo] = '" & _FsCode & "'"
                         MainModul.ExecQuery(ls_SP)
 
                         Dim ls_SP1 As String = "INSERT INTO [T_ApproveHistory]
@@ -1516,9 +1513,61 @@ Public Class ClsCR_CreateUser
         End Try
     End Sub
 
+    Public Sub Reject_CRF(_FsCode As String, Level As Integer, LevelH As Integer)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+                        Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE CR_Request" & vbCrLf &
+                                     "SET [Status] = '" & H_Status & "'
+                                     ,Current_Level = '" & LevelH & "' WHERE [CirculationNo] = '" & _FsCode & "'"
+                        MainModul.ExecQuery(ls_SP)
 
+                        Dim ls_SP1 As String = "INSERT INTO [T_ApproveHistory]
+                                               ([UserName]
+                                               ,[MenuCode]
+                                               ,[DeptID]
+                                               ,[NoTransaksi]
+                                               ,[LevelApproved]
+                                               ,[StatusApproved]
+                                               ,[ApprovedBy]
+                                               ,[ApprovedDate]
+                                               ,[IsActive])
+                                         VALUES
+                                               ('" & TA_Username & "'
+                                               ,'" & TA_MenuCode & "'
+                                               ,'" & TA_DeptID & "'
+                                               ,'" & TA_NoTransaksi & "'
+                                               ,'" & TA_LevelApprove & "'
+                                               ,'" & TA_StatusApprove & "'
+                                               ,'" & TA_ApproveBy & "'
+                                               ,'" & Date.Now & "'
+                                               ,'" & TA_IsActive & "')"
+                        MainModul.ExecQuery(ls_SP1)
 
+                        Dim ls_SP2 As String = " " & vbCrLf &
+                                    "UPDATE T_ApproveHistory" & vbCrLf &
+                                     "SET [IsActive] = 0 WHERE [NoTransaksi] = '" & _FsCode & "' and MenuCode = 'CIRCULATION' "
+                        MainModul.ExecQuery(ls_SP2)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 #Region "Laporan"
 
     Public Function Cek_CR_Report(CirculationNo As String) As DataTable
@@ -1534,9 +1583,7 @@ Public Class ClsCR_CreateUser
         Catch ex As Exception
             Throw
         End Try
-
     End Function
-
     Public Function RptCirculation(No As String) As DataSet
 
         Dim query As String = "[CR_Repot_Header]"
@@ -1612,17 +1659,7 @@ Public Class ClsCR_CreateUser
     End Function
 
 #End Region
-
-
-
-
 End Class
-
-
-
-
-
-
 
 
 Public Class ClsCR_Description_of_Cost
@@ -1640,9 +1677,12 @@ Public Class ClsCR_Description_of_Cost
     Public Property D_RemainingBudget As Double
     Public Property D_Account As String
     Public Property D_Category As String
-    Public Property D_Check As String
+    Public Property D_Check As Int32
     Public Property D_Note As String
     Public Property D_Id As Integer
+    Public Property D_OK As Boolean
+    Public Property D_Rev As Boolean
+    Public Property D_Del As Boolean
 
 
     Public Sub InsertCR_Description_Of_Cost(CirculationNo As String)
@@ -1664,8 +1704,8 @@ Public Class ClsCR_Description_of_Cost
             pParam(10) = New SqlClient.SqlParameter("@RemainingBudget", SqlDbType.Float)
             pParam(11) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
             pParam(12) = New SqlClient.SqlParameter("@Category", SqlDbType.VarChar)
-            pParam(13) = New SqlClient.SqlParameter("@Check", SqlDbType.VarChar)
-            pParam(14) = New SqlClient.SqlParameter("@Note", SqlDbType.VarChar)
+            pParam(13) = New SqlClient.SqlParameter("@Note", SqlDbType.VarChar)
+            pParam(14) = New SqlClient.SqlParameter("@Check", SqlDbType.Int)
 
 
             pParam(0).Value = CirculationNo
@@ -1681,8 +1721,8 @@ Public Class ClsCR_Description_of_Cost
             pParam(10).Value = D_RemainingBudget
             pParam(11).Value = D_Account
             pParam(12).Value = D_Category
-            pParam(13).Value = D_Check
-            pParam(14).Value = D_Note
+            pParam(13).Value = D_Note
+            pParam(14).Value = D_Check
 
 
             Dim dtTable As New DataTable
@@ -1702,7 +1742,7 @@ Public Class ClsCR_Description_of_Cost
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Id", SqlDbType.Int)
-            pParam(2) = New SqlClient.SqlParameter("@Check", SqlDbType.VarChar)
+            pParam(2) = New SqlClient.SqlParameter("@Check", SqlDbType.Int)
             pParam(3) = New SqlClient.SqlParameter("@Note", SqlDbType.VarChar)
 
             pParam(0).Value = CirculationNo
@@ -1733,8 +1773,6 @@ Public Class ClsCR_Other_Dept
 
     Public Sub InsertCR_Other_Dept(CirculationNo As String)
 
-
-
         Try
 
             Dim query As String = "[CR_Insert_Other_Dept]"
@@ -1746,7 +1784,6 @@ Public Class ClsCR_Other_Dept
             pParam(0).Value = CirculationNo
             pParam(1).Value = D_Dept
             pParam(2).Value = D_Approve
-
 
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand_SP(query, pParam)
@@ -1769,7 +1806,6 @@ Public Class ClsCR_Other_Dept
     'Catch ex As Exception
     '    Throw ex
     'End Try
-
 
     Public Sub UpdateOtherDept(ByVal _FsCode As String, ByVal _Dept As String, Model As ApproveHistoryModel)
         Try
@@ -1811,7 +1847,7 @@ Public Class ClsCR_Other_Dept
 
                                 Dim ls_Head As String = " " & vbCrLf &
                                                     "UPDATE CR_Request" & vbCrLf &
-                                                    "SET [Status] = 'Other Dept'
+                                                    "SET [Status] = 'Other Dept', [Current_Level] = '4'
                                                         WHERE [CirculationNo] = '" & _FsCode & "' "
                                 MainModul.ExecQuery(ls_Head)
 
@@ -1834,8 +1870,6 @@ Public Class ClsCR_Other_Dept
             Throw
         End Try
     End Sub
-
-
 
     'End Sub
 
@@ -1933,7 +1967,6 @@ Public Class ClsCR_Approve
                                        , '" & D_ApproveBy & "'
                                        , '" & D_ApproveName & "')
                                     "
-
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(query)
         Catch ex As Exception
@@ -1941,7 +1974,6 @@ Public Class ClsCR_Approve
         End Try
 
     End Sub
-
 
 End Class
 

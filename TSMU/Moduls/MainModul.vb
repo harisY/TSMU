@@ -7,6 +7,9 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.BandedGrid
+Imports System.IO
+Imports DevExpress.DataAccess.Excel
+Imports System.ComponentModel
 
 Module MainModul
 #Region "--Global Enumerations--"
@@ -1081,7 +1084,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
     Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -1228,6 +1230,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataTableSP(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1276,6 +1279,46 @@ Module MainModul
             Throw ex
         End Try
     End Function
+    Public Function GetDataTableByParam(ByVal pQuery As String, ByVal CmdType As CommandType, ByVal parameters As List(Of SqlParameter), ByVal pConnStr As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CmdType
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If parameters IsNot Nothing Then
+                    For Each param In parameters
+                        gh_Trans.Command.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
+                    Next
+                End If
+                da = New SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlConnection(pConnStr)
+                    Dim cmd As New SqlCommand With {
+                        .CommandType = CmdType,
+                        .CommandText = pQuery,
+                        .CommandTimeout = pTimeOut,
+                        .Connection = conn
+                    }
+                    If parameters IsNot Nothing Then
+                        For Each param In parameters
+                            cmd.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetDataTableByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1290,7 +1333,7 @@ Module MainModul
                         gh_Trans.Command.Parameters.Add(pParam(i))
                     Next
                 End If
-                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da = New SqlDataAdapter(gh_Trans.Command)
                 da.Fill(dta)
             Else
                 Using conn As New SqlClient.SqlConnection
@@ -1313,10 +1356,9 @@ Module MainModul
             da = Nothing
             Return dta
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Function
-
 
     Public Function GetDataTableByCommand_sol(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
@@ -1741,6 +1783,44 @@ Module MainModul
                     If pParam IsNot Nothing Then
                         For i As Integer = 0 To pParam.Length - 1
                             cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    Conn1.Open()
+                    pRowAff = cmd.ExecuteNonQuery()
+                End Using
+            End If
+            Return pRowAff
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function ExecQueryWithValue(ByVal pQuery As String, ByVal CmdType As CommandType, ByVal parameters As List(Of SqlParameter), ByVal pConnStr As String, Optional ByVal pTimeOut As Integer = 0) As Integer
+        Dim pRowAff As Integer = -1
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CmdType
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If parameters IsNot Nothing Then
+                    For Each param In parameters
+                        gh_Trans.Command.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
+                    Next
+                End If
+
+                pRowAff = gh_Trans.Command.ExecuteNonQuery()
+                Else
+                    Using Conn1 As New SqlConnection
+                    Conn1.ConnectionString = pConnStr
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CmdType
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = Conn1
+                    If parameters IsNot Nothing Then
+                        For Each param In parameters
+                            cmd.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
                         Next
                     End If
                     Conn1.Open()
@@ -2819,5 +2899,37 @@ Module MainModul
         Catch ex As Exception
             Throw
         End Try
+    End Function
+    <System.Runtime.CompilerServices.Extension>
+    Public Function ToDataTable(ByVal excelDataSource As ExcelDataSource) As DataTable
+        Dim list As IList = (CType(excelDataSource, IListSource)).GetList()
+        Dim dataView As DevExpress.DataAccess.Native.Excel.DataView = CType(list, DevExpress.DataAccess.Native.Excel.DataView)
+        Dim props As List(Of DevExpress.DataAccess.Native.Excel.ViewColumn) = dataView.Columns
+
+        Dim table As New DataTable()
+        For i As Integer = 0 To props.Count - 1
+            Dim prop As PropertyDescriptor = props(i)
+            table.Columns.Add(prop.Name, prop.PropertyType)
+        Next i
+        Dim values(props.Count - 1) As Object
+        For Each item As DevExpress.DataAccess.Native.Excel.ViewRow In list
+            For i As Integer = 0 To values.Length - 1
+                values(i) = props(i).GetValue(item)
+            Next i
+            table.Rows.Add(values)
+        Next item
+        Return table
+    End Function
+
+    Public Function ExcelToDatatable(Filename As String, Sheetname As String) As DataTable
+        Dim ExcelDt As New ExcelDataSource
+        Dim table As New DataTable()
+        ExcelDt.FileName = Filename
+        Dim worksheetSettings As New ExcelWorksheetSettings(Sheetname)
+        ExcelDt.SourceOptions = New ExcelSourceOptions(worksheetSettings)
+        ExcelDt.SourceOptions.UseFirstRowAsHeader = True
+        ExcelDt.Fill()
+        table = ExcelDt.ToDataTable
+        Return table
     End Function
 End Module

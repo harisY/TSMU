@@ -422,11 +422,9 @@ Public Class frmForecast_PO
                     'ObjForecast.UpdateDataByBulanNew(Bulan)
                 End If
             Catch ex As Exception
+                SplashScreenManager.CloseForm()
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                SplashScreenManager.CloseForm()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-
             End Try
 
         End If

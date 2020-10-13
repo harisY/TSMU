@@ -45,22 +45,13 @@
     End Function
 
 
-    Public Function Get_Purchase_Monitor_Proses(TAwal As Date, TAkhir As Date) As DataTable
+    Public Function Get_Purchase_Monitor_Proses() As DataTable
         Try
-            'Dim query As String = "[Generate_Report_Matome]"
-
 
             Dim query As String = "[CR_Request_Get_Purcase_Monitor_Proses]"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@pAwal", SqlDbType.Date)
-            pParam(1) = New SqlClient.SqlParameter("@pAkhir", SqlDbType.Date)
-
-            pParam(0).Value = TAwal
-            pParam(1).Value = TAkhir
-
             Dim dt As New DataTable
-            dt = GetDataTableByCommand_SP(query, pParam)
+            dt = GetDataTableByCommand_SP(query)
             Return dt
 
 

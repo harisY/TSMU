@@ -174,7 +174,7 @@ Public Class FrmEntertainSettleDetailDirectCC
                 TxtTgl.EditValue = DateTime.Today
                 TxtNoSettlement.Text = ""
                 TxtPrNo.Text = ""
-                TxtPaymentType.Text = "PAID BY FINANCE"
+                TxtPaymentType.Text = "FINANCE"
                 creditCardID = ""
                 txtCCNumber.EditValue = ""
                 accountName = ""
@@ -416,7 +416,7 @@ Public Class FrmEntertainSettleDetailDirectCC
                         txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
                         accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
                     Else
-                        TxtPaymentType.Text = "PAID BY FINANCE"
+                        TxtPaymentType.Text = "FINANCE"
                         txtCCNumber.Text = ""
                         creditCardID = ""
                         accountName = ""
