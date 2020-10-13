@@ -101,33 +101,67 @@ Public Class SettleHeader
         Try
             Dim dt As New DataTable
             Dim sql As String
-            sql = " SELECT  settle_header.ID ,
-                            settle_header.SettleID ,
-                            settle_header.SuspendID ,
-                            settle_header.DeptID ,
-                            Remark ,
-                            settle_header.Tgl ,
-                            settle_header.CuryID ,
-                            settle_header.Total ,
-                            SUM(settle_detail.SuspendAmount) suspendAmount ,
-                            SUM(settle_detail.SettleAmount) SettleAmount ,
-                            settle_header.pay
-                    FROM    settle_header
-                            LEFT JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
-                    WHERE   settle_header.DeptID = '" & gh_Common.GroupID & "'
-                            AND pay = 0
-                            AND ( settle_header.SuspendID NOT LIKE '%EN%'
-                                  OR settle_header.SuspendID IS NULL
-                                )
+            'sql = " SELECT  settle_header.ID ,
+            '                settle_header.SettleID ,
+            '                settle_header.SuspendID ,
+            '                settle_header.DeptID ,
+            '                Remark ,
+            '                settle_header.Tgl ,
+            '                settle_header.CuryID ,
+            '                settle_header.Total ,
+            '                SUM(settle_detail.SuspendAmount) suspendAmount ,
+            '                SUM(settle_detail.SettleAmount) SettleAmount ,
+            '                settle_header.pay
+            '        FROM    settle_header
+            '                LEFT JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+            '        WHERE   settle_header.DeptID = '" & gh_Common.GroupID & "'
+            '                AND pay = 0
+            '                AND ( settle_header.SuspendID NOT LIKE '%ET%'
+            '                      OR settle_header.SuspendID IS NULL
+            '                    )
+            '        GROUP BY settle_header.ID ,
+            '                settle_header.SettleID ,
+            '                settle_header.SuspendID ,
+            '                settle_header.DeptID ,
+            '                Remark ,
+            '                settle_header.Tgl ,
+            '                settle_header.CuryID ,
+            '                settle_header.Total ,
+            '                settle_header.pay "
+
+            sql = "  DECLARE @firstDate DATE;
+                    DECLARE @lastDate DATE;
+                    SET @lastDate = DATEADD(MONTH, 1 + DATEDIFF(MONTH, 0, GETDATE()), -1);
+                    SET @firstDate = DATEADD(mm, DATEDIFF(mm, 0, GETDATE()), 0); 
+                    
+                    SELECT settle_header.ID ,
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        SUM(settle_detail.SuspendAmount) suspendAmount ,
+                        SUM(settle_detail.SettleAmount) SettleAmount ,
+                        settle_header.pay
+                    FROM   settle_header
+                        INNER JOIN settle_detail ON settle_header.SettleID = settle_detail.SettleID
+                    WHERE  DeptID = '" & gh_Common.GroupID & "'
+                        AND settle_header.SettleID NOT LIKE '%ET%'
+                        AND pay = 0
+                        AND ( settle_header.Tgl >= @firstDate
+                                AND settle_header.Tgl <= @lastDate
+                            )
                     GROUP BY settle_header.ID ,
-                            settle_header.SettleID ,
-                            settle_header.SuspendID ,
-                            settle_header.DeptID ,
-                            Remark ,
-                            settle_header.Tgl ,
-                            settle_header.CuryID ,
-                            settle_header.Total ,
-                            settle_header.pay "
+                        settle_header.SettleID ,
+                        settle_header.SuspendID ,
+                        settle_header.DeptID ,
+                        Remark ,
+                        settle_header.Tgl ,
+                        settle_header.CuryID ,
+                        settle_header.Total ,
+                        settle_header.pay;  "
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception

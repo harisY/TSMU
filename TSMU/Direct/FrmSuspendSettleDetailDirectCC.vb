@@ -509,14 +509,51 @@ Public Class FrmSuspendSettleDetailDirectCC
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub FrmSuspendSettleDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.F1 Then
-            GridView1.AddNewRow()
-            GridView1.OptionsNavigation.AutoFocusNewRow = True
-            GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-        End If
-    End Sub
+    'Private Sub FrmSuspendSettleDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    '    If e.KeyCode = Keys.F1 Then
+    '        GridView1.AddNewRow()
+    '        GridView1.OptionsNavigation.AutoFocusNewRow = True
+    '        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+    '    End If
+    'End Sub
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "ActualAmount", 0)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", "")
+        GridView1.RefreshData()
+    End Sub
+    'Private Sub grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
+    '    If e.KeyCode = Keys.F1 Then
+    '        GridView1.AddNewRow()
+    '        GridView1.OptionsNavigation.AutoFocusNewRow = True
+    '        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+    '    End If
+    'End Sub
+
+    'Private Sub grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
+    '    Try
+    '        If e.KeyCode = Keys.F1 Then
+    '            Grid_DoubleClick(sender, e)
+    '        ElseIf e.KeyCode = Keys.Delete Then
+    '            Dim indexRemove As Integer = GridView1.FocusedRowHandle
+    '            ''  Dim headerSeqRemove As Integer = IIf(GridView1.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(indexRemove, "HeaderSeq"))
+    '            GridView1.DeleteRow(indexRemove)
+    '            GridView1.RefreshData()
+    '            GetTot()
+
+    '            Dim headerSeq As Integer = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq"))
+
+    '        End If
+    '    Catch ex As Exception
+    '        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        'Throw ex
+    '    End Try
+    'End Sub
     Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs) Handles ReposDate.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
