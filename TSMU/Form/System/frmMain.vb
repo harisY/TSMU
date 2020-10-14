@@ -223,7 +223,7 @@ Partial Public Class FrmMain
             _form = MyAss.CreateInstance(fs_AssProduct & "." & gs_AutomaticForm)
             _form.ShowDialog()
         Else
-            FrmLogin.ShowDialog()
+            FrmSystemLogin.ShowDialog()
         End If
         'LoadMenu()
 
@@ -339,7 +339,7 @@ Partial Public Class FrmMain
             Next
             '_manager = Nothing
         End If
-        FrmLogin.ShowDialog()
+        FrmSystemLogin.ShowDialog()
     End Sub
 
     Private Sub ChngePasBar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ChngePasBar.ItemClick

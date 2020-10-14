@@ -29,6 +29,7 @@ Partial Class FrmLogin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmLogin))
         Me.UsernameLabel = New System.Windows.Forms.Label()
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.UsernameTextBox = New System.Windows.Forms.TextBox()
@@ -46,7 +47,7 @@ Partial Class FrmLogin
         Me.UsernameLabel.Location = New System.Drawing.Point(12, 18)
         Me.UsernameLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.UsernameLabel.Name = "UsernameLabel"
-        Me.UsernameLabel.Size = New System.Drawing.Size(58, 13)
+        Me.UsernameLabel.Size = New System.Drawing.Size(77, 17)
         Me.UsernameLabel.TabIndex = 0
         Me.UsernameLabel.Text = "&User name"
         Me.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -57,70 +58,71 @@ Partial Class FrmLogin
         Me.PasswordLabel.Location = New System.Drawing.Point(12, 46)
         Me.PasswordLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.PasswordLabel.Name = "PasswordLabel"
-        Me.PasswordLabel.Size = New System.Drawing.Size(53, 13)
+        Me.PasswordLabel.Size = New System.Drawing.Size(69, 17)
         Me.PasswordLabel.TabIndex = 2
         Me.PasswordLabel.Text = "&Password"
         Me.PasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'UsernameTextBox
         '
-        Me.UsernameTextBox.Location = New System.Drawing.Point(79, 18)
+        Me.UsernameTextBox.Location = New System.Drawing.Point(103, 18)
         Me.UsernameTextBox.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.UsernameTextBox.Name = "UsernameTextBox"
-        Me.UsernameTextBox.Size = New System.Drawing.Size(220, 20)
+        Me.UsernameTextBox.Size = New System.Drawing.Size(220, 23)
         Me.UsernameTextBox.TabIndex = 1
         '
         'PasswordTextBox
         '
-        Me.PasswordTextBox.Location = New System.Drawing.Point(79, 46)
+        Me.PasswordTextBox.Location = New System.Drawing.Point(103, 46)
         Me.PasswordTextBox.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
-        Me.PasswordTextBox.Size = New System.Drawing.Size(220, 20)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(220, 23)
         Me.PasswordTextBox.TabIndex = 3
         '
         'OK
         '
-        Me.OK.Location = New System.Drawing.Point(169, 74)
+        Me.OK.Location = New System.Drawing.Point(175, 90)
         Me.OK.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.OK.Name = "OK"
-        Me.OK.Size = New System.Drawing.Size(62, 23)
+        Me.OK.Size = New System.Drawing.Size(70, 30)
         Me.OK.TabIndex = 4
         Me.OK.Text = "&OK"
         '
         'Cancel
         '
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(236, 74)
+        Me.Cancel.Location = New System.Drawing.Point(249, 90)
         Me.Cancel.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(62, 23)
+        Me.Cancel.Size = New System.Drawing.Size(74, 30)
         Me.Cancel.TabIndex = 5
         Me.Cancel.Text = "&Cancel"
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me._txtVersion})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 103)
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 145)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(318, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(362, 25)
         Me.ToolStrip1.TabIndex = 6
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         '_txtVersion
         '
         Me._txtVersion.Name = "_txtVersion"
-        Me._txtVersion.Size = New System.Drawing.Size(45, 22)
+        Me._txtVersion.Size = New System.Drawing.Size(57, 22)
         Me._txtVersion.Text = "Version"
         '
         'FrmLogin
         '
         Me.AcceptButton = Me.OK
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
-        Me.ClientSize = New System.Drawing.Size(318, 128)
+        Me.ClientSize = New System.Drawing.Size(362, 170)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
@@ -130,6 +132,7 @@ Partial Class FrmLogin
         Me.Controls.Add(Me.UsernameLabel)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.MaximizeBox = False
