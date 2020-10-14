@@ -1018,7 +1018,7 @@ Public Class baseForm
                 FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
 
         'Dim mainRibbon = TryCast(sender, RibbonForm)

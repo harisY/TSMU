@@ -1,5 +1,8 @@
-﻿Public Class frmSales
+﻿Imports DevExpress.XtraGrid.Views.Grid
+
+Public Class frmSales
     Dim ObjSales As sales_model
+    Private columnValues As New List(Of String)()
     Private Sub frmSales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False)
         ProgBar.Visible = False
@@ -22,30 +25,13 @@
                 Throw New Exception("Tidak ada Data yg di export")
             End If
         Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
 
     Private Async Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Try
-            'Try
-            '    getPath()
-            '    If path <> "" Then
-            '        If DataGridView1.Rows.Count > 0 Then
-            '            ExcelLib.ExportToExcel(path & "\", DataGridView1, "convert_")
-            '        Else
-            '            Throw New Exception("Grid Kosong")
-            '        End If
-
-            '    End If
-            '    ShowMessage("File Stored at : " & path)
-            'Catch ex As Exception
-            '    MsgBox(ex.Message)
-            '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-            'End Try
-            'Exit Sub
-
             If _txtPerpost.Text = "" Then
                 _txtPerpost.Focus()
                 Throw New Exception("Harap Isi Perpost !")
@@ -57,8 +43,8 @@
             ProgBar.Style = ProgressBarStyle.Marquee
             Await Task.Run(Sub() GetDataGrid())
         Catch ex As Exception
-            MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
     Private Sub GetDataGrid()
@@ -71,6 +57,7 @@
             Dim dt As New DataTable
             dt = ObjSales.SalesLoadDataGrid(perpost)
             setDataSource(dt)
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -80,15 +67,19 @@
     Private Sub setDataSource(table As DataTable)
         Try
             ' Invoke method if required:
-            If Me.InvokeRequired Then
-                Me.Invoke(New SetDataSourceDelegate(AddressOf setDataSource), table)
+            If InvokeRequired Then
+                Invoke(New SetDataSourceDelegate(AddressOf setDataSource), table)
             Else
                 Grid.DataSource = table
+                If GridView1.RowCount > 0 Then
+                    GridView1.BestFitColumns()
+                End If
                 ProgBar.Visible = False
             End If
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
 
     End Sub
+
 End Class

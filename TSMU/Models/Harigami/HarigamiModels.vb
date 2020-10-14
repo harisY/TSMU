@@ -1,16 +1,21 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
 
 Public Class HarigamiModels
     Public Property ObjDetails() As New Collection(Of HarigamiDetailsModels)
     Public Function GetAllDataGridCKR() As DataTable
         Try
-            Dim data As String =
+            Dim Query As String =
             "SELECT
                 Id, FileNo, InvtId , FilePath, Type 
             FROM [TbHarigamiMaster]"
             Dim dtTable As New DataTable
 
-            dtTable = GetDataTableCKR(Data)
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnString)
+            Else
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            End If
             Return dtTable
         Catch ex As Exception
             Throw
@@ -19,7 +24,7 @@ Public Class HarigamiModels
 
     Public Function GetReportHarigami(Tgl1 As String, Tgl2 As String) As DataTable
         Try
-            Dim data As String = "SELECT
+            Dim Query As String = "SELECT
                 h.Id,
 	            h.FileNo,
                 m.InvtId,
@@ -32,9 +37,17 @@ Public Class HarigamiModels
             FROM TbHarigami h left join
             TbHarigamiDetails d on h.Id = d.Id left join
             TbHarigamiMaster m on h.FileNo = m.FileNo AND h.Type = m.Type
-            WHERE Convert(Date,h.CreatedDate) >= " & QVal(Tgl1) & " AND Convert(Date,h.CreatedDate) <= " & QVal(Tgl2) & " Order By h.Id"
+            WHERE Convert(Date,h.CreatedDate) >= @dari AND Convert(Date,h.CreatedDate) <= @sampai Order By h.Id"
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "dari", .Value = Tgl1})
+            Params.Add(New SqlParameter() With {.ParameterName = "sampai", .Value = Tgl2})
+
             Dim dtTable As New DataTable
-            dtTable = GetDataTableCKR(data)
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Params, GetConnString)
+            Else
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Params, GetConnStringDbCKR)
+            End If
             Return dtTable
         Catch ex As Exception
             Throw
@@ -42,9 +55,13 @@ Public Class HarigamiModels
     End Function
     Public Sub DeleteData()
         Try
-            Dim sql As String = "Delete From TbHarigamiMaster"
 
-            ExecQueryCKR(sql)
+            Dim sql As String = "Delete From TbHarigamiMaster"
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                ExecQueryWithValue(sql, CommandType.Text, Nothing, GetConnString)
+            Else
+                ExecQueryWithValue(sql, CommandType.Text, Nothing, GetConnStringDbCKR)
+            End If
 
         Catch ex As Exception
             Throw ex
@@ -53,9 +70,9 @@ Public Class HarigamiModels
 
     Public Sub InsertData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
+            Using Conn1 As New SqlConnection(If(Left(gh_Common.Site.ToLower, 3) = "tng", GetConnString(), GetConnStringDbCKR()))
                 Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                Using Trans1 As SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
                     gh_Trans.Command.Connection = Conn1
                     gh_Trans.Command.Transaction = Trans1
@@ -85,12 +102,12 @@ Public Class HarigamiModels
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+            Using Conn As New SqlConnection(If(Left(gh_Common.Site.ToLower, 3) = "tng", GetConnString(), GetConnStringDbCKR()))
+                Conn.Open()
+                Using Trans As SqlTransaction = Conn.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
+                    gh_Trans.Command.Connection = Conn
+                    gh_Trans.Command.Transaction = Trans
 
                     Try
                         For i As Integer = 0 To ObjDetails.Count - 1
@@ -99,9 +116,9 @@ Public Class HarigamiModels
                             End With
                         Next
 
-                        Trans1.Commit()
+                        Trans.Commit()
                     Catch ex As Exception
-                        Trans1.Rollback()
+                        Trans.Rollback()
                         Throw
                     Finally
                         gh_Trans = Nothing
@@ -126,9 +143,17 @@ Public Class HarigamiDetailsModels
         Try
             Dim Query As String = String.Empty
             Query = "INSERT INTO [TbHarigamiMaster]([FileNo],[FilePath],[Type],InvtId,[CreatedDate])
-                    Values(" & QVal(FileNo) & "," & QVal(FilePath) & "," & QVal(Type) & "," & QVal(InvtId) & ", GETDATE())"
-
-            ExecQueryCKR(Query)
+                    Values(@FileNo, @FilePath, @Type, @InvtId, GETDATE())"
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "FileNo", .Value = FileNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "FilePath", .Value = FilePath})
+            Params.Add(New SqlParameter() With {.ParameterName = "Type", .Value = Type})
+            Params.Add(New SqlParameter() With {.ParameterName = "InvtId", .Value = InvtId})
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnString)
+            Else
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnStringDbCKR)
+            End If
 
         Catch ex As Exception
             Throw ex
@@ -139,13 +164,21 @@ Public Class HarigamiDetailsModels
         Try
             Dim Query As String = String.Empty
             Query = "Update [TbHarigamiMaster]
-                    Set [FileNo] = " & QVal(FileNo) & " 
-                        ,[FilePath] = " & QVal(FilePath) & "
-                        ,[InvtId] = " & QVal(InvtId) & "
-                        ,[Type]) = " & QVal(Type) & " where Id = " & QVal(Id) & ""
-
-            ExecQueryCKR(Query)
-
+                    Set [FileNo] = @FileNo 
+                        ,[FilePath] = @FilePath 
+                        ,[InvtId] = @InvtId 
+                        ,[Type]) = @Type where Id = @Id"
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "FileNo", .Value = FileNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "FilePath", .Value = FilePath})
+            Params.Add(New SqlParameter() With {.ParameterName = "Type", .Value = Type})
+            Params.Add(New SqlParameter() With {.ParameterName = "InvtId", .Value = InvtId})
+            Params.Add(New SqlParameter() With {.ParameterName = "Id", .Value = Id})
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnString)
+            Else
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnStringDbCKR)
+            End If
         Catch ex As Exception
             Throw ex
         End Try

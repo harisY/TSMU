@@ -1,4 +1,6 @@
-﻿Public Class sales_model
+﻿Imports System.Data.SqlClient
+
+Public Class sales_model
     Public Function SalesLoadDataGrid(Perpost As String) As DataTable
         Try
             If Not IsNumeric(Perpost) Then
@@ -19,7 +21,7 @@
             pParam(0).Value = Perpost
 
             Dim dt As New DataTable
-            dt = MainModul.GetDataTableByCommand_SP_Solomon(query, pParam)
+            dt = GetDataTableByCommand_SP_Solomon(query, pParam)
 
             Return dt
         Catch ex As Exception
@@ -27,4 +29,18 @@
         End Try
 
     End Function
+
+    Public Function SalesCheckDuplicate(Perpost As String) As DataTable
+        Try
+            Dim Query As String = "Sales_Aktual_ChekcDuplicate"
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "Perpost", .Value = Perpost})
+            Dim dt As New DataTable
+            dt = GetDataTableByParam(Query, CommandType.StoredProcedure, Params, GetConnString)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class

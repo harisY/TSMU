@@ -9,6 +9,8 @@ Imports DevExpress.XtraBars.Helpers
 Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraTabbedMdi
 Imports AutoUpdaterDotNET
+Imports System.Threading
+
 Partial Public Class FrmMain
     Inherits RibbonForm
 
@@ -17,12 +19,17 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        'AutoUpdater.RunUpdateAsAdmin = False
-        'AutoUpdater.Mandatory = True
-        'AutoUpdater.UpdateMode = Mode.ForcedDownload
-        'AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
-        'DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
+        AutoUpdater.RunUpdateAsAdmin = False
+        AutoUpdater.Mandatory = True
+        AutoUpdater.UpdateMode = Mode.ForcedDownload
+        AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
+        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
+    End Sub
+    Private Sub AutoUpdater_ApplicationExitEvent()
+        Thread.Sleep(5000)
+        Application.Exit()
     End Sub
 
     Public Sub LoadMenu()
@@ -66,8 +73,8 @@ Partial Public Class FrmMain
                             barButtonItem.Glyph = mnuItem.Image
                         Else
                             barButtonItem.ButtonStyle = BarButtonStyle.DropDown
-                            barButtonItem.RibbonStyle = RibbonItemStyles.Large
-                            barButtonItem.LargeGlyph = mnuItem.Image
+                            barButtonItem.RibbonStyle = RibbonItemStyles.Default
+                            barButtonItem.Glyph = mnuItem.Image
                             barButtonItem.ActAsDropDown = True
                             Dim popup As PopupMenu = New PopupMenu(barManager1) With {
                                 .Ribbon = ribbon
@@ -216,7 +223,7 @@ Partial Public Class FrmMain
             _form = MyAss.CreateInstance(fs_AssProduct & "." & gs_AutomaticForm)
             _form.ShowDialog()
         Else
-            FrmLogin.ShowDialog()
+            FrmSystemLogin.ShowDialog()
         End If
         'LoadMenu()
 
@@ -332,7 +339,7 @@ Partial Public Class FrmMain
             Next
             '_manager = Nothing
         End If
-        FrmLogin.ShowDialog()
+        FrmSystemLogin.ShowDialog()
     End Sub
 
     Private Sub ChngePasBar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ChngePasBar.ItemClick
@@ -389,4 +396,5 @@ Partial Public Class FrmMain
             ex = Nothing
         End Try
     End Sub
+
 End Class

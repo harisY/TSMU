@@ -64,6 +64,8 @@ Public Class FrmSuspendSettleDetailDirect
 
     Private Sub FrmSuspendSettleDetailDirect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         isLoad = True
+        'TxtPaymentType.Visible = False
+        'txtCCNumber.Visible = False
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         Call InitialSetForm()
@@ -151,48 +153,6 @@ Public Class FrmSuspendSettleDetailDirect
         End Try
     End Sub
 
-    Private Sub TxtPaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TxtPaymentType.SelectedIndexChanged
-        Try
-            If isLoad = False Then
-                Dim ls_OldKode As String = ""
-
-                If TxtPaymentType.Text = "CREDIT CARD" Then
-                    Dim ls_Judul As String = ""
-                    Dim dtSearch As New DataTable
-
-                    dtSearch = ObjSettle.GetCreditCard
-                    ls_Judul = "CREDIT CARD"
-                    ls_OldKode = creditCardID
-
-                    Dim lF_SearchData As FrmSystem_LookupGrid
-                    lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-                    lF_SearchData.Text = "Select Data " & ls_Judul
-                    lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-                    lF_SearchData.ShowDialog()
-
-                    If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                        creditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                        txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
-                        accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
-                    Else
-                        TxtPaymentType.Text = "CASH"
-                        txtCCNumber.Text = ""
-                        creditCardID = ""
-                        accountName = ""
-                    End If
-
-                    lF_SearchData.Close()
-                Else
-                    txtCCNumber.Text = ""
-                    creditCardID = ""
-                    accountName = ""
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
     Public Sub LoadGridDetail()
         Try
             If fs_Code = "" Then
@@ -222,9 +182,9 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     .PRNo = TxtPrNo.Text
-                    TxtPaymentType.Text = .PaymentType.TrimEnd
+
                     creditCardID = .CreditCardID.TrimEnd
-                    txtCCNumber.EditValue = .CreditCardNumber.TrimEnd
+
                     accountName = .AccountName                    ''TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
                     TxtTotExpense.Text = Format(.Total, gs_FormatBulat)
@@ -234,9 +194,9 @@ Public Class FrmSuspendSettleDetailDirect
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
-                TxtPaymentType.Text = "CASH"
+
                 creditCardID = ""
-                txtCCNumber.EditValue = ""
+
                 accountName = ""
             End If
         Catch ex As Exception
@@ -266,13 +226,18 @@ Public Class FrmSuspendSettleDetailDirect
                     .Remark = TxtRemark.Text
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
-                    .PaymentType = TxtPaymentType.Text
+
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
+                    '.CreditCardID = creditCardID
+                    '.AccountName = accountName
+
+
                     .CreditCardID = creditCardID
-                    .CreditCardNumber = txtCCNumber.EditValue
+                    .CreditCardNumber = ""
                     .AccountName = accountName
+                    .PaymentType = ""
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else
@@ -509,14 +474,57 @@ Public Class FrmSuspendSettleDetailDirect
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub FrmSuspendSettleDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.F1 Then
-            GridView1.AddNewRow()
-            GridView1.OptionsNavigation.AutoFocusNewRow = True
-            GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-        End If
+    'Private Sub FrmSuspendSettleDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    '    If e.KeyCode = Keys.F1 Then
+    '        GridView1.AddNewRow()
+    '        GridView1.OptionsNavigation.AutoFocusNewRow = True
+    '        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
+    '    End If
+    'End Sub
+    Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
+
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "ActualAmount", 0)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", "")
+        GridView1.RefreshData()
     End Sub
 
+    Private Sub hitungTotal()
+        Try
+            Dim _total As Decimal = 0
+            For i As Integer = 0 To GridView1.RowCount - 1
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "ActualAmount")) Then
+                    _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "ActualAmount"))
+                End If
+            Next
+            TxtTotExpense.EditValue = _total
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                grid_DoubleClick(sender, e)
+            ElseIf e.KeyCode = Keys.Delete Then
+                Dim indexRemove As Integer = GridView1.FocusedRowHandle
+                Dim headerSeqRemove As Integer = IIf(GridView1.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(indexRemove, "HeaderSeq"))
+                GridView1.DeleteRow(indexRemove)
+                GridView1.RefreshData()
+                GetTot()
+
+                Dim headerSeq As Integer = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq"))
+
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            'Throw ex
+        End Try
+    End Sub
     Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs) Handles ReposDate.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
