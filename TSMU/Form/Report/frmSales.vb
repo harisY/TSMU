@@ -10,7 +10,17 @@ Public Class frmSales
     Public Overrides Sub Proc_Excel()
         Try
             If GridView1.RowCount > 0 Then
-                SaveToExcel(Grid, "Sales Aktual", "Sales Aktual " & _txtPerpost.Text, False)
+                Dim save As New SaveFileDialog
+                save.Filter = "Excel File|*.xlsx"
+                save.Title = "Save an Excel File"
+                If save.ShowDialog = DialogResult.OK Then
+                    Grid.ExportToXlsx(save.FileName)
+                End If
+                'getPath()
+                '    Dim Filename As String = path & "\Forecast_.xls"
+                '    'Dim FileName As String = "D:\Grid.xls"
+                '    Grid.ExportToXls(Filename)
+
             Else
                 Throw New Exception("Tidak ada Data yg di export")
             End If
@@ -62,7 +72,7 @@ Public Class frmSales
             Else
                 Grid.DataSource = table
                 If GridView1.RowCount > 0 Then
-                    GridCellFormat(GridView1)
+                    GridView1.BestFitColumns()
                 End If
                 ProgBar.Visible = False
             End If
