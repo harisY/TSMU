@@ -7,25 +7,69 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraEditors.Controls
+Imports System.Globalization
+Imports System.Windows.Forms.ImageList
+Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraReports.UI
 
 Public Class FrmViewShipperNonInvoice
     Dim dtGrid As DataTable
     Dim _Service As ClsShippernotinvoice
-    Dim ObjSuspend As ClsShippernotinvoice
+    Dim ObjSuspend2 As ClsShippernotinvoice
+
+
+
+    Private Sub _BtnCust2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _BtnCust2.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsShippernotinvoice
+            If sender.Name = _BtnCust2.Name Then
+                dtSearch = ObjSuspend.GetCustomer2
+                ls_OldKode = _BtnCust2.Text.Trim
+                ls_Judul = "Customer"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = _BtnCust2.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+
+                    _BtnCust2.Text = Value1
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Private Sub FrmViewShipperNonInvoice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Grid.DataSource = Nothing
         _TxtLokasi.Text = gh_Common.Site
-        If gh_Common.Site.ToLower = "all" Then
-            _TxtLokasi.ReadOnly = False
-        Else
-            _TxtLokasi.ReadOnly = True
-        End If
-        Call LoadGrid()
+        'If gh_Common.Site.ToLower = "all" Then
+        '    _TxtLokasi.ReadOnly = False
+        'Else
+        '    _TxtLokasi.ReadOnly = True
+        'End If
+        ''     Call LoadGrid()
         ''    Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
         Call baseForm.Proc_EnableButtons(False, False, False, True, True, False, False, False)
     End Sub
-    Private Sub LoadData()
+    Private Sub LoadDataxx()
         Try
             If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" Then
                 If _TglSJFrom.Text = "" Then
@@ -36,9 +80,11 @@ Public Class FrmViewShipperNonInvoice
                 Throw New Exception("Silahkan pilih tanggal !")
             End If
             Cursor = Cursors.WaitCursor
-            Dim dt As New DataTable
-            dt = ObjSuspend.GetShipperNotInv(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
-            Grid.DataSource = dt
+            ObjSuspend2 = New ClsShippernotinvoice
+            Dim dtSearch2 As New DataTable
+            '' dtSearch2 = ObjSuspend2.GetCustomer2
+            dtSearch2 = ObjSuspend2.GetShipperNotInv(IIf(_BtnCust2.Text = "", "ALL", _BtnCust2.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
+            Grid.DataSource = dtSearch2
             GridCellFormat(GridView1)
             GridView1.BestFitColumns()
 
@@ -57,19 +103,19 @@ Public Class FrmViewShipperNonInvoice
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Overrides Sub Proc_InputNewData()
+    'Public Overrides Sub Proc_InputNewData()
 
-        ''   LoadData()
+    '    ''   LoadData()
 
-    End Sub
+    'End Sub
     Private Sub LoadGrid()
         Try
             Dim custid As String = ""
-            ObjSuspend = New ClsShippernotinvoice
+            ObjSuspend2 = New ClsShippernotinvoice
             ''         dtGrid = ObjSuspend.GetDataGrid()
 
             Dim dtGrid As New DataTable
-            dtGrid = ObjSuspend.GetShipperNotInv(IIf(_BtnCust.Text = "", "ALL", _BtnCust.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
+            dtGrid = ObjSuspend2.GetShipperNotInv(IIf(_BtnCust2.Text = "", "ALL", _BtnCust2.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
 
             If dtGrid.Rows.Count > 0 Then
                 Grid.DataSource = dtGrid
@@ -142,39 +188,7 @@ Public Class FrmViewShipperNonInvoice
         Proc_Excel()
     End Sub
 
-    Private Sub _BtnCust_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust.EditValueChanged
-
-    End Sub
-
-    Private Sub _BtnCust_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _BtnCust.ButtonClick
-        Try
-            Dim ls_Judul As String = ""
-            Dim dtSearch As New DataTable
-            Dim ls_OldKode As String = ""
-
-            dtSearch = ObjSuspend.GetCustomer
-            ls_OldKode = _BtnCust.Text.Trim
-            ls_Judul = "Customer"
-
-            Dim lF_SearchData As FrmSystem_Filter
-            lF_SearchData = New FrmSystem_Filter(dtSearch) With {
-                .Text = "Select Data " & ls_Judul,
-                .StartPosition = FormStartPosition.CenterScreen
-            }
-            lF_SearchData.ShowDialog()
-            Dim ls_Kode As String = ""
-            Dim ls_Nama As String = ""
-
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                ls_Kode = lF_SearchData.Values.Item(0).ToString.Trim
-                ls_Nama = lF_SearchData.Values.Item(1).ToString.Trim
-                If sender.Name = _BtnCust.Name AndAlso ls_Kode <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
-                    _BtnCust.Text = ls_Kode
-                End If
-            End If
-            lF_SearchData.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        LoadDataxx()
     End Sub
 End Class

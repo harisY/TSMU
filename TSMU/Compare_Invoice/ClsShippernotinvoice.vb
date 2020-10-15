@@ -3,6 +3,16 @@ Public Class ClsShippernotinvoice
     Dim _Query As String
     Public Function GetCustomer() As DataTable
         Try
+            Dim ls_SP As String = "Select CustId [Customer ID], Name from Customer"
+            Dim dtTable As New DataTable
+            dtTable = MainModul.GetDataTable_Solomon(ls_SP)
+            Return dtTable
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function GetCustomer2() As DataTable
+        Try
             Dim ls_SP As String =
                 "Select CustId [Customer ID], Name from Customer"
             Dim dtTable As New DataTable
