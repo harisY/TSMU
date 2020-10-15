@@ -25,13 +25,13 @@ Partial Class frmSalesCheck
         Me._txtPerpost = New System.Windows.Forms.ToolStripTextBox()
         Me.btnLoad = New System.Windows.Forms.ToolStripButton()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CheckDuplicateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ToolStrip2.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip2
@@ -70,6 +70,19 @@ Partial Class frmSalesCheck
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckDuplicateToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(186, 28)
+        '
+        'CheckDuplicateToolStripMenuItem
+        '
+        Me.CheckDuplicateToolStripMenuItem.Name = "CheckDuplicateToolStripMenuItem"
+        Me.CheckDuplicateToolStripMenuItem.Size = New System.Drawing.Size(185, 24)
+        Me.CheckDuplicateToolStripMenuItem.Text = "Check Duplicate"
+        '
         'GridView1
         '
         Me.GridView1.DetailHeight = 458
@@ -77,22 +90,8 @@ Partial Class frmSalesCheck
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsPrint.UsePrintStyles = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckDuplicateToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(211, 56)
-        '
-        'CheckDuplicateToolStripMenuItem
-        '
-        Me.CheckDuplicateToolStripMenuItem.Name = "CheckDuplicateToolStripMenuItem"
-        Me.CheckDuplicateToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
-        Me.CheckDuplicateToolStripMenuItem.Text = "Check Duplicate"
         '
         'frmSalesCheck
         '
@@ -108,8 +107,8 @@ Partial Class frmSalesCheck
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
