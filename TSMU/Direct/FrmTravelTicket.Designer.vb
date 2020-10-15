@@ -92,6 +92,8 @@ Partial Class FrmTravelTicket
         '
         'GridViewRequest
         '
+        Me.GridViewRequest.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRequest.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DeptID, Me.Purpose, Me.TravelType, Me.Destination, Me.Negara, Me.NoPaspor, Me.Visa, Me.DepartureDate, Me.ArrivalDate, Me.Status, Me.StatusTicket})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
@@ -111,7 +113,7 @@ Partial Class FrmTravelTicket
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -170,7 +172,7 @@ Partial Class FrmTravelTicket
         '
         'Negara
         '
-        Me.Negara.Caption = "Negara"
+        Me.Negara.Caption = "Country"
         Me.Negara.FieldName = "Negara"
         Me.Negara.MinWidth = 25
         Me.Negara.Name = "Negara"
@@ -182,7 +184,7 @@ Partial Class FrmTravelTicket
         '
         'NoPaspor
         '
-        Me.NoPaspor.Caption = "No Paspor"
+        Me.NoPaspor.Caption = "No Passport"
         Me.NoPaspor.FieldName = "NoPaspor"
         Me.NoPaspor.MinWidth = 25
         Me.NoPaspor.Name = "NoPaspor"
@@ -194,7 +196,7 @@ Partial Class FrmTravelTicket
         '
         'Visa
         '
-        Me.Visa.Caption = "Visa"
+        Me.Visa.Caption = "No Visa"
         Me.Visa.FieldName = "Visa"
         Me.Visa.MinWidth = 25
         Me.Visa.Name = "Visa"
@@ -278,6 +280,8 @@ Partial Class FrmTravelTicket
         '
         'GridViewTicket
         '
+        Me.GridViewTicket.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewTicket.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.Tanggal, Me.Vendor, Me.NoInvoice, Me.CuryID, Me.TotAmount, Me.PayInvoice})
         Me.GridViewTicket.GridControl = Me.GridTicket
         Me.GridViewTicket.Name = "GridViewTicket"
@@ -298,7 +302,7 @@ Partial Class FrmTravelTicket
         '
         'Tanggal
         '
-        Me.Tanggal.Caption = "Tanggal"
+        Me.Tanggal.Caption = "Date"
         Me.Tanggal.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.Tanggal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.Tanggal.FieldName = "Tanggal"
@@ -333,7 +337,7 @@ Partial Class FrmTravelTicket
         '
         'CuryID
         '
-        Me.CuryID.Caption = "Cury ID"
+        Me.CuryID.Caption = "Curr"
         Me.CuryID.FieldName = "CuryID"
         Me.CuryID.MinWidth = 25
         Me.CuryID.Name = "CuryID"

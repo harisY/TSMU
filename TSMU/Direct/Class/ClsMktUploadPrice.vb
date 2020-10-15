@@ -59,11 +59,17 @@
     Public Function CheckInventoryID(ByVal invtID As String) As DataTable
         Try
             Dim sql As String
-            sql = " SELECT  inv.InvtID
+            sql = " SELECT  RTRIM(inv.InvtID) AS InvtID ,
+                            price.DiscPrice
                     FROM    Inventory AS inv
                             INNER JOIN ItemXRef AS ixr ON ixr.InvtID = inv.InvtID
+                            LEFT JOIN ( SELECT  sp.InvtID ,
+                                                spd.DiscPrice
+                                        FROM    dbo.SlsPrc AS sp
+                                                INNER JOIN dbo.SlsPrcDet AS spd ON sp.SlsPrcID = spd.SlsPrcID
+                                      ) AS price ON price.InvtID = ixr.InvtID
                     WHERE   ixr.AltIDType = 'C'
-                            AND AlternateID = " & QVal(invtID) & " "
+                            AND REPLACE(ixr.AlternateID, '-', '') = REPLACE(" & QVal(invtID) & ", '-', '') "
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

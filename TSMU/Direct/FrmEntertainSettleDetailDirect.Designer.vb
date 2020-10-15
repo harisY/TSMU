@@ -132,11 +132,11 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         Me.LayoutControl1.Controls.Add(Me.GridDetail)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(4, 104)
+        Me.LayoutControl1.Location = New System.Drawing.Point(4, 84)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1233, 308)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1233, 318)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -146,17 +146,19 @@ Partial Class FrmEntertainSettleDetailDirect
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDetail.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridDetail.Location = New System.Drawing.Point(12, 12)
+        Me.GridDetail.Location = New System.Drawing.Point(12, 2)
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CDescriptionDetail, Me.CNamaDetail, Me.CTempatDetail, Me.CAlamatDetail, Me.CJenisDetail})
-        Me.GridDetail.Size = New System.Drawing.Size(1209, 284)
+        Me.GridDetail.Size = New System.Drawing.Size(1209, 314)
         Me.GridDetail.TabIndex = 3
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
         'GridViewDetail
         '
+        Me.GridViewDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.HeaderSeq, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2})
         Me.GridViewDetail.DetailHeight = 458
         Me.GridViewDetail.FixedLineWidth = 3
@@ -358,7 +360,8 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1233, 308)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1233, 318)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem10
@@ -366,7 +369,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem10.Control = Me.GridDetail
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1213, 288)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1213, 318)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
@@ -383,23 +386,23 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControl2.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.Root
-        Me.LayoutControl2.Size = New System.Drawing.Size(1235, 94)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1235, 74)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(95, 38)
+        Me.TxtRemark.Location = New System.Drawing.Point(95, 33)
         Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(1128, 44)
+        Me.TxtRemark.Size = New System.Drawing.Size(1128, 39)
         Me.TxtRemark.StyleController = Me.LayoutControl2
         Me.TxtRemark.TabIndex = 6
         '
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(95, 7)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -418,7 +421,7 @@ Partial Class FrmEntertainSettleDetailDirect
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(1105, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(1105, 7)
         Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
@@ -432,7 +435,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(310, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(310, 7)
         Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
@@ -442,7 +445,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(519, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(519, 7)
         Me.TxtPrNo.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPrNo.Name = "TxtPrNo"
         Me.TxtPrNo.Size = New System.Drawing.Size(101, 22)
@@ -451,7 +454,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(910, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(910, 7)
         Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtCurrency.MaximumSize = New System.Drawing.Size(100, 0)
         Me.TxtCurrency.Name = "TxtCurrency"
@@ -468,7 +471,7 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(715, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(715, 7)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.MaximumSize = New System.Drawing.Size(100, 0)
         Me.TxtDep.Name = "TxtDep"
@@ -484,7 +487,8 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.LayoutControlItem8, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem3})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1235, 94)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 5, 0)
+        Me.Root.Size = New System.Drawing.Size(1235, 74)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -551,7 +555,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem3.Control = Me.TxtRemark
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(1215, 48)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(1215, 43)
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 16)
         '
@@ -565,17 +569,19 @@ Partial Class FrmEntertainSettleDetailDirect
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridRelasi.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridRelasi.Location = New System.Drawing.Point(12, 12)
+        Me.GridRelasi.Location = New System.Drawing.Point(12, 2)
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
         Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNamaRelasi, Me.CPerusahaanRelasi, Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
-        Me.GridRelasi.Size = New System.Drawing.Size(1211, 287)
+        Me.GridRelasi.Size = New System.Drawing.Size(1211, 317)
         Me.GridRelasi.TabIndex = 4
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
         '
         'GridViewRelasi
         '
+        Me.GridViewRelasi.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRelasi.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.RelasiHeaderSeq, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3
@@ -693,7 +699,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1241, 733)
@@ -703,10 +709,10 @@ Partial Class FrmEntertainSettleDetailDirect
         '
         Me.LayoutControl3.Controls.Add(Me.GridRelasi)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 419)
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 409)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1235, 311)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1235, 321)
         Me.LayoutControl3.TabIndex = 3
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -716,7 +722,8 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem11})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1235, 311)
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1235, 321)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem11
@@ -724,7 +731,7 @@ Partial Class FrmEntertainSettleDetailDirect
         Me.LayoutControlItem11.Control = Me.GridRelasi
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(1215, 291)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(1215, 321)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '

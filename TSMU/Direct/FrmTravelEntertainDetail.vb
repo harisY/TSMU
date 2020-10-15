@@ -459,6 +459,7 @@ Public Class FrmTravelEntertainDetail
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SettleID", __EntertainID)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Amount", 0)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Tgl", Date.Today)
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "SubAccount", "11690")
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Account", "62300")
         GridViewEntertain.SetRowCellValue(GridViewEntertain.FocusedRowHandle, "Description", TxtRemark.Text)

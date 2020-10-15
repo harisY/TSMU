@@ -945,7 +945,7 @@ Partial Class FrmTravelSettleDetail
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
         Me.LayoutControlItem10.Size = New System.Drawing.Size(633, 26)
-        Me.LayoutControlItem10.Text = "Nama"
+        Me.LayoutControlItem10.Text = "Name"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(78, 16)
         '
         'LayoutControlItem4
@@ -1165,6 +1165,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewTransport
         '
+        Me.GridViewTransport.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewTransport.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewTransport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDTransport, Me.GridColumn8, Me.GridColumn9, Me.DateTransport, Me.GridColumn10, Me.GridColumn13, Me.GridColumn29, Me.GridColumn12, Me.GridColumn11, Me.GridColumn14, Me.PayTypeTransport, Me.GridColumn30, Me.GridColumn61, Me.AccountName})
         Me.GridViewTransport.DetailHeight = 458
         Me.GridViewTransport.FixedLineWidth = 3
@@ -1276,7 +1278,7 @@ Partial Class FrmTravelSettleDetail
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Curry ID"
+        Me.GridColumn12.Caption = "Curr"
         Me.GridColumn12.ColumnEdit = Me.CCurryTransport
         Me.GridColumn12.FieldName = "CurryID"
         Me.GridColumn12.MinWidth = 27
@@ -1410,6 +1412,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewHotel
         '
+        Me.GridViewHotel.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewHotel.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewHotel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDHotel, Me.AccountHotel, Me.GridColumn16, Me.DateHotel, Me.GridColumn17, Me.GridColumn19, Me.GridColumn18, Me.GridColumn21, Me.PayTypeHotel, Me.GridColumn20, Me.GridColumn62, Me.GridColumn31})
         Me.GridViewHotel.DetailHeight = 458
         Me.GridViewHotel.FixedLineWidth = 3
@@ -1471,7 +1475,7 @@ Partial Class FrmTravelSettleDetail
         '
         'GridColumn19
         '
-        Me.GridColumn19.Caption = "Curry ID"
+        Me.GridColumn19.Caption = "Curr"
         Me.GridColumn19.ColumnEdit = Me.CCurryHotel
         Me.GridColumn19.FieldName = "CurryID"
         Me.GridColumn19.MinWidth = 27
@@ -1573,6 +1577,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewEntertain
         '
+        Me.GridViewEntertain.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewEntertain.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDEntertain, Me.AccountIDEntertain, Me.SubAccountEntertain, Me.DateEntertain, Me.EntertainIDEntertain, Me.DescriptionEntertain, Me.CurryIDEntertain, Me.AmountEntertain, Me.AmountIDREntertain, Me.PayTypeEntertain, Me.CreditCardIDEntertain, Me.CreditCardNumberEntertain, Me.AccountNameEntertain, Me.GridColumn22})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
@@ -1683,7 +1689,7 @@ Partial Class FrmTravelSettleDetail
         '
         'CurryIDEntertain
         '
-        Me.CurryIDEntertain.Caption = "Curry ID"
+        Me.CurryIDEntertain.Caption = "Curr"
         Me.CurryIDEntertain.ColumnEdit = Me.CCurryEntertain
         Me.CurryIDEntertain.FieldName = "CurryID"
         Me.CurryIDEntertain.MinWidth = 27
@@ -1818,6 +1824,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewOther
         '
+        Me.GridViewOther.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewOther.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewOther.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.IDOther, Me.GridColumn1, Me.GridColumn2, Me.DateOther, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.PayTypeOther, Me.GridColumn5, Me.GridColumn64, Me.GridColumn33})
         Me.GridViewOther.DetailHeight = 458
         Me.GridViewOther.FixedLineWidth = 3
@@ -1893,7 +1901,7 @@ Partial Class FrmTravelSettleDetail
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Curry ID"
+        Me.GridColumn4.Caption = "Curr"
         Me.GridColumn4.ColumnEdit = Me.CCurryOther
         Me.GridColumn4.FieldName = "CurryID"
         Me.GridColumn4.MinWidth = 27
@@ -2078,6 +2086,8 @@ Partial Class FrmTravelSettleDetail
         'GridViewBalanceTransport
         '
         Me.GridViewBalanceTransport.ActiveFilterEnabled = False
+        Me.GridViewBalanceTransport.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewBalanceTransport.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewBalanceTransport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn65, Me.BalanceUSDTransport, Me.BalanceYENTransport, Me.BalanceIDRTransport})
         Me.GridViewBalanceTransport.GridControl = Me.GridBalanceTransport
         Me.GridViewBalanceTransport.Name = "GridViewBalanceTransport"
@@ -2160,6 +2170,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewSumTransport
         '
+        Me.GridViewSumTransport.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSumTransport.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSumTransport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn40, Me.GridColumn42, Me.GridColumn43, Me.GridColumn41, Me.GridColumn45, Me.GridColumn46, Me.GridColumn44})
         Me.GridViewSumTransport.GridControl = Me.GridSumTransport
         Me.GridViewSumTransport.Name = "GridViewSumTransport"
@@ -2315,6 +2327,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewBalanceHotel
         '
+        Me.GridViewBalanceHotel.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewBalanceHotel.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewBalanceHotel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn66, Me.BalanceUSDHotel, Me.BalanceYENHotel, Me.BalanceIDRHotel})
         Me.GridViewBalanceHotel.GridControl = Me.GridBalanceHotel
         Me.GridViewBalanceHotel.Name = "GridViewBalanceHotel"
@@ -2397,6 +2411,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewSumHotel
         '
+        Me.GridViewSumHotel.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSumHotel.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSumHotel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53})
         Me.GridViewSumHotel.GridControl = Me.GridSumHotel
         Me.GridViewSumHotel.Name = "GridViewSumHotel"
@@ -2554,6 +2570,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewSumEntertain
         '
+        Me.GridViewSumEntertain.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSumEntertain.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSumEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39})
         Me.GridViewSumEntertain.GridControl = Me.GridSumEntertain
         Me.GridViewSumEntertain.Name = "GridViewSumEntertain"
@@ -2684,6 +2702,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewBalanceEntertain
         '
+        Me.GridViewBalanceEntertain.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewBalanceEntertain.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewBalanceEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn70, Me.BalanceUSDEntertain, Me.BalanceYENEntertain, Me.BalanceIDREntertain})
         Me.GridViewBalanceEntertain.GridControl = Me.GridBalanceEntertain
         Me.GridViewBalanceEntertain.Name = "GridViewBalanceEntertain"
@@ -2789,6 +2809,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewSumOthers
         '
+        Me.GridViewSumOthers.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSumOthers.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSumOthers.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60})
         Me.GridViewSumOthers.GridControl = Me.GridSumOthers
         Me.GridViewSumOthers.Name = "GridViewSumOthers"
@@ -2919,6 +2941,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewBalanceOther
         '
+        Me.GridViewBalanceOther.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewBalanceOther.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewBalanceOther.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn71, Me.BalanceUSDOther, Me.BalanceYENOther, Me.BalanceIDROther})
         Me.GridViewBalanceOther.GridControl = Me.GridBalanceOther
         Me.GridViewBalanceOther.Name = "GridViewBalanceOther"
@@ -3013,6 +3037,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewPocketAllowance
         '
+        Me.GridViewPocketAllowance.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewPocketAllowance.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR, Me.RateAllowanceUSD, Me.RateAllowanceIDR, Me.TotalAllowanceIDR})
         Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
         Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
@@ -3033,7 +3059,7 @@ Partial Class FrmTravelSettleDetail
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -3317,6 +3343,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewSumBalance
         '
+        Me.GridViewSumBalance.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSumBalance.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSumBalance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn67, Me.GridColumn68, Me.GridColumn69, Me.GridColumn72, Me.GridColumn73, Me.GridColumn74, Me.GridColumn75})
         Me.GridViewSumBalance.GridControl = Me.GridSumBalance
         Me.GridViewSumBalance.Name = "GridViewSumBalance"
@@ -3450,6 +3478,8 @@ Partial Class FrmTravelSettleDetail
         '
         'GridViewBalance
         '
+        Me.GridViewBalance.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewBalance.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewBalance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CurryIDBalance, Me.AdvanceBalance, Me.ActualBalance, Me.SisaBalance, Me.ReturnBalance, Me.PaidBalance, Me.AmountIDRBalance})
         Me.GridViewBalance.GridControl = Me.GridBalance
         Me.GridViewBalance.Name = "GridViewBalance"
@@ -3458,7 +3488,7 @@ Partial Class FrmTravelSettleDetail
         '
         'CurryIDBalance
         '
-        Me.CurryIDBalance.Caption = "Curry ID"
+        Me.CurryIDBalance.Caption = "Curr"
         Me.CurryIDBalance.FieldName = "CurryID"
         Me.CurryIDBalance.MinWidth = 25
         Me.CurryIDBalance.Name = "CurryIDBalance"

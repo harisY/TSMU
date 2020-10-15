@@ -22,6 +22,15 @@ Partial Class FrmTravelTicketDetail
         Me.components = New System.ComponentModel.Container()
         Me.txtNoVoucher = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnProsesInvoice = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnAddDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.dtTanggal = New DevExpress.XtraEditors.DateEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.GridTicket = New DevExpress.XtraGrid.GridControl()
         Me.GridViewTicket = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoRequest = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,15 +51,6 @@ Partial Class FrmTravelTicketDetail
         Me.Invoice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Check = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CCheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.btnProsesInvoice = New DevExpress.XtraEditors.SimpleButton()
-        Me.btnAddDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.dtTanggal = New DevExpress.XtraEditors.DateEdit()
-        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
@@ -59,11 +59,6 @@ Partial Class FrmTravelTicketDetail
         CType(Me.txtNoVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +67,11 @@ Partial Class FrmTravelTicketDetail
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CAmount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,6 +105,101 @@ Partial Class FrmTravelTicketDetail
         Me.LayoutControl1.TabIndex = 23
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'btnProsesInvoice
+        '
+        Me.btnProsesInvoice.Location = New System.Drawing.Point(1044, 12)
+        Me.btnProsesInvoice.MaximumSize = New System.Drawing.Size(120, 27)
+        Me.btnProsesInvoice.Name = "btnProsesInvoice"
+        Me.btnProsesInvoice.Size = New System.Drawing.Size(120, 27)
+        Me.btnProsesInvoice.StyleController = Me.LayoutControl1
+        Me.btnProsesInvoice.TabIndex = 22
+        Me.btnProsesInvoice.Text = "Input Invoice"
+        '
+        'btnAddDetail
+        '
+        Me.btnAddDetail.Location = New System.Drawing.Point(912, 12)
+        Me.btnAddDetail.MaximumSize = New System.Drawing.Size(120, 27)
+        Me.btnAddDetail.Name = "btnAddDetail"
+        Me.btnAddDetail.Size = New System.Drawing.Size(120, 27)
+        Me.btnAddDetail.StyleController = Me.LayoutControl1
+        Me.btnAddDetail.TabIndex = 21
+        Me.btnAddDetail.Text = "Add Detail"
+        '
+        'dtTanggal
+        '
+        Me.dtTanggal.EditValue = Nothing
+        Me.dtTanggal.Enabled = False
+        Me.dtTanggal.Location = New System.Drawing.Point(301, 12)
+        Me.dtTanggal.MaximumSize = New System.Drawing.Size(140, 22)
+        Me.dtTanggal.Name = "dtTanggal"
+        Me.dtTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTanggal.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.dtTanggal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTanggal.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.dtTanggal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTanggal.Properties.Mask.EditMask = ""
+        Me.dtTanggal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtTanggal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtTanggal.Size = New System.Drawing.Size(140, 22)
+        Me.dtTanggal.StyleController = Me.LayoutControl1
+        Me.dtTanggal.TabIndex = 13
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.EmptySpaceItem2})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(1176, 54)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.txtNoVoucher
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(212, 34)
+        Me.LayoutControlItem1.Text = "No Voucher"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(66, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.dtTanggal
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(212, 0)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(221, 34)
+        Me.LayoutControlItem2.Text = "Date"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(66, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.btnAddDetail
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(900, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(124, 34)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem3.TextVisible = False
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.btnProsesInvoice
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(1024, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(132, 34)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem4.TextVisible = False
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(433, 0)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(467, 34)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
+        '
         'GridTicket
         '
         Me.GridTicket.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -120,6 +215,8 @@ Partial Class FrmTravelTicketDetail
         '
         'GridViewTicket
         '
+        Me.GridViewTicket.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewTicket.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewTicket.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Seq, Me.Nama, Me.DeptID, Me.Purpose, Me.Destination, Me.Negara, Me.DepartureDate, Me.ArrivalDate, Me.TicketNumber, Me.CuryID, Me.Amount, Me.StatusTicket, Me.Invoice, Me.Check})
         Me.GridViewTicket.GridControl = Me.GridTicket
         Me.GridViewTicket.Name = "GridViewTicket"
@@ -147,7 +244,7 @@ Partial Class FrmTravelTicketDetail
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -194,7 +291,7 @@ Partial Class FrmTravelTicketDetail
         '
         'Negara
         '
-        Me.Negara.Caption = "Negara"
+        Me.Negara.Caption = "Country"
         Me.Negara.FieldName = "Negara"
         Me.Negara.MinWidth = 25
         Me.Negara.Name = "Negara"
@@ -242,7 +339,7 @@ Partial Class FrmTravelTicketDetail
         '
         'CuryID
         '
-        Me.CuryID.Caption = "Curry ID"
+        Me.CuryID.Caption = "Curr"
         Me.CuryID.FieldName = "CuryID"
         Me.CuryID.MinWidth = 25
         Me.CuryID.Name = "CuryID"
@@ -326,101 +423,6 @@ Partial Class FrmTravelTicketDetail
         Me.CCheck.AutoHeight = False
         Me.CCheck.Name = "CCheck"
         '
-        'btnProsesInvoice
-        '
-        Me.btnProsesInvoice.Location = New System.Drawing.Point(1045, 12)
-        Me.btnProsesInvoice.MaximumSize = New System.Drawing.Size(120, 27)
-        Me.btnProsesInvoice.Name = "btnProsesInvoice"
-        Me.btnProsesInvoice.Size = New System.Drawing.Size(119, 27)
-        Me.btnProsesInvoice.StyleController = Me.LayoutControl1
-        Me.btnProsesInvoice.TabIndex = 22
-        Me.btnProsesInvoice.Text = "Input Invoice"
-        '
-        'btnAddDetail
-        '
-        Me.btnAddDetail.Location = New System.Drawing.Point(913, 12)
-        Me.btnAddDetail.MaximumSize = New System.Drawing.Size(120, 27)
-        Me.btnAddDetail.Name = "btnAddDetail"
-        Me.btnAddDetail.Size = New System.Drawing.Size(120, 27)
-        Me.btnAddDetail.StyleController = Me.LayoutControl1
-        Me.btnAddDetail.TabIndex = 21
-        Me.btnAddDetail.Text = "Add Detail"
-        '
-        'dtTanggal
-        '
-        Me.dtTanggal.EditValue = Nothing
-        Me.dtTanggal.Enabled = False
-        Me.dtTanggal.Location = New System.Drawing.Point(311, 12)
-        Me.dtTanggal.MaximumSize = New System.Drawing.Size(140, 22)
-        Me.dtTanggal.Name = "dtTanggal"
-        Me.dtTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtTanggal.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.dtTanggal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.dtTanggal.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.dtTanggal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.dtTanggal.Properties.Mask.EditMask = ""
-        Me.dtTanggal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.dtTanggal.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTanggal.Size = New System.Drawing.Size(139, 22)
-        Me.dtTanggal.StyleController = Me.LayoutControl1
-        Me.dtTanggal.TabIndex = 13
-        '
-        'Root
-        '
-        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.EmptySpaceItem2})
-        Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1176, 54)
-        Me.Root.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.txtNoVoucher
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(212, 34)
-        Me.LayoutControlItem1.Text = "No Voucher"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(66, 16)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.dtTanggal
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(212, 0)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(20, 2, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(230, 34)
-        Me.LayoutControlItem2.Text = "Tanggal"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(66, 16)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.btnAddDetail
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(901, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(124, 34)
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem3.TextVisible = False
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.btnProsesInvoice
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(1025, 0)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(131, 34)
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(442, 0)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(459, 34)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 1
@@ -475,11 +477,6 @@ Partial Class FrmTravelTicketDetail
         CType(Me.txtNoVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
@@ -488,6 +485,11 @@ Partial Class FrmTravelTicketDetail
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CAmount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CStatusTicket, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()

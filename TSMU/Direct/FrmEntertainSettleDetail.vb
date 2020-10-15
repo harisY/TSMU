@@ -531,6 +531,7 @@ Public Class FrmEntertainSettleDetail
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SuspendAmount", 0)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ActualAmount", 0)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Tgl", Date.Today)
         GridViewDetail.RefreshData()
         GridViewRelasi.ClearColumnsFilter()
         GridViewRelasi.AddNewRow()

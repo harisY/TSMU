@@ -2804,6 +2804,9 @@
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleCC.resx">
+      <DependentUpon>FrmEntertainSettleCC.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
     </EmbeddedResource>

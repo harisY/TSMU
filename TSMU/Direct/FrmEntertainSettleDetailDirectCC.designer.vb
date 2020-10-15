@@ -20,7 +20,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridDetail = New DevExpress.XtraGrid.GridControl()
         Me.GridViewDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -140,11 +140,11 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         Me.LayoutControl1.Controls.Add(Me.GridDetail)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(4, 104)
+        Me.LayoutControl1.Location = New System.Drawing.Point(4, 84)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1233, 308)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1233, 318)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -154,17 +154,19 @@ Partial Class FrmEntertainSettleDetailDirectCC
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDetail.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridDetail.Location = New System.Drawing.Point(12, 12)
+        Me.GridDetail.Location = New System.Drawing.Point(12, 2)
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CDescriptionDetail, Me.CNamaDetail, Me.CTempatDetail, Me.CAlamatDetail, Me.CJenisDetail})
-        Me.GridDetail.Size = New System.Drawing.Size(1209, 284)
+        Me.GridDetail.Size = New System.Drawing.Size(1209, 314)
         Me.GridDetail.TabIndex = 3
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
         'GridViewDetail
         '
+        Me.GridViewDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.HeaderSeq, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2})
         Me.GridViewDetail.DetailHeight = 458
         Me.GridViewDetail.FixedLineWidth = 3
@@ -366,7 +368,8 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1233, 308)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1233, 318)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem10
@@ -374,13 +377,13 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlItem10.Control = Me.GridDetail
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1213, 288)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1213, 318)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
         'txtCCNumber
         '
-        Me.txtCCNumber.Location = New System.Drawing.Point(1194, 12)
+        Me.txtCCNumber.Location = New System.Drawing.Point(1140, 7)
         Me.txtCCNumber.Name = "txtCCNumber"
         Me.txtCCNumber.Properties.DisplayFormat.FormatString = "0000-0000-0000-9999"
         Me.txtCCNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
@@ -407,23 +410,23 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControl2.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.Root
-        Me.LayoutControl2.Size = New System.Drawing.Size(1235, 94)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1235, 74)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(95, 38)
+        Me.TxtRemark.Location = New System.Drawing.Point(41, 33)
         Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRemark.Name = "TxtRemark"
-        Me.TxtRemark.Size = New System.Drawing.Size(1161, 23)
+        Me.TxtRemark.Size = New System.Drawing.Size(1161, 22)
         Me.TxtRemark.StyleController = Me.LayoutControl2
         Me.TxtRemark.TabIndex = 6
         '
         'TxtTgl
         '
         Me.TxtTgl.EditValue = Nothing
-        Me.TxtTgl.Location = New System.Drawing.Point(95, 12)
+        Me.TxtTgl.Location = New System.Drawing.Point(41, 7)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -442,7 +445,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(880, 12)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(826, 7)
         Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
@@ -457,8 +460,9 @@ Partial Class FrmEntertainSettleDetailDirectCC
         'TxtPaymentType
         '
         Me.TxtPaymentType.EditValue = "FINANCE"
-        Me.TxtPaymentType.Location = New System.Drawing.Point(1037, 12)
+        Me.TxtPaymentType.Location = New System.Drawing.Point(983, 7)
         Me.TxtPaymentType.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtPaymentType.MaximumSize = New System.Drawing.Size(130, 0)
         Me.TxtPaymentType.Name = "TxtPaymentType"
         Me.TxtPaymentType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtPaymentType.Properties.Items.AddRange(New Object() {"FINANCE", "CREDIT CARD"})
@@ -468,7 +472,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(252, 12)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(198, 7)
         Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
@@ -478,7 +482,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtPrNo
         '
-        Me.TxtPrNo.Location = New System.Drawing.Point(409, 12)
+        Me.TxtPrNo.Location = New System.Drawing.Point(355, 7)
         Me.TxtPrNo.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPrNo.Name = "TxtPrNo"
         Me.TxtPrNo.Size = New System.Drawing.Size(62, 22)
@@ -487,7 +491,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(723, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(669, 7)
         Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtCurrency.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtCurrency.Name = "TxtCurrency"
@@ -497,14 +501,14 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.TxtCurrency.Size = New System.Drawing.Size(62, 22)
         Me.TxtCurrency.StyleController = Me.LayoutControl2
         Me.TxtCurrency.TabIndex = 8
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "This value is not valid"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtCurrency, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "This value is not valid"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtCurrency, ConditionValidationRule2)
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(566, 12)
+        Me.TxtDep.Location = New System.Drawing.Point(512, 7)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtDep.Name = "TxtDep"
@@ -520,7 +524,8 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.LayoutControlItem8, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem1, Me.LayoutControlItem3})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1268, 73)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 5, 0)
+        Me.Root.Size = New System.Drawing.Size(1268, 57)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -607,7 +612,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlItem3.Control = Me.TxtRemark
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(1248, 27)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(1248, 26)
         Me.LayoutControlItem3.Text = "Remark"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(80, 16)
         '
@@ -621,17 +626,19 @@ Partial Class FrmEntertainSettleDetailDirectCC
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridRelasi.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridRelasi.Location = New System.Drawing.Point(12, 12)
+        Me.GridRelasi.Location = New System.Drawing.Point(12, 2)
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
         Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNamaRelasi, Me.CPerusahaanRelasi, Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
-        Me.GridRelasi.Size = New System.Drawing.Size(1211, 287)
+        Me.GridRelasi.Size = New System.Drawing.Size(1211, 317)
         Me.GridRelasi.TabIndex = 4
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
         '
         'GridViewRelasi
         '
+        Me.GridViewRelasi.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRelasi.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.RelasiHeaderSeq, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3
@@ -749,7 +756,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1241, 733)
@@ -759,10 +766,10 @@ Partial Class FrmEntertainSettleDetailDirectCC
         '
         Me.LayoutControl3.Controls.Add(Me.GridRelasi)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 419)
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 409)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1235, 311)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1235, 321)
         Me.LayoutControl3.TabIndex = 3
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -772,7 +779,8 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem11})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1235, 311)
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1235, 321)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem11
@@ -780,7 +788,7 @@ Partial Class FrmEntertainSettleDetailDirectCC
         Me.LayoutControlItem11.Control = Me.GridRelasi
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(1215, 291)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(1215, 321)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
