@@ -321,7 +321,7 @@ Public Class FrmSuspendSettleDetailDirectCC
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
-                ObjSettle.InsertData1()
+                ObjSettle.InsertData1CC()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
                 ObjSettle.ObjDetails.Clear()
