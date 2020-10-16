@@ -163,7 +163,7 @@ Public Class Frm_CR_Approve
                 With fSearch
                     .StartPosition = FormStartPosition.CenterScreen
                     .ShowDialog()
-                    'dtGrid = fc_Class_Accounting.Get_Purchase_Monitor_Proses(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                    dtGrid = fc_Class_Accounting.Get_Purchase_Monitor_Proses_Search(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
                     Grid4.DataSource = dtGrid
                 End With
 

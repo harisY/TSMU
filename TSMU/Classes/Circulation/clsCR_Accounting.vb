@@ -68,10 +68,17 @@
         End Try
 
     End Function
-    Public Function Get_Purchase_Monitor_Proses_Search() As DataTable
+    Public Function Get_Purchase_Monitor_Proses_Search(TAwal As Date, TAkhir As Date) As DataTable
         Try
 
-            Dim query As String = "[CR_Request_Get_Purcase_Monitor_Proses]"
+            Dim query As String = "[CR_Request_Get_Purcase_Search]"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date1", SqlDbType.Date)
+            pParam(1) = New SqlClient.SqlParameter("@Date2", SqlDbType.Date)
+
+            pParam(0).Value = TAwal
+            pParam(1).Value = TAkhir
 
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query)

@@ -66,6 +66,22 @@ Public Class Cls_Npwo_Detail
             Throw
         End Try
     End Function
+    Public Sub ValidateInsert(No As String)
+        Try
+            Dim ls_SP As String = "SELECT TOP 1 [No_Npwo]                  
+                                    FROM [Npwo_Head] where No_Npwo = '" & No & "' "
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+                "[" & No & "]")
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
     Public Function NpwoReport(No As String, Rev As String) As DataSet
         '      Dim query As String
