@@ -289,7 +289,7 @@ Partial Class FrmTravelTicketInvoice
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem5.Size = New System.Drawing.Size(157, 34)
-        Me.LayoutControlItem5.Text = "Curry ID"
+        Me.LayoutControlItem5.Text = "Curr"
         Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(70, 16)
         Me.LayoutControlItem5.TextToControlDistance = 5
@@ -331,6 +331,8 @@ Partial Class FrmTravelTicketInvoice
         '
         'GridViewInvoice
         '
+        Me.GridViewInvoice.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewInvoice.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewInvoice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Seq, Me.Nama, Me.DeptID, Me.Purpose, Me.Destination, Me.Negara, Me.DepartureDate, Me.ArrivalDate, Me.TicketNumber, Me.CuryID, Me.Amount, Me.Status, Me.Invoice, Me.Check})
         Me.GridViewInvoice.GridControl = Me.GridInvoice
         Me.GridViewInvoice.Name = "GridViewInvoice"
@@ -357,7 +359,7 @@ Partial Class FrmTravelTicketInvoice
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -400,7 +402,7 @@ Partial Class FrmTravelTicketInvoice
         '
         'Negara
         '
-        Me.Negara.Caption = "Negara"
+        Me.Negara.Caption = "Country"
         Me.Negara.FieldName = "Negara"
         Me.Negara.MinWidth = 25
         Me.Negara.Name = "Negara"
@@ -449,7 +451,7 @@ Partial Class FrmTravelTicketInvoice
         '
         'CuryID
         '
-        Me.CuryID.Caption = "Curry ID"
+        Me.CuryID.Caption = "Curr"
         Me.CuryID.FieldName = "CuryID"
         Me.CuryID.MinWidth = 25
         Me.CuryID.Name = "CuryID"
@@ -563,7 +565,7 @@ Partial Class FrmTravelTicketInvoice
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(123, 25)
         Me.Label8.TabIndex = 30
-        Me.Label8.Text = "Selisih"
+        Me.Label8.Text = "Balance"
         '
         'txtBalance
         '
@@ -683,7 +685,7 @@ Partial Class FrmTravelTicketInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmTravelTicketInvoice"
-        Me.Text = "FrmTravelTicketInvoice"
+        Me.Text = "Ticket Invoice"
         CType(Me.txtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)

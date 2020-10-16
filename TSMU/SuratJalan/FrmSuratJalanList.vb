@@ -567,4 +567,8 @@ Public Class FrmSuratJalanList
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         CustID_vs_SJ_langkah3()
     End Sub
+
+    Private Sub _BtnCust_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust.EditValueChanged
+
+    End Sub
 End Class

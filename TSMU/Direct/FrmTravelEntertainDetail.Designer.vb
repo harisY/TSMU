@@ -358,7 +358,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem5.Size = New System.Drawing.Size(170, 26)
-        Me.LayoutControlItem5.Text = "Curry ID"
+        Me.LayoutControlItem5.Text = "Curr"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem7
@@ -442,6 +442,8 @@ Partial Class FrmTravelEntertainDetail
         '
         'GridViewEntertain
         '
+        Me.GridViewEntertain.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewEntertain.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqDetail, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
@@ -631,6 +633,8 @@ Partial Class FrmTravelEntertainDetail
         '
         'GridViewRelasi
         '
+        Me.GridViewRelasi.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRelasi.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqRelasi, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7, Me.GridColumn9})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3

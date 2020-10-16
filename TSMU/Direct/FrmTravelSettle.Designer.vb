@@ -99,6 +99,8 @@ Partial Class FrmTravelSettle
         '
         'GridViewSettle
         '
+        Me.GridViewSettle.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewSettle.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewSettle.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.TravelSettleID, Me.NoPRGrid, Me.DeptID, Me.TravelerName, Me.Destination, Me.Purpose, Me.Term, Me.Pay})
         Me.GridViewSettle.DetailHeight = 458
         Me.GridViewSettle.FixedLineWidth = 3
@@ -206,7 +208,7 @@ Partial Class FrmTravelSettle
         Me.btnProses.Name = "btnProses"
         Me.btnProses.Size = New System.Drawing.Size(94, 29)
         Me.btnProses.TabIndex = 2
-        Me.btnProses.Text = "PROSES"
+        Me.btnProses.Text = "PROCESS"
         '
         'GridRequest
         '
@@ -222,7 +224,9 @@ Partial Class FrmTravelSettle
         '
         'GridViewRequest
         '
-        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.NoRequest, Me.Nama, Me.GridColumn3, Me.TravelType, Me.GridColumn6, Me.GridColumn21, Me.GridColumn22, Me.GridColumn10, Me.GridColumn9, Me.GridColumn7, Me.GridColumn8})
+        Me.GridViewRequest.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRequest.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridViewRequest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVoucher, Me.NoRequest, Me.Nama, Me.GridColumn3, Me.TravelType, Me.GridColumn6, Me.GridColumn21, Me.GridColumn22, Me.GridColumn10, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsBehavior.Editable = False
@@ -342,7 +346,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.FixedWidth = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
+        Me.GridColumn9.VisibleIndex = 12
         Me.GridColumn9.Width = 130
         '
         'GridColumn7
@@ -355,7 +359,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.FixedWidth = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 11
+        Me.GridColumn7.VisibleIndex = 10
         Me.GridColumn7.Width = 130
         '
         'GridColumn8
@@ -368,7 +372,7 @@ Partial Class FrmTravelSettle
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 12
+        Me.GridColumn8.VisibleIndex = 11
         Me.GridColumn8.Width = 130
         '
         'FrmTravelSettle

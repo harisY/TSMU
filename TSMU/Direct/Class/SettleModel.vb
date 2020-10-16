@@ -715,6 +715,38 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       'FINANCE', " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+    Public Sub InsertHeaderDirectSettleCC()
+        Try
+            Dim ls_SP As String = String.Empty
+            'ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
+            '"Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Tgl) & ", " & vbCrLf &
+            '"       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            '"       'Close', " & vbCrLf &
+            '"       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Total) & ")"
+
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            "       'Close', " & vbCrLf &
             "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
@@ -726,7 +758,6 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
         End Try
 
     End Sub
-
     Public Sub UpdateHeader(ByVal _SettleID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
@@ -831,6 +862,37 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
         End Try
     End Sub
 
+    Public Sub InsertData1CC()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertHeaderDirectSettleCC()
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)

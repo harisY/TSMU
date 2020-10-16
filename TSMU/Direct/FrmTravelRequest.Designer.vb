@@ -39,6 +39,8 @@ Partial Class FrmTravelRequest
         '
         'GridViewRequest
         '
+        Me.GridViewRequest.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRequest.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRequest.GridControl = Me.GridRequest
         Me.GridViewRequest.Name = "GridViewRequest"
         Me.GridViewRequest.OptionsBehavior.Editable = False

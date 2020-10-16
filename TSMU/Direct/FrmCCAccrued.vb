@@ -19,7 +19,7 @@ Public Class FrmCCAccrued
     Dim dtSummarySettle As New DataTable
     Dim dtSummaryPaid As New DataTable
 
-    Dim accountName As String = String.Empty
+    'Dim accountName As String = String.Empty
 
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -35,7 +35,7 @@ Public Class FrmCCAccrued
             Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
             LoadGridAccrued()
         ElseIf TabPage = "TabPageCancel" Then
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, True)
             LoadGridAccruedSette()
         ElseIf TabPage = "TabPagePaid" Then
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
@@ -45,17 +45,29 @@ Public Class FrmCCAccrued
 
     Public Overrides Sub Proc_Search()
         Try
-            Dim fSearch As New frmSearch()
+            Dim Status As List(Of String) = New List(Of String)({"All", "Accrued", "Paid"})
+            Dim _status As String = String.Empty
+
+            Dim fSearch As New frmAdvanceSearch(Status)
             With fSearch
                 .StartPosition = FormStartPosition.CenterScreen
                 .ShowDialog()
+                Select Case .Status.ToLower
+                    Case "All"
+                        _status = "0,1"
+                    Case "Accrued"
+                        _status = "0"
+                    Case "Paid"
+                        _status = "1"
+                End Select
             End With
 
             Dim _now As Date = Date.Today
             Dim firstDay As Date = If(IsDBNull(fSearch.TglDari), New Date(_now.Year, _now.Month, 1), fSearch.TglDari)
             Dim lastDay As Date = If(IsDBNull(fSearch.TglSampai), _now.AddMonths(1).AddDays(-1), fSearch.TglSampai)
 
-            LoadGridAccruedPaid(firstDay, lastDay)
+            LoadGridAccruedSetteWithFilter(firstDay, lastDay, _status)
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -99,9 +111,20 @@ Public Class FrmCCAccrued
             cls_Accrued = New ClsCCAccrued
             btnProses.Enabled = False
             txtCCNumber.EditValue = ""
+            txtAccountName.Text = ""
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
+            Dim colCCNumber As GridColumn = GridViewAccrued.Columns("CreditCardNumber")
+            Dim colAccountName As GridColumn = GridViewAccrued.Columns("AccountName")
+            Dim colBankName As GridColumn = GridViewAccrued.Columns("BankName")
+            colCCNumber.Visible = True
+            colAccountName.Visible = True
+            colBankName.Visible = True
+            colCCNumber.VisibleIndex = 1
+            colAccountName.VisibleIndex = 2
+            colBankName.VisibleIndex = 3
+            GridViewAccrued.BestFitColumns()
             'GroupingGrid(GridViewAccrued)
 
             dtSummaryProses = New DataTable
@@ -123,6 +146,13 @@ Public Class FrmCCAccrued
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
+            Dim colCCNumber As GridColumn = GridViewAccrued.Columns("CreditCardNumber")
+            Dim colAccountName As GridColumn = GridViewAccrued.Columns("AccountName")
+            Dim colBankName As GridColumn = GridViewAccrued.Columns("BankName")
+            colBankName.Visible = False
+            colAccountName.Visible = False
+            colCCNumber.Visible = False
+            GridViewAccrued.BestFitColumns()
             'GroupingGrid(GridViewAccrued)
             hitungSummaryProses()
         Catch ex As Exception
@@ -141,6 +171,23 @@ Public Class FrmCCAccrued
             dtSummarySettle = New DataTable
             cls_Accrued = New ClsCCAccrued
             dtSummarySettle = cls_Accrued.GetDataCCSettleSum()
+            GridSumSettle.DataSource = dtSummarySettle
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub LoadGridAccruedSetteWithFilter(dateFrom As Date, dateTo As Date, status As String)
+        Try
+            cls_Accrued = New ClsCCAccrued
+            dtGrid = cls_Accrued.GetDataCCSettleFilter(dateFrom, dateTo, status)
+            GridAccruedAll.DataSource = dtGrid
+            GridViewAccruedAll.BestFitColumns()
+
+            dtSummarySettle = New DataTable
+            cls_Accrued = New ClsCCAccrued
+            dtSummarySettle = cls_Accrued.GetDataCCSettleSumFilter(dateFrom, dateTo, status)
             GridSumSettle.DataSource = dtSummarySettle
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -206,7 +253,7 @@ Public Class FrmCCAccrued
                 Dim newRow As DataRow
                 newRow = dtSummaryProses.NewRow
                 newRow("SumCCMaster") = txtCCNumber.EditValue
-                newRow("SumAccountName") = accountName
+                newRow("SumAccountName") = txtAccountName.Text
                 newRow("SumAmountOriUSD") = sumAmountOriUSD
                 newRow("SumAmountOriYEN") = sumAmountOriYEN
                 newRow("SumAmountOriIDR") = sumAmountOriIDR
@@ -218,7 +265,7 @@ Public Class FrmCCAccrued
                 Dim newRow As DataRow
                 newRow = dtSummaryProses.NewRow
                 newRow("SumCCMaster") = txtCCNumber.EditValue
-                newRow("SumAccountName") = accountName
+                newRow("SumAccountName") = txtAccountName.Text
                 newRow("SumAmountOriUSD") = 0
                 newRow("SumAmountOriYEN") = 0
                 newRow("SumAmountOriIDR") = 0
@@ -238,27 +285,10 @@ Public Class FrmCCAccrued
         Dim colAccountName As GridColumn = view.Columns("AccountName")
         Dim colBankName As GridColumn = view.Columns("BankName")
         Dim colType As GridColumn = view.Columns("Type")
-        'view.OptionsCustomization.AllowMergedGrouping = True
-        'view.SortInfo.ClearAndAddRange({New GridMergedColumnSortInfo({colCCNumber, colAccountName, colBankName}, {}),
-        '                                New GridColumnSortInfo(colCCNumber, ColumnSortOrder.Ascending)
-        '                                }, 3)
         colType.GroupIndex = 0
         colType.SortIndex = 0
         colType.SortOrder = ColumnSortOrder.Ascending
         view.ExpandAllGroups()
-
-        'Dim item As GridGroupSummaryItem = New GridGroupSummaryItem()
-        'item.FieldName = colCCNumber.FieldName
-        'item.SummaryType = SummaryItemType.Count
-        'view.GroupSummary.Clear()
-        'view.GroupSummary.Add(item)
-
-        'Dim item1 As GridGroupSummaryItem = New GridGroupSummaryItem()
-        'item1.FieldName = colAmountIDR.FieldName
-        'item1.SummaryType = SummaryItemType.Sum
-        'item1.DisplayFormat = "{0:#,##0.#0}"
-        'item1.ShowInGroupColumnFooter = colAmountIDR
-        'view.GroupSummary.Add(item1)
     End Sub
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
@@ -284,6 +314,12 @@ Public Class FrmCCAccrued
                 cls_Accrued.InsertData(Me, noAccrued, txtCCNumber.EditValue, Rows)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
+
+                frmCCAccrued = New FrmReportCCAccrued
+                frmCCAccrued.txtTabAccrued.Text = "TabPageCancel"
+                frmCCAccrued.param = noAccrued
+                frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
+                frmCCAccrued.Show()
             Else
                 MessageBox.Show("Tidak ada data yang dipilih", "Warning",
                                MessageBoxButtons.OK,
@@ -306,7 +342,7 @@ Public Class FrmCCAccrued
                     End If
                     Dim Row As DataRow = CType(Rows(0), DataRow)
                     If Row("Pay") = 1 Then
-                        MessageBox.Show("Data sudah dilakukan pembayaran", "Warning",
+                        MessageBox.Show("No Accrued " & Row("NoAccrued") & " sudah dilakukan pembayaran", "Warning",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button1)
@@ -344,7 +380,7 @@ Public Class FrmCCAccrued
 
         If lF_SearchData.Values IsNot Nothing Then
             txtCCNumber.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
-            accountName = lF_SearchData.Values.Item(1).ToString.Trim
+            txtAccountName.Text = lF_SearchData.Values.Item(1).ToString.Trim + " - " + lF_SearchData.Values.Item(2).ToString.Trim
             LoadGridAccruedWithFilter()
         End If
 
@@ -379,6 +415,10 @@ Public Class FrmCCAccrued
                     Else
                         GridViewAccrued.SetRowCellValue(i, "Rate", 0)
                     End If
+                Else
+                    If GridViewAccrued.GetRowCellValue(i, "CurryID") = "IDR" Then
+                        GridViewAccrued.SetRowCellValue(i, "AmountIDR", GridViewAccrued.GetRowCellValue(i, "Amount"))
+                    End If
                 End If
             Next
             hitungSummaryProses()
@@ -394,7 +434,8 @@ Public Class FrmCCAccrued
                 GridViewAccrued.OptionsSelection.EnableAppearanceFocusedRow = False
             Else
                 Dim isChecked As Boolean = GridViewAccrued.IsRowSelected(GridViewAccrued.FocusedRowHandle)
-                If isChecked Then
+                Dim curryID As String = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "CurryID")
+                If isChecked AndAlso curryID <> "IDR" Then
                     GridViewAccrued.OptionsBehavior.Editable = True
                 Else
                     GridViewAccrued.OptionsBehavior.Editable = False

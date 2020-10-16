@@ -518,38 +518,6 @@ Public Class TravelRequestModel
         End Try
     End Sub
 
-    'Public Sub UpdateApproved(ByVal _NoRequest As String)
-    '    Try
-    '        strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-    '                    " SET     Status = " & QVal(Status) & " , " & vbCrLf &
-    '                    "         Approved = " & QVal(Approved) & " , " & vbCrLf &
-    '                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
-    '                    "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
-    '                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
-    '                    "         UpdatedDate = GETDATE() " & vbCrLf &
-    '                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-    '        ExecQuery(strQuery)
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-    'Public Sub UpdateStatusPending(ByVal _NoRequest As String)
-    '    Try
-    '        strQuery = " UPDATE  dbo.TravelRequestHeader " & vbCrLf &
-    '                    " SET     Status = " & QVal(Status) & " , " & vbCrLf &
-    '                    "         Approved = " & QVal(Approved) & " , " & vbCrLf &
-    '                    "         Comment = " & QVal(Comment) & " , " & vbCrLf &
-    '                    "         CurrentLevelApprove = " & CurrentLvlApprove & " , " & vbCrLf &
-    '                    "         UpdatedBy = " & QVal(gh_Common.Username) & " , " & vbCrLf &
-    '                    "         UpdatedDate = GETDATE() " & vbCrLf &
-    '                    " WHERE   NoRequest = " & QVal(_NoRequest) & " "
-    '        ExecQuery(strQuery)
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
     Public Sub Delete(AppModel As ApproveHistoryModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -663,6 +631,19 @@ Public Class TravelRequestModel
             End If
 
             Return rate
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataTraveler(ByVal _Nik As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  *
+                        FROM    dbo.Traveler
+                        WHERE   NIK = " & QVal(_Nik) & ""
+            dt = GetDataTable(strQuery)
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try
