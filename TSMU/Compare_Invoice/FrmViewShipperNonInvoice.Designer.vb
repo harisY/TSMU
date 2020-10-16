@@ -24,16 +24,18 @@ Partial Class FrmViewShipperNonInvoice
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me._TxtLokasi = New DevExpress.XtraEditors.ComboBoxEdit()
         Me._TglSJTo = New DevExpress.XtraEditors.DateEdit()
         Me._TglSJFrom = New DevExpress.XtraEditors.DateEdit()
-        Me._BtnCust = New DevExpress.XtraEditors.ButtonEdit()
+        Me._BtnCust2 = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -46,13 +48,14 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._BtnCust.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._BtnCust2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -103,10 +106,11 @@ Partial Class FrmViewShipperNonInvoice
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.Button1)
         Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
         Me.LayoutControl1.Controls.Add(Me._TglSJTo)
         Me.LayoutControl1.Controls.Add(Me._TglSJFrom)
-        Me.LayoutControl1.Controls.Add(Me._BtnCust)
+        Me.LayoutControl1.Controls.Add(Me._BtnCust2)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
@@ -116,6 +120,15 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControl1.TabIndex = 20
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(686, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(79, 27)
+        Me.Button1.TabIndex = 7
+        Me.Button1.Text = "View Data"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         '_TxtLokasi
         '
         Me._TxtLokasi.Location = New System.Drawing.Point(588, 12)
@@ -123,7 +136,7 @@ Partial Class FrmViewShipperNonInvoice
         Me._TxtLokasi.Name = "_TxtLokasi"
         Me._TxtLokasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtLokasi.Properties.Items.AddRange(New Object() {"ALL", "CKR A", "CKR B", "TNG", "TSC3"})
-        Me._TxtLokasi.Size = New System.Drawing.Size(95, 22)
+        Me._TxtLokasi.Size = New System.Drawing.Size(94, 22)
         Me._TxtLokasi.StyleController = Me.LayoutControl1
         Me._TxtLokasi.TabIndex = 5
         '
@@ -147,7 +160,7 @@ Partial Class FrmViewShipperNonInvoice
         '_TglSJFrom
         '
         Me._TglSJFrom.EditValue = Nothing
-        Me._TglSJFrom.Location = New System.Drawing.Point(231, 12)
+        Me._TglSJFrom.Location = New System.Drawing.Point(256, 12)
         Me._TglSJFrom.Margin = New System.Windows.Forms.Padding(4)
         Me._TglSJFrom.Name = "_TglSJFrom"
         Me._TglSJFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -157,44 +170,34 @@ Partial Class FrmViewShipperNonInvoice
         Me._TglSJFrom.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._TglSJFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._TglSJFrom.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._TglSJFrom.Size = New System.Drawing.Size(135, 22)
+        Me._TglSJFrom.Size = New System.Drawing.Size(110, 22)
         Me._TglSJFrom.StyleController = Me.LayoutControl1
         Me._TglSJFrom.TabIndex = 2
         '
-        '_BtnCust
+        '_BtnCust2
         '
-        Me._BtnCust.Location = New System.Drawing.Point(78, 12)
-        Me._BtnCust.Margin = New System.Windows.Forms.Padding(4)
-        Me._BtnCust.Name = "_BtnCust"
-        Me._BtnCust.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._BtnCust.Size = New System.Drawing.Size(83, 22)
-        Me._BtnCust.StyleController = Me.LayoutControl1
-        Me._BtnCust.TabIndex = 0
+        Me._BtnCust2.Location = New System.Drawing.Point(78, 12)
+        Me._BtnCust2.Name = "_BtnCust2"
+        Me._BtnCust2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me._BtnCust2.Size = New System.Drawing.Size(108, 22)
+        Me._BtnCust2.StyleController = Me.LayoutControl1
+        Me._BtnCust2.TabIndex = 6
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem5})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1104, 51)
         Me.LayoutControlGroup1.TextVisible = False
         '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me._BtnCust
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(153, 31)
-        Me.LayoutControlItem1.Text = "Customer"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(63, 16)
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me._TglSJFrom
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(153, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(178, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(205, 31)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(180, 31)
         Me.LayoutControlItem3.Text = "Tanggal SJ"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(63, 16)
         '
@@ -212,17 +215,35 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem2.Control = Me._TxtLokasi
         Me.LayoutControlItem2.Location = New System.Drawing.Point(510, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(165, 31)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(164, 31)
         Me.LayoutControlItem2.Text = "Site"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(63, 16)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(675, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(757, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(409, 31)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(327, 31)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me._BtnCust2
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(178, 31)
+        Me.LayoutControlItem1.Text = "Customer"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(63, 16)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.Button1
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(674, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(83, 31)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
         '
         'FrmViewShipperNonInvoice
         '
@@ -245,13 +266,14 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._BtnCust.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._BtnCust2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -265,11 +287,13 @@ Partial Class FrmViewShipperNonInvoice
     Friend WithEvents _TxtLokasi As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents _TglSJTo As DevExpress.XtraEditors.DateEdit
     Friend WithEvents _TglSJFrom As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents _BtnCust As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents _BtnCust2 As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Button1 As Button
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
 End Class

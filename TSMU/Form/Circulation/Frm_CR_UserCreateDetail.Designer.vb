@@ -73,6 +73,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Remaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -126,6 +127,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -591,7 +593,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Curr, Me.Rate, Me.Account, Me.Remaining, Me.GridColumn1, Me.GridColumn2, Me.PTotalRP, Me.GridColumn5, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Curr, Me.Rate, Me.Account, Me.GridColumn14, Me.Remaining, Me.GridColumn1, Me.GridColumn2, Me.PTotalRP, Me.GridColumn5, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -638,8 +640,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Qty.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 4
-        Me.Qty.Width = 60
+        Me.Qty.VisibleIndex = 5
+        Me.Qty.Width = 37
         '
         'C_Qty
         '
@@ -663,8 +665,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Price.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Price.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Price.Visible = True
-        Me.Price.VisibleIndex = 6
-        Me.Price.Width = 130
+        Me.Price.VisibleIndex = 7
+        Me.Price.Width = 108
         '
         'C_Price
         '
@@ -686,8 +688,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 7
-        Me.PTotal.Width = 171
+        Me.PTotal.VisibleIndex = 8
+        Me.PTotal.Width = 147
         '
         'C_Amount_Barang
         '
@@ -706,8 +708,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Curr.Name = "Curr"
         Me.Curr.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Curr.Visible = True
-        Me.Curr.VisibleIndex = 5
-        Me.Curr.Width = 51
+        Me.Curr.VisibleIndex = 6
+        Me.Curr.Width = 36
         '
         'CurrRepository
         '
@@ -726,8 +728,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 8
-        Me.Rate.Width = 88
+        Me.Rate.VisibleIndex = 9
+        Me.Rate.Width = 60
         '
         'Account
         '
@@ -749,6 +751,15 @@ Partial Class Frm_CR_UserCreateDetail
         Me.BAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.BAccount.Name = "BAccount"
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.FieldName = "Account Name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 166
+        '
         'Remaining
         '
         Me.Remaining.AppearanceHeader.Options.UseTextOptions = True
@@ -760,7 +771,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Remaining.OptionsColumn.AllowEdit = False
         Me.Remaining.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Remaining.Visible = True
-        Me.Remaining.VisibleIndex = 3
+        Me.Remaining.VisibleIndex = 4
         Me.Remaining.Width = 127
         '
         'GridColumn1
@@ -786,8 +797,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn2.FieldName = "Category"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 10
         '
         'PTotalRP
         '
@@ -801,8 +810,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotalRP.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotalRP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total IDR", "{0:N2}")})
         Me.PTotalRP.Visible = True
-        Me.PTotalRP.VisibleIndex = 9
-        Me.PTotalRP.Width = 173
+        Me.PTotalRP.VisibleIndex = 10
+        Me.PTotalRP.Width = 158
         '
         'TotalIdr
         '
@@ -1201,6 +1210,10 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 800
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1406,4 +1419,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents T_PO As TextBox
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer1 As Timer
 End Class

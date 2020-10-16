@@ -743,6 +743,38 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Sub
+    Public Sub CloseCR(NoSirkulasi As String, Active_Form As Integer, _user As String, Model As ApproveHistoryModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        Update_Approve(H_CirculationNo,
+                                         H_Status,
+                                         H_Current_Level)
+
+
+                        Dim GS As New GlobalService
+                        GS.Approve(Model, "Close")
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
     Public Sub UpdateAprove(NoSirkulasi As String, Active_Form As Integer, _user As String, Model As ApproveHistoryModel)
         Try
@@ -754,9 +786,6 @@ Public Class ClsCR_CreateUser
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        'InsertHistory(NPWO_)
-
-                        'If Active_Form = 2 Then
 
                         Update_Approve(H_CirculationNo,
                                          H_Status,
@@ -770,13 +799,6 @@ Public Class ClsCR_CreateUser
                             End With
                         Next
 
-                        'Delete_Approve(H_CirculationNo)
-
-                        'For a As Integer = 0 To Collection_Approve.Count - 1
-                        '    With Collection_Approve(a)
-                        '        .Insert_Approve(NoSirkulasi)
-                        '    End With
-                        'Next
 
                         Dim GS As New GlobalService
                         GS.Approve(Model, "Approve")
@@ -988,7 +1010,8 @@ Public Class ClsCR_CreateUser
                                          H_Spesification,
                                          H_PO,
                                          H_Div_id,
-                                         H_Director_id)
+                                         H_Director_id,
+                                         H_Current_Level)
 
                         For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
                             With Collection_Description_Of_Cost(i)
@@ -1076,7 +1099,8 @@ Public Class ClsCR_CreateUser
                                 Spesification As String,
                                 PoType As Boolean,
                                 div_Id As Integer,
-                                director_Id As Integer)
+                                director_Id As Integer,
+                                CurrentLevel As Integer)
 
 
         Dim result As Integer = 0
@@ -1103,7 +1127,7 @@ Public Class ClsCR_CreateUser
 
 
             Dim query As String = "[CR_Insert_CrRequest]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(21) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@RequirementDate", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
@@ -1125,6 +1149,7 @@ Public Class ClsCR_CreateUser
             pParam(18) = New SqlClient.SqlParameter("@POType ", SqlDbType.Bit)
             pParam(19) = New SqlClient.SqlParameter("@div_Id ", SqlDbType.Int)
             pParam(20) = New SqlClient.SqlParameter("@dir_Id ", SqlDbType.Int)
+            pParam(21) = New SqlClient.SqlParameter("@CurrentLevel ", SqlDbType.Int)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = RequirementDate
@@ -1147,6 +1172,7 @@ Public Class ClsCR_CreateUser
             pParam(18).Value = PoType
             pParam(19).Value = div_Id
             pParam(20).Value = director_Id
+            pParam(21).Value = CurrentLevel
 
 
             'Dim dtTable As New DataTable
@@ -1793,19 +1819,6 @@ Public Class ClsCR_Other_Dept
 
     End Sub
 
-
-    'Public Sub UpdateOtherDept(ByVal _FsCode As String, ByVal _Dept As String)
-    'Try
-    '    Dim ls_SP As String = " " & vbCrLf &
-    '                            "UPDATE CR_Other_Dept" & vbCrLf &
-    '                            "SET [Date] = '" & Date.Now & "'
-    '                            ,[Opinion] = '" & D_Opinion & "' 
-    '                            ,[Approve] = '" & D_Approve & "'
-    '                            WHERE [CirculationNo] = '" & _FsCode & "' and [DeptID] = '" & _Dept & "' "
-    '    MainModul.ExecQuery(ls_SP)
-    'Catch ex As Exception
-    '    Throw ex
-    'End Try
 
     Public Sub UpdateOtherDept(ByVal _FsCode As String, ByVal _Dept As String, Model As ApproveHistoryModel)
         Try
