@@ -683,12 +683,6 @@
     <Compile Include="Direct\FrmTravelPocketAllowance.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.Designer.vb">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Direct\FrmTravelRequest.Designer.vb">
       <DependentUpon>FrmTravelRequest.vb</DependentUpon>
     </Compile>
@@ -2842,9 +2836,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravelPocketAllowanceDetail.resx">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelRequest.resx">
       <DependentUpon>FrmTravelRequest.vb</DependentUpon>

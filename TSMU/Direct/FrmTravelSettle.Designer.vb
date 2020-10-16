@@ -45,9 +45,13 @@ Partial Class FrmTravelSettle
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageSett.SuspendLayout()
@@ -56,6 +60,11 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.SuspendLayout()
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -67,11 +76,11 @@ Partial Class FrmTravelSettle
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 37)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 12)
         Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageSett
-        Me.XtraTabControl1.Size = New System.Drawing.Size(955, 590)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1023, 574)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageReq, Me.TabPageSett})
         '
@@ -80,7 +89,7 @@ Partial Class FrmTravelSettle
         Me.TabPageSett.Controls.Add(Me.GridSettle)
         Me.TabPageSett.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageSett.Name = "TabPageSett"
-        Me.TabPageSett.Size = New System.Drawing.Size(948, 556)
+        Me.TabPageSett.Size = New System.Drawing.Size(1016, 540)
         Me.TabPageSett.Text = "Settlement"
         '
         'GridSettle
@@ -93,7 +102,7 @@ Partial Class FrmTravelSettle
         Me.GridSettle.MainView = Me.GridViewSettle
         Me.GridSettle.Margin = New System.Windows.Forms.Padding(4)
         Me.GridSettle.Name = "GridSettle"
-        Me.GridSettle.Size = New System.Drawing.Size(939, 544)
+        Me.GridSettle.Size = New System.Drawing.Size(1007, 528)
         Me.GridSettle.TabIndex = 3
         Me.GridSettle.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewSettle})
         '
@@ -199,14 +208,14 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.Controls.Add(Me.btnProses)
         Me.TabPageReq.Controls.Add(Me.GridRequest)
         Me.TabPageReq.Name = "TabPageReq"
-        Me.TabPageReq.Size = New System.Drawing.Size(948, 556)
+        Me.TabPageReq.Size = New System.Drawing.Size(1016, 540)
         Me.TabPageReq.Text = "List Request"
         '
         'btnProses
         '
-        Me.btnProses.Location = New System.Drawing.Point(4, 6)
+        Me.btnProses.Location = New System.Drawing.Point(17, 6)
         Me.btnProses.Name = "btnProses"
-        Me.btnProses.Size = New System.Drawing.Size(94, 29)
+        Me.btnProses.Size = New System.Drawing.Size(149, 41)
         Me.btnProses.TabIndex = 2
         Me.btnProses.Text = "PROCESS"
         '
@@ -215,10 +224,10 @@ Partial Class FrmTravelSettle
         Me.GridRequest.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridRequest.Location = New System.Drawing.Point(4, 41)
+        Me.GridRequest.Location = New System.Drawing.Point(4, 53)
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
-        Me.GridRequest.Size = New System.Drawing.Size(930, 508)
+        Me.GridRequest.Size = New System.Drawing.Size(1008, 484)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
@@ -336,19 +345,6 @@ Partial Class FrmTravelSettle
         Me.GridColumn10.VisibleIndex = 9
         Me.GridColumn10.Width = 260
         '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Advance IDR"
-        Me.GridColumn9.DisplayFormat.FormatString = "n2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "AdvanceIDR"
-        Me.GridColumn9.MinWidth = 25
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.FixedWidth = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 12
-        Me.GridColumn9.Width = 130
-        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Advance USD"
@@ -375,14 +371,69 @@ Partial Class FrmTravelSettle
         Me.GridColumn8.VisibleIndex = 11
         Me.GridColumn8.Width = 130
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Advance IDR"
+        Me.GridColumn9.DisplayFormat.FormatString = "n2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "AdvanceIDR"
+        Me.GridColumn9.MinWidth = 25
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.FixedWidth = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 12
+        Me.GridColumn9.Width = 130
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1053, 604)
+        Me.TableLayoutPanel1.TabIndex = 4
+        '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Controls.Add(Me.XtraTabControl1)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.Root = Me.Root
+        Me.LayoutControl1.Size = New System.Drawing.Size(1047, 598)
+        Me.LayoutControl1.TabIndex = 0
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(1047, 598)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.XtraTabControl1
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1027, 578)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
         'FrmTravelSettle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(971, 631)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.ClientSize = New System.Drawing.Size(1053, 631)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmTravelSettle"
-        Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.TabPageSett.ResumeLayout(False)
@@ -391,6 +442,11 @@ Partial Class FrmTravelSettle
         Me.TabPageReq.ResumeLayout(False)
         CType(Me.GridRequest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRequest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -425,4 +481,8 @@ Partial Class FrmTravelSettle
     Friend WithEvents btnProses As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents NoVoucher As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents NoPRGrid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
 End Class

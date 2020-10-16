@@ -40,9 +40,12 @@ Public Class FrmMktUploadPrice
         Dim table As New DataTable
 
         Dim frmExcelPrice As FrmMktExcelPrice
-        frmExcelPrice = New FrmMktExcelPrice(table)
+        frmExcelPrice = New FrmMktExcelPrice()
         frmExcelPrice.StartPosition = FormStartPosition.CenterScreen
         frmExcelPrice.ShowDialog()
+
+        Dim dtResult As New DataTable
+        dtResult = frmExcelPrice._dtResult
 
         Try
             Dim dv As DataView = New DataView(table)

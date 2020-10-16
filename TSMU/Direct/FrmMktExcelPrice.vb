@@ -28,12 +28,18 @@ Public Class FrmMktExcelPrice
         ' Add any initialization after the InitializeComponent() call.
     End Sub
 
-    Public Sub New(ByRef dt As DataTable)
-        ' This call is required by the Windows Form Designer.
-        Me.New()
-        ' Add any initialization after the InitializeComponent() call.
-        dtExcel = dt
-    End Sub
+    'Public Sub New(ByRef dt As DataTable)
+    '    ' This call is required by the Windows Form Designer.
+    '    Me.New()
+    '    ' Add any initialization after the InitializeComponent() call.
+    '    dtExcel = dt
+    'End Sub
+
+    ReadOnly Property _dtResult() As DataTable
+        Get
+            Return dtResult
+        End Get
+    End Property
 
     Private Sub FrmMktExcelPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListItemsTemplate()
@@ -225,16 +231,20 @@ Public Class FrmMktExcelPrice
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
         If GridViewResult.RowCount > 0 Then
-            Dim path As String = "Result.xlsx"
+            If btnExport.Text = "Save To Excel" Then
+                Dim path As String = "Result.xlsx"
 
-            CType(GridResult.MainView, GridView).OptionsPrint.PrintHeader = True
-            Dim advOptions As XlsxExportOptionsEx = New XlsxExportOptionsEx()
-            advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
-            advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
-            advOptions.SheetName = "Result Upload"
+                CType(GridResult.MainView, GridView).OptionsPrint.PrintHeader = True
+                Dim advOptions As XlsxExportOptionsEx = New XlsxExportOptionsEx()
+                advOptions.AllowGrouping = DevExpress.Utils.DefaultBoolean.False
+                advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False
+                advOptions.SheetName = "Result Upload"
 
-            GridResult.ExportToXlsx(path, advOptions)
-            Process.Start(path)
+                GridResult.ExportToXlsx(path, advOptions)
+                Process.Start(path)
+            Else
+                Me.Close()
+            End If
         End If
     End Sub
 
