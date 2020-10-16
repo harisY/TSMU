@@ -241,7 +241,7 @@ Public Class Frm_Npwo_Detail1
                     TNpwo_No.EditValue = .H_No_Npwo
                     TNoNpp.EditValue = .H_No_NPP
                     TModelDesc.EditValue = .H_Model_Desc
-                    TCustomer.EditValue = .H_Customer_Name
+                    TCustomer.Text = .H_Customer_Name
                     TModel.EditValue = .H_Model_Name
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
