@@ -39,7 +39,6 @@ Public Class Cls_Npwo_Detail
     Public Property H_A4 As String
     Public Property H_Rev_Info As String
     Public Property H_Status As String
-
     Public Property TA_Username As String
     Public Property TA_MenuCode As String
     Public Property TA_DeptID As String
@@ -49,8 +48,6 @@ Public Class Cls_Npwo_Detail
     Public Property TA_ApproveBy As String
     Public Property TA_ApproveDAte As Date
     Public Property TA_IsActive As Integer
-
-
     Public Property Collection_Detail() As New Collection(Of Col_Cls_Npwo_Detail_NPWO)
     Public Property Collection_Detail_1() As New Collection(Of Col_Cls_Npwo_Detail_1_NPWO)
 
