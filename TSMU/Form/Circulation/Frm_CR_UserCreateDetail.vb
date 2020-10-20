@@ -498,6 +498,7 @@ Public Class Frm_CR_UserCreateDetail
                     T_ModelName.EditValue = .H_Dies_Model
                     T_NameItem.EditValue = .H_NameItem
                     T_Spesification.EditValue = .H_Spesification
+                    TCustomer.EditValue = .H_Customer
 
 
                     If .H_PO = True Then
@@ -735,8 +736,11 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub CreateTableBarang()
 
         DtGridBarang = New DataTable
-        DtGridBarang.Columns.AddRange(New DataColumn(15) {New DataColumn("Name Of Goods", GetType(String)),
+        DtGridBarang.Columns.AddRange(New DataColumn(18) {New DataColumn("Name Of Goods", GetType(String)),
                                                             New DataColumn("Spesification", GetType(String)),
+                                                            New DataColumn("Model", GetType(String)),
+                                                            New DataColumn("Sales Type", GetType(String)),
+                                                            New DataColumn("Remark", GetType(String)),
                                                             New DataColumn("Qty", GetType(Double)),
                                                             New DataColumn("Price", GetType(Double)),
                                                             New DataColumn("Total Amount Currency", GetType(Double)),
@@ -783,6 +787,25 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+        If gh_Common.GroupID = "3NPD" Then
+            T_CRType.Properties.Items.Add("Fixed Aset")
+            T_CRType.Properties.Items.Add("Expense")
+            T_CRType.Properties.Items.Add("Mold")
+            T_CRType.Properties.Items.Add("Disposal")
+        Else
+            T_CRType.Properties.Items.Add("Fixed Aset")
+            T_CRType.Properties.Items.Add("Expense")
+            T_CRType.Properties.Items.Add("Disposal")
+        End If
+
+
+        With GridView1
+            .Columns("Model").Visible = False
+            .Columns("Sales Type").Visible = False
+            .Columns("Remark").Visible = False
+        End With
 
         GService = New GlobalService
         _level = GService.GetLevel_str("CIRCULATION")
@@ -994,6 +1017,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
                     .H_Budget = BudgetType
                     .H_Reason = T_Reason.Text
+                    .H_Customer = TCustomer.EditValue
                     .H_Spesification = T_Spesification.EditValue
                     .H_NameItem = T_NameItem.EditValue
                     .H_Status = "Create"
@@ -1042,6 +1066,11 @@ Public Class Frm_CR_UserCreateDetail
                         .D_CirculationNo = NoSirkulasi
                         .D_Name_Of_Goods = Convert.ToString(GridView1.GetRowCellValue(i, "Name Of Goods"))
                         .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
+
+                        .D_Model = IIf(GridView1.GetRowCellValue(i, "Model") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Model")))
+                        .D_SalesType = IIf(GridView1.GetRowCellValue(i, "Sales Type") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Sales Type")))
+                        .D_Remark = IIf(GridView1.GetRowCellValue(i, "Remark") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Remark")))
+
                         .D_Qty = Convert.ToDouble(GridView1.GetRowCellValue(i, "Qty"))
                         .D_Price = Convert.ToDouble(GridView1.GetRowCellValue(i, "Price"))
                         .D_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Total Amount Currency"))
@@ -1190,6 +1219,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_Budget = BudgetType
                     .H_CR_Type = T_CRType.EditValue
                     .H_Reason = T_Reason.Text
+                    .H_Customer = TCustomer.EditValue
                     .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
                     .H_Status = "Submit"
                     .H_Parent_Circulation = IIf(IsNothing(T_Parent.EditValue), "", T_Parent.EditValue)
@@ -1222,6 +1252,11 @@ Public Class Frm_CR_UserCreateDetail
                         .D_CirculationNo = NoSirkulasi
                         .D_Name_Of_Goods = Convert.ToString(GridView1.GetRowCellValue(i, "Name Of Goods"))
                         .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
+
+                        .D_Model = IIf(GridView1.GetRowCellValue(i, "Model") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Model")))
+                        .D_SalesType = IIf(GridView1.GetRowCellValue(i, "Sales Type") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Sales Type")))
+                        .D_Remark = IIf(GridView1.GetRowCellValue(i, "Remark") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Remark")))
+
                         .D_Qty = Convert.ToDouble(GridView1.GetRowCellValue(i, "Qty"))
                         .D_Price = Convert.ToDouble(GridView1.GetRowCellValue(i, "Price"))
                         .D_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Total Amount Currency"))
@@ -1397,27 +1432,35 @@ Public Class Frm_CR_UserCreateDetail
 
             ElseIf T_CRType.Text = "Mold" Then
 
-                If T_DS.EditValue = "" Then
-                    MessageBox.Show("Please Choose Sales Type", "Warning",
+                If TCustomer.EditValue = "" Then
+                    MessageBox.Show("Please Choose Customer", "Warning",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1)
 
-                ElseIf T_CustomerName.EditValue = "" Then
-                    MessageBox.Show("Please fill Customer Name", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
-                ElseIf T_ModelName.EditValue = "" Then
-                    MessageBox.Show("Please fill Model Name", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
-                ElseIf T_Charged.EditValue = "" Then
-                    MessageBox.Show("Please Choose Charge Of Customer", "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button1)
+                    'ElseIf T_DS.EditValue = "" Then
+                    '    MessageBox.Show("Please Choose Sales Type", "Warning",
+                    '            MessageBoxButtons.OK,
+                    '            MessageBoxIcon.Exclamation,
+                    '            MessageBoxDefaultButton.Button1)
+
+                    'ElseIf T_CustomerName.EditValue = "" Then
+                    '    MessageBox.Show("Please fill Customer Name", "Warning",
+                    '            MessageBoxButtons.OK,
+                    '            MessageBoxIcon.Exclamation,
+                    '            MessageBoxDefaultButton.Button1)
+                    'ElseIf T_ModelName.EditValue = "" Then
+                    '    MessageBox.Show("Please fill Model Name", "Warning",
+                    '            MessageBoxButtons.OK,
+                    '            MessageBoxIcon.Exclamation,
+                    '            MessageBoxDefaultButton.Button1)
+                    'ElseIf T_Charged.EditValue = "" Then
+                    '    MessageBox.Show("Please Choose Charge Of Customer", "Warning",
+                    '            MessageBoxButtons.OK,
+                    '            MessageBoxIcon.Exclamation,
+                    '            MessageBoxDefaultButton.Button1)
+                Else
+                    lb_Validated = True
                 End If
 
             Else
@@ -2310,8 +2353,12 @@ Public Class Frm_CR_UserCreateDetail
 
             Call Edit_Grid()
             With GridView1
+
                 .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
                 .Columns("Spesification").OptionsColumn.AllowEdit = True
+                .Columns("Model").Visible = True
+                .Columns("Sales Type").Visible = True
+                .Columns("Remark").Visible = True
                 .Columns("Qty").OptionsColumn.AllowEdit = True
                 .Columns("Price").OptionsColumn.AllowEdit = True
                 .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
@@ -2324,6 +2371,7 @@ Public Class Frm_CR_UserCreateDetail
                 .Columns("Account").OptionsColumn.AllowEdit = True
                 '.Columns("Check").Visible = False
                 .Columns("Note").Visible = False
+
 
             End With
 
@@ -2371,6 +2419,9 @@ Public Class Frm_CR_UserCreateDetail
                 .Columns("Account").OptionsColumn.AllowEdit = True
                 '.Columns("Check").Visible = False
                 .Columns("Note").Visible = False
+                .Columns("Model").Visible = False
+                .Columns("Sales Type").Visible = False
+                .Columns("Remark").Visible = False
 
             End With
 
@@ -3579,5 +3630,32 @@ Public Class Frm_CR_UserCreateDetail
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         SendKeys.Send("{ENTER}")
         Timer1.Enabled = False
+    End Sub
+
+    Private Sub TCustomer_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TCustomer.ButtonClick
+        Try
+            fc_Class = New ClsCR_CreateUser
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            dtSearch = fc_Class.GetCustomer()
+            ls_Judul = "CUSTOMER"
+            ls_OldKode = T_CustomerName.EditValue
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                TCustomer.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class
