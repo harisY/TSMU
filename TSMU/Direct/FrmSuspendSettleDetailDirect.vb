@@ -447,11 +447,7 @@ Public Class FrmSuspendSettleDetailDirect
         gridView.UpdateCurrentRow()
     End Sub
 
-    Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
-        'GridView1.AddNewRow()
-        'GridView1.OptionsNavigation.AutoFocusNewRow = True
-        'GridView1.FocusedColumn = GridView1.VisibleColumns(0)
-    End Sub
+
 
     Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
         Dim ignoreCancel As Boolean = False
@@ -506,40 +502,14 @@ Public Class FrmSuspendSettleDetailDirect
             Throw ex
         End Try
     End Sub
-    Private Sub grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
-        Try
-            If e.KeyCode = Keys.F1 Then
-                grid_DoubleClick(sender, e)
-            ElseIf e.KeyCode = Keys.Delete Then
-                Dim indexRemove As Integer = GridView1.FocusedRowHandle
-                Dim headerSeqRemove As Integer = IIf(GridView1.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(indexRemove, "HeaderSeq"))
-                GridView1.DeleteRow(indexRemove)
-                GridView1.RefreshData()
-                GetTot()
 
-                Dim headerSeq As Integer = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq"))
-
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            'Throw ex
-        End Try
-    End Sub
-    Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs) Handles ReposDate.EditValueChanged
+    Private Sub ReposDate_EditValueChanged(sender As Object, e As EventArgs)
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
     End Sub
-    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-        Dim Total As Double = 0
-        For i As Integer = 0 To GridView1.RowCount - 1
-            If Not GridView1.GetRowCellValue(i, "ActualAmount") Is DBNull.Value Then
-                Total = Total + GridView1.GetRowCellValue(i, "ActualAmount")
-            End If
-        Next
-        TxtTotExpense.Text = Format(Total, gs_FormatBulat)
-    End Sub
+
 
     Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
         Try
@@ -578,5 +548,36 @@ Public Class FrmSuspendSettleDetailDirect
         FrmReportSettle.TxtNosettle.Text = TxtNoSettlement.Text
         FrmReportSettle.Show()
     End Sub
+
+    Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                Grid_DoubleClick(sender, e)
+            ElseIf e.KeyCode = Keys.Delete Then
+                Dim indexRemove As Integer = GridView1.FocusedRowHandle
+                Dim headerSeqRemove As Integer = IIf(GridView1.GetRowCellValue(indexRemove, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(indexRemove, "HeaderSeq"))
+                GridView1.DeleteRow(indexRemove)
+                GridView1.RefreshData()
+                GetTot()
+
+                Dim headerSeq As Integer = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HeaderSeq"))
+
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            'Throw ex
+        End Try
+    End Sub
+
+    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+        Dim Total As Double = 0
+        For i As Integer = 0 To GridView1.RowCount - 1
+            If Not GridView1.GetRowCellValue(i, "ActualAmount") Is DBNull.Value Then
+                Total = Total + GridView1.GetRowCellValue(i, "ActualAmount")
+            End If
+        Next
+        TxtTotExpense.Text = Format(Total, gs_FormatBulat)
+    End Sub
+
 
 End Class

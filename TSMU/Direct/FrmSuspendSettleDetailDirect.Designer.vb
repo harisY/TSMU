@@ -38,14 +38,15 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,7 +60,7 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,15 +80,16 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -268,23 +270,33 @@ Partial Class FrmSuspendSettleDetailDirect
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'GAmount
+        'TableLayoutPanel1
         '
-        Me.GAmount.AutoHeight = False
-        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.GAmount.Name = "GAmount"
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Grid, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 143)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1224, 617)
+        Me.TableLayoutPanel1.TabIndex = 3
         '
-        'GSubAccount
+        'Grid
         '
-        Me.GSubAccount.AutoHeight = False
-        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GSubAccount.Name = "GSubAccount"
-        '
-        'GAccount
-        '
-        Me.GAccount.AutoHeight = False
-        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GAccount.Name = "GAccount"
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(4, 4)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Name = "Grid"
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
+        Me.Grid.Size = New System.Drawing.Size(1216, 609)
+        Me.Grid.TabIndex = 4
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
@@ -331,6 +343,12 @@ Partial Class FrmSuspendSettleDetailDirect
         Me._subaccount.VisibleIndex = 1
         Me._subaccount.Width = 100
         '
+        'GSubAccount
+        '
+        Me.GSubAccount.AutoHeight = False
+        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GSubAccount.Name = "GSubAccount"
+        '
         '_account
         '
         Me._account.Caption = "Account"
@@ -342,6 +360,12 @@ Partial Class FrmSuspendSettleDetailDirect
         Me._account.Visible = True
         Me._account.VisibleIndex = 2
         Me._account.Width = 100
+        '
+        'GAccount
+        '
+        Me.GAccount.AutoHeight = False
+        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GAccount.Name = "GAccount"
         '
         '_description
         '
@@ -449,32 +473,23 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Width = 100
         '
-        'Grid
+        'GAmount
         '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(16, 157)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
-        Me.Grid.Size = New System.Drawing.Size(1192, 587)
-        Me.Grid.TabIndex = 3
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GAmount.AutoHeight = False
+        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.GAmount.Name = "GAmount"
         '
         'FrmSuspendSettleDetailDirect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1224, 760)
-        Me.Controls.Add(Me.Grid)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.LayoutControl1)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmSuspendSettleDetailDirect"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
-        Me.Controls.SetChildIndex(Me.Grid, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -494,15 +509,16 @@ Partial Class FrmSuspendSettleDetailDirect
         CType(Me.Label9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -518,18 +534,6 @@ Partial Class FrmSuspendSettleDetailDirect
     Friend WithEvents Label9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents GAmount As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents GSubAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents _subaccount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents _account As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents _description As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ReposDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ReposActual As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents TxtTotExpense As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtNoSettlement As DevExpress.XtraEditors.TextEdit
@@ -538,16 +542,29 @@ Partial Class FrmSuspendSettleDetailDirect
     Friend WithEvents TxtTgl As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TxtDep As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents TxtCurrency As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ReposDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents _subaccount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSubAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents _account As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAccount As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents _description As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ReposActual As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CPayTypeTransport As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAmount As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

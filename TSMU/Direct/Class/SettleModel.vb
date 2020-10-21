@@ -631,7 +631,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PaymentTyoe Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
@@ -639,6 +639,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       'Finance', " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

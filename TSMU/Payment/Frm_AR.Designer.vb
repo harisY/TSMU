@@ -54,31 +54,34 @@ Partial Class frm_AR
         '
         'menuContext
         '
+        Me.menuContext.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.menuContext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewRoutingBoMToolStripMenuItem})
         Me.menuContext.Name = "menuContext"
-        Me.menuContext.Size = New System.Drawing.Size(173, 26)
+        Me.menuContext.Size = New System.Drawing.Size(202, 28)
         '
         'ViewRoutingBoMToolStripMenuItem
         '
         Me.ViewRoutingBoMToolStripMenuItem.Name = "ViewRoutingBoMToolStripMenuItem"
-        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(201, 24)
         Me.ViewRoutingBoMToolStripMenuItem.Text = "View Routing BoM"
         '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 25)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 27)
+        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(828, 556)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1104, 733)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.Grid)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(822, 528)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1097, 699)
         Me.XtraTabPage1.Text = "Receipt Non Invoice"
         '
         'Grid
@@ -86,16 +89,20 @@ Partial Class frm_AR
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(3, 3)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(4, 4)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.Grid.Size = New System.Drawing.Size(731, 489)
+        Me.Grid.Size = New System.Drawing.Size(975, 645)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -110,8 +117,9 @@ Partial Class frm_AR
         'XtraTabPage2
         '
         Me.XtraTabPage2.Controls.Add(Me.GridControl1)
+        Me.XtraTabPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(822, 528)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1097, 693)
         Me.XtraTabPage2.Text = "AR Invoiced"
         '
         'GridControl1
@@ -119,16 +127,20 @@ Partial Class frm_AR
         Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(3, 3)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.Location = New System.Drawing.Point(4, 4)
         Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(731, 489)
+        Me.GridControl1.Size = New System.Drawing.Size(975, 639)
         Me.GridControl1.TabIndex = 8
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
+        Me.GridView2.DetailHeight = 458
+        Me.GridView2.FixedLineWidth = 3
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -143,8 +155,9 @@ Partial Class frm_AR
         'XtraTabPage3
         '
         Me.XtraTabPage3.Controls.Add(Me.GridControl2)
+        Me.XtraTabPage3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(822, 528)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1097, 699)
         Me.XtraTabPage3.Text = "AR Not Invoice Balance"
         '
         'GridControl2
@@ -152,16 +165,20 @@ Partial Class frm_AR
         Me.GridControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl2.Location = New System.Drawing.Point(3, 3)
+        Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl2.Location = New System.Drawing.Point(4, 4)
         Me.GridControl2.MainView = Me.GridView3
+        Me.GridControl2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl2.Name = "GridControl2"
         Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
-        Me.GridControl2.Size = New System.Drawing.Size(731, 489)
+        Me.GridControl2.Size = New System.Drawing.Size(975, 645)
         Me.GridControl2.TabIndex = 9
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
+        Me.GridView3.DetailHeight = 458
+        Me.GridView3.FixedLineWidth = 3
         Me.GridView3.GridControl = Me.GridControl2
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
@@ -175,9 +192,10 @@ Partial Class frm_AR
         '
         'frm_AR
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frm_AR"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         Me.menuContext.ResumeLayout(False)

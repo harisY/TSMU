@@ -39,14 +39,14 @@ Public Class FrmViewShipperNonInvoice
             lF_SearchData.StartPosition = FormStartPosition.CenterScreen
             lF_SearchData.ShowDialog()
             Dim Value1 As String = ""
-
+            Dim Value2 As String = ""
             If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
 
                 If sender.Name = _BtnCust2.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
-
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
                     _BtnCust2.Text = Value1
-
+                    lblnama.Text = Value2
                 End If
             End If
             lF_SearchData.Close()
@@ -97,6 +97,8 @@ Public Class FrmViewShipperNonInvoice
             GridView1.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             GridView1.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             GridView1.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
             Cursor = Cursors.Default
 
         Catch ex As Exception
@@ -134,6 +136,7 @@ Public Class FrmViewShipperNonInvoice
             GridView1.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             GridView1.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             GridView1.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             'Dim colSalesDate As GridColumn = GridView1.Columns("TglSuratJalan")
             'colSalesDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             'colSalesDate.DisplayFormat.FormatString = "D"
@@ -190,5 +193,9 @@ Public Class FrmViewShipperNonInvoice
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         LoadDataxx()
+    End Sub
+
+    Private Sub _BtnCust2_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust2.EditValueChanged
+
     End Sub
 End Class
