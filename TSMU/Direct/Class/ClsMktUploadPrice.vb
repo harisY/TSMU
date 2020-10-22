@@ -1,4 +1,6 @@
 ﻿Public Class ClsMktUploadPrice
+    Dim strQuery As String
+
     Public Function GetListTemplate() As DataTable
         Try
             Dim sql As String
@@ -12,12 +14,23 @@
         End Try
     End Function
 
-    Public Function GetMappingColumn(ByVal templateID As String) As DataTable
+    Public Function GetColumnExcel(ByVal templateID As String) As DataTable
         Try
             Dim sql As String
-            sql = " SELECT  *
-                    FROM    dbo.S_MktMappingUploadPrice
-                    WHERE   TemplateID = " & QVal(templateID) & " "
+            sql = " SELECT  pvt.TemplateID ,
+                            pvt.invtid AS PartNo ,
+                            pvt.[desc] AS [Desc] ,
+                            pvt.discprice AS Price ,
+                            pvt.startdate AS StartDate
+                    FROM    ( SELECT    TemplateID ,
+                                        ColumnInTable ,
+                                        ColumnInExcel
+                              FROM      dbo.S_MktMappingUploadPrice
+                              WHERE     TemplateID = " & QVal(templateID) & "
+                            ) AS tbl PIVOT ( MAX(ColumnInExcel) FOR ColumnInTable IN ( [invtid],
+                                                                                  [desc],
+                                                                                  [discprice],
+                                                                                  [startdate] ) ) AS pvt "
             Dim dt As New DataTable
             dt = GetDataTable(sql)
             Return dt
@@ -56,10 +69,11 @@
     '    Return dtResult
     'End Function
 
-    Public Function CheckInventoryID(ByVal invtID As String) As DataTable
+    Public Function CheckInventoryID(CustID As String) As DataTable
         Try
             Dim sql As String
-            sql = " SELECT  RTRIM(inv.InvtID) AS InvtID ,
+            sql = " SELECT  RTRIM(REPLACE(ixr.AlternateID, '-', '')) AS AlternateID ,
+                            RTRIM(inv.InvtID) AS InvtID ,
                             price.DiscPrice
                     FROM    Inventory AS inv
                             INNER JOIN ItemXRef AS ixr ON ixr.InvtID = inv.InvtID
@@ -69,9 +83,23 @@
                                                 INNER JOIN dbo.SlsPrcDet AS spd ON sp.SlsPrcID = spd.SlsPrcID
                                       ) AS price ON price.InvtID = ixr.InvtID
                     WHERE   ixr.AltIDType = 'C'
-                            AND REPLACE(ixr.AlternateID, '-', '') = REPLACE(" & QVal(invtID) & ", '-', '') "
+                            AND ixr.EntityID = " & QVal(CustID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCustomer() As DataTable
+        Try
+            strQuery = "SELECT  CustId ,
+                                Name,
+                                Addr1
+                        FROM    Customer"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex

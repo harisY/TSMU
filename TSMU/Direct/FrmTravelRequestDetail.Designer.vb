@@ -181,7 +181,7 @@ Partial Class FrmTravelRequestDetail
         '
         Me.txtNoRequest.EditValue = ""
         Me.txtNoRequest.Enabled = False
-        Me.txtNoRequest.Location = New System.Drawing.Point(83, -11)
+        Me.txtNoRequest.Location = New System.Drawing.Point(83, 7)
         Me.txtNoRequest.MaximumSize = New System.Drawing.Size(140, 22)
         Me.txtNoRequest.Name = "txtNoRequest"
         Me.txtNoRequest.Size = New System.Drawing.Size(62, 22)
@@ -207,7 +207,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(362, 479, 812, 500)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1276, 109)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1276, 111)
         Me.LayoutControl1.TabIndex = 35
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -216,7 +216,7 @@ Partial Class FrmTravelRequestDetail
         Me.btnAddDetail.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddDetail.Location = New System.Drawing.Point(1165, 18)
+        Me.btnAddDetail.Location = New System.Drawing.Point(1165, 36)
         Me.btnAddDetail.MaximumSize = New System.Drawing.Size(120, 0)
         Me.btnAddDetail.Name = "btnAddDetail"
         Me.btnAddDetail.Padding = New System.Windows.Forms.Padding(3)
@@ -227,7 +227,7 @@ Partial Class FrmTravelRequestDetail
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(1049, 52)
+        Me.LabelControl1.Location = New System.Drawing.Point(1049, 70)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(84, 16)
         Me.LabelControl1.StyleController = Me.LayoutControl1
@@ -237,7 +237,7 @@ Partial Class FrmTravelRequestDetail
         'txtNIK
         '
         Me.txtNIK.EditValue = ""
-        Me.txtNIK.Location = New System.Drawing.Point(373, -11)
+        Me.txtNIK.Location = New System.Drawing.Point(373, 7)
         Me.txtNIK.MaximumSize = New System.Drawing.Size(120, 22)
         Me.txtNIK.Name = "txtNIK"
         Me.txtNIK.Properties.MaxLength = 9
@@ -248,7 +248,7 @@ Partial Class FrmTravelRequestDetail
         'txtAdvanceIDR
         '
         Me.txtAdvanceIDR.EditValue = "0"
-        Me.txtAdvanceIDR.Location = New System.Drawing.Point(965, 47)
+        Me.txtAdvanceIDR.Location = New System.Drawing.Point(965, 65)
         Me.txtAdvanceIDR.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
@@ -262,7 +262,7 @@ Partial Class FrmTravelRequestDetail
         'txtAdvanceYEN
         '
         Me.txtAdvanceYEN.EditValue = "0"
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(820, 47)
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(820, 65)
         Me.txtAdvanceYEN.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
         Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
@@ -275,7 +275,7 @@ Partial Class FrmTravelRequestDetail
         'txtAdvanceUSD
         '
         Me.txtAdvanceUSD.EditValue = "0"
-        Me.txtAdvanceUSD.Location = New System.Drawing.Point(675, 47)
+        Me.txtAdvanceUSD.Location = New System.Drawing.Point(675, 65)
         Me.txtAdvanceUSD.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
         Me.txtAdvanceUSD.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -293,7 +293,7 @@ Partial Class FrmTravelRequestDetail
         'txtTravelType
         '
         Me.txtTravelType.EditValue = ""
-        Me.txtTravelType.Location = New System.Drawing.Point(518, 35)
+        Me.txtTravelType.Location = New System.Drawing.Point(518, 53)
         Me.txtTravelType.Name = "txtTravelType"
         Me.txtTravelType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtTravelType.Properties.Items.AddRange(New Object() {"DN", "LN"})
@@ -305,7 +305,7 @@ Partial Class FrmTravelRequestDetail
         'txtNama
         '
         Me.txtNama.EditValue = ""
-        Me.txtNama.Location = New System.Drawing.Point(83, 35)
+        Me.txtNama.Location = New System.Drawing.Point(83, 53)
         Me.txtNama.Name = "txtNama"
         Me.txtNama.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.txtNama.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -319,7 +319,7 @@ Partial Class FrmTravelRequestDetail
         '
         Me.txtDepartement.EditValue = ""
         Me.txtDepartement.Enabled = False
-        Me.txtDepartement.Location = New System.Drawing.Point(228, -11)
+        Me.txtDepartement.Location = New System.Drawing.Point(228, 7)
         Me.txtDepartement.MaximumSize = New System.Drawing.Size(70, 22)
         Me.txtDepartement.Name = "txtDepartement"
         Me.txtDepartement.Size = New System.Drawing.Size(62, 22)
@@ -328,7 +328,7 @@ Partial Class FrmTravelRequestDetail
         '
         'txtGolongan
         '
-        Me.txtGolongan.Location = New System.Drawing.Point(518, -11)
+        Me.txtGolongan.Location = New System.Drawing.Point(518, 7)
         Me.txtGolongan.MaximumSize = New System.Drawing.Size(100, 22)
         Me.txtGolongan.Name = "txtGolongan"
         Me.txtGolongan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -347,7 +347,7 @@ Partial Class FrmTravelRequestDetail
         '
         'txtPurpose
         '
-        Me.txtPurpose.Location = New System.Drawing.Point(663, -11)
+        Me.txtPurpose.Location = New System.Drawing.Point(663, 7)
         Me.txtPurpose.Name = "txtPurpose"
         Me.txtPurpose.Size = New System.Drawing.Size(620, 22)
         Me.txtPurpose.StyleController = Me.LayoutControl1
@@ -583,7 +583,7 @@ Partial Class FrmTravelRequestDetail
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNegara})
-        Me.GridDetail.Size = New System.Drawing.Size(1252, 225)
+        Me.GridDetail.Size = New System.Drawing.Size(1252, 223)
         Me.GridDetail.TabIndex = 2
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
@@ -914,7 +914,7 @@ Partial Class FrmTravelRequestDetail
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 117.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1282, 590)
@@ -924,10 +924,10 @@ Partial Class FrmTravelRequestDetail
         '
         Me.LayoutControl2.Controls.Add(Me.GridDetail)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 118)
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 120)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1276, 229)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1276, 227)
         Me.LayoutControl2.TabIndex = 36
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -938,7 +938,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem13})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1276, 229)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1276, 227)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem13
@@ -946,7 +946,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem13.Control = Me.GridDetail
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(1256, 229)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(1256, 227)
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
         '

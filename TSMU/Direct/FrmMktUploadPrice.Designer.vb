@@ -39,8 +39,12 @@ Partial Class FrmMktUploadPrice
         '
         'GridViewPrice
         '
+        Me.GridViewPrice.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewPrice.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewPrice.GridControl = Me.GridPrice
         Me.GridViewPrice.Name = "GridViewPrice"
+        Me.GridViewPrice.OptionsBehavior.Editable = False
+        Me.GridViewPrice.OptionsView.ColumnAutoWidth = False
         Me.GridViewPrice.OptionsView.ShowGroupPanel = False
         '
         'FrmMktUploadPrice

@@ -89,6 +89,8 @@ Partial Class FrmTravelPocketAllowance
         '
         'GridViewPocketAllowance
         '
+        Me.GridViewPocketAllowance.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewPocketAllowance.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.TravelTypeGrid, Me.GolonganGrid, Me.DescGolongan, Me.NamaNegara, Me.CurryIDGrid, Me.AmountGrid, Me.FirstTravelGrid})
         Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
         Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
@@ -140,7 +142,7 @@ Partial Class FrmTravelPocketAllowance
         '
         'CurryIDGrid
         '
-        Me.CurryIDGrid.Caption = "Curry ID"
+        Me.CurryIDGrid.Caption = "Curr"
         Me.CurryIDGrid.FieldName = "CuryID"
         Me.CurryIDGrid.MinWidth = 25
         Me.CurryIDGrid.Name = "CurryIDGrid"

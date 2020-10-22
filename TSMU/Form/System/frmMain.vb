@@ -19,12 +19,12 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        AutoUpdater.RunUpdateAsAdmin = False
-        AutoUpdater.Mandatory = True
-        AutoUpdater.UpdateMode = Mode.ForcedDownload
-        AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
-        AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
-        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
+        'AutoUpdater.RunUpdateAsAdmin = False
+        'AutoUpdater.Mandatory = True
+        'AutoUpdater.UpdateMode = Mode.ForcedDownload
+        'AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
+        'DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
     End Sub
     Private Sub AutoUpdater_ApplicationExitEvent()

@@ -20,6 +20,16 @@ Public Class FrmMktExcelPrice
     Dim dtTemplate As New DataTable
     Dim dtColumn As DataTable
     Dim dtResult As New DataTable
+    Dim dtUploadTemp As New DataTable
+    Dim dtUpload As New DataTable
+    Dim listColumn As New List(Of String)
+    Dim isUpload As Boolean = False
+
+    Dim clmPartNoExcel As String = String.Empty
+    Dim clmPriceExcel As String = String.Empty
+    Dim clmDateExcel As String = String.Empty
+    Dim clmDescExcel As String = String.Empty
+    Dim custID As String
 
     Public Sub New()
         ' This call is required by the designer.
@@ -28,20 +38,20 @@ Public Class FrmMktExcelPrice
         ' Add any initialization after the InitializeComponent() call.
     End Sub
 
-    'Public Sub New(ByRef dt As DataTable)
-    '    ' This call is required by the Windows Form Designer.
-    '    Me.New()
-    '    ' Add any initialization after the InitializeComponent() call.
-    '    dtExcel = dt
-    'End Sub
+    ReadOnly Property _isUpload() As Boolean
+        Get
+            Return isUpload
+        End Get
+    End Property
 
     ReadOnly Property _dtResult() As DataTable
         Get
-            Return dtResult
+            Return dtUpload
         End Get
     End Property
 
     Private Sub FrmMktExcelPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CreateTable()
         ListItemsTemplate()
     End Sub
 
@@ -53,13 +63,18 @@ Public Class FrmMktExcelPrice
                 path = OpenFileDialog1.FileName
                 Dim text As String = System.IO.File.ReadAllText(path)
                 txtFileName.Text = path
+                dtResult.Clear()
+                GridResult.DataSource = dtResult
+                GridViewResult.BestFitColumns()
+                GridViewResult.Columns(1).Caption = clmPartNoExcel
+                lblResult.Text = "Total Success : 0 | Total Error : 0"
             End If
         Catch ex As Exception When Not TypeOf ex Is MissingMethodException
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
 
-    Private Sub btnSimulate_Click(sender As Object, e As EventArgs) Handles btnSimulate.Click
+    Private Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
         Try
             If proses <> "" Then
                 Throw New Exception("Proses masih berjalan !")
@@ -100,7 +115,7 @@ Public Class FrmMktExcelPrice
                 End Using
                 excel_con.Close()
             End Using
-            SimulatePrice()
+            CheckPrice()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -117,46 +132,67 @@ Public Class FrmMktExcelPrice
         txtTemplate.EditValue = "001"
     End Sub
 
-    Private Sub SimulatePrice()
+    Private Sub CheckPrice()
+        dtResult.Clear()
+        dtUploadTemp.Clear()
         cls_UploadPrice = New ClsMktUploadPrice
-        CreateTable()
-        Dim clmName As String = String.Empty
         If checkColumn() = False Then
-            Dim rowColumn As DataRow() = dtColumn.Select("ColumnInTable = 'invtid'")
-            clmName = rowColumn(0)("ColumnInExcel").ToString
-            Dim clmNameTable As String = String.Empty
             Dim No As Integer
             Dim succes As Integer
             Dim _error As Integer
-            clmNameTable = Replace(Replace(Replace(clmName, ".", "#"), "[", "("), "]", ")")
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+            Dim dt As New DataTable
+            dt = cls_UploadPrice.CheckInventoryID(custID)
             For Each rows As DataRow In dtExcel.Rows
-                If Not String.IsNullOrEmpty(IIf(rows(clmNameTable) Is DBNull.Value, "", rows(clmNameTable))) Then
-                    Dim dt As New DataTable
-                    dt = cls_UploadPrice.CheckInventoryID(rows(clmNameTable))
+                If Not String.IsNullOrEmpty(IIf(rows(clmPartNoExcel) Is DBNull.Value, "", rows(clmPartNoExcel))) Then
+                    Dim rowInvtID As DataRow()
                     No += 1
-                    If dt.Rows.Count = 0 Then
-                        dtResult.Rows.Add(No, rows(clmNameTable), "", "Error ", "" & clmName & " Not Found !")
+                    Dim status As String = "Error"
+                    Dim message As String = String.Empty
+                    Dim invtID As String = String.Empty
+                    rowInvtID = dt.Select("AlternateID = " & QVal(Replace(rows(clmPartNoExcel), "-", "")) & " ")
+                    If rowInvtID.Count = 0 Then
+                        message = "" & clmPartNoExcel & " Not Found !"
                         _error += 1
-                    ElseIf dt.Rows.Count > 1 Then
-                        dtResult.Rows.Add(No, rows(clmNameTable), "", "Error ", "InventoryID Lebih Dari 1 !")
+                    ElseIf rowInvtID.Count > 1 Then
+                        message = "InventoryID More Than 1 !"
                         _error += 1
                     Else
-                        If String.IsNullOrEmpty(IIf(dt.Rows(0).Item("DiscPrice") Is DBNull.Value, "", dt.Rows(0).Item("DiscPrice"))) Then
-                            dtResult.Rows.Add(No, rows(clmNameTable), dt.Rows(0).Item("InvtID"), "Error ", "Price Not Found !")
+                        If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
+                            message = "Price Not Found !"
                             _error += 1
                         Else
-                            dtResult.Rows.Add(No, rows(clmNameTable), dt.Rows(0).Item("InvtID"), "Success", "")
+                            invtID = rowInvtID(0)("InvtID").ToString
+                            status = "Success"
+                            Dim _newRow As DataRow
+                            _newRow = dtUploadTemp.NewRow
+                            _newRow("No") = No
+                            _newRow("AlternateID") = rows(clmPartNoExcel)
+                            _newRow("InventoryID") = invtID
+                            _newRow("Desc") = rows(clmDescExcel)
+                            _newRow("OldPrice") = rowInvtID(0)("DiscPrice")
+                            _newRow("NewPrice") = rows(clmPriceExcel)
+                            _newRow("EffectiveDate") = Date.Today 'IIf(clmDateExcel Is Nothing, Date.Today, rows(clmDateExcel))
+                            dtUploadTemp.Rows.Add(_newRow)
                             succes += 1
                         End If
                     End If
+                    Dim newRow As DataRow
+                    newRow = dtResult.NewRow
+                    newRow("No") = No
+                    newRow("PartNo") = rows(clmPartNoExcel)
+                    newRow("InventoryID") = invtID
+                    newRow("Desc") = rows(clmDescExcel)
+                    newRow("Status") = status
+                    newRow("Message") = message
+                    dtResult.Rows.Add(newRow)
                 End If
             Next
             SplashScreenManager.CloseForm()
-            dtResult.Columns(1).Caption = clmName
-            GridResult.DataSource = dtResult
             GridViewResult.BestFitColumns()
+            GridViewResult.Columns("PartNo").Caption = clmPartNoExcel
+            GridViewResult.Columns("Desc").Caption = clmDescExcel
             GridViewResult.Columns(0).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
             lblResult.Text = "Total Success : " & succes & " | Total Error : " & _error & ""
             If _error = 0 Then
@@ -165,7 +201,8 @@ Public Class FrmMktExcelPrice
                 btnExport.Text = "Save To Excel"
             End If
         Else
-            GridResult.DataSource = Nothing
+            dtResult.Clear()
+            GridResult.DataSource = dtResult
             GridResult.Refresh()
             lblResult.Text = "Total Success : 0 | Total Error : 0"
         End If
@@ -174,16 +211,10 @@ Public Class FrmMktExcelPrice
     Private Function checkColumn() As Boolean
         Dim isNotFound As Boolean = False
         Try
-            Dim listColumn As New List(Of String)
-            For Each clm As DataColumn In dtExcel.Columns
-                listColumn.Add(Replace(Replace(Replace(clm.ColumnName.ToString(), "#", "."), "(", "["), ")", "]"))
-            Next
-            For Each row As DataRow In dtColumn.Rows
-                If Not String.IsNullOrEmpty(row("ColumnInExcel")) Then
-                    If Not listColumn.Contains(row("ColumnInExcel")) Then
-                        isNotFound = True
-                        Throw New Exception("Column (" & row("ColumnInExcel") & ") tidak ditemukan, Pilih template yang sesuai!")
-                    End If
+            For i As Integer = 0 To listColumn.Count - 1
+                If listColumn(i) IsNot Nothing AndAlso Not dtExcel.Columns.Contains(listColumn(i)) Then
+                    isNotFound = True
+                    Throw New Exception("Column (" & listColumn(i) & ") tidak ditemukan, Pilih template yang sesuai!")
                 End If
             Next
         Catch ex As Exception
@@ -194,20 +225,42 @@ Public Class FrmMktExcelPrice
 
     Public Sub CreateTable()
         dtResult = New DataTable
-        dtResult.Columns.AddRange(New DataColumn(4) {New DataColumn("No", GetType(Integer)),
+        dtResult.Columns.AddRange(New DataColumn(5) {New DataColumn("No", GetType(Integer)),
                                                         New DataColumn("PartNo", GetType(String)),
                                                         New DataColumn("InventoryID", GetType(String)),
+                                                        New DataColumn("Desc", GetType(String)),
                                                         New DataColumn("Status", GetType(String)),
                                                         New DataColumn("Message", GetType(String))})
+
+        dtUploadTemp = New DataTable
+        dtUploadTemp.Columns.AddRange(New DataColumn(6) {New DataColumn("No", GetType(Integer)),
+                                                        New DataColumn("AlternateID", GetType(String)),
+                                                        New DataColumn("InventoryID", GetType(String)),
+                                                        New DataColumn("Desc", GetType(String)),
+                                                        New DataColumn("OldPrice", GetType(Double)),
+                                                        New DataColumn("NewPrice", GetType(Double)),
+                                                        New DataColumn("EffectiveDate", GetType(Date))})
     End Sub
 
     Private Sub txtTemplate_EditValueChanged(sender As Object, e As EventArgs) Handles txtTemplate.EditValueChanged
         cls_UploadPrice = New ClsMktUploadPrice
         dtColumn = New DataTable
-        dtColumn = cls_UploadPrice.GetMappingColumn(txtTemplate.EditValue)
+        dtColumn = cls_UploadPrice.GetColumnExcel(txtTemplate.EditValue)
         txtFileName.Text = ""
-        GridResult.DataSource = Nothing
-        GridResult.Refresh()
+
+        For Each _rows As DataRow In dtColumn.Rows
+            clmPartNoExcel = Replace(Replace(Replace(_rows("PartNo").ToString, ".", "#"), "[", "("), "]", ")")
+            clmPriceExcel = Replace(Replace(Replace(_rows("Price").ToString, ".", "#"), "[", "("), "]", ")")
+            clmDateExcel = Replace(Replace(Replace(_rows("StartDate").ToString, ".", "#"), "[", "("), "]", ")")
+            clmDescExcel = Replace(Replace(Replace(_rows("Desc").ToString, ".", "#"), "[", "("), "]", ")")
+        Next
+        listColumn = New List(Of String)({clmPartNoExcel, clmDescExcel, clmPriceExcel, clmDateExcel})
+
+        dtResult.Clear()
+        GridResult.DataSource = dtResult
+        GridViewResult.Columns("PartNo").Caption = clmPartNoExcel
+        GridViewResult.Columns("Desc").Caption = clmDescExcel
+        GridViewResult.BestFitColumns()
         lblResult.Text = "Total Success : 0 | Total Error : 0"
         btnExport.Text = "Save To Excel"
     End Sub
@@ -243,9 +296,34 @@ Public Class FrmMktExcelPrice
                 GridResult.ExportToXlsx(path, advOptions)
                 Process.Start(path)
             Else
-                Me.Close()
+                If MsgBox("Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
+                    dtUpload = dtUploadTemp
+                    isUpload = True
+                    Me.Close()
+                End If
             End If
         End If
+    End Sub
+
+    Private Sub txtCustomer_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtCustomer.ButtonClick
+        Dim ls_Judul As String = ""
+        Dim dtSearch As New DataTable
+
+        dtSearch = cls_UploadPrice.GetDataCustomer
+        ls_Judul = "CUSTOMER"
+
+        Dim lF_SearchData As FrmSystem_LookupGrid
+        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+        lF_SearchData.HiddenCols = 0
+        lF_SearchData.Text = "Select Data " & ls_Judul
+        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+        lF_SearchData.ShowDialog()
+
+        If lF_SearchData.Values IsNot Nothing Then
+            custID = lF_SearchData.Values.Item(0).ToString.Trim
+            txtCustomer.Text = lF_SearchData.Values.Item(1).ToString.Trim
+        End If
+        lF_SearchData.Close()
     End Sub
 
 End Class
