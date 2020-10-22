@@ -770,6 +770,23 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
                                     "       Status = 'Close', " & vbCrLf &
+                                    "       PaymentType = 'Finance' WHERE SettleID = '" & _SettleID & "'"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateHeaderCC(ByVal _SettleID As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE settle_header " & vbCrLf &
+                                    "SET    SuspendID = " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
+                                    "       DeptID = " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+                                    "       PRNo = " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+                                    "       Remark = " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+                                    "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
+                                    "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+                                    "       Status = 'Close', " & vbCrLf &
                                     "       PaymentType = " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
                                     "       CreditCardID = " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
                                     "       CreditCardNumber = " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
@@ -780,7 +797,6 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Sub
-
     Public Sub UpdateHeaderEntSettleDetail(ByVal _SettleID As String)
         Try
             Dim ls_SP As String
@@ -1061,25 +1077,26 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
 
                         UpdateHeader(_SettleID)
 
-                        UpdateSettleTravelCost(_SettleID)
+                        'UpdateSettleTravelCost(_SettleID)
 
                         Dim ObjSettleDetail As New SettleDetail
                         ObjSettleDetail.DeleteDetail(_SettleID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
-                                .InsertDetailsEntSettleDirect()
+                                '  .InsertDetailsEntSettleDirect()
+                                .InsertDetails()
                             End With
                         Next
 
-                        Dim clsEntertainRelasi As New SettleRelasi
-                        clsEntertainRelasi.DeleteRelasi(_SettleID)
+                        'Dim clsEntertainRelasi As New SettleRelasi
+                        'clsEntertainRelasi.DeleteRelasi(_SettleID)
 
-                        For i As Integer = 0 To ObjRelasi.Count - 1
-                            With ObjRelasi(i)
-                                .InsertRelasi()
-                            End With
-                        Next
+                        'For i As Integer = 0 To ObjRelasi.Count - 1
+                        '    With ObjRelasi(i)
+                        '        .InsertRelasi()
+                        '    End With
+                        'Next
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -1094,7 +1111,53 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Sub
+    Public Sub UpdateDataCC(_SettleID As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+
+                        UpdateHeaderCC(_SettleID)
+
+                        'UpdateSettleTravelCost(_SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(_SettleID)
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                ' .InsertDetailsEntSettleDirect()
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        'Dim clsEntertainRelasi As New SettleRelasi
+                        'clsEntertainRelasi.DeleteRelasi(_SettleID)
+
+                        'For i As Integer = 0 To ObjRelasi.Count - 1
+                        '    With ObjRelasi(i)
+                        '        .InsertRelasi()
+                        '    End With
+                        'Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function CheckSettleAccrued(ByVal NoTransaksi As String) As Boolean
         Try
             Dim dt As New DataTable
