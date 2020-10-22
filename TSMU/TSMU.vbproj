@@ -139,6 +139,9 @@
       <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
     <Reference Include="LibDataAccess">
       <HintPath>..\..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
     </Reference>
@@ -687,12 +690,6 @@
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelPocketAllowance.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.Designer.vb">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelRequest.Designer.vb">
@@ -2851,9 +2848,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravelPocketAllowanceDetail.resx">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelRequest.resx">
       <DependentUpon>FrmTravelRequest.vb</DependentUpon>

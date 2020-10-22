@@ -47,6 +47,10 @@ Partial Class FrmTravelTicket
         Me.CuryID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TotAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PayInvoice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.TabPageRequest.SuspendLayout()
@@ -56,6 +60,11 @@ Partial Class FrmTravelTicket
         Me.TabPageTicket.SuspendLayout()
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -63,10 +72,10 @@ Partial Class FrmTravelTicket
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 39)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 12)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.TabPageRequest
-        Me.XtraTabControl1.Size = New System.Drawing.Size(931, 555)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(930, 523)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.TabPageRequest, Me.TabPageTicket})
         '
@@ -74,7 +83,7 @@ Partial Class FrmTravelTicket
         '
         Me.TabPageRequest.Controls.Add(Me.GridRequest)
         Me.TabPageRequest.Name = "TabPageRequest"
-        Me.TabPageRequest.Size = New System.Drawing.Size(924, 521)
+        Me.TabPageRequest.Size = New System.Drawing.Size(923, 489)
         Me.TabPageRequest.Text = "Ticket"
         '
         'GridRequest
@@ -86,7 +95,7 @@ Partial Class FrmTravelTicket
         Me.GridRequest.MainView = Me.GridViewRequest
         Me.GridRequest.Name = "GridRequest"
         Me.GridRequest.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CStatusTicket})
-        Me.GridRequest.Size = New System.Drawing.Size(918, 515)
+        Me.GridRequest.Size = New System.Drawing.Size(917, 483)
         Me.GridRequest.TabIndex = 0
         Me.GridRequest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRequest})
         '
@@ -263,7 +272,7 @@ Partial Class FrmTravelTicket
         '
         Me.TabPageTicket.Controls.Add(Me.GridTicket)
         Me.TabPageTicket.Name = "TabPageTicket"
-        Me.TabPageTicket.Size = New System.Drawing.Size(924, 521)
+        Me.TabPageTicket.Size = New System.Drawing.Size(923, 489)
         Me.TabPageTicket.Text = "Invoice"
         '
         'GridTicket
@@ -274,7 +283,7 @@ Partial Class FrmTravelTicket
         Me.GridTicket.Location = New System.Drawing.Point(3, 3)
         Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
-        Me.GridTicket.Size = New System.Drawing.Size(918, 515)
+        Me.GridTicket.Size = New System.Drawing.Size(917, 483)
         Me.GridTicket.TabIndex = 0
         Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
@@ -366,13 +375,55 @@ Partial Class FrmTravelTicket
         Me.PayInvoice.Name = "PayInvoice"
         Me.PayInvoice.Width = 94
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(960, 553)
+        Me.TableLayoutPanel1.TabIndex = 2
+        '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Controls.Add(Me.XtraTabControl1)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.Root = Me.Root
+        Me.LayoutControl1.Size = New System.Drawing.Size(954, 547)
+        Me.LayoutControl1.TabIndex = 0
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(954, 547)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.XtraTabControl1
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(934, 527)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
         'FrmTravelTicket
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(955, 602)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.ClientSize = New System.Drawing.Size(960, 580)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "FrmTravelTicket"
-        Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.TabPageRequest.ResumeLayout(False)
@@ -382,6 +433,11 @@ Partial Class FrmTravelTicket
         Me.TabPageTicket.ResumeLayout(False)
         CType(Me.GridTicket, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewTicket, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -415,4 +471,8 @@ Partial Class FrmTravelTicket
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents NoPaspor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PayInvoice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
 End Class

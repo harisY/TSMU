@@ -101,7 +101,7 @@ Partial Class FrmTravelTicketDetail
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(643, 448, 812, 500)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1176, 54)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1176, 44)
         Me.LayoutControl1.TabIndex = 23
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -151,7 +151,8 @@ Partial Class FrmTravelTicketDetail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.EmptySpaceItem2})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1176, 54)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
+        Me.Root.Size = New System.Drawing.Size(1176, 44)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -205,11 +206,11 @@ Partial Class FrmTravelTicketDetail
         Me.GridTicket.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridTicket.Location = New System.Drawing.Point(12, 12)
+        Me.GridTicket.Location = New System.Drawing.Point(12, 2)
         Me.GridTicket.MainView = Me.GridViewTicket
         Me.GridTicket.Name = "GridTicket"
         Me.GridTicket.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CAmount, Me.CCheck, Me.CStatusTicket})
-        Me.GridTicket.Size = New System.Drawing.Size(1152, 461)
+        Me.GridTicket.Size = New System.Drawing.Size(1152, 481)
         Me.GridTicket.TabIndex = 12
         Me.GridTicket.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewTicket})
         '
@@ -433,7 +434,7 @@ Partial Class FrmTravelTicketDetail
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1182, 551)
         Me.TableLayoutPanel1.TabIndex = 24
@@ -442,10 +443,10 @@ Partial Class FrmTravelTicketDetail
         '
         Me.LayoutControl2.Controls.Add(Me.GridTicket)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 63)
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 53)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1176, 485)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1176, 495)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -455,7 +456,8 @@ Partial Class FrmTravelTicketDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1176, 485)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 10)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1176, 495)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem5
@@ -463,7 +465,7 @@ Partial Class FrmTravelTicketDetail
         Me.LayoutControlItem5.Control = Me.GridTicket
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(1156, 465)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(1156, 485)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '

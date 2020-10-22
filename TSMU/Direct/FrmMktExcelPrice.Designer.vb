@@ -24,15 +24,17 @@ Partial Class FrmMktExcelPrice
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.btnSimulate = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.txtFileName = New DevExpress.XtraEditors.TextEdit()
         Me.txtTemplate = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txtCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridResult = New DevExpress.XtraGrid.GridControl()
         Me.GridViewResult = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -50,11 +52,13 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.GridResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,40 +83,41 @@ Partial Class FrmMktExcelPrice
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1084, 659)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1197, 670)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.btnSimulate)
+        Me.LayoutControl1.Controls.Add(Me.btnCheck)
         Me.LayoutControl1.Controls.Add(Me.btnBrowse)
         Me.LayoutControl1.Controls.Add(Me.txtFileName)
         Me.LayoutControl1.Controls.Add(Me.txtTemplate)
+        Me.LayoutControl1.Controls.Add(Me.txtCustomer)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1078, 54)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1191, 44)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'btnSimulate
+        'btnCheck
         '
-        Me.btnSimulate.Location = New System.Drawing.Point(976, 12)
-        Me.btnSimulate.MaximumSize = New System.Drawing.Size(90, 0)
-        Me.btnSimulate.MinimumSize = New System.Drawing.Size(90, 0)
-        Me.btnSimulate.Name = "btnSimulate"
-        Me.btnSimulate.Size = New System.Drawing.Size(90, 27)
-        Me.btnSimulate.StyleController = Me.LayoutControl1
-        Me.btnSimulate.TabIndex = 8
-        Me.btnSimulate.Text = "Check"
+        Me.btnCheck.Location = New System.Drawing.Point(1089, 12)
+        Me.btnCheck.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnCheck.MinimumSize = New System.Drawing.Size(90, 0)
+        Me.btnCheck.Name = "btnCheck"
+        Me.btnCheck.Size = New System.Drawing.Size(90, 27)
+        Me.btnCheck.StyleController = Me.LayoutControl1
+        Me.btnCheck.TabIndex = 8
+        Me.btnCheck.Text = "Check"
         '
         'btnBrowse
         '
-        Me.btnBrowse.Location = New System.Drawing.Point(874, 12)
+        Me.btnBrowse.Location = New System.Drawing.Point(987, 12)
         Me.btnBrowse.MaximumSize = New System.Drawing.Size(90, 0)
         Me.btnBrowse.MinimumSize = New System.Drawing.Size(90, 0)
         Me.btnBrowse.Name = "btnBrowse"
@@ -123,15 +128,15 @@ Partial Class FrmMktExcelPrice
         '
         'txtFileName
         '
-        Me.txtFileName.Location = New System.Drawing.Point(347, 12)
+        Me.txtFileName.Location = New System.Drawing.Point(605, 12)
         Me.txtFileName.Name = "txtFileName"
-        Me.txtFileName.Size = New System.Drawing.Size(515, 22)
+        Me.txtFileName.Size = New System.Drawing.Size(370, 22)
         Me.txtFileName.StyleController = Me.LayoutControl1
         Me.txtFileName.TabIndex = 5
         '
         'txtTemplate
         '
-        Me.txtTemplate.Location = New System.Drawing.Point(72, 12)
+        Me.txtTemplate.Location = New System.Drawing.Point(427, 12)
         Me.txtTemplate.Name = "txtTemplate"
         Me.txtTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtTemplate.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TemplateID", "Template ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Desc", "")})
@@ -141,43 +146,53 @@ Partial Class FrmMktExcelPrice
         Me.txtTemplate.Properties.ShowFooter = False
         Me.txtTemplate.Properties.ShowHeader = False
         Me.txtTemplate.Properties.ValueMember = "TemplateID"
-        Me.txtTemplate.Size = New System.Drawing.Size(203, 22)
+        Me.txtTemplate.Size = New System.Drawing.Size(106, 22)
         Me.txtTemplate.StyleController = Me.LayoutControl1
         Me.txtTemplate.TabIndex = 4
+        '
+        'txtCustomer
+        '
+        Me.txtCustomer.Location = New System.Drawing.Point(72, 12)
+        Me.txtCustomer.Name = "txtCustomer"
+        Me.txtCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.txtCustomer.Size = New System.Drawing.Size(283, 22)
+        Me.txtCustomer.StyleController = Me.LayoutControl1
+        Me.txtCustomer.TabIndex = 9
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem5})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1078, 54)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
+        Me.Root.Size = New System.Drawing.Size(1191, 44)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtTemplate
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(355, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(275, 34)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(178, 34)
         Me.LayoutControlItem2.Text = "Template"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(57, 16)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.txtFileName
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(275, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(533, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(587, 34)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(442, 34)
         Me.LayoutControlItem3.Text = "File Name"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(57, 16)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btnBrowse
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(862, 0)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(975, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
         Me.LayoutControlItem4.Size = New System.Drawing.Size(102, 34)
@@ -186,21 +201,31 @@ Partial Class FrmMktExcelPrice
         '
         'LayoutControlItem6
         '
-        Me.LayoutControlItem6.Control = Me.btnSimulate
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(964, 0)
+        Me.LayoutControlItem6.Control = Me.btnCheck
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(1077, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(94, 34)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.txtCustomer
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(355, 34)
+        Me.LayoutControlItem5.Text = "Customer"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(57, 16)
+        '
         'LayoutControl2
         '
         Me.LayoutControl2.Controls.Add(Me.GridResult)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 63)
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 53)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1078, 548)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1191, 569)
         Me.LayoutControl2.TabIndex = 1
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -209,12 +234,14 @@ Partial Class FrmMktExcelPrice
         Me.GridResult.Location = New System.Drawing.Point(12, 4)
         Me.GridResult.MainView = Me.GridViewResult
         Me.GridResult.Name = "GridResult"
-        Me.GridResult.Size = New System.Drawing.Size(1054, 540)
+        Me.GridResult.Size = New System.Drawing.Size(1167, 561)
         Me.GridResult.TabIndex = 4
         Me.GridResult.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewResult})
         '
         'GridViewResult
         '
+        Me.GridViewResult.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewResult.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewResult.GridControl = Me.GridResult
         Me.GridViewResult.Name = "GridViewResult"
         Me.GridViewResult.OptionsBehavior.Editable = False
@@ -228,7 +255,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2)
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1078, 548)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1191, 569)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -236,7 +263,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem1.Control = Me.GridResult
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1058, 544)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1171, 565)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -245,11 +272,11 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl3.Controls.Add(Me.lblResult)
         Me.LayoutControl3.Controls.Add(Me.btnExport)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 617)
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 628)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 345, 812, 500)
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1078, 39)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1191, 39)
         Me.LayoutControl3.TabIndex = 2
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -257,13 +284,13 @@ Partial Class FrmMktExcelPrice
         '
         Me.lblResult.Location = New System.Drawing.Point(12, 4)
         Me.lblResult.Name = "lblResult"
-        Me.lblResult.Size = New System.Drawing.Size(942, 16)
+        Me.lblResult.Size = New System.Drawing.Size(1055, 16)
         Me.lblResult.StyleController = Me.LayoutControl3
         Me.lblResult.TabIndex = 5
         '
         'btnExport
         '
-        Me.btnExport.Location = New System.Drawing.Point(966, 4)
+        Me.btnExport.Location = New System.Drawing.Point(1079, 4)
         Me.btnExport.MaximumSize = New System.Drawing.Size(100, 0)
         Me.btnExport.MinimumSize = New System.Drawing.Size(90, 0)
         Me.btnExport.Name = "btnExport"
@@ -279,13 +306,13 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7, Me.LayoutControlItem8})
         Me.LayoutControlGroup2.Name = "Root"
         Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 2, 2)
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1078, 39)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1191, 39)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.btnExport
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(946, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(1059, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem7.Size = New System.Drawing.Size(112, 35)
@@ -299,7 +326,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(0, 20)
         Me.LayoutControlItem8.MinSize = New System.Drawing.Size(39, 20)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(946, 35)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1059, 35)
         Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
@@ -313,7 +340,7 @@ Partial Class FrmMktExcelPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1084, 659)
+        Me.ClientSize = New System.Drawing.Size(1197, 670)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -324,11 +351,13 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.GridResult, System.ComponentModel.ISupportInitialize).EndInit()
@@ -357,7 +386,7 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents GridViewResult As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents btnSimulate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnCheck As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents txtTemplate As DevExpress.XtraEditors.LookUpEdit
@@ -367,4 +396,6 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents lblResult As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtCustomer As DevExpress.XtraEditors.ButtonEdit
 End Class

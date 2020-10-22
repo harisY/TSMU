@@ -40,6 +40,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Dept = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.T_Parent = New DevExpress.XtraEditors.ButtonEdit()
         Me.T_ParentAmount = New DevExpress.XtraEditors.TextEdit()
+        Me.TCustomer = New DevExpress.XtraEditors.ButtonEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -57,11 +58,16 @@ Partial Class Frm_CR_UserCreateDetail
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NameOfGoods = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Spesification = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Model = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SalesType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.C_SalesType = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.C_Qty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Price = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,6 +79,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Remaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -126,6 +133,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,6 +148,7 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.T_Dept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Parent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_ParentAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,9 +166,11 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C_SalesType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Price, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,6 +277,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControl1.Controls.Add(Me.T_Dept)
         Me.LayoutControl1.Controls.Add(Me.T_Parent)
         Me.LayoutControl1.Controls.Add(Me.T_ParentAmount)
+        Me.LayoutControl1.Controls.Add(Me.TCustomer)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -280,7 +292,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_PO.Enabled = False
         Me.T_PO.Location = New System.Drawing.Point(613, 12)
         Me.T_PO.Name = "T_PO"
-        Me.T_PO.Size = New System.Drawing.Size(548, 20)
+        Me.T_PO.Size = New System.Drawing.Size(209, 20)
         Me.T_PO.TabIndex = 98
         '
         'BBeritaAcara
@@ -370,7 +382,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_CRType.Location = New System.Drawing.Point(87, 12)
         Me.T_CRType.Name = "T_CRType"
         Me.T_CRType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_CRType.Properties.Items.AddRange(New Object() {"Fixed Aset", "Expense", "Mold", "Disposal"})
         Me.T_CRType.Size = New System.Drawing.Size(179, 20)
         Me.T_CRType.StyleController = Me.LayoutControl1
         Me.T_CRType.TabIndex = 4
@@ -424,11 +435,21 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_ParentAmount.StyleController = Me.LayoutControl1
         Me.T_ParentAmount.TabIndex = 66
         '
+        'TCustomer
+        '
+        Me.TCustomer.Location = New System.Drawing.Point(901, 12)
+        Me.TCustomer.Name = "TCustomer"
+        Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.TCustomer.Size = New System.Drawing.Size(260, 20)
+        Me.TCustomer.StyleController = Me.LayoutControl1
+        Me.TCustomer.TabIndex = 99
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem2, Me.LayoutControlItem14, Me.LayoutControlItem15})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem2, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1173, 125)
         Me.Root.TextVisible = False
@@ -572,9 +593,18 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem15.Control = Me.T_PO
         Me.LayoutControlItem15.Location = New System.Drawing.Point(526, 0)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(627, 24)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(288, 24)
         Me.LayoutControlItem15.Text = "PO Number"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.TCustomer
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(814, 0)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(339, 24)
+        Me.LayoutControlItem16.Text = "Customer"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 13)
         '
         'Grid
         '
@@ -584,14 +614,14 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Grid.Location = New System.Drawing.Point(7, 152)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Qty, Me.C_Price, Me.C_Amount, Me.C_Amount_Barang, Me.CurrRepository, Me.BAccount, Me.C_Check, Me.TotalIdr, Me.Check_OK, Me.Check_Rev, Me.Check_Del})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Qty, Me.C_Price, Me.C_Amount, Me.C_Amount_Barang, Me.CurrRepository, Me.BAccount, Me.C_Check, Me.TotalIdr, Me.Check_OK, Me.Check_Rev, Me.Check_Del, Me.C_SalesType})
         Me.Grid.Size = New System.Drawing.Size(1159, 253)
         Me.Grid.TabIndex = 80
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Qty, Me.Price, Me.PTotal, Me.Curr, Me.Rate, Me.Account, Me.Remaining, Me.GridColumn1, Me.GridColumn2, Me.PTotalRP, Me.GridColumn5, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NameOfGoods, Me.Spesification, Me.Model, Me.SalesType, Me.GridColumn16, Me.Qty, Me.Price, Me.PTotal, Me.Curr, Me.Rate, Me.Account, Me.GridColumn14, Me.Remaining, Me.GridColumn1, Me.GridColumn2, Me.PTotalRP, Me.GridColumn5, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -609,7 +639,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.NameOfGoods.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name Of Goods", "{0:N0}")})
         Me.NameOfGoods.Visible = True
         Me.NameOfGoods.VisibleIndex = 0
-        Me.NameOfGoods.Width = 154
+        Me.NameOfGoods.Width = 139
         '
         'Spesification
         '
@@ -621,7 +651,49 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Spesification.OptionsFilter.AllowFilter = False
         Me.Spesification.Visible = True
         Me.Spesification.VisibleIndex = 1
-        Me.Spesification.Width = 175
+        Me.Spesification.Width = 157
+        '
+        'Model
+        '
+        Me.Model.AppearanceCell.Options.UseTextOptions = True
+        Me.Model.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Model.AppearanceHeader.Options.UseTextOptions = True
+        Me.Model.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Model.FieldName = "Model"
+        Me.Model.Name = "Model"
+        Me.Model.Visible = True
+        Me.Model.VisibleIndex = 2
+        '
+        'SalesType
+        '
+        Me.SalesType.AppearanceCell.Options.UseTextOptions = True
+        Me.SalesType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.SalesType.AppearanceHeader.Options.UseTextOptions = True
+        Me.SalesType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.SalesType.ColumnEdit = Me.C_SalesType
+        Me.SalesType.FieldName = "Sales Type"
+        Me.SalesType.Name = "SalesType"
+        Me.SalesType.Visible = True
+        Me.SalesType.VisibleIndex = 3
+        '
+        'C_SalesType
+        '
+        Me.C_SalesType.AutoHeight = False
+        Me.C_SalesType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.C_SalesType.Items.AddRange(New Object() {"Paid", "Tsc Charge"})
+        Me.C_SalesType.Name = "C_SalesType"
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.FieldName = "Remark"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 4
+        Me.GridColumn16.Width = 214
         '
         'Qty
         '
@@ -638,8 +710,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Qty.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 4
-        Me.Qty.Width = 60
+        Me.Qty.VisibleIndex = 8
+        Me.Qty.Width = 37
         '
         'C_Qty
         '
@@ -663,8 +735,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Price.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Price.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Price.Visible = True
-        Me.Price.VisibleIndex = 6
-        Me.Price.Width = 130
+        Me.Price.VisibleIndex = 10
+        Me.Price.Width = 108
         '
         'C_Price
         '
@@ -686,8 +758,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 7
-        Me.PTotal.Width = 171
+        Me.PTotal.VisibleIndex = 11
+        Me.PTotal.Width = 120
         '
         'C_Amount_Barang
         '
@@ -706,8 +778,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Curr.Name = "Curr"
         Me.Curr.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Curr.Visible = True
-        Me.Curr.VisibleIndex = 5
-        Me.Curr.Width = 51
+        Me.Curr.VisibleIndex = 9
+        Me.Curr.Width = 36
         '
         'CurrRepository
         '
@@ -726,8 +798,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 8
-        Me.Rate.Width = 88
+        Me.Rate.VisibleIndex = 13
+        Me.Rate.Width = 63
         '
         'Account
         '
@@ -740,14 +812,23 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Account.Name = "Account"
         Me.Account.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Account.Visible = True
-        Me.Account.VisibleIndex = 2
-        Me.Account.Width = 115
+        Me.Account.VisibleIndex = 5
+        Me.Account.Width = 79
         '
         'BAccount
         '
         Me.BAccount.AutoHeight = False
         Me.BAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.BAccount.Name = "BAccount"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.FieldName = "Account Name"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 6
+        Me.GridColumn14.Width = 148
         '
         'Remaining
         '
@@ -760,8 +841,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Remaining.OptionsColumn.AllowEdit = False
         Me.Remaining.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Remaining.Visible = True
-        Me.Remaining.VisibleIndex = 3
-        Me.Remaining.Width = 127
+        Me.Remaining.VisibleIndex = 7
+        Me.Remaining.Width = 103
         '
         'GridColumn1
         '
@@ -786,8 +867,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn2.FieldName = "Category"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 10
         '
         'PTotalRP
         '
@@ -801,8 +880,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotalRP.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotalRP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total IDR", "{0:N2}")})
         Me.PTotalRP.Visible = True
-        Me.PTotalRP.VisibleIndex = 9
-        Me.PTotalRP.Width = 173
+        Me.PTotalRP.VisibleIndex = 12
+        Me.PTotalRP.Width = 153
         '
         'TotalIdr
         '
@@ -818,7 +897,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn5.FieldName = "Note"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 11
+        Me.GridColumn5.VisibleIndex = 17
         Me.GridColumn5.Width = 325
         '
         'GridColumn10
@@ -837,7 +916,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 12
+        Me.GridColumn11.VisibleIndex = 14
         '
         'Check_OK
         '
@@ -855,7 +934,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 13
+        Me.GridColumn12.VisibleIndex = 15
         '
         'Check_Rev
         '
@@ -873,7 +952,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 14
+        Me.GridColumn13.VisibleIndex = 16
         '
         'Check_Del
         '
@@ -914,6 +993,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox2.TabIndex = 83
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Dies / Mold"
+        Me.GroupBox2.Visible = False
         '
         'Label20
         '
@@ -1003,11 +1083,11 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Grid3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid3.Location = New System.Drawing.Point(848, 409)
+        Me.Grid3.Location = New System.Drawing.Point(773, 412)
         Me.Grid3.MainView = Me.GridView3
         Me.Grid3.Name = "Grid3"
         Me.Grid3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit3, Me.RepositoryItemSpinEdit2, Me.RepositoryItemTextEdit1, Me.CurrEdit})
-        Me.Grid3.Size = New System.Drawing.Size(318, 129)
+        Me.Grid3.Size = New System.Drawing.Size(393, 129)
         Me.Grid3.TabIndex = 85
         Me.Grid3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -1082,7 +1162,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
         Me.Grid4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit4, Me.RepositoryItemSpinEdit6, Me.RepositoryItemSpinEdit5})
-        Me.Grid4.Size = New System.Drawing.Size(583, 129)
+        Me.Grid4.Size = New System.Drawing.Size(760, 129)
         Me.Grid4.TabIndex = 80
         Me.Grid4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -1129,7 +1209,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Grid5.MainView = Me.GridView5
         Me.Grid5.Name = "Grid5"
         Me.Grid5.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit7, Me.RepositoryItemSpinEdit8, Me.RepositoryItemSpinEdit9, Me.RepositoryItemTextEdit2, Me.Opinion})
-        Me.Grid5.Size = New System.Drawing.Size(583, 129)
+        Me.Grid5.Size = New System.Drawing.Size(760, 129)
         Me.Grid5.TabIndex = 87
         Me.Grid5.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5})
         '
@@ -1201,6 +1281,10 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 800
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1237,6 +1321,7 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.T_Dept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_Parent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_ParentAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1254,9 +1339,11 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C_SalesType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Price, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Amount_Barang, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1406,4 +1493,12 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents T_PO As TextBox
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TCustomer As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents Model As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SalesType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents C_SalesType As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
 End Class
