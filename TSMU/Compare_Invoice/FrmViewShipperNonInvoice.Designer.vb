@@ -20,9 +20,15 @@ Partial Class FrmViewShipperNonInvoice
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
+        Me.Grid3 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.Grid2 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.lblnama = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -40,9 +46,15 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
+        Me.XtraTabPage3.SuspendLayout()
+        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage2.SuspendLayout()
+        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +84,39 @@ Partial Class FrmViewShipperNonInvoice
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
         Me.XtraTabControl1.Size = New System.Drawing.Size(1088, 678)
         Me.XtraTabControl1.TabIndex = 4
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3})
+        '
+        'XtraTabPage3
+        '
+        Me.XtraTabPage3.Controls.Add(Me.Grid3)
+        Me.XtraTabPage3.Name = "XtraTabPage3"
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1081, 644)
+        Me.XtraTabPage3.Text = "DM"
+        '
+        'Grid3
+        '
+        Me.Grid3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid3.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid3.Location = New System.Drawing.Point(4, 6)
+        Me.Grid3.MainView = Me.GridView3
+        Me.Grid3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid3.Name = "Grid3"
+        Me.Grid3.Size = New System.Drawing.Size(1072, 632)
+        Me.Grid3.TabIndex = 3
+        Me.Grid3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        '
+        'GridView3
+        '
+        Me.GridView3.DetailHeight = 458
+        Me.GridView3.FixedLineWidth = 3
+        Me.GridView3.GridControl = Me.Grid3
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsView.ColumnAutoWidth = False
+        Me.GridView3.OptionsView.ShowAutoFilterRow = True
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'XtraTabPage1
         '
@@ -106,6 +150,38 @@ Partial Class FrmViewShipperNonInvoice
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'XtraTabPage2
+        '
+        Me.XtraTabPage2.Controls.Add(Me.Grid2)
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1081, 644)
+        Me.XtraTabPage2.Text = "CM"
+        '
+        'Grid2
+        '
+        Me.Grid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid2.Location = New System.Drawing.Point(4, 6)
+        Me.Grid2.MainView = Me.GridView2
+        Me.Grid2.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid2.Name = "Grid2"
+        Me.Grid2.Size = New System.Drawing.Size(1072, 632)
+        Me.Grid2.TabIndex = 3
+        Me.Grid2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.DetailHeight = 458
+        Me.GridView2.FixedLineWidth = 3
+        Me.GridView2.GridControl = Me.Grid2
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridView2.OptionsView.ShowAutoFilterRow = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'LayoutControl1
         '
@@ -276,9 +352,15 @@ Partial Class FrmViewShipperNonInvoice
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
+        Me.XtraTabPage3.ResumeLayout(False)
+        CType(Me.Grid3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage2.ResumeLayout(False)
+        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -319,4 +401,10 @@ Partial Class FrmViewShipperNonInvoice
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents lblnama As Label
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents Grid3 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents Grid2 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

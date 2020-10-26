@@ -145,7 +145,77 @@ Public Class FrmViewShipperNonInvoice
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub LoadGridCM()
+        Try
+            If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" Then
+                If _TglSJFrom.Text = "" Then
+                    _TglSJFrom.Focus()
+                ElseIf _TglSJTo.Text = "" Then
+                    _TglSJTo.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal !")
+            End If
+            Cursor = Cursors.WaitCursor
+            ObjSuspend2 = New ClsShippernotinvoice
+            Dim dtSearch2 As New DataTable
+            '' dtSearch2 = ObjSuspend2.GetCustomer2
+            dtSearch2 = ObjSuspend2.GetShipperInvCM(IIf(_BtnCust2.Text = "", "ALL", _BtnCust2.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
+            Grid2.DataSource = dtSearch2
+            GridCellFormat(GridView2)
+            GridView2.BestFitColumns()
 
+            With GridView2
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView2)
+            GridView2.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView2.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView2.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView2.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView2.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView2.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub LoadGridDM()
+        Try
+            If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" Then
+                If _TglSJFrom.Text = "" Then
+                    _TglSJFrom.Focus()
+                ElseIf _TglSJTo.Text = "" Then
+                    _TglSJTo.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal !")
+            End If
+            Cursor = Cursors.WaitCursor
+            ObjSuspend2 = New ClsShippernotinvoice
+            Dim dtSearch2 As New DataTable
+            dtSearch2 = ObjSuspend2.GetShipperInvDM(IIf(_BtnCust2.Text = "", "ALL", _BtnCust2.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
+            Grid3.DataSource = dtSearch2
+            GridCellFormat(GridView3)
+            GridView3.BestFitColumns()
+
+            With GridView3
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView3)
+            GridView3.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView3.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView3.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView3.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView3.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView3.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Public Overrides Sub Proc_Search()
         Try
             Dim fSearch As New frmSearch()
@@ -193,6 +263,8 @@ Public Class FrmViewShipperNonInvoice
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         LoadDataxx()
+        LoadGridCM()
+        LoadGridDM()
     End Sub
 
     Private Sub _BtnCust2_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust2.EditValueChanged
