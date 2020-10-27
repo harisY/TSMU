@@ -98,7 +98,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1283, 54)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1283, 44)
         Me.LayoutControl1.TabIndex = 15
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -201,7 +201,8 @@ Partial Class FrmTravelCreditCardDetail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem7})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1283, 54)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
+        Me.Root.Size = New System.Drawing.Size(1283, 44)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem2
@@ -279,11 +280,11 @@ Partial Class FrmTravelCreditCardDetail
         Me.GridCreditCard.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridCreditCard.Location = New System.Drawing.Point(12, 12)
+        Me.GridCreditCard.Location = New System.Drawing.Point(12, 2)
         Me.GridCreditCard.MainView = Me.GridViewCreditCard
         Me.GridCreditCard.Name = "GridCreditCard"
         Me.GridCreditCard.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CCreditCardNumber, Me.CCCNumberMaster})
-        Me.GridCreditCard.Size = New System.Drawing.Size(1259, 482)
+        Me.GridCreditCard.Size = New System.Drawing.Size(1259, 507)
         Me.GridCreditCard.TabIndex = 13
         Me.GridCreditCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewCreditCard})
         '
@@ -416,7 +417,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1289, 572)
         Me.TableLayoutPanel1.TabIndex = 16
@@ -425,10 +426,10 @@ Partial Class FrmTravelCreditCardDetail
         '
         Me.LayoutControl2.Controls.Add(Me.GridCreditCard)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 63)
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 53)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1283, 506)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1283, 516)
         Me.LayoutControl2.TabIndex = 16
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -438,7 +439,8 @@ Partial Class FrmTravelCreditCardDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1283, 506)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 5)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1283, 516)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -446,7 +448,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.LayoutControlItem1.Control = Me.GridCreditCard
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1263, 486)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1263, 511)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
