@@ -2007,6 +2007,9 @@ Public Class Frm_CR_UserCreateDetail
                 GridView1.DeleteRow(GridView1.FocusedRowHandle)
                 GridView1.RefreshData()
                 Call RefreshRemaining()
+                If GridView1.RowCount > 0 Then
+                    Call TotalSumary()
+                End If
             End If
         End If
 
