@@ -70,7 +70,7 @@ Public Class Frm_CR_Approve
         Dept = gh_Common.GroupID
 
         Call LoadGrid(_level, division, director)
-        Call LoadGrid_Other(gh_Common.GroupID)
+        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username)
         Call LoadGrid_Accounting()
         Call LoadGrid_Purchase()
         Call LoadGrid_CRClose()
@@ -147,7 +147,7 @@ Public Class Frm_CR_Approve
                 With fSearch
                     .StartPosition = FormStartPosition.CenterScreen
                     .ShowDialog()
-                    dtGrid = fc_Class_Other.Get_Other_Dept_Search(Dept, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                    dtGrid = fc_Class_Other.Get_Other_Dept_Search(gh_Common.Username, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
                     Grid2.DataSource = dtGrid
                 End With
             ElseIf TabControl1.SelectedTab.Name = "Search" Then
@@ -181,7 +181,7 @@ Public Class Frm_CR_Approve
         bs_Filter = ""
         ' LoadGrid(_level, division, director)
         Call LoadGrid(_level, division, director)
-        Call LoadGrid_Other(gh_Common.GroupID)
+        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username)
         Call LoadGrid_Accounting()
         Call LoadGrid_Purchase()
         Call LoadGrid_CRClose()
@@ -227,12 +227,12 @@ Public Class Frm_CR_Approve
         End Try
     End Sub
 
-    Private Sub LoadGrid_Other(_Dept As String)
+    Private Sub LoadGrid_Other(_Dept As String, _User As String)
         Try
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class_Other.Get_Other_Dept(_Dept)
+            dt = fc_Class_Other.Get_Other_Dept(_Dept, _User)
             Grid2.DataSource = dt
 
 

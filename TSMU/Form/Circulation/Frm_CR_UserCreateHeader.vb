@@ -428,7 +428,8 @@ Public Class Frm_CR_UserCreateHeader
 
                     End If
                 Next
-                XtraMessageBox.Show("Data Saved", "Information", MessageBoxButtons.OK)
+                Timer1.Enabled = True
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 Call LoadGrid(gh_Common.GroupID)
             End If
         End If
@@ -440,5 +441,10 @@ Public Class Frm_CR_UserCreateHeader
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        SendKeys.Send("{ENTER}")
+        Timer1.Enabled = False
     End Sub
 End Class

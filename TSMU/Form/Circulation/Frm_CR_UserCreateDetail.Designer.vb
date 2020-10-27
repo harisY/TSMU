@@ -55,10 +55,10 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -128,6 +128,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Opinion = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -163,10 +164,10 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,7 +240,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox1.Location = New System.Drawing.Point(345, 84)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(189, 29)
+        Me.GroupBox1.Size = New System.Drawing.Size(189, 30)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         '
@@ -281,9 +282,9 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(-13, 491, 472, 343)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(0, 385, 472, 343)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1173, 125)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1173, 126)
         Me.LayoutControl1.TabIndex = 98
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -298,9 +299,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BBeritaAcara
         '
         Me.BBeritaAcara.Enabled = False
-        Me.BBeritaAcara.Location = New System.Drawing.Point(612, 84)
+        Me.BBeritaAcara.Location = New System.Drawing.Point(826, 84)
         Me.BBeritaAcara.Name = "BBeritaAcara"
-        Me.BBeritaAcara.Size = New System.Drawing.Size(185, 29)
+        Me.BBeritaAcara.Size = New System.Drawing.Size(104, 30)
         Me.BBeritaAcara.TabIndex = 97
         Me.BBeritaAcara.Text = "Berita Acara"
         Me.BBeritaAcara.UseVisualStyleBackColor = True
@@ -308,9 +309,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BMold
         '
         Me.BMold.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BMold.Location = New System.Drawing.Point(801, 84)
+        Me.BMold.Location = New System.Drawing.Point(934, 84)
         Me.BMold.Name = "BMold"
-        Me.BMold.Size = New System.Drawing.Size(152, 29)
+        Me.BMold.Size = New System.Drawing.Size(107, 30)
         Me.BMold.TabIndex = 79
         Me.BMold.Text = "Mold"
         Me.BMold.UseVisualStyleBackColor = True
@@ -322,7 +323,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox3.Location = New System.Drawing.Point(87, 84)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(179, 29)
+        Me.GroupBox3.Size = New System.Drawing.Size(179, 30)
         Me.GroupBox3.TabIndex = 93
         Me.GroupBox3.TabStop = False
         '
@@ -369,9 +370,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BAddRows
         '
         Me.BAddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BAddRows.Location = New System.Drawing.Point(957, 84)
+        Me.BAddRows.Location = New System.Drawing.Point(1045, 84)
         Me.BAddRows.Name = "BAddRows"
-        Me.BAddRows.Size = New System.Drawing.Size(204, 29)
+        Me.BAddRows.Size = New System.Drawing.Size(116, 30)
         Me.BAddRows.TabIndex = 78
         Me.BAddRows.Text = "Add Rows"
         Me.BAddRows.UseVisualStyleBackColor = True
@@ -449,9 +450,9 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem2, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.EmptySpaceItem1})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1173, 125)
+        Me.Root.Size = New System.Drawing.Size(1173, 126)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -504,7 +505,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem10.Control = Me.GroupBox1
         Me.LayoutControlItem10.Location = New System.Drawing.Point(258, 72)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(268, 33)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(268, 34)
         Me.LayoutControlItem10.Text = "Budget Type"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -513,7 +514,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem11.Control = Me.GroupBox3
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(258, 33)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(258, 34)
         Me.LayoutControlItem11.Text = "Po Type"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -556,35 +557,27 @@ Partial Class Frm_CR_UserCreateDetail
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.BMold
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(789, 72)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(922, 72)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(156, 33)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(111, 34)
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
         '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.BAddRows
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(945, 72)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(1033, 72)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(208, 33)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(120, 34)
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(526, 72)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(74, 33)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.BBeritaAcara
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(600, 72)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(814, 72)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(189, 33)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(108, 34)
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
         '
@@ -606,16 +599,27 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem16.Text = "Customer"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 13)
         '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(526, 72)
+        Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(0, 7)
+        Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(5, 5)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(288, 34)
+        Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
         'Grid
         '
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(7, 152)
+        Me.Grid.Location = New System.Drawing.Point(7, 159)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Qty, Me.C_Price, Me.C_Amount, Me.C_Amount_Barang, Me.CurrRepository, Me.BAccount, Me.C_Check, Me.TotalIdr, Me.Check_OK, Me.Check_Rev, Me.Check_Del, Me.C_SalesType})
-        Me.Grid.Size = New System.Drawing.Size(1159, 253)
+        Me.Grid.Size = New System.Drawing.Size(1159, 246)
         Me.Grid.TabIndex = 80
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -758,7 +762,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 11
+        Me.PTotal.VisibleIndex = 12
         Me.PTotal.Width = 120
         '
         'C_Amount_Barang
@@ -798,8 +802,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 13
-        Me.Rate.Width = 63
+        Me.Rate.VisibleIndex = 11
+        Me.Rate.Width = 58
         '
         'Account
         '
@@ -880,7 +884,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotalRP.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotalRP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total IDR", "{0:N2}")})
         Me.PTotalRP.Visible = True
-        Me.PTotalRP.VisibleIndex = 12
+        Me.PTotalRP.VisibleIndex = 13
         Me.PTotalRP.Width = 153
         '
         'TotalIdr
@@ -1215,7 +1219,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15})
         Me.GridView5.GridControl = Me.Grid5
         Me.GridView5.Name = "GridView5"
         Me.GridView5.OptionsView.ShowGroupPanel = False
@@ -1258,6 +1262,11 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Opinion.AutoHeight = False
         Me.Opinion.Name = "Opinion"
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.FieldName = "User_id"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
         'RepositoryItemSpinEdit7
         '
         Me.RepositoryItemSpinEdit7.AutoHeight = False
@@ -1283,7 +1292,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'Timer1
         '
-        Me.Timer1.Interval = 800
+        Me.Timer1.Interval = 700
         '
         'Frm_CR_UserCreateDetail
         '
@@ -1336,10 +1345,10 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1489,7 +1498,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents T_PO As TextBox
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
@@ -1501,4 +1509,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents SalesType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_SalesType As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
 End Class
