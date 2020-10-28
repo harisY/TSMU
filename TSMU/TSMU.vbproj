@@ -326,6 +326,11 @@
     <Compile Include="Dashboard\Dashboard_TravelSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dataset\APSignature.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APSignature.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2581,6 +2586,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSignature.Designer.vb">
+      <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSignature.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.Designer.vb">
       <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
     </Compile>
@@ -2623,6 +2634,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.Designer.vb">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.Designer.vb">
       <DependentUpon>Frm_Rpt_ViewPayment.vb</DependentUpon>
     </Compile>
@@ -2634,6 +2651,12 @@
     </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_APSignature.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_APSignature.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_PaymentSolomon.vb">
       <AutoGen>True</AutoGen>
@@ -3610,6 +3633,9 @@
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSignature.resx">
+      <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.resx">
       <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
     </EmbeddedResource>
@@ -3619,8 +3645,15 @@
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.resx">
       <DependentUpon>Frm_Rpt_APPaymentSolomon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.resx">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_APSignature.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_APSignature.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_PaymentSolomon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3669,6 +3702,17 @@
     <EmbeddedResource Include="UserControl\DashboardFinance.resx">
       <DependentUpon>DashboardFinance.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="dataset\APSignature.xsc">
+      <DependentUpon>APSignature.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\APSignature.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>APSignature.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\APSignature.xss">
+      <DependentUpon>APSignature.xsd</DependentUpon>
+    </None>
     <None Include="dataset\DashboardDS.xsc">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
     </None>
