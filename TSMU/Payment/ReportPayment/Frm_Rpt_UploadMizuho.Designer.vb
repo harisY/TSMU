@@ -670,15 +670,16 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridColumn27
         '
-        Me.GridColumn27.Caption = "vrno"
+        Me.GridColumn27.Caption = "No. Voucher"
         Me.GridColumn27.FieldName = "vrno"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 0
+        Me.GridColumn27.Width = 94
         '
         'GridColumn28
         '
-        Me.GridColumn28.Caption = "tgl"
+        Me.GridColumn28.Caption = "Date"
         Me.GridColumn28.FieldName = "tgl"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
@@ -686,19 +687,21 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridColumn29
         '
-        Me.GridColumn29.Caption = "Template_id"
+        Me.GridColumn29.Caption = "Template (TSC)"
         Me.GridColumn29.FieldName = "Template_id"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 2
+        Me.GridColumn29.Width = 132
         '
         'GridColumn30
         '
-        Me.GridColumn30.Caption = "template_id"
+        Me.GridColumn30.Caption = "Template (Mizuho)"
         Me.GridColumn30.FieldName = "template_id"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 3
+        Me.GridColumn30.Width = 117
         '
         'GridColumn31
         '
@@ -707,22 +710,25 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 4
+        Me.GridColumn31.Width = 36
         '
         'GridColumn32
         '
-        Me.GridColumn32.Caption = "Bankrek"
+        Me.GridColumn32.Caption = "Bank (TSC)"
         Me.GridColumn32.FieldName = "Bankrek"
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 5
+        Me.GridColumn32.Width = 102
         '
         'GridColumn33
         '
-        Me.GridColumn33.Caption = "Bank_Name"
+        Me.GridColumn33.Caption = "Bank (Mizuho)"
         Me.GridColumn33.FieldName = "Bank_Name"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 6
+        Me.GridColumn33.Width = 98
         '
         'GridColumn34
         '
@@ -731,22 +737,25 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 7
+        Me.GridColumn34.Width = 37
         '
         'GridColumn35
         '
-        Me.GridColumn35.Caption = "Norek"
+        Me.GridColumn35.Caption = "No. Rek (TSC)"
         Me.GridColumn35.FieldName = "Norek"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 8
+        Me.GridColumn35.Width = 100
         '
         'GridColumn36
         '
-        Me.GridColumn36.Caption = "Norek"
+        Me.GridColumn36.Caption = "Norek (Mizuho)"
         Me.GridColumn36.FieldName = "Norek"
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 9
+        Me.GridColumn36.Width = 94
         '
         'GridColumn37
         '
@@ -755,46 +764,52 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 10
+        Me.GridColumn37.Width = 37
         '
         'GridColumn38
         '
-        Me.GridColumn38.Caption = "penerima"
+        Me.GridColumn38.Caption = "Penerima (TSC)"
         Me.GridColumn38.FieldName = "penerima"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 11
+        Me.GridColumn38.Width = 108
         '
         'GridColumn39
         '
-        Me.GridColumn39.Caption = "Penerima"
-        Me.GridColumn39.FieldName = "Penerima"
+        Me.GridColumn39.Caption = "Penerima (Mizuho)"
+        Me.GridColumn39.FieldName = "penerima"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 12
+        Me.GridColumn39.Width = 106
         '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "CompareNoRek"
-        Me.GridColumn40.FieldName = "CompareNoRek"
+        Me.GridColumn40.FieldName = "ComparePenerima"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 13
+        Me.GridColumn40.Width = 37
         '
         'GridColumn41
         '
-        Me.GridColumn41.Caption = "Curyid"
+        Me.GridColumn41.Caption = "Currency (TSC)"
         Me.GridColumn41.FieldName = "Curyid"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
         Me.GridColumn41.VisibleIndex = 14
+        Me.GridColumn41.Width = 56
         '
         'GridColumn42
         '
-        Me.GridColumn42.Caption = "Cury_id"
+        Me.GridColumn42.Caption = "Currency (Mizuho)"
         Me.GridColumn42.FieldName = "Cury_id"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
         Me.GridColumn42.VisibleIndex = 15
+        Me.GridColumn42.Width = 53
         '
         'GridColumn43
         '
@@ -803,10 +818,11 @@ Partial Class Frm_Rpt_UploadMizuho
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 16
+        Me.GridColumn43.Width = 38
         '
         'GridColumn44
         '
-        Me.GridColumn44.Caption = "paid_amount"
+        Me.GridColumn44.Caption = "Paid Amount"
         Me.GridColumn44.FieldName = "paid_amount"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
@@ -814,7 +830,7 @@ Partial Class Frm_Rpt_UploadMizuho
         '
         'GridColumn45
         '
-        Me.GridColumn45.Caption = "Payment_mtd"
+        Me.GridColumn45.Caption = "Payment Method"
         Me.GridColumn45.FieldName = "Payment_mtd"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True

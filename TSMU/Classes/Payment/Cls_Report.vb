@@ -177,6 +177,23 @@ Public Class Cls_report
         End Try
     End Function
 
+
+    Public Function DataGridViewAPPaymentSign(ByVal date3 As String, ByVal date4 As String) As DataTable
+        Try
+            Dim query As String = "ReportPaymetSignature"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date3", SqlDbType.VarChar)
+            pParam(0).Value = date3
+            pParam(1) = New SqlClient.SqlParameter("@date4", SqlDbType.VarChar)
+            pParam(1).Value = date4
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function DataGridViewAR(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
             Dim query As String = "ViewAR"
@@ -364,14 +381,14 @@ Public Class Cls_report
         End Try
     End Function
 
-    Public Function DataGridSyncTemplate(ByVal date1 As String, ByVal date2 As String) As DataTable
+    Public Function DataGridSyncTemplate(ByVal date3 As String, ByVal date4 As String) As DataTable
         Try
             Dim query As String = "SyncMizuhoTemplate"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@date1", SqlDbType.VarChar)
-            pParam(0).Value = date1
-            pParam(1) = New SqlClient.SqlParameter("@date2", SqlDbType.VarChar)
-            pParam(1).Value = date2
+            pParam(0) = New SqlClient.SqlParameter("@date3", SqlDbType.VarChar)
+            pParam(0).Value = date3
+            pParam(1) = New SqlClient.SqlParameter("@date4", SqlDbType.VarChar)
+            pParam(1).Value = date4
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
             Return dt
