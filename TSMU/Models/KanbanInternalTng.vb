@@ -65,8 +65,10 @@ Public Class KanbanInternalTng
     End Sub
     Public Sub UpdateKanban(Id As Integer)
         Try
-            Dim sql As String = "Update [M_KanbanInternal] Set IsPrint = 1 where Id = " & QVal(Id) & ""
-            ExecQueryCKR(sql)
+            Dim sql As String = "Update [M_KanbanInternal] Set IsPrint = 1 where Id = @Id"
+            Dim P As List(Of SqlParameter) = New List(Of SqlParameter)()
+            P.Add(New SqlParameter() With {.ParameterName = "Id", .Value = Id})
+            ExecQueryWithValue(sql, CommandType.Text, P, GetConnString)
         Catch ex As Exception
             Throw ex
         End Try

@@ -38,56 +38,61 @@ Partial Class frmBoM_Calculated
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Grid.Location = New System.Drawing.Point(12, 28)
+        Me.Grid.Location = New System.Drawing.Point(16, 37)
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(804, 519)
+        Me.Grid.Size = New System.Drawing.Size(1072, 679)
         Me.Grid.TabIndex = 1
         '
         'btnFunction
         '
         Me.btnFunction.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnFunction.ContextMenuStrip = Me.ContextFunc
-        Me.btnFunction.Location = New System.Drawing.Point(741, 553)
+        Me.btnFunction.Location = New System.Drawing.Point(988, 723)
+        Me.btnFunction.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnFunction.Name = "btnFunction"
-        Me.btnFunction.Size = New System.Drawing.Size(75, 23)
+        Me.btnFunction.Size = New System.Drawing.Size(100, 30)
         Me.btnFunction.TabIndex = 2
         Me.btnFunction.Text = "Function"
         Me.btnFunction.UseVisualStyleBackColor = True
         '
         'ContextFunc
         '
+        Me.ContextFunc.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextFunc.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowCalculatedBoMToolStripMenuItem, Me.CalculateBoMToolStripMenuItem})
         Me.ContextFunc.Name = "ContextFunc"
-        Me.ContextFunc.Size = New System.Drawing.Size(214, 48)
+        Me.ContextFunc.Size = New System.Drawing.Size(254, 52)
         '
         'ShowCalculatedBoMToolStripMenuItem
         '
         Me.ShowCalculatedBoMToolStripMenuItem.Name = "ShowCalculatedBoMToolStripMenuItem"
-        Me.ShowCalculatedBoMToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ShowCalculatedBoMToolStripMenuItem.Size = New System.Drawing.Size(253, 24)
         Me.ShowCalculatedBoMToolStripMenuItem.Text = "Show BoM to be Calculate"
         '
         'CalculateBoMToolStripMenuItem
         '
         Me.CalculateBoMToolStripMenuItem.Name = "CalculateBoMToolStripMenuItem"
-        Me.CalculateBoMToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.CalculateBoMToolStripMenuItem.Size = New System.Drawing.Size(253, 24)
         Me.CalculateBoMToolStripMenuItem.Text = "Calculate BoM"
         '
         'ProgressBar1
         '
         Me.ProgressBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ProgressBar1.Location = New System.Drawing.Point(12, 553)
+        Me.ProgressBar1.Location = New System.Drawing.Point(16, 723)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(100, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(133, 30)
         Me.ProgressBar1.TabIndex = 3
         '
         'frmBoM_Calculated
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.btnFunction)
         Me.Controls.Add(Me.Grid)
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmBoM_Calculated"
         Me.Text = "Form BoM Calculated"
         Me.Controls.SetChildIndex(Me.Grid, 0)

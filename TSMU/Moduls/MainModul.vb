@@ -10,10 +10,8 @@ Imports DevExpress.XtraGrid.Views.BandedGrid
 Imports System.IO
 Imports DevExpress.DataAccess.Excel
 Imports System.ComponentModel
-
 Module MainModul
 #Region "--Global Enumerations--"
-
     Public Enum MessageEnum As Integer
         SimpanBerhasil = 1000
         SimpanGagal = 1001
@@ -1810,8 +1808,8 @@ Module MainModul
                 End If
 
                 pRowAff = gh_Trans.Command.ExecuteNonQuery()
-                Else
-                    Using Conn1 As New SqlConnection
+            Else
+                Using Conn1 As New SqlConnection
                     Conn1.ConnectionString = pConnStr
                     Dim cmd As New SqlCommand
                     cmd.CommandType = CmdType

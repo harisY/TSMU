@@ -2358,6 +2358,7 @@
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
+    <Compile Include="Models\FormatExcelModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -2724,6 +2725,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
+    <Compile Include="Services\FormatExcelService.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />

@@ -176,7 +176,6 @@ Public Class frmDRR_details
             Dim fileName = pathParts(pathParts.Count() - 1).Split("."c)
             Dim _index = pathParts(pathParts.Count() - 1).Split(","c)
 
-
             If fileName(0).ToString = "" Then
                 Exit For
             End If
