@@ -168,12 +168,7 @@ Public Class FrmViewShipperNonInvoice
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView2)
-            GridView2.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView2.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView2.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView2.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView2.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView2.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
 
             Cursor = Cursors.Default
 
@@ -203,12 +198,7 @@ Public Class FrmViewShipperNonInvoice
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView3)
-            GridView3.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView3.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView3.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView3.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView3.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView3.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
 
             Cursor = Cursors.Default
 
@@ -235,13 +225,29 @@ Public Class FrmViewShipperNonInvoice
 
     Private Sub Proc_Excel()
         Try
-
-            If GridView1.RowCount > 0 Then
-                SaveToExcel(Grid)
-                MsgBox("Data Sudah Berhasil Di Export.")
+            If XtraTabControl1.SelectedTabPageIndex = 0 Then
+                If GridView1.RowCount > 0 Then
+                    SaveToExcel(Grid)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+                If GridView2.RowCount > 0 Then
+                    SaveToExcel(Grid2)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
             Else
-                MsgBox("Grid Kosong!")
+                If GridView3.RowCount > 0 Then
+                    SaveToExcel(Grid3)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
             End If
+
 
 
         Catch ex As Exception
