@@ -169,6 +169,7 @@ Partial Class Frm_NPP_Detail
         'PartName
         '
         Me.PartName.FieldName = "Part Name"
+        Me.PartName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.PartName.Name = "PartName"
         Me.PartName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartName.Visible = True

@@ -19,7 +19,7 @@ Partial Class Frm_Npwo_Detail1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
@@ -127,9 +127,9 @@ Partial Class Frm_Npwo_Detail1
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        GridLevelNode2.LevelTemplate = Me.GridView2
-        GridLevelNode2.RelationName = "Level1"
-        Me.Grid.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.Grid.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.Grid.Location = New System.Drawing.Point(12, 167)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
@@ -151,6 +151,7 @@ Partial Class Frm_Npwo_Detail1
         '
         Me.PartNo.ColumnEdit = Me.TPartNo
         Me.PartNo.FieldName = "Part No"
+        Me.PartNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.PartNo.Name = "PartNo"
         Me.PartNo.Visible = True
         Me.PartNo.VisibleIndex = 0
@@ -175,6 +176,7 @@ Partial Class Frm_Npwo_Detail1
         'PartName
         '
         Me.PartName.FieldName = "Part Name"
+        Me.PartName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.PartName.Name = "PartName"
         Me.PartName.Visible = True
         Me.PartName.VisibleIndex = 1
