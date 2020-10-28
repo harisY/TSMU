@@ -19,6 +19,7 @@ Partial Class Frm_CR_UserCreateHeader
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,20 +34,21 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Grid2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.Grid2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -219,6 +221,11 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 10
         '
+        'C_Submit
+        '
+        Me.C_Submit.AutoHeight = False
+        Me.C_Submit.Name = "C_Submit"
+        '
         'TabControl1
         '
         Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -275,10 +282,9 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'C_Submit
+        'Timer1
         '
-        Me.C_Submit.AutoHeight = False
-        Me.C_Submit.Name = "C_Submit"
+        Me.Timer1.Interval = 700
         '
         'Frm_CR_UserCreateHeader
         '
@@ -289,12 +295,12 @@ Partial Class Frm_CR_UserCreateHeader
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         CType(Me.Grid2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -320,4 +326,5 @@ Partial Class Frm_CR_UserCreateHeader
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents Timer1 As Timer
 End Class

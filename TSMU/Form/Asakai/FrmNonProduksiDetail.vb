@@ -141,7 +141,7 @@ Public Class FrmNonProduksiDetail
         dt = New DataTable
         dt.Columns.Add("INFORMASI")
         dt.Columns.Add("PIC")
-        dt.Columns.Add("GAMBAR")
+        dt.Columns.Add("File")
         Grid.DataSource = dt
 
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
@@ -149,14 +149,34 @@ Public Class FrmNonProduksiDetail
     End Sub
 
     Private Sub BTambah_Click(sender As Object, e As EventArgs) Handles BTambah.Click
+        If TxtPIC.Text = "" Then
+            MessageBox.Show("PIC Belum di Isi",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        ElseIf TxtInformasi.Text = "" Then
+            MessageBox.Show("Informasi Belum diisi",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        ElseIf TNamaFile.Text = "" Then
+            MessageBox.Show("Pilih File PDF yang akan di Upload",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+        Else
+            GridView1.AddNewRow()
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, INFORMASI, TxtInformasi.Text)
+            ' GridView1.SetRowCellValue(GridView1.FocusedRowHandle, DUEDATE, DtDuedate.Value)
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PIC, TxtPIC.Text)
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, File, NamaFile)
+            GridView1.UpdateCurrentRow()
+            Call TextBoxLoad()
+        End If
 
-        GridView1.AddNewRow()
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, INFORMASI, TxtInformasi.Text)
-        ' GridView1.SetRowCellValue(GridView1.FocusedRowHandle, DUEDATE, DtDuedate.Value)
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PIC, TxtPIC.Text)
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, NamaFile)
-        GridView1.UpdateCurrentRow()
-        Call TextBoxLoad()
 
     End Sub
     Public Sub TextBoxLoad()
@@ -203,7 +223,7 @@ Public Class FrmNonProduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
                         .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "PIC"))
-                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "GAMBAR"))
+                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "File"))
 
                     End With
                     Fc_Class.ObjDetailNonProduksi.Add(ObjNonproduksiDetail)
@@ -226,7 +246,7 @@ Public Class FrmNonProduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
                         .D_PIC = Convert.ToString(GridView1.GetRowCellValue(i, "PIC"))
-                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "GAMBAR"))
+                        .D_Gambar = Convert.ToString(GridView1.GetRowCellValue(i, "File"))
 
                     End With
                     Fc_Class.ObjDetailNonProduksi.Add(ObjNonproduksiDetail)
@@ -293,21 +313,26 @@ Public Class FrmNonProduksiDetail
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
 
-            opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
-
+            'opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif;*.Jpeg"
+            opfImage.Filter = "Choose Image(*.pdf)|*.pdf"
             If opfImage.ShowDialog = DialogResult.OK Then
 
 
-                PictureBox1.Image = Image.FromFile(opfImage.FileName)
+                'PictureBox1.Image = Image.FromFile(opfImage.FileName)
+                'PathFoto = opfImage.FileName
+                'NamaFile = Path.GetFileName(PathFoto)
+
+
+                ' PictureBox1.Image = Image.FromFile(opfImage.FileName)
+                TNamaFile.Text = opfImage.FileName
                 PathFoto = opfImage.FileName
                 'NamaFile = Path.GetFileName(PathFoto)
                 Dim extension As String = Path.GetExtension(PathFoto)
                 NamaFile = "NP_" + Path.GetRandomFileName() + extension
                 fileSavePath = Path.Combine(SimpanFoto, NamaFile)
-                File.Copy(opfImage.FileName, fileSavePath, True)
+                IO.File.Copy(opfImage.FileName, fileSavePath, True)
 
-                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, "")
-                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, GAMBAR, NamaFile)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, File, NamaFile)
 
             End If
         Catch ex As Exception
@@ -331,7 +356,8 @@ Public Class FrmNonProduksiDetail
 
     Private Sub BGambar_Click(sender As Object, e As EventArgs) Handles BGambar.Click
 
-        opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+        'opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+        opfImage.Filter = "Choose Image(*.pdf)|*.pdf"
 
         If opfImage.ShowDialog = DialogResult.OK Then
 
@@ -341,13 +367,14 @@ Public Class FrmNonProduksiDetail
             'NamaFile = Path.GetFileName(PathFoto)
 
 
-            PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            ' PictureBox1.Image = Image.FromFile(opfImage.FileName)
+            TNamaFile.Text = opfImage.FileName
             PathFoto = opfImage.FileName
             'NamaFile = Path.GetFileName(PathFoto)
             Dim extension As String = Path.GetExtension(PathFoto)
             NamaFile = "NP_" + Path.GetRandomFileName() + extension
             fileSavePath = Path.Combine(SimpanFoto, NamaFile)
-            File.Copy(opfImage.FileName, fileSavePath, True)
+            IO.File.Copy(opfImage.FileName, fileSavePath, True)
         End If
 
 

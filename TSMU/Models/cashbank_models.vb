@@ -306,7 +306,7 @@ Public Class cashbank_models
 
             Dim Query = "update TSC16Application.dbo.settle_header set TSC16Application.dbo.settle_header.pay=1 FROM T_CCAccrued inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where T_CCAccrued.NoAccrued=" & QVal(SettleID) & ""
             MainModul.ExecQuery(Query)
-            Dim Query2 = "update T_CCAccrued set pay=1 where NoAccrued=" & QVal(SettleID) & ""
+            Dim Query2 = "update T_CCAccrued set pay=1,DatePaid= " & QVal(Tgl) & " where NoAccrued=" & QVal(SettleID) & ""
             MainModul.ExecQuery(Query2)
         Catch ex As Exception
             Throw ex
@@ -590,7 +590,17 @@ Public Class cashbank_models
         Try
             ' Dim sql As String = "select settle_header.Tgl, settle_detail.SettleID, settle_header.SuspendID, settle_detail.Description,suspend_header.Total, settle_detail.SettleAmount, settle_detail.AcctID,suspend_header.BankID,settle_detail.Proses from settle_header inner join  settle_detail on settle_detail.settleid=settle_header.settleid left join suspend_header on  settle_header.suspendid=suspend_header.suspendid  where settle_header.pay=0"
             '  Dim sql As String = "select NoAccrued , Tanggal, CreditCardNumber ,SUM(AmountIDR) as AmountIDR,'IDR' AS CuryID  from T_CCAccrued group by NoAccrued , Tanggal, CreditCardNumber"
-            Dim sql As String = "select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CreditCardNumber,SUM(T_CCAccrued.AmountIDR) as AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CreditCardNumber, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
+            ''            Dim sql As String = "select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CreditCardNumber,SUM(T_CCAccrued.AmountIDR) as AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CreditCardNumber, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
+            '' Dim sql As String = "Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CCNumberMaster, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
+
+            Dim sql As String = " Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses into #cc
+From T_CCAccrued  inner Join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi 
+Where TSC16Application.dbo.settle_header.pay = 0
+Group By T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster, TSC16Application.dbo.settle_header.Proses
+
+Select #cc.NoAccrued, #cc.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,sum(T_CCAccrued.AmountIDR) as AmountIDR,#cc.CuryID,#cc.Proses 
+from #cc  inner join T_CCAccrued on T_CCAccrued.NoAccrued=#cc.NoAccrued
+Group by #cc.NoAccrued,  #cc.Tanggal, T_CCAccrued.CCNumberMaster,#cc.CuryID, Proses"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(sql)
             Return dt

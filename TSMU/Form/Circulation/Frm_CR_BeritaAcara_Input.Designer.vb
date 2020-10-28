@@ -22,6 +22,7 @@ Partial Class Frm_CR_BeritaAcara_Input
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.T_Circulation = New DevExpress.XtraEditors.TextEdit()
         Me.T_BeritaAcara = New DevExpress.XtraEditors.TextEdit()
@@ -30,10 +31,15 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.T_TanggalBeritaAcara = New DevExpress.XtraEditors.DateEdit()
         Me.B_Save = New System.Windows.Forms.Button()
         Me.B_Cancel = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.T_AttachFile = New DevExpress.XtraEditors.ButtonEdit()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.B_ViewPdf = New System.Windows.Forms.Button()
         CType(Me.T_Circulation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_BeritaAcara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_TanggalBeritaAcara.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_AttachFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -50,14 +56,14 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.T_Circulation.Enabled = False
         Me.T_Circulation.Location = New System.Drawing.Point(107, 20)
         Me.T_Circulation.Name = "T_Circulation"
-        Me.T_Circulation.Size = New System.Drawing.Size(206, 20)
+        Me.T_Circulation.Size = New System.Drawing.Size(277, 20)
         Me.T_Circulation.TabIndex = 1
         '
         'T_BeritaAcara
         '
         Me.T_BeritaAcara.Location = New System.Drawing.Point(107, 46)
         Me.T_BeritaAcara.Name = "T_BeritaAcara"
-        Me.T_BeritaAcara.Size = New System.Drawing.Size(206, 20)
+        Me.T_BeritaAcara.Size = New System.Drawing.Size(277, 20)
         Me.T_BeritaAcara.TabIndex = 3
         '
         'Label2
@@ -93,12 +99,12 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.T_TanggalBeritaAcara.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.T_TanggalBeritaAcara.Properties.Mask.EditMask = ""
         Me.T_TanggalBeritaAcara.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.T_TanggalBeritaAcara.Size = New System.Drawing.Size(206, 20)
+        Me.T_TanggalBeritaAcara.Size = New System.Drawing.Size(277, 20)
         Me.T_TanggalBeritaAcara.TabIndex = 5
         '
         'B_Save
         '
-        Me.B_Save.Location = New System.Drawing.Point(157, 108)
+        Me.B_Save.Location = New System.Drawing.Point(228, 124)
         Me.B_Save.Name = "B_Save"
         Me.B_Save.Size = New System.Drawing.Size(75, 23)
         Me.B_Save.TabIndex = 6
@@ -107,18 +113,55 @@ Partial Class Frm_CR_BeritaAcara_Input
         '
         'B_Cancel
         '
-        Me.B_Cancel.Location = New System.Drawing.Point(238, 108)
+        Me.B_Cancel.Location = New System.Drawing.Point(309, 124)
         Me.B_Cancel.Name = "B_Cancel"
         Me.B_Cancel.Size = New System.Drawing.Size(75, 23)
         Me.B_Cancel.TabIndex = 7
         Me.B_Cancel.Text = "Cancel"
         Me.B_Cancel.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(22, 105)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(57, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Attach File"
+        '
+        'T_AttachFile
+        '
+        Me.T_AttachFile.Location = New System.Drawing.Point(107, 98)
+        Me.T_AttachFile.Name = "T_AttachFile"
+        Me.T_AttachFile.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.T_AttachFile.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.T_AttachFile.Properties.Appearance.Options.UseBackColor = True
+        Me.T_AttachFile.Properties.Appearance.Options.UseForeColor = True
+        Me.T_AttachFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.T_AttachFile.Properties.ReadOnly = True
+        Me.T_AttachFile.Size = New System.Drawing.Size(277, 20)
+        Me.T_AttachFile.TabIndex = 9
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 700
+        '
+        'B_ViewPdf
+        '
+        Me.B_ViewPdf.Location = New System.Drawing.Point(147, 124)
+        Me.B_ViewPdf.Name = "B_ViewPdf"
+        Me.B_ViewPdf.Size = New System.Drawing.Size(75, 23)
+        Me.B_ViewPdf.TabIndex = 10
+        Me.B_ViewPdf.Text = "View"
+        Me.B_ViewPdf.UseVisualStyleBackColor = True
+        '
         'Frm_CR_BeritaAcara_Input
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(355, 147)
+        Me.ClientSize = New System.Drawing.Size(396, 159)
+        Me.Controls.Add(Me.B_ViewPdf)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.B_Cancel)
         Me.Controls.Add(Me.B_Save)
         Me.Controls.Add(Me.Label3)
@@ -127,12 +170,14 @@ Partial Class Frm_CR_BeritaAcara_Input
         Me.Controls.Add(Me.T_Circulation)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.T_TanggalBeritaAcara)
+        Me.Controls.Add(Me.T_AttachFile)
         Me.Name = "Frm_CR_BeritaAcara_Input"
         Me.Text = "Berita Acara Input"
         CType(Me.T_Circulation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_BeritaAcara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_TanggalBeritaAcara.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_TanggalBeritaAcara.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_AttachFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -146,4 +191,8 @@ Partial Class Frm_CR_BeritaAcara_Input
     Friend WithEvents T_TanggalBeritaAcara As DevExpress.XtraEditors.DateEdit
     Friend WithEvents B_Save As Button
     Friend WithEvents B_Cancel As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents T_AttachFile As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents B_ViewPdf As Button
 End Class

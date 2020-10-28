@@ -93,7 +93,7 @@ Public Class NonProduksiModel
     Public Function GetDataDetailNonProduksi(ID As String) As DataTable
         Try
             Dim query As String = "SELECT [Informasi] as INFORMASI
-                                  ,[Gambar] as GAMBAR
+                                  ,[Gambar] as [File]
                                   ,[PIC] as PIC
                               FROM AsakaiOtherDeptDetail inner join AsakaiOtherDept
                                     on AsakaiOtherDeptDetail.IDTransaksi = AsakaiOtherDept.IDTransaksi 

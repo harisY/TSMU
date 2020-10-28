@@ -23,7 +23,7 @@ Partial Class FrmNonProduksiDetail
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.INFORMASI = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PIC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAMBAR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.File = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TxtInformasi = New System.Windows.Forms.TextBox()
         Me.TxtPIC = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -33,6 +33,8 @@ Partial Class FrmNonProduksiDetail
         Me.BTambah = New System.Windows.Forms.Button()
         Me.BGambar = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TNamaFile = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,19 +45,19 @@ Partial Class FrmNonProduksiDetail
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 211)
+        Me.Grid.Location = New System.Drawing.Point(12, 172)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(785, 190)
+        Me.Grid.Size = New System.Drawing.Size(785, 229)
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.INFORMASI, Me.PIC, Me.GAMBAR})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.INFORMASI, Me.PIC, Me.File})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'INFORMASI
         '
@@ -73,12 +75,14 @@ Partial Class FrmNonProduksiDetail
         Me.PIC.VisibleIndex = 1
         Me.PIC.Width = 127
         '
-        'GAMBAR
+        'File
         '
-        Me.GAMBAR.FieldName = "GAMBAR"
-        Me.GAMBAR.Name = "GAMBAR"
-        Me.GAMBAR.Visible = True
-        Me.GAMBAR.VisibleIndex = 2
+        Me.File.FieldName = "File"
+        Me.File.Name = "File"
+        Me.File.OptionsColumn.AllowEdit = False
+        Me.File.Visible = True
+        Me.File.VisibleIndex = 2
+        Me.File.Width = 383
         '
         'TxtInformasi
         '
@@ -133,7 +137,7 @@ Partial Class FrmNonProduksiDetail
         '
         'BTambah
         '
-        Me.BTambah.Location = New System.Drawing.Point(15, 182)
+        Me.BTambah.Location = New System.Drawing.Point(12, 143)
         Me.BTambah.Name = "BTambah"
         Me.BTambah.Size = New System.Drawing.Size(75, 23)
         Me.BTambah.TabIndex = 14
@@ -142,27 +146,49 @@ Partial Class FrmNonProduksiDetail
         '
         'BGambar
         '
-        Me.BGambar.Location = New System.Drawing.Point(370, 29)
+        Me.BGambar.Location = New System.Drawing.Point(379, 28)
         Me.BGambar.Name = "BGambar"
         Me.BGambar.Size = New System.Drawing.Size(95, 26)
         Me.BGambar.TabIndex = 106
-        Me.BGambar.Text = "Cari Gambar"
+        Me.BGambar.Text = "Cari File"
         Me.BGambar.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(342, 60)
+        Me.PictureBox1.Location = New System.Drawing.Point(521, 61)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(154, 105)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 105
         Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
+        'TNamaFile
+        '
+        Me.TNamaFile.BackColor = System.Drawing.Color.White
+        Me.TNamaFile.Location = New System.Drawing.Point(354, 72)
+        Me.TNamaFile.Multiline = True
+        Me.TNamaFile.Name = "TNamaFile"
+        Me.TNamaFile.ReadOnly = True
+        Me.TNamaFile.Size = New System.Drawing.Size(161, 93)
+        Me.TNamaFile.TabIndex = 107
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(480, 35)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(211, 13)
+        Me.Label4.TabIndex = 108
+        Me.Label4.Text = "Note : File Yang di Upload Berupa File PDF"
         '
         'FrmNonProduksiDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(809, 413)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TNamaFile)
         Me.Controls.Add(Me.BGambar)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.BTambah)
@@ -184,6 +210,8 @@ Partial Class FrmNonProduksiDetail
         Me.Controls.SetChildIndex(Me.BTambah, 0)
         Me.Controls.SetChildIndex(Me.PictureBox1, 0)
         Me.Controls.SetChildIndex(Me.BGambar, 0)
+        Me.Controls.SetChildIndex(Me.TNamaFile, 0)
+        Me.Controls.SetChildIndex(Me.Label4, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -205,5 +233,7 @@ Partial Class FrmNonProduksiDetail
     Friend WithEvents PIC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGambar As Button
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents GAMBAR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents File As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TNamaFile As TextBox
+    Friend WithEvents Label4 As Label
 End Class

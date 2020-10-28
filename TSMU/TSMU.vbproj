@@ -65,6 +65,9 @@
   <PropertyGroup>
     <ApplicationIcon>tsmu.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
@@ -94,6 +97,7 @@
     <Reference Include="DevExpress.Map.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v18.2.Drawing, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Persistent.Base.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -120,6 +124,7 @@
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -130,15 +135,18 @@
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.dll</HintPath>
+      <HintPath>bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
+      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
     <Reference Include="LibDataAccess">
       <HintPath>..\..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
     </Reference>
@@ -276,6 +284,12 @@
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
     <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
+    <Compile Include="Compare_Invoice\Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\Form3.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
       <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
     </Compile>
@@ -686,12 +700,6 @@
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelPocketAllowance.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.Designer.vb">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravelPocketAllowanceDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelRequest.Designer.vb">
@@ -1340,6 +1348,12 @@
       <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_ViewPdf.Designer.vb">
+      <DependentUpon>Frm_ViewPdf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_ViewPdf.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Accounting.Designer.vb">
@@ -2090,6 +2104,12 @@
     <Compile Include="Form\Report\frmReport_BoM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmSalesCheck.Designer.vb">
+      <DependentUpon>frmSalesCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmSalesCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmSales.Designer.vb">
       <DependentUpon>frmSales.vb</DependentUpon>
     </Compile>
@@ -2136,6 +2156,18 @@
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\System\frmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemCommonGrid.Designer.vb">
+      <DependentUpon>FrmSystemCommonGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemCommonGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemLogin.Designer.vb">
+      <DependentUpon>FrmSystemLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmSystemLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\System\MenuNew.Designer.vb">
@@ -2788,6 +2820,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
       <DependentUpon>FrmPOADM.vb</DependentUpon>
     </EmbeddedResource>
@@ -2814,6 +2849,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmDetailPaymentDirect1.resx">
       <DependentUpon>FrmDetailPaymentDirect1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmEntertainSettleCC.resx">
+      <DependentUpon>FrmEntertainSettleCC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
@@ -2844,9 +2882,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravelPocketAllowanceDetail.resx">
-      <DependentUpon>FrmTravelPocketAllowanceDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelRequest.resx">
       <DependentUpon>FrmTravelRequest.vb</DependentUpon>
@@ -3132,6 +3167,9 @@
     <EmbeddedResource Include="Form\Circulation\Dies Bom\Frm_CR_BOM.resx">
       <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_ViewPdf.resx">
+      <DependentUpon>Frm_ViewPdf.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Accounting.resx">
       <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
     </EmbeddedResource>
@@ -3319,6 +3357,9 @@
     <EmbeddedResource Include="Form\Report\frmReport_ScandDN.resx">
       <DependentUpon>frmReport_ScandDN.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmSalesCheck.resx">
+      <DependentUpon>frmSalesCheck.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
     </EmbeddedResource>
@@ -3339,6 +3380,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystemCommonGrid.resx">
+      <DependentUpon>FrmSystemCommonGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\FrmSystemLogin.resx">
+      <DependentUpon>FrmSystemLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\MenuNew.resx">
       <DependentUpon>MenuNew.vb</DependentUpon>
@@ -4343,6 +4390,7 @@
     </None>
     <None Include="Icon\Untitled.xcf" />
     <None Include="Models\Asakai\kqvs4ql2.tdh~" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -4554,6 +4602,7 @@
     <Content Include="obj\Debug\TSMU.vbproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
+    <None Include="Resources\7Tells.ico" />
     <Content Include="tsmu.ico" />
     <None Include="Resources\tsmu.ico" />
     <None Include="Resources\download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816_980.png" />

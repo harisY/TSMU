@@ -162,7 +162,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 0, 812, 500)
         Me.LayoutControl2.Root = Me.Root
-        Me.LayoutControl2.Size = New System.Drawing.Size(1293, 84)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1293, 74)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -299,7 +299,8 @@ Partial Class FrmTravelEntertainDetail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.LayoutControlItem6, Me.LayoutControlItem5, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.LayoutControlItem11, Me.EmptySpaceItem2})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1272, 85)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
+        Me.Root.Size = New System.Drawing.Size(1272, 75)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -358,7 +359,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem5.Size = New System.Drawing.Size(170, 26)
-        Me.LayoutControlItem5.Text = "Curry ID"
+        Me.LayoutControlItem5.Text = "Curr"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem7
@@ -442,6 +443,8 @@ Partial Class FrmTravelEntertainDetail
         '
         'GridViewEntertain
         '
+        Me.GridViewEntertain.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewEntertain.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewEntertain.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqDetail, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn6, Me.GridColumn2, Me.GridColumn8})
         Me.GridViewEntertain.DetailHeight = 458
         Me.GridViewEntertain.FixedLineWidth = 3
@@ -605,12 +608,12 @@ Partial Class FrmTravelEntertainDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridEntertain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridEntertain.Location = New System.Drawing.Point(12, 12)
+        Me.GridEntertain.Location = New System.Drawing.Point(12, 2)
         Me.GridEntertain.MainView = Me.GridViewEntertain
         Me.GridEntertain.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEntertain.Name = "GridEntertain"
         Me.GridEntertain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.CHeaderSeqDetail, Me.CJenisDetail})
-        Me.GridEntertain.Size = New System.Drawing.Size(1269, 268)
+        Me.GridEntertain.Size = New System.Drawing.Size(1269, 293)
         Me.GridEntertain.TabIndex = 3
         Me.GridEntertain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewEntertain})
         '
@@ -620,17 +623,19 @@ Partial Class FrmTravelEntertainDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridRelasi.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridRelasi.Location = New System.Drawing.Point(12, 12)
+        Me.GridRelasi.Location = New System.Drawing.Point(12, 2)
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
         Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
-        Me.GridRelasi.Size = New System.Drawing.Size(1269, 269)
+        Me.GridRelasi.Size = New System.Drawing.Size(1269, 289)
         Me.GridRelasi.TabIndex = 4
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
         '
         'GridViewRelasi
         '
+        Me.GridViewRelasi.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRelasi.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GHeaderSeqRelasi, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7, Me.GridColumn9})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3
@@ -745,7 +750,7 @@ Partial Class FrmTravelEntertainDetail
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1299, 687)
@@ -755,10 +760,10 @@ Partial Class FrmTravelEntertainDetail
         '
         Me.LayoutControl3.Controls.Add(Me.GridEntertain)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 93)
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 83)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1293, 292)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1293, 297)
         Me.LayoutControl3.TabIndex = 1
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -768,7 +773,8 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1293, 292)
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1293, 297)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem9
@@ -776,7 +782,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem9.Control = Me.GridEntertain
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(1273, 272)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1273, 297)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
@@ -784,10 +790,10 @@ Partial Class FrmTravelEntertainDetail
         '
         Me.LayoutControl1.Controls.Add(Me.GridRelasi)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(3, 391)
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, 386)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1293, 293)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1293, 298)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -797,7 +803,8 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1293, 293)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 5)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1293, 298)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem10
@@ -805,7 +812,7 @@ Partial Class FrmTravelEntertainDetail
         Me.LayoutControlItem10.Control = Me.GridRelasi
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1273, 273)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1273, 293)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '

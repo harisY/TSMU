@@ -80,10 +80,50 @@ Public Class ClsCCAccrued
                                 tc.CreditCardNumber ,
                                 tcc.AccountName ,
                                 tcc.BankName ,
-                                Pay
+                                Pay ,
+                                tc.DatePaid
                         FROM    dbo.T_CCAccrued AS tc
                                 LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
                         WHERE   Pay = 0
+                        ORDER BY tcc.Type ASC ,
+                                tc.CreditCardNumber ASC ,
+                                tc.TanggalTrans ASC"
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCCSettleFilter(dateFrom As Date, dateTo As Date, status As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            strQuery = "SELECT  ID ,
+                                NoAccrued ,
+                                Tanggal ,
+                                TanggalTrans ,
+                                NoTransaksi ,
+                                Seq ,
+                                JenisTransaksi ,
+                                Description ,
+                                CurryID ,
+                                Amount ,
+                                ISNULL(dbo.ConvertToIDR(TanggalTrans, CurryID), 1) * Amount AS AccrualEstimate ,
+                                Rate ,
+                                AmountIDR ,
+                                tcc.Type ,
+                                tc.CCNumberMaster ,
+                                tc.CreditCardNumber ,
+                                tcc.AccountName ,
+                                tcc.BankName ,
+                                Pay ,
+                                tc.DatePaid
+                        FROM    dbo.T_CCAccrued AS tc
+                                LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
+                        WHERE   Pay IN (" & status & ")
+                                AND ( tc.Tanggal >= " & QVal(dateFrom) & "
+                                        AND tc.Tanggal <= " & QVal(dateTo) & "
+                                    )
                         ORDER BY tcc.Type ASC ,
                                 tc.CreditCardNumber ASC ,
                                 tc.TanggalTrans ASC"
@@ -100,6 +140,27 @@ Public Class ClsCCAccrued
             Dim SP_Name As String = "Accrued_Get_CCSettleSum"
 
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCCSettleSumFilter(dateFrom As Date, dateTo As Date, status As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Get_CCSettleSumFilter"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@DateFrom", SqlDbType.VarChar)
+            pParam(0).Value = dateFrom
+            pParam(1) = New SqlClient.SqlParameter("@DateTo", SqlDbType.VarChar)
+            pParam(1).Value = dateTo
+            pParam(2) = New SqlClient.SqlParameter("@Status", SqlDbType.VarChar)
+            pParam(2).Value = status
 
             dt = GetDataTableByCommand_SP(SP_Name, pParam)
 
