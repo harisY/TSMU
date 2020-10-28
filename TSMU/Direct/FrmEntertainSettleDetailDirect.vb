@@ -587,6 +587,7 @@ Public Class FrmEntertainSettleDetailDirect
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "ActualAmount", 0)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "HeaderSeq", headerSeq)
+        GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Tgl", Date.Today)
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "SubAccount", "11690")
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Account", "62300")
         GridViewDetail.SetRowCellValue(GridViewDetail.FocusedRowHandle, "Description", TxtRemark.Text)

@@ -26,24 +26,65 @@ Public Class SettleHeader
     Public Property CreditCardID As String
     Public Property CreditCardNumber As String
     Public Property AccountName As String
-
+    Public Property Date3 As Date
+    Public Property Date4 As Date
     Dim strQuery As String
 
 
     Public Function GetDataReportPaymentSolomon() As DataSet
         Dim query As String
 
-        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5 as 'No Vocher', A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
+        query = "SELECT        A.VendId, C.Name, A.BatNbr, A.PerPost, B.Status, A.RefNbr, A.User5, A.CuryPmtAmt, B.CuryCrTot, A.DocDate, A.Acct, A.CuryId, A.DocType, A.LUpd_Prog
                  FROM          dbo.APDoc AS A INNER JOIN dbo.Batch AS B ON A.BatNbr = B.BatNbr AND B.Module = 'AP' 
                                               INNER JOIN dbo.Vendor AS C ON A.VendId = C.VendId
-                 WHERE        (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
-                 ORDER BY C.Name"
+                 WHERE        A.CuryId='IDR' and (A.LUpd_Prog IN ('03030', '03400')) AND (A.DocType = 'HC') and a.perpost='" & perpost & "'
+                 ORDER BY C.Name,A.CuryId"
 
         Dim ds As New dsLaporan
         ds = GetDsReport_Solomon(query, "PaymentSolomon")
         Return ds
 
     End Function
+
+
+    'Public Function DataGridViewAPPaymentSign(ByVal date3 As String, ByVal date4 As String) As DataTable
+    '    Try
+    '        Dim query As String = "ReportPaymetSignature"
+    '        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+    '        pParam(0) = New SqlClient.SqlParameter("@date3", SqlDbType.VarChar)
+    '        pParam(0).Value = date3
+    '        pParam(1) = New SqlClient.SqlParameter("@date4", SqlDbType.VarChar)
+    '        pParam(1).Value = date4
+    '        Dim dt As New DataTable
+    '        dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+    '        Return dt
+    '    Catch ex As Exception
+    '        Throw
+    '    End Try
+    'End Function
+
+
+    Public Function DataGridViewAPPaymentSign() As DataSet
+        Try
+            Dim query As String
+
+            query = "Select distinct Payment_Header1.VendorName, Payment_Header1.BankID, Payment_Header1.tgl, Payment_Header1.vrno,  Payment_Header1.CuryID, 
+                     Convert(bigint, ((Payment_Header1.Tot_DPP + Payment_Header1.Tot_PPN) - Payment_Header1.pph - Payment_Header1.CM_DM - Payment_Header1.Biaya_Transfer)) As 'Paid_Amount' ,
+                     Convert(VARCHAR(6), Payment_Header1.tgl, 112) As 'Perpost'
+                     From payment_header1 inner Join payment_detail1 On payment_header1.vrno = Payment_detail1.vrno  
+				     Where payment_header1.tgl >='" & Date3 & "' And Payment_Header1.tgl <='" & Date4 & "' Order By payment_header1.CuryID,payment_header1.VendorName"
+
+            Dim ds As New dsLaporan
+            ds = GetDsReport_Solomon(query, "ReportPaymentSignature")
+            Return ds
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+
     Public Function GetCreditCard() As DataTable
         Try
             strQuery = " SELECT  CreditCardID ,
@@ -631,7 +672,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PaymentTyoe Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
@@ -639,6 +680,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       'Finance', " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -715,6 +757,38 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       'FINANCE', " & vbCrLf &
+            "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Total) & ")"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+    Public Sub InsertHeaderDirectSettleCC()
+        Try
+            Dim ls_SP As String = String.Empty
+            'ls_SP = "INSERT INTO settle_header (SettleID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
+            '"Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Tgl) & ", " & vbCrLf &
+            '"       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            '"       'Close', " & vbCrLf &
+            '"       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+            '"       " & QVal(Total) & ")"
+
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
+            "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(Tgl) & ", " & vbCrLf &
+            "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+            "       'Close', " & vbCrLf &
             "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
@@ -726,8 +800,24 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
         End Try
 
     End Sub
-
     Public Sub UpdateHeader(ByVal _SettleID As String)
+        Try
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "UPDATE settle_header " & vbCrLf &
+                                    "SET    SuspendID = " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
+                                    "       DeptID = " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+                                    "       PRNo = " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
+                                    "       Remark = " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+                                    "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
+                                    "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
+                                    "       Status = 'Close', " & vbCrLf &
+                                    "       PaymentType = 'Finance' WHERE SettleID = '" & _SettleID & "'"
+            ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Public Sub UpdateHeaderCC(ByVal _SettleID As String)
         Try
             Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE settle_header " & vbCrLf &
@@ -748,7 +838,6 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Sub
-
     Public Sub UpdateHeaderEntSettleDetail(ByVal _SettleID As String)
         Try
             Dim ls_SP As String
@@ -831,6 +920,37 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
         End Try
     End Sub
 
+    Public Sub InsertData1CC()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertHeaderDirectSettleCC()
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Sub InsertData()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
@@ -998,25 +1118,26 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
 
                         UpdateHeader(_SettleID)
 
-                        UpdateSettleTravelCost(_SettleID)
+                        'UpdateSettleTravelCost(_SettleID)
 
                         Dim ObjSettleDetail As New SettleDetail
                         ObjSettleDetail.DeleteDetail(_SettleID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
-                                .InsertDetailsEntSettleDirect()
+                                '  .InsertDetailsEntSettleDirect()
+                                .InsertDetails()
                             End With
                         Next
 
-                        Dim clsEntertainRelasi As New SettleRelasi
-                        clsEntertainRelasi.DeleteRelasi(_SettleID)
+                        'Dim clsEntertainRelasi As New SettleRelasi
+                        'clsEntertainRelasi.DeleteRelasi(_SettleID)
 
-                        For i As Integer = 0 To ObjRelasi.Count - 1
-                            With ObjRelasi(i)
-                                .InsertRelasi()
-                            End With
-                        Next
+                        'For i As Integer = 0 To ObjRelasi.Count - 1
+                        '    With ObjRelasi(i)
+                        '        .InsertRelasi()
+                        '    End With
+                        'Next
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -1031,7 +1152,53 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Sub
+    Public Sub UpdateDataCC(_SettleID As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+
+                        UpdateHeaderCC(_SettleID)
+
+                        'UpdateSettleTravelCost(_SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(_SettleID)
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                ' .InsertDetailsEntSettleDirect()
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        'Dim clsEntertainRelasi As New SettleRelasi
+                        'clsEntertainRelasi.DeleteRelasi(_SettleID)
+
+                        'For i As Integer = 0 To ObjRelasi.Count - 1
+                        '    With ObjRelasi(i)
+                        '        .InsertRelasi()
+                        '    End With
+                        'Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function CheckSettleAccrued(ByVal NoTransaksi As String) As Boolean
         Try
             Dim dt As New DataTable
@@ -1327,7 +1494,6 @@ Public Class SettleDetail
 
     Public Function GetDataDetailRelasiByID(_SettleID As String) As DataTable
         Try
-
             Dim sql = "SELECT ISNULL([HeaderSeq], 0) AS [HeaderSeq]
                       ,[SettleRelasiID]
                       ,[SettleID]
@@ -1337,7 +1503,6 @@ Public Class SettleDetail
                       ,[JenisUsaha]
                       ,[Remark]
                   FROM [SettleRelasi] Where [SettleID] = " & QVal(_SettleID) & ""
-
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             Return dt

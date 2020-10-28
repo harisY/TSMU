@@ -62,19 +62,44 @@
 
     End Function
 
-    Public Function Get_Other_Dept(_Dept As String) As DataTable
+    Public Function Get_Other_Dept(_Dept As String, _User As String) As DataTable
         Try
 
 
             Dim query As String = "[CR_Request_Get_DeptComment]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@P1", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@P2", SqlDbType.VarChar)
+            pParam(3) = New SqlClient.SqlParameter("@User", SqlDbType.VarChar)
 
             pParam(0).Value = _Dept
             pParam(1).Value = "Approve 1"
             pParam(2).Value = "Approve 2"
+            pParam(3).Value = _User
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_Other_Dept_Search(_Dept As String, PAwal As Date, PAkhir As Date) As DataTable
+        Try
+
+
+            Dim query As String = "[CR_Request_Get_DeptComment_Search]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@CurrentLevel", SqlDbType.Int)
+            pParam(2) = New SqlClient.SqlParameter("@Date1", SqlDbType.Date)
+            pParam(3) = New SqlClient.SqlParameter("@Date2", SqlDbType.Date)
+
+            pParam(0).Value = _Dept
+            pParam(1).Value = 4
+            pParam(2).Value = PAwal
+            pParam(3).Value = PAkhir
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt

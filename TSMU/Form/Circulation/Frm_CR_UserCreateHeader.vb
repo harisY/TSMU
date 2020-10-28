@@ -386,17 +386,20 @@ Public Class Frm_CR_UserCreateHeader
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
         Else
-            For i As Integer = 0 To GridView1.RowCount - 1
-                Dim _Submit As Boolean = IIf(GridView1.GetRowCellValue(i, "Submit") Is DBNull.Value, False, Convert.ToBoolean(GridView1.GetRowCellValue(i, "Submit")))
-                If _Submit = True Then
-                    fc_ClassCRUD.GetDataByID(GridView1.GetRowCellValue(i, "Circulation No"))
-                    If fc_ClassCRUD.H_Status = "Create" Or fc_ClassCRUD.H_Status = "Revise" Then
-                        Dim result As DialogResult = MessageBox.Show("Are You Want to Submit '" & GridView1.GetRowCellValue(i, "Submit") & "'?",
+            Dim result As DialogResult = MessageBox.Show("Are You Want to Submit ?",
                                                     "CIRCULATION",
                                                     MessageBoxButtons.OKCancel,
                                                     MessageBoxIcon.Question,
                                                     MessageBoxDefaultButton.Button2)
-                        If result = System.Windows.Forms.DialogResult.OK Then
+            If result = System.Windows.Forms.DialogResult.OK Then
+
+
+                For i As Integer = 0 To GridView1.RowCount - 1
+                    Dim _Submit As Boolean = IIf(GridView1.GetRowCellValue(i, "Submit") Is DBNull.Value, False, Convert.ToBoolean(GridView1.GetRowCellValue(i, "Submit")))
+                    If _Submit = True Then
+                        fc_ClassCRUD.GetDataByID(GridView1.GetRowCellValue(i, "Circulation No"))
+                        If fc_ClassCRUD.H_Status = "Create" Or fc_ClassCRUD.H_Status = "Revise" Then
+
                             Try
                                 fc_ClassCRUD = New ClsCR_CreateUser
                                 With fc_ClassCRUD
@@ -413,23 +416,22 @@ Public Class Frm_CR_UserCreateHeader
                                     .TA_ApproveDAte = Date.Now
                                     .TA_IsActive = 1
                                 End With
-                                fc_ClassCRUD.UpdateAprove_Requester(GridView1.GetRowCellValue(i, "Submit"), Active_Form)
-                                bs_Filter = gh_Common.Username()
-                                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                                Call LoadGrid(gh_Common.GroupID)
+                                fc_ClassCRUD.UpdateAprove_Requester(GridView1.GetRowCellValue(i, "Circulation No"), Active_Form)
                             Catch ex As Exception
-                                ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-                                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+                                'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+                                'WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
                             End Try
 
+                        Else
+                            XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
                         End If
-                    Else
-                        XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
+
                     End If
-
-                End If
-            Next
-
+                Next
+                Timer1.Enabled = True
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Call LoadGrid(gh_Common.GroupID)
+            End If
         End If
 
     End Sub
@@ -439,5 +441,10 @@ Public Class Frm_CR_UserCreateHeader
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        SendKeys.Send("{ENTER}")
+        Timer1.Enabled = False
     End Sub
 End Class

@@ -183,11 +183,12 @@ Public Class Frm_Npwo_Detail1
                     End If
                     Me.Text = "NPWO FORM "
                 End If
-
-                Else
+                TNpwo_No.Enabled = False
+            Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
 
                 Me.Text = "NPWO FORM "
+                TNpwo_No.Enabled = True
             End If
 
             Call LoadTxtBox()
@@ -240,7 +241,7 @@ Public Class Frm_Npwo_Detail1
                     TNpwo_No.EditValue = .H_No_Npwo
                     TNoNpp.EditValue = .H_No_NPP
                     TModelDesc.EditValue = .H_Model_Desc
-                    TCustomer.EditValue = .H_Customer_Name
+                    TCustomer.Text = .H_Customer_Name
                     TModel.EditValue = .H_Model_Name
                     TOrderMonth.EditValue = .H_Order_Month
                     TOrderMaxMonth.EditValue = .H_Order_Max_Month
@@ -343,10 +344,10 @@ Public Class Frm_Npwo_Detail1
                 'TTargetDr.EditValue = dtHeader.Rows(0).Item("TargetDRR")
                 'TTargetQuot.EditValue = dtHeader.Rows(0).Item("TargetQuot")
 
-                If isUpdate = False Then
-                    Call fc_Class.GetNpwoNoAuto(Trim(dtHeader.Rows(0).Item("Customer_Name")), Trim(dtHeader.Rows(0).Item("Model_Name")))
-                    TNpwo_No.EditValue = fc_Class.H_No_Npwo
-                End If
+                'If isUpdate = False Then
+                '    Call fc_Class.GetNpwoNoAuto(Trim(dtHeader.Rows(0).Item("Customer_Name")), Trim(dtHeader.Rows(0).Item("Model_Name")))
+                '    TNpwo_No.EditValue = fc_Class.H_No_Npwo
+                'End If
 
                 dataSet.Clear()
                 Grid.DataSource = dataSet
@@ -1092,5 +1093,67 @@ Public Class Frm_Npwo_Detail1
             Throw
         End Try
     End Sub
+
+    Public Overrides Function ValidateSave() As Boolean
+
+        Dim lb_Validated As Boolean = False
+        Try
+            'Dim DR As Date = CDate(TTargetDr.EditValue)
+            'Dim QUOT As Date = CDate(TTargetQuot.EditValue)
+
+            If TNpwo_No.EditValue = "" Then
+                MessageBox.Show("Please Fill NPWO No", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            ElseIf TCustomer.EditValue = "" Then
+                MessageBox.Show("Please Choose Customer Name", "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+
+            ElseIf TModel.EditValue = "" Then
+                MessageBox.Show("Please fill Model Name", "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation,
+                                MessageBoxDefaultButton.Button1)
+            ElseIf TOrderMonth.Text = "" Then
+                MessageBox.Show("Order Month Must Be Number", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            ElseIf TOrderMaxMonth.Text = "" Then
+                MessageBox.Show("Order Max Month Must Be Number", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            ElseIf TCategory.EditValue = "" Then
+                MessageBox.Show("Please fill Category", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1)
+            Else
+
+                lb_Validated = True
+            End If
+
+            If lb_Validated Then
+                With fc_Class
+                    If isUpdate = False Then
+                        .ValidateInsert(TNpwo_No.EditValue)
+                    End If
+                End With
+
+            End If
+        Catch ex As Exception
+            lb_Validated = False
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+        Return lb_Validated
+
+    End Function
+
+
 
 End Class

@@ -20,7 +20,7 @@ Partial Class FrmEntertainSettleDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
+        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TxtNoSettlement = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotExpense = New DevExpress.XtraEditors.TextEdit()
@@ -61,6 +61,7 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CAlamat = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CJenisDetail = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me._subtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReposActual = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
@@ -71,10 +72,13 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CNamaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CPosisiRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CPerusahaan = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CJenisUsahaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CRemarkRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -82,10 +86,6 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.CJenisDetail = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.CPosisiRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.CJenisUsahaRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.CRemarkRelasi = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TxtNoSettlement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,12 +119,16 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.CNamaDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CTempat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAlamat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CNamaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CPerusahaan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
@@ -134,10 +138,6 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3.SuspendLayout()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -157,13 +157,13 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1109, 117)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1109, 102)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(101, 38)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(101, 33)
         Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
@@ -174,7 +174,7 @@ Partial Class FrmEntertainSettleDetail
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(772, 64)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(772, 59)
         Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
@@ -188,7 +188,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(772, 38)
+        Me.TxtStatus.Location = New System.Drawing.Point(772, 33)
         Me.TxtStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.ReadOnly = True
@@ -199,7 +199,7 @@ Partial Class FrmEntertainSettleDetail
         'TxtTotal
         '
         Me.TxtTotal.EditValue = "0"
-        Me.TxtTotal.Location = New System.Drawing.Point(462, 64)
+        Me.TxtTotal.Location = New System.Drawing.Point(462, 59)
         Me.TxtTotal.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
@@ -213,7 +213,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(772, 12)
+        Me.TxtRemark.Location = New System.Drawing.Point(772, 7)
         Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRemark.Name = "TxtRemark"
         Me.TxtRemark.Properties.ReadOnly = True
@@ -223,7 +223,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(101, 64)
+        Me.TxtDep.Location = New System.Drawing.Point(101, 59)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.ReadOnly = True
@@ -233,7 +233,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(462, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(462, 7)
         Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.ReadOnly = True
@@ -243,7 +243,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtTgl
         '
-        Me.TxtTgl.Location = New System.Drawing.Point(617, 38)
+        Me.TxtTgl.Location = New System.Drawing.Point(617, 33)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
@@ -257,7 +257,7 @@ Partial Class FrmEntertainSettleDetail
         '
         'TxtNoSuspend
         '
-        Me.TxtNoSuspend.Location = New System.Drawing.Point(101, 12)
+        Me.TxtNoSuspend.Location = New System.Drawing.Point(101, 7)
         Me.TxtNoSuspend.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNoSuspend.Name = "TxtNoSuspend"
         Me.TxtNoSuspend.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -265,15 +265,15 @@ Partial Class FrmEntertainSettleDetail
         Me.TxtNoSuspend.Size = New System.Drawing.Size(268, 22)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 0
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Suspend cannot be empty !"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoSuspend, ConditionValidationRule1)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "Suspend cannot be empty !"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
+        Me.DxValidationProvider1.SetValidationRule(Me.TxtNoSuspend, ConditionValidationRule2)
         '
         'txtNoPR
         '
         Me.txtNoPR.EditValue = ""
-        Me.txtNoPR.Location = New System.Drawing.Point(462, 38)
+        Me.txtNoPR.Location = New System.Drawing.Point(462, 33)
         Me.txtNoPR.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNoPR.Name = "txtNoPR"
         Me.txtNoPR.Properties.ReadOnly = True
@@ -287,7 +287,8 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.Label10, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.Label9, Me.LayoutControlItem4, Me.LayoutControlItem2})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1109, 117)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 5, 0)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1109, 102)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -399,6 +400,8 @@ Partial Class FrmEntertainSettleDetail
         '
         'GridViewDetail
         '
+        Me.GridViewDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.DetailHeaderSeq, Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me._subtotal, Me.GridColumn2})
         Me.GridViewDetail.DetailHeight = 458
         Me.GridViewDetail.FixedLineWidth = 3
@@ -545,6 +548,12 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 63
         '
+        'CJenisDetail
+        '
+        Me.CJenisDetail.AutoHeight = False
+        Me.CJenisDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisDetail.Name = "CJenisDetail"
+        '
         '_subtotal
         '
         Me._subtotal.Caption = "Amount"
@@ -592,12 +601,12 @@ Partial Class FrmEntertainSettleDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDetail.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridDetail.Location = New System.Drawing.Point(12, 12)
+        Me.GridDetail.Location = New System.Drawing.Point(12, 2)
         Me.GridDetail.MainView = Me.GridViewDetail
         Me.GridDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridDetail.Name = "GridDetail"
         Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CDescription, Me.CNamaDetail, Me.CTempat, Me.CAlamat, Me.CJenisDetail})
-        Me.GridDetail.Size = New System.Drawing.Size(1087, 274)
+        Me.GridDetail.Size = New System.Drawing.Size(1087, 301)
         Me.GridDetail.TabIndex = 3
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewDetail})
         '
@@ -607,17 +616,19 @@ Partial Class FrmEntertainSettleDetail
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridRelasi.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridRelasi.Location = New System.Drawing.Point(12, 12)
+        Me.GridRelasi.Location = New System.Drawing.Point(12, 2)
         Me.GridRelasi.MainView = Me.GridViewRelasi
         Me.GridRelasi.Margin = New System.Windows.Forms.Padding(4)
         Me.GridRelasi.Name = "GridRelasi"
         Me.GridRelasi.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CNamaRelasi, Me.CPerusahaan, Me.CPosisiRelasi, Me.CJenisUsahaRelasi, Me.CRemarkRelasi})
-        Me.GridRelasi.Size = New System.Drawing.Size(1087, 274)
+        Me.GridRelasi.Size = New System.Drawing.Size(1087, 302)
         Me.GridRelasi.TabIndex = 5
         Me.GridRelasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewRelasi})
         '
         'GridViewRelasi
         '
+        Me.GridViewRelasi.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewRelasi.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewRelasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.RelasiHeaderSeq, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn7})
         Me.GridViewRelasi.DetailHeight = 458
         Me.GridViewRelasi.FixedLineWidth = 3
@@ -670,6 +681,12 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 200
         '
+        'CPosisiRelasi
+        '
+        Me.CPosisiRelasi.AutoHeight = False
+        Me.CPosisiRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CPosisiRelasi.Name = "CPosisiRelasi"
+        '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "Perusahaan"
@@ -697,6 +714,12 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn14.VisibleIndex = 4
         Me.GridColumn14.Width = 200
         '
+        'CJenisUsahaRelasi
+        '
+        Me.CJenisUsahaRelasi.AutoHeight = False
+        Me.CJenisUsahaRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CJenisUsahaRelasi.Name = "CJenisUsahaRelasi"
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Remark"
@@ -707,6 +730,12 @@ Partial Class FrmEntertainSettleDetail
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 5
         Me.GridColumn7.Width = 217
+        '
+        'CRemarkRelasi
+        '
+        Me.CRemarkRelasi.AutoHeight = False
+        Me.CRemarkRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CRemarkRelasi.Name = "CRemarkRelasi"
         '
         'TableLayoutPanel1
         '
@@ -719,7 +748,7 @@ Partial Class FrmEntertainSettleDetail
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1117, 733)
@@ -729,10 +758,10 @@ Partial Class FrmEntertainSettleDetail
         '
         Me.LayoutControl2.Controls.Add(Me.GridRelasi)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 432)
+        Me.LayoutControl2.Location = New System.Drawing.Point(3, 424)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.Root
-        Me.LayoutControl2.Size = New System.Drawing.Size(1111, 298)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1111, 306)
         Me.LayoutControl2.TabIndex = 4
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -742,7 +771,8 @@ Partial Class FrmEntertainSettleDetail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1111, 298)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.Root.Size = New System.Drawing.Size(1111, 306)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem9
@@ -750,7 +780,7 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlItem9.Control = Me.GridRelasi
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(1091, 278)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1091, 306)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
@@ -758,10 +788,10 @@ Partial Class FrmEntertainSettleDetail
         '
         Me.LayoutControl3.Controls.Add(Me.GridDetail)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 128)
+        Me.LayoutControl3.Location = New System.Drawing.Point(3, 113)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1111, 298)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1111, 305)
         Me.LayoutControl3.TabIndex = 5
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -771,7 +801,8 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1111, 298)
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 0)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1111, 305)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem10
@@ -779,33 +810,9 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControlItem10.Control = Me.GridDetail
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1091, 278)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1091, 305)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
-        '
-        'CJenisDetail
-        '
-        Me.CJenisDetail.AutoHeight = False
-        Me.CJenisDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CJenisDetail.Name = "CJenisDetail"
-        '
-        'CPosisiRelasi
-        '
-        Me.CPosisiRelasi.AutoHeight = False
-        Me.CPosisiRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPosisiRelasi.Name = "CPosisiRelasi"
-        '
-        'CJenisUsahaRelasi
-        '
-        Me.CJenisUsahaRelasi.AutoHeight = False
-        Me.CJenisUsahaRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CJenisUsahaRelasi.Name = "CJenisUsahaRelasi"
-        '
-        'CRemarkRelasi
-        '
-        Me.CRemarkRelasi.AutoHeight = False
-        Me.CRemarkRelasi.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CRemarkRelasi.Name = "CRemarkRelasi"
         '
         'FrmEntertainSettleDetail
         '
@@ -849,12 +856,16 @@ Partial Class FrmEntertainSettleDetail
         CType(Me.CNamaDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CTempat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CAlamat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CNamaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CPerusahaan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
@@ -864,10 +875,6 @@ Partial Class FrmEntertainSettleDetail
         Me.LayoutControl3.ResumeLayout(False)
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CJenisDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CPosisiRelasi, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CJenisUsahaRelasi, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CRemarkRelasi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

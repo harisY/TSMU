@@ -391,14 +391,23 @@ Public Class FrmTravelRequestDetail
     End Sub
 
     Private Sub txtNIK_EditValueChanged(sender As Object, e As EventArgs) Handles txtNIK.EditValueChanged
-        If Len(txtNIK.Text) = 9 AndAlso departureDate_ <> Nothing Then
-            CheckFirstTravel()
-            HitungTotalAmount()
-            Dim rowIndex As Integer
-            For rowIndex = 0 To GridViewDetail.RowCount - 1
-                CheckVisa(rowIndex)
-                CheckPaspor(rowIndex)
-            Next
+        If Len(txtNIK.Text) = 9 Then
+            Dim dtTraveler As New DataTable
+            dtTraveler = ObjTravelRequest.GetDataTraveler(txtNIK.Text)
+            If dtTraveler.Rows.Count > 0 Then
+                txtNama.Text = dtTraveler.Rows(0).Item("Nama")
+                txtGolongan.EditValue = dtTraveler.Rows(0).Item("Golongan")
+            End If
+
+            If departureDate_ <> Nothing Then
+                CheckFirstTravel()
+                HitungTotalAmount()
+                Dim rowIndex As Integer
+                For rowIndex = 0 To GridViewDetail.RowCount - 1
+                    CheckVisa(rowIndex)
+                    CheckPaspor(rowIndex)
+                Next
+            End If
         End If
     End Sub
 

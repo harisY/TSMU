@@ -19,7 +19,7 @@ Partial Class Frm_Npwo_Detail1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
@@ -59,6 +59,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TNpwo_No = New DevExpress.XtraEditors.TextEdit()
+        Me.TCustomer = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TRevInfo = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -81,7 +82,6 @@ Partial Class Frm_Npwo_Detail1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TMp = New DevExpress.XtraEditors.DateEdit()
         Me.B_Reject = New System.Windows.Forms.Button()
-        Me.TCustomer = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +94,7 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TOrderMonth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TModel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TNpwo_No.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +107,6 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
@@ -127,14 +127,14 @@ Partial Class Frm_Npwo_Detail1
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        GridLevelNode1.LevelTemplate = Me.GridView2
-        GridLevelNode1.RelationName = "Level1"
-        Me.Grid.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GridView2
+        GridLevelNode2.RelationName = "Level1"
+        Me.Grid.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.Grid.Location = New System.Drawing.Point(12, 167)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.TPartNo})
-        Me.Grid.Size = New System.Drawing.Size(1339, 377)
+        Me.Grid.Size = New System.Drawing.Size(1260, 377)
         Me.Grid.TabIndex = 8
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
         '
@@ -506,11 +506,19 @@ Partial Class Frm_Npwo_Detail1
         '
         'TNpwo_No
         '
-        Me.TNpwo_No.Enabled = False
         Me.TNpwo_No.Location = New System.Drawing.Point(68, 25)
         Me.TNpwo_No.Name = "TNpwo_No"
         Me.TNpwo_No.Size = New System.Drawing.Size(287, 20)
         Me.TNpwo_No.TabIndex = 21
+        '
+        'TCustomer
+        '
+        Me.TCustomer.Location = New System.Drawing.Point(68, 71)
+        Me.TCustomer.Name = "TCustomer"
+        Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TCustomer.Properties.NullText = ""
+        Me.TCustomer.Size = New System.Drawing.Size(93, 20)
+        Me.TCustomer.TabIndex = 23
         '
         'GroupBox2
         '
@@ -766,20 +774,11 @@ Partial Class Frm_Npwo_Detail1
         Me.B_Reject.UseVisualStyleBackColor = False
         Me.B_Reject.Visible = False
         '
-        'TCustomer
-        '
-        Me.TCustomer.Location = New System.Drawing.Point(68, 71)
-        Me.TCustomer.Name = "TCustomer"
-        Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TCustomer.Properties.NullText = ""
-        Me.TCustomer.Size = New System.Drawing.Size(93, 20)
-        Me.TCustomer.TabIndex = 23
-        '
         'Frm_Npwo_Detail1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(1363, 546)
+        Me.ClientSize = New System.Drawing.Size(1284, 546)
         Me.Controls.Add(Me.B_Reject)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
@@ -804,6 +803,7 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TOrderMonth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TModel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TNpwo_No.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -818,7 +818,6 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TT1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TMp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

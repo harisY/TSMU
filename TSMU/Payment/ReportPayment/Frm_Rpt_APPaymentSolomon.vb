@@ -155,6 +155,22 @@ Public Class Frm_Rpt_APPaymentSolomon
                End Sub)
     End Sub
 
+    Private Sub GetDataGridAPSign()
+        ''Dim perpost2 As String = ""
+        Dim date3 As DateTime
+        Dim date4 As DateTime
+        Invoke(Sub()
+                   date3 = DateEdit3.Text
+                   date4 = DateEdit4.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridViewAPPaymentSign(date3, date4)
+        setDataSource(dt, GridControl1)
+        Invoke(Sub()
+                   ProgBar2.Visible = False
+               End Sub)
+    End Sub
+
     'Private Sub GetDataGridSup()
     '    Dim datesup1 As String = ""
     '    Dim datesup2 As String = ""
@@ -320,13 +336,23 @@ Public Class Frm_Rpt_APPaymentSolomon
     End Sub
 
     Private Sub tsBtn_preview_Click(sender As Object, e As EventArgs) Handles tsBtn_preview.Click
+        'Try
+        '    Dim newform As New Frm_Rpt_APPaySolomon(txt_perpost.Text)
+        '    newform.StartPosition = FormStartPosition.CenterScreen
+        '    newform.Show()
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
+
         Try
-            Dim newform As New Frm_Rpt_APPaySolomon(txt_perpost.Text)
+            Dim newform As New Frm_Rpt_APSignature(DateEdit3.Text, DateEdit4.Text)
             newform.StartPosition = FormStartPosition.CenterScreen
             newform.Show()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+
     End Sub
 
     Private Sub proc_PrintPreview()
@@ -336,6 +362,21 @@ Public Class Frm_Rpt_APPaymentSolomon
             newform.Show()
         Catch ex As Exception
             MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Try
+            If ProgBar2.Visible = True Then
+                Throw New Exception("Process already running, Please wait !")
+            End If
+            ProgBar2.Visible = True
+            ProgBar2.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridAPSign())
+        Catch ex As Exception
+            ProgBar2.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 End Class

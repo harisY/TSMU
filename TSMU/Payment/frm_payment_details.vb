@@ -537,4 +537,8 @@ Public Class frm_payment_details
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    Private Sub _TxtTgl_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtTgl.EditValueChanged
+
+    End Sub
 End Class

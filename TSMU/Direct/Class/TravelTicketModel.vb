@@ -48,13 +48,14 @@ Public Class TravelTicketModel
 
     Public Function GetTravelRequest() As DataTable
         Try
-            strQuery = " SELECT  trh.NoRequest ,
+            strQuery = "SELECT  trh.NoRequest ,
                                 trh.Nama ,
                                 trh.DeptID ,
                                 trh.Purpose ,
                                 trh.TravelType ,
                                 trd.Destination ,
                                 trd.Negara ,
+                                trd.NoPaspor ,
                                 trd.Visa ,
                                 trd.DepartureDate ,
                                 trd.ArrivalDate ,
@@ -66,7 +67,7 @@ Public Class TravelTicketModel
                                                                             AND ttd.Seq = trd.Seq
                         WHERE   ttd.NoRequest IS NULL
                                 AND trh.Status = 'PROGRESS'
-                                AND trh.Approved = 'APPROVED' "
+                                AND trh.Approved = 'APPROVED'"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
