@@ -12,6 +12,10 @@ Imports System.Globalization
 Imports System.IO
 Imports System.Net.Mail
 Imports System.Text
+Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraSplashScreen
 
 Public Class Frm_CR_UserCreateDetail
 
@@ -66,6 +70,11 @@ Public Class Frm_CR_UserCreateDetail
     Dim pDate2 As Date
     Dim pDate1 As Date
     Dim _level As Integer = 0
+
+    Dim PrintTool As ReportPrintTool
+    Dim PrintToolDOC As ReportPrintTool
+
+    Private subreport As New XRSubreport() With {.BoundsF = New RectangleF(0, 100, 550, 25)}
 
 
     Dim id As System.Globalization.CultureInfo '= New System.Globalization.CultureInfo("id-ID")
@@ -3634,16 +3643,98 @@ Public Class Frm_CR_UserCreateDetail
 
     Public Overrides Sub Proc_Print()
 
-        CForm = 3
-        CallForm(fs_Code)
+        'CForm = 3
+        'CallForm(fs_Code)
 
-        FrmReport = New FrmReportCirculation
-        FrmReport.Circulation = T_CRNo.Text
+        'FrmReport = New FrmReportCirculation
+        'FrmReport.Circulation = T_CRNo.Text
 
-        FrmReport.StartPosition = FormStartPosition.CenterScreen
-        FrmReport.WindowState = FormWindowState.Maximized
-        FrmReport.MaximizeBox = False
-        FrmReport.ShowDialog()
+        'FrmReport.StartPosition = FormStartPosition.CenterScreen
+        'FrmReport.WindowState = FormWindowState.Maximized
+        'FrmReport.MaximizeBox = False
+        'FrmReport.ShowDialog()
+
+
+
+        Dim _Status As String
+        Dim dtRpt As DataTable
+        dtRpt = New DataTable
+        dtRpt = fc_Class.Cek_CR_Report(T_CRNo.EditValue)
+
+        If dtRpt.Rows.Count > 0 Then
+            _Status = dtRpt.Rows(0).Item("status")
+            If _Status = "Other Dept" Or _Status = "Approve BOD" Or _Status = "Set Installment" Or _Status = "Close" Then
+                Dim ds As New DataSet
+                Dim dsOtherDept As New DataSet
+                Dim dsApprove As New DataSet
+                Dim dsTotal As New DataSet
+
+                ds = fc_Class.RptCirculation(T_CRNo.EditValue)
+                'dsTotal = Report.RptCirculationTotalDOC(Circulation)
+
+                'Laporan.SetDataSource(ds)
+
+                dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+                dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
+                dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
+                'dsTotal = Report.RptCirculationTotalDOC(Circulation)
+
+                'Laporan.Subreports("RptCirculation_OtherDept.rpt").SetDataSource(dsOtherDept)
+                'Laporan.Subreports("RptCirculationApprove.rpt").SetDataSource(dsApprove)
+                'Laporan.Subreports("RptCirculationTotal.rpt").SetDataSource(dsTotal)
+
+                Dim Laporan As New DevCirculationReport()
+                Dim LaporanDOC As New DevCirculationReportDOC()
+                Dim LaporanOther As New DevCirculationReportOther()
+                Dim LaporanBOD As New DevCirculationReportBOD()
+                Dim LaporanTotal As New DevCirculationReportTotal()
+
+                Laporan.DataSource = ds.Tables("CirculationHead")
+                LaporanDOC.DataSource = ds.Tables("CirculationHead")
+                LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+                LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
+                LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+                Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+                subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
+
+                Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+                subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+
+                Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+                subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+
+                Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
+                subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+                '(CType(subReport.ReportSource, SubReport)).DataMember = "Fräser"
+
+                'Laporan.Bands("DevCirculationReportDOC").Controls.Add(subreport)
+                'With Laporan
+                '    '.param1 = _param
+                '    .DataSource = ds.Tables("CirculationHead")
+                '    'AddHandler .PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+                'End With
+
+                PrintTool = New ReportPrintTool(Laporan)
+                TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                PrintTool.ShowPreview(UserLookAndFeel.Default)
+
+
+
+            Else
+                MessageBox.Show("Circulation can not be printed",
+                                   "Warning",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Exclamation,
+                                   MessageBoxDefaultButton.Button1)
+                Me.Close()
+            End If
+        End If
+
+
 
     End Sub
 

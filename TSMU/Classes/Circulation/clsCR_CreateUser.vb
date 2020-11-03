@@ -106,7 +106,8 @@ Public Class ClsCR_CreateUser
                                     ,[Date] 
                                     ,[Opinion]
                                     ,[DeptHead_ID] as  [User_id]
-                                  from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'"
+                                  from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'
+                                    order by ID asc"
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             For a As Integer = 0 To dt.Rows.Count - 1
@@ -529,12 +530,13 @@ Public Class ClsCR_CreateUser
     Public Sub GetCirculationNoAuto(DeptSub_ As String)
         Try
             Dim Tahun, Bulan As String
-            Tahun = Format(Now, "yy")
+            Tahun = Format(Now, "yyyy")
             Bulan = Format(Now, "MM")
 
             Dim Dept As String = gh_Common.GroupID
 
-            Dim ls_SP As String = "SELECT [CirculationNo] FROM [CR_Request] order by CirculationNo desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+            Dim ls_SP As String = "SELECT top 1[CirculationNo] FROM CR_Request
+                                   order by Right([CirculationNo], 4) desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
@@ -542,7 +544,7 @@ Public Class ClsCR_CreateUser
                 H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "0001"
             Else
                 H_CirculationNo = dtTable.Rows(0).Item("CirculationNo")
-                H_CirculationNo = Microsoft.VisualBasic.Mid(H_CirculationNo, 7, 2)
+                H_CirculationNo = Microsoft.VisualBasic.Mid(H_CirculationNo, 7, 4)
                 If H_CirculationNo <> Ulang Then
                     H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "0001"
                 Else
@@ -1808,7 +1810,9 @@ Public Class ClsCR_CreateUser
     Public Function RptCirculation_OtherDept(No As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "SELECT [CirculationNo]
+        query = "SELECT ROW_NUMBER() OVER (
+				 ORDER BY A.ID)[No]
+                ,[CirculationNo]
 	            ,A.[DeptID]
 	            ,A.[Date]
 	            ,A.[Opinion]
@@ -1816,7 +1820,8 @@ Public Class ClsCR_CreateUser
 	            ,B.[Name]
             FROM [CR_Other_Dept] A inner join S_User B
 	            on A.DeptHead_ID = B.Username 
-	            Where[CirculationNo] = '" & No & "'"
+	            Where[CirculationNo] = '" & No & "'
+                Order By ID asc"
 
         Dim ds1 As New dsLaporan
         ds1 = GetDsReport(query, "CirculationOtherDept")
@@ -1830,12 +1835,15 @@ Public Class ClsCR_CreateUser
     Public Function RptCirculation_Approve(No As String) As DataSet
         Dim query As String
         'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "Select [CirculationNo]
+        query = "SELECT ROW_NUMBER() OVER (
+				 ORDER BY ID)[NoUrut]
+                      , [CirculationNo]
                       ,[No]
                       ,[ApproveBy]
                       ,[ApproveName]
                   FROM [CR_Approve]
-	            Where[CirculationNo] = '" & No & "'"
+	            Where[CirculationNo] = '" & No & "'
+                Order By ID asc"
 
         Dim ds1 As New dsLaporan
         ds1 = GetDsReport(query, "CirculationApprove")
