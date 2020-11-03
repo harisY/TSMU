@@ -12,6 +12,8 @@ Public Class FrmSystemExcel1
     Dim b As Integer = 0
     Dim _isSync As Boolean
 
+    Public Property DtAdm As DataTable
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -190,29 +192,35 @@ Public Class FrmSystemExcel1
                     _txtExcel.Focus()
                     Throw New Exception("Pilih Excel yang  akan di upload !")
                 End If
+                'If _cmbCust.Text.TrimEnd.ToLower = "adm" Then
+                '    Dim Dt As New DataTable
+                '    Dt = ExcelToDatatable(_txtExcel.Text, "Sheet1")
+                '    DtAdm = Dt
+                'Else
                 Dim connString As String = String.Empty
-                Dim extension As String = System.IO.Path.GetExtension(path)
-                Select Case extension
-                    Case ".xls"
-                        'Excel 97-03
+                    Dim extension As String = System.IO.Path.GetExtension(path)
+                    Select Case extension
+                        Case ".xls"
+                            'Excel 97-03
 
-                        connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
-                        Exit Select
-                    Case ".xlsx"
-                        'Excel 07 or higher
-                        connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
-                        Exit Select
+                            connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
+                            Exit Select
+                        Case ".xlsx"
+                            'Excel 07 or higher
+                            connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
+                            Exit Select
 
-                End Select
-                connString = String.Format(connString, path)
-                Using excel_con As New OleDbConnection(connString)
-                    excel_con.Open()
-                    Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                    Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
-                        oda.Fill(GridData)
+                    End Select
+                    connString = String.Format(connString, path)
+                    Using excel_con As New OleDbConnection(connString)
+                        excel_con.Open()
+                        Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
+                        Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
+                            oda.Fill(GridData)
+                        End Using
+                        excel_con.Close()
                     End Using
-                    excel_con.Close()
-                End Using
+                'End If
             Else
                 If lblStatus.Text <> "" Then
                     Throw New Exception("Proses masih berjalan !")

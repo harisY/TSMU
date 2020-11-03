@@ -141,7 +141,7 @@ Public Class frmM_ApprovalDetail
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
-    Private Sub TxtUsername_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles TxtUsername.ButtonClick, TxtForm.ButtonClick
+    Private Sub TxtUsername_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles TxtUsername.ButtonClick, TxtForm.ButtonClick, TxtDept1.ButtonClick
         Try
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
@@ -156,6 +156,10 @@ Public Class frmM_ApprovalDetail
                 dtSearch = _service.GetFormName()
                 ls_OldKode = TxtUsername.EditValue
                 ls_Judul = "Form"
+            ElseIf sender.Name = TxtDept1.Name Then
+                dtSearch = _service.GetComboGroup()
+                ls_OldKode = TxtDept1.EditValue
+                ls_Judul = "Department"
             End If
 
 
@@ -178,6 +182,9 @@ Public Class frmM_ApprovalDetail
                 End If
                 If sender.Name = TxtForm.Name AndAlso Value1 <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     TxtForm.EditValue = Value2
+                End If
+                If sender.Name = TxtDept1.Name AndAlso Value1 <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    TxtDept1.EditValue = Value1
                 End If
             End If
 

@@ -16,14 +16,12 @@ Public Class frmKanbanInternalTng
     Dim dtTemp1 As DataTable
     Private Sub frmKanbanInternalTng_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
     End Sub
 
     Private Sub LoadGrid()
         Try
+            SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = New DataTable
             dtGrid = Obj.GetKanbans()
             Grid.DataSource = dtGrid
@@ -33,13 +31,15 @@ Public Class frmKanbanInternalTng
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
             End If
+            SplashScreenManager.CloseForm()
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
     Public Overrides Sub Proc_Refresh()
-        Call LoadGrid()
+        LoadGrid()
     End Sub
     Public Overrides Sub Proc_Excel()
         Dim _Table As New DataTable
@@ -112,7 +112,7 @@ Public Class frmKanbanInternalTng
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(7) = Trim(GridView1.GetRowCellValue(i, "Type") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(8) = Trim(GridView1.GetRowCellValue(i, "NoPO") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(9) = Trim(GridView1.GetRowCellValue(i, "OrderDate") & "")
-                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(GridView1.GetRowCellValue(i, "DelDate") & "")
+                dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(GridView1.GetRowCellValue(i, "DeliveryDate") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(11) = Trim(GridView1.GetRowCellValue(i, "QtyOrder") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(12) = Trim(GridView1.GetRowCellValue(i, "RH/LH") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(13) = Trim(GridView1.GetRowCellValue(i, "PalletizeMark") & "")
@@ -214,7 +214,7 @@ Public Class frmKanbanInternalTng
                 tsBtn_refresh.PerformClick()
             Next
         Catch ex As Exception
-            Throw ex
+            XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
 
@@ -265,5 +265,9 @@ Public Class frmKanbanInternalTng
         dtTemp1.Columns.Add("Warna", GetType(String))
         dtTemp1.Columns.Add("QRCode", GetType(String))
         dtTemp1.Clear()
+    End Sub
+
+    Private Sub frmKanbanInternalTng_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        LoadGrid()
     End Sub
 End Class
