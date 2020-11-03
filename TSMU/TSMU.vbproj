@@ -130,13 +130,13 @@
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.dll</HintPath>
+      <HintPath>bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>..\..\..\..\MsgPopupENx\down\ExcelLibrary.dll</HintPath>
+      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
@@ -512,6 +512,12 @@
     <Compile Include="Direct\FrmMktUploadPrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmMktUploadPriceDetail.Designer.vb">
+      <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPriceDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -672,12 +678,6 @@
       <DependentUpon>FrmTravelerDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelerDetail.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Direct\FrmTravelOption.Designer.vb">
-      <DependentUpon>FrmTravelOption.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravelOption.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelPocketAllowance.Designer.vb">
@@ -2819,6 +2819,9 @@
     <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
       <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktUploadPriceDetail.resx">
+      <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
       <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
     </EmbeddedResource>
@@ -2833,9 +2836,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelEntertainDetail.resx">
       <DependentUpon>FrmTravelEntertainDetail.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravelOption.resx">
-      <DependentUpon>FrmTravelOption.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
