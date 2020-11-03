@@ -180,7 +180,7 @@ Public Class Cls_report
 
     Public Function DataGridViewAPPaymentSign(ByVal date3 As String, ByVal date4 As String) As DataTable
         Try
-            Dim query As String = "ReportPaymetSignature"
+            Dim query As String = "ReportPaymentSignature"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@date3", SqlDbType.VarChar)
             pParam(0).Value = date3
