@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="APSignature" targetNamespace="http://tempuri.org/APSignature.xsd" xmlns:mstns="http://tempuri.org/APSignature.xsd" xmlns="http://tempuri.org/APSignature.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="APSignature" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="APSignature" msprop:Generator_UserDSName="APSignature">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ReportPaymentSignature" msprop:Generator_TableClassName="ReportPaymentSignatureDataTable" msprop:Generator_TableVarName="tableReportPaymentSignature" msprop:Generator_TablePropName="ReportPaymentSignature" msprop:Generator_RowDeletingName="ReportPaymentSignatureRowDeleting" msprop:Generator_RowChangingName="ReportPaymentSignatureRowChanging" msprop:Generator_RowEvHandlerName="ReportPaymentSignatureRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportPaymentSignatureRowDeleted" msprop:Generator_UserTableName="ReportPaymentSignature" msprop:Generator_RowChangedName="ReportPaymentSignatureRowChanged" msprop:Generator_RowEvArgName="ReportPaymentSignatureRowChangeEvent" msprop:Generator_RowClassName="ReportPaymentSignatureRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VendorName" msprop:Generator_ColumnVarNameInTable="columnVendorName" msprop:Generator_ColumnPropNameInRow="VendorName" msprop:Generator_ColumnPropNameInTable="VendorNameColumn" msprop:Generator_UserColumnName="VendorName" type="xs:string" minOccurs="0" />
+              <xs:element name="BankID" msprop:Generator_ColumnVarNameInTable="columnBankID" msprop:Generator_ColumnPropNameInRow="BankID" msprop:Generator_ColumnPropNameInTable="BankIDColumn" msprop:Generator_UserColumnName="BankID" type="xs:string" minOccurs="0" />
+              <xs:element name="tgl" msprop:Generator_ColumnVarNameInTable="columntgl" msprop:Generator_ColumnPropNameInRow="tgl" msprop:Generator_ColumnPropNameInTable="tglColumn" msprop:Generator_UserColumnName="tgl" type="xs:string" minOccurs="0" />
+              <xs:element name="vrno" msprop:Generator_ColumnVarNameInTable="columnvrno" msprop:Generator_ColumnPropNameInRow="vrno" msprop:Generator_ColumnPropNameInTable="vrnoColumn" msprop:Generator_UserColumnName="vrno" type="xs:string" minOccurs="0" />
+              <xs:element name="CuryID" msprop:Generator_ColumnVarNameInTable="columnCuryID" msprop:Generator_ColumnPropNameInRow="CuryID" msprop:Generator_ColumnPropNameInTable="CuryIDColumn" msprop:Generator_UserColumnName="CuryID" type="xs:string" minOccurs="0" />
+              <xs:element name="Paid_Amount" msprop:Generator_ColumnVarNameInTable="columnPaid_Amount" msprop:Generator_ColumnPropNameInRow="Paid_Amount" msprop:Generator_ColumnPropNameInTable="Paid_AmountColumn" msprop:Generator_UserColumnName="Paid_Amount" type="xs:double" minOccurs="0" />
+              <xs:element name="Perpost" msprop:Generator_ColumnVarNameInTable="columnPerpost" msprop:Generator_ColumnPropNameInRow="Perpost" msprop:Generator_ColumnPropNameInTable="PerpostColumn" msprop:Generator_UserColumnName="Perpost" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

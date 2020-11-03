@@ -16,7 +16,7 @@ Public Class Frm_CR_OtherDeptHead
         bb_SetDisplayChangeConfirmation = False
         Dept = gh_Common.GroupID
         DeptHeadID = gh_Common.Username
-        LoadGrid(Dept)
+        'LoadGrid(Dept)
         Dim dtGrid As New DataTable
         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
 
@@ -27,7 +27,7 @@ Public Class Frm_CR_OtherDeptHead
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class.Get_Other_Dept(_Dept)
+            dt = fc_Class.Get_Other_Dept(_Dept, gh_Common.Username)
             Grid.DataSource = dt
 
 

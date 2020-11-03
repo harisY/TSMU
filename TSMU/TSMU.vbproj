@@ -65,6 +65,9 @@
   <PropertyGroup>
     <ApplicationIcon>tsmu.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
@@ -94,6 +97,7 @@
     <Reference Include="DevExpress.Map.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v18.2.Drawing, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Persistent.Base.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -120,6 +124,7 @@
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -279,6 +284,12 @@
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
     <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
+    <Compile Include="Compare_Invoice\Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\Form3.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Compare_Invoice\frmCompare_Invoice.Designer.vb">
       <DependentUpon>frmCompare_Invoice.vb</DependentUpon>
     </Compile>
@@ -314,6 +325,11 @@
     </Compile>
     <Compile Include="Dashboard\Dashboard_TravelSum.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dataset\APSignature.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APSignature.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\bank.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -1334,6 +1350,12 @@
     <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Frm_ViewPdf.Designer.vb">
+      <DependentUpon>Frm_ViewPdf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Frm_ViewPdf.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Frm_CR_Accounting.Designer.vb">
       <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
     </Compile>
@@ -1399,6 +1421,36 @@
     </Compile>
     <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReport.Designer.vb">
+      <DependentUpon>DevCirculationReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBOD.Designer.vb">
+      <DependentUpon>DevCirculationReportBOD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBOD.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOC.Designer.vb">
+      <DependentUpon>DevCirculationReportDOC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOther.Designer.vb">
+      <DependentUpon>DevCirculationReportOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOther.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportTotal.Designer.vb">
+      <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportTotal.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Report\RptCirculationTotal.vb">
       <AutoGen>True</AutoGen>
@@ -2355,6 +2407,7 @@
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
+    <Compile Include="Models\FormatExcelModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -2564,6 +2617,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSignature.Designer.vb">
+      <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSignature.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.Designer.vb">
       <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
     </Compile>
@@ -2606,6 +2665,12 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.Designer.vb">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment.Designer.vb">
       <DependentUpon>Frm_Rpt_ViewPayment.vb</DependentUpon>
     </Compile>
@@ -2617,6 +2682,12 @@
     </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_APSignature.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_APSignature.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_PaymentSolomon.vb">
       <AutoGen>True</AutoGen>
@@ -2721,6 +2792,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
+    <Compile Include="Services\FormatExcelService.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
@@ -2780,6 +2852,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
       <DependentUpon>FrmPOADM.vb</DependentUpon>
     </EmbeddedResource>
@@ -3124,6 +3199,9 @@
     <EmbeddedResource Include="Form\Circulation\Dies Bom\Frm_CR_BOM.resx">
       <DependentUpon>Frm_CR_BOM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Frm_ViewPdf.resx">
+      <DependentUpon>Frm_ViewPdf.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_Accounting.resx">
       <DependentUpon>Frm_CR_Accounting.vb</DependentUpon>
     </EmbeddedResource>
@@ -3156,6 +3234,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
       <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReport.resx">
+      <DependentUpon>DevCirculationReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportBOD.resx">
+      <DependentUpon>DevCirculationReportBOD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportDOC.resx">
+      <DependentUpon>DevCirculationReportDOC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportOther.resx">
+      <DependentUpon>DevCirculationReportOther.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportTotal.resx">
+      <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\RptCirculationTotal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3587,6 +3680,9 @@
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSignature.resx">
+      <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaySolomon.resx">
       <DependentUpon>Frm_Rpt_APPaySolomon.vb</DependentUpon>
     </EmbeddedResource>
@@ -3596,8 +3692,15 @@
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APPaymentSolomon.resx">
       <DependentUpon>Frm_Rpt_APPaymentSolomon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPPhNew.resx">
+      <DependentUpon>Frm_Rpt_ViewPPhNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_APSignature.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_APSignature.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_PaymentSolomon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3646,6 +3749,17 @@
     <EmbeddedResource Include="UserControl\DashboardFinance.resx">
       <DependentUpon>DashboardFinance.vb</DependentUpon>
     </EmbeddedResource>
+    <None Include="dataset\APSignature.xsc">
+      <DependentUpon>APSignature.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\APSignature.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>APSignature.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\APSignature.xss">
+      <DependentUpon>APSignature.xsd</DependentUpon>
+    </None>
     <None Include="dataset\DashboardDS.xsc">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
     </None>
@@ -4323,6 +4437,7 @@
     </None>
     <None Include="Icon\Untitled.xcf" />
     <None Include="Models\Asakai\kqvs4ql2.tdh~" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

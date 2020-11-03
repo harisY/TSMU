@@ -126,6 +126,10 @@ Public Class frmSalesForecast_calculated
             gc.BestFit()
         Next
     End Sub
+
+    Private Sub ViewRoutingBoMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewRoutingBoMToolStripMenuItem.Click
+
+    End Sub
     'Private Sub GridView1_ColumnWidthChanged(sender As Object, e As ColumnEventArgs) Handles GridView1.ColumnWidthChanged
     'Dim gridView As GridView = CType(sender, GridView)
     'Dim gridControl As GridControl = gridView.GridControl

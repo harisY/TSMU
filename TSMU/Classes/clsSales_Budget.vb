@@ -405,7 +405,7 @@ Public Class clsSales_Budget
     End Function
     Public Function getCusst_Solomon() As DataTable
         Try
-            Dim query As String = "select CustId [Customer ID], [Name] from Customer order by [Name]"
+            Dim query As String = "SELECT CustId [Customer ID], [Name] from Customer order by [Name]"
             Dim dtTable As New DataTable
             dtTable = GetDataTable_Solomon(query)
             Return dtTable
@@ -415,7 +415,7 @@ Public Class clsSales_Budget
     End Function
     Public Function getCusstID_Solomon() As DataTable
         Try
-            Dim query As String = "select distinct CustId from Customer where left(custid,1) <> '0'"
+            Dim query As String = "SELECT distinct RTRIM(CustId) CustId from Customer where left(custid,1) <> '0'"
             Dim dtTable As New DataTable
             dtTable = GetDataTable_Solomon(query)
             Return dtTable
@@ -425,7 +425,7 @@ Public Class clsSales_Budget
     End Function
     Public Function getPartNo_Solomon(ByVal cust As String) As DataTable
         Try
-            Dim query As String = "select AlternateID,InvtID,Descr from itemxref where altIDType='C' and EntityID= " & QVal(cust) & " order by EntityID,AlternateID"
+            Dim query As String = "SELECT AlternateID,InvtID,Descr from itemxref where altIDType='C' and EntityID= " & QVal(cust) & " order by EntityID,AlternateID"
             Dim dtTable As New DataTable
             dtTable = GetDataTable_Solomon(query)
             Return dtTable

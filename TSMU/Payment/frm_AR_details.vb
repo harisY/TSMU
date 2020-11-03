@@ -338,7 +338,7 @@ Public Class frm_AR_details
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Payment " & fs_Code
+                Me.Text = "AR Voucher " & fs_Code2
             ElseIf fs_Code <> "" And sts_screen2 = 1 Then
                 ObjPaymentHeader.id = fs_Code
                 ObjPaymentHeader.GetPaymentByVoucherNo()
@@ -350,10 +350,10 @@ Public Class frm_AR_details
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Payment " & fs_Code
+                Me.Text = "AR Voucher " & fs_Code2
                 LoadGridDetail()
             Else
-                Me.Text = "Payment New Data"
+                Me.Text = "AR Voucher New Data"
             End If
             Call LoadTxtBox()
             ''  LoadGridDetail()

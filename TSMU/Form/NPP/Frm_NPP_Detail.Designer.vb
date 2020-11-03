@@ -169,6 +169,7 @@ Partial Class Frm_NPP_Detail
         'PartName
         '
         Me.PartName.FieldName = "Part Name"
+        Me.PartName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.PartName.Name = "PartName"
         Me.PartName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PartName.Visible = True
@@ -304,7 +305,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.RepStatusMold.AutoHeight = False
         Me.RepStatusMold.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepStatusMold.Items.AddRange(New Object() {"Depreciation", "Sales"})
+        Me.RepStatusMold.Items.AddRange(New Object() {"DEPRECIATION", "SALSES", "TRANS", "PAID BY CUST"})
         Me.RepStatusMold.Name = "RepStatusMold"
         '
         'OrderMonth

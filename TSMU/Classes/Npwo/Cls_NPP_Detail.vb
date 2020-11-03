@@ -115,72 +115,82 @@ Public Class Cls_NPP_Detail
 
     End Function
     Public Function NPPReport(No As String, Rev As String) As DataSet
-        Dim query As String
-        'Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
-        query = "SELECT [NPP_Head].[No_NPP]
-                  ,[NPP_Head].[Issue_Date]
-                  ,[NPP_Head].[Model_Name]
-                  ,[NPP_HEAD].[Model_Desc]
-                  ,[NPP_Head].[Customer_Name] as [Customer_Name1]
-                  ,[Customer].[BillName] as [Customer_Name]
-                  ,[NPP_Head].[Order_Month]
-                  ,[NPP_Head].[Order_Max_Month]
-                  ,[NPP_Head].[T0]
-                  ,[NPP_Head].[T1]
-                  ,[NPP_Head].[T2]
-                  ,[NPP_Head].[MP]
-                  ,[NPP_Head].[Drawing]
-                  ,[NPP_Head].[CAD_Data]
-                  ,[NPP_Head].[Sample]
-                  ,[NPP_Head].[Special_Technical_Requires]
-                  ,[NPP_Head].[Category_Class]
-                  ,[NPP_Head].[Factory_Tsc_TNG]
-                  ,[NPP_Head].[Factory_Tsc_CKR]
-                  ,[NPP_Head].[CreatedBy]
-                  ,[NPP_Head].[CreatedDate]
-                  ,[NPP_Head].[UpdatedBy]
-                  ,[NPP_Head].[UpdatedDate]  as [Rev_Date]
-                  ,[NPP_Head].[Approve]
-                  ,[NPP_Head].[Checked]
-                  ,[NPP_Head].[A1]
-                  ,[NPP_Head].[A2]
-                  ,[NPP_Head].[A3]
-                  ,[NPP_Head].[A4]
-                  ,[NPP_Head].[A4]
-                  ,[NPP_Head].[Prepare]
-                  ,[NPP_Head].[TargetDRR]
-                  ,[NPP_Head].[TargetQuot]
-                  ,[NPP_Head].[UpdatedBy] as [UpdateBy]
-                  ,[NPP_Detail].[Part_No]
-                  ,[NPP_Detail].[Part_Name]
-                  ,[NPP_Detail].[Machine]
-                  ,[NPP_Detail].[Cycle_Time]
-                  ,[NPP_Detail].[Cavity]
-                  ,[NPP_Detail].[Weight]
-                  ,[NPP_Detail].[Qty_Mold] 
-                  ,[NPP_Detail].[Material_Resin]
-                  ,[NPP_Detail].[Injection]
-                  ,[NPP_Detail].[Painting]
-                  ,[NPP_Detail].[Chrome]
-                  ,[NPP_Detail].[Assy]
-                  ,[NPP_Detail].[Vibration]
-                  ,[NPP_Detail].[Ultrasonic]
-                  ,[NPP_Detail].[StatusMold]
-                  ,[NPP_Detail].[Order_Month] as [D_Order_Month]
-                  ,[NPP_Detail].[LOI_Number]
-                  ,[NPP_Detail].[Forecast]
-                  ,[NPP_Detail].[Factory]
-                  ,[NPP_Detail].[Rev]
-                  ,[NPP_Detail].[Revisi]
-                  ,[NPP_Detail].[Mold_Number]
-        From [NPP_Head] inner Join [NPP_Detail] On
-                    [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
-                    inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
-		            Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
-                    Order By [NPP_Detail].[NoUrut] asc "
+        'Dim query As String
+        ''Dim NP As String = "TSC/NPP/MKT/04/SIM-Y98/2020/001"
+        'query = "SELECT [NPP_Head].[No_NPP]
+        '          ,[NPP_Head].[Issue_Date]
+        '          ,[NPP_Head].[Model_Name]
+        '          ,[NPP_HEAD].[Model_Desc]
+        '          ,[NPP_Head].[Customer_Name] as [Customer_Name1]
+        '          ,[Customer].[BillName] as [Customer_Name]
+        '          ,[NPP_Head].[Order_Month]
+        '          ,[NPP_Head].[Order_Max_Month]
+        '          ,[NPP_Head].[T0]
+        '          ,[NPP_Head].[T1]
+        '          ,[NPP_Head].[T2]
+        '          ,[NPP_Head].[MP]
+        '          ,[NPP_Head].[Drawing]
+        '          ,[NPP_Head].[CAD_Data]
+        '          ,[NPP_Head].[Sample]
+        '          ,[NPP_Head].[Special_Technical_Requires]
+        '          ,[NPP_Head].[Category_Class]
+        '          ,[NPP_Head].[Factory_Tsc_TNG]
+        '          ,[NPP_Head].[Factory_Tsc_CKR]
+        '          ,[NPP_Head].[CreatedBy]
+        '          ,[NPP_Head].[CreatedDate]
+        '          ,[NPP_Head].[UpdatedBy]
+        '          ,[NPP_Head].[UpdatedDate]  as [Rev_Date]
+        '          ,[NPP_Head].[Approve]
+        '          ,[NPP_Head].[Checked]
+        '          ,[NPP_Head].[A1]
+        '          ,[NPP_Head].[A2]
+        '          ,[NPP_Head].[A3]
+        '          ,[NPP_Head].[A4]
+        '          ,[NPP_Head].[A4]
+        '          ,[NPP_Head].[Prepare]
+        '          ,[NPP_Head].[TargetDRR]
+        '          ,[NPP_Head].[TargetQuot]
+        '          ,[NPP_Head].[UpdatedBy] as [UpdateBy]
+        '          ,[NPP_Detail].[Part_No]
+        '          ,[NPP_Detail].[Part_Name]
+        '          ,[NPP_Detail].[Machine]
+        '          ,[NPP_Detail].[Cycle_Time]
+        '          ,[NPP_Detail].[Cavity]
+        '          ,[NPP_Detail].[Weight]
+        '          ,[NPP_Detail].[Qty_Mold] 
+        '          ,[NPP_Detail].[Material_Resin]
+        '          ,[NPP_Detail].[Injection]
+        '          ,[NPP_Detail].[Painting]
+        '          ,[NPP_Detail].[Chrome]
+        '          ,[NPP_Detail].[Assy]
+        '          ,[NPP_Detail].[Vibration]
+        '          ,[NPP_Detail].[Ultrasonic]
+        '          ,[NPP_Detail].[StatusMold]
+        '          ,[NPP_Detail].[Order_Month] as [D_Order_Month]
+        '          ,[NPP_Detail].[LOI_Number]
+        '          ,[NPP_Detail].[Forecast]
+        '          ,[NPP_Detail].[Factory]
+        '          ,[NPP_Detail].[Rev]
+        '          ,[NPP_Detail].[Revisi]
+        '          ,[NPP_Detail].[Mold_Number]
+        'From [NPP_Head] inner Join [NPP_Detail] On
+        '            [NPP_Head].[No_NPP] = [NPP_Detail].No_NPP
+        '            inner join Customer on Customer.CustId =  [NPP_Head].[Customer_Name]
+        '      Where [NPP_Head].[No_NPP] = '" & No & "' and [NPP_Detail].[Active] ='True'
+        '            Order By [NPP_Detail].[NoUrut] asc "
+
+        'Dim ds As New dsLaporan
+        'ds = GetDsReport(query, "NPP")
+        'Return ds
+
+        Dim query As String = "[NPP_RPT]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@NPP", SqlDbType.VarChar)
+
+        pParam(0).Value = No
 
         Dim ds As New dsLaporan
-        ds = GetDsReport(query, "NPP")
+        ds = GetDataSetByCommand_SP(query, "NPP", pParam)
         Return ds
 
         'Mold_Number

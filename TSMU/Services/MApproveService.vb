@@ -55,6 +55,17 @@ Public Class MApproveService
             Throw ex
         End Try
     End Function
+    Public Function GetComboGroup() As DataTable
+        Try
+            Dim query As String =
+                "SELECT UserGroupCode Dept,UserGroupName Description FROM I_AccessLevel " & vbCrLf &
+                "WHERE FlagActive = '1' "
+            Dim dt As DataTable = MainModul.GetDataTable(query)
+            Return dt
+        Catch Ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Function Add(ByVal Model As MApproveModel) As Integer
         Try

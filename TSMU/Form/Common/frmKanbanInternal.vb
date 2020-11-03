@@ -17,14 +17,14 @@ Public Class frmKanbanInternal
     Dim dtTemp1 As DataTable
     Private Sub frmKanbanInternal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
+        'Dim dtGrid As New DataTable
+        'dtGrid = Grid.DataSource
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
     End Sub
 
     Private Sub LoadGrid()
         Try
+            SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = New DataTable
             dtGrid = Obj.GetAllDataGridCKR()
             Grid.DataSource = dtGrid
@@ -34,13 +34,15 @@ Public Class frmKanbanInternal
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
             End If
+            SplashScreenManager.CloseForm()
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
     Public Overrides Sub Proc_Refresh()
-        Call LoadGrid()
+        LoadGrid()
     End Sub
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
@@ -291,5 +293,9 @@ Public Class frmKanbanInternal
         dtTemp1.Columns.Add("Warna", GetType(String))
         dtTemp1.Columns.Add("QRCode", GetType(String))
         dtTemp1.Clear()
+    End Sub
+
+    Private Sub frmKanbanInternal_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        LoadGrid()
     End Sub
 End Class

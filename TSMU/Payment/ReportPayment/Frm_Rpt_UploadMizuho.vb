@@ -177,19 +177,19 @@ Public Class Frm_Rpt_UploadMizuho
     End Sub
 
     Private Sub GetDataSyncTemplate()
-        Dim date1 As String = ""
-        Dim date2 As String = ""
+        Dim date3 As String = ""
+        Dim date4 As String = ""
         'Dim date1 As DateTime
         'Dim date2 As DateTime
         Invoke(Sub()
-                   date1 = DateEdit1.Text
-                   date2 = DateEdit2.Text
+                   date3 = DateEdit3.Text
+                   date4 = DateEdit4.Text
                End Sub)
         Dim dt As New DataTable
-        dt = pay_class.DataGridSyncTemplate(date1, date2)
+        dt = pay_class.DataGridSyncTemplate(date3, date4)
         setDataSource(dt, GridControl4)
         Invoke(Sub()
-                   ProgBar.Visible = False
+                   ProgBar5.Visible = False
                End Sub)
     End Sub
 

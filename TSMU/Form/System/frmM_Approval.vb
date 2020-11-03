@@ -14,7 +14,7 @@ Public Class frmM_Approval
     Dim ObjHeader As MApproveModel
     Private Sub frmM_Approval_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, False)
         'LoadGrid()
     End Sub
     Private Sub LoadGrid()
@@ -55,9 +55,9 @@ Public Class frmM_Approval
             FrmDetail.Close()
         End If
         FrmDetail = New frmM_ApprovalDetail(ls_Code, ls_Code2, Me, li_Row, Grid)
-        FrmDetail.MdiParent = FrmMain
+        'FrmDetail.MdiParent = FrmMain
         FrmDetail.StartPosition = FormStartPosition.CenterScreen
-        FrmDetail.Show()
+        FrmDetail.ShowDialog()
     End Sub
     Public Overrides Sub Proc_DeleteData()
         Try

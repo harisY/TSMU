@@ -14,7 +14,6 @@
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
         _perpost = perpost
-
     End Sub
 
     Sub loadreport()
@@ -54,7 +53,6 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-
 
 
     End Sub

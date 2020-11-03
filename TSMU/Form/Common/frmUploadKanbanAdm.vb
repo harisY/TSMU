@@ -8,16 +8,12 @@ Public Class frmUploadKanbanAdm
     Dim Obj As New KanbanAdmModel
     Private Sub frmUploadKanbanAdm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
     End Sub
 
     Private Sub LoadGrid()
         Try
-            'Grid.ReadOnly = True
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
+            SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = Obj.GetAllDataGrid()
             Grid.DataSource = dtGrid
 
@@ -33,14 +29,16 @@ Public Class frmUploadKanbanAdm
 
                 End With
                 GridCellFormat(GridView1)
+                SplashScreenManager.CloseForm()
             End If
         Catch ex As Exception
+            SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
     Public Overrides Sub Proc_Refresh()
-        Call LoadGrid()
+        LoadGrid()
     End Sub
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
@@ -357,5 +355,9 @@ Public Class frmUploadKanbanAdm
         Else
             MsgBox("Grid Kosong !")
         End If
+    End Sub
+
+    Private Sub frmUploadKanbanAdm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        LoadGrid()
     End Sub
 End Class
