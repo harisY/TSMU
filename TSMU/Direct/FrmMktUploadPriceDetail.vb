@@ -24,6 +24,8 @@ Public Class FrmMktUploadPriceDetail
     Public Property CustID() As String
     Public Property Template() As String
     Public Property FileName() As String
+    Public Property Revised() As String
+    Public Property TotRecordExcel() As String
 
     Public Sub New()
         InitializeComponent()
@@ -90,8 +92,10 @@ Public Class FrmMktUploadPriceDetail
                     .Columns("No").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
                     .Columns("OldPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                     .Columns("OldPrice").DisplayFormat.FormatString = "n2"
-                    .Columns("NewPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    .Columns("NewPrice").DisplayFormat.FormatString = "n2"
+                    .Columns("NewPriceR").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    .Columns("NewPriceR").DisplayFormat.FormatString = "n2"
+                    .Columns("NewPriceS").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    .Columns("NewPriceS").DisplayFormat.FormatString = "n2"
                     .Columns("EffectiveDate").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                     .Columns("EffectiveDate").DisplayFormat.FormatString = "dd-MM-yyyy"
                 End With
@@ -138,7 +142,9 @@ Public Class FrmMktUploadPriceDetail
                     .NoUpload = noUpload
                     .CustID = custID
                     .Template = Template
-                    .FileName = fileName
+                    .FileName = FileName
+                    .Revised = Revised
+                    .TotalRecordExcel = TotRecordExcel
                     .TotalRecord = GridViewDetail.RowCount
                 End With
             End If
@@ -161,7 +167,8 @@ Public Class FrmMktUploadPriceDetail
                     .InvtID = GridViewDetail.GetRowCellValue(i, "InvtID")
                     .Desc = GridViewDetail.GetRowCellValue(i, "PartName")
                     .OldPrice = GridViewDetail.GetRowCellValue(i, "OldPrice")
-                    .NewPrice = GridViewDetail.GetRowCellValue(i, "NewPrice")
+                    .NewPriceR = GridViewDetail.GetRowCellValue(i, "NewPriceR")
+                    .NewPriceS = GridViewDetail.GetRowCellValue(i, "NewPriceS")
                     .StartDate = GridViewDetail.GetRowCellValue(i, "EffectiveDate")
                 End With
                 clsUploadPrice.ObjPriceDetails.Add(clsUploadPriceDetail)
@@ -169,7 +176,9 @@ Public Class FrmMktUploadPriceDetail
             If MsgBox("Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+
                 clsUploadPrice.SaveUpload(FrmParent)
+
                 SplashScreenManager.CloseForm()
                 Dim _now As Date = Date.Today
                 Dim firstDay As Date = New Date(_now.Year, _now.Month, 1)

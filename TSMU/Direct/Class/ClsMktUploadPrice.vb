@@ -5,7 +5,9 @@ Public Class ClsMktUploadPrice
     Public Property CustID As String
     Public Property Template As String
     Public Property FileName As String
+    Public Property Revised As String
     Public Property TotalRecord As Integer
+    Public Property TotalRecordExcel As Integer
     Public Property UserName As String
     Public Property UploadDate As DateTime
     Public Property ObjPriceDetails() As New Collection(Of ClsMktUploadPriceDetail)
@@ -96,6 +98,8 @@ Public Class ClsMktUploadPrice
                                   CustID ,
                                   Template ,
                                   FileName ,
+                                  Revised ,
+                                  TotalRecordExcel ,
                                   TotalRecord ,
                                   UserName ,
                                   UploadDate
@@ -104,6 +108,8 @@ Public Class ClsMktUploadPrice
                                   " & QVal(CustID) & " , -- CustID - varchar(10)
                                   " & QVal(Template) & " , -- Template - varchar(50)
                                   " & QVal(FileName) & " , -- FileName - varchar(50)
+                                  " & QVal(Revised) & " , -- Revised - varchar(10)
+                                  " & TotalRecordExcel & " , -- TotalRecordExcel - int
                                   " & TotalRecord & " , -- TotalRecord - int
                                   " & QVal(gh_Common.Username) & " , -- UserName - varchar(50)
                                   GETDATE()  -- UploadDate - datetime
@@ -163,7 +169,9 @@ Public Class ClsMktUploadPrice
                                 CustID ,
                                 Template ,
                                 FileName ,
-                                TotalRecord ,
+                                Revised ,
+                                TotalRecordExcel AS RecordExcel ,
+                                TotalRecord AS RecordUpload,
                                 UserName ,
                                 UploadDate
                         FROM    dbo.T_MktUploadPriceHeader
@@ -185,13 +193,29 @@ Public Class ClsMktUploadPrice
                                 InvtID ,
                                 PartName ,
                                 OldPrice ,
-                                NewPrice ,
+                                NewPriceR ,
+                                NewPriceS ,
                                 StartDate AS EffectiveDate
                         FROM    dbo.T_MktUploadPriceDetail
                         WHERE   NoUpload = " & QVal(_noUpload) & ""
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckFileName(__fileName As String) As Integer
+        Try
+            Dim sql As String
+            Dim IsRev As Boolean = False
+            sql = " SELECT  COUNT(NoUpload) AS IsRev
+                    FROM    dbo.T_MktUploadPriceHeader
+                    WHERE   FileName = " & QVal(__fileName) & " "
+            Dim dt As New DataTable
+            dt = GetDataTable(sql)
+            Return dt.Rows(0).Item("IsRev")
         Catch ex As Exception
             Throw ex
         End Try
@@ -206,7 +230,8 @@ Public Class ClsMktUploadPriceDetail
     Public Property InvtID As String
     Public Property Desc As String
     Public Property OldPrice As Double
-    Public Property NewPrice As Double
+    Public Property NewPriceR As Double
+    Public Property NewPriceS As Double
     Public Property StartDate As Date
 
     Dim strQuery As String
@@ -220,7 +245,8 @@ Public Class ClsMktUploadPriceDetail
                                   InvtID ,
                                   PartName ,
                                   OldPrice ,
-                                  NewPrice ,
+                                  NewPriceR ,
+                                  NewPriceS ,
                                   StartDate
                                 )
                         VALUES  ( " & QVal(NoUpload) & " , -- NoUpload - varchar(20)
@@ -229,7 +255,8 @@ Public Class ClsMktUploadPriceDetail
                                   " & QVal(InvtID) & " , -- InvtID - varchar(50)
                                   " & QVal(Desc) & " , -- PartName - varchar(50)
                                   " & OldPrice & " , -- OldPrice - float
-                                  " & NewPrice & " , -- NewPrice - float
+                                  " & NewPriceR & " , -- NewPriceR - float
+                                  " & NewPriceS & " , -- NewPriceS - float
                                   " & QVal(StartDate) & " -- StartDate - date
                                 )"
             ExecQuery(strQuery)
@@ -241,7 +268,7 @@ Public Class ClsMktUploadPriceDetail
     Public Sub UpdatePrice()
         Try
             strQuery = "UPDATE  TSC16Application.dbo.SlsPrcDet
-                        SET     DiscPrice = " & NewPrice & " ,
+                        SET     DiscPrice = " & NewPriceR + NewPriceS & " ,
                                 StartDate = " & QVal(StartDate) & "
                         FROM    TSC16Application.dbo.SlsPrc AS sp
                                 INNER JOIN TSC16Application.dbo.SlsPrcDet AS spd ON spd.SlsPrcID = sp.SlsPrcID
