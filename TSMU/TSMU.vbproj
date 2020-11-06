@@ -133,6 +133,8 @@
     <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraSpellChecker.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -1992,6 +1994,18 @@
     <Compile Include="Form\NPWO\Frm_Npwo_Prepare.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReport.Designer.vb">
+      <DependentUpon>DevNpwoReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReportRev.Designer.vb">
+      <DependentUpon>DevNpwoReportRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReportRev.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\NPWO\Report\Frm_Rpt_NPWO.Designer.vb">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
     </Compile>
@@ -3364,6 +3378,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Prepare.resx">
       <DependentUpon>Frm_Npwo_Prepare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\DevNpwoReport.resx">
+      <DependentUpon>DevNpwoReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\DevNpwoReportRev.resx">
+      <DependentUpon>DevNpwoReportRev.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Report\Frm_Rpt_NPWO.resx">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
