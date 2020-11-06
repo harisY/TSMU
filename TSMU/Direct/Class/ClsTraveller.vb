@@ -16,8 +16,9 @@ Public Class ClsTraveller
             strQuery = "SELECT  NIK ,
                                 Nama ,
                                 DeptID ,
-                                Golongan
-                        FROM    dbo.Traveler "
+                                gol.Description AS Golongan
+                        FROM    dbo.Traveler AS trv
+                                LEFT JOIN dbo.TravelGolongan AS gol ON gol.Golongan = trv.Golongan"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable(strQuery)
             Return dtTable
@@ -72,6 +73,18 @@ Public Class ClsTraveller
             strQuery = "SELECT  KodeNegara ,
                                 NamaNegara
                         FROM    dbo.TravelNegara"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListGolongan() As DataTable
+        Try
+            strQuery = "SELECT  *
+                        FROM    dbo.TravelGolongan"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

@@ -101,13 +101,14 @@ Public Class FrmTravelerDetail
             Finally
                 itemsCollection.EndUpdate()
             End Try
+            ListItemsGolongan()
 
             If fs_Code <> "" Then
                 With fc_Class
                     TxtNIK.Text = .NIK
                     TxtNama.Text = .Nama
                     TxtDeptID.Text = .DeptID
-                    txtGolongan.Text = .Golongan
+                    txtGolongan.EditValue = .Golongan
                     TxtNIK.Enabled = False
                 End With
             Else
@@ -207,7 +208,7 @@ Public Class FrmTravelerDetail
                     .NIK = TxtNIK.Text.Trim.ToUpper
                     .Nama = TxtNama.Text.Trim.ToUpper
                     .DeptID = TxtDeptID.Text.Trim.ToUpper
-                    .Golongan = txtGolongan.Text
+                    .Golongan = txtGolongan.EditValue
                     If isUpdate = False Then
                         .ValidateInsert()
                     End If
@@ -255,6 +256,12 @@ Public Class FrmTravelerDetail
 
         MyBase.OnFormClosing(e)
         e.Cancel = Not ignoreCancel
+    End Sub
+
+    Private Sub ListItemsGolongan()
+        Dim dtGolongan = New DataTable
+        dtGolongan = fc_Class.GetListGolongan()
+        txtGolongan.Properties.DataSource = dtGolongan
     End Sub
 
     Private Sub TxtDeptID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDeptID.ButtonClick
@@ -400,16 +407,6 @@ Public Class FrmTravelerDetail
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
-    End Sub
-
-    Private Sub txtGolongan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtGolongan.KeyPress
-        'Dim tombol As Integer
-
-        'tombol = Asc(e.KeyChar)
-
-        'If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
-        '    e.Handled = True
-        'End If
     End Sub
 
     Private Sub btnPaspor_Click(sender As Object, e As EventArgs) Handles btnPaspor.Click

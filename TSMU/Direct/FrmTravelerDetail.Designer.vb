@@ -19,10 +19,6 @@ Partial Class FrmTravelerDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.GridPaspor = New DevExpress.XtraGrid.GridControl()
         Me.GridViewPaspor = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.NoPaspor = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,13 +35,13 @@ Partial Class FrmTravelerDetail
         Me.CExpiredDatePaspor = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.TempatKeluar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CTempatKeluar = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.txtGolongan = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnVisa = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPaspor = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNama = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDeptID = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txtGolongan = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -67,8 +63,8 @@ Partial Class FrmTravelerDetail
         Me.CDateIssued = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.DateExpired = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CDateExpired = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -89,12 +85,12 @@ Partial Class FrmTravelerDetail
         CType(Me.CExpiredDatePaspor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CExpiredDatePaspor.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CTempatKeluar, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +138,8 @@ Partial Class FrmTravelerDetail
         '
         'GridViewPaspor
         '
+        Me.GridViewPaspor.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewPaspor.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewPaspor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoPaspor, Me.Nama, Me.KodeNegara, Me.TanggalLahir, Me.JenisKelamin, Me.TanggalKeluar, Me.ExpiredDate, Me.TempatKeluar})
         Me.GridViewPaspor.GridControl = Me.GridPaspor
         Me.GridViewPaspor.Name = "GridViewPaspor"
@@ -149,7 +147,7 @@ Partial Class FrmTravelerDetail
         '
         'NoPaspor
         '
-        Me.NoPaspor.Caption = "No Paspor"
+        Me.NoPaspor.Caption = "No Passport"
         Me.NoPaspor.FieldName = "NoPaspor"
         Me.NoPaspor.MinWidth = 25
         Me.NoPaspor.Name = "NoPaspor"
@@ -160,7 +158,7 @@ Partial Class FrmTravelerDetail
         '
         'Nama
         '
-        Me.Nama.Caption = "Nama"
+        Me.Nama.Caption = "Name"
         Me.Nama.FieldName = "Nama"
         Me.Nama.MinWidth = 25
         Me.Nama.Name = "Nama"
@@ -170,7 +168,7 @@ Partial Class FrmTravelerDetail
         '
         'KodeNegara
         '
-        Me.KodeNegara.Caption = "Kode Negara"
+        Me.KodeNegara.Caption = "Country Code"
         Me.KodeNegara.ColumnEdit = Me.CKodeNegara
         Me.KodeNegara.FieldName = "KodeNegara"
         Me.KodeNegara.MinWidth = 25
@@ -189,7 +187,7 @@ Partial Class FrmTravelerDetail
         '
         'TanggalLahir
         '
-        Me.TanggalLahir.Caption = "Tanggal Lahir"
+        Me.TanggalLahir.Caption = "Date of Birth"
         Me.TanggalLahir.ColumnEdit = Me.CTanggalLahirPaspor
         Me.TanggalLahir.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.TanggalLahir.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -215,7 +213,7 @@ Partial Class FrmTravelerDetail
         '
         'JenisKelamin
         '
-        Me.JenisKelamin.Caption = "Jenis Kelamin"
+        Me.JenisKelamin.Caption = "Gender"
         Me.JenisKelamin.ColumnEdit = Me.CJenisKelamin
         Me.JenisKelamin.FieldName = "JenisKelamin"
         Me.JenisKelamin.MinWidth = 25
@@ -235,7 +233,7 @@ Partial Class FrmTravelerDetail
         '
         'TanggalKeluar
         '
-        Me.TanggalKeluar.Caption = "Tanggal Keluar"
+        Me.TanggalKeluar.Caption = "Date of Issue"
         Me.TanggalKeluar.ColumnEdit = Me.TanggalKeluarPaspor
         Me.TanggalKeluar.FieldName = "TanggalKeluar"
         Me.TanggalKeluar.MinWidth = 25
@@ -259,7 +257,7 @@ Partial Class FrmTravelerDetail
         '
         'ExpiredDate
         '
-        Me.ExpiredDate.Caption = "Expired Date"
+        Me.ExpiredDate.Caption = "Date of Expiry"
         Me.ExpiredDate.ColumnEdit = Me.CExpiredDatePaspor
         Me.ExpiredDate.FieldName = "ExpiredDate"
         Me.ExpiredDate.MinWidth = 25
@@ -283,7 +281,7 @@ Partial Class FrmTravelerDetail
         '
         'TempatKeluar
         '
-        Me.TempatKeluar.Caption = "Tempat Keluar"
+        Me.TempatKeluar.Caption = "Issuing Office"
         Me.TempatKeluar.ColumnEdit = Me.CTempatKeluar
         Me.TempatKeluar.FieldName = "TempatKeluar"
         Me.TempatKeluar.MinWidth = 25
@@ -297,30 +295,14 @@ Partial Class FrmTravelerDetail
         Me.CTempatKeluar.AutoHeight = False
         Me.CTempatKeluar.Name = "CTempatKeluar"
         '
-        'txtGolongan
-        '
-        Me.txtGolongan.Location = New System.Drawing.Point(700, 12)
-        Me.txtGolongan.MaximumSize = New System.Drawing.Size(120, 22)
-        Me.txtGolongan.Name = "txtGolongan"
-        Me.txtGolongan.Properties.Mask.EditMask = "f0"
-        Me.txtGolongan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtGolongan.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
-        Me.txtGolongan.StyleController = Me.LayoutControl2
-        Me.txtGolongan.TabIndex = 6
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "This value is not valid"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.txtGolongan, ConditionValidationRule3)
-        '
         'LayoutControl2
         '
         Me.LayoutControl2.Controls.Add(Me.btnVisa)
         Me.LayoutControl2.Controls.Add(Me.btnPaspor)
         Me.LayoutControl2.Controls.Add(Me.TxtNIK)
         Me.LayoutControl2.Controls.Add(Me.TxtNama)
-        Me.LayoutControl2.Controls.Add(Me.txtGolongan)
         Me.LayoutControl2.Controls.Add(Me.TxtDeptID)
+        Me.LayoutControl2.Controls.Add(Me.txtGolongan)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl2.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl2.Name = "LayoutControl2"
@@ -350,7 +332,7 @@ Partial Class FrmTravelerDetail
         Me.btnPaspor.Size = New System.Drawing.Size(130, 27)
         Me.btnPaspor.StyleController = Me.LayoutControl2
         Me.btnPaspor.TabIndex = 9
-        Me.btnPaspor.Text = "Add Paspor ++"
+        Me.btnPaspor.Text = "Add Passport ++"
         '
         'TxtNIK
         '
@@ -361,9 +343,6 @@ Partial Class FrmTravelerDetail
         Me.TxtNIK.Size = New System.Drawing.Size(62, 22)
         Me.TxtNIK.StyleController = Me.LayoutControl2
         Me.TxtNIK.TabIndex = 0
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "This value is not valid"
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNIK, ConditionValidationRule1)
         '
         'TxtNama
         '
@@ -373,10 +352,6 @@ Partial Class FrmTravelerDetail
         Me.TxtNama.Size = New System.Drawing.Size(304, 22)
         Me.TxtNama.StyleController = Me.LayoutControl2
         Me.TxtNama.TabIndex = 3
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "This value is not valid"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning
-        Me.DxValidationProvider1.SetValidationRule(Me.TxtNama, ConditionValidationRule2)
         '
         'TxtDeptID
         '
@@ -388,6 +363,27 @@ Partial Class FrmTravelerDetail
         Me.TxtDeptID.Size = New System.Drawing.Size(62, 22)
         Me.TxtDeptID.StyleController = Me.LayoutControl2
         Me.TxtDeptID.TabIndex = 5
+        '
+        'txtGolongan
+        '
+        Me.txtGolongan.Location = New System.Drawing.Point(700, 12)
+        Me.txtGolongan.MaximumSize = New System.Drawing.Size(120, 22)
+        Me.txtGolongan.Name = "txtGolongan"
+        Me.txtGolongan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.txtGolongan.Properties.AutoHeight = False
+        Me.txtGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtGolongan.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Golongan", "Golongan", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "", 10, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.txtGolongan.Properties.DisplayMember = "Description"
+        Me.txtGolongan.Properties.DropDownRows = 10
+        Me.txtGolongan.Properties.NullText = ""
+        Me.txtGolongan.Properties.PopupFormMinSize = New System.Drawing.Size(20, 0)
+        Me.txtGolongan.Properties.ShowFooter = False
+        Me.txtGolongan.Properties.ShowHeader = False
+        Me.txtGolongan.Properties.ValueMember = "Golongan"
+        Me.txtGolongan.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtGolongan.Size = New System.Drawing.Size(62, 22)
+        Me.txtGolongan.StyleController = Me.LayoutControl2
+        Me.txtGolongan.TabIndex = 6
         '
         'Root
         '
@@ -414,7 +410,7 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
         Me.LayoutControlItem2.Size = New System.Drawing.Size(372, 34)
-        Me.LayoutControlItem2.Text = "Nama"
+        Me.LayoutControlItem2.Text = "Name"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(53, 16)
         '
         'LayoutControlItem3
@@ -492,6 +488,8 @@ Partial Class FrmTravelerDetail
         '
         'GridViewVisa
         '
+        Me.GridViewVisa.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewVisa.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewVisa.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoVisa, Me.VisaNegara, Me.Entries, Me.DateIssued, Me.DateExpired})
         Me.GridViewVisa.GridControl = Me.GridVisa
         Me.GridViewVisa.Name = "GridViewVisa"
@@ -515,7 +513,7 @@ Partial Class FrmTravelerDetail
         '
         'VisaNegara
         '
-        Me.VisaNegara.Caption = "Negara"
+        Me.VisaNegara.Caption = "Country"
         Me.VisaNegara.ColumnEdit = Me.CNegara
         Me.VisaNegara.FieldName = "Negara"
         Me.VisaNegara.MinWidth = 25
@@ -645,7 +643,7 @@ Partial Class FrmTravelerDetail
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1042, 221)
-        Me.LayoutControlGroup1.Text = "Paspor"
+        Me.LayoutControlGroup1.Text = "Passport"
         '
         'LayoutControlItem7
         '
@@ -713,12 +711,12 @@ Partial Class FrmTravelerDetail
         CType(Me.CExpiredDatePaspor.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CExpiredDatePaspor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CTempatKeluar, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDeptID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -767,7 +765,6 @@ Partial Class FrmTravelerDetail
     Friend WithEvents CDateExpired As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents CEntries As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents CDateIssued As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
-    Friend WithEvents txtGolongan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CNoVisa As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridPaspor As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewPaspor As DevExpress.XtraGrid.Views.Grid.GridView
@@ -809,4 +806,5 @@ Partial Class FrmTravelerDetail
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents txtGolongan As DevExpress.XtraEditors.LookUpEdit
 End Class

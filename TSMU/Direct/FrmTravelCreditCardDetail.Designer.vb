@@ -19,7 +19,6 @@ Partial Class FrmTravelCreditCardDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -38,7 +37,7 @@ Partial Class FrmTravelCreditCardDetail
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         Me.GridCreditCard = New DevExpress.XtraGrid.GridControl()
         Me.GridViewCreditCard = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.CreditCardID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -290,6 +289,8 @@ Partial Class FrmTravelCreditCardDetail
         '
         'GridViewCreditCard
         '
+        Me.GridViewCreditCard.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridViewCreditCard.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridViewCreditCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.CreditCardID, Me.CreditCardNumber, Me.AccountName, Me.BankName, Me.Provider, Me.ExpiredDate, Me.Type, Me.CCNumberMaster})
         Me.GridViewCreditCard.GridControl = Me.GridCreditCard
         Me.GridViewCreditCard.Name = "GridViewCreditCard"
@@ -404,6 +405,7 @@ Partial Class FrmTravelCreditCardDetail
         '
         Me.CCCNumberMaster.AutoHeight = False
         Me.CCCNumberMaster.Mask.EditMask = "0000-0000-0000-9999"
+        Me.CCCNumberMaster.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
         Me.CCCNumberMaster.Mask.UseMaskAsDisplayFormat = True
         Me.CCCNumberMaster.Name = "CCCNumberMaster"
         '
