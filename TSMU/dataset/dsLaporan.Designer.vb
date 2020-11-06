@@ -13486,6 +13486,12 @@ Partial Public Class dsLaporan
         
         Private columnDivHeadNameDate As Global.System.Data.DataColumn
         
+        Private columnMoldNo As Global.System.Data.DataColumn
+        
+        Private columnMoldName As Global.System.Data.DataColumn
+        
+        Private columnSumQtyMold As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -13986,6 +13992,30 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MoldNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMoldNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MoldNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMoldName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SumQtyMoldColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumQtyMold
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -14026,8 +14056,8 @@ Partial Public Class dsLaporan
                     ByVal No_NPP As String,  _
                     ByVal Model_Name As String,  _
                     ByVal Customer_Name As String,  _
-                    ByVal Order_Month As String,  _
-                    ByVal Order_Max_Month As String,  _
+                    ByVal Order_Month As Long,  _
+                    ByVal Order_Max_Month As Long,  _
                     ByVal T0 As String,  _
                     ByVal T1 As String,  _
                     ByVal T2 As String,  _
@@ -14042,7 +14072,7 @@ Partial Public Class dsLaporan
                     ByVal Part_No As String,  _
                     ByVal Part_Name As String,  _
                     ByVal Machine As String,  _
-                    ByVal Cycle_Time As String,  _
+                    ByVal Cycle_Time As Double,  _
                     ByVal Cavity As String,  _
                     ByVal Weight As String,  _
                     ByVal Qty_Mold As Short,  _
@@ -14080,9 +14110,12 @@ Partial Public Class dsLaporan
                     ByVal DeptHeadName As String,  _
                     ByVal DeptHeadNameDate As Date,  _
                     ByVal DivHeadName As String,  _
-                    ByVal DivHeadNameDate As Date) As NPWORow
+                    ByVal DivHeadNameDate As Date,  _
+                    ByVal MoldNo As String,  _
+                    ByVal MoldName As String,  _
+                    ByVal SumQtyMold As Long) As NPWORow
             Dim rowNPWORow As NPWORow = CType(Me.NewRow,NPWORow)
-            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy, Prepare, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate}
+            Dim columnValuesArray() As Object = New Object() {No_NPP, Model_Name, Customer_Name, Order_Month, Order_Max_Month, T0, T1, T2, MP, Drawing, CAD_Data, Sample, Special_Technical_Requires, Category_Class, Factory_Tsc_TNG, Factory_Tsc_CKR, Part_No, Part_Name, Machine, Cycle_Time, Cavity, Weight, Qty_Mold, Material_Resin, Injection, Painting, Chrome, Assy, StatusMold, D_Order_Month, Forecast, LOI_Number, Rev, RevI, Information, Issue_Date, Factory, Ultrasonic, Vibration, Model_Desc, Mold_Number, Rev_Date, No_NPWO, GroupID, Type, Type1, MP1, Checked, A1, A2, A3, A4, CreatedBy, Prepare, DeptHeadName, DeptHeadNameDate, DivHeadName, DivHeadNameDate, MoldNo, MoldName, SumQtyMold}
             rowNPWORow.ItemArray = columnValuesArray
             Me.Rows.Add(rowNPWORow)
             Return rowNPWORow
@@ -14163,6 +14196,9 @@ Partial Public Class dsLaporan
             Me.columnDeptHeadNameDate = MyBase.Columns("DeptHeadNameDate")
             Me.columnDivHeadName = MyBase.Columns("DivHeadName")
             Me.columnDivHeadNameDate = MyBase.Columns("DivHeadNameDate")
+            Me.columnMoldNo = MyBase.Columns("MoldNo")
+            Me.columnMoldName = MyBase.Columns("MoldName")
+            Me.columnSumQtyMold = MyBase.Columns("SumQtyMold")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14174,9 +14210,9 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnModel_Name)
             Me.columnCustomer_Name = New Global.System.Data.DataColumn("Customer_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCustomer_Name)
-            Me.columnOrder_Month = New Global.System.Data.DataColumn("Order_Month", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnOrder_Month = New Global.System.Data.DataColumn("Order_Month", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrder_Month)
-            Me.columnOrder_Max_Month = New Global.System.Data.DataColumn("Order_Max_Month", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnOrder_Max_Month = New Global.System.Data.DataColumn("Order_Max_Month", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrder_Max_Month)
             Me.columnT0 = New Global.System.Data.DataColumn("T0", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnT0)
@@ -14214,7 +14250,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnPart_Name)
             Me.columnMachine = New Global.System.Data.DataColumn("Machine", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMachine)
-            Me.columnCycle_Time = New Global.System.Data.DataColumn("Cycle_Time", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnCycle_Time = New Global.System.Data.DataColumn("Cycle_Time", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCycle_Time)
             Me.columnCavity = New Global.System.Data.DataColumn("Cavity", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCavity)
@@ -14292,6 +14328,12 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnDivHeadName)
             Me.columnDivHeadNameDate = New Global.System.Data.DataColumn("DivHeadNameDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDivHeadNameDate)
+            Me.columnMoldNo = New Global.System.Data.DataColumn("MoldNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMoldNo)
+            Me.columnMoldName = New Global.System.Data.DataColumn("MoldName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMoldName)
+            Me.columnSumQtyMold = New Global.System.Data.DataColumn("SumQtyMold", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumQtyMold)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -33675,10 +33717,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Order_Month() As String
+        Public Property Order_Month() As Long
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.Order_MonthColumn),String)
+                    Return CType(Me(Me.tableNPWO.Order_MonthColumn),Long)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Order_Month' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -33690,10 +33732,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Order_Max_Month() As String
+        Public Property Order_Max_Month() As Long
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.Order_Max_MonthColumn),String)
+                    Return CType(Me(Me.tableNPWO.Order_Max_MonthColumn),Long)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Order_Max_Month' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -33915,10 +33957,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Cycle_Time() As String
+        Public Property Cycle_Time() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.Cycle_TimeColumn),String)
+                    Return CType(Me(Me.tableNPWO.Cycle_TimeColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Cycle_Time' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -34495,6 +34537,51 @@ Partial Public Class dsLaporan
             End Get
             Set
                 Me(Me.tableNPWO.DivHeadNameDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MoldNo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.MoldNoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MoldNo' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.MoldNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MoldName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.MoldNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MoldName' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.MoldNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SumQtyMold() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableNPWO.SumQtyMoldColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SumQtyMold' in table 'NPWO' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableNPWO.SumQtyMoldColumn) = value
             End Set
         End Property
         
@@ -35192,6 +35279,42 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDivHeadNameDateNull()
             Me(Me.tableNPWO.DivHeadNameDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMoldNoNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.MoldNoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMoldNoNull()
+            Me(Me.tableNPWO.MoldNoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMoldNameNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.MoldNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMoldNameNull()
+            Me(Me.tableNPWO.MoldNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSumQtyMoldNull() As Boolean
+            Return Me.IsNull(Me.tableNPWO.SumQtyMoldColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSumQtyMoldNull()
+            Me(Me.tableNPWO.SumQtyMoldColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

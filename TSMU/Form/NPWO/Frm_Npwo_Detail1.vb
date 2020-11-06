@@ -1,9 +1,13 @@
 ﻿Imports System.Globalization
+Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
+
 Public Class Frm_Npwo_Detail1
 
     Public IsClosed As Boolean = False
@@ -39,6 +43,7 @@ Public Class Frm_Npwo_Detail1
     Dim FrmReport As New Frm_Rpt_NPWO
     Dim _Tag As TagModel
     Dim Active_Form As Integer
+    Dim PrintTool As ReportPrintTool
 
 
     'Dim DtGridNPWO As DataTable
@@ -889,20 +894,51 @@ Public Class Frm_Npwo_Detail1
     End Sub
     Public Overrides Sub Proc_Print()
 
+
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve <> 0 Then
+        If fc_Class.H_Approve >= 3 Then
 
-            FormDetail = 3
-            'CallForm(fs_Code)
 
-            FrmReport = New Frm_Rpt_NPWO
-            FrmReport.NPWO_No = TNpwo_No.EditValue
-            FrmReport.REV = TRevisi.EditValue
+            Dim dtRpt As DataTable
+            dtRpt = New DataTable
 
-            FrmReport.StartPosition = FormStartPosition.CenterScreen
-            FrmReport.WindowState = FormWindowState.Maximized
-            FrmReport.MaximizeBox = False
-            FrmReport.ShowDialog()
+            Dim ds As New DataSet
+            Dim dsRev As New DataSet
+
+
+            ds = fc_Class.NpwoReport(TNpwo_No.EditValue, 0)
+            dsRev = fc_Class.NPWOReportRev(TNpwo_No.EditValue)
+
+
+            Dim Laporan As New DevNpwoReport()
+            Dim LaporanRev As New DevNpwoReportRev()
+
+            Laporan.DataSource = ds.Tables("NPWO")
+            LaporanRev.DataAdapter = dsRev.Tables("NpwoRev")
+
+
+            Dim subReportRevisi As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+            subReportRevisi.ReportSource.DataSource = dsRev.Tables("NpwoRev")
+
+
+
+            PrintTool = New ReportPrintTool(Laporan)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
+
+
+
+            'FormDetail = 3
+            ''CallForm(fs_Code)
+
+            'FrmReport = New Frm_Rpt_NPWO
+            'FrmReport.NPWO_No = TNpwo_No.EditValue
+            'FrmReport.REV = TRevisi.EditValue
+
+            'FrmReport.StartPosition = FormStartPosition.CenterScreen
+            'FrmReport.WindowState = FormWindowState.Maximized
+            'FrmReport.MaximizeBox = False
+            'FrmReport.ShowDialog()
 
         Else
 

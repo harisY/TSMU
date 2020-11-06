@@ -26,6 +26,7 @@ Public Class FrmMktExcelPrice
     Dim isUpload As Boolean = False
 
     Dim clmPartNoExcel As String = String.Empty
+    Dim clmPartNoExcelS As String = String.Empty
     Dim clmPriceExcelP As String = String.Empty
     Dim clmPriceExcelS As String = String.Empty
     Dim clmDateExcel As String = String.Empty
@@ -70,6 +71,27 @@ Public Class FrmMktExcelPrice
         StatusList()
     End Sub
 
+    Private Sub txtCustomer_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtCustomer.ButtonClick
+        Dim ls_Judul As String = ""
+        Dim dtSearch As New DataTable
+
+        dtSearch = cls_UploadPrice.GetDataCustomer
+        ls_Judul = "CUSTOMER"
+
+        Dim lF_SearchData As FrmSystem_LookupGrid
+        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+        lF_SearchData.Text = "Select Data " & ls_Judul
+        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+        lF_SearchData.ShowDialog()
+
+        If lF_SearchData.Values IsNot Nothing Then
+            CustID = lF_SearchData.Values.Item(0).ToString.Trim
+            txtCustomer.Text = lF_SearchData.Values.Item(1).ToString.Trim
+            ListItemsTemplate()
+        End If
+        lF_SearchData.Close()
+    End Sub
+
     Private Sub ListItemsTemplate()
         cls_UploadPrice = New ClsMktUploadPrice
         dtTemplate = New DataTable
@@ -79,6 +101,29 @@ Public Class FrmMktExcelPrice
         txtTemplate.Properties.PopupFormMinSize = txtTemplate.Size
         txtTemplate.Properties.PopupWidth = txtTemplate.Size.Width
         txtTemplate.EditValue = "001"
+    End Sub
+
+    Private Sub txtTemplate_EditValueChanged(sender As Object, e As EventArgs) Handles txtTemplate.EditValueChanged
+        cls_UploadPrice = New ClsMktUploadPrice
+        dtColumn = New DataTable
+        dtColumn = cls_UploadPrice.GetColumnExcel(txtTemplate.EditValue)
+        txtFileName.Text = ""
+
+        For Each _rows As DataRow In dtColumn.Rows
+            clmPartNoExcel = Replace(Replace(Replace(_rows("PartNoR").ToString, ".", "#"), "[", "("), "]", ")")
+            clmPartNoExcelS = Replace(Replace(Replace(_rows("PartNoS").ToString, ".", "#"), "[", "("), "]", ")")
+            clmPriceExcelP = Replace(Replace(Replace(_rows("PriceP").ToString, ".", "#"), "[", "("), "]", ")")
+            clmPriceExcelS = Replace(Replace(Replace(_rows("PriceS").ToString, ".", "#"), "[", "("), "]", ")")
+            clmDateExcel = Replace(Replace(Replace(_rows("StartDate").ToString, ".", "#"), "[", "("), "]", ")")
+            clmDescExcel = Replace(Replace(Replace(_rows("Desc").ToString, ".", "#"), "[", "("), "]", ")")
+        Next
+        listColumn = New List(Of String)({clmPartNoExcel, clmDescExcel, clmPriceExcelP, clmPriceExcelS, clmDateExcel})
+
+        dtResult.Clear()
+        GridResult.DataSource = dtResult
+        GridViewResult.BestFitColumns()
+        StatusList()
+        btnExport.Text = "Save To Excel"
     End Sub
 
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
@@ -132,15 +177,40 @@ Public Class FrmMktExcelPrice
             connString = String.Format(connString, path)
             Using excel_con As New OleDbConnection(connString)
                 excel_con.Open()
-                Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                Dim sheetName As String = sheet1.Substring(1, Len(sheet1) - 2)
+                Dim dtSheets As DataTable = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing)
+                Dim listSheet As New List(Of String)
+                Dim drSheet As DataRow
+
+                For Each drSheet In dtSheets.Rows
+                    listSheet.Add(drSheet("TABLE_NAME").ToString())
+                Next
+
                 Dim __rows As String = String.Empty
                 Dim onWhere As String = String.Empty
+                Dim sheetName As String = String.Empty
                 For Each row As DataRow In dtTemplate.Select("TemplateID = '" & txtTemplate.EditValue & "'")
-                    '__rows = sheetName + row("StartRow") + ":" + row("EndRow")
+                    sheetName = row("SheetName")
                     __rows = row("SheetName") + "$" + row("StartRow") + ":" + row("EndRow")
                     onWhere = IIf(row("OnWhere") Is DBNull.Value, "", row("OnWhere"))
                 Next
+
+                Dim isSheet As Boolean = False
+                For Each sheet As String In listSheet
+                    Dim sheetExcel As String
+                    sheetExcel = sheet.Substring(0, Len(sheet) - 1)
+                    If extension = ".xlsx" Then
+                        sheetExcel = sheet.Substring(1, Len(sheet) - 3)
+                    End If
+
+                    If sheetExcel = sheetName Then
+                        isSheet = True
+                    End If
+                Next
+
+                If isSheet = False Then
+                    Throw New Exception("Sheet " & sheetName & " Not Found !")
+                End If
+
                 Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") + __rows) + "]" + onWhere, excel_con)
                     Try
                         dtExcel = New DataTable
@@ -292,6 +362,8 @@ Public Class FrmMktExcelPrice
             SplashScreenManager.CloseForm()
             GridCellFormat(GridViewResult)
             GridViewResult.BestFitColumns()
+            GridViewResult.Columns("No").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+            GridViewResult.Columns("NoExcel").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
             StatusList(succes, info, warning, _error, totSelected)
             If _error = 0 Then
                 btnExport.Text = "Upload"
@@ -305,6 +377,21 @@ Public Class FrmMktExcelPrice
             StatusList()
         End If
     End Sub
+
+    Private Function checkColumn() As Boolean
+        Dim isNotFound As Boolean = False
+        Try
+            For i As Integer = 0 To listColumn.Count - 1
+                If listColumn(i) IsNot Nothing AndAlso Not dtExcel.Columns.Contains(listColumn(i)) Then
+                    isNotFound = True
+                    Throw New Exception("Column (" & listColumn(i) & ") tidak ditemukan, Pilih template yang sesuai!")
+                End If
+            Next
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+        Return isNotFound
+    End Function
 
     Function CheckDuplicateInvtID(partNo As String, _invtID As String) As Boolean
         '' Cek apakah inventory id ada yang sama
@@ -372,21 +459,6 @@ Public Class FrmMktExcelPrice
         End Try
     End Sub
 
-    Private Function checkColumn() As Boolean
-        Dim isNotFound As Boolean = False
-        Try
-            For i As Integer = 0 To listColumn.Count - 1
-                If listColumn(i) IsNot Nothing AndAlso Not dtExcel.Columns.Contains(listColumn(i)) Then
-                    isNotFound = True
-                    Throw New Exception("Column (" & listColumn(i) & ") tidak ditemukan, Pilih template yang sesuai!")
-                End If
-            Next
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
-        Return isNotFound
-    End Function
-
     Public Sub CreateTable()
         dtResult = New DataTable
         dtResult.Columns.AddRange(New DataColumn(11) {New DataColumn("Check", GetType(Boolean)),
@@ -411,28 +483,6 @@ Public Class FrmMktExcelPrice
                                                         New DataColumn("NewPriceR", GetType(Double)),
                                                         New DataColumn("NewPriceS", GetType(Double)),
                                                         New DataColumn("EffectiveDate", GetType(Date))})
-    End Sub
-
-    Private Sub txtTemplate_EditValueChanged(sender As Object, e As EventArgs) Handles txtTemplate.EditValueChanged
-        cls_UploadPrice = New ClsMktUploadPrice
-        dtColumn = New DataTable
-        dtColumn = cls_UploadPrice.GetColumnExcel(txtTemplate.EditValue)
-        txtFileName.Text = ""
-
-        For Each _rows As DataRow In dtColumn.Rows
-            clmPartNoExcel = Replace(Replace(Replace(_rows("PartNo").ToString, ".", "#"), "[", "("), "]", ")")
-            clmPriceExcelP = Replace(Replace(Replace(_rows("PriceP").ToString, ".", "#"), "[", "("), "]", ")")
-            clmPriceExcelS = Replace(Replace(Replace(_rows("PriceS").ToString, ".", "#"), "[", "("), "]", ")")
-            clmDateExcel = Replace(Replace(Replace(_rows("StartDate").ToString, ".", "#"), "[", "("), "]", ")")
-            clmDescExcel = Replace(Replace(Replace(_rows("Desc").ToString, ".", "#"), "[", "("), "]", ")")
-        Next
-        listColumn = New List(Of String)({clmPartNoExcel, clmDescExcel, clmPriceExcelP, clmPriceExcelS, clmDateExcel})
-
-        dtResult.Clear()
-        GridResult.DataSource = dtResult
-        GridViewResult.BestFitColumns()
-        StatusList()
-        btnExport.Text = "Save To Excel"
     End Sub
 
     Private Sub GridviewResult_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles GridViewResult.CustomDrawCell
@@ -496,34 +546,13 @@ Public Class FrmMktExcelPrice
                         End If
                     Else
                         Throw New Exception("Please Select Data !")
-                        End If
                     End If
                 End If
+            End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
 
-    End Sub
-
-    Private Sub txtCustomer_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtCustomer.ButtonClick
-        Dim ls_Judul As String = ""
-        Dim dtSearch As New DataTable
-
-        dtSearch = cls_UploadPrice.GetDataCustomer
-        ls_Judul = "CUSTOMER"
-
-        Dim lF_SearchData As FrmSystem_LookupGrid
-        lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
-        lF_SearchData.Text = "Select Data " & ls_Judul
-        lF_SearchData.StartPosition = FormStartPosition.CenterScreen
-        lF_SearchData.ShowDialog()
-
-        If lF_SearchData.Values IsNot Nothing Then
-            CustID = lF_SearchData.Values.Item(0).ToString.Trim
-            txtCustomer.Text = lF_SearchData.Values.Item(1).ToString.Trim
-            ListItemsTemplate()
-        End If
-        lF_SearchData.Close()
     End Sub
 
     Private Sub CCheck_CheckedChanged(sender As Object, e As EventArgs) Handles CCheck.CheckedChanged
