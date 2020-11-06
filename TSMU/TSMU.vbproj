@@ -306,6 +306,12 @@
     <Compile Include="Compare_Invoice\FrmPOADM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Compare_Invoice\FrmPOYIM.Designer.vb">
+      <DependentUpon>FrmPOYIM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOYIM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
       <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
     </Compile>
@@ -2873,6 +2879,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
       <DependentUpon>FrmPOADM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmPOYIM.resx">
+      <DependentUpon>FrmPOYIM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
       <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>

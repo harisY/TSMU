@@ -55,6 +55,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.lblTotSelect = New DevExpress.XtraEditors.LabelControl()
         Me.lblInfo = New DevExpress.XtraEditors.LabelControl()
         Me.lblWarning = New DevExpress.XtraEditors.LabelControl()
         Me.lblError = New DevExpress.XtraEditors.LabelControl()
@@ -67,9 +68,8 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.lblTotSelect = New DevExpress.XtraEditors.LabelControl()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -165,7 +165,7 @@ Partial Class FrmMktExcelPrice
         '
         'txtTemplate
         '
-        Me.txtTemplate.Location = New System.Drawing.Point(499, 12)
+        Me.txtTemplate.Location = New System.Drawing.Point(439, 12)
         Me.txtTemplate.Name = "txtTemplate"
         Me.txtTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtTemplate.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TemplateID", "Template ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Desc", "", 10, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
@@ -174,7 +174,7 @@ Partial Class FrmMktExcelPrice
         Me.txtTemplate.Properties.ShowFooter = False
         Me.txtTemplate.Properties.ShowHeader = False
         Me.txtTemplate.Properties.ValueMember = "TemplateID"
-        Me.txtTemplate.Size = New System.Drawing.Size(118, 22)
+        Me.txtTemplate.Size = New System.Drawing.Size(178, 22)
         Me.txtTemplate.StyleController = Me.LayoutControl1
         Me.txtTemplate.TabIndex = 4
         '
@@ -184,7 +184,7 @@ Partial Class FrmMktExcelPrice
         Me.txtCustomer.Name = "txtCustomer"
         Me.txtCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.txtCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCustomer.Size = New System.Drawing.Size(355, 22)
+        Me.txtCustomer.Size = New System.Drawing.Size(295, 22)
         Me.txtCustomer.StyleController = Me.LayoutControl1
         Me.txtCustomer.TabIndex = 9
         '
@@ -201,10 +201,10 @@ Partial Class FrmMktExcelPrice
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtTemplate
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(427, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(367, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(190, 34)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(250, 34)
         Me.LayoutControlItem2.Text = "Template"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(57, 16)
         '
@@ -243,7 +243,7 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(427, 34)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(367, 34)
         Me.LayoutControlItem5.Text = "Customer"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(57, 16)
         '
@@ -299,6 +299,9 @@ Partial Class FrmMktExcelPrice
         '
         Me.ColNo.AppearanceCell.Options.UseTextOptions = True
         Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.ColNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ColNo.Caption = "No"
         Me.ColNo.FieldName = "No"
         Me.ColNo.MinWidth = 25
@@ -312,6 +315,9 @@ Partial Class FrmMktExcelPrice
         '
         Me.ColNoExcel.AppearanceCell.Options.UseTextOptions = True
         Me.ColNoExcel.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColNoExcel.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.ColNoExcel.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColNoExcel.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ColNoExcel.Caption = "No Excel"
         Me.ColNoExcel.FieldName = "NoExcel"
         Me.ColNoExcel.MinWidth = 25
@@ -456,6 +462,17 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControl3.TabIndex = 2
         Me.LayoutControl3.Text = "LayoutControl3"
         '
+        'lblTotSelect
+        '
+        Me.lblTotSelect.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
+        Me.lblTotSelect.ImageOptions.Image = CType(resources.GetObject("lblTotSelect.ImageOptions.Image"), System.Drawing.Image)
+        Me.lblTotSelect.Location = New System.Drawing.Point(289, 4)
+        Me.lblTotSelect.Name = "lblTotSelect"
+        Me.lblTotSelect.Size = New System.Drawing.Size(70, 20)
+        Me.lblTotSelect.StyleController = Me.LayoutControl3
+        Me.lblTotSelect.TabIndex = 10
+        Me.lblTotSelect.Text = "Selected"
+        '
         'lblInfo
         '
         Me.lblInfo.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
@@ -579,21 +596,6 @@ Partial Class FrmMktExcelPrice
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(1006, 35)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'lblTotSelect
-        '
-        Me.lblTotSelect.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter
-        Me.lblTotSelect.ImageOptions.Image = CType(resources.GetObject("LabelControl1.ImageOptions.Image"), System.Drawing.Image)
-        Me.lblTotSelect.Location = New System.Drawing.Point(289, 4)
-        Me.lblTotSelect.Name = "lblTotSelect"
-        Me.lblTotSelect.Size = New System.Drawing.Size(70, 20)
-        Me.lblTotSelect.StyleController = Me.LayoutControl3
-        Me.lblTotSelect.TabIndex = 10
-        Me.lblTotSelect.Text = "Selected"
-        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.lblTotSelect
@@ -603,6 +605,10 @@ Partial Class FrmMktExcelPrice
         Me.LayoutControlItem8.Size = New System.Drawing.Size(82, 35)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
         'FrmMktExcelPrice
         '

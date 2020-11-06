@@ -160,6 +160,8 @@ Partial Class FrmCCAccrued
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup7 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.GridAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCreditCardNumber, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,6 +241,7 @@ Partial Class FrmCCAccrued
         CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridAccrued
@@ -476,7 +479,7 @@ Partial Class FrmCCAccrued
         'txtAccountName
         '
         Me.txtAccountName.Enabled = False
-        Me.txtAccountName.Location = New System.Drawing.Point(439, 7)
+        Me.txtAccountName.Location = New System.Drawing.Point(440, 7)
         Me.txtAccountName.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtAccountName.Name = "txtAccountName"
         Me.txtAccountName.Size = New System.Drawing.Size(190, 22)
@@ -487,15 +490,16 @@ Partial Class FrmCCAccrued
         '
         Me.btnProses.Location = New System.Drawing.Point(12, 7)
         Me.btnProses.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnProses.MinimumSize = New System.Drawing.Size(90, 0)
         Me.btnProses.Name = "btnProses"
-        Me.btnProses.Size = New System.Drawing.Size(88, 27)
+        Me.btnProses.Size = New System.Drawing.Size(90, 27)
         Me.btnProses.StyleController = Me.LayoutControl1
         Me.btnProses.TabIndex = 4
         Me.btnProses.Text = "SETTLEMENT"
         '
         'txtCCNumber
         '
-        Me.txtCCNumber.Location = New System.Drawing.Point(242, 7)
+        Me.txtCCNumber.Location = New System.Drawing.Point(244, 7)
         Me.txtCCNumber.MaximumSize = New System.Drawing.Size(190, 0)
         Me.txtCCNumber.Name = "txtCCNumber"
         Me.txtCCNumber.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -505,7 +509,7 @@ Partial Class FrmCCAccrued
         Me.txtCCNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
         Me.txtCCNumber.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCCNumber.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCCNumber.Size = New System.Drawing.Size(185, 22)
+        Me.txtCCNumber.Size = New System.Drawing.Size(184, 22)
         Me.txtCCNumber.StyleController = Me.LayoutControl1
         Me.txtCCNumber.TabIndex = 6
         '
@@ -524,7 +528,7 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem3.Control = Me.btnProses
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(92, 34)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(94, 34)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
@@ -539,10 +543,10 @@ Partial Class FrmCCAccrued
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.txtCCNumber
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(92, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(94, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(327, 34)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(326, 34)
         Me.LayoutControlItem6.Text = "Credit Card Number"
         Me.LayoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(125, 20)
@@ -551,7 +555,7 @@ Partial Class FrmCCAccrued
         'a
         '
         Me.a.Control = Me.txtAccountName
-        Me.a.Location = New System.Drawing.Point(419, 0)
+        Me.a.Location = New System.Drawing.Point(420, 0)
         Me.a.MaxSize = New System.Drawing.Size(0, 26)
         Me.a.MinSize = New System.Drawing.Size(121, 26)
         Me.a.Name = "a"
@@ -827,6 +831,7 @@ Partial Class FrmCCAccrued
         '
         'LayoutControl3
         '
+        Me.LayoutControl3.Controls.Add(Me.btnPrint)
         Me.LayoutControl3.Controls.Add(Me.btnCancel)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl3.Location = New System.Drawing.Point(3, 3)
@@ -840,6 +845,7 @@ Partial Class FrmCCAccrued
         '
         Me.btnCancel.Location = New System.Drawing.Point(12, 7)
         Me.btnCancel.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnCancel.MinimumSize = New System.Drawing.Size(90, 0)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(90, 27)
         Me.btnCancel.StyleController = Me.LayoutControl3
@@ -850,7 +856,7 @@ Partial Class FrmCCAccrued
         '
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem10})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 5, 0)
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1213, 39)
@@ -868,9 +874,9 @@ Partial Class FrmCCAccrued
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(94, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(197, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1099, 34)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(996, 34)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControl4
@@ -1794,6 +1800,27 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
+        'btnPrint
+        '
+        Me.btnPrint.Location = New System.Drawing.Point(114, 7)
+        Me.btnPrint.MaximumSize = New System.Drawing.Size(90, 0)
+        Me.btnPrint.MinimumSize = New System.Drawing.Size(90, 0)
+        Me.btnPrint.Name = "btnPrint"
+        Me.btnPrint.Size = New System.Drawing.Size(90, 27)
+        Me.btnPrint.StyleController = Me.LayoutControl3
+        Me.btnPrint.TabIndex = 5
+        Me.btnPrint.Text = "PRINT"
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.btnPrint
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(94, 0)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(102, 34)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
         'FrmCCAccrued
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -1880,6 +1907,7 @@ Partial Class FrmCCAccrued
         CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2026,4 +2054,6 @@ Partial Class FrmCCAccrued
     Friend WithEvents txtAccountName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents a As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents PaidDateSettle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
 End Class
