@@ -87,11 +87,13 @@ Public Class SettleHeader
 
     Public Function GetCreditCard() As DataTable
         Try
-            strQuery = " SELECT  CreditCardID ,
-                                CreditCardNumber ,
+            strQuery = "SELECT  CreditCardID ,
                                 AccountName ,
-                                BankName
-                        FROM    dbo.TravelCreditCard "
+                                BankName ,
+                                CreditCardNumber
+                        FROM    dbo.TravelCreditCard
+                        ORDER BY AccountName ASC ,
+                                BankName ASC"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

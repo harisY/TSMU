@@ -32,7 +32,8 @@ Public Class ClsMktUploadPrice
         Try
             Dim sql As String
             sql = " SELECT  pvt.TemplateID ,
-                            pvt.invtid AS PartNo ,
+                            pvt.invtid AS PartNoR ,
+                            pvt.invtidS AS PartNoS ,
                             pvt.[desc] AS [Desc] ,
                             pvt.discpriceP AS PriceP ,
                             pvt.discpriceS AS PriceS ,
@@ -43,6 +44,7 @@ Public Class ClsMktUploadPrice
                               FROM      dbo.S_MktMappingUploadPrice
                               WHERE     TemplateID = " & QVal(templateID) & "
                             ) AS tbl PIVOT ( MAX(ColumnInExcel) FOR ColumnInTable IN ( [invtid],
+                                                                                  [invtidS],
                                                                                   [desc],
                                                                                   [discpriceP],
                                                                                   [discpriceS],
