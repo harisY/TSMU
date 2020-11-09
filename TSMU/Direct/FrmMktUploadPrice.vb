@@ -44,6 +44,8 @@ Public Class FrmMktUploadPrice
                 ff_Detail.CustID = .CustID
                 ff_Detail.Template = .Template
                 ff_Detail.FileName = .FileName
+                ff_Detail.Revised = .Revised
+                ff_Detail.TotRecordExcel = .TotRecortExcel
             End With
 
             If frmExcelPrice._isUpload AndAlso dtUpload.Rows.Count > 0 Then
@@ -54,8 +56,10 @@ Public Class FrmMktUploadPrice
                     .Columns("No").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
                     .Columns("OldPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                     .Columns("OldPrice").DisplayFormat.FormatString = "n2"
-                    .Columns("NewPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    .Columns("NewPrice").DisplayFormat.FormatString = "n2"
+                    .Columns("NewPriceR").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    .Columns("NewPriceR").DisplayFormat.FormatString = "n2"
+                    .Columns("NewPriceS").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    .Columns("NewPriceS").DisplayFormat.FormatString = "n2"
                     .Columns("EffectiveDate").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                     .Columns("EffectiveDate").DisplayFormat.FormatString = "dd-MM-yyyy"
                 End With

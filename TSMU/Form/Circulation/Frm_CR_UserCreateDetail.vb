@@ -149,6 +149,8 @@ Public Class Frm_CR_UserCreateDetail
                 'Active_Form 1 = User
                 If Active_Form = 1 Then
 
+                    BPrint.Visible = True
+
                     With GridView1
                         .Columns("Note").Visible = True
                     End With
@@ -3907,5 +3909,50 @@ Public Class Frm_CR_UserCreateDetail
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
+        Dim ds As New DataSet
+        Dim dsOtherDept As New DataSet
+        Dim dsApprove As New DataSet
+        Dim dsTotal As New DataSet
+
+        ds = fc_Class.RptCirculation_Temp(T_CRNo.EditValue)
+
+        dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+        dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
+        dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
+
+        Dim Laporan As New DevCirculationReport()
+        Dim LaporanDOC As New DevCirculationReportDOC()
+        Dim LaporanOther As New DevCirculationReportOther()
+        Dim LaporanBOD As New DevCirculationReportBOD()
+        Dim LaporanTotal As New DevCirculationReportTotal()
+
+        Laporan.DataSource = ds.Tables("CirculationHead")
+        LaporanDOC.DataSource = ds.Tables("CirculationHead")
+        LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+        LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
+        LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+        Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+        subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
+
+        Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+        subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+
+        Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+        subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+
+        Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
+        subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+        PrintTool = New ReportPrintTool(Laporan)
+        TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+        PrintTool.ShowPreview(UserLookAndFeel.Default)
+
+
     End Sub
 End Class

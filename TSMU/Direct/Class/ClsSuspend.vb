@@ -17,8 +17,6 @@ Public Class ClsSuspend
     Public Property Total As Double
     Public Property UpdatedBy As String
     Public Property UpdatedDate As DateTime
-
-
     Public Property AcctID As String
     Public Property Alamat As String
     Public Property Amount As Double

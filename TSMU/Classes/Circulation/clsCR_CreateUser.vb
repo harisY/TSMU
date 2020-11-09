@@ -549,7 +549,7 @@ Public Class ClsCR_CreateUser
                     H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "0001"
                 Else
                     H_CirculationNo = dtTable.Rows(0).Item("CirculationNo")
-                    H_CirculationNo = Val(Microsoft.VisualBasic.Mid(H_CirculationNo, 13, 4)) + 1
+                    H_CirculationNo = Val(Microsoft.VisualBasic.Mid(H_CirculationNo, 15, 4)) + 1
                     If Len(H_CirculationNo) = 1 Then
                         H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "000" & H_CirculationNo & ""
                     ElseIf Len(H_CirculationNo) = 2 Then
@@ -1773,6 +1773,24 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+    Public Function RptCirculation_Temp(No As String) As DataSet
+
+        Dim query As String = "[CR_Repot_Header_Temp]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationHead", pParam)
+        Return ds
+
+        'Mold_Number
+
+    End Function
+
     Public Function RptCirculation(No As String) As DataSet
 
         Dim query As String = "[CR_Repot_Header]"

@@ -413,8 +413,8 @@ Public Class FrmEntertainSettleDetailDirectCC
 
                     If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                         creditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                        txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
-                        accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                        txtCCNumber.Text = lF_SearchData.Values.Item(3).ToString.Trim
+                        accountName = lF_SearchData.Values.Item(1).ToString.Trim + "-" + lF_SearchData.Values.Item(2).ToString.Trim
                     Else
                         TxtPaymentType.Text = "FINANCE"
                         txtCCNumber.Text = ""

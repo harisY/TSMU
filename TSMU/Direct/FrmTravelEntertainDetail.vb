@@ -396,8 +396,8 @@ Public Class FrmTravelEntertainDetail
 
                     If lF_SearchData.Values IsNot Nothing Then
                         CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                        txtCCNumber.EditValue = lF_SearchData.Values.Item(1).ToString.Trim
-                        AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                        txtCCNumber.EditValue = lF_SearchData.Values.Item(3).ToString.Trim
+                        AccountNameNBank = lF_SearchData.Values.Item(1).ToString.Trim + "-" + lF_SearchData.Values.Item(2).ToString.Trim
                     Else
                         txtPayType.Text = "FINANCE"
                     End If

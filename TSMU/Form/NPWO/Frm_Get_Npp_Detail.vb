@@ -180,9 +180,9 @@ Public Class Frm_Get_Npp_Detail
                 chkSelect = Convert.ToBoolean(GridView1.GetRowCellValue(i, GridView1.Columns("Check")))
                 Group = Convert.ToString(GridView1.GetRowCellValue(i, GridView1.Columns("Group ID")))
                 CekPartNo = Convert.ToString(GridView1.GetRowCellValue(i, GridView1.Columns("Part No")))
-
+                CT = 0
+                Weight = 0
                 If chkSelect = True Then
-
                     If DtTabale.Rows.Count <= 0 Then
                         MyNewRow = DtTabale.NewRow
 
@@ -215,7 +215,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Vibration") = vibra
                                         .Item("Type") = "MOLD"
 
-                                        CT = CT + GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        CT = IIf((CT >= GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))), CT, GridView1.GetRowCellValue(j, GridView1.Columns("C/T")))
                                         Weight = Weight + GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
                                         .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
                                         .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
@@ -223,7 +223,6 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Weight") = Weight
 
                                         .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
-
 
                                     End With
 
@@ -261,7 +260,6 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Qty Mold") = "0"
                                         .Item("Type") = "PROCESS"
                                         .Item("Type1") = "MOLD"
-
                                         .Item("Status Mold") = GridView1.GetRowCellValue(j, GridView1.Columns("Status Mold"))
 
                                     End With
@@ -311,7 +309,7 @@ Public Class Frm_Get_Npp_Detail
                                         .Item("Vibration") = vibra
                                         .Item("Type") = "MOLD"
 
-                                        CT = CT + GridView1.GetRowCellValue(j, GridView1.Columns("C/T"))
+                                        CT = IIf(CT >= GridView1.GetRowCellValue(j, GridView1.Columns("C/T")), CT, GridView1.GetRowCellValue(j, GridView1.Columns("C/T")))
                                         Weight = Weight + GridView1.GetRowCellValue(j, GridView1.Columns("Weight"))
                                         .Item("Machine") = GridView1.GetRowCellValue(j, GridView1.Columns("Machine"))
                                         .Item("Cav") = GridView1.GetRowCellValue(j, GridView1.Columns("Cav"))
@@ -334,7 +332,6 @@ Public Class Frm_Get_Npp_Detail
                             Group2 = Convert.ToString(GridView1.GetRowCellValue(j, GridView1.Columns("Group ID")))
                             If chkSelect2 = True Then
                                 If Group2 = Group Then
-
 
                                     MyNewRowDetail = dtDetail.NewRow
                                     With MyNewRowDetail

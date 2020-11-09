@@ -135,6 +135,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.BPrint = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1294,11 +1295,22 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Timer1.Interval = 700
         '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(371, 3)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BPrint.TabIndex = 99
+        Me.BPrint.Text = "Print"
+        Me.BPrint.UseVisualStyleBackColor = True
+        Me.BPrint.Visible = False
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1173, 550)
+        Me.Controls.Add(Me.BPrint)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid5)
         Me.Controls.Add(Me.C_Term)
@@ -1314,6 +1326,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.C_Term, 0)
         Me.Controls.SetChildIndex(Me.Grid5, 0)
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
+        Me.Controls.SetChildIndex(Me.BPrint, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1511,4 +1524,5 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents C_SalesType As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents BPrint As Button
 End Class
