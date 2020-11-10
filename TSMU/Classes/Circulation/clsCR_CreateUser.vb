@@ -1413,6 +1413,11 @@ Public Class ClsCR_CreateUser
                                                ,'" & H_TanggalBeritaAcara & "')"
                 MainModul.ExecQuery(ls_SP)
 
+                Dim ls_SPH As String = "UPDATE [CR_Request]
+                                       SET [Status] = 'BA'
+                                     WHERE [CirculationNo] = '" & H_CirculationNo & "'"
+                MainModul.ExecQuery(ls_SPH)
+
             ElseIf Act = 2 Then
                 Dim ls_SP As String = "UPDATE [CR_BeritaAcara]
                                        SET [NoBeritaAcara] = '" & H_NoBeritaAcara & "'

@@ -13,7 +13,8 @@ Public Class Frm_CR_BeritaAcara_Input
     Dim NamaFile As String = ""
     Dim Extension As String = ""
     Dim fileSavePath As String = ""
-    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
+    ' Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\Circulation\"
     Dim FrmViewPdf As Frm_ViewPdf
 
 

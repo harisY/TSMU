@@ -166,7 +166,7 @@ Public Class Frm_CR_UserCreateDetail
                         GridView1.OptionsBehavior.Editable = True
                         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
                         T_CRNo.Enabled = False
-                    ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                    ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "BA" Then
                         GridView1.OptionsBehavior.Editable = True
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                         BBeritaAcara.Enabled = True
@@ -353,6 +353,7 @@ Public Class Frm_CR_UserCreateDetail
                     If fc_Class.H_Status = "Other Dept" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
                     ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                        'ElseIf fc_Class.H_Status = "BA" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
                         BBeritaAcara.Visible = True
                         BBeritaAcara.Text = "No Berita Acara"
@@ -394,6 +395,7 @@ Public Class Frm_CR_UserCreateDetail
 
                     'Active_Form 7 = Purchase Termin
                 ElseIf Active_Form = 7 Then
+
                     Grid5.Visible = False
                     Grid4.Visible = True
                     C_Term.Visible = True
@@ -403,7 +405,7 @@ Public Class Frm_CR_UserCreateDetail
                     GridView1.OptionsBehavior.Editable = False
                     BAddRows.Enabled = False
                     BMold.Enabled = False
-                    BBeritaAcara.Enabled = True
+
                     Call No_Edit_TextBox()
 
                     With GridView1
@@ -422,7 +424,13 @@ Public Class Frm_CR_UserCreateDetail
                         '.Columns("Check").Visible = True
                         .Columns("Note").Visible = True
                     End With
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
+                    If fc_Class.H_Status = "BA" Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
+                        BBeritaAcara.Enabled = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                    End If
+
 
                 ElseIf Active_Form = 8 Then
                     Grid5.Visible = True
@@ -1665,11 +1673,25 @@ Public Class Frm_CR_UserCreateDetail
             T_CustomerName.Text = FGetMold.Values_Customer
 
         ElseIf CForm = 5 Then
+            If fc_Class.H_PO = True Then
+                If fc_Class.H_No_PO <> "" Then
+                    FGetBeritaAcara = New Frm_CR_BeritaAcara_Input(T_CRNo.EditValue, "", Active_Form)
+                    FGetBeritaAcara.StartPosition = FormStartPosition.CenterScreen
+                    FGetBeritaAcara.MaximizeBox = False
+                    FGetBeritaAcara.ShowDialog()
+                Else
+                    MessageBox.Show("Pleases Check PO Number", "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1)
+                End If
+            Else
+                FGetBeritaAcara = New Frm_CR_BeritaAcara_Input(T_CRNo.EditValue, "", Active_Form)
+                    FGetBeritaAcara.StartPosition = FormStartPosition.CenterScreen
+                    FGetBeritaAcara.MaximizeBox = False
+                    FGetBeritaAcara.ShowDialog()
+                End If
 
-            FGetBeritaAcara = New Frm_CR_BeritaAcara_Input(T_CRNo.EditValue, "", Active_Form)
-            FGetBeritaAcara.StartPosition = FormStartPosition.CenterScreen
-            FGetBeritaAcara.MaximizeBox = False
-            FGetBeritaAcara.ShowDialog()
 
         End If
 
@@ -3920,34 +3942,34 @@ Public Class Frm_CR_UserCreateDetail
 
         ds = fc_Class.RptCirculation_Temp(T_CRNo.EditValue)
 
-        dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
-        dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
-        dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
+        'dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+        'dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
+        'dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
 
-        Dim Laporan As New DevCirculationReport()
-        Dim LaporanDOC As New DevCirculationReportDOC()
-        Dim LaporanOther As New DevCirculationReportOther()
-        Dim LaporanBOD As New DevCirculationReportBOD()
-        Dim LaporanTotal As New DevCirculationReportTotal()
+        Dim Laporan As New DevCirculationTemp2()
+        Dim LaporanDOC As New DevCirculationReportDOCTemp()
+        'Dim LaporanOther As New DevCirculationReportOther()
+        'Dim LaporanBOD As New DevCirculationReportBOD()
+        'Dim LaporanTotal As New DevCirculationReportTotal()
 
         Laporan.DataSource = ds.Tables("CirculationHead")
         LaporanDOC.DataSource = ds.Tables("CirculationHead")
-        LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
-        LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
-        LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
+        'LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+        'LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
+        'LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
 
 
         Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
         subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
 
-        Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
-        subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+        'Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+        'subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
 
-        Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
-        subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+        'Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+        'subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
 
-        Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
-        subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
+        'Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
+        'subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
 
         PrintTool = New ReportPrintTool(Laporan)
         TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
