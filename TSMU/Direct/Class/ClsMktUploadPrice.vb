@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+
 Public Class ClsMktUploadPrice
     Dim _globalService As GlobalService
     Public Property NoUpload As String
@@ -211,13 +212,27 @@ Public Class ClsMktUploadPrice
     Public Function CheckFileName(__fileName As String) As Integer
         Try
             Dim sql As String
-            Dim IsRev As Boolean = False
             sql = " SELECT  COUNT(NoUpload) AS IsRev
                     FROM    dbo.T_MktUploadPriceHeader
                     WHERE   FileName = " & QVal(__fileName) & " "
             Dim dt As New DataTable
             dt = GetDataTable(sql)
             Return dt.Rows(0).Item("IsRev")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetTotalTrans(__partNo As String, __invtID As String) As Integer
+        Try
+            Dim sql As String
+            sql = " SELECT  COUNT(AlternateID) AS Total
+                    FROM    dbo.SOLine
+                    WHERE   REPLACE(AlternateID, '-', '') = " & QVal(__partNo) & "
+                            AND InvtID = " & QVal(__invtID) & " "
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt.Rows(0).Item("Total")
         Catch ex As Exception
             Throw ex
         End Try

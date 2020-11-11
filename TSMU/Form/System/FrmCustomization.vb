@@ -74,6 +74,7 @@ Public Class FrmCustomization
                     btn.Text = "Save"
                     AddHandler btn.Click, AddressOf SaveButtonClick
                 Else
+                    btn.Text = GridLocalizer.Active.GetLocalizedString(GridStringId.EditFormUpdateButton)
                     AddHandler btn.Click, AddressOf UpdateButtonClick
                 End If
             End If
@@ -82,6 +83,7 @@ Public Class FrmCustomization
 
     Private Sub CancelButtonClick(ByVal sender As Object, ByVal e As EventArgs)
         RemoveHandler(TryCast(sender, SimpleButton)).Click, AddressOf CancelButtonClick
+        LoadGrid()
     End Sub
 
     Private Sub SaveButtonClick(ByVal sender As Object, ByVal e As EventArgs)

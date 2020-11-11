@@ -70,6 +70,7 @@ Partial Class FrmMktExcelPrice
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ColMaxTotTrans = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -272,7 +273,7 @@ Partial Class FrmMktExcelPrice
         '
         Me.GridViewResult.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewResult.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewResult.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColCheck, Me.ColNo, Me.ColNoExcel, Me.ColPartNo, Me.ColInvtID, Me.ColPartName, Me.ColOldPrice, Me.ColNewPriceR, Me.ColNewPriceS, Me.ColEffectiveDate, Me.ColStatus, Me.ColMessage})
+        Me.GridViewResult.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColCheck, Me.ColNo, Me.ColNoExcel, Me.ColPartNo, Me.ColInvtID, Me.ColPartName, Me.ColOldPrice, Me.ColNewPriceR, Me.ColNewPriceS, Me.ColEffectiveDate, Me.ColStatus, Me.ColMessage, Me.ColMaxTotTrans})
         Me.GridViewResult.GridControl = Me.GridResult
         Me.GridViewResult.Name = "GridViewResult"
         Me.GridViewResult.OptionsView.BestFitMode = DevExpress.XtraGrid.Views.Grid.GridBestFitMode.Full
@@ -610,6 +611,15 @@ Partial Class FrmMktExcelPrice
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'ColMaxTotTrans
+        '
+        Me.ColMaxTotTrans.Caption = "Total Trans"
+        Me.ColMaxTotTrans.FieldName = "MaxTotTrans"
+        Me.ColMaxTotTrans.MinWidth = 25
+        Me.ColMaxTotTrans.Name = "ColMaxTotTrans"
+        Me.ColMaxTotTrans.OptionsColumn.AllowEdit = False
+        Me.ColMaxTotTrans.Width = 94
+        '
         'FrmMktExcelPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -700,4 +710,5 @@ Partial Class FrmMktExcelPrice
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents lblTotSelect As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents ColMaxTotTrans As DevExpress.XtraGrid.Columns.GridColumn
 End Class

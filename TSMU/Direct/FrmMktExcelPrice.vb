@@ -38,6 +38,8 @@ Public Class FrmMktExcelPrice
     Dim _error As Integer
     Dim No As Integer
     Dim totSelected As Integer
+    Dim isCheck As Boolean
+    Dim maxTotTrans As Integer
 
     Public Sub New()
         ' This call is required by the designer.
@@ -117,7 +119,7 @@ Public Class FrmMktExcelPrice
             clmDateExcel = Replace(Replace(Replace(_rows("StartDate").ToString, ".", "#"), "[", "("), "]", ")")
             clmDescExcel = Replace(Replace(Replace(_rows("Desc").ToString, ".", "#"), "[", "("), "]", ")")
         Next
-        listColumn = New List(Of String)({clmPartNoExcel, clmDescExcel, clmPriceExcelP, clmPriceExcelS, clmDateExcel})
+        listColumn = New List(Of String)({clmPartNoExcel, clmPartNoExcelS, clmDescExcel, clmPriceExcelP, clmPriceExcelS, clmDateExcel})
 
         dtResult.Clear()
         GridResult.DataSource = dtResult
@@ -182,7 +184,7 @@ Public Class FrmMktExcelPrice
                 Dim drSheet As DataRow
 
                 For Each drSheet In dtSheets.Rows
-                    listSheet.Add(drSheet("TABLE_NAME").ToString())
+                    listSheet.Add(Replace(drSheet("TABLE_NAME").ToString(), "'", ""))
                 Next
 
                 Dim __rows As String = String.Empty
@@ -190,24 +192,11 @@ Public Class FrmMktExcelPrice
                 Dim sheetName As String = String.Empty
                 For Each row As DataRow In dtTemplate.Select("TemplateID = '" & txtTemplate.EditValue & "'")
                     sheetName = row("SheetName")
-                    __rows = row("SheetName") + "$" + row("StartRow") + ":" + row("EndRow")
+                    __rows = sheetName + "$" + row("StartRow") + ":" + row("EndRow")
                     onWhere = IIf(row("OnWhere") Is DBNull.Value, "", row("OnWhere"))
                 Next
 
-                Dim isSheet As Boolean = False
-                For Each sheet As String In listSheet
-                    Dim sheetExcel As String
-                    sheetExcel = sheet.Substring(0, Len(sheet) - 1)
-                    If extension = ".xlsx" Then
-                        sheetExcel = sheet.Substring(1, Len(sheet) - 3)
-                    End If
-
-                    If sheetExcel = sheetName Then
-                        isSheet = True
-                    End If
-                Next
-
-                If isSheet = False Then
+                If Not listSheet.Contains(sheetName + "$") Then
                     Throw New Exception("Sheet " & sheetName & " Not Found !")
                 End If
 
@@ -216,7 +205,7 @@ Public Class FrmMktExcelPrice
                         dtExcel = New DataTable
                         oda.Fill(dtExcel)
                     Catch ex As Exception
-                        Throw New Exception(ex.Message)
+                        Throw New Exception("Template does not match !")
                     End Try
                 End Using
                 excel_con.Close()
@@ -237,11 +226,13 @@ Public Class FrmMktExcelPrice
             warning = 0
             _error = 0
             No = 0
+            totSelected = 0
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             Dim dt As New DataTable
             dt = cls_UploadPrice.CheckInventoryID(CustID)
             For Each rows As DataRow In dtExcel.Rows
+#Region "Kolom partno ke-1"
                 If Not String.IsNullOrEmpty(IIf(rows(clmPartNoExcel) Is DBNull.Value, "", rows(clmPartNoExcel))) Then
                     Dim rowInvtID As DataRow()
                     Dim status As String = "Error"
@@ -252,11 +243,15 @@ Public Class FrmMktExcelPrice
                     Dim startDate As Date = Date.Today
                     rowInvtID = dt.Select("AlternateID = " & QVal(Replace(rows(clmPartNoExcel), "-", "")) & " ")
                     NoExcel += 1
+                    isCheck = True
+                    maxTotTrans = 0
                     If rowInvtID.Count = 0 Then
+                        'Jika partno / alternateid tidak ditemukan di Master
                         message = "" & clmPartNoExcel & " Not Found !"
                         _error += 1
                         addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
                     ElseIf rowInvtID.Count = 1 Then
+                        'Jika 1 partno memiliki 1 inventoryid
                         newPriceR = 0
                         newPriceS = 0
                         invtID = rowInvtID(0)("InvtID").ToString
@@ -264,16 +259,17 @@ Public Class FrmMktExcelPrice
                             startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(0)("StartDate"), rows(clmDateExcel)))
                         End If
                         If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
+                            status = "Error"
                             message = "Price Not Found !"
                             _error += 1
                             addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
                         Else
-                            If clmPriceExcelS Is Nothing Then
+                            If clmPriceExcelS Is Nothing OrElse clmPartNoExcelS IsNot Nothing Then
                                 newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelP))
                             ElseIf rowInvtID(0)("PartType") = "P" OrElse rowInvtID(0)("PartType") = "N" Then
                                 newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelP))
                             ElseIf rowInvtID(0)("PartType") = "S" Then
-                                newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelS))
+                                newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rows(clmPriceExcelP), rows(clmPriceExcelS))
                             Else
                                 newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelP))
                             End If
@@ -289,14 +285,17 @@ Public Class FrmMktExcelPrice
                             End If
                         End If
                     ElseIf rowInvtID.Count > 1 Then
+                        'Jika inventory id lebih dari 1
                         For j As Integer = 0 To rowInvtID.Count - 1
                             newPriceR = 0
                             newPriceS = 0
+                            isCheck = True
+                            maxTotTrans = 0
                             invtID = rowInvtID(j)("InvtID").ToString
                             If clmDateExcel IsNot Nothing Then
                                 startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(j)("StartDate"), rows(clmDateExcel)))
                             End If
-                            If clmPriceExcelS Is Nothing Then
+                            If clmPriceExcelS Is Nothing OrElse clmPartNoExcelS IsNot Nothing Then
                                 If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
                                     status = "Error"
                                     message = "Price Not Found !"
@@ -318,6 +317,7 @@ Public Class FrmMktExcelPrice
                                 End If
                             ElseIf rowInvtID(j)("PartType") = "P" OrElse rowInvtID(j)("PartType") = "N" Then
                                 If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
+                                    status = "Error"
                                     message = "Price Not Found !"
                                     _error += 1
                                     addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
@@ -337,11 +337,12 @@ Public Class FrmMktExcelPrice
                                 End If
                             ElseIf rowInvtID(j)("PartType") = "S" Then
                                 If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
+                                    status = "Error"
                                     message = "Price Not Found !"
                                     _error += 1
                                     addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
                                 Else
-                                    newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(j)("DiscPrice"), rows(clmPriceExcelS))
+                                    newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rows(clmPriceExcelP), rows(clmPriceExcelS))
                                     If CheckDuplicateInvtID(rows(clmPartNoExcel), invtID) Then
                                         status = "Warning"
                                         message = "Part No More Than 1 !"
@@ -358,6 +359,85 @@ Public Class FrmMktExcelPrice
                         Next
                     End If
                 End If
+#End Region
+
+#Region "Jika ada kolom partno ke-2"
+                If clmPartNoExcelS IsNot Nothing AndAlso Not String.IsNullOrEmpty(IIf(rows(clmPartNoExcelS) Is DBNull.Value, "", rows(clmPartNoExcelS))) Then
+                    Dim rowInvtID As DataRow()
+                    Dim status As String = "Error"
+                    Dim message As String = String.Empty
+                    Dim invtID As String = String.Empty
+                    Dim newPriceR As Double = 0
+                    Dim newPriceS As Double = 0
+                    Dim startDate As Date = Date.Today
+                    rowInvtID = dt.Select("AlternateID = " & QVal(Replace(rows(clmPartNoExcelS), "-", "")) & " ")
+                    isCheck = True
+                    maxTotTrans = 0
+                    If rowInvtID.Count = 0 Then
+                        'Jika partno / alternateid tidak ditemukan di Master
+                        message = "" & clmPartNoExcelS & " Not Found !"
+                        _error += 1
+                        addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                    ElseIf rowInvtID.Count = 1 Then
+                        'Jika 1 partno memiliki 1 inventoryid
+                        newPriceR = 0
+                        newPriceS = 0
+                        invtID = rowInvtID(0)("InvtID").ToString
+                        If clmDateExcel IsNot Nothing Then
+                            startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(0)("StartDate"), rows(clmDateExcel)))
+                        End If
+                        If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
+                            status = "Error"
+                            message = "Price Not Found !"
+                            _error += 1
+                            addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                        Else
+                            newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelS))
+                            If CheckDuplicateInvtID(rows(clmPartNoExcelS), invtID) Then
+                                status = "Warning"
+                                message = "Part No More Than 1 !"
+                                warning += 1
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                            Else
+                                status = "Success"
+                                succes += 1
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                            End If
+                        End If
+                    ElseIf rowInvtID.Count > 1 Then
+                        'Jika inventory id lebih dari 1
+                        For j As Integer = 0 To rowInvtID.Count - 1
+                            newPriceR = 0
+                            newPriceS = 0
+                            isCheck = True
+                            maxTotTrans = 0
+                            invtID = rowInvtID(j)("InvtID").ToString
+                            If clmDateExcel IsNot Nothing Then
+                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(j)("StartDate"), rows(clmDateExcel)))
+                            End If
+                            If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
+                                status = "Error"
+                                message = "Price Not Found !"
+                                _error += 1
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                            Else
+                                newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(j)("DiscPrice"), rows(clmPriceExcelS))
+                                If CheckDuplicateInvtID(rows(clmPartNoExcelS), invtID) Then
+                                    status = "Warning"
+                                    message = "Part No More Than 1 !"
+                                    warning += 1
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                Else
+                                    status = "Info"
+                                    message = "Invt ID More Than 1 !"
+                                    info += 1
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                End If
+                            End If
+                        Next
+                    End If
+                End If
+#End Region
             Next
             SplashScreenManager.CloseForm()
             GridCellFormat(GridViewResult)
@@ -398,6 +478,8 @@ Public Class FrmMktExcelPrice
         Dim isDuplicate As Boolean = False
         For i As Integer = 0 To GridViewResult.RowCount - 1
             If GridViewResult.GetRowCellValue(i, "PartNo") <> partNo AndAlso GridViewResult.GetRowCellValue(i, "InvtID") = _invtID Then
+                cls_UploadPrice = New ClsMktUploadPrice
+                maxTotTrans = GridViewResult.GetRowCellValue(i, "MaxTotTrans")
                 If GridViewResult.GetRowCellValue(i, "Status") = "Success" Then
                     succes -= 1
                     warning += 1
@@ -405,11 +487,35 @@ Public Class FrmMktExcelPrice
                     info -= 1
                     warning += 1
                 End If
+
+                Dim totTransPrev As Integer = cls_UploadPrice.GetTotalTrans(GridViewResult.GetRowCellValue(i, "PartNo"), GridViewResult.GetRowCellValue(i, "InvtID"))
+                Dim totTransCurr As Integer = cls_UploadPrice.GetTotalTrans(partNo, _invtID)
+
+                If totTransPrev > maxTotTrans Then
+                    maxTotTrans = totTransPrev
+                End If
+
+                If totTransCurr >= maxTotTrans Then
+                    maxTotTrans = totTransCurr
+                    If GridViewResult.GetRowCellValue(i, "Check") Then
+                        warning -= 1
+                        totSelected -= 1
+                    End If
+                    GridViewResult.SetRowCellValue(i, "Check", False)
+                    GridViewResult.SetRowCellValue(i, "MaxTotTrans", maxTotTrans)
+                Else
+                    GridViewResult.SetRowCellValue(i, "MaxTotTrans", maxTotTrans)
+                    isCheck = False
+                End If
+
                 GridViewResult.SetRowCellValue(i, "Status", "Warning")
                 GridViewResult.SetRowCellValue(i, "Message", "Part No More Than 1 !")
                 isDuplicate = True
             End If
         Next
+        If isCheck = False Then
+            warning -= 1
+        End If
         Return isDuplicate
     End Function
 
@@ -418,8 +524,10 @@ Public Class FrmMktExcelPrice
         newRow = dtResult.NewRow
         No += 1
         TotRecortExcel = NoExcel
-        totSelected = No
-        newRow("Check") = True
+        If isCheck Then
+            totSelected += 1
+        End If
+        newRow("Check") = isCheck
         newRow("No") = No
         newRow("NoExcel") = NoExcel
         newRow("PartNo") = partNo
@@ -431,6 +539,7 @@ Public Class FrmMktExcelPrice
         newRow("EffectiveDate") = effDate
         newRow("Status") = Status
         newRow("Message") = Message
+        newRow("MaxTotTrans") = maxTotTrans
         dtResult.Rows.Add(newRow)
     End Sub
 
@@ -461,7 +570,7 @@ Public Class FrmMktExcelPrice
 
     Public Sub CreateTable()
         dtResult = New DataTable
-        dtResult.Columns.AddRange(New DataColumn(11) {New DataColumn("Check", GetType(Boolean)),
+        dtResult.Columns.AddRange(New DataColumn(12) {New DataColumn("Check", GetType(Boolean)),
                                                     New DataColumn("No", GetType(Integer)),
                                                     New DataColumn("NoExcel", GetType(Integer)),
                                                     New DataColumn("PartNo", GetType(String)),
@@ -472,7 +581,8 @@ Public Class FrmMktExcelPrice
                                                     New DataColumn("NewPriceS", GetType(Double)),
                                                     New DataColumn("EffectiveDate", GetType(Date)),
                                                     New DataColumn("Status", GetType(String)),
-                                                    New DataColumn("Message", GetType(String))})
+                                                    New DataColumn("Message", GetType(String)),
+                                                    New DataColumn("MaxTotTrans", GetType(String))})
 
         dtUploadTemp = New DataTable
         dtUploadTemp.Columns.AddRange(New DataColumn(7) {New DataColumn("No", GetType(Integer)),
