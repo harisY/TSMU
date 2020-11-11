@@ -814,7 +814,7 @@ Public Class frmDRR_details
         Try
             Dim grid As GridControl = TryCast(sender, GridControl)
             Dim view As GridView = TryCast(grid.FocusedView, GridView)
-            If e.KeyData = Keys.Delete Then
+            If e.KeyData = Keys.F3 Then
                 If view.FocusedRowHandle <> 0 Then
                     view.DeleteSelectedRows()
                     e.Handled = True
@@ -949,7 +949,4 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Sub BtnFunction_Click(sender As Object, e As EventArgs) Handles BtnFunction.Click
-
-    End Sub
 End Class
