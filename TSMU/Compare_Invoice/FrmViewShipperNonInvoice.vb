@@ -18,7 +18,7 @@ Public Class FrmViewShipperNonInvoice
     Dim _Service As ClsShippernotinvoice
     Dim ObjSuspend2 As ClsShippernotinvoice
 
-
+    Dim TotAmount As Double
 
     Private Sub _BtnCust2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles _BtnCust2.ButtonClick
         Try
@@ -60,6 +60,7 @@ Public Class FrmViewShipperNonInvoice
         bb_SetDisplayChangeConfirmation = False
         Grid.DataSource = Nothing
         _TxtLokasi.Text = gh_Common.Site
+
         'If gh_Common.Site.ToLower = "all" Then
         '    _TxtLokasi.ReadOnly = False
         'Else
@@ -168,7 +169,7 @@ Public Class FrmViewShipperNonInvoice
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView2)
-
+            GridView1.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
 
             Cursor = Cursors.Default
 
@@ -198,7 +199,7 @@ Public Class FrmViewShipperNonInvoice
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView3)
-
+            GridView1.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
 
             Cursor = Cursors.Default
 
@@ -271,6 +272,15 @@ Public Class FrmViewShipperNonInvoice
         LoadDataxx()
         LoadGridCM()
         LoadGridDM()
+        TotAmount = 0
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                TotAmount = TotAmount + CDbl(GridView1.GetRowCellValue(i, "Amount"))
+            Next
+            _txtamount.Text = Format(TotAmount, "#,#.##")
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub _BtnCust2_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust2.EditValueChanged

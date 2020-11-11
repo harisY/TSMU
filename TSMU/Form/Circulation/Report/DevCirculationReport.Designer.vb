@@ -324,7 +324,7 @@ Partial Public Class DevCirculationReport
         '
         'XrTableCell23
         '
-        Me.XrTableCell23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FACName]")})
+        Me.XrTableCell23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([DivHeadName] == '','' ,[FACName] )")})
         Me.XrTableCell23.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell23.Multiline = True
         Me.XrTableCell23.Name = "XrTableCell23"
