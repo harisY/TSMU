@@ -63,7 +63,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>tsmu.ico</ApplicationIcon>
+    <ApplicationIcon>7Tells.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -4613,6 +4613,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="7Tells.ico" />
     <Content Include="Icon\1.jpg" />
     <Content Include="Icon\1486226843_user-group-new.png" />
     <Content Include="Icon\1486226909_Save.png" />
