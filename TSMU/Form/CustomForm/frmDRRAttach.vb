@@ -60,8 +60,10 @@ Public Class frmDRRAttach
                 GalleryControl1.Gallery.Groups(0).Items.Clear()
                 Dim index As Integer = 0
                 For Each gambar In _Images
-                    Dim pathParts = gambar.Split("_"c)
-                    Dim _filename = _NoNPP & "_" & pathParts(1) & "_" & Replace(pathParts(2), ".png", "")
+                    'Dim pathParts = gambar.Split("\"c)
+                    'Dim _filename = _NoNPP & "_" & pathParts(1) & "_" & Replace(pathParts(2), ".png", "")
+                    'Dim DirName = Path.GetDirectoryName(gambar)
+                    Dim _filename = Path.GetFileName(gambar)
                     If _filename = "" Then
                         Exit For
                     End If

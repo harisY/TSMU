@@ -1480,6 +1480,12 @@
     <Compile Include="Form\Common\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
+      <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmJogres.Designer.vb">
       <DependentUpon>frmJogres.vb</DependentUpon>
     </Compile>
@@ -2404,6 +2410,7 @@
     <Compile Include="Models\payment_header_models.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
+    <Compile Include="Models\SettingModel.vb" />
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
@@ -2766,6 +2773,7 @@
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\SettingService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -3230,6 +3238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
+      <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>

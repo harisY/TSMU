@@ -27,6 +27,7 @@ Partial Class frmForecast_PO
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SinkronasiDataTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,9 +49,9 @@ Partial Class frmForecast_PO
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(303, 128)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 152)
         '
         'ExportToExcelTSM
         '
@@ -83,12 +84,22 @@ Partial Class frmForecast_PO
         Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridView1.OptionsPrint.PrintHorzLines = False
         Me.GridView1.OptionsPrint.PrintVertLines = False
+        Me.GridView1.OptionsSelection.MultiSelect = True
+        Me.GridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'PartNoTidakAdaInventoryDiSolomonToolStripMenuItem
+        '
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Name = "PartNoTidakAdaInventoryDiSolomonToolStripMenuItem"
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Text = "Adm -> PartNo tidak ada InventoryId di Solomon"
         '
         'frmForecast_PO
         '
@@ -114,4 +125,5 @@ Partial Class frmForecast_PO
     Friend WithEvents CekHargaADMTSM As ToolStripMenuItem
     Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SinkronasiDataTsm As ToolStripMenuItem
+    Friend WithEvents PartNoTidakAdaInventoryDiSolomonToolStripMenuItem As ToolStripMenuItem
 End Class

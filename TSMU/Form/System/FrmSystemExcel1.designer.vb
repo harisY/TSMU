@@ -29,11 +29,15 @@ Partial Class FrmSystemExcel1
         Me._cmbCust = New DevExpress.XtraEditors.ComboBoxEdit()
         Me._cmbTahun = New DevExpress.XtraEditors.ComboBoxEdit()
         Me._cmbBulan = New DevExpress.XtraEditors.LookUpEdit()
+        Me._CmbSite = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me._CmbFlag = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutSite = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutFlag = New DevExpress.XtraLayout.LayoutControlItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me._btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -46,17 +50,23 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TxtPO = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._txtExcel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._cmbCust.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._cmbBulan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._CmbSite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._CmbFlag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutSite, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutFlag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +81,8 @@ Partial Class FrmSystemExcel1
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -91,17 +103,20 @@ Partial Class FrmSystemExcel1
         Me.LayoutControl1.Controls.Add(Me._cmbCust)
         Me.LayoutControl1.Controls.Add(Me._cmbTahun)
         Me.LayoutControl1.Controls.Add(Me._cmbBulan)
+        Me.LayoutControl1.Controls.Add(Me._CmbSite)
+        Me.LayoutControl1.Controls.Add(Me._CmbFlag)
+        Me.LayoutControl1.Controls.Add(Me.TxtPO)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(430, 178)
+        Me.LayoutControl1.Size = New System.Drawing.Size(430, 213)
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         '_txtExcel
         '
-        Me._txtExcel.Location = New System.Drawing.Point(70, 90)
+        Me._txtExcel.Location = New System.Drawing.Point(70, 168)
         Me._txtExcel.Name = "_txtExcel"
         Me._txtExcel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me._txtExcel.Size = New System.Drawing.Size(348, 22)
@@ -140,13 +155,31 @@ Partial Class FrmSystemExcel1
         Me._cmbBulan.StyleController = Me.LayoutControl1
         Me._cmbBulan.TabIndex = 1
         '
+        '_CmbSite
+        '
+        Me._CmbSite.Location = New System.Drawing.Point(70, 90)
+        Me._CmbSite.Name = "_CmbSite"
+        Me._CmbSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._CmbSite.Size = New System.Drawing.Size(348, 22)
+        Me._CmbSite.StyleController = Me.LayoutControl1
+        Me._CmbSite.TabIndex = 5
+        '
+        '_CmbFlag
+        '
+        Me._CmbFlag.Location = New System.Drawing.Point(70, 116)
+        Me._CmbFlag.Name = "_CmbFlag"
+        Me._CmbFlag.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._CmbFlag.Size = New System.Drawing.Size(348, 22)
+        Me._CmbFlag.StyleController = Me.LayoutControl1
+        Me._CmbFlag.TabIndex = 6
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutSite, Me.LayoutFlag, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(430, 178)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(430, 213)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -170,9 +203,9 @@ Partial Class FrmSystemExcel1
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me._txtExcel
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 78)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 156)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(410, 80)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(410, 37)
         Me.LayoutControlItem4.Text = "File"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(55, 16)
         '
@@ -185,11 +218,29 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlItem3.Text = "Bulan"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(55, 16)
         '
+        'LayoutSite
+        '
+        Me.LayoutSite.Control = Me._CmbSite
+        Me.LayoutSite.Location = New System.Drawing.Point(0, 78)
+        Me.LayoutSite.Name = "LayoutSite"
+        Me.LayoutSite.Size = New System.Drawing.Size(410, 26)
+        Me.LayoutSite.Text = "Site"
+        Me.LayoutSite.TextSize = New System.Drawing.Size(55, 16)
+        '
+        'LayoutFlag
+        '
+        Me.LayoutFlag.Control = Me._CmbFlag
+        Me.LayoutFlag.Location = New System.Drawing.Point(0, 104)
+        Me.LayoutFlag.Name = "LayoutFlag"
+        Me.LayoutFlag.Size = New System.Drawing.Size(410, 26)
+        Me.LayoutFlag.Text = "Flag"
+        Me.LayoutFlag.TextSize = New System.Drawing.Size(55, 16)
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me._btnExport)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 218)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 253)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(437, 47)
         Me.PanelControl1.TabIndex = 4
@@ -209,7 +260,7 @@ Partial Class FrmSystemExcel1
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(437, 212)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(437, 247)
         Me.XtraTabControl1.TabIndex = 5
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -217,7 +268,7 @@ Partial Class FrmSystemExcel1
         '
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(430, 178)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(430, 213)
         Me.XtraTabPage1.Text = "Import By Month"
         '
         'XtraTabPage2
@@ -292,11 +343,30 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlItem6.Text = "File"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(36, 16)
         '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.TxtPO
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 130)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(410, 26)
+        Me.LayoutControlItem7.Text = "PO"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(55, 16)
+        '
+        'TxtPO
+        '
+        Me.TxtPO.Location = New System.Drawing.Point(70, 142)
+        Me.TxtPO.Name = "TxtPO"
+        Me.TxtPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtPO.Properties.Items.AddRange(New Object() {"PO1", "PO2"})
+        Me.TxtPO.Size = New System.Drawing.Size(348, 22)
+        Me.TxtPO.StyleController = Me.LayoutControl1
+        Me.TxtPO.TabIndex = 7
+        '
         'FrmSystemExcel1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(437, 265)
+        Me.ClientSize = New System.Drawing.Size(437, 300)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.lblStatus)
@@ -311,11 +381,15 @@ Partial Class FrmSystemExcel1
         CType(Me._cmbCust.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._cmbBulan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._CmbSite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._CmbFlag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutSite, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutFlag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -330,6 +404,8 @@ Partial Class FrmSystemExcel1
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -358,4 +434,10 @@ Partial Class FrmSystemExcel1
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents _cmbBulan As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents _CmbSite As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents _CmbFlag As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutSite As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutFlag As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TxtPO As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
 End Class

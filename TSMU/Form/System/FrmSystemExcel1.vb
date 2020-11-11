@@ -46,6 +46,16 @@ Public Class FrmSystemExcel1
             Return _cmbCust.Text.Trim
         End Get
     End Property
+    ReadOnly Property _Site As String
+        Get
+            Return _CmbSite.Text.Trim
+        End Get
+    End Property
+    ReadOnly Property Flag As String
+        Get
+            Return _CmbFlag.Text.Trim
+        End Get
+    End Property
 
     ReadOnly Property Bulan As String
         Get
@@ -71,6 +81,15 @@ Public Class FrmSystemExcel1
             End If
         End Get
     End Property
+    ReadOnly Property PO As String
+        Get
+            If TxtPO.EditValue <> "" Then
+                Return TxtPO.EditValue.Trim
+            Else
+                Return ""
+            End If
+        End Get
+    End Property
 
     ReadOnly Property tab As Integer
         Get
@@ -83,6 +102,11 @@ Public Class FrmSystemExcel1
         FillComboCustomer()
         FillComboBulan()
         lblStatus.Text = ""
+        FillComboSite()
+        FillComboFlag()
+        _CmbSite.Enabled = False
+        _CmbFlag.Enabled = False
+        TxtPO.Enabled = False
         'XtraTabControl1.SelectedTabPageIndex = 0
         XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
@@ -98,6 +122,21 @@ Public Class FrmSystemExcel1
         TxtTahun2.Properties.Items.Clear()
         For Each var As String In tahun
             TxtTahun2.Properties.Items.Add(var)
+        Next
+    End Sub
+
+    Private Sub FillComboSite()
+        Dim tahun() As String = {"", "TNG-U", "TSC3-U"}
+        _CmbSite.Properties.Items.Clear()
+        For Each var As String In tahun
+            _CmbSite.Properties.Items.Add(var)
+        Next
+    End Sub
+    Private Sub FillComboFlag()
+        Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"}
+        _CmbFlag.Properties.Items.Clear()
+        For Each var As String In tahun
+            _CmbFlag.Properties.Items.Add(var)
         Next
     End Sub
 
@@ -192,12 +231,23 @@ Public Class FrmSystemExcel1
                     _txtExcel.Focus()
                     Throw New Exception("Pilih Excel yang  akan di upload !")
                 End If
-                'If _cmbCust.Text.TrimEnd.ToLower = "adm" Then
-                '    Dim Dt As New DataTable
-                '    Dt = ExcelToDatatable(_txtExcel.Text, "Sheet1")
-                '    DtAdm = Dt
-                'Else
-                Dim connString As String = String.Empty
+                If _cmbCust.Text.TrimEnd.ToLower = "adm" Then
+                    If _CmbSite.Text = "" Then
+                        _CmbSite.Focus()
+                        Throw New Exception("Pilih Site !")
+                    ElseIf _CmbFlag.Text = "" Then
+                        _CmbSite.Focus()
+                        Throw New Exception("Pilih Flag !")
+                    ElseIf TxtPO.Text = "" Then
+                        TxtPO.Focus()
+                        Throw New Exception("Pilih PO !")
+                    Else
+                        Dim Dt As New DataTable
+                        Dt = ExcelToDatatable(_txtExcel.Text, "Sheet1")
+                        DtAdm = Dt
+                    End If
+                Else
+                    Dim connString As String = String.Empty
                     Dim extension As String = System.IO.Path.GetExtension(path)
                     Select Case extension
                         Case ".xls"
@@ -220,7 +270,7 @@ Public Class FrmSystemExcel1
                         End Using
                         excel_con.Close()
                     End Using
-                'End If
+                End If
             Else
                 If lblStatus.Text <> "" Then
                     Throw New Exception("Proses masih berjalan !")
@@ -260,6 +310,7 @@ Public Class FrmSystemExcel1
                 End Using
             End If
             Me.Close()
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -277,6 +328,21 @@ Public Class FrmSystemExcel1
                 Dim text As String = System.IO.File.ReadAllText(path2)
                 TxtFile2.Text = path2
                 'Me.Text = text.Length.ToString
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
+        Try
+            If String.IsNullOrEmpty(_cmbCust.Text) Then
+                Return
+            End If
+            If _cmbCust.Text.ToLower = "adm" Then
+                _CmbSite.Enabled = True
+                _CmbFlag.Enabled = True
+                TxtPO.Enabled = True
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

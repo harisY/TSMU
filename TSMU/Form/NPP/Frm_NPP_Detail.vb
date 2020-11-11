@@ -2027,7 +2027,8 @@ Public Class Frm_NPP_Detail
         RowsAwal = DtGridNPWO.Rows.Count
 
     End Sub
-
+    Dim Path As String = String.Empty
+    Dim ObjSetting As New SettingService
     Private Sub CallFrm(Optional ByVal ls_Code As String = "0", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -2035,7 +2036,8 @@ Public Class Frm_NPP_Detail
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, 0)
+        Path = ObjSetting.GetDrrPath
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, Path, li_Row, Grid, 0)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()

@@ -82,7 +82,7 @@ Public Class FrmSystemLookUpCalculateBudget
         Try
 
             Invoke(Sub()
-                       strSemester = _cmbSemester.SelectedIndex
+                       strSemester = _cmbSemester.SelectedIndex + 1
                        strTahun = _cmbTahun.Text
                    End Sub)
             If strTahun = "" Then

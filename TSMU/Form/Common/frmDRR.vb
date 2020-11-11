@@ -19,20 +19,22 @@ Public Class frmDRR
     Dim _ServiceGlobal As GlobalService
     Dim ObjHeader As DRRModel
     Dim ObjDetail As DRRDetail
-
+    Dim _ServiceSetting As SettingService
+    Dim _Path As String
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
         _Service = New DRRService
+        _ServiceSetting = New SettingService
 
     End Sub
 
     Private Sub frmDRR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
 
-        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, True, False, False, True, False, False, False, True)
-
+        Call Proc_EnableButtons(True, If(gh_Common.Level = "1", False, True), True, True, False, False, False, True, False, False, False, True)
+        _Path = _ServiceSetting.GetDrrPath
     End Sub
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
@@ -171,14 +173,14 @@ Public Class frmDRR
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, Grid, GetLevel, Status)
+        ff_Detail = New frmDRR_details(ls_Code, ls_Code2, Me, li_Row, _Path, Grid, GetLevel, Status)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\"
     'Dim _path As String = "D:\TOOLS\Sketch\"
-    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
+    'Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Public Overrides Sub Proc_DeleteData()
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
@@ -208,8 +210,8 @@ Public Class frmDRR
                     Exit For
                 End If
                 Dim _File As String = String.Empty
-                If Directory.Exists(_path) Then
-                    _File = Path.Combine(_path, fileName(0))
+                If Directory.Exists(_Path) Then
+                    _File = Path.Combine(_Path, fileName(0))
                     If File.Exists(_File) Then
                         File.Delete(_File)
                     End If
