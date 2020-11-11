@@ -44,6 +44,8 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me._txtamount = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -71,6 +73,8 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -115,6 +119,10 @@ Partial Class FrmViewShipperNonInvoice
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsSelection.MultiSelect = True
+        Me.GridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -147,6 +155,10 @@ Partial Class FrmViewShipperNonInvoice
         Me.GridView2.GridControl = Me.Grid2
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView2.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView2.OptionsSelection.MultiSelect = True
+        Me.GridView2.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
         Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.ShowAutoFilterRow = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
@@ -179,12 +191,17 @@ Partial Class FrmViewShipperNonInvoice
         Me.GridView3.GridControl = Me.Grid3
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView3.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView3.OptionsSelection.MultiSelect = True
+        Me.GridView3.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
         Me.GridView3.OptionsView.ColumnAutoWidth = False
         Me.GridView3.OptionsView.ShowAutoFilterRow = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me._txtamount)
         Me.LayoutControl1.Controls.Add(Me.lblnama)
         Me.LayoutControl1.Controls.Add(Me.Button1)
         Me.LayoutControl1.Controls.Add(Me._TxtLokasi)
@@ -274,7 +291,7 @@ Partial Class FrmViewShipperNonInvoice
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem6})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1104, 51)
         Me.LayoutControlGroup1.TextVisible = False
@@ -309,9 +326,9 @@ Partial Class FrmViewShipperNonInvoice
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(821, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(924, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(263, 31)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(160, 31)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
@@ -340,6 +357,24 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem6.Size = New System.Drawing.Size(188, 31)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
+        '
+        '_txtamount
+        '
+        Me._txtamount.Location = New System.Drawing.Point(833, 12)
+        Me._txtamount.Name = "_txtamount"
+        Me._txtamount.Properties.ReadOnly = True
+        Me._txtamount.Size = New System.Drawing.Size(99, 22)
+        Me._txtamount.StyleController = Me.LayoutControl1
+        Me._txtamount.TabIndex = 9
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me._txtamount
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(821, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(103, 31)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
         '
         'FrmViewShipperNonInvoice
         '
@@ -377,6 +412,8 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -407,4 +444,6 @@ Partial Class FrmViewShipperNonInvoice
     Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents Grid2 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents _txtamount As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
 End Class

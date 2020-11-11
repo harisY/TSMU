@@ -194,7 +194,9 @@ Public Class Cls_Npwo_Detail
                   ,[Rev]
                   ,[Information]
               FROM [NPWO_Rev_Information]
-		           Where [No_Npwo] = '" & No & "'"
+		           Where [No_Npwo] = '" & No & "'
+                   and [Rev] > 0
+              order by Rev asc"
 
         Dim ds As New dsLaporan
         ds = GetDsReport(query, "NpwoRev")

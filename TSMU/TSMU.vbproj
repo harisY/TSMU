@@ -107,6 +107,7 @@
     <Reference Include="DevExpress.Snap.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Snap.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.SpellChecker.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.TreeMap.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -132,6 +133,9 @@
     <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpellChecker.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="ExcelDataReader">
@@ -300,6 +304,12 @@
       <DependentUpon>FrmPOADM.vb</DependentUpon>
     </Compile>
     <Compile Include="Compare_Invoice\FrmPOADM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOYIM.Designer.vb">
+      <DependentUpon>FrmPOYIM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmPOYIM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
@@ -528,6 +538,12 @@
     <Compile Include="Direct\FrmMktUploadPrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmMktUploadPriceDetail.Designer.vb">
+      <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmMktUploadPriceDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmPaymentDirect.Designer.vb">
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
@@ -688,12 +704,6 @@
       <DependentUpon>FrmTravelerDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmTravelerDetail.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Direct\FrmTravelOption.Designer.vb">
-      <DependentUpon>FrmTravelOption.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Direct\FrmTravelOption.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmTravelPocketAllowance.Designer.vb">
@@ -1422,6 +1432,54 @@
     <Compile Include="Form\Circulation\Frm_CR_UserCreateHeader.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReport.Designer.vb">
+      <DependentUpon>DevCirculationReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBOD.Designer.vb">
+      <DependentUpon>DevCirculationReportBOD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBOD.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOCTemp.Designer.vb">
+      <DependentUpon>DevCirculationReportDOCTemp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOCTemp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOC.Designer.vb">
+      <DependentUpon>DevCirculationReportDOC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportDOC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOther.Designer.vb">
+      <DependentUpon>DevCirculationReportOther.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOther.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportTotal.Designer.vb">
+      <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportTotal.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp2.Designer.vb">
+      <DependentUpon>DevCirculationTemp2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp.Designer.vb">
+      <DependentUpon>DevCirculationTemp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Report\RptCirculationTotal.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1965,6 +2023,18 @@
     </Compile>
     <Compile Include="Form\NPWO\Frm_Npwo_Prepare.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReport.Designer.vb">
+      <DependentUpon>DevNpwoReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReportRev.Designer.vb">
+      <DependentUpon>DevNpwoReportRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPWO\Report\DevNpwoReportRev.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\NPWO\Report\Frm_Rpt_NPWO.Designer.vb">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>
@@ -2836,6 +2906,9 @@
     <EmbeddedResource Include="Compare_Invoice\FrmPOADM.resx">
       <DependentUpon>FrmPOADM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmPOYIM.resx">
+      <DependentUpon>FrmPOYIM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
       <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>
     </EmbeddedResource>
@@ -2872,6 +2945,9 @@
     <EmbeddedResource Include="Direct\FrmMktUploadPrice.resx">
       <DependentUpon>FrmMktUploadPrice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmMktUploadPriceDetail.resx">
+      <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
       <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
     </EmbeddedResource>
@@ -2886,9 +2962,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelEntertainDetail.resx">
       <DependentUpon>FrmTravelEntertainDetail.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Direct\FrmTravelOption.resx">
-      <DependentUpon>FrmTravelOption.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmTravelPocketAllowance.resx">
       <DependentUpon>FrmTravelPocketAllowance.vb</DependentUpon>
@@ -3213,6 +3286,30 @@
     <EmbeddedResource Include="Form\Circulation\Frm_CR_UserCreateHeader.resx">
       <DependentUpon>Frm_CR_UserCreateHeader.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReport.resx">
+      <DependentUpon>DevCirculationReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportBOD.resx">
+      <DependentUpon>DevCirculationReportBOD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportDOCTemp.resx">
+      <DependentUpon>DevCirculationReportDOCTemp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportDOC.resx">
+      <DependentUpon>DevCirculationReportDOC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportOther.resx">
+      <DependentUpon>DevCirculationReportOther.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportTotal.resx">
+      <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationTemp2.resx">
+      <DependentUpon>DevCirculationTemp2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationTemp.resx">
+      <DependentUpon>DevCirculationTemp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\RptCirculationTotal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptCirculationTotal.vb</LastGenOutput>
@@ -3328,6 +3425,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Frm_Npwo_Prepare.resx">
       <DependentUpon>Frm_Npwo_Prepare.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\DevNpwoReport.resx">
+      <DependentUpon>DevNpwoReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPWO\Report\DevNpwoReportRev.resx">
+      <DependentUpon>DevNpwoReportRev.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPWO\Report\Frm_Rpt_NPWO.resx">
       <DependentUpon>Frm_Rpt_NPWO.vb</DependentUpon>

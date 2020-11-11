@@ -74,25 +74,9 @@ Public Class FrmCCAccrued
     End Sub
 
     Public Overrides Sub Proc_Print()
-        Dim param As String
-        Dim listNoAccrued As New List(Of String)
-        If GridViewAccruedAll.SelectedRowsCount > 0 Then
-            For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
-                If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
-                    Dim noAccrued As String = String.Empty
-                    If noAccrued <> GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued") Then
-                        noAccrued = GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued")
-                        listNoAccrued.Add(noAccrued)
-                    End If
-                End If
-            Next
-        End If
-
-        param = String.Join(",", listNoAccrued.ToArray)
-
         frmCCAccrued = New FrmReportCCAccrued
         frmCCAccrued.txtTabAccrued.Text = TabPage
-        frmCCAccrued.param = param
+        frmCCAccrued.param = ""
         frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
         frmCCAccrued.Show()
     End Sub
@@ -316,7 +300,7 @@ Public Class FrmCCAccrued
                 tsBtn_refresh.PerformClick()
 
                 frmCCAccrued = New FrmReportCCAccrued
-                frmCCAccrued.txtTabAccrued.Text = "TabPageCancel"
+                frmCCAccrued.txtTabAccrued.Text = ""
                 frmCCAccrued.param = noAccrued
                 frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
                 frmCCAccrued.Show()
@@ -379,8 +363,8 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
-            txtAccountName.Text = lF_SearchData.Values.Item(1).ToString.Trim + " - " + lF_SearchData.Values.Item(2).ToString.Trim
+            txtCCNumber.EditValue = lF_SearchData.Values.Item(2).ToString.Trim
+            txtAccountName.Text = lF_SearchData.Values.Item(0).ToString.Trim + " - " + lF_SearchData.Values.Item(1).ToString.Trim
             LoadGridAccruedWithFilter()
         End If
 
@@ -453,6 +437,29 @@ Public Class FrmCCAccrued
                 End If
             Next
         End If
+    End Sub
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        Dim param As String
+        Dim listNoAccrued As New List(Of String)
+        If GridViewAccruedAll.SelectedRowsCount > 0 Then
+            For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
+                If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
+                    Dim noAccrued As String = String.Empty
+                    If noAccrued <> GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued") Then
+                        noAccrued = GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued")
+                        listNoAccrued.Add(noAccrued)
+                    End If
+                End If
+            Next
+        End If
+
+        param = String.Join(",", listNoAccrued.ToArray)
+        frmCCAccrued = New FrmReportCCAccrued
+        frmCCAccrued.txtTabAccrued.Text = ""
+        frmCCAccrued.param = param
+        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
+        frmCCAccrued.Show()
     End Sub
 
 End Class

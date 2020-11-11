@@ -5,15 +5,10 @@
     Private Sub FrmTraveler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
-        'FilterData = New FrmSystem_FilterData(dtGrid)
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
-            'Grid.ReadOnly = True
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             dtGrid = fc_Class.GetAllDataTable(bs_Filter)
             Grid.DataSource = dtGrid
         Catch ex As Exception
@@ -40,18 +35,10 @@
 
     Private Sub FilterGrid()
         Try
-            'Grid.all = False
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             Dim dv As New DataView(dtGrid)
             dv.RowFilter = bs_Filter
             dtGrid = dv.ToTable
             Grid.DataSource = dtGrid
-            'If Grid.Rows.Count > 0 Then
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(False, False, False, True, True, True, False, False)
-            'End If
-            'Grid.AutoSize = True
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

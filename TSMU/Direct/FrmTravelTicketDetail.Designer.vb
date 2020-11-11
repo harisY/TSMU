@@ -305,6 +305,8 @@ Partial Class FrmTravelTicketDetail
         'DepartureDate
         '
         Me.DepartureDate.Caption = "Departure Date"
+        Me.DepartureDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.DepartureDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DepartureDate.FieldName = "DepartureDate"
         Me.DepartureDate.MinWidth = 25
         Me.DepartureDate.Name = "DepartureDate"
@@ -317,6 +319,8 @@ Partial Class FrmTravelTicketDetail
         'ArrivalDate
         '
         Me.ArrivalDate.Caption = "Arrival Date"
+        Me.ArrivalDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.ArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ArrivalDate.FieldName = "ArrivalDate"
         Me.ArrivalDate.MinWidth = 25
         Me.ArrivalDate.Name = "ArrivalDate"

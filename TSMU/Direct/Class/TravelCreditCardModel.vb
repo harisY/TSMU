@@ -39,7 +39,9 @@
                                 ExpDate ,
                                 [Type] ,
                                 CCNumberMaster
-                        FROM    dbo.TravelCreditCard"
+                        FROM    dbo.TravelCreditCard
+                        ORDER BY AccountName ASC ,
+                                BankName ASC"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTable(strQuery)
             Return dtTable

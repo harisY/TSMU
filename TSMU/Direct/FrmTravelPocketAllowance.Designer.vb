@@ -19,7 +19,6 @@ Partial Class FrmTravelPocketAllowance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.GridPocketAllowance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewPocketAllowance = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TravelTypeGrid = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -43,8 +42,8 @@ Partial Class FrmTravelPocketAllowance
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -131,7 +130,7 @@ Partial Class FrmTravelPocketAllowance
         '
         'NamaNegara
         '
-        Me.NamaNegara.Caption = "Negara"
+        Me.NamaNegara.Caption = "Country"
         Me.NamaNegara.FieldName = "NamaNegara"
         Me.NamaNegara.MinWidth = 25
         Me.NamaNegara.Name = "NamaNegara"
@@ -333,7 +332,7 @@ Partial Class FrmTravelPocketAllowance
         Me.LayoutControlItem4.Location = New System.Drawing.Point(576, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(190, 34)
-        Me.LayoutControlItem4.Text = "Curry ID"
+        Me.LayoutControlItem4.Text = "Curr"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(115, 16)
         '
         'LayoutControlItem5
@@ -342,7 +341,7 @@ Partial Class FrmTravelPocketAllowance
         Me.LayoutControlItem5.Location = New System.Drawing.Point(380, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(196, 34)
-        Me.LayoutControlItem5.Text = "Negara/Benua"
+        Me.LayoutControlItem5.Text = "Country/Continent"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(115, 16)
         '
         'LayoutControlItem6

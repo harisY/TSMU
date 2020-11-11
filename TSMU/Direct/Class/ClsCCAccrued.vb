@@ -379,11 +379,13 @@ Public Class ClsCCAccrued
 
     Public Function GetCreditCard() As DataTable
         Try
-            strQuery = "SELECT  CreditCardNumber ,
-                                AccountName ,
-                                BankName
+            strQuery = "SELECT  AccountName ,
+                                BankName ,
+                                CreditCardNumber
                         FROM    dbo.TravelCreditCard
-                        WHERE   Type = 'M'"
+                        WHERE   Type = 'M'
+                        ORDER BY AccountName ASC ,
+                                BankName ASC"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt

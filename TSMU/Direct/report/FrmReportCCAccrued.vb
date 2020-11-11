@@ -8,9 +8,10 @@
     Private Sub FrmReportCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If txtTabAccrued.Text = "TabPageProses" Then
             LoadreportAccrued()
+        ElseIf txtTabAccrued.Text = "TabPageCancel" Then
+            LoadreportAccruedAndSettle()
         Else
             LoadReportCCSettle()
-            'LoadreportAccruedAndSettle()
         End If
     End Sub
 

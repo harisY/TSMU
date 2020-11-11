@@ -88,7 +88,7 @@ Public Class Frm_CR_UserCreateHeader
             Cursor.Current = Cursors.WaitCursor
             Dim dt As New DataTable
             dt = fc_Class_PC.Get_Cek_Purchase()
-            Grid2.DataSource = dt
+            GridPurchase.DataSource = dt
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Call Grid_Properties()
 
@@ -446,5 +446,28 @@ Public Class Frm_CR_UserCreateHeader
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         SendKeys.Send("{ENTER}")
         Timer1.Enabled = False
+    End Sub
+
+    Private Sub GridPurchase_DoubleClick(sender As Object, e As EventArgs) Handles GridPurchase.DoubleClick
+        Active_Form = 6
+        Try
+            Dim provider As CultureInfo = CultureInfo.InvariantCulture
+            IdTrans = String.Empty
+            Dim selectedRows() As Integer = GridViewPurchase.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    IdTrans = GridViewPurchase.GetRowCellValue(rowHandle, "Circulation No")
+                End If
+            Next rowHandle
+
+            If GridViewPurchase.GetSelectedRows.Length > 0 Then
+                Call CallFrm(IdTrans,
+                            Format(Tanggal, gs_FormatSQLDate),
+                            GridViewPurchase.RowCount)
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

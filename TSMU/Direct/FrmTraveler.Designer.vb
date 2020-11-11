@@ -45,6 +45,8 @@ Partial Class FrmTraveler
         '
         'GridView1
         '
+        Me.GridView1.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GridView1.DetailHeight = 458
         Me.GridView1.FixedLineWidth = 3
@@ -52,7 +54,7 @@ Partial Class FrmTraveler
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -67,7 +69,7 @@ Partial Class FrmTraveler
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Nama"
+        Me.GridColumn2.Caption = "Name"
         Me.GridColumn2.FieldName = "Nama"
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
