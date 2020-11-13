@@ -896,7 +896,7 @@ Public Class Frm_Npwo_Detail1
 
 
         fc_Class.GetDataByID(fs_Code)
-        If fc_Class.H_Approve >= 3 Then
+        If fc_Class.H_Approve >= 1 Then
 
 
             Dim dtRpt As DataTable

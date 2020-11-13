@@ -1121,7 +1121,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell7
         '
-        Me.XrTableCell7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Tag", "[Cal_Mold]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Max([Qty_Mold])")})
+        Me.XrTableCell7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Tag", "[Cal_Mold]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([Qty_Mold]=='','-',[Qty_Mold])")})
         Me.XrTableCell7.Multiline = True
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
