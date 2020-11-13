@@ -57,13 +57,15 @@ Public Class frmForecast_PO_Log
     Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
         Dim view As GridView = TryCast(sender, GridView)
         If view.FocusedRowHandle >= 0 Then
-            Dim Solomonon As String = view.GetRowCellDisplayText(e.RowHandle, "AlternateID Solomon")
-            Dim Upload As String = view.GetRowCellDisplayText(e.RowHandle, "AlternateID Upload")
+            If _tipe = 0 Then
+                Dim Solomonon As String = view.GetRowCellDisplayText(e.RowHandle, "AlternateID Solomon")
+                Dim Upload As String = view.GetRowCellDisplayText(e.RowHandle, "AlternateID Upload")
 
-            If Solomonon <> Upload Then
-                e.Appearance.BackColor = Color.LightSalmon
-                e.HighPriority = True
-                'End If
+                If Solomonon <> Upload Then
+                    e.Appearance.BackColor = Color.LightSalmon
+                    e.HighPriority = True
+                    'End If
+                End If
             End If
         End If
     End Sub

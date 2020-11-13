@@ -63,6 +63,7 @@ Partial Class frmForecast_PO_Log
         Me.GridView1.OptionsPrint.PrintVertLines = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'BtnLookUpInvtID

@@ -295,6 +295,7 @@ Public Class Frm_CR_UserCreateDetail
                         End With
                     ElseIf gh_Common.GroupID = "1FAC" Then
 
+                        T_CRType.Enabled = True
                         GroupBox1.Enabled = True
                         GridView1.OptionsBehavior.Editable = True
                         With GridView1
@@ -314,11 +315,7 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Account").OptionsColumn.AllowEdit = True
 
                         End With
-
-
                     End If
-
-
 
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
                 ElseIf Active_Form = 5 Then  'Active_Form 5 = Accounting
@@ -362,7 +359,6 @@ Public Class Frm_CR_UserCreateDetail
                     End If
 
                 ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase Monitor
-                    T_PO.Enabled = True
                     Grid5.Visible = False
                     Grid4.Visible = True
                     C_Term.Visible = True
@@ -375,6 +371,11 @@ Public Class Frm_CR_UserCreateDetail
                     BMold.Enabled = False
                     Call No_Edit_TextBox()
                     C_Term.Enabled = True
+
+                    If fc_Class.H_Current_Level >= 5 And fc_Class.H_Current_Level <= 6 Then
+                        T_PO.Enabled = True
+                    End If
+
                     With GridView1
                         .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
                         .Columns("Spesification").OptionsColumn.AllowEdit = False
@@ -866,8 +867,6 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
-
         With GridView1
             .Columns("Model").Visible = False
             .Columns("Sales Type").Visible = False
@@ -891,7 +890,7 @@ Public Class Frm_CR_UserCreateDetail
         Call CreateTableBarang()
         Call InitialSetForm()
 
-        If gh_Common.GroupID = "3NPD" Then
+        If gh_Common.GroupID = "3NPD" Or gh_Common.GroupID = "1FAC" Then
             T_CRType.Properties.Items.Add("Fixed Aset")
             T_CRType.Properties.Items.Add("Expense")
             T_CRType.Properties.Items.Add("Mold")
@@ -3198,7 +3197,7 @@ Public Class Frm_CR_UserCreateDetail
             End If
 #End Region
 
-#Region "ElseIf Active_Form = 4"
+#Region "ElseIf Active_Form = 4  Other Dept"
 
         ElseIf Active_Form = 4 Then   ' (Other Dept)
             'Dim a As New DataTable
@@ -3248,6 +3247,7 @@ Public Class Frm_CR_UserCreateDetail
                                     .H_Budget = 0
                                 End If
                                 .H_CirculationNo = T_CRNo.EditValue
+                                .H_CR_Type = T_CRType.EditValue
                             End With
 
                             fc_Class.Collection_Description_Of_Cost.Clear()
@@ -3687,7 +3687,7 @@ Public Class Frm_CR_UserCreateDetail
 
         If dtRpt.Rows.Count > 0 Then
             _Status = dtRpt.Rows(0).Item("status")
-            If _Status = "Other Dept" Or _Status = "Approve BOD" Or _Status = "Set Installment" Or _Status = "Close" Then
+            If _Status = "Other Dept" Or _Status = "Approve BOD" Or _Status = "Set Installment" Or _Status = "Close" Or _Status = "BA" Then
                 Dim ds As New DataSet
                 Dim dsOtherDept As New DataSet
                 Dim dsApprove As New DataSet

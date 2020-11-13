@@ -50,10 +50,10 @@ Partial Class FrmSystemLookUpCalculateBudget
         Me.TabPage1.Controls.Add(Me._cmbSemester)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me._cmbTahun)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(404, 190)
+        Me.TabPage1.Size = New System.Drawing.Size(404, 184)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Parameter"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -61,9 +61,9 @@ Partial Class FrmSystemLookUpCalculateBudget
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 33)
+        Me.Label2.Location = New System.Drawing.Point(6, 39)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(53, 13)
+        Me.Label2.Size = New System.Drawing.Size(65, 19)
         Me.Label2.TabIndex = 26
         Me.Label2.Text = "Semester"
         '
@@ -71,9 +71,9 @@ Partial Class FrmSystemLookUpCalculateBudget
         '
         Me._cmbSemester.FormattingEnabled = True
         Me._cmbSemester.Items.AddRange(New Object() {"", "I", "II"})
-        Me._cmbSemester.Location = New System.Drawing.Point(86, 33)
+        Me._cmbSemester.Location = New System.Drawing.Point(86, 39)
         Me._cmbSemester.Name = "_cmbSemester"
-        Me._cmbSemester.Size = New System.Drawing.Size(121, 21)
+        Me._cmbSemester.Size = New System.Drawing.Size(121, 27)
         Me._cmbSemester.TabIndex = 25
         '
         'Label7
@@ -81,7 +81,7 @@ Partial Class FrmSystemLookUpCalculateBudget
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(6, 6)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(38, 13)
+        Me.Label7.Size = New System.Drawing.Size(45, 19)
         Me.Label7.TabIndex = 24
         Me.Label7.Text = "Tahun"
         '
@@ -90,7 +90,7 @@ Partial Class FrmSystemLookUpCalculateBudget
         Me._cmbTahun.FormattingEnabled = True
         Me._cmbTahun.Location = New System.Drawing.Point(86, 6)
         Me._cmbTahun.Name = "_cmbTahun"
-        Me._cmbTahun.Size = New System.Drawing.Size(121, 21)
+        Me._cmbTahun.Size = New System.Drawing.Size(121, 27)
         Me._cmbTahun.TabIndex = 23
         '
         'OpenFileDialog1
@@ -113,9 +113,9 @@ Partial Class FrmSystemLookUpCalculateBudget
         Me.ProgressBar1.Size = New System.Drawing.Size(100, 23)
         Me.ProgressBar1.TabIndex = 2
         '
-        'FrmSystemLookUpCalculate
+        'FrmSystemLookUpCalculateBudget
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 265)
         Me.Controls.Add(Me.ProgressBar1)

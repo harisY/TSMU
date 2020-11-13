@@ -32,6 +32,8 @@ Public Class frm_system_config_db
         Dim CKRPass As String = ""
         Dim CKRAuth As String = ""
 
+        Dim _Site As String = ""
+
         Dim ls_Product As String = My.Application.Info.ProductName.Trim
         Dim ls_Description As String = My.Application.Info.Description.Trim
         If ls_Description = "" Then ls_Description = "Takagi"
@@ -120,6 +122,7 @@ Public Class frm_system_config_db
         End If
         CheckBom.Checked = False
 
+        TxtSite.Text = My.Settings.Site
 
         'Solomon
         Dim FileInfo1 As New IO.FileInfo(SolomonConfig)
@@ -348,7 +351,8 @@ Public Class frm_system_config_db
 
         gs_DBPassword2 = TCKRPassword.Text.Trim
         Call gf_GetDatabaseVariablesDbCKR()
-
+        My.Settings.Site = TxtSite.Text.ToUpper
+        My.Settings.Save()
     End Sub
     Private Sub CreateAppSettingFileBOM()
         Try
@@ -485,5 +489,9 @@ Public Class frm_system_config_db
                 DialogResult = DialogResult.Cancel
             End If
         End If
+    End Sub
+
+    Private Sub TxtSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtSite.KeyPress
+        e.Handled = True
     End Sub
 End Class

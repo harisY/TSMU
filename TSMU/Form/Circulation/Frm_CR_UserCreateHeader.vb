@@ -78,6 +78,13 @@ Public Class Frm_CR_UserCreateHeader
             dt = fc_Class.Get_CRRequest(Dept, pDate1, pDate2)
             Grid.DataSource = dt
             Cursor.Current = Cursors.Default
+
+
+            If gh_Common.GroupID = "1PUR" Then
+                Call LoadGrid_Purchase()
+            End If
+
+
         Catch ex As Exception
             Cursor.Current = Cursors.Default
         End Try
@@ -90,7 +97,7 @@ Public Class Frm_CR_UserCreateHeader
             dt = fc_Class_PC.Get_Cek_Purchase()
             GridPurchase.DataSource = dt
             Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
-            Call Grid_Properties()
+            'Call Grid_Properties()
 
         Catch ex As Exception
             ' Cursor.Current = Cursors.Default
@@ -114,7 +121,7 @@ Public Class Frm_CR_UserCreateHeader
         If Active_Form = 1 Then
             ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid, Active_Form)
         ElseIf Active_Form = 6 Then
-            ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, Grid2, Active_Form)
+            ff_Detail = New Frm_CR_UserCreateDetail(ls_Code, ls_Code2, Me, li_Row, GridPurchase, Active_Form)
         End If
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
@@ -271,71 +278,71 @@ Public Class Frm_CR_UserCreateHeader
 
 
 
-    Private Sub Grid_Properties()
-        Try
-            With GridView2
+    'Private Sub Grid_Properties()
+    '    Try
+    '        With GridPurchase
 
-                .Columns("Circulation").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Circulation").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Circulation").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
-                '.Columns("Term").DisplayFormat.FormatString = "c2"
-                '.Columns("Date").Width = 20
-                .Columns("Tgl").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Tgl").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Tgl").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
-                '.Columns("%").Width = 2
-                .Columns("Dept").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Dept").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Dept").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            .Columns("Circulation").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Circulation").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Circulation").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            '.Columns("Term").DisplayFormat.FormatString = "c2"
+    '            '.Columns("Date").Width = 20
+    '            .Columns("Tgl").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Tgl").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Tgl").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            '.Columns("%").Width = 2
+    '            .Columns("Dept").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Dept").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Dept").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
 
-                .Columns("Status").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Status").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Status").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            .Columns("Status").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Status").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Status").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
 
-                .Columns("Approved").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Approved").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("Approved").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            .Columns("Approved").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Approved").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("Approved").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
 
-                .Columns("IDR").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("IDR").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Default
-                .Columns("IDR").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
-                .Columns("IDR").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                .Columns("IDR").DisplayFormat.FormatString = "{0:N2}"
-                .Columns("IDR").Width = 100
+    '            .Columns("IDR").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("IDR").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Default
+    '            .Columns("IDR").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            .Columns("IDR").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    '            .Columns("IDR").DisplayFormat.FormatString = "{0:N2}"
+    '            .Columns("IDR").Width = 100
 
-                .Columns("USD").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("USD").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-                .Columns("USD").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
-                .Columns("USD").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                .Columns("USD").DisplayFormat.FormatString = "{0:N2}"
-            End With
-        Catch ex As Exception
+    '            .Columns("USD").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("USD").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+    '            .Columns("USD").OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
+    '            .Columns("USD").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+    '            .Columns("USD").DisplayFormat.FormatString = "{0:N2}"
+    '        End With
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
-    Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
-        Active_Form = 6
-        Try
-            Dim provider As CultureInfo = CultureInfo.InvariantCulture
-            IdTrans = String.Empty
-            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
-            For Each rowHandle As Integer In selectedRows
-                If rowHandle >= 0 Then
-                    IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation")
-                End If
-            Next rowHandle
+    'Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs)
+    '    Active_Form = 6
+    '    Try
+    '        Dim provider As CultureInfo = CultureInfo.InvariantCulture
+    '        IdTrans = String.Empty
+    '        Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+    '        For Each rowHandle As Integer In selectedRows
+    '            If rowHandle >= 0 Then
+    '                IdTrans = GridView2.GetRowCellValue(rowHandle, "Circulation")
+    '            End If
+    '        Next rowHandle
 
-            If GridView2.GetSelectedRows.Length > 0 Then
-                Call CallFrm(IdTrans,
-                            Format(Tanggal, gs_FormatSQLDate),
-                            GridView2.RowCount)
-            End If
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
+    '        If GridView2.GetSelectedRows.Length > 0 Then
+    '            Call CallFrm(IdTrans,
+    '                        Format(Tanggal, gs_FormatSQLDate),
+    '                        GridView2.RowCount)
+    '        End If
+    '    Catch ex As Exception
+    '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+    '    End Try
+    'End Sub
 
     Private Sub GridView1_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GridView1.FocusedRowChanged
         Try

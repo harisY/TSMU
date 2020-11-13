@@ -51,8 +51,6 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Grid2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,8 +60,6 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabPage2.SuspendLayout()
         CType(Me.GridPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -268,7 +264,6 @@ Partial Class Frm_CR_UserCreateHeader
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.GridPurchase)
-        Me.TabPage2.Controls.Add(Me.Grid2)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -285,7 +280,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridPurchase.Location = New System.Drawing.Point(6, 3)
         Me.GridPurchase.MainView = Me.GridViewPurchase
         Me.GridPurchase.Name = "GridPurchase"
-        Me.GridPurchase.Size = New System.Drawing.Size(888, 233)
+        Me.GridPurchase.Size = New System.Drawing.Size(888, 344)
         Me.GridPurchase.TabIndex = 12
         Me.GridPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPurchase})
         '
@@ -428,27 +423,6 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn44.VisibleIndex = 10
         Me.GridColumn44.Width = 168
         '
-        'Grid2
-        '
-        Me.Grid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid2.Location = New System.Drawing.Point(6, 220)
-        Me.Grid2.MainView = Me.GridView2
-        Me.Grid2.Name = "Grid2"
-        Me.Grid2.Size = New System.Drawing.Size(888, 127)
-        Me.Grid2.TabIndex = 11
-        Me.Grid2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.Grid2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowAutoFilterRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
         'Timer1
         '
         Me.Timer1.Interval = 700
@@ -468,8 +442,6 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabPage2.ResumeLayout(False)
         CType(Me.GridPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewPurchase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -491,8 +463,6 @@ Partial Class Frm_CR_UserCreateHeader
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Grid2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Timer1 As Timer
