@@ -24,6 +24,7 @@ Partial Public Class FrmMain
         InitializeComponent()
     End Sub
     Private Sub RunAutoUpdate(Site As String)
+        'add site
         AutoUpdater.RunUpdateAsAdmin = False
         AutoUpdater.Mandatory = True
         AutoUpdater.UpdateMode = Mode.ForcedDownload
