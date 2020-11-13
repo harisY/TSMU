@@ -1,9 +1,12 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
+
 Public Class forecast_po_model
     Public Property Tahun As String
     Public Property CustID As String
     Public Property Bulan As String
     Public Property BulanAngka As String
+    Public Property PO As String
     Public Property ObjForecastCollection() As New Collection(Of forecast_po_model_detail)
     Public Sub DeleteByTahun(Tahun As String)
         Try
@@ -77,7 +80,38 @@ Public Class forecast_po_model
             Throw ex
         End Try
     End Sub
+    Public Sub InsertDataAdm()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
+                    Try
+
+                        For i As Integer = 0 To ObjForecastCollection.Count - 1
+                            With ObjForecastCollection(i)
+                                .InsertAdm(BulanAngka, PO)
+                                .MatomeInsert(Bulan, BulanAngka)
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub InsertData1()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -98,6 +132,7 @@ Public Class forecast_po_model
                                 Dim IsExist As Boolean = .IsDataADMExist
                                 If Not IsExist Then
                                     .InsertData()
+
                                     .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 Else
                                     .UpdateData1()
@@ -158,38 +193,6 @@ Public Class forecast_po_model
         End Try
     End Sub
 
-    Public Sub InsertDataADM()
-        Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
-
-                    Try
-                        DeleleByCustomerTahun()
-                        For i As Integer = 0 To ObjForecastCollection.Count - 1
-                            With ObjForecastCollection(i)
-
-                                .InsertData()
-                                .UpdateDataByBulanADM(Bulan)
-                            End With
-                        Next
-
-                        Trans1.Commit()
-                    Catch ex As Exception
-                        Trans1.Rollback()
-                        Throw ex
-                    Finally
-                        gh_Trans = Nothing
-                    End Try
-                End Using
-            End Using
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class
 Public Class forecast_po_model_detail
     Public Property Agt_PO1 As Integer
@@ -290,6 +293,10 @@ Public Class forecast_po_model_detail
     Public Property OktQty1 As Integer
     Public Property OktQty2 As Integer
     Public Property OktQty3 As Integer
+    Public Property N As Integer
+    Public Property N1 As Integer
+    Public Property N2 As Integer
+    Public Property N3 As Integer
     Public Property PartNo As String
     Public Property Sep_PO1 As Integer
     Public Property Sep_PO2 As Integer
@@ -304,6 +311,10 @@ Public Class forecast_po_model_detail
     Public Property update_date As DateTime
     Public Property Flag As String
     Public Property updated_by As String
+    Public Property BulanPO As String
+    Public Property BulanFC1 As String
+    Public Property BulanFC2 As String
+    Public Property BulanFC3 As String
 
     Public Function GetAllDataGrid(ByVal ls_Filter As String) As DataTable
         Try
@@ -315,6 +326,38 @@ Public Class forecast_po_model_detail
             Throw
         End Try
     End Function
+
+    Public Sub InsertAdm(Bulan As String, PO As String)
+        Try
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "CustID", .Value = CustID})
+            Params.Add(New SqlParameter() With {.ParameterName = "Customer", .Value = Customer})
+            Params.Add(New SqlParameter() With {.ParameterName = "InvtID", .Value = InvtID})
+            Params.Add(New SqlParameter() With {.ParameterName = "Description", .Value = Description})
+            Params.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "Model", .Value = Model})
+            Params.Add(New SqlParameter() With {.ParameterName = "Oe", .Value = OePe})
+            Params.Add(New SqlParameter() With {.ParameterName = "IN", .Value = INSub})
+            Params.Add(New SqlParameter() With {.ParameterName = "Site", .Value = Site})
+            Params.Add(New SqlParameter() With {.ParameterName = "Flag", .Value = Flag})
+            Params.Add(New SqlParameter() With {.ParameterName = "PO", .Value = PO})
+            Params.Add(New SqlParameter() With {.ParameterName = "N", .Value = N})
+            Params.Add(New SqlParameter() With {.ParameterName = "N1", .Value = N1})
+            Params.Add(New SqlParameter() With {.ParameterName = "N2", .Value = N2})
+            Params.Add(New SqlParameter() With {.ParameterName = "N3", .Value = N3})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanPO", .Value = BulanPO})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC1", .Value = BulanFC1})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC2", .Value = BulanFC2})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC3", .Value = BulanFC3})
+            Params.Add(New SqlParameter() With {.ParameterName = "Username", .Value = gh_Common.Username})
+            Dim dt As New DataTable
+            ExecQueryWithValue("tForecastPrice_insert_Adm", CommandType.StoredProcedure, Params, GetConnString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub Insert(Bulan As String, BulanAngka As String)
         Try
 
@@ -804,6 +847,44 @@ Public Class forecast_po_model_detail
         End Try
     End Function
     Public Sub InsertData()
+        Try
+
+            Dim Query As String = String.Empty
+            Query = "INSERT INTO [tForecastPrice]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site],[Flag]
+                            ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2]
+                            ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2]
+                            ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2]
+                            ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2]
+                            ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2]
+                            ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2]
+                            ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2]
+                            ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2]
+                            ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2]
+                            ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2]
+                            ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2]
+                            ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
+                            ,[created_date],[created_by])
+                    Values(" & QVal(Tahun) & "," & QVal(CustID) & "," & QVal(Customer) & "," & QVal(InvtID) & "," & QVal(Description) & "," & QVal(PartNo) & "," & QVal(Model) & "," & QVal(OePe) & "," & QVal(INSub) & "," & QVal(Site) & "," & QVal(Flag) & "
+                           ," & QVal(JanQty1) & "," & QVal(JanQty2) & "," & QVal(JanQty3) & "," & QVal(Jan_PO1) & "," & QVal(Jan_PO2) & "
+                           ," & QVal(FebQty1) & "," & QVal(FebQty2) & "," & QVal(FebQty3) & "," & QVal(Feb_PO1) & "," & QVal(Feb_PO2) & "
+                           ," & QVal(MarQty1) & "," & QVal(MarQty2) & "," & QVal(MarQty3) & "," & QVal(Mar_PO1) & "," & QVal(Mar_PO2) & "
+                           ," & QVal(AprQty1) & "," & QVal(AprQty2) & "," & QVal(AprQty3) & "," & QVal(Apr_PO1) & "," & QVal(Apr_PO2) & "
+                           ," & QVal(MeiQty1) & "," & QVal(MeiQty2) & "," & QVal(MeiQty3) & "," & QVal(Mei_PO1) & "," & QVal(Mei_PO2) & "
+                           ," & QVal(JunQty1) & "," & QVal(JunQty2) & "," & QVal(JunQty3) & "," & QVal(Jun_PO1) & "," & QVal(Jun_PO2) & "
+                           ," & QVal(JulQty1) & "," & QVal(JulQty2) & "," & QVal(JulQty3) & "," & QVal(Jul_PO1) & "," & QVal(Jul_PO2) & "
+                           ," & QVal(AgtQty1) & "," & QVal(AgtQty2) & "," & QVal(AgtQty3) & "," & QVal(Agt_PO1) & "," & QVal(Agt_PO2) & "
+                           ," & QVal(SepQty1) & "," & QVal(SepQty2) & "," & QVal(SepQty3) & "," & QVal(Sep_PO1) & "," & QVal(Sep_PO2) & "
+                           ," & QVal(OktQty1) & "," & QVal(OktQty2) & "," & QVal(OktQty3) & "," & QVal(Okt_PO1) & "," & QVal(Okt_PO2) & "
+                           ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "
+                           ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
+                           ," & QVal(created_date) & "," & QVal(created_by) & ")"
+            ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataNextYear(Bulan As String)
         Try
 
             Dim Query As String = String.Empty
@@ -1622,7 +1703,6 @@ Public Class forecast_po_model_detail
         End Try
     End Sub
 
-
     Public Sub UpdateDataByBulanNew(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
@@ -1888,30 +1968,30 @@ Public Class forecast_po_model_detail
             _Forecast2 = Qty1 * Harga
 
             Dim Sql As String = "T_Matome_Insert"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
-            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            Dim pParam() As SqlParameter = New SqlClient.SqlParameter(11) {}
+            pParam(0) = New SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Tahun
-            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1) = New SqlParameter("@Bulan", SqlDbType.VarChar)
             pParam(1).Value = bulanAngka
-            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2) = New SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(2).Value = CustID
-            pParam(3) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(3) = New SqlParameter("@InvtID", SqlDbType.VarChar)
             pParam(3).Value = InvtID
-            pParam(4) = New SqlClient.SqlParameter("@PartNo", SqlDbType.VarChar)
+            pParam(4) = New SqlParameter("@PartNo", SqlDbType.VarChar)
             pParam(4).Value = PartNo
-            pParam(5) = New SqlClient.SqlParameter("@Flag", SqlDbType.VarChar)
+            pParam(5) = New SqlParameter("@Flag", SqlDbType.VarChar)
             pParam(5).Value = Flag
-            pParam(6) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(6) = New SqlParameter("@Site", SqlDbType.VarChar)
             pParam(6).Value = Site
-            pParam(7) = New SqlClient.SqlParameter("@PO", SqlDbType.Float)
+            pParam(7) = New SqlParameter("@PO", SqlDbType.Float)
             pParam(7).Value = _PO
-            pParam(8) = New SqlClient.SqlParameter("@PORev", SqlDbType.Float)
+            pParam(8) = New SqlParameter("@PORev", SqlDbType.Float)
             pParam(8).Value = _PORev
-            pParam(9) = New SqlClient.SqlParameter("@Forecast", SqlDbType.Float)
+            pParam(9) = New SqlParameter("@Forecast", SqlDbType.Float)
             pParam(9).Value = _Forecast
-            pParam(10) = New SqlClient.SqlParameter("@Forecast1", SqlDbType.Float)
+            pParam(10) = New SqlParameter("@Forecast1", SqlDbType.Float)
             pParam(10).Value = _Forecast1
-            pParam(11) = New SqlClient.SqlParameter("@Forecast2", SqlDbType.Float)
+            pParam(11) = New SqlParameter("@Forecast2", SqlDbType.Float)
             pParam(11).Value = _Forecast2
             ExecQueryByCommand_SP(Sql, pParam)
         Catch ex As Exception
@@ -2333,6 +2413,16 @@ Public Class forecast_po_model_detail
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(sql)
 
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetData_tForecastPrice_Log() As DataTable
+        Try
+            Dim dt As New DataTable
+            dt = GetDataTableByParam("tForecastPrice_GetLogAdm", CommandType.StoredProcedure, Nothing, GetConnString)
             Return dt
         Catch ex As Exception
             Throw ex

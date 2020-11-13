@@ -363,8 +363,8 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
-            txtAccountName.Text = lF_SearchData.Values.Item(1).ToString.Trim + " - " + lF_SearchData.Values.Item(2).ToString.Trim
+            txtCCNumber.EditValue = lF_SearchData.Values.Item(2).ToString.Trim
+            txtAccountName.Text = lF_SearchData.Values.Item(0).ToString.Trim + " - " + lF_SearchData.Values.Item(1).ToString.Trim
             LoadGridAccruedWithFilter()
         End If
 

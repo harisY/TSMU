@@ -20,15 +20,13 @@ Partial Public Class PrintKanbanInternalTes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Code39ExtendedGenerator1 As DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator()
-        Dim Code39ExtendedGenerator2 As DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator = New DevExpress.XtraPrinting.BarCode.Code39ExtendedGenerator()
+        Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
+        Dim QrCodeGenerator2 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.panel1 = New DevExpress.XtraReports.UI.XRPanel()
-        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel33 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine13 = New DevExpress.XtraReports.UI.XRLine()
@@ -88,6 +86,8 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -114,28 +114,11 @@ Partial Public Class PrintKanbanInternalTes
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.panel1.CanGrow = False
-        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel32, Me.XrLabel34, Me.XrLabel33, Me.XrLabel31, Me.XrLabel11, Me.XrLabel16, Me.XrLine13, Me.XrLabel30, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.XrLabel24, Me.XrBarCode2, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrBarCode1, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrLine27, Me.XrLine26, Me.XrLine25, Me.XrLine24, Me.XrLine23, Me.XrLine22, Me.XrLine21, Me.XrLine20, Me.XrLine19, Me.XrLine18, Me.XrLine16, Me.XrLine15, Me.XrLine14, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLine8, Me.XrLine7, Me.XrLine6, Me.XrLine5, Me.XrLine3, Me.XrLine2, Me.XrLine1})
+        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel32, Me.XrLabel31, Me.XrLabel34, Me.XrLabel33, Me.XrLabel11, Me.XrLabel16, Me.XrLine13, Me.XrLabel30, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.XrLabel24, Me.XrBarCode2, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrBarCode1, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrLine27, Me.XrLine26, Me.XrLine25, Me.XrLine24, Me.XrLine23, Me.XrLine22, Me.XrLine21, Me.XrLine20, Me.XrLine19, Me.XrLine18, Me.XrLine16, Me.XrLine15, Me.XrLine14, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLine8, Me.XrLine7, Me.XrLine6, Me.XrLine5, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.Dpi = 254.0!
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(1419.5!, 642.4432!)
-        '
-        'XrLabel32
-        '
-        Me.XrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel32.Dpi = 254.0!
-        Me.XrLabel32.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InventoryID]")})
-        Me.XrLabel32.Font = New System.Drawing.Font("Calibri", 7.0!)
-        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(198.2022!, 604.7432!)
-        Me.XrLabel32.Multiline = True
-        Me.XrLabel32.Name = "XrLabel32"
-        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel32.SizeF = New System.Drawing.SizeF(534.413!, 37.69995!)
-        Me.XrLabel32.StylePriority.UseBorders = False
-        Me.XrLabel32.StylePriority.UseFont = False
-        Me.XrLabel32.StylePriority.UseTextAlignment = False
-        Me.XrLabel32.Text = "XrLabel31"
-        Me.XrLabel32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel34
         '
@@ -172,23 +155,6 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrLabel33.Text = "XrLabel33"
         Me.XrLabel33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrLabel33.TextFormatString = "{0:dd-MM-yyyy}"
-        '
-        'XrLabel31
-        '
-        Me.XrLabel31.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel31.Dpi = 254.0!
-        Me.XrLabel31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartNoLabel]")})
-        Me.XrLabel31.Font = New System.Drawing.Font("Calibri", 7.0!)
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(198.2022!, 215.556!)
-        Me.XrLabel31.Multiline = True
-        Me.XrLabel31.Name = "XrLabel31"
-        Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel31.SizeF = New System.Drawing.SizeF(529.4127!, 37.19696!)
-        Me.XrLabel31.StylePriority.UseBorders = False
-        Me.XrLabel31.StylePriority.UseFont = False
-        Me.XrLabel31.StylePriority.UseTextAlignment = False
-        Me.XrLabel31.Text = "XrLabel31"
-        Me.XrLabel31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel11
         '
@@ -365,16 +331,14 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode2.Dpi = 254.0!
         Me.XrBarCode2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InventoryID]")})
         Me.XrBarCode2.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(198.2022!, 501.7432!)
+        Me.XrBarCode2.LocationFloat = New DevExpress.Utils.PointFloat(521.2938!, 495.4674!)
         Me.XrBarCode2.Name = "XrBarCode2"
         Me.XrBarCode2.Padding = New DevExpress.XtraPrinting.PaddingInfo(26, 26, 0, 0, 254.0!)
         Me.XrBarCode2.ShowText = False
-        Me.XrBarCode2.SizeF = New System.Drawing.SizeF(528.6544!, 100.0!)
+        Me.XrBarCode2.SizeF = New System.Drawing.SizeF(194.9797!, 140.7!)
         Me.XrBarCode2.StylePriority.UseBorders = False
         Me.XrBarCode2.StylePriority.UseFont = False
-        Code39ExtendedGenerator1.CalcCheckSum = False
-        Code39ExtendedGenerator1.WideNarrowRatio = 3.0!
-        Me.XrBarCode2.Symbology = Code39ExtendedGenerator1
+        Me.XrBarCode2.Symbology = QrCodeGenerator1
         '
         'XrLabel23
         '
@@ -434,21 +398,22 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrBarCode1.Dpi = 254.0!
         Me.XrBarCode1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartNoLabel]")})
         Me.XrBarCode1.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(197.4438!, 101.246!)
+        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(521.2938!, 99.24001!)
         Me.XrBarCode1.Name = "XrBarCode1"
         Me.XrBarCode1.Padding = New DevExpress.XtraPrinting.PaddingInfo(26, 26, 0, 0, 254.0!)
         Me.XrBarCode1.ShowText = False
-        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(529.4128!, 100.0!)
+        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(194.9795!, 151.6604!)
         Me.XrBarCode1.StylePriority.UseBorders = False
         Me.XrBarCode1.StylePriority.UseFont = False
-        Code39ExtendedGenerator2.CalcCheckSum = False
-        Code39ExtendedGenerator2.WideNarrowRatio = 3.0!
-        Me.XrBarCode1.Symbology = Code39ExtendedGenerator2
+        Me.XrBarCode1.StylePriority.UseTextAlignment = False
+        Me.XrBarCode1.Symbology = QrCodeGenerator2
         '
         'XrLabel20
         '
         Me.XrLabel20.AutoWidth = True
-        Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel20.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+        Me.XrLabel20.BorderWidth = 1.0!
         Me.XrLabel20.Dpi = 254.0!
         Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(198.2021!, 4.999953!)
@@ -456,7 +421,9 @@ Partial Public Class PrintKanbanInternalTes
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel20.SizeF = New System.Drawing.SizeF(529.4127!, 82.48075!)
+        Me.XrLabel20.StylePriority.UseBorderDashStyle = False
         Me.XrLabel20.StylePriority.UseBorders = False
+        Me.XrLabel20.StylePriority.UseBorderWidth = False
         Me.XrLabel20.StylePriority.UseFont = False
         Me.XrLabel20.StylePriority.UseTextAlignment = False
         Me.XrLabel20.Text = "KANBAN INTERNAL"
@@ -954,12 +921,14 @@ Partial Public Class PrintKanbanInternalTes
         '
         'XrLine2
         '
+        Me.XrLine2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
         Me.XrLine2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLine2.Dpi = 254.0!
         Me.XrLine2.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
         Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(727.6152!, 0!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(5.0!, 647.4795!)
+        Me.XrLine2.StylePriority.UseBorderDashStyle = False
         Me.XrLine2.StylePriority.UseBorders = False
         '
         'XrLine1
@@ -983,6 +952,40 @@ Partial Public Class PrintKanbanInternalTes
         Me.BottomMargin.Dpi = 254.0!
         Me.BottomMargin.HeightF = 56.0!
         Me.BottomMargin.Name = "BottomMargin"
+        '
+        'XrLabel31
+        '
+        Me.XrLabel31.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel31.Dpi = 254.0!
+        Me.XrLabel31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PartNoLabel]")})
+        Me.XrLabel31.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(216.5834!, 99.24001!)
+        Me.XrLabel31.Multiline = True
+        Me.XrLabel31.Name = "XrLabel31"
+        Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel31.SizeF = New System.Drawing.SizeF(292.1!, 130.3867!)
+        Me.XrLabel31.StylePriority.UseBorders = False
+        Me.XrLabel31.StylePriority.UseFont = False
+        Me.XrLabel31.StylePriority.UseTextAlignment = False
+        Me.XrLabel31.Text = "XrLabel31"
+        Me.XrLabel31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel32
+        '
+        Me.XrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel32.Dpi = 254.0!
+        Me.XrLabel32.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[InventoryID]")})
+        Me.XrLabel32.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(216.5834!, 509.8733!)
+        Me.XrLabel32.Multiline = True
+        Me.XrLabel32.Name = "XrLabel32"
+        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel32.SizeF = New System.Drawing.SizeF(292.1!, 107.5698!)
+        Me.XrLabel32.StylePriority.UseBorders = False
+        Me.XrLabel32.StylePriority.UseFont = False
+        Me.XrLabel32.StylePriority.UseTextAlignment = False
+        Me.XrLabel32.Text = "XrLabel32"
+        Me.XrLabel32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'PrintKanbanInternalTes
         '
@@ -1067,8 +1070,8 @@ Partial Public Class PrintKanbanInternalTes
     Friend WithEvents XrLine13 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel31 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel33 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel32 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel31 As DevExpress.XtraReports.UI.XRLabel
 End Class

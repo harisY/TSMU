@@ -1013,7 +1013,7 @@ Public Class baseForm
 
     Private Sub baseForm_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         Try
-            If Name = "frmForecast_PO_Log" Then
+            If Name = "frmForecast_PO_Log" OrElse Modal Then
             Else
                 FrmMain.ribbon.SelectedPage = FrmMain.ribbon.Pages(Tag.PageIndex)
             End If

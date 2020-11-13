@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Net.Mail
+Imports System.Security.AccessControl
+Imports System.Text.RegularExpressions
 Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraBars.Ribbon.ViewInfo
 Imports DevExpress.XtraEditors
@@ -41,7 +43,7 @@ Public Class frmDRR_details
     Dim _inplaceEditors As RepositoryItem()
     'Dim _path As String = "\\10.10.1.12\e$\DRR Sketch\" 'D:\TOOLS\Sketch
     'Dim _path As String = "D:\TOOLS\Sketch\"
-    Dim _path As String = "\\10.10.3.6\d$\TESTING\DRR Sktech\"
+    Dim _Path As String = String.Empty '"\\10.10.3.6\d$\TESTING\DRR Sktech\"
     Dim images As List(Of String)
     Private Initializing As Boolean = False
     Dim ImgList As List(Of ImageModel)
@@ -62,7 +64,7 @@ Public Class frmDRR_details
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
                    ByRef lf_FormParent As Form,
-                   ByVal li_GridRow As Integer,
+                   ByVal li_GridRow As Integer, ByVal Path As String,
                    ByRef _Grid As GridControl, Level As Integer, Optional Status As String = "Submited")
         ' this call is required by the windows form designer
         Me.New()
@@ -82,6 +84,7 @@ Public Class frmDRR_details
         IsTrue = True
         Initializing = True
         _Level = Level
+        _Path = Path
     End Sub
 
     Private Sub frmDRR_details_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -169,22 +172,29 @@ Public Class frmDRR_details
             Throw ex
         End Try
     End Sub
+    Dim reg As Regex = New Regex("[;\/:*?""<>|&'_]")
     Private Sub GenerateImageGallery()
-        Dim _NPP As String = String.Empty
-        For Each gambar In images
-            Dim pathParts = gambar.Split("_"c)
-            Dim fileName = pathParts(pathParts.Count() - 1).Split("."c)
-            Dim _index = pathParts(pathParts.Count() - 1).Split(","c)
 
-            If fileName(0).ToString = "" Then
+        Dim _NPP As String = String.Empty
+        Dim NoDoc As String = reg.Replace(TxtNoDokumen.Text, " ") & "\"
+        'Dim NoDoc As String = Regex.Replace(TxtNoDokumen, "[;\/:*?""<>|&']", String.Empty) 'Replace(Replace(TxtNoDokumen.Text, "/", " "), "_", " ") & "\"
+        Dim _PathFinal As String = Path.Combine(_Path, NoDoc)
+
+        For Each gambar In images
+            If gambar.ToString() = "" Then
                 Exit For
             End If
-            _NPP = pathParts(0)
+            'Dim pathParts = gambar.Split("_"c)
+            Dim _File = gambar.Split(","c)
+            Dim _index = _File(1)
+            Dim Filename As String = _File(0)
+
+            '_NPP = pathParts(0)
             Dim img As Image
-            If Directory.Exists(_path) Then
-                img = New Bitmap(Image.FromFile(Path.Combine(_path, pathParts(0) & "_" & _index(0))))
+            If Directory.Exists(_PathFinal) Then
+                img = New Bitmap(Image.FromFile(Path.Combine(_PathFinal, Filename)))
                 If img IsNot Nothing Then
-                    GalleryControl1.Gallery.Groups(0).Items.Add(New GalleryItem(img, img, _index(0), "", CInt(_index(1)), CInt(_index(1)), Nothing, ""))
+                    GalleryControl1.Gallery.Groups(0).Items.Add(New GalleryItem(img, img, Filename, "", _index, _index, Nothing, ""))
                 End If
                 'img = New Image.FromFile(Path.Combine(_path, pathParts(0) & "_" & _index(0)))
                 'img = New Bitmap(Path.Combine(_path, pathParts(0) & "_" & _index(0)))
@@ -195,14 +205,17 @@ Public Class frmDRR_details
         images = New List(Of String)
 
         Dim _files As String()
-        _files = Directory.GetFiles(_path, "*.png")
+        _files = Directory.GetFiles(_PathFinal, "*.png")
         For Each file In _files
-            Dim separtor = file.Split("_"c)
-            If separtor.Length > 2 Then
-                If separtor(0) = Path.Combine(_path, _NPP) AndAlso separtor(2).Contains("Attach") Then
-                    images.Add(file)
-                End If
+            If file.Contains("Attach") Then
+                images.Add(file)
             End If
+            'Dim separtor = file.Split("_"c)
+            'If separtor.Length > 2 Then
+            '    If separtor(0) = Path.Combine(_PathFinal, _NPP) AndAlso separtor(2).Contains("Attach") Then
+            '        images.Add(file)
+            '    End If
+            'End If
 
         Next
     End Sub
@@ -255,6 +268,7 @@ Public Class frmDRR_details
         Dim bandedView As BandedGridView = New BandedGridView()
         SetGridBand(bandedView, "Mass/Weight (gr)", New String(1) {"colPart", "colRunner"})
         SetGridBand(bandedView, "Dimension", New String(2) {"colLong", "colWidth", "colHeight"})
+        SetGridBand(bandedView, "", New String(0) {"colRemark"})
         Return bandedView
     End Function
     Private Sub SetGridBand(ByVal bandedView As BandedGridView, ByVal gridBandCaption As String, ByVal columnNames As String())
@@ -270,8 +284,6 @@ Public Class frmDRR_details
         Next
     End Sub
     Private Sub CreateBand(ByVal caption As String, ByVal columns As BandedGridColumn(), index As Integer, name As String)
-
-
         Dim band As GridBand = BandedGridView1.Bands.AddBand(caption)
         band.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         band.VisibleIndex = index
@@ -280,7 +292,6 @@ Public Class frmDRR_details
             band.Columns.Remove(column)
             band.Columns.Add(column)
         Next
-
         bandCreated = True
     End Sub
     Private bandCreated As Boolean = False
@@ -335,6 +346,7 @@ Public Class frmDRR_details
             If Not bandCreated Then
                 CreateBand("Mass/Weight (gr)", New BandedGridColumn() {BandedGridView1.Columns("Part"), BandedGridView1.Columns("Runner")}, 11, "BandMass")
                 CreateBand("Dimension", New BandedGridColumn() {BandedGridView1.Columns("Long"), BandedGridView1.Columns("Width"), BandedGridView1.Columns("Height")}, 12, "BandDimension")
+                CreateBand("", New BandedGridColumn() {BandedGridView1.Columns("Remark")}, 13, "BandRemark")
             End If
             'AddHandler GridView1.CustomColumnDisplayText, AddressOf GridView1_CustomColumnDisplayText
             'AddHandler GridView1.ShowingEditor, AddressOf GridView1_ShowingEditor
@@ -367,7 +379,6 @@ Public Class frmDRR_details
                     .SetFocusedRowCellValue("Reference", "DRAWING")
                     .SetFocusedRowCellValue("Remark", "")
                     .FocusedColumn = .VisibleColumns(1)
-
                 End With
             End If
 
@@ -561,7 +572,8 @@ Public Class frmDRR_details
 
                 'Next
                 For Each item As GalleryItem In GalleryControl1.Gallery.Groups(0).Items
-                    _File = Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(Replace(item.Caption, ".png", ""), "_", " ") & ".png"
+                    Dim NPP As String = Replace(TxtNoNpp.Text, "/", " ")
+                    _File = NPP & "_" & Replace(Replace(Replace(item.Caption, ".png", ""), "_", ""), NPP, "") & ".png"
                     With ObjHeader
                         If _Index = -1 Then
                             .Gambar1 = _File & "," & CStr(_Index)
@@ -649,17 +661,34 @@ Public Class frmDRR_details
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+    Private Sub AddFolderPermisson(Path As String)
+        Dim UserAccount As String = "Everyone"
+        Dim FolderInfo As IO.DirectoryInfo = New IO.DirectoryInfo(Path)
+        Dim FolderAcl As New DirectorySecurity
+        FolderAcl.AddAccessRule(New FileSystemAccessRule(UserAccount, FileSystemRights.Modify, InheritanceFlags.ContainerInherit Or InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow))
+        'FolderAcl.SetAccessRuleProtection(True, False) 'uncomment to remove existing permissions
+        FolderInfo.SetAccessControl(FolderAcl)
+    End Sub
 
     Private Sub SaveDeleteImage()
         Try
+            Dim _Folder As String = String.Empty
             Dim files As String()
             Dim _File As String = String.Empty
-            If Not Directory.Exists(_path) Then
-                Directory.CreateDirectory(_path)
+
+            If Not Directory.Exists(_Path) Then
+                Directory.CreateDirectory(_Path)
+                AddFolderPermisson(_Path)
             End If
-            files = Directory.GetFiles(_path, "*.png")
+            _Folder = _Path & reg.Replace(TxtNoDokumen.Text, " ") & "\"
+            If Not Directory.Exists(_Folder) Then
+                Directory.CreateDirectory(_Folder)
+                AddFolderPermisson(_Folder)
+            End If
+            files = Directory.GetFiles(_Folder, "*.png")
             For Each item As GalleryItem In GalleryControl1.Gallery.Groups(0).Items
-                _File = Path.Combine(_path, Replace(TxtNoNpp.Text, "/", " ") & "_" & Replace(Replace(item.Caption, ".png", ""), "_", " ") & ".png")
+                Dim NoNpp As String = Replace(TxtNoNpp.Text, "/", " ")
+                _File = Path.Combine(_Folder, NoNpp & "_" & Replace(Replace(Replace(item.Caption, ".png", ""), "_", ""), NoNpp, "") & ".png")
                 If Not File.Exists(_File) Then
                     item.Image.Save(_File, Imaging.ImageFormat.Png)
                     'File.Delete(_File)
@@ -669,7 +698,7 @@ Public Class frmDRR_details
             If ImgToDelete IsNot Nothing Then
                 For Each imgTodeleted In ImgToDelete
                     Dim _fileToDelete As String = String.Empty
-                    _fileToDelete = Path.Combine(_path, imgTodeleted.ImageTitle & ".png")
+                    _fileToDelete = Path.Combine(_Folder, imgTodeleted.ImageTitle & ".png")
                     If File.Exists(_fileToDelete) Then
                         File.Delete(_fileToDelete)
                     End If
@@ -677,7 +706,7 @@ Public Class frmDRR_details
             End If
             If ImgList IsNot Nothing Then
                 For Each ImgFile In ImgList
-                    _File = Path.Combine(_path, Replace(Replace(ImgFile.ImageTitle, ".png", ""), "_", " ") & ".png")
+                    _File = Path.Combine(_Folder, Replace(Replace(ImgFile.ImageTitle, ".png", ""), "_", " ") & ".png")
 
                     If Not File.Exists(_File) Then
                         ImgFile.Img.Save(_File, Imaging.ImageFormat.Png)
@@ -685,7 +714,6 @@ Public Class frmDRR_details
 
                 Next
             End If
-
 
         Catch ex As Exception
             Throw ex
@@ -786,7 +814,7 @@ Public Class frmDRR_details
         Try
             Dim grid As GridControl = TryCast(sender, GridControl)
             Dim view As GridView = TryCast(grid.FocusedView, GridView)
-            If e.KeyData = Keys.Delete Then
+            If e.KeyData = Keys.F3 Then
                 If view.FocusedRowHandle <> 0 Then
                     view.DeleteSelectedRows()
                     e.Handled = True
@@ -838,7 +866,7 @@ Public Class frmDRR_details
             If TxtNoNpp.EditValue = "" Then
                 Throw New Exception("No NPP tidak boleh kosong !")
             End If
-            Dim f As New frmDRRAttach(TxtNoNpp.EditValue, _path, If(fs_Code = "0", True, False), images)
+            Dim f As New frmDRRAttach(TxtNoNpp.EditValue, Path.Combine(_Path, reg.Replace(TxtNoDokumen.Text, " ") & "\"), If(fs_Code = "0", True, False), images)
             f.StartPosition = FormStartPosition.CenterScreen
             f.ShowDialog()
             ImgList = New List(Of ImageModel)
@@ -852,27 +880,27 @@ Public Class frmDRR_details
 
     Private Sub BandedGridView1_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles BandedGridView1.ValidatingEditor
         Try
-            Dim view As BandedGridView = TryCast(sender, BandedGridView)
-            'If view.FocusedColumn.FieldName.ToLower = "qty" Then
-            '    Dim requiredDate? As Date = CType(e.Value, Date?)
-            '    Dim orderDate? As Date = CType(view.GetRowCellValue(view.FocusedRowHandle, colOrderDate), Date?)
-            '    If requiredDate < orderDate Then
+            'Dim view As BandedGridView = TryCast(sender, BandedGridView)
+            ''If view.FocusedColumn.FieldName.ToLower = "qty" Then
+            ''    Dim requiredDate? As Date = CType(e.Value, Date?)
+            ''    Dim orderDate? As Date = CType(view.GetRowCellValue(view.FocusedRowHandle, colOrderDate), Date?)
+            ''    If requiredDate < orderDate Then
+            ''        e.Valid = False
+            ''        e.ErrorText = "Required Date is earlier than the order date"
+            ''    End If
+            ''End If
+            'If view.FocusedColumn.ColumnType = GetType(Integer) OrElse view.FocusedColumn.ColumnType = GetType(Double) Then
+            '    Dim ressult As Integer
+            '    If Not Integer.TryParse(e.Value.ToString(), ressult) Then
             '        e.Valid = False
-            '        e.ErrorText = "Required Date is earlier than the order date"
+            '        e.ErrorText = "Input hanya angka !"
+            '        'Else
+            '        '    If Integer.Parse(e.Value.ToString()) <= 0 Then
+            '        '        e.Valid = False
+            '        '        e.ErrorText = Replace(view.FocusedColumn.Name, "col", "").ToUpper & " harus lebih besar dari 0(Nol) !"
+            '        '    End If
             '    End If
             'End If
-            If view.FocusedColumn.ColumnType = GetType(Integer) OrElse view.FocusedColumn.ColumnType = GetType(Double) Then
-                Dim ressult As Integer
-                If Not Integer.TryParse(e.Value.ToString(), ressult) Then
-                    e.Valid = False
-                    e.ErrorText = "Input hanya angka !"
-                    'Else
-                    '    If Integer.Parse(e.Value.ToString()) <= 0 Then
-                    '        e.Valid = False
-                    '        e.ErrorText = Replace(view.FocusedColumn.Name, "col", "").ToUpper & " harus lebih besar dari 0(Nol) !"
-                    '    End If
-                End If
-            End If
 
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -921,7 +949,4 @@ Public Class frmDRR_details
         End Try
     End Sub
 
-    Private Sub BtnFunction_Click(sender As Object, e As EventArgs) Handles BtnFunction.Click
-
-    End Sub
 End Class
