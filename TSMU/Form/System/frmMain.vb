@@ -27,7 +27,7 @@ Partial Public Class FrmMain
         AutoUpdater.RunUpdateAsAdmin = False
         AutoUpdater.Mandatory = True
         AutoUpdater.UpdateMode = Mode.ForcedDownload
-        If Site = "tng" Then
+        If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
             AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
         Else
             AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
