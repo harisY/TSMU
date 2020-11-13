@@ -656,13 +656,13 @@ Public Class Frm_Npwo_Detail1
                     If TT1.Text = "" Then
                         .H_T1 = oDate
                     Else
-                        .H_T1 = TT0.EditValue
+                        .H_T1 = TT1.EditValue
                     End If
 
                     If TT2.Text = "" Then
                         .H_T2 = oDate
                     Else
-                        .H_T2 = TT0.EditValue
+                        .H_T2 = TT2.EditValue
                     End If
 
                     .H_Drawing = CBDrawing.CheckState
