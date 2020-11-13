@@ -24,5 +24,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=HARIS\SQL2008R2;Initial Catalog=New_BoM;User ID=sa;Password=fid123!!</Value>
     </Setting>
+    <Setting Name="Site" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TNG</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
