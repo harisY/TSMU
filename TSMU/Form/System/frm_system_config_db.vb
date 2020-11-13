@@ -352,6 +352,7 @@ Public Class frm_system_config_db
         gs_DBPassword2 = TCKRPassword.Text.Trim
         Call gf_GetDatabaseVariablesDbCKR()
         My.Settings.Site = TxtSite.Text.ToUpper
+        My.Settings.Save()
     End Sub
     Private Sub CreateAppSettingFileBOM()
         Try

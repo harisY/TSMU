@@ -18,7 +18,7 @@
     Sub LoadreportAccrued()
         Dim dtAccrued As New DataTable
 
-        dtAccrued = report.LoadReportAccrued()
+        dtAccrued = report.LoadReportAccrued(txtPerpost.EditValue, param)
         lapAccrued.SetDataSource(dtAccrued)
 
         With CrystalReportViewer1
@@ -30,7 +30,7 @@
     Sub LoadreportAccruedAndSettle()
         Dim dtAccrued As New DataTable
 
-        dtAccrued = report.LoadReportAccruedAndSettle()
+        dtAccrued = report.LoadReportAccruedAndSettle(txtPerpost.EditValue, param)
         lapAccruedAndSettle.SetDataSource(dtAccrued)
 
         With CrystalReportViewer1
