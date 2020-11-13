@@ -106,6 +106,7 @@ Public Class ClsCR_CreateUser
                                     ,[Date] 
                                     ,[Opinion]
                                     ,[DeptHead_ID] as  [User_id]
+                                    ,[Approve] as [Check]
                                   from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'
                                     order by ID asc"
             Dim dt As New DataTable
@@ -919,7 +920,8 @@ Public Class ClsCR_CreateUser
                     gh_Trans.Command.Transaction = Trans1
                     Try
                         Dim ls_SP As String = "UPDATE [CR_Request]
-                                       SET [Budget] = '" & H_Budget & "'
+                                       SET [Budget] = '" & H_Budget & "',
+                                           [CR_Type] = '" & H_CR_Type & "'
                                      WHERE [CirculationNo] = '" & NoSirkulasi & "'"
                         MainModul.ExecQuery(ls_SP)
 
