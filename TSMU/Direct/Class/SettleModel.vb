@@ -720,13 +720,14 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeaderEntSettleDirect()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PRNo, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
@@ -813,7 +814,11 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
                                     "       Status = 'Close', " & vbCrLf &
-                                    "       PaymentType = 'Finance' WHERE SettleID = '" & _SettleID & "'"
+                                    "       PaymentType = " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+                                    "       CreditCardID = " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
+                                    "       CreditCardNumber = " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
+                                    "       AccountName = " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
+                                    "       Total = " & QVal(Total) & " WHERE SettleID = '" & _SettleID & "'"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -1120,26 +1125,25 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
 
                         UpdateHeader(_SettleID)
 
-                        'UpdateSettleTravelCost(_SettleID)
+                        UpdateSettleTravelCost(_SettleID)
 
                         Dim ObjSettleDetail As New SettleDetail
                         ObjSettleDetail.DeleteDetail(_SettleID)
 
                         For i As Integer = 0 To ObjDetails.Count - 1
                             With ObjDetails(i)
-                                '  .InsertDetailsEntSettleDirect()
-                                .InsertDetails()
+                                .InsertDetailsEntSettleDirect()
                             End With
                         Next
 
-                        'Dim clsEntertainRelasi As New SettleRelasi
-                        'clsEntertainRelasi.DeleteRelasi(_SettleID)
+                        Dim clsEntertainRelasi As New SettleRelasi
+                        clsEntertainRelasi.DeleteRelasi(_SettleID)
 
-                        'For i As Integer = 0 To ObjRelasi.Count - 1
-                        '    With ObjRelasi(i)
-                        '        .InsertRelasi()
-                        '    End With
-                        'Next
+                        For i As Integer = 0 To ObjRelasi.Count - 1
+                            With ObjRelasi(i)
+                                .InsertRelasi()
+                            End With
+                        Next
 
                         Trans1.Commit()
                     Catch ex As Exception

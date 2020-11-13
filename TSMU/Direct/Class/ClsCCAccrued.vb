@@ -397,14 +397,16 @@ Public Class ClsCCAccrued
 End Class
 
 Public Class ClsReportCCAccrued
-    Public Function LoadReportAccrued() As DataTable
+    Public Function LoadReportAccrued(period As Date, _param As String) As DataTable
         Try
             Dim dt As New DataTable
             Dim SP_Name As String = "Accrued_Rpt_GetAccrued"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
-            pParam(0).Value = Today.Date
+            pParam(0).Value = period
+            pParam(1) = New SqlClient.SqlParameter("@Param", SqlDbType.VarChar)
+            pParam(1).Value = _param
 
             dt = GetDataTableByCommand_SP(SP_Name, pParam)
 
@@ -414,14 +416,16 @@ Public Class ClsReportCCAccrued
         End Try
     End Function
 
-    Public Function LoadReportAccruedAndSettle() As DataTable
+    Public Function LoadReportAccruedAndSettle(period As Date, _param As String) As DataTable
         Try
             Dim dt As New DataTable
             Dim SP_Name As String = "Accrued_Rpt_GetAccruedAndSettle"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
-            pParam(0).Value = Today.Date
+            pParam(0).Value = period
+            pParam(1) = New SqlClient.SqlParameter("@Param", SqlDbType.VarChar)
+            pParam(1).Value = _param
 
             dt = GetDataTableByCommand_SP(SP_Name, pParam)
 

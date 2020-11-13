@@ -24,6 +24,9 @@ Partial Class FrmReportCCAccrued
     Private Sub InitializeComponent()
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.txtTabAccrued = New System.Windows.Forms.TextBox()
+        Me.txtPerpost = New DevExpress.XtraEditors.DateEdit()
+        CType(Me.txtPerpost.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPerpost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -39,21 +42,35 @@ Partial Class FrmReportCCAccrued
         '
         'txtTabAccrued
         '
-        Me.txtTabAccrued.Location = New System.Drawing.Point(503, 0)
+        Me.txtTabAccrued.Location = New System.Drawing.Point(485, 0)
         Me.txtTabAccrued.Name = "txtTabAccrued"
         Me.txtTabAccrued.Size = New System.Drawing.Size(100, 22)
         Me.txtTabAccrued.TabIndex = 1
         Me.txtTabAccrued.Visible = False
+        '
+        'txtPerpost
+        '
+        Me.txtPerpost.EditValue = Nothing
+        Me.txtPerpost.Location = New System.Drawing.Point(611, 0)
+        Me.txtPerpost.Name = "txtPerpost"
+        Me.txtPerpost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtPerpost.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtPerpost.Size = New System.Drawing.Size(125, 22)
+        Me.txtPerpost.TabIndex = 2
+        Me.txtPerpost.Visible = False
         '
         'FrmReportCCAccrued
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1005, 612)
+        Me.Controls.Add(Me.txtPerpost)
         Me.Controls.Add(Me.txtTabAccrued)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Name = "FrmReportCCAccrued"
         Me.Text = "FrmReportCCAccrued"
+        CType(Me.txtPerpost.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPerpost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -61,4 +78,5 @@ Partial Class FrmReportCCAccrued
 
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents txtTabAccrued As TextBox
+    Friend WithEvents txtPerpost As DevExpress.XtraEditors.DateEdit
 End Class
