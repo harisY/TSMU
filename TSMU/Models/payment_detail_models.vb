@@ -97,11 +97,11 @@
 
     Public Function GetDataGridCM_New(VendorID As String) As DataTable
         Try
-            Dim sql As String = "SELECT Ardoc.docdate as tgl
+            Dim sql As String = "SELECT Ardoc.docdate
                                     ,Ardoc.CuryId
-                                    ,Ardoc.batnbr as Bacth
-                                    ,Ardoc.refnbr as no_invoice
-                                    ,Batch.CuryCrTot as TotalCMDM 
+                                    ,Ardoc.batnbr
+                                    ,Ardoc.refnbr
+                                    ,Batch.CuryCrTot 
                                     , convert(bit,0) as [Check]
                                 FROM Ardoc inner join 
                                     CashAcct  on Ardoc.BankAcct=CashAcct.BankAcct  inner join 
