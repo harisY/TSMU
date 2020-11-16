@@ -25,7 +25,7 @@ Public Class FrmApprovalDetail
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
     Dim _SuspendID As String = ""
-
+    Dim _Tag As TagModel
     Dim level As Integer = 0
     Public Sub New()
 
@@ -49,6 +49,9 @@ Public Class FrmApprovalDetail
         End If
         GridDtl = _Grid
         FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
     End Sub
     Private Sub CreateTable()
         DtScan = New DataTable
