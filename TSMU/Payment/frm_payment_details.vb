@@ -541,4 +541,8 @@ Public Class frm_payment_details
     Private Sub _TxtTgl_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtTgl.EditValueChanged
 
     End Sub
+
+    Private Sub _TxtCM_EditValueChanged(sender As Object, e As EventArgs) Handles _TxtCM.EditValueChanged
+
+    End Sub
 End Class

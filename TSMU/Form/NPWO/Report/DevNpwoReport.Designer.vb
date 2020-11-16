@@ -350,16 +350,24 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell73
         '
+        Me.XrTableCell73.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By   ' + [DivHeadNameDate]")})
         Me.XrTableCell73.Multiline = True
         Me.XrTableCell73.Name = "XrTableCell73"
         Me.XrTableCell73.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell73.StylePriority.UseTextAlignment = False
+        Me.XrTableCell73.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell73.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell73.Weight = 1.0R
         '
         'XrTableCell74
         '
+        Me.XrTableCell74.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By  ' + [DeptHeadNameDate]")})
         Me.XrTableCell74.Multiline = True
         Me.XrTableCell74.Name = "XrTableCell74"
         Me.XrTableCell74.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell74.StylePriority.UseTextAlignment = False
+        Me.XrTableCell74.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell74.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell74.Weight = 1.0R
         '
         'XrTableRow15
